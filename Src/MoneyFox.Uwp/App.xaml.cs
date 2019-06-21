@@ -24,12 +24,9 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.Uwp.Views;
-using MvvmCross;
 using PCLAppConfig;
 using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
-using MvvmCross.Navigation;
 using GenericServices;
 using MoneyFox.Presentation.ViewModels;
 using NLog;
@@ -140,9 +137,8 @@ namespace MoneyFox.Uwp
         private async Task HandleTileActivationInfo(LaunchActivatedEventArgs activationArgs)
         {
             logManager.Debug("Passed TileID: {tileId}", activationArgs.TileId);
-            if (Mvx.IoCProvider.CanResolve<IMvxNavigationService>()
-                && Mvx.IoCProvider.CanResolve<ICrudServicesAsync>()
-                && int.TryParse(activationArgs.TileId, out int accountId))
+
+            if (int.TryParse(activationArgs.TileId, out int accountId))
             {
                 logManager.Info("Open Payment List of Account with ID {accountId}", accountId);
                 

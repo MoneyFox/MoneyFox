@@ -1,7 +1,7 @@
 ﻿using System;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Presentation.Messages;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -10,7 +10,7 @@ namespace MoneyFox.Presentation.ViewModels
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
 
-        MvxCommand DoneCommand { get; set; }
+        RelayCommand DoneCommand { get; set; }
     }
 
     public class SelectDateRangeDialogViewModel : BaseViewModel
@@ -53,7 +53,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
-        public MvxCommand DoneCommand => new MvxCommand(Done);
+        public RelayCommand DoneCommand => new RelayCommand(Done);
 
         private void Done()
         {

@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -15,7 +14,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
 
         public RelayCommand SaveCommand { get; }
         public RelayCommand CancelCommand { get; }
-        public MvxAsyncCommand DeleteCommand { get; }
+        public RelayCommand DeleteCommand { get; }
         public CategoryViewModel SelectedCategory { get; }
 
         public bool IsEdit { get; }

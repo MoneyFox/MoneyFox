@@ -9,7 +9,6 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
 using MoneyFox.Uwp.Business;
-using MvvmCross.Plugin.File.Platforms.Uap;
 
 namespace MoneyFox.Uwp.Tasks
 {

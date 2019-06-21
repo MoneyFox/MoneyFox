@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using MvvmCross.Exceptions;
 using NLog;
 
 namespace MoneyFox.BusinessLogic.FileStore
@@ -59,7 +58,7 @@ namespace MoneyFox.BusinessLogic.FileStore
             } 
             catch (Exception ex)
             {
-                logger.Error(ex.ToLongString);return false;
+                logger.Error(ex.ToString);return false;
             }
         }
 

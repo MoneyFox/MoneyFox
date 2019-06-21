@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.ServiceLayer.Facades;
-using MvvmCross.ViewModels;
 using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
@@ -59,7 +58,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
         protected override async Task Load()
         {
-            StatisticItems = new MvxObservableCollection<StatisticEntry>(
+            StatisticItems = new ObservableCollection<StatisticEntry>(
                 await cashFlowDataProvider.GetCashFlow(StartDate, EndDate));
 
             Chart = new BarChart

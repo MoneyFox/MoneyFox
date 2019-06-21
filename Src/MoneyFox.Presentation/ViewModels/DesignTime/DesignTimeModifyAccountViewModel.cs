@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -22,12 +22,12 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public AccountViewModel SelectedAccount { get; }
 
         /// <inheritdoc />
-        public MvxAsyncCommand SaveCommand { get; }
+        public RelayCommand SaveCommand { get; }
 
         /// <inheritdoc />
-        public MvxAsyncCommand DeleteCommand { get; }
+        public RelayCommand DeleteCommand { get; }
 
         /// <inheritdoc />
-        public MvxAsyncCommand CancelCommand { get; }
+        public RelayCommand CancelCommand { get; }
     }
 }

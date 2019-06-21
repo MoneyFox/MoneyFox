@@ -2,7 +2,6 @@
 using System.Globalization;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Converters;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter
@@ -10,7 +9,7 @@ namespace MoneyFox.Presentation.Converter
     /// <summary>
     ///     Converts the RecurrenceType to a string.
     /// </summary>
-    public class RecurrenceTypeConverter : IMvxValueConverter, IValueConverter
+    public class RecurrenceTypeConverter : IValueConverter
     {
         /// <summary>
         ///     Converts the passed recurrence type to a string.

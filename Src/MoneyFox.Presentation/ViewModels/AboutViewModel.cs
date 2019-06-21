@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Interfaces;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -15,39 +14,39 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Opens the webbrowser and loads to the apply solutions
         ///     website
         /// </summary>
-        MvxAsyncCommand GoToWebsiteCommand { get; }
+        RelayCommand GoToWebsiteCommand { get; }
 
         /// <summary>
         ///     Sends a feedback mail to the apply solutions support
         ///     mail address
         /// </summary>
-        MvxAsyncCommand SendMailCommand { get; }
+        RelayCommand SendMailCommand { get; }
 
         /// <summary>
         ///     Opens the store to rate the app.
         /// </summary>
-        MvxCommand RateAppCommand { get; }
+        RelayCommand RateAppCommand { get; }
 
         /// <summary>
         ///     Opens the webbrowser and loads repository page
         ///     on GitHub
         /// </summary>
-        MvxAsyncCommand GoToRepositoryCommand { get; }
+        RelayCommand GoToRepositoryCommand { get; }
 
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        MvxAsyncCommand GoToTranslationProjectCommand { get; }
+        RelayCommand GoToTranslationProjectCommand { get; }
 
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        MvxAsyncCommand GoToDesignerTwitterAccountCommand { get; }
+        RelayCommand GoToDesignerTwitterAccountCommand { get; }
 
         /// <summary>
         ///     Opens the webbrowser loads the contribution page on Github.
         /// </summary>
-        MvxAsyncCommand GoToContributionPageCommand { get; }
+        RelayCommand GoToContributionPageCommand { get; }
 
         /// <summary>
         ///     Returns the Version of App
@@ -92,39 +91,39 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Opens the webbrowser and loads to the apply solutions
         ///     website
         /// </summary>
-        public MvxAsyncCommand GoToWebsiteCommand => new MvxAsyncCommand(GoToWebsite);
+        public RelayCommand GoToWebsiteCommand => new RelayCommand(GoToWebsite);
 
         /// <summary>
         ///     Sends a feedback mail to the apply solutions support
         ///     mail address
         /// </summary>
-        public MvxAsyncCommand SendMailCommand => new MvxAsyncCommand(SendMail);
+        public RelayCommand SendMailCommand => new RelayCommand(SendMail);
 
         /// <summary>
         ///     Opens the store to rate the app.
         /// </summary>
-        public MvxCommand RateAppCommand => new MvxCommand(RateApp);
+        public RelayCommand RateAppCommand => new RelayCommand(RateApp);
 
         /// <summary>
         ///     Opens the webbrowser and loads repository page
         ///     on GitHub
         /// </summary>
-        public MvxAsyncCommand GoToRepositoryCommand => new MvxAsyncCommand(GoToRepository);
+        public RelayCommand GoToRepositoryCommand => new RelayCommand(GoToRepository);
 
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public MvxAsyncCommand GoToTranslationProjectCommand => new MvxAsyncCommand(GoToTranslationProject);
+        public RelayCommand GoToTranslationProjectCommand => new RelayCommand(GoToTranslationProject);
 
         /// <summary>
         ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public MvxAsyncCommand GoToDesignerTwitterAccountCommand => new MvxAsyncCommand(GoToDesignerTwitterAccount);
+        public RelayCommand GoToDesignerTwitterAccountCommand => new RelayCommand(GoToDesignerTwitterAccount);
 
         /// <summary>
         ///     Opens the webbrowser loads the contribution page on Github.
         /// </summary>
-        public MvxAsyncCommand GoToContributionPageCommand => new MvxAsyncCommand(GoToContributionPage);
+        public RelayCommand GoToContributionPageCommand => new RelayCommand(GoToContributionPage);
 
         /// <summary>
         ///     Returns the Version of App
@@ -143,12 +142,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public string SupportMail => AppConstants.SUPPORT_MAIL;
 
-        private async Task GoToWebsite()
+        private async void GoToWebsite()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.WEBSITE_URL));
         }
 
-        private async Task SendMail()
+        private async void SendMail()
         {
             await emailAdapter.SendEmail(Strings.FeedbackSubject, string.Empty,
                     new List<string> { AppConstants.SUPPORT_MAIL });
@@ -159,22 +158,22 @@ namespace MoneyFox.Presentation.ViewModels
             storeFeatures.RateApp();
         }
 
-        private async Task GoToRepository()
+        private async void GoToRepository()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.GIT_HUB_REPOSITORY_URL));
         }
 
-        private async Task GoToTranslationProject()
+        private async void GoToTranslationProject()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.TRANSLATION_PROJECT_URL));
         }
 
-        private async Task GoToDesignerTwitterAccount()
+        private async void GoToDesignerTwitterAccount()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.ICON_DESIGNER_TWITTER_URL));
         }
 
-        private async Task GoToContributionPage()
+        private async void GoToContributionPage()
         {
             await browserAdapter.OpenWebsite(new Uri(AppConstants.GITHUB_CONTRIBUTION_URL));
         }

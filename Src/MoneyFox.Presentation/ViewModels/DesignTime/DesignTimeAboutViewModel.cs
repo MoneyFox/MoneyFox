@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -14,13 +14,13 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
 
         /// <inheritdoc />
         public LocalizedResources Resources { get; }
-        public MvxAsyncCommand GoToWebsiteCommand { get; }
-        public MvxAsyncCommand SendMailCommand { get; }
-        public MvxCommand RateAppCommand { get; }
-        public MvxAsyncCommand GoToRepositoryCommand { get; }
-        public MvxAsyncCommand GoToTranslationProjectCommand { get; }
-        public MvxAsyncCommand GoToDesignerTwitterAccountCommand { get; }
-        public MvxAsyncCommand GoToContributionPageCommand { get; }
+        public RelayCommand GoToWebsiteCommand { get; }
+        public RelayCommand SendMailCommand { get; }
+        public RelayCommand RateAppCommand { get; }
+        public RelayCommand GoToRepositoryCommand { get; }
+        public RelayCommand GoToTranslationProjectCommand { get; }
+        public RelayCommand GoToDesignerTwitterAccountCommand { get; }
+        public RelayCommand GoToContributionPageCommand { get; }
         public string Version { get; } = "0.4.5";
         public string Website { get; } = "www.foo.ch";
         public string SupportMail { get; } = "foo@me.ch";

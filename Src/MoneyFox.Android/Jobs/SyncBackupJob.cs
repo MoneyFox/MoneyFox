@@ -9,7 +9,6 @@ using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Plugin.File;
 using System;
 using System.IO;
 using System.Threading.Tasks;

@@ -6,11 +6,11 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using CommonServiceLocator;
 using GenericServices;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.DesignTime;
 using MoneyFox.Uwp.Business.Tiles;
-using MvvmCross;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -67,9 +67,8 @@ namespace MoneyFox.Uwp.Views
         {
             var element = (FrameworkElement)sender;
             if (!(element.DataContext is AccountViewModel account)) return;
-            if (!Mvx.IoCProvider.CanResolve<ICrudServicesAsync>()) return;
 
-            var liveTileManager = new LiveTileManager(Mvx.IoCProvider.Resolve<ICrudServicesAsync>());
+            var liveTileManager = new LiveTileManager(ServiceLocator.Current.GetInstance<ICrudServicesAsync>());
 
             int id = account.Id;
             bool isPinned = SecondaryTile.Exists(id.ToString(CultureInfo.InvariantCulture));

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Globalization;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.ServiceLayer.Utilities;
-using MvvmCross.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -16,6 +16,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public LocalizedResources Resources { get; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public MvxCommand DoneCommand { get; set; }
+        public RelayCommand DoneCommand { get; set; }
     }
 }

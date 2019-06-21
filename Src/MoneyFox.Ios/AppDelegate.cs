@@ -11,8 +11,6 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Services;
-using MvvmCross;
-using MvvmCross.Plugin.File;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
@@ -22,8 +20,8 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using Autofac;
+using CommonServiceLocator;
 using MoneyFox.BusinessLogic.FileStore;
-using MoneyFox.Presentation.Interfaces;
 using NLog;
 using NLog.Targets;
 using UIKit;
@@ -148,8 +146,6 @@ namespace MoneyFox.iOS
 
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
-            if (!Mvx.IoCProvider.CanResolve<IRecurringPaymentManager>() || !Mvx.IoCProvider.CanResolve<IBackupManager>()) return;
-
             Debug.Write("Enter Background Task");
             var successful = false;
             try
@@ -182,8 +178,6 @@ namespace MoneyFox.iOS
 
         private async Task SyncBackup()
         {
-            if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
-
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
 
@@ -199,7 +193,7 @@ namespace MoneyFox.iOS
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
-                    Mvx.IoCProvider.Resolve<IFileStore>(),
+                    ServiceLocator.Current.GetInstance<IFileStore>(),
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);

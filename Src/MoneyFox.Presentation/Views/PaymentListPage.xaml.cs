@@ -2,7 +2,6 @@
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.ViewModels;
-using MvvmCross;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -44,13 +43,10 @@ namespace MoneyFox.Presentation.Views
 
         private async void OpenDialog()
         {
-            if (Mvx.IoCProvider.CanResolve<SelectFilterDialogViewModel>())
+            await Navigation.PushPopupAsync(new FilterPopup
             {
-                await Navigation.PushPopupAsync(new FilterPopup
-                {
-                    BindingContext = Mvx.IoCProvider.Resolve<SelectFilterDialogViewModel>()
-                });
-            }
+                BindingContext = ViewModelLocator.SelectFilterDialogVm
+            });
         }
 
         protected override void OnAppearing()
