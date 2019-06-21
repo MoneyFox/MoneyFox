@@ -523,7 +523,7 @@
       <Version>12.0.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.6.4</Version>
+      <Version>4.6.5</Version>
     </PackageReference>
     <PackageReference Include="NotificationsExtensions.Win10">
       <Version>14332.0.2</Version>
@@ -532,7 +532,7 @@
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
-      <Version>1.0.1.4</Version>
+      <Version>1.0.1.6</Version>
     </PackageReference>
     <PackageReference Include="UniversalRateReminder">
       <Version>2.2.0</Version>

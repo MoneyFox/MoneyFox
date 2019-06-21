@@ -32,7 +32,7 @@
     <PackageReference Include="MvvmCross" Version="6.3.0" />
     <PackageReference Include="MvvmCross.Plugin.File" Version="6.3.0" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
-    <PackageReference Include="NLog" Version="4.6.4" />
+    <PackageReference Include="NLog" Version="4.6.5" />
     <PackageReference Include="Xamarin.Auth" Version="1.6.0.4" />
     <PackageReference Include="Xamarin.Essentials" Version="1.1.0" />
   </ItemGroup>
