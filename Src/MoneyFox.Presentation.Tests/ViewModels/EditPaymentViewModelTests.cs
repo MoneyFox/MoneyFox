@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MockQueryable.Moq;
 using MoneyFox.BusinessLogic;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Services;
@@ -19,7 +22,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class EditPaymentViewModelTests
     {
         private readonly Mock<IPaymentService> paymentServiceMock;
-        private readonly Mock<ICrudServicesAsync> crudServiceMock;
+        private readonly Mock<ICrudServices> crudServiceMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
@@ -28,11 +31,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public EditPaymentViewModelTests()
         {
             paymentServiceMock = new Mock<IPaymentService>();
-            crudServiceMock = new Mock<ICrudServicesAsync>();
+            crudServiceMock = new Mock<ICrudServices>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
+
+            crudServiceMock.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
+                           .Returns(new List<AccountViewModel>().AsQueryable().BuildMockDbQuery().Object);
         }
 
         [Fact]
@@ -41,8 +47,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Arrange
             const int paymentId = 99;
 
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                           .ReturnsAsync(new PaymentViewModel
+            crudServiceMock.Setup(x => x.ReadSingle<PaymentViewModel>(It.IsAny<int>()))
+                           .Returns(new PaymentViewModel
                            {
                                IsRecurring = true,
                                RecurringPayment = new RecurringPaymentViewModel
@@ -68,8 +74,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Arrange
             const int paymentId = 99;
             var endDate = DateTime.Today.AddDays(-7);
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                           .ReturnsAsync(new PaymentViewModel
+            crudServiceMock.Setup(x => x.ReadSingle<PaymentViewModel>(It.IsAny<int>()))
+                           .Returns(new PaymentViewModel
                            {
                                IsRecurring = true,
                                RecurringPayment = new RecurringPaymentViewModel
@@ -96,8 +102,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Arrange
             const int paymentId = 99;
 
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
+            crudServiceMock.Setup(x => x.ReadSingle<PaymentViewModel>(It.IsAny<int>()))
+                .Returns(new PaymentViewModel
                 {
                     IsRecurring = true,
                     RecurringPayment = new RecurringPaymentViewModel
@@ -137,8 +143,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
                 .ReturnsAsync(OperationResult.Succeeded());
 
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
+            crudServiceMock.Setup(x => x.ReadSingle<PaymentViewModel>(It.IsAny<int>()))
+                .Returns(new PaymentViewModel
                 {
                     IsRecurring = true,
                     RecurringPayment = new RecurringPaymentViewModel
@@ -179,8 +185,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
                 .ReturnsAsync(OperationResult.Failed(""));
 
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
+            crudServiceMock.Setup(x => x.ReadSingle<PaymentViewModel>(It.IsAny<int>()))
+                .Returns(new PaymentViewModel
                 {
                     IsRecurring = true,
                     RecurringPayment = new RecurringPaymentViewModel
@@ -223,8 +229,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
 
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
+            crudServiceMock.Setup(x => x.ReadSingle<PaymentViewModel>(It.IsAny<int>()))
+                .Returns(new PaymentViewModel
                 {
                     IsRecurring = true,
                     RecurringPayment = new RecurringPaymentViewModel
@@ -267,8 +273,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
 
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
+            crudServiceMock.Setup(x => x.ReadSingle<PaymentViewModel>(It.IsAny<int>()))
+                .Returns(new PaymentViewModel
                 {
                     IsRecurring = true,
                     RecurringPayment = new RecurringPaymentViewModel

@@ -101,7 +101,7 @@ namespace MoneyFox.Presentation.ViewModels
     public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
     {
         private readonly IBackupService backupService;
-        private readonly ICrudServicesAsync crudServices;
+        private readonly ICrudServices crudServices;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
@@ -116,7 +116,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        protected ModifyPaymentViewModel(ICrudServicesAsync crudServices,
+        protected ModifyPaymentViewModel(ICrudServices crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
@@ -279,8 +279,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (SelectedPayment.ChargedAccount == null)
             {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage)
-                                   ;
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
                 return;
             }
 

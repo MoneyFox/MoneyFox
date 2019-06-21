@@ -64,9 +64,11 @@ namespace MoneyFox.Presentation
             utData.AddSingleDto<PaymentViewModel>();
             utData.AddSingleDto<RecurringPaymentViewModel>();
 
-            var crudService = new CrudServicesAsync(context, utData.ConfigAndMapper);
+            var crudService = new CrudServices(context, utData.ConfigAndMapper);
+            var crudServiceAsync = new CrudServicesAsync(context, utData.ConfigAndMapper);
 
             builder.Register(c => crudService);
+            builder.Register(c => crudServiceAsync);
             builder.Register(c => utData.ConfigAndMapper);
         }
     }

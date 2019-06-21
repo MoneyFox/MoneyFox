@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MockQueryable.Moq;
 using MoneyFox.BusinessLogic;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Services;
@@ -15,10 +18,10 @@ using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
-    public class AddPaymentViewModelTests
+    public class AddPaymentViewModelTests 
     {
         private readonly Mock<IPaymentService> paymentServiceMock;
-        private readonly Mock<ICrudServicesAsync> crudServiceMock;
+        private readonly Mock<ICrudServices> crudServiceMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
@@ -27,11 +30,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public AddPaymentViewModelTests()
         {
             paymentServiceMock = new Mock<IPaymentService>();
-            crudServiceMock = new Mock<ICrudServicesAsync>();
+            crudServiceMock = new Mock<ICrudServices>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
+
+            crudServiceMock.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
+                           .Returns(new List<AccountViewModel>().AsQueryable().BuildMockDbQuery().Object);
         }
 
         [Fact]
@@ -146,6 +152,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
             backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
         }
+
         [Fact]
         public void SavePayment_ResultFailedWithBackup_CorrectMethodCalls()
         {

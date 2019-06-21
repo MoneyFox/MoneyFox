@@ -21,7 +21,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IDialogService dialogService;
 
         public AddPaymentViewModel(IPaymentService paymentService,
-            ICrudServicesAsync crudServices,
+            ICrudServices crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
