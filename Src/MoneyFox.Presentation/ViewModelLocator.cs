@@ -40,7 +40,7 @@ namespace MoneyFox.Presentation
         public static string PaymentList => nameof(PaymentListPage);
         public static string CategoryList => nameof(CategoryList);
         public static string SelectCategoryList => nameof(SelectCategoryPage);
-        public static string AddAccount => nameof(AddCategoryPage);
+        public static string AddAccount => nameof(AddAccountPage);
         public static string AddCategory => nameof(AddCategoryPage);
         public static string AddPayment => nameof(AddPaymentPage);
         public static string EditAccount => nameof(EditAccountPage);

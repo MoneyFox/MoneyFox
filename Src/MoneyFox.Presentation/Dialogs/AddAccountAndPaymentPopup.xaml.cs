@@ -7,8 +7,9 @@ namespace MoneyFox.Presentation.Dialogs
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddAccountAndPaymentPopup
-	{
-		public AddAccountAndPaymentPopup ()
+    {
+        private IAccountListViewActionViewModel ViewModel => BindingContext as IAccountListViewActionViewModel;
+        public AddAccountAndPaymentPopup ()
 		{
 			InitializeComponent ();
 
@@ -21,25 +22,25 @@ namespace MoneyFox.Presentation.Dialogs
         private async void AddAccountGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IAccountListViewActionViewModel)?.GoToAddAccountCommand.Execute(null);
+            ViewModel?.GoToAddAccountCommand.Execute(null);
         }
 
         private async void AddExpenseGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IAccountListViewActionViewModel)?.GoToAddExpenseCommand.Execute(null);
+            ViewModel?.GoToAddExpenseCommand.Execute(null);
         }
 
         private async void AddIncomeGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IAccountListViewActionViewModel)?.GoToAddIncomeCommand.Execute(null);
+            ViewModel?.GoToAddIncomeCommand.Execute(null);
         }
 
         private async void AddTransferGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IAccountListViewActionViewModel)?.GoToAddTransferCommand.Execute(null);
+            ViewModel?.GoToAddTransferCommand.Execute(null);
         }
     }
 }
