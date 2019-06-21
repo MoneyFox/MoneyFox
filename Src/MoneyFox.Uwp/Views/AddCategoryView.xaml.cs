@@ -14,7 +14,7 @@ namespace MoneyFox.Uwp.Views
         private void AddCategoryView_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ContentGrid.Children.Clear();
-            ContentGrid.Children.Add(new AddCategoryPage { BindingContext = ViewModel }.CreateFrameworkElement());
+            ContentGrid.Children.Add(new AddCategoryPage { BindingContext = DataContext }.CreateFrameworkElement());
         }
     }
 }

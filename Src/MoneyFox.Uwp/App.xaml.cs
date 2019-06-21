@@ -47,7 +47,7 @@ namespace MoneyFox.Uwp
     /// <summary>
 	/// Provides application-specific behavior to supplement the default Application class.
 	/// </summary>
-	public sealed partial class App : IDisposable
+	public sealed partial class App
     {
         private Logger logManager;
 
@@ -78,8 +78,6 @@ namespace MoneyFox.Uwp
                     break;
             }
         }
-
-		private MainView mainView;
 
 		/// <summary>
 		///     Invoked when the application is launched normally by the end user.  Other entry points
@@ -248,10 +246,5 @@ namespace MoneyFox.Uwp
             logManager.Info("Application Suspending.");
             LogManager.Shutdown();
         }
-
-        public void Dispose()
-	    {
-	        mainView?.Dispose();
-	    }
-	}
+    }
 }

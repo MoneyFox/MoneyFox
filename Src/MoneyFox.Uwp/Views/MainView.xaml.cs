@@ -12,6 +12,8 @@ namespace MoneyFox.Uwp.Views
     /// </summary>
     public sealed partial class MainView
     {
+        private MainViewModel ViewModel => DataContext as MainViewModel;
+
         public MainView()
         {
             InitializeComponent();
@@ -24,7 +26,7 @@ namespace MoneyFox.Uwp.Views
         {
             if (args.IsSettingsInvoked)
             {
-                ((MainViewModel) ViewModel).ShowSettingsCommand.Execute(null);
+                ViewModel.ShowSettingsCommand.Execute(null);
             }
             else
             {
@@ -33,27 +35,27 @@ namespace MoneyFox.Uwp.Views
 
             if (args.InvokedItem.Equals(Strings.AccountsTitle))
             {
-                ((MainViewModel) ViewModel).ShowAccountListCommand.Execute(null);
+                ViewModel.ShowAccountListCommand.Execute(null);
             } 
             else if (args.InvokedItem.Equals(Strings.CategoriesTitle))
             {
-                ((MainViewModel) ViewModel).ShowCategoryListCommand.Execute(null);
+                ViewModel.ShowCategoryListCommand.Execute(null);
             }
             else if (args.InvokedItem.Equals(Strings.StatisticsTitle))
             {
-                ((MainViewModel) ViewModel).ShowStatisticSelectorCommand.Execute(null);
+                ViewModel.ShowStatisticSelectorCommand.Execute(null);
             } 
             else if (args.InvokedItem.Equals(Strings.BackupTitle))
             {
-                ((MainViewModel) ViewModel).ShowBackupViewCommand.Execute(null);
+                ViewModel.ShowBackupViewCommand.Execute(null);
             } 
             else if (args.InvokedItem.Equals(Strings.SettingsTitle))
             {
-                ((MainViewModel) ViewModel).ShowSettingsCommand.Execute(null);
+                ViewModel.ShowSettingsCommand.Execute(null);
             } 
             else if (args.InvokedItem.Equals(Strings.AboutTitle))
             {
-                ((MainViewModel) ViewModel).ShowAboutCommand.Execute(null);
+                ViewModel.ShowAboutCommand.Execute(null);
             }
         }
     }

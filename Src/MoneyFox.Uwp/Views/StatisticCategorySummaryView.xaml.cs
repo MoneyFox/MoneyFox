@@ -30,7 +30,7 @@ namespace MoneyFox.Uwp.Views
         private void StatisticCategorySummaryView_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ContentGrid.Children.Clear();
-            ContentGrid.Children.Add(new StatisticCategorySummaryPage { BindingContext = ViewModel }.CreateFrameworkElement());
+            ContentGrid.Children.Add(new StatisticCategorySummaryPage { BindingContext = DataContext }.CreateFrameworkElement());
         }
     }
 }
