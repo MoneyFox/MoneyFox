@@ -18,41 +18,33 @@ namespace MoneyFox.Presentation
                 LogManager.GetCurrentClassLogger().Fatal(e);
             };
 
-            var navigationService = ConfigureNavigation();
-
-            if (!SimpleIoc.Default.IsRegistered<INavigationService>())
-            {
-                SimpleIoc.Default.Register<INavigationService>(() => navigationService);
-            }
-
+            ConfigureNavigation();
+            SimpleIoc.Default.Register<INavigationService, NavigationService>(true);
+            
             var appShell = new AppShell();
-            navigationService.Initialize(appShell.Navigation);
+            NavigationService.Initialize(appShell.Navigation);
             MainPage = appShell;
         }
 
-        public NavigationService ConfigureNavigation()
+        public void ConfigureNavigation()
         {
-            var nav = new NavigationService();
-
-            nav.Configure(ViewModelLocator.AccountList, typeof(AccountListPage));
-            nav.Configure(ViewModelLocator.PaymentList, typeof(PaymentListPage));
-            nav.Configure(ViewModelLocator.CategoryList, typeof(CategoryListPage));
-            nav.Configure(ViewModelLocator.SelectCategoryList, typeof(SelectCategoryPage));
-            nav.Configure(ViewModelLocator.AddAccount, typeof(AddAccountPage));
-            nav.Configure(ViewModelLocator.AddCategory, typeof(AddCategoryPage));
-            nav.Configure(ViewModelLocator.AddPayment, typeof(AddPaymentPage));
-            nav.Configure(ViewModelLocator.EditAccount, typeof(EditAccountPage));
-            nav.Configure(ViewModelLocator.EditCategory, typeof(EditCategoryPage));
-            nav.Configure(ViewModelLocator.EditPayment, typeof(EditPaymentPage));
-            nav.Configure(ViewModelLocator.SettingsBackgroundJob, typeof(BackgroundJobSettingsPage));
-            nav.Configure(ViewModelLocator.SettingsPersonalization, typeof(SettingsPersonalizationPage));
-            nav.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorPage));
-            nav.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowPage));
-            nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingPage));
-            nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryPage));
-            nav.Configure(ViewModelLocator.About, typeof(AboutPage));
-
-            return nav;
+            NavigationService.Configure(ViewModelLocator.AccountList, typeof(AccountListPage));
+            NavigationService.Configure(ViewModelLocator.PaymentList, typeof(PaymentListPage));
+            NavigationService.Configure(ViewModelLocator.CategoryList, typeof(CategoryListPage));
+            NavigationService.Configure(ViewModelLocator.SelectCategoryList, typeof(SelectCategoryPage));
+            NavigationService.Configure(ViewModelLocator.AddAccount, typeof(AddAccountPage));
+            NavigationService.Configure(ViewModelLocator.AddCategory, typeof(AddCategoryPage));
+            NavigationService.Configure(ViewModelLocator.AddPayment, typeof(AddPaymentPage));
+            NavigationService.Configure(ViewModelLocator.EditAccount, typeof(EditAccountPage));
+            NavigationService.Configure(ViewModelLocator.EditCategory, typeof(EditCategoryPage));
+            NavigationService.Configure(ViewModelLocator.EditPayment, typeof(EditPaymentPage));
+            NavigationService.Configure(ViewModelLocator.SettingsBackgroundJob, typeof(BackgroundJobSettingsPage));
+            NavigationService.Configure(ViewModelLocator.SettingsPersonalization, typeof(SettingsPersonalizationPage));
+            NavigationService.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorPage));
+            NavigationService.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowPage));
+            NavigationService.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingPage));
+            NavigationService.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryPage));
+            NavigationService.Configure(ViewModelLocator.About, typeof(AboutPage));
         }
     }
 }

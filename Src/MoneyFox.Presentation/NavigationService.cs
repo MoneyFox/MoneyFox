@@ -9,24 +9,24 @@ namespace MoneyFox.Presentation
 {
     public class NavigationService : INavigationService
     {
-        private readonly Dictionary<string, Type> _pagesByKey = new Dictionary<string, Type>();
-        private INavigation _navigation;
+        private static readonly Dictionary<string, Type> PagesByKey = new Dictionary<string, Type>();
+        private static INavigation Navigation;
 
         public string CurrentPageKey
         {
             get
             {
-                lock (_pagesByKey)
+                lock (PagesByKey)
                 {
-                    if (!_navigation.NavigationStack.Any())
+                    if (!Navigation.NavigationStack.Any())
                     {
                         return null;
                     }
 
-                    var pageType = _navigation.NavigationStack.First().GetType();
+                    var pageType = Navigation.NavigationStack.First().GetType();
 
-                    return _pagesByKey.ContainsValue(pageType)
-                        ? _pagesByKey.First(p => p.Value == pageType).Key
+                    return PagesByKey.ContainsValue(pageType)
+                        ? PagesByKey.First(p => p.Value == pageType).Key
                         : null;
                 }
             }
@@ -34,7 +34,7 @@ namespace MoneyFox.Presentation
 
         public void GoBack()
         {
-            _navigation.PopAsync();
+            Navigation.PopAsync();
         }
 
         public void NavigateTo(string pageKey)
@@ -44,11 +44,11 @@ namespace MoneyFox.Presentation
 
         public void NavigateTo(string pageKey, object parameter)
         {
-            lock (_pagesByKey)
+            lock (PagesByKey)
             {
-                if (_pagesByKey.ContainsKey(pageKey))
+                if (PagesByKey.ContainsKey(pageKey))
                 {
-                    var type = _pagesByKey[pageKey];
+                    var type = PagesByKey[pageKey];
                     ConstructorInfo constructor;
                     object[] parameters;
 
@@ -86,7 +86,7 @@ namespace MoneyFox.Presentation
                     }
 
                     var page = constructor.Invoke(parameters) as Page;
-                    _navigation.PushAsync(page);
+                    Navigation.PushAsync(page);
                 } else
                 {
                     throw new ArgumentException(
@@ -98,23 +98,23 @@ namespace MoneyFox.Presentation
             }
         }
 
-        public void Configure(string pageKey, Type pageType)
+        public static void Configure(string pageKey, Type pageType)
         {
-            lock (_pagesByKey)
+            lock (PagesByKey)
             {
-                if (_pagesByKey.ContainsKey(pageKey))
+                if (PagesByKey.ContainsKey(pageKey))
                 {
-                    _pagesByKey[pageKey] = pageType;
+                    PagesByKey[pageKey] = pageType;
                 } else
                 {
-                    _pagesByKey.Add(pageKey, pageType);
+                    PagesByKey.Add(pageKey, pageType);
                 }
             }
         }
 
-        public void Initialize(INavigation navigation)
+        public static void Initialize(INavigation navigation)
         {
-            _navigation = navigation;
+            Navigation = navigation;
         }
     }
 }
