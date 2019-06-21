@@ -27,9 +27,16 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{x:Static presentation:StyleHelper.AccountImageSource}" 
-                       HeightRequest="30"
-                       WidthRequest="30" />
+                <Image HeightRequest="30"
+                       WidthRequest="30">
+                    <Image.Source>
+                        <FontImageSource
+                            Glyph="{StaticResource Account}"
+                            FontFamily="{DynamicResource MaterialFontFamily}"
+                            Size="33"
+                            Color="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+                    </Image.Source>
+                </Image>
 
                 <Label Grid.Column="1" 
                        Text="{Binding Resources[AddAccountLabel]}"
@@ -45,9 +52,16 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{x:Static presentation:StyleHelper.ExpenseImageSource}"  
-                       HeightRequest="30"
-                       WidthRequest="30" />
+                <Image HeightRequest="30"
+                       WidthRequest="30">
+                    <Image.Source>
+                        <FontImageSource
+                            Glyph="{StaticResource Expense}"
+                            FontFamily="{DynamicResource MaterialFontFamily}"
+                            Size="33"
+                            Color="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+                    </Image.Source>
+                </Image>
 
                 <Label Grid.Column="1" 
                        Text="{Binding Resources[AddExpenseLabel]}"
@@ -63,9 +77,16 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{x:Static presentation:StyleHelper.IncomeImageSource}" 
-                       HeightRequest="30"
-                       WidthRequest="30" />
+                <Image HeightRequest="30"
+                       WidthRequest="30">
+                    <Image.Source>
+                        <FontImageSource
+                            Glyph="{StaticResource Income}"
+                            FontFamily="{DynamicResource MaterialFontFamily}"
+                            Size="33"
+                            Color="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+                    </Image.Source>
+                </Image>
 
                 <Label Grid.Column="1" 
                        Text="{Binding Resources[AddIncomeLabel]}"
@@ -81,9 +102,16 @@
                     <ColumnDefinition Width="80*" />
                 </Grid.ColumnDefinitions>
 
-                <Image Source="{x:Static presentation:StyleHelper.TransferImageSource}" 
-                       HeightRequest="30"
-                       WidthRequest="30" />
+                <Image HeightRequest="30"
+                       WidthRequest="30">
+                    <Image.Source>
+                        <FontImageSource
+                            Glyph="{StaticResource Transfer}"
+                            FontFamily="{DynamicResource MaterialFontFamily}"
+                            Size="33"
+                            Color="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+                    </Image.Source>
+                </Image>
 
                 <Label Grid.Column="1" 
                        Text="{Binding Resources[AddTransferLabel]}"
