@@ -4,13 +4,21 @@
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       mc:Ignorable="d"
                       DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}">
 
     <d:Page.DataContext>
-        <designTime1:DesignTimeCategoryListViewModel />
+        <designTime:DesignTimeCategoryListViewModel />
     </d:Page.DataContext>
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding AppearingCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}" >

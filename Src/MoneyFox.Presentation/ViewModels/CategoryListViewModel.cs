@@ -18,6 +18,11 @@ namespace MoneyFox.Presentation.ViewModels
         ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList { get; }
 
         /// <summary>
+        ///     Command to handle when the view is appearing
+        /// </summary>
+        RelayCommand AppearingCommand { get; }
+
+        /// <summary>
         ///     Command for the item click.
         /// </summary>
         RelayCommand<CategoryViewModel> ItemClickCommand { get; }

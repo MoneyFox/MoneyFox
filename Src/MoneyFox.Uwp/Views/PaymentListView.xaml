@@ -5,13 +5,23 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:converter="using:MoneyFox.Uwp.Converter"
                       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
-                      d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
-                                                       IsDesignTimeCreatable=True}"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       NavigationCacheMode="Disabled"
                       mc:Ignorable="d"
                       DataContext="{Binding PaymentListVm, Source={StaticResource Locator}}">
+
+    <d:Page.DataContext>
+        <designTime:DesignTimePaymentListViewModel />
+    </d:Page.DataContext>
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding InitializeCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />

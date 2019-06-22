@@ -16,6 +16,12 @@
         <designTime:DesignTimeAccountListViewModel />
     </d:MvxWindowsPage.DataContext>
 
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadDataCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
     <Page.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />

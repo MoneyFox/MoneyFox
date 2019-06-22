@@ -24,6 +24,8 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
                 }
             };
 
+        public RelayCommand AppearingCommand { get; }
+
         public RelayCommand<CategoryViewModel> ItemClickCommand { get; }
         public RelayCommand<string> SearchCommand { get; }
 

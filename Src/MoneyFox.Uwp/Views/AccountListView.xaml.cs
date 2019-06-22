@@ -19,10 +19,10 @@ namespace MoneyFox.Uwp.Views
     /// </summary>
     public sealed partial class AccountListView
 	{
-		/// <summary>
-		///     Initialize View.
-		/// </summary>
-		public AccountListView()
+        /// <summary>
+        ///     Initialize View.
+        /// </summary>
+        public AccountListView()
 		{
 			InitializeComponent();
 

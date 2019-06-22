@@ -1,7 +1,7 @@
-﻿using MoneyFox.Foundation;
-using System;
+﻿using System;
+using MoneyFox.Foundation;
 
-namespace MoneyFox.Windows.Business
+namespace MoneyFox.Uwp.Business.Tiles
 {
     public class LiveTilesPaymentInfo
     {
