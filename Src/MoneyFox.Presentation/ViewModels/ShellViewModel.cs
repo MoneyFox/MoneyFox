@@ -7,11 +7,11 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Representation of the MainView
     /// </summary>
-    public class MainViewModel : BaseViewModel
+    public class ShellViewModel : BaseViewModel
     {
         private readonly INavigationService navigationService;
 
-        public MainViewModel(INavigationService navigationService)
+        public ShellViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
         }

@@ -11,8 +11,8 @@
     TabBarBackgroundColor="WhiteSmoke"
     TabBarUnselectedColor="DarkGray"
     TabBarTitleColor="Accent"
-    BindingContext="{Binding MainVm, Source={StaticResource Locator}}"
-    d:BindingContext="{x:Static design:DesignTimeViewModelLocator.MainVm}"
+    BindingContext="{Binding ShellVm, Source={StaticResource Locator}}"
+    d:BindingContext="{x:Static design:DesignTimeViewModelLocator.ShellVm}"
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
     <TabBar>

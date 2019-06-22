@@ -93,7 +93,7 @@ namespace MoneyFox.Uwp
             logManager.Info("App Version: {Version}", new WindowsAppInformation().GetVersion());
             
 			base.OnLaunched(activationArgs);
-            var mainView = new MainView();
+            var mainView = new AppShell();
 
             if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
 			{

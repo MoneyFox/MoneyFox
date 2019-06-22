@@ -10,11 +10,11 @@ namespace MoneyFox.Uwp.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainView
+    public sealed partial class AppShell
     {
-        private MainViewModel ViewModel => DataContext as MainViewModel;
+        private ShellViewModel ViewModel => DataContext as ShellViewModel;
 
-        public MainView()
+        public AppShell()
         {
             InitializeComponent();
             NavView.SelectedItem = NavView.MenuItems.First();

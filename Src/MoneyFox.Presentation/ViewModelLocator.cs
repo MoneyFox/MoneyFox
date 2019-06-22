@@ -5,7 +5,6 @@ using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Presentation.Views;
-using MainViewModel = MoneyFox.Presentation.ViewModels.MainViewModel;
 
 namespace MoneyFox.Presentation
 {
@@ -56,7 +55,7 @@ namespace MoneyFox.Presentation
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryPage);
         public static string About => nameof(AboutPage);
 
-        public static MainViewModel MainVm => ServiceLocator.Current.GetInstance<MainViewModel>();
+        public static ShellViewModel ShellVm => ServiceLocator.Current.GetInstance<ShellViewModel>();
         public static AccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<AccountListViewModel>();
         public static CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
         public static PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
