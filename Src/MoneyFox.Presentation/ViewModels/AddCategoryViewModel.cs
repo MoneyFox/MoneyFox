@@ -35,7 +35,7 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (await crudServices.ReadManyNoTracked<AccountViewModel>().AnyWithNameAsync(SelectedCategory.Name))
+            if (await crudServices.ReadManyNoTracked<CategoryViewModel>().AnyWithNameAsync(SelectedCategory.Name))
             {
                 await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
                 return;

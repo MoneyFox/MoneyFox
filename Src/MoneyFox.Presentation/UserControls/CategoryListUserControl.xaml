@@ -32,18 +32,15 @@
                       HasUnevenRows="True"
                       CachingStrategy="RecycleElement"
                       IsGroupingEnabled="True"
+                      SeparatorVisibility="None"
                       GroupShortNameBinding="{Binding Key}"
                       GroupDisplayBinding="{Binding Key}">
-
-                <ListView.SeparatorVisibility>
-                    <OnPlatform x:TypeArguments="SeparatorVisibility">
-                        <On Platform="Android" Value="None" />
-                    </OnPlatform>
-                </ListView.SeparatorVisibility>
-
+                
                 <ListView.ItemTemplate>
                     <DataTemplate>
+
                         <ViewCell>
+
                             <ViewCell.ContextActions>
                                 <MenuItem Clicked="EditCategory" CommandParameter="{Binding .}"
                                           Text="{Binding Resources[EditLabel]}" />
@@ -51,7 +48,8 @@
                                           Text="{Binding Resources[DeleteLabel]}" 
                                           IsDestructive="True" />
                             </ViewCell.ContextActions>
-                            <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
+
+                            <controls:CardView Margin="{StaticResource SmallLeftRightBottomMargin}">
                                 <StackLayout Style="{StaticResource ListItemStyle}"
                                              Orientation="Vertical"
                                              Padding="3"
@@ -61,6 +59,7 @@
                                 </StackLayout>
                             </controls:CardView>
                         </ViewCell>
+
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

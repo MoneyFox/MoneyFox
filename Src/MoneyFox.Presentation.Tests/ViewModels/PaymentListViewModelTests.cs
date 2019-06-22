@@ -55,7 +55,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 navigationService.Object);
 
             // Act
-            vm.Initialize();
+            vm.InitializeCommand.Execute(null);
 
             // Assert
             Assert.Equal(0, vm.AccountId);
@@ -83,7 +83,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             vm.AccountId = accountId;
 
             // Act
-            vm.Initialize();
+            vm.InitializeCommand.Execute(null);
 
             // Assert
             Assert.Equal(accountId, vm.AccountId);

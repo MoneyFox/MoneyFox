@@ -132,7 +132,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void CreateNewCategory(CategoryViewModel category)
         {
-            NavigationService.NavigateTo(ViewModelLocator.EditCategory);
+            NavigationService.NavigateTo(ViewModelLocator.AddCategory);
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
