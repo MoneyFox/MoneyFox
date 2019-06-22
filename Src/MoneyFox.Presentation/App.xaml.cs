@@ -43,6 +43,7 @@ namespace MoneyFox.Presentation
             NavigationService.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingPage));
             NavigationService.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryPage));
             NavigationService.Configure(ViewModelLocator.About, typeof(AboutPage));
+            NavigationService.Configure(ViewModelLocator.Backup, typeof(BackupPage));
         }
     }
 }

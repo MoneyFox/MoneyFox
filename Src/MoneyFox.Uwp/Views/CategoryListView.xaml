@@ -8,9 +8,9 @@
                       mc:Ignorable="d"
                       DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}">
 
-    <d:MvxWindowsPage.DataContext>
+    <d:Page.DataContext>
         <designTime1:DesignTimeCategoryListViewModel />
-    </d:MvxWindowsPage.DataContext>
+    </d:Page.DataContext>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}" >

@@ -224,6 +224,9 @@
     <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
       <DependentUpon>ModifyAccountUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UserControls\ModifyCategoryUserControl.xaml.cs">
+      <DependentUpon>ModifyCategoryUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ModifyPaymentUserControl.xaml.cs">
       <DependentUpon>ModifyPaymentUserControl.xaml</DependentUpon>
     </Compile>
@@ -446,6 +449,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\ModifyAccountUserControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\UserControls\ModifyCategoryUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

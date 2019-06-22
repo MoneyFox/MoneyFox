@@ -23,7 +23,12 @@ namespace MoneyFox.Presentation
             IContainer container = null;
 
             // you only need this if-clause if you'd like to use design-time data which is only supported on XAML-based platforms
-            if (!ViewModelBase.IsInDesignModeStatic)
+            
+            if (ViewModelBase.IsInDesignModeStatic)
+            {
+                container = new ContainerBuilder().Build();
+            }
+            else
             {
                 container = registrations?.Build();
             }

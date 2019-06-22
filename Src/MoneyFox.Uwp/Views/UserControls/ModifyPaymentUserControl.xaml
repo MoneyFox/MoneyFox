@@ -7,14 +7,16 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
-    xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
-    xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
-    xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
+    xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+    xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
     mc:Ignorable="d"
     d:DesignHeight="300"
-    d:DesignWidth="400"
-    d:DataContext="{d:DesignInstance designTime1:DesignTimeModifyPaymentViewModel,
-                                                       IsDesignTimeCreatable=True}">
+    d:DesignWidth="400">
+
+    <d:Page.DataContext>
+        <designTime:DesignTimeModifyPaymentViewModel />
+    </d:Page.DataContext>
+
 
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
@@ -22,7 +24,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:NativeRecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
 
-        <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels1:AccountViewModel">
+        <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels:AccountViewModel">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
                 <TextBlock Text=" (" />

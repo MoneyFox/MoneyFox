@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
-             xmlns:userControls1="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.CategoryListPage"
              Visual="Material"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
@@ -13,7 +13,7 @@
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">
-            <userControls1:CategoryListUserControl VerticalOptions="FillAndExpand" />
+            <userControls:CategoryListUserControl VerticalOptions="FillAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

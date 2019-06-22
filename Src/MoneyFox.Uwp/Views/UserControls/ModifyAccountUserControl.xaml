@@ -4,44 +4,45 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
 
+    <d:Page.DataContext>
+        <designTime:DesignTimeModifyAccountViewModel />
+    </d:Page.DataContext>
+
     <ScrollViewer HorizontalScrollMode="Auto"
                   VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="12,0,12,0">
-            <TextBox x:Uid="Name"
-                         Margin="{StaticResource SmallTitleContentMargin}"
-                         VerticalAlignment="Top"
-                         Header="Name"
-                         Text="{Binding SelectedAccount.Name,
+            <TextBox Margin="{StaticResource SmallTitleContentMargin}"
+                     VerticalAlignment="Top"
+                     Header="{Binding Resources[AccountNameLabel]}"
+                     Text="{Binding SelectedAccount.Name,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox x:Uid="CurrentBalanceTextBox"
-                         x:Name="TextBoxCurrentBalance"
-                         Margin="{StaticResource SmallTitleContentMargin}"
-                         GotFocus="TextBoxOnFocus"
-                         Header="Current Balance"
-                         InputScope="Number"
-                         Text="{Binding SelectedAccount.CurrentBalance,
+            <TextBox x:Name="TextBoxCurrentBalance"
+                     Margin="{StaticResource SmallTitleContentMargin}"
+                     GotFocus="TextBoxOnFocus"
+                     Header="{Binding Resources[CurrentBalanceLabel]}"
+                     InputScope="Number"
+                     Text="{Binding SelectedAccount.CurrentBalance,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
-                         TextAlignment="Right" />
-            <TextBox x:Uid="NoteTextBox"
-                         Margin="{StaticResource SmallTitleContentMargin}"
-                         VerticalAlignment="Top"
-                         Header="Notes"
-                         Text="{Binding SelectedAccount.Note,
+                     TextAlignment="Right" />
+            <TextBox Margin="{StaticResource SmallTitleContentMargin}"
+                     VerticalAlignment="Top"
+                     Header="{Binding Resources[NoteLabel]}"
+                     Text="{Binding SelectedAccount.Note,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
-                         TextWrapping="Wrap" />
+                     TextWrapping="Wrap" />
 
-            <CheckBox x:Uid="AccoutnExcluded"
-                          Margin="{StaticResource SmallTitleContentMargin}"
-                          VerticalAlignment="Top"
-                          Content="Exclude account from balance"
-                          IsChecked="{Binding SelectedAccount.IsExcluded,
+            <CheckBox Margin="{StaticResource SmallTitleContentMargin}"
+                      VerticalAlignment="Top"
+                      Content="{Binding Resources[IsExcludedLabel]}"
+                      IsChecked="{Binding SelectedAccount.IsExcluded,
                                               Mode=TwoWay,
                                               UpdateSourceTrigger=PropertyChanged}" />
         </StackPanel>
