@@ -10,6 +10,7 @@
     TabBarBackgroundColor="WhiteSmoke"
     TabBarUnselectedColor="DarkGray"
     TabBarTitleColor="Accent"
+    Visual="Material"
     d:BindingContext="{x:Static design:DesignTimeViewModelLocator.ShellVm}"
     x:Class="MoneyFox.Presentation.Views.AppShell">
 

@@ -1,6 +1,4 @@
 ﻿using System;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 using MoneyFox.Presentation.Views;
 using NLog;
 
@@ -19,7 +17,6 @@ namespace MoneyFox.Presentation
             };
 
             ConfigureNavigation();
-            SimpleIoc.Default.Register<INavigationService, NavigationService>();
             
             var appShell = new AppShell();
             NavigationService.Initialize(appShell.Navigation);
