@@ -36,11 +36,9 @@
                         SelectedIndexChanged="TargetAccount_OnSelectedIndexChanged" />
             </StackLayout>
 
-            <Label Text="{Binding Resources[AmountLabel]}"
-                   Style="{DynamicResource DefaultTextStyle}"
-                   Margin="0,5,0,0" />
             <Entry x:Name="AmountEntry"
                    Text="{Binding AmountString}"
+                   Placeholder="{Binding Resources[AmountLabel]}"
                    Keyboard="Numeric"
                    HorizontalTextAlignment="End"
                    Focused="AmountFieldGotFocus" />
@@ -79,10 +77,7 @@
                    Margin="0,5,0,0" />
             <DatePicker Date="{Binding SelectedPayment.Date}" />
 
-            <Label Text="{Binding Resources[NoteLabel]}"
-                   Style="{DynamicResource DefaultTextStyle}"
-                   Margin="0,5,0,0" />
-            <Entry Text="{Binding SelectedPayment.Note}"/>
+            <Entry Placeholder="{Binding Resources[NoteLabel]}" Text="{Binding SelectedPayment.Note}"/>
 
             <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
