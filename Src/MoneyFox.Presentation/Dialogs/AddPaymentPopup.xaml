@@ -11,89 +11,91 @@
     </pages:PopupPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout VerticalOptions="Center" 
-                     HorizontalOptions="Center"
-                     Padding="20, 20, 20, 20"
-                     Style="{StaticResource DialogWindowStyle}">
+        <Frame VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Margin="20, 20, 20, 20"
+               Style="{StaticResource DialogWindowStyle}">
+            <StackLayout>
 
-            <Label Text="{Binding Resources[AddTitle]}" 
+                <Label Text="{Binding Resources[AddTitle]}" 
                        Style ="{StaticResource ListItemHeaderStyle}"/>
 
-            <Grid x:Name="AddExpenseGrid">
+                <Grid x:Name="AddExpenseGrid">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30*" />
-                    <ColumnDefinition Width="80*" />
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="80*" />
+                    </Grid.ColumnDefinitions>
 
-                <Image HeightRequest="30"
+                    <Image HeightRequest="30"
                        WidthRequest="30">
-                    <Image.Source>
-                        <FontImageSource
+                        <Image.Source>
+                            <FontImageSource
                             Glyph="{StaticResource Expense}"
                             FontFamily="{DynamicResource MaterialFontFamily}"
                             Size="33"
                             Color="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
-                    </Image.Source>
-                </Image>
+                        </Image.Source>
+                    </Image>
 
-                <Label Grid.Column="1" 
+                    <Label Grid.Column="1" 
                        Text="{Binding Resources[AddExpenseLabel]}"
                        Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start"
                        VerticalOptions="CenterAndExpand" />
-            </Grid>
+                </Grid>
 
-            <Grid x:Name="AddIncomeGrid">
+                <Grid x:Name="AddIncomeGrid">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30*" />
-                    <ColumnDefinition Width="80*" />
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="80*" />
+                    </Grid.ColumnDefinitions>
 
-                <Image HeightRequest="30"
+                    <Image HeightRequest="30"
                        WidthRequest="30">
-                    <Image.Source>
-                        <FontImageSource
+                        <Image.Source>
+                            <FontImageSource
                             Glyph="{StaticResource Income}"
                             FontFamily="{DynamicResource MaterialFontFamily}"
                             Size="33"
                             Color="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
-                    </Image.Source>
-                </Image>
+                        </Image.Source>
+                    </Image>
 
-                <Label Grid.Column="1" 
+                    <Label Grid.Column="1" 
                        Text="{Binding Resources[AddIncomeLabel]}"
                        Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start"
                        VerticalOptions="CenterAndExpand" />
-            </Grid>
+                </Grid>
 
-            <Grid x:Name="AddTransferGrid">
+                <Grid x:Name="AddTransferGrid">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="30*" />
-                    <ColumnDefinition Width="80*" />
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="80*" />
+                    </Grid.ColumnDefinitions>
 
 
-                <Image HeightRequest="30"
+                    <Image HeightRequest="30"
                        WidthRequest="30">
-                    <Image.Source>
-                        <FontImageSource
+                        <Image.Source>
+                            <FontImageSource
                             Glyph="{StaticResource Transfer}"
                             FontFamily="{DynamicResource MaterialFontFamily}"
                             Size="33"
                             Color="{x:Static moneyFox:StyleHelper.PrimaryFontColor}" />
-                    </Image.Source>
-                </Image>
+                        </Image.Source>
+                    </Image>
 
-                <Label Grid.Column="1" 
+                    <Label Grid.Column="1" 
                        Text="{Binding Resources[AddTransferLabel]}"
                        Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start"
                        VerticalOptions="CenterAndExpand" />
-            </Grid>
-        </StackLayout>
+                </Grid>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </pages:PopupPage>

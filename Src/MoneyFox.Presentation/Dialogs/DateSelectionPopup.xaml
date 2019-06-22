@@ -20,32 +20,37 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
 
-    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
-    <StackLayout 
-        VerticalOptions="Center" 
-        HorizontalOptions="CenterAndExpand" 
-        Padding="20, 20, 20, 20"
-        Style="{StaticResource DialogWindowStyle}">
+    <ContentPage.Content>
+        <Frame VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Margin="20, 20, 20, 20"
+               Style="{StaticResource DialogWindowStyle}">
 
-        <Label Text="{Binding Resources[SelectDateLabel]}"
+            <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+            <StackLayout >
+
+                <Label Text="{Binding Resources[SelectDateLabel]}"
                Style ="{StaticResource ListItemHeaderStyle}"/>
 
-        <Grid>
-            <Label Style="{StaticResource DeemphasizedLabelStyle}" 
+                <Grid>
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}" 
                    Text="{Binding Resources[TimeRangeStartLabel]}"
                    HorizontalOptions="StartAndExpand"/>
-        </Grid>
-        <DatePicker Date="{Binding StartDate}" />
+                </Grid>
+                <DatePicker Date="{Binding StartDate}" />
 
-        <Label Style="{StaticResource DeemphasizedLabelStyle}" 
+                <Label Style="{StaticResource DeemphasizedLabelStyle}" 
                Text="{Binding Resources[TimeRangeEndLabel]}"/>
-        <DatePicker Date="{Binding EndDate}" />
+                <DatePicker Date="{Binding EndDate}" />
 
-        <Button Text="{Binding Resources[DoneLabel]}"
+                <Button Text="{Binding Resources[DoneLabel]}"
                 Clicked="Button_OnClicked">
-            <Button.Effects>
-                <effects:PrimaryButtonEffect />
-            </Button.Effects>
-        </Button>
-    </StackLayout>
+                    <Button.Effects>
+                        <effects:PrimaryButtonEffect />
+                    </Button.Effects>
+                </Button>
+            </StackLayout>
+
+        </Frame>
+    </ContentPage.Content>
 </pages:PopupPage>

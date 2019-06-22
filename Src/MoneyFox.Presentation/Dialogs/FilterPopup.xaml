@@ -19,39 +19,43 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
 
-    <!--You can use any elements here which are extended from Xamarin.Forms.View-->
-    <StackLayout 
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" 
-        Padding="20, 20, 20, 20"
-        Style="{StaticResource DialogWindowStyle}">
+    <ContentPage.Content>
+        <Frame VerticalOptions="Center"
+               HorizontalOptions="Center"
+               Margin="20, 20, 20, 20"
+               Style="{StaticResource DialogWindowStyle}">
 
-        <Label Text="{Binding Resources[SelectFilterTitle]}" 
+            <!--You can use any elements here which are extended from Xamarin.Forms.View-->
+            <StackLayout >
+
+                <Label Text="{Binding Resources[SelectFilterTitle]}" 
                Style ="{StaticResource ListItemHeaderStyle}"/>
 
-        <Grid>
-            <Label Text="{Binding Resources[IsClearedLabel]}"
+                <Grid>
+                    <Label Text="{Binding Resources[IsClearedLabel]}"
                    Style="{StaticResource DefaultTextStyle}"
                    HorizontalOptions="Start"/>
-            <Switch IsToggled="{Binding IsClearedFilterActive}" 
+                    <Switch IsToggled="{Binding IsClearedFilterActive}" 
                     HorizontalOptions="End"/>
-        </Grid>
+                </Grid>
 
-        <Grid>
-            <Label Text="{Binding Resources[IsRecurringLabel]}"
+                <Grid>
+                    <Label Text="{Binding Resources[IsRecurringLabel]}"
                    Style="{StaticResource DefaultTextStyle}"
                    HorizontalOptions="Start"/>
-            <Switch IsToggled="{Binding IsRecurringFilterActive}"
+                    <Switch IsToggled="{Binding IsRecurringFilterActive}"
                     HorizontalOptions="End"/>
-        </Grid>
+                </Grid>
 
-        <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                <Label Style="{StaticResource DeemphasizedLabelStyle}"
                Text="{Binding Resources[TimeRangeStartLabel]}"/>
-        <DatePicker Date="{Binding TimeRangeStart}" />
+                <DatePicker Date="{Binding TimeRangeStart}" />
 
-        <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                <Label Style="{StaticResource DeemphasizedLabelStyle}"
                Text="{Binding Resources[TimeRangeEndLabel]}"/>
-        <DatePicker Date="{Binding TimeRangeEnd}" />
+                <DatePicker Date="{Binding TimeRangeEnd}" />
 
-    </StackLayout>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
 </pages:PopupPage>
