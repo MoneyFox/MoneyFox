@@ -19,7 +19,7 @@
     <Thickness x:Key="SmallLeftRightBottomMargin">6,0,6,6</Thickness>
 
     <!--Medium size margins-->
-    <Thickness x:Key="DefaultListItemsMargin">6,0,6,3</Thickness>
+    <Thickness x:Key="DefaultListItemsMargin">6,3,6,3</Thickness>
     <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
     <Thickness x:Key="MediumLeftRightBottomMargin">12,0,12,6</Thickness>
     <Thickness x:Key="MediumLeftRightTopMargin">12,6,12,0</Thickness>

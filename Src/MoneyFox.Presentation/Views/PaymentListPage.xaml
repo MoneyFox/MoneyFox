@@ -53,8 +53,9 @@
                                 </ViewCell.ContextActions>
                                 <controls:CardView Margin="{StaticResource SmallLeftRightBottomMargin}">
                                     <StackLayout Spacing="0"
-                                                 Style="{StaticResource ListItemStyle}">
-                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
+                                                 Style="{StaticResource ListItemStyle}"
+                                                 Margin="{StaticResource DefaultListItemsMargin}">
+                                        <Grid>
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
@@ -63,7 +64,7 @@
 
                                             <Label Grid.Column="0"
                                                    Text="{Binding Category.Name}"
-                                                   Style="{StaticResource ListItemHeaderStyle}" />
+                                                   Style="{StaticResource ListItemHeaderSmallStyle}" />
 
                                             <Label Grid.Column="1"
                                                    HorizontalTextAlignment="End"
@@ -71,7 +72,7 @@
                                                    Style="{StaticResource SmallTextStyle}"
                                                    Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
                                         </Grid>
-                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
+                                        <Grid >
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
@@ -80,7 +81,7 @@
 
                                             <Label Grid.Column="0"
                                                Text="{Binding Note}" 
-                                               Style="{StaticResource DeemphasizedLabelStyle}" />
+                                               Style="{StaticResource DeemphasizedSmallLabelStyle}" />
 
                                             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 

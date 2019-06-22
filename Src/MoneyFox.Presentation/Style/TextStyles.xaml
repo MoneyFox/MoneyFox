@@ -19,8 +19,18 @@
         <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
     </Style>
 
+    <Style x:Key="ListItemHeaderSmallStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}" />
+        <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+    </Style>
+
     <Style x:Key="DeemphasizedLabelStyle" TargetType="Label">
         <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}" />
+        <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.DeemphasizedColor}" />
+    </Style>
+
+    <Style x:Key="DeemphasizedSmallLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
         <Setter Property="TextColor" Value="{x:Static presentation:StyleHelper.DeemphasizedColor}" />
     </Style>
 
