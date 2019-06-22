@@ -1,6 +1,7 @@
 ﻿using System;
 using MoneyFox.Presentation.Views;
 using NLog;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation
 {
@@ -20,7 +21,7 @@ namespace MoneyFox.Presentation
             
             var appShell = new AppShell();
             NavigationService.Initialize(appShell.Navigation);
-            MainPage = appShell;
+            MainPage = new NavigationPage(appShell);
         }
 
         public void ConfigureNavigation()

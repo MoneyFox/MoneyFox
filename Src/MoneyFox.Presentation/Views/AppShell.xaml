@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Shell
+<TabbedPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"             
@@ -7,31 +7,15 @@
     xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
     Title="Money Fox"
     BackgroundColor="Accent"
-    TabBarBackgroundColor="WhiteSmoke"
-    TabBarUnselectedColor="DarkGray"
-    TabBarTitleColor="Accent"
     Visual="Material"
+    BarBackgroundColor="{x:Static design:StyleHelper.BottomTabBarColor}"
+    SelectedTabColor="{x:Static design:StyleHelper.BarSelectedItemColor}"
+    UnselectedTabColor="{x:Static design:StyleHelper.DeemphasizedColor}"
     d:BindingContext="{x:Static design:DesignTimeViewModelLocator.ShellVm}"
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
-    <TabBar>
-        <Tab Title="{Binding Resources[AccountsTitle]}" Icon="ic_accounts_black">
-            <ShellContent>
-                <pages:AccountListPage />
-            </ShellContent>
-        </Tab>
+    <pages:AccountListPage Title="{Binding Resources[AccountsTitle]}" IconImageSource="ic_accounts_black.png" />
+    <pages:StatisticSelectorPage Title="{Binding Resources[StatisticsTitle]}" IconImageSource="ic_statistics_black.png"/>
+    <pages:SettingsPage Title="{Binding Resources[SettingsTitle]}" IconImageSource="ic_settings_black.png"/>
 
-        <Tab Title="{Binding Resources[StatisticsTitle]}" Icon="ic_statistics_black">
-            <ShellContent>
-                <pages:StatisticSelectorPage />
-            </ShellContent>      
-        </Tab>
-
-        <Tab Title="{Binding Resources[SettingsTitle]}" Icon="ic_settings_black">
-            <ShellContent>
-                <pages:SettingsPage />
-            </ShellContent>
-        </Tab>
-    </TabBar>
-
-</Shell>
+</TabbedPage>

@@ -1,4 +1,7 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
+using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.Views
 {
@@ -7,8 +10,11 @@ namespace MoneyFox.Presentation.Views
     {
 		public AppShell()
 		{
+            NavigationPage.SetBackButtonTitle(this, "");
             InitializeComponent();
             BindingContext = ViewModelLocator.ShellVm;
+
+            On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
         }
     }
 }
