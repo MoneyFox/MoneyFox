@@ -5,7 +5,8 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       SizeChanged="BackupView_OnSizeChanged"
-                      mc:Ignorable="d">
+                      mc:Ignorable="d"
+                      DataContext="{Binding BackupVm, Source={StaticResource Locator}}">
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}"
           EntranceNavigationTransitionInfo.IsTargetElement="True">

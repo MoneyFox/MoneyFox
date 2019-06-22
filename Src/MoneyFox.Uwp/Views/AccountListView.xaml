@@ -9,6 +9,7 @@
       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+      DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
       mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>

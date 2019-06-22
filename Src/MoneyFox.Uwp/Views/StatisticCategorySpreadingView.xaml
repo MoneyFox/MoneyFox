@@ -5,9 +5,9 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                       xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
                       xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
-                      mc:Ignorable="d">
+                      mc:Ignorable="d"
+                      DataContext="{Binding StatisticCategorySpreadingVm, Source={StaticResource Locator}}">
 
     <d:MvxWindowsPage.DataContext>
         <designTime1:DesignTimeStatisticCategorySpreadingViewModel />

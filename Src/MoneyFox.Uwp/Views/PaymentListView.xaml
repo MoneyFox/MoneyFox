@@ -10,7 +10,8 @@
                                                        IsDesignTimeCreatable=True}"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       NavigationCacheMode="Disabled"
-                      mc:Ignorable="d">
+                      mc:Ignorable="d"
+                      DataContext="{Binding PaymentListVm, Source={StaticResource Locator}}">
 
     <Page.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />

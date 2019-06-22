@@ -7,7 +7,8 @@
                       d:DataContext="{d:DesignInstance designTime1:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                       SizeChanged="StatisticCategorySummaryView_OnSizeChanged"
-                      mc:Ignorable="d">
+                      mc:Ignorable="d"
+                      DataContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>

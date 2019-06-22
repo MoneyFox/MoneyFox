@@ -14,7 +14,7 @@ namespace MoneyFox.Uwp.Views
         private void BackupView_OnSizeChanged(object sender, SizeChangedEventArgs e)
         {
             ContentGrid.Children.Clear();
-            ContentGrid.Children.Add(new BackupPage { BindingContext = DataContext }.CreateFrameworkElement());
+            ContentGrid.Children.Add(new BackupPage().CreateFrameworkElement());
         }
     }
 }
