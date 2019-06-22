@@ -19,7 +19,7 @@ namespace MoneyFox.Presentation
             };
 
             ConfigureNavigation();
-            SimpleIoc.Default.Register<INavigationService, NavigationService>(true);
+            SimpleIoc.Default.Register<INavigationService, NavigationService>();
             
             var appShell = new AppShell();
             NavigationService.Initialize(appShell.Navigation);

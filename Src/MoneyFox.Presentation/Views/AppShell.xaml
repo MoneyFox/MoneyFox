@@ -4,14 +4,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"             
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
     Title="Money Fox"
     BackgroundColor="Accent"
     TabBarBackgroundColor="WhiteSmoke"
     TabBarUnselectedColor="DarkGray"
     TabBarTitleColor="Accent"
-    BindingContext="{Binding ShellVm, Source={StaticResource Locator}}"
     d:BindingContext="{x:Static design:DesignTimeViewModelLocator.ShellVm}"
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
