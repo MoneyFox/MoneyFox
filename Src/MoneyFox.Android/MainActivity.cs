@@ -49,13 +49,14 @@ namespace MoneyFox.Droid
             AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
                    typeof(Analytics), typeof(Crashes));
 #endif
-            FormsMaterial.Init(this, savedInstanceState);
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
             Forms.Init(this, savedInstanceState);
+            FormsMaterial.Init(this, savedInstanceState);
+
             LoadApplication(new App());
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Popup.Init(this, savedInstanceState);

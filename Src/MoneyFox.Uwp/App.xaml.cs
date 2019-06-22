@@ -13,6 +13,7 @@ using Windows.UI;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Autofac;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Views;
@@ -29,9 +30,12 @@ using UniversalRateReminder;
 using MoneyFox.Uwp.Tasks;
 using GenericServices;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.Views;
 using NLog;
 using NLog.Targets;
 using LogLevel = NLog.LogLevel;
+using NavigationService = GalaSoft.MvvmLight.Views.NavigationService;
+
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -89,16 +93,18 @@ namespace MoneyFox.Uwp
             logManager.Info("App Version: {Version}", new WindowsAppInformation().GetVersion());
             
 			base.OnLaunched(activationArgs);
+            var mainView = new MainView();
 
             if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
 			{
 			    ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
                 ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
-                RegisterServices();
 #if !DEBUG
                 AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
+
+                RegisterServices(mainView.MainFrame);
 
                 Xamarin.Forms.Forms.Init(activationArgs);
 				//var app = new Presentation.App();
@@ -106,10 +112,7 @@ namespace MoneyFox.Uwp
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
-
-                //mainView.ViewModel = Mvx.IoCProvider.Resolve<MainViewModel>();
-                //((MainViewModel) mainView.ViewModel)?.ShowAccountListCommand.Execute(null);
-
+                
                 OverrideTitleBarColor();
 
 				//If Jump Lists are supported, add them
@@ -119,7 +122,13 @@ namespace MoneyFox.Uwp
 				}
 
 				await CallRateReminder();
-			}
+            }
+
+            if (Window.Current.Content == null)
+            {
+                Window.Current.Content = mainView;
+            }
+            Window.Current.Activate();
 
             if (activationArgs.TileActivatedInfo != null)
             {
@@ -127,11 +136,37 @@ namespace MoneyFox.Uwp
             }
         }
 
-        private void RegisterServices()
+        private void RegisterServices(Frame mainFrame)
         {
             var builder = new ContainerBuilder();
+
+            builder.RegisterInstance(ConfigureNavigation(mainFrame)).AsImplementedInterfaces();
+
             builder.RegisterModule<WindowsModule>();
             ViewModelLocator.RegisterServices(builder);
+        }
+
+        public NavigationService ConfigureNavigation(Frame mainFrame)
+        {
+            var nav = new NavigationService {CurrentFrame = mainFrame};
+
+            nav.Configure(ViewModelLocator.AccountList, typeof(AccountListView));
+            nav.Configure(ViewModelLocator.PaymentList, typeof(PaymentListView));
+            nav.Configure(ViewModelLocator.CategoryList, typeof(CategoryListView));
+            nav.Configure(ViewModelLocator.SelectCategoryList, typeof(SelectCategoryListView));
+            nav.Configure(ViewModelLocator.AddAccount, typeof(AddAccountView));
+            nav.Configure(ViewModelLocator.AddCategory, typeof(AddCategoryView));
+            nav.Configure(ViewModelLocator.AddPayment, typeof(AddPaymentView));
+            nav.Configure(ViewModelLocator.EditAccount, typeof(EditAccountView));
+            nav.Configure(ViewModelLocator.EditCategory, typeof(EditCategoryView));
+            nav.Configure(ViewModelLocator.EditPayment, typeof(EditPaymentView));
+            nav.Configure(ViewModelLocator.Settings, typeof(SettingsView));
+            nav.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorView));
+            nav.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowView));
+            nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingView));
+            nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryView));
+
+            return nav;
         }
 
         private async Task HandleTileActivationInfo(LaunchActivatedEventArgs activationArgs)
