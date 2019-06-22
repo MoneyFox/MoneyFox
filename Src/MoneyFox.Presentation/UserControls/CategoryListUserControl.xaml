@@ -5,11 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
-             xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-             x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl"
-             d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.CategoryListVm}">
+              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl">
 
-  <ContentView.Content>
+    <d:ContentView.BindingContext>
+        <designTime:DesignTimeCategoryListViewModel />
+    </d:ContentView.BindingContext>
+
+    <ContentView.Content>
         <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
