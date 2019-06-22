@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
              Visual="Material"
@@ -17,19 +16,19 @@
     <ContentPage.Content>
         <ListView x:Name="StatisticSelectorList"
                   ItemsSource="{Binding StatisticItems}"
-                  RowHeight="60"
+                  RowHeight="75"
                   Margin="{DynamicResource NegativeMediumLeftRightMargin}">
 
             <ListView.SeparatorVisibility>
                 <OnPlatform x:TypeArguments="SeparatorVisibility">
-                    <On Platform="iOS" Value="Default" />
+                    <On Platform="iOS" Value="None" />
                 </OnPlatform>
             </ListView.SeparatorVisibility>
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}">
+                        <Frame Padding="0" Margin="{StaticResource MediumLeftRightTopMargin}">
                             <StackLayout Style="{StaticResource ListItemStyle}"
                                          Orientation="Vertical"
                                          Padding="3"
@@ -37,7 +36,7 @@
                                 <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
                                 <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                             </StackLayout>
-                        </controls:CardView>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

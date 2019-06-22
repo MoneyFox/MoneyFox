@@ -8,6 +8,8 @@ namespace MoneyFox.iOS
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterModule<PresentationModule>();
+
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();

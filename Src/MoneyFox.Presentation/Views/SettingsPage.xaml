@@ -4,7 +4,6 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   mc:Ignorable="d"
                   xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
-                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
                   xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   Visual="Material"
@@ -22,7 +21,7 @@
 
             <ListView.SeparatorVisibility>
                 <OnPlatform x:TypeArguments="SeparatorVisibility">
-                    <On Platform="iOS" Value="Default" />
+                    <On Platform="iOS" Value="None" />
                     <On Platform="Android" Value="None" />
                 </OnPlatform>
             </ListView.SeparatorVisibility>
@@ -30,7 +29,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}" >
+                        <Frame Padding="0" Margin="{StaticResource MediumLeftRightTopMargin}" >
                             <StackLayout Style="{DynamicResource ListItemStyle}"
                                          Orientation="Vertical"
                                          Padding="3"
@@ -44,7 +43,7 @@
                                 </StackLayout>
                                 <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                             </StackLayout>
-                        </controls:CardView>
+                        </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

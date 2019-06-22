@@ -20,9 +20,9 @@
     <Thickness x:Key="DefaultListItemsMargin">15,0,15,3</Thickness>
     <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
     <Thickness x:Key="MediumLeftRightBottomMargin">12,0,12,6</Thickness>
-    <Thickness x:Key="MediumLeftRightTopMargin">12,12,12,0</Thickness>
+    <Thickness x:Key="MediumLeftRightTopMargin">12,6,12,0</Thickness>
     <Thickness x:Key="NegativeMediumLeftRightWithTopMargin">-12,12,-12,0</Thickness>
-    <Thickness x:Key="NegativeMediumLeftRightMargin">-12,0,-12,0</Thickness>
+    <Thickness x:Key="NegativeMediumLeftRightMargin">-6,0,-6,0</Thickness>
     <Thickness x:Key="NegativeMediumLeftRightBottomMargin">-12,0,-12,6</Thickness>
     <Thickness x:Key="NegativeMediumLeftRightTopMargin">-12,12,-12,0</Thickness>
     <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>

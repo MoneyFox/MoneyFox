@@ -54,26 +54,25 @@ namespace MoneyFox.iOS
             InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
 
-            RegisterServices();
-
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
+            EfCoreContext.DbPath = GetLocalFilePath();
+            Batteries.Init();
+            RegisterServices();
+
             Forms.Init();
             FormsMaterial.Init();
             LoadApplication(new App());
-            
+            Popup.Init();
+
             UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
             UINavigationBar.Appearance.TintColor = UIColor.White;
 
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
-
-            EfCoreContext.DbPath = GetLocalFilePath();
-            Batteries.Init();
-            Popup.Init();
-
+            
             RunAppStart();
 
             return base.FinishedLaunching(app, options);
