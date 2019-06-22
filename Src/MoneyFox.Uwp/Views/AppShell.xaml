@@ -88,7 +88,7 @@
                 </DataTemplate>
             </winui:NavigationView.HeaderTemplate>
 
-            <Frame x:Name="ContentFrame" Margin="0,17,0,0" >
+            <Frame x:Name="ContentFrame" Margin="0,0,0,0" >
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition/>
