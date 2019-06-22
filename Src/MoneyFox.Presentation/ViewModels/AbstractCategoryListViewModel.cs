@@ -86,11 +86,9 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public RelayCommand<CategoryViewModel> CreateNewCategoryCommand => new RelayCommand<CategoryViewModel>(CreateNewCategory);
 
-        public async void ViewAppearing()
+        public void ViewAppearing()
         {
-            DialogService.ShowLoadingDialog();
-            await Task.Run(Load);
-            DialogService.HideLoadingDialog();
+            Search();
         }
 
         /// <summary>
@@ -118,11 +116,6 @@ namespace MoneyFox.Presentation.ViewModels
                         .ToListAsync());
             }
             CategoryList = CreateGroup(categories);
-        }
-
-        private void Load()
-        {
-            Search();
         }
 
         private void EditCategory(CategoryViewModel category)

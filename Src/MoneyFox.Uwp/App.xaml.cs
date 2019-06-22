@@ -111,7 +111,7 @@ namespace MoneyFox.Uwp
                     Window.Current.Content = appShell;
                 }
 
-                navService.CurrentFrame = appShell.MainFrame;
+                navService.Frame = appShell.MainFrame;
                 navService.NavigateTo(ViewModelLocator.AccountList);
 
                 Xamarin.Forms.Forms.Init(activationArgs);
@@ -141,7 +141,7 @@ namespace MoneyFox.Uwp
             }
         }
 
-        private void RegisterServices(NavigationService nav)
+        private void RegisterServices(NavigationServiceEx nav)
         {
             var builder = new ContainerBuilder();
 
@@ -151,9 +151,9 @@ namespace MoneyFox.Uwp
             ViewModelLocator.RegisterServices(builder);
         }
 
-        public NavigationService ConfigureNavigation()
+        public NavigationServiceEx ConfigureNavigation()
         {
-            var nav = new NavigationService();
+            var nav = new NavigationServiceEx();
 
             nav.Configure(ViewModelLocator.AccountList, typeof(AccountListView));
             nav.Configure(ViewModelLocator.PaymentList, typeof(PaymentListView));

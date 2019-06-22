@@ -7,8 +7,17 @@
                       xmlns:appmodel="using:Windows.ApplicationModel"
                       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
                       xmlns:winmedia="using:Microsoft.UI.Xaml.Media"
-                      mc:Ignorable="d"
-                      DataContext="{Binding ShellVm, Source={StaticResource Locator}}">
+                      xmlns:uwp1="using:MoneyFox.Uwp"
+                      xmlns:helpers="using:MoneyFox.Uwp.Helpers"
+                      xmlns:i="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:presentation="using:MoneyFox.Presentation"
+                      xmlns:foundation="using:MoneyFox.Foundation"
+                      mc:Ignorable="d">
+
+    <Page.DataContext>
+        <uwp1:WindowsShellViewModel />
+    </Page.DataContext>
 
     <Page.Resources>
 
@@ -38,39 +47,46 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <winui:NavigationView x:Name="NavView"
-                    ItemInvoked="NavView_ItemInvoked"
                     OpenPaneLength="280"
-                    IsBackEnabled="False"
-                    IsBackButtonVisible="Collapsed"
+                    IsBackEnabled="{Binding IsBackEnabled, Mode=OneWay}"
+                    SelectedItem="{Binding Selected, Mode=OneWay}"
+                    IsBackButtonVisible="Visible"
                     CompactModeThresholdWidth="0"
                     AlwaysShowHeader="False"
                     IsSettingsVisible="True"  >
 
             <winui:NavigationView.MenuItems>
-                <winui:NavigationViewItem Content="{Binding Resources[AccountsTitle]}" Tag="Accounts">
+
+                <winui:NavigationViewItem Content="{Binding Resources[AccountsTitle]}" helpers:NavHelper.NavigateTo="AccountListPage">
                     <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;"/>
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" Tag="statistics">
+                <winui:NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" helpers:NavHelper.NavigateTo="StatisticSelectorPage">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" Tag="Categories" >
+                <winui:NavigationViewItem Content="{Binding Resources[CategoriesTitle]}" helpers:NavHelper.NavigateTo="CategoryListViewModel" >
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{Binding Resources[BackupTitle]}" Tag="Backup" >
+                <winui:NavigationViewItem Content="{Binding Resources[BackupTitle]}" helpers:NavHelper.NavigateTo="BackupPage" >
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
             </winui:NavigationView.MenuItems>
+
+            <i:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemInvoked">
+                    <core:InvokeCommandAction Command="{Binding ItemInvokedCommand}" />
+                </core:EventTriggerBehavior>
+            </i:Interaction.Behaviors>
 
             <winui:NavigationView.HeaderTemplate>
                 <DataTemplate>

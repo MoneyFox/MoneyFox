@@ -42,7 +42,7 @@ namespace MoneyFox.Presentation
         public static string MainPage => nameof(MainPage);
         public static string AccountList => nameof(AccountListPage);
         public static string PaymentList => nameof(PaymentListPage);
-        public static string CategoryList => nameof(CategoryList);
+        public static string CategoryList => nameof(CategoryListViewModel);
         public static string SelectCategoryList => nameof(SelectCategoryPage);
         public static string AddAccount => nameof(AddAccountPage);
         public static string AddCategory => nameof(AddCategoryPage);
@@ -51,7 +51,7 @@ namespace MoneyFox.Presentation
         public static string EditCategory => nameof(EditCategoryPage);
         public static string EditPayment => nameof(EditPaymentPage);
         public static string Backup => nameof(BackupPage);
-        public static string Settings => nameof(SettingsPage);
+        public static string Settings => nameof(SettingsViewModel);
         public static string SettingsBackgroundJob => nameof(BackgroundJobSettingsPage);
         public static string SettingsPersonalization => nameof(SettingsPersonalizationPage);
         public static string StatisticSelector => nameof(StatisticSelectorPage);
