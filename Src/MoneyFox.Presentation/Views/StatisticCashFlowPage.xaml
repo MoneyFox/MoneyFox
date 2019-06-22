@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:presentation="clr-namespace:MoneyFox.Presentation"
+             Visual="Material"
              BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
              x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage"
              BindingContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">

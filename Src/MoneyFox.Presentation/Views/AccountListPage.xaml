@@ -8,6 +8,7 @@
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
              xmlns:design="clr-namespace:MoneyFox.Presentation"
              mc:Ignorable="d"
+             Visual="Material"
              x:Class="MoneyFox.Presentation.Views.AccountListPage"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
              Title="{Binding Resource[AccountsTitle]}"

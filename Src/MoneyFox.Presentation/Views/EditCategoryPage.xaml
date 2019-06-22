@@ -3,6 +3,7 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                       xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
                       x:Class="MoneyFox.Presentation.Views.EditCategoryPage"
+                      Visual="Material"
                       BindingContext="{Binding EditCategoryVm, Source={StaticResource Locator}}"
                       Title="{Binding Title}">
 

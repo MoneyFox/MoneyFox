@@ -5,6 +5,7 @@
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
+             Visual="Material"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
              BindingContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}"
              Title="{Binding Resources[CategorySummaryTitle]}">

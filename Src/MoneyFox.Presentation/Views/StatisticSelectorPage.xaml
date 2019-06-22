@@ -3,6 +3,7 @@
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
+             Visual="Material"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
              BindingContext="{Binding StatisticSelectorVm, Source={StaticResource Locator}}">
 

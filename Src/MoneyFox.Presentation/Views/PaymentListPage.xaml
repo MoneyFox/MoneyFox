@@ -5,6 +5,7 @@
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.PaymentListPage"
+             Visual="Material"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
              BindingContext="{Binding PaymentListVm, Source={StaticResource Locator}}">
 

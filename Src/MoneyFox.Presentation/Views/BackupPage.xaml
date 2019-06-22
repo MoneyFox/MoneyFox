@@ -5,6 +5,7 @@
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
              xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.BackupPage"
+             Visual="Material"
              BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}">
 
     <ContentPage.Resources>

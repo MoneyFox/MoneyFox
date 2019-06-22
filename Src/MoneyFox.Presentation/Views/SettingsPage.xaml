@@ -3,6 +3,7 @@
                   xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
+                  Visual="Material"
                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
                   BindingContext="{Binding SettingsVm, Source={StaticResource Locator}}">
 

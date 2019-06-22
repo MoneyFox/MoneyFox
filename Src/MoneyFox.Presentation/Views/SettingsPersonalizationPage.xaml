@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.SettingsPersonalizationPage"
+             Visual="Material"
              Title="{Binding Resources[SettingsPersonalizationLabel]}"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
              BindingContext="{Binding SettingsPersonalizationVm, Source={StaticResource Locator}}">

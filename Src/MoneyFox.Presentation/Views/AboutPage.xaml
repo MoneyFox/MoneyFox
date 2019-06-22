@@ -7,6 +7,7 @@
              xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
              xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              mc:Ignorable="d"
+             Visual="Material"
              x:Class="MoneyFox.Presentation.Views.AboutPage"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
              BindingContext="{Binding AboutVm, Source={StaticResource Locator}}"
