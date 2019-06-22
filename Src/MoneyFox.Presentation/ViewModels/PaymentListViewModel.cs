@@ -175,6 +175,8 @@ namespace MoneyFox.Presentation.ViewModels
                                                                      BalanceViewModel,
                                                                      AccountId,
                                                                      navigationService);
+
+            Load();
         }
 
         private void Load()
@@ -223,7 +225,7 @@ namespace MoneyFox.Presentation.ViewModels
                         s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
         }
 
-        private async void EditPayment(PaymentViewModel payment)
+        private void EditPayment(PaymentViewModel payment)
         {
             navigationService.NavigateTo(ViewModelLocator.EditPayment, payment.Id);
         }
