@@ -33,25 +33,21 @@
                           HasUnevenRows="True"
                           CachingStrategy="RecycleElement"
                           IsGroupingEnabled="True"
+                          SeparatorVisibility="None"
                           GroupDisplayBinding="{Binding Key}">
-
-                    <ListView.SeparatorVisibility>
-                        <OnPlatform x:TypeArguments="SeparatorVisibility">
-                            <On Platform="iOS" Value="Default" />
-                            <On Platform="Android" Value="None" />
-                        </OnPlatform>
-                    </ListView.SeparatorVisibility>
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
+
                                 <ViewCell.ContextActions>
                                     <MenuItem Clicked="EditAccount" CommandParameter="{Binding .}"
                                               Text="{Binding Resources[EditLabel]}" />
                                     <MenuItem Clicked="DeleteAccount" CommandParameter="{Binding .}"
                                               Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
-                                <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}">
+
+                                <controls:CardView Margin="{StaticResource SmallLeftRightBottomMargin}">
                                     <StackLayout Spacing="0">
                                         <Grid Style="{StaticResource ListItemStyle}"
                                               Padding="3"

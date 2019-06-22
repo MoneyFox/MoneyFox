@@ -7,13 +7,6 @@ namespace MoneyFox.Presentation.Controls
         public CardView()
         {
             Padding = 0;
-
-            if (Device.RuntimePlatform == Device.iOS)
-            {
-                HasShadow = false;
-                BorderColor = Color.Transparent;
-                BackgroundColor = Color.Transparent;
-            }
         }
 
         public static readonly BindableProperty ShadowRadiusProperty = BindableProperty.Create(
