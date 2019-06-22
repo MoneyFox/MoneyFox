@@ -1,4 +1,5 @@
-﻿using Autofac;
+﻿using Android.App;
+using Autofac;
 using MoneyFox.BusinessLogic.FileStore;
 using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.Services;
@@ -16,7 +17,7 @@ namespace MoneyFox.Droid
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();
-            builder.RegisterType<FileStoreIoBase>().AsImplementedInterfaces();
+            builder.Register(c => new FileStoreIoBase(Application.Context.FilesDir.Path)).AsImplementedInterfaces();
         }
     }
 }

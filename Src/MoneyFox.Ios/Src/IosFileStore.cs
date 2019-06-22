@@ -4,8 +4,7 @@ namespace MoneyFox.iOS
 {
     public class IosFileStore : FileStoreIoBase
     {
-        public IosFileStore(bool appendDefaultPath, string basePath) 
-            : base(appendDefaultPath, basePath)
+        public IosFileStore(string basePath) : base(basePath)
         {
         }
 

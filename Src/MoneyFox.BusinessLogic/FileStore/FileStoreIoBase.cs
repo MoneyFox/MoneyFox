@@ -6,21 +6,18 @@ namespace MoneyFox.BusinessLogic.FileStore
 {
     public class FileStoreIoBase : FileStoreBase
     {
-        private Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public FileStoreIoBase(bool appendDefaultPath, string basePath)
+        public FileStoreIoBase(string basePath)
         {
             BasePath = basePath;
-            AppendDefaultPath = appendDefaultPath;
         }
 
         protected string BasePath { get; }
 
-        protected bool AppendDefaultPath { get; }
-
         public override Stream OpenRead(string path)
         {
-            var fullPath = FullPath(path);
+            var fullPath = AppendPath(path);
             if (!File.Exists(fullPath))
             {
                 return null;
@@ -33,27 +30,27 @@ namespace MoneyFox.BusinessLogic.FileStore
         {
             try
             {
-                var fullFrom = FullPath(from);
-                var fullTo = FullPath(to);
+                var fullFrom = AppendPath(from);
+                var fullTo = AppendPath(to);
 
-                if (!System.IO.File.Exists(fullFrom))
+                if (!File.Exists(fullFrom))
                 {
                     logger.Error("Error during file move {0} : {1}. File does not exist!", from, to);
                     return false;
                 }
 
-                if (System.IO.File.Exists(fullTo))
+                if (File.Exists(fullTo))
                 {
                     if (overwrite)
                     {
-                        System.IO.File.Delete(fullTo);
+                        File.Delete(fullTo);
                     } else
                     {
                         return false;
                     }
                 }
 
-                System.IO.File.Move(fullFrom, fullTo);
+                File.Move(fullFrom, fullTo);
                 return true;
             } 
             catch (Exception ex)
@@ -66,14 +63,7 @@ namespace MoneyFox.BusinessLogic.FileStore
         {
             throw new NotImplementedException();
         }
-
-        private string FullPath(string path)
-        {
-            if (!AppendDefaultPath) return path;
-
-            return AppendPath(path);
-        }
-
+        
         protected virtual string AppendPath(string path)
             => Path.Combine(BasePath, path);
     }
