@@ -39,5 +39,4 @@
     <!--Large size margins-->
     <Thickness x:Key="NegativeLargeLeftRightMargin">-24,0,-24,0</Thickness>
 
-
 </ResourceDictionary>

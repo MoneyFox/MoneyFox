@@ -1,10 +1,13 @@
 ﻿<Application
     x:Class="MoneyFox.Uwp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:presentation="using:MoneyFox.Presentation">
 
     <Application.Resources>
         <ResourceDictionary>
+            <presentation:ViewModelLocator x:Key="Locator" />
+
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Default">
                     <ResourceDictionary.MergedDictionaries>
@@ -13,6 +16,7 @@
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
                         <ResourceDictionary Source="Style/TextStyles.xaml" />
                         <ResourceDictionary Source="Style/ControlStyles.xaml" />
+                        <ResourceDictionary Source="Style/_Thickness.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
 
@@ -23,6 +27,7 @@
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
                         <ResourceDictionary Source="Style/TextStyles.xaml" />
                         <ResourceDictionary Source="Style/ControlStyles.xaml" />
+                        <ResourceDictionary Source="Style/_Thickness.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
 
@@ -33,6 +38,7 @@
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
                         <ResourceDictionary Source="Style/TextStyles.xaml" />
                         <ResourceDictionary Source="Style/ControlStyles.xaml" />
+                        <ResourceDictionary Source="Style/_Thickness.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>

@@ -13,7 +13,6 @@ using Windows.UI;
 using Windows.UI.StartScreen;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Autofac;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Views;
@@ -93,7 +92,6 @@ namespace MoneyFox.Uwp
             logManager.Info("App Version: {Version}", new WindowsAppInformation().GetVersion());
             
 			base.OnLaunched(activationArgs);
-            var mainView = new AppShell();
 
             if (activationArgs.PreviousExecutionState != ApplicationExecutionState.Running)
 			{
@@ -104,10 +102,20 @@ namespace MoneyFox.Uwp
                 AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
-                RegisterServices(mainView.MainFrame);
+                var navService = ConfigureNavigation();
+                RegisterServices(navService);
+
+                var appShell = new AppShell();
+                if (Window.Current.Content == null)
+                {
+                    Window.Current.Content = appShell;
+                }
+
+                navService.CurrentFrame = appShell.MainFrame;
+                navService.NavigateTo(ViewModelLocator.AccountList);
 
                 Xamarin.Forms.Forms.Init(activationArgs);
-				//var app = new Presentation.App();
+				new Presentation.App();
 
                 BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
                 BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
@@ -124,10 +132,7 @@ namespace MoneyFox.Uwp
 				await CallRateReminder();
             }
 
-            if (Window.Current.Content == null)
-            {
-                Window.Current.Content = mainView;
-            }
+
             Window.Current.Activate();
 
             if (activationArgs.TileActivatedInfo != null)
@@ -136,19 +141,19 @@ namespace MoneyFox.Uwp
             }
         }
 
-        private void RegisterServices(Frame mainFrame)
+        private void RegisterServices(NavigationService nav)
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterInstance(ConfigureNavigation(mainFrame)).AsImplementedInterfaces();
+            builder.RegisterInstance(nav).AsImplementedInterfaces();
 
             builder.RegisterModule<WindowsModule>();
             ViewModelLocator.RegisterServices(builder);
         }
 
-        public NavigationService ConfigureNavigation(Frame mainFrame)
+        public NavigationService ConfigureNavigation()
         {
-            var nav = new NavigationService {CurrentFrame = mainFrame};
+            var nav = new NavigationService();
 
             nav.Configure(ViewModelLocator.AccountList, typeof(AccountListView));
             nav.Configure(ViewModelLocator.PaymentList, typeof(PaymentListView));
@@ -165,6 +170,7 @@ namespace MoneyFox.Uwp
             nav.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowView));
             nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingView));
             nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryView));
+            nav.Configure(ViewModelLocator.Backup, typeof(BackupView));
 
             return nav;
         }
@@ -203,16 +209,6 @@ namespace MoneyFox.Uwp
             LogManager.Configuration = config;
             logManager = LogManager.GetCurrentClassLogger();
         }
-
-  //      protected override Frame InitializeFrame(IActivatedEventArgs activationArgs)
-		//{
-		//	mainView = new MainView { Language = ApplicationLanguages.Languages[0] };
-		//	Window.Current.Content = mainView;
-		//	mainView.MainFrame.NavigationFailed += OnNavigationFailed;
-
-		//	RootFrame = mainView.MainFrame;
-		//	return RootFrame;
-		//}
 
 		private void OverrideTitleBarColor()
 		{

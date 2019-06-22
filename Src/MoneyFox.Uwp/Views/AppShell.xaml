@@ -7,7 +7,8 @@
                       xmlns:appmodel="using:Windows.ApplicationModel"
                       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
                       xmlns:winmedia="using:Microsoft.UI.Xaml.Media"
-                      mc:Ignorable="d">
+                      mc:Ignorable="d"
+                      DataContext="{Binding ShellVm, Source={StaticResource Locator}}">
 
     <Page.Resources>
 
