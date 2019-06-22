@@ -59,20 +59,6 @@ namespace MoneyFox.Presentation.ViewModels
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, LoadPayments);
         }
 
-
-        public async void Initialize()
-        {
-            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
-
-            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId);
-            ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
-                settingsFacade,
-                dialogService,
-                BalanceViewModel,
-                AccountId,
-                navigationService);
-        }
-
         public RelayCommand InitializeCommand => new RelayCommand(Initialize);
 
         #region Properties
@@ -177,6 +163,19 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
         public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(DeletePayment);
+
+        private async void Initialize()
+        {
+            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
+
+            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId);
+            ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
+                                                                     settingsFacade,
+                                                                     dialogService,
+                                                                     BalanceViewModel,
+                                                                     AccountId,
+                                                                     navigationService);
+        }
 
         private void Load()
         {

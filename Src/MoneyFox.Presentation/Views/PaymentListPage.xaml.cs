@@ -21,6 +21,7 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.PaymentListVm;
 
             ViewModel.AccountId = accountId;
+            Title = ViewModel.Title;
 
             PaymentList.ItemTapped += (sender, args) =>
             {
@@ -37,8 +38,10 @@ namespace MoneyFox.Presentation.Views
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary
             };
-
+            
             ToolbarItems.Add(filterItem);
+
+            ViewModel.InitializeCommand.Execute(null);
         }
 
         private async void OpenDialog()
@@ -49,28 +52,21 @@ namespace MoneyFox.Presentation.Views
             });
         }
 
-        protected override void OnAppearing()
-        {
-            Title = (BindingContext as PaymentListViewModel)?.Title;
-
-            base.OnAppearing();
-        }
-
         private async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = (BindingContext as AccountListViewModel)?.ViewActionViewModel });
+            await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel });
         }
 
         private void EditPayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            (BindingContext as PaymentListViewModel)?.EditPaymentCommand.Execute(menuItem.CommandParameter as PaymentViewModel);
+            ViewModel.EditPaymentCommand.Execute(menuItem.CommandParameter as PaymentViewModel);
         }
 
         private void DeletePayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            (BindingContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(menuItem.CommandParameter as PaymentViewModel);
+            ViewModel.DeletePaymentCommand.Execute(menuItem.CommandParameter as PaymentViewModel);
         }
     }
 }
