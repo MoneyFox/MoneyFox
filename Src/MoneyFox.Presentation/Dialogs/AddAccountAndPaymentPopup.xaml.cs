@@ -10,6 +10,7 @@ namespace MoneyFox.Presentation.Dialogs
 	public partial class AddAccountAndPaymentPopup
     {
         private IAccountListViewActionViewModel ViewModel => BindingContext as IAccountListViewActionViewModel;
+
         public AddAccountAndPaymentPopup ()
 		{
 			InitializeComponent ();

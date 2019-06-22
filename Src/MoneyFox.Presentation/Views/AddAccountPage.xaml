@@ -4,10 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.AddAccountPage"
              Visual="Material"
              mc:Ignorable="d"
              Title="{Binding Title}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeModifyAccountViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout>

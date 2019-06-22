@@ -7,10 +7,14 @@
              xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
              xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.BackupPage"
              Visual="Material"
-             d:BindingContext="{x:Static presentation:DesignTimeViewModelLocator.BackupVm}"
              BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeBackupViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>

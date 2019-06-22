@@ -5,10 +5,14 @@
              mc:Ignorable="d"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
              Visual="Material"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.StatisticSelectorVm}">
+             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeStatisticSelectorViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <ListView x:Name="StatisticSelectorList"

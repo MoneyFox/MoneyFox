@@ -6,10 +6,14 @@
              mc:Ignorable="d"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.CategoryListPage"
              Visual="Material"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.CategoryListVm}">
+             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeCategoryListViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout VerticalOptions="FillAndExpand">

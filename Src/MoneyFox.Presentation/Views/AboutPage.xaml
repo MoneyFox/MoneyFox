@@ -3,14 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
              xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
-             xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-             mc:Ignorable="d"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              Visual="Material"
              x:Class="MoneyFox.Presentation.Views.AboutPage"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             d:BindingContext="{x:Static design:DesignTimeViewModelLocator.AboutVm}">
+             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeAboutViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <ScrollView>

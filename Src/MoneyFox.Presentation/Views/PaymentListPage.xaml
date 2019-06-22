@@ -7,10 +7,14 @@
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.PaymentListPage"
              Visual="Material"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.PaymentListVm}">
+             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimePaymentListViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>

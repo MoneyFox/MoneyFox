@@ -5,11 +5,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.SettingsPersonalizationPage"
              Visual="Material"
              Title="{Binding Resources[SettingsPersonalizationLabel]}"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.SettingsPersonalizationVm}">
+             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeSettingsPersonalizationViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <StackLayout>

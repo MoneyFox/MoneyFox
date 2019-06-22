@@ -5,10 +5,14 @@
                   mc:Ignorable="d"
                   xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
+                  xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   Visual="Material"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.SettingsVm}">
+                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeSettingsViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <ListView x:Name="SettingsList"

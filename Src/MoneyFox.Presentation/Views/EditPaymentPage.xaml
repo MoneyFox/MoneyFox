@@ -5,11 +5,15 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       mc:Ignorable="d"
                       xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-                      xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+                      xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
                       x:Class="MoneyFox.Presentation.Views.EditPaymentPage"
                       Visual="Material"
                       Title="{Binding Title}">
-
+    
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeModifyPaymentViewModel />
+    </d:ContentPage.BindingContext>
+    
     <ContentPage.Content>
         <StackLayout>
             <userControls:ModifyPaymentUserControl />

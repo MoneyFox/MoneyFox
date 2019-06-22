@@ -7,12 +7,16 @@
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
              Visual="Material"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.StatisticCategorySummaryVm}"
              Title="{Binding Resources[CategorySummaryTitle]}">
 
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeStatisticCategorySummaryViewModel />
+    </d:ContentPage.BindingContext>
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:AmountFormatConverter x:Key="AmountValueConverter" />

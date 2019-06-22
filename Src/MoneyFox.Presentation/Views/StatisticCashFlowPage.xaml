@@ -5,10 +5,14 @@
              mc:Ignorable="d"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:presentation="clr-namespace:MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              Visual="Material"
              BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
-             x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage"
-             d:BindingContext="{x:Static presentation:DesignTimeViewModelLocator.StatisticCashFlowVm}">
+             x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeStatisticCashFlowViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <microcharts:ChartView Chart="{Binding Chart}" />

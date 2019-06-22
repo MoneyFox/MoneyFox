@@ -2,8 +2,7 @@
 <TabbedPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"             
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"
     xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
     Title="Money Fox"
     BackgroundColor="Accent"
@@ -11,11 +10,10 @@
     BarBackgroundColor="{x:Static design:StyleHelper.BottomTabBarColor}"
     SelectedTabColor="{x:Static design:StyleHelper.BarSelectedItemColor}"
     UnselectedTabColor="{x:Static design:StyleHelper.DeemphasizedColor}"
-    d:BindingContext="{x:Static design:DesignTimeViewModelLocator.ShellVm}"
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
     <pages:AccountListPage Title="{Binding Resources[AccountsTitle]}" IconImageSource="ic_accounts_black.png" />
-    <pages:StatisticSelectorPage Title="{Binding Resources[StatisticsTitle]}" IconImageSource="ic_statistics_black.png"/>
-    <pages:SettingsPage Title="{Binding Resources[SettingsTitle]}" IconImageSource="ic_settings_black.png"/>
+    <pages:StatisticSelectorPage Title="{Binding Resources[StatisticsTitle]}" IconImageSource="ic_statistics_black.png" />
+    <pages:SettingsPage Title="{Binding Resources[SettingsTitle]}" IconImageSource="ic_settings_black.png" />
 
 </TabbedPage>

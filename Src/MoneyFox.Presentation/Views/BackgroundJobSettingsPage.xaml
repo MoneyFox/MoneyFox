@@ -2,11 +2,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              mc:Ignorable="d"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.BackgroundJobSettingsPage"
-             Visual="Material"
-             d:BindingContext="{x:Static design:DesignTimeViewModelLocator.SettingsBackgroundJobVm}">
+             Visual="Material">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeSettingsBackgroundJobViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <Grid Padding="7">
