@@ -61,7 +61,16 @@ namespace MoneyFox.BusinessLogic.FileStore
 
         protected override void WriteFileCommon(string path, Action<Stream> streamAction)
         {
-            throw new NotImplementedException();
+            var fullPath = AppendPath(path);
+            if (File.Exists(fullPath))
+            {
+                File.Delete(fullPath);
+            }
+
+            using (var fileStream = File.OpenWrite(fullPath))
+            {
+                streamAction?.Invoke(fileStream);
+            }
         }
         
         protected virtual string AppendPath(string path)

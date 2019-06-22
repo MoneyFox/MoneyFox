@@ -28,14 +28,12 @@
     <Compile Remove="Utilities\AsyncCommand.cs" />
     <Compile Remove="Utilities\GenericAsyncCommand.cs" />
     <Compile Remove="Utilities\IAsyncCommand.cs" />
-    <Compile Remove="Views\AppShell.xaml.cs" />
     <Compile Remove="Views\ModifyAccountPage.xaml.cs" />
     <Compile Remove="Views\ModifyCategoryPage.xaml.cs" />
     <Compile Remove="Views\ModifyPaymentPage.xaml.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Remove="Views\AppShell.xaml" />
     <EmbeddedResource Remove="Views\ModifyAccountPage.xaml" />
     <EmbeddedResource Remove="Views\ModifyCategoryPage.xaml" />
     <EmbeddedResource Remove="Views\ModifyPaymentPage.xaml" />
@@ -115,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Views\AddPaymentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\AppShell.xaml">
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\EditAccountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
