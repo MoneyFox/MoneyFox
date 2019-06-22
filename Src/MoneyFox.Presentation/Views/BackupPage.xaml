@@ -1,11 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
              xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.BackupPage"
              Visual="Material"
+             d:BindingContext="{x:Static presentation:DesignTimeViewModelLocator.BackupVm}"
              BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}">
 
     <ContentPage.Resources>

@@ -1,11 +1,14 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  mc:Ignorable="d"
                   xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   Visual="Material"
                   BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  BindingContext="{Binding SettingsVm, Source={StaticResource Locator}}">
+                  d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.SettingsVm}">
 
     <ContentPage.Content>
         <ListView x:Name="SettingsList"

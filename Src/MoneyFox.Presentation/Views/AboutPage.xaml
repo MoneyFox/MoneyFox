@@ -10,7 +10,6 @@
              Visual="Material"
              x:Class="MoneyFox.Presentation.Views.AboutPage"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             BindingContext="{Binding AboutVm, Source={StaticResource Locator}}"
              d:BindingContext="{x:Static design:DesignTimeViewModelLocator.AboutVm}">
 
     <ContentPage.Content>

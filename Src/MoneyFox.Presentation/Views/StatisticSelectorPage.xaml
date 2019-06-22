@@ -1,11 +1,14 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
              Visual="Material"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-             BindingContext="{Binding StatisticSelectorVm, Source={StaticResource Locator}}">
+             d:BindingContext="{x:Static moneyFox:DesignTimeViewModelLocator.StatisticSelectorVm}">
 
     <ContentPage.Content>
         <ListView x:Name="StatisticSelectorList"
