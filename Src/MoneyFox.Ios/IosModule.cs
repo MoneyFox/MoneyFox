@@ -15,6 +15,7 @@ namespace MoneyFox.iOS
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();
             builder.RegisterType<NavigationService>().AsImplementedInterfaces();
+            builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))).AsImplementedInterfaces();
         }
     }

@@ -8,6 +8,7 @@ using GenericServices;
 using MockQueryable.Moq;
 using MoneyFox.BusinessLogic;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.ServiceLayer.Facades;

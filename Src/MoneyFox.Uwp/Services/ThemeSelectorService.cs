@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
-using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using MoneyFox.Uwp.Helpers;
+using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.Foundation;
+using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Uwp.Services
 {
@@ -14,9 +15,9 @@ namespace MoneyFox.Uwp.Services
 
         public static ElementTheme Theme { get; set; } = ElementTheme.Default;
 
-        public static async Task InitializeAsync()
+        public static void Initialize()
         {
-            Theme = await LoadThemeFromSettingsAsync();
+            Theme = LoadThemeFromSettingsAsync();
         }
 
         public static async Task SetThemeAsync(ElementTheme theme)
@@ -24,7 +25,7 @@ namespace MoneyFox.Uwp.Services
             Theme = theme;
 
             await SetRequestedThemeAsync();
-            await SaveThemeInSettingsAsync(Theme);
+            SaveThemeInSettings(Theme);
         }
 
         public static async Task SetRequestedThemeAsync()
@@ -41,10 +42,11 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        private static async Task<ElementTheme> LoadThemeFromSettingsAsync()
+        private static ElementTheme LoadThemeFromSettingsAsync()
         {
             ElementTheme cacheTheme = ElementTheme.Default;
-            string themeName = await ApplicationData.Current.LocalSettings.ReadAsync<string>(SETTINGS_KEY);
+
+            string themeName = new SettingsAdapter().GetValue(SETTINGS_KEY, string.Empty);
 
             if (!string.IsNullOrEmpty(themeName))
             {
@@ -54,9 +56,13 @@ namespace MoneyFox.Uwp.Services
             return cacheTheme;
         }
 
-        private static async Task SaveThemeInSettingsAsync(ElementTheme theme)
+        private static void SaveThemeInSettings(ElementTheme theme)
         {
-            await ApplicationData.Current.LocalSettings.SaveAsync(SETTINGS_KEY, theme.ToString());
+            var settingsAdapter = new SettingsAdapter();
+            settingsAdapter.AddOrUpdate(SETTINGS_KEY, theme.ToString());
+            var settingsFacade = new SettingsFacade(settingsAdapter);
+
+            settingsFacade.Theme = Theme == ElementTheme.Dark ? AppTheme.Dark : AppTheme.Light;
         }
     }
 }

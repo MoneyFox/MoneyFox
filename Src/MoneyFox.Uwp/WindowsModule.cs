@@ -15,6 +15,7 @@ namespace MoneyFox.Uwp
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
             builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();
             builder.RegisterType<WindowsFileStore>().AsImplementedInterfaces();
+            builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
         }
     }
 }

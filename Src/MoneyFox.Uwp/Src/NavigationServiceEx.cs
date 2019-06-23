@@ -5,7 +5,6 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Views;
-using Microsoft.Toolkit.Uwp.Extensions;
 
 namespace MoneyFox.Uwp
 {
@@ -68,7 +67,7 @@ namespace MoneyFox.Uwp
             lock (_pages)
             {
                 if (!_pages.TryGetValue(pageKey, out page))
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound".GetLocalized(), pageKey), nameof(pageKey));
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound", pageKey), nameof(pageKey));
             }
 
             if (Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(lastParamUsed))
@@ -85,10 +84,10 @@ namespace MoneyFox.Uwp
             lock (_pages)
             {
                 if (_pages.ContainsKey(key))
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExKeyIsInNavigationService".GetLocalized(), key));
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExKeyIsInNavigationService", key));
 
                 if (_pages.Any(p => p.Value == pageType))
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExTypeAlreadyConfigured".GetLocalized(),
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExTypeAlreadyConfigured",
                                                               _pages.First(p => p.Value == pageType).Key));
 
                 _pages.Add(key, pageType);
@@ -102,7 +101,7 @@ namespace MoneyFox.Uwp
                 if (_pages.ContainsValue(page))
                     return _pages.FirstOrDefault(p => p.Value == page).Key;
                 else
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknown".GetLocalized(), page.Name));
+                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknown", page.Name));
             }
         }
 

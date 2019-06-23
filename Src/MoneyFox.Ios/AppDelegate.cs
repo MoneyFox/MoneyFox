@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using Autofac;
 using CommonServiceLocator;
 using MoneyFox.BusinessLogic.FileStore;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using NLog;

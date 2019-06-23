@@ -4,7 +4,6 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Statistic;
-using MoneyFox.Presentation.Views;
 
 namespace MoneyFox.Presentation
 {
@@ -39,26 +38,26 @@ namespace MoneyFox.Presentation
             }
         }
 
-        public static string MainPage => nameof(MainPage);
-        public static string AccountList => nameof(AccountListPage);
-        public static string PaymentList => nameof(PaymentListPage);
+        public static string MainPage => nameof(ShellViewModel);
+        public static string AccountList => nameof(AccountListViewModel);
+        public static string PaymentList => nameof(PaymentListViewModel);
         public static string CategoryList => nameof(CategoryListViewModel);
-        public static string SelectCategoryList => nameof(SelectCategoryPage);
-        public static string AddAccount => nameof(AddAccountPage);
-        public static string AddCategory => nameof(AddCategoryPage);
-        public static string AddPayment => nameof(AddPaymentPage);
-        public static string EditAccount => nameof(EditAccountPage);
-        public static string EditCategory => nameof(EditCategoryPage);
-        public static string EditPayment => nameof(EditPaymentPage);
-        public static string Backup => nameof(BackupPage);
+        public static string SelectCategoryList => nameof(SelectCategoryListViewModel);
+        public static string AddAccount => nameof(AddAccountViewModel);
+        public static string AddCategory => nameof(AddCategoryViewModel);
+        public static string AddPayment => nameof(AddPaymentViewModel);
+        public static string EditAccount => nameof(EditAccountViewModel);
+        public static string EditCategory => nameof(EditCategoryViewModel);
+        public static string EditPayment => nameof(EditPaymentViewModel);
+        public static string Backup => nameof(BackupViewModel);
         public static string Settings => nameof(SettingsViewModel);
-        public static string SettingsBackgroundJob => nameof(BackgroundJobSettingsPage);
-        public static string SettingsPersonalization => nameof(SettingsPersonalizationPage);
-        public static string StatisticSelector => nameof(StatisticSelectorPage);
-        public static string StatisticCashFlow => nameof(StatisticCashFlowPage);
-        public static string StatisticCategorySpreading => nameof(StatisticCategorySpreadingPage);
-        public static string StatisticCategorySummary => nameof(StatisticCategorySummaryPage);
-        public static string About => nameof(AboutPage);
+        public static string SettingsBackgroundJob => nameof(SettingsBackgroundJobViewModel);
+        public static string SettingsPersonalization => nameof(SettingsPersonalizationViewModel);
+        public static string StatisticSelector => nameof(StatisticSelectorViewModel);
+        public static string StatisticCashFlow => nameof(StatisticCashFlowViewModel);
+        public static string StatisticCategorySpreading => nameof(StatisticCategorySpreadingViewModel);
+        public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
+        public static string About => nameof(AboutViewModel);
 
         public static ShellViewModel ShellVm => ServiceLocator.Current.GetInstance<ShellViewModel>();
         public static AccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<AccountListViewModel>();

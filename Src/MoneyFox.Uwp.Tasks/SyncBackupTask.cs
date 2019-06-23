@@ -6,8 +6,8 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
-using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.Uwp.Business;
 
 namespace MoneyFox.Uwp.Tasks

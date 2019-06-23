@@ -1,5 +1,6 @@
 ﻿using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.ServiceLayer.Facades;
 using Xamarin.Forms;
 

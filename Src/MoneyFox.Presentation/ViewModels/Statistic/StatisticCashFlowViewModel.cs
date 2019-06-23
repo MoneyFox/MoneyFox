@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.ServiceLayer.Facades;
 using SkiaSharp;
 

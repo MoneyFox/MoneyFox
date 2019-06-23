@@ -1,50 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.Facades;
+﻿using System.Collections.Generic;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public interface ISettingsPersonalizationViewModel : IBaseViewModel
     {
-        /// <summary>
-        ///     The Currently selected index.
-        /// </summary>
-        int SelectedIndex { get; set; }
+        string ElementTheme { get; }
 
-        /// <summary>
-        ///     Available Themes
-        /// </summary>
-        List<string> ThemeItems { get; }
+        ICommand SwitchThemeCommand { get; }
     }
 
     public class SettingsPersonalizationViewModel : BaseViewModel, ISettingsPersonalizationViewModel
     {
-        private readonly ISettingsFacade settingsFacade;
+        private readonly IThemeSelectorAdapter themeSelectorAdapter;
 
-        public SettingsPersonalizationViewModel(ISettingsFacade settingsFacade)
+        public SettingsPersonalizationViewModel(IThemeSelectorAdapter themeSelectorAdapter)
         {
-            this.settingsFacade = settingsFacade;
+            this.themeSelectorAdapter = themeSelectorAdapter;
         }
 
-        /// <inheritdoc />
-        public int SelectedIndex
+        public string ElementTheme => themeSelectorAdapter.Theme;
+
+        private ICommand switchThemeCommand;
+
+        public ICommand SwitchThemeCommand
         {
-            get => (int) settingsFacade.Theme;
-            set
+            get
             {
-                var theme = (AppTheme)Enum.ToObject(typeof(AppTheme), value);
-                settingsFacade.Theme = theme;
-                RaisePropertyChanged();
+                return switchThemeCommand 
+                       ?? (switchThemeCommand = new RelayCommand<string>(param => { themeSelectorAdapter.SetThemeAsync(param); }));
             }
         }
-
-        /// <inheritdoc />
-        public List<string> ThemeItems => new List<string>
-        {
-            Strings.ThemeDarkLabel,
-            Strings.ThemeLightLabel
-        };
     }
 }

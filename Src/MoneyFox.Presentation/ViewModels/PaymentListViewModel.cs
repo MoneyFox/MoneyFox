@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Presentation.Commands;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;

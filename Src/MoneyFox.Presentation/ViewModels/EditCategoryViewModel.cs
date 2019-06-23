@@ -6,6 +6,7 @@ using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
 using NLog;

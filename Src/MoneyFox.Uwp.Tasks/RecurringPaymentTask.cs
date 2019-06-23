@@ -6,6 +6,7 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.ServiceLayer.Facades;
 
 namespace MoneyFox.Uwp.Tasks

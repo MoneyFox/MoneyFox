@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;

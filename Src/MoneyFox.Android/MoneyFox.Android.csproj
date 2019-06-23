@@ -178,6 +178,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="SplashScreen.cs" />
+    <Compile Include="Src\ThemeSelectorAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="..\MoneyFox.Presentation\App.config">

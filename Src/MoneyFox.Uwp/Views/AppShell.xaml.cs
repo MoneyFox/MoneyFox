@@ -12,6 +12,7 @@ namespace MoneyFox.Uwp.Views
         public AppShell()
         {
             InitializeComponent();
+            DataContext = new WindowsShellViewModel();
             ViewModel.Initialize(ContentFrame, NavView, KeyboardAccelerators);
         }
 

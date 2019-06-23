@@ -7,17 +7,10 @@
                       xmlns:appmodel="using:Windows.ApplicationModel"
                       xmlns:winui="using:Microsoft.UI.Xaml.Controls"
                       xmlns:winmedia="using:Microsoft.UI.Xaml.Media"
-                      xmlns:uwp1="using:MoneyFox.Uwp"
                       xmlns:helpers="using:MoneyFox.Uwp.Helpers"
                       xmlns:i="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                      xmlns:presentation="using:MoneyFox.Presentation"
-                      xmlns:foundation="using:MoneyFox.Foundation"
                       mc:Ignorable="d">
-
-    <Page.DataContext>
-        <uwp1:WindowsShellViewModel />
-    </Page.DataContext>
 
     <Page.Resources>
 

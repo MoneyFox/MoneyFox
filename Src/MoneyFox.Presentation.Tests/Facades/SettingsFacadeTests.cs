@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.ServiceLayer.Facades;
 using Moq;
 using Should;

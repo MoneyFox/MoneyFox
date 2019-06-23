@@ -11,7 +11,7 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.Presentation.Facades;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
 using JobSchedulerType = Android.App.Job.JobScheduler;

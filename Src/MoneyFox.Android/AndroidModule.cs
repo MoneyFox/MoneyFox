@@ -18,6 +18,7 @@ namespace MoneyFox.Droid
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();
             builder.RegisterType<NavigationService>().AsImplementedInterfaces();
+            builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
             builder.Register(c => new FileStoreIoBase(Application.Context.FilesDir.Path)).AsImplementedInterfaces();
         }
     }

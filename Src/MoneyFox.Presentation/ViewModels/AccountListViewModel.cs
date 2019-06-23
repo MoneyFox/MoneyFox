@@ -9,6 +9,7 @@ using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
+using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
