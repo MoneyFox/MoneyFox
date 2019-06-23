@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MockQueryable.Moq;
@@ -40,7 +41,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public void SavePayment_NoAccount_DialogShown()
+        public async Task SavePayment_NoAccount_DialogShown()
         {
             // Arrange
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
@@ -53,10 +54,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        backupServiceMock.Object, 
                                                        navigationServiceMock.Object);
 
-            addPaymentVm.InitializeCommand.Execute(null);
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
 
             // Act
-            addPaymentVm.SaveCommand.Execute(null);
+            await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Never);
@@ -67,7 +68,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public void SavePayment_ResultSucceeded_CorrectMethodCalls()
+        public async Task SavePayment_ResultSucceeded_CorrectMethodCalls()
         {
             // Arrange
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
@@ -80,11 +81,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 backupServiceMock.Object,
                 navigationServiceMock.Object);
 
-            addPaymentVm.InitializeCommand.Execute(null);
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
-            addPaymentVm.SaveCommand.Execute(null);
+            await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
@@ -95,7 +96,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public void SavePayment_ResultSucceededWithBackup_CorrectMethodCalls()
+        public async Task SavePayment_ResultSucceededWithBackup_CorrectMethodCalls()
         {
             // Arrange
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
@@ -110,11 +111,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 backupServiceMock.Object,
                 navigationServiceMock.Object);
 
-            addPaymentVm.InitializeCommand.Execute(null);
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
-            addPaymentVm.SaveCommand.Execute(null);
+            await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
@@ -125,7 +126,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public void SavePayment_ResultFailed_CorrectMethodCalls()
+        public async Task SavePayment_ResultFailed_CorrectMethodCalls()
         {
             // Arrange
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
@@ -138,11 +139,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 backupServiceMock.Object,
                 navigationServiceMock.Object);
 
-            addPaymentVm.InitializeCommand.Execute(null);
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
-            addPaymentVm.SaveCommand.Execute(null);
+            await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);
@@ -153,7 +154,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public void SavePayment_ResultFailedWithBackup_CorrectMethodCalls()
+        public async Task SavePayment_ResultFailedWithBackup_CorrectMethodCalls()
         {
             // Arrange
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
@@ -168,11 +169,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 backupServiceMock.Object,
                 navigationServiceMock.Object);
 
-            addPaymentVm.InitializeCommand.Execute(null);
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
 
             // Act
-            addPaymentVm.SaveCommand.Execute(null);
+            await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
             paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Once);

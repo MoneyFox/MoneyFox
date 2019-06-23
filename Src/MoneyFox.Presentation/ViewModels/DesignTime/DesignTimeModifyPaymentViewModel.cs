@@ -5,6 +5,7 @@ using System.Globalization;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.ServiceLayer.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
@@ -41,8 +42,8 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public DateTime Date { get; }
 
         public RelayCommand SelectedItemChangedCommand { get; } = null;
-        public RelayCommand SaveCommand { get; } = null;
-        public RelayCommand GoToSelectCategorydialogCommand { get; } = null;
+        public AsyncCommand SaveCommand { get; } = null;
+        public RelayCommand GoToSelectCategoryDialogCommand { get; } = null;
         public RelayCommand DeleteCommand { get; } = null;
         public RelayCommand CancelCommand { get; } = null;
         public RelayCommand ResetCategoryCommand { get; } = null;

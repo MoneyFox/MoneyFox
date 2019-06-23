@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Utilities;
@@ -40,11 +40,11 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Delete the selected CategoryViewModel from the database
         /// </summary>
-        public RelayCommand DeleteCommand => new RelayCommand(DeletePayment);
+        public AsyncCommand DeleteCommand => new AsyncCommand(DeletePayment);
 
-        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
-        private async void Initialize()
+        protected override async Task Initialize()
         {
             SelectedPayment = crudServices.ReadSingle<PaymentViewModel>(PaymentId);
 
@@ -73,8 +73,7 @@ namespace MoneyFox.Presentation.ViewModels
             navigationService.GoBack();
         }
 
-
-        private async void DeletePayment()
+        private async Task DeletePayment()
         {
             await paymentService.DeletePayment(SelectedPayment);
 #pragma warning disable 4014

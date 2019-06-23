@@ -9,6 +9,7 @@ using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.QueryObject;
@@ -77,12 +78,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        RelayCommand SaveCommand { get; }
+        AsyncCommand SaveCommand { get; }
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        RelayCommand GoToSelectCategorydialogCommand { get; }
+        RelayCommand GoToSelectCategoryDialogCommand { get; }
 
         /// <summary>
         ///     Cancels the operations.
@@ -139,12 +140,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public RelayCommand SaveCommand => new RelayCommand(SavePaymentBase);
+        public AsyncCommand SaveCommand => new AsyncCommand(SavePaymentBase);
 
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        public RelayCommand GoToSelectCategorydialogCommand => new RelayCommand(OpenSelectCategoryList);
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(OpenSelectCategoryList);
 
         /// <summary>
         ///     Cancels the operations.
@@ -275,7 +276,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected abstract Task SavePayment();
 
-        private async void SavePaymentBase()
+        private async Task SavePaymentBase()
         {
             if (SelectedPayment.ChargedAccount == null)
             {

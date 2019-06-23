@@ -17,7 +17,6 @@
         <designTime:DesignTimeModifyPaymentViewModel />
     </d:Page.DataContext>
 
-
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
@@ -93,7 +92,7 @@
                         <interactivity:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="GotFocus">
                                 <core:InvokeCommandAction
-                                    Command="{Binding GoToSelectCategorydialogCommand, Mode=OneWay}" />
+                                    Command="{Binding GoToSelectCategoryDialogCommand, Mode=OneWay}" />
                             </core:EventTriggerBehavior>
                         </interactivity:Interaction.Behaviors>
                     </TextBox>
