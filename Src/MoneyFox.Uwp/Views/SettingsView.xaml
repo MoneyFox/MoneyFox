@@ -98,44 +98,32 @@
                                        Text="{Binding Resources[PersonalizationTitle]}"
                                        TextWrapping="WrapWholeWords" />
 
-
-                            <StackPanel Margin="{StaticResource SmallTopBottomMargin}">
-
-                                <StackPanel Margin="{StaticResource XSmallTopMargin}">
-                                    <RadioButton
-                                        x:Uid="Settings_Theme_Light"
+                            <StackPanel>
+                                <RadioButton
+                                        Content="Light"
                                         GroupName="AppTheme"
                                         IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                                         Command="{Binding SwitchThemeCommand}"
                                         FontSize="15">
-                                        <RadioButton.CommandParameter>
-                                            <ElementTheme>Light</ElementTheme>
-                                        </RadioButton.CommandParameter>
-                                    </RadioButton>
-                                    <RadioButton
-                                        x:Uid="Settings_Theme_Dark"
+                                    <RadioButton.CommandParameter>Light</RadioButton.CommandParameter>
+                                </RadioButton>
+                                <RadioButton
+                                        Content="Dark"
                                         GroupName="AppTheme"
                                         IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                                         Command="{Binding SwitchThemeCommand}"
                                         FontSize="15">
-                                        <RadioButton.CommandParameter>
-                                            <ElementTheme>Dark</ElementTheme>
-                                        </RadioButton.CommandParameter>
-                                    </RadioButton>
-                                    <RadioButton
-                                        x:Uid="Settings_Theme_Default"
+                                    <RadioButton.CommandParameter>Dark</RadioButton.CommandParameter>
+                                </RadioButton>
+                                <RadioButton
+                                        Content="Default"
                                         GroupName="AppTheme"
                                         IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                                         Command="{Binding SwitchThemeCommand}"
                                         FontSize="15">
-                                        <RadioButton.CommandParameter>
-                                            <ElementTheme>Default</ElementTheme>
-                                        </RadioButton.CommandParameter>
-                                    </RadioButton>
-                                </StackPanel>
+                                    <RadioButton.CommandParameter>Default</RadioButton.CommandParameter>
+                                </RadioButton>
                             </StackPanel>
-
-
                         </StackPanel>
                     </StackPanel>
                 </ScrollViewer>

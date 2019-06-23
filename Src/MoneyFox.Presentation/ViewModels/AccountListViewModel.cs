@@ -13,7 +13,6 @@ using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.ServiceLayer.Facades;
 using NLog;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 

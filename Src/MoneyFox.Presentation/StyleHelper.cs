@@ -1,7 +1,6 @@
 ﻿using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.ServiceLayer.Facades;
 using Xamarin.Forms;
 
 #pragma warning disable CA2211 // Non-constant fields should not be visible

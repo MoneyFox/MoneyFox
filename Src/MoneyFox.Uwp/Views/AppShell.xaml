@@ -50,13 +50,13 @@
 
             <winui:NavigationView.MenuItems>
 
-                <winui:NavigationViewItem Content="{Binding Resources[AccountsTitle]}" helpers:NavHelper.NavigateTo="AccountListPage">
+                <winui:NavigationViewItem Content="{Binding Resources[AccountsTitle]}" helpers:NavHelper.NavigateTo="AccountListViewModel">
                     <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;"/>
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" helpers:NavHelper.NavigateTo="StatisticSelectorPage">
+                <winui:NavigationViewItem Content="{Binding Resources[StatisticsTitle]}" helpers:NavHelper.NavigateTo="StatisticSelectorViewModel">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
                     </winui:NavigationViewItem.Icon>
@@ -68,7 +68,7 @@
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{Binding Resources[BackupTitle]}" helpers:NavHelper.NavigateTo="BackupPage" >
+                <winui:NavigationViewItem Content="{Binding Resources[BackupTitle]}" helpers:NavHelper.NavigateTo="BackupViewModel" >
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
                     </winui:NavigationViewItem.Icon>

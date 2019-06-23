@@ -24,8 +24,7 @@
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                      Color="{StaticResource ColorCustomBackground}" />
 
-    <SolidColorBrush x:Key="ListItemBrush"
-                     Color="{StaticResource ListItemColor}" />
+    <SolidColorBrush x:Key="ListItemBrush" Color="{StaticResource ListItemColor}" />
 
     <!--  Accent Color  -->
     <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush" Color="{ThemeResource SystemAccentColor}" />
