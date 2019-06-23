@@ -17,7 +17,7 @@ namespace MoneyFox.Presentation.Views
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => ViewModel?.SaveCommand.Execute(null)),
+                Command = new Command(async () => await ViewModel.SaveCommand.ExecuteAsync()),
                 Text = Strings.SaveAccountLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,
@@ -26,7 +26,7 @@ namespace MoneyFox.Presentation.Views
 
             ToolbarItems.Add(new ToolbarItem
             {
-                Command = new Command(() => ViewModel?.DeleteCommand.Execute(null)),
+                Command = new Command(async () => await ViewModel.DeleteCommand.ExecuteAsync()),
                 Text = Strings.DeleteLabel,
                 Priority = 1,
                 Order = ToolbarItemOrder.Secondary

@@ -4,7 +4,9 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.ServiceLayer.Facades;
 using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
 
@@ -32,7 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected INavigationService NavigationService { get; private set; }
 
-        public RelayCommand SaveCommand => new RelayCommand(SaveAccountBase);
+        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBase);
 
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
@@ -67,16 +69,14 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected abstract Task SaveAccount();
 
-        private async void SaveAccountBase()
+        private async Task SaveAccountBase()
         {
             await SaveAccount();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             if (settingsFacade.IsBackupAutouploadEnabled)
             {
-#pragma warning disable 4014
-                backupService.EnqueueBackupTask();
-#pragma warning restore 4014
+                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
             }
         }
         

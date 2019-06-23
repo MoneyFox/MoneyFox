@@ -5,7 +5,9 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.ServiceLayer.Facades;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -33,10 +35,11 @@ namespace MoneyFox.Presentation.ViewModels
         public override string Title =>
             string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
 
-        public RelayCommand DeleteCommand => new RelayCommand(DeleteAccount);
-        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
+        public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccount);
 
-        public async void Initialize()
+        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+
+        public async Task Initialize()
         {
             SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId);
         }
@@ -53,15 +56,13 @@ namespace MoneyFox.Presentation.ViewModels
             CancelCommand.Execute(null);
         }
 
-        protected async void DeleteAccount()
+        protected async Task DeleteAccount()
         {
             await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id);
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-#pragma warning disable 4014
-            backupService.EnqueueBackupTask();
-#pragma warning restore 4014
             CancelCommand.Execute(null);
+            backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
         }
     }
 }

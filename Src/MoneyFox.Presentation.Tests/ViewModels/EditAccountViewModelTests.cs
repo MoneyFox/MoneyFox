@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
@@ -10,7 +11,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class EditAccountViewModelTests
     {
         [Fact]
-        public void Prepare_AccountLoaded()
+        public async Task Prepare_AccountLoaded()
         {
             // Arrange
             const int accountId = 99;
@@ -20,7 +21,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Act
             editAccountVm.AccountId = accountId;
-            editAccountVm.InitializeCommand.Execute(null);
+            await editAccountVm.InitializeCommand.ExecuteAsync();
 
             // Assert
             crudServiceMock.Verify(x => x.ReadSingleAsync<AccountViewModel>(accountId), Times.Once);

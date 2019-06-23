@@ -155,7 +155,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
 
             // Act
             // AddPaymentAmount executed in the clear method
-            var payment = new Payment(DateTime.Today, 50, paymentType, account);
+            new Payment(DateTime.Today, 50, paymentType, account);
 
             // Assert
             account.CurrentBalance.ShouldEqual(expectedBalance);
@@ -193,7 +193,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
 
             // Act
             // AddPaymentAmount executed in the clear method
-            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+            new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
 
             // Assert
             chargedAccount.CurrentBalance.ShouldEqual(50);

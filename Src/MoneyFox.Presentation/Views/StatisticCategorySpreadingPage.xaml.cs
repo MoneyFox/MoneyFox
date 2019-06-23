@@ -1,4 +1,5 @@
-﻿using MoneyFox.Foundation.Resources;
+﻿using System.Threading.Tasks;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Statistic;
@@ -22,7 +23,7 @@ namespace MoneyFox.Presentation.Views
 
 		    var filterItem = new ToolbarItem
 		    {
-		        Command = new Command(OpenDialog),
+		        Command = new Command(async () => await OpenDialog()),
 		        Text = Strings.SelectDateLabel,
 		        Priority = 0,
 		        Order = ToolbarItemOrder.Primary
@@ -33,7 +34,7 @@ namespace MoneyFox.Presentation.Views
             ViewModel.LoadedCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
-        private async void OpenDialog()
+        private async Task OpenDialog()
         {
             await Navigation.PushPopupAsync(new DateSelectionPopup
             {

@@ -15,7 +15,7 @@ namespace MoneyFox.Presentation.Views
 
             var saveAccountItem = new ToolbarItem
             {
-                Command = new Command(() => (BindingContext as AddAccountViewModel)?.SaveCommand.Execute(null)),
+                Command = new Command(async () => await (BindingContext as AddAccountViewModel)?.SaveCommand.ExecuteAsync()),
                 Text = Strings.SaveAccountLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,

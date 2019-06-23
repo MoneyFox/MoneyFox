@@ -75,15 +75,11 @@ namespace MoneyFox.Uwp.Business.Tiles
         {
             var tiles = await SecondaryTile.FindAllForPackageAsync();
 
-           
-                ;
-
             if (tiles == null) return;
 
             foreach (var item in tiles)
             {
-                var acct = await crudService.ReadSingleAsync<AccountViewModel>(int.Parse(item.TileId))
-                    ;
+                var acct = await crudService.ReadSingleAsync<AccountViewModel>(int.Parse(item.TileId));
                 List<string> displayContent = GetSecondarypayments(int.Parse(item.TileId));
                var content = new TileContent
                 {
