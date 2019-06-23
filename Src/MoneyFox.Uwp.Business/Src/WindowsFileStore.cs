@@ -31,12 +31,9 @@ namespace MoneyFox.Uwp.Business
             {
                 var fromFile = StorageFileFromRelativePath(from);
 
-                if (overwrite)
+                if (overwrite && !SafeDeleteFile(to))
                 {
-                    if (!SafeDeleteFile(to))
-                    {
-                        return false;
-                    }
+                    return false;
                 }
 
                 var fullToPath = ToFullPath(to);

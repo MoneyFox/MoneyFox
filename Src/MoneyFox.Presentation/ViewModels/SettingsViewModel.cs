@@ -115,7 +115,7 @@ namespace MoneyFox.Presentation.ViewModels
                     break;
 
                 case SettingsType.About:
-                    navigationService.NavigateTo(ViewModelLocator.About); ;
+                    navigationService.NavigateTo(ViewModelLocator.About);
                     break;
             }
         }
