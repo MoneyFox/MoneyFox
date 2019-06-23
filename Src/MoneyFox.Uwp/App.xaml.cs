@@ -33,7 +33,6 @@ using MoneyFox.Uwp.Views;
 using NLog;
 using NLog.Targets;
 using LogLevel = NLog.LogLevel;
-using NavigationService = GalaSoft.MvvmLight.Views.NavigationService;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -58,25 +57,10 @@ namespace MoneyFox.Uwp
         public App()
 		{
 			InitializeComponent();
-			SetTheme();
 
             EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
             Suspending += OnSuspending;
             UnhandledException += OnUnhandledException;
-        }
-
-        private void SetTheme()
-        {
-            switch (new SettingsFacade(new SettingsAdapter()).Theme)
-            {
-                case AppTheme.Dark:
-                    RequestedTheme = ApplicationTheme.Dark;
-                    break;
-
-                case AppTheme.Light:
-                    RequestedTheme = ApplicationTheme.Light;
-                    break;
-            }
         }
 
 		/// <summary>
