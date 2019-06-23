@@ -26,7 +26,7 @@ namespace MoneyFox.BusinessLogic.FileStore
             return File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         }
 
-        public override bool TryMove(string @from, string to, bool overwrite)
+        public override bool TryMove(string from, string to, bool overwrite)
         {
             try
             {
@@ -55,7 +55,8 @@ namespace MoneyFox.BusinessLogic.FileStore
             } 
             catch (Exception ex)
             {
-                logger.Error(ex.ToString);return false;
+                logger.Error(ex.ToString);
+                return false;
             }
         }
 

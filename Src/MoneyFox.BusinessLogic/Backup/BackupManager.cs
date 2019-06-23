@@ -186,8 +186,10 @@ namespace MoneyFox.BusinessLogic.Backup
 
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
-                var backupStream = await cloudBackupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
-                fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
+                using (var backupStream = await cloudBackupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME))
+                {
+                    fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
+                }
 
                 var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, EfCoreContext.DbPath, true);
 

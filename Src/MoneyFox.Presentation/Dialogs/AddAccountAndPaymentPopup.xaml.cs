@@ -1,4 +1,5 @@
-﻿using MoneyFox.Foundation;
+﻿using System.Threading.Tasks;
+using MoneyFox.Foundation;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
@@ -15,31 +16,31 @@ namespace MoneyFox.Presentation.Dialogs
 		{
 			InitializeComponent ();
 
-            AddAccountGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(AddAccountGridClicked) });
-            AddExpenseGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(AddExpenseGridClicked) });
-            AddIncomeGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(AddIncomeGridClicked) });
-            AddTransferGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(AddTransferGridClicked) });
+            AddAccountGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddAccountGridClicked()) });
+            AddExpenseGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddExpenseGridClicked()) });
+            AddIncomeGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddIncomeGridClicked()) });
+            AddTransferGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddTransferGridClicked()) });
         }
 
-        private async void AddAccountGridClicked()
+        private async Task AddAccountGridClicked()
         {
             await Navigation.PopPopupAsync();
             ViewModel?.GoToAddAccountCommand.Execute(null);
         }
 
-        private async void AddExpenseGridClicked()
+        private async Task AddExpenseGridClicked()
         {
             await Navigation.PopPopupAsync();
             ViewModel?.GoToAddExpenseCommand.Execute(PaymentType.Expense);
         }
 
-        private async void AddIncomeGridClicked()
+        private async Task AddIncomeGridClicked()
         {
             await Navigation.PopPopupAsync();
             ViewModel?.GoToAddIncomeCommand.Execute(PaymentType.Income);
         }
 
-        private async void AddTransferGridClicked()
+        private async Task AddTransferGridClicked()
         {
             await Navigation.PopPopupAsync();
             ViewModel?.GoToAddTransferCommand.Execute(PaymentType.Transfer);
