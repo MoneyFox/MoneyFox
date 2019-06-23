@@ -19,7 +19,7 @@
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
         <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
-            <StackPanel Background="{StaticResource ListItemBrush}"
+            <StackPanel Background="{ThemeResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
                         Margin="{StaticResource SmallListItemMargin}"
                         Padding="{StaticResource SmallListItemPadding}">
