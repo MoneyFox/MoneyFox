@@ -3,6 +3,7 @@ using System.Globalization;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.ServiceLayer.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
@@ -24,10 +25,10 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
                 }
             };
 
-        public RelayCommand AppearingCommand { get; }
+        public AsyncCommand AppearingCommand { get; }
 
         public RelayCommand<CategoryViewModel> ItemClickCommand { get; }
-        public RelayCommand<string> SearchCommand { get; }
+        public AsyncCommand<string> SearchCommand { get; }
 
         public CategoryViewModel SelectedCategory { get; set; }
         public string SearchText { get; set; }

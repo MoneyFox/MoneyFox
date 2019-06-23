@@ -166,7 +166,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async void Initialize()
         {
-            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId)).Name;
+            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId))?.Name;
 
             BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,

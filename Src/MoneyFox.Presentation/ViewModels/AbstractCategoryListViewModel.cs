@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.QueryObject;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -59,12 +60,12 @@ namespace MoneyFox.Presentation.ViewModels
 
         public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
 
-        public RelayCommand AppearingCommand => new RelayCommand(ViewAppearing);
+        public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearing);
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
-        public RelayCommand<CategoryViewModel> DeleteCategoryCommand => new RelayCommand<CategoryViewModel>(DeleteCategory);
+        public AsyncCommand<CategoryViewModel> DeleteCategoryCommand => new AsyncCommand<CategoryViewModel>(DeleteCategory);
 
         /// <summary>
         ///     Edit the currently selected CategoryViewModel
@@ -79,22 +80,22 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Executes a search for the passed term and updates the displayed list.
         /// </summary>
-        public RelayCommand<string> SearchCommand => new RelayCommand<string>(Search);
+        public AsyncCommand<string> SearchCommand => new AsyncCommand<string>(Search);
 
         /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
         public RelayCommand<CategoryViewModel> CreateNewCategoryCommand => new RelayCommand<CategoryViewModel>(CreateNewCategory);
 
-        public void ViewAppearing()
+        public async Task ViewAppearing()
         {
-            Search();
+            await Search();
         }
 
         /// <summary>
         ///     Performs a search with the text in the search text property
         /// </summary>
-        public async void Search(string searchText = "")
+        public async Task Search(string searchText = "")
         {
             List<CategoryViewModel> categories;
 
@@ -136,12 +137,12 @@ namespace MoneyFox.Presentation.ViewModels
                         ? "-"
                         : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture), itemClickCommand: ItemClickCommand));
 
-        private async void DeleteCategory(CategoryViewModel categoryToDelete)
+        private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id);
-                Search();
+                await Search();
             }
         }
     }

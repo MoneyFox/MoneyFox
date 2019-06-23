@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
@@ -38,7 +39,7 @@ namespace MoneyFox.Presentation.UserControls
 	        var menuItem = sender as MenuItem;
 	        if (menuItem == null) return;
 
-            ViewModel.DeleteCategoryCommand.Execute(menuItem.CommandParameter);
+            ViewModel.DeleteCategoryCommand.ExecuteAsync((CategoryViewModel) menuItem.CommandParameter).FireAndForgetSafeAsync();
 	    }
 
 	    private void AddCategoryClick(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace MoneyFox.Presentation.UserControls
 
 	    private void SearchTermChanged(object sender, TextChangedEventArgs e)
 	    {
-	        ViewModel.SearchCommand.Execute(e.NewTextValue);
+	        ViewModel.SearchCommand.ExecuteAsync(e.NewTextValue).FireAndForgetSafeAsync();
         }
     }
 }

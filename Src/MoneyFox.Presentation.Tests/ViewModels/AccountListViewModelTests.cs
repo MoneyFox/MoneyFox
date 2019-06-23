@@ -24,7 +24,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly Mock<ICrudServicesAsync> crudserServiceMock;
 
         [Fact]
-        public void DeleteAccountCommand_AccountNull_DoNothing()
+        public async Task DeleteAccountCommand_AccountNull_DoNothing()
         {
             // Arrange
             crudserServiceMock.Setup(x => x.DeleteAndSaveAsync<Account>(It.IsAny<int>()))
@@ -43,14 +43,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 new Mock<INavigationService>().Object);
 
             // Act
-            viewModel.DeleteAccountCommand.Execute(null);
+            await viewModel.DeleteAccountCommand.ExecuteAsync(null);
 
             // Assert
             crudserServiceMock.Verify(x => x.DeleteAndSaveAsync<Account>(It.IsAny<int>()), Times.Never);
         }
 
         [Fact]
-        public void DeleteAccountCommand_UserReturnFalse_SkipDeletion()
+        public async Task DeleteAccountCommand_UserReturnFalse_SkipDeletion()
         {
             // Arrange
             crudserServiceMock.Setup(x => x.DeleteAndSaveAsync<Account>(It.IsAny<int>()))
@@ -69,14 +69,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 new Mock<INavigationService>().Object);
 
             // Act
-            viewModel.DeleteAccountCommand.Execute(new AccountViewModel());
+            await viewModel.DeleteAccountCommand.ExecuteAsync(new AccountViewModel());
 
             // Assert
             crudserServiceMock.Verify(x => x.DeleteAndSaveAsync<Account>(It.IsAny<int>()), Times.Never);
         }
 
         [Fact]
-        public void DeleteAccountCommand_UserReturnTrue_ExecuteDeletion()
+        public async Task DeleteAccountCommand_UserReturnTrue_ExecuteDeletion()
         {
             // Arrange
             crudserServiceMock.Setup(x => x.DeleteAndSaveAsync<Account>(It.IsAny<int>()))
@@ -95,7 +95,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 new Mock<INavigationService>().Object);
 
             // Act
-            viewModel.DeleteAccountCommand.Execute(new AccountViewModel());
+            await viewModel.DeleteAccountCommand.ExecuteAsync(new AccountViewModel());
 
             // Assert
             crudserServiceMock.Verify(x => x.DeleteAndSaveAsync<Account>(It.IsAny<int>()), Times.Once);

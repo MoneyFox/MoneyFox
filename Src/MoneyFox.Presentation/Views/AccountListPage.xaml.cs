@@ -1,6 +1,7 @@
 ﻿using System;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
@@ -28,12 +29,12 @@ namespace MoneyFox.Presentation.Views
 
         protected override void OnAppearing()
         {
-            ViewModel?.LoadDataCommand.Execute(null);
+            ViewModel?.LoadDataCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
-        private async void AddItem_Clicked(object sender, EventArgs e)
+        private void AddItem_Clicked(object sender, EventArgs e)
 	    {
-	        await Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = ViewModel?.ViewActionViewModel });
+	        Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = ViewModel?.ViewActionViewModel }).FireAndForgetSafeAsync();
         }
 
         private void EditAccount(object sender, EventArgs e)
@@ -47,7 +48,7 @@ namespace MoneyFox.Presentation.Views
 	    {
             if (!(sender is MenuItem menuItem)) return;
 
-            ViewModel?.DeleteAccountCommand.Execute(menuItem.CommandParameter as AccountViewModel);
+            ViewModel?.DeleteAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel).FireAndForgetSafeAsync();
 	    }
     }
 }

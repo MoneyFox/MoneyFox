@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using CommonServiceLocator;
 using GenericServices;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.DesignTime;
 using MoneyFox.Uwp.Business.Tiles;
@@ -60,7 +61,7 @@ namespace MoneyFox.Uwp.Views
 				return;
 			}
 
-			(DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
+			(DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
 		}
 
         private async void AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)

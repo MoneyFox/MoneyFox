@@ -1,6 +1,7 @@
 ﻿using System;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
@@ -43,17 +44,17 @@ namespace MoneyFox.Presentation.Views
             ViewModel.InitializeCommand.Execute(null);
         }
 
-        private async void OpenDialog()
+        private void OpenDialog()
         {
-            await Navigation.PushPopupAsync(new FilterPopup
+            Navigation.PushPopupAsync(new FilterPopup
             {
                 BindingContext = ViewModelLocator.SelectFilterDialogVm
-            });
+            }).FireAndForgetSafeAsync();
         }
 
-        private async void AddItem_Clicked(object sender, EventArgs e)
+        private void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel });
+            Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel }).FireAndForgetSafeAsync();
         }
 
         private void EditPayment(object sender, EventArgs e)

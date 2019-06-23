@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
+using MoneyFox.Presentation.Commands;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -20,7 +21,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Command to handle when the view is appearing
         /// </summary>
-        RelayCommand AppearingCommand { get; }
+        AsyncCommand AppearingCommand { get; }
 
         /// <summary>
         ///     Command for the item click.
@@ -30,7 +31,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Search command
         /// </summary>
-        RelayCommand<string> SearchCommand { get; }
+        AsyncCommand<string> SearchCommand { get; }
 
         /// <summary>
         ///     Indicates if the category list is empty.

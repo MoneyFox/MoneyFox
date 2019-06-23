@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms.Xaml;
 
@@ -19,7 +20,7 @@ namespace MoneyFox.Presentation.Views
 
         protected override void OnAppearing()
         {
-            ViewModel.AppearingCommand.Execute(null);
+            ViewModel.AppearingCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
     }
 }

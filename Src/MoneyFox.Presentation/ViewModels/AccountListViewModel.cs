@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
@@ -65,13 +67,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         public bool HasNoAccounts => !Accounts.Any();
 
-        public RelayCommand LoadDataCommand => new RelayCommand(Load);
+        public AsyncCommand LoadDataCommand => new AsyncCommand(Load);
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
         public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
 
-        public RelayCommand<AccountViewModel> DeleteAccountCommand => new RelayCommand<AccountViewModel>(Delete);
+        public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(Delete);
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
@@ -81,7 +83,7 @@ namespace MoneyFox.Presentation.ViewModels
             navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
         }
 
-        private async void Load()
+        private async Task Load()
         {
             try
             {
@@ -124,7 +126,7 @@ namespace MoneyFox.Presentation.ViewModels
             navigationService.NavigateTo(ViewModelLocator.PaymentList, accountViewModel.Id);
         }
 
-        private async void Delete(AccountViewModel accountToDelete)
+        private async Task Delete(AccountViewModel accountToDelete)
         {
             if (accountToDelete == null) return;
 
@@ -134,7 +136,7 @@ namespace MoneyFox.Presentation.ViewModels
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
 
                 Accounts.Clear();
-                Load();
+                await Load();
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
