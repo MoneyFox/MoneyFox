@@ -23,7 +23,7 @@ namespace MoneyFox.Presentation.Views
                 Text = Strings.SavePaymentLabel,
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary,
-                Icon = "ic_save.png"
+                IconImageSource = "ic_save.png"
             });
 
             ViewModel.PaymentType = paymentType;
