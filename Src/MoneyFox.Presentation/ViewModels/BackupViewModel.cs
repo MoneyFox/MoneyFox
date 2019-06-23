@@ -7,6 +7,7 @@ using Microsoft.Graph;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
@@ -18,29 +19,29 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Initialize View Model.
         /// </summary>
-        RelayCommand InitializeCommand { get; }
+        AsyncCommand InitializeCommand { get; }
 
         /// <summary>
         ///     Makes the first login and sets the setting for the future navigation to this page.
         /// </summary>
-        RelayCommand LoginCommand { get; }
+        AsyncCommand LoginCommand { get; }
 
         /// <summary>
         ///     Logs the user out from the backup service.
         /// </summary>
-        RelayCommand LogoutCommand { get; }
+        AsyncCommand LogoutCommand { get; }
 
         /// <summary>
         ///     Will create a backup of the database and upload it to OneDrive
         /// </summary>
-        RelayCommand BackupCommand { get; }
+        AsyncCommand BackupCommand { get; }
 
         /// <summary>
         ///     Will download the database backup from OneDrive and overwrite the
         ///     local database with the downloaded.
         ///     All data models are then reloaded.
         /// </summary>
-        RelayCommand RestoreCommand { get; }
+        AsyncCommand RestoreCommand { get; }
 
         DateTime BackupLastModified { get; }
         bool IsLoadingBackupAvailability { get; }
@@ -74,19 +75,19 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <inheritdoc />
-        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
         /// <inheritdoc />
-        public RelayCommand LoginCommand => new RelayCommand(Login);
+        public AsyncCommand LoginCommand => new AsyncCommand(Login);
 
         /// <inheritdoc />
-        public RelayCommand LogoutCommand => new RelayCommand(Logout);
+        public AsyncCommand LogoutCommand => new AsyncCommand(Logout);
 
         /// <inheritdoc />
-        public RelayCommand BackupCommand => new RelayCommand(CreateBackup);
+        public AsyncCommand BackupCommand => new AsyncCommand(CreateBackup);
 
         /// <inheritdoc />
-        public RelayCommand RestoreCommand => new RelayCommand(RestoreBackup);
+        public AsyncCommand RestoreCommand => new AsyncCommand(RestoreBackup);
 
         /// <summary>
         ///     The Date when the backup was modified the last time.
@@ -135,12 +136,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        public void Initialize()
+        public async Task Initialize()
         {
-            Loaded();
+            await Loaded();
         }
 
-        private async void Loaded()
+        private async Task Loaded()
         {
             if (!IsLoggedIn) return;
 
@@ -174,7 +175,7 @@ namespace MoneyFox.Presentation.ViewModels
             IsLoadingBackupAvailability = false;
         }
 
-        private async void Login()
+        private async Task Login()
         {
             if (!connectivity.IsConnected)
             {
@@ -190,24 +191,23 @@ namespace MoneyFox.Presentation.ViewModels
 
             // ReSharper disable once ExplicitCallerInfoArgument
             RaisePropertyChanged(nameof(IsLoggedIn));
-            Loaded();
+            await Loaded();
         }
 
-        private async void Logout()
+        private async Task Logout()
         {
             var result = await backupService.Logout();
 
             if (!result.Success)
             {
-                await dialogService
-                    .ShowMessage(Strings.LoginFailedTitle, result.Message);
+                await dialogService.ShowMessage(Strings.LoginFailedTitle, result.Message);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
             RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
-        private async void CreateBackup()
+        private async Task CreateBackup()
         {
             if (!await ShowOverwriteBackupInfo()) return;
 
@@ -227,7 +227,7 @@ namespace MoneyFox.Presentation.ViewModels
             await ShowCompletionNote();
         }
 
-        private async void RestoreBackup()
+        private async Task RestoreBackup()
         {
             if (!await ShowOverwriteDataInfo()) return;
 
@@ -249,24 +249,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task<bool> ShowOverwriteBackupInfo()
-        {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
-        }
+        private async Task<bool> ShowOverwriteBackupInfo() => await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+        
+        private async Task<bool> ShowOverwriteDataInfo() =>  await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
 
-        private async Task<bool> ShowOverwriteDataInfo()
-        {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
-        }
+        private async Task<bool> ShowForceOverrideConfirmation() => await dialogService.ShowConfirmMessage(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
 
-        private async Task<bool> ShowForceOverrideConfirmation()
-        {
-            return await dialogService.ShowConfirmMessage(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
-        }
-
-        private async Task ShowCompletionNote()
-        {
-            await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
-        }
+        private async Task ShowCompletionNote() => await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
     }
 }

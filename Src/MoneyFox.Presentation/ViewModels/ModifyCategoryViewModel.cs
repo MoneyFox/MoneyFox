@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
 
@@ -11,15 +11,14 @@ namespace MoneyFox.Presentation.ViewModels
     public interface IModifyCategoryViewModel : IBaseViewModel
     {
         /// <summary>
-        ///     Saves changes to a CategoryViewModel if in edit mode <see cref="IsEdit" />  or creates
-        ///     a new CategoryViewModel.
+        ///     Saves changes to a CategoryViewModel 
         /// </summary>
-        RelayCommand SaveCommand { get; }
+        AsyncCommand SaveCommand { get; }
     
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
-        RelayCommand CancelCommand { get; }
+        AsyncCommand CancelCommand { get; }
 
         /// <summary>
         ///     Selected category.
@@ -54,27 +53,13 @@ namespace MoneyFox.Presentation.ViewModels
         }
         
         protected INavigationService NavigationService { get; }
-        protected abstract Task SaveCategory();
 
-        private async void SaveCategoryBase()
-        {
-            await SaveCategory();
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled)
-            {
-#pragma warning disable 4014
-                backupService.EnqueueBackupTask();
-#pragma warning restore 4014
-            }
-        }
-
-        public RelayCommand SaveCommand => new RelayCommand(SaveCategoryBase);
+        public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBase);
 
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
-        public RelayCommand CancelCommand => new RelayCommand(Cancel);
+        public AsyncCommand CancelCommand => new AsyncCommand(Cancel);
 
         /// <summary>
         ///     The currently selected CategoryViewModel
@@ -96,7 +81,22 @@ namespace MoneyFox.Presentation.ViewModels
 
         public int CategoryId { get; set; }
 
-        private async void Cancel()
+        protected abstract Task SaveCategory();
+
+        private async Task SaveCategoryBase()
+        {
+            await SaveCategory();
+
+            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            if (settingsFacade.IsBackupAutouploadEnabled)
+            {
+#pragma warning disable 4014
+                backupService.EnqueueBackupTask();
+#pragma warning restore 4014
+            }
+        }
+
+        private async Task Cancel()
         {
             SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(SelectedCategory.Id);
             NavigationService.GoBack();

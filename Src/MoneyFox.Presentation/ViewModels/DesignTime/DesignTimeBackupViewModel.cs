@@ -2,6 +2,7 @@
 using System.Globalization;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.ServiceLayer.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
@@ -10,11 +11,11 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public RelayCommand InitializeCommand { get; }
-        public RelayCommand LoginCommand { get; }
-        public RelayCommand LogoutCommand { get; }
-        public RelayCommand BackupCommand { get; }
-        public RelayCommand RestoreCommand { get; }
+        public AsyncCommand InitializeCommand { get; }
+        public AsyncCommand LoginCommand { get; }
+        public AsyncCommand LogoutCommand { get; }
+        public AsyncCommand BackupCommand { get; }
+        public AsyncCommand RestoreCommand { get; }
         public DateTime BackupLastModified { get; }
 
         public bool IsLoadingBackupAvailability { get; }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
 using MoneyFox.ServiceLayer.Facades;
 using NLog;
@@ -36,14 +36,14 @@ namespace MoneyFox.Presentation.ViewModels
 
         }
 
-        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
         /// <summary>
         ///     Delete the selected CategoryViewModel from the database
         /// </summary>
-        public RelayCommand DeleteCommand => new RelayCommand(DeleteCategory);
+        public AsyncCommand DeleteCommand => new AsyncCommand(DeleteCategory);
 
-        private async void Initialize()
+        private async Task Initialize()
         {
             SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(CategoryId);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
@@ -60,7 +60,7 @@ namespace MoneyFox.Presentation.ViewModels
             CancelCommand.Execute(null);
         }
 
-        private async void DeleteCategory()
+        private async Task DeleteCategory()
         {
             await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
 
