@@ -27,12 +27,12 @@ namespace MoneyFox.Uwp.Services
     {
         private readonly App app;
         private readonly Type defaultNavItem;
-        private readonly Lazy<UIElement> _shell;
+        private readonly Lazy<UIElement> shell;
 
         public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
         {
             this.app = app;
-            _shell = shell;
+            this.shell = shell;
             this.defaultNavItem = defaultNavItem;
         }
 
@@ -48,7 +48,7 @@ namespace MoneyFox.Uwp.Services
                 if (Window.Current.Content == null)
                 {
                     // Create a Frame to act as the navigation context and navigate to the first page
-                    Window.Current.Content = _shell?.Value ?? new Frame();
+                    Window.Current.Content = shell?.Value ?? new Frame();
                 }
 
                 Xamarin.Forms.Forms.Init(activationArgs as LaunchActivatedEventArgs);
@@ -82,7 +82,7 @@ namespace MoneyFox.Uwp.Services
             RegisterServices(navService);
 
             BackgroundTaskService.RegisterBackgroundTasks();
-            ThemeSelectorService.Initialize();
+            ThemeSelectorService.Initialize(app.RequestedTheme);
             await JumpListService.InitializeAsync();
         }
 

@@ -16,9 +16,9 @@ namespace MoneyFox.Uwp.Services
 
         public static ElementTheme Theme { get; set; } = ElementTheme.Default;
 
-        public static void Initialize()
+        public static void Initialize(ApplicationTheme requestedTheme)
         {
-            Theme = LoadThemeFromSettingsAsync();
+            Theme = LoadThemeFromSettingsAsync(requestedTheme);
         }
 
         public static async Task SetThemeAsync(ElementTheme theme)
@@ -43,11 +43,19 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        private static ElementTheme LoadThemeFromSettingsAsync()
+        private static ElementTheme LoadThemeFromSettingsAsync(ApplicationTheme requestedTheme)
         {
+            var settingsAdapter = new SettingsAdapter();
+            var settingsFacade = new SettingsFacade(settingsAdapter);
+
+            if (settingsFacade.Theme.ToString() != requestedTheme.ToString())
+            {
+                settingsFacade.Theme = Enum.Parse<AppTheme>(requestedTheme.ToString());
+            }
+
             ElementTheme cacheTheme = ElementTheme.Default;
 
-            string themeName = new SettingsAdapter().GetValue(SETTINGS_KEY, string.Empty);
+            string themeName = settingsAdapter.GetValue(SETTINGS_KEY, string.Empty);
 
             if (!string.IsNullOrEmpty(themeName))
             {

@@ -38,6 +38,8 @@ namespace MoneyFox.Uwp
             {
                 await ActivationService.ActivateAsync(args);
             }
+
+            OverrideTitleBarColor();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args)
