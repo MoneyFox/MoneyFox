@@ -18,7 +18,7 @@
         <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels1:CategoryViewModel">
             <StackPanel MinWidth="300"
                         Margin="{StaticResource SmallListItemMargin}"
-                        Background="{StaticResource ListItemBrush}"
+                        Background="{ThemeResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
                         RightTapped="CategoryListRightTapped">
 
