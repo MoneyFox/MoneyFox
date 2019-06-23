@@ -13,7 +13,7 @@ namespace MoneyFox.Uwp.Activation
 
         public DefaultLaunchActivationHandler(Type navElement)
         {
-            this.navElement = nameof(navElement);
+            this.navElement = navElement.Name;
         }
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
@@ -22,7 +22,6 @@ namespace MoneyFox.Uwp.Activation
             // the new page by passing required information in the navigation parameter
             NavigationService.NavigateTo(navElement, args.Arguments);
 
-            
             await Task.CompletedTask;
         }
 

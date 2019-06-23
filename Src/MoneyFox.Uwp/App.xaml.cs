@@ -7,6 +7,7 @@ using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
 using NLog;
@@ -46,7 +47,7 @@ namespace MoneyFox.Uwp
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(WindowsShellViewModel), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(this, typeof(AccountListViewModel), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()
