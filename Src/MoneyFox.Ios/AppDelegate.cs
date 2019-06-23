@@ -22,6 +22,7 @@ using Autofac;
 using CommonServiceLocator;
 using MoneyFox.BusinessLogic.FileStore;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Presentation.Utilities;
 using NLog;
 using NLog.Targets;
 using UIKit;
@@ -73,7 +74,7 @@ namespace MoneyFox.iOS
             app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
             
-            RunAppStart();
+            RunAppStart().FireAndForgetSafeAsync();
 
             return base.FinishedLaunching(app, options);
         }
@@ -85,7 +86,7 @@ namespace MoneyFox.iOS
             ViewModelLocator.RegisterServices(builder);
         }
 
-        protected async void RunAppStart()
+        protected async Task RunAppStart()
         {
             await SyncBackup();
             await ClearPayments();
