@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
@@ -12,7 +13,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class EditCategoryViewModelTests
     {
         [Fact]
-        public void Prepare_CategoryLoaded()
+        public async Task Prepare_CategoryLoaded()
         {
             // Arrange
             const int categoryId = 99;
@@ -23,14 +24,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Act
             editAccountVm.CategoryId = categoryId;
-            editAccountVm.InitializeCommand.Execute(null);
+            await editAccountVm.InitializeCommand.ExecuteAsync();
 
             // Assert
             crudServiceMock.Verify(x => x.ReadSingleAsync<CategoryViewModel>(categoryId), Times.Once);
         }
 
         [Fact]
-        public void Prepare_Title_Set()
+        public async Task Prepare_Title_Set()
         {
             // Arrange
             const int categoryId = 99;
@@ -41,7 +42,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Act
             editAccountVm.CategoryId = categoryId;
-            editAccountVm.InitializeCommand.Execute(null);
+            await editAccountVm.InitializeCommand.ExecuteAsync();
 
             // Assert
             editAccountVm.Title.ShouldContain(Strings.EditCategoryTitle);

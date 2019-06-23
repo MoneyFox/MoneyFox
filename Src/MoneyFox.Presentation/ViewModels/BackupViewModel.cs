@@ -136,7 +136,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        public async Task Initialize()
+        private async Task Initialize()
         {
             await Loaded();
         }

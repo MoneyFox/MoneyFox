@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +17,7 @@ namespace MoneyFox.Presentation.Views
 
             Title = Strings.BackupTitle;
 
-            ViewModel.InitializeCommand.Execute(null);
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
 		}
     }
 }

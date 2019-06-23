@@ -57,7 +57,7 @@ namespace MoneyFox.Presentation.ViewModels
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
             }
 
-            CancelCommand.Execute(null);
+            await CancelCommand.ExecuteAsync();
         }
 
         private async Task DeleteCategory()
@@ -70,7 +70,7 @@ namespace MoneyFox.Presentation.ViewModels
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            CancelCommand.Execute(null);
+            await CancelCommand.ExecuteAsync();
         }
     }
 }

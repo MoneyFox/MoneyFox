@@ -37,7 +37,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                          null,
                                          connectivitySetup.Object,
                                          settingsManagerMock.Object);
-            vm.Initialize();
+            await vm.InitializeCommand.ExecuteAsync();
 
             //assert
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
@@ -66,7 +66,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                          null, 
                                          connectivitySetup.Object,
                                          settingsManagerMock.Object);
-            vm.Initialize();
+            await vm.InitializeCommand.ExecuteAsync();
 
             //assert
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
@@ -94,7 +94,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                          null, 
                                          connectivitySetup.Object,
                                          settingsManagerMock.Object);
-            vm.Initialize();
+            await vm.InitializeCommand.ExecuteAsync();
 
             //assert
             vm.IsLoadingBackupAvailability.ShouldBeFalse();
@@ -103,7 +103,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public void Logout_PropertiesSet()
+        public async Task Logout_PropertiesSet()
         {
             // Setup
             var connectivitySetup = new Mock<IConnectivityAdapter>();
@@ -123,7 +123,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                          connectivitySetup.Object,
                                          settingsManagerMock.Object);
 
-            vm.LogoutCommand.Execute(null);
+            await vm.LogoutCommand.ExecuteAsync();
 
             //assert
             logoutCommandCalled.ShouldBeTrue();

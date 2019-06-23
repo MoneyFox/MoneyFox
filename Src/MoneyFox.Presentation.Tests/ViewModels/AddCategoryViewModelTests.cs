@@ -51,7 +51,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public void SaveCategory_EmptyName_ReturnMessage()
+        public async Task SaveCategory_EmptyName_ReturnMessage()
         {
             // Arrange
             dialogServiceMock.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
@@ -63,7 +63,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 backupServiceMock.Object, null);
 
             // Act
-            addCategoryVm.SaveCommand.Execute(null);
+            await addCategoryVm.SaveCommand.ExecuteAsync();
 
             // Assert
             dialogServiceMock.Verify(x => x.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage));
