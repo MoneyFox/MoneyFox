@@ -21,7 +21,6 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.PaymentListVm;
 
             ViewModel.AccountId = accountId;
-            Title = ViewModel.Title;
 
             PaymentList.ItemTapped += (sender, args) =>
             {

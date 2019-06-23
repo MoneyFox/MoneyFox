@@ -10,6 +10,7 @@
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.PaymentListPage"
              Visual="Material"
+             Title="{Binding Title}"
              BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
