@@ -45,29 +45,27 @@
         <TextBlock Text="{Binding Resources[SelectStatisticTitel]}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <ScrollViewer Grid.Row="1"
+        <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"
+                      ItemsSource="{Binding StatisticItems}"
+                      Grid.Row="1"
                       Margin="{StaticResource NegativeLargeLeftRightMargin}"
                       HorizontalAlignment="Stretch"
-                      VerticalScrollBarVisibility="Disabled">
-
-            <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"
-                      ItemsSource="{Binding StatisticItems}"
                       Background="Transparent">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
 
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment"
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
                                 Value="Stretch" />
-                        <Setter Property="VerticalContentAlignment"
+                    <Setter Property="VerticalContentAlignment"
                                 Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-            </ListView>
-        </ScrollViewer>
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
     </Grid>
 </Page>
