@@ -10,6 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.Views;
 using MoneyFox.Uwp.Helpers;
@@ -43,7 +44,7 @@ namespace MoneyFox.Uwp
             set => Set(ref selected, value);
         }
 
-        public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new RelayCommand(OnLoaded));
+        public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new AsyncCommand(OnLoaded));
 
         public ICommand ItemInvokedCommand => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
@@ -57,7 +58,7 @@ namespace MoneyFox.Uwp
             this.navigationView.BackRequested += OnBackRequested;
         }
 
-        private async void OnLoaded()
+        private async Task OnLoaded()
         {
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
@@ -126,8 +127,7 @@ namespace MoneyFox.Uwp
 
         private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
         {
-            //var result = NavigationService.GoBack();
-            //args.Handled = true;
+            args.Handled = true;
         }
     }
 }

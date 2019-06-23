@@ -13,7 +13,6 @@ namespace MoneyFox.Uwp.Business
                 task.Wait();
             } catch (AggregateException exception)
             {
-                // TODO - this possibly oversimplifies the problem report
                 throw exception.InnerException;
             }
         }
@@ -27,7 +26,6 @@ namespace MoneyFox.Uwp.Business
                 return task.Result;
             } catch (AggregateException exception)
             {
-                // TODO - this possibly oversimplifies the problem report
                 throw exception.InnerException;
             }
         }
