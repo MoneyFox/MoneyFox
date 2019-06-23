@@ -17,7 +17,7 @@
     <ContentPage.Content>
         <ListView x:Name="StatisticSelectorList"
                   ItemsSource="{Binding StatisticItems}"
-                  RowHeight="60"
+                  HasUnevenRows="True"
                   SeparatorVisibility="None">
 
             <ListView.ItemTemplate>
