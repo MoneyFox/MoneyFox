@@ -10,6 +10,7 @@
                       xmlns:helpers="using:MoneyFox.Uwp.Helpers"
                       xmlns:i="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      RequestedTheme="Light"
                       mc:Ignorable="d">
 
     <Page.Resources>
@@ -22,7 +23,7 @@
         <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="{StaticResource AppMenuForeground}"/>
 
         <Style TargetType="Button">
-            <Setter Property="Foreground" Value="{StaticResource AppMenuForeground}"/>
+            <Setter Property="Foreground" Value="White"/>
         </Style>
 
         <winmedia:AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"

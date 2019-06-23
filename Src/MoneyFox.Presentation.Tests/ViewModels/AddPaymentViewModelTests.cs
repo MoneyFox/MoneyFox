@@ -22,7 +22,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class AddPaymentViewModelTests 
     {
         private readonly Mock<IPaymentService> paymentServiceMock;
-        private readonly Mock<ICrudServices> crudServiceMock;
+        private readonly Mock<ICrudServicesAsync> crudServiceMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
@@ -31,7 +31,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public AddPaymentViewModelTests()
         {
             paymentServiceMock = new Mock<IPaymentService>();
-            crudServiceMock = new Mock<ICrudServices>();
+            crudServiceMock = new Mock<ICrudServicesAsync>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();

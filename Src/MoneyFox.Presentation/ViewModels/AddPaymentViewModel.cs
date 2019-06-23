@@ -8,7 +8,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
-using MoneyFox.ServiceLayer.Facades;
 using MoneyFox.ServiceLayer.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -21,7 +20,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IDialogService dialogService;
 
         public AddPaymentViewModel(IPaymentService paymentService,
-            ICrudServices crudServices,
+            ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
@@ -31,6 +30,11 @@ namespace MoneyFox.Presentation.ViewModels
             this.paymentService = paymentService;
             this.navigationService = navigationService;
             this.dialogService = dialogService;
+
+            SelectedPayment = new PaymentViewModel
+            {
+                Type = PaymentType
+            };
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -39,10 +43,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task Initialize()
         {
-            SelectedPayment = new PaymentViewModel
-            {
-                Type = PaymentType
-            };
+            
             Title = PaymentTypeHelper.GetViewTitleForType(PaymentType, false);
 
             await base.Initialize();

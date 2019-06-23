@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation;
-using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -26,15 +25,15 @@ namespace MoneyFox.Presentation.ViewModels
 
         /// <inheritdoc />
         public RelayCommand GoToAddIncomeCommand =>
-                new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, new ModifyPaymentParameter(PaymentType.Income)));
+                new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
 
         /// <inheritdoc />
         public RelayCommand GoToAddExpenseCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, new ModifyPaymentParameter(PaymentType.Expense)));
+            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Expense));
 
         /// <inheritdoc />
         public RelayCommand GoToAddTransferCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, new ModifyPaymentParameter(PaymentType.Transfer)));
+            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Transfer));
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.

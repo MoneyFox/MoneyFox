@@ -17,11 +17,11 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IPaymentService paymentService;
         private readonly INavigationService navigationService;
         private readonly IBackupService backupService;
-        private readonly ICrudServices crudServices;
+        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
 
         public EditPaymentViewModel(IPaymentService paymentService,
-            ICrudServices crudServices,
+            ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade, 
             IBackupService backupService,
@@ -47,7 +47,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task Initialize()
         {
-            SelectedPayment = crudServices.ReadSingle<PaymentViewModel>(PaymentId);
+            SelectedPayment = await crudServices.ReadSingleAsync<PaymentViewModel>(PaymentId);
 
             // We have to set this here since otherwise the end date is null. This causes a crash on android.
             // Also it's user unfriendly if you the default end date is the 1.1.0001.

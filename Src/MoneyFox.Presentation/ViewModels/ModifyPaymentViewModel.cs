@@ -103,7 +103,7 @@ namespace MoneyFox.Presentation.ViewModels
     public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
     {
         private readonly IBackupService backupService;
-        private readonly ICrudServices crudServices;
+        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
@@ -118,7 +118,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        protected ModifyPaymentViewModel(ICrudServices crudServices,
+        protected ModifyPaymentViewModel(ICrudServicesAsync crudServices,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
