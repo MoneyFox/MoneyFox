@@ -16,7 +16,7 @@
     </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="6">
             <Label Text="{Binding Resources[PersonalizationInfoLabel]}"
                    Style="{StaticResource DefaultTextStyle}"
                    HorizontalOptions="StartAndExpand" />
