@@ -31,7 +31,7 @@
                       x:DataType="viewModels:AccountViewModel">
             <StackPanel HorizontalAlignment="Stretch"
                         Margin="{StaticResource SmallListItemMargin}"
-                        Background="{StaticResource ListItemBrush}"
+                        Background="{ThemeResource ListItemBrush}"
                         RightTapped="AccountList_RightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
@@ -52,11 +52,11 @@
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
                             Padding="{StaticResource SmallListItemPadding}">
                     <Grid HorizontalAlignment="Stretch">
-                        <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                        <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                    Text="{x:Bind Name}"
                                    TextTrimming="CharacterEllipsis" />
                         <TextBlock HorizontalAlignment="Right"
-                                   Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                                   Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                    Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                    TextAlignment="Right" />
                     </Grid>
@@ -71,7 +71,7 @@
                            Margin="{StaticResource MediumLeftRightMargin}"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                            FontSize="{StaticResource MediumFontSize}"
-                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           Foreground="{ThemeResource SystemControlHighlightAccentBrush}"
                            Text="{Binding Key}" />
             </Border>
         </DataTemplate>
@@ -82,7 +82,7 @@
                     <TextBlock HorizontalAlignment="Left"
                                VerticalAlignment="Center"
                                FontSize="{StaticResource MediumFontSize}"
-                               Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                               Foreground="{ThemeResource SystemControlHighlightAccentBrush}"
                                Text="{Binding Group.Key}" />
                 </Border>
             </Border>
@@ -158,7 +158,7 @@
                    Text="{Binding Resources[NoAccountsMessage]}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
                    Visibility="{Binding HasNoAccounts,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />

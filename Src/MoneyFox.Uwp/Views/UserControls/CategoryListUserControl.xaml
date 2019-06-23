@@ -6,7 +6,6 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
-             xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
              xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -50,7 +49,7 @@
                            Margin="{StaticResource MediumLeftRightMargin}"
                            FontFamily="{StaticResource PhoneFontFamilySemiLight}"
                            FontSize="{StaticResource MediumFontSize}"
-                           Foreground="{StaticResource SystemControlHighlightAccentBrush}"
+                           Foreground="{ThemeResource SystemControlHighlightAccentBrush}"
                            Text="{Binding Key}" />
             </Border>
         </DataTemplate>
@@ -133,7 +132,7 @@
                    Text="{Binding Resources[NoCategoriesMessage]}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
                    Visibility="{Binding IsCategoriesEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />

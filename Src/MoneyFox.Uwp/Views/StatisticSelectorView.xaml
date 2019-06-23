@@ -24,10 +24,10 @@
                         Margin="{StaticResource SmallListItemMargin}"
                         Padding="{StaticResource SmallListItemPadding}">
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
-                    <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                Text="{x:Bind Name}"
                                TextTrimming="CharacterEllipsis" />
-                    <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                                Text="{x:Bind Description}"
                                TextWrapping="WrapWholeWords" />
                 </StackPanel>
@@ -43,7 +43,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding Resources[SelectStatisticTitel]}"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+                   Style="{ThemeResource UwpPageTitleStyle}" />
 
         <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"
                       ItemsSource="{Binding StatisticItems}"

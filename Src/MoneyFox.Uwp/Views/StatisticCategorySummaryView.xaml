@@ -33,7 +33,7 @@
                    x:Uid="CategorySummaryStatisticTitle"
                    Text="Category Summary"
                    Margin="{StaticResource MediumLeftRightMargin}"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+                   Style="{ThemeResource UwpPageTitleStyle}" />
         
         <Grid Grid.Row="1" x:Name="ContentGrid" />
         

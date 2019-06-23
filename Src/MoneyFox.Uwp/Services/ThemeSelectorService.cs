@@ -5,6 +5,7 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation;
+using MoneyFox.Presentation;
 using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Uwp.Services
@@ -63,6 +64,7 @@ namespace MoneyFox.Uwp.Services
             var settingsFacade = new SettingsFacade(settingsAdapter);
 
             settingsFacade.Theme = Theme == ElementTheme.Dark ? AppTheme.Dark : AppTheme.Light;
+            StyleHelper.Init();
         }
     }
 }

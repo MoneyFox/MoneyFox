@@ -30,10 +30,10 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding Resources[CashFlowStatisticTitle]}"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+                   Style="{ThemeResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1">
-            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                        Text="{Binding Title}"
                        VerticalAlignment="Center"/>
         </Grid>

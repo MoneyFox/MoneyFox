@@ -12,6 +12,7 @@ using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.DesignTime;
 using MoneyFox.Uwp.Business.Tiles;
+using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -19,7 +20,9 @@ namespace MoneyFox.Uwp.Views
     ///     View to display an list of accounts.
     /// </summary>
     public sealed partial class AccountListView
-	{
+    {
+        private ElementTheme Theme = ThemeSelectorService.Theme;
+
         /// <summary>
         ///     Initialize View.
         /// </summary>

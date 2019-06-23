@@ -42,11 +42,11 @@
                     <StackPanel Margin="0,0,20,0">
                         <!-- Background Job -->
                         <StackPanel DataContext="{Binding BackgroundJobViewModel}">
-                            <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                            <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                        Text="{Binding Resources[BackupTitle]}"
                                        TextWrapping="WrapWholeWords" />
 
-                            <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                                        Text="{Binding Resources[AutobackupInformationLabel]}"
                                        TextWrapping="WrapWholeWords" />
 
@@ -57,7 +57,7 @@
                                          Mode=TwoWay}" />
 
                             <TextBlock Margin="0,10,0,3"
-                                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                       Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                                        Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
                                        TextWrapping="WrapWholeWords" />
 
@@ -65,27 +65,27 @@
                                 Value="{Binding BackupSyncRecurrence, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
                             <StackPanel Margin="0,12,0,0">
-                                <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                                <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                            Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                                    <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
-                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                                    <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding LastExecutionSynBackup}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                                    <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
-                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                                    <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding LastExecutionClearPayments}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                                    <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
-                                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                                    <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding LastExecutionCreateRecurringPayments}" />
                                 </StackPanel>
                             </StackPanel>
@@ -94,13 +94,13 @@
 
                         <!-- Personalizations -->
                         <StackPanel DataContext="{Binding PersonalizationViewModel}" Margin="0,24,0,0">
-                            <TextBlock Style="{StaticResource CustomSubtitleTextBlockStyle}"
+                            <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                        Text="{Binding Resources[PersonalizationTitle]}"
                                        TextWrapping="WrapWholeWords" />
 
                             <StackPanel>
                                 <RadioButton
-                                        Content="Light"
+                                        Content="{Binding Resources[LightLabel]}"
                                         GroupName="AppTheme"
                                         IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                                         Command="{Binding SwitchThemeCommand}"
@@ -108,7 +108,7 @@
                                     <RadioButton.CommandParameter>Light</RadioButton.CommandParameter>
                                 </RadioButton>
                                 <RadioButton
-                                        Content="Dark"
+                                    Content="{Binding Resources[DarkLabel]}"
                                         GroupName="AppTheme"
                                         IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                                         Command="{Binding SwitchThemeCommand}"
@@ -116,7 +116,7 @@
                                     <RadioButton.CommandParameter>Dark</RadioButton.CommandParameter>
                                 </RadioButton>
                                 <RadioButton
-                                        Content="Default"
+                                    Content="{Binding Resources[WindowsDefaultLabel]}"
                                         GroupName="AppTheme"
                                         IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                                         Command="{Binding SwitchThemeCommand}"
@@ -133,7 +133,7 @@
             <PivotItem>
                 <PivotItem.Header>
                     <TextBlock Text="{Binding Resources[AboutTitle]}"
-                               Style="{StaticResource UwpPageTitleStyle}"
+                               Style="{ThemeResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0" />
                 </PivotItem.Header>
                 <userControls:AboutUserControl DataContext="{Binding AboutViewModel}" />
