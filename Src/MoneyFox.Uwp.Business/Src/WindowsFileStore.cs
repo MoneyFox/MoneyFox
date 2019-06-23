@@ -25,18 +25,18 @@ namespace MoneyFox.Uwp.Business
             }
         }
 
-        public override bool TryMove(string @from, string to, bool overwrite)
+        public override bool TryMove(string @from, string destination, bool overwrite)
         {
             try
             {
                 var fromFile = StorageFileFromRelativePath(from);
 
-                if (overwrite && !SafeDeleteFile(to))
+                if (overwrite && !SafeDeleteFile(destination))
                 {
                     return false;
                 }
 
-                var fullToPath = ToFullPath(to);
+                var fullToPath = ToFullPath(destination);
                 var toDirectory = Path.GetDirectoryName(fullToPath);
                 var toFileName = Path.GetFileName(fullToPath);
                 var toStorageFolder = StorageFolder.GetFolderFromPathAsync(toDirectory).Await();

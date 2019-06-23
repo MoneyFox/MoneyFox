@@ -26,16 +26,16 @@ namespace MoneyFox.BusinessLogic.FileStore
             return File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         }
 
-        public override bool TryMove(string from, string to, bool overwrite)
+        public override bool TryMove(string from, string destination, bool overwrite)
         {
             try
             {
                 var fullFrom = AppendPath(from);
-                var fullTo = AppendPath(to);
+                var fullTo = AppendPath(destination);
 
                 if (!File.Exists(fullFrom))
                 {
-                    logger.Error("Error during file move {0} : {1}. File does not exist!", from, to);
+                    logger.Error("Error during file move {0} : {1}. File does not exist!", from, destination);
                     return false;
                 }
 

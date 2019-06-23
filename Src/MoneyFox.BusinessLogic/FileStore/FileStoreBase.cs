@@ -21,7 +21,7 @@ namespace MoneyFox.BusinessLogic.FileStore
 
         public abstract Stream OpenRead(string path);
 
-        public abstract bool TryMove(string from, string to, bool overwrite);
+        public abstract bool TryMove(string from, string destination, bool overwrite);
 
         protected abstract void WriteFileCommon(string path, Action<Stream> streamAction);
     }
