@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content.PM;
-using Android.OS;
 using Android.Support.V7.App;
 
 namespace MoneyFox.Droid
@@ -14,11 +13,6 @@ namespace MoneyFox.Droid
         ScreenOrientation = ScreenOrientation.Portrait)]
     public class SplashScreen : AppCompatActivity
     {
-        protected override void OnCreate(Bundle savedInstanceState) {
-            LayoutInflater.Inflate(Resource.Layout.SplashScreen, null);
-            base.OnCreate(savedInstanceState);
-        }
-
         protected override void OnResume()
         {
             base.OnResume();
