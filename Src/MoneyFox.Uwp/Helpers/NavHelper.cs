@@ -3,7 +3,7 @@ using Windows.UI.Xaml;
 
 namespace MoneyFox.Uwp.Helpers
 {
-    public class NavHelper
+    public static class NavHelper
     {
         public static string GetNavigateTo(NavigationViewItem item)
         {
