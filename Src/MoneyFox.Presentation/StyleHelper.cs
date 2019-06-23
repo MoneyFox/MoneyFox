@@ -52,8 +52,8 @@ namespace MoneyFox.Presentation
             IsClearedImageSource = ImageSource.FromFile("ic_cleared_white");
             IsRecurringImageSource = ImageSource.FromFile("ic_recurring_white");
 
-            WindowBackgroundColor = Color.Black; //Color.FromHex("#2d2d30");
-            DialogBackgroundColor = Color.Black;
+            WindowBackgroundColor = Color.Black; 
+            DialogBackgroundColor = Color.FromHex("#2d2d30");;
             BottomTabBarColor = Color.FromHex("#1e1e1e");
 
             BarItemColor = Color.DimGray;

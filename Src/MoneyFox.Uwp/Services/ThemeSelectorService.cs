@@ -48,10 +48,7 @@ namespace MoneyFox.Uwp.Services
             var settingsAdapter = new SettingsAdapter();
             var settingsFacade = new SettingsFacade(settingsAdapter);
 
-            if (settingsFacade.Theme.ToString() != requestedTheme.ToString())
-            {
-                settingsFacade.Theme = Enum.Parse<AppTheme>(requestedTheme.ToString());
-            }
+            
 
             ElementTheme cacheTheme = ElementTheme.Default;
 
@@ -60,6 +57,11 @@ namespace MoneyFox.Uwp.Services
             if (!string.IsNullOrEmpty(themeName))
             {
                 Enum.TryParse(themeName, out cacheTheme);
+            }
+
+            if (cacheTheme == ElementTheme.Default && settingsFacade.Theme.ToString() != requestedTheme.ToString())
+            {
+                settingsFacade.Theme = Enum.Parse<AppTheme>(requestedTheme.ToString());
             }
 
             return cacheTheme;
