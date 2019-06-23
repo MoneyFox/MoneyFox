@@ -52,12 +52,13 @@ namespace MoneyFox.Presentation.ViewModels
         /// <inheritdoc />
         public ObservableCollection<SettingsSelectorType> SettingsList => new ObservableCollection<SettingsSelectorType>
         {
-            //new SettingsSelectorType
-            //{
-            //    Name = Strings.SettingsPersonalizationLabel,
-            //    Description = Strings.SettingsPersonalizationDescription,
-            //    Type = SettingsType.Personalization
-            //},
+            new SettingsSelectorType
+            {
+                Name = Strings.SettingsPersonalizationLabel,
+                Icon = "\uf27c",
+                Description = Strings.SettingsPersonalizationDescription,
+                Type = SettingsType.Personalization
+            },
             new SettingsSelectorType
             {
                 Name = Strings.CategoriesLabel,

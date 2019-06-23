@@ -21,6 +21,10 @@
         <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="{StaticResource AppMenuForeground}"/>
         <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="{StaticResource AppMenuForeground}"/>
 
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource AppMenuForeground}"/>
+        </Style>
+
         <winmedia:AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
                       BackgroundSource="Backdrop" 
                       TintColor="{ThemeResource SystemAccentColor}" 

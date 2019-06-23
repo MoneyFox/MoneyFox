@@ -26,7 +26,6 @@
     <ContentPage.Content>
 
         <Grid Padding="7">
-
             <StackLayout VerticalOptions="StartAndExpand">
 
                 <Button Text="{Binding Resources[LoginLabel]}"

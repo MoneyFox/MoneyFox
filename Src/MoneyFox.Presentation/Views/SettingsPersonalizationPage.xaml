@@ -20,9 +20,10 @@
             <Label Text="{Binding Resources[PersonalizationInfoLabel]}"
                    Style="{StaticResource DefaultTextStyle}"
                    HorizontalOptions="StartAndExpand" />
-            <Picker ItemsSource="{Binding ThemeItems}"
-                    SelectedIndex="{Binding SelectedIndex}"
+            <Picker x:Name="ThemePicker"
+                    SelectedIndexChanged="ThemePicker_OnSelectedIndexChanged"
                     Style="{StaticResource DefaultPickerStyle}" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

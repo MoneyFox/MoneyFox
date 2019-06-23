@@ -48,9 +48,8 @@
                                 </ViewCell.ContextActions>
 
                                 <controls:CardView Margin="{StaticResource SmallLeftRightBottomMargin}">
-                                    <StackLayout Spacing="0">
-                                        <Grid Style="{StaticResource ListItemStyle}"
-                                              Margin="{StaticResource DefaultListItemsMargin}">
+                                    <StackLayout Spacing="0" Style="{StaticResource ListItemStyle}">
+                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
