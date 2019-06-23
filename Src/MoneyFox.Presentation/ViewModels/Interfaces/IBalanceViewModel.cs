@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
@@ -18,6 +19,6 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        RelayCommand UpdateBalanceCommand { get; }
+        AsyncCommand UpdateBalanceCommand { get; }
     }
 }

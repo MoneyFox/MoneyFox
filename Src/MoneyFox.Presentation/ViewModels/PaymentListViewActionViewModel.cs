@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.Parameters;
 using MoneyFox.Presentation.ViewModels.Interfaces;
@@ -68,7 +70,7 @@ namespace MoneyFox.Presentation.ViewModels
             new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, new ModifyPaymentParameter(PaymentType.Transfer)));
 
         /// <inheritdoc />
-        public RelayCommand DeleteAccountCommand => new RelayCommand(DeleteAccount);
+        public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccount);
 
 
         /// <summary>
@@ -165,7 +167,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async void DeleteAccount()
+        private async Task DeleteAccount()
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
@@ -173,7 +175,7 @@ namespace MoneyFox.Presentation.ViewModels
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 navigationService.GoBack();
             }
-            balanceViewModel.UpdateBalanceCommand.Execute(null);
+            await balanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
         private void UpdateList()

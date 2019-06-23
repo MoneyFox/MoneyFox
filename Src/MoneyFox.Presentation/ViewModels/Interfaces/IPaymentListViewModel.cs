@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Foundation.Groups;
+using MoneyFox.Presentation.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
@@ -10,11 +11,11 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
 
         IPaymentListViewActionViewModel ViewActionViewModel { get; }
         
-        RelayCommand InitializeCommand { get; }
+        AsyncCommand InitializeCommand { get; }
 
         RelayCommand<PaymentViewModel> EditPaymentCommand { get; }
 
-        RelayCommand<PaymentViewModel> DeletePaymentCommand { get; }
+        AsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
 
         ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source { get; }
 

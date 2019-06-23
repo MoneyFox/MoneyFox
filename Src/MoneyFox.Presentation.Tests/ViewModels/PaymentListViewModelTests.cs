@@ -55,14 +55,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 navigationService.Object);
 
             // Act
-            vm.InitializeCommand.Execute(null);
+            await vm.InitializeCommand.ExecuteAsync();
 
             // Assert
             Assert.Equal(0, vm.AccountId);
         }
 
         [Fact]
-        public void Init_PassAccountId_AccountIdSet()
+        public async Task Init_PassAccountId_AccountIdSet()
         {
             // Arrange
             int accountId = 42;
@@ -83,7 +83,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             vm.AccountId = accountId;
 
             // Act
-            vm.InitializeCommand.Execute(null);
+            await vm.InitializeCommand.ExecuteAsync();
 
             // Assert
             Assert.Equal(accountId, vm.AccountId);

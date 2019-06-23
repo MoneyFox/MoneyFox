@@ -87,7 +87,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             try
             {
-                BalanceViewModel.UpdateBalanceCommand.Execute(null);
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
                 IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
                                                                                    .OrderBy(x => x.Name);

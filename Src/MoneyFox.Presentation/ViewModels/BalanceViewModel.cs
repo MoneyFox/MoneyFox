@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 
@@ -50,13 +51,13 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        public RelayCommand UpdateBalanceCommand => new RelayCommand(UpdateBalance);
+        public AsyncCommand UpdateBalanceCommand => new AsyncCommand(UpdateBalance);
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        private async void UpdateBalance()
+        private async Task UpdateBalance()
         {
             TotalBalance = await CalculateTotalBalance();
             EndOfMonthBalance = await GetEndOfMonthValue();

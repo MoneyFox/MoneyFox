@@ -1,5 +1,6 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Utilities;
 
@@ -14,7 +15,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public bool IsAddIncomeAvailable { get; }
         public bool IsAddExpenseAvailable { get; }
         public bool IsTransferAvailable { get; }
-        public RelayCommand DeleteAccountCommand { get; }
+        public AsyncCommand DeleteAccountCommand { get; }
         public bool IsClearedFilterActive { get; set; }
         public bool IsRecurringFilterActive { get; set; }
         public DateTime TimeRangeStart { get; set; }

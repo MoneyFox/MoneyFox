@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Groups;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
@@ -59,7 +61,7 @@ namespace MoneyFox.Presentation.ViewModels
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, LoadPayments);
         }
 
-        public RelayCommand InitializeCommand => new RelayCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
         #region Properties
 
@@ -162,9 +164,9 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
-        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(DeletePayment);
+        public AsyncCommand<PaymentViewModel> DeletePaymentCommand => new AsyncCommand<PaymentViewModel>(DeletePayment);
 
-        private async void Initialize()
+        private async Task Initialize()
         {
             Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId))?.Name;
 
@@ -176,16 +178,16 @@ namespace MoneyFox.Presentation.ViewModels
                                                                      AccountId,
                                                                      navigationService);
 
-            Load();
+            await Load();
         }
 
-        private void Load()
+        private async Task Load()
         {
             dialogService.ShowLoadingDialog();
 
             LoadPayments(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
-            BalanceViewModel.UpdateBalanceCommand.Execute(null);
+            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
             dialogService.HideLoadingDialog();
         }
@@ -230,14 +232,14 @@ namespace MoneyFox.Presentation.ViewModels
             navigationService.NavigateTo(ViewModelLocator.EditPayment, payment.Id);
         }
 
-        private async void DeletePayment(PaymentViewModel payment)
+        private async Task DeletePayment(PaymentViewModel payment)
         {
             await paymentService.DeletePayment(payment);
 
 #pragma warning disable 4014
             backupService.EnqueueBackupTask();
 #pragma warning restore 4014
-            Load();
+            await Load();
         }
     }
 }

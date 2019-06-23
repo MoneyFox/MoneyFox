@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
@@ -12,6 +13,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public double EndOfMonthBalance => 9784;
 
         /// <inheritdoc />
-        public RelayCommand UpdateBalanceCommand { get; } = null;
+        public AsyncCommand UpdateBalanceCommand { get; } = null;
     }
 }

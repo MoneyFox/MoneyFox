@@ -1,5 +1,5 @@
 ﻿using System;
-using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         /// <summary>
         ///     Deletes the currently selected account.
         /// </summary>
-        RelayCommand DeleteAccountCommand { get; }
+        AsyncCommand DeleteAccountCommand { get; }
 
         /// <summary>
         ///      Indicates wether the filter for only cleared Payments is active or not.

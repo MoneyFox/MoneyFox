@@ -4,6 +4,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Foundation.Groups;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
@@ -34,7 +35,7 @@ namespace MoneyFox.Uwp.Views.UserControls
             {
                 return;
             }
-            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.Execute(payment);
+            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.ExecuteAsync(payment).FireAndForgetSafeAsync();
         }
 
         private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e)

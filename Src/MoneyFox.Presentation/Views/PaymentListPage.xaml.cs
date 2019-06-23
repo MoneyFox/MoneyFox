@@ -41,7 +41,7 @@ namespace MoneyFox.Presentation.Views
             
             ToolbarItems.Add(filterItem);
 
-            ViewModel.InitializeCommand.Execute(null);
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
         private void OpenDialog()
@@ -66,7 +66,7 @@ namespace MoneyFox.Presentation.Views
         private void DeletePayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            ViewModel.DeletePaymentCommand.Execute(menuItem.CommandParameter as PaymentViewModel);
+            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel).FireAndForgetSafeAsync();
         }
     }
 }
