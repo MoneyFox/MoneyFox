@@ -25,7 +25,6 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             this.cashFlowDataProvider = cashFlowDataProvider;
 
             Chart = new BarChart();
-            Load();
         }
 
         /// <summary>

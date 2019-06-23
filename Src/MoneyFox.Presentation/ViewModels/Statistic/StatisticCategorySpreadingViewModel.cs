@@ -28,15 +28,10 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             SKColor.Parse("#8F97A4")
         };
 
-        /// <summary>
-        ///     Contstructor
-        /// </summary>
         public StatisticCategorySpreadingViewModel(ICategorySpreadingDataProvider spreadingDataProvider,
                                                    ISettingsFacade settingsFacade) : base(settingsFacade)
         {
             this.spreadingDataProvider = spreadingDataProvider;
-
-            Load();
         }
 
         /// <summary>

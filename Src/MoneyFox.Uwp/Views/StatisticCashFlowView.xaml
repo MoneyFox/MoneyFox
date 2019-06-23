@@ -5,12 +5,20 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       mc:Ignorable="d"
                       DataContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeStatisticCashFlowViewModel />
     </d:MvxWindowsPage.DataContext>
+
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">

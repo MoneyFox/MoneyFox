@@ -1,5 +1,7 @@
 ﻿using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
+using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,7 +11,9 @@ namespace MoneyFox.Presentation.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StatisticCategorySpreadingPage
 	{
-		public StatisticCategorySpreadingPage ()
+        private StatisticCategorySpreadingViewModel ViewModel => BindingContext as StatisticCategorySpreadingViewModel;
+
+        public StatisticCategorySpreadingPage ()
 		{
 			InitializeComponent();
             BindingContext = ViewModelLocator.StatisticCategorySpreadingVm;
@@ -25,9 +29,11 @@ namespace MoneyFox.Presentation.Views
 		    };
 
 		    ToolbarItems.Add(filterItem);
+
+            ViewModel.LoadedCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
-	    private async void OpenDialog()
+        private async void OpenDialog()
         {
             await Navigation.PushPopupAsync(new DateSelectionPopup
             {

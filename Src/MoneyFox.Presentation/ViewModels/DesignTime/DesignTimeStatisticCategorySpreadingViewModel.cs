@@ -4,6 +4,7 @@ using System.Globalization;
 using Microcharts;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ServiceLayer.Utilities;
 
@@ -43,5 +44,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             new StatisticEntry(1112) {Label = "Clothes"},
             new StatisticEntry(512) {Label = "Eating or so?"},
         });
+
+        public AsyncCommand LoadedCommand { get; } = null;
     }
 }

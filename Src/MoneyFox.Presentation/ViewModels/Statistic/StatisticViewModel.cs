@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Messages;
 using MoneyFox.ServiceLayer.Facades;
 using SkiaSharp;
@@ -43,16 +44,16 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                 ? new SKColor(0, 0, 0)
                 : SKColor.Parse("#EFF2F5");
 
-            MessengerInstance.Register<DateSelectedMessage>(this, message =>
+            MessengerInstance.Register<DateSelectedMessage>(this, async message =>
             {
                 StartDate = message.StartDate;
                 EndDate = message.EndDate;
-                Load();
+                await Load();
             });
-
-            Load();
         }
 
+        public AsyncCommand LoadedCommand => new AsyncCommand(Load);
+        
         /// <summary>
         ///     Start date for a custom statistic
         /// </summary>

@@ -3,12 +3,24 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
-                      d:DataContext="{d:DesignInstance designTime1:DesignTimeStatisticCategorySummaryViewModel,
+                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:i="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                       SizeChanged="StatisticCategorySummaryView_OnSizeChanged"
                       mc:Ignorable="d"
                       DataContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}">
+
+    <d:MvxWindowsPage.DataContext>
+        <designTime:DesignTimeStatisticCategorySummaryViewModel />
+    </d:MvxWindowsPage.DataContext>
+
+    <i:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </core:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>

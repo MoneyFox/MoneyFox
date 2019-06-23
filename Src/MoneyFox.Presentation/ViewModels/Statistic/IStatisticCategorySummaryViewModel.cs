@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using MoneyFox.Presentation.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -16,5 +17,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         ///     Indicates if there are data to display.
         /// </summary>
         bool HasData { get; }
+
+        AsyncCommand LoadedCommand { get; }
     }
 }

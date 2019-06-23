@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ServiceLayer.Utilities;
 
@@ -27,5 +28,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         };
 
         public bool HasData { get; } = true;
+        public AsyncCommand LoadedCommand { get; } = null;
     }
 }

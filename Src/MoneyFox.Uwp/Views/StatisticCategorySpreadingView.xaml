@@ -5,13 +5,21 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                       xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-                      xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:i="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       mc:Ignorable="d"
                       DataContext="{Binding StatisticCategorySpreadingVm, Source={StaticResource Locator}}">
 
     <d:MvxWindowsPage.DataContext>
-        <designTime1:DesignTimeStatisticCategorySpreadingViewModel />
+        <designTime:DesignTimeStatisticCategorySpreadingViewModel />
     </d:MvxWindowsPage.DataContext>
+
+    <i:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </core:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
