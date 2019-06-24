@@ -35,10 +35,10 @@ namespace MoneyFox.Presentation
 
         public static void Init()
         {
-            if (new SettingsFacade(new SettingsAdapter()).Theme == AppTheme.Dark)
-            {
-                SetDarkColors();
-            }
+            //if (new SettingsFacade(new SettingsAdapter()).Theme == AppTheme.Dark)
+            //{
+            //    SetDarkColors();
+            //}
         }
 
         private static void SetDarkColors()

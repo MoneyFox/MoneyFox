@@ -2,7 +2,7 @@
 
 namespace MoneyFox.Presentation.Style
 {
-	public class TextStylesDictionary : ResourceDictionary
+    public partial class LightTheme : ResourceDictionary
     {
-	}
+    }
 }

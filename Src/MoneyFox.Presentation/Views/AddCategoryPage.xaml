@@ -8,6 +8,7 @@
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
              x:Class="MoneyFox.Presentation.Views.AddCategoryPage"
              Visual="Material"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
              Title="{Binding Title}">
 
     <d:ContentPage.BindingContext>

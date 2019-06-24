@@ -5,11 +5,11 @@
     xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"
     xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
     Title="Money Fox"
-    BackgroundColor="Accent"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
     Visual="Material"
-    BarBackgroundColor="{x:Static design:StyleHelper.BottomTabBarColor}"
-    SelectedTabColor="{x:Static design:StyleHelper.BarSelectedItemColor}"
-    UnselectedTabColor="{x:Static design:StyleHelper.DeemphasizedColor}"
+    BarBackgroundColor="{DynamicResource BottomTabBarColor}"
+    SelectedTabColor="{DynamicResource BarSelectedItemColor}"
+    UnselectedTabColor="{DynamicResource DeemphasizedColor}"
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
     <pages:AccountListPage Title="{Binding Resources[AccountsTitle]}" IconImageSource="ic_accounts_black.png" />

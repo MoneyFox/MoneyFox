@@ -8,7 +8,7 @@
                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   Visual="Material"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+                  BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeSettingsViewModel />
@@ -23,20 +23,27 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource SmallLeftRightTopMargin}" >
-                            <StackLayout Style="{DynamicResource ListItemStyle}"
-                                         Orientation="Vertical"
+                        <controls:CardView Margin="{StaticResource SmallLeftRightTopMargin}"
+                                           Style="{DynamicResource ListItemStyle}" >
+                            <StackLayout Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{DynamicResource DefaultSpacing}">
-                                <StackLayout Style="{DynamicResource ListItemStyle}"
-                                             Orientation="Horizontal"
+                                
+                                <StackLayout Orientation="Horizontal"
                                              Padding="3"
                                              Spacing="{DynamicResource DefaultSpacing}">
-                                    <Label Text="{Binding Icon}" FontFamily="{DynamicResource MaterialFontFamily}" Style="{DynamicResource ListItemHeaderStyle}" VerticalOptions="Center" />
-                                    <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
+                                    <Label Text="{Binding Icon}" 
+                                           FontFamily="{DynamicResource MaterialFontFamily}" 
+                                           Style="{DynamicResource ListItemHeaderStyle}" 
+                                           VerticalOptions="Center" />
+                                    
+                                    <Label Text="{Binding Name}" 
+                                           Style="{DynamicResource ListItemHeaderStyle}" />
+                                    
                                 </StackLayout>
                                 <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                             </StackLayout>
+                            
                         </controls:CardView>
                     </ViewCell>
                 </DataTemplate>

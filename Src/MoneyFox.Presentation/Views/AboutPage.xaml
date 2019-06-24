@@ -9,7 +9,7 @@
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              Visual="Material"
              x:Class="MoneyFox.Presentation.Views.AboutPage"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeAboutViewModel />

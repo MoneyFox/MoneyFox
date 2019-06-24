@@ -10,7 +10,7 @@
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
              Visual="Material"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
              Title="{Binding Resources[CategorySummaryTitle]}">
 
     <d:ContentPage.BindingContext>

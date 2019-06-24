@@ -11,7 +11,7 @@
              x:Class="MoneyFox.Presentation.Views.PaymentListPage"
              Visual="Material"
              Title="{Binding Title}"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimePaymentListViewModel />

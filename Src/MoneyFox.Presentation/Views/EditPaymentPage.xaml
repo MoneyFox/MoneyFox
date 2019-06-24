@@ -8,6 +8,7 @@
                       xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
                       x:Class="MoneyFox.Presentation.Views.EditPaymentPage"
                       Visual="Material"
+                      BackgroundColor="{DynamicResource WindowBackgroundColor}"
                       Title="{Binding Title}">
     
     <d:ContentPage.BindingContext>

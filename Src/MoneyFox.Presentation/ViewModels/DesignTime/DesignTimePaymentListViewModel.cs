@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public IBalanceViewModel BalanceViewModel { get; }
+        public IBalanceViewModel BalanceViewModel => new DesignTimeBalanceViewViewModel();
         public IPaymentListViewActionViewModel ViewActionViewModel { get; }
         public AsyncCommand InitializeCommand { get; }
         public RelayCommand<PaymentViewModel> EditPaymentCommand { get; }

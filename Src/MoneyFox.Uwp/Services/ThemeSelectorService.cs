@@ -48,8 +48,6 @@ namespace MoneyFox.Uwp.Services
             var settingsAdapter = new SettingsAdapter();
             var settingsFacade = new SettingsFacade(settingsAdapter);
 
-            
-
             ElementTheme cacheTheme = ElementTheme.Default;
 
             string themeName = settingsAdapter.GetValue(SETTINGS_KEY, string.Empty);
@@ -61,7 +59,7 @@ namespace MoneyFox.Uwp.Services
 
             if (cacheTheme == ElementTheme.Default && settingsFacade.Theme.ToString() != requestedTheme.ToString())
             {
-                settingsFacade.Theme = Enum.Parse<AppTheme>(requestedTheme.ToString());
+                ThemeManager.ChangeTheme(Enum.Parse<AppTheme>(requestedTheme.ToString()));
             }
 
             return cacheTheme;
@@ -71,10 +69,8 @@ namespace MoneyFox.Uwp.Services
         {
             var settingsAdapter = new SettingsAdapter();
             settingsAdapter.AddOrUpdate(SETTINGS_KEY, theme.ToString());
-            var settingsFacade = new SettingsFacade(settingsAdapter);
 
-            settingsFacade.Theme = Theme == ElementTheme.Dark ? AppTheme.Dark : AppTheme.Light;
-            StyleHelper.Init();
+            ThemeManager.ChangeTheme(theme == ElementTheme.Dark ? AppTheme.Dark : AppTheme.Light);
         }
     }
 }

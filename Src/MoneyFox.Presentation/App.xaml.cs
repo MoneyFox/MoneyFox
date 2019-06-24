@@ -9,16 +9,15 @@ namespace MoneyFox.Presentation
     {
         public App()
         {
-            StyleHelper.Init();
             InitializeComponent();
-
+            ThemeManager.LoadTheme();
             AppDomain.CurrentDomain.UnhandledException += (s, e) =>
             {
                 LogManager.GetCurrentClassLogger().Fatal(e);
             };
 
             ConfigureNavigation();
-            
+
             var appShell = new AppShell();
             NavigationService.Initialize(appShell.Navigation);
             MainPage = new NavigationPage(appShell);

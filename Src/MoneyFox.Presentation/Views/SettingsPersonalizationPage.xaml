@@ -9,7 +9,7 @@
              x:Class="MoneyFox.Presentation.Views.SettingsPersonalizationPage"
              Visual="Material"
              Title="{Binding Resources[SettingsPersonalizationLabel]}"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeSettingsPersonalizationViewModel />

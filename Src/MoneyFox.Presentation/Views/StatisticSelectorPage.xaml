@@ -8,7 +8,7 @@
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
              Visual="Material"
-             BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeStatisticSelectorViewModel />
@@ -23,9 +23,9 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource SmallLeftRightTopMargin}">
-                            <StackLayout Style="{StaticResource ListItemStyle}"
-                                         Orientation="Vertical"
+                        <controls:CardView Margin="{StaticResource SmallLeftRightTopMargin}"
+                                           Style="{StaticResource ListItemStyle}">
+                            <StackLayout Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{DynamicResource DefaultSpacing}">
                                 <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
