@@ -43,7 +43,7 @@
                     <DataTemplate>
                         <ViewCell>
                             <controls:CardView Margin="{StaticResource ListItemMargin}"
-                                               BackgroundColor="{x:Static moneyFox:StyleHelper.ListItemColor}">
+                                               BackgroundColor="{DynamicResource ListItemColor}">
 
                                 <StackLayout Padding="3"
                                              Spacing="3"

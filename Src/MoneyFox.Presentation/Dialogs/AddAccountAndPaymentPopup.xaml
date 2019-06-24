@@ -37,7 +37,7 @@
                                     Glyph="{StaticResource Account}"
                                     FontFamily="{DynamicResource MaterialFontFamily}"
                                     Size="33"
-                                    Color="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+                                    Color="{DynamicResource PrimaryFontColor}" />
                         </Image.Source>
                     </Image>
 
@@ -62,7 +62,7 @@
                                     Glyph="{StaticResource Expense}"
                                     FontFamily="{DynamicResource MaterialFontFamily}"
                                     Size="33"
-                                    Color="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+                                    Color="{DynamicResource PrimaryFontColor}" />
                         </Image.Source>
                     </Image>
 
@@ -87,7 +87,7 @@
                                     Glyph="{StaticResource Income}"
                                     FontFamily="{DynamicResource MaterialFontFamily}"
                                     Size="33"
-                                    Color="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+                                    Color="{DynamicResource PrimaryFontColor}" />
                         </Image.Source>
                     </Image>
 
@@ -112,7 +112,7 @@
                                     Glyph="{StaticResource Transfer}"
                                     FontFamily="{DynamicResource MaterialFontFamily}"
                                     Size="33"
-                                    Color="{x:Static presentation:StyleHelper.PrimaryFontColor}" />
+                                    Color="{DynamicResource PrimaryFontColor}" />
                         </Image.Source>
                     </Image>
 
