@@ -108,8 +108,6 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
-        public ModifyPaymentParameter PassedParameter { get; set; }
-
         private PaymentRecurrence recurrence;
         private PaymentViewModel selectedPayment;
         private ObservableCollection<AccountViewModel> chargedAccounts;
