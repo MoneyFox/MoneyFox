@@ -24,6 +24,7 @@
         <userControls:ModifyCategoryUserControl Grid.Row="1" />
 
         <CommandBar x:Name="BottomCommandBar"
+                    Style="{ThemeResource DefaultCommandBar}"
                     Grid.Row="2"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>

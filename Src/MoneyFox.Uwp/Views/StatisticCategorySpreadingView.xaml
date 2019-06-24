@@ -80,7 +80,7 @@
         </Grid>
 
         <CommandBar Grid.Row="4"
-                    Height="24"
+                    Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.SecondaryCommands>

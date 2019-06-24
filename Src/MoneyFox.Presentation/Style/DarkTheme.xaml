@@ -11,7 +11,7 @@
     <Color x:Key="SecondaryColor">#1a264c</Color>
 
     <!-- Control Colors -->
-    <Color x:Key="WindowBackgroundColor">#2d2d30</Color>
+    <Color x:Key="WindowBackgroundColor">#201f1f</Color>
     <Color x:Key="DialogBackgroundColor">Black</Color>
     <Color x:Key="BottomTabBarColor">#1e1e1e</Color>
     <Color x:Key="BarItemColor">Black</Color>
@@ -20,7 +20,7 @@
 
     <!-- Font Colors -->
     <Color x:Key="PrimaryFontColor">White</Color>
-    <Color x:Key="DeemphasizedColor">#5A6570</Color>
-    <Color x:Key="ListItemColor">#1e1e1e</Color>
+    <Color x:Key="DeemphasizedColor">#b4b2b0</Color>
+    <Color x:Key="ListItemColor">#2d2c2c</Color>
 
 </ResourceDictionary>

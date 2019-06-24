@@ -164,6 +164,7 @@
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />
 
         <CommandBar Grid.Row="2"
+                    Style="{ThemeResource DefaultCommandBar}"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}"
                     DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>

@@ -24,6 +24,7 @@
         <Grid Grid.Row="1" x:Name="ContentGrid" />
 
         <CommandBar x:Name="BottomCommandBar"
+                    Style="{ThemeResource DefaultCommandBar}"
                     Grid.Row="2"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>

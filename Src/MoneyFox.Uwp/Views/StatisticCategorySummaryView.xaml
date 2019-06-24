@@ -36,8 +36,9 @@
                    Style="{ThemeResource UwpPageTitleStyle}" />
         
         <Grid Grid.Row="1" x:Name="ContentGrid" />
-        
+
         <CommandBar Grid.Row="2"
+                    Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"

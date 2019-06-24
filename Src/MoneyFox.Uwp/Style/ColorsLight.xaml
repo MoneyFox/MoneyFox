@@ -12,9 +12,11 @@
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 
     <Color x:Key="AppForegroundColorPrimary">#FF2B343D</Color>
-    <Color x:Key="AppForegroundColorSecondary">#5A6570</Color>
-
+    <Color x:Key="AppForegroundColorSecondary">#b4b2b0</Color>
+    
     <Color x:Key="AppMenuForeground">White</Color>
+    
+    <Color x:Key="CommandBarBackgroundColor">White</Color>
 
     <Color x:Key="ListItemColor">White</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>

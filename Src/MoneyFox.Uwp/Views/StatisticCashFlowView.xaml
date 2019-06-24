@@ -58,6 +58,7 @@
             </chart:RadCartesianChart>
         </Grid>
         <CommandBar Grid.Row="3"
+                    Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.SecondaryCommands>

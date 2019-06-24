@@ -66,6 +66,7 @@
         </Grid>
 
         <CommandBar Grid.Row="2"
+                    Style="{ThemeResource DefaultCommandBar}"
                     DataContext="{Binding ViewActionViewModel}"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
