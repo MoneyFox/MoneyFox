@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp.Services
             if (IsInteractive(activationArgs))
             {
                 // Initialize things like registering background task before the app is loaded
-                await InitializeAsync();
+                await InitializeAsync(activationArgs);
 
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
@@ -50,9 +50,6 @@ namespace MoneyFox.Uwp.Services
                     // Create a Frame to act as the navigation context and navigate to the first page
                     Window.Current.Content = shell?.Value ?? new Frame();
                 }
-
-                Xamarin.Forms.Forms.Init(activationArgs as LaunchActivatedEventArgs);
-                new Presentation.App();
             }
 
             await HandleActivationAsync(activationArgs);
@@ -67,7 +64,7 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        private async Task InitializeAsync()
+        private async Task InitializeAsync(object activationArgs)
         {
             LoggerService.Initialize();
             
@@ -81,6 +78,8 @@ namespace MoneyFox.Uwp.Services
             var navService = ConfigureNavigation();
             RegisterServices(navService);
 
+            Xamarin.Forms.Forms.Init(activationArgs as LaunchActivatedEventArgs);
+            new Presentation.App();
             BackgroundTaskService.RegisterBackgroundTasks();
             ThemeSelectorService.Initialize(app.RequestedTheme);
             await JumpListService.InitializeAsync();
