@@ -108,8 +108,8 @@ namespace MoneyFox.Presentation.ViewModels
 
         private PaymentRecurrence recurrence;
         private PaymentViewModel selectedPayment;
-        private ObservableCollection<AccountViewModel> chargedAccounts;
-        private ObservableCollection<AccountViewModel> targetAccounts;
+        private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
+        private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
 
         /// <summary>
         ///     Default constructor

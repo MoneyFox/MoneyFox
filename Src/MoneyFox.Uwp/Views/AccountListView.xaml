@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:converter="using:MoneyFox.Uwp.Converter"
       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
@@ -16,11 +16,11 @@
         <designTime:DesignTimeAccountListViewModel />
     </d:MvxWindowsPage.DataContext>
 
-    <interactivity:Interaction.Behaviors>
+    <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding LoadDataCommand}" />
         </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
+    </i:Interaction.Behaviors>
 
     <Page.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
@@ -117,12 +117,12 @@
                           ItemTemplate="{StaticResource AccountItemTemplate}"
                           ItemsSource="{Binding Source={StaticResource Groups}}">
 
-                    <interactivity:Interaction.Behaviors>
+                    <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}"
                                                       InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
+                    </i:Interaction.Behaviors>
 
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">

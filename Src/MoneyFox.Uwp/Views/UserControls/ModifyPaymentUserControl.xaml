@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
@@ -16,6 +16,12 @@
     <d:Page.DataContext>
         <designTime:DesignTimeModifyPaymentViewModel />
     </d:Page.DataContext>
+
+    <i:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding InitializeCommand}" />
+        </core:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
 
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
@@ -51,11 +57,11 @@
                           SelectedItem="{Binding SelectedPayment.ChargedAccount,
                                                      Mode=TwoWay,
                                                      UpdateSourceTrigger=PropertyChanged}">
-                    <interactivity:Interaction.Behaviors>
+                    <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
                             <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
                         </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
+                    </i:Interaction.Behaviors>
                 </ComboBox>
 
                 <ComboBox Margin="{StaticResource SmallTitleContentMargin}"
@@ -70,11 +76,11 @@
                                                      UpdateSourceTrigger=PropertyChanged}"
                           Visibility="{Binding SelectedPayment.IsTransfer,
                                                    Converter={StaticResource BooleanVisibilityConverter}}">
-                    <interactivity:Interaction.Behaviors>
+                    <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
                             <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
                         </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
+                    </i:Interaction.Behaviors>
 
                 </ComboBox>
                 <TextBox Margin="{StaticResource SmallTitleContentMargin}"
@@ -89,23 +95,23 @@
                              IsReadOnly="True"
                              Text="{Binding SelectedPayment.Category.Name,
                                                 UpdateSourceTrigger=PropertyChanged}">
-                        <interactivity:Interaction.Behaviors>
+                        <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="GotFocus">
                                 <core:InvokeCommandAction
                                     Command="{Binding GoToSelectCategoryDialogCommand, Mode=OneWay}" />
                             </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
+                        </i:Interaction.Behaviors>
                     </TextBox>
                     <Image Height="30"
                            Margin="0,0,0,0"
                            HorizontalAlignment="Right"
                            VerticalAlignment="Bottom"
                            Source="/Assets/IconCancel.png">
-                        <interactivity:Interaction.Behaviors>
+                        <i:Interaction.Behaviors>
                             <core:EventTriggerBehavior EventName="Tapped">
                                 <core:InvokeCommandAction Command="{Binding ResetCategoryCommand, Mode=OneWay}" />
                             </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
+                        </i:Interaction.Behaviors>
                     </Image>
                 </Grid>
                 <DatePicker Margin="{StaticResource SmallTitleContentMargin}"

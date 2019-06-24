@@ -13,7 +13,7 @@
     <!-- Control Colors -->
     <Color x:Key="WindowBackgroundColor">#201f1f</Color>
     <Color x:Key="DialogBackgroundColor">Black</Color>
-    <Color x:Key="BottomTabBarColor">#1e1e1e</Color>
+    <Color x:Key="BottomTabBarColor">Black</Color>
     <Color x:Key="BarItemColor">Black</Color>
     <Color x:Key="BarSelectedItemColor">White</Color>
     <Color x:Key="FrameHighlightColor">Black</Color>

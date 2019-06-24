@@ -46,6 +46,8 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task Initialize()
         {
+            await base.Initialize();
+
             SelectedPayment = await crudServices.ReadSingleAsync<PaymentViewModel>(PaymentId);
 
             // We have to set this here since otherwise the end date is null. This causes a crash on android.
@@ -56,8 +58,6 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, true);
-
-            await base.Initialize();
         }
 
         protected override async Task SavePayment()
