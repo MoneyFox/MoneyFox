@@ -35,19 +35,20 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListViewActionViewModel(ICrudServicesAsync crudServices,
+        public PaymentListViewActionViewModel(int accountId, 
+                                              ICrudServicesAsync crudServices,
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
-                                              int accountId,
                                               INavigationService navigationService)
         {
+            this.accountId = accountId;
+
             this.crudServices = crudServices;
             this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
             this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
-            this.accountId = accountId;
 
             var accountCount = crudServices.ReadManyNoTracked<AccountViewModel>().Count();
 

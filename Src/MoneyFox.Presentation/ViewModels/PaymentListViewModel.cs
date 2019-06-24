@@ -172,11 +172,11 @@ namespace MoneyFox.Presentation.ViewModels
             Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId))?.Name;
 
             BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId);
-            ViewActionViewModel = new PaymentListViewActionViewModel(crudServices,
+            ViewActionViewModel = new PaymentListViewActionViewModel(AccountId,
+                                                                     crudServices,
                                                                      settingsFacade,
                                                                      dialogService,
                                                                      BalanceViewModel,
-                                                                     AccountId,
                                                                      navigationService);
 
             await Load();
