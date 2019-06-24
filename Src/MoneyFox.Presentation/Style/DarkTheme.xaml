@@ -16,6 +16,7 @@
     <Color x:Key="BottomTabBarColor">#1e1e1e</Color>
     <Color x:Key="BarItemColor">Black</Color>
     <Color x:Key="BarSelectedItemColor">White</Color>
+    <Color x:Key="FrameHighlightColor">Black</Color>
 
     <!-- Font Colors -->
     <Color x:Key="PrimaryFontColor">White</Color>

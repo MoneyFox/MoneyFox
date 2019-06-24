@@ -19,12 +19,14 @@
                 <RowDefinition Height="240*" />
             </Grid.RowDefinitions>
 
-            <SearchBar x:Name="SearchBar"
+            <Frame Style="{StaticResource HighlightFrame}">
+                <SearchBar x:Name="SearchBar"
                        Style="{StaticResource DefaultSearchBarStyle}"
                        Grid.Row="0"
                        VerticalOptions="Start" 
                        Placeholder="{Binding Resources[SearchLabel]}"
                        TextChanged="SearchTermChanged" />
+            </Frame>
 
             <ListView x:Name="CategoryList"
                       Grid.Row="1"

@@ -43,6 +43,13 @@
                 <Setter Property="PlaceholderColor" Value="{DynamicResource DeemphasizedColor}" />
             </Style>
 
+            <Style x:Key="HighlightFrame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{DynamicResource FrameHighlightColor}" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Margin" Value="{DynamicResource MediumLeftTopRightBottomMargin}" />
+                <Setter Property="Padding" Value="3" />
+            </Style>
+            
             <!-- Text Styles -->
             <Style x:Key="SmallTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
