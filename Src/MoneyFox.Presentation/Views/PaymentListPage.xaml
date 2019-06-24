@@ -31,7 +31,7 @@
                 <ListView x:Name="PaymentList"
                           ItemsSource="{Binding DailyList}"
                           HasUnevenRows="True"
-                          CachingStrategy="RecycleElement"
+                          CachingStrategy="RetainElement"
                           IsGroupingEnabled="True"
                           GroupDisplayBinding="{Binding Key}">
 
@@ -86,19 +86,19 @@
                                             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 
                                                 <Label Text="{StaticResource Transfer}" 
-                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       Style="{StaticResource MaterialDesignImageLabelStyle}"
                                                        IsVisible="{Binding IsTransfer}" 
                                                        HeightRequest="20"
                                                        WidthRequest="20"  />
 
                                                 <Label Text="{StaticResource Recurring}" 
-                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       Style="{StaticResource MaterialDesignImageLabelStyle}"
                                                        IsVisible="{Binding IsRecurring}" 
                                                        HeightRequest="20"
                                                        WidthRequest="20"  />
 
                                                 <Label Text="{StaticResource Cleared}" 
-                                                       FontFamily="{DynamicResource MaterialFontFamily}"
+                                                       Style="{StaticResource MaterialDesignImageLabelStyle}"
                                                        IsVisible="{Binding IsCleared}" 
                                                        HeightRequest="20"
                                                        WidthRequest="20"  />
