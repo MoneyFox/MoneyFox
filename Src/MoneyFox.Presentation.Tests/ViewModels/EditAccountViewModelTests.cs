@@ -11,11 +11,13 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class EditAccountViewModelTests
     {
         [Fact]
-        public async Task Prepare_AccountLoaded()
+        public async Task Initialize_AccountLoaded()
         {
             // Arrange
             const int accountId = 99;
             var crudServiceMock = new Mock<ICrudServicesAsync>();
+            crudServiceMock.Setup(x => x.ReadSingleAsync<AccountViewModel>(It.IsAny<int>()))
+                           .ReturnsAsync(new AccountViewModel());
 
             var editAccountVm = new EditAccountViewModel(crudServiceMock.Object, null, null, null, null);
 

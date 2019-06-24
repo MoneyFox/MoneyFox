@@ -38,7 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
         public async Task Initialize()
         {
             SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId);
-            string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
+            Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 
         protected override async Task SaveAccount()
