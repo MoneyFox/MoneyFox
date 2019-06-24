@@ -15,9 +15,13 @@
     <ContentView.Content>
       <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
-            <Entry Placeholder="{Binding Resources[CategoryNameLabel]}" Text="{Binding SelectedCategory.Name}"/>
+            <Entry Style="{StaticResource DefaultEntry}"
+                   Placeholder="{Binding Resources[CategoryNameLabel]}"
+                   Text="{Binding SelectedCategory.Name}"/>
 
-            <Entry Placeholder="{Binding Resources[NoteLabel]}" Text="{Binding SelectedCategory.Note}"/>
+            <Entry Style="{StaticResource DefaultEntry}"
+                   Placeholder="{Binding Resources[NoteLabel]}"
+                   Text="{Binding SelectedCategory.Note}"/>
 
           <!-- This delete button is only for ios, since there can be only one menu item -->
           <Button x:Name="DeleteCategoryButton"

@@ -38,6 +38,11 @@
                 <Setter Property="PlaceholderColor" Value="{DynamicResource DeemphasizedColor}" />
             </Style>
 
+            <Style x:Key="DefaultEntry" TargetType="Entry">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
+                <Setter Property="PlaceholderColor" Value="{DynamicResource DeemphasizedColor}" />
+            </Style>
+
             <!-- Text Styles -->
             <Style x:Key="SmallTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />

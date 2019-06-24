@@ -16,17 +16,21 @@
         <ScrollView>
             <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
 
-                <Entry Placeholder="{Binding Resources[AccountNameLabel]}"
+                <Entry Style="{StaticResource DefaultEntry}"
+                       Placeholder="{Binding Resources[AccountNameLabel]}"
                        Text="{Binding SelectedAccount.Name}" />
 
                 <Entry x:Name="AmountEntry"
+                       Style="{StaticResource DefaultEntry}"
                        Placeholder="{Binding Resources[CurrentBalanceLabel]}"
                        Text="{Binding AmountString}" 
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        Focused="AmountFieldGotFocused"/>
 
-                <Entry Placeholder="{Binding Resources[NoteLabel]}" Text="{Binding SelectedAccount.Note}"/>
+                <Entry Style="{StaticResource DefaultEntry}"
+                       Placeholder="{Binding Resources[NoteLabel]}"
+                       Text="{Binding SelectedAccount.Note}"/>
 
                 <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">

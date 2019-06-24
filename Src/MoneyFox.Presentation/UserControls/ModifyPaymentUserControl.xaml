@@ -44,6 +44,7 @@
             </StackLayout>
 
             <Entry x:Name="AmountEntry"
+                   Style="{StaticResource DefaultEntry}"
                    Text="{Binding AmountString}"
                    Placeholder="{Binding Resources[AmountLabel]}"
                    Keyboard="Numeric"
@@ -84,7 +85,9 @@
                    Margin="0,5,0,0" />
             <DatePicker Date="{Binding SelectedPayment.Date}" />
 
-            <Entry Placeholder="{Binding Resources[NoteLabel]}" Text="{Binding SelectedPayment.Note}"/>
+            <Entry Style="{StaticResource DefaultEntry}"
+                   Placeholder="{Binding Resources[NoteLabel]}"
+                   Text="{Binding SelectedPayment.Note}"/>
 
             <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">

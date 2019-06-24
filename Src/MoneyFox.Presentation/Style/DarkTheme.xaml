@@ -11,10 +11,10 @@
     <Color x:Key="SecondaryColor">#1a264c</Color>
 
     <!-- Control Colors -->
-    <Color x:Key="WindowBackgroundColor">Black</Color>
-    <Color x:Key="DialogBackgroundColor">#2d2d30</Color>
+    <Color x:Key="WindowBackgroundColor">#2d2d30</Color>
+    <Color x:Key="DialogBackgroundColor">Black</Color>
     <Color x:Key="BottomTabBarColor">#1e1e1e</Color>
-    <Color x:Key="BarItemColor">DimGray</Color>
+    <Color x:Key="BarItemColor">Black</Color>
     <Color x:Key="BarSelectedItemColor">White</Color>
 
     <!-- Font Colors -->
