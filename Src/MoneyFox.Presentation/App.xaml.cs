@@ -11,6 +11,7 @@ namespace MoneyFox.Presentation
         {
             InitializeComponent();
             ThemeManager.LoadTheme();
+
             AppDomain.CurrentDomain.UnhandledException += (s, e) =>
             {
                 LogManager.GetCurrentClassLogger().Fatal(e);
