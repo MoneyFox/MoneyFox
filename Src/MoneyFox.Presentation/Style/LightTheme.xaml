@@ -21,6 +21,7 @@
     <!-- Font Colors -->
     <Color x:Key="PrimaryFontColor">Black</Color>
     <Color x:Key="DeemphasizedColor">#5A6570</Color>
+    <Color x:Key="HeaderColor">#b4b2b0</Color>
     <Color x:Key="ListItemColor">White</Color>
 
 </ResourceDictionary>

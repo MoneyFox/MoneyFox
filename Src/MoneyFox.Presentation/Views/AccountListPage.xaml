@@ -33,8 +33,14 @@
                           HasUnevenRows="True"
                           CachingStrategy="RecycleElement"
                           IsGroupingEnabled="True"
-                          SeparatorVisibility="None"
-                          GroupDisplayBinding="{Binding Key}">
+                          SeparatorVisibility="None">
+
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Key}"
+                                      TextColor="{DynamicResource HeaderColor}" />
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
 
                     <ListView.ItemTemplate>
                         <DataTemplate>

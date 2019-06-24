@@ -33,14 +33,14 @@
                           HasUnevenRows="True"
                           CachingStrategy="RetainElement"
                           IsGroupingEnabled="True"
-                          GroupDisplayBinding="{Binding Key}">
+                          SeparatorVisibility="None">
 
-                    <ListView.SeparatorVisibility>
-                        <OnPlatform x:TypeArguments="SeparatorVisibility">
-                            <On Platform="iOS" Value="Default" />
-                            <On Platform="Android" Value="None" />
-                        </OnPlatform>
-                    </ListView.SeparatorVisibility>
+                    <ListView.GroupHeaderTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Key}"
+                                      TextColor="{DynamicResource HeaderColor}" />
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
