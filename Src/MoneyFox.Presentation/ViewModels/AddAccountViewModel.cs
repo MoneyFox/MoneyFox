@@ -5,7 +5,6 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
-using MoneyFox.ServiceLayer.Facades;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -25,6 +24,7 @@ namespace MoneyFox.Presentation.ViewModels
             this.crudService = crudService;
             this.dialogService = dialogService;
 
+            Title = Strings.AddAccountTitle;
             SelectedAccount = new AccountViewModel();
         }
         

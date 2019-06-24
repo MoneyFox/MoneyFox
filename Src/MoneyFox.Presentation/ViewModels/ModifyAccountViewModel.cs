@@ -3,12 +3,10 @@ using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
-using MoneyFox.ServiceLayer.Facades;
 using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -20,6 +18,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public int AccountId { get; set; }
 
+        private string title;
         private AccountViewModel selectedAccount;
 
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
@@ -31,13 +30,22 @@ namespace MoneyFox.Presentation.ViewModels
             NavigationService = navigationService;
         }
 
-        public virtual string Title => Strings.AddAccountTitle;
-
         protected INavigationService NavigationService { get; private set; }
 
         public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBase);
 
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
+
+        public string Title
+        {
+            get => title;
+            set
+            {
+                if (title == value) return;
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public AccountViewModel SelectedAccount
         {

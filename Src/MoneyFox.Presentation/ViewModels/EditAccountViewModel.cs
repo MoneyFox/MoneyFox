@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Foundation.Resources;
@@ -9,7 +8,6 @@ using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
-using MoneyFox.ServiceLayer.Facades;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -33,9 +31,6 @@ namespace MoneyFox.Presentation.ViewModels
             this.dialogService = dialogService;
         }
 
-        public override string Title =>
-            string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
-
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccount);
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -43,6 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
         public async Task Initialize()
         {
             SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId);
+            string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 
         protected override async Task SaveAccount()

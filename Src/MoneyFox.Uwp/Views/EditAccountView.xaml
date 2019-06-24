@@ -21,7 +21,7 @@
                    Text="{Binding Title}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <userControls:ModifyCategoryUserControl Grid.Row="1" />
+        <userControls:ModifyAccountUserControl Grid.Row="1" />
 
         <CommandBar x:Name="BottomCommandBar"
                     Style="{ThemeResource DefaultCommandBar}"

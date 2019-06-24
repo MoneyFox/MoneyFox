@@ -37,6 +37,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IBackupService backupService;
 
         private CategoryViewModel selectedCategory;
+        private string title;
 
         /// <summary>
         ///     Constructor
@@ -52,7 +53,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             NavigationService = navigationService;
         }
-        
+
         protected INavigationService NavigationService { get; }
 
         public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBase);
@@ -78,7 +79,15 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
-        public string Title { get; set; }
+        public string Title {
+            get => title;
+            set
+            {
+                if (title == value) return;
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public int CategoryId { get; set; }
 
