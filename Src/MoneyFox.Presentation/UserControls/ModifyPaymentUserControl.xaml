@@ -64,7 +64,7 @@
                 <Button Grid.Column="0"
                         Grid.ColumnSpan="2"
                         Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                        Command="{Binding GoToSelectCategorydialogCommand}">
+                        Command="{Binding GoToSelectCategoryDialogCommand}">
                     <Button.Effects>
                         <effects:PrimaryButtonEffect />
                     </Button.Effects>
