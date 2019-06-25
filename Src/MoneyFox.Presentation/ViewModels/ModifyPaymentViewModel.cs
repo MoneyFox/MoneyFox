@@ -107,7 +107,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly ISettingsFacade settingsFacade;
 
         private PaymentRecurrence recurrence;
-        private PaymentViewModel selectedPayment;
+        private PaymentViewModel selectedPayment = new PaymentViewModel();
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
 
@@ -203,6 +203,8 @@ namespace MoneyFox.Presentation.ViewModels
                 selectedPayment = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(AccountHeader));
+                RaisePropertyChanged(nameof(IsTransfer));
+                RaisePropertyChanged(nameof(AmountString));
             }
         }
 

@@ -73,6 +73,7 @@
                 <Image Grid.Column="1"
                        HeightRequest="30"
                        WidthRequest="30"
+                       Margin="0,0,2,0"
                        x:Name="ResetIcon">
                     <Image.Source>
                         <FontImageSource
@@ -87,7 +88,8 @@
             <Label Text="{Binding Resources[DateLabel]}"
                    Style="{DynamicResource DefaultTextStyle}"
                    Margin="0,5,0,0" />
-            <DatePicker Date="{Binding SelectedPayment.Date}" />
+            <DatePicker Date="{Binding SelectedPayment.Date}" 
+                        Style="{StaticResource DefaultDatePickerStyle}" />
 
             <Entry Style="{StaticResource DefaultEntry}"
                    Placeholder="{Binding Resources[NoteLabel]}"
@@ -101,7 +103,10 @@
                     <ColumnDefinition Width="30*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Text="{Binding Resources[RecurringLabel]}" />
+                <Label Grid.Column="0" 
+                       Text="{Binding Resources[RecurringLabel]}"
+                       Style="{DynamicResource DefaultTextStyle}"/>
+
                 <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.IsRecurring}" />
             </Grid>
 

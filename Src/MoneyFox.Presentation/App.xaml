@@ -55,6 +55,10 @@
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
             </Style>
 
+            <Style x:Key="DefaultDatePickerStyle" TargetType="DatePicker">
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
+            </Style>
+
             <!-- Text Styles -->
             <Style x:Key="SmallTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />

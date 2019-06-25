@@ -19,7 +19,7 @@ namespace MoneyFox.Presentation.ViewModels
         public int AccountId { get; set; }
 
         private string title;
-        private AccountViewModel selectedAccount;
+        private AccountViewModel selectedAccount = new AccountViewModel();
 
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
             IBackupService backupService,
@@ -54,6 +54,7 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 selectedAccount = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(AmountString));
             }
         }
         

@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -33,6 +34,7 @@ namespace MoneyFox.Presentation.Views
             });
 
             ViewModel.AccountId = accountId;
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 	}
 }
