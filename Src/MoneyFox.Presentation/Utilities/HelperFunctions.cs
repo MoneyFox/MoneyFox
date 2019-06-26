@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace MoneyFox.Presentation.Utilities
 {
@@ -39,15 +40,15 @@ namespace MoneyFox.Presentation.Utilities
             {
                 int decimalSeparatorIndex = 0;
                 int punctuationCount = 0;
-                string decimalsString = "";
+                var stringBuilder = new StringBuilder();
 
                 foreach (char c in amount)
                 {
-                    if (!Char.IsPunctuation(c))
+                    if (!char.IsPunctuation(c))
                     {
-                        decimalsString += c;
-
-                    } else
+                        stringBuilder.Append(c);
+                    } 
+                    else
                     {
                         punctuationCount++;
                         if (amount.IndexOf(c) >= amount.Length - 3)
@@ -60,6 +61,7 @@ namespace MoneyFox.Presentation.Utilities
 
                 if (punctuationCount > decimalSeparatorIndex) return amount;
 
+                var decimalsString = stringBuilder.ToString();
                 amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) +
                          CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator +
                          decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
