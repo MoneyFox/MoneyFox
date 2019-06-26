@@ -85,23 +85,39 @@
 
                                             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 
-                                                <Label Text="{StaticResource Transfer}" 
-                                                       Style="{StaticResource MaterialDesignImageLabelStyle}"
-                                                       IsVisible="{Binding IsTransfer}" 
-                                                       HeightRequest="20"
-                                                       WidthRequest="20"  />
+                                                <Image HeightRequest="20"
+                                                       WidthRequest="20">
+                                                    <Image.Source>
+                                                        <FontImageSource
+                                                            Glyph="{StaticResource Transfer}"
+                                                            FontFamily="{DynamicResource MaterialFontFamily}"
+                                                            Size="20"
+                                                            Color="{DynamicResource PrimaryFontColor}" />
+                                                    </Image.Source>
+                                                </Image>
 
-                                                <Label Text="{StaticResource Recurring}" 
-                                                       Style="{StaticResource MaterialDesignImageLabelStyle}"
-                                                       IsVisible="{Binding IsRecurring}" 
-                                                       HeightRequest="20"
-                                                       WidthRequest="20"  />
+                                                <Image HeightRequest="20"
+                                                       WidthRequest="20">
+                                                    <Image.Source>
+                                                        <FontImageSource
+                                                            Glyph="{StaticResource Recurring}"
+                                                            FontFamily="{DynamicResource MaterialFontFamily}"
+                                                            Size="20"
+                                                            Color="{DynamicResource PrimaryFontColor}" />
+                                                    </Image.Source>
+                                                </Image>
 
-                                                <Label Text="{StaticResource Cleared}" 
-                                                       Style="{StaticResource MaterialDesignImageLabelStyle}"
-                                                       IsVisible="{Binding IsCleared}" 
-                                                       HeightRequest="20"
-                                                       WidthRequest="20"  />
+                                                <Image HeightRequest="20"
+                                                       WidthRequest="20">
+                                                    <Image.Source>
+                                                        <FontImageSource
+                                                            Glyph="{StaticResource Cleared}"
+                                                            FontFamily="{DynamicResource MaterialFontFamily}"
+                                                            Size="20"
+                                                            Color="{DynamicResource PrimaryFontColor}" />
+                                                    </Image.Source>
+                                                </Image>
+                                                
                                             </StackLayout>
                                         </Grid>
                                     </StackLayout>
