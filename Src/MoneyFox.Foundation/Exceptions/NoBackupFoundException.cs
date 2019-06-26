@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace MoneyFox.Foundation.Exceptions
 {
@@ -28,8 +29,11 @@ namespace MoneyFox.Foundation.Exceptions
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         /// <param name="exception">Inner Exception of the backup exception.</param>
-        public NoBackupFoundException(string message, Exception exception)
-            : base(message, exception)
+        public NoBackupFoundException(string message, Exception exception) : base(message, exception)
+        {
+        }
+        
+        protected NoBackupFoundException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

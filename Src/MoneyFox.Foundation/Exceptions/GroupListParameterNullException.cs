@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace MoneyFox.Foundation.Exceptions
 {
@@ -13,6 +14,10 @@ namespace MoneyFox.Foundation.Exceptions
         }
 
         public GroupListParameterNullException(string message, Exception innerException) : base(message, innerException)
+        {
+        }
+
+        protected GroupListParameterNullException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

@@ -100,7 +100,7 @@ namespace MoneyFox.Presentation.Services
                         break;
 
                     default:
-                        throw new MoneyFoxInvalidPaymentTypeException();
+                        throw new InvalidPaymentTypeException();
                 }
             return balance;
         }
@@ -133,7 +133,7 @@ namespace MoneyFox.Presentation.Services
                         balance = HandleTransferAmount(payment, balance, account.Id);
                         break;
                     default:
-                        throw new MoneyFoxInvalidPaymentTypeException();
+                        throw new InvalidPaymentTypeException();
                 }
             return balance;
         }

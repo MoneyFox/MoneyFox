@@ -8,9 +8,9 @@ namespace MoneyFox.Foundation.Exceptions
     ///     A custom format exception who contains more specific information.
     /// </summary>
     [Serializable]
-    public class MoneyFoxExtendedFormatException : Exception
+    public class ExtendedFormatException : Exception
     {
-        public MoneyFoxExtendedFormatException()
+        public ExtendedFormatException()
         {
         }
 
@@ -18,7 +18,7 @@ namespace MoneyFox.Foundation.Exceptions
         ///     Creates an Format Exception and will add additional information about your culture.
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
-        public MoneyFoxExtendedFormatException(string message) :
+        public ExtendedFormatException(string message) :
             base(GetMessageWithRegionInfo(message, string.Empty))
         {
         }
@@ -28,16 +28,16 @@ namespace MoneyFox.Foundation.Exceptions
         /// </summary>
         /// <param name="exception">Inner Exception of the backup exception.</param>
         /// <param name="textToParse">The text the system couldn't parse.</param>
-        public MoneyFoxExtendedFormatException(Exception exception, string textToParse)
+        public ExtendedFormatException(Exception exception, string textToParse)
             : base(GetMessageWithRegionInfo(exception.Message, textToParse), exception)
         {
         }
 
-        public MoneyFoxExtendedFormatException(string message, Exception innerException) : base(message, innerException)
+        public ExtendedFormatException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
-        protected MoneyFoxExtendedFormatException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected ExtendedFormatException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
 

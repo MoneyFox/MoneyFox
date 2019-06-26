@@ -63,7 +63,7 @@ namespace MoneyFox.Presentation.ViewModels
 
                 navigationService.GoBack();
             }
-            catch (MoneyFoxInvalidEndDateException)
+            catch (InvalidEndDateException)
             {
                 await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
             }
