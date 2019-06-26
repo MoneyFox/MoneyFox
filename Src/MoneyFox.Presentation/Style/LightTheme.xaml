@@ -19,6 +19,7 @@
     <Color x:Key="FrameHighlightColor">White</Color>
     
     <!-- Font Colors -->
+    <Color x:Key="InvertedPrimaryFontColor">White</Color>
     <Color x:Key="PrimaryFontColor">Black</Color>
     <Color x:Key="DeemphasizedColor">#5A6570</Color>
     <Color x:Key="HeaderColor">#b4b2b0</Color>
