@@ -1,11 +1,10 @@
-﻿using System.Threading.Tasks;
-using Windows.ApplicationModel.Background;
+﻿using Windows.ApplicationModel.Background;
 using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Uwp.Tasks;
 
 namespace MoneyFox.Uwp.Services
 {
-    internal class BackgroundTaskService
+    internal static class BackgroundTaskService
     {
         public static void RegisterBackgroundTasks()
         {
