@@ -43,15 +43,15 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            if (ConfigurationManager.AppSettings == null)
-            {
-                ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
-            }
+//            if (ConfigurationManager.AppSettings == null)
+//            {
+//                ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+//            }
 
-#if !DEBUG
-            AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
-                   typeof(Analytics), typeof(Crashes));
-#endif
+//#if !DEBUG
+//            AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
+//                   typeof(Analytics), typeof(Crashes));
+//#endif
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
