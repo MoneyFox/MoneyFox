@@ -3,34 +3,30 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Presentation.ViewModels.Statistic;
+using NLog;
 
 namespace MoneyFox.Presentation
 {
     public class ViewModelLocator
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         static ViewModelLocator()
         {
             if (!ServiceLocator.IsLocationProviderSet)
             {
-                RegisterServices();
+                if (ViewModelBase.IsInDesignModeStatic)
+                {
+                    RegisterServices(new ContainerBuilder());
+                }
             }
         }
 
-        public static void RegisterServices(ContainerBuilder registrations= null)
+        public static void RegisterServices(ContainerBuilder registrations)
         {
-            IContainer container = null;
-
-            // you only need this if-clause if you'd like to use design-time data which is only supported on XAML-based platforms
-            
-            if (ViewModelBase.IsInDesignModeStatic)
-            {
-                container = new ContainerBuilder().Build();
-            }
-            else
-            {
-                container = registrations?.Build();
-            }
+            var container = registrations.Build();
 
             if (container != null)
             {
@@ -60,7 +56,7 @@ namespace MoneyFox.Presentation
         public static string About => nameof(AboutViewModel);
 
         public static ShellViewModel ShellVm => ServiceLocator.Current.GetInstance<ShellViewModel>();
-        public static AccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<AccountListViewModel>();
+        public static IAccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<IAccountListViewModel>();
         public static CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
         public static PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         public static SelectCategoryListViewModel SelectCategoryListVm => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
