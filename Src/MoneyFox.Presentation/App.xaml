@@ -49,12 +49,7 @@
                 <Setter Property="Margin" Value="{DynamicResource MediumLeftTopRightBottomMargin}" />
                 <Setter Property="Padding" Value="3" />
             </Style>
-
-            <Style x:Key="MaterialDesignImageLabelStyle" TargetType="Label">
-                <Setter Property="FontFamily" Value="{DynamicResource MaterialFontFamily}" />
-                <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
-            </Style>
-
+            
             <Style x:Key="DefaultDatePickerStyle" TargetType="DatePicker">
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
             </Style>

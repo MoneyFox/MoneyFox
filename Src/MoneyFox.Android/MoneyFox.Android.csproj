@@ -53,7 +53,7 @@
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
-    <AndroidSupportedAbis>armeabi-v7a;arm64-v8a</AndroidSupportedAbis>
+    <AndroidSupportedAbis>armeabi-v7a;x86;arm64-v8a</AndroidSupportedAbis>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <EnableProguard>false</EnableProguard>
@@ -61,6 +61,7 @@
     <CodeAnalysisRuleSet>MoneyFox.Android.ruleset</CodeAnalysisRuleSet>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidUseAapt2>false</AndroidUseAapt2>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|AnyCPU'">
     <OutputPath>bin\ReleaseUWP\</OutputPath>

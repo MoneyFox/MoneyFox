@@ -85,35 +85,35 @@
 
                                             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
 
-                                                <Image HeightRequest="20"
-                                                       WidthRequest="20">
+                                                <Image HeightRequest="15"
+                                                       WidthRequest="15"
+                                                       IsVisible="{Binding IsTransfer}" >
                                                     <Image.Source>
                                                         <FontImageSource
                                                             Glyph="{StaticResource Transfer}"
                                                             FontFamily="{DynamicResource MaterialFontFamily}"
-                                                            Size="20"
                                                             Color="{DynamicResource PrimaryFontColor}" />
                                                     </Image.Source>
                                                 </Image>
 
-                                                <Image HeightRequest="20"
-                                                       WidthRequest="20">
+                                                <Image HeightRequest="15"
+                                                       WidthRequest="15"
+                                                       IsVisible="{Binding IsRecurring}" >
                                                     <Image.Source>
                                                         <FontImageSource
                                                             Glyph="{StaticResource Recurring}"
                                                             FontFamily="{DynamicResource MaterialFontFamily}"
-                                                            Size="20"
                                                             Color="{DynamicResource PrimaryFontColor}" />
                                                     </Image.Source>
                                                 </Image>
 
-                                                <Image HeightRequest="20"
-                                                       WidthRequest="20">
+                                                <Image HeightRequest="15"
+                                                       WidthRequest="15"
+                                                       IsVisible="{Binding IsCleared}">
                                                     <Image.Source>
                                                         <FontImageSource
                                                             Glyph="{StaticResource Cleared}"
                                                             FontFamily="{DynamicResource MaterialFontFamily}"
-                                                            Size="20"
                                                             Color="{DynamicResource PrimaryFontColor}" />
                                                     </Image.Source>
                                                 </Image>
