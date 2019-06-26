@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Configurations;
 using MoneyFox.DataLayer.Entities;
+using System;
 
 namespace MoneyFox.DataLayer
 {
@@ -42,8 +43,12 @@ namespace MoneyFox.DataLayer
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ThrowIfNull(modelBuilder);
+
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         }
+
+        private void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));  }
     }
 }

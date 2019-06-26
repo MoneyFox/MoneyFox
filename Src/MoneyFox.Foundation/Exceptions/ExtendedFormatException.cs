@@ -29,7 +29,7 @@ namespace MoneyFox.Foundation.Exceptions
         /// <param name="exception">Inner Exception of the backup exception.</param>
         /// <param name="textToParse">The text the system couldn't parse.</param>
         public ExtendedFormatException(Exception exception, string textToParse)
-            : base(GetMessageWithRegionInfo(exception.Message, textToParse), exception)
+            : base(GetMessageWithRegionInfo(exception?.Message ?? "", textToParse), exception)
         {
         }
 
