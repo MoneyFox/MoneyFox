@@ -43,6 +43,8 @@ namespace MoneyFox.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            ParentActivityWrapper.ParentActivity = this;
+
             if (ConfigurationManager.AppSettings == null)
             {
                 ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
@@ -63,8 +65,6 @@ namespace MoneyFox.Droid
             LoadApplication(new App());
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             Popup.Init(this, savedInstanceState);
-
-            ParentActivityWrapper.ParentActivity = this;
 
             StartBackgroundServices();
         }
