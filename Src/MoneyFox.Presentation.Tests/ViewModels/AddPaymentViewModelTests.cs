@@ -7,12 +7,13 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MockQueryable.Moq;
 using MoneyFox.BusinessLogic;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Facades;
 using Moq;
+using Should;
 using Xunit;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -39,6 +40,88 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             crudServiceMock.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
                            .Returns(new List<AccountViewModel>().AsQueryable().BuildMockDbQuery().Object);
+        }
+
+        [Theory]
+        [InlineData(PaymentType.Expense)]
+        [InlineData(PaymentType.Income)]
+        [InlineData(PaymentType.Transfer)]
+        public async Task Initialize_PaymentHasCorrectType(PaymentType type)
+        {
+            // Arrange
+            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
+                .ReturnsAsync(OperationResult.Succeeded());
+
+            var addPaymentVm = new AddPaymentViewModel(paymentServiceMock.Object,
+                                                       crudServiceMock.Object,
+                                                       dialogServiceMock.Object,
+                                                       settingsFacadeMock.Object,
+                                                       backupServiceMock.Object,
+                                                       navigationServiceMock.Object);
+
+            addPaymentVm.SelectedPayment.Type = type;
+
+            // Act
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
+
+            // Assert
+            addPaymentVm.SelectedPayment.Type.ShouldEqual(type);
+        }
+
+        [Theory]
+        [InlineData(PaymentType.Expense)]
+        [InlineData(PaymentType.Income)]
+        public async Task Initialize_IncomeExpense_PaymentChargedAccountNotNull(PaymentType type)
+        {
+            // Arrange
+            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
+                .ReturnsAsync(OperationResult.Succeeded());
+
+            crudServiceMock.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
+                .Returns(new List<AccountViewModel> { new AccountViewModel() }.AsQueryable().BuildMock().Object);
+
+            var addPaymentVm = new AddPaymentViewModel(paymentServiceMock.Object,
+                                                       crudServiceMock.Object,
+                                                       dialogServiceMock.Object,
+                                                       settingsFacadeMock.Object,
+                                                       backupServiceMock.Object,
+                                                       navigationServiceMock.Object);
+
+            addPaymentVm.SelectedPayment.Type = type;
+
+            // Act
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
+
+            // Assert
+            addPaymentVm.SelectedPayment.ChargedAccount.ShouldNotBeNull();
+            addPaymentVm.SelectedPayment.TargetAccount.ShouldBeNull();
+        }
+
+        [Fact]
+        public async Task Initialize_Transfer_PaymentChargedAccountNotNull()
+        {
+            // Arrange
+            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
+                .ReturnsAsync(OperationResult.Succeeded());
+
+            crudServiceMock.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
+                           .Returns(new List<AccountViewModel> { new AccountViewModel(), new AccountViewModel() }.AsQueryable().BuildMock().Object);
+
+            var addPaymentVm = new AddPaymentViewModel(paymentServiceMock.Object,
+                                                       crudServiceMock.Object,
+                                                       dialogServiceMock.Object,
+                                                       settingsFacadeMock.Object,
+                                                       backupServiceMock.Object,
+                                                       navigationServiceMock.Object);
+
+            addPaymentVm.SelectedPayment.Type = PaymentType.Transfer;
+
+            // Act
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
+
+            // Assert
+            addPaymentVm.SelectedPayment.ChargedAccount.ShouldNotBeNull();
+            addPaymentVm.SelectedPayment.TargetAccount.ShouldNotBeNull();
         }
 
         [Fact]

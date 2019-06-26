@@ -26,7 +26,7 @@ namespace MoneyFox.Presentation.Views
                 IconImageSource = "ic_save.png"
             });
 
-            ViewModel.PaymentType = paymentType;
+            ViewModel.SelectedPayment.Type = paymentType;
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
     }

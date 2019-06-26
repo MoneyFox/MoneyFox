@@ -30,21 +30,13 @@ namespace MoneyFox.Presentation.ViewModels
             this.paymentService = paymentService;
             this.navigationService = navigationService;
             this.dialogService = dialogService;
-
-            SelectedPayment = new PaymentViewModel
-            {
-                Type = PaymentType
-            };
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
         
-        public PaymentType PaymentType { get; set; }
-
         protected override async Task Initialize()
         {
-            
-            Title = PaymentTypeHelper.GetViewTitleForType(PaymentType, false);
+            Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, false);
 
             await base.Initialize();
 
