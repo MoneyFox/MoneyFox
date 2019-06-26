@@ -21,18 +21,18 @@
 
             <Frame Style="{StaticResource HighlightFrame}">
                 <SearchBar x:Name="SearchBar"
-                       Style="{StaticResource DefaultSearchBarStyle}"
-                       Grid.Row="0"
-                       VerticalOptions="Start" 
-                       Placeholder="{Binding Resources[SearchLabel]}"
-                       TextChanged="SearchTermChanged" />
+                           Style="{StaticResource DefaultSearchBarStyle}"
+                           Grid.Row="0"
+                           VerticalOptions="Start"
+                           Placeholder="{Binding Resources[SearchLabel]}"
+                           TextChanged="SearchTermChanged" />
             </Frame>
 
             <ListView x:Name="CategoryList"
                       Grid.Row="1"
                       ItemsSource="{Binding CategoryList}"
                       HasUnevenRows="True"
-                      CachingStrategy="RecycleElement"
+                      CachingStrategy="RecycleElementAndDataTemplate"
                       IsGroupingEnabled="True"
                       SeparatorVisibility="None"
                       GroupShortNameBinding="{Binding Key}">

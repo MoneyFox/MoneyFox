@@ -16,7 +16,8 @@
     <ContentPage.Content>
         <ListView x:Name="SettingsList"
                   ItemsSource="{Binding SettingsList}" 
-                  RowHeight="65" 
+                  RowHeight="65"
+                  CachingStrategy="RecycleElementAndDataTemplate"
                   SeparatorVisibility="None" >
             
             <ListView.ItemTemplate>

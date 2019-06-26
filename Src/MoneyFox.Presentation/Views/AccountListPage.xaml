@@ -31,7 +31,7 @@
                 <ListView x:Name="AccountsList"
                           ItemsSource="{Binding Accounts}"
                           HasUnevenRows="True"
-                          CachingStrategy="RecycleElement"
+                          CachingStrategy="RecycleElementAndDataTemplate"
                           IsGroupingEnabled="True"
                           SeparatorVisibility="None">
 
