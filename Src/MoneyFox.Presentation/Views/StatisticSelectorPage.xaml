@@ -23,7 +23,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource SmallLeftRightTopMargin}"
+                        <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                            Style="{StaticResource ListItemStyle}">
                             <StackLayout Orientation="Vertical"
                                          Padding="3"
