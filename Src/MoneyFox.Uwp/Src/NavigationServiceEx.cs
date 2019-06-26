@@ -14,7 +14,7 @@ namespace MoneyFox.Uwp
 
         public event NavigationFailedEventHandler NavigationFailed;
 
-        private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
+        private readonly Dictionary<string, Type> pages = new Dictionary<string, Type>();
 
         private Frame frame;
         private object lastParamUsed;
@@ -64,10 +64,10 @@ namespace MoneyFox.Uwp
         public void NavigateTo(string pageKey, object parameter = null)
         {
             Type page;
-            lock (_pages)
+            lock (pages)
             {
-                if (!_pages.TryGetValue(pageKey, out page))
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageNotFound", pageKey), nameof(pageKey));
+                if (!pages.TryGetValue(pageKey, out page))
+                    throw new ArgumentException(string.Format("Page Not Found. Key: {0}", pageKey), nameof(pageKey));
             }
 
             if (Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(lastParamUsed))
@@ -81,25 +81,24 @@ namespace MoneyFox.Uwp
 
         public void Configure(string key, Type pageType)
         {
-            lock (_pages)
+            lock (pages)
             {
-                if (_pages.ContainsKey(key))
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExKeyIsInNavigationService", key));
+                if (pages.ContainsKey(key))
+                    throw new ArgumentException(string.Format("Key is not in page collection. Key: {0}", key));
 
-                if (_pages.Any(p => p.Value == pageType))
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExTypeAlreadyConfigured",
-                                                              _pages.First(p => p.Value == pageType).Key));
+                if (pages.Any(p => p.Value == pageType))
+                    throw new ArgumentException(string.Format("Type Already Configured. Type: {0}", pages.First(p => p.Value == pageType).Key));
 
-                _pages.Add(key, pageType);
+                pages.Add(key, pageType);
             }
         }
 
         public string GetNameOfRegisteredPage(Type page)
         {
-            lock (_pages)
+            lock (pages)
             {
-                if (_pages.ContainsValue(page))
-                    return _pages.FirstOrDefault(p => p.Value == page).Key;
+                if (pages.ContainsValue(page))
+                    return pages.FirstOrDefault(p => p.Value == page).Key;
                 else
                     throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknown", page.Name));
             }
