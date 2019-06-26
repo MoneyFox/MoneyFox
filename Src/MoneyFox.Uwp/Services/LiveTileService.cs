@@ -23,9 +23,9 @@ namespace MoneyFox.Uwp.Services
             try
             {
                 TileUpdateManager.CreateTileUpdaterForApplication().Update(notification);
-            } catch (Exception)
+            } catch (Exception ex)
             {
-                // TODO WTS: Updating LiveTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                logger.Warn(ex);
             }
         }
 
@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp.Services
                 return false;
             } catch (Exception)
             {
-                // TODO WTS: Adding SecondaryTile can fail in rare conditions, please handle exceptions as appropriate to your scenario.
+                logger.Warn(ex);
                 return false;
             }
         }
