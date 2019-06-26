@@ -54,7 +54,7 @@
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidSupportedAbis>armeabi-v7a;arm64-v8a</AndroidSupportedAbis>
-    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
+    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
     <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <EnableProguard>false</EnableProguard>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
