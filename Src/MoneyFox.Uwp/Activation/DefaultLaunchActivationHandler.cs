@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using CommonServiceLocator;
+using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.Activation
 {

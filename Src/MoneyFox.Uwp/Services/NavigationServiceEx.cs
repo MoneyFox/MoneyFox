@@ -6,7 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using GalaSoft.MvvmLight.Views;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Uwp.Services
 {
     public class NavigationServiceEx : INavigationService
     {

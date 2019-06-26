@@ -15,6 +15,7 @@ using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.Views;
 using MoneyFox.Uwp.Helpers;
 using WinUI = Microsoft.UI.Xaml.Controls;
+using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp
 {
