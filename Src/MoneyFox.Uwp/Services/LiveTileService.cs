@@ -39,7 +39,7 @@ namespace MoneyFox.Uwp.Services
                 }
 
                 return false;
-            } catch (Exception)
+            } catch (Exception ex)
             {
                 logger.Warn(ex);
                 return false;

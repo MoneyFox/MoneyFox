@@ -21,8 +21,6 @@ namespace MoneyFox.Uwp.Views
     /// </summary>
     public sealed partial class AccountListView
     {
-        private ElementTheme Theme = ThemeSelectorService.Theme;
-
         /// <summary>
         ///     Initialize View.
         /// </summary>
