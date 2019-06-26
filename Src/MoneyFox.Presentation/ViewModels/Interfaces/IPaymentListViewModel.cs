@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation.Groups;
 using MoneyFox.Presentation.Commands;
+using MoneyFox.Presentation.Groups;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {

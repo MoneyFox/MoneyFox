@@ -7,14 +7,13 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
-using MoneyFox.Foundation.Groups;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
+using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.ServiceLayer.Facades;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels

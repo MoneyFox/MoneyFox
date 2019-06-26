@@ -2,8 +2,8 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
-using MoneyFox.Foundation.Groups;
 using MoneyFox.Presentation.Commands;
+using MoneyFox.Presentation.Groups;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels

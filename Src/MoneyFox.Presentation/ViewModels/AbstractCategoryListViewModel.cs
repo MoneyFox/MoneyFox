@@ -8,9 +8,9 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Entities;
-using MoneyFox.Foundation.Groups;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
+using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.QueryObject;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
