@@ -85,13 +85,10 @@ namespace MoneyFox.Presentation.Services
         /// <inheritdoc />
         public async Task<OperationResult> DeletePayment(PaymentViewModel paymentViewModel)
         {
-            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)
-                ) return OperationResult.Succeeded();
+            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return OperationResult.Succeeded();
 
             if (paymentViewModel.IsRecurring
-                && await dialogService
-                    .ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage)
-                    )
+                && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
             {
                 await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id);
             }
