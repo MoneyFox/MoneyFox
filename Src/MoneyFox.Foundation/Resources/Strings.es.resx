@@ -423,9 +423,6 @@
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>No hay cuentas. Añade una pulsando en el botón de añadir de la parte inferior.</value>
   </data>
-  <data name="CreateBackupInformationLabel" xml:space="preserve">
-    <value>Sus datos se guardarán en tu cuenta de OneDrive. Usted los encontrará en una nueva carpeta llamada "MoneyFoxBackupManager".</value>
-  </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Crear copia de seguridad</value>
   </data>
@@ -778,5 +775,20 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   </data>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
     <value>Leave a feedback!</value>
+  </data>
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
+    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+  </data>
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
+    <value>Modify Recurrence</value>
+  </data>
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
+    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+  </data>
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
+    <value>Override Local Data</value>
+  </data>
+  <data name="BackupInformationLabel" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
 </root>
