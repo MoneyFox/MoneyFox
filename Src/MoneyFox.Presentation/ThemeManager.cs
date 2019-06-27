@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Presentation
 {
-    public class ThemeManager
+    public static class ThemeManager
     {
         /// <summary>
         /// Changes the theme of the app.

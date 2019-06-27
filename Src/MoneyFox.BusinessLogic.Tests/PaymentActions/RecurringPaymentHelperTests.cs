@@ -12,12 +12,6 @@ namespace MoneyFox.BusinessLogic.Tests.PaymentActions
     [ExcludeFromCodeCoverage]
     public class RecurringPaymentHelperTests
     {
-        [Fact]
-        public void CheckIfRepeatable_NullRecurring_Exception()
-        {
-
-        }
-
         [Theory]
         [InlineData(PaymentRecurrence.Daily, 1, true)]
         [InlineData(PaymentRecurrence.Weekly, 8, true)]
@@ -63,7 +57,6 @@ namespace MoneyFox.BusinessLogic.Tests.PaymentActions
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
                 .ShouldBeFalse();
-
         }
 
         [Fact]

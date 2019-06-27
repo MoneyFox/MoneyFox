@@ -75,7 +75,6 @@ namespace MoneyFox.Droid.Renderer {
 
                 var imageFile = elementImage?.File;
 
-
                 if (imageFile != null) {
                     fab.SetImageDrawable(Context.GetDrawable(imageFile));
                 }
