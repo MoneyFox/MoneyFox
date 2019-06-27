@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Configurations;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Foundation;
 using System;
+using System.IO;
 
 namespace MoneyFox.DataLayer
 {
@@ -26,6 +28,8 @@ namespace MoneyFox.DataLayer
         /// </summary>
         public static string DbPath { get; set; }
 
+        private const string databaseName = "moneyfox3.db";
+
         /// <summary>
         ///     This is called when before the db is access.
         ///     Set DbPath before, so that we use here what db we have to use.
@@ -33,8 +37,30 @@ namespace MoneyFox.DataLayer
         /// <param name="optionsBuilder">Optionbuilder who is used.</param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={DbPath}");
+            String databasePath = "";
+            switch (ExecutingPlatform.Current)
+            {
+                case AppPlatform.iOS:
+                    SQLitePCL.Batteries_V2.Init();
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", databaseName); ;
+                    break;
+                case AppPlatform.Android:
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), databaseName);
+                    break;
+
+                case AppPlatform.UWP:
+                    databasePath = databaseName;
+                    break;
+
+                default:
+                    throw new NotImplementedException("Platform not supported");
+            }
+
+            // Specify that we will use sqlite and the path of the database here
+            optionsBuilder.UseSqlite($"Filename={databasePath}");
         }
+
+
 
         /// <summary>
         ///     Called when the models are created.

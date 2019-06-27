@@ -13,6 +13,7 @@ using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Views;
 using PCLAppConfig;
+using MoneyFox.Foundation;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -66,6 +67,7 @@ namespace MoneyFox.Uwp.Services
 
         private async Task InitializeAsync(object activationArgs)
         {
+            ExecutingPlatform.Current = AppPlatform.UWP;
             LoggerService.Initialize();
             
             ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);

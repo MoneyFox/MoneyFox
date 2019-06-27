@@ -44,6 +44,7 @@ namespace MoneyFox.Droid
         protected override void OnCreate(Bundle savedInstanceState)
         {
             ParentActivityWrapper.ParentActivity = this;
+            ExecutingPlatform.Current = AppPlatform.Android;
 
             if (ConfigurationManager.AppSettings == null)
             {

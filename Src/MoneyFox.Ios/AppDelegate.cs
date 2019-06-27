@@ -31,6 +31,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
+using MoneyFox.Foundation;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -56,11 +57,12 @@ namespace MoneyFox.iOS
             InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
 
+            ExecutingPlatform.Current = AppPlatform.iOS;
+
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
             EfCoreContext.DbPath = GetLocalFilePath();
-            Batteries.Init();
             RegisterServices();
 
             Forms.Init();
