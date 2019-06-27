@@ -423,9 +423,6 @@
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
   </data>
-  <data name="CreateBackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in a new folder called “MoneyFoxBackupManager”.</value>
-  </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Create Backup</value>
   </data>
@@ -694,5 +691,104 @@
   </data>
   <data name="BackgroundJobTitle" xml:space="preserve">
     <value>Background Job</value>
+  </data>
+  <data name="PersonalizationTitle" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
+  <data name="ShortcutsTitle" xml:space="preserve">
+    <value>Shortcuts</value>
+  </data>
+  <data name="LiveTileAccountBalance" xml:space="preserve">
+    <value>Bal. : {0}</value>
+  </data>
+  <data name="LiveTileAccountName" xml:space="preserve">
+    <value>Account: {0}</value>
+  </data>
+  <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="LiveTileLastMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="LiveTilePastPayments" xml:space="preserve">
+    <value>Past Payments</value>
+  </data>
+  <data name="LiveTileUpcommingPayments" xml:space="preserve">
+    <value>Upcoming Payments</value>
+  </data>
+  <data name="BalanceLabel" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
+    <value>Last Executions:</value>
+  </data>
+  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
+    <value>Paymentclearing:</value>
+  </data>
+  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
+    <value>Create Recurring Payments:</value>
+  </data>
+  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
+    <value>Backup Sync:</value>
+  </data>
+  <data name="PersonalizationInfoLabel" xml:space="preserve">
+    <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
+  </data>
+  <data name="ThemeDarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="ThemeLightLabel" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SettingsPersonalizationDescription" xml:space="preserve">
+    <value>Choose your prefered Theme.</value>
+  </data>
+  <data name="SettingsPersonalizationLabel" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
+  <data name="LiveTileWideandLargeIncomeFutureText" xml:space="preserve">
+    <value>{0} will receive {1}</value>
+  </data>
+  <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
+    <value>{0} to {1}</value>
+  </data>
+  <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
+    <value>{0} to be taken from {1}</value>
+  </data>
+  <data name="LiveTileWideandLargePaymentPastText" xml:space="preserve">
+    <value>{0} taken from {1}</value>
+  </data>
+  <data name="PintAccountLabel" xml:space="preserve">
+    <value>Pin account to start menu</value>
+  </data>
+  <data name="CategorySummaryPlaceHolderLabel" xml:space="preserve">
+    <value>No statistic items to display. Try to adjust the time range.</value>
+  </data>
+  <data name="MonthlyAverageLabel" xml:space="preserve">
+    <value>Last year monthly average: </value>
+  </data>
+  <data name="ContributionsLabel" xml:space="preserve">
+    <value>Contributions</value>
+  </data>
+  <data name="InfoLabel" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="LeaveFeedbackLabel" xml:space="preserve">
+    <value>Leave a feedback!</value>
+  </data>
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
+    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+  </data>
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
+    <value>Modify Recurrence</value>
+  </data>
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
+    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+  </data>
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
+    <value>Override Local Data</value>
+  </data>
+  <data name="BackupInformationLabel" xml:space="preserve">
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
 </root>
