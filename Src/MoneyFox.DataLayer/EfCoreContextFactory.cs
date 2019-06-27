@@ -2,9 +2,9 @@
 
 namespace MoneyFox.DataLayer
 {
-    public class EfCoreContextHelper
+    public class EfCoreContextFactory
     {
-        public EfCoreContext CreateContext()
+        public EfCoreContext Build()
         {
             EfCoreContext context = new EfCoreContext();
             context.Database.Migrate();

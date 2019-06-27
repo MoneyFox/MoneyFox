@@ -29,7 +29,7 @@ namespace MoneyFox.DataLayer
                     break;
 
                 default:
-                    throw new NotImplementedException("Platform not supported");
+                    throw new NotSupportedException("Platform not supported");
             }
 
             logger.Debug("Database Path: {dbPath}", databasePath);

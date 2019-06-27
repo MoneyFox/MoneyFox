@@ -49,7 +49,7 @@ namespace MoneyFox.Presentation
 
         private void SetupContextAndCrudServices(ContainerBuilder builder)
         {
-            builder.Register(c => new EfCoreContextHelper().CreateContext())
+            builder.Register(c => new EfCoreContextFactory().Build())
                    .As<DbContext>()
                    .AsSelf();
 
