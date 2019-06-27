@@ -9,6 +9,7 @@ using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Uwp.Business;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.Uwp.Tasks
 {
@@ -22,7 +23,7 @@ namespace MoneyFox.Uwp.Tasks
         {
             var deferral = taskInstance.GetDeferral();
             Debug.WriteLine("Sync Backup started.");
-            EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
+            ExecutingPlatform.Current = AppPlatform.UWP;
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;

@@ -5,8 +5,6 @@ using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
@@ -25,7 +23,6 @@ namespace MoneyFox.Uwp
 		{
 			InitializeComponent();
 
-            EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
             Suspending += OnSuspending;
             UnhandledException += OnUnhandledException;
 

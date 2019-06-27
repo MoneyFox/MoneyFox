@@ -18,6 +18,7 @@ using MoneyFox.Presentation.Services;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.Droid.Jobs
 {
@@ -63,9 +64,7 @@ namespace MoneyFox.Droid.Jobs
 
             try
             {
-                EfCoreContext.DbPath =
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                                 DatabaseConstants.DB_NAME);
+                ExecutingPlatform.Current = AppPlatform.Android;
 
                 var pca = PublicClientApplicationBuilder
                     .Create(ServiceConstants.MSAL_APPLICATION_ID)

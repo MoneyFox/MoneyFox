@@ -5,9 +5,8 @@ using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.Uwp.Tasks
 {
@@ -20,7 +19,8 @@ namespace MoneyFox.Uwp.Tasks
         {
             var deferral = taskInstance.GetDeferral();
             Debug.WriteLine("ClearPayment started");
-            EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
+            ExecutingPlatform.Current = AppPlatform.UWP;
+
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try

@@ -191,7 +191,7 @@ namespace MoneyFox.BusinessLogic.Backup
                     fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
                 }
 
-                var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, EfCoreContext.DbPath, true);
+                var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabasePathHelper.GetDbPath(), true);
 
                 if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
             }

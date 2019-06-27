@@ -37,12 +37,6 @@ namespace MoneyFox.Droid
 
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
 
-            EfCoreContext.DbPath =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                             DatabaseConstants.DB_NAME);
-
-            logManager.Debug("Database Path: {dbPath}", EfCoreContext.DbPath);
-
             RegisterServices();
             base.OnCreate();
         }

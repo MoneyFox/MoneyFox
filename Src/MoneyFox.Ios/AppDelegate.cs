@@ -56,13 +56,11 @@ namespace MoneyFox.iOS
         {
             InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
-
             ExecutingPlatform.Current = AppPlatform.iOS;
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
-            EfCoreContext.DbPath = GetLocalFilePath();
             RegisterServices();
 
             Forms.Init();
@@ -127,18 +125,6 @@ namespace MoneyFox.iOS
 
             return Path.Combine(libFolder, "moneyfox.log");
         }
-        private static string GetLocalFilePath()
-        {
-            string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
-
-            if (!Directory.Exists(libFolder))
-            {
-                Directory.CreateDirectory(libFolder);
-            }
-
-            return Path.Combine(libFolder, DatabaseConstants.DB_NAME);
-        }
 
         // Needed for auth
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
@@ -186,8 +172,6 @@ namespace MoneyFox.iOS
 
             try
             {
-                EfCoreContext.DbPath = GetLocalFilePath();
-
                 var pca = PublicClientApplicationBuilder
                     .Create(ServiceConstants.MSAL_APPLICATION_ID)
                     .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
@@ -221,7 +205,6 @@ namespace MoneyFox.iOS
             try
             {
                 Debug.WriteLine("ClearPayments Job started");
-                EfCoreContext.DbPath = GetLocalFilePath();
 
                 var context = new EfCoreContext();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
@@ -244,7 +227,6 @@ namespace MoneyFox.iOS
             try
             {
                 Debug.WriteLine("RecurringPayment Job started.");
-                EfCoreContext.DbPath = GetLocalFilePath();
 
                 var context = new EfCoreContext();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))

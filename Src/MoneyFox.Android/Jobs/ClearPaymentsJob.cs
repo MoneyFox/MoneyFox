@@ -10,6 +10,7 @@ using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.Facades;
 using Debug = System.Diagnostics.Debug;
@@ -63,9 +64,7 @@ namespace MoneyFox.Droid.Jobs
             try
             {
                 Debug.WriteLine("ClearPayments Job started");
-                EfCoreContext.DbPath =
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                                 DatabaseConstants.DB_NAME);
+                ExecutingPlatform.Current = AppPlatform.Android;
 
                 var context = new EfCoreContext();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
