@@ -1,4 +1,5 @@
-﻿using MoneyFox.Presentation.Interfaces;
+﻿using System;
+using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.iOS
 {
@@ -6,10 +7,12 @@ namespace MoneyFox.iOS
     {
         public void StartBackupSyncTask(int interval)
         {
+            throw new NotSupportedException();
         }
 
         public void StopBackupSyncTask()
         {
+            throw new NotSupportedException();
         }
     }
 }

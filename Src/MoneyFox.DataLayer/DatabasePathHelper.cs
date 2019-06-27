@@ -1,15 +1,16 @@
 ﻿using MoneyFox.Foundation;
 using NLog;
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace MoneyFox.DataLayer
 {
     public static class DatabasePathHelper
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private const string databaseName = "moneyfox3.db";
+        private const string DATABASE_NAME = "moneyfox3.db";
 
         public static string GetDbPath()
         {
@@ -18,21 +19,21 @@ namespace MoneyFox.DataLayer
             {
                 case AppPlatform.iOS:
                     SQLitePCL.Batteries_V2.Init();
-                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", databaseName); ;
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DATABASE_NAME); ;
                     break;
                 case AppPlatform.Android:
-                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), databaseName);
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DATABASE_NAME);
                     break;
 
                 case AppPlatform.UWP:
-                    databasePath = databaseName;
+                    databasePath = DATABASE_NAME;
                     break;
 
                 default:
                     throw new NotSupportedException("Platform not supported");
             }
 
-            logger.Debug("Database Path: {dbPath}", databasePath);
+            Logger.Debug(CultureInfo.CurrentCulture, "Database Path: {dbPath}", databasePath);
             return databasePath;
         }
     }

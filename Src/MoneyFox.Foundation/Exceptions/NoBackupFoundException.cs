@@ -6,6 +6,7 @@ namespace MoneyFox.Foundation.Exceptions
     /// <summary>
     ///     This Exception is thrown when on a backup restore no backup with the right name was found.
     /// </summary>
+    [Serializable]
     public class NoBackupFoundException : Exception
     {
         /// <summary>

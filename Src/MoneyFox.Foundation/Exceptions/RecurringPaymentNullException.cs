@@ -3,6 +3,7 @@ using System.Runtime.Serialization;
 
 namespace MoneyFox.Foundation.Exceptions
 {
+    [Serializable]
     public class RecurringPaymentNullException : Exception
     {
         public RecurringPaymentNullException()

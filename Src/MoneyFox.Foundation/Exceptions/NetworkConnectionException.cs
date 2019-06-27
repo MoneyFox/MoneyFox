@@ -6,6 +6,7 @@ namespace MoneyFox.Foundation.Exceptions
     /// <summary>
     ///     This Exception is thrown when there was an issue with an internet connection.
     /// </summary>
+    [Serializable]
     public class NetworkConnectionException : Exception
     {
         /// <summary>

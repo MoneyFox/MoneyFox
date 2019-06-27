@@ -13,10 +13,6 @@ namespace MoneyFox.iOS.Renderer
     [Preserve]
     public class FloatingActionButtonRenderer : ButtonRenderer
     {
-        public static void InitRenderer()
-        {
-        }
-
         protected override void OnElementChanged(ElementChangedEventArgs<Button> e)
         {
             base.OnElementChanged(e);
