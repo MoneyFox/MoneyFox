@@ -39,10 +39,11 @@
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" >
+                                <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
+                                             Margin="0,0,0,-1">
                                     <Label Text="{Binding Key}"
                                            VerticalOptions="CenterAndExpand"
-                                           TextColor="{DynamicResource HeaderColor}" />
+                                           Style="{StaticResource ListGroupHeaderStyle}" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

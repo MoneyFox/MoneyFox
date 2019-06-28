@@ -45,10 +45,10 @@
                         <ViewCell>
                             <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
                                          HorizontalOptions="FillAndExpand"
-                                         Margin="0,0,-20,0">
+                                         Margin="0,0,-20,-1">
                                 <Label Text="{Binding Key}"
                                        VerticalOptions="CenterAndExpand"
-                                       TextColor="{DynamicResource HeaderColor}" />
+                                           Style="{StaticResource ListGroupHeaderStyle}"  />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
