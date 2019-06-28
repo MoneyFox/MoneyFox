@@ -59,25 +59,20 @@
                                     <RelativeLayout Margin="{StaticResource DefaultListItemsMargin}" 
                                                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant = 0}" >
 
-                                        <Grid x:Name="TopGrid" 
+                                        <AbsoluteLayout x:Name="TopGrid" 
                                               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant = 0}">
 
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70*" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <Label Grid.Column="0"
-                                                   Text="{Binding Category.Name}"
+                                            <Label Text="{Binding Category.Name}"
                                                    LineBreakMode="TailTruncation"
                                                    Style="{StaticResource ListItemHeaderSmallStyle}" />
 
-                                            <Label Grid.Column="1"
-                                                   HorizontalTextAlignment="End"
+                                            <Label HorizontalTextAlignment="End"
                                                    VerticalOptions="CenterAndExpand"
                                                    Style="{StaticResource SmallTextStyle}"
+                                                   AbsoluteLayout.LayoutBounds="1, .5, AutoSize, AutoSize" 
+                                                   AbsoluteLayout.LayoutFlags="XProportional"
                                                    Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
-                                        </Grid>
+                                        </AbsoluteLayout>
 
                                         <AbsoluteLayout RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TopGrid , Property=Y, Constant = 19}"
                                               RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant = 0}" >
@@ -88,7 +83,8 @@
                                                    AbsoluteLayout.LayoutBounds="0, 1, AutoSize, AutoSize"/>
 
                                             <StackLayout Orientation="Horizontal" 
-                                                         AbsoluteLayout.LayoutBounds="1, .5, AutoSize, AutoSize" AbsoluteLayout.LayoutFlags="XProportional">
+                                                         AbsoluteLayout.LayoutBounds="1, .5, AutoSize, AutoSize" 
+                                                         AbsoluteLayout.LayoutFlags="XProportional">
 
                                                 <Image HeightRequest="15"
                                                        WidthRequest="15"
