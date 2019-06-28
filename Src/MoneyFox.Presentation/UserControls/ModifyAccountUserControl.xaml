@@ -49,6 +49,7 @@
                 <!-- This delete button is only for ios, since there can be only one menu item -->
                 <Button x:Name="DeleteAccountButton"
                     Text="{Binding Resources[DeleteLabel]}"
+                    Style="{StaticResource DeleteButtonStyle}"
                     Command="{Binding DeleteCommand}"
                     Margin="0,12,0,0" >
 
@@ -58,10 +59,6 @@
                             <On Platform="Ios" Value="True" />
                         </OnPlatform>
                     </Button.IsVisible>
-
-                    <Button.Effects>
-                        <effects:DeleteButtonEffect />
-                    </Button.Effects>
                 </Button>
 
             </StackLayout>

@@ -4,8 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
-             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              Visual="Material"
              x:Class="MoneyFox.Presentation.Views.AboutPage"
@@ -26,30 +24,22 @@
                 </StackLayout>
 
                 <Label Text="{Binding Resources[ContactLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start" />
 
                 <Button Text="{Binding Resources[WebsiteLabel]}"
-                        Command="{Binding GoToWebsiteCommand}">
-                    <Button.Effects>
-                        <effects:PrimaryButtonEffect />
-                    </Button.Effects>
-                </Button>
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Command="{Binding GoToWebsiteCommand}" />
 
                 <Button Text="{Binding Resources[EmailLabel]}"
-                        Command="{Binding SendMailCommand}">
-                    <Button.Effects>
-                        <effects:PrimaryButtonEffect />
-                    </Button.Effects>
-                </Button>
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Command="{Binding SendMailCommand}" />
 
                 <Button Text="{Binding Resources[RateLabel]}"
-                        Command="{Binding RateAppCommand}">
-                    <Button.Effects>
-                        <effects:PrimaryButtonEffect />
-                    </Button.Effects>
-                </Button>
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Command="{Binding RateAppCommand}" />
 
-                <Label Text="{Binding Resources[TranslationLabel]}"
+                    <Label Text="{Binding Resources[TranslationLabel]}"
                        Style="{StaticResource DefaultTextStyle}" />
                 <Label Text="www.crowdin.com"
                        Style="{StaticResource DeemphasizedLabelStyle}"

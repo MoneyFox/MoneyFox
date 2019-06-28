@@ -43,12 +43,9 @@
                Text="{Binding Resources[TimeRangeEndLabel]}"/>
                 <DatePicker Date="{Binding EndDate}" />
 
-                <Button Text="{Binding Resources[DoneLabel]}"
-                Clicked="Button_OnClicked">
-                    <Button.Effects>
-                        <effects:PrimaryButtonEffect />
-                    </Button.Effects>
-                </Button>
+                <Button Text="{Binding Resources[DoneLabel]}" 
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Clicked="Button_OnClicked"/>
             </StackLayout>
 
         </Frame>

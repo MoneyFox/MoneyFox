@@ -43,6 +43,14 @@
                 <Setter Property="PlaceholderColor" Value="{DynamicResource DeemphasizedColor}" />
             </Style>
 
+            <Style x:Key="DefaultButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource ButtonBackgroundColor}" />
+            </Style>
+
+            <Style x:Key="DeleteButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Red" />
+            </Style>
+
             <Style x:Key="HighlightFrame" TargetType="Frame">
                 <Setter Property="BackgroundColor" Value="{DynamicResource FrameHighlightColor}" />
                 <Setter Property="CornerRadius" Value="10" />

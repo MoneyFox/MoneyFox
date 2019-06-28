@@ -3,7 +3,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"

@@ -2,7 +2,6 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    xmlns:presentation="clr-namespace:MoneyFox.Presentation"
                     x:Class="MoneyFox.Presentation.Style.DarkTheme" >
 
     <!-- Accent Colors -->
@@ -17,6 +16,7 @@
     <Color x:Key="BarItemColor">Black</Color>
     <Color x:Key="BarSelectedItemColor">White</Color>
     <Color x:Key="FrameHighlightColor">Black</Color>
+    <Color x:Key="ButtonBackgroundColor">#1a264c</Color>
 
     <!-- Font Colors -->
     <Color x:Key="InvertedPrimaryFontColor">Black</Color>

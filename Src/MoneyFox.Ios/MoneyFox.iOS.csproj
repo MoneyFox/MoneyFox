@@ -134,7 +134,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Effects\DeleteButtonEffect.cs" />
-    <Compile Include="Effects\PrimaryButtonEffect.cs" />
     <Compile Include="IosModule.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />

@@ -17,7 +17,8 @@
     <Color x:Key="BarItemColor">WhiteSmoke</Color>
     <Color x:Key="BarSelectedItemColor">#314a9b</Color>
     <Color x:Key="FrameHighlightColor">White</Color>
-    
+    <Color x:Key="ButtonBackgroundColor">#1a264c</Color>
+
     <!-- Font Colors -->
     <Color x:Key="InvertedPrimaryFontColor">White</Color>
     <Color x:Key="PrimaryFontColor">Black</Color>

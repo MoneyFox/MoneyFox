@@ -30,43 +30,34 @@
 
                 <Button Text="{Binding Resources[LoginLabel]}"
                         IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
-                        Command="{Binding LoginCommand}">
-
-                    <Button.Effects>
-                        <effects:PrimaryButtonEffect />
-                    </Button.Effects>
-                </Button>
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Command="{Binding LoginCommand}" />
 
                 <Button Text="{Binding Resources[LogoutLabel]}"
                         IsVisible="{Binding IsLoggedIn}"
-                        Command="{Binding LogoutCommand}">
-                    <Button.Effects>
-                        <effects:PrimaryButtonEffect />
-                    </Button.Effects>
-                </Button>
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Command="{Binding LogoutCommand}"/>
 
-                <StackLayout IsVisible="{Binding IsLoggedIn}" Spacing="{StaticResource DefaultSpacing}">
+                <StackLayout IsVisible="{Binding IsLoggedIn}" 
+                             Spacing="{StaticResource DefaultSpacing}">
+
                     <Label Text="{Binding Resources[BackupInformationLabel]}"
                            Style="{StaticResource DeemphasizedLabelStyle}"
                            HorizontalOptions="StartAndExpand" />
+
                     <Button x:Name="ButtonRestoreBackup"
+                            Style="{StaticResource DefaultButtonStyle}"
                             Text="{Binding Resources[CreateBackupLabel]}"
-                            Command="{Binding BackupCommand}">
-                        <Button.Effects>
-                            <effects:PrimaryButtonEffect />
-                        </Button.Effects>
-                    </Button>
+                            Command="{Binding BackupCommand}"/>
 
                     <Label Text="{Binding Resources[RestoreBackupInformationLabel]}"
                            Style="{StaticResource DeemphasizedLabelStyle}"
                            HorizontalOptions="StartAndExpand" />
 
                     <Button Text="{Binding Resources[RestoreBackupLabel]}"
-                            Command="{Binding RestoreCommand}">
-                        <Button.Effects>
-                            <effects:PrimaryButtonEffect />
-                        </Button.Effects>
-                    </Button>
+                            Style="{StaticResource DefaultButtonStyle}"
+                            Command="{Binding RestoreCommand}" />
+
                     <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}"
                                        IsVisible="{Binding IsLoadingBackupAvailability}"
                                        VerticalOptions="CenterAndExpand" HorizontalOptions="End" HeightRequest="20">
