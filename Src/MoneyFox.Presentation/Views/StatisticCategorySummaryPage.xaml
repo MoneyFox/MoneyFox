@@ -27,8 +27,8 @@
         <Grid x:Name="MainLayout">
             <ListView x:Name="CategorySummaryList"
                       ItemsSource="{Binding CategorySummary}"
-                      HasUnevenRows="True"
-                      CachingStrategy="RecycleElement">
+                      RowHeight="70"
+                      CachingStrategy="RetainElement">
 
                 <ListView.SeparatorVisibility>
                     <OnPlatform x:TypeArguments="SeparatorVisibility">
@@ -50,29 +50,26 @@
                                              Margin="{DynamicResource DefaultListItemsMargin}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
                                         <Label Grid.Column="0"
                                                Text="{Binding Label}"
+                                               LineBreakMode="TailTruncation"
                                                HorizontalOptions="StartAndExpand"
                                                Style="{StaticResource ListItemHeaderStyle}" />
 
                                         <StackLayout Grid.Column="1"
-                                                     HorizontalOptions="EndAndExpand"
+                                                     HorizontalOptions="End"
                                                      Orientation="Horizontal"
                                                      Spacing="0"
-                                                     VerticalOptions="CenterAndExpand">
+                                                     VerticalOptions="Center">
                                             <Label
                                                 Text="{Binding Value, Converter={StaticResource AmountValueConverter}}"
                                                 Style="{DynamicResource DefaultTextStyle}" />
 
-                                            <Label Text=" ("
-                                                   Style="{DynamicResource DefaultTextStyle}" />
-                                            <Label Text="{Binding Percentage}"
-                                                   Style="{DynamicResource DefaultTextStyle}" />
-                                            <Label Text="%)"
+                                            <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}"
                                                    Style="{DynamicResource DefaultTextStyle}" />
 
                                         </StackLayout>
