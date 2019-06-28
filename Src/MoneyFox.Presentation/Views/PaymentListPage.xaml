@@ -59,11 +59,12 @@
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
-                                                <ColumnDefinition Width="30*" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Column="0"
                                                    Text="{Binding Category.Name}"
+                                                   LineBreakMode="TailTruncation"
                                                    Style="{StaticResource ListItemHeaderSmallStyle}" />
 
                                             <Label Grid.Column="1"
@@ -72,15 +73,17 @@
                                                    Style="{StaticResource SmallTextStyle}"
                                                    Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
                                         </Grid>
+
                                         <Grid >
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
-                                                <ColumnDefinition Width="30*" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Column="0"
                                                Text="{Binding Note}" 
+                                               LineBreakMode="TailTruncation"
                                                Style="{StaticResource DeemphasizedSmallLabelStyle}" />
 
                                             <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand">
