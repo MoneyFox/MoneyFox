@@ -77,7 +77,7 @@
                             Glyph="{StaticResource Reset}"
                             FontFamily="{DynamicResource MaterialFontFamily}"
                             Size="33"
-                            Color="{DynamicResource InvertedPrimaryFontColor}" />
+                            Color="{DynamicResource PrimaryFontColor}" />
                     </Image.Source>
                 </Image>
             </Grid>
