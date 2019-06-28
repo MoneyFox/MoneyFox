@@ -17,7 +17,7 @@ namespace MoneyFox.Presentation
 
             AppDomain.CurrentDomain.UnhandledException += (s, e) =>
             {
-                LogManager.GetCurrentClassLogger().Fatal(e);
+                LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject);
             };
 
             ConfigureNavigation();

@@ -3,14 +3,10 @@ using System.IO;
 using Android.App;
 using Android.Runtime;
 using Autofac;
-using Java.Lang;
-using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation;
 using NLog;
 using NLog.Targets;
 using Application = Android.App.Application;
-using Exception = System.Exception;
 
 namespace MoneyFox.Droid
 {
@@ -32,9 +28,6 @@ namespace MoneyFox.Droid
             logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion());
 
             // Setup handler for uncaught exceptions.
-            AppDomain currentDomain = AppDomain.CurrentDomain;
-            currentDomain.UnhandledException += HandleExceptions;
-
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
 
             RegisterServices();
@@ -44,11 +37,6 @@ namespace MoneyFox.Droid
         void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
         {
             logManager.Fatal( e.Exception, "Application Terminating. 1");
-        }
-
-        static void HandleExceptions(object sender, UnhandledExceptionEventArgs e)
-        {
-            LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject as Exception, "Application Terminating. 2");
         }
 
         private void RegisterServices()
