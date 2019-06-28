@@ -57,7 +57,7 @@
                                           IsDestructive="True" />
                             </ViewCell.ContextActions>
 
-                            <controls:CardView Margin="{StaticResource SmallLeftRightBottomMargin}" Style="{StaticResource ListItemStyle}">
+                            <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}" Style="{StaticResource ListItemStyle}">
                                 <StackLayout Orientation="Vertical"
                                              Padding="3"
                                              Spacing="{StaticResource DefaultSpacing}"

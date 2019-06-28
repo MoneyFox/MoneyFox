@@ -52,7 +52,9 @@
                                               Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
 
-                                <controls:CardView Margin="{StaticResource SmallLeftRightBottomMargin}" Style="{StaticResource ListItemStyle}">
+                                <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                                   Style="{StaticResource ListItemStyle}">
+
                                     <StackLayout Spacing="0">
                                         <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
