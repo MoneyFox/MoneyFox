@@ -38,8 +38,13 @@
 
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
-                            <TextCell Text="{Binding Key}"
-                                      TextColor="{DynamicResource HeaderColor}" />
+                            <ViewCell>
+                                <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" >
+                                    <Label Text="{Binding Key}"
+                                           VerticalOptions="CenterAndExpand"
+                                           TextColor="{DynamicResource HeaderColor}" />
+                                </StackLayout>
+                            </ViewCell>
                         </DataTemplate>
                     </ListView.GroupHeaderTemplate>
 

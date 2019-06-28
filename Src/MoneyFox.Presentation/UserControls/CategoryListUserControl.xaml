@@ -14,7 +14,7 @@
     </d:ContentView.BindingContext>
 
     <ContentView.Content>
-        <Grid VerticalOptions="FillAndExpand">
+        <Grid VerticalOptions="FillAndExpand" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
                 <RowDefinition Height="240*" />
@@ -24,7 +24,7 @@
                 <SearchBar x:Name="SearchBar"
                            Style="{StaticResource DefaultSearchBarStyle}"
                            Grid.Row="0"
-                           BackgroundColor="Transparent"
+                           BackgroundColor="{DynamicResource FrameHighlightColor}"
                            VerticalOptions="Start"
                            Placeholder="{Binding Resources[SearchLabel]}"
                            TextChanged="SearchTermChanged" />
@@ -32,6 +32,7 @@
 
             <ListView x:Name="CategoryList"
                       Grid.Row="1"
+                      BackgroundColor="Transparent"
                       ItemsSource="{Binding CategoryList}"
                       HasUnevenRows="True"
                       CachingStrategy="RecycleElementAndDataTemplate"
@@ -40,11 +41,18 @@
                       GroupShortNameBinding="{Binding Key}">
 
                 <ListView.GroupHeaderTemplate>
-                  <DataTemplate>
-                      <TextCell Text="{Binding Key}"
-                                TextColor="{DynamicResource HeaderColor}" />
-                  </DataTemplate>
-              </ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
+                                         HorizontalOptions="FillAndExpand"
+                                         Margin="0,0,-20,0">
+                                <Label Text="{Binding Key}"
+                                       VerticalOptions="CenterAndExpand"
+                                       TextColor="{DynamicResource HeaderColor}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
 
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewModels:CategoryViewModel">
