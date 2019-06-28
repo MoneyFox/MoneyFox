@@ -2,7 +2,9 @@
 using MoneyFox.Presentation.Views;
 using NLog;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
+[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace MoneyFox.Presentation
 {
     public partial class App 

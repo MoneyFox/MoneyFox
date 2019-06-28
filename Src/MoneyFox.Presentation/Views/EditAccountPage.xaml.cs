@@ -2,11 +2,9 @@
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class EditAccountPage
     {
         private EditAccountViewModel ViewModel => BindingContext as EditAccountViewModel;

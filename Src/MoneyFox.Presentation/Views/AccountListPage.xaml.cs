@@ -1,17 +1,13 @@
 ﻿using System;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.Views
-{
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AccountListPage
+{ public partial class AccountListPage
     {
         private IAccountListViewModel ViewModel => BindingContext as AccountListViewModel;
 

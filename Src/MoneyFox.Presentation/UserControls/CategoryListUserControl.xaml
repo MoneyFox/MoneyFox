@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
               xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl">
 
     <d:ContentView.BindingContext>
@@ -45,8 +46,7 @@
               </ListView.GroupHeaderTemplate>
 
                 <ListView.ItemTemplate>
-                    <DataTemplate>
-
+                    <DataTemplate x:DataType="viewModels:CategoryViewModel">
                         <ViewCell>
 
                             <ViewCell.ContextActions>
