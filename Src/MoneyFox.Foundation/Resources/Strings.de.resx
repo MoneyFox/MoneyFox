@@ -790,6 +790,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Lokale Daten überschreiben</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>Ihre Daten werden in Ihrem OneDrive-Konto gespeichert. Sie finden sie im Anwendungsordner in einem neuen Ordner namens "MoneyFox".</value>
   </data>
 </root>
