@@ -7,7 +7,6 @@
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"             
-             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.PaymentListPage"
              Visual="Material"
              Title="{Binding Title}"
@@ -43,7 +42,7 @@
                     </ListView.GroupHeaderTemplate>
 
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="viewModels:PaymentViewModel">
+                        <DataTemplate>
                             <ViewCell>
                                 <ViewCell.ContextActions>
                                     <MenuItem Clicked="EditPayment" CommandParameter="{Binding .}"

@@ -6,7 +6,6 @@
              mc:Ignorable="d"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
               xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl">
 
     <d:ContentView.BindingContext>
@@ -23,7 +22,6 @@
             <Frame Style="{StaticResource HighlightFrame}">
                 <SearchBar x:Name="SearchBar"
                            Style="{StaticResource DefaultSearchBarStyle}"
-                           Grid.Row="0"
                            VerticalOptions="Start"
                            Placeholder="{Binding Resources[SearchLabel]}"
                            TextChanged="SearchTermChanged" />
@@ -46,7 +44,7 @@
               </ListView.GroupHeaderTemplate>
 
                 <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="viewModels:CategoryViewModel">
+                    <DataTemplate>
                         <ViewCell>
 
                             <ViewCell.ContextActions>

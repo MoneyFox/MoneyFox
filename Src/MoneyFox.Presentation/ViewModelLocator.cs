@@ -1,11 +1,11 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
-using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using NLog;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation
 {
@@ -17,7 +17,7 @@ namespace MoneyFox.Presentation
         {
             if (!ServiceLocator.IsLocationProviderSet)
             {
-                if (ViewModelBase.IsInDesignModeStatic)
+                if (DesignMode.IsDesignModeEnabled)
                 {
                     RegisterServices(new ContainerBuilder());
                 }
