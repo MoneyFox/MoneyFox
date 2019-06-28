@@ -30,8 +30,8 @@
             <Grid VerticalOptions="FillAndExpand">
                 <ListView x:Name="PaymentList"
                           ItemsSource="{Binding DailyList}"
-                          HasUnevenRows="True"
-                          CachingStrategy="RecycleElementAndDataTemplate"
+                          RowHeight="50"
+                          CachingStrategy="RetainElement"
                           IsGroupingEnabled="True"
                           SeparatorVisibility="None">
 
