@@ -32,10 +32,16 @@
                                 <StackLayout Orientation="Horizontal"
                                              Padding="3"
                                              Spacing="{DynamicResource DefaultSpacing}">
-                                    <Label Text="{Binding Icon}" 
-                                           FontFamily="{DynamicResource MaterialFontFamily}" 
-                                           Style="{DynamicResource ListItemHeaderStyle}" 
-                                           VerticalOptions="Center" />
+
+                                    <Image HeightRequest="15"
+                                           WidthRequest="15">
+                                        <Image.Source>
+                                            <FontImageSource
+                                                Glyph="{Binding Icon}"
+                                                FontFamily="{DynamicResource MaterialFontFamily}"
+                                                Color="{DynamicResource PrimaryFontColor}" />
+                                        </Image.Source>
+                                    </Image>
                                     
                                     <Label Text="{Binding Name}" 
                                            Style="{DynamicResource ListItemHeaderStyle}" />
