@@ -207,4 +207,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Effects\" />
+  </ItemGroup>
+
 </Project>
