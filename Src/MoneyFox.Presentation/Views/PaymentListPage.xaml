@@ -31,6 +31,7 @@
                 <ListView x:Name="PaymentList"
                           ItemsSource="{Binding DailyList}"
                           RowHeight="50"
+                          BackgroundColor="Transparent"
                           CachingStrategy="RetainElement"
                           IsGroupingEnabled="True"
                           SeparatorVisibility="None">

@@ -17,6 +17,7 @@
         <ListView x:Name="StatisticSelectorList"
                   ItemsSource="{Binding StatisticItems}"
                   HasUnevenRows="True"
+                  BackgroundColor="Transparent"
                   CachingStrategy="RecycleElementAndDataTemplate"
                   SeparatorVisibility="None">
 

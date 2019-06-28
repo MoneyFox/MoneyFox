@@ -32,6 +32,7 @@
                           ItemsSource="{Binding Accounts}"
                           HasUnevenRows="True"
                           CachingStrategy="RecycleElementAndDataTemplate"
+                          BackgroundColor="Transparent"
                           IsGroupingEnabled="True"
                           SeparatorVisibility="None">
 

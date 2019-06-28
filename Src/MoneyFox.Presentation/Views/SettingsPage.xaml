@@ -17,6 +17,7 @@
         <ListView x:Name="SettingsList"
                   ItemsSource="{Binding SettingsList}" 
                   RowHeight="65"
+                  BackgroundColor="Transparent"
                   CachingStrategy="RecycleElementAndDataTemplate"
                   SeparatorVisibility="None" >
             

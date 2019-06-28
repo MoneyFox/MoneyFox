@@ -24,6 +24,7 @@
                 <SearchBar x:Name="SearchBar"
                            Style="{StaticResource DefaultSearchBarStyle}"
                            Grid.Row="0"
+                           BackgroundColor="Transparent"
                            VerticalOptions="Start"
                            Placeholder="{Binding Resources[SearchLabel]}"
                            TextChanged="SearchTermChanged" />
