@@ -152,7 +152,6 @@
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Renderer\FloatingActionButton.cs" />
     <Compile Include="Src\BackgroundTaskManager.cs" />
     <None Include="MoneyFox.iOS.ruleset" />
     <BundleResource Include="Resources\materialdesignicons.ttf">

@@ -170,7 +170,6 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
     <Compile Include="Renderer\CardViewRenderer.cs" />
-    <Compile Include="Renderer\FloatingActionButtonRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
     <Compile Include="Src\Localize.cs" />
