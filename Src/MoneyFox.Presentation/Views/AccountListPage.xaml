@@ -87,7 +87,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <Button Image="ic_add.png"
+                <Button ImageSource="ic_add.png"
                         Clicked="AddItem_Clicked" 
                         IsVisible="True"
                         VerticalOptions="EndAndExpand"
