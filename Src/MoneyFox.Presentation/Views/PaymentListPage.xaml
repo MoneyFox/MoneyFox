@@ -37,6 +37,11 @@
             <Setter Property="TextColor" Value="{DynamicResource DeemphasizedColor}" />
         </Style>
 
+        <Style x:Key="SmallPageTitle" TargetType="Label">
+            <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
+            <Setter Property="TextColor" Value="White" />
+        </Style>
+
         <ResourceDictionary>
             <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         </ResourceDictionary>
@@ -45,7 +50,7 @@
     <NavigationPage.TitleView>
         <StackLayout >
             <Label Text="{Binding Title}" 
-                   Style="{StaticResource PageTitleStyle}"/>
+                   Style="{StaticResource SmallPageTitle}"/>
             <userControls:PaymentListBalanceUserControl BindingContext="{Binding BalanceViewModel}" />
         </StackLayout>
     </NavigationPage.TitleView>

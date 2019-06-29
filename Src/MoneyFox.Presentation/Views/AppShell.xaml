@@ -18,13 +18,6 @@
         <designTime:DesignTimeAboutViewModel />
     </d:ContentPage.BindingContext>
 
-    <TabbedPage.Resources>
-        <Style TargetType="NavigationPage">
-            <Setter Property="BarBackgroundColor" Value="{DynamicResource PrimaryColor}" />
-            <Setter Property="BarTextColor" Value="White" />
-        </Style>
-    </TabbedPage.Resources>
-
     <pages:AccountListPage Title="{Binding Resources[AccountsTitle]}" IconImageSource="ic_accounts_black.png" />
     <pages:StatisticSelectorPage Title="{Binding Resources[StatisticsTitle]}" IconImageSource="ic_statistics_black.png" />
     <pages:SettingsPage Title="{Binding Resources[SettingsTitle]}" IconImageSource="ic_settings_black.png" />
