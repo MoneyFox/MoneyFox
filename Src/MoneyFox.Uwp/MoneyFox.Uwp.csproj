@@ -142,6 +142,7 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ClickConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\DateVisibilityConverter.cs" />
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
     <Compile Include="Converter\NativePaymentAmountConverter.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
