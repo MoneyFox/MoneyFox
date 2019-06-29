@@ -27,16 +27,10 @@
         <Grid x:Name="MainLayout">
             <ListView x:Name="CategorySummaryList"
                       ItemsSource="{Binding CategorySummary}"
+                      BackgroundColor="Transparent"
                       RowHeight="70"
+                      SeparatorVisibility="None"
                       CachingStrategy="RetainElement">
-
-                <ListView.SeparatorVisibility>
-                    <OnPlatform x:TypeArguments="SeparatorVisibility">
-                        <On Platform="iOS" Value="Default" />
-                        <On Platform="Android" Value="None" />
-                        <On Platform="Uwp" Value="None" />
-                    </OnPlatform>
-                </ListView.SeparatorVisibility>
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
