@@ -13,11 +13,6 @@ namespace MoneyFox.Presentation.UserControls
         public ModifyPaymentUserControl ()
 		{
 			InitializeComponent ();
-            
-            ResetIcon.GestureRecognizers.Add(new TapGestureRecognizer
-            {
-                Command = new Command(() => ViewModel?.ResetCategoryCommand.Execute(null))
-            });
         }
 
         private void AmountFieldGotFocus(object sender, FocusEventArgs e)
