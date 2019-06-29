@@ -37,7 +37,6 @@
             <Frame Style="{StaticResource HighlightFrame}">
                 <SearchBar x:Name="SearchBar"
                            Style="{StaticResource DefaultSearchBarStyle}"
-                           Grid.Row="0"
                            BackgroundColor="{DynamicResource FrameHighlightColor}"
                            VerticalOptions="Start"
                            Placeholder="{Binding Resources[SearchLabel]}"
@@ -62,7 +61,7 @@
                                          Margin="0,0,-20,-1">
                                 <Label Text="{Binding Key}"
                                        VerticalOptions="CenterAndExpand"
-                                           Style="{StaticResource ListGroupHeaderStyle}"  />
+                                       Style="{StaticResource ListGroupHeaderStyle}"  />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -103,14 +102,18 @@
                    IsVisible="{Binding IsCategoriesEmpty}"
                    Text="{Binding Resources[NoCategoriesMessage]}"/>
 
-            <Button Grid.Row="1"
-                    ImageSource="ic_add.png"
-                    Clicked="AddCategoryClick"
-                    IsVisible="True"
-                    VerticalOptions="EndAndExpand"
-                    HorizontalOptions="EndAndExpand"
-                    Margin="0,0,12,12"
-                    Style="{StaticResource FabPrimary}"  />
+            <ImageButton
+                Grid.Row="1"
+                Clicked="AddCategoryClick" 
+                Style="{StaticResource FabPrimary}" >
+                <ImageButton.Source>
+                    <FontImageSource
+                        Glyph="{StaticResource Add}"
+                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        Size="33"
+                        Color="White" />
+                </ImageButton.Source>
+            </ImageButton>
         </Grid>
     </ContentView.Content>
 </ContentView>

@@ -87,10 +87,18 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <Button ImageSource="ic_add.png"
+                <ImageButton
                         Clicked="AddItem_Clicked" 
-                        Style="{StaticResource FabPrimary}"  />
-                
+                        Style="{StaticResource FabPrimary}" >
+                    <ImageButton.Source>
+                        <FontImageSource
+                            Glyph="{StaticResource Add}"
+                            FontFamily="{DynamicResource MaterialFontFamily}"
+                            Size="33"
+                            Color="White" />
+                    </ImageButton.Source>
+                </ImageButton>
+
                 <Label Margin="6"
                        x:Name="PlaceHolderLabel"
                        HorizontalOptions="CenterAndExpand"

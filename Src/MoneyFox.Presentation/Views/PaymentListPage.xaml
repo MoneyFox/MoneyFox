@@ -159,13 +159,18 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Button ImageSource="ic_add.png"
-                        Clicked="AddItem_Clicked"
-                        IsVisible="True"
-                        VerticalOptions="EndAndExpand"
-                        HorizontalOptions="EndAndExpand"
-                        Margin="0,0,12,12"
-                        Style="{StaticResource FabPrimary}"  />
+
+            <ImageButton
+                Clicked="AddItem_Clicked" 
+                Style="{StaticResource FabPrimary}" >
+                <ImageButton.Source>
+                    <FontImageSource
+                        Glyph="{StaticResource Add}"
+                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        Size="33"
+                        Color="White" />
+                </ImageButton.Source>
+            </ImageButton>
 
             <Label Margin="6"
                        x:Name="PlaceHolderLabel"
