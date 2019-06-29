@@ -6,7 +6,6 @@ using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
-using MoneyFox.ServiceLayer.Facades;
 
 namespace MoneyFox.Presentation.ViewModels
 {

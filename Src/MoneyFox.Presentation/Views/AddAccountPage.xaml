@@ -8,8 +8,7 @@
              x:Class="MoneyFox.Presentation.Views.AddAccountPage"
              Visual="Material"
              mc:Ignorable="d"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             Title="{Binding Title}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyAccountViewModel />
