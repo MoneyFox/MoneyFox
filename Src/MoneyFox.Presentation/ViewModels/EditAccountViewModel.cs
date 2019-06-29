@@ -3,6 +3,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
@@ -57,7 +58,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id);
+                await crudServices.DeleteAndSaveAsync<Account>(SelectedAccount.Id);
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 NavigationService.GoBack();
