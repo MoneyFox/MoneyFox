@@ -55,11 +55,14 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected async Task DeleteAccount()
         {
-            await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id);
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            {
+                await crudServices.DeleteAndSaveAsync<AccountViewModel>(SelectedAccount.Id);
 
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            CancelCommand.Execute(null);
-            backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
+                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                NavigationService.GoBack();
+                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
+            }
         }
     }
 }

@@ -5,6 +5,7 @@ using GenericServices;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.ServiceLayer.Facades;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -100,9 +101,7 @@ namespace MoneyFox.Presentation.ViewModels
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             if (settingsFacade.IsBackupAutouploadEnabled)
             {
-#pragma warning disable 4014
-                backupService.EnqueueBackupTask();
-#pragma warning restore 4014
+                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
             }
         }
 

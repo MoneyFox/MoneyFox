@@ -8,6 +8,7 @@ using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.ServiceLayer.Facades;
 using NLog;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -63,15 +64,16 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeleteCategory()
         {
-            await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            {
+                await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
 
-            logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
+                logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
 
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-#pragma warning disable 4014
-            backupService.EnqueueBackupTask();
-#pragma warning restore 4014
-            await CancelCommand.ExecuteAsync();
+                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
+                await CancelCommand.ExecuteAsync();
+            }
         }
     }
 }
