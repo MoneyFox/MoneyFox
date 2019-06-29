@@ -1,7 +1,5 @@
-﻿using MoneyFox.Foundation.Resources;
-using MoneyFox.Presentation.Utilities;
+﻿using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
-using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
 {
@@ -13,23 +11,6 @@ namespace MoneyFox.Presentation.Views
 		{
 			InitializeComponent();
             BindingContext = ViewModelLocator.EditCategoryVm;
-
-            ToolbarItems.Add(new ToolbarItem
-            {
-                Command = new Command(() => ViewModel?.SaveCommand.ExecuteAsync().FireAndForgetSafeAsync()),
-                Text = Strings.SaveCategoryLabel,
-                Priority = 0,
-                Order = ToolbarItemOrder.Primary,
-                IconImageSource = "ic_save.png"
-            });
-
-            ToolbarItems.Add(new ToolbarItem
-            {
-                Command = new Command(() => ViewModel?.DeleteCommand.ExecuteAsync().FireAndForgetSafeAsync()),
-                Text = Strings.DeleteLabel,
-                Priority = 1,
-                Order = ToolbarItemOrder.Secondary
-            });
 
             ViewModel.CategoryId = categoryId;
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
