@@ -15,9 +15,27 @@
         <designTime:DesignTimeModifyCategoryViewModel />
     </d:ContentPage.BindingContext>
 
+    <NavigationPage.TitleView>
+        <AbsoluteLayout >
+            <Label Text="{Binding Title}" 
+                   Style="{StaticResource PageTitleStyle}" FontSize="20"/>
+
+            <ImageButton BackgroundColor="Transparent"
+                         AbsoluteLayout.LayoutBounds="1,0,30,30"
+                         AbsoluteLayout.LayoutFlags="XProportional"
+                         Margin="0,0,4,0"
+                         Command="{Binding SaveCommand}">
+                <ImageButton.Source>
+                    <FontImageSource
+                        Glyph="{StaticResource Save}"
+                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        Color="White" />
+                </ImageButton.Source>
+            </ImageButton>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
-        <StackLayout>
-            <userControls:ModifyCategoryUserControl />
-        </StackLayout>
+        <userControls:ModifyCategoryUserControl />
     </ContentPage.Content>
 </ContentPage>
