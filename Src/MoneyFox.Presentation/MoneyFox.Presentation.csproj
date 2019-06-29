@@ -100,6 +100,9 @@
     <Compile Update="Style\DarkTheme.xaml.cs">
       <DependentUpon>DarkTheme.xaml</DependentUpon>
     </Compile>
+    <Compile Update="UserControls\PaymentListBalanceUserControl.xaml.cs">
+      <DependentUpon>PaymentListBalanceUserControl.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

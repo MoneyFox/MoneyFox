@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.BackgroundJobSettingsPage"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
              Visual="Material">
