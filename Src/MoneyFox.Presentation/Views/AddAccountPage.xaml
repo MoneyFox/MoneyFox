@@ -18,12 +18,12 @@
     <NavigationPage.TitleView>
         <AbsoluteLayout >
             <Label Text="{Binding Title}" 
-                   Style="{StaticResource PageTitleStyle}" FontSize="20"/>
+                   Style="{StaticResource PageTitleStyle}" />
 
             <ImageButton BackgroundColor="Transparent"
-                         AbsoluteLayout.LayoutBounds="1,0,30,30"
+                         AbsoluteLayout.LayoutBounds="1,0,33,33"
                          AbsoluteLayout.LayoutFlags="XProportional"
-                         Margin="0,0,4,0"
+                         Margin="0,0,6,0"
                          Command="{Binding SaveCommand}">
                 <ImageButton.Source>
                     <FontImageSource
@@ -36,6 +36,6 @@
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
-        <userControls:ModifyAccountUserControl />
+        <userControls:ModifyAccountUserControl Margin="{StaticResource DefaultMargin}" />
     </ContentPage.Content>
 </ContentPage>

@@ -4,7 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.UserControls.ModifyCategoryUserControl">
 
@@ -13,7 +12,7 @@
     </d:ContentView.BindingContext>
 
     <ContentView.Content>
-      <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
+      <StackLayout Spacing="{StaticResource DefaultSpacing}" >
 
             <Entry Style="{StaticResource DefaultEntry}"
                    Placeholder="{Binding Resources[CategoryNameLabel]}"

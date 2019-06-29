@@ -8,14 +8,41 @@
                       xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
                       x:Class="MoneyFox.Presentation.Views.EditPaymentPage"
                       Visual="Material"
-                      BackgroundColor="{DynamicResource WindowBackgroundColor}"
-                      Title="{Binding Title}">
+                      BackgroundColor="{DynamicResource WindowBackgroundColor}" >
     
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyPaymentViewModel />
     </d:ContentPage.BindingContext>
-    
+
+    <NavigationPage.TitleView>
+        <AbsoluteLayout >
+            <Label Text="{Binding Title}" 
+                   Style="{StaticResource PageTitleStyle}" />
+
+            <ImageButton BackgroundColor="Transparent"
+                         AbsoluteLayout.LayoutBounds="1,0,33,33"
+                         AbsoluteLayout.LayoutFlags="XProportional"
+                         Margin="0,0,6,0"
+                         Command="{Binding SaveCommand}">
+                <ImageButton.Source>
+                    <FontImageSource
+                        Glyph="{StaticResource Save}"
+                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        Color="White" />
+                </ImageButton.Source>
+            </ImageButton>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
+
     <ContentPage.Content>
-        <userControls:ModifyPaymentUserControl />
+        <StackLayout Margin="{StaticResource DefaultMargin}">
+
+            <userControls:ModifyPaymentUserControl />
+
+            <Button Text="{Binding Resources[DeleteLabel]}"
+                    Style="{StaticResource DeleteButtonStyle}"
+                    Command="{Binding DeleteCommand}"
+                    Margin="0,12,0,0" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

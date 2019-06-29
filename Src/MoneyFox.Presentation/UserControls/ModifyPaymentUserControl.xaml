@@ -5,7 +5,6 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       mc:Ignorable="d"
                       xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
-                      xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
                       xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
                       x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl">
 
@@ -22,8 +21,7 @@
     </ContentView.Resources>
 
     <ContentView.Content>
-        <StackLayout Spacing="{StaticResource DefaultSpacing}"
-                     Margin="{StaticResource DefaultMargin}">
+        <StackLayout Spacing="{StaticResource DefaultSpacing}">
 
             <Label Text="{Binding AccountHeader}" Style="{DynamicResource DefaultTextStyle}" />
             <Picker ItemsSource="{Binding ChargedAccounts}"

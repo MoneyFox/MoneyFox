@@ -8,8 +8,7 @@
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
              x:Class="MoneyFox.Presentation.Views.AddCategoryPage"
              Visual="Material"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             Title="{Binding Title}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyCategoryViewModel />
@@ -18,12 +17,12 @@
     <NavigationPage.TitleView>
         <AbsoluteLayout >
             <Label Text="{Binding Title}" 
-                   Style="{StaticResource PageTitleStyle}" FontSize="20"/>
+                   Style="{StaticResource PageTitleStyle}" />
 
             <ImageButton BackgroundColor="Transparent"
-                         AbsoluteLayout.LayoutBounds="1,0,30,30"
+                         AbsoluteLayout.LayoutBounds="1,0,33,33"
                          AbsoluteLayout.LayoutFlags="XProportional"
-                         Margin="0,0,4,0"
+                         Margin="0,0,6,0"
                          Command="{Binding SaveCommand}">
                 <ImageButton.Source>
                     <FontImageSource
@@ -36,6 +35,6 @@
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
-        <userControls:ModifyCategoryUserControl />
+        <userControls:ModifyCategoryUserControl Margin="{StaticResource DefaultMargin}"/>
     </ContentPage.Content>
 </ContentPage>
