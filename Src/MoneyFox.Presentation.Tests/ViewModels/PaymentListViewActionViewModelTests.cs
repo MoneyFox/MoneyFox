@@ -14,11 +14,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     [ExcludeFromCodeCoverage]
     public class PaymentListViewActionViewModelTests
     {
-        private Mock<ICrudServicesAsync> crudServicesMock;
-        private Mock<ISettingsFacade> settingsFacadeMock;
-        private Mock<IDialogService> dialogServiceMock;
-        private Mock<IBalanceViewModel> balanceViewModelMock;
-        private Mock<INavigationService> navigationServiceMock;
+        private readonly Mock<ICrudServicesAsync> crudServicesMock;
+        private readonly Mock<ISettingsFacade> settingsFacadeMock;
+        private readonly Mock<IDialogService> dialogServiceMock;
+        private readonly Mock<IBalanceViewModel> balanceViewModelMock;
+        private readonly Mock<INavigationService> navigationServiceMock;
 
         public PaymentListViewActionViewModelTests()
         {
