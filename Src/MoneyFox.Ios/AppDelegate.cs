@@ -68,9 +68,6 @@ namespace MoneyFox.iOS
             LoadApplication(new App());
             Popup.Init();
 
-            //UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
-            //UINavigationBar.Appearance.TintColor = UIColor.White;
-
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);

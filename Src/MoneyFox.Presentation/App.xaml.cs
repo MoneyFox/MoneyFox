@@ -24,7 +24,11 @@ namespace MoneyFox.Presentation
 
             var appShell = new AppShell();
             NavigationService.Initialize(appShell.Navigation);
-            MainPage = new NavigationPage(appShell);
+            MainPage = new NavigationPage(appShell)
+            {
+                BarBackgroundColor = Color.FromHex("#314a9b"),
+                BarTextColor = Color.White
+            };
         }
 
         public void ConfigureNavigation()

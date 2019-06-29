@@ -2,7 +2,6 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                    xmlns:presentation="clr-namespace:MoneyFox.Presentation"
                     x:Class="MoneyFox.Presentation.Style.LightTheme">
 
     <!-- Accent Colors -->
