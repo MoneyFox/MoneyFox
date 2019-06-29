@@ -16,8 +16,6 @@
     </d:ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <StackLayout>
-            <userControls:ModifyPaymentUserControl />
-        </StackLayout>
+        <userControls:ModifyPaymentUserControl />
     </ContentPage.Content>
 </ContentPage>

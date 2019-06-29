@@ -16,8 +16,6 @@
     </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
-            <userControls:ModifyCategoryUserControl />
-        </StackLayout>
+        <userControls:ModifyCategoryUserControl />
     </ContentPage.Content>
 </ContentPage>
