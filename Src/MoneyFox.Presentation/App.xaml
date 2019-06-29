@@ -54,7 +54,7 @@
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
                 <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
                 <Setter Property="Padding" Value="15"/>
-                <Setter Property="Margin" Value="0,0,0,15"/>
+                <Setter Property="Margin" Value="0,0,15,15"/>
             </Style>
 
             <!-- Text Styles -->

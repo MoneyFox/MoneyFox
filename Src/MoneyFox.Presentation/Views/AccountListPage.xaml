@@ -89,10 +89,6 @@
 
                 <Button ImageSource="ic_add.png"
                         Clicked="AddItem_Clicked" 
-                        IsVisible="True"
-                        VerticalOptions="EndAndExpand"
-                        HorizontalOptions="EndAndExpand"
-                        Margin="0,0,12,12"
                         Style="{StaticResource FabPrimary}"  />
                 
                 <Label Margin="6"
