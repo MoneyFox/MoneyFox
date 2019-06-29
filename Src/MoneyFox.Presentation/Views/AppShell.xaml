@@ -7,7 +7,6 @@
     xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
     mc:Ignorable="d"
     xmlns:pages="clr-namespace:MoneyFox.Presentation.Views"
-    xmlns:design="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
     Title="Money Fox"
     Visual="Material"
     BarBackgroundColor="{DynamicResource BottomTabBarColor}"
@@ -18,6 +17,13 @@
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeAboutViewModel />
     </d:ContentPage.BindingContext>
+
+    <TabbedPage.Resources>
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{DynamicResource PrimaryColor}" />
+            <Setter Property="BarTextColor" Value="White" />
+        </Style>
+    </TabbedPage.Resources>
 
     <pages:AccountListPage Title="{Binding Resources[AccountsTitle]}" IconImageSource="ic_accounts_black.png" />
     <pages:StatisticSelectorPage Title="{Binding Resources[StatisticsTitle]}" IconImageSource="ic_statistics_black.png" />

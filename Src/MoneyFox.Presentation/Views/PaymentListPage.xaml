@@ -18,6 +18,25 @@
     </d:ContentPage.BindingContext>
 
     <ContentPage.Resources>
+        <x:Double x:Key="SmallTextSize">12</x:Double>
+
+        <Thickness x:Key="SmallLeftRightBottomMargin">6,0,6,6</Thickness>
+
+        <Style x:Key="SmallTextStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
+        </Style>
+
+        <Style x:Key="ListItemHeaderSmallStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}" />
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
+        </Style>
+
+        <Style x:Key="DeemphasizedSmallLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
+            <Setter Property="TextColor" Value="{DynamicResource DeemphasizedColor}" />
+        </Style>
+
         <ResourceDictionary>
             <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         </ResourceDictionary>

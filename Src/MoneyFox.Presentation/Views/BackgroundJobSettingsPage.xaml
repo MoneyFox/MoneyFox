@@ -46,7 +46,7 @@
 
             </StackLayout>
 
-            <StackLayout Spacing="{StaticResource ZeroSpacing}"
+            <StackLayout Spacing="0"
                          VerticalOptions="End"
                          IsVisible="{Binding IsLoggedIn}">
                 <Label Style="{StaticResource DeemphasizedLabelStyle}"
