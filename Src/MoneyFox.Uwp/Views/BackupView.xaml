@@ -34,35 +34,32 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{x:Bind Resources['BackupTitle']}"
+        <TextBlock Text="{Binding Resources[BackupTitle]}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
         <StackPanel Grid.Row="1"
                     Margin="19,9.5,19,0"
                     EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <Button x:Uid="Login"
+            <Button Content="{Binding Resources[LoginLabel]}"
                     HorizontalAlignment="Stretch"
                     Command="{Binding LoginCommand}"
                     Visibility="{Binding IsLoggedIn,
                                          Converter={StaticResource BooleanVisibilityConverter},
                                          ConverterParameter=revert}" />
-            <Button x:Uid="Logout"
+            <Button Content="{Binding Resources[LogoutLabel]}"
                     HorizontalAlignment="Stretch"
                     Command="{Binding LogoutCommand}"
                     Visibility="{Binding IsLoggedIn,
                                          Converter={StaticResource BooleanVisibilityConverter}}" />
-            <TextBlock x:Uid="BackupInformation"
-                       Margin="-5,12,0,7"
-                       Text="BackupInformation"
+            <TextBlock Margin="-5,12,0,7"
+                       Text="{Binding Resources[BackupInformationLabel]}"
                        TextWrapping="WrapWholeWords" />
-            <Button x:Uid="CreateBackup"
-                    Margin="0,0,0,7"
+            <Button Margin="0,0,0,7"
                     HorizontalAlignment="Stretch"
                     Command="{Binding BackupCommand}"
-                    Content="Create Backup" />
-            <TextBlock x:Uid="RestoreInformation"
-                       Margin="-5,5,0,7"
-                       Text="RestoreInformation"
+                    Content="{Binding Resources[CreateBackupLabel]}" />
+            <TextBlock Margin="-5,5,0,7"
+                       Text="{Binding Resources[RestoreBackupInformationLabel]}"
                        TextWrapping="WrapWholeWords" />
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -70,11 +67,10 @@
                     <ColumnDefinition Width="4*" />
                 </Grid.ColumnDefinitions>
 
-                <Button x:Uid="RestoreBackup"
-                        Grid.ColumnSpan="2"
+                <Button Grid.ColumnSpan="2"
                         HorizontalAlignment="Stretch"
                         Command="{Binding RestoreCommand}"
-                        Content="Restore Backup"
+                        Content="{Binding Resources[RestoreBackupLabel]}"
                         IsEnabled="{Binding BackupAvailable}" />
 
                 <ProgressRing Grid.Column="1"
@@ -88,9 +84,8 @@
             <StackPanel Margin="0,15,0,7"
                         Orientation="Horizontal"
                         Visibility="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                <TextBlock x:Uid="BackupLastModifiedText"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="Last Backup created at:" />
+                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                           Text="{Binding Resources[LastBackupDateLabel]}" />
                 <TextBlock Margin="5,0,0,0"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                            Text="{Binding BackupLastModified}"
