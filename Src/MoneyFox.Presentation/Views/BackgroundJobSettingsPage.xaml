@@ -40,9 +40,10 @@
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        Margin="0,6,0,0" />
 
-                <Entry Text="{Binding BackupSyncRecurrence}"
-                       HorizontalTextAlignment="End"
-                       Keyboard="Numeric" />
+                <Entry HorizontalTextAlignment="End"
+                       Keyboard="Numeric"
+                       Style="{StaticResource DefaultEntry}"
+                       Text="{Binding BackupSyncRecurrence}" />
 
             </StackLayout>
 

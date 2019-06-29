@@ -8,7 +8,7 @@
              x:Class="MoneyFox.Presentation.UserControls.ModifyCategoryUserControl">
 
     <d:ContentView.BindingContext>
-        <designTime:DesignTimeModifyAccountViewModel />
+        <designTime:DesignTimeModifyCategoryViewModel />
     </d:ContentView.BindingContext>
 
     <ContentView.Content>
