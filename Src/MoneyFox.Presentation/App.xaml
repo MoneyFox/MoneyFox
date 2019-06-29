@@ -67,6 +67,17 @@
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
             </Style>
 
+            <Style x:Key="FabPrimary" TargetType="Button">
+                <Setter Property="CornerRadius" Value="100"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="HeightRequest" Value="55"/>
+                <Setter Property="WidthRequest" Value="55"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="Padding" Value="15"/>
+                <Setter Property="Margin" Value="0,0,0,15"/>
+            </Style>
+
             <!-- Text Styles -->
             <Style x:Key="SmallTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
