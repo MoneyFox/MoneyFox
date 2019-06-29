@@ -110,6 +110,7 @@ namespace MoneyFox.Presentation.ViewModels
         private PaymentViewModel selectedPayment = new PaymentViewModel();
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
+        private string title;
 
         /// <summary>
         ///     Default constructor
@@ -253,7 +254,16 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        public virtual string Title { get; set; }
+        public virtual string Title
+        {
+            get => title;
+            set
+            {
+                if(title == value) return;
+                title = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Returns the Header for the AccountViewModel field
