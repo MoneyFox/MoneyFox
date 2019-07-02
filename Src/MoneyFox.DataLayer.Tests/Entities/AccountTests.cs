@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using Should;
 using Xunit;

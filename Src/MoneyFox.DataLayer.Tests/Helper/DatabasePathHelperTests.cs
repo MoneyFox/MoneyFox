@@ -1,4 +1,5 @@
-﻿using MoneyFox.Foundation;
+﻿using MoneyFox.Domain;
+using MoneyFox.Foundation;
 using Should;
 using Xunit;
 

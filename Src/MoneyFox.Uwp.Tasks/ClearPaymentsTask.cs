@@ -7,6 +7,7 @@ using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Foundation;
+using MoneyFox.Domain;
 
 namespace MoneyFox.Uwp.Tasks
 {

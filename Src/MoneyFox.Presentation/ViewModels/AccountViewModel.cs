@@ -1,6 +1,6 @@
 ﻿using System;
 using GenericServices;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Presentation.ViewModels
 {

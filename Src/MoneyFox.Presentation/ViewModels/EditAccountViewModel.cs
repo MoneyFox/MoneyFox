@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;

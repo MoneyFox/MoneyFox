@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Foundation
+﻿using MoneyFox.Foundation;
+
+namespace MoneyFox.Domain
 {
     public static class ExecutingPlatform
     {

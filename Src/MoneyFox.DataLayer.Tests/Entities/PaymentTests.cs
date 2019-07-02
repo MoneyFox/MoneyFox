@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Exceptions;
 using Should;

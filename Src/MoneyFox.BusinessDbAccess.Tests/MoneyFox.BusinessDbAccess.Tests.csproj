@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj" />
     <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
+    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
   </ItemGroup>
 
 </Project>

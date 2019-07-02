@@ -5,6 +5,7 @@ using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Foundation;
 

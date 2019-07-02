@@ -44,8 +44,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                     x))
                 .ToList();
 
-            await recurringPaymentDbAccess.SaveNewPayments(recPaymentsToCreate)
-                ;
+            await recurringPaymentDbAccess.SaveNewPayments(recPaymentsToCreate);
         }
     }
 }

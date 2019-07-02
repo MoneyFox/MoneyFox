@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;

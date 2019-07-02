@@ -5,6 +5,7 @@ using Microsoft.Graph;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;

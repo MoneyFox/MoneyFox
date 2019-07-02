@@ -3,6 +3,7 @@ using MoneyFox.DataLayer.Configurations;
 using MoneyFox.DataLayer.Entities;
 using NLog;
 using System;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.DataLayer
 {

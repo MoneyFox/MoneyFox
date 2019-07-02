@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Exceptions;
 

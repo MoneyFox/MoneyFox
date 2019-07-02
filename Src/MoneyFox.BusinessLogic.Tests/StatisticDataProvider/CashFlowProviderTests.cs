@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using Moq;
 using Should;

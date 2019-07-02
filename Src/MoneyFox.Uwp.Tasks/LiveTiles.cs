@@ -4,6 +4,7 @@ using Windows.ApplicationModel.Background;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using MoneyFox.DataLayer;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Uwp.Business.Tiles;
 using MoneyFox.Foundation;

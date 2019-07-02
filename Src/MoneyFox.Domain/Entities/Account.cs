@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MoneyFox.DataLayer.Entities;
 using MoneyFox.Foundation;
 
-namespace MoneyFox.DataLayer.Entities
+namespace MoneyFox.Domain.Entities
 {
     public class Account
     {

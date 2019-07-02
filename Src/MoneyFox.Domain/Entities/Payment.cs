@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Exceptions;
 
