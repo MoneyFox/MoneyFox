@@ -777,10 +777,10 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
     <value>Jätä palautetta!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+    <value>Olet muokannut toistuvaa maksua. Haluatko myös päivittää toistumisen?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modify Recurrence</value>
+    <value>Muokkaa Toistumista</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
     <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
