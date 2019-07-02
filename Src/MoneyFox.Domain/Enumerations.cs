@@ -27,6 +27,7 @@
         CategorySummary,
         CashflowHistory
     }
+
     public enum SettingsType
     {
         Personalization,
@@ -34,19 +35,6 @@
         Backup,
         BackgroundJob,
         About
-    }
-
-    public enum TyleType
-    {
-        Income,
-        Expense,
-        Transfer
-    }
-
-    public enum ModifyOperation
-    {
-        Edit,
-        Delete
     }
 
     public enum AppTheme
