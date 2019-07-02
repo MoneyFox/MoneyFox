@@ -2,8 +2,8 @@
 using System.IO;
 using Android.App;
 using Android.Runtime;
-using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
+using Autofac;
+using MoneyFox.Presentation;
 using NLog;
 using NLog.Targets;
 using Application = Android.App.Application;
@@ -26,14 +26,29 @@ namespace MoneyFox.Droid
 
             logManager.Info("Application Started.");
             logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion());
-            
-            EfCoreContext.DbPath =
-                Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                             DatabaseConstants.DB_NAME);
 
-            logManager.Debug("Database Path: {dbPath}", EfCoreContext.DbPath);
+            // Setup handler for uncaught exceptions.
+            AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
 
+            RegisterServices();
             base.OnCreate();
+        }
+
+        void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
+        {
+            logManager.Fatal( e.Exception, "Application Terminating. 1");
+        }
+
+        private void RegisterServices()
+        {
+            logManager.Debug("Register Services.");
+
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<AndroidModule>();
+
+            ViewModelLocator.RegisterServices(builder);
+
+            logManager.Debug("Register Services finished.");
         }
 
         public override void OnTerminate()

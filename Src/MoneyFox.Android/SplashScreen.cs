@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.OS;
-using MoneyFox.Presentation;
-using MvvmCross.Forms.Platforms.Android.Views;
+using Android.Support.V7.App;
 
 namespace MoneyFox.Droid
 {
@@ -14,17 +11,12 @@ namespace MoneyFox.Droid
         Theme = "@style/Theme.Splash", 
         NoHistory = true, 
         ScreenOrientation = ScreenOrientation.Portrait)]
-    public class SplashScreen : MvxFormsSplashScreenActivity<ApplicationSetup, CoreApp, App>
+    public class SplashScreen : AppCompatActivity
     {
-        public SplashScreen()
-            : base(Resource.Layout.SplashScreen)
+        protected override void OnResume()
         {
-        }
-
-        protected override Task RunAppStartAsync(Bundle bundle)
-        {
+            base.OnResume();
             StartActivity(typeof(MainActivity));
-            return Task.CompletedTask;
         }
     }
 }

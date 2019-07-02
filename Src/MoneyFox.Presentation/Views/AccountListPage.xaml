@@ -1,16 +1,21 @@
-﻿<d:MvxContentPage x:TypeArguments="viewModels:AccountListViewModel"
-                  xmlns="http://xamarin.com/schemas/2014/forms"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                  xmlns:moneyFox="clr-namespace:MoneyFox.Presentation"
-                  xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
-                  xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-                  xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
-                  xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-                  x:Class="MoneyFox.Presentation.Views.AccountListPage"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeAccountListViewModel}">
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
+             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
+             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
+             Visual="Material"
+             x:Class="MoneyFox.Presentation.Views.AccountListPage"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
+             Title="{Binding Resource[AccountsTitle]}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeAccountListViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -19,52 +24,63 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout VerticalOptions="FillAndExpand" >
+        <StackLayout>
             <userControls:BalanceUserControl BindingContext="{Binding BalanceViewModel}" />
 
             <Grid VerticalOptions="FillAndExpand">
                 <ListView x:Name="AccountsList"
                           ItemsSource="{Binding Accounts}"
                           HasUnevenRows="True"
-                          CachingStrategy="RecycleElement"
+                          CachingStrategy="RecycleElementAndDataTemplate"
+                          BackgroundColor="Transparent"
                           IsGroupingEnabled="True"
-                          GroupDisplayBinding="{Binding Key}">
+                          SeparatorVisibility="None">
 
-                    <ListView.SeparatorVisibility>
-                        <OnPlatform x:TypeArguments="SeparatorVisibility">
-                            <On Platform="iOS" Value="Default" />
-                            <On Platform="Android" Value="None" />
-                        </OnPlatform>
-                    </ListView.SeparatorVisibility>
-
-                    <ListView.ItemTemplate>
+                    <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
+                                <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
+                                             Margin="0,18,0,-1"
+                                             Padding="0,0,0,6">
+                                     <Label Text="{Binding Key}"
+                                           VerticalOptions="CenterAndExpand"
+                                           VerticalTextAlignment="Center"
+                                           Style="{StaticResource ListGroupHeaderStyle}" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.GroupHeaderTemplate>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="viewModels:AccountViewModel">
+                            <ViewCell>
+
                                 <ViewCell.ContextActions>
                                     <MenuItem Clicked="EditAccount" CommandParameter="{Binding .}"
-                                          Text="{Binding Resources[EditLabel]}" />
+                                              Text="{Binding Resources[EditLabel]}" />
                                     <MenuItem Clicked="DeleteAccount" CommandParameter="{Binding .}"
-                                          Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
+                                              Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
-                                <controls:CardView Margin="{StaticResource NegativeMediumLeftRightBottomMargin}" >
+
+                                <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                                   Style="{StaticResource ListItemStyle}">
+
                                     <StackLayout Spacing="0">
-                                        <Grid Style="{StaticResource ListItemStyle}"
-                                              Padding="3"
-                                              Margin="{StaticResource DefaultListItemsMargin}">
+                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
-                                                <ColumnDefinition Width="30*" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Grid.Column="0" 
-                                               Text="{Binding Name}" 
-                                               Style="{StaticResource ListItemHeaderStyle}" />
+                                            <Label Grid.Column="0"
+                                                   Text="{Binding Name}"
+                                                   Style="{StaticResource ListItemHeaderStyle}" />
 
-                                            <Label Grid.Column="1" 
-                                               HorizontalTextAlignment="End"
-                                               Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}" 
-                                               Style="{StaticResource ListItemHeaderStyle}" />
+                                            <Label Grid.Column="1"
+                                                   HorizontalTextAlignment="End"
+                                                   Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                                                   Style="{StaticResource ListItemHeaderStyle}" />
                                         </Grid>
                                     </StackLayout>
                                 </controls:CardView>
@@ -73,27 +89,17 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <controls:FloatingActionButton Style="{StaticResource DefaultFloatingActionButton}"
-                                               x:Name="FAB"
-                                               HorizontalOptions="EndAndExpand"
-                                               Margin="4"
-                                               VerticalOptions="EndAndExpand"
-                                               Image="ic_add.png"
-                                               Clicked="AddItem_Clicked">
-                    <controls:FloatingActionButton.WidthRequest>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="iOS">50</On>
-                            <On Platform="Android">80</On>
-                        </OnPlatform>
-                    </controls:FloatingActionButton.WidthRequest>
-
-                    <controls:FloatingActionButton.HeightRequest>
-                        <OnPlatform x:TypeArguments="x:Double">
-                            <On Platform="iOS">50</On>
-                            <On Platform="Android">90</On>
-                        </OnPlatform>
-                    </controls:FloatingActionButton.HeightRequest>
-                </controls:FloatingActionButton>
+                <ImageButton
+                        Clicked="AddItem_Clicked" 
+                        Style="{StaticResource FabPrimary}" >
+                    <ImageButton.Source>
+                        <FontImageSource
+                            Glyph="{StaticResource Add}"
+                            FontFamily="{DynamicResource MaterialFontFamily}"
+                            Size="33"
+                            Color="White" />
+                    </ImageButton.Source>
+                </ImageButton>
 
                 <Label Margin="6"
                        x:Name="PlaceHolderLabel"
@@ -106,4 +112,4 @@
             </Grid>
         </StackLayout>
     </ContentPage.Content>
-</d:MvxContentPage>
+</ContentPage>

@@ -1,21 +1,26 @@
-﻿<views:MvxContentPage x:TypeArguments="viewModels:SettingsBackgroundJobViewModel"
-                      xmlns="http://xamarin.com/schemas/2014/forms"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-                      xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                      x:Class="MoneyFox.Views.BackgroundJobSettingsPage"
-                      DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeSettingsBackgroundJobViewModel}">
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.Views.BackgroundJobSettingsPage"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
+             Visual="Material">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeSettingsBackgroundJobViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <Grid Padding="7" >
-            <StackLayout Spacing="0" >
+        <Grid Padding="7">
+            <StackLayout Spacing="0">
 
                 <Label Text="{Binding Resources[AutobackupInformationLabel]}"
-                   Style="{StaticResource DeemphasizedLabelStyle}" />
+                       Style="{StaticResource DeemphasizedLabelStyle}" />
 
                 <Grid HorizontalOptions="FillAndExpand"
-                   Margin="0,5,0,0">
+                      Margin="0,5,0,0">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
@@ -23,43 +28,51 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                       Style="{StaticResource DefaultTextStyle}"
-                       Text="{Binding Resources[AutobackupLabel]}" />
+                           Style="{StaticResource DefaultTextStyle}"
+                           Text="{Binding Resources[AutobackupLabel]}" />
 
                     <Switch Grid.Column="1"
-                        IsToggled="{Binding IsAutoBackupEnabled}" />
+                            IsToggled="{Binding IsAutoBackupEnabled}" />
                 </Grid>
 
                 <Label Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
-                   Style="{StaticResource DeemphasizedLabelStyle}"
-                   Margin="0,6,0,0"/>
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       Margin="0,6,0,0" />
 
-            <Entry Text="{Binding BackupSyncRecurrence}"
-                   HorizontalTextAlignment="End"
-                   Keyboard="Numeric" />
+                <Entry HorizontalTextAlignment="End"
+                       Keyboard="Numeric"
+                       Style="{StaticResource DefaultEntry}"
+                       Text="{Binding BackupSyncRecurrence}" />
 
             </StackLayout>
 
-            <StackLayout Spacing="{StaticResource ZeroSpacing}" 
-                     VerticalOptions="End" 
-                     IsVisible="{Binding IsLoggedIn}">
-                <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
+            <StackLayout Spacing="0"
+                         VerticalOptions="End"
+                         IsVisible="{Binding IsLoggedIn}">
+                <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                       Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionSynBackup}" Margin="4,0,0,0" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionSynBackup}"
+                           Margin="4,0,0,0" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}" Margin="4,0,0,0" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}"
+                           Margin="4,0,0,0" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionCreateRecurringPayments}" Margin="4,0,0,0" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding LastExecutionCreateRecurringPayments}" Margin="4,0,0,0" />
                 </StackLayout>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
-</views:MvxContentPage>
+</ContentPage>

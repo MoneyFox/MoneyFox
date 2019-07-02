@@ -1,4 +1,4 @@
-﻿using MoneyFox.ServiceLayer.Interfaces;
+﻿using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.iOS
 {
@@ -6,10 +6,12 @@ namespace MoneyFox.iOS
     {
         public void StartBackupSyncTask(int interval)
         {
+            // Not needed on iOS
         }
 
         public void StopBackupSyncTask()
         {
+            // Not needed on iOS
         }
     }
 }

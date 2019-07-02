@@ -1,5 +1,5 @@
 ﻿using System;
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Presentation.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms.Xaml;
 
@@ -16,7 +16,7 @@ namespace MoneyFox.Presentation.Dialogs
         private async void Button_OnClicked(object sender, EventArgs e)
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as SelectDateRangeDialogViewModel)?.DoneCommand.Execute();
+            (BindingContext as SelectDateRangeDialogViewModel)?.DoneCommand.Execute(null);
         }
     }
 }

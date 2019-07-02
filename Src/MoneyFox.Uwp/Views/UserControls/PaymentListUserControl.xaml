@@ -5,12 +5,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
              xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-             xmlns:viewModels="using:MoneyFox.ServiceLayer.ViewModels"
+             xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
+             xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
              x:Name="PaymentControl"
-             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
+             d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -86,7 +86,7 @@
                             <StackPanel Margin="0,30,0,0"
                                         Padding="{StaticResource SmallListItemPadding}">
                                 <TextBlock Margin="3,0,0,7"
-                                           Style="{StaticResource HeaderStyle}"
+                                           Style="{ThemeResource HeaderStyle}"
                                            Text="{Binding Key}" />
                                 <ListView HorizontalAlignment="Stretch"
                                           Margin="{StaticResource NegativeMediumLeftRightMargin}"
@@ -111,7 +111,7 @@
                                     </ListView.ItemContainerStyle>
 
                                     <ListView.ItemTemplate>
-                                        <DataTemplate x:DataType="viewModels:PaymentViewModel">
+                                        <DataTemplate x:DataType="viewModels1:PaymentViewModel">
                                             <Grid MinWidth="100"
                                                   Margin="{StaticResource SmallListItemMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"
@@ -137,7 +137,7 @@
                                                                    Text="{x:Bind Category.Name}" />
                                                         <TextBlock MaxWidth="150"
                                                                    MaxLines="1"
-                                                                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                                                                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                                                                    Text="{x:Bind Note}"
                                                                    TextTrimming="CharacterEllipsis" />
                                                     </StackPanel>
@@ -206,7 +206,7 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Foreground="{ThemeResource SystemBaseMediumLowColor}"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                    TextWrapping="Wrap"
                    Visibility="{Binding IsPaymentsEmpty,
                                         Converter={StaticResource BooleanToVisibilityConverter}}" />

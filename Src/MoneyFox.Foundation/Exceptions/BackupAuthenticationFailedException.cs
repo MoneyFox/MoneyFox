@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace MoneyFox.Foundation.Exceptions
 {
@@ -31,6 +32,10 @@ namespace MoneyFox.Foundation.Exceptions
         /// <param name="exception">Inner Exception of the backup exception.</param>
         public BackupAuthenticationFailedException(string message, Exception exception)
             : base(message, exception)
+        {
+        }
+
+        protected BackupAuthenticationFailedException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

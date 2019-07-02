@@ -8,15 +8,17 @@ using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Services;
-using MvvmCross;
-using MvvmCross.Plugin.File;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using CommonServiceLocator;
+using MoneyFox.BusinessLogic.FileStore;
+using MoneyFox.Presentation.Facades;
+using MoneyFox.Presentation.Services;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.Droid.Jobs
 {
@@ -57,16 +59,12 @@ namespace MoneyFox.Droid.Jobs
 
         private async Task SyncBackups(JobParameters args)
         {
-            if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
-
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
 
             try
             {
-                EfCoreContext.DbPath =
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                                 DatabaseConstants.DB_NAME);
+                ExecutingPlatform.Current = AppPlatform.Android;
 
                 var pca = PublicClientApplicationBuilder
                     .Create(ServiceConstants.MSAL_APPLICATION_ID)
@@ -75,7 +73,7 @@ namespace MoneyFox.Droid.Jobs
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
-                    Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                    ServiceLocator.Current.GetInstance<IFileStore>(),
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);
@@ -100,9 +98,7 @@ namespace MoneyFox.Droid.Jobs
         /// </summary>
         public void ScheduleTask(int interval)
         {
-            if (!Mvx.IoCProvider.CanResolve<ISettingsFacade>()) return;
-
-            if (!Mvx.IoCProvider.Resolve<ISettingsFacade>().IsBackupAutouploadEnabled) return;
+            if (!ServiceLocator.Current.GetInstance<ISettingsFacade>().IsBackupAutouploadEnabled) return;
 
             var builder = new JobInfo.Builder(SYNC_BACK_JOB_ID,
                                               new ComponentName(

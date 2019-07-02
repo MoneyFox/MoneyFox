@@ -16,14 +16,14 @@ namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
     public class CashFlowProviderTests
     {
         [Fact]
-        public async void GetValues_NullDependency_NullReferenceException()
+        public async Task GetValues_NullDependency_NullReferenceException()
         {
             await Assert.ThrowsAsync<NullReferenceException>(
                 () => new CashFlowDataProvider(null).GetCashFlow(DateTime.Today, DateTime.Today));
         }
 
         [Fact]
-        public async void GetValues_CorrectSums()
+        public async Task GetValues_CorrectSums()
         {
             // Arrange
             var statisticDbAccess = new Mock<IStatisticDbAccess>();

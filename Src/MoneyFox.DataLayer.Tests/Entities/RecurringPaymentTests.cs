@@ -97,7 +97,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Arrange
 
             // Act / Assert
-            Assert.Throws<MoneyFoxInvalidEndDateException>(() 
+            Assert.Throws<InvalidEndDateException>(() 
                 => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note", DateTime.Today.AddDays(-1)));
         }
 

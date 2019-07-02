@@ -2,9 +2,9 @@ using System;
 using System.Threading.Tasks;
 using Android.App;
 using AndroidHUD;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.Interfaces;
-using MvvmCross.Platforms.Android;
+using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Droid.Services
 {
@@ -13,9 +13,9 @@ namespace MoneyFox.Droid.Services
     {
         private Activity CurrentActivity { get; }
 
-        public DialogService(IMvxAndroidCurrentTopActivity currentTopActivity)
+        public DialogService()
         {
-            CurrentActivity = currentTopActivity.Activity;
+            CurrentActivity = ParentActivityWrapper.ParentActivity as Activity;
         }
 
         /// <inheritdoc />

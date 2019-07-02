@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace MoneyFox.Foundation.Exceptions
 {
+    [Serializable]
     public class AccountMissingException : Exception
     {
         /// <summary>
@@ -25,8 +27,11 @@ namespace MoneyFox.Foundation.Exceptions
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         /// <param name="exception">Inner Exception of the backup exception.</param>
-        public AccountMissingException(string message, Exception exception)
-            : base(message, exception)
+        public AccountMissingException(string message, Exception exception) : base(message, exception)
+        {
+        }
+
+        protected AccountMissingException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

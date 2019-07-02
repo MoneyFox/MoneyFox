@@ -1,20 +1,20 @@
-﻿using Windows.UI.Xaml;
-using MoneyFox.Presentation.Views;
-using Xamarin.Forms.Platform.UWP;
+﻿using MoneyFox.Presentation.ViewModels;
+using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class EditCategoryView
     {
+        private EditCategoryViewModel ViewModel => DataContext as EditCategoryViewModel;
+
         public EditCategoryView()
         {
             InitializeComponent();
         }
 
-        private void EditCategoryView_OnSizeChanged(object sender, SizeChangedEventArgs e)
+        protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ContentGrid.Children.Clear();
-            ContentGrid.Children.Add(new EditCategoryPage { DataContext = ViewModel }.CreateFrameworkElement());
+            if (e.Parameter != null) ViewModel.CategoryId = (int)e.Parameter;
         }
     }
 }

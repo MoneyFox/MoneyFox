@@ -16,7 +16,7 @@ namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
     public class CategorySpreadingProviderTests
     {
         [Fact]
-        public async void GetValues_NullDependency_NullReferenceException()
+        public async Task GetValues_NullDependency_NullReferenceException()
         {
             await Assert.ThrowsAsync<NullReferenceException>(
                 () => new CategorySpreadingDataProvider(null).GetValues(DateTime.Today, DateTime.Today));

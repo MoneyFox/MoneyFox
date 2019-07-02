@@ -1,4 +1,6 @@
-﻿using MoneyFox.ServiceLayer.ViewModels.Interfaces;
+﻿using System.Threading.Tasks;
+using MoneyFox.Foundation;
+using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -7,39 +9,41 @@ namespace MoneyFox.Presentation.Dialogs
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AddAccountAndPaymentPopup
-	{
-		public AddAccountAndPaymentPopup ()
+    {
+        private IAccountListViewActionViewModel ViewModel => BindingContext as IAccountListViewActionViewModel;
+
+        public AddAccountAndPaymentPopup ()
 		{
 			InitializeComponent ();
 
-            AddAccountGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(AddAccountGridClicked) });
-            AddExpenseGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(AddExpenseGridClicked) });
-            AddIncomeGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(AddIncomeGridClicked) });
-            AddTransferGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(AddTransferGridClicked) });
+            AddAccountGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddAccountGridClicked()) });
+            AddExpenseGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddExpenseGridClicked()) });
+            AddIncomeGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddIncomeGridClicked()) });
+            AddTransferGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddTransferGridClicked()) });
         }
 
-        private async void AddAccountGridClicked()
+        private async Task AddAccountGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IAccountListViewActionViewModel)?.GoToAddAccountCommand.ExecuteAsync();
+            ViewModel?.GoToAddAccountCommand.Execute(null);
         }
 
-        private async void AddExpenseGridClicked()
+        private async Task AddExpenseGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IAccountListViewActionViewModel)?.GoToAddExpenseCommand.ExecuteAsync();
+            ViewModel?.GoToAddExpenseCommand.Execute(PaymentType.Expense);
         }
 
-        private async void AddIncomeGridClicked()
+        private async Task AddIncomeGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IAccountListViewActionViewModel)?.GoToAddIncomeCommand.ExecuteAsync();
+            ViewModel?.GoToAddIncomeCommand.Execute(PaymentType.Income);
         }
 
-        private async void AddTransferGridClicked()
+        private async Task AddTransferGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IAccountListViewActionViewModel)?.GoToAddTransferCommand.ExecuteAsync();
+            ViewModel?.GoToAddTransferCommand.Execute(PaymentType.Transfer);
         }
     }
 }

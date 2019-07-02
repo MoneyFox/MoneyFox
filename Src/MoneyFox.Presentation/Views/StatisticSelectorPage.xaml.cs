@@ -1,21 +1,19 @@
 using MoneyFox.Foundation.Resources;
-using MvvmCross.Forms.Presenters.Attributes;
-using Xamarin.Forms.Xaml;
+using MoneyFox.Presentation.ViewModels.Statistic;
 
 namespace MoneyFox.Presentation.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	[MvxTabbedPagePresentation(WrapInNavigationPage = false, Title = "Statistics", Icon = "ic_statistics_black")]
     public partial class StatisticSelectorPage
     {
 		public StatisticSelectorPage ()
 		{
 			InitializeComponent();
+            BindingContext = ViewModelLocator.StatisticSelectorVm;
 
-		    StatisticSelectorList.ItemTapped += (sender, args) =>
+            StatisticSelectorList.ItemTapped += (sender, args) =>
 		    {
 		        StatisticSelectorList.SelectedItem = null;
-                ViewModel.GoToStatisticCommand.Execute(args.Item);
+                (BindingContext as StatisticSelectorViewModel)?.GoToStatisticCommand.Execute(args.Item);
 		    };
 
 		    Title = Strings.StatisticsTitle;

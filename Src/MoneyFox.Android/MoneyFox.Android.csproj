@@ -37,6 +37,7 @@
     <CodeAnalysisRuleSet>MoneyFox.Android.ruleset</CodeAnalysisRuleSet>
     <MandroidI18n />
     <AndroidUseAapt2>true</AndroidUseAapt2>
+    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>
@@ -82,11 +83,17 @@
     <PackageReference Include="AndHUD">
       <Version>1.4.1</Version>
     </PackageReference>
+    <PackageReference Include="Autofac">
+      <Version>4.9.2</Version>
+    </PackageReference>
+    <PackageReference Include="Autofac.Extras.CommonServiceLocator">
+      <Version>5.0.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>2.0.0</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>2.0.0</Version>
+      <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
       <Version>2.2.4</Version>
@@ -97,20 +104,8 @@
     <PackageReference Include="Microsoft.Identity.Client">
       <Version>4.0.0</Version>
     </PackageReference>
-    <PackageReference Include="MvvmCross">
-      <Version>6.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Droid.Support.Design">
-      <Version>6.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Forms">
-      <Version>6.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.File">
-      <Version>6.3.0</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmCross.Plugin.Messenger">
-      <Version>6.3.0</Version>
+    <PackageReference Include="MvvmLightLibsStd10">
+      <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="PCLAppConfig">
       <Version>1.0.1</Version>
@@ -151,22 +146,20 @@
     <PackageReference Include="Xamarin.Android.Support.v4">
       <Version>28.0.0.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Auth">
-      <Version>1.6.0.4</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.1.0</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.0.0.482894" />
+    <PackageReference Include="Xamarin.Forms" Version="4.0.0.540366" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.1" />
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.0.0.482894</Version>
+      <Version>4.0.0.540366</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AndroidModule.cs" />
     <Compile Include="Jobs\ClearPaymentsJob.cs" />
     <Compile Include="Jobs\RecurringPaymentJob.cs" />
     <Compile Include="Jobs\SyncBackupJob.cs" />
@@ -174,7 +167,6 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
     <Compile Include="Renderer\CardViewRenderer.cs" />
-    <Compile Include="Renderer\FloatingActionButtonRenderer.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
     <Compile Include="Src\Localize.cs" />
@@ -182,8 +174,8 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DialogService.cs" />
-    <Compile Include="ApplicationSetup.cs" />
     <Compile Include="SplashScreen.cs" />
+    <Compile Include="Src\ThemeSelectorAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="..\MoneyFox.Presentation\App.config">
@@ -194,9 +186,6 @@
     </AndroidAsset>
     <None Include="MoneyFox.Android.ruleset" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\SplashScreen.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\layout\Toolbar.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -232,10 +221,6 @@
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
       <Name>MoneyFox.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.ServiceLayer\MoneyFox.ServiceLayer.csproj">
-      <Project>{60C2AA25-8677-4AA8-88B7-29D52F8BEDB9}</Project>
-      <Name>MoneyFox.ServiceLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -335,9 +320,6 @@
     <AndroidResource Include="Resources\drawable-v21\ic_cancel_black.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\values\strings.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable-v21\ic_add_black.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -369,6 +351,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-v21\ic_save_white.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\splash_screen.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

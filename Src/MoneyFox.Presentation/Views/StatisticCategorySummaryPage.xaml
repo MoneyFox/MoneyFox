@@ -1,17 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage x:TypeArguments="statistic:StatisticCategorySummaryViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:statistic="clr-namespace:MoneyFox.ServiceLayer.ViewModels.Statistic;assembly=MoneyFox.ServiceLayer"
-                      xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-                      xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
-                      xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
-                      xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-                      x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
-                      BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                      DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeStatisticCategorySummaryViewModel}"
-                      Title="{Binding Resources[CategorySummaryTitle]}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
+             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
+             Visual="Material"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
+             Title="{Binding Resources[CategorySummaryTitle]}">
 
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeStatisticCategorySummaryViewModel />
+    </d:ContentPage.BindingContext>
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:AmountFormatConverter x:Key="AmountValueConverter" />
@@ -22,61 +26,55 @@
     <ContentPage.Content>
         <Grid x:Name="MainLayout">
             <ListView x:Name="CategorySummaryList"
-                  ItemsSource="{Binding CategorySummary}" 
-                  HasUnevenRows="True"
-                  CachingStrategy="RecycleElement" >
-
-                <ListView.SeparatorVisibility>
-                    <OnPlatform x:TypeArguments="SeparatorVisibility">
-                        <On Platform="iOS" Value="Default" />
-                        <On Platform="Android" Value="None" />
-                        <On Platform="Uwp" Value="None" />
-                    </OnPlatform>
-                </ListView.SeparatorVisibility>
+                      ItemsSource="{Binding CategorySummary}"
+                      BackgroundColor="Transparent"
+                      RowHeight="70"
+                      SeparatorVisibility="None"
+                      CachingStrategy="RetainElement">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <controls:CardView Margin="{StaticResource ListItemMargin}" BackgroundColor="{x:Static moneyFox:StyleHelper.ListItemColor}" >
-                                
+                            <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                               BackgroundColor="{DynamicResource ListItemColor}">
+
                                 <StackLayout Padding="3"
                                              Spacing="3"
                                              HorizontalOptions="FillAndExpand"
                                              Margin="{DynamicResource DefaultListItemsMargin}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
                                         <Label Grid.Column="0"
-                                           Text="{Binding Label}" 
-                                           HorizontalOptions="StartAndExpand" 
-                                           Style="{StaticResource ListItemHeaderStyle}" />
+                                               Text="{Binding Label}"
+                                               LineBreakMode="TailTruncation"
+                                               HorizontalOptions="StartAndExpand"
+                                               Style="{StaticResource ListItemHeaderStyle}" />
 
-                                        <StackLayout Grid.Column="1" 
-                                                     HorizontalOptions="EndAndExpand" 
+                                        <StackLayout Grid.Column="1"
+                                                     HorizontalOptions="End"
                                                      Orientation="Horizontal"
-                                                     Spacing="0" 
-                                                     VerticalOptions="CenterAndExpand">
-                                            <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" 
-                                               Style="{DynamicResource DefaultTextStyle}" />
+                                                     Spacing="0"
+                                                     VerticalOptions="Center">
+                                            <Label
+                                                Text="{Binding Value, Converter={StaticResource AmountValueConverter}}"
+                                                Style="{DynamicResource DefaultTextStyle}" />
 
-                                            <Label Text=" (" 
-                                               Style="{DynamicResource DefaultTextStyle}" />
-                                            <Label Text="{Binding Percentage}" 
-                                               Style="{DynamicResource DefaultTextStyle}" />
-                                            <Label Text="%)" 
-                                               Style="{DynamicResource DefaultTextStyle}" />
+                                            <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}"
+                                                   Style="{DynamicResource DefaultTextStyle}" />
 
                                         </StackLayout>
                                     </Grid>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Resources[MonthlyAverageLabel]}" 
-                                           Style="{DynamicResource DeemphasizedLabelStyle}" />
-                                        <Label Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" 
-                                           Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                        <Label Text="{Binding Resources[MonthlyAverageLabel]}"
+                                               Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                        <Label
+                                            Text="{Binding Average, Converter={StaticResource AmountValueConverter}}"
+                                            Style="{DynamicResource DeemphasizedLabelStyle}" />
                                     </StackLayout>
 
                                 </StackLayout>
@@ -92,7 +90,7 @@
                    Style="{DynamicResource DeemphasizedLabelStyle}"
                    LineBreakMode="WordWrap"
                    IsVisible="{Binding HasData, Converter={StaticResource InverseBoolConverter}}"
-                   Text="{Binding Resources[NoStatisticItemsMessage]}"/>
+                   Text="{Binding Resources[NoStatisticItemsMessage]}" />
         </Grid>
     </ContentPage.Content>
-</views:MvxContentPage>
+</ContentPage>

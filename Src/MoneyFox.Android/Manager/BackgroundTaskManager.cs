@@ -2,8 +2,8 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.ServiceLayer.Interfaces;
-using MvvmCross.Platforms.Android;
+using MoneyFox.Foundation;
+using MoneyFox.Presentation.Interfaces;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
 namespace MoneyFox.Droid.Manager
@@ -18,16 +18,9 @@ namespace MoneyFox.Droid.Manager
         /// <summary>
         ///     Constructor
         /// </summary>
-        public BackgroundTaskManager(IMvxAndroidCurrentTopActivity currentActivity)
+        public BackgroundTaskManager()
         {
-            this.currentActivity = currentActivity.Activity;
-        }
-
-        /// <inheritdoc />
-        public void StopBackgroundTasks()
-        {
-            var tm = (JobSchedulerType)currentActivity.GetSystemService(Context.JobSchedulerService);
-            tm.CancelAll();
+            currentActivity = ParentActivityWrapper.ParentActivity as Activity;
         }
 
         /// <inheritdoc />

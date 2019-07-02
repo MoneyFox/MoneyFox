@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 namespace MoneyFox.Foundation.Exceptions
 {
     /// <summary>
     ///     This Exception is thrown when there was an issue with an internet connection.
     /// </summary>
+    [Serializable]
     public class NetworkConnectionException : Exception
     {
         /// <summary>
@@ -28,8 +30,11 @@ namespace MoneyFox.Foundation.Exceptions
         /// </summary>
         /// <param name="message">Exception message to show to the user.</param>
         /// <param name="exception">Inner Exception of the backup exception.</param>
-        public NetworkConnectionException(string message, Exception exception)
-            : base(message, exception)
+        public NetworkConnectionException(string message, Exception exception) : base(message, exception)
+        {
+        }
+
+        protected NetworkConnectionException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

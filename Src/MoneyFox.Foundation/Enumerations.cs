@@ -57,7 +57,8 @@
 
     public enum AppPlatform
     {
-        XamarinForms,
+        Android,
+        iOS,
         UWP
     }
 }

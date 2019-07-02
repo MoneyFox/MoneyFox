@@ -3,16 +3,17 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
+using CommonServiceLocator;
 using Microsoft.Identity.Client;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Foundation;
-using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
-using MvvmCross;
-using MvvmCross.Forms.Platforms.Android.Views;
+using MoneyFox.Presentation;
+using MoneyFox.Presentation.Facades;
+using MoneyFox.Presentation.Interfaces;
 using PCLAppConfig;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.Android;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -23,7 +24,7 @@ using Microsoft.AppCenter.Crashes;
 namespace MoneyFox.Droid
 {
     [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
-    public class MainActivity : MvxFormsAppCompatActivity
+    public class MainActivity : FormsAppCompatActivity
     {        
         /// <summary>
         ///     Constant for the ClearPayment Service.
@@ -40,34 +41,48 @@ namespace MoneyFox.Droid
         /// </summary>
         public const int MESSAGE_SERVICE_SYNC_BACKUP = 3;
 
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+            ParentActivityWrapper.ParentActivity = this;
+            ExecutingPlatform.Current = AppPlatform.Android;
+
+            if (ConfigurationManager.AppSettings == null)
+            {
+                ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+            }
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
                    typeof(Analytics), typeof(Crashes));
 #endif
-            FormsMaterial.Init(this, bundle);
 
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            base.OnCreate(bundle);
+            base.OnCreate(savedInstanceState);
+            Forms.Init(this, savedInstanceState);
+            FormsMaterial.Init(this, savedInstanceState);
 
-            Xamarin.Essentials.Platform.Init(this, bundle);
-            Popup.Init(this, bundle);
+            LoadApplication(new App());
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Popup.Init(this, savedInstanceState);
 
+            StartBackgroundServices();
+        }
+
+        private void StartBackgroundServices()
+        {
             // Handler to create jobs.
-            var handler = new Handler(msg => {
+            var handler = new Handler(msg => 
+            {
                 switch (msg.What)
                 {
                     case MESSAGE_SERVICE_CLEAR_PAYMENTS:
-                        var clearPaymentsJob = (ClearPaymentsJob)msg.Obj;
+                        var clearPaymentsJob = (ClearPaymentsJob) msg.Obj;
                         clearPaymentsJob.ScheduleTask();
                         break;
                     case MESSAGE_SERVICE_RECURRING_PAYMENTS:
-                        var recurringPaymentJob = (RecurringPaymentJob)msg.Obj;
+                        var recurringPaymentJob = (RecurringPaymentJob) msg.Obj;
                         recurringPaymentJob.ScheduleTask();
                         break;
                 }
@@ -82,13 +97,13 @@ namespace MoneyFox.Droid
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
 
-            if (Mvx.IoCProvider.CanResolve<IBackgroundTaskManager>() && Mvx.IoCProvider.CanResolve<ISettingsFacade>())
-            {
-                Mvx.IoCProvider.Resolve<IBackgroundTaskManager>()
-                   .StartBackupSyncTask(Mvx.IoCProvider.Resolve<ISettingsFacade>().BackupSyncRecurrence);
-            }
+            var backgroundTaskManager = ServiceLocator.Current.GetInstance<IBackgroundTaskManager>();
+            var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
 
-            ParentActivityWrapper.ParentActivity = this;
+            if (backgroundTaskManager != null && settingsFacade != null)
+            {
+                backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence);
+            }
         }
 
         public override void OnBackPressed()
@@ -103,8 +118,7 @@ namespace MoneyFox.Droid
             AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
         }
 
-
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);

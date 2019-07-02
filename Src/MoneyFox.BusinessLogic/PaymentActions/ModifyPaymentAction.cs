@@ -10,13 +10,6 @@ namespace MoneyFox.BusinessLogic.PaymentActions
     public interface IModifyPaymentAction
     {
         /// <summary>
-        ///     Create a new payment on the database.
-        /// </summary>
-        /// <param name="payment">new Payment</param>
-        /// <returns>Result</returns>
-        Task<OperationResult> AddPayment(Payment payment);
-
-        /// <summary>
         ///     Delete an existing Payment.
         /// </summary>
         /// <param name="id">Id of the payment to delete.</param>
@@ -40,18 +33,9 @@ namespace MoneyFox.BusinessLogic.PaymentActions
             this.savePaymentDbAccess = savePaymentDbAccess;
         }
 
-        public async Task<OperationResult> AddPayment(Payment payment)
-        {
-            await savePaymentDbAccess.AddPayment(payment)
-                                     ;
-
-            return OperationResult.Succeeded();
-        }
-
         public async Task<OperationResult> DeletePayment(int id)
         {
-            var payment = await savePaymentDbAccess.GetPaymentById(id)
-                                                   ;
+            var payment = await savePaymentDbAccess.GetPaymentById(id);
             
             payment.ChargedAccount.RemovePaymentAmount(payment);
             payment.TargetAccount?.RemovePaymentAmount(payment);
@@ -67,8 +51,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
             payments.ForEach(x => x.RemoveRecurringPayment());
 
-            await savePaymentDbAccess.DeleteRecurringPayment(id)
-                ;
+            await savePaymentDbAccess.DeleteRecurringPayment(id)                ;
         }
     }
 }

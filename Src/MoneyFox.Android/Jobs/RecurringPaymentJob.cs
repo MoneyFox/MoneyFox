@@ -10,8 +10,9 @@ using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.ServiceLayer.Facades;
+using MoneyFox.Presentation.Facades;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
 using JobSchedulerType = Android.App.Job.JobScheduler;
@@ -64,10 +65,8 @@ namespace MoneyFox.Droid.Jobs
             try
             {
                 Debug.WriteLine("RecurringPayment Job started.");
-                EfCoreContext.DbPath =
-                    Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                                 DatabaseConstants.DB_NAME);
-                
+                ExecutingPlatform.Current = AppPlatform.Android;
+
                 var context = new EfCoreContext();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context)).CreatePaymentsUpToRecur();
                 context.SaveChanges();
@@ -102,7 +101,7 @@ namespace MoneyFox.Droid.Jobs
             builder.SetRequiresCharging(false);
 
             var tm = (JobSchedulerType)GetSystemService(Context.JobSchedulerService);
-            var status = tm.Schedule(builder.Build());
+            tm.Schedule(builder.Build());
         }
     }
 }

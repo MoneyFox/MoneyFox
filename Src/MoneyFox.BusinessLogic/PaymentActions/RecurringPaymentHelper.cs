@@ -19,7 +19,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                 return false;
             }
 
-            if (payment.IsRecurring && payment.RecurringPayment == null) throw new MoneyFoxRecurringPaymentNullException();
+            if (payment.IsRecurring && payment.RecurringPayment == null) throw new RecurringPaymentNullException();
 
             switch (payment.RecurringPayment.Recurrence)
             {

@@ -5,12 +5,12 @@ using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Foundation.Exceptions;
-using MvvmCross.Plugin.File;
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Identity.Client;
+using MoneyFox.BusinessLogic.FileStore;
 using NLog;
 using Logger = NLog.Logger;
 
@@ -20,7 +20,7 @@ namespace MoneyFox.BusinessLogic.Backup
     {
         private readonly ICloudBackupService cloudBackupService;
 
-        private readonly IMvxFileStore fileStore;
+        private readonly IFileStore fileStore;
         private readonly IConnectivityAdapter connectivity;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -28,7 +28,7 @@ namespace MoneyFox.BusinessLogic.Backup
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         public BackupManager(ICloudBackupService cloudBackupService,
-            IMvxFileStore fileStore,
+            IFileStore fileStore,
             IConnectivityAdapter connectivity)
         {
             this.cloudBackupService = cloudBackupService;
@@ -186,10 +186,12 @@ namespace MoneyFox.BusinessLogic.Backup
 
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
-                var backupStream = await cloudBackupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME);
-                fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
+                using (var backupStream = await cloudBackupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME))
+                {
+                    fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
+                }
 
-                var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, EfCoreContext.DbPath, true);
+                var moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME, DatabasePathHelper.GetDbPath(), true);
 
                 if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
             }

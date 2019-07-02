@@ -1,10 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                      mc:Ignorable="d"
                       xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
-                      xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
-                      xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
+                      xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
                       x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl">
+
+    <d:ContentView.BindingContext>
+        <designTime:DesignTimeModifyPaymentViewModel />
+    </d:ContentView.BindingContext>
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -15,8 +21,7 @@
     </ContentView.Resources>
 
     <ContentView.Content>
-        <StackLayout Spacing="{StaticResource DefaultSpacing}"
-                     Margin="{StaticResource DefaultMargin}">
+        <StackLayout Spacing="{StaticResource DefaultSpacing}">
 
             <Label Text="{Binding AccountHeader}" Style="{DynamicResource DefaultTextStyle}" />
             <Picker ItemsSource="{Binding ChargedAccounts}"
@@ -36,11 +41,10 @@
                         SelectedIndexChanged="TargetAccount_OnSelectedIndexChanged" />
             </StackLayout>
 
-            <Label Text="{Binding Resources[AmountLabel]}"
-                   Style="{DynamicResource DefaultTextStyle}"
-                   Margin="0,5,0,0" />
             <Entry x:Name="AmountEntry"
+                   Style="{StaticResource DefaultEntry}"
                    Text="{Binding AmountString}"
+                   Placeholder="{Binding Resources[AmountLabel]}"
                    Keyboard="Numeric"
                    HorizontalTextAlignment="End"
                    Focused="AmountFieldGotFocus" />
@@ -48,6 +52,7 @@
             <Label Text="{Binding Resources[CategoryLabel]}"
                    Style="{DynamicResource DefaultTextStyle}"
                    Margin="0,5,0,0" />
+
             <Grid>
 
                 <Grid.ColumnDefinitions>
@@ -57,32 +62,35 @@
 
                 <Button Grid.Column="0"
                         Grid.ColumnSpan="2"
+                        Style="{StaticResource DefaultButtonStyle}"
                         Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                        Command="{Binding GoToSelectCategorydialogCommand}">
-                    <Button.Effects>
-                        <effects:PrimaryButtonEffect />
-                    </Button.Effects>
-                </Button>
+                        Command="{Binding GoToSelectCategoryDialogCommand}"/>
 
-                <Image Grid.Column="1"
-                       x:Name="ResetIcon"
-                       VerticalOptions="CenterAndExpand"
-                       HorizontalOptions="Start"
-                       Source="{StaticResource ImageResetField}"
+                <ImageButton Grid.Column="1"
                        HeightRequest="30"
                        WidthRequest="30"
-                       Margin="0,0,3,0" />
+                       BackgroundColor="Transparent"
+                       Command="{Binding ResetCategoryCommand}"
+                       Margin="0,0,2,0">
+                    <ImageButton.Source>
+                        <FontImageSource
+                            Glyph="{StaticResource Reset}"
+                            FontFamily="{DynamicResource MaterialFontFamily}"
+                            Size="33"
+                            Color="White" />
+                    </ImageButton.Source>
+                </ImageButton>
             </Grid>
 
             <Label Text="{Binding Resources[DateLabel]}"
                    Style="{DynamicResource DefaultTextStyle}"
                    Margin="0,5,0,0" />
-            <DatePicker Date="{Binding SelectedPayment.Date}" />
+            <DatePicker Date="{Binding SelectedPayment.Date}" 
+                        Style="{StaticResource DefaultDatePickerStyle}" />
 
-            <Label Text="{Binding Resources[NoteLabel]}"
-                   Style="{DynamicResource DefaultTextStyle}"
-                   Margin="0,5,0,0" />
-            <Entry Text="{Binding SelectedPayment.Note}"/>
+            <Entry Style="{StaticResource DefaultEntry}"
+                   Placeholder="{Binding Resources[NoteLabel]}"
+                   Text="{Binding SelectedPayment.Note}"/>
 
             <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
@@ -92,7 +100,10 @@
                     <ColumnDefinition Width="30*" />
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0" Text="{Binding Resources[RecurringLabel]}" />
+                <Label Grid.Column="0" 
+                       Text="{Binding Resources[RecurringLabel]}"
+                       Style="{DynamicResource DefaultTextStyle}"/>
+
                 <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.IsRecurring}" />
             </Grid>
 
@@ -130,6 +141,7 @@
             <!-- This delete button is only for ios, since there can be only one menu item -->
             <Button x:Name="DeletePaymentButton"
                     Text="{Binding Resources[DeleteLabel]}"
+                    Style="{StaticResource DeleteButtonStyle}"
                     Command="{Binding DeleteCommand}"
                     Margin="0,12,0,0">
 
@@ -139,11 +151,6 @@
                         <On Platform="Ios" Value="True" />
                     </OnPlatform>
                 </Button.IsVisible>
-
-                <Button.Effects>
-                    <effects:DeleteButtonEffect />
-                </Button.Effects>
-
             </Button>
         </StackLayout>
     </ContentView.Content>

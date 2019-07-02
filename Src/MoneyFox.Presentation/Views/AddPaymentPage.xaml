@@ -1,15 +1,42 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<views:MvxContentPage x:TypeArguments="viewModels:AddPaymentViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-                      xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                      xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                      x:Class="MoneyFox.Presentation.Views.AddPaymentPage"
-                      Title="{Binding Title}">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.Views.AddPaymentPage"
+             Visual="Material"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}" >
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeModifyPaymentViewModel />
+    </d:ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <AbsoluteLayout >
+            <Label Text="{Binding Title}" 
+                   Style="{StaticResource PageTitleStyle}"/>
+
+            <ImageButton BackgroundColor="Transparent"
+                         AbsoluteLayout.LayoutBounds="1,0,33,33"
+                         AbsoluteLayout.LayoutFlags="XProportional"
+                         Margin="0,0,6,0"
+                         Command="{Binding SaveCommand}">
+                <ImageButton.Source>
+                    <FontImageSource
+                        Glyph="{StaticResource Save}"
+                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        Color="White" />
+                </ImageButton.Source>
+            </ImageButton>
+        </AbsoluteLayout>
+    </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <StackLayout>
-            <userControls:ModifyPaymentUserControl />
+            <userControls:ModifyPaymentUserControl Margin="{StaticResource DefaultMargin}"/>
         </StackLayout>
     </ContentPage.Content>
-</views:MvxContentPage>
+</ContentPage>

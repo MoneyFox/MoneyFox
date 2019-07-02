@@ -1,13 +1,12 @@
 ﻿using System;
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
-using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.UserControls
+namespace MoneyFox.Presentation.UserControls
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class CategoryListUserControl
 	{
 	    private AbstractCategoryListViewModel ViewModel => (AbstractCategoryListViewModel) BindingContext;
@@ -38,17 +37,17 @@ namespace MoneyFox.UserControls
 	        var menuItem = sender as MenuItem;
 	        if (menuItem == null) return;
 
-            ViewModel.DeleteCategoryCommand.Execute(menuItem.CommandParameter);
+            ViewModel.DeleteCategoryCommand.ExecuteAsync((CategoryViewModel) menuItem.CommandParameter).FireAndForgetSafeAsync();
 	    }
 
 	    private void AddCategoryClick(object sender, EventArgs e)
 	    {
-	        ViewModel.CreateNewCategoryCommand.Execute();
+	        ViewModel.CreateNewCategoryCommand.Execute(null);
 	    }
 
 	    private void SearchTermChanged(object sender, TextChangedEventArgs e)
 	    {
-	        ViewModel.SearchCommand.Execute(e.NewTextValue);
+	        ViewModel.SearchCommand.ExecuteAsync(e.NewTextValue).FireAndForgetSafeAsync();
         }
     }
 }
