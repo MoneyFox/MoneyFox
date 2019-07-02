@@ -783,21 +783,21 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
     <value>Muokkaa Toistumista</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+    <value>Paikallisessa tietokannassa on uudempi muokkauspäivämäärä kuin OneDriven tietokannassa. Haluatko korvata paikalliset tiedostosi?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Override Local Data</value>
+    <value>Korvaa Paikalliset Tiedostot</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>Tiedostosi tallennetaan sinun OneDrive käyttäjällesi. Löydät ne Sovellus Tiedostosi uudesta kansiosta nimeltä "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Tumma</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Kirkas</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
+    <value>Windowsin oletusarvo</value>
   </data>
 </root>
