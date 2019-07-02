@@ -1,15 +1,24 @@
 ﻿using MoneyFox.Foundation.Resources;
-using Xamarin.Forms.Xaml;
+using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoryListPage
 	{
+        private CategoryListViewModel ViewModel => BindingContext as CategoryListViewModel;
+
 		public CategoryListPage()
 		{
 	        InitializeComponent();
-		    Title = Strings.CategoriesTitle;
+            BindingContext = ViewModelLocator.CategoryListVm;
+
+            Title = Strings.CategoriesTitle;
 		}
+
+        protected override void OnAppearing()
+        {
+            ViewModel.AppearingCommand.ExecuteAsync().FireAndForgetSafeAsync();
+        }
     }
 }

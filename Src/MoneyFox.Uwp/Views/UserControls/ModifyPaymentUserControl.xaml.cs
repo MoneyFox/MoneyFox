@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.Toolkit.Uwp.UI.Animations;
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {

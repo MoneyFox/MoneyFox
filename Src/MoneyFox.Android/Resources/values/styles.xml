@@ -2,7 +2,8 @@
 <resources>
 
   <style name="Theme.Splash" parent="MainTheme.Base">
-    <item name="android:statusBarColor">@color/colorPrimaryDark</item>
+    <item name="android:statusBarColor">@color/splash_background</item>
+    <item name="android:windowBackground">@drawable/splash_screen</item>
   </style>
 
   <style name="MainTheme" parent="MainTheme.Base">
@@ -21,6 +22,6 @@
   </style>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-    <item name="colorAccent">#FF4081</item>
+    <item name="colorAccent">@color/colorAccent</item>
   </style>
 </resources>

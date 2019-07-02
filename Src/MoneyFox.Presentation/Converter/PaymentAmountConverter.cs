@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using MoneyFox.Foundation;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross.Converters;
+using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter
@@ -10,7 +9,7 @@ namespace MoneyFox.Presentation.Converter
     /// <summary>
     ///     Converts a PaymentViewModel for displaying on the GUI.
     /// </summary>
-    public class PaymentAmountConverter : IMvxValueConverter, IValueConverter
+    public class PaymentAmountConverter : IValueConverter
     {
         private const string IGNORE_TRANSFER = "IgnoreTransfer";
 

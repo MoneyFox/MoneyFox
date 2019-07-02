@@ -1,10 +1,20 @@
-﻿namespace MoneyFox.Uwp.Views
+﻿using Windows.UI.Xaml.Navigation;
+using MoneyFox.Presentation.ViewModels;
+
+namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class EditAccountView 
+    public sealed partial class EditAccountView
     {
+        private EditAccountViewModel ViewModel => DataContext as EditAccountViewModel;
+
         public EditAccountView()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (e.Parameter != null) ViewModel.AccountId = (int)e.Parameter;
         }
     }
 }

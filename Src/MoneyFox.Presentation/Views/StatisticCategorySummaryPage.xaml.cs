@@ -1,41 +1,43 @@
-﻿using MoneyFox.Foundation.Resources;
+﻿using System.Threading.Tasks;
+using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
-using MoneyFox.ServiceLayer.ViewModels;
-using MvvmCross;
+using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StatisticCategorySummaryPage
-	{
-		public StatisticCategorySummaryPage ()
+    {
+        private StatisticCategorySummaryViewModel ViewModel => BindingContext as StatisticCategorySummaryViewModel;
+
+        public StatisticCategorySummaryPage ()
 		{
-            InitializeComponent ();
-		    Title = Strings.CategorySummaryTitle;
+            InitializeComponent();
+            BindingContext = ViewModelLocator.StatisticCategorySummaryVm;
+
+            Title = Strings.CategorySummaryTitle;
 
 		    var filterItem = new ToolbarItem
 		    {
-		        Command = new Command(OpenDialog),
+		        Command = new Command(async () => await OpenDialog()),
 		        Text = Strings.SelectDateLabel,
 		        Priority = 0,
 		        Order = ToolbarItemOrder.Primary
 		    };
 
 		    ToolbarItems.Add(filterItem);
+
+            ViewModel.LoadedCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
-	    private async void OpenDialog()
-	    {
-	        if (Mvx.IoCProvider.CanResolve<SelectDateRangeDialogViewModel>())
-	        {
-	            await Navigation.PushPopupAsync(new DateSelectionPopup
-	            {
-	                BindingContext = Mvx.IoCProvider.Resolve<SelectDateRangeDialogViewModel>()
-	            });
-	        }
-	    }
+        private async Task OpenDialog()
+        {
+            await Navigation.PushPopupAsync(new DateSelectionPopup
+            {
+                BindingContext = ViewModelLocator.SelectDateRangeDialogVm
+            });
+        }
     }
 }

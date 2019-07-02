@@ -1,13 +1,26 @@
-﻿using Xamarin.Forms.Xaml;
+﻿using System;
+using System.Collections.Generic;
+using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SettingsPersonalizationPage
 	{
+        private SettingsPersonalizationViewModel ViewModel => BindingContext as SettingsPersonalizationViewModel;
 		public SettingsPersonalizationPage ()
 		{
-			InitializeComponent ();
-		}
-	}
+			InitializeComponent();
+            BindingContext = ViewModelLocator.SettingsPersonalizationVm;
+
+            ThemePicker.ItemsSource = new List<string>{Strings.LightLabel, Strings.DarkLabel};
+
+            ThemePicker.SelectedIndex = ViewModel.ElementTheme == "Light" ? 0 : 1;
+        }
+
+        private void ThemePicker_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            ViewModel.SwitchThemeCommand.Execute(ThemePicker.SelectedItem.ToString() == Strings.LightLabel ? "Light" : "Dark");
+        }
+    }
 }

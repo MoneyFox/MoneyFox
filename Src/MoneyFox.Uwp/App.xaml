@@ -1,22 +1,14 @@
-﻿<uwp:MoneyFoxApp
+﻿<Application
     x:Class="MoneyFox.Uwp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:uwp="using:MoneyFox.Uwp">
+    xmlns:presentation="using:MoneyFox.Presentation">
 
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Default">
-                    <ResourceDictionary.MergedDictionaries>
-                        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
-                        <ResourceDictionary Source="Style/ColorsLight.xaml" />
-                        <ResourceDictionary Source="Style/AppStyles.xaml" />
-                        <ResourceDictionary Source="Style/TextStyles.xaml" />
-                        <ResourceDictionary Source="Style/ControlStyles.xaml" />
-                    </ResourceDictionary.MergedDictionaries>
-                </ResourceDictionary>
+            <presentation:ViewModelLocator x:Key="Locator" />
 
+            <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <ResourceDictionary.MergedDictionaries>
                         <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
@@ -24,6 +16,7 @@
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
                         <ResourceDictionary Source="Style/TextStyles.xaml" />
                         <ResourceDictionary Source="Style/ControlStyles.xaml" />
+                        <ResourceDictionary Source="Style/_Thickness.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
 
@@ -34,9 +27,10 @@
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
                         <ResourceDictionary Source="Style/TextStyles.xaml" />
                         <ResourceDictionary Source="Style/ControlStyles.xaml" />
+                        <ResourceDictionary Source="Style/_Thickness.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </ResourceDictionary.ThemeDictionaries>
         </ResourceDictionary>
     </Application.Resources>
-</uwp:MoneyFoxApp>
+</Application>

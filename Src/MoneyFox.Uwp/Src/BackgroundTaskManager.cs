@@ -1,6 +1,6 @@
 ﻿using Windows.ApplicationModel.Background;
 using Microsoft.Toolkit.Uwp.Helpers;
-using MoneyFox.ServiceLayer.Interfaces;
+using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Uwp.Tasks;
 
 namespace MoneyFox.Uwp

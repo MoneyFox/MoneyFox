@@ -1,23 +1,29 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<views:MvxContentPage  x:TypeArguments="viewModels:SettingsPersonalizationViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                       xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                       xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-                       xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels;assembly=MoneyFox.ServiceLayer"
-                       xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-                       x:Class="MoneyFox.Presentation.Views.SettingsPersonalizationPage"
-                       Title="{Binding Resources[SettingsPersonalizationLabel]}"
-                       BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                       DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignSettingsPersonalizationViewModel}">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.Views.SettingsPersonalizationPage"
+             Visual="Material"
+             Title="{Binding Resources[SettingsPersonalizationLabel]}"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeSettingsPersonalizationViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="6">
             <Label Text="{Binding Resources[PersonalizationInfoLabel]}"
                    Style="{StaticResource DefaultTextStyle}"
                    HorizontalOptions="StartAndExpand" />
-            <Picker ItemsSource ="{Binding ThemeItems}" 
-                    SelectedIndex="{Binding SelectedIndex}"
+            <Picker x:Name="ThemePicker"
+                    SelectedIndexChanged="ThemePicker_OnSelectedIndexChanged"
                     Style="{StaticResource DefaultPickerStyle}" />
+
         </StackLayout>
     </ContentPage.Content>
-</views:MvxContentPage>
+</ContentPage>

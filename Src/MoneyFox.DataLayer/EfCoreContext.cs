@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Configurations;
 using MoneyFox.DataLayer.Entities;
+using NLog;
+using System;
 
 namespace MoneyFox.DataLayer
 {
@@ -9,6 +11,8 @@ namespace MoneyFox.DataLayer
     /// </summary>
     public class EfCoreContext : DbContext
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public EfCoreContext()
         {
         }
@@ -21,18 +25,14 @@ namespace MoneyFox.DataLayer
         public DbSet<Category> Categories { get; set; }
 
         /// <summary>
-        ///     The Path to the db who shall be opened
-        /// </summary>
-        public static string DbPath { get; set; }
-
-        /// <summary>
         ///     This is called when before the db is access.
         ///     Set DbPath before, so that we use here what db we have to use.
         /// </summary>
         /// <param name="optionsBuilder">Optionbuilder who is used.</param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite($"Filename={DbPath}");
+            // Specify that we will use sqlite and the path of the database here
+            optionsBuilder.UseSqlite($"Filename={DatabasePathHelper.GetDbPath()}");
         }
 
         /// <summary>
@@ -42,8 +42,12 @@ namespace MoneyFox.DataLayer
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ThrowIfNull(modelBuilder);
+
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         }
+
+        private void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));  }
     }
 }

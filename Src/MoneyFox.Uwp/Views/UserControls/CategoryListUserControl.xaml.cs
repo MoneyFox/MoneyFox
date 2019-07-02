@@ -2,7 +2,8 @@
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using MoneyFox.ServiceLayer.ViewModels;
+using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {
@@ -42,13 +43,12 @@ namespace MoneyFox.Uwp.Views.UserControls
                 return;
             }
 
-            ((AbstractCategoryListViewModel) DataContext).DeleteCategoryCommand.Execute(category);
+            ((AbstractCategoryListViewModel) DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
         }
 
         private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            ((AbstractCategoryListViewModel) DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text);
-
+            ((AbstractCategoryListViewModel) DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text).FireAndForgetSafeAsync();
         }
     }
 }

@@ -10,11 +10,6 @@ using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation;
 using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Interfaces;
-using MoneyFox.ServiceLayer.Services;
-using MvvmCross;
-using MvvmCross.Forms.Platforms.Ios.Core;
-using MvvmCross.Plugin.File;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
@@ -23,6 +18,12 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using Autofac;
+using CommonServiceLocator;
+using MoneyFox.BusinessLogic.FileStore;
+using MoneyFox.Presentation.Facades;
+using MoneyFox.Presentation.Services;
+using MoneyFox.Presentation.Utilities;
 using NLog;
 using NLog.Targets;
 using UIKit;
@@ -30,6 +31,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
+using MoneyFox.Foundation;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -41,7 +43,7 @@ namespace MoneyFox.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register(nameof(AppDelegate))]
-    public class AppDelegate : MvxFormsApplicationDelegate<ApplicationSetup, CoreApp, App>
+    public class AppDelegate : FormsApplicationDelegate
     {
         // Minimum number of seconds between a background refresh
         // 15 minutes = 60 * 60 = 3600 seconds
@@ -54,31 +56,36 @@ namespace MoneyFox.iOS
         {
             InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
+            ExecutingPlatform.Current = AppPlatform.iOS;
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
+            RegisterServices();
 
+            Forms.Init();
             FormsMaterial.Init();
-
-            UINavigationBar.Appearance.BarTintColor = StyleHelper.PrimaryColor.ToUIColor();
-            UINavigationBar.Appearance.TintColor = UIColor.White;
+            LoadApplication(new App());
+            Popup.Init();
 
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
-
-            EfCoreContext.DbPath = GetLocalFilePath();
-            Batteries.Init();
-            Popup.Init();
+            
+            RunAppStart().FireAndForgetSafeAsync();
 
             return base.FinishedLaunching(app, options);
         }
 
-        protected override async void RunAppStart(object hint = null)
+        private void RegisterServices()
         {
-            base.RunAppStart(hint);
+            var builder = new ContainerBuilder();
+            builder.RegisterModule<IosModule>();
+            ViewModelLocator.RegisterServices(builder);
+        }
 
+        protected async Task RunAppStart()
+        {
             await SyncBackup();
             await ClearPayments();
             await CreateRecurringPayments();
@@ -115,18 +122,6 @@ namespace MoneyFox.iOS
 
             return Path.Combine(libFolder, "moneyfox.log");
         }
-        private static string GetLocalFilePath()
-        {
-            string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
-
-            if (!Directory.Exists(libFolder))
-            {
-                Directory.CreateDirectory(libFolder);
-            }
-
-            return Path.Combine(libFolder, DatabaseConstants.DB_NAME);
-        }
 
         // Needed for auth
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
@@ -137,8 +132,6 @@ namespace MoneyFox.iOS
 
         public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
         {
-            if (!Mvx.IoCProvider.CanResolve<IRecurringPaymentManager>() || !Mvx.IoCProvider.CanResolve<IBackupManager>()) return;
-
             Debug.Write("Enter Background Task");
             var successful = false;
             try
@@ -171,15 +164,11 @@ namespace MoneyFox.iOS
 
         private async Task SyncBackup()
         {
-            if (!Mvx.IoCProvider.CanResolve<IMvxFileStore>()) return;
-
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
 
             try
             {
-                EfCoreContext.DbPath = GetLocalFilePath();
-
                 var pca = PublicClientApplicationBuilder
                     .Create(ServiceConstants.MSAL_APPLICATION_ID)
                     .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
@@ -188,7 +177,7 @@ namespace MoneyFox.iOS
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
-                    Mvx.IoCProvider.Resolve<IMvxFileStore>(),
+                    ServiceLocator.Current.GetInstance<IFileStore>(),
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager, settingsFacade);
@@ -213,7 +202,6 @@ namespace MoneyFox.iOS
             try
             {
                 Debug.WriteLine("ClearPayments Job started");
-                EfCoreContext.DbPath = GetLocalFilePath();
 
                 var context = new EfCoreContext();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
@@ -236,7 +224,6 @@ namespace MoneyFox.iOS
             try
             {
                 Debug.WriteLine("RecurringPayment Job started.");
-                EfCoreContext.DbPath = GetLocalFilePath();
 
                 var context = new EfCoreContext();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))

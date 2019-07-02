@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Globalization;
-using MvvmCross.Converters;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
     ///     Converts DateTime values to a nicer representation.
     /// </summary>
-    public class DateTimeFormatConverter : IMvxValueConverter
+    public class DateTimeFormatConverter : IValueConverter
     {
         /// <summary>
         ///     Converts the passed DateTime to a nice string.

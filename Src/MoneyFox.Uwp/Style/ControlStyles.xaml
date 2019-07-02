@@ -9,12 +9,13 @@
                Margin="0,0,-10,0"/>
   </DataTemplate>
 
-  <Style x:Key="CustomPivotStyle"
-         TargetType="Pivot">
-    <Setter Property="HeaderTemplate"
-            Value="{StaticResource MyHeader}" />
-      <Setter Property="Margin"
-              Value="-12,-2,0,0" />
-  </Style>
+    <Style x:Key="CustomPivotStyle" TargetType="Pivot">
+        <Setter Property="HeaderTemplate" Value="{StaticResource MyHeader}" />
+        <Setter Property="Margin" Value="-12,-2,0,0" />
+    </Style>
 
+    <Style x:Key="DefaultCommandBar" TargetType="CommandBar">
+        <Setter Property="Background" Value="{StaticResource CommandBarBackgroundColor}" />
+    </Style>
+    
 </ResourceDictionary>

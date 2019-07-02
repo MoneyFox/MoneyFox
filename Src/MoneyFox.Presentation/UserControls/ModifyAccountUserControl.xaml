@@ -1,30 +1,35 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.UserControls.ModifyAccountUserControl">
+
+    <d:ContentView.BindingContext>
+        <designTime:DesignTimeModifyAccountViewModel />
+    </d:ContentView.BindingContext>
 
     <ContentView.Content>
         <ScrollView>
-            <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
+            <StackLayout Spacing="{StaticResource DefaultSpacing}">
 
-                <Label Text="{Binding Resources[AccountNameLabel]}"
-                       Style="{StaticResource DefaultTextStyle}" />
-                <Entry Text="{Binding SelectedAccount.Name}" />
+                <Entry Style="{StaticResource DefaultEntry}"
+                       Placeholder="{Binding Resources[AccountNameLabel]}"
+                       Text="{Binding SelectedAccount.Name}" />
 
-                <Label Text="{Binding Resources[CurrentBalanceLabel]}"
-                       Style="{StaticResource DefaultTextStyle}"
-                       Margin="0,5,0,0" />
                 <Entry x:Name="AmountEntry"
+                       Style="{StaticResource DefaultEntry}"
+                       Placeholder="{Binding Resources[CurrentBalanceLabel]}"
                        Text="{Binding AmountString}" 
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        Focused="AmountFieldGotFocused"/>
 
-                <Label Text="{Binding Resources[NoteLabel]}"
-                       Style="{StaticResource DefaultTextStyle}"
-                       Margin="0,5,0,0"/>
-                <Entry Text="{Binding SelectedAccount.Note}"/>
+                <Entry Style="{StaticResource DefaultEntry}"
+                       Placeholder="{Binding Resources[NoteLabel]}"
+                       Text="{Binding SelectedAccount.Note}"/>
 
                 <Grid HorizontalOptions="FillAndExpand"
                   Margin="0,5,0,0">
@@ -39,25 +44,6 @@
                            Style="{StaticResource DefaultTextStyle}"/>
                     <Switch Grid.Column="1" IsToggled="{Binding SelectedAccount.IsExcluded}" />
                 </Grid>
-
-                <!-- This delete button is only for ios, since there can be only one menu item -->
-                <Button x:Name="DeleteAccountButton"
-                    Text="{Binding Resources[DeleteLabel]}"
-                    Command="{Binding DeleteCommand}"
-                    Margin="0,12,0,0" >
-
-                    <Button.IsVisible>
-                        <OnPlatform x:TypeArguments="x:Boolean">
-                            <On Platform="Android" Value="False" />
-                            <On Platform="Ios" Value="True" />
-                        </OnPlatform>
-                    </Button.IsVisible>
-
-                    <Button.Effects>
-                        <effects:DeleteButtonEffect />
-                    </Button.Effects>
-                </Button>
-
             </StackLayout>
         </ScrollView>
     </ContentView.Content>

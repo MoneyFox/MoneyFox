@@ -1,23 +1,31 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.UserControls.ModifyCategoryUserControl">
 
+    <d:ContentView.BindingContext>
+        <designTime:DesignTimeModifyCategoryViewModel />
+    </d:ContentView.BindingContext>
+
     <ContentView.Content>
-      <StackLayout Spacing="{StaticResource DefaultSpacing}" Margin="{StaticResource DefaultMargin}">
+      <StackLayout Spacing="{StaticResource DefaultSpacing}" >
 
-          <Label Text="{Binding Resources[CategoryNameLabel]}"
-                 Style="{StaticResource DefaultTextStyle}" />
-          <Entry Text="{Binding SelectedCategory.Name}"/>
+            <Entry Style="{StaticResource DefaultEntry}"
+                   Placeholder="{Binding Resources[CategoryNameLabel]}"
+                   Text="{Binding SelectedCategory.Name}"/>
 
-          <Label Text="{Binding Resources[NoteLabel]}"
-                 Style="{StaticResource DefaultTextStyle}" />
-          <Entry Text="{Binding SelectedCategory.Note}"/>
+            <Entry Style="{StaticResource DefaultEntry}"
+                   Placeholder="{Binding Resources[NoteLabel]}"
+                   Text="{Binding SelectedCategory.Note}"/>
 
           <!-- This delete button is only for ios, since there can be only one menu item -->
           <Button x:Name="DeleteCategoryButton"
                   Text="{Binding Resources[DeleteLabel]}"
+                  Style="{StaticResource DeleteButtonStyle}"
                   Command="{Binding DeleteCommand}"
                   Margin="0,12,0,0" >
 
@@ -27,10 +35,6 @@
                       <On Platform="Ios" Value="True" />
                   </OnPlatform>
               </Button.IsVisible>
-
-                <Button.Effects>
-                  <effects:DeleteButtonEffect />
-              </Button.Effects>
           </Button>
 
       </StackLayout>

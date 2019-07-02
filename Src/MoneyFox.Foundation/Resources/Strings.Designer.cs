@@ -19,7 +19,7 @@ namespace MoneyFox.Foundation.Resources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Strings {
@@ -709,6 +709,15 @@ namespace MoneyFox.Foundation.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        public static string DarkLabel {
+            get {
+                return ResourceManager.GetString("DarkLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Date.
         /// </summary>
         public static string DateLabel {
@@ -1219,6 +1228,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string LeaveFeedbackLabel {
             get {
                 return ResourceManager.GetString("LeaveFeedbackLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        public static string LightLabel {
+            get {
+                return ResourceManager.GetString("LightLabel", resourceCulture);
             }
         }
         
@@ -2059,6 +2077,15 @@ namespace MoneyFox.Foundation.Resources {
         public static string WelcomeLabel {
             get {
                 return ResourceManager.GetString("WelcomeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows Default.
+        /// </summary>
+        public static string WindowsDefaultLabel {
+            get {
+                return ResourceManager.GetString("WindowsDefaultLabel", resourceCulture);
             }
         }
         

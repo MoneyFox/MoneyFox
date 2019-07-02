@@ -8,11 +8,12 @@ namespace MoneyFox.Presentation.Controls
         {
             Padding = 0;
 
-            if (Device.RuntimePlatform == Device.iOS)
+            if (Device.RuntimePlatform == Device.UWP)
             {
                 HasShadow = false;
                 BorderColor = Color.Transparent;
                 BackgroundColor = Color.Transparent;
+                CornerRadius = 0;
             }
         }
 

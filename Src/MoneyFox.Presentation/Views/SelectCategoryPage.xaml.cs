@@ -1,15 +1,24 @@
 ﻿using MoneyFox.Foundation.Resources;
-using Xamarin.Forms.Xaml;
+using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class SelectCategoryPage 
 	{
+        private SelectCategoryListViewModel ViewModel => BindingContext as SelectCategoryListViewModel;
+
 		public SelectCategoryPage ()
 		{
-			InitializeComponent ();
-		    Title = Strings.SelectCategoryTitle;
+			InitializeComponent();
+            BindingContext = ViewModelLocator.SelectCategoryListVm;
+
+            Title = Strings.SelectCategoryTitle;
         }
-	}
+
+        protected override void OnAppearing()
+        {
+            ViewModel.AppearingCommand.ExecuteAsync().FireAndForgetSafeAsync();
+        }
+    }
 }

@@ -1,15 +1,26 @@
-﻿<views:MvxWindowsPage x:Class="MoneyFox.Uwp.Views.StatisticCategorySummaryView"
+﻿<Page x:Class="MoneyFox.Uwp.Views.StatisticCategorySummaryView"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:views="using:MvvmCross.Platforms.Uap.Views"
-                      xmlns:designTime="using:MoneyFox.ServiceLayer.ViewModels.DesignTime"
-                      xmlns:converter="using:MoneyFox.Uwp.Converter"
+                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:i="using:Microsoft.Xaml.Interactivity"
+                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                       SizeChanged="StatisticCategorySummaryView_OnSizeChanged"
-                      mc:Ignorable="d">
+                      mc:Ignorable="d"
+                      DataContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}">
+
+    <d:MvxWindowsPage.DataContext>
+        <designTime:DesignTimeStatisticCategorySummaryViewModel />
+    </d:MvxWindowsPage.DataContext>
+
+    <i:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
+        </core:EventTriggerBehavior>
+    </i:Interaction.Behaviors>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
@@ -22,11 +33,12 @@
                    x:Uid="CategorySummaryStatisticTitle"
                    Text="Category Summary"
                    Margin="{StaticResource MediumLeftRightMargin}"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+                   Style="{ThemeResource UwpPageTitleStyle}" />
         
         <Grid Grid.Row="1" x:Name="ContentGrid" />
-        
+
         <CommandBar Grid.Row="2"
+                    Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>
                 <AppBarButton x:Uid="SetDate"
@@ -36,4 +48,4 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</views:MvxWindowsPage>
+</Page>

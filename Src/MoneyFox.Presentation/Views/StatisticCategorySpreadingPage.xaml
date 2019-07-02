@@ -1,15 +1,21 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<d:MvxContentPage  x:TypeArguments="viewModels:StatisticCategorySpreadingViewModel"
-                   xmlns="http://xamarin.com/schemas/2014/forms"
-                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-                   xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                   xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-                   xmlns:presentation="clr-namespace:MoneyFox.Presentation"
-                   xmlns:viewModels="clr-namespace:MoneyFox.ServiceLayer.ViewModels.Statistic;assembly=MoneyFox.ServiceLayer"
-                   BackgroundColor="{x:Static presentation:StyleHelper.WindowBackgroundColor}"
-                   x:Class="MoneyFox.Presentation.Views.StatisticCategorySpreadingPage">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             xmlns:presentation="clr-namespace:MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             Visual="Material"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
+             x:Class="MoneyFox.Presentation.Views.StatisticCategorySpreadingPage">
 
-  <d:MvxContentPage.Content>
-    <forms:ChartView Chart="{Binding Chart}" />
-  </d:MvxContentPage.Content>
-</d:MvxContentPage>
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeStatisticCategorySpreadingViewModel />
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <forms:ChartView Chart="{Binding Chart}" />
+    </ContentPage.Content>
+</ContentPage>

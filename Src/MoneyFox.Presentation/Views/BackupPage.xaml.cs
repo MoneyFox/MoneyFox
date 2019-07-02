@@ -1,15 +1,21 @@
 ﻿using MoneyFox.Foundation.Resources;
-using Xamarin.Forms.Xaml;
+using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class BackupPage
     {
+        public BackupViewModel ViewModel => BindingContext as BackupViewModel;
+
 		public BackupPage ()
 		{
 			InitializeComponent();
-		    Title = Strings.BackupTitle;
+            BindingContext = ViewModelLocator.BackupVm;
+
+            Title = Strings.BackupTitle;
+
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
 		}
-	}
+    }
 }

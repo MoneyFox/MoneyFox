@@ -6,11 +6,14 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using CommonServiceLocator;
 using GenericServices;
-using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.ServiceLayer.ViewModels.DesignTime;
+using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.ViewModels.DesignTime;
 using MoneyFox.Uwp.Business.Tiles;
-using MvvmCross;
+using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -18,17 +21,17 @@ namespace MoneyFox.Uwp.Views
     ///     View to display an list of accounts.
     /// </summary>
     public sealed partial class AccountListView
-	{
-		/// <summary>
-		///     Initialize View.
-		/// </summary>
-		public AccountListView()
+    {
+        /// <summary>
+        ///     Initialize View.
+        /// </summary>
+        public AccountListView()
 		{
 			InitializeComponent();
 
 			if (DesignMode.DesignModeEnabled)
 			{
-				ViewModel = new DesignTimeAccountListViewModel();
+				DataContext = new DesignTimeAccountListViewModel();
 			}
 		}
 
@@ -60,36 +63,40 @@ namespace MoneyFox.Uwp.Views
 				return;
 			}
 
-			(DataContext as AccountListViewModel)?.DeleteAccountCommand.Execute(account);
+			(DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
 		}
 
+        private const string SMALL_150_TILE_ICON = "ms-appx:///Assets/SmallTile.scale-150.png";
+        private const string SQUARE_310_TILE_ICON = "ms-appx:///Assets/Square310x310Logo.scale-100.png";
+        private const string SQUARE_150_TILE_ICON = "ms-appx:///Assets/Square150x150Logo.scale-100.png";
+        private const string WIDE_310_TILE_ICON = "ms-appx:///Assets/Wide310x150Logo.scale-100.png";
+        private const string SQUARE_71_TILE_ICON = "ms-appx:///Assets/Square71x71Logo.scale-100.png";
         private async void AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
             if (!(element.DataContext is AccountViewModel account)) return;
-            if (!Mvx.IoCProvider.CanResolve<ICrudServicesAsync>()) return;
 
-            var liveTileManager = new LiveTileManager(Mvx.IoCProvider.Resolve<ICrudServicesAsync>());
+            var liveTileManager = new LiveTileManager(ServiceLocator.Current.GetInstance<ICrudServicesAsync>());
 
             int id = account.Id;
             bool isPinned = SecondaryTile.Exists(id.ToString(CultureInfo.InvariantCulture));
             if (!isPinned)
             {
-
-                SecondaryTile tile = new SecondaryTile(id.ToString(CultureInfo.InvariantCulture), "Money Fox", "a", new Uri("ms-appx:///Assets/SmallTile.scale-150.png"), TileSize.Default);
+                SecondaryTile tile = new SecondaryTile(id.ToString(CultureInfo.InvariantCulture),  Strings.ApplicationTitle, "a", new Uri(SMALL_150_TILE_ICON), TileSize.Default);
                 tile.VisualElements.ShowNameOnSquare150x150Logo = false;
                 tile.VisualElements.ShowNameOnSquare310x310Logo = true;
                 tile.VisualElements.ShowNameOnWide310x150Logo = false;
-                tile.VisualElements.Square310x310Logo = new Uri("ms-appx:///Assets/Square310x310Logo.scale-100.png");
-                tile.VisualElements.Square150x150Logo = new Uri("ms-appx:///Assets/Square150x150Logo.scale-100.png");
-                tile.VisualElements.Wide310x150Logo = new Uri("ms-appx:///Assets/Wide310x150Logo.scale-100.png");
-                tile.VisualElements.Square71x71Logo = new Uri("ms-appx:///Assets/Square71x71Logo.scale-100.png");
+                tile.VisualElements.Square310x310Logo = new Uri(SQUARE_310_TILE_ICON);
+                tile.VisualElements.Square150x150Logo = new Uri(SQUARE_150_TILE_ICON);
+                tile.VisualElements.Wide310x150Logo = new Uri(WIDE_310_TILE_ICON);
+                tile.VisualElements.Square71x71Logo = new Uri(SQUARE_71_TILE_ICON);
                 bool ispinned = await tile.RequestCreateAsync();
                 if (ispinned)
                 {
                     await liveTileManager.UpdateSecondaryLiveTiles();
                 }
-            } else
+            } 
+            else
             {
                 await liveTileManager.UpdateSecondaryLiveTiles();
                 await liveTileManager.UpdatePrimaryLiveTile();

@@ -1,32 +1,32 @@
-﻿<d:MvxContentPage x:TypeArguments="statistic:StatisticSelectorViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                  xmlns:d="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
-                  xmlns:statistic="clr-namespace:MoneyFox.ServiceLayer.ViewModels.Statistic;assembly=MoneyFox.ServiceLayer"
-                  xmlns:moneyFox="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
-                  xmlns:serviceLayer="clr-namespace:MoneyFox.ServiceLayer;assembly=MoneyFox.ServiceLayer"
-                  x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
-                  BackgroundColor="{x:Static moneyFox:StyleHelper.WindowBackgroundColor}"
-                  DataContext="{x:Static serviceLayer:DesignTimeViewModelLocator.DesignTimeStatisticSelectorViewModel}">
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
+             Visual="Material"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeStatisticSelectorViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <ListView x:Name="StatisticSelectorList"
                   ItemsSource="{Binding StatisticItems}"
-                  RowHeight="60"
-                  Margin="{DynamicResource NegativeMediumLeftRightMargin}">
-
-            <ListView.SeparatorVisibility>
-                <OnPlatform x:TypeArguments="SeparatorVisibility">
-                    <On Platform="iOS" Value="Default" />
-                </OnPlatform>
-            </ListView.SeparatorVisibility>
+                  HasUnevenRows="True"
+                  BackgroundColor="Transparent"
+                  CachingStrategy="RecycleElementAndDataTemplate"
+                  SeparatorVisibility="None">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource MediumLeftRightBottomMargin}" >
-                            <StackLayout Style="{StaticResource ListItemStyle}"
-                                         Orientation="Vertical"
+                        <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                           Style="{StaticResource ListItemStyle}">
+                            <StackLayout Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{DynamicResource DefaultSpacing}">
                                 <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
@@ -38,4 +38,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
-</d:MvxContentPage>
+</ContentPage>

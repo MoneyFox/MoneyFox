@@ -6,9 +6,10 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.ServiceLayer.Facades;
-using MoneyFox.ServiceLayer.Services;
-using MvvmCross.Plugin.File.Platforms.Uap;
+using MoneyFox.Presentation.Facades;
+using MoneyFox.Presentation.Services;
+using MoneyFox.Uwp.Business;
+using MoneyFox.Foundation;
 
 namespace MoneyFox.Uwp.Tasks
 {
@@ -22,7 +23,7 @@ namespace MoneyFox.Uwp.Tasks
         {
             var deferral = taskInstance.GetDeferral();
             Debug.WriteLine("Sync Backup started.");
-            EfCoreContext.DbPath = DatabaseConstants.DB_NAME;
+            ExecutingPlatform.Current = AppPlatform.UWP;
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
@@ -36,7 +37,7 @@ namespace MoneyFox.Uwp.Tasks
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
-                    new MvxWindowsFileStore(), 
+                    new WindowsFileStore(), 
                     new ConnectivityAdapter());
 
                 var backupService = new BackupService(backupManager,settingsFacade);

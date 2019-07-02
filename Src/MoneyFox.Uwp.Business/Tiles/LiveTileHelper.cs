@@ -5,9 +5,7 @@ using Windows.ApplicationModel;
 using Windows.UI.StartScreen;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.ViewModels;
-using MoneyFox.Windows.Business;
-using MoneyFox.Windows.Business.Tiles;
+using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Uwp.Business.Tiles
 {

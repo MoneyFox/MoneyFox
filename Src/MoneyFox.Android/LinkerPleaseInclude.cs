@@ -10,7 +10,6 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Android.Views;
 using Android.Widget;
-using MvvmCross.IoC;
 
 namespace MoneyFox.Droid
 {
@@ -32,15 +31,6 @@ namespace MoneyFox.Droid
             Console.ForegroundColor = ConsoleColor.White;
             Console.ForegroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkGray;
-        }
-
-        /// <summary>
-        ///     Includes the MvxPropertyInjector.
-        /// </summary>
-        /// <param name="injector">MvxPropertyInjector.</param>
-        public void Include(MvxPropertyInjector injector)
-        {
-            injector = new MvxPropertyInjector();
         }
 
         /// <summary>
