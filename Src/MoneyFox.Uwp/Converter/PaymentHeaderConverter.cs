@@ -1,5 +1,6 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
+using MoneyFox.Domain;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 

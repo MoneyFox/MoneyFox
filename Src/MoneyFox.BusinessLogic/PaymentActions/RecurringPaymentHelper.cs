@@ -1,7 +1,8 @@
 ﻿using System;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Exceptions;
 
 namespace MoneyFox.BusinessLogic.PaymentActions
 {

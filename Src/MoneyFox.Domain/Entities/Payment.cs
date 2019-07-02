@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Domain.Exceptions;
 
-namespace MoneyFox.DataLayer.Entities
+namespace MoneyFox.Domain.Entities
 {
     /// <summary>
     ///     Database model for payments. Includes expenses, income and transfers.

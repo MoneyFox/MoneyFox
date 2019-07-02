@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MockQueryable.Moq;
 using MoneyFox.BusinessLogic;
+using MoneyFox.Domain;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Facades;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using Should;
 using Xunit;
 

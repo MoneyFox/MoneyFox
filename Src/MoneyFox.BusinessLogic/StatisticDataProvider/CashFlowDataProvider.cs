@@ -4,7 +4,8 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 

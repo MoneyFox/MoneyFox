@@ -1,6 +1,5 @@
 ﻿using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.PaymentActions;
-using MoneyFox.DataLayer.Entities;
 
 namespace MoneyFox.BusinessLogic.PaymentActions
 {

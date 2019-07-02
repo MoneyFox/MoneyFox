@@ -1,8 +1,9 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Domain;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;

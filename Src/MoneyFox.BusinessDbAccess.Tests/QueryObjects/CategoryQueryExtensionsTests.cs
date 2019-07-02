@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using MoneyFox.BusinessDbAccess.QueryObjects;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using Xunit;
 
 namespace MoneyFox.BusinessDbAccess.Tests.QueryObjects

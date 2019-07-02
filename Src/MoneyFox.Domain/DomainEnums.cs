@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Foundation
+﻿namespace MoneyFox.Domain
 {
     public enum PaymentType
     {

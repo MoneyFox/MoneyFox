@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Runtime.Serialization;
 
-namespace MoneyFox.Foundation.Exceptions
+namespace MoneyFox.Domain.Exceptions
 {
     /// <summary>
     ///     A custom format exception who contains more specific information.

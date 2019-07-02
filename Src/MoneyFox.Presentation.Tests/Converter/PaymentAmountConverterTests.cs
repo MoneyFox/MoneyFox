@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Domain;
 using MoneyFox.Foundation;
 using MoneyFox.Presentation.Converter;
 using MoneyFox.Presentation.ViewModels;

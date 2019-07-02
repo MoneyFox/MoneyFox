@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using MoneyFox.Domain;
 using MoneyFox.Foundation;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;

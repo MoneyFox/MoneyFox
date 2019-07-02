@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.BusinessDbAccess.QueryObjects;
 using MoneyFox.DataLayer;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.BusinessDbAccess.StatisticDataProvider
 {

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
 {

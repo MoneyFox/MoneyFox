@@ -9,6 +9,7 @@ using Windows.UI.StartScreen;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Toolkit.Uwp.Notifications;
+using MoneyFox.Domain;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;

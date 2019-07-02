@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Domain.Exceptions;
 
-namespace MoneyFox.DataLayer.Entities
+namespace MoneyFox.Domain.Entities
 {
     public class RecurringPayment
     {

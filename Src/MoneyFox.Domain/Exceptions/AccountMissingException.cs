@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MoneyFox.Foundation.Exceptions
+namespace MoneyFox.Domain.Exceptions
 {
     [Serializable]
     public class AccountMissingException : Exception

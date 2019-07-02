@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 
 namespace MoneyFox.BusinessDbAccess.QueryObjects

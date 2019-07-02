@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;

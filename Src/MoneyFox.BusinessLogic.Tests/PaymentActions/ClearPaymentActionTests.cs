@@ -4,7 +4,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using Moq;

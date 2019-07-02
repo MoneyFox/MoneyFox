@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MoneyFox.Foundation.Exceptions
+namespace MoneyFox.Domain.Exceptions
 {
     /// <summary>
     ///     This Exception is thrown when on a backup restore no backup with the right name was found.

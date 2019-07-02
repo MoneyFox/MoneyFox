@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using MoneyFox.BusinessDbAccess.QueryObjects;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using Xunit;

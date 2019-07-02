@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider

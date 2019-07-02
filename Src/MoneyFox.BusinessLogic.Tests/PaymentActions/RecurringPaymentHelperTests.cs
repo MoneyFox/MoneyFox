@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Foundation;
 using Should;

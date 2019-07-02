@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MoneyFox.DataLayer.Entities
+namespace MoneyFox.Domain.Entities
 {
     public class Category
     {

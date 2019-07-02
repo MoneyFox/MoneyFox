@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Linq;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Domain.Exceptions;
 
 namespace MoneyFox.Presentation.Groups
 {
