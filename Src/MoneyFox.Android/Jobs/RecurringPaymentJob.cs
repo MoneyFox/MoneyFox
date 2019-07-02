@@ -5,6 +5,7 @@ using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;

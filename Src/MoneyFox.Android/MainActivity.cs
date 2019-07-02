@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using CommonServiceLocator;
 using Microsoft.Identity.Client;
+using MoneyFox.Application;
 using MoneyFox.Domain;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Foundation;

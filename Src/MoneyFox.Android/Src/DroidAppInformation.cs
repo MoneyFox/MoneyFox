@@ -1,4 +1,3 @@
-using Android.App;
 using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Droid
@@ -6,6 +5,6 @@ namespace MoneyFox.Droid
     public class DroidAppInformation : IAppInformation
     {
         public string GetVersion()
-            => Application.Context.PackageManager.GetPackageInfo(Application.Context.PackageName, 0).VersionName;
+            => Android.App.Application.Context.PackageManager.GetPackageInfo(Android.App.Application.Context.PackageName, 0).VersionName;
     }
 }

@@ -36,17 +36,4 @@
         BackgroundJob,
         About
     }
-
-    public enum AppTheme
-    {
-        Dark,
-        Light
-    }
-
-    public enum AppPlatform
-    {
-        Android,
-        iOS,
-        UWP
-    }
 }

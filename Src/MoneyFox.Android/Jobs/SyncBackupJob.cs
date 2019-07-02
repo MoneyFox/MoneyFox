@@ -12,6 +12,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using CommonServiceLocator;
+using MoneyFox.Application;
 using MoneyFox.BusinessLogic.FileStore;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Facades;

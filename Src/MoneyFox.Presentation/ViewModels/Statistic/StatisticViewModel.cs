@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using MoneyFox.Application;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
