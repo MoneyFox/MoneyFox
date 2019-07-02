@@ -1,17 +1,24 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using NLog;
 using Windows.UI.Xaml;
 
 namespace MoneyFox.Uwp.Helpers
 {
     public static class NavHelper
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         public static string GetNavigateTo(NavigationViewItem item)
         {
-            return (string)item.GetValue(NavigateToProperty);
+            var value = (string)item.GetValue(NavigateToProperty);
+            logger.Info("Get Navigation value: {val}", value);
+
+            return value;
         }
 
         public static void SetNavigateTo(NavigationViewItem item, string value)
         {
+            logger.Info("Set Navigation value: {value}", value);
             item.SetValue(NavigateToProperty, value);
         }
 
