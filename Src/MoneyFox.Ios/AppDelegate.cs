@@ -102,7 +102,6 @@ namespace MoneyFox.iOS
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
 
             LogManager.Configuration = config;
-            logManager = LogManager.GetCurrentClassLogger();
         }
 
         private static string GetLogPath()

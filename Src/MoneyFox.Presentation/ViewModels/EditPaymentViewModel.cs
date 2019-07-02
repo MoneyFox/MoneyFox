@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
@@ -62,15 +63,15 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SavePayment()
         {
-            var result = await paymentService.UpdatePayment(SelectedPayment);
-
-            if (!result.Success)
+            try
             {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
-                return;
+                await paymentService.UpdatePayment(SelectedPayment);
+                navigationService.GoBack();
+            } 
+            catch (InvalidEndDateException)
+            {
+                await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
             }
-
-            navigationService.GoBack();
         }
 
         private async Task DeletePayment()

@@ -37,10 +37,10 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult> Login()
+        public async Task Login()
         {
             if (!connectivity.IsConnected)
-                return OperationResult.Failed(new NetworkConnectionException());
+                throw new NetworkConnectionException();
 
             try
             {
@@ -49,22 +49,20 @@ namespace MoneyFox.BusinessLogic.Backup
             catch (BackupAuthenticationFailedException ex)
             {
                 logManager.Error(ex, "Login Failed.");
-                return OperationResult.Failed(ex);
+                throw;
             }
             catch (MsalClientException ex)
             {
                 logManager.Error(ex, "Login Failed.");
-                return OperationResult.Failed(ex);
+                throw;
             }
-
-            return OperationResult.Succeeded();
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult> Logout()
+        public async Task Logout()
         {
             if (!connectivity.IsConnected)
-                return OperationResult.Failed(new NetworkConnectionException());
+                throw new NetworkConnectionException();
 
             try
             {
@@ -72,10 +70,8 @@ namespace MoneyFox.BusinessLogic.Backup
             } catch (BackupAuthenticationFailedException ex)
             {
                 logManager.Error(ex, "Logout Failed.");
-                return OperationResult.Failed(ex);
+                throw;
             }
-
-            return OperationResult.Succeeded();
         }
 
         /// <inheritdoc />
@@ -97,10 +93,10 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult> EnqueueBackupTask(int attempts = 0)
+        public async Task EnqueueBackupTask(int attempts = 0)
         {
             if (!connectivity.IsConnected)
-                return OperationResult.Failed(new NetworkConnectionException());
+                throw new NetworkConnectionException();
 
             if (attempts < ServiceConstants.SYNC_ATTEMPTS)
             {
@@ -125,29 +121,28 @@ namespace MoneyFox.BusinessLogic.Backup
                 {
                     logManager.Error(ex, "Enqueue Backup failed.");
                     await Logout();
-                    OperationResult.Failed(ex);
+                    throw;
                 } 
                 catch (ServiceException ex)
                 {
                     logManager.Error(ex, "Enqueue Backup failed.");
                     await Logout();
-                    OperationResult.Failed(ex);
+                    throw;
                 } 
                 catch (Exception ex)
                 {
                     logManager.Error(ex, "Enqueue Backup failed.");
-                    return OperationResult.Failed(ex);
+                    throw;
                 }
             }
             logManager.Warn("Enqueue Backup failed.");
-            return OperationResult.Failed("Enqueue Backup failed.");
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult> RestoreBackup()
+        public async Task RestoreBackup()
         {
             if (!connectivity.IsConnected)
-                return OperationResult.Failed(new NetworkConnectionException());
+                throw new NetworkConnectionException();
 
             try
             {
@@ -156,16 +151,15 @@ namespace MoneyFox.BusinessLogic.Backup
             catch (BackupAuthenticationFailedException ex)
             {
                 await Logout();
-                OperationResult.Failed(ex);
                 logManager.Error(ex, "Download Backup failed.");
+                throw;
             }
             catch (ServiceException ex)
             {
                 await Logout();
-                OperationResult.Failed(ex);
                 logManager.Error(ex, "Download Backup failed.");
+                throw;
             }
-            return OperationResult.Succeeded();
         }
 
         private async Task<bool> CreateNewBackup()
