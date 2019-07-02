@@ -211,9 +211,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Assert
             paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Once);
-            dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
-            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
             backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
         }
 
@@ -299,10 +297,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Assert
             paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Once);
-            dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
-            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
         }
     }
 }
