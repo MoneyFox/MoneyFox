@@ -9,11 +9,9 @@ using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation;
-using MoneyFox.ServiceLayer.Facades;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
-using SQLitePCL;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -29,7 +27,6 @@ using NLog.Targets;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
-using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
 using MoneyFox.Foundation;
 
@@ -48,8 +45,6 @@ namespace MoneyFox.iOS
         // Minimum number of seconds between a background refresh
         // 15 minutes = 60 * 60 = 3600 seconds
         private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 3600;
-
-        private Logger logManager;
 
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
