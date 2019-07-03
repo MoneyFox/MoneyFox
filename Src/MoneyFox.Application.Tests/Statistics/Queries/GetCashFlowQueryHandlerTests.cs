@@ -14,13 +14,18 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
     [ExcludeFromCodeCoverage]
-    public class GetCashFlowQueryHandlerTests : IClassFixture<QueryTestFixture>
+    public class GetCashFlowQueryHandlerTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetCashFlowQueryHandlerTests(QueryTestFixture fixture)
+        public GetCashFlowQueryHandlerTests()
         {
-            context = fixture.Context;
+            context = TestEfCoreContextFactory.Create();
+        }
+
+        public void Dispose()
+        {
+            TestEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

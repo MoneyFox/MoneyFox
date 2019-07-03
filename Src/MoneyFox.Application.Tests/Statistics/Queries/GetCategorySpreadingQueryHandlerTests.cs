@@ -8,18 +8,24 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
     [ExcludeFromCodeCoverage]
-    public class GetCategorySpreadingQueryHandlerTests : IClassFixture<QueryTestFixture>
+    public class GetCategorySpreadingQueryHandlerTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetCategorySpreadingQueryHandlerTests(QueryTestFixture fixture)
+        public GetCategorySpreadingQueryHandlerTests()
         {
-            context = fixture.Context;
+            context = TestEfCoreContextFactory.Create();
+        }
+
+        public void Dispose()
+        {
+            TestEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]
@@ -52,10 +58,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                 .ToList();
 
             // Assert
-            Assert.Equal(3, result.Count);
-            Assert.Equal(90, result[0].Value);
-            Assert.Equal(30, result[1].Value);
-            Assert.Equal(10, result[2].Value);
+            result.Count.ShouldEqual(3);
+            result[0].Value.ShouldEqual(90);
+            result[1].Value.ShouldEqual(30);
+            result[2].Value.ShouldEqual(10);
         }
     }
 }
