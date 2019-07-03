@@ -3,7 +3,6 @@ using Microsoft.Graph;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
 using System;
 using System.Linq;
 using System.Threading;
@@ -13,6 +12,7 @@ using MoneyFox.BusinessLogic.FileStore;
 using MoneyFox.Domain.Exceptions;
 using NLog;
 using Logger = NLog.Logger;
+using MoneyFox.Application.Constants;
 
 namespace MoneyFox.BusinessLogic.Backup
 {

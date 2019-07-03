@@ -1,5 +1,4 @@
-﻿using MoneyFox.Foundation;
-using NLog;
+﻿using NLog;
 using System;
 using System.Globalization;
 using System.IO;

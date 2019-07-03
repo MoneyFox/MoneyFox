@@ -3,7 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation;
 using Should;
 using Xunit;
 

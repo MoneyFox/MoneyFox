@@ -7,7 +7,6 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
@@ -31,6 +30,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using LogLevel = NLog.LogLevel;
 using MoneyFox.Foundation;
+using MoneyFox.Application.Constants;
 
 #if !DEBUG
 using Microsoft.AppCenter;

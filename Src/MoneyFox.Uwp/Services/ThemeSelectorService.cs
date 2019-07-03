@@ -5,7 +5,6 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using MoneyFox.Application;
 using MoneyFox.BusinessLogic.Adapters;
-using MoneyFox.Foundation;
 using MoneyFox.Presentation;
 using MoneyFox.Presentation.Facades;
 

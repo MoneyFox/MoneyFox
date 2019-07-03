@@ -3,7 +3,6 @@ using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Foundation;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;

@@ -6,7 +6,6 @@ using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation;
 using Moq;
 using Should;
 using Xunit;

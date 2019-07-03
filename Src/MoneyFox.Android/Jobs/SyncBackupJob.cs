@@ -6,7 +6,6 @@ using Microsoft.Identity.Client;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.ServiceLayer.Facades;
 using System;
 using System.IO;
@@ -20,7 +19,7 @@ using MoneyFox.Presentation.Services;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
-using MoneyFox.Foundation;
+using MoneyFox.Application.Constants;
 
 namespace MoneyFox.Droid.Jobs
 {

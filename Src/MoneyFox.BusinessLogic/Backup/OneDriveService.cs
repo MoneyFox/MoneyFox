@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
+using MoneyFox.Application.Constants;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Foundation.Constants;
 
 namespace MoneyFox.BusinessLogic.Backup
 {

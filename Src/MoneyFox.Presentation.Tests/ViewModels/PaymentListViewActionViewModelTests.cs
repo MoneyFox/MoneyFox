@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Views;
 using GenericServices;
-using MoneyFox.Foundation;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;

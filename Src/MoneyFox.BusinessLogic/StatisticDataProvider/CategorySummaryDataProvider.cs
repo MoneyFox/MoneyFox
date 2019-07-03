@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {

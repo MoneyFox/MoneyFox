@@ -2,7 +2,6 @@
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Foundation;
 
 namespace MoneyFox.BusinessLogic.PaymentActions
 {

@@ -4,9 +4,9 @@ using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using MoneyFox.Application.Constants;
 using MoneyFox.BusinessLogic;
 using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation

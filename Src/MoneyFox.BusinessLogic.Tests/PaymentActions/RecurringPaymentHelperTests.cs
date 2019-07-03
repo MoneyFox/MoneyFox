@@ -4,7 +4,6 @@ using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation;
 using Should;
 using Xunit;
 

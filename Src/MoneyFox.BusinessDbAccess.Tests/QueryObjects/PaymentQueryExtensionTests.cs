@@ -5,7 +5,6 @@ using System.Linq;
 using MoneyFox.BusinessDbAccess.QueryObjects;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation;
 using Xunit;
 
 namespace MoneyFox.BusinessDbAccess.Tests.QueryObjects

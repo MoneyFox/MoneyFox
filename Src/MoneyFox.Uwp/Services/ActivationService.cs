@@ -15,7 +15,6 @@ using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Views;
 using PCLAppConfig;
-using MoneyFox.Foundation;
 
 #if !DEBUG
 using Microsoft.AppCenter;

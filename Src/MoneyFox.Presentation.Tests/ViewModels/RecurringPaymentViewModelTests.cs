@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Domain;
-using MoneyFox.Foundation;
 using MoneyFox.Presentation.ViewModels;
 using Should;
 using Xunit;
