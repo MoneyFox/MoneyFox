@@ -2,7 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
-using MoneyFox.BusinessLogic.FileStore;
+using MoneyFox.Application.FileStore;
 using NLog;
 
 namespace MoneyFox.Uwp.Business
@@ -52,8 +52,6 @@ namespace MoneyFox.Uwp.Business
 
         protected override void WriteFileCommon(string path, Action<Stream> streamAction)
         {
-            // from https://github.com/MvvmCross/MvvmCross/issues/500 we delete any existing file
-            // before writing the new one
             SafeDeleteFile(path);
 
             try

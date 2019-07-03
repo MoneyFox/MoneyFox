@@ -8,11 +8,11 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Identity.Client;
-using MoneyFox.BusinessLogic.FileStore;
 using MoneyFox.Domain.Exceptions;
 using NLog;
 using Logger = NLog.Logger;
 using MoneyFox.Application.Constants;
+using MoneyFox.Application.FileStore;
 
 namespace MoneyFox.BusinessLogic.Backup
 {

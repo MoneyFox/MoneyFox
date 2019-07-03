@@ -1,6 +1,6 @@
 ﻿using Android.App;
 using Autofac;
-using MoneyFox.BusinessLogic.FileStore;
+using MoneyFox.Application.FileStore;
 using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.Services;
 using MoneyFox.Presentation;

@@ -12,7 +12,6 @@ using System.IO;
 using System.Threading.Tasks;
 using CommonServiceLocator;
 using MoneyFox.Application;
-using MoneyFox.BusinessLogic.FileStore;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -20,6 +19,7 @@ using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Environment = System.Environment;
 using MoneyFox.Application.Constants;
+using MoneyFox.Application.FileStore;
 
 namespace MoneyFox.Droid.Jobs
 {

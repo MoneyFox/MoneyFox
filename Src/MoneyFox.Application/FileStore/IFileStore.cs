@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 
-namespace MoneyFox.BusinessLogic.FileStore
+namespace MoneyFox.Application.FileStore
 {
     public interface IFileStore
     {
