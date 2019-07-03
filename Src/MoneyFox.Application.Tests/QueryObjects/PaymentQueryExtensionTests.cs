@@ -7,7 +7,7 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using Xunit;
 
-namespace MoneyFox.BusinessDbAccess.Tests.QueryObjects
+namespace MoneyFox.Application.Tests.QueryObjects
 {
     [ExcludeFromCodeCoverage]
     public class PaymentQueryExtensionTests
