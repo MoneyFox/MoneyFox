@@ -3,8 +3,8 @@ using System.Globalization;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Domain;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Models;
 using MoneyFox.Foundation.Resources;
+using MoneyFox.Presentation.Models;
 using MoneyFox.ServiceLayer.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime

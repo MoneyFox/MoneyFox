@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using MoneyFox.Foundation.Models;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {
     public static class StatisticUtilities
-    { 
+    {
         /// <summary>
         ///     Will round all values of the passed statistic item list
         /// </summary>

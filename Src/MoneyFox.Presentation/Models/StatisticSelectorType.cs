@@ -1,21 +1,16 @@
 ﻿using MoneyFox.Domain;
 
-namespace MoneyFox.Foundation.Models
+namespace MoneyFox.Presentation.Models
 {
     /// <summary>
-    ///     Represents a item for the selector to choose the settings.
+    ///     Represents a item for the selector to choose the statistic.
     /// </summary>
-    public class SettingsSelectorType
+    public class StatisticSelectorType
     {
         /// <summary>
         ///     Name of the statistic
         /// </summary>
         public string Name { get; set; }
-
-        /// <summary>
-        ///     Code for the Icon.
-        /// </summary>
-        public string Icon { get; set; }
 
         /// <summary>
         ///     Short description for the statistic
@@ -25,6 +20,6 @@ namespace MoneyFox.Foundation.Models
         /// <summary>
         ///     Type of this item.
         /// </summary>
-        public SettingsType Type { get; set; }
+        public StatisticType Type { get; set; }
     }
 }
