@@ -104,7 +104,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         }
 
         [Fact]
-        public async Task GetValues_CorrectAverage()
+        public async Task GetValues_CorrectPercentage()
         {
             // Arrange
             var testCat1 = new Category("Ausgehen");

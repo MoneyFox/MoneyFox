@@ -63,5 +63,68 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             result[1].Value.ShouldEqual(30);
             result[2].Value.ShouldEqual(10);
         }
+
+        [Fact]
+        public async Task GetValues_IgnoreSingleIncomes()
+        {
+            // Arrange
+            var testCat1 = new Category("Ausgehen");
+            var testCat2 = new Category("Rent");
+            var testCat3 = new Category("Food");
+
+            var account = new Account("test");
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 60, PaymentType.Income, account, category:testCat1),
+                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category:testCat2),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:testCat3)
+            };
+
+
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
+
+            // Act
+            var result = (await new GetCategorySpreadingQueryHandler(context).Handle(new GetCategorySpreadingQuery
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                }, default))
+                .ToList();
+
+            // Assert
+            result.Count.ShouldEqual(2);
+        }
+
+        [Fact]
+        public async Task GetValues_CorrectLabel()
+        {
+            // Arrange
+            var testCat1 = new Category("Ausgehen");
+            var testCat2 = new Category("Rent");
+
+            var account = new Account("test");
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category:testCat1),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:testCat2)
+            };
+
+
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
+
+            // Act
+            var result = (await new GetCategorySpreadingQueryHandler(context).Handle(new GetCategorySpreadingQuery
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                }, default))
+                .ToList();
+
+            // Assert
+            result[0].Label.ShouldEqual(testCat1.Name);
+            result[1].Label.ShouldEqual(testCat2.Name);
+        }
     }
 }
