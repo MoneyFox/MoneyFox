@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MoneyFox.BusinessLogic.StatisticDataProvider
+namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 {
     public static class StatisticUtilities
     {

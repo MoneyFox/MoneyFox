@@ -4,9 +4,9 @@ using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using MoneyFox.Application;
 using MoneyFox.Application.Constants;
 using MoneyFox.BusinessLogic;
-using MoneyFox.DataLayer;
 using MoneyFox.Persistence;
 using MoneyFox.Presentation.ViewModels;
 
@@ -17,6 +17,7 @@ namespace MoneyFox.Presentation
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<BusinessLogicModule>();
+            builder.RegisterModule<ApplicationModule>();
 
             SetupContextAndCrudServices(builder);
 

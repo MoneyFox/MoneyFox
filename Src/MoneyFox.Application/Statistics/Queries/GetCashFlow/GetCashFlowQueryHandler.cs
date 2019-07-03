@@ -1,18 +1,18 @@
-﻿using MediatR;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics.Models;
 using MoneyFox.BusinessDbAccess.QueryObjects;
 using MoneyFox.Domain;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace MoneyFox.Application.Statistics.Queries
+namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
 {
     public class GetCashFlowQueryHandler : IRequestHandler<GetCashFlowQuery, List<StatisticEntry>>
     {
@@ -34,7 +34,7 @@ namespace MoneyFox.Application.Statistics.Queries
                 .WithoutTransfers()
                 .HasDateLargerEqualsThan(request.StartDate.Date)
                 .HasDateSmallerEqualsThan(request.EndDate.Date)
-                .ToListAsync();
+                .ToListAsync(cancellationToken);
 
             var incomeAmount = (float)payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)

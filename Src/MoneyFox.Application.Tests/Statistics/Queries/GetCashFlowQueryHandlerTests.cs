@@ -7,6 +7,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics.Queries;
+using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Application.Tests.Infrastructure;
 using Should;
 using Xunit;

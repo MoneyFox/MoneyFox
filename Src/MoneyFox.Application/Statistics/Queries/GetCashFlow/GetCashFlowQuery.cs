@@ -1,9 +1,9 @@
-﻿using MediatR;
-using MoneyFox.Application.Statistics.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using MediatR;
+using MoneyFox.Application.Statistics.Models;
 
-namespace MoneyFox.Application.Statistics.Queries
+namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
 {
     public class GetCashFlowQuery : IRequest<List<StatisticEntry>>
     {

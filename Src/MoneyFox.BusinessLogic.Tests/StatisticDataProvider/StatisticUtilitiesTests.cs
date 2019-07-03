@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Application.Statistics;
+using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using Should;
 using Xunit;
