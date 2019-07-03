@@ -22,7 +22,8 @@ namespace MoneyFox.Uwp.Tasks
                 taskInstance.Canceled += OnTaskCanceled;
 
                 ExecutingPlatform.Current = AppPlatform.UWP;
-                var context = new EfCoreContext();
+
+                var context = EfCoreContextFactory.Create();
                 var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
                 utData.AddSingleDto<CategoryViewModel>();
                 utData.AddSingleDto<PaymentViewModel>();

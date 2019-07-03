@@ -4,7 +4,7 @@ using System;
 
 namespace MoneyFox.Application.Tests.Infrastructure
 {
-    public static class EfCoreContextFactory
+    internal static class TestEfCoreContextFactory
     {
         public static EfCoreContext Create()
         {

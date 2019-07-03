@@ -50,26 +50,18 @@ namespace MoneyFox.Presentation
 
         private void SetupContextAndCrudServices(ContainerBuilder builder)
         {
-            builder.RegisterInstance(SetupEfContext())
+            var context = EfCoreContextFactory.Create();
+
+            builder.RegisterInstance(context)
                    .As<DbContext>()
                    .AsImplementedInterfaces()
                    .AsSelf();
 
-            SetUpCrudServices(builder);
+            SetUpCrudServices(builder, context);
         }
 
-        private static EfCoreContext SetupEfContext()
+        private static void SetUpCrudServices(ContainerBuilder builder, EfCoreContext context)
         {
-            var context = new EfCoreContext();
-            context.Database.Migrate();
-
-            return context;
-        }
-
-        private static void SetUpCrudServices(ContainerBuilder builder)
-        {
-            var context = SetupEfContext();
-
             var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
             utData.AddSingleDto<CategoryViewModel>();
             utData.AddSingleDto<PaymentViewModel>();

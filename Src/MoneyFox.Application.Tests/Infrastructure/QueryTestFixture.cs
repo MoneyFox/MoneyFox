@@ -7,14 +7,15 @@ namespace MoneyFox.Application.Tests.Infrastructure
     public class QueryTestFixture : IDisposable
     {
         public EfCoreContext Context { get; private set; }
+
         public QueryTestFixture()
         {
-            Context = EfCoreContextFactory.Create();
+            Context = TestEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            EfCoreContextFactory.Destroy(Context);
+            TestEfCoreContextFactory.Destroy(Context);
         }
     }
 

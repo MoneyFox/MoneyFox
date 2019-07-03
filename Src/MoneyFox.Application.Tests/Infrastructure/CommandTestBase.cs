@@ -2,18 +2,18 @@
 
 namespace MoneyFox.Application.Tests.Infrastructure
 {
-    public class CommandTestBase
+    internal class CommandTestBase
     {
-        protected readonly EfCoreContext context;
+        protected readonly EfCoreContext Context;
 
         public CommandTestBase()
         {
-            context = EfCoreContextFactory.Create();
+            Context = TestEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            EfCoreContextFactory.Destroy(context);
+            TestEfCoreContextFactory.Destroy(Context);
         }
     }
 }

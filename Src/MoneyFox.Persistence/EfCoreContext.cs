@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using MoneyFox.Domain.Entities;
-using MoneyFox.DataLayer;
 using MoneyFox.DataLayer.Configurations;
 using MoneyFox.Application.Interfaces;
 
@@ -13,27 +12,12 @@ namespace MoneyFox.Persistence
     /// </summary>
     public class EfCoreContext : DbContext, IEfCoreContext
     {
-        public EfCoreContext()
-        {
-        }
-
         public EfCoreContext(DbContextOptions options) : base(options) { }
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Payment> Payments { get; set; }
         public DbSet<RecurringPayment> RecurringPayments { get; set; }
         public DbSet<Category> Categories { get; set; }
-
-        /// <summary>
-        ///     This is called when before the db is access.
-        ///     Set DbPath before, so that we use here what db we have to use.
-        /// </summary>
-        /// <param name="optionsBuilder">Optionbuilder who is used.</param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // Specify that we will use sqlite and the path of the database here
-            optionsBuilder.UseSqlite($"Filename={DatabasePathHelper.GetDbPath()}");
-        }
 
         /// <summary>
         ///     Called when the models are created.

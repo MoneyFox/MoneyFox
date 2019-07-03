@@ -1,12 +1,13 @@
-﻿using MoneyFox.Application.Statistics.Queries;
-using MoneyFox.Domain;
+﻿using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
 using MoneyFox.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using MoneyFox.Application.Statistics.Queries;
+using MoneyFox.Application.Tests.Infrastructure;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Statistics.Queries
@@ -17,9 +18,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
     {
         private readonly EfCoreContext context;
 
-        public GetCashFlowQueryHandlerTests(EfCoreContext context)
+        public GetCashFlowQueryHandlerTests(QueryTestFixture fixture)
         {
-            this.context = context;
+            context = fixture.Context;
 
             context.AddRange(new List<Payment>
                             {
@@ -37,8 +38,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
 
             // Act
-            var result = await new CashFlowDataProvider(statisticDbAccess.Object)
-                .GetCashFlow(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3));
+            var result = await new GetCashFlowQueryHandler(context).Handle(new GetCashFlowQuery
+            {
+                StartDate = DateTime.Today.AddDays(-3),
+                EndDate = DateTime.Today.AddDays(3)
+            }, default);
 
             // Assert
             result[0].Value.ShouldEqual(130);

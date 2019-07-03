@@ -64,7 +64,7 @@ namespace MoneyFox.Droid.Jobs
                 Debug.WriteLine("RecurringPayment Job started.");
                 ExecutingPlatform.Current = AppPlatform.Android;
 
-                var context = new EfCoreContext();
+                var context = EfCoreContextFactory.Create();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context)).CreatePaymentsUpToRecur();
                 await context.SaveChangesAsync();
 

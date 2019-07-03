@@ -197,7 +197,7 @@ namespace MoneyFox.iOS
             {
                 Debug.WriteLine("ClearPayments Job started");
 
-                var context = new EfCoreContext();
+                var context = EfCoreContextFactory.Create();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
                 context.SaveChanges();
 
@@ -219,7 +219,7 @@ namespace MoneyFox.iOS
             {
                 Debug.WriteLine("RecurringPayment Job started.");
 
-                var context = new EfCoreContext();
+                var context = EfCoreContextFactory.Create();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
                     .CreatePaymentsUpToRecur();
                 context.SaveChanges();

@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp.Tasks
 
             try
             {
-                var context = new EfCoreContext();
+                var context = EfCoreContextFactory.Create();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context))
                     .ClearPayments();
                 await context.SaveChangesAsync();
