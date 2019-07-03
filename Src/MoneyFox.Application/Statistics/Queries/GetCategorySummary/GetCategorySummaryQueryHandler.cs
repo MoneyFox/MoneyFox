@@ -26,7 +26,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
         public async Task<List<CategoryOverviewItem>> Handle(GetCategorySummaryQuery request, CancellationToken cancellationToken)
         {
             var categoryOverviewItems = new List<CategoryOverviewItem>();
-            categories = await GetCategories(request, cancellationToken);
+            categories = await GetCategories(cancellationToken);
 
             foreach (Category category in categories)
             {
@@ -47,15 +47,14 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             }
 
             CalculatePercentage(categoryOverviewItems);
-
             StatisticUtilities.RoundStatisticItems(categoryOverviewItems);
-
+            
             return categoryOverviewItems.Where(x => Math.Abs(x.Value) > 0.1)
                                         .OrderBy(x => x.Value)
                                         .ToList();
         }
 
-        private async Task<List<Category>> GetCategories(GetCategorySummaryQuery request, CancellationToken token) => await context.Categories
+        private async Task<List<Category>> GetCategories(CancellationToken token) => await context.Categories
                                                                                                           .Include(x => x.Payments)
                                                                                                           .OrderByName()
                                                                                                           .ToListAsync(token);
