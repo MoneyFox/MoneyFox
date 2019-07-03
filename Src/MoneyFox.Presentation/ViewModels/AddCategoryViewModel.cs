@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;

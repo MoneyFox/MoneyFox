@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Application.Resources;
 using MoneyFox.BusinessDbAccess.StatisticDataProvider;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.BusinessLogic.StatisticDataProvider
 {

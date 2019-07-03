@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Application.Resources;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Interfaces;
 

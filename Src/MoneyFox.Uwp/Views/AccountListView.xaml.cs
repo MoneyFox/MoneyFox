@@ -8,12 +8,11 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using CommonServiceLocator;
 using GenericServices;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.DesignTime;
 using MoneyFox.Uwp.Business.Tiles;
-using MoneyFox.Uwp.Services;
+using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp.Views
 {

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using GenericServices;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;

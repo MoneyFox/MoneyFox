@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Notifications;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Interfaces;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
+using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp
 {

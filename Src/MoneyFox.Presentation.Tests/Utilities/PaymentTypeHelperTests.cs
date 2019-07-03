@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Utilities;
 using Xunit;
 

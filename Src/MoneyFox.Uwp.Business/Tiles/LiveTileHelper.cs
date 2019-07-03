@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.UI.StartScreen;
 using MoneyFox.Domain;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp.Business.Tiles
 {

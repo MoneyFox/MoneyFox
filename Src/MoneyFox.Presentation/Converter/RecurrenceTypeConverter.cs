@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Globalization;
 using MoneyFox.Domain;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views

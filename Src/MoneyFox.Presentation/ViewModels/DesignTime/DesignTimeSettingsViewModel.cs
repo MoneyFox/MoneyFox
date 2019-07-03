@@ -1,9 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Models;
 using MoneyFox.ServiceLayer.Utilities;
 

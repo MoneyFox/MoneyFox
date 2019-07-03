@@ -3,13 +3,12 @@ using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
-using MoneyFox.ServiceLayer.Facades;
 using NLog;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 

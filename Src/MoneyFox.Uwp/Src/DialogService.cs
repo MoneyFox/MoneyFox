@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Uwp.Views.Dialogs;
+using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp
 {

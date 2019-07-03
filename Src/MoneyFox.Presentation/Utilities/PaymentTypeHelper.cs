@@ -1,7 +1,6 @@
 ﻿using System;
+using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
 
 namespace MoneyFox.Presentation.Utilities
 {

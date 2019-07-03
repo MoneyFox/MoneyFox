@@ -1,6 +1,5 @@
-﻿using MoneyFox.Domain;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 
 namespace MoneyFox.Presentation.Converter
 {

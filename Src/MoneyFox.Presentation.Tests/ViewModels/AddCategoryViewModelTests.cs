@@ -1,12 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using GenericServices;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Facades;
 using Moq;
 using Should;
 using Xunit;

@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.ServiceLayer.Utilities;
 

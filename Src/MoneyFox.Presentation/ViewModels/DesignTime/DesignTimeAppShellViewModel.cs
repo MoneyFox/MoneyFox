@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.ServiceLayer.Utilities;
 using System.Globalization;
 
