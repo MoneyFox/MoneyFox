@@ -16,6 +16,17 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 {
     public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySpreadingQuery, IEnumerable<StatisticEntry>>
     {
+        public static readonly string[] Colors =
+        {
+            "#266489",
+            "#68B9C0",
+            "#90D585",
+            "#F3C151",
+            "#F37F64",
+            "#424856",
+            "#8F97A4"
+        };
+
         private readonly IEfCoreContext context;
 
         public GetCategorySpreadingQueryHandler(IEfCoreContext context)
@@ -59,6 +70,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
+            SetColors(statisticList);
 
             return statisticList;
         }
@@ -83,6 +95,15 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
             if (othersItem.Value > 0)
             {
                 statisticList.Add(othersItem);
+            }
+        }
+
+        private void SetColors(List<StatisticEntry> statisticItems)
+        {
+
+            for (int i = 0; i < statisticItems.Count; i++)
+            {
+                statisticItems[i].Color = Colors[i];
             }
         }
     }

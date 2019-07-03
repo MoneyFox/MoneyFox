@@ -9,6 +9,5 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microcharts;
 using MoneyFox.Application.Statistics.Models;
-using MoneyFox.BusinessLogic.StatisticDataProvider;
+using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.ServiceLayer.Facades;
 using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
@@ -15,25 +15,12 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private readonly ICategorySpreadingDataProvider spreadingDataProvider;
         private DonutChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
-        public static readonly SKColor[] Colors =
+        public StatisticCategorySpreadingViewModel(IMediator mediator,
+                                                   ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
         {
-            SKColor.Parse("#266489"),
-            SKColor.Parse("#68B9C0"),
-            SKColor.Parse("#90D585"),
-            SKColor.Parse("#F3C151"),
-            SKColor.Parse("#F37F64"),
-            SKColor.Parse("#424856"),
-            SKColor.Parse("#8F97A4")
-        };
-
-        public StatisticCategorySpreadingViewModel(ICategorySpreadingDataProvider spreadingDataProvider,
-                                                   ISettingsFacade settingsFacade) : base(settingsFacade)
-        {
-            this.spreadingDataProvider = spreadingDataProvider;
         }
 
         /// <summary>
@@ -65,20 +52,20 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         }
 
         /// <summary>
-        ///     Set a custom CategprySpreadingModel with the set Start and Enddate
+        ///     Set a custom CategprySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task Load()
         {
-            StatisticItems = new ObservableCollection<StatisticEntry>(await spreadingDataProvider.GetValues(StartDate, EndDate));
+            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery{StartDate = StartDate, EndDate = EndDate}));
 
             var microChartItems = StatisticItems
-                                  .Select(x => new Entry(x.Value) {Label = x.Label, ValueLabel = x.ValueLabel})
+                                  .Select(x => new Entry(x.Value)
+                                  {
+                                      Label = x.Label,
+                                      ValueLabel = x.ValueLabel,
+                                      Color = SKColor.Parse(x.Color)
+                                  })
                                   .ToList();
-
-            for (int i = 0; i < microChartItems.Count; i++)
-            {
-                microChartItems[i].Color = Colors[i];
-            }
 
             Chart = new DonutChart
             {

@@ -126,5 +126,46 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             result[0].Label.ShouldEqual(testCat1.Name);
             result[1].Label.ShouldEqual(testCat2.Name);
         }
+
+        [Fact]
+        public async Task GetValues_CorrectColor()
+        {
+            // Arrange
+            var testCat1 = new Category("Ausgehen");
+            var testCat2 = new Category("Rent");
+
+            var account = new Account("test");
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("a")),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("b")),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("c")),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("d")),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("e")),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("f")),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("g"))
+            };
+
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
+
+            // Act
+            var result = (await new GetCategorySpreadingQueryHandler(context).Handle(new GetCategorySpreadingQuery
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                }, default))
+                .ToList();
+
+            // Assert
+            result[0].Color.ShouldEqual("#266489");
+            result[1].Color.ShouldEqual("#68B9C0");
+            result[2].Color.ShouldEqual("#90D585");
+            result[3].Color.ShouldEqual("#F3C151");
+            result[4].Color.ShouldEqual("#F37F64");
+            result[5].Color.ShouldEqual("#424856");
+            result[6].Color.ShouldEqual("#8F97A4");
+        }
+
     }
 }
