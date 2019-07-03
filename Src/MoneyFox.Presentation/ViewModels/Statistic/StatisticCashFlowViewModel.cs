@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microcharts;
 using MoneyFox.Application.Statistics.Models;
-using MoneyFox.BusinessLogic.StatisticDataProvider;
+using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.ServiceLayer.Facades;
 using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
@@ -16,15 +16,13 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     public class 
         StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
-        private readonly ICashFlowDataProvider cashFlowDataProvider;
         private BarChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
-        public StatisticCashFlowViewModel(ICashFlowDataProvider cashFlowDataProvider,
+        public StatisticCashFlowViewModel(IMediator mediator,
                                           ISettingsFacade settingsFacade) 
-            : base(settingsFacade)
+            : base(mediator, settingsFacade)
         {
-            this.cashFlowDataProvider = cashFlowDataProvider;
 
             Chart = new BarChart();
         }
@@ -59,8 +57,11 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
         protected override async Task Load()
         {
-            StatisticItems = new ObservableCollection<StatisticEntry>(
-                await cashFlowDataProvider.GetCashFlow(StartDate, EndDate));
+            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCashFlowQuery
+            {
+                EndDate = EndDate,
+                StartDate = StartDate
+            }));
 
             Chart = new BarChart
             {
