@@ -34,7 +34,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
   </ItemGroup>
 
 </Project>
