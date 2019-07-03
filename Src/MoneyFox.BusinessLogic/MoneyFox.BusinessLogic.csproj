@@ -36,7 +36,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj" />
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
   </ItemGroup>
 
 </Project>

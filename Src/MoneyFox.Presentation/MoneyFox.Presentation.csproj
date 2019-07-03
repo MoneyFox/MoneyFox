@@ -69,7 +69,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj" />
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
   </ItemGroup>
 
   <ItemGroup>

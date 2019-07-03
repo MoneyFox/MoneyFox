@@ -227,10 +227,6 @@
       <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
       <Name>MoneyFox.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj">
-      <Project>{E4573A57-1955-4EB4-B977-DF0D888A6089}</Project>
-      <Name>MoneyFox.DataLayer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
       <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
       <Name>MoneyFox.Domain</Name>

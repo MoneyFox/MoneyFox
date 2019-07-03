@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
   </ItemGroup>
 

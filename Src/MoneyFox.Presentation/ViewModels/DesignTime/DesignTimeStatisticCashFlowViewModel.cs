@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using Microcharts;
 using MoneyFox.Application.Resources;
-using MoneyFox.BusinessLogic.StatisticDataProvider;
+using MoneyFox.Application.Statistics.Models;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ServiceLayer.Utilities;

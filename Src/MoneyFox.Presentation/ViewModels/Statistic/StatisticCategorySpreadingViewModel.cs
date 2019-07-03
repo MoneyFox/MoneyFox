@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microcharts;
+using MoneyFox.Application.Statistics.Models;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.ServiceLayer.Facades;

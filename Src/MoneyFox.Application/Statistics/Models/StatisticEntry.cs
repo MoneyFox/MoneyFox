@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.BusinessLogic.StatisticDataProvider
+﻿namespace MoneyFox.Application.Statistics.Models
 {
     public class StatisticEntry
     {
