@@ -36,8 +36,4 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Statistics\Queries\" />
-  </ItemGroup>
 </Project>
