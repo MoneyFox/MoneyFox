@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Resources;
-using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Application.Tests.Infrastructure;
 using Should;
@@ -14,9 +13,8 @@ using Xunit;
 
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
-    [Collection("QueryCollection")]
     [ExcludeFromCodeCoverage]
-    public class GetCashFlowQueryHandlerTests
+    public class GetCashFlowQueryHandlerTests : IClassFixture<QueryTestFixture>
     {
         private readonly EfCoreContext context;
 
