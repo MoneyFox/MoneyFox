@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Application.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
 using NLog;

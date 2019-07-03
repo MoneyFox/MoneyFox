@@ -1,26 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NLog;
 using System;
 using MoneyFox.Domain.Entities;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using System.Threading;
 using MoneyFox.DataLayer;
 using MoneyFox.DataLayer.Configurations;
+using MoneyFox.Application.Interfaces;
 
 namespace MoneyFox.Persistence
 {
-    public interface IEfCoreContext
-    {
-        DbSet<Account> Accounts { get; }
-        DbSet<Payment> Payments { get; }
-        DbSet<RecurringPayment> RecurringPayments { get; }
-        DbSet<Category> Categories { get; }
-
-        Task<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
-
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
-    }
 
     /// <summary>
     ///     Represents the data context of the application
