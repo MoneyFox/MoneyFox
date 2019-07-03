@@ -1,12 +1,13 @@
-﻿using MoneyFox.Presentation.Groups;
+﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.ViewModels;
-using System;
 using System.Globalization;
 using MoneyFox.Domain.Exceptions;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Groups
 {
+    [ExcludeFromCodeCoverage]
     public class AlphaGroupListGroupCollectionTests
     {
         [Fact]

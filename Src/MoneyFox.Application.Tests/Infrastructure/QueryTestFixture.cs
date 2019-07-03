@@ -1,9 +1,11 @@
 ﻿using MoneyFox.Persistence;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Infrastructure
 {
+    [ExcludeFromCodeCoverage]
     public class QueryTestFixture : IDisposable
     {
         public EfCoreContext Context { get; private set; }

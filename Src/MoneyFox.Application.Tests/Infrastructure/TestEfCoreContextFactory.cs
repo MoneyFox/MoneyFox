@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.Persistence;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Application.Tests.Infrastructure
 {
+    [ExcludeFromCodeCoverage]
     internal static class TestEfCoreContextFactory
     {
         public static EfCoreContext Create()

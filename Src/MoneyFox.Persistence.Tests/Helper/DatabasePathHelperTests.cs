@@ -1,9 +1,12 @@
-﻿using MoneyFox.Application;
+﻿using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Application;
+using MoneyFox.DataLayer;
 using Should;
 using Xunit;
 
-namespace MoneyFox.DataLayer.Tests.Helper
+namespace MoneyFox.Persistence.Tests.Helper
 {
+    [ExcludeFromCodeCoverage]
     public class DatabasePathHelperTests
     {
         [Theory]
