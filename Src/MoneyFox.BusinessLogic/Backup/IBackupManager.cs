@@ -13,12 +13,12 @@ namespace MoneyFox.BusinessLogic.Backup
         ///     Login user.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<OperationResult> Login();        
+        Task Login();        
         
         /// <summary>
         ///     Logout user.
         /// </summary>
-        Task<OperationResult> Logout();
+        Task Logout();
 
         /// <summary>
         ///     Checks if there are backups to restore.
@@ -39,12 +39,12 @@ namespace MoneyFox.BusinessLogic.Backup
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
-        Task<OperationResult> RestoreBackup();
+        Task RestoreBackup();
 
         /// <summary>
-        ///     Enqueues a new backup task
+        ///     Enqueue a new backup task
         /// </summary>
         /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
-        Task<OperationResult> EnqueueBackupTask(int attempts = 0);
+        Task EnqueueBackupTask(int attempts = 0);
     }
 }

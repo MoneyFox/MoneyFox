@@ -14,7 +14,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         /// </summary>
         /// <param name="id">Id of the payment to delete.</param>
         /// <returns>Result.</returns>
-        Task<OperationResult> DeletePayment(int id);
+        Task DeletePayment(int id);
 
         /// <summary>
         ///     Delete an existing Recurring Payment.
@@ -33,7 +33,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
             this.savePaymentDbAccess = savePaymentDbAccess;
         }
 
-        public async Task<OperationResult> DeletePayment(int id)
+        public async Task DeletePayment(int id)
         {
             var payment = await savePaymentDbAccess.GetPaymentById(id);
             
@@ -41,8 +41,6 @@ namespace MoneyFox.BusinessLogic.PaymentActions
             payment.TargetAccount?.RemovePaymentAmount(payment);
 
             savePaymentDbAccess.DeletePayment(payment);
-
-            return OperationResult.Succeeded();
         }
 
         public async Task DeleteRecurringPayment(int id)

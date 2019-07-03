@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.BusinessLogic;
+using Microsoft.Graph;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.DataLayer.Entities;
@@ -22,21 +22,21 @@ namespace MoneyFox.Presentation.Services
         /// </summary>
         /// <param name="paymentViewModel">View model which contains the view data.</param>
         /// <returns>Result</returns>
-        Task<OperationResult> SavePayment(PaymentViewModel paymentViewModel);
+        Task SavePayment(PaymentViewModel paymentViewModel);
 
         /// <summary>
         ///     Updates a payment.
         /// </summary>
         /// <param name="newPaymentViewModel">View model which contains the view data.</param>
         /// <returns>Result</returns>
-        Task<OperationResult> UpdatePayment(PaymentViewModel newPaymentViewModel);
+        Task UpdatePayment(PaymentViewModel newPaymentViewModel);
 
         /// <summary>
         ///     Deletes a existing payment
         /// </summary>
         /// <param name="paymentViewModel">View model which contains the view data.</param>
         /// <returns>Result</returns>
-        Task<OperationResult> DeletePayment(PaymentViewModel paymentViewModel);
+        Task DeletePayment(PaymentViewModel paymentViewModel);
     }
 
     /// <inheritdoc />
@@ -57,7 +57,7 @@ namespace MoneyFox.Presentation.Services
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult> SavePayment(PaymentViewModel paymentViewModel)
+        public async Task SavePayment(PaymentViewModel paymentViewModel)
         {
             var payment = await CreatePaymentFromViewModel(paymentViewModel);
             await context.AddAsync(payment);
@@ -68,24 +68,20 @@ namespace MoneyFox.Presentation.Services
             }
             var count = await context.SaveChangesAsync();
             logger.Info("{count} entities saved.", count);
-
-            return OperationResult.Succeeded();
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult> UpdatePayment(PaymentViewModel newPaymentViewModel)
+        public async Task UpdatePayment(PaymentViewModel newPaymentViewModel)
         {
             await UpdatePaymentFromViewModel(newPaymentViewModel);
 
             await context.SaveChangesAsync();
-
-            return OperationResult.Succeeded();
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult> DeletePayment(PaymentViewModel paymentViewModel)
+        public async Task DeletePayment(PaymentViewModel paymentViewModel)
         {
-            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return OperationResult.Succeeded();
+            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
             if (paymentViewModel.IsRecurring
                 && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
@@ -93,13 +89,8 @@ namespace MoneyFox.Presentation.Services
                 await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id);
             }
             
-            var result = await modifyPaymentAction.DeletePayment(paymentViewModel.Id);
-
+            await modifyPaymentAction.DeletePayment(paymentViewModel.Id);
             await context.SaveChangesAsync();
-
-            return !result.Success
-                ? OperationResult.Failed(result.Message)
-                : OperationResult.Succeeded();
         }
 
         private async Task<Payment> CreatePaymentFromViewModel(PaymentViewModel paymentViewModel)
@@ -120,7 +111,6 @@ namespace MoneyFox.Presentation.Services
             {
                 payment.ChargedAccount.RemovePaymentAmount(payment);
                 payment.TargetAccount?.RemovePaymentAmount(payment);
-
                 throw;
             }
         }

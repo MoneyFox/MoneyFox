@@ -4,7 +4,6 @@ using Windows.ApplicationModel.Background;
 using Microsoft.Identity.Client;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
-using MoneyFox.DataLayer;
 using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;

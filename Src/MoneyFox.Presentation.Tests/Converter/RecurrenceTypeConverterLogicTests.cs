@@ -9,7 +9,7 @@ using Xunit;
 namespace MoneyFox.Presentation.Tests.Converter
 {
     [ExcludeFromCodeCoverage]
-    public class RecurrenceTypeConverterTests
+    public class RecurrenceTypeConverterLogicTests
     {
         public static IEnumerable<object[]> TestRecurrences
         {
@@ -29,7 +29,7 @@ namespace MoneyFox.Presentation.Tests.Converter
         [MemberData(nameof(TestRecurrences))]
         public void Convert_CorrectValue(PaymentRecurrence type, string result)
         {
-            new RecurrenceTypeConverter().Convert(type, null, null, null).ShouldEqual(result);
+            RecurrenceTypeConverterLogic.GetStringForPaymentRecurrence(type).ShouldEqual(result);
         }
     }
 }

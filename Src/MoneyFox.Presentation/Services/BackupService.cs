@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.ServiceLayer.Facades;
 
 namespace MoneyFox.Presentation.Services
 {
@@ -14,12 +12,12 @@ namespace MoneyFox.Presentation.Services
         ///     Login user.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<OperationResult> Login();
+        Task Login();
 
         /// <summary>
         ///     Logout user.
         /// </summary>
-        Task<OperationResult> Logout();
+        Task Logout();
 
         /// <summary>
         ///     Checks if there are backups to restore.
@@ -40,13 +38,13 @@ namespace MoneyFox.Presentation.Services
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
-        Task<OperationResult> RestoreBackup();
+        Task RestoreBackup();
 
         /// <summary>
         ///     Enqueues a new backup task.
         /// </summary>
         /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
-        Task<OperationResult> EnqueueBackupTask(int attempts = 0);
+        Task EnqueueBackupTask(int attempts = 0);
     }
 
     public class BackupService : IBackupService
@@ -60,29 +58,18 @@ namespace MoneyFox.Presentation.Services
             this.settingsFacade = settingsFacade;
         }
 
-        public async Task<OperationResult> Login()
+        public async Task Login()
         {
-            var result = await backupManager.Login();
-            if (result.Success)
-            {
-                settingsFacade.IsLoggedInToBackupService = true;
-                settingsFacade.IsBackupAutouploadEnabled = true;
-                return OperationResult.Succeeded();
-            }
-
-            return result;
+            await backupManager.Login();
+            settingsFacade.IsLoggedInToBackupService = true;
+            settingsFacade.IsBackupAutouploadEnabled = true;
         }
 
-        public async Task<OperationResult> Logout()
+        public async Task Logout()
         {
-            var result = await backupManager.Logout();
-            if (result.Success)
-            {
-                settingsFacade.IsLoggedInToBackupService = false;
-                settingsFacade.IsBackupAutouploadEnabled = false;
-            }
-
-            return result;
+            await backupManager.Logout();
+            settingsFacade.IsLoggedInToBackupService = false;
+            settingsFacade.IsBackupAutouploadEnabled = false;
         }
 
         public async Task<bool> IsBackupExisting()
@@ -95,37 +82,21 @@ namespace MoneyFox.Presentation.Services
             return await backupManager.GetBackupDate();
         }
 
-        public async Task<OperationResult> RestoreBackup()
+        public async Task RestoreBackup()
         {
-            var result = await backupManager.RestoreBackup();
-
-            if (result.Success)
-            {
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
-            }
-
-            return result;
+            await backupManager.RestoreBackup();
+            settingsFacade.LastDatabaseUpdate = DateTime.Now;
         }
 
-        public async Task<OperationResult> EnqueueBackupTask(int attempts = 0)
+        public async Task EnqueueBackupTask(int attempts = 0)
         {
             if (!settingsFacade.IsLoggedInToBackupService)
             {
-                var loginResult = await Login();
-                if (!loginResult.Success)
-                {
-                    return loginResult;
-                }
+                await Login();
             }
 
-            var result = await backupManager.EnqueueBackupTask();
-
-            if (result.Success)
-            {
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
-            }
-
-            return result;
+            await backupManager.EnqueueBackupTask();
+            settingsFacade.LastDatabaseUpdate = DateTime.Now;
         }
     }
 }

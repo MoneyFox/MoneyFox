@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
-using MoneyFox.ServiceLayer.Facades;
 using Moq;
 using Should;
 using Xunit;
@@ -21,7 +20,7 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.Login())
-                .ReturnsAsync(OperationResult.Failed(""));
+                .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -29,10 +28,9 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            var result = await backupService.Login();
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.Login());
 
             // Assert
-            result.Success.ShouldBeFalse();
             settingsFacade.Object.IsBackupAutouploadEnabled.ShouldBeFalse();
             settingsFacade.Object.IsLoggedInToBackupService.ShouldBeFalse();
         }
@@ -43,7 +41,7 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.Login())
-                .ReturnsAsync(OperationResult.Succeeded());
+                .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -51,10 +49,9 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            var result = await backupService.Login();
+            await backupService.Login();
 
             // Assert
-            result.Success.ShouldBeTrue();
             settingsFacade.Object.IsBackupAutouploadEnabled.ShouldBeTrue();
             settingsFacade.Object.IsLoggedInToBackupService.ShouldBeTrue();
         }
@@ -65,7 +62,7 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.Logout())
-                .ReturnsAsync(OperationResult.Failed(""));
+                             .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -75,10 +72,9 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            var result = await backupService.Logout();
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.Logout());
 
             // Assert
-            result.Success.ShouldBeFalse();
             settingsFacade.Object.IsBackupAutouploadEnabled.ShouldBeTrue();
             settingsFacade.Object.IsLoggedInToBackupService.ShouldBeTrue();
         }
@@ -89,7 +85,7 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.Logout())
-                .ReturnsAsync(OperationResult.Succeeded());
+                .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -97,10 +93,9 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            var result = await backupService.Logout();
+            await backupService.Logout();
 
             // Assert
-            result.Success.ShouldBeTrue();
             settingsFacade.Object.IsBackupAutouploadEnabled.ShouldBeFalse();
             settingsFacade.Object.IsLoggedInToBackupService.ShouldBeFalse();
         }
@@ -149,7 +144,7 @@ namespace MoneyFox.Presentation.Tests.Services
 
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.RestoreBackup())
-                             .ReturnsAsync(OperationResult.Succeeded);
+                             .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -158,10 +153,9 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            OperationResult result = await backupService.RestoreBackup();
+            await backupService.RestoreBackup();
 
             // Assert
-            result.Success.ShouldBeTrue();
             settingsFacade.Object.LastDatabaseUpdate.ShouldBeInRange(DateTime.Now.AddMinutes(-2), DateTime.Now);
         }
 
@@ -173,7 +167,7 @@ namespace MoneyFox.Presentation.Tests.Services
 
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.RestoreBackup())
-                             .ReturnsAsync(OperationResult.Failed(""));
+                             .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -182,10 +176,9 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            OperationResult result = await backupService.RestoreBackup();
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.RestoreBackup());
 
             // Assert
-            result.Success.ShouldBeFalse();
             settingsFacade.Object.LastDatabaseUpdate.ShouldEqual(expectedPassedDate);
         }
 
@@ -195,9 +188,9 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.EnqueueBackupTask(It.IsAny<int>()))
-                             .ReturnsAsync(OperationResult.Succeeded);
+                             .Returns(Task.CompletedTask);
             backupManagerMock.Setup(x => x.Login())
-                             .ReturnsAsync(OperationResult.Succeeded);
+                             .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
@@ -206,12 +199,11 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            OperationResult result = await backupService.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask();
 
             // Assert
             backupManagerMock.Verify(x => x.Login(), Times.Once);
             backupManagerMock.Verify(x => x.EnqueueBackupTask(It.IsAny<int>()), Times.Once);
-            result.Success.ShouldBeTrue();
         }
 
         [Fact]
@@ -220,9 +212,9 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.EnqueueBackupTask(It.IsAny<int>()))
-                             .ReturnsAsync(OperationResult.Succeeded);
+                             .Returns(Task.CompletedTask);
             backupManagerMock.Setup(x => x.Login())
-                             .ReturnsAsync(OperationResult.Failed(""));
+                             .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
@@ -231,12 +223,11 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            OperationResult result = await backupService.EnqueueBackupTask();
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.EnqueueBackupTask());
 
             // Assert
             backupManagerMock.Verify(x => x.Login(), Times.Once);
             backupManagerMock.Verify(x => x.EnqueueBackupTask(It.IsAny<int>()), Times.Never);
-            result.Success.ShouldBeFalse();
         }
 
         [Fact]
@@ -245,7 +236,7 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.EnqueueBackupTask(It.IsAny<int>()))
-                             .ReturnsAsync(OperationResult.Succeeded);
+                             .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
@@ -254,12 +245,11 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            OperationResult result = await backupService.EnqueueBackupTask();
+            await backupService.EnqueueBackupTask();
 
             // Assert
             backupManagerMock.Verify(x => x.Login(), Times.Never);
             backupManagerMock.Verify(x => x.EnqueueBackupTask(It.IsAny<int>()), Times.Once);
-            result.Success.ShouldBeTrue();
         }
     }
 }

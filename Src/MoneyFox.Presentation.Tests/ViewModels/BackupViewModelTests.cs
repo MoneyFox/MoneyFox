@@ -116,7 +116,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var logoutCommandCalled = false;
 
             var backupServiceMock = new Mock<IBackupService>();
-            backupServiceMock.Setup(x => x.Logout()).Callback(() => logoutCommandCalled = true).ReturnsAsync(OperationResult.Succeeded());
+            backupServiceMock.Setup(x => x.Logout()).Callback(() => logoutCommandCalled = true)
+                             .Returns(Task.CompletedTask);
 
             //execute
             var vm = new BackupViewModel(backupServiceMock.Object, 
