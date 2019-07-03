@@ -1,9 +1,8 @@
-﻿using NLog;
+﻿using MoneyFox.Application;
+using NLog;
 using System;
 using System.Globalization;
 using System.IO;
-using MoneyFox.Application;
-using MoneyFox.Domain;
 
 namespace MoneyFox.DataLayer
 {

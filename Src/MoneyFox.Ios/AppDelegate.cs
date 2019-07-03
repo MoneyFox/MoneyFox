@@ -6,7 +6,6 @@ using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer;
 using MoneyFox.Presentation;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
@@ -19,7 +18,6 @@ using Autofac;
 using CommonServiceLocator;
 using MoneyFox.Application;
 using MoneyFox.BusinessLogic.FileStore;
-using MoneyFox.Domain;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
@@ -29,8 +27,8 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using LogLevel = NLog.LogLevel;
-using MoneyFox.Foundation;
 using MoneyFox.Application.Constants;
+using MoneyFox.Persistence;
 
 #if !DEBUG
 using Microsoft.AppCenter;

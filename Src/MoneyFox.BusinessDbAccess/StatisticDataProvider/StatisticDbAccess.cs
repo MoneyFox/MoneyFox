@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.BusinessDbAccess.QueryObjects;
-using MoneyFox.DataLayer;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.BusinessDbAccess.StatisticDataProvider
 {
@@ -27,9 +27,9 @@ namespace MoneyFox.BusinessDbAccess.StatisticDataProvider
 
     public class StatisticDbAccess : IStatisticDbAccess
     {
-        private readonly EfCoreContext context;
+        private readonly IEfCoreContext context;
 
-        public StatisticDbAccess(EfCoreContext context)
+        public StatisticDbAccess(IEfCoreContext context)
         {
             this.context = context;
         }
@@ -41,8 +41,7 @@ namespace MoneyFox.BusinessDbAccess.StatisticDataProvider
                 .WithoutTransfers()
                 .HasDateLargerEqualsThan(startDate.Date)
                 .HasDateSmallerEqualsThan(endDate.Date)
-                .ToListAsync()
-                ;
+                .ToListAsync();
         }
 
         public async Task<List<Category>> GetAllCategoriesWithPayments()
@@ -50,8 +49,7 @@ namespace MoneyFox.BusinessDbAccess.StatisticDataProvider
             return await context.Categories
                 .Include(x => x.Payments)
                 .OrderByName()
-                .ToListAsync()
-                ;
+                .ToListAsync();
         }
     }
 }

@@ -2,15 +2,16 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MoneyFox.DataLayer;
+using Microsoft.EntityFrameworkCore.Migrations;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.DataLayer.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20190209110142_AddCreationDateField")]
+    partial class AddCreationDateField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

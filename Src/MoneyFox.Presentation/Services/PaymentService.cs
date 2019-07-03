@@ -5,6 +5,7 @@ using MoneyFox.Application.Resources;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Persistence;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
 using NLog;
@@ -43,12 +44,11 @@ namespace MoneyFox.Presentation.Services
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        private readonly EfCoreContext context;
+        private readonly IEfCoreContext context;
         private readonly IModifyPaymentAction modifyPaymentAction;
         private readonly IDialogService dialogService;
-
-
-        public PaymentService(EfCoreContext context, IModifyPaymentAction modifyPaymentAction, IDialogService dialogService)
+        
+        public PaymentService(IEfCoreContext context, IModifyPaymentAction modifyPaymentAction, IDialogService dialogService)
         {
             this.modifyPaymentAction = modifyPaymentAction;
             this.dialogService = dialogService;
@@ -61,10 +61,6 @@ namespace MoneyFox.Presentation.Services
             var payment = await CreatePaymentFromViewModel(paymentViewModel);
             await context.AddAsync(payment);
 
-            foreach(var e in context.ChangeTracker.Entries())
-            {
-                logger.Info("entity: {e}", e);
-            }
             var count = await context.SaveChangesAsync();
             logger.Info("{count} entities saved.", count);
         }

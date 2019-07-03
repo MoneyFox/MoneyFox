@@ -5,8 +5,8 @@ using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer;
 using MoneyFox.Presentation.Facades;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.Uwp.Tasks
 {
@@ -27,8 +27,7 @@ namespace MoneyFox.Uwp.Tasks
             {
                 var context = new EfCoreContext();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context))
-                    .ClearPayments()
-                    ;
+                    .ClearPayments();
                 await context.SaveChangesAsync();
             } 
             catch (Exception ex)

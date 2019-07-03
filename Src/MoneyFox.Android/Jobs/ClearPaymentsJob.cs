@@ -9,7 +9,7 @@ using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer;
+using MoneyFox.Persistence;
 using MoneyFox.Presentation.Facades;
 using Debug = System.Diagnostics.Debug;
 using JobSchedulerType = Android.App.Job.JobScheduler;
@@ -65,7 +65,7 @@ namespace MoneyFox.Droid.Jobs
 
                 var context = new EfCoreContext();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
-                context.SaveChanges();
+                await context.SaveChangesAsync();
 
                 Debug.WriteLine("ClearPayments Job finished.");
                 JobFinished(args, false);

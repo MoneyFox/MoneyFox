@@ -3,8 +3,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.BusinessDbAccess.QueryObjects;
-using MoneyFox.DataLayer;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
 {
@@ -20,9 +20,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
     public class RecurringPaymentDbAccess : IRecurringPaymentDbAccess
     {
-        private readonly EfCoreContext context;
+        private readonly IEfCoreContext context;
 
-        public RecurringPaymentDbAccess(EfCoreContext context)
+        public RecurringPaymentDbAccess(IEfCoreContext context)
         {
             this.context = context;
         }
@@ -42,8 +42,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
         public async Task SaveNewPayments(List<Payment> payments)
         {
             await context.Payments
-                         .AddRangeAsync(payments)
-                         ;
+                         .AddRangeAsync(payments);
         }
     }
 }

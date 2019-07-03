@@ -1,18 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataLayer.Configurations;
 using NLog;
 using System;
 using MoneyFox.Domain.Entities;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using System.Threading;
+using MoneyFox.DataLayer;
+using MoneyFox.DataLayer.Configurations;
 
-namespace MoneyFox.DataLayer
+namespace MoneyFox.Persistence
 {
+    public interface IEfCoreContext
+    {
+        DbSet<Account> Accounts { get; }
+        DbSet<Payment> Payments { get; }
+        DbSet<RecurringPayment> RecurringPayments { get; }
+        DbSet<Category> Categories { get; }
+
+        Task<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+    }
+
     /// <summary>
     ///     Represents the data context of the application
     /// </summary>
-    public class EfCoreContext : DbContext
+    public class EfCoreContext : DbContext, IEfCoreContext
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         public EfCoreContext()
         {
         }
@@ -48,6 +62,6 @@ namespace MoneyFox.DataLayer
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         }
 
-        private void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));  }
+        private void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder)); }
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application.Constants;
 using MoneyFox.BusinessLogic;
 using MoneyFox.DataLayer;
+using MoneyFox.Persistence;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation
@@ -51,6 +52,7 @@ namespace MoneyFox.Presentation
         {
             builder.RegisterInstance(SetupEfContext())
                    .As<DbContext>()
+                   .AsImplementedInterfaces()
                    .AsSelf();
 
             SetUpCrudServices(builder);

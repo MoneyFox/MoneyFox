@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
 {
@@ -20,9 +21,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
     public class SavePaymentDbAccess : ISavePaymentDbAccess
     {
-        private readonly EfCoreContext context;
+        private readonly IEfCoreContext context;
 
-        public SavePaymentDbAccess(EfCoreContext context)
+        public SavePaymentDbAccess(IEfCoreContext context)
         {
             this.context = context;
         }
