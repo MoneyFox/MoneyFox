@@ -1,8 +1,8 @@
 using Android.App;
 using Android.Content;
 using Android.OS;
+using MoneyFox.Application;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.Foundation;
 using MoneyFox.Presentation.Interfaces;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 

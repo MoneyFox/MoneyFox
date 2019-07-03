@@ -8,7 +8,6 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Domain;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.Foundation;
 using MoneyFox.Presentation;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;

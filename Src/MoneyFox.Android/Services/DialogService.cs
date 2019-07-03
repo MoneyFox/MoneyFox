@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Android.App;
 using AndroidHUD;
-using MoneyFox.Foundation;
+using MoneyFox.Application;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Interfaces;
 

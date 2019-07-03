@@ -1,5 +1,7 @@
-﻿namespace MoneyFox.Foundation {
-    public static class ParentActivityWrapper {
+﻿namespace MoneyFox.Application
+{
+    public static class ParentActivityWrapper
+    {
         /// <summary>
         /// The view, window or activity from where the interactive login happens. This is required in Android 
         /// to capture authentication result from the browser. 
