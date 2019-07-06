@@ -17,12 +17,6 @@
         <designTime:DesignTimeModifyPaymentViewModel />
     </d:Page.DataContext>
 
-    <i:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding InitializeCommand}" />
-        </core:EventTriggerBehavior>
-    </i:Interaction.Behaviors>
-
     <UserControl.Resources>
         <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
