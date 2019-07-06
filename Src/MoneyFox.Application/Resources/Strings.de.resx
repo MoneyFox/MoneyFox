@@ -792,4 +792,13 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="BackupInformationLabel" xml:space="preserve">
     <value>Ihre Daten werden in Ihrem OneDrive-Konto gespeichert. Sie finden sie im Anwendungsordner in einem neuen Ordner namens "MoneyFox".</value>
   </data>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="WindowsDefaultLabel" xml:space="preserve">
+    <value>Windows Default</value>
+  </data>
 </root>
