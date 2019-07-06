@@ -14,12 +14,12 @@ namespace MoneyFox.DataLayer
 
         public static string GetDbPath()
         {
-            String databasePath = "";
+            string databasePath = "";
             switch (ExecutingPlatform.Current)
             {
                 case AppPlatform.iOS:
                     SQLitePCL.Batteries_V2.Init();
-                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DATABASE_NAME); ;
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DATABASE_NAME);
                     break;
                 case AppPlatform.Android:
                     databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DATABASE_NAME);

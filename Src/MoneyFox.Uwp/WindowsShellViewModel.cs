@@ -16,11 +16,14 @@ using MoneyFox.Presentation.Views;
 using MoneyFox.Uwp.Helpers;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using MoneyFox.Uwp.Services;
+using NLog;
 
 namespace MoneyFox.Uwp
 {
     public class WindowsShellViewModel : BaseViewModel
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
+
         private readonly KeyboardAccelerator altLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
         private readonly KeyboardAccelerator backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
@@ -51,6 +54,8 @@ namespace MoneyFox.Uwp
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
         {
+            logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
+            
             this.navigationView = navigationView;
             this.keyboardAccelerators = keyboardAccelerators;
             NavigationService.Frame = frame;
@@ -70,8 +75,11 @@ namespace MoneyFox.Uwp
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
+            logger.Debug("Item invoked");
+
             if (args.IsSettingsInvoked)
             {
+                logger.Info("Navigate to settings");
                 NavigationService.NavigateTo(nameof(SettingsViewModel));
                 return;
             }
@@ -80,6 +88,8 @@ namespace MoneyFox.Uwp
                             .OfType<WinUI.NavigationViewItem>()
                             .First(menuItem => (string)menuItem.Content == (string)args.InvokedItem);
             var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
+
+            logger.Info("Navigate to page key {key}", pageKey);
             NavigationService.NavigateTo(pageKey);
         }
 

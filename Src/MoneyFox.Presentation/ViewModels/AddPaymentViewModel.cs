@@ -52,14 +52,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             try
             {
-                var result = await paymentService.SavePayment(SelectedPayment);
-
-                if (!result.Success)
-                {
-                    await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message);
-                    return;
-                }
-
+                await paymentService.SavePayment(SelectedPayment);
                 navigationService.GoBack();
             }
             catch (InvalidEndDateException)
