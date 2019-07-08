@@ -9,7 +9,6 @@ using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
-using MoneyFox.ServiceLayer.Facades;
 using NLog;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -35,17 +34,14 @@ namespace MoneyFox.Presentation.ViewModels
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
-
         }
-
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
         /// <summary>
         ///     Delete the selected CategoryViewModel from the database
         /// </summary>
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteCategory);
 
-        private async Task Initialize()
+        protected override async Task Initialize()
         {
             SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(CategoryId);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);

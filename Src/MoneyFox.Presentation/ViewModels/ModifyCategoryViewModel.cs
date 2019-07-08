@@ -54,10 +54,16 @@ namespace MoneyFox.Presentation.ViewModels
             NavigationService = navigationService;
         }
 
+        protected abstract Task Initialize();
+
+        protected abstract Task SaveCategory();
+
         protected INavigationService NavigationService { get; }
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBase);
+        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
+        public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBase);
+        
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
@@ -90,8 +96,6 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public int CategoryId { get; set; }
-
-        protected abstract Task SaveCategory();
 
         private async Task SaveCategoryBase()
         {

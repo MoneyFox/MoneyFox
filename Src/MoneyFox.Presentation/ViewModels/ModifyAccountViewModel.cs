@@ -30,6 +30,11 @@ namespace MoneyFox.Presentation.ViewModels
             NavigationService = navigationService;
         }
 
+        protected abstract Task SaveAccount();
+
+        protected abstract Task Initialize();
+
+
         protected INavigationService NavigationService { get; private set; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -78,9 +83,6 @@ namespace MoneyFox.Presentation.ViewModels
                 }
             }
         }
-
-        protected abstract Task SaveAccount();
-        protected abstract Task Initialize();
 
         private async Task SaveAccountBase()
         {
