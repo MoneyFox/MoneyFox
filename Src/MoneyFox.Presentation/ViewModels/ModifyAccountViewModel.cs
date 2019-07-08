@@ -32,6 +32,8 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected INavigationService NavigationService { get; private set; }
 
+        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+
         public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBase);
 
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
@@ -78,6 +80,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         protected abstract Task SaveAccount();
+        protected abstract Task Initialize();
 
         private async Task SaveAccountBase()
         {

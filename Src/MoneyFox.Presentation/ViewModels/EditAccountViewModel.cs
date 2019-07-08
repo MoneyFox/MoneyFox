@@ -34,9 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccount);
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
-
-        private async Task Initialize()
+        protected override async Task Initialize()
         {
             SelectedAccount = await crudServices.ReadSingleAsync<AccountViewModel>(AccountId);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
