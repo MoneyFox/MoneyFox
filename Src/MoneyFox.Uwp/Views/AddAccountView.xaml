@@ -21,12 +21,12 @@
                    Text="{Binding Title}"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <userControls:ModifyCategoryUserControl Grid.Row="1" />
+        <userControls:ModifyAccountUserControl Grid.Row="1" />
 
         <CommandBar x:Name="BottomCommandBar"
                     Style="{ThemeResource DefaultCommandBar}"
                     Grid.Row="2"
-                    Margin="{StaticResource NegativeLargeLeftRightMargin}">
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="DoneLabel"
                               Command="{Binding SaveCommand}"

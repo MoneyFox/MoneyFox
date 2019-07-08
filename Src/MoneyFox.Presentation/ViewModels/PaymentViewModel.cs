@@ -163,7 +163,7 @@ namespace MoneyFox.Presentation.ViewModels
         public AccountViewModel TargetAccount {
             get => targetAccount;
             set {
-                if (TargetAccount == value) return;
+                if (targetAccount == value) return;
                 targetAccount = value;
                 RaisePropertyChanged();
             }
@@ -175,7 +175,7 @@ namespace MoneyFox.Presentation.ViewModels
         public CategoryViewModel Category {
             get => categoryViewModel;
             set {
-                if (Category == value) return;
+                if (categoryViewModel == value) return;
                 categoryViewModel = value;
                 RaisePropertyChanged();
             }
@@ -187,7 +187,7 @@ namespace MoneyFox.Presentation.ViewModels
         public RecurringPaymentViewModel RecurringPayment {
             get => recurringPaymentViewModel;
             set {
-                if (RecurringPayment == value) return;
+                if (recurringPaymentViewModel == value) return;
                 recurringPaymentViewModel = value;
                 RaisePropertyChanged();
             }

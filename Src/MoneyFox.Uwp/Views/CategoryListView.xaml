@@ -35,6 +35,7 @@
         <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
 
         <CommandBar Grid.Row="2"
+                    Style="{ThemeResource DefaultCommandBar}"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}" >
             <CommandBar.PrimaryCommands>
                 <AppBarButton x:Uid="AddCategoryViewModelLabel"
