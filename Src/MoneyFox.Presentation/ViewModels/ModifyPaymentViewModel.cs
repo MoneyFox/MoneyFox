@@ -129,6 +129,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             MessengerInstance.Register<CategorySelectedMessage>(this, ReceiveMessage);
         }
+        protected abstract Task SavePayment();
 
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
@@ -283,7 +284,6 @@ namespace MoneyFox.Presentation.ViewModels
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
 
-        protected abstract Task SavePayment();
 
         private async Task SavePaymentBase()
         {
