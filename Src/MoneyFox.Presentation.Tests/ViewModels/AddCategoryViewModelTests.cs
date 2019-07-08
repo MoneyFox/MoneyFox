@@ -6,7 +6,6 @@ using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Facades;
 using Moq;
 using Should;
 using Xunit;
@@ -64,6 +63,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 dialogServiceMock.Object, 
                 settingsFacadeMock.Object,
                 backupServiceMock.Object, null);
+
+            await addCategoryVm.InitializeCommand.ExecuteAsync();
 
             // Act
             await addCategoryVm.SaveCommand.ExecuteAsync();
