@@ -790,4 +790,13 @@
   <data name="BackupInformationLabel" xml:space="preserve">
     <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="WindowsDefaultLabel" xml:space="preserve">
+    <value>Windows Default</value>
+  </data>
 </root>

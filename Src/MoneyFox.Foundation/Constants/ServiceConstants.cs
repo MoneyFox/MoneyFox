@@ -9,16 +9,6 @@ namespace MoneyFox.Foundation.Constants
         public const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
 
         /// <summary>
-        ///     String constant for the access token.
-        /// </summary>
-        public const string ACCESS_TOKEN = "access_token";
-
-        /// <summary>
-        ///     String constant for the code.
-        /// </summary>
-        public const string CODE = "code";
-
-        /// <summary>
         ///     Maximum number of attempts to sync the database
         /// </summary>
         public const int SYNC_ATTEMPTS = 2;

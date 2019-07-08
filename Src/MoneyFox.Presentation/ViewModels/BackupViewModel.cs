@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.BusinessLogic.Adapters;
@@ -11,7 +10,6 @@ using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Services;
-using MoneyFox.ServiceLayer.Facades;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -183,11 +181,13 @@ namespace MoneyFox.Presentation.ViewModels
                 await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
             }
 
-            var result = await backupService.Login();
-
-            if (!result.Success)
+            try
             {
-                await dialogService.ShowMessage(Strings.LoginFailedTitle,result.Message);
+                await backupService.Login();
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage(Strings.LoginFailedTitle, ex.Message);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
@@ -197,11 +197,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task Logout()
         {
-            var result = await backupService.Logout();
-
-            if (!result.Success)
+            try
             {
-                await dialogService.ShowMessage(Strings.LoginFailedTitle, result.Message);
+                await backupService.Logout();
+            } 
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.Message);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
@@ -214,14 +216,15 @@ namespace MoneyFox.Presentation.ViewModels
 
             dialogService.ShowLoadingDialog();
 
-            var operationResult = await backupService.EnqueueBackupTask();
-            if (operationResult.Success)
+            try
             {
+                await backupService.EnqueueBackupTask();
+
                 BackupLastModified = DateTime.Now;
             }
-            else
+            catch (Exception ex)
             {
-                await dialogService.ShowMessage(Strings.BackupFailedTitle, operationResult.Message);
+                await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
 
             dialogService.HideLoadingDialog();
@@ -237,16 +240,15 @@ namespace MoneyFox.Presentation.ViewModels
             if (settingsFacade.LastDatabaseUpdate > backupDate && (!await ShowForceOverrideConfirmation())) return;
 
             dialogService.ShowLoadingDialog();
-
-            var operationResult = await backupService.RestoreBackup();
-
-            if (!operationResult.Success)
+            
+            try
             {
-                await dialogService.ShowMessage(Strings.BackupFailedTitle, operationResult.Message);
-            }
-            else
-            {
+                await backupService.RestoreBackup();
                 await ShowCompletionNote();
+            } 
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
         }
 
