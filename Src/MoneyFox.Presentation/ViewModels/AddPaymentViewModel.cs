@@ -36,6 +36,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected override async Task Initialize()
         {
             Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, false);
+            SelectedPayment = new PaymentViewModel {Type = SelectedPayment.Type};
 
             await base.Initialize();
 
@@ -52,14 +53,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             try
             {
-                var result = await paymentService.SavePayment(SelectedPayment);
-
-                if (!result.Success)
-                {
-                    await dialogService.ShowMessage(Strings.GeneralErrorTitle, result.Message);
-                    return;
-                }
-
+                await paymentService.SavePayment(SelectedPayment);
                 navigationService.GoBack();
             }
             catch (InvalidEndDateException)

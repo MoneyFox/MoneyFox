@@ -25,9 +25,14 @@ namespace MoneyFox.Presentation.ViewModels
             this.dialogService = dialogService;
 
             Title = Strings.AddAccountTitle;
-            SelectedAccount = new AccountViewModel();
         }
-        
+
+        protected override Task Initialize()
+        {
+            SelectedAccount = new AccountViewModel();
+            return Task.CompletedTask;
+        }
+
         protected override async Task SaveAccount()
         {
             if (await crudService.ReadManyNoTracked<AccountViewModel>()

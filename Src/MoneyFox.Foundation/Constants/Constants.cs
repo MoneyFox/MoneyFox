@@ -37,21 +37,6 @@ namespace MoneyFox.Foundation.Constants
         public const string GITHUB_CONTRIBUTION_URL = "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
 
         /// <summary>
-        ///     ID string for income shortcuts
-        /// </summary>
-        public const string INCOME_TILE_ID = "Income";
-
-        /// <summary>
-        ///     ID string for spending shortcuts
-        /// </summary>
-        public const string EXPENSE_TILE_ID = "Expense";
-
-        /// <summary>
-        ///     ID string for transfer shortcuts
-        /// </summary>
-        public const string TRANSFER_TILE_ID = "Transfer";
-
-        /// <summary>
         ///     ID string for add income shortcuts
         /// </summary>
         public const string ADD_INCOME_TILE_ID = "AddIncomeTile";

@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
@@ -11,10 +10,8 @@ using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.Facades;
 using Debug = System.Diagnostics.Debug;
-using Environment = System.Environment;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
 namespace MoneyFox.Droid.Jobs

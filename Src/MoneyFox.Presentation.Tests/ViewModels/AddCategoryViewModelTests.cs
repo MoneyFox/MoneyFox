@@ -6,7 +6,6 @@ using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Facades;
 using Moq;
 using Should;
 using Xunit;
@@ -30,18 +29,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public void Prepare_CategoryCreated()
-        {
-            // Arrange
-            // Act
-            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object, null, null, null, null);
-
-            // Assert
-            addCategoryVm.SelectedCategory.ShouldNotBeNull();
-        }
-
-        [Fact]
-        public void Prepare_Title_Set()
+        public void Ctor_Title_Set()
         {
             // Arrange
             // // Act
@@ -49,6 +37,19 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Assert
             addCategoryVm.Title.ShouldEqual(Strings.AddCategoryTitle);
+        }
+
+        [Fact]
+        public async Task Initialize_CategoryCreated()
+        {
+            // Arrange
+            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object, null, null, null, null);
+            
+            // Act
+            await addCategoryVm.InitializeCommand.ExecuteAsync();
+
+            // Assert
+            addCategoryVm.SelectedCategory.ShouldNotBeNull();
         }
 
         [Fact]
@@ -62,6 +63,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                 dialogServiceMock.Object, 
                 settingsFacadeMock.Object,
                 backupServiceMock.Object, null);
+
+            await addCategoryVm.InitializeCommand.ExecuteAsync();
 
             // Act
             await addCategoryVm.SaveCommand.ExecuteAsync();
