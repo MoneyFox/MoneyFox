@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
