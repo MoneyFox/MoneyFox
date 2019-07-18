@@ -40,6 +40,7 @@
 
             <Style x:Key="DefaultButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{DynamicResource ButtonBackgroundColor}" />
+                <Setter Property="TextColor" Value="Black" />
             </Style>
 
             <Style x:Key="DeleteButtonStyle" TargetType="Button">

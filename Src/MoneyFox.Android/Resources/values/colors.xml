@@ -5,4 +5,5 @@
   <color name="colorAccent">#314a9b</color>
   <color name="light_gray">#EFF2F5</color>
   <color name="splash_background">#F0EADD</color>
+  <color name="ListViewHighlighted">#E39696</color>
 </resources>

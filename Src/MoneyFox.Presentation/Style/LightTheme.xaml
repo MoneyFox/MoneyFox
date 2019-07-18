@@ -12,11 +12,11 @@
     <!-- Control Colors -->
     <Color x:Key="WindowBackgroundColor">#EFF2F5</Color>
     <Color x:Key="DialogBackgroundColor">White</Color>
-    <Color x:Key="BottomTabBarColor">WhiteSmoke</Color>
-    <Color x:Key="BarItemColor">WhiteSmoke</Color>
+    <Color x:Key="BottomTabBarColor">#e6e6e6</Color>
+    <Color x:Key="BarItemColor">#e6e6e6</Color>
     <Color x:Key="BarSelectedItemColor">#314a9b</Color>
     <Color x:Key="FrameHighlightColor">White</Color>
-    <Color x:Key="ButtonBackgroundColor">#1a264c</Color>
+    <Color x:Key="ButtonBackgroundColor">#bfc2c4</Color>
 
     <!-- Font Colors -->
     <Color x:Key="InvertedPrimaryFontColor">White</Color>
