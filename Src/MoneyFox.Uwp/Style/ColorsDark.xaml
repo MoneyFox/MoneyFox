@@ -2,22 +2,16 @@
 
     <!--  Set Accent color manually  -->
     <Color x:Key="SystemAccentColor">#314a9b</Color>
-
     <Color x:Key="ColorPrimary">#263873</Color>
     <Color x:Key="ColorPrimaryDark">#1a264c</Color>
 
     <Color x:Key="ColorCustomBackground">#201f1f</Color>
-
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
-
     <Color x:Key="AppForegroundColorPrimary">White</Color>
     <Color x:Key="AppForegroundColorSecondary">#b4b2b0</Color>
-
     <Color x:Key="AppMenuForeground">White</Color>
-
-    <Color x:Key="CommandBarBackgroundColor">Black</Color>
-
-    <Color x:Key="ListItemColor">#2d2c2c</Color>
+    <Color x:Key="CommandBarBackgroundColor">#3e3e42</Color>
+    <Color x:Key="ListItemColor">#2d2d30</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
 
     <Color x:Key="FoxOrange">#F09224</Color>

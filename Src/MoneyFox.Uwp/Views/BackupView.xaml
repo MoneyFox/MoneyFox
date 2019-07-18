@@ -38,8 +38,8 @@
                    Style="{StaticResource UwpPageTitleStyle}" />
 
         <StackPanel Grid.Row="1"
-                    Margin="19,9.5,19,0"
                     EntranceNavigationTransitionInfo.IsTargetElement="True">
+
             <Button Content="{Binding Resources[LoginLabel]}"
                     HorizontalAlignment="Stretch"
                     Command="{Binding LoginCommand}"
@@ -51,14 +51,15 @@
                     Command="{Binding LogoutCommand}"
                     Visibility="{Binding IsLoggedIn,
                                          Converter={StaticResource BooleanVisibilityConverter}}" />
-            <TextBlock Margin="-5,12,0,7"
+
+            <TextBlock Margin="{StaticResource MediumTopMargin}"
                        Text="{Binding Resources[BackupInformationLabel]}"
                        TextWrapping="WrapWholeWords" />
-            <Button Margin="0,0,0,7"
-                    HorizontalAlignment="Stretch"
+            <Button HorizontalAlignment="Stretch"
                     Command="{Binding BackupCommand}"
                     Content="{Binding Resources[CreateBackupLabel]}" />
-            <TextBlock Margin="-5,5,0,7"
+
+            <TextBlock Margin="{StaticResource MediumTopMargin}"
                        Text="{Binding Resources[RestoreBackupInformationLabel]}"
                        TextWrapping="WrapWholeWords" />
             <Grid>
