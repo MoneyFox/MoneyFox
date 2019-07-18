@@ -18,13 +18,10 @@
     <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
     <item name="colorAccent">@color/colorAccent</item>
 
-    <item name="android:colorPressedHighlight">@color/ListViewSelected</item>
     <item name="android:colorLongPressedHighlight">@color/ListViewHighlighted</item>
 
     <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
   </style>
-
-  <color name="ListViewHighlighted">#E39696</color>
 
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">@color/colorAccent</item>
