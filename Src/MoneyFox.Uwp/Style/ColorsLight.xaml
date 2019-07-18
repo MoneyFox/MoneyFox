@@ -16,8 +16,6 @@
     
     <Color x:Key="AppMenuForeground">White</Color>
     
-    <Color x:Key="CommandBarBackgroundColor">White</Color>
-
     <Color x:Key="ListItemColor">White</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
 
