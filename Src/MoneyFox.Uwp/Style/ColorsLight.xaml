@@ -2,9 +2,8 @@
 
     <!--  Set Accent color manually  -->
     <Color x:Key="SystemAccentColor">#314a9b</Color>
-
-    <Color x:Key="ColorPrimary">#263873</Color>
-    <Color x:Key="ColorPrimaryDark">#1a264c</Color>
+    <Color x:Key="ColorPrimary">#FF6154A2</Color>
+    <Color x:Key="ColorPrimaryDark">#FF454555</Color>
 
     <!--<Color x:Key="ColorCustomBackground">#c2c2c2</Color>-->
     <Color x:Key="ColorCustomBackground">#FFEFF2F5</Color>
@@ -18,6 +17,7 @@
     <Color x:Key="CommandBarBackgroundColor">#e6e6e6</Color>
     <Color x:Key="ListItemColor">White</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
-    <Color x:Key="FoxOrange">#F09224</Color>
+    
+    <Color x:Key="FoxOrange">#FFFF8671</Color>
 
 </ResourceDictionary>
