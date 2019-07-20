@@ -2,8 +2,8 @@
 
     <!--  Set Accent color manually  -->
     <Color x:Key="SystemAccentColor">#314a9b</Color>
-    <Color x:Key="ColorPrimary">#263873</Color>
-    <Color x:Key="ColorPrimaryDark">#1a264c</Color>
+    <Color x:Key="ColorPrimary">#FF6154A2</Color>
+    <Color x:Key="ColorPrimaryDark">#FF454555</Color>
 
     <Color x:Key="ColorCustomBackground">#201f1f</Color>
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
@@ -14,6 +14,6 @@
     <Color x:Key="ListItemColor">#2d2d30</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
 
-    <Color x:Key="FoxOrange">#F09224</Color>
+    <Color x:Key="FoxOrange">#FFFF8671</Color>
 
 </ResourceDictionary>

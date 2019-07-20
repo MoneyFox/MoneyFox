@@ -16,7 +16,8 @@
 
     <NavigationPage.TitleView>
         <AbsoluteLayout >
-            <Label Text="{Binding Title}" 
+            <Label Text="{Binding Title}"
+                   VerticalOptions="CenterAndExpand"
                    Style="{StaticResource PageTitleStyle}" />
 
             <ImageButton BackgroundColor="Transparent"
