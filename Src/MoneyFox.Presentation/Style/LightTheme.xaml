@@ -6,8 +6,8 @@
 
     <!-- Accent Colors -->
     <Color x:Key="AccentColor">#314a9b</Color>
-    <Color x:Key="PrimaryColor">#263873</Color>
-    <Color x:Key="SecondaryColor">#1a264c</Color>
+    <Color x:Key="PrimaryColor">#FF6154A2</Color>
+    <Color x:Key="SecondaryColor">#FF454555</Color>
 
     <!-- Control Colors -->
     <Color x:Key="WindowBackgroundColor">#EFF2F5</Color>

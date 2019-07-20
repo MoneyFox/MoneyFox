@@ -198,7 +198,7 @@
       <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.6.5</Version>
+      <Version>4.6.6</Version>
     </PackageReference>
     <PackageReference Include="PCLAppConfig">
       <Version>1.0.1</Version>
