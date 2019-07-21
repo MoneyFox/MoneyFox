@@ -5,15 +5,15 @@
                     x:Class="MoneyFox.Presentation.Style.LightTheme">
 
     <!-- Accent Colors -->
-    <Color x:Key="AccentColor">#314a9b</Color>
-    <Color x:Key="PrimaryColor">#263873</Color>
-    <Color x:Key="SecondaryColor">#1a264c</Color>
+    <Color x:Key="AccentColor">#FFFF8671</Color>
+    <Color x:Key="PrimaryColor">#FF314A9B</Color>
+    <Color x:Key="SecondaryColor">#FF00165A</Color>
 
     <!-- Control Colors -->
     <Color x:Key="WindowBackgroundColor">#EFF2F5</Color>
     <Color x:Key="DialogBackgroundColor">White</Color>
-    <Color x:Key="BottomTabBarColor">#e6e6e6</Color>
-    <Color x:Key="BarItemColor">#e6e6e6</Color>
+    <Color x:Key="BottomTabBarColor">White</Color>
+    <Color x:Key="BarItemColor">White</Color>
     <Color x:Key="BarSelectedItemColor">#314a9b</Color>
     <Color x:Key="FrameHighlightColor">White</Color>
     <Color x:Key="ButtonBackgroundColor">#bfc2c4</Color>

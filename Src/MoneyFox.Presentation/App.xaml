@@ -40,7 +40,7 @@
 
             <Style x:Key="DefaultButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{DynamicResource ButtonBackgroundColor}" />
-                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
             </Style>
 
             <Style x:Key="DeleteButtonStyle" TargetType="Button">
@@ -53,7 +53,7 @@
 
             <Style x:Key="FabPrimary" TargetType="ImageButton">
                 <Setter Property="CornerRadius" Value="28"/>
-                <Setter Property="BackgroundColor" Value="{DynamicResource AccentColor}"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"/>
                 <Setter Property="HeightRequest" Value="55"/>
                 <Setter Property="WidthRequest" Value="55"/>
                 <Setter Property="HorizontalOptions" Value="EndAndExpand"/>

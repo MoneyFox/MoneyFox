@@ -60,7 +60,7 @@
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Microcharts" Version="0.7.1" />
     <PackageReference Include="Microcharts.Forms" Version="0.7.1" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.1.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.0.0" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
