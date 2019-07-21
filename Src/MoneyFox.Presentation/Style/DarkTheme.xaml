@@ -5,9 +5,9 @@
                     x:Class="MoneyFox.Presentation.Style.DarkTheme" >
 
     <!-- Accent Colors -->
-    <Color x:Key="AccentColor">#314a9b</Color>
-    <Color x:Key="PrimaryColor">#FF6154A2</Color>
-    <Color x:Key="SecondaryColor">#FF454555</Color>
+    <Color x:Key="AccentColor">#FFFF8671</Color>
+    <Color x:Key="PrimaryColor">#FF314A9B</Color>
+    <Color x:Key="SecondaryColor">#FF00165A</Color>
 
     <!-- Control Colors -->
     <Color x:Key="WindowBackgroundColor">#201f1f</Color>
