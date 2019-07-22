@@ -115,7 +115,7 @@
                                             <Grid MinWidth="100"
                                                   Margin="{StaticResource SmallListItemMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"
-                                                  Background="{StaticResource ListItemBrush}"
+                                                  Background="{ThemeResource ListItemBrush}"
                                                   HorizontalAlignment="Stretch"
                                                   RightTapped="PaymentViewModelList_RightTapped">
 
