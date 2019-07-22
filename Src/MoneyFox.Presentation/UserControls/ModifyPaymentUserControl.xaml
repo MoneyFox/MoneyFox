@@ -124,8 +124,12 @@
                         <ColumnDefinition Width="30*" />
                     </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0" Text="{Binding Resources[EndlessLabel]}" />
-                    <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
+                    <Label Grid.Column="0" 
+                           Style="{DynamicResource DefaultTextStyle}"
+                           Text="{Binding Resources[EndlessLabel]}" />
+                    
+                    <Switch Grid.Column="1" 
+                            IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
                 </Grid>
 
                 <StackLayout IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}"
