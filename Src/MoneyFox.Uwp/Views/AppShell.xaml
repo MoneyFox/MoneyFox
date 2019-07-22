@@ -24,18 +24,18 @@
 
         <winmedia:AcrylicBrush x:Key="NavigationViewDefaultPaneBackground"
                       BackgroundSource="Backdrop" 
-                      TintColor="{ThemeResource SystemAccentColor}" 
+                      TintColor="{ThemeResource ColorPrimary}" 
                       TintOpacity=".6" 
-                      FallbackColor="{ThemeResource SystemAccentColor}"/>
+                      FallbackColor="{ThemeResource ColorPrimary}"/>
 
         <winmedia:AcrylicBrush x:Key="NavigationViewExpandedPaneBackground"
                       BackgroundSource="HostBackdrop"
-                      TintColor="{ThemeResource SystemAccentColor}" 
+                      TintColor="{ThemeResource ColorPrimary}" 
                       TintOpacity=".6"
-                      FallbackColor="{ThemeResource SystemAccentColor}"/>
+                      FallbackColor="{ThemeResource ColorPrimary}"/>
 
         <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground"
-                         Color="{StaticResource FoxOrange}" />
+                         Color="{StaticResource SystemAccentColor}" />
 
         <Style x:Key="NavigationBackButtonNormalStyle" TargetType="Button">
             <Setter Property="Background" Value="{ThemeResource NavigationViewBackButtonBackground}"/>
