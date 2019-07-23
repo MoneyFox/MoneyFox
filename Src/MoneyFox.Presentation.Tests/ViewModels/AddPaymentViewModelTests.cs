@@ -58,7 +58,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        backupServiceMock.Object,
                                                        navigationServiceMock.Object);
 
-            addPaymentVm.SelectedPayment.Type = type;
+            addPaymentVm.PaymentType = type;
 
             // Act
             await addPaymentVm.InitializeCommand.ExecuteAsync();
@@ -86,7 +86,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        backupServiceMock.Object,
                                                        navigationServiceMock.Object);
 
-            addPaymentVm.SelectedPayment.Type = type;
+            addPaymentVm.PaymentType = type;
 
             // Act
             await addPaymentVm.InitializeCommand.ExecuteAsync();
@@ -113,7 +113,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        backupServiceMock.Object,
                                                        navigationServiceMock.Object);
 
-            addPaymentVm.SelectedPayment.Type = PaymentType.Transfer;
+            addPaymentVm.PaymentType = PaymentType.Transfer;
 
             // Act
             await addPaymentVm.InitializeCommand.ExecuteAsync();
