@@ -2,7 +2,7 @@
 
     <!--  Set Accent color manually  -->
     <Color x:Key="SystemAccentColor">#FFFF8671</Color>
-    <Color x:Key="ColorPrimary">#FF314A9B</Color>
+    <Color x:Key="ColorPrimary">#FF00165A</Color>
     <Color x:Key="ColorPrimaryDark">#FF00165A</Color>
 
     <Color x:Key="ColorCustomBackground">#201f1f</Color>
@@ -13,7 +13,5 @@
     <Color x:Key="CommandBarBackgroundColor">#3e3e42</Color>
     <Color x:Key="ListItemColor">#2d2d30</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
-
-    <Color x:Key="FoxOrange">#FFFF8671</Color>
 
 </ResourceDictionary>
