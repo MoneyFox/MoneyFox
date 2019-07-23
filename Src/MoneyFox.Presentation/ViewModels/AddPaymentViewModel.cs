@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MoneyFox.Foundation;
 using MoneyFox.Foundation.Exceptions;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
@@ -31,17 +32,14 @@ namespace MoneyFox.Presentation.ViewModels
             this.dialogService = dialogService;
         }
 
+        public PaymentType PaymentType { get; set; }
+        
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
         
         protected override async Task Initialize()
         {
             Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, false);
-            SelectedPayment = new PaymentViewModel
-            {
-                ChargedAccount = SelectedPayment.ChargedAccount,
-                TargetAccount = SelectedPayment.TargetAccount,
-                Type = SelectedPayment.Type
-            };
+            SelectedPayment.Type = PaymentType;
 
             await base.Initialize();
 

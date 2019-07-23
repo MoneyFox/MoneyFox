@@ -7,7 +7,8 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding AddPaymentVm, Source={StaticResource Locator}}">
+    DataContext="{Binding AddPaymentVm, Source={StaticResource Locator}}"
+    NavigationCacheMode="Enabled">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
