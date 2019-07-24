@@ -1,13 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MockQueryable.Moq;
-<<<<<<< HEAD
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-=======
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
->>>>>>> master
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;

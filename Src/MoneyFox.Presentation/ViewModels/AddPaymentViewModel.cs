@@ -2,14 +2,9 @@
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
-<<<<<<< HEAD
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
-=======
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Exceptions;
-using MoneyFox.Foundation.Resources;
->>>>>>> master
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
