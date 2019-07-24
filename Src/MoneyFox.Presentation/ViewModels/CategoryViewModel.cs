@@ -1,9 +1,10 @@
 using GenericServices;
+using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class CategoryViewModel : BaseViewModel, ILinkToEntity<Category>
+    public class CategoryViewModel : BaseViewModel, ILinkToEntity<Category>, IMapFrom<Category>
     {
         private int id;
         private string name;
