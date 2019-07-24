@@ -20,7 +20,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICrudServicesAsync>().Object,
                 new Mock<IDialogService>().Object,
-                navigationMock.Object );
+                navigationMock.Object);
 
             // Act
             viewModel.ItemClickCommand.Execute(new CategoryViewModel());
