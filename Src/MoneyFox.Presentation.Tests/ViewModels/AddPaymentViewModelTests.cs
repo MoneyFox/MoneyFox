@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Views;
+﻿using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MockQueryable.Moq;
+<<<<<<< HEAD
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+=======
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Resources;
+>>>>>>> master
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
-    public class AddPaymentViewModelTests 
+    public class AddPaymentViewModelTests
     {
         private readonly Mock<IPaymentService> paymentServiceMock;
         private readonly Mock<ICrudServicesAsync> crudServiceMock;
@@ -58,7 +63,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        backupServiceMock.Object,
                                                        navigationServiceMock.Object);
 
-            addPaymentVm.SelectedPayment.Type = type;
+            addPaymentVm.PaymentType = type;
 
             // Act
             await addPaymentVm.InitializeCommand.ExecuteAsync();
@@ -86,7 +91,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        backupServiceMock.Object,
                                                        navigationServiceMock.Object);
 
-            addPaymentVm.SelectedPayment.Type = type;
+            addPaymentVm.PaymentType = type;
 
             // Act
             await addPaymentVm.InitializeCommand.ExecuteAsync();
@@ -113,7 +118,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        backupServiceMock.Object,
                                                        navigationServiceMock.Object);
 
-            addPaymentVm.SelectedPayment.Type = PaymentType.Transfer;
+            addPaymentVm.PaymentType = PaymentType.Transfer;
 
             // Act
             await addPaymentVm.InitializeCommand.ExecuteAsync();
@@ -134,7 +139,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        crudServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
-                                                       backupServiceMock.Object, 
+                                                       backupServiceMock.Object,
                                                        navigationServiceMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();

@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Utilities;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -18,9 +19,25 @@ namespace MoneyFox.Uwp.Views
         {
             if (e.Parameter != null && e.NavigationMode != NavigationMode.Back)
             {
-                ViewModel.SelectedPayment.Type = (PaymentType)e.Parameter;
+                ViewModel.PaymentType = (PaymentType)e.Parameter;
                 ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
             }
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            if (e.NavigationMode == NavigationMode.Back)
+            {
+                ResetPageCache();
+            }
+        }
+
+        private void ResetPageCache()
+        {
+            var cacheSize = ((Frame)Parent).CacheSize;
+            ((Frame)Parent).CacheSize = 0;
+            ((Frame)Parent).CacheSize = cacheSize;
         }
     }
 }
