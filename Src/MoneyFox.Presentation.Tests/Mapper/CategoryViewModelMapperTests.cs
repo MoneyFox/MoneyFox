@@ -22,7 +22,7 @@ namespace MoneyFox.Presentation.Tests.Mapper
         {
             // Arrange
             var category = new Category("test");
-            
+
             // Act
             var result = mapper.Map<CategoryViewModel>(category);
 
