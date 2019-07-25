@@ -31,19 +31,19 @@ namespace MoneyFox.Presentation.Dialogs
         private async Task AddExpenseGridClicked()
         {
             await Navigation.PopPopupAsync();
-            ViewModel?.GoToAddExpenseCommand.Execute(PaymentType.Expense);
+            ViewModel?.GoToAddExpenseCommand.Execute(null);
         }
 
         private async Task AddIncomeGridClicked()
         {
             await Navigation.PopPopupAsync();
-            ViewModel?.GoToAddIncomeCommand.Execute(PaymentType.Income);
+            ViewModel?.GoToAddIncomeCommand.Execute(null;
         }
 
         private async Task AddTransferGridClicked()
         {
             await Navigation.PopPopupAsync();
-            ViewModel?.GoToAddTransferCommand.Execute(PaymentType.Transfer);
+            ViewModel?.GoToAddTransferCommand.Execute(null);
         }
     }
 }
