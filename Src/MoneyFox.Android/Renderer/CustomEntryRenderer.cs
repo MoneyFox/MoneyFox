@@ -22,27 +22,30 @@ namespace MoneyFox.Droid.Renderer
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e) {
             base.OnElementChanged(e);
 
-            // set cursor color
+            SetCursorColor();
+            TrySetCursorPointerColor();
+        }
+        
+        private void SetCursorColor() {
             IntPtr IntPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
             IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(IntPtrtextViewClass, "mCursorDrawableRes", "I");
 
             JNIEnv.SetField(Control.EditText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
+        }
 
-            // try set cursor pointer color
-            try
-            {
+        private void TrySetCursorPointerColor() {
+            try {
                 TextView textViewTemplate = new TextView(Control.EditText.Context);
 
                 var field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
                 var editor = field.Get(Control.EditText);
-                
-                String[]
-                    fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" },
-                    drawablesNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
-                for (Int32 index = 0; index < fieldsNames.Length && index < drawablesNames.Length; index++)
-                {
+                String[]
+                    fieldsNames = {"mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"},
+                    drawablesNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
+
+                for (Int32 index = 0; index < fieldsNames.Length && index < drawablesNames.Length; index++) {
                     String
                         fieldName = fieldsNames[index],
                         drawableName = drawablesNames[index];
@@ -59,9 +62,8 @@ namespace MoneyFox.Droid.Renderer
                     field.Accessible = true;
                     field.Set(editor, handleDrawable);
                 }
-            } 
-            catch (Exception ex)
-            {
+            }
+            catch (Exception ex) {
                 LogManager.GetCurrentClassLogger().Error(ex);
             }
         }
