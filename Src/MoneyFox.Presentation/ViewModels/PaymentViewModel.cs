@@ -111,6 +111,7 @@ namespace MoneyFox.Presentation.ViewModels
                 if (type == value) return;
                 type = value;
                 RaisePropertyChanged();
+                RaisePropertyChanged(nameof(IsTransfer));
             }
         }
 

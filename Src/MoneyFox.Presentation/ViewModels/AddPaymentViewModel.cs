@@ -38,7 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
         
         protected override async Task Initialize()
         {
-            Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, false);
+            Title = PaymentTypeHelper.GetViewTitleForType(PaymentType, false);
             SelectedPayment.Type = PaymentType;
 
             await base.Initialize();
