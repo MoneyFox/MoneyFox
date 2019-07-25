@@ -39,14 +39,12 @@ namespace MoneyFox.Presentation
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces()
-                   .SingleInstance();
+                   .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
-                   .AsSelf()
-                   .SingleInstance();
+                   .AsSelf();
         }
 
         private void SetupContextAndCrudServices(ContainerBuilder builder)

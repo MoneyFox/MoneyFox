@@ -15,11 +15,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public void Close()
         {
             // Arrange
-            bool closeWasCalled = false;
             var navigationMock = new Mock<INavigationService>();
-            navigationMock
-                .Setup(x => x.GoBack())
-                .Callback(() => closeWasCalled = true);
+            navigationMock.Setup(x => x.GoBack());
 
             var viewModel = new SelectCategoryListViewModel(new Mock<ICrudServicesAsync>().Object,
                 new Mock<IDialogService>().Object,
@@ -29,7 +26,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             viewModel.ItemClickCommand.Execute(new CategoryViewModel());
 
             // Assert
-            Assert.True(closeWasCalled);
+            navigationMock.Verify(x => x.GoBack(), Times.Once);
         }
     }
 }

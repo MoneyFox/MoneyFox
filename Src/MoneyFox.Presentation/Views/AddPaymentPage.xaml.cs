@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.Views
 			InitializeComponent ();
             BindingContext = ViewModelLocator.AddPaymentVm;
 
-            ViewModel.SelectedPayment.Type = paymentType;
+            ViewModel.PaymentType = paymentType;
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
     }
