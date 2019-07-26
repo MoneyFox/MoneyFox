@@ -31,7 +31,7 @@
     <EnableLLVM>false</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
-    <AndroidEnableSGenConcurrent>false</AndroidEnableSGenConcurrent>
+    <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidSupportedAbis />
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <CodeAnalysisRuleSet>MoneyFox.Android.ruleset</CodeAnalysisRuleSet>
@@ -48,7 +48,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AotAssemblies>true</AotAssemblies>
+    <AotAssemblies>false</AotAssemblies>
     <EnableLLVM>true</EnableLLVM>
     <BundleAssemblies>false</BundleAssemblies>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
