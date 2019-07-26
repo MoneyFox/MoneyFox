@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.DataLayer.Configurations;
 using MoneyFox.DataLayer.Entities;
-using NLog;
 using System;
 
 namespace MoneyFox.DataLayer
@@ -11,8 +10,6 @@ namespace MoneyFox.DataLayer
     /// </summary>
     public class EfCoreContext : DbContext
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         public EfCoreContext()
         {
         }
