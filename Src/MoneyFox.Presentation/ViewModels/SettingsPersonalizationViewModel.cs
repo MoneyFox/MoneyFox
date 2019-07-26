@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Presentation.Interfaces;
+using System.Windows.Input;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -29,7 +28,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             get
             {
-                return switchThemeCommand 
+                return switchThemeCommand
                        ?? (switchThemeCommand = new RelayCommand<string>(param => { themeSelectorAdapter.SetThemeAsync(param); }));
             }
         }

@@ -1,5 +1,4 @@
-﻿using System;
-using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
@@ -36,7 +35,7 @@ namespace MoneyFox.Presentation.Views
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary
             };
-            
+
             ToolbarItems.Add(filterItem);
 
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
