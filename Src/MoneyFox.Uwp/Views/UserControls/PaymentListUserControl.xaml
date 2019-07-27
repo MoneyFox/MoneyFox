@@ -20,7 +20,6 @@
     <UserControl.Resources>
         <converter:NativePaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="GroupHeaderTemplate">
