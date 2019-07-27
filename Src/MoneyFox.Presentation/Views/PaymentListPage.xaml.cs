@@ -38,7 +38,10 @@ namespace MoneyFox.Presentation.Views
             };
 
             ToolbarItems.Add(filterItem);
+        }
 
+        protected override void OnAppearing()
+        {
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
