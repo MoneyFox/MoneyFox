@@ -1,7 +1,10 @@
-﻿using MoneyFox.Presentation.Utilities;
+﻿using MoneyFox.Presentation.Dialogs;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
+using Rg.Plugins.Popup.Extensions;
 using System;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
 {
