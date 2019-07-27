@@ -150,32 +150,36 @@
                                                                     Orientation="Horizontal">
                                                             <Grid HorizontalAlignment="Right"
                                                                   Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                                <SymbolIcon Width="20"
+
+                                                                <Viewbox MaxWidth="15" MaxHeight="15">
+                                                                    <SymbolIcon Width="20"
                                                                             Height="20"
                                                                             HorizontalAlignment="Center"
                                                                             VerticalAlignment="Center"
                                                                             Symbol="Switch" />
+                                                                </Viewbox>
+                                                                
                                                             </Grid>
                                                             <Grid HorizontalAlignment="Right"
                                                                   Margin="6,0,0,0"
                                                                   Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                                
-                                                                <SymbolIcon Width="20"
-                                                                            Height="20"
-                                                                            HorizontalAlignment="Center"
+
+                                                                <Viewbox MaxWidth="15" MaxHeight="15">
+                                                                    <SymbolIcon HorizontalAlignment="Center"
                                                                             VerticalAlignment="Center"
                                                                             Symbol="Reshare" />
-                                                                
+                                                                </Viewbox>
+
                                                             </Grid>
                                                             <Grid HorizontalAlignment="Right"
                                                                   Margin="6,0,0,0"
                                                                   Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                                                                <SymbolIcon Width="20"
-                                                                            Height="20"
-                                                                            HorizontalAlignment="Center"
+                                                                <Viewbox MaxWidth="15" MaxHeight="15"> 
+                                                                    <SymbolIcon HorizontalAlignment="Center"
                                                                             VerticalAlignment="Center"
                                                                             Symbol="Accept" />
+                                                                </Viewbox>
                                                             </Grid>
                                                         </StackPanel>
                                                     </StackPanel>
