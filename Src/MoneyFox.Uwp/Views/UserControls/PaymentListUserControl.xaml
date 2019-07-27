@@ -9,6 +9,7 @@
              xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
              xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
              xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
+             xmlns:uwp="using:FontAwesome.UWP"
              x:Name="PaymentControl"
              d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
@@ -153,23 +154,28 @@
                                                                             Height="20"
                                                                             HorizontalAlignment="Center"
                                                                             VerticalAlignment="Center"
-                                                                            Symbol="57660" />
+                                                                            Symbol="Switch" />
                                                             </Grid>
                                                             <Grid HorizontalAlignment="Right"
+                                                                  Margin="6,0,0,0"
                                                                   Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                                <Image Width="20"
-                                                                       Height="20"
-                                                                       DataContext="/Assets/{0}/repeat.png"
-                                                                       Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
-                                                                                    Converter={StaticResource ThemedImageConverter}}" />
+                                                                
+                                                                <SymbolIcon Width="20"
+                                                                            Height="20"
+                                                                            HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"
+                                                                            Symbol="Reshare" />
+                                                                
                                                             </Grid>
                                                             <Grid HorizontalAlignment="Right"
+                                                                  Margin="6,0,0,0"
                                                                   Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                                <Image Width="20"
-                                                                       Height="20"
-                                                                       DataContext="/Assets/{0}/done.png"
-                                                                       Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
-                                                                                    Converter={StaticResource ThemedImageConverter}}" />
+
+                                                                <SymbolIcon Width="20"
+                                                                            Height="20"
+                                                                            HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"
+                                                                            Symbol="Accept" />
                                                             </Grid>
                                                         </StackPanel>
                                                     </StackPanel>
