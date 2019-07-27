@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
+using System;
+using System.Collections.Generic;
 
 namespace MoneyFox.Presentation.Views
 {
-	public partial class SettingsPersonalizationPage
-	{
+    public partial class SettingsPersonalizationPage
+    {
         private SettingsPersonalizationViewModel ViewModel => BindingContext as SettingsPersonalizationViewModel;
-		public SettingsPersonalizationPage ()
-		{
-			InitializeComponent();
+        public SettingsPersonalizationPage()
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.SettingsPersonalizationVm;
 
-            ThemePicker.ItemsSource = new List<string>{Strings.LightLabel, Strings.DarkLabel};
+            ThemePicker.ItemsSource = new List<string> { Strings.LightLabel, Strings.DarkLabel };
 
             ThemePicker.SelectedIndex = ViewModel.ElementTheme == "Light" ? 0 : 1;
         }
