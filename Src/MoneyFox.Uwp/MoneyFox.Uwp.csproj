@@ -269,27 +269,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ApplyLogo.png" />
-    <Content Include="Assets\dark\done.png" />
-    <Content Include="Assets\dark\filter.png" />
-    <Content Include="Assets\dark\internet.png" />
-    <Content Include="Assets\dark\mail.png" />
-    <Content Include="Assets\dark\repeat.png" />
-    <Content Include="Assets\dark\statistic.png" />
-    <Content Include="Assets\dark\twitter.png" />
-    <Content Include="Assets\IconCancel.png" />
     <Content Include="Assets\IncomeTileIcon.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-125.png" />
     <Content Include="Assets\LargeTile.scale-150.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
-    <Content Include="Assets\light\done.png" />
-    <Content Include="Assets\light\filter.png" />
-    <Content Include="Assets\light\internet.png" />
-    <Content Include="Assets\light\mail.png" />
-    <Content Include="Assets\light\repeat.png" />
-    <Content Include="Assets\light\statistic.png" />
-    <Content Include="Assets\light\twitter.png" />
     <Content Include="Assets\SmallTile.scale-100.png" />
     <Content Include="Assets\SmallTile.scale-125.png" />
     <Content Include="Assets\SmallTile.scale-150.png" />
