@@ -100,6 +100,7 @@
             <!--Medium size margins-->
             <Thickness x:Key="DefaultListItemsMargin">6,3,6,3</Thickness>
             <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,4</Thickness>
+            <Thickness x:Key="MediumBottomMargin">0,0,0,12</Thickness>
 
             <OnPlatform x:Key="SmallLeftRightTopBottomMargin" x:TypeArguments="Thickness">
                 <On Platform="Android" Value="6,3,6,3" />

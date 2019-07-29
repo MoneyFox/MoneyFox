@@ -40,8 +40,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
-                                             Margin="0,18,0,-1"
-                                             Padding="0,0,0,6">
+                                             Padding="0,18,0,6">
                                      <Label Text="{Binding Key}"
                                            VerticalOptions="CenterAndExpand"
                                            VerticalTextAlignment="Center"

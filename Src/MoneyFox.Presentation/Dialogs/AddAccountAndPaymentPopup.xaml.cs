@@ -37,7 +37,7 @@ namespace MoneyFox.Presentation.Dialogs
         private async Task AddIncomeGridClicked()
         {
             await Navigation.PopPopupAsync();
-            ViewModel?.GoToAddIncomeCommand.Execute(null;
+            ViewModel?.GoToAddIncomeCommand.Execute(null);
         }
 
         private async Task AddTransferGridClicked()
