@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
