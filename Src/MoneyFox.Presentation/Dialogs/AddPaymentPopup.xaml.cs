@@ -22,19 +22,19 @@ namespace MoneyFox.Presentation.Dialogs
         private async Task AddExpenseGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddExpenseCommand.Execute(PaymentType.Expense);
+            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddExpenseCommand.Execute(null);
         }
 
         private async Task AddIncomeGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddIncomeCommand.Execute(PaymentType.Income);
+            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddIncomeCommand.Execute(null);
         }
 
         private async Task AddTransferGridClicked()
         {
             await Navigation.PopPopupAsync();
-            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddTransferCommand.Execute(PaymentType.Transfer);
+            (BindingContext as IPaymentListViewActionViewModel)?.GoToAddTransferCommand.Execute(null);
         }
     }
 }

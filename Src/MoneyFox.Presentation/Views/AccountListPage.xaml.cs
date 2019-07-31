@@ -1,26 +1,27 @@
-﻿using System;
-using MoneyFox.Presentation.Dialogs;
+﻿using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
+using System;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
-{ public partial class AccountListPage
+{
+    public partial class AccountListPage
     {
         private IAccountListViewModel ViewModel => BindingContext as AccountListViewModel;
 
-        public AccountListPage ()
-		{
-			InitializeComponent ();
+        public AccountListPage()
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.AccountListVm;
 
-		    AccountsList.ItemTapped += (sender, args) =>
-		    {
-		        AccountsList.SelectedItem = null;
+            AccountsList.ItemTapped += (sender, args) =>
+            {
+                AccountsList.SelectedItem = null;
                 ViewModel?.OpenOverviewCommand.Execute(args.Item);
-		    };
+            };
         }
 
         protected override void OnAppearing()

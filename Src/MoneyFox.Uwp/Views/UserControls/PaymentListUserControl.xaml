@@ -9,6 +9,7 @@
              xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
              xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
              xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
+             xmlns:uwp="using:FontAwesome.UWP"
              x:Name="PaymentControl"
              d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
@@ -19,7 +20,6 @@
     <UserControl.Resources>
         <converter:NativePaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter:ThemedImageConverter x:Key="ThemedImageConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="GroupHeaderTemplate">
@@ -149,27 +149,36 @@
                                                                     Orientation="Horizontal">
                                                             <Grid HorizontalAlignment="Right"
                                                                   Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                                <SymbolIcon Width="20"
+
+                                                                <Viewbox MaxWidth="15" MaxHeight="15">
+                                                                    <SymbolIcon Width="20"
                                                                             Height="20"
                                                                             HorizontalAlignment="Center"
                                                                             VerticalAlignment="Center"
-                                                                            Symbol="57660" />
+                                                                            Symbol="Switch" />
+                                                                </Viewbox>
+                                                                
                                                             </Grid>
                                                             <Grid HorizontalAlignment="Right"
+                                                                  Margin="6,0,0,0"
                                                                   Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                                <Image Width="20"
-                                                                       Height="20"
-                                                                       DataContext="/Assets/{0}/repeat.png"
-                                                                       Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
-                                                                                    Converter={StaticResource ThemedImageConverter}}" />
+
+                                                                <Viewbox MaxWidth="15" MaxHeight="15">
+                                                                    <SymbolIcon HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"
+                                                                            Symbol="Reshare" />
+                                                                </Viewbox>
+
                                                             </Grid>
                                                             <Grid HorizontalAlignment="Right"
+                                                                  Margin="6,0,0,0"
                                                                   Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                                                <Image Width="20"
-                                                                       Height="20"
-                                                                       DataContext="/Assets/{0}/done.png"
-                                                                       Source="{Binding ConverterParameter={ThemeResource ApplicationPageBackgroundThemeBrush},
-                                                                                    Converter={StaticResource ThemedImageConverter}}" />
+
+                                                                <Viewbox MaxWidth="15" MaxHeight="15"> 
+                                                                    <SymbolIcon HorizontalAlignment="Center"
+                                                                            VerticalAlignment="Center"
+                                                                            Symbol="Accept" />
+                                                                </Viewbox>
                                                             </Grid>
                                                         </StackPanel>
                                                     </StackPanel>

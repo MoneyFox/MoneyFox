@@ -1,9 +1,9 @@
-﻿using System;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Rg.Plugins.Popup.Extensions;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -36,9 +36,12 @@ namespace MoneyFox.Presentation.Views
                 Priority = 0,
                 Order = ToolbarItemOrder.Primary
             };
-            
-            ToolbarItems.Add(filterItem);
 
+            ToolbarItems.Add(filterItem);
+        }
+
+        protected override void OnAppearing()
+        {
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 

@@ -39,6 +39,7 @@
                            Style="{StaticResource DefaultSearchBarStyle}"
                            BackgroundColor="{DynamicResource FrameHighlightColor}"
                            VerticalOptions="Start"
+                           
                            Placeholder="{Binding Resources[SearchLabel]}"
                            TextChanged="SearchTermChanged" />
             </Frame>
