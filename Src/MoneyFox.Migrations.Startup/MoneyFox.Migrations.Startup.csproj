@@ -27,8 +27,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
-  </ItemGroup>
-
 </Project>
