@@ -52,6 +52,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             account.Note.ShouldBeEmpty();
             account.IsOverdrawn.ShouldBeFalse();
             account.IsExcluded.ShouldBeFalse();
+            account.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
             account.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
 
@@ -145,6 +146,30 @@ namespace MoneyFox.DataLayer.Tests.Entities
             testAccount.IsOverdrawn.ShouldBeFalse();
         }
 
+        [Fact]
+        public void UpdateData_Params_ModificationDateSet()
+        {
+            // Arrange
+
+            var testAccount = new Account("foo");
+
+            // Act / Assert
+            testAccount.UpdateAccount("asdf", 123, "", false);
+
+            // Assert
+            testAccount.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+        }
+
+        [Fact]
+        public void AddPaymentAmount_PaymentNull_ArgumentNullException()
+        {
+            // Arrange
+            var account = new Account("test");
+
+            // Act / Assert
+            Assert.Throws<ArgumentNullException>(() => account.AddPaymentAmount(null));
+        }
+
         [Theory]
         [InlineData(PaymentType.Expense, 50)]
         [InlineData(PaymentType.Income, 150)]
@@ -200,6 +225,30 @@ namespace MoneyFox.DataLayer.Tests.Entities
             targetAccount.CurrentBalance.ShouldEqual(150);
         }
 
+        [Fact]
+        public void AddPaymentAmount_Params_ModificationDateSet()
+        {
+            // Arrange
+            var testAccount = new Account("foo");
+            var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
+
+            // Act
+            testAccount.AddPaymentAmount(payment);
+
+            // Assert
+            testAccount.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+        }
+
+        [Fact]
+        public void RemovePaymentAmount_PaymentNull_ArgumentNullException()
+        {
+            // Arrange
+            var account = new Account("test");
+
+            // Act / Assert
+            Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null));
+        }
+
         [Theory]
         [InlineData(PaymentType.Expense, 100)]
         [InlineData(PaymentType.Income, 100)]
@@ -240,6 +289,20 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Assert
             chargedAccount.CurrentBalance.ShouldEqual(100);
             targetAccount.CurrentBalance.ShouldEqual(100);
+        }
+
+        [Fact]
+        public void RemovePaymentAmount_Params_ModificationDateSet()
+        {
+            // Arrange
+            var testAccount = new Account("foo");
+            var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
+
+            // Act
+            testAccount.RemovePaymentAmount(payment);
+
+            // Assert
+            testAccount.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
     }
 }
