@@ -11,6 +11,7 @@ namespace MoneyFox.Domain.Entities
 
         public Account(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
         {
+            ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
             UpdateAccount(name, currentBalance, note, isExcluded);
         }
@@ -25,6 +26,7 @@ namespace MoneyFox.Domain.Entities
         public string Note { get; private set; }
         public bool IsOverdrawn { get; private set; }
         public bool IsExcluded { get; private set; }
+        public DateTime ModificationDate { get; private set; }
         public DateTime CreationTime { get; private set; }
 
         public void UpdateAccount(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
@@ -36,6 +38,7 @@ namespace MoneyFox.Domain.Entities
             Note = note;
             IsExcluded = isExcluded;
             IsOverdrawn = currentBalance < 0;
+            ModificationDate = DateTime.Now;
         }
 
         public void AddPaymentAmount(Payment payment)
@@ -69,6 +72,7 @@ namespace MoneyFox.Domain.Entities
             {
                 CurrentBalance += amount;
             }
+            ModificationDate = DateTime.Now;
         }
 
         private static void ThrowIfNameIsNullOrEmpty(string name)
