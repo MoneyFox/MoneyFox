@@ -34,7 +34,7 @@ namespace MoneyFox.Droid.Renderer
                 SetCursorColor(editText);
                 TrySetCursorPointerColor(editText);
 
-                var fontColor = (Color)Application.Current.Resources["PrimaryFontColor"];
+                var fontColor = (Color) Xamarin.Forms.Application.Current.Resources["PrimaryFontColor"];
                 UpdateSearchButtonColor(fontColor);
                 UpdateCancelButtonColor(fontColor);
             }

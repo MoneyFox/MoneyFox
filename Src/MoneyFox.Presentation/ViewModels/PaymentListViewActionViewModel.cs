@@ -72,7 +72,6 @@ namespace MoneyFox.Presentation.ViewModels
         /// <inheritdoc />
         public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccount);
 
-
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
