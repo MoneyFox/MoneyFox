@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using Should;
 using Xunit;
 
-namespace MoneyFox.DataLayer.Tests.Entities
+namespace MoneyFox.Domain.Tests.Entities
 {
     [ExcludeFromCodeCoverage]
     public class AccountTests
@@ -41,13 +40,13 @@ namespace MoneyFox.DataLayer.Tests.Entities
         public void Ctor_NoParams_DefaultValuesSet()
         {
             // Arrange
-            const string testname = "test";
+            const string testName = "test";
 
             // Act / Assert
-            var account = new Account(testname);
+            var account = new Account(testName);
 
             // Assert
-            account.Name.ShouldEqual(testname);
+            account.Name.ShouldEqual(testName);
             account.CurrentBalance.ShouldEqual(0);
             account.Note.ShouldBeEmpty();
             account.IsOverdrawn.ShouldBeFalse();
@@ -59,18 +58,18 @@ namespace MoneyFox.DataLayer.Tests.Entities
         public void Ctor_Params_ValuesCorrectlySet()
         {
             // Arrange
-            const string testname = "test";
+            const string testName = "test";
             const double testBalance = 10;
-            const string testnote = "foo";
+            const string testNote = "foo";
             const bool testExcluded = true;
 
             // Act / Assert
-            var account = new Account(testname, testBalance, testnote, testExcluded);
+            var account = new Account(testName, testBalance, testNote, testExcluded);
 
             // Assert
-            account.Name.ShouldEqual(testname);
+            account.Name.ShouldEqual(testName);
             account.CurrentBalance.ShouldEqual(testBalance);
-            account.Note.ShouldEqual(testnote);
+            account.Note.ShouldEqual(testNote);
             account.IsExcluded.ShouldEqual(testExcluded);
             account.IsOverdrawn.ShouldBeFalse();
         }
@@ -145,6 +144,16 @@ namespace MoneyFox.DataLayer.Tests.Entities
             testAccount.IsOverdrawn.ShouldBeFalse();
         }
 
+        [Fact]
+        public void AddPaymentAmount_PaymentNull_ArgumentNullException()
+        {
+            // Arrange
+            var account = new Account("test");
+
+            // Act / Assert
+            Assert.Throws<ArgumentNullException>(() => account.AddPaymentAmount(null));
+        }
+
         [Theory]
         [InlineData(PaymentType.Expense, 50)]
         [InlineData(PaymentType.Income, 150)]
@@ -198,6 +207,16 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Assert
             chargedAccount.CurrentBalance.ShouldEqual(50);
             targetAccount.CurrentBalance.ShouldEqual(150);
+        }
+
+        [Fact]
+        public void RemovePaymentAmount_PaymentNull_ArgumentNullException()
+        {
+            // Arrange
+            var account = new Account("test");
+
+            // Act / Assert
+            Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null));
         }
 
         [Theory]

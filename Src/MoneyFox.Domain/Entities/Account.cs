@@ -29,8 +29,7 @@ namespace MoneyFox.Domain.Entities
 
         public void UpdateAccount(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
         {
-            if (string.IsNullOrWhiteSpace(name))
-                throw new ArgumentNullException(nameof(name));
+            ThrowIfNameIsNullOrEmpty(name);
 
             Name = name;
             CurrentBalance = currentBalance;
@@ -41,11 +40,15 @@ namespace MoneyFox.Domain.Entities
 
         public void AddPaymentAmount(Payment payment)
         {
+            ThrowIfPaymentIsNull(payment);
+
             ApplyPaymentAmount(payment);
         }
 
         public void RemovePaymentAmount(Payment payment)
         {
+            ThrowIfPaymentIsNull(payment);
+
             ApplyPaymentAmount(payment, true);
         }
 
@@ -66,6 +69,16 @@ namespace MoneyFox.Domain.Entities
             {
                 CurrentBalance += amount;
             }
+        }
+
+        private static void ThrowIfNameIsNullOrEmpty(string name)
+        {
+            if(string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
+        }
+
+        private static void ThrowIfPaymentIsNull(Payment payment)
+        {
+            if(payment == null) throw new ArgumentNullException(nameof(payment));
         }
     }
 }
