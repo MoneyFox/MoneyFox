@@ -34,9 +34,8 @@ namespace MoneyFox.Droid.Renderer
                 SetCursorColor(editText);
                 TrySetCursorPointerColor(editText);
 
-                var fontColor = (Color) Xamarin.Forms.Application.Current.Resources["PrimaryFontColor"];
-                UpdateSearchButtonColor(fontColor);
-                UpdateCancelButtonColor(fontColor);
+                UpdateSearchButtonColor();
+                UpdateCancelButtonColor();
             }
         }
         private void SetCursorColor(EditText editText)
@@ -58,25 +57,24 @@ namespace MoneyFox.Droid.Renderer
         {
             try
             {
-                TextView textViewTemplate = new TextView(editText.Context);
+                var textViewTemplate = new TextView(editText.Context);
 
                 var field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
                 var editor = field.Get(editText);
 
-                String[]
+                string[]
                     fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" },
-                    drawablesNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
+                    drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
-                for (Int32 index = 0; index < fieldsNames.Length && index < drawablesNames.Length; index++)
+                for (int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {
-                    String
-                        fieldName = fieldsNames[index],
-                        drawableName = drawablesNames[index];
+                    string fieldName = fieldsNames[index];
+                    string drawableName = drawableNames[index];
 
                     field = textViewTemplate.Class.GetDeclaredField(fieldName);
                     field.Accessible = true;
-                    Int32 handle = field.GetInt(editText);
+                    int handle = field.GetInt(editText);
 
                     Drawable handleDrawable = Resources.GetDrawable(handle, null);
 
@@ -94,18 +92,17 @@ namespace MoneyFox.Droid.Renderer
         }
 
 
-        void UpdateSearchButtonColor(Color fontColor)
+        void UpdateSearchButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
             if (searchViewCloseButtonId != 0)
             {
                 var image = FindViewById<ImageView>(searchViewCloseButtonId);
-                if (image != null && image.Drawable != null) {
-                    image.Drawable.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
-                }
+                image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
             }
         }
-        void UpdateCancelButtonColor(Color fontColor)
+
+        void UpdateCancelButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
             if (searchViewCloseButtonId != 0)
