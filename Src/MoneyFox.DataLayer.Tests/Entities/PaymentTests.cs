@@ -24,7 +24,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
         [InlineData(1, false)]
         [InlineData(0, true)]
         [InlineData(-1, true)]
-         public void Ctor_AddedDays_ClearedCorrect(int daysToAdd, bool expectedIsCleared)
+        public void Ctor_AddedDays_ClearedCorrect(int daysToAdd, bool expectedIsCleared)
         {
             // Arrange
             var payment = new Payment(DateTime.Now.AddDays(daysToAdd), 123, PaymentType.Expense, new Account("foo"));
@@ -44,6 +44,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
             var payment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
 
             // Assert
+            payment.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
             payment.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
 
@@ -52,7 +53,7 @@ namespace MoneyFox.DataLayer.Tests.Entities
         [InlineData(0, true)]
         [InlineData(-1, true)]
         public void ClearPayment_AddedDays_ClearedCorrect(int daysToAdd, bool expectedIsCleared)
-        {            
+        {
             // Arrange
 
             // Act

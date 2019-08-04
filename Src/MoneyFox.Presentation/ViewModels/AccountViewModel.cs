@@ -109,12 +109,8 @@ namespace MoneyFox.Presentation.ViewModels
         {
             unchecked
             {
-                var hashCode = id;
-                hashCode = (hashCode * 397) ^ (name != null ? name.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ currentBalance.GetHashCode();
-                hashCode = (hashCode * 397) ^ (note != null ? note.GetHashCode() : 0);
-                hashCode = (hashCode * 397) ^ isOverdrawn.GetHashCode();
-                hashCode = (hashCode * 397) ^ isExcluded.GetHashCode();
+                var hashCode = 7;
+                hashCode = (hashCode * 397) ^ id.GetHashCode();
                 return hashCode;
             }
         }

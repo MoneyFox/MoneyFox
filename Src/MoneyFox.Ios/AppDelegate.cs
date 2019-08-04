@@ -36,8 +36,8 @@ using Microsoft.AppCenter;
 
 namespace MoneyFox.iOS
 {
-    // The UIApplicationDelegate for the application. This class is responsible for launching the 
-    // User Interface of the application, as well as listening (and optionally responding) to 
+    // The UIApplicationDelegate for the application. This class is responsible for launching the
+    // User Interface of the application, as well as listening (and optionally responding) to
     // application events from iOS.
     [Register(nameof(AppDelegate))]
     public class AppDelegate : FormsApplicationDelegate
@@ -66,7 +66,7 @@ namespace MoneyFox.iOS
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
-            
+
             RunAppStart().FireAndForgetSafeAsync();
 
             return base.FinishedLaunching(app, options);

@@ -11,16 +11,18 @@ namespace MoneyFox.DataLayer.Entities
     /// </summary>
     public class Payment
     {
-        private Payment() { }
+        private Payment()
+        {
+        }
 
-        public Payment(DateTime date, 
-            double amount, 
-            PaymentType type,
-            Account chargedAccount,
-            Account targetAccount = null,
-            Category category = null,
-            string note = "",
-            RecurringPayment recurringPayment = null)
+        public Payment(DateTime date,
+                       double amount,
+                       PaymentType type,
+                       Account chargedAccount,
+                       Account targetAccount = null,
+                       Category category = null,
+                       string note = "",
+                       RecurringPayment recurringPayment = null)
         {
             CreationTime = DateTime.Now;
             AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
@@ -45,6 +47,7 @@ namespace MoneyFox.DataLayer.Entities
         public string Note { get; private set; }
         public bool IsRecurring { get; private set; }
 
+        public DateTime ModificationDate { get; private set; }
         public DateTime CreationTime { get; private set; }
 
         public virtual Category Category { get; private set; }
@@ -53,16 +56,16 @@ namespace MoneyFox.DataLayer.Entities
         public virtual Account ChargedAccount { get; private set; }
 
         public virtual Account TargetAccount { get; private set; }
-        
+
         public virtual RecurringPayment RecurringPayment { get; private set; }
 
         public void UpdatePayment(DateTime date,
-            double amount,
-            PaymentType type,
-            Account chargedAccount,
-            Account targetAccount = null,
-            Category category = null,
-            string note = "")
+                                  double amount,
+                                  PaymentType type,
+                                  Account chargedAccount,
+                                  Account targetAccount = null,
+                                  Category category = null,
+                                  string note = "")
         {
             ChargedAccount.RemovePaymentAmount(this);
             TargetAccount?.RemovePaymentAmount(this);
@@ -73,7 +76,7 @@ namespace MoneyFox.DataLayer.Entities
         }
 
         private void AssignValues(DateTime date, double amount, PaymentType type, Account chargedAccount, Account targetAccount,
-            Category category, string note)
+                                  Category category, string note)
         {
             Date = date;
             Amount = amount;
@@ -82,6 +85,7 @@ namespace MoneyFox.DataLayer.Entities
             ChargedAccount = chargedAccount ?? throw new AccountNullException();
             TargetAccount = targetAccount;
             Category = category;
+            ModificationDate = DateTime.Now;
         }
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate)

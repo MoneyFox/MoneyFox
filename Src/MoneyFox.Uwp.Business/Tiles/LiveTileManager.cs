@@ -12,6 +12,7 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using MoneyFox.Foundation;
 using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.ViewModels;
+using NLog;
 
 namespace MoneyFox.Uwp.Business.Tiles
 {
@@ -20,7 +21,8 @@ namespace MoneyFox.Uwp.Business.Tiles
         private const int NUMBER_OF_PAYMENTS = 8;
         private readonly ICrudServicesAsync crudService;
 
-        private readonly ApplicationDataContainer localsettings = ApplicationData.Current.LocalSettings;
+        private readonly ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public LiveTileManager(ICrudServicesAsync crudService)
         {
@@ -31,29 +33,25 @@ namespace MoneyFox.Uwp.Business.Tiles
         {
             if (await LiveTileHelper.IsPinned())
             {
-                var b = localsettings.Values["lastrun"];
+                object b = localSettings.Values["lastrun"];
                 var lastRun = (string) b;
 
                 List<string> displayLargeContent;
                 List<string> displayContentMedium;
-                string headerText = "";
+                var headerText = "";
                 if (lastRun == "last")
                 {
-                    localsettings.Values["lastrun"] = "next";
+                    localSettings.Values["lastrun"] = "next";
                     headerText = Strings.LiveTileUpcommingPayments;
-                    displayContentMedium = await GetPaymentsAsync(TileSizeOption.Medium, PaymentInformation.Next)
-                        ;
-                    displayLargeContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Next)
-                        ;
+                    displayContentMedium = await GetPaymentsAsync(TileSizeOption.Medium, PaymentInformation.Next);
+                    displayLargeContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Next);
                 }
                 else
                 {
-                    localsettings.Values["lastrun"] = "last";
+                    localSettings.Values["lastrun"] = "last";
                     headerText = Strings.LiveTilePastPayments;
-                    displayContentMedium = await GetPaymentsAsync(TileSizeOption.Medium, PaymentInformation.Previous)
-                        ;
-                    displayLargeContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Previous)
-                        ;
+                    displayContentMedium = await GetPaymentsAsync(TileSizeOption.Medium, PaymentInformation.Previous);
+                    displayLargeContent = await GetPaymentsAsync(TileSizeOption.Large, PaymentInformation.Previous);
                 }
 
                 var content = new TileContent
@@ -73,15 +71,15 @@ namespace MoneyFox.Uwp.Business.Tiles
 
         public async Task UpdateSecondaryLiveTiles()
         {
-            var tiles = await SecondaryTile.FindAllForPackageAsync();
+            IReadOnlyList<SecondaryTile> tiles = await SecondaryTile.FindAllForPackageAsync();
 
             if (tiles == null) return;
 
-            foreach (var item in tiles)
+            foreach (SecondaryTile item in tiles)
             {
-                var acct = await crudService.ReadSingleAsync<AccountViewModel>(int.Parse(item.TileId));
-                List<string> displayContent = GetSecondarypayments(int.Parse(item.TileId));
-               var content = new TileContent
+                AccountViewModel acct = await crudService.ReadSingleAsync<AccountViewModel>(int.Parse(item.TileId));
+                List<string> displayContent = GetSecondaryPayments(int.Parse(item.TileId));
+                var content = new TileContent
                 {
                     Visual = new TileVisual
                     {
@@ -138,9 +136,9 @@ namespace MoneyFox.Uwp.Business.Tiles
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileAccountBalance,
-                                                            acct.CurrentBalance.ToString("C2",
-                                                                CultureInfo.InvariantCulture)),
+                                                                             Strings.LiveTileAccountBalance,
+                                                                             acct.CurrentBalance.ToString("C2",
+                                                                                                          CultureInfo.InvariantCulture)),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
@@ -151,24 +149,24 @@ namespace MoneyFox.Uwp.Business.Tiles
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileLastMonthsExpenses,
-                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
-                                                                DateTime.Now.AddMonths(-1).Month),
-                                                            LiveTileHelper.TruncateNumber(
-                                                                GetMonthExpenses(
-                                                                    DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
-                                                                    acct))),
+                                                                             Strings.LiveTileLastMonthsExpenses,
+                                                                             DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                                 DateTime.Now.AddMonths(-1).Month),
+                                                                             LiveTileHelper.TruncateNumber(
+                                                                                 GetMonthExpenses(
+                                                                                     DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
+                                                                                     acct))),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileCurrentMonthsExpenses,
-                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
-                                                                DateTime.Now.Month),
-                                                            LiveTileHelper.TruncateNumber(
-                                                                GetMonthExpenses(
-                                                                    DateTime.Now.Month, DateTime.Now.Year, acct))),
+                                                                             Strings.LiveTileCurrentMonthsExpenses,
+                                                                             DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                                 DateTime.Now.Month),
+                                                                             LiveTileHelper.TruncateNumber(
+                                                                                 GetMonthExpenses(
+                                                                                     DateTime.Now.Month, DateTime.Now.Year, acct))),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     }
                                                 }
@@ -200,9 +198,9 @@ namespace MoneyFox.Uwp.Business.Tiles
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileAccountBalance,
-                                                            acct.CurrentBalance.ToString("C2",
-                                                                CultureInfo.InvariantCulture)),
+                                                                             Strings.LiveTileAccountBalance,
+                                                                             acct.CurrentBalance.ToString("C2",
+                                                                                                          CultureInfo.InvariantCulture)),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
@@ -213,23 +211,23 @@ namespace MoneyFox.Uwp.Business.Tiles
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileLastMonthsExpenses,
-                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
-                                                                DateTime.Now.AddMonths(-1).Month),
-                                                            GetMonthExpenses(
-                                                                DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
-                                                                acct).ToString("C2", CultureInfo.InvariantCulture)),
+                                                                             Strings.LiveTileLastMonthsExpenses,
+                                                                             DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                                 DateTime.Now.AddMonths(-1).Month),
+                                                                             GetMonthExpenses(
+                                                                                 DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
+                                                                                 acct).ToString("C2", CultureInfo.InvariantCulture)),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileCurrentMonthsExpenses,
-                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
-                                                                DateTime.Now.Month),
-                                                            GetMonthExpenses(
-                                                                    DateTime.Now.Month, DateTime.Now.Year, acct)
-                                                                .ToString("C2", CultureInfo.InvariantCulture)),
+                                                                             Strings.LiveTileCurrentMonthsExpenses,
+                                                                             DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                                 DateTime.Now.Month),
+                                                                             GetMonthExpenses(
+                                                                                     DateTime.Now.Month, DateTime.Now.Year, acct)
+                                                                                 .ToString("C2", CultureInfo.InvariantCulture)),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     }
                                                 }
@@ -261,9 +259,9 @@ namespace MoneyFox.Uwp.Business.Tiles
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileAccountBalance,
-                                                            acct.CurrentBalance.ToString("C2",
-                                                                CultureInfo.InvariantCulture)),
+                                                                             Strings.LiveTileAccountBalance,
+                                                                             acct.CurrentBalance.ToString("C2",
+                                                                                                          CultureInfo.InvariantCulture)),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
@@ -274,23 +272,23 @@ namespace MoneyFox.Uwp.Business.Tiles
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileLastMonthsExpenses,
-                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
-                                                                DateTime.Now.AddMonths(-1).Month),
-                                                            GetMonthExpenses(
-                                                                DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
-                                                                acct).ToString("C2", CultureInfo.InvariantCulture)),
+                                                                             Strings.LiveTileLastMonthsExpenses,
+                                                                             DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                                 DateTime.Now.AddMonths(-1).Month),
+                                                                             GetMonthExpenses(
+                                                                                 DateTime.Now.AddMonths(-1).Month, DateTime.Now.Year,
+                                                                                 acct).ToString("C2", CultureInfo.InvariantCulture)),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
                                                     {
                                                         Text = string.Format(CultureInfo.InvariantCulture,
-                                                            Strings.LiveTileCurrentMonthsExpenses,
-                                                            DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
-                                                                DateTime.Now.Month),
-                                                            GetMonthExpenses(
-                                                                    DateTime.Now.Month, DateTime.Now.Year, acct)
-                                                                .ToString("C2", CultureInfo.InvariantCulture)),
+                                                                             Strings.LiveTileCurrentMonthsExpenses,
+                                                                             DateTimeFormatInfo.CurrentInfo.GetAbbreviatedMonthName(
+                                                                                 DateTime.Now.Month),
+                                                                             GetMonthExpenses(
+                                                                                     DateTime.Now.Month, DateTime.Now.Year, acct)
+                                                                                 .ToString("C2", CultureInfo.InvariantCulture)),
                                                         HintStyle = AdaptiveTextStyle.CaptionSubtle
                                                     },
                                                     new AdaptiveText
@@ -346,28 +344,33 @@ namespace MoneyFox.Uwp.Business.Tiles
         public double GetMonthExpenses(int month, int year, AccountViewModel account)
         {
             var balance = 0.00;
-            var allpayment = new List<LiveTilesPaymentInfo>();
-            var payments = crudService.ReadManyNoTracked<PaymentViewModel>()
-                .Where(x => x.ChargedAccountId == account.Id)
-                .ToList();
+            var allPayment = new List<LiveTilesPaymentInfo>();
+            List<PaymentViewModel> payments = crudService.ReadManyNoTracked<PaymentViewModel>()
+                                                         .Where(x => x.ChargedAccountId == account.Id)
+                                                         .ToList();
 
-            foreach (var item in payments)
+            foreach (PaymentViewModel item in payments)
+            {
                 if (item.IsRecurring)
                 {
-                    if (item.Type != PaymentType.Income) allpayment.AddRange(GetRecurrence(item));
+                    if (item.Type != PaymentType.Income) allPayment.AddRange(GetRecurrence(item));
                 }
                 else if (item.Type != PaymentType.Income)
                 {
-                    CreateLiveTileInfos(item, allpayment, item.Date.Date);
+                    CreateLiveTileInfos(item, allPayment, item.Date.Date);
                 }
+            }
 
-            var tiles = allpayment
-                .Where(x => x.Date.Date.Month == month && x.Date.Date.Year == year)
-                .ToList();
+            List<LiveTilesPaymentInfo> tiles = allPayment
+                                               .Where(x => x.Date.Date.Month == month && x.Date.Date.Year == year)
+                                               .ToList();
 
-            foreach (var item in tiles) balance += item.Amount;
+            foreach (LiveTilesPaymentInfo item in tiles)
+            {
+                balance += item.Amount;
+            }
 
-            allpayment.Clear();
+            allPayment.Clear();
             return balance;
         }
 
@@ -441,27 +444,25 @@ namespace MoneyFox.Uwp.Business.Tiles
             };
         }
 
-
-        private List<string> GetSecondarypayments(int accountid)
+        private List<string> GetSecondaryPayments(int accountId)
         {
             var allPayments = new List<PaymentViewModel>();
             var allPayment = new List<LiveTilesPaymentInfo>();
-            List<LiveTilesPaymentInfo> payments;
             allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
-                   .Where(x => x.ChargedAccountId == accountid)
-                   .ToList());
+                                            .Where(x => x.ChargedAccountId == accountId)
+                                            .ToList());
             try
             {
                 allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
-                    .Where(x => x.TargetAccountId == accountid)
-                    .ToList());
+                                                .Where(x => x.TargetAccountId == accountId)
+                                                .ToList());
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-
+                logger.Fatal(e);
             }
-            foreach (var item in allPayments)
+
+            foreach (PaymentViewModel item in allPayments)
             {
                 if (item.IsRecurring)
                 {
@@ -479,47 +480,51 @@ namespace MoneyFox.Uwp.Business.Tiles
                     allPayment.Add(tileInfo);
                 }
             }
-                payments = allPayment.OrderByDescending(x => x.Date.Date)
-                    .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
-                    .Take(NUMBER_OF_PAYMENTS)
-                    .ToList();
 
-            var returnList = payments.Select(x => LiveTileHelper.GetTileText(TileSizeOption.Large, x)).ToList();
+            List<LiveTilesPaymentInfo> payments = allPayment.OrderByDescending(x => x.Date.Date)
+                                      .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
+                                      .Take(NUMBER_OF_PAYMENTS)
+                                      .ToList();
 
-            for (var i = returnList.Count; i < NUMBER_OF_PAYMENTS - 1; i++) returnList.Add(string.Empty);
+            List<string> returnList = payments.Select(x => LiveTileHelper.GetTileText(TileSizeOption.Large, x)).ToList();
+
+            for (int i = returnList.Count; i < NUMBER_OF_PAYMENTS - 1; i++)
+            {
+                returnList.Add(string.Empty);
+            }
 
             return returnList;
         }
 
         private async Task<List<string>> GetPaymentsAsync(TileSizeOption tileSize,
-            PaymentInformation paymentInformation)
+                                                          PaymentInformation paymentInformation)
         {
-            var acct = await crudService.ReadManyNoTracked<AccountViewModel>()
-                .ToListAsync()
-                ;
+            List<AccountViewModel> acct = await crudService.ReadManyNoTracked<AccountViewModel>()
+                                                           .ToListAsync();
             var allPayments = new List<PaymentViewModel>();
             var allPayment = new List<LiveTilesPaymentInfo>();
 
-            foreach (var item in acct)
+            foreach (AccountViewModel item in acct)
             {
                 allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
-                    .Where(x => x.ChargedAccountId == item.Id)
-                    .ToList());
+                                                .Where(x => x.ChargedAccountId == item.Id)
+                                                .ToList());
 
                 // We have to catch here, since otherwise an Exception is thrown when no payments are there.
                 try
                 {
                     allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
-                        .Where(x => x.TargetAccountId == item.Id)
-                        .ToList());
+                                                    .Where(x => x.TargetAccountId == item.Id)
+                                                    .ToList());
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e);
+                    logger.Fatal(e);
                 }
             }
 
-            foreach (var item in allPayments)
+            foreach (PaymentViewModel item in allPayments)
+            {
                 if (item.IsRecurring)
                 {
                     allPayment.AddRange(GetRecurrence(item));
@@ -535,27 +540,31 @@ namespace MoneyFox.Uwp.Business.Tiles
                     };
                     allPayment.Add(tileInfo);
                 }
+            }
 
             List<LiveTilesPaymentInfo> payments;
 
             if (paymentInformation == PaymentInformation.Previous)
             {
                 payments = allPayment.OrderByDescending(x => x.Date.Date)
-                    .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
-                    .Take(NUMBER_OF_PAYMENTS)
-                    .ToList();
+                                     .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
+                                     .Take(NUMBER_OF_PAYMENTS)
+                                     .ToList();
             }
             else
             {
                 payments = allPayment.OrderBy(x => x.Date.Date)
-                    .ThenBy(x => x.Date.Date >= DateTime.Today.Date)
-                    .Take(NUMBER_OF_PAYMENTS)
-                    .ToList();
+                                     .ThenBy(x => x.Date.Date >= DateTime.Today.Date)
+                                     .Take(NUMBER_OF_PAYMENTS)
+                                     .ToList();
             }
 
-            var returnList = payments.Select(x => LiveTileHelper.GetTileText(tileSize, x)).ToList();
+            List<string> returnList = payments.Select(x => LiveTileHelper.GetTileText(tileSize, x)).ToList();
 
-            for (var i = returnList.Count; i < NUMBER_OF_PAYMENTS - 1; i++) returnList.Add(string.Empty);
+            for (int i = returnList.Count; i < NUMBER_OF_PAYMENTS - 1; i++)
+            {
+                returnList.Add(string.Empty);
+            }
 
             allPayments.Clear();
             return returnList;
@@ -567,23 +576,27 @@ namespace MoneyFox.Uwp.Business.Tiles
 
             if (payment.RecurringPayment.IsEndless)
             {
-                var startDate = payment.RecurringPayment.StartDate;
+                DateTime startDate = payment.RecurringPayment.StartDate;
                 while (DateTime.Compare(DateTime.Now, startDate) <= 0)
+                {
                     startDate = CreateLiveTileInfos(payment, allPayment, startDate);
+                }
             }
             else
             {
-                var startDate = payment.RecurringPayment.StartDate;
-                var endDate = payment.RecurringPayment.EndDate.Value;
+                DateTime startDate = payment.RecurringPayment.StartDate;
+                DateTime endDate = payment.RecurringPayment.EndDate.Value;
                 while (DateTime.Compare(startDate, endDate) <= 0)
+                {
                     startDate = CreateLiveTileInfos(payment, allPayment, startDate);
+                }
             }
 
             return allPayment;
         }
 
         private DateTime CreateLiveTileInfos(PaymentViewModel payment, List<LiveTilesPaymentInfo> allPayment,
-            DateTime startDate)
+                                             DateTime startDate)
         {
             var liveTilesPaymentInfo = new LiveTilesPaymentInfo
             {
