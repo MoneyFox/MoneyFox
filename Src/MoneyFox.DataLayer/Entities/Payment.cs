@@ -105,7 +105,10 @@ namespace MoneyFox.DataLayer.Entities
             IsCleared = Date.Date <= DateTime.Today.Date;
             ChargedAccount.AddPaymentAmount(this);
 
-            if (Type == PaymentType.Transfer) TargetAccount.AddPaymentAmount(this);
+            if (Type == PaymentType.Transfer)
+            {
+                TargetAccount.AddPaymentAmount(this);
+            }
         }
     }
 }
