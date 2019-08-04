@@ -3,8 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MoneyFox.DataLayer;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.DataLayer.Migrations
 {

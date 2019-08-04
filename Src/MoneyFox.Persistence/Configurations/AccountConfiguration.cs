@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.DataLayer.Configurations
+namespace MoneyFox.Persistence.Configurations
 {
     internal class AccountConfiguration : IEntityTypeConfiguration<Account>
     {

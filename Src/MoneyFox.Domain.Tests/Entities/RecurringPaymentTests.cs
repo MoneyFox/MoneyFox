@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using Should;
 using Xunit;
 
-namespace MoneyFox.DataLayer.Tests.Entities
+namespace MoneyFox.Domain.Tests.Entities
 {
     [ExcludeFromCodeCoverage]
     public class RecurringPaymentTests

@@ -3,6 +3,7 @@ using System;
 using MoneyFox.Domain.Entities;
 using MoneyFox.DataLayer.Configurations;
 using MoneyFox.Application.Interfaces;
+using MoneyFox.Persistence.Configurations;
 
 namespace MoneyFox.Persistence
 {
