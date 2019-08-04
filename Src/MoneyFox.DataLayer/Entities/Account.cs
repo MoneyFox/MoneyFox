@@ -45,17 +45,19 @@ namespace MoneyFox.DataLayer.Entities
 
         public void AddPaymentAmount(Payment payment)
         {
+            ThrowIfPaymentNull(payment);
             ApplyPaymentAmount(payment);
         }
 
         public void RemovePaymentAmount(Payment payment)
         {
+            ThrowIfPaymentNull(payment);
             ApplyPaymentAmount(payment, true);
         }
 
         private void ApplyPaymentAmount(Payment payment, bool invert = false)
         {
-            if(!payment.IsCleared) return;
+            if (!payment.IsCleared) return;
 
             double amount = invert
                 ? -payment.Amount
@@ -71,6 +73,14 @@ namespace MoneyFox.DataLayer.Entities
                 CurrentBalance += amount;
             }
             ModificationDate = DateTime.Now;
+        }
+
+        private static void ThrowIfPaymentNull(Payment payment)
+        {
+            if (payment == null)
+            {
+                throw new ArgumentNullException(nameof(payment));
+            }
         }
     }
 }

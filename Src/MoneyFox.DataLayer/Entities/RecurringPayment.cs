@@ -29,7 +29,6 @@ namespace MoneyFox.DataLayer.Entities
             if (!IsEndless && endDate != null && endDate < DateTime.Today)
                 throw new InvalidEndDateException();
 
-            CreationTime = DateTime.Now;
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             StartDate = startDate;
             EndDate = endDate;
@@ -40,6 +39,9 @@ namespace MoneyFox.DataLayer.Entities
             Category = category;
             TargetAccount = targetAccount;
             IsEndless = endDate == null;
+
+            ModificationDate = DateTime.Now;
+            CreationTime = DateTime.Now;
         }
 
         [Key]
