@@ -20,19 +20,19 @@ namespace MoneyFox.DataLayer.Tests.Entities
             Assert.Throws<ArgumentNullException>(() => new Category(name));
         }
 
-
         [Fact]
         public void Ctor_NoParams_DefaultValuesSet()
         {
             // Arrange
-            const string testname = "test";
+            const string testName = "test";
 
             // Act / Assert
-            var category = new Category(testname);
+            var category = new Category(testName);
 
             // Assert
-            category.Name.ShouldEqual(testname);
+            category.Name.ShouldEqual(testName);
             category.Note.ShouldBeEmpty();
+            category.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
             category.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
 
@@ -40,15 +40,15 @@ namespace MoneyFox.DataLayer.Tests.Entities
         public void Ctor_Params_ValuesCorrectlySet()
         {
             // Arrange
-            const string testname = "test";
-            const string testnote = "foo";
+            const string testName = "test";
+            const string testNote = "foo";
 
             // Act / Assert
-            var category = new Category(testname, testnote);
+            var category = new Category(testName, testNote);
 
             // Assert
-            category.Name.ShouldEqual(testname);
-            category.Note.ShouldEqual(testnote);
+            category.Name.ShouldEqual(testName);
+            category.Note.ShouldEqual(testNote);
         }
 
         [Theory]
@@ -68,34 +68,35 @@ namespace MoneyFox.DataLayer.Tests.Entities
         public void UpdateData_NoParams_DefaultValuesSet()
         {
             // Arrange
-            const string testname = "test";
+            const string testName = "test";
 
             var testCategory = new Category("Foo");
 
 
             // Act / Assert
-            testCategory.UpdateData(testname);
+            testCategory.UpdateData(testName);
 
             // Assert
-            testCategory.Name.ShouldEqual(testname);
+            testCategory.Name.ShouldEqual(testName);
             testCategory.Note.ShouldBeEmpty();
+            testCategory.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-0.5), DateTime.Now);
         }
 
         [Fact]
         public void UpdateData_Params_ValuesCorrectlySet()
         {
             // Arrange
-            const string testname = "test";
-            const string testnote = "foo";
+            const string testName = "test";
+            const string testNote = "foo";
 
             var testCategory = new Category("Foo");
 
             // Act / Assert
-            testCategory.UpdateData(testname, testnote);
+            testCategory.UpdateData(testName, testNote);
 
             // Assert
-            testCategory.Name.ShouldEqual(testname);
-            testCategory.Note.ShouldEqual(testnote);
+            testCategory.Name.ShouldEqual(testName);
+            testCategory.Note.ShouldEqual(testNote);
         }
     }
 }
