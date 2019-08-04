@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Diagnostics;
 using Microsoft.AppCenter.Crashes;
+using NLog;
 using UIKit;
 
 namespace MoneyFox.iOS
@@ -18,7 +18,7 @@ namespace MoneyFox.iOS
             }
             catch (Exception ex)
             {
-                Debug.Write(ex);
+                LogManager.GetCurrentClassLogger().Fatal(ex);
                 Crashes.TrackError(ex);
             }
         }
