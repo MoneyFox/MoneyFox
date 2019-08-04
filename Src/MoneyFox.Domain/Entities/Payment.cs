@@ -104,7 +104,10 @@ namespace MoneyFox.Domain.Entities
             IsCleared = Date.Date <= DateTime.Today.Date;
             ChargedAccount.AddPaymentAmount(this);
 
-            if (Type == PaymentType.Transfer) TargetAccount.AddPaymentAmount(this);
+            if (Type == PaymentType.Transfer)
+            {
+                TargetAccount.AddPaymentAmount(this);
+            }
         }
     }
 }

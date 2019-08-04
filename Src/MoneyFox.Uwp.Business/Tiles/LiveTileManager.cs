@@ -344,7 +344,7 @@ namespace MoneyFox.Uwp.Business.Tiles
         public double GetMonthExpenses(int month, int year, AccountViewModel account)
         {
             var balance = 0.00;
-            var allpayment = new List<LiveTilesPaymentInfo>();
+            var allPayment = new List<LiveTilesPaymentInfo>();
             List<PaymentViewModel> payments = crudService.ReadManyNoTracked<PaymentViewModel>()
                                                          .Where(x => x.ChargedAccountId == account.Id)
                                                          .ToList();
@@ -353,12 +353,15 @@ namespace MoneyFox.Uwp.Business.Tiles
             {
                 if (item.IsRecurring)
                 {
-                    if (item.Type != PaymentType.Income) allpayment.AddRange(GetRecurrence(item));
+                    if (item.Type != PaymentType.Income) allPayment.AddRange(GetRecurrence(item));
                 }
-                else if (item.Type != PaymentType.Income) CreateLiveTileInfos(item, allpayment, item.Date.Date);
+                else if (item.Type != PaymentType.Income)
+                {
+                    CreateLiveTileInfos(item, allPayment, item.Date.Date);
+                }
             }
 
-            List<LiveTilesPaymentInfo> tiles = allpayment
+            List<LiveTilesPaymentInfo> tiles = allPayment
                                                .Where(x => x.Date.Date.Month == month && x.Date.Date.Year == year)
                                                .ToList();
 
@@ -367,7 +370,7 @@ namespace MoneyFox.Uwp.Business.Tiles
                 balance += item.Amount;
             }
 
-            allpayment.Clear();
+            allPayment.Clear();
             return balance;
         }
 
@@ -445,7 +448,6 @@ namespace MoneyFox.Uwp.Business.Tiles
         {
             var allPayments = new List<PaymentViewModel>();
             var allPayment = new List<LiveTilesPaymentInfo>();
-            List<LiveTilesPaymentInfo> payments;
             allPayments.AddRange(crudService.ReadManyNoTracked<PaymentViewModel>()
                                             .Where(x => x.ChargedAccountId == accountId)
                                             .ToList());
@@ -463,7 +465,9 @@ namespace MoneyFox.Uwp.Business.Tiles
             foreach (PaymentViewModel item in allPayments)
             {
                 if (item.IsRecurring)
+                {
                     allPayment.AddRange(GetRecurrence(item));
+                }
                 else
                 {
                     var tileInfo = new LiveTilesPaymentInfo
@@ -477,10 +481,10 @@ namespace MoneyFox.Uwp.Business.Tiles
                 }
             }
 
-            payments = allPayment.OrderByDescending(x => x.Date.Date)
-                                 .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
-                                 .Take(NUMBER_OF_PAYMENTS)
-                                 .ToList();
+            List<LiveTilesPaymentInfo> payments = allPayment.OrderByDescending(x => x.Date.Date)
+                                      .ThenBy(x => x.Date.Date <= DateTime.Today.Date)
+                                      .Take(NUMBER_OF_PAYMENTS)
+                                      .ToList();
 
             List<string> returnList = payments.Select(x => LiveTileHelper.GetTileText(TileSizeOption.Large, x)).ToList();
 
@@ -496,8 +500,7 @@ namespace MoneyFox.Uwp.Business.Tiles
                                                           PaymentInformation paymentInformation)
         {
             List<AccountViewModel> acct = await crudService.ReadManyNoTracked<AccountViewModel>()
-                                                           .ToListAsync()
-                ;
+                                                           .ToListAsync();
             var allPayments = new List<PaymentViewModel>();
             var allPayment = new List<LiveTilesPaymentInfo>();
 
@@ -523,7 +526,9 @@ namespace MoneyFox.Uwp.Business.Tiles
             foreach (PaymentViewModel item in allPayments)
             {
                 if (item.IsRecurring)
+                {
                     allPayment.AddRange(GetRecurrence(item));
+                }
                 else
                 {
                     var tileInfo = new LiveTilesPaymentInfo
