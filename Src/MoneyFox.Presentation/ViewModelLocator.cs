@@ -11,16 +11,11 @@ namespace MoneyFox.Presentation
 {
     public class ViewModelLocator
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         static ViewModelLocator()
         {
-            if (!ServiceLocator.IsLocationProviderSet)
+            if (!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
             {
-                if (ViewModelBase.IsInDesignModeStatic)
-                {
-                    RegisterServices(new ContainerBuilder());
-                }
+                RegisterServices(new ContainerBuilder());
             }
         }
 

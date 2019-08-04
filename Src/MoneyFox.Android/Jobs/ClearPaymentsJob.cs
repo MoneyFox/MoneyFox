@@ -96,7 +96,7 @@ namespace MoneyFox.Droid.Jobs
             builder.SetRequiresCharging(false);
 
             var tm = (JobSchedulerType)GetSystemService(JobSchedulerService);
-            var status = tm.Schedule(builder.Build());
+            tm.Schedule(builder.Build());
         }
     }
 }

@@ -1,8 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using MoneyFox.Foundation;
 
-namespace MoneyFox.Domain.Entities
+namespace MoneyFox.DataLayer.Entities
 {
     public class Account
     {
@@ -31,7 +32,8 @@ namespace MoneyFox.Domain.Entities
 
         public void UpdateAccount(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
         {
-            ThrowIfNameIsNullOrEmpty(name);
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
 
             Name = name;
             CurrentBalance = currentBalance;
@@ -43,21 +45,19 @@ namespace MoneyFox.Domain.Entities
 
         public void AddPaymentAmount(Payment payment)
         {
-            ThrowIfPaymentIsNull(payment);
-
+            ThrowIfPaymentNull(payment);
             ApplyPaymentAmount(payment);
         }
 
         public void RemovePaymentAmount(Payment payment)
         {
-            ThrowIfPaymentIsNull(payment);
-
+            ThrowIfPaymentNull(payment);
             ApplyPaymentAmount(payment, true);
         }
 
         private void ApplyPaymentAmount(Payment payment, bool invert = false)
         {
-            if(!payment.IsCleared) return;
+            if (!payment.IsCleared) return;
 
             double amount = invert
                 ? -payment.Amount
@@ -75,14 +75,12 @@ namespace MoneyFox.Domain.Entities
             ModificationDate = DateTime.Now;
         }
 
-        private static void ThrowIfNameIsNullOrEmpty(string name)
+        private static void ThrowIfPaymentNull(Payment payment)
         {
-            if(string.IsNullOrWhiteSpace(name)) throw new ArgumentNullException(nameof(name));
-        }
-
-        private static void ThrowIfPaymentIsNull(Payment payment)
-        {
-            if(payment == null) throw new ArgumentNullException(nameof(payment));
+            if (payment == null)
+            {
+                throw new ArgumentNullException(nameof(payment));
+            }
         }
     }
 }

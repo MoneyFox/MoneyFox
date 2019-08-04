@@ -25,7 +25,9 @@ namespace MoneyFox.Domain.Entities
 
         public string Note { get; private set; }
 
-        public DateTime CreationTime { get; private set; }
+        public DateTime ModificationDate { get; private set; }
+
+        public DateTime CreationTime { get; }
 
         public List<Payment> Payments { get; private set; }
 
@@ -36,6 +38,7 @@ namespace MoneyFox.Domain.Entities
 
             Name = name;
             Note = note;
+            ModificationDate = DateTime.Now;
         }
     }
 }
