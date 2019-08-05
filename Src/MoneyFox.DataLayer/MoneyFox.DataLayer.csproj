@@ -17,6 +17,11 @@
     <CodeAnalysisRuleSet>MoneyFox.DataLayer.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20190804113407_AddModificationDateField.cs" />
+    <Compile Remove="Migrations\20190804113407_AddModificationDateField.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.3" />
