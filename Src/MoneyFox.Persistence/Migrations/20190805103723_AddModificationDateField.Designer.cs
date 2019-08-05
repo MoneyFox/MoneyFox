@@ -3,12 +3,13 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
-using MoneyFox.Persistence;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using MoneyFox.DataLayer;
 
 namespace MoneyFox.DataLayer.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
-    [Migration("20190804113407_AddModificationDateField")]
+    [Migration("20190805103723_AddModificationDateField")]
     partial class AddModificationDateField
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,6 +49,8 @@ namespace MoneyFox.DataLayer.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreationTime");
 
                     b.Property<DateTime>("ModificationDate");
 
@@ -115,6 +118,8 @@ namespace MoneyFox.DataLayer.Migrations
                     b.Property<int?>("CategoryId");
 
                     b.Property<int?>("ChargedAccountId");
+
+                    b.Property<DateTime>("CreationTime");
 
                     b.Property<DateTime?>("EndDate");
 

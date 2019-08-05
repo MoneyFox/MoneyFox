@@ -4,6 +4,24 @@
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>MoneyFox.DataLayer.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseUWP|AnyCPU'">
+    <CodeAnalysisRuleSet>MoneyFox.DataLayer.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>MoneyFox.DataLayer.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190804113407_AddModificationDateField.cs" />
+    <Compile Remove="Migrations\20190804113407_AddModificationDateField.Designer.cs" />
+  </ItemGroup>
+
+
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.3" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />

@@ -47,6 +47,8 @@ namespace MoneyFox.DataLayer.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("CreationTime");
+
                     b.Property<DateTime>("ModificationDate");
 
                     b.Property<string>("Name")
@@ -113,6 +115,8 @@ namespace MoneyFox.DataLayer.Migrations
                     b.Property<int?>("CategoryId");
 
                     b.Property<int?>("ChargedAccountId");
+
+                    b.Property<DateTime>("CreationTime");
 
                     b.Property<DateTime?>("EndDate");
 

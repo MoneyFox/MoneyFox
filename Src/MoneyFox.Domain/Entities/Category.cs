@@ -27,7 +27,7 @@ namespace MoneyFox.Domain.Entities
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; }
+        public DateTime CreationTime { get; private set; }
 
         public List<Payment> Payments { get; private set; }
 
