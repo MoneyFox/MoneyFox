@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Autofac" Version="4.9.3" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="2.1.1" />
@@ -28,12 +29,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>C:\Users\ninop\.nuget\packages\automapper\7.0.1\lib\netstandard2.0\AutoMapper.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
   <ItemGroup>
