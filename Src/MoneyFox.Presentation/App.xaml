@@ -1,9 +1,10 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.App">
-    
+
     <Application.Resources>
         <ResourceDictionary>
             <presentation:ViewModelLocator x:Key="Locator" />
@@ -16,7 +17,7 @@
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
 
-          <Style x:Key="ListGroupHeaderStyle" TargetType="Label">
+            <Style x:Key="ListGroupHeaderStyle" TargetType="Label">
                 <Setter Property="Margin" Value="12,0,0,0" />
                 <Setter Property="TextColor" Value="{DynamicResource HeaderColor}" />
             </Style>
@@ -46,20 +47,20 @@
             <Style x:Key="DeleteButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="Red" />
             </Style>
-            
+
             <Style x:Key="DefaultDatePickerStyle" TargetType="DatePicker">
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
             </Style>
 
             <Style x:Key="FabPrimary" TargetType="ImageButton">
-                <Setter Property="CornerRadius" Value="28"/>
-                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}"/>
-                <Setter Property="HeightRequest" Value="55"/>
-                <Setter Property="WidthRequest" Value="55"/>
-                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
-                <Setter Property="VerticalOptions" Value="EndAndExpand"/>
-                <Setter Property="Padding" Value="15"/>
-                <Setter Property="Margin" Value="0,0,15,15"/>
+                <Setter Property="CornerRadius" Value="28" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource PrimaryColor}" />
+                <Setter Property="HeightRequest" Value="55" />
+                <Setter Property="WidthRequest" Value="55" />
+                <Setter Property="HorizontalOptions" Value="EndAndExpand" />
+                <Setter Property="VerticalOptions" Value="EndAndExpand" />
+                <Setter Property="Padding" Value="15" />
+                <Setter Property="Margin" Value="0,0,15,15" />
             </Style>
 
             <!-- Text Styles -->
@@ -110,13 +111,13 @@
 
             <!-- Images -->
             <OnPlatform x:Key="ImageSave"
-                x:TypeArguments="ImageSource">
+                        x:TypeArguments="ImageSource">
                 <On Platform="Android" Value="ic_save_white" />
                 <On Platform="iOS" Value="ic_save_white" />
             </OnPlatform>
 
             <OnPlatform x:Key="ImageResetField"
-                x:TypeArguments="ImageSource">
+                        x:TypeArguments="ImageSource">
                 <On Platform="Android" Value="ic_cancel_black" />
                 <On Platform="iOS" Value="ic_cancel_black" />
                 <On Platform="UWP" Value="IconCancel" />
