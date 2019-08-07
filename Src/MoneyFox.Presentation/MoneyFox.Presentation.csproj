@@ -63,7 +63,7 @@
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.618606" />
+    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
   </ItemGroup>
 
   <ItemGroup>
