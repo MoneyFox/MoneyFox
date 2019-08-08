@@ -4,7 +4,6 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace MoneyFox.Presentation.Views
 {
-    [AdMaiora.RealXaml.Client.RootPage]
     public partial class AppShell
     {
 		public AppShell()
