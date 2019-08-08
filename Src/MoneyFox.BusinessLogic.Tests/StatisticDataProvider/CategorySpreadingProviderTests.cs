@@ -58,25 +58,22 @@ namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
             Assert.Equal(10, result[2].Value);
         }
 
-
         [Theory]
-        [InlineData("en-US", 0, '(')]
-        [InlineData("de-CH", 3, '-')]
-        public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign, char expectedNegativeSign)
+        [InlineData("en-US", '$')]
+        [InlineData("de-CH", 'C')]
+        public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
         {
             // Arrange
             var cultureInfo = new CultureInfo(culture);
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
-            var testCat1 = new Category("Ausgehen");
             var testCat2 = new Category("Rent");
 
             var account = new Account("test");
 
             var paymentList = new List<Payment>
             {
-                new Payment(DateTime.Today, 60, PaymentType.Expense, account, category:testCat1),
                 new Payment(DateTime.Today, 90, PaymentType.Expense, account, category:testCat2)
             };
 
@@ -89,42 +86,7 @@ namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
             var result = (await provider.GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3))).ToList();
 
             // Assert
-            result[0].ValueLabel[indexNegativeSign].ShouldEqual(expectedNegativeSign);
-            result[1].ValueLabel[indexNegativeSign].ShouldEqual(expectedNegativeSign);
-        }
-
-        [Theory]
-        [InlineData("en-US", 1, '$')]
-        [InlineData("de-CH", 0, 'C')]
-        public async Task GetValues_CorrectCurrency(string culture, int indexCurrencySign, char expectedCurrencySymbol)
-        {
-            // Arrange
-            var cultureInfo = new CultureInfo(culture);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
-
-            var testCat1 = new Category("Ausgehen");
-            var testCat2 = new Category("Rent");
-
-            var account = new Account("test");
-
-            var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category:testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category:testCat2)
-            };
-
-            var statisticDbAccess = new Mock<IStatisticDbAccess>();
-            statisticDbAccess.Setup(x => x.GetPaymentsWithoutTransfer(It.IsAny<DateTime>(), It.IsAny<DateTime>()))
-                             .Returns(Task.FromResult(paymentList));
-
-            // Act
-            var provider = new CategorySpreadingDataProvider(statisticDbAccess.Object);
-            var result = (await provider.GetValues(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3))).ToList();
-
-            // Assert
-            result[0].ValueLabel[indexCurrencySign].ShouldEqual(expectedCurrencySymbol);
-            result[1].ValueLabel[indexCurrencySign].ShouldEqual(expectedCurrencySymbol);
+            result[0].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
         }
     }
 }
