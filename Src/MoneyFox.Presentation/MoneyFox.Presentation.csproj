@@ -55,6 +55,7 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.3" />
     <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="5.0.0" />
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="EfCore.GenericServices" Version="2.0.3" />
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.2.1" />
