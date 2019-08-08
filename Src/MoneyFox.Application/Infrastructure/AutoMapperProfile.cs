@@ -13,7 +13,7 @@ namespace MoneyFox.Application.Infrastructure
 
         private void LoadStandardMappings()
         {
-            var mapsFrom = MapperProfileHelper.LoadStandardMappings(Assembly.GetExecutingAssembly());
+            var mapsFrom = MapperProfileHelper.LoadStandardMappings(Assembly.GetCallingAssembly());
 
             foreach (var map in mapsFrom)
             {
@@ -23,7 +23,7 @@ namespace MoneyFox.Application.Infrastructure
 
         private void LoadCustomMappings()
         {
-            var mapsFrom = MapperProfileHelper.LoadCustomMappings(Assembly.GetExecutingAssembly());
+            var mapsFrom = MapperProfileHelper.LoadCustomMappings(Assembly.GetCallingAssembly());
 
             foreach (var map in mapsFrom)
             {
