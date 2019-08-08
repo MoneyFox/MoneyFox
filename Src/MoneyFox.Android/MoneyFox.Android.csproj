@@ -60,7 +60,6 @@
     <CodeAnalysisRuleSet>MoneyFox.Android.ruleset</CodeAnalysisRuleSet>
     <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidUseAapt2>false</AndroidUseAapt2>
     <AndroidEnableProfiledAot>true</AndroidEnableProfiledAot>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|AnyCPU'">
