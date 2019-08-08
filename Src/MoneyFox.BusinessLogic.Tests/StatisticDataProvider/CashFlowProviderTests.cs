@@ -49,9 +49,9 @@ namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
         }
 
         [Theory]
-        [InlineData("en-US", '(')]
-        [InlineData("de-CH", '-')]
-        public async Task GetValues_CorrectNegativeSign(string culture, char expectedNegativeSign)
+        [InlineData("en-US", 0, '(')]
+        [InlineData("de-CH", 3, '-')]
+        public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign, char expectedNegativeSign)
         {
             var cultureInfo = new CultureInfo(culture);
             Thread.CurrentThread.CurrentCulture = cultureInfo;
@@ -70,13 +70,13 @@ namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
                 .GetCashFlow(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3));
 
             // Assert
-            result[2].ValueLabel[0].ShouldEqual(expectedNegativeSign);
+            result[2].ValueLabel[indexNegativeSign].ShouldEqual(expectedNegativeSign);
         }
 
         [Theory]
-        [InlineData("en-US", '$')]
-        [InlineData("de-CH", '-')]
-        public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
+        [InlineData("en-US", 1, '$')]
+        [InlineData("de-CH", 0, 'C')]
+        public async Task GetValues_CorrectCurrency(string culture, int indexCurrencySign, char expectedCurrencySymbol)
         {
             var cultureInfo = new CultureInfo(culture);
             Thread.CurrentThread.CurrentCulture = cultureInfo;
@@ -98,7 +98,7 @@ namespace MoneyFox.BusinessLogic.Tests.StatisticDataProvider
             // Assert
             result[0].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
             result[1].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
-            result[2].ValueLabel[1].ShouldEqual(expectedCurrencySymbol);
+            result[2].ValueLabel[indexCurrencySign].ShouldEqual(expectedCurrencySymbol);
         }
     }
 }
