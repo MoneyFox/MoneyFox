@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <PackageReference Include="SkiaSharp" Version="1.59.1" />
-    <PackageReference Include="StyleCop.MSBuild" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
