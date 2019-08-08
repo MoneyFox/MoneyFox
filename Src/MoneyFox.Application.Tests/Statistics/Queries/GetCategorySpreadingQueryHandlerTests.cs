@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using System.Linq;
+using System.Runtime.InteropServices;
+using System.Threading;
 using System.Threading.Tasks;
+using MoneyFox.Application.Statistics.Models;
+using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -131,9 +136,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_CorrectColor()
         {
             // Arrange
-            var testCat1 = new Category("Ausgehen");
-            var testCat2 = new Category("Rent");
-
             var account = new Account("test");
             var paymentList = new List<Payment>
             {
@@ -166,6 +168,42 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             result[5].Color.ShouldEqual("#424856");
             result[6].Color.ShouldEqual("#8F97A4");
         }
+
+        [Theory]
+        [InlineData("en-US", '$')]
+        [InlineData("de-CH", 'C')]
+        public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
+        {
+            // Arrange
+            var cultureInfo = new CultureInfo(culture);
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+            var account = new Account("test");
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("a")),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("b")),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category:new Category("c")),
+            };
+
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
+
+            // Act
+            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(context).Handle(new GetCategorySpreadingQuery
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                }, default))
+                .ToList();
+
+            // Assert
+            result[0].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
+            result[1].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
+            result[2].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
+        }
+
 
     }
 }

@@ -66,7 +66,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
         {
             var statisticList = statisticData
                                 .Take(6)
-                                .Select(x => new StatisticEntry(x.Value) { ValueLabel = x.Value.ToString("C", CultureInfo.InvariantCulture), Label = x.Label })
+                                .Select(x => new StatisticEntry(x.Value) { ValueLabel = x.Value.ToString("C", CultureInfo.CurrentCulture), Label = x.Label })
                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
