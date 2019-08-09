@@ -40,7 +40,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExi
             }, default);
 
             // Assert
-            result.ShouldBeTrue();
+            result.ShouldBeFalse();
         }
 
         [Fact]
