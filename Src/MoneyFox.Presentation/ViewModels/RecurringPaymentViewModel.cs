@@ -1,11 +1,12 @@
 ﻿using System;
 using GenericServices;
+using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class RecurringPaymentViewModel : BaseViewModel, ILinkToEntity<RecurringPayment>
+    public class RecurringPaymentViewModel : BaseViewModel, ILinkToEntity<RecurringPayment>, IMapFrom<RecurringPayment>
     {
         private int id;
         private DateTime startDate;

@@ -1,5 +1,6 @@
 ﻿using System;
 using GenericServices;
+using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 
@@ -8,7 +9,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Handles the view representation of a payment.
     /// </summary>
-    public class PaymentViewModel : BaseViewModel, ILinkToEntity<Payment>
+    public class PaymentViewModel : BaseViewModel, ILinkToEntity<Payment>, IMapFrom<Payment>
     {
         private int id;
         private int chargedAccountId;

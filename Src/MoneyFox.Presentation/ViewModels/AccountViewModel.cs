@@ -1,5 +1,6 @@
 ﻿using System;
 using GenericServices;
+using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -7,7 +8,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Representation of an account view.
     /// </summary>
-    public class AccountViewModel : BaseViewModel, ILinkToEntity<Account>
+    public class AccountViewModel : BaseViewModel, ILinkToEntity<Account>, IMapFrom<Account>
     {
         private int id;
         private string name;

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
@@ -7,6 +8,7 @@ using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Mapper
 {
+    [ExcludeFromCodeCoverage]
     [Collection("AutoMapperCollection")]
     public class CategoryViewModelMapperTests
     {
