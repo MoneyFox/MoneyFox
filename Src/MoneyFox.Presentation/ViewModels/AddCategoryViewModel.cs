@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -39,12 +40,13 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
+            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery{CategoryName = SelectedCategory.Name}))
+            {
+                await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+                return;
+            }
+
             // TODO: Reimplement
-            //if (await crudServices.ReadManyNoTracked<CategoryViewModel>().AnyWithNameAsync(SelectedCategory.Name))
-            //{
-            //    await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
-            //    return;
-            //}
 
             //await crudServices.CreateAndSaveAsync(SelectedCategory, "ctor(2)");
 

@@ -8,14 +8,14 @@ using MoneyFox.Persistence;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Categories.Queries
+namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
 {
     [ExcludeFromCodeCoverage]
-    public class GetCategoryViewModelByIdQueryHandlerTests : IDisposable
+    public class GetCategoryByIdQueryHandlerTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetCategoryViewModelByIdQueryHandlerTests()
+        public GetCategoryByIdQueryHandlerTests()
         {
             context = TestEfCoreContextFactory.Create();
         }
