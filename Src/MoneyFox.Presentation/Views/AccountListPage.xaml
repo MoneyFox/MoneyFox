@@ -65,10 +65,7 @@
                                 <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                                    Style="{StaticResource ListItemStyle}">
 
-                                    <StackLayout Orientation="Vertical"
-                                                 Padding="3"
-                                                 Spacing="{StaticResource DefaultSpacing}">
-
+                                    <StackLayout Spacing="0">
                                         <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
                                             <Grid.ColumnDefinitions>
