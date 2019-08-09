@@ -2,10 +2,8 @@
 using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;

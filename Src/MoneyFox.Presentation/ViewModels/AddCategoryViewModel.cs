@@ -1,9 +1,8 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -11,16 +10,16 @@ namespace MoneyFox.Presentation.ViewModels
 {
     public class AddCategoryViewModel : ModifyCategoryViewModel
     {
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
         private readonly IDialogService dialogService;
 
-        public AddCategoryViewModel(ICrudServicesAsync crudServices,
+        public AddCategoryViewModel(IMediator mediator,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
-            INavigationService navigationService) : base(crudServices, settingsFacade, backupService, navigationService)
+            INavigationService navigationService) : base(mediator, settingsFacade, backupService, navigationService)
         {
-            this.crudServices = crudServices;
+            this.mediator = mediator;
             this.dialogService = dialogService;
 
             Title = Strings.AddCategoryTitle;
@@ -40,18 +39,19 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (await crudServices.ReadManyNoTracked<CategoryViewModel>().AnyWithNameAsync(SelectedCategory.Name))
-            {
-                await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
-                return;
-            }
+            // TODO: Reimplement
+            //if (await crudServices.ReadManyNoTracked<CategoryViewModel>().AnyWithNameAsync(SelectedCategory.Name))
+            //{
+            //    await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+            //    return;
+            //}
 
-            await crudServices.CreateAndSaveAsync(SelectedCategory, "ctor(2)");
+            //await crudServices.CreateAndSaveAsync(SelectedCategory, "ctor(2)");
 
-            if (!crudServices.IsValid)
-            {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
-            }
+            //if (!crudServices.IsValid)
+            //{
+            //    await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
+            //}
 
             NavigationService.GoBack();
         }

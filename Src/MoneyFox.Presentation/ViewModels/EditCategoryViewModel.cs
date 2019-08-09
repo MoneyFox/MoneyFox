@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
+using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -18,19 +19,19 @@ namespace MoneyFox.Presentation.ViewModels
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
         private readonly IBackupService backupService;
 
-        public EditCategoryViewModel(ICrudServicesAsync crudServices,
+        public EditCategoryViewModel(IMediator mediator,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
             INavigationService navigationService)
-            : base(crudServices, settingsFacade, backupService, navigationService)
+            : base(mediator, settingsFacade, backupService, navigationService)
         {
-            this.crudServices = crudServices;
+            this.mediator = mediator;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
@@ -43,17 +44,18 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task Initialize()
         {
-            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(CategoryId);
+            SelectedCategory = Mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery { CategoryId = SelectedCategory.Id }));
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
         }
 
         protected override async Task SaveCategory()
         {
-            await crudServices.UpdateAndSaveAsync(SelectedCategory);
-            if (!crudServices.IsValid)
-            {
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
-            }
+            // TODO: Reimplement
+            //await crudServices.UpdateAndSaveAsync(SelectedCategory);
+            //if (!crudServices.IsValid)
+            //{
+            //    await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
+            //}
 
             await CancelCommand.ExecuteAsync();
         }
@@ -62,7 +64,8 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
-                await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
+                // TODO: Reimplement
+                //await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
 
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
 

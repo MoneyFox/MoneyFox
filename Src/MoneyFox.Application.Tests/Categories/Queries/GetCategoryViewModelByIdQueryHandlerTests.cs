@@ -31,7 +31,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries
             // Arrange
 
             // Act
-            var result = await new GetCategoryViewModelByIdQueryHandler(context).Handle(new GetCategoryByIdQuery
+            var result = await new Handler(context).Handle(new GetCategoryByIdQuery
             {
                 CategoryId = 999
             }, default);
@@ -49,7 +49,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCategoryViewModelByIdQueryHandler(context).Handle(new GetCategoryByIdQuery
+            var result = await new Handler(context).Handle(new GetCategoryByIdQuery
             {
                 CategoryId = testCat1.Id
             }, default);
