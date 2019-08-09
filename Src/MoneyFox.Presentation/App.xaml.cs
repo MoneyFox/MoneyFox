@@ -11,6 +11,10 @@ namespace MoneyFox.Presentation
     {
         public App()
         {
+#if DEBUG
+            AdMaiora.RealXaml.Client.AppManager.Init(this);
+#endif
+
             InitializeComponent();
             ThemeManager.LoadTheme();
 

@@ -37,15 +37,17 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
         /// <returns>Statistic value for the given time frame</returns>
         public async Task<List<StatisticEntry>> GetCashFlow(DateTime startDate, DateTime endDate)
         {
-            return GetCashFlowStatisticItems(await statisticDbAccess.GetPaymentsWithoutTransfer(startDate, endDate));
+            return GetCashFlowStatisticItems(await statisticDbAccess.GetPaymentsWithoutTransfer(startDate, endDate)
+                                                                    );
         }
 
-        private List<StatisticEntry> GetCashFlowStatisticItems(IReadOnlyCollection<Payment> payments) {
+        private List<StatisticEntry> GetCashFlowStatisticItems(IReadOnlyCollection<Payment> payments)
+        {
             var incomeAmount = (float) payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)
             {
                 Label = Strings.RevenueLabel,
-                ValueLabel = Math.Round(incomeAmount, 2, MidpointRounding.AwayFromZero).ToString("C", CultureInfo.CurrentCulture),
+                ValueLabel = Math.Round(incomeAmount, 2, MidpointRounding.AwayFromZero).ToString("C", CultureInfo.InvariantCulture),
                 Color = GREEN_HEX_CODE
             };
 
@@ -53,7 +55,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             var spent = new StatisticEntry(expenseAmount)
             {
                 Label = Strings.ExpenseLabel ,
-                ValueLabel = Math.Round(expenseAmount, 2, MidpointRounding.AwayFromZero).ToString("C", CultureInfo.CurrentCulture),
+                ValueLabel = Math.Round(expenseAmount, 2, MidpointRounding.AwayFromZero).ToString("C", CultureInfo.InvariantCulture),
                 Color = RED_HEX_CODE
             };
 
@@ -61,7 +63,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
             var increased = new StatisticEntry(valueIncreased)
             {
                 Label = Strings.IncreaseLabel,
-                ValueLabel = Math.Round(valueIncreased, 2, MidpointRounding.AwayFromZero).ToString("C", CultureInfo.CurrentCulture),
+                ValueLabel = Math.Round(valueIncreased, 2, MidpointRounding.AwayFromZero).ToString("C", CultureInfo.InvariantCulture),
                 Color = BLUE_HEX_CODE
             };
 
