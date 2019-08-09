@@ -1,7 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MediatR;
+using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -32,7 +36,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// </summary>
     public abstract class ModifyCategoryViewModel : BaseViewModel, IModifyCategoryViewModel
     {
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
         private readonly IBackupService backupService;
 
@@ -42,14 +46,14 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        protected ModifyCategoryViewModel(ICrudServicesAsync crudServices,
+        protected ModifyCategoryViewModel(IMediator mediator,
                                           ISettingsFacade settingsFacade,
                                           IBackupService backupService,
                                           INavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
-            this.crudServices = crudServices;
+            this.mediator = mediator;
 
             NavigationService = navigationService;
         }
@@ -108,7 +112,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task Cancel()
         {
-            SelectedCategory = await crudServices.ReadSingleAsync<CategoryViewModel>(SelectedCategory.Id);
+            SelectedCategory = Mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery {CategoryId = SelectedCategory.Id}));
             NavigationService.GoBack();
         }
     }
