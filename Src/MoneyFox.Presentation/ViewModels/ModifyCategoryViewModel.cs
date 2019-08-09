@@ -12,10 +12,10 @@ namespace MoneyFox.Presentation.ViewModels
     public interface IModifyCategoryViewModel : IBaseViewModel
     {
         /// <summary>
-        ///     Saves changes to a CategoryViewModel 
+        ///     Saves changes to a CategoryViewModel
         /// </summary>
         AsyncCommand SaveCommand { get; }
-    
+
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
@@ -43,9 +43,9 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(ICrudServicesAsync crudServices,
-                                       ISettingsFacade settingsFacade,
-                                       IBackupService backupService,
-                                       INavigationService navigationService)
+                                          ISettingsFacade settingsFacade,
+                                          IBackupService backupService,
+                                          INavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
@@ -63,7 +63,7 @@ namespace MoneyFox.Presentation.ViewModels
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
         public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBase);
-        
+
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
@@ -85,7 +85,8 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
-        public string Title {
+        public string Title
+        {
             get => title;
             set
             {
@@ -102,10 +103,7 @@ namespace MoneyFox.Presentation.ViewModels
             await SaveCategory();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled)
-            {
-                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
-            }
+            if (settingsFacade.IsBackupAutouploadEnabled) backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
         }
 
         private async Task Cancel()
