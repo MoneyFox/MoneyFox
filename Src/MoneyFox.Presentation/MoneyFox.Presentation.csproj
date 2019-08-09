@@ -60,6 +60,7 @@
     <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.2.1" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.3.0" />
+    <PackageReference Include="MoneyFox.Microcharts.Forms" Version="1.0.0.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
@@ -67,7 +68,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MicroCharts\Microcharts.Forms\Microcharts.Forms.csproj" />
     <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj" />
   </ItemGroup>
 
