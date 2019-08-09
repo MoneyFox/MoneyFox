@@ -11,6 +11,7 @@ using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
 using MoneyFox.Presentation.Facades;
+using NLog;
 using Debug = System.Diagnostics.Debug;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
@@ -27,7 +28,7 @@ namespace MoneyFox.Droid.Jobs
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
         {
-            Task.Run(async () => await ClearPayments(args));
+            Task.Run(async () => await ClearPaymentsAsync(args));
             return true;
         }
 
@@ -55,24 +56,23 @@ namespace MoneyFox.Droid.Jobs
             return StartCommandResult.NotSticky;
         }
 
-        private async Task ClearPayments(JobParameters args)
+        private async Task ClearPaymentsAsync(JobParameters args)
         {
             var settingsManager = new SettingsFacade(new SettingsAdapter());
             try
             {
-                Debug.WriteLine("ClearPayments Job started");
                 ExecutingPlatform.Current = AppPlatform.Android;
 
                 var context = new EfCoreContext();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
                 context.SaveChanges();
 
-                Debug.WriteLine("ClearPayments Job finished.");
                 JobFinished(args, false);
             }
             catch (Exception ex)
             {
-                Crashes.TrackError(ex);
+                LogManager.GetCurrentClassLogger().Fatal(ex);
+                throw;
             }
             finally
             {

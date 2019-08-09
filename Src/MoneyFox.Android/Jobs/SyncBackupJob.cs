@@ -1,24 +1,23 @@
+using System;
+using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
+using CommonServiceLocator;
+using Java.Lang;
 using Microsoft.Identity.Client;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
-using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
-using MoneyFox.ServiceLayer.Facades;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-using CommonServiceLocator;
 using MoneyFox.BusinessLogic.FileStore;
+using MoneyFox.Foundation;
+using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
-using JobSchedulerType = Android.App.Job.JobScheduler;
+using NLog;
 using Debug = System.Diagnostics.Debug;
-using Environment = System.Environment;
-using MoneyFox.Foundation;
+using Exception = System.Exception;
+using JobSchedulerType = Android.App.Job.JobScheduler;
 
 namespace MoneyFox.Droid.Jobs
 {
@@ -33,31 +32,36 @@ namespace MoneyFox.Droid.Jobs
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
         {
-            Task.Run(async () => await SyncBackups(args));
+            Task.Run(async () => await SyncBackupsAsync(args));
             return true;
         }
 
         /// <inheritdoc />
-        public override bool OnStopJob(JobParameters args) => true;
+        public override bool OnStopJob(JobParameters args)
+        {
+            return true;
+        }
 
         /// <inheritdoc />
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            var callback = (Messenger)intent.GetParcelableExtra("messenger");
-            var m = Message.Obtain();
+            var callback = (Messenger) intent.GetParcelableExtra("messenger");
+            Message m = Message.Obtain();
             m.What = MainActivity.MESSAGE_SERVICE_SYNC_BACKUP;
             m.Obj = this;
             try
             {
                 callback.Send(m);
-            } catch (RemoteException e)
+            }
+            catch (RemoteException e)
             {
                 Debug.WriteLine(e);
             }
+
             return StartCommandResult.NotSticky;
         }
 
-        private async Task SyncBackups(JobParameters args)
+        private async Task SyncBackupsAsync(JobParameters args)
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
@@ -66,10 +70,10 @@ namespace MoneyFox.Droid.Jobs
             {
                 ExecutingPlatform.Current = AppPlatform.Android;
 
-                var pca = PublicClientApplicationBuilder
-                    .Create(ServiceConstants.MSAL_APPLICATION_ID)
-                    .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
-                    .Build();
+                IPublicClientApplication pca = PublicClientApplicationBuilder
+                                               .Create(ServiceConstants.MSAL_APPLICATION_ID)
+                                               .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                                               .Build();
 
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
@@ -78,16 +82,19 @@ namespace MoneyFox.Droid.Jobs
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 
-                var backupDate = await backupService.GetBackupDate();
+                DateTime backupDate = await backupService.GetBackupDate();
                 if (settingsFacade.LastDatabaseUpdate > backupDate) return;
 
                 await backupService.RestoreBackup();
 
                 JobFinished(args, false);
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                Debug.Write(ex);
-            } finally
+                LogManager.GetCurrentClassLogger().Fatal(ex);
+                throw;
+            }
+            finally
             {
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             }
@@ -102,7 +109,7 @@ namespace MoneyFox.Droid.Jobs
 
             var builder = new JobInfo.Builder(SYNC_BACK_JOB_ID,
                                               new ComponentName(
-                                                  this, Java.Lang.Class.FromType(typeof(SyncBackupJob))));
+                                                  this, Class.FromType(typeof(SyncBackupJob))));
 
             // convert hours into millisecond
             builder.SetPeriodic(60 * 60 * 1000 * interval);
@@ -111,8 +118,8 @@ namespace MoneyFox.Droid.Jobs
             builder.SetRequiresDeviceIdle(false);
             builder.SetRequiresCharging(false);
 
-            var tm = (JobSchedulerType)GetSystemService(JobSchedulerService);
-            var status = tm.Schedule(builder.Build());
+            var tm = (JobSchedulerType) GetSystemService(JobSchedulerService);
+            tm.Schedule(builder.Build());
         }
     }
 }
