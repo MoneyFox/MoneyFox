@@ -23,18 +23,21 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
         private readonly IBackupService backupService;
+        private readonly IMapper mapper;
 
         public EditCategoryViewModel(IMediator mediator,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IBackupService backupService,
-            INavigationService navigationService)
+                                     IDialogService dialogService,
+                                     ISettingsFacade settingsFacade,
+                                     IBackupService backupService,
+                                     INavigationService navigationService,
+                                     IMapper mapper)
             : base(mediator, settingsFacade, backupService, navigationService)
         {
             this.mediator = mediator;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
+            this.mapper = mapper;
         }
 
         /// <summary>
@@ -44,7 +47,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task Initialize()
         {
-            SelectedCategory = Mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery { CategoryId = SelectedCategory.Id }));
+            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery {CategoryId = CategoryId}));
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
         }
 

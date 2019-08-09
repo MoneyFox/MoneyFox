@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
 
 namespace MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists
@@ -18,9 +19,9 @@ namespace MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists
                 this.context = context;
             }
 
-            public Task<bool> Handle(GetIfCategoryWithNameExistsQuery request, CancellationToken cancellationToken)
+            public async Task<bool> Handle(GetIfCategoryWithNameExistsQuery request, CancellationToken cancellationToken)
             {
-                throw new System.NotImplementedException();
+                return await context.Categories.AnyAsync(x => x.Name == request.CategoryName, cancellationToken);
             }
         }
     }
