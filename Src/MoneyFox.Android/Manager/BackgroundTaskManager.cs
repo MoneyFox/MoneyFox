@@ -14,7 +14,7 @@ namespace MoneyFox.Droid.Manager
         private const int SYNC_BACK_JOB_ID = 30;
 
         private readonly Activity currentActivity;
-        
+
         /// <summary>
         ///     Constructor
         /// </summary>
@@ -40,7 +40,7 @@ namespace MoneyFox.Droid.Manager
         /// <inheritdoc />
         public void StopBackupSyncTask()
         {
-            var tm = (JobSchedulerType)currentActivity.GetSystemService(Context.JobSchedulerService);
+            var tm = (JobSchedulerType) currentActivity.GetSystemService(Context.JobSchedulerService);
             tm.Cancel(SYNC_BACK_JOB_ID);
         }
     }
