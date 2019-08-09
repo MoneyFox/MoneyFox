@@ -18,7 +18,7 @@ namespace MoneyFox.Presentation.Tests.Mapper
         }
 
         [Fact]
-        public void CategoryMapToViewModel()
+        public void CategoryMappedToCorrectType()
         {
             // Arrange
             var category = new Category("test");
@@ -28,6 +28,20 @@ namespace MoneyFox.Presentation.Tests.Mapper
 
             // Assert
             result.ShouldBeType<CategoryViewModel>();
+        }
+
+        [Fact]
+        public void CategoryMappedToCorrectFields()
+        {
+            // Arrange
+            var category = new Category("test", "testnote");
+
+            // Act
+            var result = mapper.Map<CategoryViewModel>(category);
+
+            // Assert
+            result.Name.ShouldEqual(category.Name);
+            result.Note.ShouldEqual(category.Note);
         }
     }
 }
