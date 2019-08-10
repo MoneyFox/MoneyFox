@@ -11,6 +11,7 @@ using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.DataLayer;
 using MoneyFox.Foundation;
 using MoneyFox.Presentation.Facades;
+using NLog;
 using Debug = System.Diagnostics.Debug;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
@@ -27,7 +28,7 @@ namespace MoneyFox.Droid.Jobs
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
         {
-            Task.Run(async () => await CheckRecurringPayments(args));
+            Task.Run(async () => await CheckRecurringPaymentsAsync(args));
             return true;
         }
 
@@ -55,13 +56,12 @@ namespace MoneyFox.Droid.Jobs
             return StartCommandResult.NotSticky;
         }
 
-        private async Task CheckRecurringPayments(JobParameters args)
+        private async Task CheckRecurringPaymentsAsync(JobParameters args)
         {
             var settingsManager = new SettingsFacade(new SettingsAdapter());
 
             try
             {
-                Debug.WriteLine("RecurringPayment Job started.");
                 ExecutingPlatform.Current = AppPlatform.Android;
 
                 var context = new EfCoreContext();
@@ -73,8 +73,9 @@ namespace MoneyFox.Droid.Jobs
             }
             catch (Exception ex)
             {
-                Crashes.TrackError(ex);
-            } 
+                LogManager.GetCurrentClassLogger().Fatal(ex);
+                throw;
+            }
             finally
             {
                 settingsManager.LastExecutionTimeStampRecurringPayments = DateTime.Now;

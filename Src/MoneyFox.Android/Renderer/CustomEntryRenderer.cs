@@ -4,55 +4,63 @@ using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.Runtime;
 using Android.Widget;
+using Java.Lang.Reflect;
 using MoneyFox.Droid.Renderer;
 using NLog;
 using Xamarin.Forms;
 using Xamarin.Forms.Material.Android;
 using Xamarin.Forms.Platform.Android;
 using Color = Xamarin.Forms.Color;
+using Object = Java.Lang.Object;
 
-[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] { typeof(VisualMarker.MaterialVisual) })]
+[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
+
 namespace MoneyFox.Droid.Renderer
 {
     public class CustomEntryRenderer : MaterialEntryRenderer
     {
-        public CustomEntryRenderer(Context context) : base(context) {
+        public CustomEntryRenderer(Context context) : base(context)
+        {
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e) {
+        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
+        {
             base.OnElementChanged(e);
 
             SetCursorColor();
             TrySetCursorPointerColor();
         }
-        
-        private void SetCursorColor() {
-            IntPtr IntPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
-            IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(IntPtrtextViewClass, "mCursorDrawableRes", "I");
+
+        private void SetCursorColor()
+        {
+            IntPtr intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
+            IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
 
             JNIEnv.SetField(Control.EditText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
         }
 
-        private void TrySetCursorPointerColor() {
-            try {
-                TextView textViewTemplate = new TextView(Control.EditText.Context);
+        private void TrySetCursorPointerColor()
+        {
+            try
+            {
+                var textViewTemplate = new TextView(Control.EditText.Context);
 
-                var field = textViewTemplate.Class.GetDeclaredField("mEditor");
+                Field field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
-                var editor = field.Get(Control.EditText);
+                Object editor = field.Get(Control.EditText);
 
-                String[]
-                    fieldsNames = {"mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"},
-                    drawablesNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
+                string[] fieldsNames = {"mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"};
+                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
 
-                for (Int32 index = 0; index < fieldsNames.Length && index < drawablesNames.Length; index++) {
-                    String
+                for (var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
+                {
+                    string
                         fieldName = fieldsNames[index],
-                        drawableName = drawablesNames[index];
+                        drawableName = drawableNames[index];
 
                     field = textViewTemplate.Class.GetDeclaredField(fieldName);
                     field.Accessible = true;
-                    Int32 handle = field.GetInt(Control.EditText);
+                    int handle = field.GetInt(Control.EditText);
 
                     Drawable handleDrawable = Resources.GetDrawable(handle, null);
 
@@ -63,7 +71,8 @@ namespace MoneyFox.Droid.Renderer
                     field.Set(editor, handleDrawable);
                 }
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 LogManager.GetCurrentClassLogger().Error(ex);
             }
         }
