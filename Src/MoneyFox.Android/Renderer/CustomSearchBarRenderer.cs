@@ -42,7 +42,7 @@ namespace MoneyFox.Droid.Renderer
             }
         }
 
-        private void SetCursorColor(EditText editText)
+        private static void SetCursorColor(EditText editText)
         {
             try
             {

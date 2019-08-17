@@ -47,7 +47,7 @@ namespace MoneyFox.Presentation
                    .AsSelf();
         }
 
-        private void SetupContextAndCrudServices(ContainerBuilder builder)
+        private static void SetupContextAndCrudServices(ContainerBuilder builder)
         {
             builder.RegisterInstance(SetupEfContext())
                    .As<DbContext>()

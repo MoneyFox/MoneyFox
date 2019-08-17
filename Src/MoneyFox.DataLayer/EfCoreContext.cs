@@ -45,6 +45,6 @@ namespace MoneyFox.DataLayer
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         }
 
-        private void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));  }
+        private static void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));  }
     }
 }
