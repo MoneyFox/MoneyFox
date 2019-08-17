@@ -7,7 +7,6 @@ using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
-using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -22,8 +21,8 @@ namespace MoneyFox.Presentation.ViewModels
         private AccountViewModel selectedAccount = new AccountViewModel();
 
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
-            IBackupService backupService,
-            INavigationService navigationService)
+                                         IBackupService backupService,
+                                         INavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
@@ -34,8 +33,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected abstract Task Initialize();
 
-
-        protected INavigationService NavigationService { get; private set; }
+        protected INavigationService NavigationService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
@@ -64,7 +62,7 @@ namespace MoneyFox.Presentation.ViewModels
                 RaisePropertyChanged(nameof(AmountString));
             }
         }
-        
+
         /// <summary>
         ///     Property to format amount string to double with the proper culture.
         ///     This is used to prevent issues when converting the amount string to double
@@ -78,9 +76,7 @@ namespace MoneyFox.Presentation.ViewModels
                 // we remove all separator chars to ensure that it works in all regions
                 string amountString = HelperFunctions.RemoveGroupingSeparators(value);
                 if (double.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out double convertedValue))
-                {
                     SelectedAccount.CurrentBalance = convertedValue;
-                }
             }
         }
 
@@ -89,12 +85,9 @@ namespace MoneyFox.Presentation.ViewModels
             await SaveAccount();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled)
-            {
-                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
-            }
+            if (settingsFacade.IsBackupAutouploadEnabled) backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
         }
-        
+
         private void Cancel()
         {
             NavigationService.GoBack();
