@@ -46,16 +46,14 @@ namespace MoneyFox.Uwp.Services
 
         public void GoBack()
         {
-            if (CanGoBack)
-            {
-                Frame.GoBack();
-            }
+            if (CanGoBack) Frame.GoBack();
         }
 
         public void GoForward()
         {
             Frame.GoForward();
         }
+
         public void NavigateTo(string pageKey)
         {
             NavigateTo(pageKey, null);
@@ -99,8 +97,7 @@ namespace MoneyFox.Uwp.Services
             {
                 if (pages.ContainsValue(page))
                     return pages.FirstOrDefault(p => p.Value == page).Key;
-                else
-                    throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknown", page.Name));
+                throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknown", page.Name));
             }
         }
 

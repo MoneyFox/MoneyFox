@@ -43,7 +43,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Act
             // ReSharper disable once EqualExpressionComparison : Just for this test.
-            var result = testVm.Equals(testVm);
+            bool result = testVm.Equals(testVm);
 
             // result
             result.ShouldBeTrue();

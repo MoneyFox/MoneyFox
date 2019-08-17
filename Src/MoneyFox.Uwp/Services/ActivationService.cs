@@ -70,7 +70,7 @@ namespace MoneyFox.Uwp.Services
         {
             ExecutingPlatform.Current = AppPlatform.UWP;
             LoggerService.Initialize();
-            
+
             ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 

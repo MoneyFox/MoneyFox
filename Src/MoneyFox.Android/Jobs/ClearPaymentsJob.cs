@@ -4,16 +4,17 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
-using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
 using MoneyFox.Presentation.Facades;
+using NLog;
 using Debug = System.Diagnostics.Debug;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
+#pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
 namespace MoneyFox.Droid.Jobs
 {
     /// <summary>
@@ -22,12 +23,12 @@ namespace MoneyFox.Droid.Jobs
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class ClearPaymentsJob : JobService
     {
-        private const int CLEARPAYMENT_JOB_ID = 10;
+        private const int CLEAR_PAYMENT_JOB_ID = 10;
 
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
         {
-            Task.Run(async () => await ClearPayments(args));
+            Task.Run(async () => await ClearPaymentsAsync(args));
             return true;
         }
 
@@ -55,24 +56,23 @@ namespace MoneyFox.Droid.Jobs
             return StartCommandResult.NotSticky;
         }
 
-        private async Task ClearPayments(JobParameters args)
+        private async Task ClearPaymentsAsync(JobParameters args)
         {
             var settingsManager = new SettingsFacade(new SettingsAdapter());
             try
             {
-                Debug.WriteLine("ClearPayments Job started");
                 ExecutingPlatform.Current = AppPlatform.Android;
 
                 var context = EfCoreContextFactory.Create();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
                 await context.SaveChangesAsync();
 
-                Debug.WriteLine("ClearPayments Job finished.");
                 JobFinished(args, false);
             }
             catch (Exception ex)
             {
-                Crashes.TrackError(ex);
+                LogManager.GetCurrentClassLogger().Fatal(ex);
+                throw;
             }
             finally
             {
@@ -85,7 +85,7 @@ namespace MoneyFox.Droid.Jobs
         /// </summary>
         public void ScheduleTask()
         {
-            var builder = new JobInfo.Builder(CLEARPAYMENT_JOB_ID,
+            var builder = new JobInfo.Builder(CLEAR_PAYMENT_JOB_ID,
                                               new ComponentName(
                                                   this, Java.Lang.Class.FromType(typeof(ClearPaymentsJob))));
             // Execute all 60 Minutes

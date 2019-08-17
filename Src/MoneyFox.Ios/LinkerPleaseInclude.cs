@@ -3,7 +3,9 @@ using System.Windows.Input;
 using Foundation;
 using UIKit;
 
+// ReSharper disable UnusedVariable
 #pragma warning disable CA1822 // Mark members as static
+#pragma warning disable S1481 // Unused local variable
 namespace MoneyFox.iOS
 {
     // This class is never actually executed, but when Xamarin linking is enabled it does ensure types and properties
