@@ -14,6 +14,7 @@ using NLog;
 using Debug = System.Diagnostics.Debug;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
+#pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
 namespace MoneyFox.Droid.Jobs
 {
     /// <summary>

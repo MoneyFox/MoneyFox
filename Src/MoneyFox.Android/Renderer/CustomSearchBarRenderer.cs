@@ -23,9 +23,9 @@ namespace MoneyFox.Droid.Renderer
         {
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> args)
+        protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
-            base.OnElementChanged(args);
+            base.OnElementChanged(e);
             if (Control != null)
             {
                 SearchView searchView = Control;
@@ -37,7 +37,6 @@ namespace MoneyFox.Droid.Renderer
                 SetCursorColor(editText);
                 TrySetCursorPointerColor(editText);
 
-                var fontColor = (Color) Application.Current.Resources["PrimaryFontColor"];
                 UpdateSearchButtonColor();
                 UpdateCancelButtonColor();
             }
@@ -47,8 +46,8 @@ namespace MoneyFox.Droid.Renderer
         {
             try
             {
-                IntPtr intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
-                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
+                IntPtr intPtrTextViewClass = JNIEnv.FindClass(typeof(TextView));
+                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrTextViewClass, "mCursorDrawableRes", "I");
 
                 JNIEnv.SetField(editText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
             }

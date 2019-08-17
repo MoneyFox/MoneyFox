@@ -47,7 +47,7 @@ namespace MoneyFox.iOS
         private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 3600;
 
         /// <inheritdoc />
-        public override bool FinishedLaunching(UIApplication app, NSDictionary options)
+        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
             InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
@@ -64,12 +64,12 @@ namespace MoneyFox.iOS
             Popup.Init();
 
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
-            app.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
+            uiApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
             RunAppStart().FireAndForgetSafeAsync();
 
-            return base.FinishedLaunching(app, options);
+            return base.FinishedLaunching(uiApplication, launchOptions);
         }
 
         private void RegisterServices()
