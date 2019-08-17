@@ -4,7 +4,6 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
-using Microsoft.AppCenter.Crashes;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
@@ -15,6 +14,7 @@ using NLog;
 using Debug = System.Diagnostics.Debug;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
+#pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
 namespace MoneyFox.Droid.Jobs
 {
     /// <summary>

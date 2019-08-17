@@ -5,7 +5,6 @@ using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Presentation.ViewModels.Statistic;
-using NLog;
 
 namespace MoneyFox.Presentation
 {

@@ -10,7 +10,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         IBalanceViewModel BalanceViewModel { get; }
 
         IPaymentListViewActionViewModel ViewActionViewModel { get; }
-        
+
         AsyncCommand InitializeCommand { get; }
 
         RelayCommand<PaymentViewModel> EditPaymentCommand { get; }

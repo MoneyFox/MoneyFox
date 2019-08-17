@@ -2,7 +2,7 @@
 
 namespace MoneyFox.Presentation.Views
 {
-    public partial class SettingsPage 
+    public partial class SettingsPage
 	{
 		public SettingsPage ()
 		{

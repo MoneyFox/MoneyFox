@@ -45,6 +45,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             new StatisticEntry(512) {Label = "Eating or so?"},
         });
 
-        public AsyncCommand LoadedCommand { get; } = null;
+        public AsyncCommand LoadedCommand { get; }
     }
 }

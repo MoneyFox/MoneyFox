@@ -32,6 +32,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             new StatisticEntry(543) {Label = "Revenue"}
         });
 
-        public AsyncCommand LoadedCommand { get; } = null;
+        public AsyncCommand LoadedCommand { get; }
     }
 }
