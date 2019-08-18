@@ -9,19 +9,19 @@ using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
 using NLog;
-
+using UnhandledExceptionEventArgs = Windows.UI.Xaml.UnhandledExceptionEventArgs;
 
 namespace MoneyFox.Uwp
 {
-	public sealed partial class App
+    public sealed partial class App
     {
         private readonly Lazy<ActivationService> activationService;
 
         private ActivationService ActivationService => activationService.Value;
 
         public App()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
             Suspending += OnSuspending;
             UnhandledException += OnUnhandledException;
@@ -31,10 +31,7 @@ namespace MoneyFox.Uwp
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            if (!args.PrelaunchActivated)
-            {
-                await ActivationService.ActivateAsync(args);
-            }
+            if (!args.PrelaunchActivated) await ActivationService.ActivateAsync(args);
 
             OverrideTitleBarColor();
         }
@@ -59,7 +56,6 @@ namespace MoneyFox.Uwp
             await ActivationService.ActivateAsync(args);
         }
 
-
         private void OverrideTitleBarColor()
         {
             //draw into the title bar
@@ -72,7 +68,7 @@ namespace MoneyFox.Uwp
             viewTitleBar.ButtonForegroundColor = Colors.LightGray;
         }
 
-        private void OnUnhandledException(object sender, global::Windows.UI.Xaml.UnhandledExceptionEventArgs e)
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             LogManager.GetCurrentClassLogger().Fatal(e.Exception);
         }

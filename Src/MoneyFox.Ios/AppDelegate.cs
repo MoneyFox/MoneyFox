@@ -72,14 +72,14 @@ namespace MoneyFox.iOS
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
 
-        private void RegisterServices()
+        private static void RegisterServices()
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule<IosModule>();
             ViewModelLocator.RegisterServices(builder);
         }
 
-        protected async Task RunAppStart()
+        protected static async Task RunAppStart()
         {
             await SyncBackup();
             await ClearPayments();
@@ -156,7 +156,7 @@ namespace MoneyFox.iOS
             await CreateRecurringPayments();
         }
 
-        private async Task SyncBackup()
+        private static async Task SyncBackup()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
@@ -190,7 +190,7 @@ namespace MoneyFox.iOS
             }
         }
 
-        private async Task ClearPayments()
+        private static async Task ClearPayments()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             try
@@ -211,7 +211,7 @@ namespace MoneyFox.iOS
             }
         }
 
-        private async Task CreateRecurringPayments()
+        private static async Task CreateRecurringPayments()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
