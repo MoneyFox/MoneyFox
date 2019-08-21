@@ -11,6 +11,8 @@ using Android.Views;
 using Android.Widget;
 
 #pragma warning disable S1481 // Unused local variable
+#pragma warning disable S2325 // Methods and properties that don't access instance data should be static
+#pragma warning disable S3242 // Method parameters should be declared with base types
 namespace MoneyFox.Droid
 {
     /// <summary>

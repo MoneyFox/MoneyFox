@@ -89,7 +89,7 @@ namespace MoneyFox.Uwp.Services
         }
 
 
-        private void RegisterServices(NavigationServiceEx nav)
+        private static void RegisterServices(NavigationServiceEx nav)
         {
             var builder = new ContainerBuilder();
 
@@ -145,7 +145,7 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        private async Task StartupAsync()
+        private static async Task StartupAsync()
         {
             await ThemeSelectorService.SetRequestedThemeAsync();
             await RateDisplayService.ShowIfAppropriateAsync();

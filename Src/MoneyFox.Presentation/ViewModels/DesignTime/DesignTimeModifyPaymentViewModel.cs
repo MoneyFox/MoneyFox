@@ -30,7 +30,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             PaymentRecurrence.Yearly
         };
 
-        public PaymentViewModel SelectedPayment { get; } = null;
+        public PaymentViewModel SelectedPayment { get; }
         public string AmountString { get; }
 
         public ObservableCollection<AccountViewModel> ChargedAccounts { get; }
@@ -41,11 +41,11 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public string AccountHeader { get; }
         public DateTime Date { get; }
 
-        public RelayCommand SelectedItemChangedCommand { get; } = null;
-        public AsyncCommand SaveCommand { get; } = null;
-        public RelayCommand GoToSelectCategoryDialogCommand { get; } = null;
-        public RelayCommand DeleteCommand { get; } = null;
-        public RelayCommand CancelCommand { get; } = null;
-        public RelayCommand ResetCategoryCommand { get; } = null;
+        public RelayCommand SelectedItemChangedCommand { get; }
+        public AsyncCommand SaveCommand { get; }
+        public RelayCommand GoToSelectCategoryDialogCommand { get; }
+        public RelayCommand DeleteCommand { get; }
+        public RelayCommand CancelCommand { get; }
+        public RelayCommand ResetCategoryCommand { get; }
     }
 }

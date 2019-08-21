@@ -33,7 +33,7 @@ namespace MoneyFox.Domain.Exceptions
         public BackupException(string message, Exception exception) : base(message, exception)
         {
         }
-        
+
         protected BackupException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }

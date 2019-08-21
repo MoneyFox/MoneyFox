@@ -48,7 +48,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
         }
-        
+
         public IBalanceViewModel BalanceViewModel { get; }
 
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
@@ -121,7 +121,10 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if (accountViewModel == null) return;
+            if (accountViewModel == null)
+            {
+                return;
+            }
 
             navigationService.NavigateTo(ViewModelLocator.PaymentList, accountViewModel.Id);
         }

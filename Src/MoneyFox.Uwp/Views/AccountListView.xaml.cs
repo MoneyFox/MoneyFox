@@ -73,7 +73,10 @@ namespace MoneyFox.Uwp.Views
         private async void AddToStartMenu_ClickAsync(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;
-            if (!(element.DataContext is AccountViewModel account)) return;
+            if (!(element.DataContext is AccountViewModel account))
+            {
+                return;
+            }
 
             var liveTileManager = new LiveTileManager(ServiceLocator.Current.GetInstance<ICrudServicesAsync>());
 
@@ -89,12 +92,12 @@ namespace MoneyFox.Uwp.Views
                 tile.VisualElements.Square150x150Logo = new Uri(SQUARE_150_TILE_ICON);
                 tile.VisualElements.Wide310x150Logo = new Uri(WIDE_310_TILE_ICON);
                 tile.VisualElements.Square71x71Logo = new Uri(SQUARE_71_TILE_ICON);
-                bool ispinned = await tile.RequestCreateAsync();
-                if (ispinned)
+                bool successfulPinned = await tile.RequestCreateAsync();
+                if (successfulPinned)
                 {
                     await liveTileManager.UpdateSecondaryLiveTiles();
                 }
-            } 
+            }
             else
             {
                 await liveTileManager.UpdateSecondaryLiveTiles();
