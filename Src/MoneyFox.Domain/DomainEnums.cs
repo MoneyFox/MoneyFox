@@ -36,30 +36,4 @@
         BackgroundJob,
         About
     }
-
-    public enum TyleType
-    {
-        Income,
-        Expense,
-        Transfer
-    }
-
-    public enum ModifyOperation
-    {
-        Edit,
-        Delete
-    }
-
-    public enum AppTheme
-    {
-        Dark,
-        Light
-    }
-
-    public enum AppPlatform
-    {
-        Android,
-        iOS,
-        UWP
-    }
 }
