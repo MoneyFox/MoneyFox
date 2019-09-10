@@ -59,7 +59,7 @@
                         <ViewCell>
                             <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
                                          HorizontalOptions="FillAndExpand"
-                                         Margin="0,0,-20,-1"
+                                         Margin="0,0,-30,-1"
                                          Padding="0,18,0,6">
                                 <Label Text="{Binding Key}"
                                        VerticalOptions="CenterAndExpand"
