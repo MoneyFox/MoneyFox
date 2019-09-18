@@ -268,7 +268,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="MoneyFox.Uwp.ruleset" />
-    <None Include="MoneyFox.Uwp_StoreKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ApplyLogo.png" />
