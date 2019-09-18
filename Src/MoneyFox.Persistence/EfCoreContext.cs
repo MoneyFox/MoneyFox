@@ -19,6 +19,7 @@ namespace MoneyFox.Persistence
         public DbSet<Payment> Payments { get; set; }
         public DbSet<RecurringPayment> RecurringPayments { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         /// <summary>
         ///     Called when the models are created.
@@ -31,6 +32,7 @@ namespace MoneyFox.Persistence
 
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentTagConfiguration());
         }
 
         private static void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));  }

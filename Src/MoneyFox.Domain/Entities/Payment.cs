@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MoneyFox.Domain.Exceptions;
 
@@ -57,6 +58,8 @@ namespace MoneyFox.Domain.Entities
         public virtual Account TargetAccount { get; private set; }
 
         public virtual RecurringPayment RecurringPayment { get; private set; }
+
+        public virtual IList<PaymentTag> PaymentTags { get; private set; }
 
         public void UpdatePayment(DateTime date,
                                   double amount,

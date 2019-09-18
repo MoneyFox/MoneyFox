@@ -105,6 +105,19 @@ namespace MoneyFox.DataLayer.Migrations
                     b.ToTable("Payments");
                 });
 
+            modelBuilder.Entity("MoneyFox.DataLayer.Entities.PaymentTag", b =>
+                {
+                    b.Property<int>("PaymentId");
+
+                    b.Property<int>("TagId");
+
+                    b.HasKey("PaymentId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("PaymentTag");
+                });
+
             modelBuilder.Entity("MoneyFox.DataLayer.Entities.RecurringPayment", b =>
                 {
                     b.Property<int>("Id")
@@ -145,6 +158,18 @@ namespace MoneyFox.DataLayer.Migrations
                     b.ToTable("RecurringPayments");
                 });
 
+            modelBuilder.Entity("MoneyFox.DataLayer.Entities.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
+                });
+
             modelBuilder.Entity("MoneyFox.DataLayer.Entities.Payment", b =>
                 {
                     b.HasOne("MoneyFox.DataLayer.Entities.Category", "Category")
@@ -164,6 +189,19 @@ namespace MoneyFox.DataLayer.Migrations
                     b.HasOne("MoneyFox.DataLayer.Entities.Account", "TargetAccount")
                         .WithMany()
                         .HasForeignKey("TargetAccountId");
+                });
+
+            modelBuilder.Entity("MoneyFox.DataLayer.Entities.PaymentTag", b =>
+                {
+                    b.HasOne("MoneyFox.DataLayer.Entities.Payment", "Payment")
+                        .WithMany("PaymentTags")
+                        .HasForeignKey("PaymentId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MoneyFox.DataLayer.Entities.Tag", "Tag")
+                        .WithMany("PaymentTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MoneyFox.DataLayer.Entities.RecurringPayment", b =>

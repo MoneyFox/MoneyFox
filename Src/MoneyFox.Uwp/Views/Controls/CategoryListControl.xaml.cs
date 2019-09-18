@@ -5,11 +5,11 @@ using Windows.UI.Xaml.Input;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 
-namespace MoneyFox.Uwp.Views.UserControls
+namespace MoneyFox.Uwp.Views.Controls
 {
-    public partial class CategoryListUserControl
+    public partial class CategoryListControl
     {
-        public CategoryListUserControl()
+        public CategoryListControl()
         {
             InitializeComponent();
         }

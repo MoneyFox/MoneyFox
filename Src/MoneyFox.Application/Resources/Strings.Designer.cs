@@ -1964,6 +1964,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        public static string TagsLabel {
+            get {
+                return ResourceManager.GetString("TagsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Target Account.
         /// </summary>
         public static string TargetAccountLabel {
