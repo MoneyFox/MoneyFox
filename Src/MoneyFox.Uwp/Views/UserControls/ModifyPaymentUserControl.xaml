@@ -10,6 +10,7 @@
     xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
     xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
     xmlns:uwp="using:FontAwesome.UWP"
+    xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -85,34 +86,10 @@
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged}"
                          TextAlignment="Right" />
-                <Grid Margin="{StaticResource SmallTitleContentMargin}">
-                    <TextBox Header="{Binding Resources[CategoryLabel]}"
-                             IsReadOnly="True"
-                             Text="{Binding SelectedPayment.Category.Name,
-                                                UpdateSourceTrigger=PropertyChanged}">
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="GotFocus">
-                                <core:InvokeCommandAction
-                                    Command="{Binding GoToSelectCategoryDialogCommand, Mode=OneWay}" />
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                    </TextBox>
 
-                    <uwp:FontAwesome Icon="Times" 
-                                     Height="30"
-                                     Margin="0,0,10,0"
-                                     HorizontalAlignment="Right"
-                                     VerticalAlignment="Bottom" >
-                        
-                        <i:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="Tapped">
-                                <core:InvokeCommandAction Command="{Binding ResetCategoryCommand, Mode=OneWay}" />
-                            </core:EventTriggerBehavior>
-                        </i:Interaction.Behaviors>
-                        
-                    </uwp:FontAwesome>
+                <userControls:CategorySelectionUserControl />
+                <userControls:TagUserControl />
 
-                </Grid>
                 <DatePicker Margin="{StaticResource SmallTitleContentMargin}"
                             HorizontalAlignment="Left"
                             Date="{Binding SelectedPayment.Date,
