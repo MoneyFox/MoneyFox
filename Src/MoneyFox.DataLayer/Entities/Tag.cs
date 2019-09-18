@@ -12,11 +12,13 @@ namespace MoneyFox.DataLayer.Entities
 
         public Tag(string name)
         {
-            
+
         }
+
+        public int Id { get; private set; }
 
         public string Name { get; private set; }
 
-        public virtual List<Payment> Payments { get; set; }
+        public virtual IList<PaymentTag> PaymentTags { get; set; }
     }
 }

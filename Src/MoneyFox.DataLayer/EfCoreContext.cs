@@ -20,6 +20,7 @@ namespace MoneyFox.DataLayer
         public DbSet<Payment> Payments { get; set; }
         public DbSet<RecurringPayment> RecurringPayments { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         /// <summary>
         ///     This is called when before the db is access.
@@ -43,6 +44,7 @@ namespace MoneyFox.DataLayer
 
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentTagConfiguration());
         }
 
         private static void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));  }

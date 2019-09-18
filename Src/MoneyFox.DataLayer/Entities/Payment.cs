@@ -60,7 +60,7 @@ namespace MoneyFox.DataLayer.Entities
 
         public virtual RecurringPayment RecurringPayment { get; private set; }
 
-        public virtual List<Tag> Tags { get; private set; }
+        public virtual IList<PaymentTag> PaymentTags { get; private set; }
 
         public void UpdatePayment(DateTime date,
                                   double amount,
