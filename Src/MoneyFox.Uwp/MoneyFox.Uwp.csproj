@@ -235,14 +235,14 @@
     <Compile Include="Views\UserControls\AboutUserControl.xaml.cs">
       <DependentUpon>AboutUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
-      <DependentUpon>BalanceUserControl.xaml</DependentUpon>
+    <Compile Include="Views\Controls\BalanceControl.xaml.cs">
+      <DependentUpon>BalanceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\CategoryListUserControl.xaml.cs">
-      <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CategoryListControl.xaml.cs">
+      <DependentUpon>CategoryListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\CategorySelectionUserControl.xaml.cs">
-      <DependentUpon>CategorySelectionUserControl.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CategorySelectionControl.xaml.cs">
+      <DependentUpon>CategorySelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
       <DependentUpon>ModifyAccountUserControl.xaml</DependentUpon>
@@ -256,8 +256,8 @@
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\TagUserControl.xaml.cs">
-      <DependentUpon>TagUserControl.xaml</DependentUpon>
+    <Compile Include="Views\Controls\TagControl.xaml.cs">
+      <DependentUpon>TagControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsModule.cs" />
     <Compile Include="WindowsShellViewModel.cs" />
@@ -451,15 +451,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\BalanceUserControl.xaml">
+    <Page Include="Views\Controls\BalanceControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\CategoryListUserControl.xaml">
+    <Page Include="Views\Controls\CategoryListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\CategorySelectionUserControl.xaml">
+    <Page Include="Views\Controls\CategorySelectionControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -479,7 +479,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\TagUserControl.xaml">
+    <Page Include="Views\Controls\TagControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -586,6 +586,7 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

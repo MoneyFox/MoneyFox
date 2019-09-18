@@ -10,6 +10,7 @@
              xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
              xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
              xmlns:uwp="using:FontAwesome.UWP"
+             xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
              x:Name="PaymentControl"
              d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
@@ -59,7 +60,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <userControls:BalanceUserControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" Margin="{StaticResource MediumLeftRightMargin}" />
+        <controls:BalanceControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" Margin="{StaticResource MediumLeftRightMargin}" />
 
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>

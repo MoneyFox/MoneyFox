@@ -1,11 +1,11 @@
 ﻿using Windows.ApplicationModel;
 using MoneyFox.Presentation.ViewModels.DesignTime;
 
-namespace MoneyFox.Uwp.Views.UserControls
+namespace MoneyFox.Uwp.Views.Controls
 {
-    public sealed partial class BalanceUserControl
+    public sealed partial class BalanceControl
     {
-        public BalanceUserControl()
+        public BalanceControl()
         {
             InitializeComponent();
             if (DesignMode.DesignModeEnabled)

@@ -1,10 +1,10 @@
 ﻿using Windows.UI.Xaml.Controls;
 
-namespace MoneyFox.Uwp.Views.UserControls
+namespace MoneyFox.Uwp.Views.Controls
 {
-    public sealed partial class TagUserControl : UserControl
+    public sealed partial class TagControl : UserControl
     {
-        public TagUserControl()
+        public TagControl()
         {
             InitializeComponent();
 

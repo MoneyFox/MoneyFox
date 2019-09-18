@@ -11,6 +11,7 @@
     xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
     xmlns:uwp="using:FontAwesome.UWP"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -87,8 +88,8 @@
                                             UpdateSourceTrigger=PropertyChanged}"
                          TextAlignment="Right" />
 
-                <userControls:CategorySelectionUserControl />
-                <userControls:TagUserControl />
+                <controls:CategorySelectionControl />
+                <controls:TagControl />
 
                 <DatePicker Margin="{StaticResource SmallTitleContentMargin}"
                             HorizontalAlignment="Left"
