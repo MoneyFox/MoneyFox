@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 
-namespace MoneyFox.DataLayer.Entities
+namespace MoneyFox.Domain.Entities
 {
     public class Tag
     {

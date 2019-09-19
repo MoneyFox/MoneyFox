@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.DataLayer.Entities
+﻿namespace MoneyFox.Domain.Entities
 {
     public class PaymentTag
     {

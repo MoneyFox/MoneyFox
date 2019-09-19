@@ -12,6 +12,8 @@ namespace MoneyFox.Application.Interfaces
         DbSet<Payment> Payments { get; }
         DbSet<RecurringPayment> RecurringPayments { get; }
         DbSet<Category> Categories { get; }
+        DbSet<PaymentTag> PaymentTags { get; }
+        DbSet<Tag> Tags{ get; }
 
         Task<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
 
