@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AppCenter.Crashes;
+﻿using Microsoft.AppCenter.Crashes;
 using Xamarin.Essentials;
 
 namespace MoneyFox.BusinessLogic.Adapters
