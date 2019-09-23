@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="57598ApplySolutionsSoftwa.MoneyFox" Publisher="CN=Apply Solutions, O=Apply Solutions GmbH, C=CH" Version="6.0.2239.0" />
-  <mp:PhoneIdentity PhoneProductId="f9fdcc6f-3de4-40a0-a29a-9e71afbcc90b" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="57598ApplySolutionsSoftwa.MoneyFox" Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C" Version="6.0.2239.0" />
+  <mp:PhoneIdentity PhoneProductId="35981642-30d3-4479-b05c-5b24b127aa82" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>Money Fox</DisplayName>
     <PublisherDisplayName>Apply Solutions Software</PublisherDisplayName>
