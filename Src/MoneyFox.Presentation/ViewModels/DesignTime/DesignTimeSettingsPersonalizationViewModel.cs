@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Input;
 using MoneyFox.Application.Resources;
-using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

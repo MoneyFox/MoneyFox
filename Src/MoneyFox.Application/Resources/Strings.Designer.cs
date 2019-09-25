@@ -2027,6 +2027,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Today.
+        /// </summary>
+        public static string TodayLabel {
+            get {
+                return ResourceManager.GetString("TodayLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add transfer.
         /// </summary>
         public static string TransferHeader {

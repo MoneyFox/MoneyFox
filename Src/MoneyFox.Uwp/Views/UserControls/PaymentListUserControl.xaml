@@ -6,13 +6,12 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
-             xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-             xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
-             xmlns:designTime1="using:MoneyFox.Presentation.ViewModels.DesignTime"
-             xmlns:uwp="using:FontAwesome.UWP"
+             xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+             xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
              xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
+             xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
              x:Name="PaymentControl"
-             d:DataContext="{d:DesignInstance designTime1:DesignTimePaymentListViewModel,
+             d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -86,9 +85,13 @@
                         <DataTemplate>
                             <StackPanel Margin="0,30,0,0"
                                         Padding="{StaticResource SmallListItemPadding}">
+
+                                <userControls:TodayMarkerUserControl />
+
                                 <TextBlock Margin="3,0,0,7"
                                            Style="{ThemeResource HeaderStyle}"
                                            Text="{Binding Key}" />
+
                                 <ListView HorizontalAlignment="Stretch"
                                           Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                           Background="Transparent"
@@ -112,7 +115,7 @@
                                     </ListView.ItemContainerStyle>
 
                                     <ListView.ItemTemplate>
-                                        <DataTemplate x:DataType="viewModels1:PaymentViewModel">
+                                        <DataTemplate x:DataType="viewModels:PaymentViewModel">
                                             <Grid MinWidth="100"
                                                   Margin="{StaticResource SmallListItemMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"

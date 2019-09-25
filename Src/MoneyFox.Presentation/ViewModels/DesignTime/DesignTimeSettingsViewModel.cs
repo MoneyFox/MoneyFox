@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Models;
-using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

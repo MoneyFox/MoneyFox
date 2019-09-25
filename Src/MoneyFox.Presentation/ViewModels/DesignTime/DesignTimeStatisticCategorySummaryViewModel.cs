@@ -2,8 +2,8 @@
 using System.Globalization;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
+using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Statistic;
-using MoneyFox.ServiceLayer.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
