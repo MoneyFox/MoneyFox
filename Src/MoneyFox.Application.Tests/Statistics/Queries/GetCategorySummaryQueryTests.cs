@@ -59,11 +59,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             }, default));
 
             // Assert
-            result.CategoryOverviewItems.Count.ShouldEqual(4);
+            result.CategoryOverviewItems.Count.ShouldEqual(5);
             result.CategoryOverviewItems[0].Value.ShouldEqual(-90);
             result.CategoryOverviewItems[1].Value.ShouldEqual(-30);
-            result.CategoryOverviewItems[2].Value.ShouldEqual(-10);
-            result.CategoryOverviewItems[3].Value.ShouldEqual(100);
+            result.CategoryOverviewItems[2].Value.ShouldEqual(-30);
+            result.CategoryOverviewItems[3].Value.ShouldEqual(-10);
+            result.CategoryOverviewItems[4].Value.ShouldEqual(100);
         }
 
         [Fact]
@@ -156,7 +157,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             }, default));
 
             // Assert
-            result.CategoryOverviewItems[0].Value.ShouldEqual(60);
+            result.CategoryOverviewItems[0].Value.ShouldEqual(-60);
         }
 
         [Fact]
