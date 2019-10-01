@@ -2,8 +2,8 @@ using System;
 using System.Threading.Tasks;
 using Android.App;
 using AndroidHUD;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Droid.Services

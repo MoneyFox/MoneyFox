@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MockQueryable.Moq;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;

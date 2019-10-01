@@ -9,13 +9,13 @@ using Java.Lang;
 using Microsoft.Identity.Client;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
-using MoneyFox.BusinessLogic.FileStore;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Constants;
+using MoneyFox.Application;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using NLog;
 using Debug = System.Diagnostics.Debug;
+using MoneyFox.Application.Constants;
+using MoneyFox.Application.FileStore;
 using Exception = System.Exception;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 

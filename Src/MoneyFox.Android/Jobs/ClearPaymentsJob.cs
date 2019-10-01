@@ -4,11 +4,11 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
+using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer;
-using MoneyFox.Foundation;
+using MoneyFox.Persistence;
 using MoneyFox.Presentation.Facades;
 using NLog;
 using Debug = System.Diagnostics.Debug;
@@ -63,9 +63,9 @@ namespace MoneyFox.Droid.Jobs
             {
                 ExecutingPlatform.Current = AppPlatform.Android;
 
-                var context = new EfCoreContext();
+                var context = EfCoreContextFactory.Create();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
-                context.SaveChanges();
+                await context.SaveChangesAsync();
 
                 JobFinished(args, false);
             }

@@ -1,4 +1,3 @@
-using Android.App;
 using Android.Content;
 using Android.Net;
 using MoneyFox.Presentation.Interfaces;
@@ -18,7 +17,7 @@ namespace MoneyFox.Droid
         /// </summary>
         public void RateApp()
         {
-            var appPackageName = Application.Context.PackageName;
+            var appPackageName = Android.App.Application.Context.PackageName;
 
             try
             {
@@ -27,7 +26,7 @@ namespace MoneyFox.Droid
                 // Otherwise the runtime will block the execution and throw an exception
                 intent.AddFlags(ActivityFlags.NewTask);
 
-                Application.Context.StartActivity(intent);
+                Android.App.Application.Context.StartActivity(intent);
             }
             catch (ActivityNotFoundException)
             {
@@ -37,7 +36,7 @@ namespace MoneyFox.Droid
                 // Otherwise the runtime will block the execution and throw an exception
                 intent.AddFlags(ActivityFlags.NewTask);
 
-                Application.Context.StartActivity(intent);
+                Android.App.Application.Context.StartActivity(intent);
             }
         }
     }

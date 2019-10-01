@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation;
+﻿using MoneyFox.Application;
 using MoneyFox.Presentation;
 using MoneyFox.Presentation.Interfaces;
 

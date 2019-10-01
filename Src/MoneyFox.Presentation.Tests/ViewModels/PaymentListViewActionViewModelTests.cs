@@ -1,11 +1,11 @@
 ﻿using GalaSoft.MvvmLight.Views;
 using GenericServices;
-using MoneyFox.Foundation;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using Moq;
 using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Domain;
 using Xunit;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 

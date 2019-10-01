@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Models;
-using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
+using MoneyFox.Presentation.Models;
+using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.Converter;
 using Should;
 using Xunit;

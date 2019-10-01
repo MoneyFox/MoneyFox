@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Backup;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Presentation.Services

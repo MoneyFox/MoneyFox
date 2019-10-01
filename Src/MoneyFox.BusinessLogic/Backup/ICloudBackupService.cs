@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Domain.Exceptions;
 
 namespace MoneyFox.BusinessLogic.Backup
 {

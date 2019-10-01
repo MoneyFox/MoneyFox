@@ -1,17 +1,18 @@
-﻿using MoneyFox.Presentation.ViewModels.Interfaces;
+﻿using System.Threading.Tasks;
+using MoneyFox.Domain;
+using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.Dialogs
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AddPaymentPopup
-    {
-        public AddPaymentPopup()
-        {
-            InitializeComponent();
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class AddPaymentPopup
+	{
+		public AddPaymentPopup ()
+		{
+			InitializeComponent ();
 
             AddExpenseGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddExpenseGridClicked()) });
             AddIncomeGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async () => await AddIncomeGridClicked()) });

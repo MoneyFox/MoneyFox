@@ -154,6 +154,7 @@
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
+    <Compile Include="Converter\TodayMarkerVisibilityConverter.cs" />
     <Compile Include="Helpers\StringMatchConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
@@ -235,11 +236,14 @@
     <Compile Include="Views\UserControls\AboutUserControl.xaml.cs">
       <DependentUpon>AboutUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\BalanceUserControl.xaml.cs">
-      <DependentUpon>BalanceUserControl.xaml</DependentUpon>
+    <Compile Include="Views\Controls\BalanceControl.xaml.cs">
+      <DependentUpon>BalanceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\CategoryListUserControl.xaml.cs">
-      <DependentUpon>CategoryListUserControl.xaml</DependentUpon>
+    <Compile Include="Views\Controls\CategoryListControl.xaml.cs">
+      <DependentUpon>CategoryListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CategorySelectionControl.xaml.cs">
+      <DependentUpon>CategorySelectionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
       <DependentUpon>ModifyAccountUserControl.xaml</DependentUpon>
@@ -252,6 +256,12 @@
     </Compile>
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\TagControl.xaml.cs">
+      <DependentUpon>TagControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TodayMarkerUserControl.xaml.cs">
+      <DependentUpon>TodayMarkerUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsModule.cs" />
     <Compile Include="WindowsShellViewModel.cs" />
@@ -445,13 +455,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\BalanceUserControl.xaml">
+    <Page Include="Views\Controls\BalanceControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\CategoryListUserControl.xaml">
+    <Page Include="Views\Controls\CategoryListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CategorySelectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\UserControls\ModifyAccountUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -468,6 +482,14 @@
     <Page Include="Views\UserControls\PaymentListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\TagControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\TodayMarkerUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -539,17 +561,17 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
+      <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
+      <Name>MoneyFox.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj">
       <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
       <Name>MoneyFox.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj">
-      <Project>{E4573A57-1955-4EB4-B977-DF0D888A6089}</Project>
-      <Name>MoneyFox.DataLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
-      <Name>MoneyFox.Foundation</Name>
+    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
+      <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
+      <Name>MoneyFox.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
@@ -572,6 +594,7 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

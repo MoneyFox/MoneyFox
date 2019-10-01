@@ -248,6 +248,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
+      <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
+      <Name>MoneyFox.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj">
       <Project>{58FB652B-1B0E-420F-A380-B1B7699077B2}</Project>
       <Name>MoneyFox.BusinessDbAccess</Name>
@@ -256,13 +260,13 @@
       <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
       <Name>MoneyFox.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj">
-      <Project>{E4573A57-1955-4EB4-B977-DF0D888A6089}</Project>
-      <Name>MoneyFox.DataLayer</Name>
+    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
+      <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
+      <Name>MoneyFox.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{3040ffcd-98e4-4c02-867c-725c93ad38e8}</Project>
-      <Name>MoneyFox.Foundation</Name>
+    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
+      <Project>{20A511B0-4372-4AA9-B27D-C36E49A022FB}</Project>
+      <Name>MoneyFox.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7B5B021F-8C4A-4024-9CC0-04018829FD66}</Project>

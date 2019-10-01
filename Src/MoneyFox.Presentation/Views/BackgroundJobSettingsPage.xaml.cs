@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation.Resources;
+﻿using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Presentation.Views
 {

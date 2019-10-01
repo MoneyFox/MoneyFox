@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
+using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.Foundation;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.Uwp.Tasks
 {
@@ -25,10 +25,9 @@ namespace MoneyFox.Uwp.Tasks
 
             try
             {
-                var context = new EfCoreContext();
+                var context = EfCoreContextFactory.Create();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
-                    .CreatePaymentsUpToRecur()
-                    ;
+                    .CreatePaymentsUpToRecur();
                 await context.SaveChangesAsync();
             }
             catch (Exception ex)

@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Domain;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
@@ -51,8 +51,7 @@ namespace MoneyFox.Presentation.Services
         {
             return await crudServices.ReadManyNoTracked<AccountViewModel>()
                 .AreNotExcluded()
-                .SumAsync(x => x.CurrentBalance)
-                ;
+                .SumAsync(x => x.CurrentBalance);
         }
 
         /// <inheritdoc />
@@ -60,8 +59,7 @@ namespace MoneyFox.Presentation.Services
         {
             var excluded = await crudServices.ReadManyNoTracked<AccountViewModel>()
                 .AreExcluded()
-                .ToListAsync()
-                ;
+                .ToListAsync();
 
             var balance = await GetTotalBalance();
 
@@ -114,8 +112,7 @@ namespace MoneyFox.Presentation.Services
                 .AreNotCleared()
                 .HasAccountId(account.Id)
                 .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
-                .ToListAsync()
-                ;
+                .ToListAsync();
 
             foreach (var payment in paymentList)
 

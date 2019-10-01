@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp
                 return null;
             }
 
-            var isDarkTheme = Application.Current.RequestedTheme == ApplicationTheme.Dark;
+            var isDarkTheme = Windows.UI.Xaml.Application.Current.RequestedTheme == ApplicationTheme.Dark;
 
             if (negateResult)
             {

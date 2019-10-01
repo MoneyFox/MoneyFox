@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Statistic;

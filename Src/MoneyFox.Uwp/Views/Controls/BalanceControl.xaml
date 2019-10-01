@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="MoneyFox.Uwp.Views.Controls.BalanceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="using:MoneyFox.Uwp.Converter"
+             d:DesignHeight="50"
+             d:DesignWidth="400"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal">
+        <TextBlock x:Uid="TotalLabel"
+                   Margin="0,0,5,10"
+                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                   Text="Total: " />
+        <TextBlock Margin="0,0,5,0"
+                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                   Text="{Binding TotalBalance,
+                                  Mode=TwoWay,
+                                  Converter={StaticResource AmountFormatConverter},
+                                  UpdateSourceTrigger=PropertyChanged}" />
+        <TextBlock Margin="0,0,5,0"
+                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                   Text=" / " />
+        <TextBlock Margin="0,0,5,0"
+                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                   Text="{Binding EndOfMonthBalance,
+                                  Mode=TwoWay,
+                                  Converter={StaticResource AmountFormatConverter},
+                                  UpdateSourceTrigger=PropertyChanged}" />
+    </StackPanel>
+</UserControl>

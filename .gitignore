@@ -173,12 +173,10 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 *lock.json
-Src/MoneyFox.Droid/Resources/Resource.Designer.cs
 Src/MoneyFox.Windows.Tests/MoneyFox.Windows.Tests_TemporaryKey.pfx
 Src/MoneyFox.Windows.Tests/MoneyFox.Windows.Tests_TemporaryKey.pfx
 Src/MoneyFox.Windows/_pkginfo.txt
 *.appx
-Src/MoneyFox.Droid/Resources/Resource.Designer.cs
 .vs/
 *.targets
 *.props
@@ -188,3 +186,4 @@ MoneyFox.Droid.nuget.targets
 Src/.sonarlint
 Src/.sonarqube
 Src/.cr
+Src/MoneyFox.Android.Infrastructure/Resources/Resource.designer.cs

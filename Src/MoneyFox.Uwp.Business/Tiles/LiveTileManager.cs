@@ -9,10 +9,10 @@ using Windows.UI.StartScreen;
 using GenericServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Toolkit.Uwp.Notifications;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.ViewModels;
 using NLog;
+using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp.Business.Tiles
 {

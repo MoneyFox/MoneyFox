@@ -9,6 +9,7 @@
       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
       DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
       mc:Ignorable="d">
 
@@ -106,7 +107,7 @@
                    Text="Accounts"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <userControls:BalanceUserControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
+        <controls:BalanceControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
         <SemanticZoom Grid.Row="1"
                       Margin="{StaticResource NegativeLargeLeftRightMarginWithTopMargin}">

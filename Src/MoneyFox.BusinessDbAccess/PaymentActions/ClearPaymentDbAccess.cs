@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Application.Interfaces;
 using MoneyFox.BusinessDbAccess.QueryObjects;
-using MoneyFox.DataLayer;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
 {
@@ -18,9 +18,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
     public class ClearPaymentDbAccess : IClearPaymentDbAccess
     {
-        private readonly EfCoreContext context;
+        private readonly IEfCoreContext context;
 
-        public ClearPaymentDbAccess(EfCoreContext context)
+        public ClearPaymentDbAccess(IEfCoreContext context)
         {
             this.context = context;
         }
@@ -32,8 +32,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
                 .Include(x => x.TargetAccount)
                 .AsQueryable()
                 .AreNotCleared()
-                .ToListAsync()
-                ;
+                .ToListAsync();
         }
     }
 }
