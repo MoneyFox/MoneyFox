@@ -12,7 +12,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
         /// <inheritdoc />
-        public IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; } = new IncomeExpenseBalanceViewModel {TotalIncome = 400, TotalSpent = 600};
+        public IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; } = new IncomeExpenseBalanceViewModel { TotalEarned = 400, TotalSpent = 600};
 
         public ObservableCollection<CategoryOverviewViewModel> CategorySummary => new ObservableCollection<CategoryOverviewViewModel>
         {

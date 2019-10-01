@@ -65,7 +65,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
             IncomeExpenseBalance = new IncomeExpenseBalanceViewModel
             {
-                TotalIncome = categorySummaryModel.TotalEarned,
+                TotalEarned = categorySummaryModel.TotalEarned,
                 TotalSpent = categorySummaryModel.TotalSpent
             };
         }

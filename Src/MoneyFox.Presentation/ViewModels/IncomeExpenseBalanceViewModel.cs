@@ -4,16 +4,16 @@ namespace MoneyFox.Presentation.ViewModels
 {
     public class IncomeExpenseBalanceViewModel : BaseViewModel
     {
-        private decimal totalIncome;
+        private decimal totalEarned;
         private decimal totalSpent;
 
-        public decimal TotalIncome
+        public decimal TotalEarned
         {
-            get => totalIncome;
+            get => totalEarned;
             set
             {
-                if(totalIncome == value) return;
-                totalIncome = value;
+                if(totalEarned == value) return;
+                totalEarned = value;
                 RaisePropertyChanged();
             }
         }

@@ -19,7 +19,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converter:AmountFormatDecimalConverter x:Key="AmountValueConverter" />
+            <converter:AmountFormatConverter x:Key="AmountValueConverter" />
             <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
