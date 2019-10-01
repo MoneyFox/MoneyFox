@@ -6,6 +6,7 @@
                       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       xmlns:i="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                       SizeChanged="StatisticCategorySummaryView_OnSizeChanged"
@@ -34,9 +35,12 @@
                    Text="Category Summary"
                    Margin="{StaticResource MediumLeftRightMargin}"
                    Style="{ThemeResource UwpPageTitleStyle}" />
-        
-        <Grid Grid.Row="1" x:Name="ContentGrid" />
 
+        <StackPanel Grid.Row="1" >
+            <controls:IncomeExpenseBalanceUserControl
+                Margin="{StaticResource MediumLeftRightMargin}" />
+            <Grid x:Name="ContentGrid" />
+        </StackPanel>
         <CommandBar Grid.Row="2"
                     Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal">

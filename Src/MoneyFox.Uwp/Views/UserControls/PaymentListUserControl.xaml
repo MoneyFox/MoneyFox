@@ -53,7 +53,7 @@
     </UserControl.Resources>
 
     <Grid Margin="{StaticResource NegativeMediumLeftRightMargin}">
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -161,7 +161,7 @@
                                                                             VerticalAlignment="Center"
                                                                             Symbol="Switch" />
                                                                 </Viewbox>
-                                                                
+
                                                             </Grid>
                                                             <Grid HorizontalAlignment="Right"
                                                                   Margin="6,0,0,0"
@@ -178,7 +178,7 @@
                                                                   Margin="6,0,0,0"
                                                                   Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-                                                                <Viewbox MaxWidth="15" MaxHeight="15"> 
+                                                                <Viewbox MaxWidth="15" MaxHeight="15">
                                                                     <SymbolIcon HorizontalAlignment="Center"
                                                                             VerticalAlignment="Center"
                                                                             Symbol="Accept" />

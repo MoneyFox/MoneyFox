@@ -143,6 +143,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\AmountFormatDecimalConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ClickConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
@@ -244,6 +245,9 @@
     </Compile>
     <Compile Include="Views\Controls\CategorySelectionControl.xaml.cs">
       <DependentUpon>CategorySelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\IncomeExpenseBalanceUserControl.xaml.cs">
+      <DependentUpon>IncomeExpenseBalanceUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
       <DependentUpon>ModifyAccountUserControl.xaml</DependentUpon>
@@ -464,6 +468,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\CategorySelectionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\IncomeExpenseBalanceUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
