@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Application.Statistics.Models;
-using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -19,11 +17,11 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
     [ExcludeFromCodeCoverage]
-    public class GetCategorySpreadingQueryHandlerTests : IDisposable
+    public class GetCategorySpreadingQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetCategorySpreadingQueryHandlerTests()
+        public GetCategorySpreadingQueryTests()
         {
             context = TestEfCoreContextFactory.Create();
         }

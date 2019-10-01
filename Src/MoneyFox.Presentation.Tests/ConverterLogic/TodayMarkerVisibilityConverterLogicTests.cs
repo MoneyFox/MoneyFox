@@ -8,30 +8,33 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
     public class TodayMarkerVisibilityConverterLogicTests
     {
         [Fact]
-        public void ShowMarker_Today_True() {
+        public void ShowMarker_Today_True()
+        {
             // Arrange
             // Act
-            var result = TodayMarkerVisibilityConverterLogic.ShowMarker(DateTime.Now);
+            bool result = TodayMarkerVisibilityConverterLogic.ShowMarker(DateTime.Now);
 
             // Assert
             result.ShouldBeTrue();
         }
-        
+
         [Fact]
-        public void ShowMarker_Tomorrow_True() {
+        public void ShowMarker_Tomorrow_True()
+        {
             // Arrange
             // Act
-            var result = TodayMarkerVisibilityConverterLogic.ShowMarker(DateTime.Now.AddDays(1));
+            bool result = TodayMarkerVisibilityConverterLogic.ShowMarker(DateTime.Now.AddDays(1));
 
             // Assert
             result.ShouldBeFalse();
         }
 
         [Fact]
-        public void ShowMarker_Yesterday_True() {
+        public void ShowMarker_Yesterday_True()
+        {
             // Arrange
             // Act
-            var result = TodayMarkerVisibilityConverterLogic.ShowMarker(DateTime.Now.AddDays(-1));
+            bool result = TodayMarkerVisibilityConverterLogic.ShowMarker(DateTime.Now.AddDays(-1));
 
             // Assert
             result.ShouldBeFalse();

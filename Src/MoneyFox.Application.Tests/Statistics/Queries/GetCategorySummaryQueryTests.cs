@@ -14,11 +14,11 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
     [ExcludeFromCodeCoverage]
-    public class GetCategorySummaryQueryHandlerTests : IDisposable
+    public class GetCategorySummaryQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetCategorySummaryQueryHandlerTests()
+        public GetCategorySummaryQueryTests()
         {
             context = TestEfCoreContextFactory.Create();
         }
@@ -52,7 +52,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
+            var result = (await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
             {
                     StartDate = DateTime.Today.AddDays(-3),
                     EndDate = DateTime.Today.AddDays(3)
@@ -89,7 +89,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
+            var result = (await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
             {
                     StartDate = DateTime.Today.AddDays(-3),
                     EndDate = DateTime.Today.AddDays(3)
@@ -124,7 +124,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
+            var result = (await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
                 {
                     StartDate = DateTime.Today.AddDays(-3),
                     EndDate = DateTime.Today.AddDays(3)

@@ -808,4 +808,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="TodayLabel" xml:space="preserve">
     <value>Today</value>
   </data>
+  <data name="NoCategoryLabel" xml:space="preserve">
+    <value>[No Category]</value>
+  </data>
 </root>

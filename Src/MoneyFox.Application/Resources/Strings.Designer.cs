@@ -1448,6 +1448,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to [No Category].
+        /// </summary>
+        public static string NoCategoryLabel {
+            get {
+                return ResourceManager.GetString("NoCategoryLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string NoLabel {
