@@ -47,7 +47,7 @@ namespace MoneyFox.BusinessLogic.StatisticDataProvider
                 };
                 categoryOverviewItems.Add(categoryOverViewItem);
             }
-            
+
             CalculatePercentage(categoryOverviewItems);
 
             StatisticUtilities.RoundStatisticItems(categoryOverviewItems);

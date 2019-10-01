@@ -7,6 +7,7 @@
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
              Visual="Material"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
@@ -15,13 +16,22 @@
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeStatisticCategorySummaryViewModel />
     </d:ContentPage.BindingContext>
-    
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:AmountFormatConverter x:Key="AmountValueConverter" />
             <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="{Binding Resources[CategorySummaryTitle]}"
+                   Style="{StaticResource SmallPageTitle}" />
+
+            <userControls:IncomeExpenseUserControl BindingContext="{Binding IncomeExpenseBalance}"  />
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <Grid x:Name="MainLayout">

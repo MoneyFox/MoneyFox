@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.StatisticDataProvider;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.ServiceLayer.Facades;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -19,6 +18,19 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         {
             this.categorySummaryDataDataProvider = categorySummaryDataDataProvider;
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>();
+            IncomeExpenseBalance = new IncomeExpenseBalanceViewModel();
+        }
+
+        private IncomeExpenseBalanceViewModel incomeExpenseBalance;
+        public IncomeExpenseBalanceViewModel IncomeExpenseBalance
+        {
+            get => incomeExpenseBalance;
+            set
+            {
+                if(incomeExpenseBalance == value) return;
+                incomeExpenseBalance = value;
+                RaisePropertyChanged();
+            }
         }
 
         public ObservableCollection<CategoryOverviewViewModel> CategorySummary
@@ -40,7 +52,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            var summaryItems = await categorySummaryDataDataProvider.GetValues(StartDate, EndDate);
+            var summaryItems = (await categorySummaryDataDataProvider.GetValues(StartDate, EndDate)).ToList();
 
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
                 summaryItems.Select(x => new CategoryOverviewViewModel
@@ -50,6 +62,9 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                     Label = x.Label,
                     Percentage = x.Percentage
                 }));
+
+            IncomeExpenseBalance.TotalSpent = summaryItems.Where(x => x.Value < 0).Sum(x => x.Value);
+            IncomeExpenseBalance.TotalSpent = summaryItems.Where(x => x.Value > 0).Sum(x => x.Value);
         }
     }
 }
