@@ -56,8 +56,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 CalculatePercentage(categoryOverviewItems);
                 StatisticUtilities.RoundStatisticItems(categoryOverviewItems);
 
-                return new CategorySummaryModel( Convert.ToDecimal(categoryOverviewItems.Where(x => x.Value < 0).Sum(x => x.Value)),
-                                                 Convert.ToDecimal(categoryOverviewItems.Where(x => x.Value > 0).Sum(x => x.Value)),
+                return new CategorySummaryModel( Convert.ToDecimal(categoryOverviewItems.Where(x => x.Value > 0).Sum(x => x.Value)),
+                                                 Convert.ToDecimal(categoryOverviewItems.Where(x => x.Value < 0).Sum(x => x.Value)),
                                                 categoryOverviewItems.Where(x => Math.Abs(x.Value) > 0.1)
                                                                      .OrderBy(x => x.Value)
                                                                      .ToList());
