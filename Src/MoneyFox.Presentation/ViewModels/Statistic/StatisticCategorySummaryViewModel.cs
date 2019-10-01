@@ -51,10 +51,10 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            var summaryItems = await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
+            CategorySummaryModel categorySummaryModel = await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
 
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
-                summaryItems.Select(x => new CategoryOverviewViewModel
+                categorySummaryModel.CategoryOverviewItems.Select(x => new CategoryOverviewViewModel
                 {
                     Value = x.Value,
                     Average = x.Average,
@@ -62,8 +62,12 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                     Percentage = x.Percentage
                 }));
 
-            IncomeExpenseBalance.TotalSpent = summaryItems.Where(x => x.Value < 0).Sum(x => x.Value);
-            IncomeExpenseBalance.TotalSpent = summaryItems.Where(x => x.Value > 0).Sum(x => x.Value);
+
+            IncomeExpenseBalance = new IncomeExpenseBalanceViewModel
+            {
+                TotalIncome = categorySummaryModel.TotalEarned,
+                TotalSpent = categorySummaryModel.TotalSpent
+            };
         }
     }
 }

@@ -4,26 +4,26 @@ namespace MoneyFox.Presentation.ViewModels
 {
     public class IncomeExpenseBalanceViewModel : BaseViewModel
     {
-        private double totalIncome;
-        private double totalSpent;
+        private decimal totalIncome;
+        private decimal totalSpent;
 
-        public double TotalIncome
+        public decimal TotalIncome
         {
             get => totalIncome;
             set
             {
-                if(Math.Abs(totalIncome - value) < 0.01) return;
+                if(totalIncome == value) return;
                 totalIncome = value;
                 RaisePropertyChanged();
             }
         }
 
-        public double TotalSpent
+        public decimal TotalSpent
         {
             get => totalSpent;
             set
             {
-                if (Math.Abs(totalSpent - value) < 0.01) return;
+                if (totalSpent == value) return;
                 totalSpent = value;
                 RaisePropertyChanged();
             }

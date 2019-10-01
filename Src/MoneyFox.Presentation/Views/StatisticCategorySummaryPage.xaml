@@ -19,7 +19,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <converter:AmountFormatConverter x:Key="AmountValueConverter" />
+            <converter:AmountFormatDecimalConverter x:Key="AmountValueConverter" />
             <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -29,7 +29,7 @@
             <Label Text="{Binding Resources[CategorySummaryTitle]}"
                    Style="{StaticResource SmallPageTitle}" />
 
-            <userControls:IncomeExpenseUserControl BindingContext="{Binding IncomeExpenseBalance}"  />
+            <userControls:IncomeExpenseBalanceUserControl BindingContext="{Binding IncomeExpenseBalance}"  />
         </StackLayout>
     </NavigationPage.TitleView>
 
