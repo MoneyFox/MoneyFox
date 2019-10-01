@@ -34,11 +34,13 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 categoryOverviewItems = new List<CategoryOverviewItem>();
 
                 paymentLastTwelveMonths = await context.Payments
+                                                       .Include(x => x.Category)
                                                        .Where(x => x.Date.Date >= DateTime.Today.AddMonths(-12))
                                                        .Where(x => x.Type != PaymentType.Transfer)
                                                        .ToListAsync(cancellationToken);
 
                 List<Payment> paymentsInTimeRange = await context.Payments
+                                                                 .Include(x => x.Category)
                                                                  .Where(x => x.Date.Date >= request.StartDate.Date && x.Date.Date <= request.EndDate.Date)
                                                                  .Where(x => x.Type != PaymentType.Transfer)
                                                                  .ToListAsync(cancellationToken);
@@ -66,7 +68,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 var categoryOverViewItem = new CategoryOverviewItem
                 {
                     Label = category.Name,
-                    Value = payments.Where(x => x.Category.Id == category.Id)
+                    Value = payments.Where(x => x.Category != null)
+                                    .Where(x => x.Category.Id == category.Id)
                                     .Where(x => x.Type != PaymentType.Transfer)
                                     .Sum(x => x.Type == PaymentType.Expense
                                              ? -x.Amount
