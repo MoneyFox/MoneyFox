@@ -39,8 +39,10 @@
         <StackPanel Grid.Row="1" >
             <controls:IncomeExpenseBalanceUserControl
                 Margin="{StaticResource MediumLeftRightMargin}" />
+
             <Grid x:Name="ContentGrid" />
         </StackPanel>
+
         <CommandBar Grid.Row="2"
                     Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal">
