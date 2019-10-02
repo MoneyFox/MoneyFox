@@ -55,10 +55,13 @@
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />
     <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="5.0.0" />
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
     <PackageReference Include="EfCore.GenericServices" Version="2.0.3" />
+    <PackageReference Include="MediatR" Version="7.0.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.3.1" />
     <PackageReference Include="MoneyFox.Microcharts.Forms" Version="1.0.0.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="NLog" Version="4.6.7" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
     <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
@@ -66,8 +69,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj" />
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -95,16 +96,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Style\DarkTheme.xaml.cs">
-      <DependentUpon>DarkTheme.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="UserControls\PaymentListBalanceUserControl.xaml.cs">
-      <DependentUpon>PaymentListBalanceUserControl.xaml</DependentUpon>
+    <Compile Update="UserControls\IncomeExpenseBalanceUserControl.xaml.cs">
+      <DependentUpon>IncomeExpenseBalanceUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="Style\LightTheme.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserControls\CategoryOverviewSummaryUserControl.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="UserControls\IncomeExpenseBalanceUserControl.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="UserControls\ModifyAccountUserControl.xaml">

@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Resources;
 
-namespace MoneyFox.ServiceLayer.Utilities
+namespace MoneyFox.Presentation.Utilities
 {
     /// <summary>
     ///     Provides Access to the localized Resources.
@@ -14,7 +14,7 @@ namespace MoneyFox.ServiceLayer.Utilities
         private readonly ResourceManager resourceManager;
         private readonly CultureInfo currentCultureInfo;
 
-        public string this[string key] => resourceManager.GetString(key, currentCultureInfo);
+        public string this[string key] => resourceManager.GetString(key, currentCultureInfo) ?? key;
 
         public LocalizedResources(Type resource, string language = null)
             : this(resource, new CultureInfo(language ?? DEFAULT_LANGUAGE))

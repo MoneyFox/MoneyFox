@@ -6,15 +6,49 @@
                       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                       xmlns:i="using:Microsoft.Xaml.Interactivity"
                       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
+                      xmlns:converter="using:MoneyFox.Uwp.Converter"
+                      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
                       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
-                      SizeChanged="StatisticCategorySummaryView_OnSizeChanged"
                       mc:Ignorable="d"
                       DataContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}">
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeStatisticCategorySummaryViewModel />
     </d:MvxWindowsPage.DataContext>
+
+    <Page.Resources>
+        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+
+        <DataTemplate x:Key="CategoryOverviewItemTemplate"
+                      x:DataType="viewModels:CategoryOverviewViewModel">
+            <StackPanel HorizontalAlignment="Stretch"
+                        Margin="{StaticResource SmallListItemMargin}"
+                        Background="{ThemeResource ListItemBrush}">
+
+                <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
+                            Padding="{StaticResource SmallListItemPadding}">
+                    <Grid HorizontalAlignment="Stretch">
+                        <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                                   Text="{x:Bind Label}"
+                                   TextTrimming="CharacterEllipsis" />
+                        <TextBlock HorizontalAlignment="Right"
+                                   Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                                   Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
+                                   TextAlignment="Right" />
+                    </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                   Text="{Binding Resources[MonthlyAverageLabel]}" />
+                        <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                   Margin="3,0,0,0"
+                                   Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
 
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -34,8 +68,26 @@
                    Text="Category Summary"
                    Margin="{StaticResource MediumLeftRightMargin}"
                    Style="{ThemeResource UwpPageTitleStyle}" />
-        
-        <Grid Grid.Row="1" x:Name="ContentGrid" />
+
+        <StackPanel Grid.Row="1" >
+            <controls:IncomeExpenseBalanceUserControl DataContext="{Binding IncomeExpenseBalance}"
+                                                      Margin="{StaticResource MediumLeftRightMargin}" />
+
+            <ListView IsItemClickEnabled="True"
+                      IsSynchronizedWithCurrentItem="False"
+                      Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                      ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
+                      ItemsSource="{Binding CategorySummary}">
+
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+
+            </ListView>
+        </StackPanel>
 
         <CommandBar Grid.Row="2"
                     Style="{ThemeResource DefaultCommandBar}"

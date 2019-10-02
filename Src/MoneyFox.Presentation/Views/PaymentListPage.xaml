@@ -7,7 +7,7 @@
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
+             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels"
              x:Class="MoneyFox.Presentation.Views.PaymentListPage"
              Visual="Material"
              Title="{Binding Title}"
@@ -37,13 +37,9 @@
             <Setter Property="TextColor" Value="{DynamicResource DeemphasizedColor}" />
         </Style>
 
-        <Style x:Key="SmallPageTitle" TargetType="Label">
-            <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
-            <Setter Property="TextColor" Value="White" />
-        </Style>
-
         <ResourceDictionary>
             <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+            <converter:TodayMarkerVisibilityConverter x:Key="TodayMarkerVisibilityConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -70,8 +66,14 @@
                         <ViewCell>
                             <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}"
                                          Margin="0,0,0,-1">
+
+                                <RelativeLayout IsVisible="{Binding Key, Converter={StaticResource TodayMarkerVisibilityConverter}}" Margin="10,10,10,10">
+                                    <BoxView HeightRequest="1" WidthRequest="400" BackgroundColor="{DynamicResource AccentColor}"/>
+                                </RelativeLayout>
+
                                 <Label Text="{Binding Key}"
-                                       VerticalOptions="CenterAndExpand"
+                                       VerticalOptions="EndAndExpand"
+                                       Margin="6,0,0,10"
                                        Style="{StaticResource ListGroupHeaderStyle}" />
                             </StackLayout>
                         </ViewCell>

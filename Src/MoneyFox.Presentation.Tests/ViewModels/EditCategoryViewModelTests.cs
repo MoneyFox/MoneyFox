@@ -1,7 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using GenericServices;
-using MoneyFox.Foundation.Resources;
+using AutoMapper;
+using MediatR;
+using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
@@ -13,32 +16,59 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class EditCategoryViewModelTests
     {
         [Fact]
-        public async Task Prepare_CategoryLoaded()
+        public async Task Initialize_MapperCalled()
         {
             // Arrange
             const int categoryId = 99;
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
-            crudServiceMock.Setup(x => x.ReadSingleAsync<CategoryViewModel>(It.IsAny<int>())).ReturnsAsync(new CategoryViewModel());
+            var mediatorMock = new Mock<IMediator>();
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetCategoryByIdQuery>(), default)).ReturnsAsync(new Category("asd"));
 
-            var editAccountVm = new EditCategoryViewModel(crudServiceMock.Object, null, null, null, null);
+            var mapperMock = new Mock<IMapper>();
+            mapperMock.Setup(x => x.Map<CategoryViewModel>(It.IsAny<Category>())).Returns(new CategoryViewModel());
+
+            var editAccountVm = new EditCategoryViewModel(mediatorMock.Object, null, null, null, null, mapperMock.Object);
 
             // Act
             editAccountVm.CategoryId = categoryId;
             await editAccountVm.InitializeCommand.ExecuteAsync();
 
             // Assert
-            crudServiceMock.Verify(x => x.ReadSingleAsync<CategoryViewModel>(categoryId), Times.Once);
+            mapperMock.Verify(x => x.Map<CategoryViewModel>(It.IsAny<Category>()), Times.Once);
         }
 
         [Fact]
-        public async Task Prepare_Title_Set()
+        public async Task Initialize_CategoryLoaded()
         {
             // Arrange
             const int categoryId = 99;
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
-            crudServiceMock.Setup(x => x.ReadSingleAsync<CategoryViewModel>(It.IsAny<int>())).ReturnsAsync(new CategoryViewModel());
+            var mediatorMock = new Mock<IMediator>();
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetCategoryByIdQuery>(), default)).ReturnsAsync(new Category("asd"));
 
-            var editAccountVm = new EditCategoryViewModel(crudServiceMock.Object, null, null, null, null);
+            var mapperMock = new Mock<IMapper>();
+            mapperMock.Setup(x => x.Map<CategoryViewModel>(It.IsAny<Category>())).Returns(new CategoryViewModel());
+
+            var editAccountVm = new EditCategoryViewModel(mediatorMock.Object, null, null, null, null, mapperMock.Object);
+
+            // Act
+            editAccountVm.CategoryId = categoryId;
+            await editAccountVm.InitializeCommand.ExecuteAsync();
+
+            // Assert
+            mediatorMock.Verify(x => x.Send(It.IsAny<GetCategoryByIdQuery>(), default), Times.Once);
+        }
+
+        [Fact]
+        public async Task Initialize_Title_Set()
+        {
+            // Arrange
+            const int categoryId = 99;
+            var mediatorMock = new Mock<IMediator>();
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetCategoryByIdQuery>(), default)).ReturnsAsync(new Category("asd"));
+
+            var mapperMock = new Mock<IMapper>();
+            mapperMock.Setup(x => x.Map<CategoryViewModel>(It.IsAny<Category>())).Returns(new CategoryViewModel());
+
+            var editAccountVm = new EditCategoryViewModel(mediatorMock.Object, null, null, null, null, mapperMock.Object);
 
             // Act
             editAccountVm.CategoryId = categoryId;

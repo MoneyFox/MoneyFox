@@ -12,6 +12,11 @@
             <ResourceDictionary Source="Style/LightTheme.xaml" />
 
             <!-- Control Styles -->
+            <Style x:Key="SmallPageTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="White" />
                 <Setter Property="BarTextColor" Value="White" />

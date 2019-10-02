@@ -89,7 +89,6 @@
                          TextAlignment="Right" />
 
                 <controls:CategorySelectionControl />
-                <controls:TagControl />
 
                 <DatePicker Margin="{StaticResource SmallTitleContentMargin}"
                             HorizontalAlignment="Left"

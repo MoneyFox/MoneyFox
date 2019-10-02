@@ -1,11 +1,13 @@
-﻿using MoneyFox.Foundation.Exceptions;
-using MoneyFox.Presentation.Groups;
+﻿using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.ViewModels;
 using System;
+using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Domain.Exceptions;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Groups
 {
+    [ExcludeFromCodeCoverage]
     public class DateListGroupCollectionTests
     {
         [Fact]

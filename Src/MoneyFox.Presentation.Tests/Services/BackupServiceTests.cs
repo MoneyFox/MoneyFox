@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.BusinessLogic.Backup;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using Moq;

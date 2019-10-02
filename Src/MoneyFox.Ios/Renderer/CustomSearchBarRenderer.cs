@@ -1,4 +1,4 @@
-﻿using MoneyFox.Foundation;
+﻿using MoneyFox.Application;
 using MoneyFox.iOS.Renderer;
 using MoneyFox.Presentation;
 using UIKit;

@@ -8,6 +8,8 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     /// </summary>
     public interface IStatisticCategorySummaryViewModel
     {
+        IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; }
+
         /// <summary>
         ///     The statistic items to display.
         /// </summary>

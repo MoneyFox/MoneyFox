@@ -19,7 +19,7 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>92B19200C9D940A0C0CA35F78F13EF9846983135</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>D48753F74FD7E418AD5C19FDB492243DF58D9016</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
@@ -143,6 +143,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converter\AmountFormatDecimalConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ClickConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
+    <Compile Include="Converter\TodayMarkerVisibilityConverter.cs" />
     <Compile Include="Helpers\StringMatchConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
@@ -244,6 +246,9 @@
     <Compile Include="Views\Controls\CategorySelectionControl.xaml.cs">
       <DependentUpon>CategorySelectionControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\IncomeExpenseBalanceUserControl.xaml.cs">
+      <DependentUpon>IncomeExpenseBalanceUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
       <DependentUpon>ModifyAccountUserControl.xaml</DependentUpon>
     </Compile>
@@ -258,6 +263,9 @@
     </Compile>
     <Compile Include="Views\Controls\TagControl.xaml.cs">
       <DependentUpon>TagControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserControls\TodayMarkerUserControl.xaml.cs">
+      <DependentUpon>TodayMarkerUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsModule.cs" />
     <Compile Include="WindowsShellViewModel.cs" />
@@ -463,6 +471,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\IncomeExpenseBalanceUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\UserControls\ModifyAccountUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -480,6 +492,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\TagControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserControls\TodayMarkerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -553,17 +569,17 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
+      <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
+      <Name>MoneyFox.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj">
       <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
       <Name>MoneyFox.BusinessLogic</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj">
-      <Project>{E4573A57-1955-4EB4-B977-DF0D888A6089}</Project>
-      <Name>MoneyFox.DataLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Foundation\MoneyFox.Foundation.csproj">
-      <Project>{3040FFCD-98E4-4C02-867C-725C93AD38E8}</Project>
-      <Name>MoneyFox.Foundation</Name>
+    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
+      <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
+      <Name>MoneyFox.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>

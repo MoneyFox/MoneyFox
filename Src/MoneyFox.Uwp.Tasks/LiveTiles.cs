@@ -3,10 +3,10 @@ using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using GenericServices.PublicButHidden;
 using GenericServices.Setup;
-using MoneyFox.DataLayer;
+using MoneyFox.Application;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Uwp.Business.Tiles;
-using MoneyFox.Foundation;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.Uwp.Tasks
 {
@@ -22,7 +22,8 @@ namespace MoneyFox.Uwp.Tasks
                 taskInstance.Canceled += OnTaskCanceled;
 
                 ExecutingPlatform.Current = AppPlatform.UWP;
-                var context = new EfCoreContext();
+
+                var context = EfCoreContextFactory.Create();
                 var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
                 utData.AddSingleDto<CategoryViewModel>();
                 utData.AddSingleDto<PaymentViewModel>();

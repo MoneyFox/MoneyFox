@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
+using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Messages;
@@ -71,7 +71,6 @@ namespace MoneyFox.Presentation.ViewModels
 
         /// <inheritdoc />
         public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccount);
-
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.

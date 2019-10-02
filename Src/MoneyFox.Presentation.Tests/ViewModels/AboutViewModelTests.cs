@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using MoneyFox.Application.Constants;
+using MoneyFox.Application.Resources;
 using MoneyFox.BusinessLogic.Adapters;
-using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
