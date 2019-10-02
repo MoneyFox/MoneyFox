@@ -221,7 +221,6 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Id of the account who currently is used for that view.
         /// </summary>
-        [IgnoreMap]
         public int CurrentAccountId 
         {
             get => currentAccountId;
