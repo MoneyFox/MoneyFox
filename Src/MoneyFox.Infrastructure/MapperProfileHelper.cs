@@ -27,7 +27,7 @@ namespace MoneyFox.Infrastructure
                     !type.IsInterface
                 select new Map
                 {
-                    Source = type.GetInterfaces().First().GetGenericArguments().First(),
+                    Source = type.GetInterfaces().First(x => x.Name.Contains("MapFrom")).GetGenericArguments().First(),
                     Destination = type
                 }).ToList();
 

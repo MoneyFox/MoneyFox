@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using AutoMapper;
 using GenericServices;
 using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Domain;
@@ -10,7 +11,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Handles the view representation of a payment.
     /// </summary>
-    public class PaymentViewModel : BaseViewModel, ILinkToEntity<Payment>, IMapFrom<Payment>
+    public class PaymentViewModel : BaseViewModel, ILinkToEntity<Payment>, IHaveCustomMapping
     {
         private int id;
         private int chargedAccountId;
@@ -26,7 +27,7 @@ namespace MoneyFox.Presentation.ViewModels
         private AccountViewModel targetAccount;
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
-        private ObservableCollection<TagViewModel> tags;
+        private ObservableCollection<PaymentTagTagViewModel> paymentTags;
 
         public PaymentViewModel()
         {
@@ -200,11 +201,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     The <see cref="RecurringPayment" /> if it's recurring.
         /// </summary>
-        public ObservableCollection<TagViewModel> Tags {
-            get => tags;
+        public ObservableCollection<PaymentTagTagViewModel> PaymentTags 
+        {
+            get => paymentTags;
             set {
-                if (Tags == value) return;
-                Tags = value;
+                if (paymentTags == value) return;
+                paymentTags = value;
                 RaisePropertyChanged();
             }
         }
@@ -219,13 +221,21 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Id of the account who currently is used for that view.
         /// </summary>
-        public int CurrentAccountId {
+        [IgnoreMap]
+        public int CurrentAccountId 
+        {
             get => currentAccountId;
             set {
                 if (currentAccountId == value) return;
                 currentAccountId = value;
                 RaisePropertyChanged();
             }
+        }
+
+        public void CreateMappings(Profile configuration) {
+            configuration.CreateMap<Payment, PaymentViewModel>()
+                         .ForMember(x => x.CurrentAccountId, opt => opt.Ignore())
+                         .ReverseMap();
         }
     }
 }
