@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Should;
 using Xunit;
@@ -11,7 +10,7 @@ namespace MoneyFox.Infrastructure.Tests.Mappings
     [Collection("AutoMapperCollection")]
     public class AccountMappingTests
     {
-        private IMapper mapper;
+        private readonly IMapper mapper;
 
         public AccountMappingTests(MapperCollectionFixture fixture) 
         {
