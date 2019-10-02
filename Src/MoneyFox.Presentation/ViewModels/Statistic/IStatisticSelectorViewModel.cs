@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Foundation.Models;
+using MoneyFox.Presentation.Models;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {

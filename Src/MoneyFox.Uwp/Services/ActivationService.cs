@@ -8,12 +8,13 @@ using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Autofac;
+using MoneyFox.Application;
+using MoneyFox.Domain;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Views;
 using PCLAppConfig;
-using MoneyFox.Foundation;
 
 #if !DEBUG
 using Microsoft.AppCenter;

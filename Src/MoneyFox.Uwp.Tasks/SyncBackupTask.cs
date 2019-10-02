@@ -2,13 +2,13 @@
 using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using Microsoft.Identity.Client;
+using MoneyFox.Application;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Uwp.Business;
-using MoneyFox.Foundation;
+using MoneyFox.Application.Constants;
 
 namespace MoneyFox.Uwp.Tasks
 {

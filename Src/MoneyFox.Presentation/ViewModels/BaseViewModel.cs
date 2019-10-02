@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using GalaSoft.MvvmLight;
-using MoneyFox.Foundation.Resources;
-using MoneyFox.ServiceLayer.Utilities;
+using MoneyFox.Application.Resources;
+using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels
 {

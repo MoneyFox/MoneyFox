@@ -5,15 +5,17 @@ using Android.OS;
 using Android.Runtime;
 using CommonServiceLocator;
 using Microsoft.Identity.Client;
+using MoneyFox.Application;
 using MoneyFox.Droid.Jobs;
-using MoneyFox.Foundation;
 using MoneyFox.Presentation;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
 using PCLAppConfig;
+using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using Platform = Xamarin.Essentials.Platform;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -25,7 +27,7 @@ namespace MoneyFox.Droid
 {
     [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
-    {        
+    {
         /// <summary>
         ///     Constant for the ClearPayment Service.
         /// </summary>
@@ -46,10 +48,7 @@ namespace MoneyFox.Droid
             ParentActivityWrapper.ParentActivity = this;
             ExecutingPlatform.Current = AppPlatform.Android;
 
-            if (ConfigurationManager.AppSettings == null)
-            {
-                ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
-            }
+            if (ConfigurationManager.AppSettings == null) ConfigurationManager.Initialise(PortableStream.Current);
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
@@ -64,7 +63,7 @@ namespace MoneyFox.Droid
             FormsMaterial.Init(this, savedInstanceState);
 
             LoadApplication(new App());
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            Platform.Init(this, savedInstanceState);
             Popup.Init(this, savedInstanceState);
 
             StartBackgroundServices();
@@ -73,7 +72,7 @@ namespace MoneyFox.Droid
         private void StartBackgroundServices()
         {
             // Handler to create jobs.
-            var handler = new Handler(msg => 
+            var handler = new Handler(msg =>
             {
                 switch (msg.What)
                 {
@@ -100,10 +99,7 @@ namespace MoneyFox.Droid
             var backgroundTaskManager = ServiceLocator.Current.GetInstance<IBackgroundTaskManager>();
             var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
 
-            if (backgroundTaskManager != null && settingsFacade != null)
-            {
-                backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence);
-            }
+            if (backgroundTaskManager != null && settingsFacade != null) backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence);
         }
 
         public override void OnBackPressed()
@@ -120,9 +116,8 @@ namespace MoneyFox.Droid
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
-            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
-

@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Configurations>Debug;Release;ReleaseUWP</Configurations>
+    <LangVersion>latest</LangVersion>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -24,10 +25,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="NLog" Version="4.6.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
+    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
   </ItemGroup>
 
 </Project>

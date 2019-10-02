@@ -1,8 +1,7 @@
-﻿using MoneyFox.BusinessLogic.Adapters;
-using MoneyFox.Foundation;
+﻿using MoneyFox.Application;
+using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Style;
-using Xamarin.Forms;
 
 namespace MoneyFox.Presentation
 {
@@ -16,7 +15,7 @@ namespace MoneyFox.Presentation
         /// <param name="theme"></param>
         public static void ChangeTheme(AppTheme theme)
         {
-            var mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+            var mergedDictionaries = Xamarin.Forms.Application.Current.Resources.MergedDictionaries;
             if (mergedDictionaries != null)
             {
                 mergedDictionaries.Clear();

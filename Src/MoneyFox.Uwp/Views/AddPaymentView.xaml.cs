@@ -1,6 +1,6 @@
-﻿using MoneyFox.Foundation;
-using MoneyFox.Presentation.ViewModels;
+﻿using MoneyFox.Presentation.ViewModels;
 using Windows.UI.Xaml.Navigation;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.Utilities;
 using Windows.UI.Xaml.Controls;
 

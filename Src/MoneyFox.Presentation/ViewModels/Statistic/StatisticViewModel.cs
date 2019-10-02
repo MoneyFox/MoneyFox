@@ -1,9 +1,10 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using MediatR;
+using MoneyFox.Application;
+using MoneyFox.Application.Resources;
 using MoneyFox.BusinessLogic.Extensions;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Messages;
@@ -19,14 +20,16 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         private DateTime startDate;
         private DateTime endDate;
 
+        protected readonly IMediator Mediator;
+
         protected SKColor BackgroundColor { get; }
 
         /// <summary>
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month
         ///     as a start and end date.
         /// </summary>
-        protected StatisticViewModel(ISettingsFacade settingsManager)
-            : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth(), settingsManager)
+        protected StatisticViewModel(IMediator mediator, ISettingsFacade settingsManager)
+            : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth(), mediator, settingsManager)
         {
         }
 
@@ -34,11 +37,13 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         ///     Creates a Statistic ViewModel with custom start and end date
         /// </summary>
         protected StatisticViewModel(DateTime startDate, 
-                                     DateTime endDate,
+                                     DateTime endDate, 
+                                     IMediator mediator,
                                      ISettingsFacade settingsFacade)
         {
             StartDate = startDate;
             EndDate = endDate;
+            this.Mediator = mediator;
 
             BackgroundColor = settingsFacade.Theme == AppTheme.Dark
                 ? new SKColor(0, 0, 0)

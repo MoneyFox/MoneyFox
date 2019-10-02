@@ -2,7 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Configurations>Debug;Release;ReleaseUWP</Configurations>
+    <LangVersion>latest</LangVersion>
+    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -27,6 +28,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Graph" Version="1.16.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.1.0" />
+    <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.3.0" />
     <PackageReference Include="Microsoft.Graph" Version="1.17.0" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.3.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
@@ -36,7 +41,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj" />
-    <ProjectReference Include="..\MoneyFox.DataLayer\MoneyFox.DataLayer.csproj" />
   </ItemGroup>
 
 </Project>

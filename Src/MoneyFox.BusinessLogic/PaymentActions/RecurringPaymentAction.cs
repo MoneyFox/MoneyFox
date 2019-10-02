@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.PaymentActions;
-using MoneyFox.DataLayer.Entities;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.BusinessLogic.PaymentActions
 {
@@ -24,8 +24,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         public async Task CreatePaymentsUpToRecur()
         {
-            var recurringPayments = await recurringPaymentDbAccess.GetRecurringPayments()
-                                                                  ;
+            var recurringPayments = await recurringPaymentDbAccess.GetRecurringPayments();
 
             var recPaymentsToCreate = recurringPayments
                 .Where(x => x.RelatedPayments.Any())
@@ -44,8 +43,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                     x))
                 .ToList();
 
-            await recurringPaymentDbAccess.SaveNewPayments(recPaymentsToCreate)
-                ;
+            await recurringPaymentDbAccess.SaveNewPayments(recPaymentsToCreate);
         }
     }
 }

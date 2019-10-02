@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
 using Windows.UI.StartScreen;
-using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Resources;
 using NLog;
+using MoneyFox.Application.Resources;
+using MoneyFox.Application.Constants;
 
 namespace MoneyFox.Uwp.Services
 {

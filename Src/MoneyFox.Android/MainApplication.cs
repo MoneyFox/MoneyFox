@@ -6,12 +6,11 @@ using Autofac;
 using MoneyFox.Presentation;
 using NLog;
 using NLog.Targets;
-using Application = Android.App.Application;
 
 namespace MoneyFox.Droid
 {
     [Application]
-    public class MainApplication : Application
+    public class MainApplication : Android.App.Application
     {
         private Logger logManager;
 

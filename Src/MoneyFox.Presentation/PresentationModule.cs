@@ -4,9 +4,10 @@ using GenericServices.PublicButHidden;
 using GenericServices.Setup;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using MoneyFox.Application;
+using MoneyFox.Application.Constants;
 using MoneyFox.BusinessLogic;
-using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
+using MoneyFox.Persistence;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation
@@ -16,6 +17,7 @@ namespace MoneyFox.Presentation
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<BusinessLogicModule>();
+            builder.RegisterModule<ApplicationModule>();
 
             SetupContextAndCrudServices(builder);
 
@@ -49,25 +51,18 @@ namespace MoneyFox.Presentation
 
         private static void SetupContextAndCrudServices(ContainerBuilder builder)
         {
-            builder.RegisterInstance(SetupEfContext())
+            var context = EfCoreContextFactory.Create();
+
+            builder.RegisterInstance(context)
                    .As<DbContext>()
+                   .AsImplementedInterfaces()
                    .AsSelf();
 
-            SetUpCrudServices(builder);
+            SetUpCrudServices(builder, context);
         }
 
-        private static EfCoreContext SetupEfContext()
+        private static void SetUpCrudServices(ContainerBuilder builder, EfCoreContext context)
         {
-            var context = new EfCoreContext();
-            context.Database.Migrate();
-
-            return context;
-        }
-
-        private static void SetUpCrudServices(ContainerBuilder builder)
-        {
-            var context = SetupEfContext();
-
             var utData = context.SetupSingleDtoAndEntities<AccountViewModel>();
             utData.AddSingleDto<CategoryViewModel>();
             utData.AddSingleDto<PaymentViewModel>();

@@ -6,8 +6,6 @@ using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.DataLayer;
-using MoneyFox.Foundation.Constants;
 using MoneyFox.Presentation;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
@@ -18,7 +16,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Autofac;
 using CommonServiceLocator;
-using MoneyFox.BusinessLogic.FileStore;
+using MoneyFox.Application;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
@@ -28,7 +26,9 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using LogLevel = NLog.LogLevel;
-using MoneyFox.Foundation;
+using MoneyFox.Application.Constants;
+using MoneyFox.Application.FileStore;
+using MoneyFox.Persistence;
 
 #if !DEBUG
 using Microsoft.AppCenter;
@@ -197,7 +197,7 @@ namespace MoneyFox.iOS
             {
                 Debug.WriteLine("ClearPayments Job started");
 
-                var context = new EfCoreContext();
+                var context = EfCoreContextFactory.Create();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
                 context.SaveChanges();
 
@@ -219,7 +219,7 @@ namespace MoneyFox.iOS
             {
                 Debug.WriteLine("RecurringPayment Job started.");
 
-                var context = new EfCoreContext();
+                var context = EfCoreContextFactory.Create();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
                     .CreatePaymentsUpToRecur();
                 context.SaveChanges();

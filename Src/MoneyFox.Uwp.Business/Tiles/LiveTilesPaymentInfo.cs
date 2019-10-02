@@ -1,5 +1,5 @@
 ﻿using System;
-using MoneyFox.Foundation;
+using MoneyFox.Domain;
 
 namespace MoneyFox.Uwp.Business.Tiles
 {

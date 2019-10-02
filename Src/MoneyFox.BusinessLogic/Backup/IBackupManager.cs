@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Domain.Exceptions;
 
 namespace MoneyFox.BusinessLogic.Backup
 {

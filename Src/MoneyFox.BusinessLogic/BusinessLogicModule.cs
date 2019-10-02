@@ -15,10 +15,6 @@ namespace MoneyFox.BusinessLogic
                    .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => t.Name.EndsWith("Provider", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces();
-
-            builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Manager", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
 

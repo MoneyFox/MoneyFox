@@ -7,9 +7,9 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
-using MoneyFox.Foundation;
-using MoneyFox.Foundation.Constants;
-using MoneyFox.Foundation.Exceptions;
+using MoneyFox.Application;
+using MoneyFox.Application.Constants;
+using MoneyFox.Domain.Exceptions;
 
 namespace MoneyFox.BusinessLogic.Backup
 {

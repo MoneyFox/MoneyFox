@@ -7,6 +7,7 @@
                       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
                       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
                       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                       mc:Ignorable="d"
                       DataContext="{Binding SelectCategoryListVm, Source={StaticResource Locator}}">
@@ -44,7 +45,7 @@
                    Text="Select Category"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <userControls:CategoryListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}"/>
+        <controls:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}"/>
 
         <CommandBar Grid.Row="2"
                     Style="{ThemeResource DefaultCommandBar}"

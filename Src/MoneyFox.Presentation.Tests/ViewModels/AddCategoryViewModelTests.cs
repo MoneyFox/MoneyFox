@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using GenericServices;
-using MoneyFox.Foundation.Resources;
+using MediatR;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Services;
@@ -15,14 +15,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     [ExcludeFromCodeCoverage]
     public class AddCategoryViewModelTests
     {
-        private readonly Mock<ICrudServicesAsync> crudServiceMock;
+        private readonly Mock<IMediator> mediatorMock;
         private readonly Mock<IDialogService> dialogServiceMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
 
         public AddCategoryViewModelTests()
         {
-            crudServiceMock = new Mock<ICrudServicesAsync>();
+            mediatorMock = new Mock<IMediator>();
             dialogServiceMock = new Mock<IDialogService>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
@@ -33,7 +33,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             // // Act
-            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object, null, null, null, null);
+            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null, null);
 
             // Assert
             addCategoryVm.Title.ShouldEqual(Strings.AddCategoryTitle);
@@ -43,8 +43,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task Initialize_CategoryCreated()
         {
             // Arrange
-            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object, null, null, null, null);
-            
+            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null, null);
+
             // Act
             await addCategoryVm.InitializeCommand.ExecuteAsync();
 
@@ -57,12 +57,12 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             dialogServiceMock.Setup(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(Task.CompletedTask);
+                             .Returns(Task.CompletedTask);
 
-            var addCategoryVm = new AddCategoryViewModel(crudServiceMock.Object,
-                dialogServiceMock.Object, 
-                settingsFacadeMock.Object,
-                backupServiceMock.Object, null);
+            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object,
+                                                         dialogServiceMock.Object,
+                                                         settingsFacadeMock.Object,
+                                                         backupServiceMock.Object, null);
 
             await addCategoryVm.InitializeCommand.ExecuteAsync();
 
