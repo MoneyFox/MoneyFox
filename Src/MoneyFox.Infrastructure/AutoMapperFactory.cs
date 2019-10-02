@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace MoneyFox.Application.Infrastructure
+namespace MoneyFox.Infrastructure
 {
     public static class AutoMapperFactory
     {

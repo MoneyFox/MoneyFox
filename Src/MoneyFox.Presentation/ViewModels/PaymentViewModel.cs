@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using GenericServices;
 using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Domain;
@@ -25,6 +26,7 @@ namespace MoneyFox.Presentation.ViewModels
         private AccountViewModel targetAccount;
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
+        private ObservableCollection<TagViewModel> tags;
 
         public PaymentViewModel()
         {
@@ -191,6 +193,18 @@ namespace MoneyFox.Presentation.ViewModels
             set {
                 if (recurringPaymentViewModel == value) return;
                 recurringPaymentViewModel = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     The <see cref="RecurringPayment" /> if it's recurring.
+        /// </summary>
+        public ObservableCollection<TagViewModel> Tags {
+            get => tags;
+            set {
+                if (Tags == value) return;
+                Tags = value;
                 RaisePropertyChanged();
             }
         }

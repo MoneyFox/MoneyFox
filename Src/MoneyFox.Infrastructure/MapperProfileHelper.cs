@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using MoneyFox.Application.Interfaces.Mapping;
 
-namespace MoneyFox.Application.Infrastructure
+namespace MoneyFox.Infrastructure
 {
     public sealed class Map
     {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using MoneyFox.Application.Infrastructure;
 using System;
 using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Infrastructure;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Collections

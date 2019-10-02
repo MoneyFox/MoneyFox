@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using AutoMapper;
 
-namespace MoneyFox.Application.Infrastructure
+namespace MoneyFox.Infrastructure
 {
     public class AutoMapperProfile : Profile
     {
