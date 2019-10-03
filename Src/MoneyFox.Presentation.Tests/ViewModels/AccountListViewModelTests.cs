@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
