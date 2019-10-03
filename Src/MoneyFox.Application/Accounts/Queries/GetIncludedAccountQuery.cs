@@ -26,5 +26,4 @@ namespace MoneyFox.Application.Accounts.Queries
             }
         }
     }
-    
 }

@@ -2,6 +2,7 @@
 using GenericServices;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.QueryObject;
@@ -48,19 +49,14 @@ namespace MoneyFox.Presentation.Services
         }
         
         /// <inheritdoc />
-        public async Task<double> GetTotalBalance()
-        {
-            return await crudServices.ReadManyNoTracked<AccountViewModel>()
-                .AreNotExcluded()
-                .SumAsync(x => x.CurrentBalance);
+        public async Task<double> GetTotalBalance() {
+            return await mediator.Send(new GetIncludedAccountBalanceSummary());
         }
 
         /// <inheritdoc />
         public async Task<double> GetTotalEndOfMonthBalance()
         {
-            var excluded = await crudServices.ReadManyNoTracked<AccountViewModel>()
-                .AreExcluded()
-                .ToListAsync();
+            var excluded = await mediator.Send(new GetExcludedAccountQuery());
 
             var balance = await GetTotalBalance();
 
