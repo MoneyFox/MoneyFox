@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;

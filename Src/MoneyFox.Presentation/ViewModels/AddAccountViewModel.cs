@@ -3,6 +3,7 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
+using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
@@ -40,8 +41,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SaveAccount()
         {
-            if (await crudService.ReadManyNoTracked<AccountViewModel>()
-                                 .AnyWithNameAsync(SelectedAccount.Name))
+            if (await mediator.Send(new GetIfAccountWithNameExistsQuery { AccountName = SelectedAccount.Name}))
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;

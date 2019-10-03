@@ -8,7 +8,7 @@ using MoneyFox.Persistence;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Categories.Queries.GetBySearchTerm
+namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
 {
     [ExcludeFromCodeCoverage]
     public class GetCategoryBySearchTermQueryTests : IDisposable

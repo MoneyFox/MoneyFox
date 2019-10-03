@@ -7,7 +7,7 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Categories.DeleteCategoryById
+namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
 {
     [ExcludeFromCodeCoverage]
     public class DeleteCategoryByIdCommandTests : IDisposable
