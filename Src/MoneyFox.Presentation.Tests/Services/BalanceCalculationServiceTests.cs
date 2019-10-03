@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
-using GenericServices;
+using MediatR;
 using MockQueryable.Moq;
+using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Payments.Queries;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
@@ -14,60 +17,43 @@ using Xunit;
 namespace MoneyFox.Presentation.Tests.Services
 {
     [ExcludeFromCodeCoverage]
-    public class BalanceCalculationServiceTests
+    public class BalanceCalculationServiceTests 
     {
-        [Fact]
-        public async Task GetTotalEndOfMonthBalance_TwoAccounts_CorrectSum()
-        {
-            // Arrange
-            var account1 = new AccountViewModel { Id = 1, CurrentBalance = 100 };
-            var account2 = new AccountViewModel { Id = 2, CurrentBalance = 100 };
+        private readonly Mock<IMediator> mediatorMock;
 
-            var accounts = new List<AccountViewModel>
+        public BalanceCalculationServiceTests() 
+        {
+            var account1 = new Account("Foo1", 100);
+            var account2 = new Account("Foo2", 100);
+
+            var accounts = new List<Account>
             {
                 account1,
                 account2
             };
 
-            var paymentList = new List<PaymentViewModel>
+            var paymentList = new List<Payment>
             {
-                new PaymentViewModel
-                {
-                    Id = 10,
-                    ChargedAccount = account1,
-                    TargetAccount = account2,
-                    Amount = 100,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Transfer
-                },
-                new PaymentViewModel
-                {
-                    Id = 17,
-                    ChargedAccount = account1,
-                    Amount = 150,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Expense
-                },
-                new PaymentViewModel
-                {
-                    Id = 16,
-                    ChargedAccount = account2,
-                    Amount = 300,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Income
-                }
+                new Payment(DateTime.Now, 100, PaymentType.Transfer, account1, account2),
+                new Payment(DateTime.Now, 150, PaymentType.Expense, account1),
+                new Payment(DateTime.Now, 300, PaymentType.Income, account2)
             };
 
-            var mock = paymentList.AsQueryable().BuildMock();
+            mediatorMock = new Mock<IMediator>();
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetUnclearedPaymentsOfThisMonthQuery>(), default))
+                            .ReturnsAsync(paymentList);
 
-            var crudServiceSetup = new Mock<ICrudServicesAsync>();
-            crudServiceSetup.Setup(x => x.ReadManyNoTracked<PaymentViewModel>())
-                .Returns(mock.Object);
-            crudServiceSetup.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
-                .Returns(accounts.AsQueryable().BuildMock().Object);
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetExcludedAccountQuery>(), default))
+                            .ReturnsAsync(accounts);
+        }
+
+        [Fact]
+        public async Task GetTotalEndOfMonthBalance_TwoAccounts_CorrectSum()
+        {
+            // Arrange
 
             // Act
-            var result = await new BalanceCalculationService(crudServiceSetup.Object)
+            var result = await new BalanceCalculationService(mediatorMock.Object)
                 .GetTotalEndOfMonthBalance();
 
             // Assert
@@ -76,128 +62,24 @@ namespace MoneyFox.Presentation.Tests.Services
 
 
         [Fact]
-        public async Task GetTotalEndOfMonthBalance_ClearedPaymentsIgnored_CorrectSum()
+        public async Task GetTotalEndOfMonthBalance_CorrectSum()
         {
             // Arrange
-            var account1 = new AccountViewModel { Id = 1, CurrentBalance = 100 };
+            var account1 = new Account("Foo1", 100);
 
-            var accounts = new List<AccountViewModel>
-            {
-                account1
+            var paymentList = new List<Payment>
+            {                
+                new Payment(DateTime.Now, 100, PaymentType.Expense, account1),
+                new Payment(DateTime.Now, 200, PaymentType.Income, account1),
+                new Payment(DateTime.Now, 450, PaymentType.Expense, account1),
+                new Payment(DateTime.Now, 150, PaymentType.Expense, account1)
             };
 
-            var paymentList = new List<PaymentViewModel>
-            {
-                new PaymentViewModel
-                {
-                    Id = 10,
-                    ChargedAccount = account1,
-                    Amount = 100,
-                    IsCleared = false,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Expense
-                },
-                new PaymentViewModel
-                {
-                    Id = 15,
-                    ChargedAccount = account1,
-                    Amount = 200,
-                    IsCleared = false,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Income
-                },
-                new PaymentViewModel
-                {
-                    Id = 20,
-                    ChargedAccount = account1,
-                    Amount = 450,
-                    IsCleared = true,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Expense
-                },
-                new PaymentViewModel
-                {
-                    Id = 25,
-                    ChargedAccount = account1,
-                    Amount = 150,
-                    IsCleared = true,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Income
-                }
-            };
-
-            var mock = paymentList.AsQueryable().BuildMock();
-
-            var crudServiceSetup = new Mock<ICrudServicesAsync>();
-            crudServiceSetup.Setup(x => x.ReadManyNoTracked<PaymentViewModel>())
-                .Returns(mock.Object);
-            crudServiceSetup.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
-                .Returns(accounts.AsQueryable().BuildMock().Object);
-
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetUnclearedPaymentsOfThisMonthQuery>(), default))
+                            .ReturnsAsync(paymentList);
             // Act
-            var result = await new BalanceCalculationService(crudServiceSetup.Object)
+            var result = await new BalanceCalculationService(mediatorMock.Object)
                 .GetTotalEndOfMonthBalance();
-
-            // Assert
-            Assert.Equal(200, result);
-        }
-
-        [Fact]
-        public async Task GetEndOfMonthBalanceForAccount_CorrectSum()
-        {
-            // Arrange
-            var account1 = new AccountViewModel { Id = 1, CurrentBalance = 100 };
-
-
-            var paymentList = new List<PaymentViewModel>
-            {
-                new PaymentViewModel
-                {
-                    Id = 10,
-                    ChargedAccount = account1,
-                    Amount = 100,
-                    IsCleared = false,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Expense
-                },
-                new PaymentViewModel
-                {
-                    Id = 15,
-                    ChargedAccount = account1,
-                    Amount = 200,
-                    IsCleared = false,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Income
-                },
-                new PaymentViewModel
-                {
-                    Id = 20,
-                    ChargedAccount = account1,
-                    Amount = 450,
-                    IsCleared = true,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Expense
-                },
-                new PaymentViewModel
-                {
-                    Id = 25,
-                    ChargedAccount = account1,
-                    Amount = 150,
-                    IsCleared = true,
-                    Date = DateTime.Now,
-                    Type = PaymentType.Income
-                }
-            };
-
-            var mock = paymentList.AsQueryable().BuildMock();
-
-            var crudServiceSetup = new Mock<ICrudServicesAsync>();
-            crudServiceSetup.Setup(x => x.ReadManyNoTracked<PaymentViewModel>())
-                .Returns(mock.Object);
-
-            // Act
-            var result = await new BalanceCalculationService(crudServiceSetup.Object)
-                .GetEndOfMonthBalanceForAccount(account1);
 
             // Assert
             Assert.Equal(200, result);
@@ -207,19 +89,17 @@ namespace MoneyFox.Presentation.Tests.Services
         public async Task GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             // Arrange
-            var accounts = new List<AccountViewModel>
+            var accounts = new List<Account>
             {
-                new AccountViewModel { Id = 1, CurrentBalance = 500 },
-                new AccountViewModel { Id = 1, CurrentBalance = 200 }
+                new Account("Foo1", 500),
+                new Account("Foo1", 200)
             };
 
-            var crudServiceSetup = new Mock<ICrudServicesAsync>();
-
-            crudServiceSetup.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
-                .Returns(accounts.AsQueryable().BuildMock().Object);
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetExcludedAccountQuery>(), default))
+                        .ReturnsAsync(accounts);
 
             // Act
-            var result = await new BalanceCalculationService(crudServiceSetup.Object)
+            var result = await new BalanceCalculationService(mediatorMock.Object)
                 .GetTotalBalance();
 
             // Assert

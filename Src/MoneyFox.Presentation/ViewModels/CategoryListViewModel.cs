@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
+using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using MediatR;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -44,9 +46,10 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for usage when the list including the option is needed.
         /// </summary>
-        public CategoryListViewModel(ICrudServicesAsync curdServicesAsync,
+        public CategoryListViewModel(IMediator mediator,
+                                     IMapper mapper,
                                      IDialogService dialogService,
-                                     INavigationService navigationService) : base(curdServicesAsync, dialogService, navigationService)
+                                     INavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
         {
         }
 

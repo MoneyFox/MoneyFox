@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using AutoMapper;
-using GenericServices;
 using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -11,7 +10,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Handles the view representation of a payment.
     /// </summary>
-    public class PaymentViewModel : BaseViewModel, ILinkToEntity<Payment>, IHaveCustomMapping
+    public class PaymentViewModel : BaseViewModel, IHaveCustomMapping
     {
         private int id;
         private int chargedAccountId;
