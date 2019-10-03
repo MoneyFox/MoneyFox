@@ -3,6 +3,7 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Payments.Queries;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.ViewModels;
 
@@ -122,9 +123,9 @@ namespace MoneyFox.Presentation.Services
             return balance;
         }
 
-        private double HandleTransferAmount(PaymentViewModel payment, double balance, int accountId)
+        private double HandleTransferAmount(Payment payment, double balance, int accountId)
         {
-            if (accountId == payment.ChargedAccountId)
+            if (accountId == payment.ChargedAccount.Id)
                 balance -= payment.Amount;
             else
                 balance += payment.Amount;
