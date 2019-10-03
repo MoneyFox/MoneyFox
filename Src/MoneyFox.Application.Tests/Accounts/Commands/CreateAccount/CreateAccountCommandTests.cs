@@ -7,7 +7,7 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.CreateAccount
+namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
 {
     [ExcludeFromCodeCoverage]
     public class CreateAccountCommandTests : IDisposable

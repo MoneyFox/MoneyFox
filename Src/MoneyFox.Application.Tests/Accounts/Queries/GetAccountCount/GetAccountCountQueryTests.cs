@@ -1,28 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Should;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
 {
     [ExcludeFromCodeCoverage]
-    public class GetExcludedAccountQueryTests : IDisposable
+    public class GetAccountCountQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetExcludedAccountQueryTests()
+        public GetAccountCountQueryTests()
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);
         }
-        
+
         [Fact]
         public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
         {
@@ -34,10 +38,10 @@ namespace MoneyFox.Application.Tests.Accounts
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetExcludedAccountQuery.Handler(context).Handle(new GetExcludedAccountQuery(), default);
+            int result = await new GetAccountCountQuery.Handler(context).Handle(new GetAccountCountQuery(), default);
 
             // Assert
-            Assert.Single(result);
+            result.ShouldEqual(2);
         }
     }
 }

@@ -7,14 +7,14 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts
+namespace MoneyFox.Application.Tests.Accounts.Queries
 {
     [ExcludeFromCodeCoverage]
-    public class GetAccountQueryTests : IDisposable
+    public class GetIncludedAccountQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetAccountQueryTests()
+        public GetIncludedAccountQueryTests()
         {
             context = TestEfCoreContextFactory.Create();
         }
@@ -22,17 +22,19 @@ namespace MoneyFox.Application.Tests.Accounts
         {
             TestEfCoreContextFactory.Destroy(context);
         }
-
+        
         [Fact]
-        public async Task GetAccountQuery_CorrectNumberLoaded()
+        public async Task GetIncludedAccountQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var account = new Account("test", 80);
-            await context.AddAsync(account);
+            var accountExcluded = new Account("test", 80, isExcluded: true);
+            var accountIncluded = new Account("test", 80);
+            await context.AddAsync(accountExcluded);
+            await context.AddAsync(accountIncluded);
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountsQuery.Handler(context).Handle(new GetAccountsQuery(), default);
+            var result = await new GetIncludedAccountQuery.Handler(context).Handle(new GetIncludedAccountQuery(), default);
 
             // Assert
             Assert.Single(result);

@@ -8,7 +8,7 @@ using MoneyFox.Persistence;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts
+namespace MoneyFox.Application.Tests.Accounts.Queries
 {
     [ExcludeFromCodeCoverage]
     public class GetIncludedAccountBalanceSummaryTests : IDisposable
