@@ -37,6 +37,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
         private readonly IBackupService backupService;
+        private readonly IMapper mapper;
 
         private CategoryViewModel selectedCategory;
         private string title;
@@ -47,13 +48,14 @@ namespace MoneyFox.Presentation.ViewModels
         protected ModifyCategoryViewModel(IMediator mediator,
                                           ISettingsFacade settingsFacade,
                                           IBackupService backupService,
-                                          INavigationService navigationService)
+                                          INavigationService navigationService, IMapper mapper)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
             this.mediator = mediator;
 
             NavigationService = navigationService;
+            this.mapper = mapper;
         }
 
         protected abstract Task Initialize();
@@ -110,7 +112,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task Cancel()
         {
-            SelectedCategory = Mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery {CategoryId = SelectedCategory.Id}));
+            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery {CategoryId = SelectedCategory.Id}));
             NavigationService.GoBack();
         }
     }
