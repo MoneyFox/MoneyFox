@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
@@ -21,7 +25,8 @@ namespace MoneyFox.Presentation.ViewModels
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        private readonly ICrudServicesAsync crudService;
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
         private readonly INavigationService navigationService;
@@ -31,19 +36,21 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public AccountListViewModel(ICrudServicesAsync crudService,
+        public AccountListViewModel(IMediator mediator,
+                                    IMapper mapper,
                                     IBalanceCalculationService balanceCalculationService,
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     INavigationService navigationService)
         {
-            this.crudService = crudService;
+            this.mediator = mediator;
+            this.mapper = mapper;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
             this.settingsFacade = settingsFacade;
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationService);
-            ViewActionViewModel = new AccountListViewActionViewModel(crudService, this.navigationService);
+            ViewActionViewModel = new AccountListViewActionViewModel(mediator, this.navigationService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
         }
@@ -88,14 +95,11 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
-                IOrderedQueryable<AccountViewModel> accountViewModels = crudService.ReadManyNoTracked<AccountViewModel>()
-                                                                                   .OrderBy(x => x.Name);
-
                 var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
-                includedAlphaGroup.AddRange(accountViewModels.AreNotExcluded());
+                includedAlphaGroup.AddRange(mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetIncludedAccountQuery())));
 
                 var excludedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
-                excludedAlphaGroup.AddRange(accountViewModels.AreExcluded());
+                excludedAlphaGroup.AddRange(mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetExcludedAccountQuery())));
 
                 Accounts.Clear();
 
