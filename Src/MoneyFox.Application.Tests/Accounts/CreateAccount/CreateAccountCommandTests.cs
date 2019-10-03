@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts
+namespace MoneyFox.Application.Tests.Accounts.CreateAccount
 {
     [ExcludeFromCodeCoverage]
-    public class GetAccountQueryTests : IDisposable
+    public class CreateAccountCommandTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetAccountQueryTests()
+        public CreateAccountCommandTests()
         {
             context = TestEfCoreContextFactory.Create();
         }
@@ -28,14 +28,12 @@ namespace MoneyFox.Application.Tests.Accounts
         {
             // Arrange
             var account = new Account("test", 80);
-            await context.AddAsync(account);
-            await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountsQuery.Handler(context).Handle(new GetAccountsQuery(), default);
+            await new CreateAccountCommand.Handler(context).Handle(new CreateAccountCommand{AccountToSave = account}, default);
 
             // Assert
-            Assert.Single(result);
+            Assert.Single(context.Accounts);
         }
     }
 }
