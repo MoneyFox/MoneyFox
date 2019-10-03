@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 
@@ -9,16 +9,16 @@ namespace MoneyFox.Presentation.ViewModels
 {
     public class AccountListViewActionViewModel : BaseViewModel, IAccountListViewActionViewModel
     {
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
         private readonly INavigationService navigationService;
 
-        public AccountListViewActionViewModel(ICrudServicesAsync crudServices,
+        public AccountListViewActionViewModel(IMediator mediator,
                                               INavigationService navigationService)
         {
-            this.crudServices = crudServices;
+            this.mediator = mediator;
             this.navigationService = navigationService;
         }
-        
+
         /// <inheritdoc />
         public RelayCommand GoToAddAccountCommand =>
                 new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddAccount));
@@ -38,16 +38,16 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Count() >= 2;
+        public bool IsTransferAvailable => mediator.Send(new GetAccountCountQuery()).Result >= 2;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
-        public bool IsAddIncomeAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Any();
+        public bool IsAddIncomeAvailable => mediator.Send(new GetAccountCountQuery()).Result > 0;
 
         /// <summary>
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
-        public bool IsAddExpenseAvailable => crudServices.ReadManyNoTracked<AccountViewModel>().Any();
+        public bool IsAddExpenseAvailable => mediator.Send(new GetAccountCountQuery()).Result > 0;
     }
 }
