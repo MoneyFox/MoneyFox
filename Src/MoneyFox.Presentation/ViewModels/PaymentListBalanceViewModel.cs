@@ -29,7 +29,7 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected override async Task<double> CalculateTotalBalance()
+        protected override async Task<double> CalculateTotalBalanceAsync()
         {
             AccountViewModel account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
             return account.CurrentBalance;
@@ -40,7 +40,7 @@ namespace MoneyFox.Presentation.ViewModels
         ///     This includes all payments coming until the end of month.
         /// </summary>
         /// <returns>Balance of the selected account including all payments to come till end of month.</returns>
-        protected override async Task<double> GetEndOfMonthValue()
+        protected override async Task<double> GetEndOfMonthValueAsync()
         {
             AccountViewModel account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId)
                 ;

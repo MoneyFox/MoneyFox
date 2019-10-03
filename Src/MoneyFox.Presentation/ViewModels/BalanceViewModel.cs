@@ -1,5 +1,4 @@
 ﻿using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Command;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
@@ -29,7 +28,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => totalBalance;
             set
             {
-                totalBalance = value; 
+                totalBalance = value;
                 RaisePropertyChanged();
             }
         }
@@ -51,29 +50,29 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        public AsyncCommand UpdateBalanceCommand => new AsyncCommand(UpdateBalance);
+        public AsyncCommand UpdateBalanceCommand => new AsyncCommand(UpdateBalanceAsync);
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///     itself and show different data.
         /// </summary>
-        private async Task UpdateBalance()
+        private async Task UpdateBalanceAsync()
         {
-            TotalBalance = await CalculateTotalBalance();
-            EndOfMonthBalance = await GetEndOfMonthValue();
+            TotalBalance = await CalculateTotalBalanceAsync();
+            EndOfMonthBalance = await GetEndOfMonthValueAsync();
         }
 
         /// <summary>
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual async Task<double> CalculateTotalBalance() => await balanceCalculationService.GetTotalBalance();
+        protected virtual async Task<double> CalculateTotalBalanceAsync() => await balanceCalculationService.GetTotalBalance();
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.
         /// </summary>
         /// <returns>Sum of all balances including all payments to come till end of month.</returns>
-        protected virtual async Task<double> GetEndOfMonthValue()
+        protected virtual async Task<double> GetEndOfMonthValueAsync()
         {
             return await balanceCalculationService.GetTotalEndOfMonthBalance();
         }
