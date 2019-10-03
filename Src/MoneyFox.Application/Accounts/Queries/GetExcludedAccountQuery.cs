@@ -4,13 +4,14 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Accounts.Queries
 {
-    public class GetAccountQuery : IRequest<List<Account>>
+    public class GetExcludedAccountQuery : IRequest<List<Account>>
     {
-        public class Handler : IRequestHandler<GetAccountQuery, List<Account>>
+        public class Handler : IRequestHandler<GetExcludedAccountQuery, List<Account>>
         {
             private readonly IEfCoreContext context;
 
@@ -19,10 +20,11 @@ namespace MoneyFox.Application.Accounts.Queries
                 this.context = context;
             }
 
-            public async Task<List<Account>> Handle(GetAccountQuery request, CancellationToken cancellationToken)
+            public async Task<List<Account>> Handle(GetExcludedAccountQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts.ToListAsync(cancellationToken);
+                return await context.Accounts.AreExcluded().ToListAsync(cancellationToken);
             }
         }
     }
+    
 }

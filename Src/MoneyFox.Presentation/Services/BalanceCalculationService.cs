@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using GenericServices;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
@@ -36,14 +37,14 @@ namespace MoneyFox.Presentation.Services
     /// <inheritdoc />
     public class BalanceCalculationService : IBalanceCalculationService
     {
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public BalanceCalculationService(ICrudServicesAsync crudServices)
+        public BalanceCalculationService(IMediator mediator)
         {
-            this.crudServices = crudServices;
+            this.mediator = mediator;
         }
         
         /// <inheritdoc />

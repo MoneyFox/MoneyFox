@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Presentation.QueryObject
+namespace MoneyFox.Application.QueryObjects
 {
     /// <summary>
     ///     Query Objects for account queries.
@@ -16,7 +16,7 @@ namespace MoneyFox.Presentation.QueryObject
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query with a filter for excluded accounts.</returns>
-        public static IQueryable<AccountViewModel> AreNotExcluded(this IQueryable<AccountViewModel> query)
+        public static IQueryable<Account> AreNotExcluded(this IQueryable<Account> query)
         {
             return query.Where(x => !x.IsExcluded);
         }
@@ -26,7 +26,7 @@ namespace MoneyFox.Presentation.QueryObject
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query with a filter for not excluded accounts.</returns>
-        public static IQueryable<AccountViewModel> AreExcluded(this IQueryable<AccountViewModel> query)
+        public static IQueryable<Account> AreExcluded(this IQueryable<Account> query)
         {
             return query.Where(x => x.IsExcluded);
         }
@@ -36,7 +36,7 @@ namespace MoneyFox.Presentation.QueryObject
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query ordered by name.</returns>
-        public static IQueryable<AccountViewModel> OrderByName(this IQueryable<AccountViewModel> query)
+        public static IQueryable<Account> OrderByName(this IQueryable<Account> query)
         {
             return query.OrderBy(x => x.Name);
         }
@@ -44,7 +44,7 @@ namespace MoneyFox.Presentation.QueryObject
         /// <summary>
         ///     Checks if there is an account with the passed name.
         /// </summary>
-        public static async Task<bool> AnyWithNameAsync(this IQueryable<AccountViewModel> query, string name)
+        public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name)
         {
             return await query.AnyAsync(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
         }
