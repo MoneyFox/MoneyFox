@@ -7,9 +7,9 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -100,7 +100,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public async Task Search(string searchText = "") {
             var categoriesVms =
-                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery {SearchTerm = searchText}));S
+                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery {SearchTerm = searchText}));
             CategoryList = CreateGroup(categoriesVms);
         }
 
@@ -126,7 +126,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
-                await CrudServices.DeleteAndSaveAsync<Category>(categoryToDelete.Id);
+                await Mediator.Send(new DeleteCategoryByIdCommand { CategoryId = categoryToDelete.Id });
                 await Search();
             }
         }

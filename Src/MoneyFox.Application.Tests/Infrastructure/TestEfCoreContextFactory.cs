@@ -25,7 +25,6 @@ namespace MoneyFox.Application.Tests.Infrastructure
         public static void Destroy(EfCoreContext context)
         {
             context.Database.EnsureDeleted();
-
             context.Dispose();
         }
     }

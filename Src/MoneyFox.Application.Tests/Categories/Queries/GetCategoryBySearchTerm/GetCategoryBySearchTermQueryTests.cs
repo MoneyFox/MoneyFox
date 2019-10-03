@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
@@ -8,7 +10,8 @@ using Xunit;
 
 namespace MoneyFox.Application.Tests.Categories.Queries.GetBySearchTerm
 {
-    public class GetCategoryBySearchTermQueryTests
+    [ExcludeFromCodeCoverage]
+    public class GetCategoryBySearchTermQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
 
@@ -16,6 +19,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetBySearchTerm
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);
