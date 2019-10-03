@@ -801,4 +801,13 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Windows Default</value>
   </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TodayLabel" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="NoCategoryLabel" xml:space="preserve">
+    <value>[No Category]</value>
+  </data>
 </root>
