@@ -1,7 +1,8 @@
 ﻿using System.Reflection;
 using AutoMapper;
+using MoneyFox.Presentation.ViewModels;
 
-namespace MoneyFox.Application.Infrastructure
+namespace MoneyFox.Infrastructure
 {
     public class AutoMapperProfile : Profile
     {
@@ -13,7 +14,7 @@ namespace MoneyFox.Application.Infrastructure
 
         private void LoadStandardMappings()
         {
-            var mapsFrom = MapperProfileHelper.LoadStandardMappings(Assembly.GetCallingAssembly());
+            var mapsFrom = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
 
             foreach (var map in mapsFrom)
             {
@@ -23,7 +24,7 @@ namespace MoneyFox.Application.Infrastructure
 
         private void LoadCustomMappings()
         {
-            var mapsFrom = MapperProfileHelper.LoadCustomMappings(Assembly.GetCallingAssembly());
+            var mapsFrom = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
 
             foreach (var map in mapsFrom)
             {

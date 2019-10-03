@@ -18,7 +18,7 @@ namespace MoneyFox.Presentation.Tests.Mapper
 
         public RecurringPaymentViewModelMapperTests(MapperCollectionFixture fixture)
         {
-            mapper = fixture.mapper;
+            mapper = fixture.Mapper;
         }
 
         [Fact]

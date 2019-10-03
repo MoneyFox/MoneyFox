@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using MoneyFox.Application.Interfaces.Mapping;
 
-namespace MoneyFox.Application.Infrastructure
+namespace MoneyFox.Infrastructure
 {
     public sealed class Map
     {
@@ -27,7 +27,7 @@ namespace MoneyFox.Application.Infrastructure
                     !type.IsInterface
                 select new Map
                 {
-                    Source = type.GetInterfaces().First().GetGenericArguments().First(),
+                    Source = type.GetInterfaces().First(x => x.Name.Contains("MapFrom")).GetGenericArguments().First(),
                     Destination = type
                 }).ToList();
 

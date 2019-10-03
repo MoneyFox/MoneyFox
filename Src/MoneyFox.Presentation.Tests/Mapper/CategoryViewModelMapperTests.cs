@@ -16,7 +16,7 @@ namespace MoneyFox.Presentation.Tests.Mapper
 
         public CategoryViewModelMapperTests(MapperCollectionFixture fixture)
         {
-            mapper = fixture.mapper;
+            mapper = fixture.Mapper;
         }
 
         [Fact]

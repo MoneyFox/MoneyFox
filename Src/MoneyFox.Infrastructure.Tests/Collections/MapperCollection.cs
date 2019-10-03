@@ -1,10 +1,9 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Infrastructure;
+using AutoMapper;
 using Xunit;
 
-namespace MoneyFox.Presentation.Tests.Collections
+namespace MoneyFox.Infrastructure.Tests.Collections
 {
     [ExcludeFromCodeCoverage]
     [CollectionDefinition("AutoMapperCollection")]
