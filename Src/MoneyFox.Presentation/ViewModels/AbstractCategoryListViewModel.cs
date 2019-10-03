@@ -3,8 +3,11 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using MediatR;
+using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
@@ -21,18 +24,21 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Base class for the category list user control
         /// </summary>
-        protected AbstractCategoryListViewModel(ICrudServicesAsync crudServices,
+        protected AbstractCategoryListViewModel(IMediator mediator,
+                                                IMapper mapper,
                                                 IDialogService dialogService,
                                                 INavigationService navigationService)
         {
-            CrudServices = crudServices;
+            Mediator = mediator;
+            Mapper = mapper;
             DialogService = dialogService;
             NavigationService = navigationService;
         }
 
         protected INavigationService NavigationService { get; private set; }
 
-        protected ICrudServicesAsync CrudServices { get; }
+        protected IMediator Mediator { get; }
+        protected IMapper Mapper { get; }
         protected IDialogService DialogService { get; }
 
         /// <summary>
@@ -92,28 +98,10 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Performs a search with the text in the search text property
         /// </summary>
-        public async Task Search(string searchText = "")
-        {
-            List<CategoryViewModel> categories;
-
-            var categoryQuery = CrudServices
-                .ReadManyNoTracked<CategoryViewModel>()
-                .OrderBy(x => x.Name);
-
-            if (!string.IsNullOrEmpty(searchText))
-            {
-                categories = new List<CategoryViewModel>(
-                    await categoryQuery
-                        .WhereNameContains(searchText)
-                        .ToListAsync());
-            } 
-            else
-            {
-                categories = new List<CategoryViewModel>(
-                    await categoryQuery
-                        .ToListAsync());
-            }
-            CategoryList = CreateGroup(categories);
+        public async Task Search(string searchText = "") {
+            var categoriesVms =
+                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery {SearchTerm = searchText}));S
+            CategoryList = CreateGroup(categoriesVms);
         }
 
         private void EditCategory(CategoryViewModel category)

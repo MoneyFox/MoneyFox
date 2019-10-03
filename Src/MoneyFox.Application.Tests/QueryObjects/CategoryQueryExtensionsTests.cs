@@ -23,7 +23,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                 .AsQueryable();
 
             // Act
-            var resultList = categoryQueryList.NameContains("Foo").ToList();
+            var resultList = categoryQueryList.WhereNameContains("Foo").ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);

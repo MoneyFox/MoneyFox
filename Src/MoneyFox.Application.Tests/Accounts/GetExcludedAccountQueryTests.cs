@@ -5,7 +5,6 @@ using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
-using Should;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Accounts
