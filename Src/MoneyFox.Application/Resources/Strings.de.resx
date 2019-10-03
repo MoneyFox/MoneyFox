@@ -793,21 +793,21 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Ihre Daten werden in Ihrem OneDrive-Konto gespeichert. Sie finden sie im Anwendungsordner in einem neuen Ordner namens "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Dunkel</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Hell</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
+    <value>Windows-Standard</value>
   </data>
   <data name="TagsLabel" xml:space="preserve">
     <value>Tags</value>
   </data>
   <data name="TodayLabel" xml:space="preserve">
-    <value>Today</value>
+    <value>Heute</value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[No Category]</value>
+    <value>Keine Kategorie</value>
   </data>
 </root>
