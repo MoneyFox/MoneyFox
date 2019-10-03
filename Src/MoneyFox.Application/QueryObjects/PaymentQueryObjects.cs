@@ -61,5 +61,16 @@ namespace MoneyFox.BusinessDbAccess.QueryObjects
         {
             return query.Where(payment => payment.Type != PaymentType.Transfer);
         }
+
+        /// <summary>
+        ///     Adds a filter to a query for payments who has a certain id as charged or target account.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <param name="accountId">AccountId to filter for </param>
+        /// <returns>Query filtered for the account id.</returns>
+        public static IQueryable<Payment> HasAccountId(this IQueryable<Payment> query, int accountId)
+        {
+            return query.Where(payment => payment.ChargedAccount.Id == accountId || payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
+        }
     }
 }

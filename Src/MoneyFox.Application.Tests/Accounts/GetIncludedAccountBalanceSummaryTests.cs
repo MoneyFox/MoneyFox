@@ -42,7 +42,7 @@ namespace MoneyFox.Application.Tests.Accounts
             var result = await new GetIncludedAccountBalanceSummary.Handler(context).Handle(new GetIncludedAccountBalanceSummary(), default);
 
             // Assert
-            result.ShouldEqual(220§);
+            result.ShouldEqual(220);
         }
     }
 }

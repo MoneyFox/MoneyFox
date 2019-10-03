@@ -1,12 +1,9 @@
 ﻿using System.Threading.Tasks;
-using GenericServices;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Payments.Queries;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.QueryObject;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Services
@@ -60,10 +57,7 @@ namespace MoneyFox.Presentation.Services
 
             var balance = await GetTotalBalance();
 
-            foreach (var payment in crudServices
-                .ReadManyNoTracked<PaymentViewModel>()
-                .AreNotCleared()
-                .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth()))
+            foreach (var payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
 
                 switch (payment.Type)
                 {
@@ -105,11 +99,7 @@ namespace MoneyFox.Presentation.Services
         {
             var balance = account.CurrentBalance;
 
-            var paymentList = await crudServices.ReadManyNoTracked<PaymentViewModel>()
-                .AreNotCleared()
-                .HasAccountId(account.Id)
-                .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
-                .ToListAsync();
+            var paymentList = await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery{AccountId = account.Id });
 
             foreach (var payment in paymentList)
 

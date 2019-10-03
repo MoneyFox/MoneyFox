@@ -5,7 +5,6 @@ using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
-using Should;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Accounts
@@ -33,7 +32,7 @@ namespace MoneyFox.Application.Tests.Accounts
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountQuery.Handler(context).Handle(new GetAccountQuery(), default);
+            var result = await new GetAccountsQuery.Handler(context).Handle(new GetAccountsQuery(), default);
 
             // Assert
             Assert.Single(result);

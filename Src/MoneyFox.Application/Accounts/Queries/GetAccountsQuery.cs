@@ -8,9 +8,9 @@ using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Accounts.Queries
 {
-    public class GetAccountQuery : IRequest<List<Account>>
+    public class GetAccountsQuery : IRequest<List<Account>>
     {
-        public class Handler : IRequestHandler<GetAccountQuery, List<Account>>
+        public class Handler : IRequestHandler<GetAccountsQuery, List<Account>>
         {
             private readonly IEfCoreContext context;
 
@@ -19,7 +19,7 @@ namespace MoneyFox.Application.Accounts.Queries
                 this.context = context;
             }
 
-            public async Task<List<Account>> Handle(GetAccountQuery request, CancellationToken cancellationToken)
+            public async Task<List<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
             {
                 return await context.Accounts.ToListAsync(cancellationToken);
             }
