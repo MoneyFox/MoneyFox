@@ -136,13 +136,13 @@ namespace MoneyFox.Presentation.ViewModels
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
 
-                await crudService.DeleteWithActionAndSaveAsync<Account>(async (context, account) =>
+                await crudService.DeleteWithActionAndSaveAsync<Account>( (context, account) =>
                     {
                         var paymentsToRemove = context
                             .Set<RecurringPayment>()
                             .Where(rec => rec.ChargedAccount.Id == accountToDelete.Id);
                         context.RemoveRange(paymentsToRemove);
-                        return crudService;
+                        return Task.FromResult<IStatusGeneric>(crudService);
                     },
                     accountToDelete.Id);
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
