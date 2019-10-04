@@ -7,7 +7,10 @@ namespace MoneyFox.Application.Accounts.Commands.DeleteAccountById
 {
     public class DeleteAccountByIdCommand : IRequest
     {
-        public int AccountId { get; set; }
+        public DeleteAccountByIdCommand(int accountId) {
+            AccountId = accountId;
+        }
+        public int AccountId { get; }
 
         public class Handler : IRequestHandler<DeleteAccountByIdCommand>
         {

@@ -1,7 +1,8 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
@@ -19,13 +20,14 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
 
-        public AddPaymentViewModel(IPaymentService paymentService,
-            ICrudServicesAsync crudServices,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IBackupService backupService,
-            INavigationService navigationService) 
-            : base(crudServices, dialogService, settingsFacade, backupService, navigationService)
+        public AddPaymentViewModel(IMediator mediator,
+                                   IMapper mapper, 
+                                   IPaymentService paymentService,
+                                   IDialogService dialogService,
+                                   ISettingsFacade settingsFacade,
+                                   IBackupService backupService,
+                                   INavigationService navigationService) 
+            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService)
         {
             this.paymentService = paymentService;
             this.navigationService = navigationService;

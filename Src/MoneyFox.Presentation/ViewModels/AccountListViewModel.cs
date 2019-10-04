@@ -7,6 +7,7 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
@@ -135,9 +136,9 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (accountToDelete == null) return;
 
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) 
             {
-                await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id);
+                await mediator.Send(new DeleteAccountByIdCommand(accountToDelete.Id));
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
 
                 Accounts.Clear();
