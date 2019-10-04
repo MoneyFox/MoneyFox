@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MoneyFox.Application.Payments.Commands.CreatePayment;
+using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -8,13 +8,13 @@ using MoneyFox.Persistence;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
+namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
 {
-    public class CreatePaymentCommandTests : IDisposable
+    public class DeletePaymentByIdCommandTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public CreatePaymentCommandTests()
+        public DeletePaymentByIdCommandTests()
         {
             context = TestEfCoreContextFactory.Create();
         }
@@ -23,19 +23,20 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
         {
             TestEfCoreContextFactory.Destroy(context);
         }
-        
+
         [Fact]
         public async Task GetPayment_PaymentFound()
         {
             // Arrange
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
+            await context.AddAsync(payment1);
+            await context.SaveChangesAsync();
 
             // Act
-            var result = await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
+            await new DeletePaymentByIdCommand.Handler(context).Handle(new DeletePaymentByIdCommand(payment1.Id), default);
 
             // Assert
-            Assert.Single(context.Payments);
-            (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
+            Assert.Empty(context.Payments);
         }
     }
 }
