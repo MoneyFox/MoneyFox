@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Views;
-using GenericServices;
 using MockQueryable.Moq;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
