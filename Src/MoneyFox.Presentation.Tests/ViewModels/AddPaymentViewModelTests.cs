@@ -10,7 +10,6 @@ using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
@@ -44,6 +43,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account>());
+
+            mapperMock.Setup(x => x.Map<List<AccountViewModel>>(It.IsAny<List<Account>>()))
+                      .Returns(new List<AccountViewModel>());
         }
 
         [Theory]
@@ -85,6 +87,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account> {new Account("dfasdf")});
 
+            mapperMock.Setup(x => x.Map<List<AccountViewModel>>(It.IsAny<List<Account>>()))
+                      .Returns(new List<AccountViewModel> {new AccountViewModel()});
+
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapperMock.Object, 
                                                        paymentServiceMock.Object,
@@ -112,6 +117,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account> { new Account("dfasdf") });
+
+            mapperMock.Setup(x => x.Map<List<AccountViewModel>>(It.IsAny<List<Account>>()))
+                      .Returns(new List<AccountViewModel> { new AccountViewModel(), new AccountViewModel() });
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapperMock.Object,

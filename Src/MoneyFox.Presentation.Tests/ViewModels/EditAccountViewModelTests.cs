@@ -35,10 +35,12 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
 
-            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
-                        .ReturnsAsync(new List<Account>{new Account("asdf")});
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
+                        .ReturnsAsync(new Account("asdf"));
+            
+            mapperMock.Setup(x => x.Map<AccountViewModel>(It.IsAny<Account>()))
+                      .Returns(new AccountViewModel());
         }
-
 
         [Fact]
         public async Task Initialize_AccountLoaded()
