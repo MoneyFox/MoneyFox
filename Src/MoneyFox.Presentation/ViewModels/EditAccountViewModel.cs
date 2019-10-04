@@ -5,8 +5,10 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
+using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -42,10 +44,7 @@ namespace MoneyFox.Presentation.ViewModels {
         }
 
         protected override async Task SaveAccount() {
-            await crudServices.UpdateAndSaveAsync(SelectedAccount);
-
-            if (!crudServices.IsValid) await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
-
+            await mediator.Send(new UpdateAccountCommand {Account = mapper.Map<Account>(SelectedAccount)});
             CancelCommand.Execute(null);
         }
 
