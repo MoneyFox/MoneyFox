@@ -33,7 +33,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(context).Handle(new DeleteCategoryByIdCommand{CategoryId = category1.Id}, default);
+            await new DeleteCategoryByIdCommand.Handler(context).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
             Assert.Single(context.Categories);

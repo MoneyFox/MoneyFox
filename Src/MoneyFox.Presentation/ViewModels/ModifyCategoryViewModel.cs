@@ -112,7 +112,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task Cancel()
         {
-            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery {CategoryId = SelectedCategory.Id}));
+            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
             NavigationService.GoBack();
         }
     }
