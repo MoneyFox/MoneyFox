@@ -171,13 +171,13 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await crudServices.DeleteWithActionAndSaveAsync<Account>(async (context, account) =>
+                await crudServices.DeleteWithActionAndSaveAsync<Account>( (context, account) =>
                     {
                         var paymentsToRemove = context
                             .Set<RecurringPayment>()
                             .Where(rec => rec.ChargedAccount.Id == accountId);
                         context.RemoveRange(paymentsToRemove);
-                        return crudServices;
+                        return Task.FromResult<IStatusGeneric>(crudServices);
                     },
                     accountId);
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
