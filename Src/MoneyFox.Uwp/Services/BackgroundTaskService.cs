@@ -10,7 +10,6 @@ namespace MoneyFox.Uwp.Services
         {
             BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(60, false));
             BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(60, false));
-            BackgroundTaskHelper.Register(typeof(LiveTiles), new TimeTrigger(15, false));
         }
     }
 }

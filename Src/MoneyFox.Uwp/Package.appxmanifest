@@ -50,12 +50,6 @@
             <Task Type="timer" />
           </BackgroundTasks>
         </Extension>
-        <Extension Category="windows.backgroundTasks" EntryPoint="MoneyFox.Uwp.Tasks.LiveTiles">
-          <BackgroundTasks>
-            <Task Type="systemEvent" />
-            <Task Type="timer" />
-          </BackgroundTasks>
-        </Extension>
       </Extensions>
     </Application>
   </Applications>
