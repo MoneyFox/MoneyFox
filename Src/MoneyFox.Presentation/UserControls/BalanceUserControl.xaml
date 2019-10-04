@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
+             x:Class="MoneyFox.Presentation.UserControls.BalanceUserControl">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+
+        <StackLayout HorizontalOptions="CenterAndExpand"
+                   Orientation="Horizontal">
+            <Label Text="{Binding TotalBalance, Converter={StaticResource AmountFormatConverter} }"
+                   Style="{StaticResource DeemphasizedLabelStyle}"/>
+            <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                   Text=" / " />
+            <Label Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" 
+                   Style="{StaticResource DeemphasizedLabelStyle}"/>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

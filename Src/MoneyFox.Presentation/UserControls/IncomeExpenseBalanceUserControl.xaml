@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
+             mc:Ignorable="d"
+             x:Class="MoneyFox.Presentation.UserControls.IncomeExpenseBalanceUserControl">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:AmountFormatDecimalConverter x:Key="AmountFormatConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+
+        <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
+            <Label Text="{Binding TotalEarned, Converter={StaticResource AmountFormatConverter} }"
+                   TextColor="White" />
+            <Label Text=" / "
+                   TextColor="White" />
+            <Label Text="{Binding TotalSpent, Converter={StaticResource AmountFormatConverter}}"
+                   TextColor="White"  />
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

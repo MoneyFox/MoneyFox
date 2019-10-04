@@ -1,0 +1,60 @@
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  mc:Ignorable="d"
+                  xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+                  x:Class="MoneyFox.Presentation.Views.SettingsPage"
+                  Visual="Material"
+                  BackgroundColor="{DynamicResource WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeSettingsViewModel />
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ListView x:Name="SettingsList"
+                  ItemsSource="{Binding SettingsList}" 
+                  RowHeight="65"
+                  BackgroundColor="Transparent"
+                  CachingStrategy="RecycleElementAndDataTemplate"
+                  SeparatorVisibility="None" >
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                           Style="{DynamicResource ListItemStyle}" >
+                            <StackLayout Orientation="Vertical"
+                                         Padding="3"
+                                         Spacing="{DynamicResource DefaultSpacing}">
+                                
+                                <StackLayout Orientation="Horizontal"
+                                             Padding="3"
+                                             Spacing="{DynamicResource DefaultSpacing}">
+
+                                    <Image HeightRequest="15"
+                                           WidthRequest="15">
+                                        <Image.Source>
+                                            <FontImageSource
+                                                Glyph="{Binding Icon}"
+                                                FontFamily="{DynamicResource MaterialFontFamily}"
+                                                Color="{DynamicResource PrimaryFontColor}" />
+                                        </Image.Source>
+                                    </Image>
+                                    
+                                    <Label Text="{Binding Name}" 
+                                           Style="{DynamicResource ListItemHeaderStyle}" />
+                                    
+                                </StackLayout>
+                                <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
+                            </StackLayout>
+                            
+                        </controls:CardView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

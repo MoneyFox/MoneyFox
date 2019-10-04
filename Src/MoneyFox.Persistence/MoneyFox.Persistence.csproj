@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
+    <PackageReference Include="NLog" Version="4.6.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
+    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

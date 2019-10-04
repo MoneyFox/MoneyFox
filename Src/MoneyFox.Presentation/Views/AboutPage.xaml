@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             Visual="Material"
+             x:Class="MoneyFox.Presentation.Views.AboutPage"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeAboutViewModel />
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="6">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{Binding Resources[VersionLabel]}"
+                           Style="{StaticResource DefaultTextStyle}" />
+                    <Label Text="{Binding Version}"
+                           Style="{StaticResource DefaultTextStyle}" />
+                </StackLayout>
+
+                <Label Text="{Binding Resources[ContactLabel]}"
+                       Style="{StaticResource DefaultTextStyle}"
+                       HorizontalOptions="Start" />
+
+                <Button Text="{Binding Resources[WebsiteLabel]}"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Command="{Binding GoToWebsiteCommand}" />
+
+                <Button Text="{Binding Resources[EmailLabel]}"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Command="{Binding SendMailCommand}" />
+
+                <Button Text="{Binding Resources[RateLabel]}"
+                        Style="{StaticResource DefaultButtonStyle}"
+                        Command="{Binding RateAppCommand}" />
+
+                    <Label Text="{Binding Resources[TranslationLabel]}"
+                       Style="{StaticResource DefaultTextStyle}" />
+                <Label Text="www.crowdin.com"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       HorizontalOptions="CenterAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToTranslationProjectCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="{Binding Resources[InfoOpenSource]}"
+                       Style="{StaticResource DefaultTextStyle}" />
+                <Label Text="www.github.com"
+                       Style="{StaticResource DeemphasizedLabelStyle}"
+                       HorizontalOptions="CenterAndExpand">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToRepositoryCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="{Binding Resources[ContributerLabel]}"
+                       Style="{StaticResource DefaultTextStyle}" />
+                <Label Text="GitHub Contribution"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource DeemphasizedLabelStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToContributionPageCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="{Binding Resources[IconDesignerLabel]}"
+                       Style="{StaticResource DefaultTextStyle}" />
+                <Label Text="@Toledo Vanderson"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource DeemphasizedLabelStyle}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDesignerTwitterAccountCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

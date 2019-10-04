@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl">
+
+    <d:ContentView.BindingContext>
+        <designTime:DesignTimeCategoryListViewModel />
+    </d:ContentView.BindingContext>
+
+  <ContentView.Resources>
+      <Style x:Key="DefaultSearchBarStyle" TargetType="SearchBar">
+          <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
+          <Setter Property="PlaceholderColor" Value="{DynamicResource DeemphasizedColor}" />
+      </Style>
+
+      <Style x:Key="HighlightFrame" TargetType="Frame">
+          <Setter Property="BackgroundColor" Value="{DynamicResource FrameHighlightColor}" />
+          <Setter Property="CornerRadius" Value="10" />
+          <Setter Property="Margin" Value="{DynamicResource MediumLeftTopRightBottomMargin}" />
+          <Setter Property="Padding" Value="3" />
+      </Style>
+  </ContentView.Resources>
+
+    <ContentView.Content>
+        <Grid VerticalOptions="FillAndExpand" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="240*" />
+            </Grid.RowDefinitions>
+
+            <Frame Style="{StaticResource HighlightFrame}">
+                <SearchBar x:Name="SearchBar"
+                           Style="{StaticResource DefaultSearchBarStyle}"
+                           BackgroundColor="{DynamicResource FrameHighlightColor}"
+                           VerticalOptions="Start"
+                           
+                           Placeholder="{Binding Resources[SearchLabel]}"
+                           TextChanged="SearchTermChanged" />
+            </Frame>
+
+            <ListView x:Name="CategoryList"
+                      Grid.Row="1"
+                      BackgroundColor="Transparent"
+                      ItemsSource="{Binding CategoryList}"
+                      HasUnevenRows="True"
+                      CachingStrategy="RecycleElementAndDataTemplate"
+                      IsGroupingEnabled="True"
+                      SeparatorVisibility="None"
+                      GroupShortNameBinding="{Binding Key}">
+
+                <ListView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
+                                         HorizontalOptions="FillAndExpand"
+                                         Margin="0,0,-30,-1"
+                                         Padding="0,18,0,6">
+                                <Label Text="{Binding Key}"
+                                       VerticalOptions="CenterAndExpand"
+                                       Style="{StaticResource ListGroupHeaderStyle}"  />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.GroupHeaderTemplate>
+
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="viewModels:CategoryViewModel">
+                        <ViewCell>
+
+                            <ViewCell.ContextActions>
+                                <MenuItem Clicked="EditCategory" CommandParameter="{Binding .}"
+                                          Text="{Binding Resources[EditLabel]}" />
+                                <MenuItem Clicked="DeleteCategory" CommandParameter="{Binding .}"
+                                          Text="{Binding Resources[DeleteLabel]}" 
+                                          IsDestructive="True" />
+                            </ViewCell.ContextActions>
+
+                            <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}" Style="{StaticResource ListItemStyle}">
+                                <StackLayout Orientation="Vertical"
+                                             Padding="3"
+                                             Spacing="{StaticResource DefaultSpacing}"
+                                             Margin="{StaticResource DefaultListItemsMargin}">
+                                    <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
+                                </StackLayout>
+                            </controls:CardView>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Label Grid.Row="1"
+                   Margin="6"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   Style="{StaticResource DeemphasizedLabelStyle}"
+                   LineBreakMode="WordWrap"
+                   IsVisible="{Binding IsCategoriesEmpty}"
+                   Text="{Binding Resources[NoCategoriesMessage]}"/>
+
+            <ImageButton
+                Grid.Row="1"
+                Clicked="AddCategoryClick" 
+                Style="{StaticResource FabPrimary}" >
+                <ImageButton.Source>
+                    <FontImageSource
+                        Glyph="{StaticResource Add}"
+                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        Size="33"
+                        Color="White" />
+                </ImageButton.Source>
+            </ImageButton>
+        </Grid>
+    </ContentView.Content>
+</ContentView>
