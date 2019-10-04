@@ -11,11 +11,11 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
 {
     [ExcludeFromCodeCoverage]
-    public class GetCategoryByIdQueryHandlerTests : IDisposable
+    public class GetCategoryByIdQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetCategoryByIdQueryHandlerTests()
+        public GetCategoryByIdQueryTests()
         {
             context = TestEfCoreContextFactory.Create();
         }

@@ -6,16 +6,16 @@ using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Payments.Queries.GetPaymentById
 {
-    public class GetPaymentByIdCommand : IRequest<Payment>
+    public class GetPaymentByIdQuery : IRequest<Payment>
     {
-        public GetPaymentByIdCommand(int paymentId)
+        public GetPaymentByIdQuery(int paymentId)
         {
             PaymentId = paymentId;
         }
 
         public int PaymentId { get; }
 
-        public class Handler : IRequestHandler<GetPaymentByIdCommand, Payment>
+        public class Handler : IRequestHandler<GetPaymentByIdQuery, Payment>
         {
             private readonly IEfCoreContext context;
 
@@ -24,7 +24,7 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentById
                 this.context = context;
             }
 
-            public async Task<Payment> Handle(GetPaymentByIdCommand request, CancellationToken cancellationToken)
+            public async Task<Payment> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken)
             {
                 return await context.Payments.FindAsync(request.PaymentId);
             }
