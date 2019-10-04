@@ -23,7 +23,7 @@ namespace MoneyFox.Application.Categories.Command.DeleteCategoryById
 
             public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken) 
             {
-                var entityToDelete = await context.Categories.FindAsync(request.CategoryId, cancellationToken);
+                var entityToDelete = await context.Categories.FindAsync(request.CategoryId);
 
                 context.Categories.Remove(entityToDelete);
                 await context.SaveChangesAsync(cancellationToken);

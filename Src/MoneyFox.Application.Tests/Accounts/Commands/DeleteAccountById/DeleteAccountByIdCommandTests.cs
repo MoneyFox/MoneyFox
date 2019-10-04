@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
@@ -36,7 +38,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
             await new DeleteAccountByIdCommand.Handler(context).Handle(new DeleteAccountByIdCommand(account.Id), default);
 
             // Assert
-            Assert.Single(context.Categories);
+            (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).ShouldBeNull();
         }
     }
 }

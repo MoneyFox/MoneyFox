@@ -46,14 +46,14 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
         public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var category1 = new Category("foo");
+            var category1 = new Category("this is a guid");
             var category2 = new Category("test2");
             await context.AddAsync(category1);
             await context.AddAsync(category2);
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCategoryBySearchTermQuery.Handler(context).Handle(new GetCategoryBySearchTermQuery{SearchTerm = "Foo"}, default);
+            var result = await new GetCategoryBySearchTermQuery.Handler(context).Handle(new GetCategoryBySearchTermQuery{SearchTerm = "guid" }, default);
 
             // Assert
             Assert.Single(result);

@@ -22,7 +22,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
             }
 
             public async Task<Unit> Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken) {
-                var entityToDelete = await context.Payments.FindAsync(request.PaymentId, cancellationToken);
+                var entityToDelete = await context.Payments.FindAsync(request.PaymentId);
 
                 context.Payments.Remove(entityToDelete);
                 await context.SaveChangesAsync(cancellationToken);

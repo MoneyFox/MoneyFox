@@ -8,7 +8,7 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Payments.GetUnclearedPaymentsOfThisMonth
+namespace MoneyFox.Application.Tests.Payments.Query.GetUnclearedPaymentsOfThisMonth
 {
     [ExcludeFromCodeCoverage]
     public class GetUnlcearedPaymentsOfThisMonthQueryTests : IDisposable
@@ -30,8 +30,8 @@ namespace MoneyFox.Application.Tests.Payments.GetUnclearedPaymentsOfThisMonth
             // Arrange
             var account = new Account("test", 80);
 
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
-            var payment2 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+            var payment1 = new Payment(DateTime.Now.AddDays(-1), 20, PaymentType.Expense, account);
+            var payment2 = new Payment(DateTime.Now.AddDays(-1), 20, PaymentType.Expense, account);
             var payment3 = new Payment(DateTime.Now.AddMonths(1), 20, PaymentType.Expense, account);
 
             payment2.ClearPayment();
@@ -55,8 +55,8 @@ namespace MoneyFox.Application.Tests.Payments.GetUnclearedPaymentsOfThisMonth
             var account1 = new Account("test", 80);
             var account2 = new Account("test", 80);
 
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account1);
-            var payment2 = new Payment(DateTime.Now, 20, PaymentType.Expense, account2);
+            var payment1 = new Payment(DateTime.Now.AddMonths(1), 20, PaymentType.Expense, account1);
+            var payment2 = new Payment(DateTime.Now.AddMonths(1), 20, PaymentType.Expense, account2);
 
             payment1.ClearPayment();
             payment2.ClearPayment();

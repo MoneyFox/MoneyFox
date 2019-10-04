@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
@@ -36,7 +38,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await new DeleteCategoryByIdCommand.Handler(context).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
-            Assert.Single(context.Categories);
+            (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).ShouldBeNull();
         }
     }
 }

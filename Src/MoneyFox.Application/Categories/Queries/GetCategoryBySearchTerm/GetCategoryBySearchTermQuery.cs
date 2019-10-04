@@ -29,7 +29,7 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
 
                 if (!string.IsNullOrEmpty(request.SearchTerm))
                 {
-                    await categoriesQuery
+                    return await categoriesQuery
                               .WhereNameContains(request.SearchTerm)
                               .ToListAsync(cancellationToken);
                 }
