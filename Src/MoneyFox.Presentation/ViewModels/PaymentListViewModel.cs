@@ -9,6 +9,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
+using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Groups;
@@ -61,7 +62,7 @@ namespace MoneyFox.Presentation.ViewModels
             this.navigationService = navigationService;
             this.mediator = mediator;
 
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, LoadPayments);
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => { await LoadPayments(message); });
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -187,26 +188,19 @@ namespace MoneyFox.Presentation.ViewModels
         {
             dialogService.ShowLoadingDialog();
 
-            LoadPayments(new PaymentListFilterChangedMessage());
+            await LoadPayments(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
             dialogService.HideLoadingDialog();
         }
 
-        private void LoadPayments(PaymentListFilterChangedMessage filterMessage)
-        {
-            var paymentQuery = crudServices.ReadManyNoTracked<PaymentViewModel>()
-                .HasAccountId(AccountId);
-
-            if (filterMessage.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
-            if (filterMessage.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
-
-            paymentQuery = paymentQuery.Where(x => x.Date >= filterMessage.TimeRangeStart);
-            paymentQuery = paymentQuery.Where(x => x.Date <= filterMessage.TimeRangeEnd);
-
-            var loadedPayments = new List<PaymentViewModel>(
-                paymentQuery.OrderDescendingByDate());
+        private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage) {
+            var loadedPayments = mapper.Map<List<PaymentViewModel>>(
+                await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId, filterMessage.TimeRangeStart, filterMessage.TimeRangeEnd) {
+                    IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                    IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+                }));
 
             foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
 
