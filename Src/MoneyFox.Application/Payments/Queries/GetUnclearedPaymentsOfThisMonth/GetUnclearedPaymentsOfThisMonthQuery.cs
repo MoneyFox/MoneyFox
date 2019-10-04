@@ -7,7 +7,7 @@ using MoneyFox.Application.Interfaces;
 using MoneyFox.BusinessDbAccess.QueryObjects;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Application.Payments.Queries
+namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
 {
     public class GetUnclearedPaymentsOfThisMonthQuery : IRequest<List<Payment>>
     {

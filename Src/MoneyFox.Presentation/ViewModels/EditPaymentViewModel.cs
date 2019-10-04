@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;

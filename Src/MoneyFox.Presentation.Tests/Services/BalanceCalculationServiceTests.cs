@@ -8,6 +8,7 @@ using MockQueryable.Moq;
 using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Payments.Queries;
+using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
