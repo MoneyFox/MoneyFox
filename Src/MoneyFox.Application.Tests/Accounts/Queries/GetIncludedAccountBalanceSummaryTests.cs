@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
@@ -39,7 +40,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetIncludedAccountBalanceSummary.Handler(context).Handle(new GetIncludedAccountBalanceSummary(), default);
+            var result = await new GetIncludedAccountBalanceSummaryQuery.Handler(context).Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
             result.ShouldEqual(220);

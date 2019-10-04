@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;

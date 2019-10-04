@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
 using MoneyFox.Application.QueryObjects;
 
-namespace MoneyFox.Application.Accounts.Queries
+namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary
 {
-    public class GetIncludedAccountBalanceSummary : IRequest<double>
+    public class GetIncludedAccountBalanceSummaryQuery : IRequest<double>
     {
-        public class Handler : IRequestHandler<GetIncludedAccountBalanceSummary, double>
+        public class Handler : IRequestHandler<GetIncludedAccountBalanceSummaryQuery, double>
         {
             private readonly IEfCoreContext context;
 
@@ -18,7 +18,7 @@ namespace MoneyFox.Application.Accounts.Queries
                 this.context = context;
             }
 
-            public async Task<double> Handle(GetIncludedAccountBalanceSummary request, CancellationToken cancellationToken)
+            public async Task<double> Handle(GetIncludedAccountBalanceSummaryQuery request, CancellationToken cancellationToken)
             {
                 return await context.Accounts.AreNotExcluded().SumAsync(x => x.CurrentBalance, cancellationToken);
             }

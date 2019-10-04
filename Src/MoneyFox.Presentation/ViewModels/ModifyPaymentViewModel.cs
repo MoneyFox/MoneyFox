@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;

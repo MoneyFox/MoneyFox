@@ -9,6 +9,8 @@ using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;

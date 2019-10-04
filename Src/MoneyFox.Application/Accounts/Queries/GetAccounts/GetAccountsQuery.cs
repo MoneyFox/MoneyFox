@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Application.Accounts.Queries
+namespace MoneyFox.Application.Accounts.Queries.GetAccounts
 {
     public class GetAccountsQuery : IRequest<List<Account>>
     {

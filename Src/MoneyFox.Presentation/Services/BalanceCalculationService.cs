@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Payments.Queries;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -48,7 +50,7 @@ namespace MoneyFox.Presentation.Services
         
         /// <inheritdoc />
         public async Task<double> GetTotalBalance() {
-            return await mediator.Send(new GetIncludedAccountBalanceSummary());
+            return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
         }
 
         /// <inheritdoc />
