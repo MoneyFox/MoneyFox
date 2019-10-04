@@ -1,18 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
-using MockQueryable.Moq;
-using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
-using MoneyFox.Application.Payments.Queries;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
-using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Xunit;
 
@@ -47,6 +43,9 @@ namespace MoneyFox.Presentation.Tests.Services
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetExcludedAccountQuery>(), default))
                             .ReturnsAsync(accounts);
+
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetIncludedAccountBalanceSummaryQuery>(), default))
+                        .ReturnsAsync(700);
         }
 
         [Fact]
@@ -55,11 +54,10 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
 
             // Act
-            var result = await new BalanceCalculationService(mediatorMock.Object)
-                .GetTotalEndOfMonthBalance();
+            var result = await new BalanceCalculationService(mediatorMock.Object).GetTotalEndOfMonthBalance();
 
             // Assert
-            Assert.Equal(350, result);
+            Assert.Equal(950, result);
         }
 
 
@@ -91,21 +89,12 @@ namespace MoneyFox.Presentation.Tests.Services
         public async Task GetTotalBalance_TwoAccounts_SumOfAccounts()
         {
             // Arrange
-            var accounts = new List<Account>
-            {
-                new Account("Foo1", 500),
-                new Account("Foo1", 200)
-            };
-
-            mediatorMock.Setup(x => x.Send(It.IsAny<GetExcludedAccountQuery>(), default))
-                        .ReturnsAsync(accounts);
 
             // Act
-            var result = await new BalanceCalculationService(mediatorMock.Object)
-                .GetTotalBalance();
+            await new BalanceCalculationService(mediatorMock.Object).GetTotalBalance();
 
             // Assert
-            Assert.Equal(700, result);
+            mediatorMock.Verify(x => x.Send(It.IsAny<GetIncludedAccountBalanceSummaryQuery>(), default), Times.Once);
         }
     }
 }

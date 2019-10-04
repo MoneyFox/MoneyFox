@@ -61,10 +61,8 @@ namespace MoneyFox.Presentation.Services
 
             var balance = await GetTotalBalance();
 
-            foreach (var payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
-
-                switch (payment.Type)
-                {
+            foreach (var payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery())) {
+                switch (payment.Type) {
                     case PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
@@ -74,27 +72,27 @@ namespace MoneyFox.Presentation.Services
                         break;
 
                     case PaymentType.Transfer:
-                        foreach (var account in excluded)
-                        {
-                            if (Equals(account.Id, payment.ChargedAccount.Id))
-                            {
+                        foreach (var account in excluded) {
+                            if (Equals(account.Id, payment.ChargedAccount.Id)) {
                                 //Transfer from excluded account
                                 balance += payment.Amount;
                                 break;
                             }
 
-                            if (Equals(account.Id, payment.TargetAccount.Id))
-                            {
+                            if (Equals(account.Id, payment.TargetAccount.Id)) {
                                 //Transfer to excluded account
                                 balance -= payment.Amount;
                                 break;
                             }
                         }
+
                         break;
 
                     default:
                         throw new InvalidPaymentTypeException();
                 }
+            }
+
             return balance;
         }
 
