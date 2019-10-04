@@ -1,21 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Accounts.Queries.GetAccountById;
+using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountById
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountNameById
 {
-    [ExcludeFromCodeCoverage ]
-    public class GetAccountByIdQueryTests : IDisposable
+    [ExcludeFromCodeCoverage]
+    public class GetAccountNameByIdQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetAccountByIdQueryTests()
+        public GetAccountNameByIdQueryTests()
         {
             context = TestEfCoreContextFactory.Create();
         }
@@ -30,16 +31,14 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountById
         {
             // Arrange
             var account1 = new Account("test2", 80);
-            var account2 = new Account("test3", 80);
             await context.AddAsync(account1);
-            await context.AddAsync(account2);
             await context.SaveChangesAsync();
 
             // Act
-            Account result = await new GetAccountByIdQuery.Handler(context).Handle(new GetAccountByIdQuery(account1.Id), default);
+            string result = await new GetAccountNameByIdQuery.Handler(context).Handle(new GetAccountNameByIdQuery(account1.Id), default);
 
             // Assert
-            result.Name.ShouldEqual(account1.Name);
+            result.ShouldEqual(account1.Name);
         }
     }
 }

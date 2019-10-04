@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
+using MediatR;
+using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;
@@ -13,23 +16,26 @@ namespace MoneyFox.Presentation.ViewModels
 {
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
         private readonly IPaymentService paymentService;
         private readonly INavigationService navigationService;
         private readonly IBackupService backupService;
-        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
 
-        public EditPaymentViewModel(IPaymentService paymentService,
-            ICrudServicesAsync crudServices,
+        public EditPaymentViewModel(IMediator mediator,
+                                    IMapper mapper,
+                                    IPaymentService paymentService,
             IDialogService dialogService,
             ISettingsFacade settingsFacade, 
             IBackupService backupService,
             INavigationService navigationService) 
-            : base(crudServices, dialogService, settingsFacade, backupService, navigationService)
+            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService)
         {
+            this.mediator = mediator;
+            this.mapper = mapper;
             this.paymentService = paymentService;
             this.navigationService = navigationService;
-            this.crudServices = crudServices;
             this.dialogService = dialogService;
             this.backupService = backupService;
             this.paymentService = paymentService;
@@ -48,7 +54,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             await base.Initialize();
 
-            SelectedPayment = await crudServices.ReadSingleAsync<PaymentViewModel>(PaymentId);
+            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(PaymentId)));
 
             // We have to set this here since otherwise the end date is null. This causes a crash on android.
             // Also it's user unfriendly if you the default end date is the 1.1.0001.

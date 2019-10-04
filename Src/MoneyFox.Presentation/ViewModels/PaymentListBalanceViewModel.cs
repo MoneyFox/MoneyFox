@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
-using GenericServices;
+using AutoMapper;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Presentation.Services;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -10,17 +12,20 @@ namespace MoneyFox.Presentation.ViewModels
     public class PaymentListBalanceViewModel : BalanceViewModel
     {
         private readonly int accountId;
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
-        private readonly ICrudServicesAsync crudServices;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListBalanceViewModel(ICrudServicesAsync crudServices,
+        public PaymentListBalanceViewModel(IMediator mediator,
+                                           IMapper mapper,
                                            IBalanceCalculationService balanceCalculationService,
                                            int accountId) : base(balanceCalculationService)
         {
-            this.crudServices = crudServices;
+            this.mediator = mediator;
+            this.mapper = mapper;
             this.balanceCalculationService = balanceCalculationService;
             this.accountId = accountId;
         }
@@ -31,7 +36,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <returns>Sum of the balance of all accounts.</returns>
         protected override async Task<double> CalculateTotalBalanceAsync()
         {
-            AccountViewModel account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId);
+            AccountViewModel account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
             return account.CurrentBalance;
         }
 
@@ -42,8 +47,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <returns>Balance of the selected account including all payments to come till end of month.</returns>
         protected override async Task<double> GetEndOfMonthValueAsync()
         {
-            AccountViewModel account = await crudServices.ReadSingleAsync<AccountViewModel>(accountId)
-                ;
+            AccountViewModel account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
             return await balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
         }
     }

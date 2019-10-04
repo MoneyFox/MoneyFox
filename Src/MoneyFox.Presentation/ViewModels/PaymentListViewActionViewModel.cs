@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
+using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
+using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
@@ -17,7 +20,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <inheritdoc cref="IPaymentListViewActionViewModel"/> />
     public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
     {
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
@@ -36,7 +39,7 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Constructor
         /// </summary>
         public PaymentListViewActionViewModel(int accountId, 
-                                              ICrudServicesAsync crudServices,
+                                              IMediator mediator,
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
@@ -44,13 +47,13 @@ namespace MoneyFox.Presentation.ViewModels
         {
             this.accountId = accountId;
 
-            this.crudServices = crudServices;
+            this.mediator = mediator;
             this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
             this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
 
-            var accountCount = crudServices.ReadManyNoTracked<AccountViewModel>().Count();
+            var accountCount = mediator.Send(new GetAccountCountQuery()).Result;
 
             IsTransferAvailable = accountCount >= 2;
             IsAddIncomeAvailable = accountCount >= 1;
@@ -170,7 +173,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await crudServices.DeleteAndSaveAsync<AccountViewModel>(accountId);
+                await mediator.Send(new DeleteAccountByIdCommand(accountId));
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 navigationService.GoBack();
             }

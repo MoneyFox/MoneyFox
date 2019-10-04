@@ -4,14 +4,15 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Messages;
-using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -23,7 +24,8 @@ namespace MoneyFox.Presentation.ViewModels
     /// </summary>
     public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
     {
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
         private readonly IPaymentService paymentService;
         private readonly IBackupService backupService;
         private readonly IBalanceCalculationService balanceCalculationService;
@@ -42,21 +44,22 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public PaymentListViewModel(ICrudServicesAsync crudServices, 
-            IPaymentService paymentService,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IBalanceCalculationService balanceCalculationService,
-            IBackupService backupService,
-            INavigationService navigationService)
+        public PaymentListViewModel(IMediator mediator,
+                                    IMapper mapper,
+                                    IPaymentService paymentService,
+                                    IDialogService dialogService,
+                                    ISettingsFacade settingsFacade,
+                                    IBalanceCalculationService balanceCalculationService,
+                                    IBackupService backupService,
+                                    INavigationService navigationService)
         {
-            this.crudServices = crudServices;
             this.paymentService = paymentService;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
             this.backupService = backupService;
             this.navigationService = navigationService;
+            this.mediator = mediator;
 
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, LoadPayments);
         }
@@ -166,13 +169,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public AsyncCommand<PaymentViewModel> DeletePaymentCommand => new AsyncCommand<PaymentViewModel>(DeletePayment);
 
-        private async Task Initialize()
-        {
-            Title = (await crudServices.ReadSingleAsync<AccountViewModel>(AccountId))?.Name;
+        private async Task Initialize() {
+            Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
 
-            BalanceViewModel = new PaymentListBalanceViewModel(crudServices, balanceCalculationService, AccountId);
+            BalanceViewModel = new PaymentListBalanceViewModel(mediator, mapper, balanceCalculationService, AccountId);
             ViewActionViewModel = new PaymentListViewActionViewModel(AccountId,
-                                                                     crudServices,
+                                                                     mediator,
                                                                      settingsFacade,
                                                                      dialogService,
                                                                      BalanceViewModel,
