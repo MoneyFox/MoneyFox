@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Query.GetUnclearedPaymentsOfThisMonth
 {
     [ExcludeFromCodeCoverage]
-    public class GetUnlcearedPaymentsOfThisMonthQueryTests : IDisposable
+    public class GetUnclearedPaymentsOfThisMonthQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
 
-        public GetUnlcearedPaymentsOfThisMonthQueryTests()
+        public GetUnclearedPaymentsOfThisMonthQueryTests()
         {
             context = TestEfCoreContextFactory.Create();
         }
@@ -30,8 +32,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetUnclearedPaymentsOfThisMo
             // Arrange
             var account = new Account("test", 80);
 
-            var payment1 = new Payment(DateTime.Now.AddDays(-1), 20, PaymentType.Expense, account);
-            var payment2 = new Payment(DateTime.Now.AddDays(-1), 20, PaymentType.Expense, account);
+            var payment1 = new Payment(DateTime.Now.AddDays(1), 20, PaymentType.Expense, account);
+            var payment2 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
             var payment3 = new Payment(DateTime.Now.AddMonths(1), 20, PaymentType.Expense, account);
 
             payment2.ClearPayment();
@@ -55,14 +57,13 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetUnclearedPaymentsOfThisMo
             var account1 = new Account("test", 80);
             var account2 = new Account("test", 80);
 
-            var payment1 = new Payment(DateTime.Now.AddMonths(1), 20, PaymentType.Expense, account1);
-            var payment2 = new Payment(DateTime.Now.AddMonths(1), 20, PaymentType.Expense, account2);
-
-            payment1.ClearPayment();
-            payment2.ClearPayment();
+            var payment1 = new Payment(DateTime.Now.AddDays(1), 20, PaymentType.Expense, account2);
+            var payment2 = new Payment(DateTime.Now, 30, PaymentType.Expense, account2);
+            var payment3 = new Payment(DateTime.Now.AddDays(1), 40, PaymentType.Expense, account1);
 
             await context.AddAsync(payment1);
             await context.AddAsync(payment2);
+            await context.AddAsync(payment3);
             await context.SaveChangesAsync();
 
             // Act
@@ -70,6 +71,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetUnclearedPaymentsOfThisMo
 
             // Assert
             Assert.Single(result);
+            result.First().Id.ShouldEqual(payment3.Id);
         }
     }
 }
