@@ -25,6 +25,7 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:NativeRecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
+        <converter:DecimalConverter x:Key="DecimalConverter"/>
 
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels:AccountViewModel">
             <StackPanel Orientation="Horizontal">
@@ -85,7 +86,8 @@
                          InputScope="Number"
                          Text="{Binding SelectedPayment.Amount,
                                             Mode=TwoWay,
-                                            UpdateSourceTrigger=PropertyChanged}"
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            Converter={StaticResource DecimalConverter}}"
                          TextAlignment="Right" />
 
                 <controls:CategorySelectionControl />

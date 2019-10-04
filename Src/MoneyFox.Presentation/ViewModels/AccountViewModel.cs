@@ -12,7 +12,7 @@ namespace MoneyFox.Presentation.ViewModels
     {
         private int id;
         private string name;
-        private double currentBalance;
+        private decimal currentBalance;
         private string note;
         private bool isOverdrawn;
         private bool isExcluded;
@@ -48,12 +48,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Current Balance
         /// </summary>
-        public double CurrentBalance
+        public decimal CurrentBalance
         {
             get => currentBalance;
             set
             {
-                if (Math.Abs(currentBalance - value) < 0.01) return;
+                if (Math.Abs(currentBalance - value) < 0.01m) return;
                 currentBalance = value;
                 RaisePropertyChanged();
             }

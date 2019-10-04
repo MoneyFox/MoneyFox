@@ -8,12 +8,12 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         /// <summary>
         ///     Balance of either the selected account or all relevant accounts at the end of the month.
         /// </summary>
-        double TotalBalance { get; }
+        decimal TotalBalance { get; }
 
         /// <summary>
         ///     Current Balance of either the selected account or all accounts.
         /// </summary>
-        double EndOfMonthBalance { get; }
+        decimal EndOfMonthBalance { get; }
 
         /// <summary>
         ///     Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust

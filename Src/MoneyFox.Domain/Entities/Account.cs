@@ -9,7 +9,7 @@ namespace MoneyFox.Domain.Entities
         //used by EF Core
         private Account(){}
 
-        public Account(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
+        public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
             ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
@@ -22,14 +22,14 @@ namespace MoneyFox.Domain.Entities
 
         [Required]
         public string Name { get; private set; }
-        public double CurrentBalance { get; private set; }
+        public decimal CurrentBalance { get; private set; }
         public string Note { get; private set; }
         public bool IsOverdrawn { get; private set; }
         public bool IsExcluded { get; private set; }
         public DateTime ModificationDate { get; private set; }
         public DateTime CreationTime { get; private set; }
 
-        public void UpdateAccount(string name, double currentBalance = 0, string note = "", bool isExcluded = false)
+        public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
             if (string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(nameof(name));
@@ -61,7 +61,7 @@ namespace MoneyFox.Domain.Entities
                 return;
             }
 
-            double amount = invert
+            decimal amount = invert
                 ? -payment.Amount
                 : payment.Amount;
 

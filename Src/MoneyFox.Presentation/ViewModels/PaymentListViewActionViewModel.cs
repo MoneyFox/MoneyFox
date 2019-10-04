@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Views;
 using GenericServices;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Messages;
@@ -170,7 +171,15 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await crudServices.DeleteAndSaveAsync<AccountViewModel>(accountId);
+                await crudServices.DeleteWithActionAndSaveAsync<Account>(async (context, account) =>
+                    {
+                        var paymentsToRemove = context
+                            .Set<RecurringPayment>()
+                            .Where(rec => rec.ChargedAccount.Id == accountId);
+                        context.RemoveRange(paymentsToRemove);
+                        return crudServices;
+                    },
+                    accountId);
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 navigationService.GoBack();
             }

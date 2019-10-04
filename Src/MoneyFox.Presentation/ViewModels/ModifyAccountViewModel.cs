@@ -64,8 +64,8 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Property to format amount string to double with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to double
+        ///     Property to format amount string to decimal with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to decimal
         ///     without the correct culture.
         /// </summary>
         public string AmountString
@@ -75,7 +75,7 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 // we remove all separator chars to ensure that it works in all regions
                 string amountString = HelperFunctions.RemoveGroupingSeparators(value);
-                if (double.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out double convertedValue))
+                if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
                     SelectedAccount.CurrentBalance = convertedValue;
             }
         }

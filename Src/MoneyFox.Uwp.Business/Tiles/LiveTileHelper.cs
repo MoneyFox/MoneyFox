@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp.Business.Tiles
 {
     public static class LiveTileHelper
     {
-        public static string TruncateNumber(double num)
+        public static string TruncateNumber(decimal num)
         {
             if (num > 0 && num < 1000) return num.ToString("#,0", CultureInfo.InvariantCulture);
             if (num > 1000 && num < 1000000)
