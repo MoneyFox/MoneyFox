@@ -7,7 +7,11 @@ namespace MoneyFox.Application.Categories.Command.DeleteCategoryById
 {
     public class DeleteCategoryByIdCommand : IRequest
     {
-        public int CategoryId { get; set; }
+        public DeleteCategoryByIdCommand(int categoryId) {
+            CategoryId = categoryId;
+        }
+
+        public int CategoryId { get; }
 
         public class Handler : IRequestHandler<DeleteCategoryByIdCommand> 
         {
