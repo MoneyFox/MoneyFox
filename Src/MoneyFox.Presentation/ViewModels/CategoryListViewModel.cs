@@ -2,7 +2,6 @@
 using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
 using MediatR;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;

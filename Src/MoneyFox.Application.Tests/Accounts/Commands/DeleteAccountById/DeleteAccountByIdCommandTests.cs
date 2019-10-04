@@ -33,7 +33,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteAccountByIdCommand.Handler(context).Handle(new DeleteAccountByIdCommand { AccountId = account.Id}, default);
+            await new DeleteAccountByIdCommand.Handler(context).Handle(new DeleteAccountByIdCommand(account.Id), default);
 
             // Assert
             Assert.Single(context.Categories);

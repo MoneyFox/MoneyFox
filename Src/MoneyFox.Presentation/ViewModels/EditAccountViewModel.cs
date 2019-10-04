@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
+using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -13,20 +14,23 @@ using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class EditAccountViewModel : ModifyAccountViewModel
+    public class EditAccountViewModel : ModifyAccountViewModel 
     {
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
         private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
 
-        public EditAccountViewModel(ICrudServicesAsync crudServices,
+        public EditAccountViewModel(IMediator mediator, 
+                                    IMapper mapper,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
             IDialogService dialogService,
             INavigationService navigationService) : base(settingsFacade, backupService, navigationService)
         {
-            this.crudServices = crudServices;
+            this.mediator = mediator;
+            this.mapper = mapper;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
             this.dialogService = dialogService;
@@ -54,9 +58,9 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected async Task DeleteAccount()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) 
             {
-                await crudServices.DeleteAndSaveAsync<Account>(SelectedAccount.Id);
+                await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 NavigationService.GoBack();
