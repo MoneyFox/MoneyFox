@@ -28,8 +28,4 @@
     </Reference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Payments\Commands\" />
-  </ItemGroup>
-
 </Project>

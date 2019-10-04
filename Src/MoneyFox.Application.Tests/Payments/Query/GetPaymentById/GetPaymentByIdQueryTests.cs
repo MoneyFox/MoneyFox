@@ -23,7 +23,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById {
         }
 
         [Fact]
-        public async Task GetCategory_CategoryNotFound() {
+        public async Task GetPayment_PaymentNotFound() {
             // Arrange
 
             // Act
@@ -34,7 +34,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById {
         }
 
         [Fact]
-        public async Task GetCategory_CategoryFound() {
+        public async Task GetPayment_PaymentFound() {
             // Arrange
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
             await context.AddAsync(payment1);
