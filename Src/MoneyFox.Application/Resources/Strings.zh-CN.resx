@@ -789,6 +789,24 @@
     <value>覆盖本地数据</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>您的数据将保存到您的 OneDrive 帐户。您将在名为“MoneyFox”的新文件夹中找到应用文件夹。</value>
+  </data>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="WindowsDefaultLabel" xml:space="preserve">
+    <value>Windows Default</value>
+  </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TodayLabel" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="NoCategoryLabel" xml:space="preserve">
+    <value>[No Category]</value>
   </data>
 </root>

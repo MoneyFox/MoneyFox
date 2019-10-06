@@ -410,7 +410,7 @@
 点击访问项目GitHub：</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>给我们打分！</value>
+    <value>Rate this app!</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>有些文字没有翻译或者翻译有误？你可以在 crowdin 上改善 Money Fox 的翻译来帮助我们：</value>
@@ -423,9 +423,6 @@
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>没有任何账户。点击在底部的加号按钮添加一个。</value>
-  </data>
-  <data name="CreateBackupInformationLabel" xml:space="preserve">
-    <value>您的数据将被保存到您的 OneDrive 账户。您可以在叫做“MoneyFoxBackupManager"的文件夹里找到它们。</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>创建备份</value>
@@ -694,5 +691,122 @@
   </data>
   <data name="BackgroundJobTitle" xml:space="preserve">
     <value>Background Job</value>
+  </data>
+  <data name="PersonalizationTitle" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
+  <data name="ShortcutsTitle" xml:space="preserve">
+    <value>Shortcuts</value>
+  </data>
+  <data name="LiveTileAccountBalance" xml:space="preserve">
+    <value>Bal. : {0}</value>
+  </data>
+  <data name="LiveTileAccountName" xml:space="preserve">
+    <value>Account: {0}</value>
+  </data>
+  <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="LiveTileLastMonthsExpenses" xml:space="preserve">
+    <value>{0}: {1}</value>
+  </data>
+  <data name="LiveTilePastPayments" xml:space="preserve">
+    <value>Past Payments</value>
+  </data>
+  <data name="LiveTileUpcommingPayments" xml:space="preserve">
+    <value>Upcoming Payments</value>
+  </data>
+  <data name="BalanceLabel" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
+    <value>Last Executions:</value>
+  </data>
+  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
+    <value>Paymentclearing:</value>
+  </data>
+  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
+    <value>Create Recurring Payments:</value>
+  </data>
+  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
+    <value>Backup Sync:</value>
+  </data>
+  <data name="PersonalizationInfoLabel" xml:space="preserve">
+    <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
+  </data>
+  <data name="ThemeDarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="ThemeLightLabel" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="SettingsPersonalizationDescription" xml:space="preserve">
+    <value>Choose your prefered Theme.</value>
+  </data>
+  <data name="SettingsPersonalizationLabel" xml:space="preserve">
+    <value>Personalization</value>
+  </data>
+  <data name="LiveTileWideandLargeIncomeFutureText" xml:space="preserve">
+    <value>{0} will receive {1}</value>
+  </data>
+  <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
+    <value>{0} to {1}</value>
+  </data>
+  <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
+    <value>{0} to be taken from {1}</value>
+  </data>
+  <data name="LiveTileWideandLargePaymentPastText" xml:space="preserve">
+    <value>{0} taken from {1}</value>
+  </data>
+  <data name="PintAccountLabel" xml:space="preserve">
+    <value>Pin account to start menu</value>
+  </data>
+  <data name="CategorySummaryPlaceHolderLabel" xml:space="preserve">
+    <value>No statistic items to display. Try to adjust the time range.</value>
+  </data>
+  <data name="MonthlyAverageLabel" xml:space="preserve">
+    <value>Last year monthly average: </value>
+  </data>
+  <data name="ContributionsLabel" xml:space="preserve">
+    <value>Contributions</value>
+  </data>
+  <data name="InfoLabel" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="LeaveFeedbackLabel" xml:space="preserve">
+    <value>Leave a feedback!</value>
+  </data>
+  <data name="ModifyRecurrenceMessage" xml:space="preserve">
+    <value>您已修改一组定期付款。是否更新该定期付款？</value>
+  </data>
+  <data name="ModifyRecurrenceTitle" xml:space="preserve">
+    <value>修改定期付款</value>
+  </data>
+  <data name="ForceOverrideBackupMessage" xml:space="preserve">
+    <value>您的本地数据库的修改日期比 OneDrive 上的新。是否覆盖您的本地数据？</value>
+  </data>
+  <data name="ForceOverrideBackupTitle" xml:space="preserve">
+    <value>覆盖本地数据</value>
+  </data>
+  <data name="BackupInformationLabel" xml:space="preserve">
+    <value>您的数据将保存到您的 OneDrive 帐户。您将在名为“MoneyFox”的新文件夹中找到应用文件夹。</value>
+  </data>
+  <data name="DarkLabel" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="LightLabel" xml:space="preserve">
+    <value>Light</value>
+  </data>
+  <data name="WindowsDefaultLabel" xml:space="preserve">
+    <value>Windows Default</value>
+  </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TodayLabel" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="NoCategoryLabel" xml:space="preserve">
+    <value>[No Category]</value>
   </data>
 </root>
