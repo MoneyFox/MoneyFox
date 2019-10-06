@@ -112,7 +112,7 @@ namespace MoneyFox.Presentation.ViewModels
 
                 RaisePropertyChanged(nameof(HasNoAccounts));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logManager.Error(ex);
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
@@ -135,7 +135,16 @@ namespace MoneyFox.Presentation.ViewModels
 
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await crudService.DeleteAndSaveAsync<Account>(accountToDelete.Id);
+
+                await crudService.DeleteWithActionAndSaveAsync<Account>( (context, account) =>
+                    {
+                        var paymentsToRemove = context
+                            .Set<RecurringPayment>()
+                            .Where(rec => rec.ChargedAccount.Id == accountToDelete.Id);
+                        context.RemoveRange(paymentsToRemove);
+                        return Task.FromResult<IStatusGeneric>(crudService);
+                    },
+                    accountToDelete.Id);
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
 
                 Accounts.Clear();

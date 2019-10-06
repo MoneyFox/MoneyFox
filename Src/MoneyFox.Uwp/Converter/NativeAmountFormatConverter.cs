@@ -10,7 +10,7 @@ namespace MoneyFox.Uwp.Converter
         {
             var noParens = (NumberFormatInfo)CultureInfo.CurrentUICulture.NumberFormat.Clone();
             noParens.CurrencyNegativePattern = 1;
-            var currencyValue = (double)value;
+            var currencyValue = (decimal)value;
             return currencyValue.ToString("C", noParens);
         }
 

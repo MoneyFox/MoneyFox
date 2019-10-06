@@ -341,9 +341,9 @@ namespace MoneyFox.Uwp.Business.Tiles
             }
         }
 
-        public double GetMonthExpenses(int month, int year, AccountViewModel account)
+        public decimal GetMonthExpenses(int month, int year, AccountViewModel account)
         {
-            var balance = 0.00;
+            var balance = 0.00m;
             var allPayment = new List<LiveTilesPaymentInfo>();
             List<PaymentViewModel> payments = crudService.ReadManyNoTracked<PaymentViewModel>()
                                                          .Where(x => x.ChargedAccountId == account.Id)

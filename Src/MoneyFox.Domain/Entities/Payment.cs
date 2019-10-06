@@ -16,7 +16,7 @@ namespace MoneyFox.Domain.Entities
         }
 
         public Payment(DateTime date,
-                       double amount,
+                       decimal amount,
                        PaymentType type,
                        Account chargedAccount,
                        Account targetAccount = null,
@@ -41,7 +41,7 @@ namespace MoneyFox.Domain.Entities
         public int? CategoryId { get; private set; }
 
         public DateTime Date { get; private set; }
-        public double Amount { get; private set; }
+        public decimal Amount { get; private set; }
         public bool IsCleared { get; private set; }
         public PaymentType Type { get; private set; }
         public string Note { get; private set; }
@@ -62,7 +62,7 @@ namespace MoneyFox.Domain.Entities
         public virtual IList<PaymentTag> PaymentTags { get; private set; }
 
         public void UpdatePayment(DateTime date,
-                                  double amount,
+                                  decimal amount,
                                   PaymentType type,
                                   Account chargedAccount,
                                   Account targetAccount = null,
@@ -77,7 +77,7 @@ namespace MoneyFox.Domain.Entities
             ClearPayment();
         }
 
-        private void AssignValues(DateTime date, double amount, PaymentType type, Account chargedAccount, Account targetAccount,
+        private void AssignValues(DateTime date, decimal amount, PaymentType type, Account chargedAccount, Account targetAccount,
                                   Category category, string note)
         {
             Date = date;

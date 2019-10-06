@@ -5,19 +5,19 @@ namespace MoneyFox.Presentation.ViewModels
     public class CategoryOverviewViewModel : BaseViewModel
     {
         private string label;
-        private double value;
-        private double average;
-        private double percentage;
+        private decimal value;
+        private decimal average;
+        private decimal percentage;
 
         /// <summary>
         ///     Value of this item
         /// </summary>
-        public double Value
+        public decimal Value
         {
             get => value;
             set
             {
-                if (Math.Abs(this.value - value) < 0.01) return;
+                if (Math.Abs(this.value - value) < 0.01m) return;
                 this.value = value;
                 RaisePropertyChanged();
             }
@@ -26,12 +26,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Average of this item
         /// </summary>
-        public double Average
+        public decimal Average
         {
             get => average;
             set
             {
-                if (Math.Abs(this.average - value) < 0.01) return;
+                if (Math.Abs(this.average - value) < 0.01m) return;
                 this.average = value;
                 RaisePropertyChanged();
             }
@@ -41,12 +41,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Value of this item
         /// </summary>
-        public double Percentage
+        public decimal Percentage
         {
             get => percentage;
             set
             {
-                if (Math.Abs(this.value - value) < 0.01) return;
+                if (Math.Abs(this.value - value) < 0.01m) return;
                 percentage = value;
                 RaisePropertyChanged();
             }

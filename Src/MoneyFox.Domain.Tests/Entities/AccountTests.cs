@@ -25,7 +25,7 @@ namespace MoneyFox.Domain.Tests.Entities
         [InlineData(-12, true)]
         [InlineData(12, false)]
         [InlineData(0, false)]
-        public void Ctor_Balance_IsOverdrawnCorrectSet(double currentBalance, bool expectedIsOverdrawn)
+        public void Ctor_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
         {
             // Arrange
 
@@ -60,7 +60,7 @@ namespace MoneyFox.Domain.Tests.Entities
         {
             // Arrange
             const string testName = "test";
-            const double testBalance = 10;
+            const decimal testBalance = 10;
             const string testNote = "foo";
             const bool testExcluded = true;
 
@@ -92,7 +92,7 @@ namespace MoneyFox.Domain.Tests.Entities
         [InlineData(-12, true)]
         [InlineData(12, false)]
         [InlineData(0, false)]
-        public void UpdateData_Balance_IsOverdrawnCorrectSet(double currentBalance, bool expectedIsOverdrawn)
+        public void UpdateData_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
         {
             // Arrange
             var testAccount = new Account("test");
@@ -128,7 +128,7 @@ namespace MoneyFox.Domain.Tests.Entities
         {
             // Arrange
             const string testname = "test";
-            const double testBalance = 10;
+            const decimal testBalance = 10;
             const string testnote = "foo";
             const bool testExcluded = true;
 
@@ -172,7 +172,7 @@ namespace MoneyFox.Domain.Tests.Entities
         [Theory]
         [InlineData(PaymentType.Expense, 50)]
         [InlineData(PaymentType.Income, 150)]
-        public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, double expectedBalance)
+        public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
         {
             // Arrange
             var account = new Account("Test", 100);
@@ -251,7 +251,7 @@ namespace MoneyFox.Domain.Tests.Entities
         [Theory]
         [InlineData(PaymentType.Expense, 100)]
         [InlineData(PaymentType.Income, 100)]
-        public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, double expectedBalance)
+        public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
         {
             // Arrange
             var account = new Account("Test", 100);

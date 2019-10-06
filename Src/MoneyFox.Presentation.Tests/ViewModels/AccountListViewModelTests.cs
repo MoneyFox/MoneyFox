@@ -1,7 +1,9 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Views;
 using GenericServices;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -80,7 +82,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task DeleteAccountCommand_UserReturnTrue_ExecuteDeletion()
         {
             // Arrange
-            crudserServiceMock.Setup(x => x.DeleteAndSaveAsync<Account>(It.IsAny<int>()))
+            crudserServiceMock.Setup(x => 
+                    x.DeleteWithActionAndSaveAsync<Account>(
+                        It.IsAny<Func<DbContext, Account, Task<IStatusGeneric>>>(),
+                        It.IsAny<int>()))
                 .Returns(Task.CompletedTask);
 
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
@@ -99,7 +104,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             await viewModel.DeleteAccountCommand.ExecuteAsync(new AccountViewModel());
 
             // Assert
-            crudserServiceMock.Verify(x => x.DeleteAndSaveAsync<Account>(It.IsAny<int>()), Times.Once);
+            crudserServiceMock.Verify(x => x.DeleteWithActionAndSaveAsync<Account>(
+                It.IsAny<Func<DbContext, Account, Task<IStatusGeneric>>>(),
+                It.IsAny<int>()));
         }
     }
 }

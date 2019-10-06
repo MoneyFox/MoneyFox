@@ -16,7 +16,7 @@ namespace MoneyFox.Domain.Entities
         }
 
         public RecurringPayment(DateTime startDate,
-                                double amount,
+                                decimal amount,
                                 PaymentType type,
                                 PaymentRecurrence recurrence,
                                 Account chargedAccount,
@@ -50,7 +50,7 @@ namespace MoneyFox.Domain.Entities
         public DateTime StartDate { get; private set; }
         public DateTime? EndDate { get; private set; }
         public bool IsEndless { get; private set; }
-        public double Amount { get; private set; }
+        public decimal Amount { get; private set; }
         public PaymentType Type { get; private set; }
         public PaymentRecurrence Recurrence { get; private set; }
         public string Note { get; set; }
@@ -67,7 +67,7 @@ namespace MoneyFox.Domain.Entities
 
         public virtual List<Payment> RelatedPayments { get; private set; }
 
-        public void UpdateRecurringPayment(double amount,
+        public void UpdateRecurringPayment(decimal amount,
                                            PaymentRecurrence recurrence,
                                            Account chargedAccount,
                                            string note = "",

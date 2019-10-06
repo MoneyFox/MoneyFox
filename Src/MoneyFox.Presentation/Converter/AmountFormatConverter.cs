@@ -21,7 +21,7 @@ namespace MoneyFox.Presentation.Converter
         {
             var noParens = (NumberFormatInfo)culture.NumberFormat.Clone();
             noParens.CurrencyNegativePattern = 1;
-            var currencyValue = (double)value;
+            var currencyValue = (decimal)value;
             return currencyValue.ToString("C", noParens);
         }
 
