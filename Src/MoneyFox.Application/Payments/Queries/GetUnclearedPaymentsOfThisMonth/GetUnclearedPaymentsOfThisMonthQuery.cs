@@ -25,6 +25,8 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
             public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request, CancellationToken cancellationToken)
             {
                 var query = context.Payments
+                                   .Include(x => x.ChargedAccount)
+                                   .Include(x => x.TargetAccount)
                                    .AreNotCleared()
                                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth());
 

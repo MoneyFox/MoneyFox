@@ -1,9 +1,12 @@
 ﻿using System;
 using Autofac;
+using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Constants;
+using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.BusinessLogic;
+using MoneyFox.Persistence;
 
 namespace MoneyFox.Presentation
 {
@@ -13,6 +16,22 @@ namespace MoneyFox.Presentation
         {
             builder.RegisterModule<BusinessLogicModule>();
             builder.RegisterModule<ApplicationModule>();
+            builder.RegisterModule<PersistenceModule>();
+
+            builder
+                .RegisterType<Mediator>()
+                .As<IMediator>()
+                .InstancePerLifetimeScope();
+
+            // request & notification handlers
+            builder.Register<ServiceFactory>(context =>
+            {
+                var c = context.Resolve<IComponentContext>();
+                return t => c.Resolve(t);
+            });
+
+            builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly).AsImplementedInterfaces(); // via assembly scan
+
 
             builder.Register(c => PublicClientApplicationBuilder
                                    .Create(ServiceConstants.MSAL_APPLICATION_ID)

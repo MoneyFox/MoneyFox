@@ -1,8 +1,8 @@
-﻿using Android.App;
-using Autofac;
+﻿using Autofac;
 using MoneyFox.Application.FileStore;
 using MoneyFox.Droid.Manager;
 using MoneyFox.Droid.Services;
+using MoneyFox.Infrastructure;
 using MoneyFox.Presentation;
 
 namespace MoneyFox.Droid
@@ -12,6 +12,7 @@ namespace MoneyFox.Droid
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<PresentationModule>();
+            builder.RegisterModule<InfrastructureModule>();
 
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
