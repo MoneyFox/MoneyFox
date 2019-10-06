@@ -54,13 +54,13 @@ namespace MoneyFox.Presentation.ViewModels
                                     IBackupService backupService,
                                     INavigationService navigationService)
         {
-            this.paymentService = paymentService;
+            this.mediator = mediator;
+            this.mapper = mapper; this.paymentService = paymentService;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
             this.backupService = backupService;
             this.navigationService = navigationService;
-            this.mediator = mediator;
 
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => { await LoadPayments(message); });
         }
