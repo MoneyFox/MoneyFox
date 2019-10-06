@@ -19,8 +19,8 @@ namespace MoneyFox.Presentation.Tests.Converter
         public void Convert_NegativeAndDifferentCurrency_FloatAmount_ValidString(string cultureID)
         {
             CultureInfo testCulture = new CultureInfo(cultureID, false);
-            var amount = -88.23;
-            var positiveAmount = 88.23;
+            var amount = -88.23m;
+            var positiveAmount = 88.23m;
             new AmountFormatConverter().Convert(amount, null, null, testCulture).ShouldEqual("-" + testCulture.NumberFormat.CurrencySymbol + positiveAmount.ToString(testCulture));
         }
     }

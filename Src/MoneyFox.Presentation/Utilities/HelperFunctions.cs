@@ -21,11 +21,11 @@ namespace MoneyFox.Presentation.Utilities
         }
 
         /// <summary>
-        ///     Returns the double converted to a string in a proper format for this culture.
+        ///     Returns the decimal converted to a string in a proper format for this culture.
         /// </summary>
-        /// <param name="value">Double who shall be converted</param>
+        /// <param name="value">decimal who shall be converted</param>
         /// <returns>Formated string.</returns>
-        public static string FormatLargeNumbers(double value)
+        public static string FormatLargeNumbers(decimal value)
             => value.ToString("N", CultureInfo.CurrentCulture);
 
         /// <summary>

@@ -10,7 +10,7 @@ namespace MoneyFox.Presentation.ViewModels
         private int id;
         private DateTime startDate;
         private DateTime? endDate;
-        private double amount;
+        private decimal amount;
         private bool isEndless;
         private PaymentType type;
         private PaymentRecurrence recurrence;
@@ -72,12 +72,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
         /// </summary>
-        public double Amount
+        public decimal Amount
         {
             get => amount;
             set
             {
-                if (Math.Abs(amount - value) < 0.01) return;
+                if (Math.Abs(amount - value) < 0.01m) return;
                 amount = value;
                 RaisePropertyChanged();
             }
