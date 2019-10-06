@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
-using MockQueryable.Moq;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
@@ -20,8 +21,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     [ExcludeFromCodeCoverage]
     public class EditPaymentViewModelTests
     {
+        private readonly Mock<IMediator> mediatorMock;
+        private readonly Mock<IMapper> mapperMock;
         private readonly Mock<IPaymentService> paymentServiceMock;
-        private readonly Mock<ICrudServicesAsync> crudServiceMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
@@ -29,15 +31,17 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
         public EditPaymentViewModelTests()
         {
+            mediatorMock = new Mock<IMediator>();
+            mapperMock = new Mock<IMapper>();
             paymentServiceMock = new Mock<IPaymentService>();
-            crudServiceMock = new Mock<ICrudServicesAsync>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
 
-            crudServiceMock.Setup(x => x.ReadManyNoTracked<AccountViewModel>())
-                           .Returns(new List<AccountViewModel>().AsQueryable().BuildMockDbQuery().Object);
+
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
+                        .ReturnsAsync(new List<Account>());
         }
 
         [Fact]

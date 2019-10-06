@@ -1,5 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using GenericServices;
+using MediatR;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
@@ -16,9 +16,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             // Act
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
+            var mediator = new Mock<IMediator>();
 
-            var addAccountVm = new AddAccountViewModel(crudServiceMock.Object, null, null, null, null);
+            var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null, null, null);
 
 
             // Assert
@@ -30,9 +30,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             // Act
-            var crudServiceMock = new Mock<ICrudServicesAsync>();
+            var mediator = new Mock<IMediator>();
 
-            var addAccountVm = new AddAccountViewModel(crudServiceMock.Object, null, null, null, null);
+            var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null, null, null);
 
             // Assert
             addAccountVm.Title.ShouldEqual(Strings.AddAccountTitle);

@@ -21,7 +21,7 @@ namespace MoneyFox.Presentation.Tests.Utilities
         [InlineData(6000000.45)]
         [InlineData(6000000)]
         [InlineData(6000000.4567)]
-        public void FormatLargeNumbers_ValidString(double amount)
+        public void FormatLargeNumbers_ValidString(decimal amount)
         {
             HelperFunctions.FormatLargeNumbers(amount).ShouldEqual(amount.ToString("N"));
         }

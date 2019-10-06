@@ -1,9 +1,12 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
+using MoneyFox.Application.Accounts.Commands.CreateAccount;
+using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -11,18 +14,21 @@ namespace MoneyFox.Presentation.ViewModels
 {
     public class AddAccountViewModel : ModifyAccountViewModel
     {
-        private readonly ICrudServicesAsync crudService;
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
         private readonly IDialogService dialogService;
 
-        public AddAccountViewModel(ICrudServicesAsync crudService,
+        public AddAccountViewModel(IMediator mediator,
+                                   IMapper mapper,
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
                                    IDialogService dialogService,
                                    INavigationService navigationService)
             : base(settingsFacade, backupService, navigationService)
         {
-            this.crudService = crudService;
+            this.mediator = mediator;
             this.dialogService = dialogService;
+            this.mapper = mapper;
 
             Title = Strings.AddAccountTitle;
         }
@@ -35,16 +41,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SaveAccount()
         {
-            if (await crudService.ReadManyNoTracked<AccountViewModel>()
-                                 .AnyWithNameAsync(SelectedAccount.Name))
+            if (await mediator.Send(new GetIfAccountWithNameExistsQuery { AccountName = SelectedAccount.Name}))
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
 
-            await crudService.CreateAndSaveAsync(SelectedAccount, "ctor(4)");
-            if (!crudService.IsValid) await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudService.GetAllErrors());
-
+            await mediator.Send(new CreateAccountCommand {AccountToSave = mapper.Map<Account>(SelectedAccount)});
             NavigationService.GoBack();
         }
     }

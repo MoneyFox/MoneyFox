@@ -33,7 +33,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             // // Act
-            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null, null);
+            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null, null, null);
 
             // Assert
             addCategoryVm.Title.ShouldEqual(Strings.AddCategoryTitle);
@@ -43,7 +43,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task Initialize_CategoryCreated()
         {
             // Arrange
-            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null, null);
+            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null, null, null);
 
             // Act
             await addCategoryVm.InitializeCommand.ExecuteAsync();
@@ -62,7 +62,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object,
                                                          dialogServiceMock.Object,
                                                          settingsFacadeMock.Object,
-                                                         backupServiceMock.Object, null);
+                                                         backupServiceMock.Object, 
+                                                         null, null);
 
             await addCategoryVm.InitializeCommand.ExecuteAsync();
 

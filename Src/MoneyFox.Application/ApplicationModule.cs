@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using MediatR;
 using System.Reflection;
-using MoneyFox.Application.Infrastructure;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using Module = Autofac.Module;
 
@@ -15,8 +14,6 @@ namespace MoneyFox.Application
                 .RegisterType<Mediator>()
                 .As<IMediator>()
                 .InstancePerLifetimeScope();
-
-            builder.RegisterInstance(AutoMapperFactory.Create());
 
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>

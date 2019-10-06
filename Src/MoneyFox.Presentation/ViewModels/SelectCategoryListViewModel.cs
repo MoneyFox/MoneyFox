@@ -1,5 +1,6 @@
-﻿using GalaSoft.MvvmLight.Views;
-using GenericServices;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight.Views;
+using MediatR;
 using MoneyFox.Presentation.Messages;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -21,9 +22,10 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
-        public SelectCategoryListViewModel(ICrudServicesAsync crudServicesAsync,
+        public SelectCategoryListViewModel(IMediator mediator,
+                                           IMapper mapper,
                                            IDialogService dialogService,
-                                           INavigationService navigationService) : base(crudServicesAsync, dialogService, navigationService)
+                                           INavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
         {
         }
 

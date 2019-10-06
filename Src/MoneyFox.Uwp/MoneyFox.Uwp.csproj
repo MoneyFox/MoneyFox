@@ -148,6 +148,7 @@
     <Compile Include="Converter\ClickConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converter\DateVisibilityConverter.cs" />
+    <Compile Include="Converter\DecimalConverter.cs" />
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
     <Compile Include="Converter\NativePaymentAmountConverter.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
@@ -166,7 +167,6 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Services\BackgroundTaskService.cs" />
     <Compile Include="Services\JumpListService.cs" />
-    <Compile Include="Services\LiveTileService.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\RateDisplayService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
@@ -338,6 +338,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <None Include="MoneyFox.Uwp_TemporaryKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

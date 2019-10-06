@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="ViewModels\EditPaymentViewModelTests.cs" />
+    <Compile Remove="ViewModels\PaymentListViewActionViewModelTests.cs" />
+    <Compile Remove="ViewModels\PaymentListViewModelTests.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.CodeCoverage" Version="16.2.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
     <PackageReference Include="Moq" Version="4.13.0" />
@@ -22,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj" />
   </ItemGroup>
 

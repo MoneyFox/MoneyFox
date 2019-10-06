@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
@@ -18,7 +19,8 @@ namespace MoneyFox.Presentation.ViewModels
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBackupService backupService,
-            INavigationService navigationService) : base(mediator, settingsFacade, backupService, navigationService)
+            INavigationService navigationService,
+            IMapper mapper) : base(mediator, settingsFacade, backupService, navigationService, mapper)
         {
             this.mediator = mediator;
             this.dialogService = dialogService;
