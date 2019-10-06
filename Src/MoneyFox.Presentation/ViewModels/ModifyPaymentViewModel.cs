@@ -3,24 +3,23 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
-using Microsoft.EntityFrameworkCore;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Messages;
-using MoneyFox.Presentation.QueryObject;
 using MoneyFox.Presentation.Services;
-using HelperFunctions = MoneyFox.Presentation.Utilities.HelperFunctions;
+using MoneyFox.Presentation.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
-namespace MoneyFox.Presentation.ViewModels
-{
-    public interface IModifyPaymentViewModel : IBaseViewModel
-    {
+namespace MoneyFox.Presentation.ViewModels {
+    public interface IModifyPaymentViewModel : IBaseViewModel {
         /// <summary>
         ///     Indicates if the PaymentViewModel is a transfer.
         /// </summary>
@@ -43,8 +42,8 @@ namespace MoneyFox.Presentation.ViewModels
         PaymentViewModel SelectedPayment { get; }
 
         /// <summary>
-        ///     Property to format amount string to decimal with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to decimal
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
         ///     without the correct culture.
         /// </summary>
         string AmountString { get; }
@@ -98,38 +97,38 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
-    {
+    public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel {
+        private readonly IMapper mapper;
+        private readonly IMediator mediator;
         private readonly IBackupService backupService;
-        private readonly ICrudServicesAsync crudServices;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
+        private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
 
         private PaymentRecurrence recurrence;
         private PaymentViewModel selectedPayment = new PaymentViewModel();
-        private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
         private string title;
 
         /// <summary>
         ///     Default constructor
         /// </summary>
-        protected ModifyPaymentViewModel(ICrudServicesAsync crudServices,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IBackupService backupService,
-            INavigationService navigationService)
-        {
-            this.crudServices = crudServices;
+        protected ModifyPaymentViewModel(IMediator mediator,
+                                         IMapper mapper,
+                                         IDialogService dialogService,
+                                         ISettingsFacade settingsFacade,
+                                         IBackupService backupService,
+                                         INavigationService navigationService) {
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
             this.navigationService = navigationService;
+            this.mediator = mediator;
+            this.mapper = mapper;
 
             MessengerInstance.Register<CategorySelectedMessage>(this, ReceiveMessage);
         }
-        protected abstract Task SavePayment();
 
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
@@ -164,11 +163,9 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     The selected recurrence
         /// </summary>
-        public PaymentRecurrence Recurrence
-        {
+        public PaymentRecurrence Recurrence {
             get => recurrence;
-            set
-            {
+            set {
                 if (recurrence == value) return;
 
                 recurrence = value;
@@ -180,8 +177,7 @@ namespace MoneyFox.Presentation.ViewModels
         ///     List with the different recurrence types.
         ///     This has to have the same order as the enum
         /// </summary>
-        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
-        {
+        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence> {
             PaymentRecurrence.Daily,
             PaymentRecurrence.DailyWithoutWeekend,
             PaymentRecurrence.Weekly,
@@ -196,11 +192,9 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     The selected PaymentViewModel
         /// </summary>
-        public PaymentViewModel SelectedPayment
-        {
+        public PaymentViewModel SelectedPayment {
             get => selectedPayment;
-            set
-            {
+            set {
                 if (selectedPayment == value) return;
                 selectedPayment = value;
                 RaisePropertyChanged();
@@ -211,32 +205,26 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Property to format amount string to decimal with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to decimal
+        ///     Property to format amount string to double with the proper culture.
+        ///     This is used to prevent issues when converting the amount string to double
         ///     without the correct culture.
         /// </summary>
-        public string AmountString
-        {
+        public string AmountString {
             get => HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
-            set
-            {
+            set {
                 // we remove all separator chars to ensure that it works in all regions
                 string amountString = HelperFunctions.RemoveGroupingSeparators(value);
                 if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
-                {
                     SelectedPayment.Amount = convertedValue;
-                }
             }
         }
 
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> ChargedAccounts
-        {
+        public ObservableCollection<AccountViewModel> ChargedAccounts {
             get => chargedAccounts;
-            private set
-            {
+            private set {
                 chargedAccounts = value;
                 RaisePropertyChanged();
             }
@@ -245,22 +233,18 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> TargetAccounts
-        {
+        public ObservableCollection<AccountViewModel> TargetAccounts {
             get => targetAccounts;
-            private set
-            {
+            private set {
                 targetAccounts = value;
                 RaisePropertyChanged();
             }
         }
 
-        public virtual string Title
-        {
+        public virtual string Title {
             get => title;
-            set
-            {
-                if(title == value) return;
+            set {
+                if (title == value) return;
                 title = value;
                 RaisePropertyChanged();
             }
@@ -274,21 +258,18 @@ namespace MoneyFox.Presentation.ViewModels
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 
-        protected virtual async Task Initialize()
-        {
-            var accounts = await crudServices.ReadManyNoTracked<AccountViewModel>()
-                                             .OrderByName()
-                                             .ToListAsync();
+        protected abstract Task SavePayment();
+
+        protected virtual async Task Initialize() {
+            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
 
 
-        private async Task SavePaymentBase()
-        {
-            if (SelectedPayment.ChargedAccount == null)
-            {
+        private async Task SavePaymentBase() {
+            if (SelectedPayment.ChargedAccount == null) {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
                 return;
             }
@@ -296,8 +277,7 @@ namespace MoneyFox.Presentation.ViewModels
             await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled)
-            {
+            if (settingsFacade.IsBackupAutouploadEnabled) {
 #pragma warning disable 4014
                 backupService.EnqueueBackupTask();
 #pragma warning restore 4014
@@ -308,51 +288,37 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Moved to own method for debugg reasons
         /// </summary>
         /// <param name="message">Message stent.</param>
-        private void ReceiveMessage(CategorySelectedMessage message)
-        {
+        private void ReceiveMessage(CategorySelectedMessage message) {
             if (SelectedPayment == null || message == null) return;
             SelectedPayment.Category = message.SelectedCategory;
         }
 
-        private void OpenSelectCategoryList()
-        {
+        private void OpenSelectCategoryList() {
             navigationService.NavigateTo(ViewModelLocator.SelectCategoryList);
         }
 
-        private void ResetSelection()
-        {
+        private void ResetSelection() {
             SelectedPayment.Category = null;
         }
 
-        private void Cancel()
-        {
+        private void Cancel() {
             navigationService.GoBack();
         }
 
-        private void UpdateOtherComboBox()
-        {
+        private void UpdateOtherComboBox() {
             var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-            foreach (var account in TargetAccounts)
-            {
-                if (!tempCollection.Contains(account))
-                {
-                    tempCollection.Add(account);
-                }
+            foreach (AccountViewModel account in TargetAccounts) {
+                if (!tempCollection.Contains(account)) tempCollection.Add(account);
             }
-            foreach (var account in tempCollection)
-            {
+
+            foreach (AccountViewModel account in tempCollection) {
                 //fills targetaccounts
-                if (!TargetAccounts.Contains(account))
-                {
-                    TargetAccounts.Add(account);
-                }
+                if (!TargetAccounts.Contains(account)) TargetAccounts.Add(account);
 
                 //fills chargedaccounts
-                if (!ChargedAccounts.Contains(account))
-                {
-                    ChargedAccounts.Add(account);
-                }
+                if (!ChargedAccounts.Contains(account)) ChargedAccounts.Add(account);
             }
+
             TargetAccounts.Remove(selectedPayment.ChargedAccount);
         }
     }

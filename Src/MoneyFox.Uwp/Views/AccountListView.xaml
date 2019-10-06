@@ -42,11 +42,6 @@
                         <MenuFlyoutItem Icon="Delete"
                                         Click="Delete_OnClick"
                                         Text="{Binding Resources[DeleteLabel]}" />
-                        <MenuFlyoutItem Click="AddToStartMenu_ClickAsync" Text="{Binding Resources[PintAccountLabel]}">
-                            <MenuFlyoutItem.Icon>
-                                <SymbolIcon Symbol="Pin" />
-                            </MenuFlyoutItem.Icon>
-                        </MenuFlyoutItem>
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
 

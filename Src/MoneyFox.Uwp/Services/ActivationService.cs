@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
@@ -9,10 +7,8 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Autofac;
 using MoneyFox.Application;
-using MoneyFox.Domain;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
-using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Views;
 using PCLAppConfig;
 
@@ -87,8 +83,7 @@ namespace MoneyFox.Uwp.Services
             ThemeSelectorService.Initialize(app.RequestedTheme);
             await JumpListService.InitializeAsync();
         }
-
-
+        
         private static void RegisterServices(NavigationServiceEx nav)
         {
             var builder = new ContainerBuilder();
@@ -127,14 +122,6 @@ namespace MoneyFox.Uwp.Services
 
         private async Task HandleActivationAsync(object activationArgs)
         {
-            var activationHandler = GetActivationHandlers()
-                .FirstOrDefault(h => h.CanHandle(activationArgs));
-
-            if (activationHandler != null)
-            {
-                await activationHandler.HandleAsync(activationArgs);
-            }
-
             if (IsInteractive(activationArgs))
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
@@ -150,12 +137,7 @@ namespace MoneyFox.Uwp.Services
             await ThemeSelectorService.SetRequestedThemeAsync();
             await RateDisplayService.ShowIfAppropriateAsync();
         }
-
-        private IEnumerable<ActivationHandler> GetActivationHandlers()
-        {
-            yield return Singleton<LiveTileService>.Instance;
-        }
-
+        
         private bool IsInteractive(object args)
         {
             return args is IActivatedEventArgs;

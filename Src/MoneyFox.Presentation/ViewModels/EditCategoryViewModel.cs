@@ -4,8 +4,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Categories.Command.CreateCategory;
+using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -31,7 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
                                      IBackupService backupService,
                                      INavigationService navigationService,
                                      IMapper mapper)
-            : base(mediator, settingsFacade, backupService, navigationService)
+            : base(mediator, settingsFacade, backupService, navigationService, mapper)
         {
             this.mediator = mediator;
             this.dialogService = dialogService;
@@ -47,19 +50,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task Initialize()
         {
-            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery {CategoryId = CategoryId}));
+            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(CategoryId)));
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
         }
 
         protected override async Task SaveCategory()
         {
-            // TODO: Reimplement
-            //await crudServices.UpdateAndSaveAsync(SelectedCategory);
-            //if (!crudServices.IsValid)
-            //{
-            //    await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
-            //}
-
+            await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
             await CancelCommand.ExecuteAsync();
         }
 
@@ -67,9 +64,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
-                // TODO: Reimplement
-                //await crudServices.DeleteAndSaveAsync<Category>(SelectedCategory.Id);
-
+                await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;

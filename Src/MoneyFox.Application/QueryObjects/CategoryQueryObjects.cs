@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Globalization;
 using System.Linq;
 using MoneyFox.Domain.Entities;
 
@@ -27,7 +26,7 @@ namespace MoneyFox.BusinessDbAccess.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="searchterm">Search term to look for.</param>
         /// <returns>Query with the added filter.</returns>
-        public static IQueryable<Category> NameContains(this IQueryable<Category> query, string searchterm)
+        public static IQueryable<Category> WhereNameContains(this IQueryable<Category> query, string searchterm)
         {
             return query.Where(category => category.Name.IndexOf(searchterm, StringComparison.InvariantCultureIgnoreCase) >= 0);
         }

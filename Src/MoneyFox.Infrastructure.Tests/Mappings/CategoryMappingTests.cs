@@ -1,0 +1,34 @@
+﻿using AutoMapper;
+using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.Tests.Collections;
+using MoneyFox.Presentation.ViewModels;
+using Should;
+using Xunit;
+
+namespace MoneyFox.Infrastructure.Tests.Mappings
+{
+    [Collection("AutoMapperCollection")]
+    public class CategoryMappingTests
+    {
+        private readonly IMapper mapper;
+
+        public CategoryMappingTests(MapperCollectionFixture fixture)
+        {
+            mapper = fixture.Mapper;
+        }
+
+        [Fact]
+        public void MapToViewModel()
+        {
+            // Arrange
+            var category = new Category("Testname","My Note");
+
+            // Act
+            var result = mapper.Map<CategoryViewModel>(category);
+
+            // Assert
+            result.Name.ShouldEqual(category.Name);
+            result.Note.ShouldEqual(category.Note);
+        }
+    }
+}

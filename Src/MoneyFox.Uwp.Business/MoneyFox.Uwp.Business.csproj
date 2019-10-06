@@ -133,16 +133,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\AsyncExtensions.cs" />
     <Compile Include="Src\WindowsFileStore.cs" />
-    <Compile Include="Tiles\LiveTileHelper.cs" />
-    <Compile Include="Tiles\LiveTileManager.cs" />
-    <Compile Include="Tiles\LiveTilesPaymentInfo.cs" />
-    <Compile Include="Tiles\TileEnum.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.Uwp.Business.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EfCore.GenericServices">
-      <Version>2.0.3</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.9</Version>
     </PackageReference>
@@ -177,6 +170,7 @@
   <ItemGroup>
     <None Include="MoneyFox.Uwp.Business.ruleset" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

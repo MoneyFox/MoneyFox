@@ -1,10 +1,13 @@
 ﻿using System.Threading.Tasks;
-using GenericServices;
-using Microsoft.EntityFrameworkCore;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries;
+using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
+using MoneyFox.Application.Payments.Queries;
+using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.QueryObject;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Services
@@ -36,40 +39,30 @@ namespace MoneyFox.Presentation.Services
     /// <inheritdoc />
     public class BalanceCalculationService : IBalanceCalculationService
     {
-        private readonly ICrudServicesAsync crudServices;
+        private readonly IMediator mediator;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public BalanceCalculationService(ICrudServicesAsync crudServices)
+        public BalanceCalculationService(IMediator mediator)
         {
-            this.crudServices = crudServices;
+            this.mediator = mediator;
         }
-        
+
         /// <inheritdoc />
-        public async Task<decimal> GetTotalBalance()
-        {
-            return await crudServices.ReadManyNoTracked<AccountViewModel>()
-                .AreNotExcluded()
-                .SumAsync(x => x.CurrentBalance);
+        public async Task<decimal> GetTotalBalance() {
+            return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
         }
 
         /// <inheritdoc />
         public async Task<decimal> GetTotalEndOfMonthBalance()
         {
-            var excluded = await crudServices.ReadManyNoTracked<AccountViewModel>()
-                .AreExcluded()
-                .ToListAsync();
+            var excluded = await mediator.Send(new GetExcludedAccountQuery());
 
             var balance = await GetTotalBalance();
 
-            foreach (var payment in crudServices
-                .ReadManyNoTracked<PaymentViewModel>()
-                .AreNotCleared()
-                .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth()))
-
-                switch (payment.Type)
-                {
+            foreach (var payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery())) {
+                switch (payment.Type) {
                     case PaymentType.Expense:
                         balance -= payment.Amount;
                         break;
@@ -79,45 +72,36 @@ namespace MoneyFox.Presentation.Services
                         break;
 
                     case PaymentType.Transfer:
-                        foreach (var account in excluded)
-                        {
-                            if (Equals(account.Id, payment.ChargedAccount.Id))
-                            {
+                        foreach (var account in excluded) {
+                            if (Equals(account.Id, payment.ChargedAccount.Id)) {
                                 //Transfer from excluded account
                                 balance += payment.Amount;
                                 break;
                             }
 
-                            if (Equals(account.Id, payment.TargetAccount.Id))
-                            {
+                            if (Equals(account.Id, payment.TargetAccount.Id)) {
                                 //Transfer to excluded account
                                 balance -= payment.Amount;
                                 break;
                             }
                         }
+
                         break;
 
                     default:
                         throw new InvalidPaymentTypeException();
                 }
+            }
+
             return balance;
         }
 
         /// <inheritdoc />
         public async Task<decimal> GetEndOfMonthBalanceForAccount(AccountViewModel account)
         {
-            if (account is null)
-            {
-                return decimal.Zero;
-            }
-
             var balance = account.CurrentBalance;
 
-            var paymentList = await crudServices.ReadManyNoTracked<PaymentViewModel>()
-                .AreNotCleared()
-                .HasAccountId(account.Id)
-                .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
-                .ToListAsync();
+            var paymentList = await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery{AccountId = account.Id });
 
             foreach (var payment in paymentList)
 
@@ -140,9 +124,9 @@ namespace MoneyFox.Presentation.Services
             return balance;
         }
 
-        private decimal HandleTransferAmount(PaymentViewModel payment, decimal balance, int accountId)
+        private decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
         {
-            if (accountId == payment.ChargedAccountId)
+            if (accountId == payment.ChargedAccount.Id)
                 balance -= payment.Amount;
             else
                 balance += payment.Amount;

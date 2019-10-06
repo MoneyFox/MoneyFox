@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 using GalaSoft.MvvmLight.Views;
-using GenericServices;
+using MediatR;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Xunit;
@@ -18,9 +19,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var navigationMock = new Mock<INavigationService>();
             navigationMock.Setup(x => x.GoBack());
 
-            var viewModel = new SelectCategoryListViewModel(new Mock<ICrudServicesAsync>().Object,
-                new Mock<IDialogService>().Object,
-                navigationMock.Object);
+            var viewModel = new SelectCategoryListViewModel(new Mock<IMediator>().Object,
+                                                            new Mock<IMapper>().Object,
+                                                            new Mock<IDialogService>().Object,
+                                                            navigationMock.Object);
 
             // Act
             viewModel.ItemClickCommand.Execute(new CategoryViewModel());
