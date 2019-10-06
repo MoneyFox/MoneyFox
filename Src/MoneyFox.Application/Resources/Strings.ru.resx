@@ -409,7 +409,7 @@
     <value>Это проект с открытым исходным кодом. Мы будем рады поработать с вами! Нажмите, чтобы перейти в репозиторий:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Оценить!</value>
+    <value>Rate this app!</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
@@ -799,5 +799,14 @@
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Windows Default</value>
+  </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TodayLabel" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="NoCategoryLabel" xml:space="preserve">
+    <value>[No Category]</value>
   </data>
 </root>

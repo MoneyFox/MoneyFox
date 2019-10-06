@@ -777,7 +777,7 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
     <value>Jätä palautetta!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>Olet muokannut toistuvaa maksua. Haluatko myös päivittää toistumisen?</value>
+    <value>Olet poistanut toistuvan maksut. Haluatko myös poistaa toistumisen?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
     <value>Muokkaa Toistumista</value>
@@ -792,12 +792,21 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
     <value>Tiedostosi tallennetaan sinun OneDrive käyttäjällesi. Löydät ne Sovellus Tiedostosi uudesta kansiosta nimeltä "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Tumma</value>
+    <value>Dark</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Kirkas</value>
+    <value>Light</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windowsin oletusarvo</value>
+    <value>Windows Default</value>
+  </data>
+  <data name="TagsLabel" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="TodayLabel" xml:space="preserve">
+    <value>Today</value>
+  </data>
+  <data name="NoCategoryLabel" xml:space="preserve">
+    <value>[No Category]</value>
   </data>
 </root>
