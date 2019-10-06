@@ -20,20 +20,20 @@ namespace MoneyFox.Presentation.Services
         /// <summary>
         ///     Returns the sum of all account balances that are not excluded.
         /// </summary>
-        Task<double> GetTotalBalance();
+        Task<decimal> GetTotalBalance();
 
         /// <summary>
         ///     Returns the sum of the balance of the passed accounts at the ned of month.
         /// </summary>
         /// <returns>Sum of the end of month balance.</returns>
-        Task<double> GetTotalEndOfMonthBalance();
+        Task<decimal> GetTotalEndOfMonthBalance();
 
         /// <summary>
         ///     Returns the the balance of the passed accounts at the ned of month.
         /// </summary>
         /// <param name="account">Account to calculate the balance.</param>
         /// <returns>The end of month balance.</returns>
-        Task<double> GetEndOfMonthBalanceForAccount(AccountViewModel account);
+        Task<decimal> GetEndOfMonthBalanceForAccount(AccountViewModel account);
     }
 
     /// <inheritdoc />
@@ -48,14 +48,14 @@ namespace MoneyFox.Presentation.Services
         {
             this.mediator = mediator;
         }
-        
+
         /// <inheritdoc />
-        public async Task<double> GetTotalBalance() {
+        public async Task<decimal> GetTotalBalance() {
             return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
         }
 
         /// <inheritdoc />
-        public async Task<double> GetTotalEndOfMonthBalance()
+        public async Task<decimal> GetTotalEndOfMonthBalance()
         {
             var excluded = await mediator.Send(new GetExcludedAccountQuery());
 
@@ -97,7 +97,7 @@ namespace MoneyFox.Presentation.Services
         }
 
         /// <inheritdoc />
-        public async Task<double> GetEndOfMonthBalanceForAccount(AccountViewModel account)
+        public async Task<decimal> GetEndOfMonthBalanceForAccount(AccountViewModel account)
         {
             var balance = account.CurrentBalance;
 
@@ -124,7 +124,7 @@ namespace MoneyFox.Presentation.Services
             return balance;
         }
 
-        private double HandleTransferAmount(Payment payment, double balance, int accountId)
+        private decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
         {
             if (accountId == payment.ChargedAccount.Id)
                 balance -= payment.Amount;

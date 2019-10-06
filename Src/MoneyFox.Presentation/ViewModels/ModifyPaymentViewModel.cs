@@ -214,7 +214,7 @@ namespace MoneyFox.Presentation.ViewModels {
             set {
                 // we remove all separator chars to ensure that it works in all regions
                 string amountString = HelperFunctions.RemoveGroupingSeparators(value);
-                if (double.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out double convertedValue))
+                if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
                     SelectedPayment.Amount = convertedValue;
             }
         }

@@ -23,7 +23,7 @@ namespace MoneyFox.Infrastructure.Tests.Mappings
         public void MapToViewModel()
         {
             // Arrange
-            var payment = new Payment(DateTime.Today, 124.23, PaymentType.Income, new Account("addd"), new Account("fasdf"), new Category("asdf"), "note");
+            var payment = new Payment(DateTime.Today, 124, PaymentType.Income, new Account("addd"), new Account("fasdf"), new Category("asdf"), "note");
 
             // Act
             var result = mapper.Map<PaymentViewModel>(payment);
