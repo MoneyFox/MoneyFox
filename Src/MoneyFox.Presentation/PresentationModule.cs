@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Constants;
@@ -13,6 +14,8 @@ namespace MoneyFox.Presentation
         {
             builder.RegisterModule<BusinessLogicModule>();
             builder.RegisterModule<ApplicationModule>();
+
+            builder.RegisterType<IMediator>();
 
             builder.Register(c => PublicClientApplicationBuilder
                                    .Create(ServiceConstants.MSAL_APPLICATION_ID)
