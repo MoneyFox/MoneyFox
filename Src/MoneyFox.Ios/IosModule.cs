@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using MoneyFox.Infrastructure;
 using MoneyFox.Presentation;
 
 namespace MoneyFox.iOS
@@ -9,6 +10,7 @@ namespace MoneyFox.iOS
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<PresentationModule>();
+            builder.RegisterModule<InfrastructureModule>();
 
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
