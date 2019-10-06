@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>MoneyFox.DataLayer.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MoneyFox.Domain.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseUWP|AnyCPU'">
@@ -14,7 +14,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>MoneyFox.DataLayer.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MoneyFox.Domain.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
