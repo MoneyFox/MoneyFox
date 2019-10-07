@@ -34,7 +34,9 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
 
             public async Task<List<Payment>> Handle(GetPaymentsForAccountIdQuery request, CancellationToken cancellationToken) {
                 var paymentQuery = context.Payments
-                                    .HasAccountId(request.AccountId);
+                                          .Include(x => x.Category)
+                                          .Include(x => x.RecurringPayment)
+                                          .HasAccountId(request.AccountId);
 
                 if (request.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
                 if (request.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();
