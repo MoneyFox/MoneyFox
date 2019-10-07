@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Accounts.Queries.GetAccounts
@@ -21,7 +22,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccounts
 
             public async Task<List<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts.ToListAsync(cancellationToken);
+                return await context.Accounts.OrderByName().ToListAsync(cancellationToken);
             }
         }
     }
