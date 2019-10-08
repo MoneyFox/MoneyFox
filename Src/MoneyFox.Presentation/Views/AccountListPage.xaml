@@ -5,7 +5,6 @@
              mc:Ignorable="d"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"

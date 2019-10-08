@@ -137,9 +137,6 @@
     <None Update="App.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
-    <None Update="Controls\FloatingActionButton.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
     <None Update="Style\ControlStyles.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
