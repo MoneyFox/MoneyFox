@@ -8,7 +8,9 @@
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              Visual="Material"
+             x:Name="root"
              x:Class="MoneyFox.Presentation.Views.AccountListPage"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
              Title="{Binding Resource[AccountsTitle]}">
@@ -30,7 +32,7 @@
             <Grid VerticalOptions="FillAndExpand">
                 <ListView x:Name="AccountsList"
                           ItemsSource="{Binding Accounts}"
-                          HasUnevenRows="True"
+                          HasUnevenRows="true"
                           CachingStrategy="RecycleElementAndDataTemplate"
                           BackgroundColor="Transparent"
                           IsGroupingEnabled="True"
@@ -62,8 +64,11 @@
                                               Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
 
-                                <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                                   Style="{StaticResource ListItemStyle}">
+                                <material:MaterialCard HeightRequest="40"
+                                                       ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
+                                                       ClickCommandParameter="{Binding .}"
+                                                       Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                                       Style="{StaticResource ListCardStyle}">
 
                                     <StackLayout Orientation="Vertical"
                                                  Padding="3"
@@ -86,7 +91,7 @@
                                                    Style="{StaticResource ListItemHeaderStyle}" />
                                         </Grid>
                                     </StackLayout>
-                                </controls:CardView>
+                                </material:MaterialCard>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
