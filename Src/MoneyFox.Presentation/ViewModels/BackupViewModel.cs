@@ -212,7 +212,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (!await ShowOverwriteBackupInfoAsync()) return;
 
-            await dialogService.ShowLoadingDialog();
+            dialogService.ShowLoadingDialog();
 
             try
             {
@@ -225,7 +225,7 @@ namespace MoneyFox.Presentation.ViewModels
                 await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
 
-            await dialogService.HideLoadingDialog();
+            dialogService.HideLoadingDialog();
             await ShowCompletionNoteAsync();
         }
 
@@ -237,11 +237,11 @@ namespace MoneyFox.Presentation.ViewModels
 
             if (!await ShowOverwriteDataInfoAsync()) return;
 
-            await dialogService.ShowLoadingDialog();
+            dialogService.ShowLoadingDialog();
             DateTime backupDate = await backupService.GetBackupDate();
             if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync()) return;
 
-            await dialogService.ShowLoadingDialog();
+            dialogService.ShowLoadingDialog();
 
             try
             {
