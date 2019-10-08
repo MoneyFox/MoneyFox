@@ -166,6 +166,9 @@
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>4.1.0.581479</Version>
     </PackageReference>
+    <PackageReference Include="XF.Material">
+      <Version>1.5.2</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidModule.cs" />

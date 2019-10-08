@@ -60,6 +60,7 @@ namespace MoneyFox.iOS
 
             Forms.Init();
             FormsMaterial.Init();
+            XF.Material.iOS.Material.Init();
             LoadApplication(new App());
             Popup.Init();
 

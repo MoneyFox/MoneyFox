@@ -61,6 +61,7 @@ namespace MoneyFox.Droid
             base.OnCreate(savedInstanceState);
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
+            XF.Material.Droid.Material.Init(this, savedInstanceState);
 
             LoadApplication(new App());
             Platform.Init(this, savedInstanceState);
