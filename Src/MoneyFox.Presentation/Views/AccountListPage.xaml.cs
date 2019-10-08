@@ -16,12 +16,6 @@ namespace MoneyFox.Presentation.Views
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.AccountListVm;
-
-            AccountsList.ItemTapped += (sender, args) =>
-            {
-                AccountsList.SelectedItem = null;
-                ViewModel?.OpenOverviewCommand.Execute(args.Item);
-            };
         }
 
         protected override void OnAppearing()

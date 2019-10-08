@@ -15,13 +15,7 @@ namespace MoneyFox.Presentation.UserControls
 		{
 			InitializeComponent ();
 
-		    CategoryList.ItemTapped += (sender, args) =>
-		    {
-		        CategoryList.SelectedItem = null;
-		        ViewModel.ItemClickCommand.Execute(args.Item);
-		    };
-
-		    CategoryList.On<Android>().SetIsFastScrollEnabled(true);
+            CategoryList.On<Android>().SetIsFastScrollEnabled(true);
         }
 
 	    private void EditCategory(object sender, EventArgs e)

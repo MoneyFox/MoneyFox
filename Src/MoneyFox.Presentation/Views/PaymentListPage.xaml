@@ -8,8 +8,10 @@
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              x:Class="MoneyFox.Presentation.Views.PaymentListPage"
              Visual="Material"
+             x:Name="root"
              Title="{Binding Title}"
              BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
@@ -92,8 +94,12 @@
                                           IsDestructive="True" />
                             </ViewCell.ContextActions>
 
-                            <controls:CardView Margin="{StaticResource SmallLeftRightBottomMargin}"
-                                               Style="{StaticResource ListItemStyle}" VerticalOptions="FillAndExpand">
+                            <material:MaterialCard HeightRequest="50"
+                                                    ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.EditPaymentCommand}"
+                                                    ClickCommandParameter="{Binding .}"
+                                                    Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                                    Style="{StaticResource ListCardStyle}"
+                                                    VerticalOptions="FillAndExpand">
 
                                 <RelativeLayout Margin="{StaticResource DefaultListItemsMargin}"
                                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant = 0}">
@@ -162,7 +168,7 @@
                                         </StackLayout>
                                     </AbsoluteLayout>
                                 </RelativeLayout>
-                            </controls:CardView>
+                            </material:MaterialCard>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

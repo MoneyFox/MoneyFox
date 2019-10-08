@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              mc:Ignorable="d"
              x:Class="MoneyFox.Presentation.UserControls.CategoryOverviewSummaryUserControl">
 
@@ -27,8 +28,8 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                               BackgroundColor="{DynamicResource ListItemColor}">
+                            <material:MaterialCard Margin="{StaticResource SmallLeftRightTopBottomMargin}" 
+                                                   Style="{StaticResource ListCardStyle}">
 
                                 <StackLayout Padding="3"
                                              Spacing="3"
@@ -70,7 +71,7 @@
                                     </StackLayout>
 
                                 </StackLayout>
-                            </controls:CardView>
+                            </material:MaterialCard>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

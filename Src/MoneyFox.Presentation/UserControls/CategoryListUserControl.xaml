@@ -7,7 +7,9 @@
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
               xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
-             x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl">
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl"
+             x:Name="root">
 
     <d:ContentView.BindingContext>
         <designTime:DesignTimeCategoryListViewModel />
@@ -81,14 +83,17 @@
                                           IsDestructive="True" />
                             </ViewCell.ContextActions>
 
-                            <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}" Style="{StaticResource ListItemStyle}">
+                            <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.ItemClickCommand}"
+                                                   ClickCommandParameter="{Binding .}"
+                                                   Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                                   Style="{StaticResource ListCardStyle}">
                                 <StackLayout Orientation="Vertical"
                                              Padding="3"
                                              Spacing="{StaticResource DefaultSpacing}"
                                              Margin="{StaticResource DefaultListItemsMargin}">
                                     <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
                                 </StackLayout>
-                            </controls:CardView>
+                            </material:MaterialCard>
                         </ViewCell>
 
                     </DataTemplate>

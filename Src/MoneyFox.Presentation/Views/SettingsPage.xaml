@@ -5,8 +5,10 @@
                   mc:Ignorable="d"
                   xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
                   xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+                  xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   Visual="Material"
+                  x:Name="root"
                   BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
@@ -16,7 +18,7 @@
     <ContentPage.Content>
         <ListView x:Name="SettingsList"
                   ItemsSource="{Binding SettingsList}" 
-                  RowHeight="65"
+                  HasUnevenRows="True"
                   BackgroundColor="Transparent"
                   CachingStrategy="RecycleElementAndDataTemplate"
                   SeparatorVisibility="None" >
@@ -24,14 +26,16 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                           Style="{DynamicResource ListItemStyle}" >
+                        <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.GoToSettingCommand}"
+                                           ClickCommandParameter="{Binding .}"
+                                           Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                           Style="{StaticResource ListCardStyle}">
+
                             <StackLayout Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{DynamicResource DefaultSpacing}">
                                 
                                 <StackLayout Orientation="Horizontal"
-                                             Padding="3"
                                              Spacing="{DynamicResource DefaultSpacing}">
 
                                     <Image HeightRequest="15"
@@ -50,8 +54,8 @@
                                 </StackLayout>
                                 <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                             </StackLayout>
-                            
-                        </controls:CardView>
+
+                        </material:MaterialCard>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

@@ -64,8 +64,7 @@
                                               Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
                                 </ViewCell.ContextActions>
 
-                                <material:MaterialCard HeightRequest="40"
-                                                       ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
+                                <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
                                                        ClickCommandParameter="{Binding .}"
                                                        Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                                        Style="{StaticResource ListCardStyle}">

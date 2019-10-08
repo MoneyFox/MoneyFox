@@ -20,13 +20,7 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.PaymentListVm;
 
             ViewModel.AccountId = accountId;
-
-            PaymentList.ItemTapped += (sender, args) =>
-            {
-                PaymentList.SelectedItem = null;
-                ViewModel.EditPaymentCommand.Execute(args.Item);
-            };
-
+            
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);
 
             var filterItem = new ToolbarItem
