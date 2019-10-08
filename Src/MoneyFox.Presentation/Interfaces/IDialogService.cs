@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.Interfaces
 {
@@ -10,6 +11,18 @@ namespace MoneyFox.Presentation.Interfaces
         /// <param name="title">Title to display.</param>
         /// <param name="message">Text to display.</param>
         Task ShowMessage(string title, string message);
+
+        /// <summary>
+        ///     Show a dialog with two buttons with customizable Texts and who takes actions.
+        /// </summary>
+        /// <param name="title">Title for the dialog.</param>
+        /// <param name="message">Message for the dialog.</param>
+        /// <param name="positiveButtonText">Text for the yes button.</param>
+        /// <param name="negativeButtonText">Text for the no button.</param>
+        /// <param name="positivAction">Action who shall be executed on the positive button click.</param>
+        /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
+        Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null,
+            string negativeButtonText = null, Action negativAction = null);
 
         /// <summary>
         ///     Show a dialog with two buttons with customizable Texts. Returns the answer.
@@ -25,11 +38,11 @@ namespace MoneyFox.Presentation.Interfaces
         ///     Shows a loading Dialog.
         /// </summary>
         /// <param name="message">Message to display.</param>
-        Task ShowLoadingDialog(string message = null);
+        void ShowLoadingDialog(string message = null);
 
         /// <summary>
         ///     Hides the previously opened Loading Dialog.
         /// </summary>
-        Task HideLoadingDialog();
+        void HideLoadingDialog();
     }
 }

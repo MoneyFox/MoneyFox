@@ -139,6 +139,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
     <Compile Include="Src\AppInformation.cs" />
+    <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\IosFileStore.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
     <Compile Include="Src\StoreOperations.cs" />

@@ -12,6 +12,7 @@ namespace MoneyFox.iOS
             builder.RegisterModule<PresentationModule>();
             builder.RegisterModule<InfrastructureModule>();
 
+            builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();
