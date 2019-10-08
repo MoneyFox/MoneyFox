@@ -30,7 +30,7 @@
 
             <Style x:Key="ListCardStyle" TargetType="material:MaterialCard">
                 <Setter Property="CornerRadius" Value="2" />
-                <Setter Property="Elevation" Value="1" />
+                <Setter Property="Elevation" Value="3" />
                 <Setter Property="IsClickable" Value="true" />
                 <Setter Property="Padding" Value="1" />
                 <Setter Property="BackgroundColor" Value="{DynamicResource ListItemColor}" />
