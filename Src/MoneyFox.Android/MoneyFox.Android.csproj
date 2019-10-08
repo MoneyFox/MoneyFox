@@ -187,7 +187,6 @@
     <Compile Include="Src\PlayStoreOperations.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DialogService.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
   </ItemGroup>
@@ -380,5 +379,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\CustomCursor.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

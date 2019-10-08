@@ -7,6 +7,7 @@ using MoneyFox.Application.Constants;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.BusinessLogic;
 using MoneyFox.Persistence;
+using MoneyFox.Presentation.Services;
 
 namespace MoneyFox.Presentation
 {
@@ -18,10 +19,13 @@ namespace MoneyFox.Presentation
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();
 
-            builder
-                .RegisterType<Mediator>()
-                .As<IMediator>()
-                .InstancePerLifetimeScope();
+            builder.RegisterType<DialogService>()
+                   .AsImplementedInterfaces()
+                   .InstancePerLifetimeScope();
+
+            builder.RegisterType<Mediator>()
+                   .As<IMediator>()
+                   .InstancePerLifetimeScope();
 
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>
