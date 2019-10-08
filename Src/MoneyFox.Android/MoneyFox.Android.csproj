@@ -178,7 +178,6 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
-    <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Renderer\CustomEntryRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderer\ViewGroupExtension.cs" />
