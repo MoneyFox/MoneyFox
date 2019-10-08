@@ -105,7 +105,7 @@ namespace MoneyFox.Droid
 
         public override void OnBackPressed()
         {
-            Popup.SendBackPressed(base.OnBackPressed);
+            XF.Material.Droid.Material.HandleBackButton(base.OnBackPressed);
         }
 
         // Needed for auth, so that MSAL can intercept the response from the browser
