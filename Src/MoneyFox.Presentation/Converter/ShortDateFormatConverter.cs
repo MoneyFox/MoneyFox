@@ -7,7 +7,7 @@ namespace MoneyFox.Presentation.Converter
     public class ShortDateFormatConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            return ((DateTime)value).ToString("d", CultureInfo.InvariantCulture);
+            return ((DateTime)value).ToString("d", CultureInfo.CurrentUICulture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
