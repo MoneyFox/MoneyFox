@@ -59,6 +59,7 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="30" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -69,7 +70,14 @@
                    Margin="{StaticResource MediumLeftRightMargin}"
                    Style="{ThemeResource UwpPageTitleStyle}" />
 
-        <StackPanel Grid.Row="1" >
+        <Grid Grid.Row="1" 
+              Margin="{StaticResource MediumLeftRightMargin}">
+            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                       Text="{Binding Title}"
+                       VerticalAlignment="Center"/>
+        </Grid>
+
+        <StackPanel Grid.Row="2" >
             <controls:IncomeExpenseBalanceUserControl DataContext="{Binding IncomeExpenseBalance}"
                                                       Margin="{StaticResource MediumLeftRightMargin}" />
 
@@ -89,7 +97,7 @@
             </ListView>
         </StackPanel>
 
-        <CommandBar Grid.Row="2"
+        <CommandBar Grid.Row="3"
                     Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal">
             <CommandBar.SecondaryCommands>

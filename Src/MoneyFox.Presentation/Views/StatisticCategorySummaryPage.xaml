@@ -4,8 +4,6 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
-             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
@@ -17,23 +15,25 @@
         <designTime:DesignTimeStatisticCategorySummaryViewModel />
     </d:ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converter:AmountFormatConverter x:Key="AmountValueConverter" />
-            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <NavigationPage.TitleView>
         <StackLayout>
             <Label Text="{Binding Resources[CategorySummaryTitle]}"
+                   LineBreakMode="TailTruncation"
                    Style="{StaticResource SmallPageTitle}" />
-
-            <userControls:IncomeExpenseBalanceUserControl BindingContext="{Binding IncomeExpenseBalance}"  />
+            <userControls:StatisticDateRangeUserControl />
         </StackLayout>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
-        <userControls:CategoryOverviewSummaryUserControl />
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <userControls:IncomeExpenseBalanceUserControl BindingContext="{Binding IncomeExpenseBalance}" HorizontalOptions="CenterAndExpand" />
+            <userControls:CategoryOverviewSummaryUserControl Grid.Row="1" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

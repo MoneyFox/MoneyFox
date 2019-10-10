@@ -6,6 +6,7 @@
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:presentation="clr-namespace:MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              Visual="Material"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
              x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage">
@@ -13,6 +14,15 @@
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeStatisticCashFlowViewModel />
     </d:ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="{Binding Resources[CashFlowStatisticTitle]}"
+                   LineBreakMode="TailTruncation"
+                   Style="{StaticResource SmallPageTitle}" />
+            <userControls:StatisticDateRangeUserControl />
+        </StackLayout>
+    </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <microcharts:ChartView Chart="{Binding Chart}" />
