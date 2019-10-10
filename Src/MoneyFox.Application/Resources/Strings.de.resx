@@ -811,6 +811,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Keine Kategorie</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Income / Expenses:</value>
+    <value>Einnahmen / Ausgaben:</value>
   </data>
 </root>
