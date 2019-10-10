@@ -156,6 +156,7 @@
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
+    <Compile Include="Converter\ShortDateFormatConverter.cs" />
     <Compile Include="Converter\TodayMarkerVisibilityConverter.cs" />
     <Compile Include="Helpers\StringMatchConverter.cs" />
     <Compile Include="Helpers\Json.cs" />

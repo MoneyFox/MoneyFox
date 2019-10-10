@@ -17,13 +17,6 @@
         <designTime:DesignTimeStatisticCategorySummaryViewModel />
     </d:ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converter:AmountFormatConverter x:Key="AmountValueConverter" />
-            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <NavigationPage.TitleView>
         <StackLayout>
             <Label Text="{Binding Resources[CategorySummaryTitle]}"
@@ -35,6 +28,15 @@
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
-        <userControls:CategoryOverviewSummaryUserControl />
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <userControls:StatisticDateRangeUserControl Grid.Row="0" />
+            <userControls:CategoryOverviewSummaryUserControl Grid.Row="1" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
