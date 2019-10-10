@@ -410,7 +410,7 @@
 点击访问项目GitHub：</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>给我们打分！</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>有些文字没有翻译或者翻译有误？你可以在 crowdin 上改善 Money Fox 的翻译来帮助我们：</value>
@@ -777,19 +777,19 @@
     <value>Leave a feedback!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>您已修改一组定期付款。是否更新该定期付款？</value>
+    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>修改定期付款</value>
+    <value>Modify Recurrence</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>您的本地数据库的修改日期比 OneDrive 上的新。是否覆盖您的本地数据？</value>
+    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>覆盖本地数据</value>
+    <value>Override Local Data</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>您的数据将保存到您的 OneDrive 帐户。您将在名为“MoneyFox”的新文件夹中找到应用文件夹。</value>
+    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
     <value>Dark</value>
