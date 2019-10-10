@@ -12,10 +12,10 @@
     </ContentView.Resources>
 
     <ContentView.Content>
-      <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-          <Label Text="{Binding StartDate, Converter={StaticResource DateTimeFormatConverter}}" Style="{StaticResource DeemphasizedLabelStyle}" />
-          <Label Text="-" Style="{StaticResource DeemphasizedLabelStyle}"/>
-          <Label Text="{Binding EndDate, Converter={StaticResource DateTimeFormatConverter}}" Style="{StaticResource DeemphasizedLabelStyle}" />
+      <StackLayout Orientation="Horizontal" >
+          <Label Text="{Binding StartDate, Converter={StaticResource DateTimeFormatConverter}}" TextColor="LightGray" />
+            <Label Text="-" TextColor="LightGray" />
+            <Label Text="{Binding EndDate, Converter={StaticResource DateTimeFormatConverter}}" TextColor="LightGray" />
       </StackLayout>
     </ContentView.Content>
 </ContentView>
