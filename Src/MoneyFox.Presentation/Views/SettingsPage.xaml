@@ -16,7 +16,7 @@
     <ContentPage.Content>
         <ListView x:Name="SettingsList"
                   ItemsSource="{Binding SettingsList}" 
-                  RowHeight="65"
+                  HasUnevenRows="True"
                   BackgroundColor="Transparent"
                   CachingStrategy="RecycleElementAndDataTemplate"
                   SeparatorVisibility="None" >

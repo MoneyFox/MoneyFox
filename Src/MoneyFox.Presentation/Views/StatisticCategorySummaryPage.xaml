@@ -27,6 +27,7 @@
     <NavigationPage.TitleView>
         <StackLayout>
             <Label Text="{Binding Resources[CategorySummaryTitle]}"
+                   LineBreakMode="TailTruncation"
                    Style="{StaticResource SmallPageTitle}" />
 
             <userControls:IncomeExpenseBalanceUserControl BindingContext="{Binding IncomeExpenseBalance}"  />
