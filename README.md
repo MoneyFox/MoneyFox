@@ -1,5 +1,5 @@
 ## Money Fox
-A way to make budgeting easy. A basic idea for the community, made even better by the community.
+A basic idea to make budgeting easy - for the community, made even better by the community.
 
 | Platform        | Build Status           |
 | ------------- |-------------|
