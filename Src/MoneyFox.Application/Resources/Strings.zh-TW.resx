@@ -410,7 +410,7 @@
 点击访问项目GitHub：</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>给我们打分！</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>有些文字没有翻译或者翻译有误？你可以在 crowdin 上改善 Money Fox 的翻译来帮助我们：</value>
@@ -808,5 +808,8 @@
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[No Category]</value>
+  </data>
+  <data name="IncomeSpendingLabel" xml:space="preserve">
+    <value>Income / Expenses:</value>
   </data>
 </root>
