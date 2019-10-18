@@ -809,4 +809,7 @@
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[No Category]</value>
   </data>
+  <data name="IncomeSpendingLabel" xml:space="preserve">
+    <value>Income / Expenses:</value>
+  </data>
 </root>
