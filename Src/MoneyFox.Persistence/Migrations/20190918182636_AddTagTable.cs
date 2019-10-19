@@ -2,6 +2,7 @@
 
 namespace MoneyFox.Persistence.Migrations
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S3900:Arguments of public methods should be validated against null", Justification = "<Pending>")]
     public partial class AddTagTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

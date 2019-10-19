@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using MoneyFox.Persistence;
 
-namespace MoneyFox.DataLayer.Migrations
+namespace MoneyFox.Persistence.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
     [Migration("20190918182636_AddTagTable")]
