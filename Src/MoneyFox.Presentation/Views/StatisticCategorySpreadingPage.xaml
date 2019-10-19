@@ -7,6 +7,7 @@
              xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:presentation="clr-namespace:MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              Visual="Material"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
              x:Class="MoneyFox.Presentation.Views.StatisticCategorySpreadingPage">
@@ -14,6 +15,17 @@
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeStatisticCategorySpreadingViewModel />
     </d:ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <StackLayout>
+            <Label Text="{Binding Resources[CategorySpreadingTitle]}"
+                   LineBreakMode="TailTruncation"
+                   Style="{StaticResource SmallPageTitle}" />
+
+            <userControls:StatisticDateRangeUserControl />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
 
     <ContentPage.Content>
         <forms:ChartView Chart="{Binding Chart}" />

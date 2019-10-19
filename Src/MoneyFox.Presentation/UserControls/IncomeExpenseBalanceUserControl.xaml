@@ -18,11 +18,11 @@
 
         <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
             <Label Text="{Binding TotalEarned, Converter={StaticResource AmountFormatConverter} }"
-                   TextColor="White" />
+                   Style="{StaticResource DeemphasizedLabelStyle}" />
             <Label Text=" / "
-                   TextColor="White" />
+                   Style="{StaticResource DeemphasizedLabelStyle}" />
             <Label Text="{Binding TotalSpent, Converter={StaticResource AmountFormatConverter}}"
-                   TextColor="White"  />
+                   Style="{StaticResource DeemphasizedLabelStyle}" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

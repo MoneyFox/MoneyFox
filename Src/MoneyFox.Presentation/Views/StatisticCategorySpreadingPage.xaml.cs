@@ -17,8 +17,6 @@ namespace MoneyFox.Presentation.Views
 			InitializeComponent();
             BindingContext = ViewModelLocator.StatisticCategorySpreadingVm;
 
-            Title = Strings.CategorySpreadingTitle;
-
 		    var filterItem = new ToolbarItem
 		    {
 		        Command = new Command(async () => await OpenDialog()),

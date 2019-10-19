@@ -17,8 +17,6 @@ namespace MoneyFox.Presentation.Views
             InitializeComponent();
             BindingContext = ViewModelLocator.StatisticCashFlowVm;
 
-            Title = Strings.CashFlowStatisticTitle;
-
 		    var filterItem = new ToolbarItem
 		    {
 		        Command = new Command(async () => await OpenDialog()),

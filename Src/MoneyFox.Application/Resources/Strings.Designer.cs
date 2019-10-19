@@ -1087,6 +1087,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Income / Expenses:.
+        /// </summary>
+        public static string IncomeSpendingLabel {
+            get {
+                return ResourceManager.GetString("IncomeSpendingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Gains.
         /// </summary>
         public static string IncreaseLabel {

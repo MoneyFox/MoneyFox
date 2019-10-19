@@ -13,11 +13,11 @@
     <ContentView.Content>
         <StackLayout Orientation="Horizontal">
             <Label Text="{Binding TotalBalance, Converter={StaticResource AmountFormatConverter} }"
-                   TextColor="White"/>
-            <Label TextColor="White"
+                   TextColor="LightGray"/>
+            <Label TextColor="LightGray"
                    Text=" / " />
             <Label Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" 
-                   TextColor="White" />
+                   TextColor="LightGray" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -18,7 +18,7 @@ namespace MoneyFox.Presentation.Converter
         /// <param name="culture">Not used.</param>
         /// <returns>The converted string.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            => ((DateTime) value).ToString("D", CultureInfo.InvariantCulture);
+            => ((DateTime) value).ToString("D", CultureInfo.CurrentUICulture);
 
         /// <summary>
         ///     Converts the passed string back.
