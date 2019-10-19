@@ -26,17 +26,17 @@ namespace MoneyFox.Uwp.Services
                 jumpList.Items.Clear();
                 jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
 
-                JumpListItem listItemAddIncome = JumpListItem.CreateWithArguments(AppConstants.ADD_INCOME_TILE_ID,
+                JumpListItem listItemAddIncome = JumpListItem.CreateWithArguments(AppConstants.AddIncomeTileId,
                                                                                   Strings.AddIncomeLabel);
                 listItemAddIncome.Logo = new Uri(INCOME_ICON);
                 jumpList.Items.Add(listItemAddIncome);
 
-                JumpListItem listItemAddSpending = JumpListItem.CreateWithArguments(AppConstants.ADD_EXPENSE_TILE_ID,
+                JumpListItem listItemAddSpending = JumpListItem.CreateWithArguments(AppConstants.AddExpenseTileId,
                                                                                     Strings.AddExpenseLabel);
                 listItemAddSpending.Logo = new Uri(EXPENSE_ICON);
                 jumpList.Items.Add(listItemAddSpending);
 
-                JumpListItem listItemAddTransfer = JumpListItem.CreateWithArguments(AppConstants.ADD_TRANSFER_TILE_ID,
+                JumpListItem listItemAddTransfer = JumpListItem.CreateWithArguments(AppConstants.AddTransferTileId,
                                                                                     Strings.AddTransferLabel);
                 listItemAddTransfer.Logo = new Uri(TRANSFER_ICON);
                 jumpList.Items.Add(listItemAddTransfer);

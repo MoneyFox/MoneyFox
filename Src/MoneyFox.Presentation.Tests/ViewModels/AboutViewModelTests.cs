@@ -41,7 +41,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
                                new Mock<IStoreOperations>().Object)
-                .SupportMail.ShouldEqual(AppConstants.SUPPORT_MAIL);
+                .SupportMail.ShouldEqual(AppConstants.SupportMail);
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
                                new Mock<IStoreOperations>().Object)
-                .Website.ShouldEqual(AppConstants.WEBSITE_URL);
+                .Website.ShouldEqual(AppConstants.WebsiteUrl);
         }
 
         [Fact]
@@ -71,7 +71,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task GoToWebsite_NoParams_Called()
         {
             var webbrowserTaskSetup = new Mock<IBrowserAdapter>();
-            webbrowserTaskSetup.Setup(x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.WEBSITE_URL))))
+            webbrowserTaskSetup.Setup(x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl))))
                                .Returns(Task.CompletedTask);
 
             await new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -88,7 +88,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             var webbrowserTaskSetup = new Mock<IBrowserAdapter>();
             webbrowserTaskSetup.Setup(
-                                   x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.GIT_HUB_REPOSITORY_URL))))
+                                   x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl))))
                                .Returns(Task.CompletedTask);
 
             await new AboutViewModel(new Mock<IAppInformation>().Object,
