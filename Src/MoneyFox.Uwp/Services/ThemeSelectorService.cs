@@ -18,7 +18,7 @@ namespace MoneyFox.Uwp.Services
 
         public static void Initialize(ApplicationTheme requestedTheme)
         {
-            Theme = LoadThemeFromSettingsAsync(requestedTheme);
+            Theme = LoadThemeFromSettings(requestedTheme);
         }
 
         public static async Task SetThemeAsync(ElementTheme theme)
@@ -40,7 +40,7 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        private static ElementTheme LoadThemeFromSettingsAsync(ApplicationTheme requestedTheme)
+        private static ElementTheme LoadThemeFromSettings(ApplicationTheme requestedTheme)
         {
             var settingsAdapter = new SettingsAdapter();
             var settingsFacade = new SettingsFacade(settingsAdapter);
