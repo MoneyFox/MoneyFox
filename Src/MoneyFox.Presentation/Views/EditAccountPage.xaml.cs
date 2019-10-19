@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.EditAccountVm;
 
             ViewModel.AccountId = accountId;
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
         }
     }
 }

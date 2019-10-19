@@ -4,6 +4,6 @@
     {
         string Theme { get; }
 
-        void SetThemeAsync(string theme);
+        void SetTheme(string theme);
     }
 }

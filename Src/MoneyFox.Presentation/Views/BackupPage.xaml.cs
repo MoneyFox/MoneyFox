@@ -15,7 +15,7 @@ namespace MoneyFox.Presentation.Views
 
             Title = Strings.BackupTitle;
 
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
         }
     }
 }

@@ -65,7 +65,7 @@ namespace MoneyFox.iOS
             uiApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
-            RunAppStartAsync().FireAndForgetSafeAsync();
+            RunAppStartAsync().FireAndForgetSafe();
 
             return base.FinishedLaunching(uiApplication, launchOptions);
         }

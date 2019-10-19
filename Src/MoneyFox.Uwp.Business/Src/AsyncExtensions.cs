@@ -4,6 +4,7 @@ using Windows.Foundation;
 
 namespace MoneyFox.Uwp.Business
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking", Justification = "<Pending>")]
     public static class AsyncExtensions
     {
         public static void Await(this IAsyncAction operation)

@@ -31,7 +31,7 @@ namespace MoneyFox.Uwp.Views.UserControls
             var element = (FrameworkElement) sender;
 
             if (!(element.DataContext is PaymentViewModel payment)) return;
-            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.ExecuteAsync(payment).FireAndForgetSafeAsync();
+            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.ExecuteAsync(payment).FireAndForgetSafe();
         }
 
         private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e)

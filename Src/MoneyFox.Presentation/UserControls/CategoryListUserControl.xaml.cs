@@ -39,7 +39,7 @@ namespace MoneyFox.Presentation.UserControls
 
             if (menuItem == null) return;
 
-            ViewModel.DeleteCategoryCommand.ExecuteAsync((CategoryViewModel) menuItem.CommandParameter).FireAndForgetSafeAsync();
+            ViewModel.DeleteCategoryCommand.ExecuteAsync((CategoryViewModel) menuItem.CommandParameter).FireAndForgetSafe();
         }
 
         private void AddCategoryClick(object sender, EventArgs e)
@@ -49,7 +49,7 @@ namespace MoneyFox.Presentation.UserControls
 
         private void SearchTermChanged(object sender, TextChangedEventArgs e)
         {
-            ViewModel.SearchCommand.ExecuteAsync(e.NewTextValue).FireAndForgetSafeAsync();
+            ViewModel.SearchCommand.ExecuteAsync(e.NewTextValue).FireAndForgetSafe();
         }
     }
 }

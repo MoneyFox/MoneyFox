@@ -29,7 +29,7 @@ namespace MoneyFox.Presentation.ViewModels
             get
             {
                 return switchThemeCommand
-                       ?? (switchThemeCommand = new RelayCommand<string>(param => { themeSelectorAdapter.SetThemeAsync(param); }));
+                       ?? (switchThemeCommand = new RelayCommand<string>(param => { themeSelectorAdapter.SetTheme(param); }));
             }
         }
     }

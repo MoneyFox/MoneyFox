@@ -61,7 +61,7 @@ namespace MoneyFox.Presentation.ViewModels
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 NavigationService.GoBack();
-                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
+                backupService.EnqueueBackupTask().FireAndForgetSafe();
             }
         }
     }

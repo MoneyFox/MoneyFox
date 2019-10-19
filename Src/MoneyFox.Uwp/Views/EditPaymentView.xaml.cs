@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.Views
             if (e.Parameter != null && e.NavigationMode != NavigationMode.Back)
             {
                 ViewModel.PaymentId = (int) e.Parameter;
-                ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+                ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
             }
         }
 

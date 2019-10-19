@@ -51,15 +51,6 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            // TODO: Reimplement
-
-            //await crudServices.CreateAndSaveAsync(SelectedCategory, "ctor(2)");
-
-            //if (!crudServices.IsValid)
-            //{
-            //    await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
-            //}
-
             NavigationService.GoBack();
         }
     }

@@ -68,7 +68,7 @@ namespace MoneyFox.Presentation.ViewModels
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
+                backupService.EnqueueBackupTask().FireAndForgetSafe();
                 await CancelCommand.ExecuteAsync();
             }
         }
