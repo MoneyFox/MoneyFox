@@ -37,9 +37,6 @@ using Microsoft.AppCenter;
 
 namespace MoneyFox.iOS
 {
-    // The UIApplicationDelegate for the application. This class is responsible for launching the
-    // User Interface of the application, as well as listening (and optionally responding) to
-    // application events from iOS.
     [Register(nameof(AppDelegate))]
     public class AppDelegate : FormsApplicationDelegate
     {
@@ -68,7 +65,7 @@ namespace MoneyFox.iOS
             uiApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
-            RunAppStart().FireAndForgetSafeAsync();
+            RunAppStartAsync().FireAndForgetSafeAsync();
 
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
@@ -80,11 +77,11 @@ namespace MoneyFox.iOS
             ViewModelLocator.RegisterServices(builder);
         }
 
-        protected static async Task RunAppStart()
+        protected static async Task RunAppStartAsync()
         {
-            await SyncBackup();
-            await ClearPayments();
-            await CreateRecurringPayments();
+            await SyncBackupAsync();
+            await ClearPaymentsAsync();
+            await CreateRecurringPaymentsAsync();
         }
 
         private void InitLogger()
@@ -131,9 +128,9 @@ namespace MoneyFox.iOS
             {
                 Analytics.TrackEvent("Start background fetch.");
 
-                await SyncBackup();
-                await ClearPayments();
-                await CreateRecurringPayments();
+                await SyncBackupAsync();
+                await ClearPaymentsAsync();
+                await CreateRecurringPaymentsAsync();
 
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
@@ -151,12 +148,12 @@ namespace MoneyFox.iOS
         {
             base.WillEnterForeground(uiApplication);
 
-            await SyncBackup();
-            await ClearPayments();
-            await CreateRecurringPayments();
+            await SyncBackupAsync();
+            await ClearPaymentsAsync();
+            await CreateRecurringPaymentsAsync();
         }
 
-        private static async Task SyncBackup()
+        private static async Task SyncBackupAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
@@ -193,7 +190,7 @@ namespace MoneyFox.iOS
             }
         }
 
-        private static async Task ClearPayments()
+        private static async Task ClearPaymentsAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             try
@@ -216,7 +213,7 @@ namespace MoneyFox.iOS
             }
         }
 
-        private static async Task CreateRecurringPayments()
+        private static async Task CreateRecurringPaymentsAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
