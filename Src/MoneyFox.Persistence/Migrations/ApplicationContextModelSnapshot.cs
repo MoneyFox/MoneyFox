@@ -3,9 +3,8 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using MoneyFox.Persistence;
 
-namespace MoneyFox.DataLayer.Migrations
+namespace MoneyFox.Persistence.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
     class ApplicationContextModelSnapshot : ModelSnapshot

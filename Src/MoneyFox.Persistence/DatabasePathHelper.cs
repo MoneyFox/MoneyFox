@@ -5,7 +5,7 @@ using MoneyFox.Application;
 using NLog;
 using SQLitePCL;
 
-namespace MoneyFox.DataLayer
+namespace MoneyFox.Persistence
 {
     public static class DatabasePathHelper
     {

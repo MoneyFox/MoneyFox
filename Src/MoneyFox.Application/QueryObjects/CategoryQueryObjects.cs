@@ -2,7 +2,7 @@
 using System.Linq;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.BusinessDbAccess.QueryObjects
+namespace MoneyFox.Application.QueryObjects
 {
     /// <summary>
     ///     Provides Extensions for categories queries.

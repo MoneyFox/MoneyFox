@@ -4,7 +4,7 @@ using MoneyFox.Domain.Entities;
 using Should;
 using Xunit;
 
-namespace MoneyFox.DataLayer.Tests.Entities
+namespace MoneyFox.Domain.Tests.Entities
 {
     [ExcludeFromCodeCoverage]
     public class CategoryTests

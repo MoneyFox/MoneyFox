@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 #pragma warning disable S3900 // Arguments of public methods should be validated against null
 #pragma warning disable CA1062 // Validate arguments of public methods
 #pragma warning disable S1192 // String literals should not be duplicated
-namespace MoneyFox.DataLayer.Migrations
+namespace MoneyFox.Persistence.Migrations
 {
     public partial class AddCreationDateField : Migration
     {

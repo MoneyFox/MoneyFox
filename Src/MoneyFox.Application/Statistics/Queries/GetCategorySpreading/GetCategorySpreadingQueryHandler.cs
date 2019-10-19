@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics.Models;
-using MoneyFox.BusinessDbAccess.QueryObjects;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 

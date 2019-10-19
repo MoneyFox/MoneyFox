@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ServiceLayer.Facades
+﻿namespace MoneyFox.Presentation.Facades
 {
     public interface IConnectivityFacade
     {

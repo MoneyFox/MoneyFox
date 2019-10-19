@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
-using MoneyFox.DataLayer.Configurations;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence.Configurations;
 
