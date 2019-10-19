@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MoneyFox.DataLayer;
 
 namespace MoneyFox.Persistence
 {

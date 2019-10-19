@@ -10,7 +10,6 @@ using MoneyFox.Application.Constants;
 using MoneyFox.Application.FileStore;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Extensions;
-using MoneyFox.DataLayer;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Persistence;
 using NLog;

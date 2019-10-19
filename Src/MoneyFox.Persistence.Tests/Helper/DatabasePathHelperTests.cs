@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Application;
-using MoneyFox.DataLayer;
 using Should;
 using Xunit;
 
