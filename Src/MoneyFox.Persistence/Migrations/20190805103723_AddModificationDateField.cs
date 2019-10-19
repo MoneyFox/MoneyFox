@@ -4,8 +4,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 #pragma warning disable S3254 // Default parameter values should not be passed as arguments
 #pragma warning disable S3900 // Arguments of public methods should be validated against null
 #pragma warning disable CA1062 // Validate arguments of public methods
-namespace MoneyFox.DataLayer.Migrations
+namespace MoneyFox.Persistence.Migrations
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S1192:String literals should not be duplicated", Justification = "<Pending>")]
     public partial class AddModificationDateField : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
