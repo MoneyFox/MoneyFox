@@ -131,7 +131,7 @@
                                                    Converter={StaticResource DateTimeToDateTimeOffsetConverter},
                                                    Mode=TwoWay,
                                                    UpdateSourceTrigger=PropertyChanged}"
-                                Header="{Binding Resources[DateLEnddateLabelabel]}"
+                                Header="{Binding Resources[EnddateLabel]}"
                                 Visibility="{Binding SelectedPayment.RecurringPayment.IsEndless,
                                                          Converter={StaticResource BooleanVisibilityConverter},
                                                          ConverterParameter=revert}" />
