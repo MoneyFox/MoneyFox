@@ -26,6 +26,7 @@ namespace MoneyFox.Droid.Jobs
     public class ClearPaymentsJob : JobService
     {
         private const int CLEAR_PAYMENT_JOB_ID = 10;
+        private const int JOB_INTERVAL = 60 * 60 * 1000;
 
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
@@ -94,7 +95,7 @@ namespace MoneyFox.Droid.Jobs
                                               new ComponentName(
                                                   this, Class.FromType(typeof(ClearPaymentsJob))));
             // Execute all 60 Minutes
-            builder.SetPeriodic(60 * 60 * 1000);
+            builder.SetPeriodic(JOB_INTERVAL);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.None);
             builder.SetRequiresDeviceIdle(false);

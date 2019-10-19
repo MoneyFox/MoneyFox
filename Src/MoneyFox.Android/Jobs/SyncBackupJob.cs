@@ -29,6 +29,7 @@ namespace MoneyFox.Droid.Jobs
     public class SyncBackupJob : JobService
     {
         private const int SYNC_BACK_JOB_ID = 30;
+        private const int JOB_INTERVAL = 60 * 60 * 1000;
 
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
@@ -117,7 +118,7 @@ namespace MoneyFox.Droid.Jobs
                                                   this, Class.FromType(typeof(SyncBackupJob))));
 
             // convert hours into millisecond
-            builder.SetPeriodic(60 * 60 * 1000 * interval);
+            builder.SetPeriodic(JOB_INTERVAL * interval);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.NotRoaming);
             builder.SetRequiresDeviceIdle(false);

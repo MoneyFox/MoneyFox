@@ -26,6 +26,7 @@ namespace MoneyFox.Droid.Jobs
     public class RecurringPaymentJob : JobService
     {
         private const int RECURRING_PAYMENT_JOB_ID = 20;
+        private const int JOB_INTERVAL = 60 * 60 * 1000;
 
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
@@ -97,7 +98,7 @@ namespace MoneyFox.Droid.Jobs
                                                   this, Class.FromType(typeof(RecurringPaymentJob))));
 
             // Execute all 60 Minutes
-            builder.SetPeriodic(60 * 60 * 1000);
+            builder.SetPeriodic(JOB_INTERVAL);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.None);
             builder.SetRequiresDeviceIdle(false);
