@@ -18,16 +18,20 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public AsyncCommand InitializeCommand { get; }
         public RelayCommand<PaymentViewModel> EditPaymentCommand { get; }
         public AsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
-        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source => new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>
-        {
-            new DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>("Januar 1992")
+
+        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source =>
+            new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>
             {
-                new DateListGroupCollection<PaymentViewModel>("31.1.1992") {
-                    new PaymentViewModel{Amount = 123, Category = new CategoryViewModel {Name = "Beer"}},
-                    new PaymentViewModel{Amount = 123, Category = new CategoryViewModel{Name = "Beer"}}
+                new DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>("Januar 1992")
+                {
+                    new DateListGroupCollection<PaymentViewModel>("31.1.1992")
+                    {
+                        new PaymentViewModel {Amount = 123, Category = new CategoryViewModel {Name = "Beer"}},
+                        new PaymentViewModel {Amount = 123, Category = new CategoryViewModel {Name = "Beer"}}
+                    }
                 }
-            }
-        };
+            };
+
         public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; }
 
         public string Title => "Sparkonto";

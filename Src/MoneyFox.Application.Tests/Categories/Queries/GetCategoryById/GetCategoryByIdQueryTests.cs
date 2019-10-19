@@ -31,7 +31,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
             // Arrange
 
             // Act
-            var result = await new GetCategoryByIdQuery.Handler(context).Handle(new GetCategoryByIdQuery(999), default);
+            Category result = await new GetCategoryByIdQuery.Handler(context).Handle(new GetCategoryByIdQuery(999), default);
 
             // Assert
             result.ShouldBeNull();
@@ -46,7 +46,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCategoryByIdQuery.Handler(context).Handle(new GetCategoryByIdQuery(testCat1.Id), default);
+            Category result = await new GetCategoryByIdQuery.Handler(context).Handle(new GetCategoryByIdQuery(testCat1.Id), default);
 
             // Assert
             result.ShouldNotBeNull();

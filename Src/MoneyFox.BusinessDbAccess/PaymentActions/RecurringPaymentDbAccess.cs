@@ -30,13 +30,13 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
         public Task<List<RecurringPayment>> GetRecurringPayments()
         {
             return context.RecurringPayments
-                .Include(x => x.ChargedAccount)
-                .Include(x => x.TargetAccount)
-                .Include(x => x.Category)
-                .Include(x => x.RelatedPayments)
-                .AsQueryable()
-                .IsNotExpired()
-                .ToListAsync();
+                          .Include(x => x.ChargedAccount)
+                          .Include(x => x.TargetAccount)
+                          .Include(x => x.Category)
+                          .Include(x => x.RelatedPayments)
+                          .AsQueryable()
+                          .IsNotExpired()
+                          .ToListAsync();
         }
 
         public async Task SaveNewPayments(List<Payment> payments)

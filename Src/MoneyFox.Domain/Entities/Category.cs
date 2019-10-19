@@ -8,7 +8,9 @@ namespace MoneyFox.Domain.Entities
     public class Category
     {
         //used by EF Core
-        private Category() { }
+        private Category()
+        {
+        }
 
         public Category(string name, string note = "")
         {
@@ -27,7 +29,7 @@ namespace MoneyFox.Domain.Entities
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; }
 
         public List<Payment> Payments { get; private set; }
 

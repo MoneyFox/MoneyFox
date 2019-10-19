@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Xamarin.Essentials;
@@ -24,7 +23,7 @@ namespace MoneyFox.BusinessLogic.Adapters
                     To = recipients
                 };
                 await Email.ComposeAsync(message);
-            } 
+            }
             catch (FeatureNotSupportedException ex)
             {
                 Crashes.TrackError(ex);

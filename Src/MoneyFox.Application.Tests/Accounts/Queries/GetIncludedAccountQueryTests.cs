@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
@@ -19,11 +19,12 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);
         }
-        
+
         [Fact]
         public async Task GetIncludedAccountQuery_CorrectNumberLoaded()
         {
@@ -35,7 +36,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetIncludedAccountQuery.Handler(context).Handle(new GetIncludedAccountQuery(), default);
+            List<Account> result = await new GetIncludedAccountQuery.Handler(context).Handle(new GetIncludedAccountQuery(), default);
 
             // Assert
             Assert.Single(result);

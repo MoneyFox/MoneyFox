@@ -3,9 +3,9 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.Presentation.Groups;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {
@@ -19,10 +19,8 @@ namespace MoneyFox.Uwp.Views.UserControls
         private void EditPaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            if (!(element.DataContext is PaymentViewModel payment))
-            {
-                return;
-            }
+
+            if (!(element.DataContext is PaymentViewModel payment)) return;
             var viewmodel = DataContext as PaymentListViewModel;
 
             viewmodel?.EditPaymentCommand.Execute(payment);
@@ -31,10 +29,8 @@ namespace MoneyFox.Uwp.Views.UserControls
         private void DeletePaymentViewModel(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
-            if (!(element.DataContext is PaymentViewModel payment))
-            {
-                return;
-            }
+
+            if (!(element.DataContext is PaymentViewModel payment)) return;
             (DataContext as PaymentListViewModel)?.DeletePaymentCommand.ExecuteAsync(payment).FireAndForgetSafeAsync();
         }
 
@@ -52,8 +48,8 @@ namespace MoneyFox.Uwp.Views.UserControls
 
             // Select first group with a cleared payment in it
             DateListGroupCollection<PaymentViewModel> selectedGroupCollection = PaymentListView
-                                                            .Items.Select(x => (DateListGroupCollection<PaymentViewModel>)x)
-                                                            .FirstOrDefault(group => group.Any(x => x.IsCleared));
+                                                                                .Items.Select(x => (DateListGroupCollection<PaymentViewModel>) x)
+                                                                                .FirstOrDefault(group => group.Any(x => x.IsCleared));
 
             if (selectedGroupCollection == null) return;
 

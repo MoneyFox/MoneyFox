@@ -90,10 +90,7 @@ namespace MoneyFox.Presentation.Services
 
         public async Task EnqueueBackupTask(int attempts = 0)
         {
-            if (!settingsFacade.IsLoggedInToBackupService)
-            {
-                await Login();
-            }
+            if (!settingsFacade.IsLoggedInToBackupService) await Login();
 
             await backupManager.EnqueueBackupTask();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;

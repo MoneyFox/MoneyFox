@@ -12,26 +12,26 @@ namespace MoneyFox.DataLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
-                name: "CreationTime",
-                table: "RecurringPayments",
+                "CreationTime",
+                "RecurringPayments",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "CreationTime",
-                table: "Payments",
+                "CreationTime",
+                "Payments",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "CreationTime",
-                table: "Categories",
+                "CreationTime",
+                "Categories",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "CreationTime",
-                table: "Accounts",
+                "CreationTime",
+                "Accounts",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
         }
@@ -39,20 +39,20 @@ namespace MoneyFox.DataLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "CreationTime",
-                table: "RecurringPayments");
+                "CreationTime",
+                "RecurringPayments");
 
             migrationBuilder.DropColumn(
-                name: "CreationTime",
-                table: "Payments");
+                "CreationTime",
+                "Payments");
 
             migrationBuilder.DropColumn(
-                name: "CreationTime",
-                table: "Categories");
+                "CreationTime",
+                "Categories");
 
             migrationBuilder.DropColumn(
-                name: "CreationTime",
-                table: "Accounts");
+                "CreationTime",
+                "Accounts");
         }
     }
 }

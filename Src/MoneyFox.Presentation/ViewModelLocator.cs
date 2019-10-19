@@ -12,20 +12,14 @@ namespace MoneyFox.Presentation
     {
         static ViewModelLocator()
         {
-            if (!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
-            {
-                RegisterServices(new ContainerBuilder());
-            }
+            if (!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic) RegisterServices(new ContainerBuilder());
         }
 
         public static void RegisterServices(ContainerBuilder registrations)
         {
-            var container = registrations.Build();
+            IContainer container = registrations.Build();
 
-            if (container != null)
-            {
-                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
-            }
+            if (container != null) ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
         }
 
         public static string MainPage => nameof(ShellViewModel);
@@ -50,7 +44,7 @@ namespace MoneyFox.Presentation
         public static string About => nameof(AboutViewModel);
 
         public static ShellViewModel ShellVm => ServiceLocator.Current.GetInstance<ShellViewModel>();
-        public static IAccountListViewModel AccountListVm =>  ServiceLocator.Current.GetInstance<IAccountListViewModel>();
+        public static IAccountListViewModel AccountListVm => ServiceLocator.Current.GetInstance<IAccountListViewModel>();
         public static CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
         public static PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         public static SelectCategoryListViewModel SelectCategoryListVm => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
@@ -66,7 +60,10 @@ namespace MoneyFox.Presentation
         public static SettingsPersonalizationViewModel SettingsPersonalizationVm => ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
         public static StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
         public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm =>
+            ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+
         public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
         public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();

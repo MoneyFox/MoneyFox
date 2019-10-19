@@ -24,12 +24,10 @@ namespace MoneyFox.Uwp.Views.Controls
 
         private void EditCategory(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement)sender;
+            var element = (FrameworkElement) sender;
             var category = element.DataContext as CategoryViewModel;
-            if (category == null)
-            {
-                return;
-            }
+
+            if (category == null) return;
 
             ((AbstractCategoryListViewModel) DataContext).EditCategoryCommand.Execute(category);
         }
@@ -38,10 +36,8 @@ namespace MoneyFox.Uwp.Views.Controls
         {
             var element = (FrameworkElement) sender;
             var category = element.DataContext as CategoryViewModel;
-            if (category == null)
-            {
-                return;
-            }
+
+            if (category == null) return;
 
             ((AbstractCategoryListViewModel) DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
         }

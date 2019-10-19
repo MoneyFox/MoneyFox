@@ -1,9 +1,9 @@
-﻿using MoneyFox.Application.Resources;
+﻿using System;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Rg.Plugins.Popup.Extensions;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -55,7 +55,7 @@ namespace MoneyFox.Presentation.Views
 
         private void AddItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel }).FireAndForgetSafeAsync();
+            Navigation.PushPopupAsync(new AddPaymentPopup {BindingContext = ViewModel.ViewActionViewModel}).FireAndForgetSafeAsync();
         }
 
         private void EditPayment(object sender, EventArgs e)

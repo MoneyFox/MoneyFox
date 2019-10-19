@@ -7,15 +7,15 @@ using Android.OS;
 using CommonServiceLocator;
 using Java.Lang;
 using Microsoft.Identity.Client;
+using MoneyFox.Application;
+using MoneyFox.Application.Constants;
+using MoneyFox.Application.FileStore;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.Backup;
-using MoneyFox.Application;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using NLog;
 using Debug = System.Diagnostics.Debug;
-using MoneyFox.Application.Constants;
-using MoneyFox.Application.FileStore;
 using Exception = System.Exception;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
@@ -34,6 +34,7 @@ namespace MoneyFox.Droid.Jobs
         public override bool OnStartJob(JobParameters args)
         {
             Task.Run(async () => await SyncBackupsAsync(args));
+
             return true;
         }
 
@@ -65,6 +66,7 @@ namespace MoneyFox.Droid.Jobs
         private async Task SyncBackupsAsync(JobParameters args)
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
+
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
 
             try
@@ -84,6 +86,7 @@ namespace MoneyFox.Droid.Jobs
                 var backupService = new BackupService(backupManager, settingsFacade);
 
                 DateTime backupDate = await backupService.GetBackupDate();
+
                 if (settingsFacade.LastDatabaseUpdate > backupDate) return;
 
                 await backupService.RestoreBackup();
@@ -93,6 +96,7 @@ namespace MoneyFox.Droid.Jobs
             catch (Exception ex)
             {
                 LogManager.GetCurrentClassLogger().Fatal(ex);
+
                 throw;
             }
             finally

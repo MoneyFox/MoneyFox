@@ -21,7 +21,8 @@ namespace MoneyFox.iOS
         }
 
         /// <inheritdoc />
-        public async Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
+        public async Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null,
+                                             string negativeButtonText = null, Action negativAction = null)
         {
             HideLoadingDialog();
 
@@ -32,26 +33,17 @@ namespace MoneyFox.iOS
             };
 
             // Change the text of confirm buttons only if they are not null
-            if (!string.IsNullOrEmpty(positiveButtonText))
-            {
-                confirmConfig.OkText = positiveButtonText;
-            }
+            if (!string.IsNullOrEmpty(positiveButtonText)) confirmConfig.OkText = positiveButtonText;
 
-            if (!string.IsNullOrEmpty(negativeButtonText))
-            {
-                confirmConfig.CancelText = negativeButtonText;
-            }
+            if (!string.IsNullOrEmpty(negativeButtonText)) confirmConfig.CancelText = negativeButtonText;
 
             // true if user touches positive button
-            var isPositiveAction = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
+            bool isPositiveAction = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
 
             if (isPositiveAction)
-            {
                 positivAction();
-            } else
-            {
+            else
                 negativAction?.Invoke();
-            }
         }
 
         /// <inheritdoc />
@@ -67,17 +59,11 @@ namespace MoneyFox.iOS
             };
 
 
-            if (!string.IsNullOrEmpty(positiveButtonText))
-            {
-                confirmConfig.OkText = positiveButtonText;
-            }
+            if (!string.IsNullOrEmpty(positiveButtonText)) confirmConfig.OkText = positiveButtonText;
 
-            if (!string.IsNullOrEmpty(negativeButtonText))
-            {
-                confirmConfig.CancelText = negativeButtonText;
-            }
+            if (!string.IsNullOrEmpty(negativeButtonText)) confirmConfig.CancelText = negativeButtonText;
 
-            var action = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
+            bool action = await UserDialogs.Instance.ConfirmAsync(confirmConfig);
 
             return action;
         }

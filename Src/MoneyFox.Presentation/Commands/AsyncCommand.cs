@@ -34,7 +34,8 @@ namespace MoneyFox.Presentation.Commands
                 {
                     isExecuting = true;
                     await execute();
-                } finally
+                }
+                finally
                 {
                     isExecuting = false;
                 }
@@ -49,6 +50,7 @@ namespace MoneyFox.Presentation.Commands
         }
 
         #region Explicit implementations
+
         bool ICommand.CanExecute(object parameter)
         {
             return CanExecute();
@@ -58,6 +60,7 @@ namespace MoneyFox.Presentation.Commands
         {
             ExecuteAsync().FireAndForgetSafeAsync();
         }
+
         #endregion
     }
 
@@ -88,7 +91,8 @@ namespace MoneyFox.Presentation.Commands
                 {
                     isExecuting = true;
                     await execute(parameter);
-                } finally
+                }
+                finally
                 {
                     isExecuting = false;
                 }
@@ -103,15 +107,17 @@ namespace MoneyFox.Presentation.Commands
         }
 
         #region Explicit implementations
+
         bool ICommand.CanExecute(object parameter)
         {
-            return CanExecute((T)parameter);
+            return CanExecute((T) parameter);
         }
 
         void ICommand.Execute(object parameter)
         {
-            ExecuteAsync((T)parameter).FireAndForgetSafeAsync();
+            ExecuteAsync((T) parameter).FireAndForgetSafeAsync();
         }
+
         #endregion
     }
 }

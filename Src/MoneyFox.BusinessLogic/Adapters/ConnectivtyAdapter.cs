@@ -29,6 +29,7 @@ namespace MoneyFox.BusinessLogic.Adapters
                 catch (PermissionException ex)
                 {
                     Crashes.TrackError(ex);
+
                     return false;
                 }
             }

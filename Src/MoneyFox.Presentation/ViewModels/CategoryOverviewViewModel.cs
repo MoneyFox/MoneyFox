@@ -21,8 +21,8 @@ namespace MoneyFox.Presentation.ViewModels
                 this.value = value;
                 RaisePropertyChanged();
             }
-        }   
-        
+        }
+
         /// <summary>
         ///     Average of this item
         /// </summary>
@@ -31,11 +31,10 @@ namespace MoneyFox.Presentation.ViewModels
             get => average;
             set
             {
-                if (Math.Abs(this.average - value) < 0.01m) return;
-                this.average = value;
+                if (Math.Abs(average - value) < 0.01m) return;
+                average = value;
                 RaisePropertyChanged();
             }
-
         }
 
         /// <summary>

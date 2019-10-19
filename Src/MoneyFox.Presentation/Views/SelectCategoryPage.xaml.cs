@@ -4,13 +4,13 @@ using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views
 {
-	public partial class SelectCategoryPage 
-	{
+    public partial class SelectCategoryPage
+    {
         private SelectCategoryListViewModel ViewModel => BindingContext as SelectCategoryListViewModel;
 
-		public SelectCategoryPage ()
-		{
-			InitializeComponent();
+        public SelectCategoryPage()
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.SelectCategoryListVm;
 
             Title = Strings.SelectCategoryTitle;

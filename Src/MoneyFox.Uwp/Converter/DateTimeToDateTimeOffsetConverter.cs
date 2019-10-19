@@ -10,7 +10,8 @@ namespace MoneyFox.Uwp.Converter
         {
             try
             {
-                var date = System.Convert.ToDateTime(value, CultureInfo.InvariantCulture);
+                DateTime date = System.Convert.ToDateTime(value, CultureInfo.InvariantCulture);
+
                 return new DateTimeOffset(date);
             }
             catch (ArgumentOutOfRangeException)
@@ -24,6 +25,7 @@ namespace MoneyFox.Uwp.Converter
             try
             {
                 var dto = (DateTimeOffset) value;
+
                 return dto.DateTime;
             }
             catch (Exception)

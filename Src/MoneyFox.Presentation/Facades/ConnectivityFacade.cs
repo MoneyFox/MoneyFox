@@ -1,6 +1,4 @@
-﻿using MoneyFox.BusinessLogic.Adapters;
-
-namespace MoneyFox.ServiceLayer.Facades
+﻿namespace MoneyFox.ServiceLayer.Facades
 {
     public interface IConnectivityFacade
     {

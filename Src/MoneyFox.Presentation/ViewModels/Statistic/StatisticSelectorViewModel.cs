@@ -55,14 +55,17 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             {
                 case StatisticType.Cashflow:
                     navigationService.NavigateTo(ViewModelLocator.StatisticCashFlow);
+
                     break;
 
                 case StatisticType.CategorySpreading:
                     navigationService.NavigateTo(ViewModelLocator.StatisticCategorySpreading);
+
                     break;
 
                 case StatisticType.CategorySummary:
                     navigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
+
                     break;
             }
         }

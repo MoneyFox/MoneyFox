@@ -39,10 +39,10 @@
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
+                                <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}"
                                              Margin="0,0,0,-1"
                                              Padding="0,18,0,6">
-                                     <Label Text="{Binding Key}"
+                                    <Label Text="{Binding Key}"
                                            VerticalOptions="CenterAndExpand"
                                            VerticalTextAlignment="Center"
                                            Style="{StaticResource ListGroupHeaderStyle}" />
@@ -93,8 +93,8 @@
                 </ListView>
 
                 <ImageButton
-                        Clicked="AddItem_Clicked" 
-                        Style="{StaticResource FabPrimary}" >
+                    Clicked="AddItem_Clicked"
+                    Style="{StaticResource FabPrimary}">
                     <ImageButton.Source>
                         <FontImageSource
                             Glyph="{StaticResource Add}"

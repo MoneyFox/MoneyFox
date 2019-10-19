@@ -21,12 +21,12 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IDialogService dialogService;
 
         public AddPaymentViewModel(IMediator mediator,
-                                   IMapper mapper, 
+                                   IMapper mapper,
                                    IPaymentService paymentService,
                                    IDialogService dialogService,
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
-                                   INavigationService navigationService) 
+                                   INavigationService navigationService)
             : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService)
         {
             this.paymentService = paymentService;
@@ -35,9 +35,9 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public PaymentType PaymentType { get; set; }
-        
+
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
-        
+
         protected override async Task Initialize()
         {
             Title = PaymentTypeHelper.GetViewTitleForType(PaymentType, false);

@@ -20,7 +20,8 @@ namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccount
                 this.context = context;
             }
 
-            public async Task<List<Account>> Handle(GetIncludedAccountQuery request, CancellationToken cancellationToken) {
+            public async Task<List<Account>> Handle(GetIncludedAccountQuery request, CancellationToken cancellationToken)
+            {
                 return await context.Accounts
                                     .AreNotExcluded()
                                     .OrderByName()

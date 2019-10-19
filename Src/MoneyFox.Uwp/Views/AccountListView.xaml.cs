@@ -18,44 +18,37 @@ namespace MoneyFox.Uwp.Views
         ///     Initialize View.
         /// </summary>
         public AccountListView()
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
 
-			if (DesignMode.DesignModeEnabled)
-			{
-				DataContext = new DesignTimeAccountListViewModel();
-			}
-		}
+            if (DesignMode.DesignModeEnabled) DataContext = new DesignTimeAccountListViewModel();
+        }
 
-		private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
-		{
-			var senderElement = sender as FrameworkElement;
-			var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
+        private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var senderElement = sender as FrameworkElement;
+            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
 
-			flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
-		}
+            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
+        }
 
-		private void Edit_OnClick(object sender, RoutedEventArgs e)
-		{
-			var element = (FrameworkElement)sender;
-		    if (!(element.DataContext is AccountViewModel account))
-			{
-				return;
-			}
+        private void Edit_OnClick(object sender, RoutedEventArgs e)
+        {
+            var element = (FrameworkElement) sender;
 
-			(DataContext as AccountListViewModel)?.EditAccountCommand.Execute(account);
-		}
+            if (!(element.DataContext is AccountViewModel account)) return;
 
-		private void Delete_OnClick(object sender, RoutedEventArgs e)
-		{
-			//this has to be called before the dialog service since otherwise the data context is reseted and the account will be null
-			var element = (FrameworkElement)sender;
-		    if (!(element.DataContext is AccountViewModel account))
-			{
-				return;
-			}
+            (DataContext as AccountListViewModel)?.EditAccountCommand.Execute(account);
+        }
 
-			(DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
-		}
+        private void Delete_OnClick(object sender, RoutedEventArgs e)
+        {
+            //this has to be called before the dialog service since otherwise the data context is reseted and the account will be null
+            var element = (FrameworkElement) sender;
+
+            if (!(element.DataContext is AccountViewModel account)) return;
+
+            (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
+        }
     }
 }

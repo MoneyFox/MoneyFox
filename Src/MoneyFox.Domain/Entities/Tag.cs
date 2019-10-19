@@ -5,13 +5,14 @@ namespace MoneyFox.Domain.Entities
     public class Tag
     {
         /// <summary>
-        ///  EF Core Constructor
+        ///     EF Core Constructor
         /// </summary>
-        private Tag() { }
+        private Tag()
+        {
+        }
 
         public Tag(string name)
         {
-
         }
 
         public int Id { get; private set; }

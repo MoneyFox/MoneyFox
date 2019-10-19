@@ -16,9 +16,9 @@ namespace MoneyFox.Infrastructure
     {
         public static IList<Map> LoadStandardMappings(Assembly rootAssembly)
         {
-            var types = rootAssembly.GetExportedTypes();
+            Type[] types = rootAssembly.GetExportedTypes();
 
-            var mapsFrom = (
+            List<Map> mapsFrom = (
                 from type in types
                 from instance in type.GetInterfaces()
                 where
@@ -36,9 +36,9 @@ namespace MoneyFox.Infrastructure
 
         public static IList<IHaveCustomMapping> LoadCustomMappings(Assembly rootAssembly)
         {
-            var types = rootAssembly.GetExportedTypes();
+            Type[] types = rootAssembly.GetExportedTypes();
 
-            var mapsFrom = (
+            List<IHaveCustomMapping> mapsFrom = (
                 from type in types
                 from instance in type.GetInterfaces()
                 where

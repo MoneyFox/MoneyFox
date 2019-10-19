@@ -31,7 +31,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
                 new Entry(543) {Label = "Boooze"},
                 new Entry(462) {Label = "Rent"},
                 new Entry(1112) {Label = "Clothes"},
-                new Entry(512) {Label = "Eating or so?"},
+                new Entry(512) {Label = "Eating or so?"}
             }
         };
 
@@ -42,7 +42,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             new StatisticEntry(543) {Label = "Boooze"},
             new StatisticEntry(462) {Label = "Rent"},
             new StatisticEntry(1112) {Label = "Clothes"},
-            new StatisticEntry(512) {Label = "Eating or so?"},
+            new StatisticEntry(512) {Label = "Eating or so?"}
         });
 
         public AsyncCommand LoadedCommand { get; }

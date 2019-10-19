@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
@@ -37,7 +35,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
                         .ReturnsAsync(new Account("asdf"));
-            
+
             mapperMock.Setup(x => x.Map<AccountViewModel>(It.IsAny<Account>()))
                       .Returns(new AccountViewModel());
         }
@@ -48,10 +46,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Arrange
             const int accountId = 99;
 
-            var editAccountVm = new EditAccountViewModel(mediatorMock.Object, 
+            var editAccountVm = new EditAccountViewModel(mediatorMock.Object,
                                                          mapperMock.Object,
                                                          settingsFacadeMock.Object,
-                                                         backupServiceMock.Object, 
+                                                         backupServiceMock.Object,
                                                          dialogServiceMock.Object,
                                                          navigationServiceMock.Object);
 

@@ -39,12 +39,15 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
             return AggregateData(SelectRelevantDataFromList(await GetPaymentsWithoutTransfer(request, cancellationToken)));
         }
 
-        private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(GetCategorySpreadingQuery request, CancellationToken cancellationToken) => await context.Payments
-                                                                                                                                                                    .Include(x => x.Category)
-                                                                                                                                                                    .WithoutTransfers()
-                                                                                                                                                                    .HasDateLargerEqualsThan(request.StartDate.Date)
-                                                                                                                                                                    .HasDateSmallerEqualsThan(request.EndDate.Date)
-                                                                                                                                                                    .ToListAsync(cancellationToken);
+        private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
+        {
+            return await context.Payments
+                                .Include(x => x.Category)
+                                .WithoutTransfers()
+                                .HasDateLargerEqualsThan(request.StartDate.Date)
+                                .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                .ToListAsync(cancellationToken);
+        }
 
         private List<(float Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
         {
@@ -55,7 +58,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                     }
                     into temp
                     select (
-                        (float)temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount),
+                        (float) temp.Sum(x => x.Type == PaymentType.Income ? -x.Amount : x.Amount),
                         temp.Key.category))
                    .Where(x => x.Item1 > 0)
                    .OrderByDescending(x => x.Item1)
@@ -64,10 +67,11 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 
         private IEnumerable<StatisticEntry> AggregateData(List<(float Value, string Label)> statisticData)
         {
-            var statisticList = statisticData
-                                .Take(6)
-                                .Select(x => new StatisticEntry(x.Value) { ValueLabel = x.Value.ToString("C", CultureInfo.CurrentCulture), Label = x.Label })
-                                .ToList();
+            List<StatisticEntry> statisticList = statisticData
+                                                 .Take(6)
+                                                 .Select(x => new StatisticEntry(x.Value)
+                                                             {ValueLabel = x.Value.ToString("C", CultureInfo.CurrentCulture), Label = x.Label})
+                                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
             SetColors(statisticList);
@@ -77,14 +81,11 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 
         private static void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
-            if (statisticList.Count < 6)
-            {
-                return;
-            }
+            if (statisticList.Count < 6) return;
 
-            var otherValue = statisticData
-                             .Where(x => statisticList.All(y => x.Label != y.Label))
-                             .Sum(x => x.Value);
+            float otherValue = statisticData
+                               .Where(x => statisticList.All(y => x.Label != y.Label))
+                               .Sum(x => x.Value);
 
             var othersItem = new StatisticEntry(otherValue)
             {
@@ -92,16 +93,12 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                 ValueLabel = otherValue.ToString("C", CultureInfo.InvariantCulture)
             };
 
-            if (othersItem.Value > 0)
-            {
-                statisticList.Add(othersItem);
-            }
+            if (othersItem.Value > 0) statisticList.Add(othersItem);
         }
 
         private void SetColors(List<StatisticEntry> statisticItems)
         {
-
-            for (int i = 0; i < statisticItems.Count; i++)
+            for (var i = 0; i < statisticItems.Count; i++)
             {
                 statisticItems[i].Color = Colors[i];
             }

@@ -19,6 +19,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);
@@ -34,9 +35,9 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
 
             // Act
             account.UpdateAccount("foo");
-            await new UpdateAccountCommand.Handler(context).Handle(new UpdateAccountCommand { Account = account }, default);
+            await new UpdateAccountCommand.Handler(context).Handle(new UpdateAccountCommand {Account = account}, default);
 
-            var loadedAccount = await context.Accounts.FindAsync(account.Id);
+            Account loadedAccount = await context.Accounts.FindAsync(account.Id);
 
             // Assert
             loadedAccount.Name.ShouldEqual("foo");

@@ -63,7 +63,6 @@ namespace MoneyFox.DataLayer.Tests.Entities
             Assert.Throws<ArgumentNullException>(() => testCategory.UpdateData(name));
         }
 
-
         [Fact]
         public void UpdateData_NoParams_DefaultValuesSet()
         {

@@ -20,7 +20,7 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.Login())
-                .Callback(() => throw new BackupException());
+                             .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -41,7 +41,7 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.Login())
-                .Returns(Task.CompletedTask);
+                             .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -85,7 +85,7 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
             backupManagerMock.Setup(x => x.Logout())
-                .Returns(Task.CompletedTask);
+                             .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
             settingsFacade.SetupAllProperties();
@@ -113,7 +113,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, new Mock<ISettingsFacade>().Object);
 
             // Act
-            var result = await backupService.IsBackupExisting();
+            bool result = await backupService.IsBackupExisting();
 
             // Assert
             result.ShouldEqual(expectedResult);
@@ -130,7 +130,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, new Mock<ISettingsFacade>().Object);
 
             // Act
-            var result = await backupService.GetBackupDate();
+            DateTime result = await backupService.GetBackupDate();
 
             // Assert
             result.ShouldEqual(DateTime.Today);

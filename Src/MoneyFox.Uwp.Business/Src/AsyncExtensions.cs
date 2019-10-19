@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.Foundation;
 
 namespace MoneyFox.Uwp.Business
@@ -9,9 +10,10 @@ namespace MoneyFox.Uwp.Business
         {
             try
             {
-                var task = operation.AsTask();
+                Task task = operation.AsTask();
                 task.Wait();
-            } catch (AggregateException exception)
+            }
+            catch (AggregateException exception)
             {
                 throw exception.InnerException;
             }
@@ -21,10 +23,12 @@ namespace MoneyFox.Uwp.Business
         {
             try
             {
-                var task = operation.AsTask();
+                Task<TResult> task = operation.AsTask();
                 task.Wait();
+
                 return task.Result;
-            } catch (AggregateException exception)
+            }
+            catch (AggregateException exception)
             {
                 throw exception.InnerException;
             }

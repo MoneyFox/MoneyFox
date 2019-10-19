@@ -144,7 +144,7 @@
 
                                Margin="{StaticResource MediumBottomMargin}" />
                         <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}"
-                                    Style="{StaticResource DefaultDatePickerStyle}"/>
+                                    Style="{StaticResource DefaultDatePickerStyle}" />
                     </StackLayout>
 
                 </StackLayout>

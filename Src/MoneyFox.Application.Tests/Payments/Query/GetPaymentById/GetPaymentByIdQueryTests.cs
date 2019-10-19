@@ -9,39 +9,45 @@ using MoneyFox.Persistence;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById {
+namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById
+{
     [ExcludeFromCodeCoverage]
-    public class GetPaymentByIdQueryTests : IDisposable {
+    public class GetPaymentByIdQueryTests : IDisposable
+    {
         private readonly EfCoreContext context;
 
-        public GetPaymentByIdQueryTests() {
+        public GetPaymentByIdQueryTests()
+        {
             context = TestEfCoreContextFactory.Create();
         }
 
-        public void Dispose() {
+        public void Dispose()
+        {
             TestEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]
-        public async Task GetCategory_CategoryNotFound() {
+        public async Task GetCategory_CategoryNotFound()
+        {
             // Arrange
 
             // Act
-            var result = await new GetPaymentByIdQuery.Handler(context).Handle(new GetPaymentByIdQuery(999), default);
+            Payment result = await new GetPaymentByIdQuery.Handler(context).Handle(new GetPaymentByIdQuery(999), default);
 
             // Assert
             result.ShouldBeNull();
         }
 
         [Fact]
-        public async Task GetCategory_CategoryFound() {
+        public async Task GetCategory_CategoryFound()
+        {
             // Arrange
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetPaymentByIdQuery.Handler(context).Handle(new GetPaymentByIdQuery(payment1.Id), default);
+            Payment result = await new GetPaymentByIdQuery.Handler(context).Handle(new GetPaymentByIdQuery(payment1.Id), default);
 
             // Assert
             result.ShouldNotBeNull();

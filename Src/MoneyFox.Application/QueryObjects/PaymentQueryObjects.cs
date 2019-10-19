@@ -82,7 +82,7 @@ namespace MoneyFox.BusinessDbAccess.QueryObjects
         {
             return query.Where(payment => payment.ChargedAccount.Id == accountId || payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
         }
-        
+
         /// <summary>
         ///     Orders a query descending by the date.
         /// </summary>

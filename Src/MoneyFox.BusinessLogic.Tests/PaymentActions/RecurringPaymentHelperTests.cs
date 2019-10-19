@@ -56,7 +56,7 @@ namespace MoneyFox.BusinessLogic.Tests.PaymentActions
             payment.AddRecurringPayment(recurrence, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                .ShouldBeFalse();
+                                  .ShouldBeFalse();
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace MoneyFox.BusinessLogic.Tests.PaymentActions
             payment.AddRecurringPayment(PaymentRecurrence.Monthly, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                .ShouldBeFalse();
+                                  .ShouldBeFalse();
         }
     }
 }

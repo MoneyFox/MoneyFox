@@ -12,10 +12,7 @@ namespace MoneyFox.Uwp
 
         public void SetThemeAsync(string theme)
         {
-            if (Enum.TryParse(theme, out ElementTheme cacheTheme))
-            {
-                ThemeSelectorService.SetThemeAsync(cacheTheme).FireAndForgetSafeAsync();
-            }
+            if (Enum.TryParse(theme, out ElementTheme cacheTheme)) ThemeSelectorService.SetThemeAsync(cacheTheme).FireAndForgetSafeAsync();
         }
     }
 }

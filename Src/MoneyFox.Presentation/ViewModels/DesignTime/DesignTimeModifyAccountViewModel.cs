@@ -11,7 +11,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
 
         /// <inheritdoc />
         public bool IsEdit { get; }
-        
+
         /// <inheritdoc />
         public string Title { get; }
 

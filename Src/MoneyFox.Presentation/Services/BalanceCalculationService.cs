@@ -1,9 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MediatR;
-using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
-using MoneyFox.Application.Payments.Queries;
 using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -50,38 +49,48 @@ namespace MoneyFox.Presentation.Services
         }
 
         /// <inheritdoc />
-        public async Task<decimal> GetTotalBalance() {
+        public async Task<decimal> GetTotalBalance()
+        {
             return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
         }
 
         /// <inheritdoc />
         public async Task<decimal> GetTotalEndOfMonthBalance()
         {
-            var excluded = await mediator.Send(new GetExcludedAccountQuery());
+            List<Account> excluded = await mediator.Send(new GetExcludedAccountQuery());
 
-            var balance = await GetTotalBalance();
+            decimal balance = await GetTotalBalance();
 
-            foreach (var payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery())) {
-                switch (payment.Type) {
+            foreach (Payment payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
+            {
+                switch (payment.Type)
+                {
                     case PaymentType.Expense:
                         balance -= payment.Amount;
+
                         break;
 
                     case PaymentType.Income:
                         balance += payment.Amount;
+
                         break;
 
                     case PaymentType.Transfer:
-                        foreach (var account in excluded) {
-                            if (Equals(account.Id, payment.ChargedAccount.Id)) {
+                        foreach (Account account in excluded)
+                        {
+                            if (Equals(account.Id, payment.ChargedAccount.Id))
+                            {
                                 //Transfer from excluded account
                                 balance += payment.Amount;
+
                                 break;
                             }
 
-                            if (Equals(account.Id, payment.TargetAccount.Id)) {
+                            if (Equals(account.Id, payment.TargetAccount.Id))
+                            {
                                 //Transfer to excluded account
                                 balance -= payment.Amount;
+
                                 break;
                             }
                         }
@@ -99,28 +108,34 @@ namespace MoneyFox.Presentation.Services
         /// <inheritdoc />
         public async Task<decimal> GetEndOfMonthBalanceForAccount(AccountViewModel account)
         {
-            var balance = account.CurrentBalance;
+            decimal balance = account.CurrentBalance;
 
-            var paymentList = await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery{AccountId = account.Id });
+            List<Payment> paymentList = await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery {AccountId = account.Id});
 
-            foreach (var payment in paymentList)
+            foreach (Payment payment in paymentList)
 
+            {
                 switch (payment.Type)
                 {
                     case PaymentType.Expense:
                         balance -= payment.Amount;
+
                         break;
 
                     case PaymentType.Income:
                         balance += payment.Amount;
+
                         break;
 
                     case PaymentType.Transfer:
                         balance = HandleTransferAmount(payment, balance, account.Id);
+
                         break;
                     default:
                         throw new InvalidPaymentTypeException();
                 }
+            }
+
             return balance;
         }
 
@@ -130,6 +145,7 @@ namespace MoneyFox.Presentation.Services
                 balance -= payment.Amount;
             else
                 balance += payment.Amount;
+
             return balance;
         }
     }

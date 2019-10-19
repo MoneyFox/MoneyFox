@@ -1,8 +1,9 @@
-﻿using MoneyFox.Application;
-using NLog;
-using System;
+﻿using System;
 using System.Globalization;
 using System.IO;
+using MoneyFox.Application;
+using NLog;
+using SQLitePCL;
 
 namespace MoneyFox.DataLayer
 {
@@ -14,19 +15,22 @@ namespace MoneyFox.DataLayer
 
         public static string GetDbPath()
         {
-            string databasePath = "";
+            var databasePath = "";
             switch (ExecutingPlatform.Current)
             {
                 case AppPlatform.iOS:
-                    SQLitePCL.Batteries_V2.Init();
+                    Batteries_V2.Init();
                     databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DATABASE_NAME);
+
                     break;
                 case AppPlatform.Android:
                     databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DATABASE_NAME);
+
                     break;
 
                 case AppPlatform.UWP:
                     databasePath = DATABASE_NAME;
+
                     break;
 
                 default:
@@ -34,6 +38,7 @@ namespace MoneyFox.DataLayer
             }
 
             Logger.Debug(CultureInfo.CurrentCulture, "Database Path: {dbPath}", databasePath);
+
             return databasePath;
         }
     }

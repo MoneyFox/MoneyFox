@@ -18,6 +18,7 @@ namespace MoneyFox.Application.FileStore
         public override Stream OpenRead(string path)
         {
             string fullPath = AppendPath(path);
+
             if (!File.Exists(fullPath)) return null;
 
             return File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
@@ -33,6 +34,7 @@ namespace MoneyFox.Application.FileStore
                 if (!File.Exists(fullFrom))
                 {
                     logger.Error("Error during file move {0} : {1}. File does not exist!", from, destination);
+
                     return false;
                 }
 
@@ -45,11 +47,13 @@ namespace MoneyFox.Application.FileStore
                 }
 
                 File.Move(fullFrom, fullTo);
+
                 return true;
             }
             catch (Exception ex)
             {
                 logger.Error(ex.ToString);
+
                 return false;
             }
         }

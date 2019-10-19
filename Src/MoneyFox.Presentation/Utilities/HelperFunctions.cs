@@ -16,7 +16,8 @@ namespace MoneyFox.Presentation.Utilities
         /// <returns>Last day of the month</returns>
         public static DateTime GetEndOfMonth()
         {
-            var today = DateTime.Today;
+            DateTime today = DateTime.Today;
+
             return new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
         }
 
@@ -26,7 +27,9 @@ namespace MoneyFox.Presentation.Utilities
         /// <param name="value">decimal who shall be converted</param>
         /// <returns>Formated string.</returns>
         public static string FormatLargeNumbers(decimal value)
-            => value.ToString("N", CultureInfo.CurrentCulture);
+        {
+            return value.ToString("N", CultureInfo.CurrentCulture);
+        }
 
         /// <summary>
         ///     Returns the number string with just his culture's decimal separator.
@@ -38,16 +41,14 @@ namespace MoneyFox.Presentation.Utilities
         {
             if (amount.Any(char.IsPunctuation))
             {
-                int decimalSeparatorIndex = 0;
-                int punctuationCount = 0;
+                var decimalSeparatorIndex = 0;
+                var punctuationCount = 0;
                 var stringBuilder = new StringBuilder();
 
                 foreach (char c in amount)
                 {
                     if (!char.IsPunctuation(c))
-                    {
                         stringBuilder.Append(c);
-                    } 
                     else
                     {
                         punctuationCount++;
@@ -61,11 +62,12 @@ namespace MoneyFox.Presentation.Utilities
 
                 if (punctuationCount > decimalSeparatorIndex) return amount;
 
-                var decimalsString = stringBuilder.ToString();
+                string decimalsString = stringBuilder.ToString();
                 amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) +
                          CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator +
                          decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
             }
+
             return amount;
         }
     }

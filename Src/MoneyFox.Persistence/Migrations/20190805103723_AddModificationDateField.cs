@@ -11,26 +11,26 @@ namespace MoneyFox.DataLayer.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
-                name: "ModificationDate",
-                table: "RecurringPayments",
+                "ModificationDate",
+                "RecurringPayments",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "ModificationDate",
-                table: "Payments",
+                "ModificationDate",
+                "Payments",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "ModificationDate",
-                table: "Categories",
+                "ModificationDate",
+                "Categories",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "ModificationDate",
-                table: "Accounts",
+                "ModificationDate",
+                "Accounts",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
         }
@@ -38,20 +38,20 @@ namespace MoneyFox.DataLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "ModificationDate",
-                table: "RecurringPayments");
+                "ModificationDate",
+                "RecurringPayments");
 
             migrationBuilder.DropColumn(
-                name: "ModificationDate",
-                table: "Payments");
+                "ModificationDate",
+                "Payments");
 
             migrationBuilder.DropColumn(
-                name: "ModificationDate",
-                table: "Categories");
+                "ModificationDate",
+                "Categories");
 
             migrationBuilder.DropColumn(
-                name: "ModificationDate",
-                table: "Accounts");
+                "ModificationDate",
+                "Accounts");
         }
     }
 }

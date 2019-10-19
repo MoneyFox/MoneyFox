@@ -21,7 +21,7 @@ namespace MoneyFox.BusinessDbAccess.QueryObjects
         }
 
         /// <summary>
-        ///      Adds a filter for Categories who have a certain string in the name.
+        ///     Adds a filter for Categories who have a certain string in the name.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <param name="searchterm">Search term to look for.</param>
@@ -32,7 +32,7 @@ namespace MoneyFox.BusinessDbAccess.QueryObjects
         }
 
         /// <summary>
-        ///      Orders a category query by name.
+        ///     Orders a category query by name.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Ordered Query</returns>

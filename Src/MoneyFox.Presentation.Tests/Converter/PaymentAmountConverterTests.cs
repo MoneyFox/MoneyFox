@@ -9,13 +9,13 @@ namespace MoneyFox.Presentation.Tests.Converter
 {
     [ExcludeFromCodeCoverage]
     [Collection("MvxIocCollection")]
-    public class PaymentAmountConverterTests 
+    public class PaymentAmountConverterTests
     {
         [Fact]
         public void Converter_Payment_NegativeAmountSign()
         {
             new PaymentAmountConverter()
-                .Convert(new PaymentViewModel{Amount = 80, Type = PaymentType.Expense}, null, null, null)
+                .Convert(new PaymentViewModel {Amount = 80, Type = PaymentType.Expense}, null, null, null)
                 .ShouldEqual("- " + 80.ToString("C"));
         }
 

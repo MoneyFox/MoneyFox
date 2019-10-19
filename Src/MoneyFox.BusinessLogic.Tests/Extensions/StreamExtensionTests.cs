@@ -16,7 +16,7 @@ namespace MoneyFox.BusinessLogic.Tests.Extensions
             var stream = new MemoryStream(bytes);
 
             // Act
-            var resultBytes = stream.ReadToEnd();
+            byte[] resultBytes = stream.ReadToEnd();
             stream.Close();
 
             // Assert

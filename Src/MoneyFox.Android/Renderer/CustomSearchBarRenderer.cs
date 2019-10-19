@@ -94,7 +94,6 @@ namespace MoneyFox.Droid.Renderer
             }
         }
 
-
         private void UpdateSearchButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);

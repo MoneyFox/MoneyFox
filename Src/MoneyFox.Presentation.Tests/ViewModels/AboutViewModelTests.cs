@@ -14,22 +14,22 @@ using Xunit;
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
-    public class AboutViewModelTests 
+    public class AboutViewModelTests
     {
         [Fact]
         public async Task SendMail_NoParams_CommandCalled()
         {
             var composeMailSetup = new Mock<IEmailAdapter>();
             composeMailSetup.Setup(x => x.SendEmail(It.Is<string>(s => s == Strings.FeedbackSubject),
-                    It.IsAny<string>(),
-                    It.IsAny<List<string>>()))
-                .Returns(Task.CompletedTask);
+                                                    It.IsAny<string>(),
+                                                    It.IsAny<List<string>>()))
+                            .Returns(Task.CompletedTask);
 
             await new AboutViewModel(new Mock<IAppInformation>().Object,
-                               composeMailSetup.Object,
-                               new Mock<IBrowserAdapter>().Object,
-                               new Mock<IStoreOperations>().Object)
-                .SendMailCommand.ExecuteAsync();
+                                     composeMailSetup.Object,
+                                     new Mock<IBrowserAdapter>().Object,
+                                     new Mock<IStoreOperations>().Object)
+                  .SendMailCommand.ExecuteAsync();
 
             composeMailSetup.Verify(x => x.SendEmail(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()), Times.Once);
         }
@@ -72,13 +72,13 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             var webbrowserTaskSetup = new Mock<IBrowserAdapter>();
             webbrowserTaskSetup.Setup(x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.WEBSITE_URL))))
-                .Returns(Task.CompletedTask);
+                               .Returns(Task.CompletedTask);
 
             await new AboutViewModel(new Mock<IAppInformation>().Object,
-                               new Mock<IEmailAdapter>().Object,
-                               webbrowserTaskSetup.Object,
-                               new Mock<IStoreOperations>().Object)
-                .GoToWebsiteCommand.ExecuteAsync();
+                                     new Mock<IEmailAdapter>().Object,
+                                     webbrowserTaskSetup.Object,
+                                     new Mock<IStoreOperations>().Object)
+                  .GoToWebsiteCommand.ExecuteAsync();
 
             webbrowserTaskSetup.Verify(x => x.OpenWebsite(It.IsAny<Uri>()), Times.Once);
         }
@@ -88,14 +88,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             var webbrowserTaskSetup = new Mock<IBrowserAdapter>();
             webbrowserTaskSetup.Setup(
-                    x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.GIT_HUB_REPOSITORY_URL))))
-                .Returns(Task.CompletedTask);
+                                   x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.GIT_HUB_REPOSITORY_URL))))
+                               .Returns(Task.CompletedTask);
 
             await new AboutViewModel(new Mock<IAppInformation>().Object,
-                               new Mock<IEmailAdapter>().Object,
-                               webbrowserTaskSetup.Object,
-                               new Mock<IStoreOperations>().Object)
-                .GoToRepositoryCommand.ExecuteAsync();
+                                     new Mock<IEmailAdapter>().Object,
+                                     webbrowserTaskSetup.Object,
+                                     new Mock<IStoreOperations>().Object)
+                  .GoToRepositoryCommand.ExecuteAsync();
 
             webbrowserTaskSetup.Verify(x => x.OpenWebsite(It.IsAny<Uri>()), Times.Once());
         }

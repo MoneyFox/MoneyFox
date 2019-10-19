@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.ViewModels;
 using System.Globalization;
 using MoneyFox.Domain.Exceptions;
+using MoneyFox.Presentation.Groups;
+using MoneyFox.Presentation.ViewModels;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Groups
@@ -15,7 +15,8 @@ namespace MoneyFox.Presentation.Tests.Groups
         {
             // Arrange
             // Act / Assert
-            Assert.Throws<GroupListParameterNullException>(() => AlphaGroupListGroupCollection<PaymentViewModel>.CreateGroups(null, CultureInfo.CurrentUICulture, s => ""));
+            Assert.Throws<GroupListParameterNullException>(
+                () => AlphaGroupListGroupCollection<PaymentViewModel>.CreateGroups(null, CultureInfo.CurrentUICulture, s => ""));
         }
     }
 }

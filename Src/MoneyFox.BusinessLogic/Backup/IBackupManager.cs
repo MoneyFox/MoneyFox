@@ -13,8 +13,8 @@ namespace MoneyFox.BusinessLogic.Backup
         ///     Login user.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task Login();        
-        
+        Task Login();
+
         /// <summary>
         ///     Logout user.
         /// </summary>

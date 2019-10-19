@@ -79,9 +79,9 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Creates an AboutViewModel Object
         /// </summary>
         public AboutViewModel(IAppInformation appInformation,
-            IEmailAdapter emailAdapter,
-            IBrowserAdapter browserAdapter,
-            IStoreOperations storeOperations)
+                              IEmailAdapter emailAdapter,
+                              IBrowserAdapter browserAdapter,
+                              IStoreOperations storeOperations)
         {
             this.appInformation = appInformation;
             this.emailAdapter = emailAdapter;
@@ -152,7 +152,7 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task SendMail()
         {
             await emailAdapter.SendEmail(Strings.FeedbackSubject, string.Empty,
-                    new List<string> { AppConstants.SUPPORT_MAIL });
+                                         new List<string> {AppConstants.SUPPORT_MAIL});
         }
 
         private void RateApp()

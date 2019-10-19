@@ -4,13 +4,13 @@ using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views
 {
-	public partial class AddPaymentPage
-	{
+    public partial class AddPaymentPage
+    {
         private AddPaymentViewModel ViewModel => BindingContext as AddPaymentViewModel;
 
         public AddPaymentPage(PaymentType paymentType)
-		{
-			InitializeComponent ();
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.AddPaymentVm;
 
             ViewModel.PaymentType = paymentType;

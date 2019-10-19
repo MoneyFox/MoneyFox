@@ -40,7 +40,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
             balanceCalculationService.Setup(x => x.GetTotalBalance())
-                .ReturnsAsync(() => 700);
+                                     .ReturnsAsync(() => 700);
 
             var vm = new BalanceViewModel(balanceCalculationService.Object);
             await vm.UpdateBalanceCommand.ExecuteAsync();

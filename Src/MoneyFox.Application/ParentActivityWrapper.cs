@@ -1,4 +1,5 @@
-﻿namespace MoneyFox.Application {
+﻿namespace MoneyFox.Application
+{
     public static class ParentActivityWrapper
     {
         /// <summary>

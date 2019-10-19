@@ -87,7 +87,6 @@ namespace MoneyFox.Domain.Tests.Entities
             Assert.Throws<ArgumentNullException>(() => testAccount.UpdateAccount(name));
         }
 
-
         [Theory]
         [InlineData(-12, true)]
         [InlineData(12, false)]
@@ -98,12 +97,11 @@ namespace MoneyFox.Domain.Tests.Entities
             var testAccount = new Account("test");
 
             // Act / Assert
-            testAccount.UpdateAccount(testAccount.Name, currentBalance: currentBalance);
+            testAccount.UpdateAccount(testAccount.Name, currentBalance);
 
             // Assert
             testAccount.IsOverdrawn.ShouldEqual(expectedIsOverdrawn);
         }
-
 
         [Fact]
         public void UpdateData_NoParams_DefaultValuesSet()
@@ -153,7 +151,7 @@ namespace MoneyFox.Domain.Tests.Entities
             var testAccount = new Account("foo");
 
             // Act / Assert
-            testAccount.UpdateAccount("asdf", 123, "", false);
+            testAccount.UpdateAccount("asdf", 123);
 
             // Assert
             testAccount.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
@@ -201,7 +199,6 @@ namespace MoneyFox.Domain.Tests.Entities
             account.CurrentBalance.ShouldEqual(100);
         }
 
-
         [Fact]
         public void AddPaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
         {
@@ -209,10 +206,10 @@ namespace MoneyFox.Domain.Tests.Entities
             var chargedAccount = new Account("Test", 100);
             var targetAccount = new Account("Test", 100);
 
-            var chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             chargedAccountId.SetValue(chargedAccount, 3);
 
-            var targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             targetAccountId.SetValue(targetAccount, 4);
 
             // Act
@@ -264,7 +261,6 @@ namespace MoneyFox.Domain.Tests.Entities
             account.CurrentBalance.ShouldEqual(expectedBalance);
         }
 
-
         [Fact]
         public void RemovePaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
         {
@@ -272,10 +268,10 @@ namespace MoneyFox.Domain.Tests.Entities
             var chargedAccount = new Account("Test", 100);
             var targetAccount = new Account("Test", 100);
 
-            var chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             chargedAccountId.SetValue(chargedAccount, 3);
 
-            var targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             targetAccountId.SetValue(targetAccount, 4);
 
 

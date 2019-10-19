@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MoneyFox.Presentation.ViewModels
+﻿namespace MoneyFox.Presentation.ViewModels
 {
     public class IncomeExpenseBalanceViewModel : BaseViewModel
     {
@@ -12,7 +10,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => totalEarned;
             set
             {
-                if(totalEarned == value) return;
+                if (totalEarned == value) return;
                 totalEarned = value;
                 RaisePropertyChanged();
             }

@@ -97,6 +97,7 @@ namespace MoneyFox.Uwp.Services
             {
                 if (pages.ContainsValue(page))
                     return pages.FirstOrDefault(p => p.Value == page).Key;
+
                 throw new ArgumentException(string.Format("ExceptionNavigationServiceExPageUnknown", page.Name));
             }
         }

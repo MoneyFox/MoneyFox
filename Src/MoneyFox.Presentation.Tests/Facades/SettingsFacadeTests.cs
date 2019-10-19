@@ -10,10 +10,12 @@ using Xunit;
 namespace MoneyFox.Presentation.Tests.Facades
 {
     [ExcludeFromCodeCoverage]
-    public class SettingsFacadeTests {
+    public class SettingsFacadeTests
+    {
         private readonly ISettingsAdapter settingsAdapter;
 
-        public SettingsFacadeTests() {
+        public SettingsFacadeTests()
+        {
             var settingsAdapterMock = new Mock<ISettingsAdapter>();
             settingsAdapterMock.Setup(x => x.GetValue(It.IsAny<string>(), It.IsAny<string>()))
                                .Returns((string key, string defaultValue) => defaultValue);
@@ -29,7 +31,7 @@ namespace MoneyFox.Presentation.Tests.Facades
         public void Ctor_DefaultValues_IsBackupAutouploadEnabledFalse()
         {
             // Arrange
-            
+
             // Act
             var settingsfacade = new SettingsFacade(settingsAdapter);
 
@@ -41,7 +43,7 @@ namespace MoneyFox.Presentation.Tests.Facades
         public void Ctor_DefaultValues_LastDatabaseUpdateMinDate()
         {
             // Arrange
-            
+
             // Act
             var settingsfacade = new SettingsFacade(settingsAdapter);
 
@@ -53,7 +55,7 @@ namespace MoneyFox.Presentation.Tests.Facades
         public void Ctor_DefaultValues_ThemeLight()
         {
             // Arrange
-            
+
             // Act
             var settingsfacade = new SettingsFacade(settingsAdapter);
 
@@ -65,7 +67,7 @@ namespace MoneyFox.Presentation.Tests.Facades
         public void Ctor_DefaultValues_IsLoggedInToBackupServiceFalse()
         {
             // Arrange
-            
+
             // Act
             var settingsfacade = new SettingsFacade(settingsAdapter);
 
@@ -77,7 +79,7 @@ namespace MoneyFox.Presentation.Tests.Facades
         public void Ctor_DefaultValues_BackupSyncRecurrenceThreeHours()
         {
             // Arrange
-            
+
             // Act
             var settingsfacade = new SettingsFacade(settingsAdapter);
 
@@ -89,7 +91,7 @@ namespace MoneyFox.Presentation.Tests.Facades
         public void Ctor_DefaultValues_LastExecutionTimeStampSyncBackupMinDate()
         {
             // Arrange
-            
+
             // Act
             var settingsfacade = new SettingsFacade(settingsAdapter);
 
@@ -101,7 +103,7 @@ namespace MoneyFox.Presentation.Tests.Facades
         public void Ctor_DefaultValues_LastExecutionTimeStampClearPaymentsMinDate()
         {
             // Arrange
-            
+
             // Act
             var settingsfacade = new SettingsFacade(settingsAdapter);
 
@@ -113,7 +115,7 @@ namespace MoneyFox.Presentation.Tests.Facades
         public void Ctor_DefaultValues_LastExecutionTimeStampRecurringPaymentsMinDate()
         {
             // Arrange
-            
+
             // Act
             var settingsfacade = new SettingsFacade(settingsAdapter);
 

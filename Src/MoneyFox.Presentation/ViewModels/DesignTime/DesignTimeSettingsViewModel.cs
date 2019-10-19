@@ -29,7 +29,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
                 Name = Strings.BackupLabel,
                 Description = Strings.BackupSettingsDescription,
                 Type = SettingsType.Backup
-            },
+            }
         };
 
         /// <inheritdoc />

@@ -54,7 +54,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                                           .ExecuteAsync();
             }
 
-            GraphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider((requestMessage) =>
+            GraphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider(requestMessage =>
             {
                 requestMessage
                     .Headers
@@ -119,6 +119,7 @@ namespace MoneyFox.BusinessLogic.Backup
 
             if (existingBackup == null)
                 throw new NoBackupFoundException($"No backup with the name {backupname} was found.");
+
             return await GraphServiceClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
         }
 
@@ -243,7 +244,7 @@ namespace MoneyFox.BusinessLogic.Backup
 
                 var updateItem = new DriveItem
                 {
-                    ParentReference = new ItemReference {Id = appFolder.Id},
+                    ParentReference = new ItemReference {Id = appFolder.Id}
                 };
 
                 if (archive != null)

@@ -25,21 +25,21 @@
                   VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="12,0,12,0">
             <TextBox x:Uid="Name"
-                         Margin="{StaticResource SmallTitleContentMargin}"
-                         VerticalAlignment="Top"
-                         Header="{Binding Resources[CategoryNameLabel]}"
-                         Text="{Binding SelectedCategory.Name,
+                     Margin="{StaticResource SmallTitleContentMargin}"
+                     VerticalAlignment="Top"
+                     Header="{Binding Resources[CategoryNameLabel]}"
+                     Text="{Binding SelectedCategory.Name,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
 
             <TextBox x:Uid="NoteTextBox"
-                         Margin="{StaticResource SmallTitleContentMargin}"
-                         VerticalAlignment="Top"
-                         Header="{Binding Resources[NoteLabel]}"
-                         Text="{Binding SelectedCategory.Note,
+                     Margin="{StaticResource SmallTitleContentMargin}"
+                     VerticalAlignment="Top"
+                     Header="{Binding Resources[NoteLabel]}"
+                     Text="{Binding SelectedCategory.Note,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
-                         TextWrapping="Wrap" />
+                     TextWrapping="Wrap" />
 
         </StackPanel>
     </ScrollViewer>

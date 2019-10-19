@@ -14,7 +14,7 @@ namespace MoneyFox.Presentation.ViewModels
         CategoryViewModel SelectedCategory { get; }
     }
 
-    /// <inheritdoc cref="ISelectCategoryListViewModel"/>
+    /// <inheritdoc cref="ISelectCategoryListViewModel" />
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
         private CategoryViewModel selectedCategory;

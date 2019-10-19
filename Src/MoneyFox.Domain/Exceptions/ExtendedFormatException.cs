@@ -42,10 +42,12 @@ namespace MoneyFox.Domain.Exceptions
         }
 
         private static string GetMessageWithRegionInfo(string message, string textToParse)
-            => "Text to parse: " + textToParse + Environment.NewLine +
-               "Region: " + CultureInfo.CurrentCulture.DisplayName + Environment.NewLine +
-               "CultureName: " + CultureInfo.CurrentCulture.Name + Environment.NewLine +
-               "Numberformat: " + CultureInfo.CurrentCulture.NumberFormat + Environment.NewLine +
-               message;
+        {
+            return "Text to parse: " + textToParse + Environment.NewLine +
+                   "Region: " + CultureInfo.CurrentCulture.DisplayName + Environment.NewLine +
+                   "CultureName: " + CultureInfo.CurrentCulture.Name + Environment.NewLine +
+                   "Numberformat: " + CultureInfo.CurrentCulture.NumberFormat + Environment.NewLine +
+                   message;
+        }
     }
 }
