@@ -36,10 +36,10 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 
         public async Task<IEnumerable<StatisticEntry>> Handle(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
         {
-            return AggregateData(SelectRelevantDataFromList(await GetPaymentsWithoutTransfer(request, cancellationToken)));
+            return AggregateData(SelectRelevantDataFromList(await GetPaymentsWithoutTransferAsync(request, cancellationToken)));
         }
 
-        private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransfer(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
+        private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransferAsync(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
         {
             return await context.Payments
                                 .Include(x => x.Category)
@@ -96,7 +96,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
             if (othersItem.Value > 0) statisticList.Add(othersItem);
         }
 
-        private void SetColors(List<StatisticEntry> statisticItems)
+        private static void SetColors(List<StatisticEntry> statisticItems)
         {
             for (var i = 0; i < statisticItems.Count; i++)
             {

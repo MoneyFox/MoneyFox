@@ -13,7 +13,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
     /// </summary>
     public interface IClearPaymentDbAccess
     {
-        Task<List<Payment>> GetUnclearedPayments();
+        Task<List<Payment>> GetUnclearedPaymentsAsync();
     }
 
     public class ClearPaymentDbAccess : IClearPaymentDbAccess
@@ -25,7 +25,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             this.context = context;
         }
 
-        public async Task<List<Payment>> GetUnclearedPayments()
+        public async Task<List<Payment>> GetUnclearedPaymentsAsync()
         {
             return await context.Payments
                                 .Include(x => x.ChargedAccount)

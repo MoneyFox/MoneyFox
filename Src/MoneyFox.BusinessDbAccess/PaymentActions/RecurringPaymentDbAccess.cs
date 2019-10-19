@@ -13,9 +13,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
     /// </summary>
     public interface IRecurringPaymentDbAccess
     {
-        Task<List<RecurringPayment>> GetRecurringPayments();
+        Task<List<RecurringPayment>> GetRecurringPaymentsAsync();
 
-        Task SaveNewPayments(List<Payment> payments);
+        Task SaveNewPaymentsAsync(List<Payment> payments);
     }
 
     public class RecurringPaymentDbAccess : IRecurringPaymentDbAccess
@@ -27,7 +27,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             this.context = context;
         }
 
-        public Task<List<RecurringPayment>> GetRecurringPayments()
+        public Task<List<RecurringPayment>> GetRecurringPaymentsAsync()
         {
             return context.RecurringPayments
                           .Include(x => x.ChargedAccount)
@@ -39,7 +39,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
                           .ToListAsync();
         }
 
-        public async Task SaveNewPayments(List<Payment> payments)
+        public async Task SaveNewPaymentsAsync(List<Payment> payments)
         {
             await context.Payments
                          .AddRangeAsync(payments);
