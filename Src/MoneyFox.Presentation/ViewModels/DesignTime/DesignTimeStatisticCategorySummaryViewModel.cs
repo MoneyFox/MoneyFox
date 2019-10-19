@@ -32,6 +32,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         };
 
         public bool HasData { get; } = true;
-        public AsyncCommand LoadedCommand { get; };
+        public AsyncCommand LoadedCommand { get; }
     }
 }
