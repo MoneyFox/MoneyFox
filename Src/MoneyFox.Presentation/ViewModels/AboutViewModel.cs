@@ -146,7 +146,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task GoToWebsite()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.WebsiteUrl));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.WebsiteUrl));
         }
 
         private async Task SendMail()
@@ -162,22 +162,22 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task GoToRepository()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.GitHubRepositoryUrl));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GitHubRepositoryUrl));
         }
 
         private async Task GoToTranslationProject()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.TranslationProjectUrl));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.TranslationProjectUrl));
         }
 
         private async Task GoToDesignerTwitterAccount()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.IconDesignerTwitterUrl));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.IconDesignerTwitterUrl));
         }
 
         private async Task GoToContributionPage()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.GithubContributionUrl));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GithubContributionUrl));
         }
     }
 }

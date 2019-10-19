@@ -38,14 +38,14 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task Login()
+        public async Task LoginAsync()
         {
             if (!connectivity.IsConnected)
                 throw new NetworkConnectionException();
 
             try
             {
-                await cloudBackupService.Login();
+                await cloudBackupService.LoginAsync();
             }
             catch (BackupAuthenticationFailedException ex)
             {
@@ -62,14 +62,14 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task Logout()
+        public async Task LogoutAsync()
         {
             if (!connectivity.IsConnected)
                 throw new NetworkConnectionException();
 
             try
             {
-                await cloudBackupService.Logout();
+                await cloudBackupService.LogoutAsync();
             }
             catch (BackupAuthenticationFailedException ex)
             {
@@ -80,27 +80,27 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task<DateTime> GetBackupDate()
+        public async Task<DateTime> GetBackupDateAsync()
         {
             if (!connectivity.IsConnected) return DateTime.MinValue;
 
-            DateTime date = await cloudBackupService.GetBackupDate();
+            DateTime date = await cloudBackupService.GetBackupDateAsync();
 
             return date.ToLocalTime();
         }
 
         /// <inheritdoc />
-        public async Task<bool> IsBackupExisting()
+        public async Task<bool> IsBackupExistingAsync()
         {
             if (!connectivity.IsConnected) return false;
 
-            List<string> files = await cloudBackupService.GetFileNames();
+            List<string> files = await cloudBackupService.GetFileNamesAsync();
 
             return files != null && files.Any();
         }
 
         /// <inheritdoc />
-        public async Task EnqueueBackupTask(int attempts = 0)
+        public async Task EnqueueBackupTaskAsync(int attempts = 0)
         {
             if (!connectivity.IsConnected)
                 throw new NetworkConnectionException();
@@ -119,19 +119,19 @@ namespace MoneyFox.BusinessLogic.Backup
                 {
                     logManager.Error(ex, "Enqueue Backup failed.");
                     await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
-                    await EnqueueBackupTask(attempts + 1);
+                    await EnqueueBackupTaskAsync(attempts + 1);
                 }
                 catch (BackupAuthenticationFailedException ex)
                 {
                     logManager.Error(ex, "Enqueue Backup failed.");
-                    await Logout();
+                    await LogoutAsync();
 
                     throw;
                 }
                 catch (ServiceException ex)
                 {
                     logManager.Error(ex, "Enqueue Backup failed.");
-                    await Logout();
+                    await LogoutAsync();
 
                     throw;
                 }
@@ -147,7 +147,7 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task RestoreBackup()
+        public async Task RestoreBackupAsync()
         {
             if (!connectivity.IsConnected)
                 throw new NetworkConnectionException();
@@ -158,14 +158,14 @@ namespace MoneyFox.BusinessLogic.Backup
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                await Logout();
+                await LogoutAsync();
                 logManager.Error(ex, "Download Backup failed.");
 
                 throw;
             }
             catch (ServiceException ex)
             {
-                await Logout();
+                await LogoutAsync();
                 logManager.Error(ex, "Download Backup failed.");
 
                 throw;
@@ -178,7 +178,7 @@ namespace MoneyFox.BusinessLogic.Backup
 
             using (Stream dbStream = fileStore.OpenRead(DatabaseConstants.DB_NAME))
             {
-                return await cloudBackupService.Upload(dbStream);
+                return await cloudBackupService.UploadAsync(dbStream);
             }
         }
 
@@ -186,11 +186,11 @@ namespace MoneyFox.BusinessLogic.Backup
         {
             if (!connectivity.IsConnected) return;
 
-            List<string> backups = await cloudBackupService.GetFileNames();
+            List<string> backups = await cloudBackupService.GetFileNamesAsync();
 
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
-                using (Stream backupStream = await cloudBackupService.Restore(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME))
+                using (Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME, DatabaseConstants.BACKUP_NAME))
                 {
                     fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
                 }

@@ -71,7 +71,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task GoToWebsite_NoParams_Called()
         {
             var webbrowserTaskSetup = new Mock<IBrowserAdapter>();
-            webbrowserTaskSetup.Setup(x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl))))
+            webbrowserTaskSetup.Setup(x => x.OpenWebsiteAsync(It.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl))))
                                .Returns(Task.CompletedTask);
 
             await new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -80,7 +80,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                      new Mock<IStoreOperations>().Object)
                   .GoToWebsiteCommand.ExecuteAsync();
 
-            webbrowserTaskSetup.Verify(x => x.OpenWebsite(It.IsAny<Uri>()), Times.Once);
+            webbrowserTaskSetup.Verify(x => x.OpenWebsiteAsync(It.IsAny<Uri>()), Times.Once);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             var webbrowserTaskSetup = new Mock<IBrowserAdapter>();
             webbrowserTaskSetup.Setup(
-                                   x => x.OpenWebsite(It.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl))))
+                                   x => x.OpenWebsiteAsync(It.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl))))
                                .Returns(Task.CompletedTask);
 
             await new AboutViewModel(new Mock<IAppInformation>().Object,
@@ -97,7 +97,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                      new Mock<IStoreOperations>().Object)
                   .GoToRepositoryCommand.ExecuteAsync();
 
-            webbrowserTaskSetup.Verify(x => x.OpenWebsite(It.IsAny<Uri>()), Times.Once());
+            webbrowserTaskSetup.Verify(x => x.OpenWebsiteAsync(It.IsAny<Uri>()), Times.Once());
         }
 
         [Fact]

@@ -26,7 +26,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
                 }
             };
 
-        public bool HasNoAccounts { get; } = false;
+        public bool HasNoAccounts { get; }
         public IBalanceViewModel BalanceViewModel { get; } = new DesignTimeBalanceViewViewModel();
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
         public AsyncCommand LoadDataCommand { get; }

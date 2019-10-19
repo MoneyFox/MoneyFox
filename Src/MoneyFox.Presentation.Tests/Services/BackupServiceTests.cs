@@ -19,7 +19,7 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.Login())
+            backupManagerMock.Setup(x => x.LoginAsync())
                              .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -40,7 +40,7 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.Login())
+            backupManagerMock.Setup(x => x.LoginAsync())
                              .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -61,7 +61,7 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.Logout())
+            backupManagerMock.Setup(x => x.LogoutAsync())
                              .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -84,7 +84,7 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.Logout())
+            backupManagerMock.Setup(x => x.LogoutAsync())
                              .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -107,7 +107,7 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.IsBackupExisting())
+            backupManagerMock.Setup(x => x.IsBackupExistingAsync())
                              .ReturnsAsync(expectedResult);
 
             var backupService = new BackupService(backupManagerMock.Object, new Mock<ISettingsFacade>().Object);
@@ -124,7 +124,7 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.GetBackupDate())
+            backupManagerMock.Setup(x => x.GetBackupDateAsync())
                              .ReturnsAsync(DateTime.Today);
 
             var backupService = new BackupService(backupManagerMock.Object, new Mock<ISettingsFacade>().Object);
@@ -143,7 +143,7 @@ namespace MoneyFox.Presentation.Tests.Services
             DateTime expectedPassedDate = DateTime.Now.AddDays(-3);
 
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.RestoreBackup())
+            backupManagerMock.Setup(x => x.RestoreBackupAsync())
                              .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -166,7 +166,7 @@ namespace MoneyFox.Presentation.Tests.Services
             DateTime expectedPassedDate = DateTime.Now.AddDays(-3);
 
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.RestoreBackup())
+            backupManagerMock.Setup(x => x.RestoreBackupAsync())
                              .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -187,9 +187,9 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.EnqueueBackupTask(It.IsAny<int>()))
+            backupManagerMock.Setup(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()))
                              .Returns(Task.CompletedTask);
-            backupManagerMock.Setup(x => x.Login())
+            backupManagerMock.Setup(x => x.LoginAsync())
                              .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -202,8 +202,8 @@ namespace MoneyFox.Presentation.Tests.Services
             await backupService.EnqueueBackupTask();
 
             // Assert
-            backupManagerMock.Verify(x => x.Login(), Times.Once);
-            backupManagerMock.Verify(x => x.EnqueueBackupTask(It.IsAny<int>()), Times.Once);
+            backupManagerMock.Verify(x => x.LoginAsync(), Times.Once);
+            backupManagerMock.Verify(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()), Times.Once);
         }
 
         [Fact]
@@ -211,9 +211,9 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.EnqueueBackupTask(It.IsAny<int>()))
+            backupManagerMock.Setup(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()))
                              .Returns(Task.CompletedTask);
-            backupManagerMock.Setup(x => x.Login())
+            backupManagerMock.Setup(x => x.LoginAsync())
                              .Callback(() => throw new BackupException());
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -226,8 +226,8 @@ namespace MoneyFox.Presentation.Tests.Services
             await Assert.ThrowsAsync<BackupException>(async () => await backupService.EnqueueBackupTask());
 
             // Assert
-            backupManagerMock.Verify(x => x.Login(), Times.Once);
-            backupManagerMock.Verify(x => x.EnqueueBackupTask(It.IsAny<int>()), Times.Never);
+            backupManagerMock.Verify(x => x.LoginAsync(), Times.Once);
+            backupManagerMock.Verify(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()), Times.Never);
         }
 
         [Fact]
@@ -235,7 +235,7 @@ namespace MoneyFox.Presentation.Tests.Services
         {
             // Arrange
             var backupManagerMock = new Mock<IBackupManager>();
-            backupManagerMock.Setup(x => x.EnqueueBackupTask(It.IsAny<int>()))
+            backupManagerMock.Setup(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()))
                              .Returns(Task.CompletedTask);
 
             var settingsFacade = new Mock<ISettingsFacade>();
@@ -248,8 +248,8 @@ namespace MoneyFox.Presentation.Tests.Services
             await backupService.EnqueueBackupTask();
 
             // Assert
-            backupManagerMock.Verify(x => x.Login(), Times.Never);
-            backupManagerMock.Verify(x => x.EnqueueBackupTask(It.IsAny<int>()), Times.Once);
+            backupManagerMock.Verify(x => x.LoginAsync(), Times.Never);
+            backupManagerMock.Verify(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()), Times.Once);
         }
     }
 }

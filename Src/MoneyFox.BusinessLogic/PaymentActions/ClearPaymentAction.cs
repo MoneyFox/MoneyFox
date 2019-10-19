@@ -14,7 +14,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         ///     Clears all payments up for clearing.
         ///     After this save change has to be called on the context.
         /// </summary>
-        Task ClearPayments();
+        Task ClearPaymentsAsync();
     }
 
     /// <inheritdoc />
@@ -28,7 +28,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         }
 
         /// <inheritdoc />
-        public async Task ClearPayments()
+        public async Task ClearPaymentsAsync()
         {
             List<Payment> payments = await clearPaymentDbAccess.GetUnclearedPayments()
                 ;

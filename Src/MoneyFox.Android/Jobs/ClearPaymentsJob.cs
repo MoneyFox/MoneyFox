@@ -69,7 +69,7 @@ namespace MoneyFox.Droid.Jobs
                 ExecutingPlatform.Current = AppPlatform.Android;
 
                 EfCoreContext context = EfCoreContextFactory.Create();
-                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
+                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPaymentsAsync();
                 await context.SaveChangesAsync();
 
                 JobFinished(args, false);

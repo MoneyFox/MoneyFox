@@ -198,7 +198,7 @@ namespace MoneyFox.iOS
                 Debug.WriteLine("ClearPayments Job started");
 
                 EfCoreContext context = EfCoreContextFactory.Create();
-                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPayments();
+                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPaymentsAsync();
                 context.SaveChanges();
 
                 Debug.WriteLine("ClearPayments Job finished.");

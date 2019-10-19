@@ -60,31 +60,31 @@ namespace MoneyFox.Presentation.Services
 
         public async Task Login()
         {
-            await backupManager.Login();
+            await backupManager.LoginAsync();
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
         }
 
         public async Task Logout()
         {
-            await backupManager.Logout();
+            await backupManager.LogoutAsync();
             settingsFacade.IsLoggedInToBackupService = false;
             settingsFacade.IsBackupAutouploadEnabled = false;
         }
 
         public async Task<bool> IsBackupExisting()
         {
-            return await backupManager.IsBackupExisting();
+            return await backupManager.IsBackupExistingAsync();
         }
 
         public async Task<DateTime> GetBackupDate()
         {
-            return await backupManager.GetBackupDate();
+            return await backupManager.GetBackupDateAsync();
         }
 
         public async Task RestoreBackup()
         {
-            await backupManager.RestoreBackup();
+            await backupManager.RestoreBackupAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
         }
 
@@ -92,7 +92,7 @@ namespace MoneyFox.Presentation.Services
         {
             if (!settingsFacade.IsLoggedInToBackupService) await Login();
 
-            await backupManager.EnqueueBackupTask();
+            await backupManager.EnqueueBackupTaskAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
         }
     }
