@@ -59,7 +59,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:BalanceControl Grid.Row="0" DataContext="{Binding BalanceViewModel}" Margin="{StaticResource MediumLeftRightMargin}" />
+        <controls:BalanceControl Grid.Row="0" DataContext="{Binding BalanceViewModel}"
+                                 Margin="{StaticResource MediumLeftRightMargin}" />
 
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
@@ -103,7 +104,8 @@
 
                                     <interactivity:Interaction.Behaviors>
                                         <core:EventTriggerBehavior EventName="ItemClick">
-                                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
+                                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}"
+                                                                      InputConverter="{StaticResource ClickConverter}" />
                                         </core:EventTriggerBehavior>
                                     </interactivity:Interaction.Behaviors>
 
@@ -147,7 +149,8 @@
                                                     </StackPanel>
                                                     <StackPanel HorizontalAlignment="Right"
                                                                 Orientation="Vertical">
-                                                        <TextBlock Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
+                                                        <TextBlock
+                                                            Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
 
                                                         <StackPanel HorizontalAlignment="Right"
                                                                     Orientation="Horizontal">
@@ -156,10 +159,10 @@
 
                                                                 <Viewbox MaxWidth="15" MaxHeight="15">
                                                                     <SymbolIcon Width="20"
-                                                                            Height="20"
-                                                                            HorizontalAlignment="Center"
-                                                                            VerticalAlignment="Center"
-                                                                            Symbol="Switch" />
+                                                                                Height="20"
+                                                                                HorizontalAlignment="Center"
+                                                                                VerticalAlignment="Center"
+                                                                                Symbol="Switch" />
                                                                 </Viewbox>
 
                                                             </Grid>
@@ -169,8 +172,8 @@
 
                                                                 <Viewbox MaxWidth="15" MaxHeight="15">
                                                                     <SymbolIcon HorizontalAlignment="Center"
-                                                                            VerticalAlignment="Center"
-                                                                            Symbol="Reshare" />
+                                                                                VerticalAlignment="Center"
+                                                                                Symbol="Reshare" />
                                                                 </Viewbox>
 
                                                             </Grid>
@@ -180,8 +183,8 @@
 
                                                                 <Viewbox MaxWidth="15" MaxHeight="15">
                                                                     <SymbolIcon HorizontalAlignment="Center"
-                                                                            VerticalAlignment="Center"
-                                                                            Symbol="Accept" />
+                                                                                VerticalAlignment="Center"
+                                                                                Symbol="Accept" />
                                                                 </Viewbox>
                                                             </Grid>
                                                         </StackPanel>

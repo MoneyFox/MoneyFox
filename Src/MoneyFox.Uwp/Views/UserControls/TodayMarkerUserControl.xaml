@@ -17,9 +17,9 @@
           Margin="50,0,60,0"
           Visibility="{Binding Key, Converter={StaticResource TodayMarkerVisibilityConverter}}">
 
-        <TextBlock Style="{StaticResource DeemphasizedLabelStyle}" 
-                   VerticalAlignment="Top" 
-                   HorizontalAlignment="Center" 
+        <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"
                    Text="{Binding Resources[TodayLabel]}" />
         <Line Stroke="{StaticResource AccentColorBrush}" StrokeThickness="1" X2="4000" />
     </Grid>

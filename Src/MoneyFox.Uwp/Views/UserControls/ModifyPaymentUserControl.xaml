@@ -25,7 +25,7 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:NativeRecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
-        <converter:DecimalConverter x:Key="DecimalConverter"/>
+        <converter:DecimalConverter x:Key="DecimalConverter" />
 
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels:AccountViewModel">
             <StackPanel Orientation="Horizontal">
