@@ -810,4 +810,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>Keine Kategorie</value>
   </data>
+  <data name="IncomeSpendingLabel" xml:space="preserve">
+    <value>Einnahmen / Ausgaben:</value>
+  </data>
 </root>
