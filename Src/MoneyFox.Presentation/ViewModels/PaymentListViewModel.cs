@@ -55,7 +55,8 @@ namespace MoneyFox.Presentation.ViewModels
                                     INavigationService navigationService)
         {
             this.mediator = mediator;
-            this.mapper = mapper; this.paymentService = paymentService;
+            this.mapper = mapper;
+            this.paymentService = paymentService;
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
@@ -170,7 +171,8 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public AsyncCommand<PaymentViewModel> DeletePaymentCommand => new AsyncCommand<PaymentViewModel>(DeletePayment);
 
-        private async Task Initialize() {
+        private async Task Initialize()
+        {
             Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
 
             BalanceViewModel = new PaymentListBalanceViewModel(mediator, mapper, balanceCalculationService, AccountId);
@@ -195,32 +197,38 @@ namespace MoneyFox.Presentation.ViewModels
             dialogService.HideLoadingDialog();
         }
 
-        private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage) {
+        private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
+        {
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(
-                await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId, filterMessage.TimeRangeStart, filterMessage.TimeRangeEnd) {
+                await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId, filterMessage.TimeRangeStart, filterMessage.TimeRangeEnd)
+                {
                     IsClearedFilterActive = filterMessage.IsClearedFilterActive,
                     IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
                 }));
 
-            foreach (var payment in loadedPayments) payment.CurrentAccountId = AccountId;
+            foreach (PaymentViewModel payment in loadedPayments)
+            {
+                payment.CurrentAccountId = AccountId;
+            }
 
-            var dailyItems = DateListGroupCollection<PaymentViewModel>
+            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
                 .CreateGroups(loadedPayments,
-                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                    s => s.Date,
-                    itemClickCommand: EditPaymentCommand);
+                              s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                              s => s.Date,
+                              itemClickCommand: EditPaymentCommand);
 
             DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
 
             Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
                 DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>
                     .CreateGroups(dailyItems,
-                        s =>
-                        {
-                            var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
-                            return date.ToString("MMMM", CultureInfo.CurrentCulture) + " " + date.Year;
-                        },
-                        s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
+                                  s =>
+                                  {
+                                      DateTime date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
+
+                                      return date.ToString("MMMM", CultureInfo.CurrentCulture) + " " + date.Year;
+                                  },
+                                  s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
         }
 
         private void EditPayment(PaymentViewModel payment)

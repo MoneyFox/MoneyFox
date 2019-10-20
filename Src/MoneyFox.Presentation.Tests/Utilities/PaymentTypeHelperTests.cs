@@ -26,7 +26,7 @@ namespace MoneyFox.Presentation.Tests.Utilities
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => PaymentTypeHelper.GetTypeString(enumInt));
         }
-        
+
         [Fact]
         public void GetEnumFromString_ExpenseIntEditTrue_Title()
         {

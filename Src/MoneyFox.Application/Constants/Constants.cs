@@ -1,6 +1,4 @@
-﻿#pragma warning disable CA1707 // Identifiers should not contain underscores
-
-namespace MoneyFox.Application.Constants
+﻿namespace MoneyFox.Application.Constants
 {
     /// <summary>
     ///     String Constants for usage in the app
@@ -10,46 +8,46 @@ namespace MoneyFox.Application.Constants
         /// <summary>
         ///     URL to the Apply Solutions website
         /// </summary>
-        public const string WEBSITE_URL = "http://www.apply-solutions.ch";
+        public static string WebsiteUrl => "http://www.apply-solutions.ch";
 
         /// <summary>
         ///     Mail address for support
         /// </summary>
-        public const string SUPPORT_MAIL = "mobile.support@apply-solutions.ch";
+        public static string SupportMail => "mobile.support@apply-solutions.ch";
 
         /// <summary>
         ///     URL to the GitHub repository
         /// </summary>
-        public const string GIT_HUB_REPOSITORY_URL = "https://github.com/MoneyFox/MoneyFox";
+        public static string GitHubRepositoryUrl => "https://github.com/MoneyFox/MoneyFox";
 
         /// <summary>
         ///     URL to the GitHub repository
         /// </summary>
-        public const string TRANSLATION_PROJECT_URL = "https://crowdin.com/project/money-fox";
+        public static string TranslationProjectUrl => "https://crowdin.com/project/money-fox";
 
         /// <summary>
         ///     URL to the Twitter AccountViewModel of the icon.
         /// </summary>
-        public const string ICON_DESIGNER_TWITTER_URL = "https://twitter.com/vandert9";
+        public static string IconDesignerTwitterUrl => "https://twitter.com/vandert9";
 
         /// <summary>
         ///     URL to the Twitter AccountViewModel of the icon.
         /// </summary>
-        public const string GITHUB_CONTRIBUTION_URL = "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
+        public static string GithubContributionUrl => "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
 
         /// <summary>
         ///     ID string for add income shortcuts
         /// </summary>
-        public const string ADD_INCOME_TILE_ID = "AddIncomeTile";
+        public static string AddIncomeTileId => "AddIncomeTile";
 
         /// <summary>
         ///     ID string for add transfer shortcuts
         /// </summary>
-        public const string ADD_EXPENSE_TILE_ID = "AddSpendingTile";
+        public static string AddExpenseTileId => "AddSpendingTile";
 
         /// <summary>
         ///     ID string for add transfer shortcuts
         /// </summary>
-        public const string ADD_TRANSFER_TILE_ID = "AddTransferTile";
+        public static string AddTransferTileId => "AddTransferTile";
     }
 }

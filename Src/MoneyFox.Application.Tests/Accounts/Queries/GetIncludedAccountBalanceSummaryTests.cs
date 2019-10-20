@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
@@ -25,7 +24,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
         {
             TestEfCoreContextFactory.Destroy(context);
         }
-        
+
         [Fact]
         public async Task GetIncludedAccountBalanceSummary_CorrectSum()
         {
@@ -40,7 +39,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetIncludedAccountBalanceSummaryQuery.Handler(context).Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+            decimal result = await new GetIncludedAccountBalanceSummaryQuery.Handler(context).Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
             result.ShouldEqual(220);

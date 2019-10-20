@@ -3,17 +3,17 @@ using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views
 {
-	public partial class EditCategoryPage
+    public partial class EditCategoryPage
     {
         private EditCategoryViewModel ViewModel => BindingContext as EditCategoryViewModel;
 
         public EditCategoryPage(int categoryId)
-		{
-			InitializeComponent();
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.EditCategoryVm;
 
             ViewModel.CategoryId = categoryId;
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
         }
-	}
+    }
 }

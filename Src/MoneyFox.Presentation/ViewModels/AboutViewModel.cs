@@ -79,9 +79,9 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Creates an AboutViewModel Object
         /// </summary>
         public AboutViewModel(IAppInformation appInformation,
-            IEmailAdapter emailAdapter,
-            IBrowserAdapter browserAdapter,
-            IStoreOperations storeOperations)
+                              IEmailAdapter emailAdapter,
+                              IBrowserAdapter browserAdapter,
+                              IStoreOperations storeOperations)
         {
             this.appInformation = appInformation;
             this.emailAdapter = emailAdapter;
@@ -136,23 +136,23 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Returns the apply solutions webite url from the
         ///     resource file
         /// </summary>
-        public string Website => AppConstants.WEBSITE_URL;
+        public string Website => AppConstants.WebsiteUrl;
 
         /// <summary>
         ///     Returns the mailaddress for support cases from the
         ///     resource file
         /// </summary>
-        public string SupportMail => AppConstants.SUPPORT_MAIL;
+        public string SupportMail => AppConstants.SupportMail;
 
         private async Task GoToWebsite()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.WEBSITE_URL));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.WebsiteUrl));
         }
 
         private async Task SendMail()
         {
             await emailAdapter.SendEmail(Strings.FeedbackSubject, string.Empty,
-                    new List<string> { AppConstants.SUPPORT_MAIL });
+                                         new List<string> {AppConstants.SupportMail});
         }
 
         private void RateApp()
@@ -162,22 +162,22 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task GoToRepository()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.GIT_HUB_REPOSITORY_URL));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GitHubRepositoryUrl));
         }
 
         private async Task GoToTranslationProject()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.TRANSLATION_PROJECT_URL));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.TranslationProjectUrl));
         }
 
         private async Task GoToDesignerTwitterAccount()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.ICON_DESIGNER_TWITTER_URL));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.IconDesignerTwitterUrl));
         }
 
         private async Task GoToContributionPage()
         {
-            await browserAdapter.OpenWebsite(new Uri(AppConstants.GITHUB_CONTRIBUTION_URL));
+            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GithubContributionUrl));
         }
     }
 }

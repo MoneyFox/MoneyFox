@@ -8,7 +8,8 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
 {
     public class CreateCategoryCommand : IRequest
     {
-        public CreateCategoryCommand(Category categoryToSave) {
+        public CreateCategoryCommand(Category categoryToSave)
+        {
             CategoryToSave = categoryToSave;
         }
 
@@ -16,7 +17,7 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
 
         public class Handler : IRequestHandler<CreateCategoryCommand>
         {
-            private IEfCoreContext context;
+            private readonly IEfCoreContext context;
 
             public Handler(IEfCoreContext context)
             {
@@ -28,6 +29,7 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
             {
                 await context.Categories.AddAsync(request.CategoryToSave, cancellationToken);
                 await context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }

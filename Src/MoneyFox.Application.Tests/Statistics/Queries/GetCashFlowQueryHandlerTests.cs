@@ -94,7 +94,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             result[2].Label.ShouldEqual(Strings.IncreaseLabel);
         }
 
-
         [Theory]
         [InlineData("de-CH", 3, '-')]
         public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign, char expectedNegativeSign)

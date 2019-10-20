@@ -8,7 +8,8 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 {
     public class UpdatePaymentCommand : IRequest
     {
-        public UpdatePaymentCommand(Payment payment) {
+        public UpdatePaymentCommand(Payment payment)
+        {
             Payment = payment;
         }
 
@@ -25,7 +26,7 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 
             public async Task<Unit> Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
             {
-                var existingPayment = await context.Payments.FindAsync(request.Payment.Id);
+                Payment existingPayment = await context.Payments.FindAsync(request.Payment.Id);
 
                 existingPayment.UpdatePayment(request.Payment.Date,
                                               request.Payment.Amount,
@@ -36,6 +37,7 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                                               request.Payment.Note);
 
                 await context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }

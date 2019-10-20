@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter
 {
-    public class InverseBoolConverter: IValueConverter
+    public class InverseBoolConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.Converter
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(bool)value;
+            return !(bool) value;
         }
     }
 }

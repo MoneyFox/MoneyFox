@@ -15,7 +15,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var testVm = new AccountViewModel();
 
             // Act
-            var result = testVm.Equals(null);
+            bool result = testVm.Equals(null);
 
             // result
             result.ShouldBeFalse();
@@ -29,13 +29,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Act
             // ReSharper disable once SuspiciousTypeConversion.Global : Just for this test.
-            var result = testVm.Equals( new CategoryViewModel());
+            bool result = testVm.Equals(new CategoryViewModel());
 
             // result
             result.ShouldBeFalse();
         }
 
         [Fact]
+        [SuppressMessage("Major Bug", "S1764:Identical expressions should not be used on both sides of a binary operator", Justification = "<Pending>")]
         public void Equals_SameObject_True()
         {
             // Arrange
@@ -64,7 +65,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Act
             // ReSharper disable once SuspiciousTypeConversion.Global just for this test.
-            var result = testVm.Equals(compareVm);
+            bool result = testVm.Equals(compareVm);
 
             // result
             result.ShouldBeTrue();
@@ -87,7 +88,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Act
             // ReSharper disable once SuspiciousTypeConversion.Global just for this test.
-            var result = testVm.Equals(compareVm);
+            bool result = testVm.Equals(compareVm);
 
             // result
             result.ShouldBeTrue();

@@ -1,6 +1,6 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 using MoneyFox.Infrastructure;
 using Xunit;
 
@@ -16,8 +16,14 @@ namespace MoneyFox.Presentation.Tests.Collections
     {
         public IMapper Mapper { get; set; }
 
-        public MapperCollectionFixture() => Mapper = AutoMapperFactory.Create();
+        public MapperCollectionFixture()
+        {
+            Mapper = AutoMapperFactory.Create();
+        }
 
-        public void Dispose() => Mapper = null;
+        public void Dispose()
+        {
+            Mapper = null;
+        }
     }
 }

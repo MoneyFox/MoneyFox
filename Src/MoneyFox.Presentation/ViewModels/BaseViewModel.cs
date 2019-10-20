@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.ViewModels
     public abstract class BaseViewModel : ViewModelBase, IBaseViewModel
     {
         /// <summary>
-        ///      Constructor
+        ///     Constructor
         /// </summary>
         protected BaseViewModel()
         {

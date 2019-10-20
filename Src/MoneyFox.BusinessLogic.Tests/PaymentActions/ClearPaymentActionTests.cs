@@ -27,12 +27,12 @@ namespace MoneyFox.BusinessLogic.Tests.PaymentActions
             };
 
             var dbAccessMock = new Mock<IClearPaymentDbAccess>();
-            dbAccessMock.Setup(x => x.GetUnclearedPayments()).ReturnsAsync(paymentList);
+            dbAccessMock.Setup(x => x.GetUnclearedPaymentsAsync()).ReturnsAsync(paymentList);
 
             var clearPaymentAction = new ClearPaymentAction(dbAccessMock.Object);
 
             // Act
-            await clearPaymentAction.ClearPayments();
+            await clearPaymentAction.ClearPaymentsAsync();
 
             // Assert
             paymentList[0].IsCleared.ShouldBeFalse();

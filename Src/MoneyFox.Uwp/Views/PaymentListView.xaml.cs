@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp.Views
 
         private void AppBarToggleButton_Click(object sender, RoutedEventArgs e)
         {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
         }
     }
 }

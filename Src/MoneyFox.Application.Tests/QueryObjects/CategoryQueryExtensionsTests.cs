@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using MoneyFox.BusinessDbAccess.QueryObjects;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain.Entities;
 using Xunit;
 
@@ -14,7 +14,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void NameContains()
         {
             // Arrange
-            var categoryQueryList = new List<Category>
+            IQueryable<Category> categoryQueryList = new List<Category>
                 {
                     new Category("Foo1"),
                     new Category("Foo2"),
@@ -23,7 +23,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                 .AsQueryable();
 
             // Act
-            var resultList = categoryQueryList.WhereNameContains("Foo").ToList();
+            List<Category> resultList = categoryQueryList.WhereNameContains("Foo").ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -35,7 +35,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void OrderByName()
         {
             // Arrange
-            var categoryQueryList = new List<Category>
+            IQueryable<Category> categoryQueryList = new List<Category>
                 {
                     new Category("Foo2"),
                     new Category("Foo3"),
@@ -44,7 +44,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                 .AsQueryable();
 
             // Act
-            var resultList = categoryQueryList.OrderByName().ToList();
+            List<Category> resultList = categoryQueryList.OrderByName().ToList();
 
             // Assert
             Assert.Equal(3, resultList.Count);

@@ -19,12 +19,9 @@ namespace MoneyFox.Uwp.Helpers
         {
             object obj = null;
 
-            if (settings.Values.TryGetValue(key, out obj))
-            {
-                return await Json.ToObjectAsync<T>((string)obj);
-            }
+            if (settings.Values.TryGetValue(key, out obj)) return await Json.ToObjectAsync<T>((string) obj);
 
-            return default(T);
+            return default;
         }
     }
 }

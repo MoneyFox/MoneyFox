@@ -234,6 +234,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             dialogService.ShowLoadingDialog();
             DateTime backupDate = await backupService.GetBackupDate();
+
             if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmation()) return;
 
             dialogService.ShowLoadingDialog();

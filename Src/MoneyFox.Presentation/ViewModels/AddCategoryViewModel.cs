@@ -16,11 +16,11 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IDialogService dialogService;
 
         public AddCategoryViewModel(IMediator mediator,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IBackupService backupService,
-            INavigationService navigationService,
-            IMapper mapper) : base(mediator, settingsFacade, backupService, navigationService, mapper)
+                                    IDialogService dialogService,
+                                    ISettingsFacade settingsFacade,
+                                    IBackupService backupService,
+                                    INavigationService navigationService,
+                                    IMapper mapper) : base(mediator, settingsFacade, backupService, navigationService, mapper)
         {
             this.mediator = mediator;
             this.dialogService = dialogService;
@@ -31,6 +31,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected override Task Initialize()
         {
             SelectedCategory = new CategoryViewModel();
+
             return Task.CompletedTask;
         }
 
@@ -39,23 +40,16 @@ namespace MoneyFox.Presentation.ViewModels
             if (string.IsNullOrEmpty(SelectedCategory.Name))
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+
                 return;
             }
 
-            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery{CategoryName = SelectedCategory.Name}))
+            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery {CategoryName = SelectedCategory.Name}))
             {
                 await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+
                 return;
             }
-
-            // TODO: Reimplement
-
-            //await crudServices.CreateAndSaveAsync(SelectedCategory, "ctor(2)");
-
-            //if (!crudServices.IsValid)
-            //{
-            //    await dialogService.ShowMessage(Strings.GeneralErrorTitle, crudServices.GetAllErrors());
-            //}
 
             NavigationService.GoBack();
         }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
@@ -17,7 +15,8 @@ using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    /// <inheritdoc cref="IPaymentListViewActionViewModel"/> />
+    /// <inheritdoc cref="IPaymentListViewActionViewModel" />
+    /// />
     public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
     {
         private readonly IMediator mediator;
@@ -38,7 +37,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListViewActionViewModel(int accountId, 
+        public PaymentListViewActionViewModel(int accountId,
                                               IMediator mediator,
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
@@ -53,7 +52,7 @@ namespace MoneyFox.Presentation.ViewModels
             this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
 
-            var accountCount = mediator.Send(new GetAccountCountQuery()).Result;
+            int accountCount = mediator.Send(new GetAccountCountQuery()).Result;
 
             IsTransferAvailable = accountCount >= 2;
             IsAddIncomeAvailable = accountCount >= 1;
@@ -62,12 +61,12 @@ namespace MoneyFox.Presentation.ViewModels
 
         /// <inheritdoc />
         public RelayCommand GoToAddIncomeCommand =>
-            new RelayCommand( () => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
+            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
 
         /// <inheritdoc />
         public RelayCommand GoToAddExpenseCommand =>
             new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Expense));
-        
+
         /// <inheritdoc />
         public RelayCommand GoToAddTransferCommand =>
             new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Transfer));
@@ -111,7 +110,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => isAddExpenseAvailable;
             set
             {
-                if(IsAddExpenseAvailable == value) return;
+                if (IsAddExpenseAvailable == value) return;
                 isAddExpenseAvailable = value;
                 RaisePropertyChanged();
             }
@@ -177,6 +176,7 @@ namespace MoneyFox.Presentation.ViewModels
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 navigationService.GoBack();
             }
+
             await balanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
@@ -186,8 +186,8 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,
-                TimeRangeStart = this.TimeRangeStart,
-                TimeRangeEnd = this.TimeRangeEnd
+                TimeRangeStart = TimeRangeStart,
+                TimeRangeEnd = TimeRangeEnd
             });
         }
     }

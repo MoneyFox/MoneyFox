@@ -11,7 +11,8 @@ namespace MoneyFox.Presentation.ViewModels
         public int Id
         {
             get => id;
-            set {
+            set
+            {
                 if (id == value) return;
                 id = value;
                 RaisePropertyChanged();
@@ -21,7 +22,8 @@ namespace MoneyFox.Presentation.ViewModels
         public string Name
         {
             get => name;
-            set {
+            set
+            {
                 if (name == value) return;
                 name = value;
                 RaisePropertyChanged();

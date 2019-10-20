@@ -17,6 +17,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public bool IsTransfer { get; } = false;
         public DateTime EndDate { get; } = DateTime.Now;
         public PaymentRecurrence Recurrence { get; } = PaymentRecurrence.Monthly;
+
         public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
             PaymentRecurrence.Daily,

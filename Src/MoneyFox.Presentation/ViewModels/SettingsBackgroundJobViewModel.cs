@@ -1,12 +1,11 @@
 ﻿using System;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
-using MoneyFox.ServiceLayer.Facades;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public interface ISettingsBackgroundJobViewModel : IBaseViewModel
-    {        
+    {
         /// <summary>
         ///     Indicates if the autobackup is enabled or disabled.
         /// </summary>
@@ -21,8 +20,9 @@ namespace MoneyFox.Presentation.ViewModels
         DateTime LastExecutionClearPayments { get; }
         DateTime LastExecutionCreateRecurringPayments { get; }
     }
-    
-    /// <inheritdoc cref="ISettingsBackgroundJobViewModel"/>/>
+
+    /// <inheritdoc cref="ISettingsBackgroundJobViewModel" />
+    /// />
     public class SettingsBackgroundJobViewModel : BaseViewModel, ISettingsBackgroundJobViewModel
     {
         private readonly ISettingsFacade settingsFacade;
@@ -47,13 +47,9 @@ namespace MoneyFox.Presentation.ViewModels
                 if (settingsFacade.IsBackupAutouploadEnabled == value) return;
 
                 if (settingsFacade.IsBackupAutouploadEnabled)
-                {
                     backgroundTaskManager.StopBackupSyncTask();
-                } 
                 else
-                {
                     backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence * 60);
-                }
                 settingsFacade.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
             }
@@ -65,7 +61,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => settingsFacade.BackupSyncRecurrence;
             set
             {
-                if(settingsFacade.BackupSyncRecurrence == value) return;
+                if (settingsFacade.BackupSyncRecurrence == value) return;
                 settingsFacade.BackupSyncRecurrence = value < 1 ? 1 : value;
                 backgroundTaskManager.StopBackupSyncTask();
                 backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence * 60);

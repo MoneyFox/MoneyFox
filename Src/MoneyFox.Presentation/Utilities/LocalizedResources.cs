@@ -18,7 +18,8 @@ namespace MoneyFox.Presentation.Utilities
 
         public LocalizedResources(Type resource, string language = null)
             : this(resource, new CultureInfo(language ?? DEFAULT_LANGUAGE))
-        { }
+        {
+        }
 
         public LocalizedResources(Type resource, CultureInfo cultureInfo)
         {

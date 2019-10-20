@@ -32,7 +32,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => startDate;
             set
             {
-                startDate = value; 
+                startDate = value;
                 RaisePropertyChanged();
             }
         }
@@ -45,7 +45,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => endDate;
             set
             {
-                endDate = value; 
+                endDate = value;
                 RaisePropertyChanged();
             }
         }

@@ -21,18 +21,18 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public async Task AnyWithName(string searchName, bool expectedResult)
         {
             // Arrange
-            var categoryQueryList = new List<CategoryViewModel>
-                {
-                    new CategoryViewModel{Name = "Foo2"},
-                    new CategoryViewModel{Name = "Foo3"},
-                    new CategoryViewModel{Name = "Foo1"}
-                }
-                .AsQueryable()
-                .BuildMock()
-                .Object;
+            IQueryable<CategoryViewModel> categoryQueryList = new List<CategoryViewModel>
+                                                              {
+                                                                  new CategoryViewModel {Name = "Foo2"},
+                                                                  new CategoryViewModel {Name = "Foo3"},
+                                                                  new CategoryViewModel {Name = "Foo1"}
+                                                              }
+                                                              .AsQueryable()
+                                                              .BuildMock()
+                                                              .Object;
 
             // Act
-            var result = await categoryQueryList.AnyWithNameAsync(searchName);
+            bool result = await categoryQueryList.AnyWithNameAsync(searchName);
 
             // Assert
             result.ShouldEqual(expectedResult);
@@ -46,18 +46,18 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void WhereNameContains(string searchName, int expectedCount)
         {
             // Arrange
-            var categoryQueryList = new List<CategoryViewModel>
-                {
-                    new CategoryViewModel{Name = "Foo2"},
-                    new CategoryViewModel{Name = "Foo3"},
-                    new CategoryViewModel{Name = "Foo1"}
-                }
-                .AsQueryable()
-                .BuildMock()
-                .Object;
+            IQueryable<CategoryViewModel> categoryQueryList = new List<CategoryViewModel>
+                                                              {
+                                                                  new CategoryViewModel {Name = "Foo2"},
+                                                                  new CategoryViewModel {Name = "Foo3"},
+                                                                  new CategoryViewModel {Name = "Foo1"}
+                                                              }
+                                                              .AsQueryable()
+                                                              .BuildMock()
+                                                              .Object;
 
             // Act
-            var result = categoryQueryList.WhereNameContains(searchName);
+            IQueryable<CategoryViewModel> result = categoryQueryList.WhereNameContains(searchName);
 
             // Assert
             result.Count().ShouldEqual(expectedCount);

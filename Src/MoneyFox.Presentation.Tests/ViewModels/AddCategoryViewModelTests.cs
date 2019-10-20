@@ -62,7 +62,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object,
                                                          dialogServiceMock.Object,
                                                          settingsFacadeMock.Object,
-                                                         backupServiceMock.Object, 
+                                                         backupServiceMock.Object,
                                                          null, null);
 
             await addCategoryVm.InitializeCommand.ExecuteAsync();

@@ -13,17 +13,16 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>
-    public class 
+    public class
         StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
         private BarChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
         public StatisticCashFlowViewModel(IMediator mediator,
-                                          ISettingsFacade settingsFacade) 
+                                          ISettingsFacade settingsFacade)
             : base(mediator, settingsFacade)
         {
-
             Chart = new BarChart();
         }
 
@@ -49,7 +48,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             get => statisticItems;
             private set
             {
-                if(statisticItems == value) return;
+                if (statisticItems == value) return;
                 statisticItems = value;
                 RaisePropertyChanged();
             }

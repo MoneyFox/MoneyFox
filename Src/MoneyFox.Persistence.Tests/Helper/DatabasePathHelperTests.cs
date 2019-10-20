@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Application;
-using MoneyFox.DataLayer;
 using Should;
 using Xunit;
 
@@ -19,7 +18,7 @@ namespace MoneyFox.Persistence.Tests.Helper
             ExecutingPlatform.Current = platform;
 
             // Act
-            var result = DatabasePathHelper.GetDbPath();
+            string result = DatabasePathHelper.GetDbPath();
 
             // Assert
             result.ShouldContain(expectedPathSegment);

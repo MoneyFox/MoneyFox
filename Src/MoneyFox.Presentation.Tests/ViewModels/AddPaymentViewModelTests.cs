@@ -1,20 +1,19 @@
-﻿using GalaSoft.MvvmLight.Views;
-using MockQueryable.Moq;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using AutoMapper;
+using GalaSoft.MvvmLight.Views;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using AutoMapper;
-using MediatR;
-using MoneyFox.Application.Accounts.Queries.GetAccounts;
-using MoneyFox.Domain.Entities;
 using Xunit;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -56,9 +55,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
-                .Returns(Task.CompletedTask);
+                              .Returns(Task.CompletedTask);
 
-            var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object, 
+            var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapperMock.Object,
                                                        paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
@@ -91,7 +90,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                       .Returns(new List<AccountViewModel> {new AccountViewModel()});
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
-                                                       mapperMock.Object, 
+                                                       mapperMock.Object,
                                                        paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
@@ -116,10 +115,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                               .Returns(Task.CompletedTask);
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
-                        .ReturnsAsync(new List<Account> { new Account("dfasdf") });
+                        .ReturnsAsync(new List<Account> {new Account("dfasdf")});
 
             mapperMock.Setup(x => x.Map<List<AccountViewModel>>(It.IsAny<List<Account>>()))
-                      .Returns(new List<AccountViewModel> { new AccountViewModel(), new AccountViewModel() });
+                      .Returns(new List<AccountViewModel> {new AccountViewModel(), new AccountViewModel()});
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapperMock.Object,

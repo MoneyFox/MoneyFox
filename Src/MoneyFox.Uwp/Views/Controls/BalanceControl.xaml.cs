@@ -8,10 +8,7 @@ namespace MoneyFox.Uwp.Views.Controls
         public BalanceControl()
         {
             InitializeComponent();
-            if (DesignMode.DesignModeEnabled)
-            {
-                DataContext = new DesignTimeBalanceViewViewModel();
-            }
+            if (DesignMode.DesignModeEnabled) DataContext = new DesignTimeBalanceViewViewModel();
         }
     }
 }

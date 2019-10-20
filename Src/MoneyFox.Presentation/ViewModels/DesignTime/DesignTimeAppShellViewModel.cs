@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Resources;
-using System.Globalization;
+﻿using System.Globalization;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime

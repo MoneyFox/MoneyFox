@@ -8,7 +8,7 @@ namespace MoneyFox.iOS
     {
         public string Theme => ThemeManager.CurrentTheme().ToString();
 
-        public void SetThemeAsync(string theme)
+        public void SetTheme(string theme)
         {
             ThemeManager.ChangeTheme(theme == "Light" ? AppTheme.Light : AppTheme.Dark);
         }

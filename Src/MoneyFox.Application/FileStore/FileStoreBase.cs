@@ -9,7 +9,7 @@ namespace MoneyFox.Application.FileStore
     {
         public void WriteFile(string path, IEnumerable<byte> contents)
         {
-            WriteFileCommon(path, (stream) =>
+            WriteFileCommon(path, stream =>
             {
                 using (var binaryWriter = new BinaryWriter(stream))
                 {

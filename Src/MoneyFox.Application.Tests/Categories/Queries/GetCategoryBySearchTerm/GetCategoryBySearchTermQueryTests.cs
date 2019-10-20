@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
@@ -36,7 +37,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCategoryBySearchTermQuery.Handler(context).Handle(new GetCategoryBySearchTermQuery(), default);
+            List<Category> result = await new GetCategoryBySearchTermQuery.Handler(context).Handle(new GetCategoryBySearchTermQuery(), default);
 
             // Assert
             result.Count.ShouldEqual(2);
@@ -53,7 +54,8 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetCategoryBySearchTermQuery.Handler(context).Handle(new GetCategoryBySearchTermQuery{SearchTerm = "guid" }, default);
+            List<Category> result =
+                await new GetCategoryBySearchTermQuery.Handler(context).Handle(new GetCategoryBySearchTermQuery {SearchTerm = "guid"}, default);
 
             // Assert
             Assert.Single(result);

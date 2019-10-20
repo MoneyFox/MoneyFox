@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetUnclearedPaymentsOfThisMo
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);
@@ -44,7 +46,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetUnclearedPaymentsOfThisMo
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetUnclearedPaymentsOfThisMonthQuery.Handler(context).Handle(new GetUnclearedPaymentsOfThisMonthQuery(), default);
+            List<Payment> result = await new GetUnclearedPaymentsOfThisMonthQuery.Handler(context).Handle(new GetUnclearedPaymentsOfThisMonthQuery(), default);
 
             // Assert
             Assert.Single(result);
@@ -67,7 +69,9 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetUnclearedPaymentsOfThisMo
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetUnclearedPaymentsOfThisMonthQuery.Handler(context).Handle(new GetUnclearedPaymentsOfThisMonthQuery{AccountId = account1.Id}, default);
+            List<Payment> result =
+                await new GetUnclearedPaymentsOfThisMonthQuery.Handler(context).Handle(new GetUnclearedPaymentsOfThisMonthQuery {AccountId = account1.Id},
+                                                                                       default);
 
             // Assert
             Assert.Single(result);

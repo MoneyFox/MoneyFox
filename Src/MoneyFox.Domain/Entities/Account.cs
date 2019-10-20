@@ -7,7 +7,9 @@ namespace MoneyFox.Domain.Entities
     public class Account
     {
         //used by EF Core
-        private Account(){}
+        private Account()
+        {
+        }
 
         public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
@@ -22,12 +24,13 @@ namespace MoneyFox.Domain.Entities
 
         [Required]
         public string Name { get; private set; }
+
         public decimal CurrentBalance { get; private set; }
         public string Note { get; private set; }
         public bool IsOverdrawn { get; private set; }
         public bool IsExcluded { get; private set; }
         public DateTime ModificationDate { get; private set; }
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; }
 
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
@@ -56,10 +59,7 @@ namespace MoneyFox.Domain.Entities
 
         private void ApplyPaymentAmount(Payment payment, bool invert = false)
         {
-            if (!payment.IsCleared)
-            {
-                return;
-            }
+            if (!payment.IsCleared) return;
 
             decimal amount = invert
                 ? -payment.Amount
@@ -67,22 +67,15 @@ namespace MoneyFox.Domain.Entities
 
             if (payment.Type == PaymentType.Expense
                 || payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == Id)
-            {
                 CurrentBalance -= amount;
-            }
             else
-            {
                 CurrentBalance += amount;
-            }
             ModificationDate = DateTime.Now;
         }
 
         private static void ThrowIfPaymentNull(Payment payment)
         {
-            if (payment == null)
-            {
-                throw new ArgumentNullException(nameof(payment));
-            }
+            if (payment == null) throw new ArgumentNullException(nameof(payment));
         }
     }
 }

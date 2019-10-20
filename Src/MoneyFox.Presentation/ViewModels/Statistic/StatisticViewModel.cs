@@ -36,14 +36,14 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// <summary>
         ///     Creates a Statistic ViewModel with custom start and end date
         /// </summary>
-        protected StatisticViewModel(DateTime startDate, 
-                                     DateTime endDate, 
+        protected StatisticViewModel(DateTime startDate,
+                                     DateTime endDate,
                                      IMediator mediator,
                                      ISettingsFacade settingsFacade)
         {
             StartDate = startDate;
             EndDate = endDate;
-            this.Mediator = mediator;
+            Mediator = mediator;
 
             BackgroundColor = settingsFacade.Theme == AppTheme.Dark
                 ? new SKColor(0, 0, 0)
@@ -58,7 +58,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         }
 
         public AsyncCommand LoadedCommand => new AsyncCommand(Load);
-        
+
         /// <summary>
         ///     Start date for a custom statistic
         /// </summary>
@@ -82,7 +82,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             get => endDate;
             set
             {
-                endDate = value; 
+                endDate = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(Title));

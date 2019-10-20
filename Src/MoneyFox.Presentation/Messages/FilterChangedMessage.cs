@@ -8,14 +8,6 @@ namespace MoneyFox.Presentation.Messages
     public class PaymentListFilterChangedMessage
     {
         /// <summary>
-        ///     Constructor
-        /// </summary>
-        /// <param name="sender">sender object</param>
-        public PaymentListFilterChangedMessage()
-        {
-        }
-
-        /// <summary>
         ///     Indicates if only cleared payments should be displayed.
         /// </summary>
         public bool IsClearedFilterActive { get; set; }

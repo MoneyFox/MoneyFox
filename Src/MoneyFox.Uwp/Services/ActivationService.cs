@@ -4,20 +4,21 @@ using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
 using Autofac;
 using MoneyFox.Application;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Views;
 using PCLAppConfig;
+using PCLAppConfig.FileSystemStream;
+using Xamarin.Forms;
+using Frame = Windows.UI.Xaml.Controls.Frame;
 
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 #endif
-
 
 namespace MoneyFox.Uwp.Services
 {
@@ -67,23 +68,23 @@ namespace MoneyFox.Uwp.Services
             ExecutingPlatform.Current = AppPlatform.UWP;
             LoggerService.Initialize();
 
-            ConfigurationManager.Initialise(PCLAppConfig.FileSystemStream.PortableStream.Current);
+            ConfigurationManager.Initialise(PortableStream.Current);
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
 #if !DEBUG
                 AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
-            var navService = ConfigureNavigation();
+            NavigationServiceEx navService = ConfigureNavigation();
             RegisterServices(navService);
 
-            Xamarin.Forms.Forms.Init(activationArgs as LaunchActivatedEventArgs);
+            Forms.Init(activationArgs as LaunchActivatedEventArgs);
             new Presentation.App();
             BackgroundTaskService.RegisterBackgroundTasks();
             ThemeSelectorService.Initialize(app.RequestedTheme);
             await JumpListService.InitializeAsync();
         }
-        
+
         private static void RegisterServices(NavigationServiceEx nav)
         {
             var builder = new ContainerBuilder();
@@ -125,10 +126,7 @@ namespace MoneyFox.Uwp.Services
             if (IsInteractive(activationArgs))
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
-                if (defaultHandler.CanHandle(activationArgs))
-                {
-                    await defaultHandler.HandleAsync(activationArgs);
-                }
+                if (defaultHandler.CanHandle(activationArgs)) await defaultHandler.HandleAsync(activationArgs);
             }
         }
 
@@ -137,7 +135,7 @@ namespace MoneyFox.Uwp.Services
             await ThemeSelectorService.SetRequestedThemeAsync();
             await RateDisplayService.ShowIfAppropriateAsync();
         }
-        
+
         private bool IsInteractive(object args)
         {
             return args is IActivatedEventArgs;

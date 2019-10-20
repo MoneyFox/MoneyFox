@@ -15,6 +15,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
 
         /// <inheritdoc />
         public LocalizedResources Resources { get; }
+
         public AsyncCommand GoToWebsiteCommand { get; }
         public AsyncCommand SendMailCommand { get; }
         public RelayCommand RateAppCommand { get; }

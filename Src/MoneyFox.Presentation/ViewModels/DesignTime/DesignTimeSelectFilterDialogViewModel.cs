@@ -11,7 +11,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         {
             Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
         }
-        
+
         public LocalizedResources Resources { get; }
 
         public bool IsClearedFilterActive { get; set; }

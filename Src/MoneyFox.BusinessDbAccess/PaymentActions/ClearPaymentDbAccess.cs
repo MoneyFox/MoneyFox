@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
-using MoneyFox.BusinessDbAccess.QueryObjects;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
@@ -13,7 +13,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
     /// </summary>
     public interface IClearPaymentDbAccess
     {
-        Task<List<Payment>> GetUnclearedPayments();
+        Task<List<Payment>> GetUnclearedPaymentsAsync();
     }
 
     public class ClearPaymentDbAccess : IClearPaymentDbAccess
@@ -25,14 +25,14 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             this.context = context;
         }
 
-        public async Task<List<Payment>> GetUnclearedPayments()
+        public async Task<List<Payment>> GetUnclearedPaymentsAsync()
         {
             return await context.Payments
-                .Include(x => x.ChargedAccount)
-                .Include(x => x.TargetAccount)
-                .AsQueryable()
-                .AreNotCleared()
-                .ToListAsync();
+                                .Include(x => x.ChargedAccount)
+                                .Include(x => x.TargetAccount)
+                                .AsQueryable()
+                                .AreNotCleared()
+                                .ToListAsync();
         }
     }
 }

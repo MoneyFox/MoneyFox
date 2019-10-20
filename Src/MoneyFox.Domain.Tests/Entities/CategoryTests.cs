@@ -4,7 +4,7 @@ using MoneyFox.Domain.Entities;
 using Should;
 using Xunit;
 
-namespace MoneyFox.DataLayer.Tests.Entities
+namespace MoneyFox.Domain.Tests.Entities
 {
     [ExcludeFromCodeCoverage]
     public class CategoryTests
@@ -62,7 +62,6 @@ namespace MoneyFox.DataLayer.Tests.Entities
             // Act / Assert
             Assert.Throws<ArgumentNullException>(() => testCategory.UpdateData(name));
         }
-
 
         [Fact]
         public void UpdateData_NoParams_DefaultValuesSet()

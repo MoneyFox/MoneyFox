@@ -13,24 +13,24 @@ namespace MoneyFox.Uwp.Converter
         {
             if (value == null) return string.Empty;
 
-            var payment = (PaymentViewModel)value;
+            var payment = (PaymentViewModel) value;
             var param = parameter as string;
             string sign;
 
             if (payment.Type == PaymentType.Transfer)
             {
                 if (param == IGNORE_TRANSFER)
-                {
                     sign = "-";
-                } else
+                else
                 {
                     sign = payment.ChargedAccountId == payment.CurrentAccountId
                         ? "-"
                         : "+";
                 }
-            } else
+            }
+            else
             {
-                sign = payment.Type == (int)PaymentType.Expense
+                sign = payment.Type == (int) PaymentType.Expense
                     ? "-"
                     : "+";
             }

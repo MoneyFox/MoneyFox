@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Categories.Command.CreateCategory;
-using MoneyFox.Application.Categories.Command.UpdateCategory;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
@@ -19,6 +18,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);

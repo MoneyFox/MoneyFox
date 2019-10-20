@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.BusinessLogic;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.ServiceLayer.Facades;
 using Moq;
 using Should;
 using Xunit;
@@ -34,7 +32,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             backupServiceMock.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
 
             //execute
-            var vm = new BackupViewModel(backupServiceMock.Object, 
+            var vm = new BackupViewModel(backupServiceMock.Object,
                                          null,
                                          connectivitySetup.Object,
                                          settingsManagerMock.Object);
@@ -47,7 +45,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public async Task Initialize_ConnectivityNotLoggedIn_NothingCalled() {
+        public async Task Initialize_ConnectivityNotLoggedIn_NothingCalled()
+        {
             // Setup
             var connectivitySetup = new Mock<IConnectivityAdapter>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
@@ -63,8 +62,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             backupServiceMock.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
 
             //execute
-            var vm = new BackupViewModel(backupServiceMock.Object, 
-                                         null, 
+            var vm = new BackupViewModel(backupServiceMock.Object,
+                                         null,
                                          connectivitySetup.Object,
                                          settingsManagerMock.Object);
             await vm.InitializeCommand.ExecuteAsync();
@@ -76,7 +75,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        public async Task Initialize_ConnectivityLoggedIn_MethodsCalled() {
+        public async Task Initialize_ConnectivityLoggedIn_MethodsCalled()
+        {
             // Setup
             var connectivitySetup = new Mock<IConnectivityAdapter>();
             connectivitySetup.Setup(x => x.IsConnected).Returns(true);
@@ -84,15 +84,15 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var settingsManagerMock = new Mock<ISettingsFacade>();
             settingsManagerMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
-            var returnDate = DateTime.Today;
+            DateTime returnDate = DateTime.Today;
 
             var backupServiceMock = new Mock<IBackupService>();
             backupServiceMock.Setup(x => x.IsBackupExisting()).Returns(Task.FromResult(true));
             backupServiceMock.Setup(x => x.GetBackupDate()).Returns(Task.FromResult(returnDate));
 
             //execute
-            var vm = new BackupViewModel(backupServiceMock.Object, 
-                                         null, 
+            var vm = new BackupViewModel(backupServiceMock.Object,
+                                         null,
                                          connectivitySetup.Object,
                                          settingsManagerMock.Object);
             await vm.InitializeCommand.ExecuteAsync();
@@ -120,8 +120,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                              .Returns(Task.CompletedTask);
 
             //execute
-            var vm = new BackupViewModel(backupServiceMock.Object, 
-                                         null, 
+            var vm = new BackupViewModel(backupServiceMock.Object,
+                                         null,
                                          connectivitySetup.Object,
                                          settingsManagerMock.Object);
 

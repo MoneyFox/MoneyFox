@@ -1,7 +1,7 @@
-﻿using Windows.UI.Xaml.Navigation;
+﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
-using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -18,25 +18,22 @@ namespace MoneyFox.Uwp.Views
         {
             if (e.Parameter != null && e.NavigationMode != NavigationMode.Back)
             {
-                ViewModel.PaymentId = (int)e.Parameter;
-                ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+                ViewModel.PaymentId = (int) e.Parameter;
+                ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
             }
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            if (e.NavigationMode == NavigationMode.Back)
-            {
-                ResetPageCache();
-            }
+            if (e.NavigationMode == NavigationMode.Back) ResetPageCache();
         }
 
         private void ResetPageCache()
         {
-            var cacheSize = ((Frame)Parent).CacheSize;
-            ((Frame)Parent).CacheSize = 0;
-            ((Frame)Parent).CacheSize = cacheSize;
+            int cacheSize = ((Frame) Parent).CacheSize;
+            ((Frame) Parent).CacheSize = 0;
+            ((Frame) Parent).CacheSize = cacheSize;
         }
     }
 }

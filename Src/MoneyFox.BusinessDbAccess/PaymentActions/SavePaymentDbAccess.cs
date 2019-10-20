@@ -3,20 +3,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
-using MoneyFox.DataLayer;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
 {
     public interface ISavePaymentDbAccess
     {
-        Task<Payment> GetPaymentById(int id);
+        Task<Payment> GetPaymentByIdAsync(int id);
 
         void DeletePayment(Payment payment);
 
-        Task DeleteRecurringPayment(int id);
+        Task DeleteRecurringPaymentAsync(int id);
 
-        Task<List<Payment>> GetPaymentsForRecurring(int recurringPaymentId);
+        Task<List<Payment>> GetPaymentsForRecurringAsync(int recurringPaymentId);
     }
 
     public class SavePaymentDbAccess : ISavePaymentDbAccess
@@ -28,7 +27,7 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             this.context = context;
         }
 
-        public async Task<Payment> GetPaymentById(int id)
+        public async Task<Payment> GetPaymentByIdAsync(int id)
         {
             return await context.Payments
                                 .Include(x => x.ChargedAccount)
@@ -41,17 +40,17 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             context.Payments.Remove(payment);
         }
 
-        public async Task DeleteRecurringPayment(int id)
+        public async Task DeleteRecurringPaymentAsync(int id)
         {
             context.RecurringPayments.Remove(await context.RecurringPayments.FindAsync(id));
         }
 
-        public async Task<List<Payment>> GetPaymentsForRecurring(int recurringPaymentId)
+        public async Task<List<Payment>> GetPaymentsForRecurringAsync(int recurringPaymentId)
         {
             return await context.Payments
-                .Where(x => x.IsRecurring)
-                .Where(x => x.RecurringPayment.Id == recurringPaymentId)
-                .ToListAsync();
+                                .Where(x => x.IsRecurring)
+                                .Where(x => x.RecurringPayment.Id == recurringPaymentId)
+                                .ToListAsync();
         }
     }
 }

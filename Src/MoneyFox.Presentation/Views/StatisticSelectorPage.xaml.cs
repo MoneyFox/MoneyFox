@@ -5,18 +5,18 @@ namespace MoneyFox.Presentation.Views
 {
     public partial class StatisticSelectorPage
     {
-		public StatisticSelectorPage ()
-		{
-			InitializeComponent();
+        public StatisticSelectorPage()
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.StatisticSelectorVm;
 
             StatisticSelectorList.ItemTapped += (sender, args) =>
-		    {
-		        StatisticSelectorList.SelectedItem = null;
+            {
+                StatisticSelectorList.SelectedItem = null;
                 (BindingContext as StatisticSelectorViewModel)?.GoToStatisticCommand.Execute(args.Item);
-		    };
+            };
 
-		    Title = Strings.StatisticsTitle;
-		}
+            Title = Strings.StatisticsTitle;
+        }
     }
 }

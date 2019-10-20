@@ -5,189 +5,184 @@ using Microsoft.EntityFrameworkCore.Migrations;
 #pragma warning disable S3900 // Arguments of public methods should be validated against null
 #pragma warning disable CA1062 // Validate arguments of public methods
 #pragma warning disable S1192 // String literals should not be duplicated
-namespace MoneyFox.DataLayer.Migrations
+namespace MoneyFox.Persistence.Migrations
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S138:Functions should not have too many lines of code", Justification = "Generated Code")]
     public partial class InitMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Accounts",
-                columns: table => new
+                "Accounts",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CurrentBalance = table.Column<double>(nullable: false),
+                    Id = table.Column<int>()
+                              .Annotation("Sqlite:Autoincrement", true),
+                    CurrentBalance = table.Column<double>(),
                     Iban = table.Column<string>(nullable: true),
-                    IsExcluded = table.Column<bool>(nullable: false),
-                    IsOverdrawn = table.Column<bool>(nullable: false),
-                    Name = table.Column<string>(nullable: false),
+                    IsExcluded = table.Column<bool>(),
+                    IsOverdrawn = table.Column<bool>(),
+                    Name = table.Column<string>(),
                     Note = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Accounts", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Accounts", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "Categories",
-                columns: table => new
+                "Categories",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: false),
+                    Id = table.Column<int>()
+                              .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(),
                     Note = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Categories", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Categories", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "RecurringPayments",
-                columns: table => new
+                "RecurringPayments",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Amount = table.Column<double>(nullable: false),
+                    Id = table.Column<int>()
+                              .Annotation("Sqlite:Autoincrement", true),
+                    Amount = table.Column<double>(),
                     CategoryId = table.Column<int>(nullable: true),
-                    ChargedAccountId = table.Column<int>(nullable: false),
+                    ChargedAccountId = table.Column<int>(),
                     EndDate = table.Column<DateTime>(nullable: true),
-                    IsEndless = table.Column<bool>(nullable: false),
+                    IsEndless = table.Column<bool>(),
                     Note = table.Column<string>(nullable: true),
-                    Recurrence = table.Column<int>(nullable: false),
-                    StartDate = table.Column<DateTime>(nullable: false),
+                    Recurrence = table.Column<int>(),
+                    StartDate = table.Column<DateTime>(),
                     TargetAccountId = table.Column<int>(nullable: true),
-                    Type = table.Column<int>(nullable: false)
+                    Type = table.Column<int>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_RecurringPayments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_RecurringPayments_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
+                        "FK_RecurringPayments_Categories_CategoryId",
+                        x => x.CategoryId,
+                        "Categories",
+                        "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_RecurringPayments_Accounts_ChargedAccountId",
-                        column: x => x.ChargedAccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
+                        "FK_RecurringPayments_Accounts_ChargedAccountId",
+                        x => x.ChargedAccountId,
+                        "Accounts",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RecurringPayments_Accounts_TargetAccountId",
-                        column: x => x.TargetAccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
+                        "FK_RecurringPayments_Accounts_TargetAccountId",
+                        x => x.TargetAccountId,
+                        "Accounts",
+                        "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Payments",
-                columns: table => new
+                "Payments",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Amount = table.Column<double>(nullable: false),
+                    Id = table.Column<int>()
+                              .Annotation("Sqlite:Autoincrement", true),
+                    Amount = table.Column<double>(),
                     CategoryId = table.Column<int>(nullable: true),
-                    ChargedAccountId = table.Column<int>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    IsCleared = table.Column<bool>(nullable: false),
-                    IsRecurring = table.Column<bool>(nullable: false),
+                    ChargedAccountId = table.Column<int>(),
+                    Date = table.Column<DateTime>(),
+                    IsCleared = table.Column<bool>(),
+                    IsRecurring = table.Column<bool>(),
                     Note = table.Column<string>(nullable: true),
                     RecurringPaymentId = table.Column<int>(nullable: true),
                     TargetAccountId = table.Column<int>(nullable: true),
-                    Type = table.Column<int>(nullable: false)
+                    Type = table.Column<int>()
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Payments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Payments_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
+                        "FK_Payments_Categories_CategoryId",
+                        x => x.CategoryId,
+                        "Categories",
+                        "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_Payments_Accounts_ChargedAccountId",
-                        column: x => x.ChargedAccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
+                        "FK_Payments_Accounts_ChargedAccountId",
+                        x => x.ChargedAccountId,
+                        "Accounts",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Payments_RecurringPayments_RecurringPaymentId",
-                        column: x => x.RecurringPaymentId,
-                        principalTable: "RecurringPayments",
-                        principalColumn: "Id",
+                        "FK_Payments_RecurringPayments_RecurringPaymentId",
+                        x => x.RecurringPaymentId,
+                        "RecurringPayments",
+                        "Id",
                         onDelete: ReferentialAction.SetNull);
                     table.ForeignKey(
-                        name: "FK_Payments_Accounts_TargetAccountId",
-                        column: x => x.TargetAccountId,
-                        principalTable: "Accounts",
-                        principalColumn: "Id",
+                        "FK_Payments_Accounts_TargetAccountId",
+                        x => x.TargetAccountId,
+                        "Accounts",
+                        "Id",
                         onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Accounts_Name",
-                table: "Accounts",
-                column: "Name");
+                "IX_Accounts_Name",
+                "Accounts",
+                "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_Name",
-                table: "Categories",
-                column: "Name");
+                "IX_Categories_Name",
+                "Categories",
+                "Name");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_CategoryId",
-                table: "Payments",
-                column: "CategoryId");
+                "IX_Payments_CategoryId",
+                "Payments",
+                "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_ChargedAccountId",
-                table: "Payments",
-                column: "ChargedAccountId");
+                "IX_Payments_ChargedAccountId",
+                "Payments",
+                "ChargedAccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_RecurringPaymentId",
-                table: "Payments",
-                column: "RecurringPaymentId");
+                "IX_Payments_RecurringPaymentId",
+                "Payments",
+                "RecurringPaymentId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Payments_TargetAccountId",
-                table: "Payments",
-                column: "TargetAccountId");
+                "IX_Payments_TargetAccountId",
+                "Payments",
+                "TargetAccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecurringPayments_CategoryId",
-                table: "RecurringPayments",
-                column: "CategoryId");
+                "IX_RecurringPayments_CategoryId",
+                "RecurringPayments",
+                "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecurringPayments_ChargedAccountId",
-                table: "RecurringPayments",
-                column: "ChargedAccountId");
+                "IX_RecurringPayments_ChargedAccountId",
+                "RecurringPayments",
+                "ChargedAccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecurringPayments_TargetAccountId",
-                table: "RecurringPayments",
-                column: "TargetAccountId");
+                "IX_RecurringPayments_TargetAccountId",
+                "RecurringPayments",
+                "TargetAccountId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Payments");
+                "Payments");
 
             migrationBuilder.DropTable(
-                name: "RecurringPayments");
+                "RecurringPayments");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                "Categories");
 
             migrationBuilder.DropTable(
-                name: "Accounts");
+                "Accounts");
         }
     }
 }

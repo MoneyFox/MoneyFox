@@ -1,22 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                      xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      mc:Ignorable="d"
-                      xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-                      xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-                      x:Class="MoneyFox.Presentation.Views.EditCategoryPage"
-                      Visual="Material"
-                      BackgroundColor="{DynamicResource WindowBackgroundColor}">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             x:Class="MoneyFox.Presentation.Views.EditCategoryPage"
+             Visual="Material"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyCategoryViewModel />
     </d:ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <AbsoluteLayout >
-            <Label Text="{Binding Title}" 
+        <AbsoluteLayout>
+            <Label Text="{Binding Title}"
                    VerticalOptions="CenterAndExpand"
                    Style="{StaticResource PageTitleStyle}" />
 

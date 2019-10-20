@@ -19,7 +19,7 @@ namespace MoneyFox.Presentation.ViewModels
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
 
         /// <summary>
-        ///      Indicates wether the filter for only cleared Payments is active or not.
+        ///     Indicates wether the filter for only cleared Payments is active or not.
         /// </summary>
         public bool IsClearedFilterActive
         {
@@ -34,7 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///      Indicates wether the filter to only display recurring Payments is active or not.
+        ///     Indicates wether the filter to only display recurring Payments is active or not.
         /// </summary>
         public bool IsRecurringFilterActive
         {
@@ -84,8 +84,8 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,
-                TimeRangeStart = this.TimeRangeStart,
-                TimeRangeEnd = this.TimeRangeEnd
+                TimeRangeStart = TimeRangeStart,
+                TimeRangeEnd = TimeRangeEnd
             });
         }
     }

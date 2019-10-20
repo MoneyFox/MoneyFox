@@ -8,30 +8,30 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
 {
-	public partial class StatisticCashFlowPage
+    public partial class StatisticCashFlowPage
     {
         private StatisticCashFlowViewModel ViewModel => BindingContext as StatisticCashFlowViewModel;
 
-        public StatisticCashFlowPage ()
-		{
+        public StatisticCashFlowPage()
+        {
             InitializeComponent();
             BindingContext = ViewModelLocator.StatisticCashFlowVm;
 
-		    var filterItem = new ToolbarItem
-		    {
-		        Command = new Command(async () => await OpenDialog()),
-		        Text = Strings.SelectDateLabel,
-		        Priority = 0,
-		        Order = ToolbarItemOrder.Primary
-		    };
+            var filterItem = new ToolbarItem
+            {
+                Command = new Command(async () => await OpenDialog()),
+                Text = Strings.SelectDateLabel,
+                Priority = 0,
+                Order = ToolbarItemOrder.Primary
+            };
 
-		    ToolbarItems.Add(filterItem);
+            ToolbarItems.Add(filterItem);
 
-            ViewModel.LoadedCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.LoadedCommand.ExecuteAsync().FireAndForgetSafe();
         }
 
         private async Task OpenDialog()
-	    {
+        {
             await Navigation.PushPopupAsync(new DateSelectionPopup
             {
                 BindingContext = ViewModelLocator.SelectDateRangeDialogVm

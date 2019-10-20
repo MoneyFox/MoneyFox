@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -22,17 +23,17 @@
                 <Entry x:Name="AmountEntry"
                        Style="{StaticResource DefaultEntry}"
                        Placeholder="{Binding Resources[CurrentBalanceLabel]}"
-                       Text="{Binding AmountString}" 
+                       Text="{Binding AmountString}"
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
-                       Focused="AmountFieldGotFocused"/>
+                       Focused="AmountFieldGotFocused" />
 
                 <Entry Style="{StaticResource DefaultEntry}"
                        Placeholder="{Binding Resources[NoteLabel]}"
-                       Text="{Binding SelectedAccount.Note}"/>
+                       Text="{Binding SelectedAccount.Note}" />
 
                 <Grid HorizontalOptions="FillAndExpand"
-                  Margin="0,5,0,0">
+                      Margin="0,5,0,0">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
@@ -40,8 +41,8 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Text="{Binding Resources[IsExcludedLabel]}" 
-                           Style="{StaticResource DefaultTextStyle}"/>
+                           Text="{Binding Resources[IsExcludedLabel]}"
+                           Style="{StaticResource DefaultTextStyle}" />
                     <Switch Grid.Column="1" IsToggled="{Binding SelectedAccount.IsExcluded}" />
                 </Grid>
             </StackLayout>

@@ -1,61 +1,59 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace MoneyFox.DataLayer.Migrations
+namespace MoneyFox.Persistence.Migrations
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S3900:Arguments of public methods should be validated against null", Justification = "<Pending>")]
     public partial class AddTagTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Tags",
-                columns: table => new
+                "Tags",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                    Id = table.Column<int>()
+                              .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true)
                 },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
-                });
+                constraints: table => { table.PrimaryKey("PK_Tags", x => x.Id); });
 
             migrationBuilder.CreateTable(
-                name: "PaymentTag",
-                columns: table => new
+                "PaymentTag",
+                table => new
                 {
-                    PaymentId = table.Column<int>(nullable: false),
-                    TagId = table.Column<int>(nullable: false)
+                    PaymentId = table.Column<int>(),
+                    TagId = table.Column<int>()
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PaymentTag", x => new { x.PaymentId, x.TagId });
+                    table.PrimaryKey("PK_PaymentTag", x => new {x.PaymentId, x.TagId});
                     table.ForeignKey(
-                        name: "FK_PaymentTag_Payments_PaymentId",
-                        column: x => x.PaymentId,
-                        principalTable: "Payments",
-                        principalColumn: "Id",
+                        "FK_PaymentTag_Payments_PaymentId",
+                        x => x.PaymentId,
+                        "Payments",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PaymentTag_Tags_TagId",
-                        column: x => x.TagId,
-                        principalTable: "Tags",
-                        principalColumn: "Id",
+                        "FK_PaymentTag_Tags_TagId",
+                        x => x.TagId,
+                        "Tags",
+                        "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_PaymentTag_TagId",
-                table: "PaymentTag",
-                column: "TagId");
+                "IX_PaymentTag_TagId",
+                "PaymentTag",
+                "TagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "PaymentTag");
+                "PaymentTag");
 
             migrationBuilder.DropTable(
-                name: "Tags");
+                "Tags");
         }
     }
 }

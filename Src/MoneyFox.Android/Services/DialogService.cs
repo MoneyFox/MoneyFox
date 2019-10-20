@@ -9,7 +9,7 @@ using MoneyFox.Presentation.Interfaces;
 namespace MoneyFox.Droid.Services
 {
     /// <inheritdoc />
-    public class DialogService : IDialogService 
+    public class DialogService : IDialogService
     {
         private Activity CurrentActivity { get; }
 
@@ -34,23 +34,19 @@ namespace MoneyFox.Droid.Services
 
         /// <inheritdoc />
         public async Task ShowConfirmMessage(string title, string message, Action positivAction,
-            string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
+                                             string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
         {
-            var isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
+            bool isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
 
             if (isPositiveAnswer)
-            {
                 positivAction();
-            }
             else
-            {
                 negativAction?.Invoke();
-            }
         }
 
         /// <inheritdoc />
         public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
-            string negativeButtonText = null)
+                                             string negativeButtonText = null)
         {
             // We have to hide the loading dialog first, otherwise it get's stuck.
             HideLoadingDialog();
@@ -65,6 +61,7 @@ namespace MoneyFox.Droid.Services
 
             return tcs.Task;
         }
+
         /// <inheritdoc />
         public void ShowLoadingDialog(string message = null)
         {
@@ -72,7 +69,7 @@ namespace MoneyFox.Droid.Services
         }
 
         /// <inheritdoc />
-        public void HideLoadingDialog() 
+        public void HideLoadingDialog()
         {
             AndHUD.Shared.Dismiss(CurrentActivity);
         }

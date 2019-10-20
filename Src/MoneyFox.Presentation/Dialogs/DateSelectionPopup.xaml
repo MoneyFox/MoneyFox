@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -37,13 +38,13 @@
                            Text="{Binding Resources[TimeRangeStartLabel]}"
                            HorizontalOptions="StartAndExpand" />
                 </Grid>
-                <DatePicker Date="{Binding StartDate}" 
-                            Style="{StaticResource DefaultDatePickerStyle}"/>
+                <DatePicker Date="{Binding StartDate}"
+                            Style="{StaticResource DefaultDatePickerStyle}" />
 
                 <Label Style="{StaticResource DeemphasizedLabelStyle}"
                        Text="{Binding Resources[TimeRangeEndLabel]}" />
-                <DatePicker Date="{Binding EndDate}" 
-                            Style="{StaticResource DefaultDatePickerStyle}"/>
+                <DatePicker Date="{Binding EndDate}"
+                            Style="{StaticResource DefaultDatePickerStyle}" />
 
                 <Button Text="{Binding Resources[DoneLabel]}"
                         Style="{StaticResource DefaultButtonStyle}"

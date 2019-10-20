@@ -5,13 +5,13 @@ using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.Dialogs
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DateSelectionPopup
-	{
-		public DateSelectionPopup ()
-		{
-			InitializeComponent ();
-		}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class DateSelectionPopup
+    {
+        public DateSelectionPopup()
+        {
+            InitializeComponent();
+        }
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {

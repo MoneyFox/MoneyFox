@@ -7,7 +7,7 @@ namespace MoneyFox.Uwp.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return (DateTime)value != new DateTime();
+            return (DateTime) value != new DateTime();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
