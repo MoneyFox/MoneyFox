@@ -33,10 +33,10 @@ namespace MoneyFox.BusinessLogic.Extensions
 
                     if (totalBytesRead == readBuffer.Length)
                     {
-                        var nextByte = stream.ReadByte();
+                        int nextByte = stream.ReadByte();
                         if (nextByte != -1)
                         {
-                            var temp = new byte[readBuffer.Length*2];
+                            var temp = new byte[readBuffer.Length * 2];
                             Buffer.BlockCopy(readBuffer, 0, temp, 0, readBuffer.Length);
                             Buffer.SetByte(temp, totalBytesRead, (byte) nextByte);
                             readBuffer = temp;
@@ -45,20 +45,18 @@ namespace MoneyFox.BusinessLogic.Extensions
                     }
                 }
 
-                var buffer = readBuffer;
+                byte[] buffer = readBuffer;
                 if (readBuffer.Length != totalBytesRead)
                 {
                     buffer = new byte[totalBytesRead];
                     Buffer.BlockCopy(readBuffer, 0, buffer, 0, totalBytesRead);
                 }
+
                 return buffer;
             }
             finally
             {
-                if (stream.CanSeek)
-                {
-                    stream.Position = originalPosition;
-                }
+                if (stream.CanSeek) stream.Position = originalPosition;
             }
         }
     }

@@ -17,7 +17,7 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
 
         public class Handler : IRequestHandler<CreatePaymentCommand>
         {
-            private IEfCoreContext context;
+            private readonly IEfCoreContext context;
 
             public Handler(IEfCoreContext context)
             {
@@ -29,6 +29,7 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
             {
                 await context.Payments.AddAsync(request.PaymentToSave, cancellationToken);
                 await context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }

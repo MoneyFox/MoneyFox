@@ -32,9 +32,7 @@ namespace MoneyFox.Presentation.Converter
             if (payment.Type == PaymentType.Transfer)
             {
                 if (param == IGNORE_TRANSFER)
-                {
                     sign = "-";
-                }
                 else
                 {
                     sign = payment.ChargedAccountId == payment.CurrentAccountId

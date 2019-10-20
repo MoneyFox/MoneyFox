@@ -4,13 +4,13 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.UserControls
 {
-	public partial class ModifyPaymentUserControl
+    public partial class ModifyPaymentUserControl
     {
         private ModifyPaymentViewModel ViewModel => BindingContext as ModifyPaymentViewModel;
 
-        public ModifyPaymentUserControl ()
-		{
-			InitializeComponent ();
+        public ModifyPaymentUserControl()
+        {
+            InitializeComponent();
         }
 
         private void AmountFieldGotFocus(object sender, FocusEventArgs e)

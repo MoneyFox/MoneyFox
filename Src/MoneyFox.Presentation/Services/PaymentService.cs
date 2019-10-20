@@ -46,7 +46,7 @@ namespace MoneyFox.Presentation.Services
         private readonly IEfCoreContext context;
         private readonly IModifyPaymentAction modifyPaymentAction;
         private readonly IDialogService dialogService;
-        
+
         public PaymentService(IEfCoreContext context, IModifyPaymentAction modifyPaymentAction, IDialogService dialogService)
         {
             this.modifyPaymentAction = modifyPaymentAction;
@@ -57,10 +57,10 @@ namespace MoneyFox.Presentation.Services
         /// <inheritdoc />
         public async Task SavePayment(PaymentViewModel paymentViewModel)
         {
-            var payment = await CreatePaymentFromViewModel(paymentViewModel);
+            Payment payment = await CreatePaymentFromViewModel(paymentViewModel);
             await context.AddAsync(payment);
 
-            var count = await context.SaveChangesAsync();
+            int count = await context.SaveChangesAsync();
             logger.Info("{count} entities saved.", count);
         }
 
@@ -79,68 +79,68 @@ namespace MoneyFox.Presentation.Services
 
             if (paymentViewModel.IsRecurring
                 && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
-            {
                 await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id);
-            }
-            
+
             await modifyPaymentAction.DeletePayment(paymentViewModel.Id);
             await context.SaveChangesAsync();
         }
 
         private async Task<Payment> CreatePaymentFromViewModel(PaymentViewModel paymentViewModel)
         {
-            var chargedAccount = await GetChargedAccount(paymentViewModel);
-            var targetAccount = await GetTargetAccount(paymentViewModel);
-            var category = await GetCategory(paymentViewModel);
+            Account chargedAccount = await GetChargedAccount(paymentViewModel);
+            Account targetAccount = await GetTargetAccount(paymentViewModel);
+            Category category = await GetCategory(paymentViewModel);
 
             var payment = new Payment(paymentViewModel.Date, paymentViewModel.Amount, paymentViewModel.Type,
-                chargedAccount,
-                targetAccount, category, paymentViewModel.Note);
+                                      chargedAccount,
+                                      targetAccount, category, paymentViewModel.Note);
             try
             {
                 AddRecurringPayment(paymentViewModel, payment);
+
                 return payment;
             }
             catch (Exception)
             {
                 payment.ChargedAccount.RemovePaymentAmount(payment);
                 payment.TargetAccount?.RemovePaymentAmount(payment);
+
                 throw;
             }
         }
 
         private async Task UpdatePaymentFromViewModel(PaymentViewModel paymentViewModel)
         {
-            var payment = await context.Payments
-                .Include(x => x.RecurringPayment)
-                .FirstAsync(x => x.Id == paymentViewModel.Id);
+            Payment payment = await context.Payments
+                                           .Include(x => x.RecurringPayment)
+                                           .FirstAsync(x => x.Id == paymentViewModel.Id);
 
-            var chargedAccount = await GetChargedAccount(paymentViewModel);
-            var targetAccount = await GetTargetAccount(paymentViewModel);
-            var category = await GetCategory(paymentViewModel);
+            Account chargedAccount = await GetChargedAccount(paymentViewModel);
+            Account targetAccount = await GetTargetAccount(paymentViewModel);
+            Category category = await GetCategory(paymentViewModel);
 
             payment.UpdatePayment(paymentViewModel.Date,
-                paymentViewModel.Amount,
-                paymentViewModel.Type,
-                chargedAccount,
-                targetAccount,
-                category,
-                paymentViewModel.Note);
+                                  paymentViewModel.Amount,
+                                  paymentViewModel.Type,
+                                  chargedAccount,
+                                  targetAccount,
+                                  category,
+                                  paymentViewModel.Note);
 
-            if (paymentViewModel.IsRecurring 
+            if (paymentViewModel.IsRecurring
                 && payment.IsRecurring
                 && await dialogService
                     .ShowConfirmMessage(Strings.ModifyRecurrenceTitle, Strings.ModifyRecurrenceMessage)
-                    )
+            )
             {
                 payment.RecurringPayment.UpdateRecurringPayment(payment.Amount,
-                    paymentViewModel.RecurringPayment.Recurrence, 
-                    payment.ChargedAccount, 
-                    payment.Note, 
-                    paymentViewModel.RecurringPayment.IsEndless 
-                        ? null 
-                        : paymentViewModel.RecurringPayment.EndDate, 
-                    payment.TargetAccount);
+                                                                paymentViewModel.RecurringPayment.Recurrence,
+                                                                payment.ChargedAccount,
+                                                                payment.Note,
+                                                                paymentViewModel.RecurringPayment.IsEndless
+                                                                    ? null
+                                                                    : paymentViewModel.RecurringPayment.EndDate,
+                                                                payment.TargetAccount);
             }
         }
 
@@ -148,15 +148,19 @@ namespace MoneyFox.Presentation.Services
         {
             Category category = null;
             if (paymentViewModel.Category != null)
+            {
                 category = await context.Categories
-                    .FindAsync(paymentViewModel.Category.Id);
+                                        .FindAsync(paymentViewModel.Category.Id);
+            }
+
             return category;
         }
 
         private async Task<Account> GetChargedAccount(PaymentViewModel paymentViewModel)
         {
-            var chargedAccount = await context.Accounts
-                .FindAsync(paymentViewModel.ChargedAccount.Id);
+            Account chargedAccount = await context.Accounts
+                                                  .FindAsync(paymentViewModel.ChargedAccount.Id);
+
             return chargedAccount;
         }
 
@@ -164,18 +168,23 @@ namespace MoneyFox.Presentation.Services
         {
             Account targetAccount = null;
             if (paymentViewModel.TargetAccount != null)
+            {
                 targetAccount = await context.Accounts
-                    .FindAsync(paymentViewModel.TargetAccount.Id);
+                                             .FindAsync(paymentViewModel.TargetAccount.Id);
+            }
+
             return targetAccount;
         }
 
         private static void AddRecurringPayment(PaymentViewModel paymentViewModel, Payment payment)
         {
             if (paymentViewModel.IsRecurring)
+            {
                 payment.AddRecurringPayment(paymentViewModel.RecurringPayment.Recurrence,
-                    paymentViewModel.RecurringPayment.IsEndless
-                        ? null
-                        : paymentViewModel.RecurringPayment.EndDate);
+                                            paymentViewModel.RecurringPayment.IsEndless
+                                                ? null
+                                                : paymentViewModel.RecurringPayment.EndDate);
+            }
         }
     }
 }

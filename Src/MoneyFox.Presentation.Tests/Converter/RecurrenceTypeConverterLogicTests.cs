@@ -15,13 +15,13 @@ namespace MoneyFox.Presentation.Tests.Converter
         {
             get
             {
-                yield return new object[] { PaymentRecurrence.Daily, Strings.DailyLabel };
-                yield return new object[] { PaymentRecurrence.DailyWithoutWeekend, Strings.DailyWithoutWeekendLabel };
-                yield return new object[] { PaymentRecurrence.Weekly, Strings.WeeklyLabel };
-                yield return new object[] { PaymentRecurrence.Biweekly, Strings.BiweeklyLabel };
-                yield return new object[] { PaymentRecurrence.Monthly, Strings.MonthlyLabel };
-                yield return new object[] { PaymentRecurrence.Bimonthly, Strings.BimonthlyLabel };
-                yield return new object[] { PaymentRecurrence.Yearly, Strings.YearlyLabel };
+                yield return new object[] {PaymentRecurrence.Daily, Strings.DailyLabel};
+                yield return new object[] {PaymentRecurrence.DailyWithoutWeekend, Strings.DailyWithoutWeekendLabel};
+                yield return new object[] {PaymentRecurrence.Weekly, Strings.WeeklyLabel};
+                yield return new object[] {PaymentRecurrence.Biweekly, Strings.BiweeklyLabel};
+                yield return new object[] {PaymentRecurrence.Monthly, Strings.MonthlyLabel};
+                yield return new object[] {PaymentRecurrence.Bimonthly, Strings.BimonthlyLabel};
+                yield return new object[] {PaymentRecurrence.Yearly, Strings.YearlyLabel};
             }
         }
 

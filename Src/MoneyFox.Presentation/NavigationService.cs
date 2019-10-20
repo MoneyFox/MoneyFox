@@ -18,12 +18,9 @@ namespace MoneyFox.Presentation
             {
                 lock (PagesByKey)
                 {
-                    if (!Navigation.NavigationStack.Any())
-                    {
-                        return null;
-                    }
+                    if (!Navigation.NavigationStack.Any()) return null;
 
-                    var pageType = Navigation.NavigationStack.First().GetType();
+                    Type pageType = Navigation.NavigationStack.First().GetType();
 
                     return PagesByKey.ContainsValue(pageType)
                         ? PagesByKey.First(p => p.Value == pageType).Key
@@ -48,35 +45,37 @@ namespace MoneyFox.Presentation
             {
                 if (PagesByKey.ContainsKey(pageKey))
                 {
-                    var type = PagesByKey[pageKey];
+                    Type type = PagesByKey[pageKey];
                     ConstructorInfo constructor;
                     object[] parameters;
 
                     if (parameter == null)
                     {
                         constructor = type.GetTypeInfo()
-                            .DeclaredConstructors
-                            .FirstOrDefault(c => !c.GetParameters().Any());
+                                          .DeclaredConstructors
+                                          .FirstOrDefault(c => !c.GetParameters().Any());
 
                         parameters = new object[]
                         {
                         };
-                    } else
+                    }
+                    else
                     {
                         constructor = type.GetTypeInfo()
-                            .DeclaredConstructors
-                            .FirstOrDefault(
-                                c =>
-                                {
-                                    var p = c.GetParameters();
-                                    return p.Count() == 1
-                                           && p[0].ParameterType == parameter.GetType();
-                                });
+                                          .DeclaredConstructors
+                                          .FirstOrDefault(
+                                              c =>
+                                              {
+                                                  ParameterInfo[] p = c.GetParameters();
+
+                                                  return p.Count() == 1
+                                                         && p[0].ParameterType == parameter.GetType();
+                                              });
 
                         parameters = new[]
                         {
-                        parameter
-                    };
+                            parameter
+                        };
                     }
 
                     if (constructor == null)
@@ -87,7 +86,8 @@ namespace MoneyFox.Presentation
 
                     var page = constructor.Invoke(parameters) as Page;
                     Navigation.PushAsync(page);
-                } else
+                }
+                else
                 {
                     throw new ArgumentException(
                         string.Format(
@@ -103,12 +103,9 @@ namespace MoneyFox.Presentation
             lock (PagesByKey)
             {
                 if (PagesByKey.ContainsKey(pageKey))
-                {
                     PagesByKey[pageKey] = pageType;
-                } else
-                {
+                else
                     PagesByKey.Add(pageKey, pageType);
-                }
             }
         }
 

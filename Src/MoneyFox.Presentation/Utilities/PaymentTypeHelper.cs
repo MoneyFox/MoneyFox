@@ -15,7 +15,9 @@ namespace MoneyFox.Presentation.Utilities
         /// <param name="input">String to parse.</param>
         /// <returns>Parsed PaymentType.</returns>
         public static PaymentType GetEnumFromString(string input)
-            => (PaymentType) Enum.Parse(typeof(PaymentType), input);
+        {
+            return (PaymentType) Enum.Parse(typeof(PaymentType), input);
+        }
 
         /// <summary>
         ///     Returns based on an enum int the title for the PaymentType.
@@ -24,7 +26,9 @@ namespace MoneyFox.Presentation.Utilities
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
         /// <returns>Title for the enum.</returns>
         public static string GetViewTitleForType(int type, bool isEditMode)
-            => GetViewTitleForType((PaymentType) type, isEditMode);
+        {
+            return GetViewTitleForType((PaymentType) type, isEditMode);
+        }
 
         /// <summary>
         ///     Returns based on an PaymentType the title.
@@ -70,7 +74,7 @@ namespace MoneyFox.Presentation.Utilities
 
                 default:
                     throw new ArgumentOutOfRangeException(nameof(type),
-                        "Passed Number didn't match to a payment type.");
+                                                          "Passed Number didn't match to a payment type.");
             }
         }
     }

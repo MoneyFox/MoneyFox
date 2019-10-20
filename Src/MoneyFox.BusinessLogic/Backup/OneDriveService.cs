@@ -35,7 +35,7 @@ namespace MoneyFox.BusinessLogic.Backup
         /// <summary>
         ///     Login User to OneDrive.
         /// </summary>
-        public async Task Login()
+        public async Task LoginAsync()
         {
             AuthenticationResult authResult = null;
             IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
@@ -54,7 +54,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                                           .ExecuteAsync();
             }
 
-            GraphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider((requestMessage) =>
+            GraphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider(requestMessage =>
             {
                 requestMessage
                     .Headers
@@ -67,7 +67,7 @@ namespace MoneyFox.BusinessLogic.Backup
         /// <summary>
         ///     Logout User from OneDrive.
         /// </summary>
-        public async Task Logout()
+        public async Task LogoutAsync()
         {
             List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
 
@@ -79,15 +79,15 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task<bool> Upload(Stream dataToUpload)
+        public async Task<bool> UploadAsync(Stream dataToUpload)
         {
-            if (GraphServiceClient == null) await Login();
+            if (GraphServiceClient == null) await LoginAsync();
 
-            await MoveToAppFolder();
-            await LoadArchiveFolder();
+            await MoveToAppFolderAsync();
+            await LoadArchiveFolderAsync();
 
-            await DeleteCleanupOldBackups();
-            await ArchiveCurrentBackup();
+            await DeleteCleanupOldBackupsAsync();
+            await ArchiveCurrentBackupAsync();
 
             DriveItem uploadedItem = await GraphServiceClient
                                            .Me
@@ -103,11 +103,11 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task<Stream> Restore(string backupname, string dbName)
+        public async Task<Stream> RestoreAsync(string backupName, string dbName)
         {
-            if (GraphServiceClient == null) await Login();
+            if (GraphServiceClient == null) await LoginAsync();
 
-            await MoveToAppFolder();
+            await MoveToAppFolderAsync();
             DriveItem existingBackup = (await GraphServiceClient
                                               .Me
                                               .Drive
@@ -115,19 +115,20 @@ namespace MoneyFox.BusinessLogic.Backup
                                               .AppRoot.Children
                                               .Request()
                                               .GetAsync())
-                .FirstOrDefault(x => x.Name == backupname);
+                .FirstOrDefault(x => x.Name == backupName);
 
             if (existingBackup == null)
-                throw new NoBackupFoundException($"No backup with the name {backupname} was found.");
+                throw new NoBackupFoundException($"No backup with the name {backupName} was found.");
+
             return await GraphServiceClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
         }
 
         /// <inheritdoc />
-        public async Task<DateTime> GetBackupDate()
+        public async Task<DateTime> GetBackupDateAsync()
         {
-            if (GraphServiceClient == null) await Login();
+            if (GraphServiceClient == null) await LoginAsync();
 
-            await MoveToAppFolder();
+            await MoveToAppFolderAsync();
 
             DriveItem existingBackup = (await GraphServiceClient
                                               .Me
@@ -144,11 +145,11 @@ namespace MoneyFox.BusinessLogic.Backup
         }
 
         /// <inheritdoc />
-        public async Task<List<string>> GetFileNames()
+        public async Task<List<string>> GetFileNamesAsync()
         {
-            if (GraphServiceClient == null) await Login();
+            if (GraphServiceClient == null) await LoginAsync();
 
-            await MoveToAppFolder();
+            await MoveToAppFolderAsync();
 
             return (await GraphServiceClient
                           .Me
@@ -160,7 +161,7 @@ namespace MoneyFox.BusinessLogic.Backup
                    .Select(x => x.Name).ToList();
         }
 
-        private async Task DeleteCleanupOldBackups()
+        private async Task DeleteCleanupOldBackupsAsync()
         {
             IDriveItemChildrenCollectionPage archiveBackups = await GraphServiceClient.Drive
                                                                                       .Items[ArchiveFolder?.Id]
@@ -177,7 +178,7 @@ namespace MoneyFox.BusinessLogic.Backup
                                     .DeleteAsync();
         }
 
-        private async Task ArchiveCurrentBackup()
+        private async Task ArchiveCurrentBackupAsync()
         {
             DriveItem currentBackup = (await GraphServiceClient
                                              .Me
@@ -205,7 +206,7 @@ namespace MoneyFox.BusinessLogic.Backup
                   .UpdateAsync(updateItem);
         }
 
-        private async Task MoveToAppFolder()
+        private async Task MoveToAppFolderAsync()
         {
             if ((await GraphServiceClient
                        .Me
@@ -243,7 +244,7 @@ namespace MoneyFox.BusinessLogic.Backup
 
                 var updateItem = new DriveItem
                 {
-                    ParentReference = new ItemReference {Id = appFolder.Id},
+                    ParentReference = new ItemReference {Id = appFolder.Id}
                 };
 
                 if (archive != null)
@@ -271,7 +272,7 @@ namespace MoneyFox.BusinessLogic.Backup
             }
         }
 
-        private async Task LoadArchiveFolder()
+        private async Task LoadArchiveFolderAsync()
         {
             if (ArchiveFolder != null) return;
 
@@ -284,10 +285,10 @@ namespace MoneyFox.BusinessLogic.Backup
                                    .GetAsync())
                             .CurrentPage.FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
 
-            if (ArchiveFolder == null) await CreateArchiveFolder();
+            if (ArchiveFolder == null) await CreateArchiveFolderAsync();
         }
 
-        private async Task CreateArchiveFolder()
+        private async Task CreateArchiveFolderAsync()
         {
             var folderToCreate = new DriveItem
             {

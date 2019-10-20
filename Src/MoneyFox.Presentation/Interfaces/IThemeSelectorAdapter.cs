@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Presentation.Interfaces
 {
-    public  interface IThemeSelectorAdapter
+    public interface IThemeSelectorAdapter
     {
         string Theme { get; }
 
-        void SetThemeAsync(string theme);
+        void SetTheme(string theme);
     }
 }

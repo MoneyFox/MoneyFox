@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Streams;
 using MoneyFox.Application.FileStore;
 using NLog;
 
@@ -15,37 +16,39 @@ namespace MoneyFox.Uwp.Business
         {
             try
             {
-                var storageFile = StorageFileFromRelativePath(path);
-                var streamWithContentType = storageFile.OpenReadAsync().Await();
+                StorageFile storageFile = StorageFileFromRelativePath(path);
+                IRandomAccessStreamWithContentType streamWithContentType = storageFile.OpenReadAsync().Await();
+
                 return streamWithContentType.AsStreamForRead();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 logger.Error(ex);
+
                 return null;
             }
         }
 
-        public override bool TryMove(string @from, string destination, bool overwrite)
+        public override bool TryMove(string from, string destination, bool overwrite)
         {
             try
             {
-                var fromFile = StorageFileFromRelativePath(from);
+                StorageFile fromFile = StorageFileFromRelativePath(from);
 
-                if (overwrite && !SafeDeleteFile(destination))
-                {
-                    return false;
-                }
+                if (overwrite && !SafeDeleteFile(destination)) return false;
 
-                var fullToPath = ToFullPath(destination);
-                var toDirectory = Path.GetDirectoryName(fullToPath);
-                var toFileName = Path.GetFileName(fullToPath);
-                var toStorageFolder = StorageFolder.GetFolderFromPathAsync(toDirectory).Await();
+                string fullToPath = ToFullPath(destination);
+                string toDirectory = Path.GetDirectoryName(fullToPath);
+                string toFileName = Path.GetFileName(fullToPath);
+                StorageFolder toStorageFolder = StorageFolder.GetFolderFromPathAsync(toDirectory).Await();
                 fromFile.MoveAsync(toStorageFolder, toFileName).Await();
+
                 return true;
-            } 
+            }
             catch (Exception ex)
             {
                 logger.Error(ex);
+
                 return false;
             }
         }
@@ -56,25 +59,28 @@ namespace MoneyFox.Uwp.Business
 
             try
             {
-                var storageFile = CreateStorageFileFromRelativePathAsync(path).GetAwaiter().GetResult();
-                using (var streamWithContentType = storageFile.OpenAsync(FileAccessMode.ReadWrite).Await())
+                StorageFile storageFile = CreateStorageFileFromRelativePathAsync(path).GetAwaiter().GetResult();
+                using (IRandomAccessStream streamWithContentType = storageFile.OpenAsync(FileAccessMode.ReadWrite).Await())
                 {
-                    using (var stream = streamWithContentType.AsStreamForWrite())
+                    using (Stream stream = streamWithContentType.AsStreamForWrite())
                     {
                         streamAction(stream);
                     }
                 }
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 logger.Error(ex);
+
                 throw;
             }
         }
 
         private static StorageFile StorageFileFromRelativePath(string path)
         {
-            var fullPath = ToFullPath(path);
-            var storageFile = StorageFile.GetFileFromPathAsync(fullPath).Await();
+            string fullPath = ToFullPath(path);
+            StorageFile storageFile = StorageFile.GetFileFromPathAsync(fullPath).Await();
+
             return storageFile;
         }
 
@@ -82,13 +88,16 @@ namespace MoneyFox.Uwp.Business
         {
             try
             {
-                var toFile = StorageFileFromRelativePath(path);
+                StorageFile toFile = StorageFileFromRelativePath(path);
                 toFile.DeleteAsync().Await();
+
                 return true;
-            } catch (FileNotFoundException)
+            }
+            catch (FileNotFoundException)
             {
                 return true;
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 return false;
             }
@@ -96,17 +105,19 @@ namespace MoneyFox.Uwp.Business
 
         private static async Task<StorageFile> CreateStorageFileFromRelativePathAsync(string path)
         {
-            var fullPath = ToFullPath(path);
-            var directory = Path.GetDirectoryName(fullPath);
-            var fileName = Path.GetFileName(fullPath);
-            var storageFolder = await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
-            var storageFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting).AsTask().ConfigureAwait(false);
+            string fullPath = ToFullPath(path);
+            string directory = Path.GetDirectoryName(fullPath);
+            string fileName = Path.GetFileName(fullPath);
+            StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
+            StorageFile storageFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting).AsTask().ConfigureAwait(false);
+
             return storageFile;
         }
 
         private static string ToFullPath(string path)
         {
-            var localFolderPath = ApplicationData.Current.LocalFolder.Path;
+            string localFolderPath = ApplicationData.Current.LocalFolder.Path;
+
             return Path.Combine(localFolderPath, path);
         }
     }

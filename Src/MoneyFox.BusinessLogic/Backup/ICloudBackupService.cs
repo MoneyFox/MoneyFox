@@ -15,12 +15,12 @@ namespace MoneyFox.BusinessLogic.Backup
         ///     Login user.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task Login();
+        Task LoginAsync();
 
         /// <summary>
         ///     Logout user.
         /// </summary>
-        Task Logout();
+        Task LogoutAsync();
 
         /// <summary>
         ///     Uploads a copy of the current database.
@@ -28,17 +28,17 @@ namespace MoneyFox.BusinessLogic.Backup
         /// <param name="dataToUpload">Stream of data to upload.</param>
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<bool> Upload(Stream dataToUpload);
+        Task<bool> UploadAsync(Stream dataToUpload);
 
         /// <summary>
         ///     Restores the file with the passed name
         /// </summary
-        /// <param name="backupname">Name of the backup to restore</param>
+        /// <param name="backupName">Name of the backup to restore</param>
         /// <param name="dbName">filename in which the database shall be restored.</param>
         /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<Stream> Restore(string backupname, string dbName);
+        Task<Stream> RestoreAsync(string backupName, string dbName);
 
         /// <summary>
         ///     Gets a list with all the filenames who are available in the backup folder.
@@ -46,13 +46,13 @@ namespace MoneyFox.BusinessLogic.Backup
         /// </summary>
         /// <returns>A list with all filenames.</returns>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<List<string>> GetFileNames();
+        Task<List<string>> GetFileNamesAsync();
 
         /// <summary>
         ///     Get's the modification date for the existing backup.
         /// </summary>
         /// <returns>Returns the date of the last backup</returns>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<DateTime> GetBackupDate();
+        Task<DateTime> GetBackupDateAsync();
     }
 }

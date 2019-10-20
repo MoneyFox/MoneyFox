@@ -3,16 +3,16 @@ using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.Views
 {
-	public partial class AddCategoryPage
+    public partial class AddCategoryPage
     {
         private AddCategoryViewModel ViewModel => BindingContext as AddCategoryViewModel;
 
-        public AddCategoryPage ()
-		{
-			InitializeComponent ();
+        public AddCategoryPage()
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.AddCategoryVm;
 
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
         }
     }
 }

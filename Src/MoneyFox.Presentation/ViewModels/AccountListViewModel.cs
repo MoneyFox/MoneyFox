@@ -8,11 +8,9 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
-using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Groups;
@@ -85,7 +83,6 @@ namespace MoneyFox.Presentation.ViewModels
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
-
         private void EditAccount(AccountViewModel accountViewModel)
         {
             navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
@@ -105,19 +102,13 @@ namespace MoneyFox.Presentation.ViewModels
 
                 Accounts.Clear();
 
-                if (includedAlphaGroup.Any())
-                {
-                    Accounts.Add(includedAlphaGroup);
-                }
+                if (includedAlphaGroup.Any()) Accounts.Add(includedAlphaGroup);
 
-                if (excludedAlphaGroup.Any())
-                {
-                    Accounts.Add(excludedAlphaGroup);
-                }
+                if (excludedAlphaGroup.Any()) Accounts.Add(excludedAlphaGroup);
 
                 RaisePropertyChanged(nameof(HasNoAccounts));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logManager.Error(ex);
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
@@ -126,10 +117,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if (accountViewModel == null)
-            {
-                return;
-            }
+            if (accountViewModel == null) return;
 
             navigationService.NavigateTo(ViewModelLocator.PaymentList, accountViewModel.Id);
         }
@@ -138,7 +126,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (accountToDelete == null) return;
 
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) 
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(accountToDelete.Id));
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);

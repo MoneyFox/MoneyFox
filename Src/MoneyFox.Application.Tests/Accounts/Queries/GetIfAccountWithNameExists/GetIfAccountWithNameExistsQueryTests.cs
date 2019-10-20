@@ -37,7 +37,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
             await context.SaveChangesAsync();
 
             // Act
-            bool result = await new GetIfAccountWithNameExistsQuery.Handler(context).Handle(new GetIfAccountWithNameExistsQuery{AccountName = name}, default);
+            bool result = await new GetIfAccountWithNameExistsQuery.Handler(context).Handle(new GetIfAccountWithNameExistsQuery {AccountName = name}, default);
 
             // Assert
             result.ShouldEqual(expectedResult);

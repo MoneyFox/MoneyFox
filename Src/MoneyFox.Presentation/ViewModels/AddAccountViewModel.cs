@@ -36,14 +36,16 @@ namespace MoneyFox.Presentation.ViewModels
         protected override Task Initialize()
         {
             SelectedAccount = new AccountViewModel();
+
             return Task.CompletedTask;
         }
 
         protected override async Task SaveAccount()
         {
-            if (await mediator.Send(new GetIfAccountWithNameExistsQuery { AccountName = SelectedAccount.Name}))
+            if (await mediator.Send(new GetIfAccountWithNameExistsQuery {AccountName = SelectedAccount.Name}))
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+
                 return;
             }
 

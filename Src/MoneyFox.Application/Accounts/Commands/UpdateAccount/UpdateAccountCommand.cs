@@ -10,17 +10,18 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
     {
         public Account Account { get; set; }
 
-        public class Handler :IRequestHandler<UpdateAccountCommand> 
+        public class Handler : IRequestHandler<UpdateAccountCommand>
         {
-            private IEfCoreContext context;
+            private readonly IEfCoreContext context;
 
-            public Handler(IEfCoreContext context) {
+            public Handler(IEfCoreContext context)
+            {
                 this.context = context;
             }
 
-            public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken) 
+            public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
-                var existingAccount = await context.Accounts.FindAsync(request.Account.Id);
+                Account existingAccount = await context.Accounts.FindAsync(request.Account.Id);
 
                 existingAccount.UpdateAccount(request.Account.Name,
                                               request.Account.CurrentBalance,
@@ -28,6 +29,7 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
                                               request.Account.IsExcluded);
 
                 await context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }

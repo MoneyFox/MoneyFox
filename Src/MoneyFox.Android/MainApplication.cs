@@ -5,6 +5,7 @@ using Android.Runtime;
 using Autofac;
 using MoneyFox.Presentation;
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 
 namespace MoneyFox.Droid
@@ -35,7 +36,7 @@ namespace MoneyFox.Droid
 
         void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
         {
-            logManager.Fatal( e.Exception, "Application Terminating. 1");
+            logManager.Fatal(e.Exception, "Application Terminating. 1");
         }
 
         private void RegisterServices()
@@ -59,7 +60,7 @@ namespace MoneyFox.Droid
 
         private void InitLogger()
         {
-            var config = new NLog.Config.LoggingConfiguration();
+            var config = new LoggingConfiguration();
 
             var logfile = new FileTarget("logfile")
             {

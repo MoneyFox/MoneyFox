@@ -1,9 +1,9 @@
-﻿using MoneyFox.Application.Resources;
+﻿using System;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using Rg.Plugins.Popup.Extensions;
-using System;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -42,7 +42,7 @@ namespace MoneyFox.Presentation.Views
 
         protected override void OnAppearing()
         {
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
         }
 
         private void OpenDialog()
@@ -50,12 +50,12 @@ namespace MoneyFox.Presentation.Views
             Navigation.PushPopupAsync(new FilterPopup
             {
                 BindingContext = ViewModelLocator.SelectFilterDialogVm
-            }).FireAndForgetSafeAsync();
+            }).FireAndForgetSafe();
         }
 
         private void AddItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel }).FireAndForgetSafeAsync();
+            Navigation.PushPopupAsync(new AddPaymentPopup {BindingContext = ViewModel.ViewActionViewModel}).FireAndForgetSafe();
         }
 
         private void EditPayment(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace MoneyFox.Presentation.Views
         private void DeletePayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel).FireAndForgetSafeAsync();
+            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel).FireAndForgetSafe();
         }
     }
 }

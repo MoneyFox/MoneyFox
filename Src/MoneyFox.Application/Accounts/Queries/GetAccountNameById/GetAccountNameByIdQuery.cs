@@ -3,9 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Interfaces;
-using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Accounts.Queries.GetAccountNameById
 {
@@ -30,7 +28,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountNameById
             public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
             {
                 return await context.Accounts
-                                    .Where(x =>  x.Id == request.AccountId)
+                                    .Where(x => x.Id == request.AccountId)
                                     .Select(x => x.Name)
                                     .FirstAsync(cancellationToken);
             }

@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp
         /// </summary>
         public string GetVersion()
         {
-            var version = Package.Current.Id.Version;
+            PackageVersion version = Package.Current.Id.Version;
 
             return string.Format(
                 CultureInfo.InvariantCulture,

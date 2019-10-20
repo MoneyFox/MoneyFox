@@ -29,5 +29,4 @@ namespace MoneyFox.Application.Accounts.Queries.GetExcludedAccount
             }
         }
     }
-    
 }

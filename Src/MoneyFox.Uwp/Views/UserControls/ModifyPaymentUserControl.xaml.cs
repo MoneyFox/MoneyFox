@@ -5,7 +5,7 @@ using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {
-    public sealed partial class ModifyPaymentUserControl 
+    public sealed partial class ModifyPaymentUserControl
     {
         public ModifyPaymentUserControl()
         {
@@ -14,36 +14,34 @@ namespace MoneyFox.Uwp.Views.UserControls
 
         private async void ToggleRecurringVisibility(object sender, RoutedEventArgs e)
         {
-            var viewModel = (ModifyPaymentViewModel)DataContext;
+            var viewModel = (ModifyPaymentViewModel) DataContext;
+
             if (viewModel.SelectedPayment == null) return;
             if (viewModel.SelectedPayment.IsRecurring)
-            {
                 await RecurringStackPanel.Fade(1).StartAsync();
-            } else
-            {
+            else
                 await RecurringStackPanel.Fade().StartAsync();
-            }
         }
 
         private void SetVisibilityInitialy(object sender, RoutedEventArgs e)
         {
-            var viewModel = (ModifyPaymentViewModel)DataContext;
+            var viewModel = (ModifyPaymentViewModel) DataContext;
 
             if (viewModel == null)
             {
                 Analytics.TrackEvent("Error: viewModel is null on SetVisibilityInitialy");
-                return;
-            }
-            if (viewModel.SelectedPayment == null)
-            {
-                Analytics.TrackEvent("Error: SelectedPayment is null on SetVisibilityInitialy");
+
                 return;
             }
 
-            if (!viewModel.SelectedPayment.IsRecurring)
+            if (viewModel.SelectedPayment == null)
             {
-                ToggleRecurringVisibility(this, null);
+                Analytics.TrackEvent("Error: SelectedPayment is null on SetVisibilityInitialy");
+
+                return;
             }
+
+            if (!viewModel.SelectedPayment.IsRecurring) ToggleRecurringVisibility(this, null);
         }
     }
 }

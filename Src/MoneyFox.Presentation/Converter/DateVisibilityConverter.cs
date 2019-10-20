@@ -11,12 +11,12 @@ namespace MoneyFox.Presentation.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (DateTime)value != new DateTime();
+            return (DateTime) value != new DateTime();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (DateTime)value != new DateTime();
+            return (DateTime) value != new DateTime();
         }
     }
 }

@@ -5,8 +5,8 @@ using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.Presentation.Facades;
 using MoneyFox.Persistence;
+using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Uwp.Tasks
 {
@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.Tasks
     {
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            var deferral = taskInstance.GetDeferral();
+            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
             Debug.WriteLine("ClearPayment started");
             ExecutingPlatform.Current = AppPlatform.UWP;
 
@@ -25,17 +25,17 @@ namespace MoneyFox.Uwp.Tasks
 
             try
             {
-                var context = EfCoreContextFactory.Create();
+                EfCoreContext context = EfCoreContextFactory.Create();
                 await new ClearPaymentAction(new ClearPaymentDbAccess(context))
-                    .ClearPayments();
+                    .ClearPaymentsAsync();
                 await context.SaveChangesAsync();
-            } 
+            }
             catch (Exception ex)
             {
                 Debug.Write(ex);
                 Debug.WriteLine("ClearPaymentTask stopped due to an error.");
-
-            } finally
+            }
+            finally
             {
                 settingsFacade.LastExecutionTimeStampClearPayments = DateTime.Now;
                 Debug.WriteLine("ClearPaymentTask finished.");

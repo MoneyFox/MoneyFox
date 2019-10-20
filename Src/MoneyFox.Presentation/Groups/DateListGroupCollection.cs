@@ -54,30 +54,24 @@ namespace MoneyFox.Presentation.Groups
         /// <param name="itemClickCommand">The command to execute on a click.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroupCollection<T>> CreateGroups(IEnumerable<T> items, GetKeyDelegate getKey,
-            GetSortKeyDelegate getSortKey, bool sort = true, RelayCommand<T> itemClickCommand = null)
+                                                                    GetSortKeyDelegate getSortKey, bool sort = true, RelayCommand<T> itemClickCommand = null)
         {
             ThrowIfNull(items);
 
             var list = new List<DateListGroupCollection<T>>();
 
-            foreach (var item in items)
+            foreach (T item in items)
             {
-                var index = getKey(item);
+                string index = getKey(item);
 
-                if (list.All(a => a.Key != index))
-                {
-                    list.Add(new DateListGroupCollection<T>(index, itemClickCommand));
-                }
+                if (list.All(a => a.Key != index)) list.Add(new DateListGroupCollection<T>(index, itemClickCommand));
 
-                if (!string.IsNullOrEmpty(index))
-                {
-                    list.Find(a => a.Key == index).Add(item);
-                }
+                if (!string.IsNullOrEmpty(index)) list.Find(a => a.Key == index).Add(item);
             }
 
             if (sort)
             {
-                foreach (var group in list)
+                foreach (DateListGroupCollection<T> group in list)
                 {
                     group.Sort((c0, c1) => getSortKey(c1).Date.Day.CompareTo(getSortKey(c0).Date.Day));
                 }
@@ -86,6 +80,9 @@ namespace MoneyFox.Presentation.Groups
             return list;
         }
 
-        private static void ThrowIfNull(object parameter) { if (parameter == null) throw new GroupListParameterNullException(); }
+        private static void ThrowIfNull(object parameter)
+        {
+            if (parameter == null) throw new GroupListParameterNullException();
+        }
     }
 }

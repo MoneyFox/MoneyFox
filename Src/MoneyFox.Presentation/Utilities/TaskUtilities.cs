@@ -6,11 +6,11 @@ namespace MoneyFox.Presentation.Utilities
 {
     public static class TaskUtilities
     {
-        private static readonly Logger logger = LogManager.GetLogger("TaskLogger");
+        private static readonly Logger Logger = LogManager.GetLogger("TaskLogger");
 
 #pragma warning disable RECS0165 // Asynchronous methods should return a Task instead of void
 #pragma warning disable S3168 // "async" methods should not return "void"
-        public static async void FireAndForgetSafeAsync(this Task task)
+        public static async void FireAndForgetSafe(this Task task)
 #pragma warning restore S3168 // "async" methods should not return "void"
 #pragma warning restore RECS0165 // Asynchronous methods should return a Task instead of void
         {
@@ -20,7 +20,7 @@ namespace MoneyFox.Presentation.Utilities
             }
             catch (Exception ex)
             {
-                logger.Error(ex);
+                Logger.Error(ex);
             }
         }
     }

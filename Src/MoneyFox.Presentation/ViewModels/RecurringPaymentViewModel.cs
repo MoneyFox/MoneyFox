@@ -131,7 +131,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => chargedAccount;
             set
             {
-                if(chargedAccount == value) return;
+                if (chargedAccount == value) return;
                 chargedAccount = value;
                 RaisePropertyChanged();
             }

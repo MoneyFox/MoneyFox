@@ -17,16 +17,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void OrderByName()
         {
             // Arrange
-            var accountQueryList = new List<AccountViewModel>
+            IQueryable<AccountViewModel> accountQueryList = new List<AccountViewModel>
                 {
-                    new AccountViewModel{Name = "Foo2"},
-                    new AccountViewModel{Name = "Foo3"},
-                    new AccountViewModel{Name = "Foo1"}
+                    new AccountViewModel {Name = "Foo2"},
+                    new AccountViewModel {Name = "Foo3"},
+                    new AccountViewModel {Name = "Foo1"}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = accountQueryList.OrderByName().ToList();
+            List<AccountViewModel> resultList = accountQueryList.OrderByName().ToList();
 
             // Assert
             Assert.Equal(3, resultList.Count);
@@ -43,37 +43,37 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public async Task AnyWithName(string searchName, bool expectedResult)
         {
             // Arrange
-            var accountQueryList = new List<AccountViewModel>
-                {
-                    new AccountViewModel{Name = "Foo2"},
-                    new AccountViewModel{Name = "Foo3"},
-                    new AccountViewModel{Name = "Foo1"}
-                }
-                .AsQueryable()
-                .BuildMock()
-                .Object;
+            IQueryable<AccountViewModel> accountQueryList = new List<AccountViewModel>
+                                                            {
+                                                                new AccountViewModel {Name = "Foo2"},
+                                                                new AccountViewModel {Name = "Foo3"},
+                                                                new AccountViewModel {Name = "Foo1"}
+                                                            }
+                                                            .AsQueryable()
+                                                            .BuildMock()
+                                                            .Object;
 
             // Act
-            var result = await accountQueryList.AnyWithNameAsync(searchName);
+            bool result = await accountQueryList.AnyWithNameAsync(searchName);
 
             // Assert
             result.ShouldEqual(expectedResult);
         }
-        
+
         [Fact]
         public void AreNotExcluded()
         {
             // Arrange
-            var accountQueryList = new List<AccountViewModel>
+            IQueryable<AccountViewModel> accountQueryList = new List<AccountViewModel>
                 {
-                    new AccountViewModel{Id = 1, IsExcluded = false},
-                    new AccountViewModel{Id = 2, IsExcluded = true},
-                    new AccountViewModel{Id = 3, IsExcluded = false}
+                    new AccountViewModel {Id = 1, IsExcluded = false},
+                    new AccountViewModel {Id = 2, IsExcluded = true},
+                    new AccountViewModel {Id = 3, IsExcluded = false}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = accountQueryList.AreNotExcluded().ToList();
+            List<AccountViewModel> resultList = accountQueryList.AreNotExcluded().ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -85,16 +85,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void AreExcluded()
         {
             // Arrange
-            var accountQueryList = new List<AccountViewModel>
+            IQueryable<AccountViewModel> accountQueryList = new List<AccountViewModel>
                 {
-                    new AccountViewModel{Id = 1, IsExcluded = false},
-                    new AccountViewModel{Id = 2, IsExcluded = true},
-                    new AccountViewModel{Id = 3, IsExcluded = false}
+                    new AccountViewModel {Id = 1, IsExcluded = false},
+                    new AccountViewModel {Id = 2, IsExcluded = true},
+                    new AccountViewModel {Id = 3, IsExcluded = false}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = accountQueryList.AreExcluded().ToList();
+            List<AccountViewModel> resultList = accountQueryList.AreExcluded().ToList();
 
             // Assert
             Assert.Single(resultList);

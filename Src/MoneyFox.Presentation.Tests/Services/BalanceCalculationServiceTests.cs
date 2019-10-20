@@ -15,11 +15,11 @@ using Xunit;
 namespace MoneyFox.Presentation.Tests.Services
 {
     [ExcludeFromCodeCoverage]
-    public class BalanceCalculationServiceTests 
+    public class BalanceCalculationServiceTests
     {
         private readonly Mock<IMediator> mediatorMock;
 
-        public BalanceCalculationServiceTests() 
+        public BalanceCalculationServiceTests()
         {
             var account1 = new Account("Foo1", 100);
             var account2 = new Account("Foo2", 100);
@@ -39,10 +39,10 @@ namespace MoneyFox.Presentation.Tests.Services
 
             mediatorMock = new Mock<IMediator>();
             mediatorMock.Setup(x => x.Send(It.IsAny<GetUnclearedPaymentsOfThisMonthQuery>(), default))
-                            .ReturnsAsync(paymentList);
+                        .ReturnsAsync(paymentList);
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetExcludedAccountQuery>(), default))
-                            .ReturnsAsync(accounts);
+                        .ReturnsAsync(accounts);
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetIncludedAccountBalanceSummaryQuery>(), default))
                         .ReturnsAsync(700);
@@ -54,12 +54,11 @@ namespace MoneyFox.Presentation.Tests.Services
             // Arrange
 
             // Act
-            var result = await new BalanceCalculationService(mediatorMock.Object).GetTotalEndOfMonthBalance();
+            decimal result = await new BalanceCalculationService(mediatorMock.Object).GetTotalEndOfMonthBalance();
 
             // Assert
             Assert.Equal(950, result);
         }
-
 
         [Fact]
         public async Task GetTotalEndOfMonthBalance_CorrectSum()
@@ -68,7 +67,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var account1 = new Account("Foo1", 100);
 
             var paymentList = new List<Payment>
-            {                
+            {
                 new Payment(DateTime.Now, 100, PaymentType.Expense, account1),
                 new Payment(DateTime.Now, 200, PaymentType.Income, account1),
                 new Payment(DateTime.Now, 450, PaymentType.Expense, account1),
@@ -76,9 +75,9 @@ namespace MoneyFox.Presentation.Tests.Services
             };
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetUnclearedPaymentsOfThisMonthQuery>(), default))
-                            .ReturnsAsync(paymentList);
+                        .ReturnsAsync(paymentList);
             // Act
-            var result = await new BalanceCalculationService(mediatorMock.Object)
+            decimal result = await new BalanceCalculationService(mediatorMock.Object)
                 .GetTotalEndOfMonthBalance();
 
             // Assert

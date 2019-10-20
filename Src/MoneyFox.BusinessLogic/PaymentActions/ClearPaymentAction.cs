@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MoneyFox.BusinessDbAccess.PaymentActions;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.BusinessLogic.PaymentActions
 {
@@ -12,7 +14,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         ///     Clears all payments up for clearing.
         ///     After this save change has to be called on the context.
         /// </summary>
-        Task ClearPayments();
+        Task ClearPaymentsAsync();
     }
 
     /// <inheritdoc />
@@ -26,12 +28,12 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         }
 
         /// <inheritdoc />
-        public async Task ClearPayments()
+        public async Task ClearPaymentsAsync()
         {
-            var payments = await clearPaymentDbAccess.GetUnclearedPayments()
-                                                     ;
+            List<Payment> payments = await clearPaymentDbAccess.GetUnclearedPaymentsAsync()
+                ;
 
-            foreach (var payment in payments)
+            foreach (Payment payment in payments)
             {
                 payment.ClearPayment();
             }

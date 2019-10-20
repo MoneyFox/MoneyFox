@@ -79,10 +79,12 @@ namespace MoneyFox.Droid
                     case MESSAGE_SERVICE_CLEAR_PAYMENTS:
                         var clearPaymentsJob = (ClearPaymentsJob) msg.Obj;
                         clearPaymentsJob.ScheduleTask();
+
                         break;
                     case MESSAGE_SERVICE_RECURRING_PAYMENTS:
                         var recurringPaymentJob = (RecurringPaymentJob) msg.Obj;
                         recurringPaymentJob.ScheduleTask();
+
                         break;
                 }
             });

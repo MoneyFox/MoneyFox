@@ -8,26 +8,26 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
 {
-	public partial class StatisticCategorySpreadingPage
-	{
+    public partial class StatisticCategorySpreadingPage
+    {
         private StatisticCategorySpreadingViewModel ViewModel => BindingContext as StatisticCategorySpreadingViewModel;
 
-        public StatisticCategorySpreadingPage ()
-		{
-			InitializeComponent();
+        public StatisticCategorySpreadingPage()
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.StatisticCategorySpreadingVm;
 
-		    var filterItem = new ToolbarItem
-		    {
-		        Command = new Command(async () => await OpenDialog()),
-		        Text = Strings.SelectDateLabel,
-		        Priority = 0,
-		        Order = ToolbarItemOrder.Primary
-		    };
+            var filterItem = new ToolbarItem
+            {
+                Command = new Command(async () => await OpenDialog()),
+                Text = Strings.SelectDateLabel,
+                Priority = 0,
+                Order = ToolbarItemOrder.Primary
+            };
 
-		    ToolbarItems.Add(filterItem);
+            ToolbarItems.Add(filterItem);
 
-            ViewModel.LoadedCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.LoadedCommand.ExecuteAsync().FireAndForgetSafe();
         }
 
         private async Task OpenDialog()

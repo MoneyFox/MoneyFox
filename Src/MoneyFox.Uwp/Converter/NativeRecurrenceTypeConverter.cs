@@ -9,7 +9,7 @@ namespace MoneyFox.Uwp.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            return RecurrenceTypeConverterLogic.GetStringForPaymentRecurrence((PaymentRecurrence)value);
+            return RecurrenceTypeConverterLogic.GetStringForPaymentRecurrence((PaymentRecurrence) value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

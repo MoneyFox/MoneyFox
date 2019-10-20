@@ -6,7 +6,7 @@ using MoneyFox.Presentation.ViewModels.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
-    public class DesignTimePaymentListViewActionViewModel: IPaymentListViewActionViewModel
+    public class DesignTimePaymentListViewActionViewModel : IPaymentListViewActionViewModel
     {
         public LocalizedResources Resources { get; }
         public RelayCommand GoToAddIncomeCommand { get; }

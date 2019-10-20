@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
-using MoneyFox.BusinessDbAccess.QueryObjects;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
@@ -24,19 +25,16 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
 
             public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request, CancellationToken cancellationToken)
             {
-                var query = context.Payments
-                                   .Include(x => x.ChargedAccount)
-                                   .Include(x => x.TargetAccount)
-                                   .AreNotCleared()
-                                   .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth());
+                IQueryable<Payment> query = context.Payments
+                                                   .Include(x => x.ChargedAccount)
+                                                   .Include(x => x.TargetAccount)
+                                                   .AreNotCleared()
+                                                   .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth());
 
-                if (request.AccountId != 0) {
-                    query = query.HasAccountId(request.AccountId);
-                }
+                if (request.AccountId != 0) query = query.HasAccountId(request.AccountId);
 
                 return await query.ToListAsync(cancellationToken);
             }
         }
     }
 }
-

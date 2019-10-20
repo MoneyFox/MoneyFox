@@ -48,7 +48,7 @@ namespace MoneyFox.Domain.Entities
         public bool IsRecurring { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; }
 
         public virtual Category Category { get; private set; }
 
@@ -107,10 +107,7 @@ namespace MoneyFox.Domain.Entities
             IsCleared = Date.Date <= DateTime.Today.Date;
             ChargedAccount.AddPaymentAmount(this);
 
-            if (Type == PaymentType.Transfer)
-            {
-                TargetAccount.AddPaymentAmount(this);
-            }
+            if (Type == PaymentType.Transfer) TargetAccount.AddPaymentAmount(this);
         }
     }
 }

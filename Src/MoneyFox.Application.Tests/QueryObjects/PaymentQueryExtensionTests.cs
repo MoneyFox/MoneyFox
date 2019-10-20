@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using MoneyFox.BusinessDbAccess.QueryObjects;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using Xunit;
@@ -16,7 +16,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void HasDateLargerEqualsThan()
         {
             // Arrange
-            var paymentListQuery = new List<Payment>
+            IQueryable<Payment> paymentListQuery = new List<Payment>
                 {
                     new Payment(DateTime.Now.AddDays(1), 12, PaymentType.Expense, new Account("d")),
                     new Payment(DateTime.Now, 13, PaymentType.Expense, new Account("d")),
@@ -25,7 +25,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                 .AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.HasDateLargerEqualsThan(DateTime.Now).ToList();
+            List<Payment> resultList = paymentListQuery.HasDateLargerEqualsThan(DateTime.Now).ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -37,7 +37,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void IsCleared()
         {
             // Arrange
-            var paymentListQuery = new List<Payment>
+            IQueryable<Payment> paymentListQuery = new List<Payment>
                 {
                     new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d")),
                     new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
@@ -46,7 +46,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                 .AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.AreCleared().ToList();
+            List<Payment> resultList = paymentListQuery.AreCleared().ToList();
 
             // Assert
             Assert.Single(resultList);
@@ -57,7 +57,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void IsNotCleared()
         {
             // Arrange
-            var paymentListQuery = new List<Payment>
+            IQueryable<Payment> paymentListQuery = new List<Payment>
                 {
                     new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d")),
                     new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
@@ -66,7 +66,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                 .AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.AreNotCleared().ToList();
+            List<Payment> resultList = paymentListQuery.AreNotCleared().ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -78,7 +78,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void WithoutTransfers()
         {
             // Arrange
-            var paymentListQuery = new List<Payment>
+            IQueryable<Payment> paymentListQuery = new List<Payment>
                 {
                     new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d"), new Account("t")),
                     new Payment(DateTime.Now, 13, PaymentType.Income, new Account("d"), new Account("t")),
@@ -89,7 +89,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                 .AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.WithoutTransfers().ToList();
+            List<Payment> resultList = paymentListQuery.WithoutTransfers().ToList();
 
             // Assert
             Assert.Equal(3, resultList.Count);

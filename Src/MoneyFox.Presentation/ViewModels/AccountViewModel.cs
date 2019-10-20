@@ -111,6 +111,7 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 var hashCode = 7;
                 hashCode = (hashCode * 397) ^ id.GetHashCode();
+
                 return hashCode;
             }
         }

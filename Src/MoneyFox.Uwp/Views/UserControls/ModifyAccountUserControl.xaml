@@ -17,7 +17,7 @@
     </d:Page.DataContext>
 
     <UserControl.Resources>
-        <converter:DecimalConverter x:Key="DecimalConverter"/>
+        <converter:DecimalConverter x:Key="DecimalConverter" />
     </UserControl.Resources>
 
     <i:Interaction.Behaviors>

@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
@@ -19,6 +19,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);
@@ -33,7 +34,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetAccountsQuery.Handler(context).Handle(new GetAccountsQuery(), default);
+            List<Account> result = await new GetAccountsQuery.Handler(context).Handle(new GetAccountsQuery(), default);
 
             // Assert
             Assert.Single(result);

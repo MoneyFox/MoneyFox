@@ -21,7 +21,7 @@ namespace MoneyFox.Infrastructure.Tests.Mappings
         public void MapToViewModel()
         {
             // Arrange
-            var category = new Category("Testname","My Note");
+            var category = new Category("Testname", "My Note");
 
             // Act
             var result = mapper.Map<CategoryViewModel>(category);

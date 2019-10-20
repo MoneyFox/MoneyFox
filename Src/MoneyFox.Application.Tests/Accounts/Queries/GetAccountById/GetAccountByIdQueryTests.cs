@@ -10,7 +10,7 @@ using Xunit;
 
 namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountById
 {
-    [ExcludeFromCodeCoverage ]
+    [ExcludeFromCodeCoverage]
     public class GetAccountByIdQueryTests : IDisposable
     {
         private readonly EfCoreContext context;

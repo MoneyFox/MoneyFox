@@ -1,8 +1,8 @@
 ﻿using Windows.UI.Notifications;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Interfaces;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
-using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp
 {
@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp
                     TileMedium = GetBindingMediumContent(income, spending, earnings),
                     TileWide = GetBindingWideContent(income, spending, earnings),
                     TileLarge = GetBindingLargeContent(income, spending, earnings)
-                } 
+                }
             };
 
             // Update Tile

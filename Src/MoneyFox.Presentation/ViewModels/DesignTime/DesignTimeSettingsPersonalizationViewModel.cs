@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows.Input;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Utilities;

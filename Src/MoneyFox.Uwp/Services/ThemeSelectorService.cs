@@ -18,7 +18,7 @@ namespace MoneyFox.Uwp.Services
 
         public static void Initialize(ApplicationTheme requestedTheme)
         {
-            Theme = LoadThemeFromSettingsAsync(requestedTheme);
+            Theme = LoadThemeFromSettings(requestedTheme);
         }
 
         public static async Task SetThemeAsync(ElementTheme theme)
@@ -31,36 +31,28 @@ namespace MoneyFox.Uwp.Services
 
         public static async Task SetRequestedThemeAsync()
         {
-            foreach (var view in CoreApplication.Views)
+            foreach (CoreApplicationView view in CoreApplication.Views)
             {
                 await view.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                 {
-                    if (Window.Current.Content is FrameworkElement frameworkElement)
-                    {
-                        frameworkElement.RequestedTheme = Theme;
-                    }
+                    if (Window.Current.Content is FrameworkElement frameworkElement) frameworkElement.RequestedTheme = Theme;
                 });
             }
         }
 
-        private static ElementTheme LoadThemeFromSettingsAsync(ApplicationTheme requestedTheme)
+        private static ElementTheme LoadThemeFromSettings(ApplicationTheme requestedTheme)
         {
             var settingsAdapter = new SettingsAdapter();
             var settingsFacade = new SettingsFacade(settingsAdapter);
 
-            ElementTheme cacheTheme = ElementTheme.Default;
+            var cacheTheme = ElementTheme.Default;
 
             string themeName = settingsAdapter.GetValue(SETTINGS_KEY, string.Empty);
 
-            if (!string.IsNullOrEmpty(themeName))
-            {
-                Enum.TryParse(themeName, out cacheTheme);
-            }
+            if (!string.IsNullOrEmpty(themeName)) Enum.TryParse(themeName, out cacheTheme);
 
             if (cacheTheme == ElementTheme.Default && settingsFacade.Theme.ToString() != requestedTheme.ToString())
-            {
                 ThemeManager.ChangeTheme(Enum.Parse<AppTheme>(requestedTheme.ToString()));
-            }
 
             return cacheTheme;
         }

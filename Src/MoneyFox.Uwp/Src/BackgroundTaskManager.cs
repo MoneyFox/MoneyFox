@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp
         /// <inheritdoc />
         public void StartBackupSyncTask(int interval)
         {
-            BackgroundTaskHelper.Register(typeof(SyncBackupTask), new TimeTrigger((uint)interval, false));
+            BackgroundTaskHelper.Register(typeof(SyncBackupTask), new TimeTrigger((uint) interval, false));
         }
 
         /// <inheritdoc />

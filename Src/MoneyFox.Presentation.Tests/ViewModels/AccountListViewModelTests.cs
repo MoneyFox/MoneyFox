@@ -4,7 +4,6 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;

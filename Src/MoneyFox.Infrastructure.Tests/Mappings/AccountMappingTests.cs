@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Should;
 using Xunit;
-using MapperCollectionFixture = MoneyFox.Infrastructure.Tests.Collections.MapperCollectionFixture;
 
 namespace MoneyFox.Infrastructure.Tests.Mappings
 {
@@ -12,13 +12,13 @@ namespace MoneyFox.Infrastructure.Tests.Mappings
     {
         private readonly IMapper mapper;
 
-        public AccountMappingTests(MapperCollectionFixture fixture) 
+        public AccountMappingTests(MapperCollectionFixture fixture)
         {
             mapper = fixture.Mapper;
         }
 
         [Fact]
-        public void MapToViewModel() 
+        public void MapToViewModel()
         {
             // Arrange
             var account = new Account("Testname", 40, "My Note", true);

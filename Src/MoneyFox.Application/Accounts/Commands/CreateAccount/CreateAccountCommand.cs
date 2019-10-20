@@ -12,7 +12,7 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
 
         public class Handler : IRequestHandler<CreateAccountCommand>
         {
-            private IEfCoreContext context;
+            private readonly IEfCoreContext context;
 
             public Handler(IEfCoreContext context)
             {
@@ -24,6 +24,7 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
             {
                 await context.Accounts.AddAsync(request.AccountToSave, cancellationToken);
                 await context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }

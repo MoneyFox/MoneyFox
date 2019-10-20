@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Resources;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MoneyFox.Application.Resources;
 using UniversalRateReminder;
 
 namespace MoneyFox.Uwp.Services

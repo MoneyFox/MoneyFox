@@ -1,15 +1,15 @@
 ﻿<Page x:Class="MoneyFox.Uwp.Views.StatisticSelectorView"
-                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                      xmlns:models="using:MoneyFox.Presentation.Models"
-                      xmlns:converter="using:MoneyFox.Uwp.Converter"
-                      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-                      mc:Ignorable="d"
-                      DataContext="{Binding StatisticSelectorVm, Source={StaticResource Locator}}">
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:models="using:MoneyFox.Presentation.Models"
+      xmlns:converter="using:MoneyFox.Uwp.Converter"
+      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+      mc:Ignorable="d"
+      DataContext="{Binding StatisticSelectorVm, Source={StaticResource Locator}}">
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeStatisticSelectorViewModel />
@@ -46,23 +46,24 @@
                    Style="{ThemeResource UwpPageTitleStyle}" />
 
         <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"
-                      ItemsSource="{Binding StatisticItems}"
-                      Grid.Row="1"
-                      Margin="{StaticResource NegativeLargeLeftRightMargin}"
-                      HorizontalAlignment="Stretch"
-                      Background="Transparent">
+                  ItemsSource="{Binding StatisticItems}"
+                  Grid.Row="1"
+                  Margin="{StaticResource NegativeLargeLeftRightMargin}"
+                  HorizontalAlignment="Stretch"
+                  Background="Transparent">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}" InputConverter="{StaticResource SelectedConverter}" />
+                    <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}"
+                                              InputConverter="{StaticResource SelectedConverter}" />
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment"
-                                Value="Stretch" />
+                            Value="Stretch" />
                     <Setter Property="VerticalContentAlignment"
-                                Value="Stretch" />
+                            Value="Stretch" />
                 </Style>
             </ListView.ItemContainerStyle>
         </ListView>

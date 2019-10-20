@@ -34,7 +34,7 @@
                 </FlyoutBase.AttachedFlyout>
                 <StackPanel Padding="{StaticResource SmallListItemPadding}"
                             Margin="{StaticResource MediumLeftRightMargin}">
-                    
+
                     <TextBlock Style="{ThemeResource BodyTextBlockStyle}"
                                Text="{x:Bind Name}" />
 
@@ -90,26 +90,26 @@
                           IsSynchronizedWithCurrentItem="False"
                           ItemTemplate="{StaticResource CategoryTemplate}"
                           ItemsSource="{Binding Source={StaticResource Groups}}">
-                    
+
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
                             <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}"
                                                       InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
-                    
+
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                             <Setter Property="VerticalContentAlignment" Value="Stretch" />
                         </Style>
                     </ListView.ItemContainerStyle>
-                    
+
                     <ListView.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}"  HidesIfEmpty="True" />
+                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
                     </ListView.GroupStyle>
                 </ListView>
-                
+
             </SemanticZoom.ZoomedInView>
             <SemanticZoom.ZoomedOutView>
                 <GridView Margin="{StaticResource MediumTopMargin}"

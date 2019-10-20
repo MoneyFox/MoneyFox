@@ -15,8 +15,10 @@ using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
-namespace MoneyFox.Presentation.ViewModels {
-    public class EditAccountViewModel : ModifyAccountViewModel {
+namespace MoneyFox.Presentation.ViewModels
+{
+    public class EditAccountViewModel : ModifyAccountViewModel
+    {
         private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
         private readonly IMapper mapper;
@@ -28,7 +30,8 @@ namespace MoneyFox.Presentation.ViewModels {
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
                                     IDialogService dialogService,
-                                    INavigationService navigationService) : base(settingsFacade, backupService, navigationService) {
+                                    INavigationService navigationService) : base(settingsFacade, backupService, navigationService)
+        {
             this.mediator = mediator;
             this.mapper = mapper;
             this.settingsFacade = settingsFacade;
@@ -38,23 +41,27 @@ namespace MoneyFox.Presentation.ViewModels {
 
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccount);
 
-        protected override async Task Initialize() {
+        protected override async Task Initialize()
+        {
             SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(AccountId)));
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 
-        protected override async Task SaveAccount() {
+        protected override async Task SaveAccount()
+        {
             await mediator.Send(new UpdateAccountCommand {Account = mapper.Map<Account>(SelectedAccount)});
             CancelCommand.Execute(null);
         }
 
-        protected async Task DeleteAccount() {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage)) {
+        protected async Task DeleteAccount()
+        {
+            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            {
                 await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 NavigationService.GoBack();
-                backupService.EnqueueBackupTask().FireAndForgetSafeAsync();
+                backupService.EnqueueBackupTask().FireAndForgetSafe();
             }
         }
     }
