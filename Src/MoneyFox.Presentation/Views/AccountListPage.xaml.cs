@@ -20,12 +20,12 @@ namespace MoneyFox.Presentation.Views
 
         protected override void OnAppearing()
         {
-            ViewModel?.LoadDataCommand.ExecuteAsync().FireAndForgetSafe();
+            ViewModel?.LoadDataCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
         private void AddItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushPopupAsync(new AddAccountAndPaymentPopup {BindingContext = ViewModel?.ViewActionViewModel}).FireAndForgetSafe();
+            Navigation.PushPopupAsync(new AddAccountAndPaymentPopup {BindingContext = ViewModel?.ViewActionViewModel}).FireAndForgetSafeAsync();
         }
 
         private void EditAccount(object sender, EventArgs e)
@@ -39,7 +39,7 @@ namespace MoneyFox.Presentation.Views
         {
             if (!(sender is MenuItem menuItem)) return;
 
-            ViewModel?.DeleteAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel).FireAndForgetSafe();
+            ViewModel?.DeleteAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel).FireAndForgetSafeAsync();
         }
     }
 }

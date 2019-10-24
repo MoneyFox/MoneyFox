@@ -4,7 +4,6 @@
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   mc:Ignorable="d"
                   xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-                  xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
                   xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
                   x:Class="MoneyFox.Presentation.Views.SettingsPage"
                   Visual="Material"

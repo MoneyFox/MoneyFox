@@ -11,7 +11,7 @@ namespace MoneyFox.Presentation.Views
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.AddAccountVm;
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
     }
 }
