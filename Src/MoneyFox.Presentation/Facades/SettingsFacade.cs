@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using MoneyFox.Application;
-using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.Application.Adapters;
 
 namespace MoneyFox.Presentation.Facades
 {

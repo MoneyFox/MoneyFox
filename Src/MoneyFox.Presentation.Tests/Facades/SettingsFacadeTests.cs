@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Application;
-using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.Application.Adapters;
 using MoneyFox.Presentation.Facades;
 using Moq;
 using Should;

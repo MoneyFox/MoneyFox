@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using MoneyFox.Application;
-using MoneyFox.BusinessLogic.Adapters;
+using MoneyFox.Application.Adapters;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Style;
 using Xamarin.Forms;
