@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
     <PackageReference Include="NLog" Version="4.6.7" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
-    <PackageReference Include="XF.Material" Version="1.5.3" />
+    <PackageReference Include="XF.Material" Version="1.5.4" />
   </ItemGroup>
 
   <ItemGroup>

@@ -256,7 +256,7 @@
       <Version>4.2.0.848062</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
-      <Version>1.5.3</Version>
+      <Version>1.5.4</Version>
     </PackageReference>
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0">
       <ExcludeAssets>all</ExcludeAssets>
