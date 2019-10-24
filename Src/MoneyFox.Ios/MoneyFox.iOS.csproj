@@ -255,6 +255,9 @@
     <PackageReference Include="XF.Material">
       <Version>1.5.3</Version>
     </PackageReference>
+    <PackageReference Include="System.Reflection.Emit" Version="4.3.0">
+      <ExcludeAssets>all</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
