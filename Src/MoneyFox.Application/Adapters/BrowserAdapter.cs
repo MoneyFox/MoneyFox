@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace MoneyFox.BusinessLogic.Adapters
+namespace MoneyFox.Application.Adapters
 {
     public interface IBrowserAdapter
     {

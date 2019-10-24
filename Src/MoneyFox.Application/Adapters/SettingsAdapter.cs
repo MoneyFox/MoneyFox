@@ -1,7 +1,7 @@
 ﻿using System;
 using Xamarin.Essentials;
 
-namespace MoneyFox.BusinessLogic.Adapters
+namespace MoneyFox.Application.Adapters
 {
     public interface ISettingsAdapter
     {
