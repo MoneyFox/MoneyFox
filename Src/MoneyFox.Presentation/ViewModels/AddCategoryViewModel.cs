@@ -2,8 +2,10 @@
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -13,6 +15,7 @@ namespace MoneyFox.Presentation.ViewModels
     public class AddCategoryViewModel : ModifyCategoryViewModel
     {
         private readonly IMediator mediator;
+        private readonly IMapper mapper;
         private readonly IDialogService dialogService;
 
         public AddCategoryViewModel(IMediator mediator,
@@ -23,6 +26,7 @@ namespace MoneyFox.Presentation.ViewModels
                                     IMapper mapper) : base(mediator, settingsFacade, backupService, navigationService, mapper)
         {
             this.mediator = mediator;
+            this.mapper = mapper;
             this.dialogService = dialogService;
 
             Title = Strings.AddCategoryTitle;
@@ -47,10 +51,10 @@ namespace MoneyFox.Presentation.ViewModels
             if (await mediator.Send(new GetIfCategoryWithNameExistsQuery {CategoryName = SelectedCategory.Name}))
             {
                 await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
-
                 return;
             }
 
+            await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
             NavigationService.GoBack();
         }
     }
