@@ -12,7 +12,7 @@ namespace MoneyFox.Presentation.Tests.Converter
         [Fact]
         public void Convert_False()
         {
-            ((bool)new DateVisibilityConverter().Convert(new DateTime(), null, null, null)).ShouldBeFalse();
+            ((bool) new DateVisibilityConverter().Convert(new DateTime(), null, null, null)).ShouldBeFalse();
         }
 
         [Fact]

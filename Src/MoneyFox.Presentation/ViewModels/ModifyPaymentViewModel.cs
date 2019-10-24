@@ -7,7 +7,6 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
-using MoneyFox.Application.Accounts.Queries;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
@@ -18,8 +17,10 @@ using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
-namespace MoneyFox.Presentation.ViewModels {
-    public interface IModifyPaymentViewModel : IBaseViewModel {
+namespace MoneyFox.Presentation.ViewModels
+{
+    public interface IModifyPaymentViewModel : IBaseViewModel
+    {
         /// <summary>
         ///     Indicates if the PaymentViewModel is a transfer.
         /// </summary>
@@ -97,7 +98,8 @@ namespace MoneyFox.Presentation.ViewModels {
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel {
+    public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
+    {
         private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IBackupService backupService;
@@ -119,7 +121,8 @@ namespace MoneyFox.Presentation.ViewModels {
                                          IDialogService dialogService,
                                          ISettingsFacade settingsFacade,
                                          IBackupService backupService,
-                                         INavigationService navigationService) {
+                                         INavigationService navigationService)
+        {
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
@@ -163,9 +166,11 @@ namespace MoneyFox.Presentation.ViewModels {
         /// <summary>
         ///     The selected recurrence
         /// </summary>
-        public PaymentRecurrence Recurrence {
+        public PaymentRecurrence Recurrence
+        {
             get => recurrence;
-            set {
+            set
+            {
                 if (recurrence == value) return;
 
                 recurrence = value;
@@ -177,7 +182,8 @@ namespace MoneyFox.Presentation.ViewModels {
         ///     List with the different recurrence types.
         ///     This has to have the same order as the enum
         /// </summary>
-        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence> {
+        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
+        {
             PaymentRecurrence.Daily,
             PaymentRecurrence.DailyWithoutWeekend,
             PaymentRecurrence.Weekly,
@@ -192,9 +198,11 @@ namespace MoneyFox.Presentation.ViewModels {
         /// <summary>
         ///     The selected PaymentViewModel
         /// </summary>
-        public PaymentViewModel SelectedPayment {
+        public PaymentViewModel SelectedPayment
+        {
             get => selectedPayment;
-            set {
+            set
+            {
                 if (selectedPayment == value) return;
                 selectedPayment = value;
                 RaisePropertyChanged();
@@ -209,9 +217,11 @@ namespace MoneyFox.Presentation.ViewModels {
         ///     This is used to prevent issues when converting the amount string to double
         ///     without the correct culture.
         /// </summary>
-        public string AmountString {
+        public string AmountString
+        {
             get => HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
-            set {
+            set
+            {
                 // we remove all separator chars to ensure that it works in all regions
                 string amountString = HelperFunctions.RemoveGroupingSeparators(value);
                 if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
@@ -222,9 +232,11 @@ namespace MoneyFox.Presentation.ViewModels {
         /// <summary>
         ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> ChargedAccounts {
+        public ObservableCollection<AccountViewModel> ChargedAccounts
+        {
             get => chargedAccounts;
-            private set {
+            private set
+            {
                 chargedAccounts = value;
                 RaisePropertyChanged();
             }
@@ -233,17 +245,21 @@ namespace MoneyFox.Presentation.ViewModels {
         /// <summary>
         ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
-        public ObservableCollection<AccountViewModel> TargetAccounts {
+        public ObservableCollection<AccountViewModel> TargetAccounts
+        {
             get => targetAccounts;
-            private set {
+            private set
+            {
                 targetAccounts = value;
                 RaisePropertyChanged();
             }
         }
 
-        public virtual string Title {
+        public virtual string Title
+        {
             get => title;
-            set {
+            set
+            {
                 if (title == value) return;
                 title = value;
                 RaisePropertyChanged();
@@ -260,24 +276,28 @@ namespace MoneyFox.Presentation.ViewModels {
 
         protected abstract Task SavePayment();
 
-        protected virtual async Task Initialize() {
+        protected virtual async Task Initialize()
+        {
             var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
 
-
-        private async Task SavePaymentBase() {
-            if (SelectedPayment.ChargedAccount == null) {
+        private async Task SavePaymentBase()
+        {
+            if (SelectedPayment.ChargedAccount == null)
+            {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
+
                 return;
             }
 
             await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) {
+            if (settingsFacade.IsBackupAutouploadEnabled)
+            {
 #pragma warning disable 4014
                 backupService.EnqueueBackupTask();
 #pragma warning restore 4014
@@ -288,30 +308,37 @@ namespace MoneyFox.Presentation.ViewModels {
         ///     Moved to own method for debugg reasons
         /// </summary>
         /// <param name="message">Message stent.</param>
-        private void ReceiveMessage(CategorySelectedMessage message) {
+        private void ReceiveMessage(CategorySelectedMessage message)
+        {
             if (SelectedPayment == null || message == null) return;
             SelectedPayment.Category = message.SelectedCategory;
         }
 
-        private void OpenSelectCategoryList() {
+        private void OpenSelectCategoryList()
+        {
             navigationService.NavigateTo(ViewModelLocator.SelectCategoryList);
         }
 
-        private void ResetSelection() {
+        private void ResetSelection()
+        {
             SelectedPayment.Category = null;
         }
 
-        private void Cancel() {
+        private void Cancel()
+        {
             navigationService.GoBack();
         }
 
-        private void UpdateOtherComboBox() {
+        private void UpdateOtherComboBox()
+        {
             var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-            foreach (AccountViewModel account in TargetAccounts) {
+            foreach (AccountViewModel account in TargetAccounts)
+            {
                 if (!tempCollection.Contains(account)) tempCollection.Add(account);
             }
 
-            foreach (AccountViewModel account in tempCollection) {
+            foreach (AccountViewModel account in tempCollection)
+            {
                 //fills targetaccounts
                 if (!TargetAccounts.Contains(account)) TargetAccounts.Add(account);
 

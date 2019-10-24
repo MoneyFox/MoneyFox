@@ -31,7 +31,6 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-
         /// <summary>
         ///     Additional details about the CategoryViewModel
         /// </summary>

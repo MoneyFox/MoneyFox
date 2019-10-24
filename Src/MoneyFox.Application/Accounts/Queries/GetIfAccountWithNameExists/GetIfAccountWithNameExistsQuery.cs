@@ -12,7 +12,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists
 
         public class Handler : IRequestHandler<GetIfAccountWithNameExistsQuery, bool>
         {
-            private IEfCoreContext context;
+            private readonly IEfCoreContext context;
 
             public Handler(IEfCoreContext context)
             {

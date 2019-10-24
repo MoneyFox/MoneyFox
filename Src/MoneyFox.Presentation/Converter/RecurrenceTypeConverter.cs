@@ -24,7 +24,7 @@ namespace MoneyFox.Presentation.Converter
         }
 
         /// <summary>
-        ///      Not implemented.
+        ///     Not implemented.
         /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

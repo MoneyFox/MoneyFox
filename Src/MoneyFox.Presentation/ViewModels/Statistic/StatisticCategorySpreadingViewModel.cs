@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
@@ -56,16 +57,17 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery{StartDate = StartDate, EndDate = EndDate}));
+            StatisticItems =
+                new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery {StartDate = StartDate, EndDate = EndDate}));
 
-            var microChartItems = StatisticItems
-                                  .Select(x => new Entry(x.Value)
-                                  {
-                                      Label = x.Label,
-                                      ValueLabel = x.ValueLabel,
-                                      Color = SKColor.Parse(x.Color)
-                                  })
-                                  .ToList();
+            List<Entry> microChartItems = StatisticItems
+                                          .Select(x => new Entry(x.Value)
+                                          {
+                                              Label = x.Label,
+                                              ValueLabel = x.ValueLabel,
+                                              Color = SKColor.Parse(x.Color)
+                                          })
+                                          .ToList();
 
             Chart = new DonutChart
             {

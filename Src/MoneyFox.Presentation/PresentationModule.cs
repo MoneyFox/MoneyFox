@@ -27,6 +27,7 @@ namespace MoneyFox.Presentation
             builder.Register<ServiceFactory>(context =>
             {
                 var c = context.Resolve<IComponentContext>();
+
                 return t => c.Resolve(t);
             });
 
@@ -34,10 +35,10 @@ namespace MoneyFox.Presentation
 
 
             builder.Register(c => PublicClientApplicationBuilder
-                                   .Create(ServiceConstants.MSAL_APPLICATION_ID)
-                                   .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
-                                   .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
-                                   .Build());
+                                  .Create(ServiceConstants.MSAL_APPLICATION_ID)
+                                  .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                                  .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+                                  .Build());
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))

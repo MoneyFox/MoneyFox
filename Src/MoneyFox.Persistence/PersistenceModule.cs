@@ -5,9 +5,9 @@ namespace MoneyFox.Persistence
 {
     public class PersistenceModule : Module
     {
-        protected override void Load(ContainerBuilder builder) 
+        protected override void Load(ContainerBuilder builder)
         {
-            var context = EfCoreContextFactory.Create();
+            EfCoreContext context = EfCoreContextFactory.Create();
             builder.RegisterInstance(context)
                    .As<DbContext>()
                    .AsImplementedInterfaces()

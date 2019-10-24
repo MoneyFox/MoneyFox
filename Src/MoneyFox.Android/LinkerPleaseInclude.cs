@@ -30,7 +30,7 @@ namespace MoneyFox.Droid
         {
             changed.PropertyChanged += (sender, e) =>
             {
-                var test = e.PropertyName;
+                string test = e.PropertyName;
             };
         }
 
@@ -99,7 +99,7 @@ namespace MoneyFox.Droid
             changed.CollectionChanged +=
                 (s, e) =>
                 {
-                    var test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
+                    string test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
                 };
         }
 
@@ -116,10 +116,7 @@ namespace MoneyFox.Droid
         {
             command.CanExecuteChanged += (s, e) =>
             {
-                if (command.CanExecute(null))
-                {
-                    command.Execute(null);
-                }
+                if (command.CanExecute(null)) command.Execute(null);
             };
         }
     }

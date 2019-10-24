@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,7 +27,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
         {
             TestEfCoreContextFactory.Destroy(context);
         }
-        
+
         [Fact]
         public async Task GetPaymentsForAccountId_CorrectAccountId_PaymentFound()
         {
@@ -40,13 +41,13 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetPaymentsForAccountIdQuery.Handler(context).Handle(
+            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(context).Handle(
                 new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
 
             // Assert
             result.First().Id.ShouldEqual(payment1.Id);
         }
-        
+
         [Fact]
         public async Task GetPaymentsForAccountId_CorrectDateRange_PaymentFound()
         {
@@ -60,7 +61,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetPaymentsForAccountIdQuery.Handler(context).Handle(
+            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(context).Handle(
                 new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
 
             // Assert

@@ -36,7 +36,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly INavigationService navigationService;
 
         public SettingsViewModel(INavigationService navigationService,
-                                 IAboutViewModel aboutViewModel, 
+                                 IAboutViewModel aboutViewModel,
                                  ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel,
                                  ISettingsPersonalizationViewModel settingsPersonalizationViewModel)
         {
@@ -101,22 +101,27 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 case SettingsType.Personalization:
                     navigationService.NavigateTo(ViewModelLocator.SettingsPersonalization);
+
                     break;
 
                 case SettingsType.Categories:
                     navigationService.NavigateTo(ViewModelLocator.CategoryList);
+
                     break;
 
                 case SettingsType.BackgroundJob:
                     navigationService.NavigateTo(ViewModelLocator.SettingsBackgroundJob);
+
                     break;
 
                 case SettingsType.Backup:
                     navigationService.NavigateTo(ViewModelLocator.Backup);
+
                     break;
 
                 case SettingsType.About:
                     navigationService.NavigateTo(ViewModelLocator.About);
+
                     break;
             }
         }

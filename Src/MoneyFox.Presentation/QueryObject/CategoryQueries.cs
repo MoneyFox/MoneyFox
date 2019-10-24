@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.QueryObject
-{    
+{
     /// <summary>
     ///     Query Objects for account queries.
     /// </summary>
@@ -17,7 +17,7 @@ namespace MoneyFox.Presentation.QueryObject
         public static async Task<bool> AnyWithNameAsync(this IQueryable<CategoryViewModel> query, string name)
         {
             return await query.AnyAsync(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase))
-                              ;
+                ;
         }
 
         /// <summary>

@@ -21,11 +21,11 @@ namespace MoneyFox.Presentation.ViewModels
 
         /// <inheritdoc />
         public RelayCommand GoToAddAccountCommand =>
-                new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddAccount));
+            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddAccount));
 
         /// <inheritdoc />
         public RelayCommand GoToAddIncomeCommand =>
-                new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
+            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
 
         /// <inheritdoc />
         public RelayCommand GoToAddExpenseCommand =>

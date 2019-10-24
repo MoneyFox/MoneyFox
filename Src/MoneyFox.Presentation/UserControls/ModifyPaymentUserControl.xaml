@@ -140,11 +140,12 @@
                     <StackLayout
                         IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}"
                         Spacing="{StaticResource DefaultSpacing}">
-                        <Label Text="{Binding Resources[DateLEnddateLabelabel]}"
+                        <Label Text="{Binding Resources[EnddateLabel]}"
                                Style="{DynamicResource DefaultTextStyle}"
 
                                Margin="{StaticResource MediumBottomMargin}" />
-                        <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}" />
+                        <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}"
+                                    Style="{StaticResource DefaultDatePickerStyle}" />
                     </StackLayout>
 
                 </StackLayout>

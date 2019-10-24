@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Windows.Input;
 using Foundation;
 using UIKit;
@@ -16,13 +17,13 @@ namespace MoneyFox.iOS
         public void Include(UIButton uiButton)
         {
             uiButton.TouchUpInside += (s, e) =>
-                                      uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
+                uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
         }
 
         public void Include(UIBarButtonItem barButton)
         {
             barButton.Clicked += (s, e) =>
-                                 barButton.Title = barButton.Title + "";
+                barButton.Title = barButton.Title + "";
         }
 
         public void Include(UITextField textField)
@@ -40,7 +41,7 @@ namespace MoneyFox.iOS
         public void Include(UILabel label)
         {
             label.Text = label.Text + "";
-            label.AttributedText = new NSAttributedString(label.AttributedText.ToString() + "");
+            label.AttributedText = new NSAttributedString(label.AttributedText + "");
         }
 
         public void Include(UIImageView imageView)
@@ -85,7 +86,10 @@ namespace MoneyFox.iOS
 
         public void Include(INotifyCollectionChanged changed)
         {
-            changed.CollectionChanged += (s, e) => { var test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}"; };
+            changed.CollectionChanged += (s, e) =>
+            {
+                string test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
+            };
         }
 
         public void Include(ICommand command)
@@ -96,9 +100,12 @@ namespace MoneyFox.iOS
             };
         }
 
-        public void Include(System.ComponentModel.INotifyPropertyChanged changed)
+        public void Include(INotifyPropertyChanged changed)
         {
-            changed.PropertyChanged += (sender, e) => { var test = e.PropertyName; };
+            changed.PropertyChanged += (sender, e) =>
+            {
+                string test = e.PropertyName;
+            };
         }
     }
 }

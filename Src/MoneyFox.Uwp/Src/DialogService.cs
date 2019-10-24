@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Uwp.Views.Dialogs;
-using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp
 {
@@ -22,20 +22,16 @@ namespace MoneyFox.Uwp
         /// <param name="positivAction">Action who shall be executed on the positive button click.</param>
         /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
         public async Task ShowConfirmMessage(string title, string message, Action positivAction,
-            string positiveButtonText = null,
-            string negativeButtonText = null, Action negativAction = null)
+                                             string positiveButtonText = null,
+                                             string negativeButtonText = null, Action negativAction = null)
         {
             HideLoadingDialog();
-            var isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
+            bool isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
 
             if (isPositiveAnswer)
-            {
                 positivAction();
-            }
             else
-            {
                 negativAction?.Invoke();
-            }
         }
 
         /// <summary>
@@ -46,7 +42,7 @@ namespace MoneyFox.Uwp
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
         public async Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
-            string negativeButtonText = null)
+                                                   string negativeButtonText = null)
         {
             HideLoadingDialog();
 
@@ -54,7 +50,7 @@ namespace MoneyFox.Uwp
             dialog.Commands.Add(new UICommand(positiveButtonText ?? Strings.YesLabel));
             dialog.Commands.Add(new UICommand(negativeButtonText ?? Strings.NoLabel));
 
-            var result = await dialog.ShowAsync();
+            IUICommand result = await dialog.ShowAsync();
 
             return result.Label == (positiveButtonText ?? Strings.YesLabel);
         }

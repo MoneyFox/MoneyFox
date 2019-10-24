@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using Windows.Storage;
 using NLog;
+using NLog.Config;
 using NLog.Targets;
 
 namespace MoneyFox.Uwp.Services
@@ -9,7 +10,7 @@ namespace MoneyFox.Uwp.Services
     {
         public static void Initialize()
         {
-            var config = new NLog.Config.LoggingConfiguration();
+            var config = new LoggingConfiguration();
 
             var logfile = new FileTarget("logfile")
             {

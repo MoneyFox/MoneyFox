@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Presentation.Commands;
+﻿using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
@@ -8,7 +7,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
     {
         /// <inheritdoc />
         public decimal TotalBalance => 1784;
-        
+
         /// <inheritdoc />
         public decimal EndOfMonthBalance => 9784;
 

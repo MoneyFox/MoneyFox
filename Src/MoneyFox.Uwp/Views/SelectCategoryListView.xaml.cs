@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.Views
         {
             if (e.Key == VirtualKey.Enter)
             {
-                var viewModel = ViewModel;
+                SelectCategoryListViewModel viewModel = ViewModel;
                 viewModel.ItemClickCommand.Execute(viewModel.SelectedCategory);
             }
 

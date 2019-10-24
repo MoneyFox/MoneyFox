@@ -14,7 +14,7 @@ namespace MoneyFox.Uwp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null) ViewModel.AccountId = (int)e.Parameter;
+            if (e.Parameter != null) ViewModel.AccountId = (int) e.Parameter;
         }
     }
 }

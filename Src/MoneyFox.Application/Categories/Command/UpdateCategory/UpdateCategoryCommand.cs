@@ -21,12 +21,13 @@ namespace MoneyFox.Application.Categories.Command.UpdateCategory
 
             public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
             {
-                var existingCategory = await context.Categories.FindAsync(request.Category.Id);
+                Category existingCategory = await context.Categories.FindAsync(request.Category.Id);
 
                 existingCategory.UpdateData(request.Category.Name,
                                             request.Category.Note);
 
                 await context.SaveChangesAsync(cancellationToken);
+
                 return Unit.Value;
             }
         }

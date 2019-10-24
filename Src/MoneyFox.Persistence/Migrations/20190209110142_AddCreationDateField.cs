@@ -5,33 +5,33 @@ using Microsoft.EntityFrameworkCore.Migrations;
 #pragma warning disable S3900 // Arguments of public methods should be validated against null
 #pragma warning disable CA1062 // Validate arguments of public methods
 #pragma warning disable S1192 // String literals should not be duplicated
-namespace MoneyFox.DataLayer.Migrations
+namespace MoneyFox.Persistence.Migrations
 {
     public partial class AddCreationDateField : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
-                name: "CreationTime",
-                table: "RecurringPayments",
+                "CreationTime",
+                "RecurringPayments",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "CreationTime",
-                table: "Payments",
+                "CreationTime",
+                "Payments",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "CreationTime",
-                table: "Categories",
+                "CreationTime",
+                "Categories",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                name: "CreationTime",
-                table: "Accounts",
+                "CreationTime",
+                "Accounts",
                 nullable: false,
                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
         }
@@ -39,20 +39,20 @@ namespace MoneyFox.DataLayer.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "CreationTime",
-                table: "RecurringPayments");
+                "CreationTime",
+                "RecurringPayments");
 
             migrationBuilder.DropColumn(
-                name: "CreationTime",
-                table: "Payments");
+                "CreationTime",
+                "Payments");
 
             migrationBuilder.DropColumn(
-                name: "CreationTime",
-                table: "Categories");
+                "CreationTime",
+                "Categories");
 
             migrationBuilder.DropColumn(
-                name: "CreationTime",
-                table: "Accounts");
+                "CreationTime",
+                "Accounts");
         }
     }
 }

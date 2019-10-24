@@ -39,10 +39,21 @@
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        Margin="0,6,0,0" />
 
-                <Entry HorizontalTextAlignment="End"
-                       Keyboard="Numeric"
-                       Style="{StaticResource DefaultEntry}"
-                       Text="{Binding BackupSyncRecurrence}" />
+                <Grid HorizontalOptions="FillAndExpand"
+                      Margin="0,5,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*" />
+                        <ColumnDefinition Width="30*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"
+                           VerticalTextAlignment="Center"
+                           Text="{Binding BackupSyncRecurrence}" />
+
+                    <Stepper Grid.Column="1"
+                             Value="{Binding BackupSyncRecurrence}" />
+                </Grid>
 
             </StackLayout>
 

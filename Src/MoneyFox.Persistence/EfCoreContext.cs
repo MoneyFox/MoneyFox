@@ -1,19 +1,19 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using MoneyFox.Domain.Entities;
-using MoneyFox.DataLayer.Configurations;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence.Configurations;
 
 namespace MoneyFox.Persistence
 {
-
     /// <summary>
     ///     Represents the data context of the application
     /// </summary>
     public class EfCoreContext : DbContext, IEfCoreContext
     {
-        public EfCoreContext(DbContextOptions options) : base(options) { }
+        public EfCoreContext(DbContextOptions options) : base(options)
+        {
+        }
 
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Payment> Payments { get; set; }
@@ -36,6 +36,9 @@ namespace MoneyFox.Persistence
             modelBuilder.ApplyConfiguration(new PaymentTagConfiguration());
         }
 
-        private static void ThrowIfNull(ModelBuilder modelBuilder) { if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));  }
+        private static void ThrowIfNull(ModelBuilder modelBuilder)
+        {
+            if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));
+        }
     }
 }

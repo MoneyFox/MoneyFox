@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics.Models;
-using MoneyFox.BusinessDbAccess.QueryObjects;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
 {
@@ -29,14 +30,14 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
 
         public async Task<List<StatisticEntry>> Handle(GetCashFlowQuery request, CancellationToken cancellationToken)
         {
-            var payments = await context.Payments
-                .Include(x => x.Category)
-                .WithoutTransfers()
-                .HasDateLargerEqualsThan(request.StartDate.Date)
-                .HasDateSmallerEqualsThan(request.EndDate.Date)
-                .ToListAsync(cancellationToken);
+            List<Payment> payments = await context.Payments
+                                                  .Include(x => x.Category)
+                                                  .WithoutTransfers()
+                                                  .HasDateLargerEqualsThan(request.StartDate.Date)
+                                                  .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                                  .ToListAsync(cancellationToken);
 
-            var incomeAmount = (float)payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount);
+            var incomeAmount = (float) payments.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)
             {
                 Label = Strings.RevenueLabel,
@@ -44,7 +45,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                 Color = GREEN_HEX_CODE
             };
 
-            var expenseAmount = (float)payments.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount);
+            var expenseAmount = (float) payments.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount);
             var spent = new StatisticEntry(expenseAmount)
             {
                 Label = Strings.ExpenseLabel,
@@ -52,7 +53,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                 Color = RED_HEX_CODE
             };
 
-            var valueIncreased = incomeAmount - expenseAmount;
+            float valueIncreased = incomeAmount - expenseAmount;
             var increased = new StatisticEntry(valueIncreased)
             {
                 Label = Strings.IncreaseLabel,
@@ -60,7 +61,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                 Color = BLUE_HEX_CODE
             };
 
-            return new List<StatisticEntry> { income, spent, increased };
+            return new List<StatisticEntry> {income, spent, increased};
         }
     }
 }

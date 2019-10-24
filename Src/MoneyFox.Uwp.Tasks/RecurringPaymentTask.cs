@@ -5,8 +5,8 @@ using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.Presentation.Facades;
 using MoneyFox.Persistence;
+using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Uwp.Tasks
 {
@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.Tasks
     {
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
-            var deferral = taskInstance.GetDeferral();
+            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
             Debug.WriteLine("RecurringPaymentTask started.");
 
             ExecutingPlatform.Current = AppPlatform.UWP;
@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp.Tasks
 
             try
             {
-                var context = EfCoreContextFactory.Create();
+                EfCoreContext context = EfCoreContextFactory.Create();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
                     .CreatePaymentsUpToRecur();
                 await context.SaveChangesAsync();
@@ -34,8 +34,7 @@ namespace MoneyFox.Uwp.Tasks
             {
                 Debug.Write(ex);
                 Debug.WriteLine("RecurringPaymentTask stopped due to an error.");
-
-            } 
+            }
             finally
             {
                 settingsFacade.LastExecutionTimeStampRecurringPayments = DateTime.Now;

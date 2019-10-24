@@ -36,7 +36,8 @@ namespace MoneyFox.Presentation.ViewModels
         /// <returns>Sum of the balance of all accounts.</returns>
         protected override async Task<decimal> CalculateTotalBalanceAsync()
         {
-            AccountViewModel account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+            var account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+
             return account.CurrentBalance;
         }
 
@@ -47,7 +48,8 @@ namespace MoneyFox.Presentation.ViewModels
         /// <returns>Balance of the selected account including all payments to come till end of month.</returns>
         protected override async Task<decimal> GetEndOfMonthValueAsync()
         {
-            AccountViewModel account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+            var account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+
             return await balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
         }
     }

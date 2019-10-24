@@ -25,7 +25,7 @@ namespace MoneyFox.Presentation.QueryObject
         {
             return query.Where(payment => !payment.IsCleared);
         }
-        
+
         /// <summary>
         ///     Adds a filter to a query for recurring payments
         /// </summary>
@@ -46,7 +46,7 @@ namespace MoneyFox.Presentation.QueryObject
         {
             return query.Where(payment => payment.Date.Date <= date.Date);
         }
-        
+
         /// <summary>
         ///     Adds a filter to a query for payments who has a certain id as charged or target account.
         /// </summary>
@@ -78,7 +78,5 @@ namespace MoneyFox.Presentation.QueryObject
         {
             return query.OrderByDescending(x => x.Date);
         }
-
-
     }
 }

@@ -18,6 +18,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);
@@ -30,7 +31,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
             var account = new Account("test", 80);
 
             // Act
-            await new CreateAccountCommand.Handler(context).Handle(new CreateAccountCommand{AccountToSave = account}, default);
+            await new CreateAccountCommand.Handler(context).Handle(new CreateAccountCommand {AccountToSave = account}, default);
 
             // Assert
             Assert.Single(context.Accounts);

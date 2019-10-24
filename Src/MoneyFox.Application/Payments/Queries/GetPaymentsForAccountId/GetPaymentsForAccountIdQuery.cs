@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
-using MoneyFox.BusinessDbAccess.QueryObjects;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
 {
     public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
     {
-        public GetPaymentsForAccountIdQuery(int accountId, DateTime timeRangeStart, DateTime timeRangeEnd) {
+        public GetPaymentsForAccountIdQuery(int accountId, DateTime timeRangeStart, DateTime timeRangeEnd)
+        {
             AccountId = accountId;
             TimeRangeStart = timeRangeStart;
             TimeRangeEnd = timeRangeEnd;
@@ -25,18 +26,21 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
         public bool IsClearedFilterActive { get; set; }
         public bool IsRecurringFilterActive { get; set; }
 
-        public class Handler : IRequestHandler<GetPaymentsForAccountIdQuery, List<Payment>> {
+        public class Handler : IRequestHandler<GetPaymentsForAccountIdQuery, List<Payment>>
+        {
             private readonly IEfCoreContext context;
 
-            public Handler(IEfCoreContext context) {
+            public Handler(IEfCoreContext context)
+            {
                 this.context = context;
             }
 
-            public async Task<List<Payment>> Handle(GetPaymentsForAccountIdQuery request, CancellationToken cancellationToken) {
-                var paymentQuery = context.Payments
-                                          .Include(x => x.Category)
-                                          .Include(x => x.RecurringPayment)
-                                          .HasAccountId(request.AccountId);
+            public async Task<List<Payment>> Handle(GetPaymentsForAccountIdQuery request, CancellationToken cancellationToken)
+            {
+                IQueryable<Payment> paymentQuery = context.Payments
+                                                          .Include(x => x.Category)
+                                                          .Include(x => x.RecurringPayment)
+                                                          .HasAccountId(request.AccountId);
 
                 if (request.IsClearedFilterActive) paymentQuery = paymentQuery.AreCleared();
                 if (request.IsRecurringFilterActive) paymentQuery = paymentQuery.AreRecurring();

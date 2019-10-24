@@ -21,12 +21,13 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         }
 
         private IncomeExpenseBalanceViewModel incomeExpenseBalance;
+
         public IncomeExpenseBalanceViewModel IncomeExpenseBalance
         {
             get => incomeExpenseBalance;
             set
             {
-                if(incomeExpenseBalance == value) return;
+                if (incomeExpenseBalance == value) return;
                 incomeExpenseBalance = value;
                 RaisePropertyChanged();
             }

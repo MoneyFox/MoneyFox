@@ -12,6 +12,7 @@ namespace MoneyFox.Droid.Renderer
             {
                 AView child = self.GetChildAt(i);
                 var typedChild = child as T;
+
                 if (typedChild != null)
                     yield return typedChild;
 
@@ -19,7 +20,9 @@ namespace MoneyFox.Droid.Renderer
                 {
                     IEnumerable<T> myChildren = (child as AViewGroup).GetChildrenOfType<T>();
                     foreach (T nextChild in myChildren)
+                    {
                         yield return nextChild;
+                    }
                 }
             }
         }

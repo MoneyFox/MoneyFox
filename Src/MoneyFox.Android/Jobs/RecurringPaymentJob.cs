@@ -4,6 +4,7 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
+using Java.Lang;
 using MoneyFox.Application;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.Adapters;
@@ -12,6 +13,7 @@ using MoneyFox.Persistence;
 using MoneyFox.Presentation.Facades;
 using NLog;
 using Debug = System.Diagnostics.Debug;
+using Exception = System.Exception;
 using JobSchedulerType = Android.App.Job.JobScheduler;
 
 #pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
@@ -24,11 +26,13 @@ namespace MoneyFox.Droid.Jobs
     public class RecurringPaymentJob : JobService
     {
         private const int RECURRING_PAYMENT_JOB_ID = 20;
+        private const int JOB_INTERVAL = 60 * 60 * 1000;
 
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
         {
             Task.Run(async () => await CheckRecurringPaymentsAsync(args));
+
             return true;
         }
 
@@ -39,10 +43,10 @@ namespace MoneyFox.Droid.Jobs
         }
 
         /// <inheritdoc />
-        public override StartCommandResult OnStartCommand(Intent intent, Android.App.StartCommandFlags flags, int startId)
+        public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            var callback = (Messenger)intent.GetParcelableExtra("messenger");
-            var m = Message.Obtain();
+            var callback = (Messenger) intent.GetParcelableExtra("messenger");
+            Message m = Message.Obtain();
             m.What = MainActivity.MESSAGE_SERVICE_RECURRING_PAYMENTS;
             m.Obj = this;
             try
@@ -53,6 +57,7 @@ namespace MoneyFox.Droid.Jobs
             {
                 Debug.WriteLine(e);
             }
+
             return StartCommandResult.NotSticky;
         }
 
@@ -64,7 +69,7 @@ namespace MoneyFox.Droid.Jobs
             {
                 ExecutingPlatform.Current = AppPlatform.Android;
 
-                var context = EfCoreContextFactory.Create();
+                EfCoreContext context = EfCoreContextFactory.Create();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context)).CreatePaymentsUpToRecur();
                 await context.SaveChangesAsync();
 
@@ -74,6 +79,7 @@ namespace MoneyFox.Droid.Jobs
             catch (Exception ex)
             {
                 LogManager.GetCurrentClassLogger().Fatal(ex);
+
                 throw;
             }
             finally
@@ -89,16 +95,16 @@ namespace MoneyFox.Droid.Jobs
         {
             var builder = new JobInfo.Builder(RECURRING_PAYMENT_JOB_ID,
                                               new ComponentName(
-                                                  this, Java.Lang.Class.FromType(typeof(RecurringPaymentJob))));
+                                                  this, Class.FromType(typeof(RecurringPaymentJob))));
 
             // Execute all 60 Minutes
-            builder.SetPeriodic(60 * 60 * 1000);
+            builder.SetPeriodic(JOB_INTERVAL);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.None);
             builder.SetRequiresDeviceIdle(false);
             builder.SetRequiresCharging(false);
 
-            var tm = (JobSchedulerType)GetSystemService(Context.JobSchedulerService);
+            var tm = (JobSchedulerType) GetSystemService(JobSchedulerService);
             tm.Schedule(builder.Build());
         }
     }

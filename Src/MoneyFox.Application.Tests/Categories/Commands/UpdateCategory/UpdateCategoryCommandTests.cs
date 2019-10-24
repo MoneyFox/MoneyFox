@@ -19,6 +19,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
         {
             context = TestEfCoreContextFactory.Create();
         }
+
         public void Dispose()
         {
             TestEfCoreContextFactory.Destroy(context);
@@ -34,9 +35,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
 
             // Act
             category.UpdateData("foo");
-            await new UpdateCategoryCommand.Handler(context).Handle(new UpdateCategoryCommand { Category = category }, default);
+            await new UpdateCategoryCommand.Handler(context).Handle(new UpdateCategoryCommand {Category = category}, default);
 
-            var loadedCategory = await context.Categories.FindAsync(category.Id);
+            Category loadedCategory = await context.Categories.FindAsync(category.Id);
 
             // Assert
             loadedCategory.Name.ShouldEqual("foo");

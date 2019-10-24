@@ -68,6 +68,7 @@ namespace MoneyFox.BusinessLogic.Adapters
             catch (InvalidCastException)
             {
                 Preferences.Set(key, defaultValue);
+
                 return defaultValue;
             }
         }
@@ -77,9 +78,11 @@ namespace MoneyFox.BusinessLogic.Adapters
             try
             {
                 return Preferences.Get(key, defaultValue);
-            } catch (InvalidCastException)
+            }
+            catch (InvalidCastException)
             {
                 Preferences.Set(key, defaultValue);
+
                 return defaultValue;
             }
         }
@@ -89,9 +92,11 @@ namespace MoneyFox.BusinessLogic.Adapters
             try
             {
                 return Preferences.Get(key, defaultValue);
-            } catch (InvalidCastException)
+            }
+            catch (InvalidCastException)
             {
                 Preferences.Set(key, defaultValue);
+
                 return defaultValue;
             }
         }

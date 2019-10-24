@@ -3,7 +3,7 @@ using System.Linq;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.BusinessDbAccess.QueryObjects
+namespace MoneyFox.Application.QueryObjects
 {
     /// <summary>
     ///     Provides Extensions for payments queries.
@@ -82,7 +82,7 @@ namespace MoneyFox.BusinessDbAccess.QueryObjects
         {
             return query.Where(payment => payment.ChargedAccount.Id == accountId || payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
         }
-        
+
         /// <summary>
         ///     Orders a query descending by the date.
         /// </summary>

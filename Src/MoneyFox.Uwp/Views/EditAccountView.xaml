@@ -10,7 +10,7 @@
     DataContext="{Binding EditAccountVm, Source={StaticResource Locator}}">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-        Margin="{StaticResource MediumLeftRightMargin}">
+          Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using MediatR;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -23,7 +24,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
         {
             TestEfCoreContextFactory.Destroy(context);
         }
-        
+
         [Fact]
         public async Task GetPayment_PaymentFound()
         {
@@ -31,7 +32,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
 
             // Act
-            var result = await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
+            Unit result = await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);

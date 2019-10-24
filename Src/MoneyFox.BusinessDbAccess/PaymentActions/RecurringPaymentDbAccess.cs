@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Interfaces;
-using MoneyFox.BusinessDbAccess.QueryObjects;
+using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
@@ -13,9 +13,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
     /// </summary>
     public interface IRecurringPaymentDbAccess
     {
-        Task<List<RecurringPayment>> GetRecurringPayments();
+        Task<List<RecurringPayment>> GetRecurringPaymentsAsync();
 
-        Task SaveNewPayments(List<Payment> payments);
+        Task SaveNewPaymentsAsync(List<Payment> payments);
     }
 
     public class RecurringPaymentDbAccess : IRecurringPaymentDbAccess
@@ -27,19 +27,19 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
             this.context = context;
         }
 
-        public Task<List<RecurringPayment>> GetRecurringPayments()
+        public Task<List<RecurringPayment>> GetRecurringPaymentsAsync()
         {
             return context.RecurringPayments
-                .Include(x => x.ChargedAccount)
-                .Include(x => x.TargetAccount)
-                .Include(x => x.Category)
-                .Include(x => x.RelatedPayments)
-                .AsQueryable()
-                .IsNotExpired()
-                .ToListAsync();
+                          .Include(x => x.ChargedAccount)
+                          .Include(x => x.TargetAccount)
+                          .Include(x => x.Category)
+                          .Include(x => x.RelatedPayments)
+                          .AsQueryable()
+                          .IsNotExpired()
+                          .ToListAsync();
         }
 
-        public async Task SaveNewPayments(List<Payment> payments)
+        public async Task SaveNewPaymentsAsync(List<Payment> payments)
         {
             await context.Payments
                          .AddRangeAsync(payments);

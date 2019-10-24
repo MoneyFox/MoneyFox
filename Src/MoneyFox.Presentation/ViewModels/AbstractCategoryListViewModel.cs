@@ -20,7 +20,6 @@ namespace MoneyFox.Presentation.ViewModels
     {
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source;
 
-
         /// <summary>
         ///     Base class for the category list user control
         /// </summary>
@@ -35,7 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
             NavigationService = navigationService;
         }
 
-        protected INavigationService NavigationService { get; private set; }
+        protected INavigationService NavigationService { get; }
 
         protected IMediator Mediator { get; }
         protected IMapper Mapper { get; }
@@ -78,7 +77,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
-        public RelayCommand<CategoryViewModel> ItemClickCommand  => new RelayCommand<CategoryViewModel>(ItemClick);
+        public RelayCommand<CategoryViewModel> ItemClickCommand => new RelayCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
         ///     Executes a search for the passed term and updates the displayed list.
@@ -98,7 +97,8 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Performs a search with the text in the search text property
         /// </summary>
-        public async Task Search(string searchText = "") {
+        public async Task Search(string searchText = "")
+        {
             var categoriesVms =
                 Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery {SearchTerm = searchText}));
             CategoryList = CreateGroup(categoriesVms);
@@ -114,13 +114,17 @@ namespace MoneyFox.Presentation.ViewModels
             NavigationService.NavigateTo(ViewModelLocator.AddCategory);
         }
 
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories) =>
-            new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories)
+        {
+            return new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
                 AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categories,
-                    CultureInfo.CurrentUICulture,
-                    s => string.IsNullOrEmpty(s.Name)
-                        ? "-"
-                        : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture), itemClickCommand: ItemClickCommand));
+                                                                              CultureInfo.CurrentUICulture,
+                                                                              s => string.IsNullOrEmpty(s.Name)
+                                                                                  ? "-"
+                                                                                  : s.Name[0].ToString(CultureInfo.InvariantCulture)
+                                                                                     .ToUpper(CultureInfo.InvariantCulture),
+                                                                              itemClickCommand: ItemClickCommand));
+        }
 
         private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {

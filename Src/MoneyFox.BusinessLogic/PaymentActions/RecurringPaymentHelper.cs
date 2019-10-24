@@ -14,10 +14,7 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         /// <returns>True or False if the payment has to be repeated.</returns>
         public static bool CheckIfRepeatable(Payment payment)
         {
-            if (!payment.IsCleared)
-            {
-                return false;
-            }
+            if (!payment.IsCleared) return false;
 
             if (payment.IsRecurring && payment.RecurringPayment == null) throw new RecurringPaymentNullException();
 
@@ -32,18 +29,21 @@ namespace MoneyFox.BusinessLogic.PaymentActions
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
                 case PaymentRecurrence.Weekly:
-                    var daysWeekly = DateTime.Now - payment.Date;
+                    TimeSpan daysWeekly = DateTime.Now - payment.Date;
+
                     return daysWeekly.Days >= 7;
 
                 case PaymentRecurrence.Biweekly:
-                    var daysBiweekly = DateTime.Now - payment.Date;
+                    TimeSpan daysBiweekly = DateTime.Now - payment.Date;
+
                     return daysBiweekly.Days >= 14;
 
                 case PaymentRecurrence.Monthly:
                     return DateTime.Now.Month != payment.Date.Month;
 
                 case PaymentRecurrence.Bimonthly:
-                    var date = DateTime.Now.AddMonths(-2);
+                    DateTime date = DateTime.Now.AddMonths(-2);
+
                     return payment.Date.Month <= date.Month && payment.Date.Year == date.Year;
 
                 case PaymentRecurrence.Quarterly:
@@ -64,13 +64,15 @@ namespace MoneyFox.BusinessLogic.PaymentActions
 
         private static bool CheckQuarterly(Payment payment)
         {
-            var dateDiff = DateTime.Now - payment.Date;
+            TimeSpan dateDiff = DateTime.Now - payment.Date;
+
             return dateDiff.TotalDays >= 93;
         }
 
         private static bool CheckBiannually(Payment payment)
         {
-            var dateDiff = DateTime.Now - payment.Date;
+            TimeSpan dateDiff = DateTime.Now - payment.Date;
+
             return dateDiff.TotalDays >= 184;
         }
 
@@ -78,17 +80,14 @@ namespace MoneyFox.BusinessLogic.PaymentActions
         {
             if (recurringPayment.Recurrence == PaymentRecurrence.Monthly)
             {
-                var date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
+                DateTime date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
 
                 //todo: why double?
-                double value = recurringPayment.StartDate.Day;  //the Day value i.e. 31
+                double value = recurringPayment.StartDate.Day; //the Day value i.e. 31
                 double max = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
                 double difference = -(value - max);
 
-                if (difference < 0)
-                {
-                    date = date.AddDays(difference);
-                }
+                if (difference < 0) date = date.AddDays(difference);
 
                 return date;
             }

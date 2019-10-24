@@ -66,7 +66,10 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual async Task<decimal> CalculateTotalBalanceAsync() => await balanceCalculationService.GetTotalBalance();
+        protected virtual async Task<decimal> CalculateTotalBalanceAsync()
+        {
+            return await balanceCalculationService.GetTotalBalance();
+        }
 
         /// <summary>
         ///     Calculates the sum of all accounts at the end of the month.

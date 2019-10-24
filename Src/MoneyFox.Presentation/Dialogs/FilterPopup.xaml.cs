@@ -2,12 +2,12 @@
 
 namespace MoneyFox.Presentation.Dialogs
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class FilterPopup
-	{
-		public FilterPopup ()
-		{
-			InitializeComponent ();
-		}
-	}
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class FilterPopup
+    {
+        public FilterPopup()
+        {
+            InitializeComponent();
+        }
+    }
 }

@@ -5,9 +5,10 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
 namespace MoneyFox.Presentation
 {
-    public partial class App 
+    public partial class App
     {
         public App()
         {
@@ -15,10 +16,7 @@ namespace MoneyFox.Presentation
             XF.Material.Forms.Material.Init(this);
             ThemeManager.LoadTheme();
 
-            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
-            {
-                LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject);
-            };
+            AppDomain.CurrentDomain.UnhandledException += (s, e) => { LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject); };
 
             ConfigureNavigation();
 

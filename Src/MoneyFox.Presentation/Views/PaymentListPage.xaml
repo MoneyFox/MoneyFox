@@ -69,9 +69,8 @@
                             <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}"
                                          Margin="0,0,0,-1">
 
-                                <RelativeLayout IsVisible="{Binding Key, Converter={StaticResource TodayMarkerVisibilityConverter}}" Margin="10,10,10,10">
-                                    <BoxView HeightRequest="1" WidthRequest="400" BackgroundColor="{DynamicResource AccentColor}"/>
-                                </RelativeLayout>
+                                <BoxView HeightRequest="1" Margin="10,10,10,10"
+                                         BackgroundColor="{DynamicResource AccentColor}" />
 
                                 <Label Text="{Binding Key}"
                                        VerticalOptions="EndAndExpand"

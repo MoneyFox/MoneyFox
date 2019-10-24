@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportEffect(typeof(DeleteButtonEffect), "DeleteButtonEffect")]
+
 namespace MoneyFox.iOS.Effects
 {
     /// <summary>
@@ -14,10 +15,11 @@ namespace MoneyFox.iOS.Effects
     /// </summary>
     public class DeleteButtonEffect : PlatformEffect
     {
-        protected override void OnAttached() {
+        protected override void OnAttached()
+        {
             try
             {
-                var button = (UIButton)Control;
+                var button = (UIButton) Control;
                 button.Layer.BorderWidth = 2;
                 button.Layer.BackgroundColor = UIColor.Red.CGColor;
                 button.Layer.BorderColor = UIColor.White.CGColor;
@@ -25,14 +27,15 @@ namespace MoneyFox.iOS.Effects
                 button.SetTitleColor(UIColor.LightGray, UIControlState.Disabled);
                 button.ClipsToBounds = true;
                 button.Frame = new CGRect(button.Frame.X, button.Frame.Y, button.Frame.Width, 37);
-            } 
+            }
             catch (Exception ex)
             {
                 Crashes.TrackError(ex);
             }
         }
 
-        protected override void OnDetached() {
+        protected override void OnDetached()
+        {
         }
     }
 }

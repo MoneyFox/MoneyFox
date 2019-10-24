@@ -170,7 +170,7 @@ namespace MoneyFox.Domain.Tests.Entities
                                                         "foo");
 
             // Act
-            recurringPayment.UpdateRecurringPayment(123, PaymentRecurrence.Daily, new Account("123"), "", null);
+            recurringPayment.UpdateRecurringPayment(123, PaymentRecurrence.Daily, new Account("123"));
 
             // Assert
             recurringPayment.IsEndless.ShouldBeTrue();

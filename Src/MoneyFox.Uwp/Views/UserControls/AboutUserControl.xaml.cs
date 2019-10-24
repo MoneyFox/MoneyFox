@@ -10,15 +10,12 @@ namespace MoneyFox.Uwp.Views.UserControls
         {
             InitializeComponent();
 
-            if (StoreServicesFeedbackLauncher.IsSupported())
-            {
-                FeedbackButton.Visibility = Visibility.Visible;
-            }
+            if (StoreServicesFeedbackLauncher.IsSupported()) FeedbackButton.Visibility = Visibility.Visible;
         }
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            var launcher = StoreServicesFeedbackLauncher.GetDefault();
+            StoreServicesFeedbackLauncher launcher = StoreServicesFeedbackLauncher.GetDefault();
             await launcher.LaunchAsync();
         }
     }

@@ -15,16 +15,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void AreNotCleared()
         {
             // Arrange
-            var paymentQueryList = new List<PaymentViewModel>
+            IQueryable<PaymentViewModel> paymentQueryList = new List<PaymentViewModel>
                 {
-                    new PaymentViewModel{Id = 1, IsCleared = false},
-                    new PaymentViewModel{Id = 2, IsCleared = true},
-                    new PaymentViewModel{Id = 3, IsCleared = false}
+                    new PaymentViewModel {Id = 1, IsCleared = false},
+                    new PaymentViewModel {Id = 2, IsCleared = true},
+                    new PaymentViewModel {Id = 3, IsCleared = false}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = paymentQueryList.AreNotCleared().ToList();
+            List<PaymentViewModel> resultList = paymentQueryList.AreNotCleared().ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -36,16 +36,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void AreCleared()
         {
             // Arrange
-            var paymentQueryList = new List<PaymentViewModel>
+            IQueryable<PaymentViewModel> paymentQueryList = new List<PaymentViewModel>
                 {
-                    new PaymentViewModel{Id = 1, IsCleared = false},
-                    new PaymentViewModel{Id = 2, IsCleared = true},
-                    new PaymentViewModel{Id = 3, IsCleared = false}
+                    new PaymentViewModel {Id = 1, IsCleared = false},
+                    new PaymentViewModel {Id = 2, IsCleared = true},
+                    new PaymentViewModel {Id = 3, IsCleared = false}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = paymentQueryList.AreCleared().ToList();
+            List<PaymentViewModel> resultList = paymentQueryList.AreCleared().ToList();
 
             // Assert
             Assert.Single(resultList);
@@ -56,16 +56,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void AreRecurring()
         {
             // Arrange
-            var paymentQueryList = new List<PaymentViewModel>
+            IQueryable<PaymentViewModel> paymentQueryList = new List<PaymentViewModel>
                 {
-                    new PaymentViewModel{Id = 1, IsRecurring = false},
-                    new PaymentViewModel{Id = 2, IsRecurring = true},
-                    new PaymentViewModel{Id = 3, IsRecurring = false}
+                    new PaymentViewModel {Id = 1, IsRecurring = false},
+                    new PaymentViewModel {Id = 2, IsRecurring = true},
+                    new PaymentViewModel {Id = 3, IsRecurring = false}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = paymentQueryList.AreRecurring().ToList();
+            List<PaymentViewModel> resultList = paymentQueryList.AreRecurring().ToList();
 
             // Assert
             Assert.Single(resultList);
@@ -76,16 +76,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void HasDateSmallerEqualsThan()
         {
             // Arrange
-            var paymentQueryList = new List<PaymentViewModel>
+            IQueryable<PaymentViewModel> paymentQueryList = new List<PaymentViewModel>
                 {
-                    new PaymentViewModel{Id = 1, Date = DateTime.Now},
-                    new PaymentViewModel{Id = 2, Date = DateTime.Now.Date.AddDays(-1)},
-                    new PaymentViewModel{Id = 3, Date = DateTime.Now.Date.AddDays(-2)}
+                    new PaymentViewModel {Id = 1, Date = DateTime.Now},
+                    new PaymentViewModel {Id = 2, Date = DateTime.Now.Date.AddDays(-1)},
+                    new PaymentViewModel {Id = 3, Date = DateTime.Now.Date.AddDays(-2)}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = paymentQueryList.HasDateSmallerEqualsThan(DateTime.Now.Date.AddDays(-1)).ToList();
+            List<PaymentViewModel> resultList = paymentQueryList.HasDateSmallerEqualsThan(DateTime.Now.Date.AddDays(-1)).ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -97,16 +97,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void HasAccountId()
         {
             // Arrange
-            var paymentQueryList = new List<PaymentViewModel>
+            IQueryable<PaymentViewModel> paymentQueryList = new List<PaymentViewModel>
                 {
-                    new PaymentViewModel{Id = 1, ChargedAccount = new AccountViewModel{Id = 1}},
-                    new PaymentViewModel{Id = 2, ChargedAccount = new AccountViewModel{Id = 3}, TargetAccount = new AccountViewModel{Id = 1}},
-                    new PaymentViewModel{Id = 3, ChargedAccount = new AccountViewModel{Id = 2}}
+                    new PaymentViewModel {Id = 1, ChargedAccount = new AccountViewModel {Id = 1}},
+                    new PaymentViewModel {Id = 2, ChargedAccount = new AccountViewModel {Id = 3}, TargetAccount = new AccountViewModel {Id = 1}},
+                    new PaymentViewModel {Id = 3, ChargedAccount = new AccountViewModel {Id = 2}}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = paymentQueryList.HasAccountId(1).ToList();
+            List<PaymentViewModel> resultList = paymentQueryList.HasAccountId(1).ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -118,16 +118,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void HasChargedAccountId()
         {
             // Arrange
-            var paymentQueryList = new List<PaymentViewModel>
+            IQueryable<PaymentViewModel> paymentQueryList = new List<PaymentViewModel>
                 {
-                    new PaymentViewModel{Id = 1, ChargedAccount = new AccountViewModel{Id = 1}},
-                    new PaymentViewModel{Id = 2, ChargedAccount = new AccountViewModel{Id = 3}, TargetAccount = new AccountViewModel{Id = 1}},
-                    new PaymentViewModel{Id = 3, ChargedAccount = new AccountViewModel{Id = 2}}
+                    new PaymentViewModel {Id = 1, ChargedAccount = new AccountViewModel {Id = 1}},
+                    new PaymentViewModel {Id = 2, ChargedAccount = new AccountViewModel {Id = 3}, TargetAccount = new AccountViewModel {Id = 1}},
+                    new PaymentViewModel {Id = 3, ChargedAccount = new AccountViewModel {Id = 2}}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = paymentQueryList.HasChargedAccountId(1).ToList();
+            List<PaymentViewModel> resultList = paymentQueryList.HasChargedAccountId(1).ToList();
 
             // Assert
             Assert.Single(resultList);
@@ -138,16 +138,16 @@ namespace MoneyFox.Presentation.Tests.QueryObject
         public void OrderDescendingByDate()
         {
             // Arrange
-            var paymentQueryList = new List<PaymentViewModel>
+            IQueryable<PaymentViewModel> paymentQueryList = new List<PaymentViewModel>
                 {
-                    new PaymentViewModel{Id = 1, Date = DateTime.Now.AddDays(-3) },
-                    new PaymentViewModel{Id = 2, Date = DateTime.Now.AddDays(1) },
-                    new PaymentViewModel{Id = 3, Date = DateTime.Now.AddDays(-2) }
+                    new PaymentViewModel {Id = 1, Date = DateTime.Now.AddDays(-3)},
+                    new PaymentViewModel {Id = 2, Date = DateTime.Now.AddDays(1)},
+                    new PaymentViewModel {Id = 3, Date = DateTime.Now.AddDays(-2)}
                 }
                 .AsQueryable();
 
             // Act
-            var resultList = paymentQueryList.OrderDescendingByDate().ToList();
+            List<PaymentViewModel> resultList = paymentQueryList.OrderDescendingByDate().ToList();
 
             // Assert
             Assert.Equal(3, resultList.Count);
