@@ -64,7 +64,6 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0"
-                            Grid.ColumnSpan="2"
                             Style="{StaticResource DefaultButtonStyle}"
                             Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
                             Command="{Binding GoToSelectCategoryDialogCommand}" />
