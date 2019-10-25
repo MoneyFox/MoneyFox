@@ -59,13 +59,13 @@ namespace MoneyFox.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+            Popup.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
             XF.Material.Droid.Material.Init(this, savedInstanceState);
 
             LoadApplication(new App());
             Platform.Init(this, savedInstanceState);
-            Popup.Init(this, savedInstanceState);
 
             StartBackgroundServices();
         }
