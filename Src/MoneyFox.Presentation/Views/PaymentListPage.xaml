@@ -70,7 +70,8 @@
                                          Margin="0,0,0,-1">
 
                                 <BoxView HeightRequest="1" Margin="10,10,10,10"
-                                         BackgroundColor="{DynamicResource AccentColor}" />
+                                         BackgroundColor="{DynamicResource AccentColor}"
+                                         IsVisible="{Binding Key, Converter={StaticResource TodayMarkerVisibilityConverter}}"/>
 
                                 <Label Text="{Binding Key}"
                                        VerticalOptions="EndAndExpand"
