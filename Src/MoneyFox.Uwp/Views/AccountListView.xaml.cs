@@ -48,7 +48,7 @@ namespace MoneyFox.Uwp.Views
 
             if (!(element.DataContext is AccountViewModel account)) return;
 
-            (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafe();
+            (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
         }
     }
 }

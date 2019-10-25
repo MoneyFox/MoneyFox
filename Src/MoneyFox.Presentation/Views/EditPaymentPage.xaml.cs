@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.EditPaymentVm;
 
             ViewModel.PaymentId = paymentId;
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
     }
 }

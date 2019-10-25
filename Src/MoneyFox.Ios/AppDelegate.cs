@@ -58,6 +58,7 @@ namespace MoneyFox.iOS
 
             Forms.Init();
             FormsMaterial.Init();
+            XF.Material.iOS.Material.Init();
             LoadApplication(new App());
             Popup.Init();
 
@@ -65,7 +66,7 @@ namespace MoneyFox.iOS
             uiApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
-            RunAppStartAsync().FireAndForgetSafe();
+            RunAppStartAsync().FireAndForgetSafeAsync();
 
             return base.FinishedLaunching(uiApplication, launchOptions);
         }

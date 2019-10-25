@@ -12,7 +12,7 @@ namespace MoneyFox.Presentation.Views
             InitializeComponent();
             BindingContext = ViewModelLocator.AddCategoryVm;
 
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
     }
 }

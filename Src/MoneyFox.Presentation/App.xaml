@@ -3,6 +3,9 @@
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:resources="clr-namespace:XF.Material.Forms.Resources;assembly=XF.Material"
+             xmlns:typography="clr-namespace:XF.Material.Forms.Resources.Typography;assembly=XF.Material"
              x:Class="MoneyFox.Presentation.App">
 
     <Application.Resources>
@@ -10,6 +13,52 @@
             <presentation:ViewModelLocator x:Key="Locator" />
 
             <ResourceDictionary Source="Style/LightTheme.xaml" />
+
+            <OnPlatform x:Key="FontFamily.RobotoRegular"
+                        x:TypeArguments="x:String"
+                        Android="Fonts/Roboto-Regular.ttf#Roboto-Regular"
+                        iOS="Roboto-Regular" />
+            <OnPlatform x:Key="FontFamily.RobotoBold"
+                        x:TypeArguments="x:String"
+                        Android="Fonts/Roboto-Bold.ttf#Roboto-Bold"
+                        iOS="Roboto-Bold" />
+            <OnPlatform x:Key="FontFamily.RobotoMedium"
+                        x:TypeArguments="x:String"
+                        Android="Fonts/Roboto-Medium.ttf#Roboto-Medium"
+                        iOS="Roboto-Medium" />
+
+            <typography:MaterialFontConfiguration x:Key="Material.Font"
+                                                Body1="{StaticResource FontFamily.RobotoRegular}"
+                                                Body2="{StaticResource FontFamily.RobotoRegular}"
+                                                Button="{StaticResource FontFamily.RobotoMedium}"
+                                                Caption="{StaticResource FontFamily.RobotoRegular}"
+                                                H1="{StaticResource FontFamily.RobotoRegular}"
+                                                H2="{StaticResource FontFamily.RobotoRegular}"
+                                                H3="{StaticResource FontFamily.RobotoRegular}"
+                                                H4="{StaticResource FontFamily.RobotoRegular}"
+                                                H5="{StaticResource FontFamily.RobotoRegular}"
+                                                H6="{StaticResource FontFamily.RobotoMedium}"
+                                                Overline="{StaticResource FontFamily.RobotoRegular}"
+                                                Subtitle1="{StaticResource FontFamily.RobotoRegular}"
+                                                Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
+
+            <resources:MaterialColorConfiguration x:Key="Material.Color"
+                                             Background="{DynamicResource WindowBackgroundColor}"
+                                             Error="#B00020"
+                                             OnBackground="{DynamicResource PrimaryFontColor}"
+                                             OnError="#FFFFFF"
+                                             OnPrimary="#FFFFFF"
+                                             OnSecondary="#FFFFFF"
+                                             OnSurface="{DynamicResource PrimaryFontColor}"
+                                             Primary="{DynamicResource PrimaryColor}"
+                                             PrimaryVariant="{DynamicResource SecondaryColor}"
+                                             Secondary="{DynamicResource AccentColor}"
+                                             SecondaryVariant="{DynamicResource SecondaryAccentColor}"
+                                             Surface="{DynamicResource ListItemColor}" />
+
+            <resources:MaterialConfiguration x:Key="Material.Configuration"
+                                        ColorConfiguration="{StaticResource Material.Color}"
+                                        FontConfiguration="{StaticResource Material.Font}" />
 
             <!-- Control Styles -->
             <Style x:Key="SmallPageTitle" TargetType="Label">
@@ -25,6 +74,14 @@
             <Style x:Key="ListGroupHeaderStyle" TargetType="Label">
                 <Setter Property="Margin" Value="12,0,0,0" />
                 <Setter Property="TextColor" Value="{DynamicResource HeaderColor}" />
+            </Style>
+
+            <Style x:Key="ListCardStyle" TargetType="material:MaterialCard">
+                <Setter Property="CornerRadius" Value="2" />
+                <Setter Property="Elevation" Value="3" />
+                <Setter Property="IsClickable" Value="true" />
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="BackgroundColor" Value="{DynamicResource ListItemColor}" />
             </Style>
 
             <Style x:Key="ListItemStyle" TargetType="StackLayout">
@@ -45,6 +102,11 @@
             </Style>
 
             <Style x:Key="DefaultButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource ButtonBackgroundColor}" />
+                <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
+            </Style>
+
+            <Style x:Key="DefaultMatButtonStyle" TargetType="material:MaterialButton">
                 <Setter Property="BackgroundColor" Value="{DynamicResource ButtonBackgroundColor}" />
                 <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
             </Style>

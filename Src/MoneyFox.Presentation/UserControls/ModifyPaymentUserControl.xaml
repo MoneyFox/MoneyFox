@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl">
 
     <d:ContentView.BindingContext>
@@ -63,10 +64,10 @@
                         <ColumnDefinition Width="30" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0"
-                            Style="{StaticResource DefaultButtonStyle}"
-                            Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                            Command="{Binding GoToSelectCategoryDialogCommand}" />
+                    <material:MaterialButton Grid.Column="0"
+                                             Style="{StaticResource DefaultMatButtonStyle}"
+                                             Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
+                                             Command="{Binding GoToSelectCategoryDialogCommand}" />
 
                     <ImageButton Grid.Column="1"
                                  HeightRequest="30"

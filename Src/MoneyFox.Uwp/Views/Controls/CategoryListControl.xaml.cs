@@ -39,12 +39,12 @@ namespace MoneyFox.Uwp.Views.Controls
 
             if (category == null) return;
 
-            ((AbstractCategoryListViewModel) DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafe();
+            ((AbstractCategoryListViewModel) DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
         }
 
         private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            ((AbstractCategoryListViewModel) DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text).FireAndForgetSafe();
+            ((AbstractCategoryListViewModel) DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text).FireAndForgetSafeAsync();
         }
     }
 }

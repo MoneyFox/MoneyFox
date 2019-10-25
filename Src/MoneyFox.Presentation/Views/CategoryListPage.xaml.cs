@@ -18,7 +18,7 @@ namespace MoneyFox.Presentation.Views
 
         protected override void OnAppearing()
         {
-            ViewModel.AppearingCommand.ExecuteAsync().FireAndForgetSafe();
+            ViewModel.AppearingCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
     }
 }

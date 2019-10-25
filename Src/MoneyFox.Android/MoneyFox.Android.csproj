@@ -158,13 +158,18 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.3.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.3.0.908675" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.3.0.908675</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>4.3.0.908675</Version>
+    </PackageReference>
+    <PackageReference Include="XF.Material">
+      <Version>1.5.4</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -175,7 +180,6 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
-    <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Renderer\CustomEntryRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderer\ViewGroupExtension.cs" />
@@ -194,6 +198,15 @@
       <Link>App.config</Link>
     </AndroidAsset>
     <AndroidAsset Include="Assets\materialdesignicons.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidAsset>
     <None Include="MoneyFox.Android.ruleset" />
@@ -378,5 +391,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\CustomCursor.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

@@ -148,6 +148,9 @@
     <PackageReference Include="NLog">
       <Version>4.6.7</Version>
     </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.3.0.908675</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">

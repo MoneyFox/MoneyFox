@@ -5,8 +5,10 @@
              mc:Ignorable="d"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              x:Class="MoneyFox.Presentation.Views.StatisticSelectorPage"
              Visual="Material"
+             x:Name="root"
              BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
@@ -24,15 +26,17 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <controls:CardView Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                           Style="{StaticResource ListItemStyle}">
+                        <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.GoToStatisticCommand}"
+                                               ClickCommandParameter="{Binding .}"
+                                               Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                               Style="{StaticResource ListCardStyle}">
                             <StackLayout Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{DynamicResource DefaultSpacing}">
                                 <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
                                 <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                             </StackLayout>
-                        </controls:CardView>
+                        </material:MaterialCard>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

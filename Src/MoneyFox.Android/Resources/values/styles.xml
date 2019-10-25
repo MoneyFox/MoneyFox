@@ -27,4 +27,8 @@
   <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
     <item name="colorAccent">@color/colorAccent</item>
   </style>
+
+  <style name="myEditText" parent="Theme.AppCompat.Light.DarkActionBar">
+    <item name="android:textCursorDrawable">@drawable/CustomCursor</item>
+  </style>
 </resources>
