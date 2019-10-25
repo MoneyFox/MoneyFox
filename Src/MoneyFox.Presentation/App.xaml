@@ -43,20 +43,20 @@
                                                 Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
 
             <resources:MaterialColorConfiguration x:Key="Material.Color"
-                                             Background="#EAEAEA"
+                                             Background="{DynamicResource WindowBackgroundColor}"
                                              Error="#B00020"
-                                             OnBackground="#000000"
+                                             OnBackground="{DynamicResource PrimaryFontColor}"
                                              OnError="#FFFFFF"
                                              OnPrimary="#FFFFFF"
                                              OnSecondary="#FFFFFF"
-                                             OnSurface="#000000"
-                                             Primary="#011A27"
-                                             PrimaryVariant="#000000"
-                                             Secondary="#063852"
-                                             SecondaryVariant="#001229"
-                                             Surface="#FFFFFF" />
+                                             OnSurface="{DynamicResource PrimaryFontColor}"
+                                             Primary="{DynamicResource PrimaryColor}"
+                                             PrimaryVariant="{DynamicResource SecondaryColor}"
+                                             Secondary="{DynamicResource AccentColor}"
+                                             SecondaryVariant="{DynamicResource SecondaryAccentColor}"
+                                             Surface="{DynamicResource ListItemColor}" />
 
-            <resources:MaterialConfiguration x:Key="Material.Style"
+            <resources:MaterialConfiguration x:Key="Material.Configuration"
                                         ColorConfiguration="{StaticResource Material.Color}"
                                         FontConfiguration="{StaticResource Material.Font}" />
 

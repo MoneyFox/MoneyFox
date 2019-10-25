@@ -7,6 +7,7 @@
 
     <!-- Accent Colors -->
     <Color x:Key="AccentColor">#FFFF8671</Color>
+    <Color x:Key="SecondaryAccentColor">#FFFFBD5E</Color>
     <Color x:Key="PrimaryColor">#FF314A9B</Color>
     <Color x:Key="SecondaryColor">#FF00165A</Color>
 

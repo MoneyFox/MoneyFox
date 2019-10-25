@@ -200,9 +200,15 @@
     <AndroidAsset Include="Assets\materialdesignicons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidAsset>
-    <AndroidAsset Include="Assets\Fonts\Roboto-Bold.ttf" />
-    <AndroidAsset Include="Assets\Fonts\Roboto-Medium.ttf" />
-    <AndroidAsset Include="Assets\Fonts\Roboto-Regular.ttf" />
+    <AndroidAsset Include="Assets\Fonts\Roboto-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Regular.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
     <None Include="MoneyFox.Android.ruleset" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\Toolbar.axml">

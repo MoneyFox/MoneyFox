@@ -65,7 +65,7 @@
                     </Grid.ColumnDefinitions>
 
                     <material:MaterialButton Grid.Column="0"
-                                             Style="{StaticResource DefaultButtonStyle}"
+                                             Style="{StaticResource DefaultMatButtonStyle}"
                                              Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
                                              Command="{Binding GoToSelectCategoryDialogCommand}" />
 
