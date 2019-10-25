@@ -200,6 +200,9 @@
     <AndroidAsset Include="Assets\materialdesignicons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Bold.ttf" />
+    <AndroidAsset Include="Assets\Fonts\Roboto-Medium.ttf" />
+    <AndroidAsset Include="Assets\Fonts\Roboto-Regular.ttf" />
     <None Include="MoneyFox.Android.ruleset" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\Toolbar.axml">
@@ -382,5 +385,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\CustomCursor.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
