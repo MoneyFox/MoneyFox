@@ -2,7 +2,7 @@
 using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
-using Android.Runtime;
+using Android.OS;
 using Android.Widget;
 using Java.Lang.Reflect;
 using MoneyFox.Droid.Renderer;
@@ -27,16 +27,7 @@ namespace MoneyFox.Droid.Renderer
         {
             base.OnElementChanged(e);
 
-            SetCursorColor();
             TrySetCursorPointerColor();
-        }
-
-        private void SetCursorColor()
-        {
-            IntPtr intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
-            IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
-
-            JNIEnv.SetField(Control.EditText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
         }
 
         private void TrySetCursorPointerColor()
@@ -71,6 +62,7 @@ namespace MoneyFox.Droid.Renderer
                     {
                         handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
                     }
+
 
                     field = editor.Class.GetDeclaredField(drawableName);
                     field.Accessible = true;
