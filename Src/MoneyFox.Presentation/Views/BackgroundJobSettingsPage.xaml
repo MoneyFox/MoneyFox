@@ -49,6 +49,7 @@
 
                     <Label Grid.Column="0"
                            VerticalTextAlignment="Center"
+                           Style="{StaticResource DefaultTextStyle}"
                            Text="{Binding BackupSyncRecurrence}" />
 
                     <Stepper Grid.Column="1"
