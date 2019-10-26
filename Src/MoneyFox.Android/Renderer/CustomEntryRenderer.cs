@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
+using Android.Runtime;
 using Android.Widget;
 using Java.Lang.Reflect;
 using MoneyFox.Droid.Renderer;
@@ -14,7 +15,6 @@ using Color = Xamarin.Forms.Color;
 using Object = Java.Lang.Object;
 
 [assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
-
 namespace MoneyFox.Droid.Renderer
 {
     public class CustomEntryRenderer : MaterialEntryRenderer
@@ -34,6 +34,13 @@ namespace MoneyFox.Droid.Renderer
         {
             try
             {
+
+                IntPtr IntPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
+                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(IntPtrtextViewClass, "mCursorDrawableRes", "I");
+
+                // my_cursor is the xml file name which we defined above
+                JNIEnv.SetField(Control.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
+
                 var textViewTemplate = new TextView(Control.EditText.Context);
 
                 Field field = textViewTemplate.Class.GetDeclaredField("mEditor");
@@ -68,6 +75,7 @@ namespace MoneyFox.Droid.Renderer
                     field.Accessible = true;
                     field.Set(editor, handleDrawable);
                 }
+
             }
             catch (Exception ex)
             {
