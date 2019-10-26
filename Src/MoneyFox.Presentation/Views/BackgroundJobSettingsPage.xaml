@@ -24,7 +24,7 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="20*" />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
@@ -32,6 +32,8 @@
                            Text="{Binding Resources[AutobackupLabel]}" />
 
                     <Switch Grid.Column="1"
+                            HorizontalOptions="End"
+                            Style="{StaticResource SwitchStyle}"
                             IsToggled="{Binding IsAutoBackupEnabled}" />
                 </Grid>
 

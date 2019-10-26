@@ -94,14 +94,17 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="15*" />
+                        <ColumnDefinition Width="20*" />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
                            Text="{Binding Resources[RecurringLabel]}"
                            Style="{DynamicResource DefaultTextStyle}" />
 
-                    <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.IsRecurring}" />
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="End"
+                            Style="{StaticResource SwitchStyle}" 
+                            IsToggled="{Binding SelectedPayment.IsRecurring}" />
                 </Grid>
 
                 <StackLayout Spacing="{StaticResource DefaultSpacing}"
@@ -127,6 +130,8 @@
                                Text="{Binding Resources[EndlessLabel]}" />
 
                         <Switch Grid.Column="1"
+                                HorizontalOptions="End"
+                                Style="{StaticResource SwitchStyle}"
                                 IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
                     </Grid>
 
