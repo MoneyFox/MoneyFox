@@ -94,7 +94,7 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="15*" />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
@@ -119,7 +119,7 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="70*" />
-                            <ColumnDefinition Width="30*" />
+                            <ColumnDefinition Width="15*" />
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0"
