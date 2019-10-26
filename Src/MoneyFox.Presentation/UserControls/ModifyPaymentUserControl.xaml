@@ -25,25 +25,19 @@
     <ContentView.Content>
         <ScrollView>
             <StackLayout Spacing="{StaticResource DefaultSpacing}">
-
-                <Label Text="{Binding AccountHeader}" Style="{DynamicResource DefaultTextStyle}" />
                 <Picker Title="{Binding AccountHeader}" ItemsSource="{Binding ChargedAccounts}"
                         Style="{StaticResource DefaultPickerStyle}"
                         SelectedItem="{Binding SelectedPayment.ChargedAccount}"
                         ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
                         SelectedIndexChanged="ChargedAccount_OnSelectedIndexChanged" />
 
-                <StackLayout Spacing="{StaticResource DefaultSpacing}"
-                             IsVisible="{Binding SelectedPayment.IsTransfer}">
-
-                    <Label Text="{Binding Resources[TargetAccountLabel]}" Style="{DynamicResource DefaultTextStyle}" />
-                    <Picker Title="{Binding  Resources[TargetAccountLabel]}"
-                            ItemsSource="{Binding TargetAccounts}"
-                            Style="{StaticResource DefaultPickerStyle}"
-                            SelectedItem="{Binding SelectedPayment.TargetAccount}"
-                            ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
-                            SelectedIndexChanged="TargetAccount_OnSelectedIndexChanged" />
-                </StackLayout>
+                <Picker Title="{Binding  Resources[TargetAccountLabel]}"
+                        ItemsSource="{Binding TargetAccounts}"
+                        Style="{StaticResource DefaultPickerStyle}"
+                        IsVisible="{Binding SelectedPayment.IsTransfer}"
+                        SelectedItem="{Binding SelectedPayment.TargetAccount}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
+                        SelectedIndexChanged="TargetAccount_OnSelectedIndexChanged" />
 
                 <Entry x:Name="AmountEntry"
                        Style="{StaticResource DefaultEntry}"
