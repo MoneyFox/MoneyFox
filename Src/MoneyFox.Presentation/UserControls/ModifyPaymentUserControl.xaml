@@ -58,10 +58,10 @@
                         <ColumnDefinition Width="30" />
                     </Grid.ColumnDefinitions>
 
-                    <material:MaterialButton Grid.Column="0"
-                                             Style="{StaticResource DefaultMatButtonStyle}"
-                                             Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
-                                             Command="{Binding GoToSelectCategoryDialogCommand}" />
+                    <Button Grid.Column="0"
+                            Style="{StaticResource DefaultButtonStyle}"
+                            Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
+                            Command="{Binding GoToSelectCategoryDialogCommand}" />
 
                     <ImageButton Grid.Column="1"
                                  HeightRequest="30"
