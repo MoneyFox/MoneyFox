@@ -11,13 +11,12 @@ namespace MoneyFox.Application.Tests.Infrastructure
         public static EfCoreContext Create()
         {
             DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
-                                                      .UseSqlite($"Data Source={Guid.NewGuid()}.db")
+                                                      .UseSqlite($"Filename=Foo.db")
                                                       .Options;
 
             var context = new EfCoreContext(options);
 
-            context.Database.EnsureCreated();
-            context.SaveChanges();
+            context.Database.Migrate();
 
             return context;
         }
