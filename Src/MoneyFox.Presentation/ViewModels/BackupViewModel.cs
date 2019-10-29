@@ -10,7 +10,6 @@ using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Services;
-using XF.Material.Forms.UI.Dialogs;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -231,10 +230,6 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task RestoreBackup()
         {
-            await MaterialDialog.Instance.AlertAsync(message: "test",
-                                                     title: "fasdf",
-                                                     acknowledgementText: Strings.OkLabel);
-
             if (!await ShowOverwriteDataInfoAsync()) return;
 
             dialogService.ShowLoadingDialog();
