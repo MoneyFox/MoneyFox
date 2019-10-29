@@ -58,8 +58,6 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             Assert.Single(context.RecurringPayments);
             (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
             (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).ShouldNotBeNull();
-
-            SqliteEfCoreContextFactory.Destroy(context);
         }
     }
 }
