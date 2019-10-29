@@ -6,7 +6,6 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
-using MoneyFox.Presentation.ViewModels;
 using Should;
 using Xunit;
 
@@ -18,12 +17,12 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
         public CreatePaymentCommandTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]
@@ -45,6 +44,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
         {
             // Arrange
             var account = new Account("test", 80);
+            context.Add(account);
+
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
@@ -57,6 +58,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             Assert.Single(context.RecurringPayments);
             (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
             (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).ShouldNotBeNull();
+
+            SqliteEfCoreContextFactory.Destroy(context);
         }
     }
 }

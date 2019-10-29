@@ -19,8 +19,6 @@ namespace MoneyFox.Persistence
         public DbSet<Payment> Payments { get; set; }
         public DbSet<RecurringPayment> RecurringPayments { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<PaymentTag> PaymentTags { get; set; }
-        public DbSet<Tag> Tags { get; set; }
 
         /// <summary>
         ///     Called when the models are created.

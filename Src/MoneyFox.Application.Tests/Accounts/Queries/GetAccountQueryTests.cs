@@ -17,12 +17,12 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
 
         public GetAccountQueryTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

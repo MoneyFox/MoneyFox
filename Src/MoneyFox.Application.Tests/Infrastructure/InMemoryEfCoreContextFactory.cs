@@ -6,7 +6,7 @@ using MoneyFox.Persistence;
 namespace MoneyFox.Application.Tests.Infrastructure
 {
     [ExcludeFromCodeCoverage]
-    internal static class TestEfCoreContextFactory
+    internal static class InMemoryEfCoreContextFactory
     {
         public static EfCoreContext Create()
         {

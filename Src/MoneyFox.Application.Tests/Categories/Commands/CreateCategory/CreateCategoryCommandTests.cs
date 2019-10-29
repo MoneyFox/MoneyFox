@@ -16,12 +16,12 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
 
         public CreateCategoryCommandTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

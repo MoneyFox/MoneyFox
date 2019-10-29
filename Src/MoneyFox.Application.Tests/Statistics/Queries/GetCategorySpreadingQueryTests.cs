@@ -23,12 +23,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
         public GetCategorySpreadingQueryTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

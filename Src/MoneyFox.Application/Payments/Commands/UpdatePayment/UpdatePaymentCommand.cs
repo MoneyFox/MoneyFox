@@ -28,13 +28,9 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
             {
                 Payment existingPayment = await context.Payments.FindAsync(request.Payment.Id);
 
-                existingPayment.UpdatePayment(request.Payment.Date,
-                                              request.Payment.Amount,
-                                              request.Payment.Type,
-                                              request.Payment.ChargedAccount,
-                                              request.Payment.TargetAccount,
-                                              request.Payment.Category,
-                                              request.Payment.Note);
+                if (existingPayment != null) {
+                    context.Entry(existingPayment).CurrentValues.SetValues(request.Payment);
+                }
 
                 await context.SaveChangesAsync(cancellationToken);
 
