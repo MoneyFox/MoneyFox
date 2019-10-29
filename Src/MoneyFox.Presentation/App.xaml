@@ -88,6 +88,10 @@
                 <Setter Property="BackgroundColor" Value="{DynamicResource ListItemColor}" />
             </Style>
 
+            <Style x:Key="SwitchStyle" TargetType="Switch">
+                <Setter Property="Margin" Value="0,0,7,0" />
+            </Style>
+
             <Style x:Key="DialogWindowStyle" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="{DynamicResource DialogBackgroundColor}" />
             </Style>

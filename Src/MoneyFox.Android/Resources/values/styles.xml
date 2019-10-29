@@ -9,7 +9,7 @@
 
   <style name="MainTheme" parent="MainTheme.Base">
   </style>
-  <!-- Base theme applied no matter what API -->
+
   <style name="MainTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="windowNoTitle">true</item>
     <item name="windowActionBar">false</item>
@@ -20,15 +20,11 @@
     <item name="colorAccent">@color/colorAccent</item>
 
     <item name="android:colorLongPressedHighlight">@color/colorAccent</item>
-
-    <item name="android:datePickerDialogTheme">@style/AppCompatDialogStyle</item>
-  </style>
-
-  <style name="AppCompatDialogStyle" parent="Theme.AppCompat.Light.Dialog">
-    <item name="colorAccent">@color/colorAccent</item>
+    <item name="android:editTextStyle">@style/myEditText</item>
   </style>
 
   <style name="myEditText" parent="Theme.AppCompat.Light.DarkActionBar">
     <item name="android:textCursorDrawable">@drawable/CustomCursor</item>
   </style>
+
 </resources>

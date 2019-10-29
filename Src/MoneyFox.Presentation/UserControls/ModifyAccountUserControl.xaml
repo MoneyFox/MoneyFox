@@ -37,13 +37,16 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="20*" />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
                            Text="{Binding Resources[IsExcludedLabel]}"
                            Style="{StaticResource DefaultTextStyle}" />
-                    <Switch Grid.Column="1" IsToggled="{Binding SelectedAccount.IsExcluded}" />
+                    <Switch Grid.Column="1" 
+                            HorizontalOptions="End"
+                            Style="{StaticResource SwitchStyle}"
+                            IsToggled="{Binding SelectedAccount.IsExcluded}" />
                 </Grid>
             </StackLayout>
         </ScrollView>
