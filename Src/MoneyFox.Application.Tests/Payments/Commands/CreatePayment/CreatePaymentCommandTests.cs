@@ -6,6 +6,7 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using MoneyFox.Presentation.ViewModels;
 using Should;
 using Xunit;
 
@@ -26,7 +27,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
         }
 
         [Fact]
-        public async Task GetPayment_PaymentFound()
+        public async Task CreatePayment_PaymentSaved()
         {
             // Arrange
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
@@ -37,6 +38,25 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             // Assert
             Assert.Single(context.Payments);
             (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
+        }
+
+        [Fact]
+        public async Task CreatePaymentWithRecurring_PaymentSaved()
+        {
+            // Arrange
+            var account = new Account("test", 80);
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+
+            payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
+
+            // Act
+            Unit result = await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
+
+            // Assert
+            Assert.Single(context.Payments);
+            Assert.Single(context.RecurringPayments);
+            (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
+            (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).ShouldNotBeNull();
         }
     }
 }

@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
+    <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj" />
   </ItemGroup>
 
   <ItemGroup>
