@@ -17,12 +17,12 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
         public CreatePaymentCommandTests()
         {
-            context = SqliteEfCoreContextFactory.Create();
+            context = SQLiteEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            SqliteEfCoreContextFactory.Destroy(context);
+            SQLiteEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Persistence;
 
 namespace MoneyFox.Application.Tests.Infrastructure
 {
     [ExcludeFromCodeCoverage]
-    internal static class SqliteEfCoreContextFactory
+    internal static class SQLiteEfCoreContextFactory
     {
         public static EfCoreContext Create()
         {
