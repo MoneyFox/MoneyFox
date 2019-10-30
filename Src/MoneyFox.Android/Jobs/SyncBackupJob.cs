@@ -86,11 +86,11 @@ namespace MoneyFox.Droid.Jobs
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 
-                DateTime backupDate = await backupService.GetBackupDate();
+                DateTime backupDate = await backupService.GetBackupDateAsync();
 
                 if (settingsFacade.LastDatabaseUpdate > backupDate) return;
 
-                await backupService.RestoreBackup();
+                await backupService.RestoreBackupAsync();
 
                 JobFinished(args, false);
             }

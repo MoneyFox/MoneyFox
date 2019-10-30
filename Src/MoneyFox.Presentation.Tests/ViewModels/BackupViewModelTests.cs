@@ -28,8 +28,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var getBackupDateCalled = false;
 
             var backupServiceMock = new Mock<IBackupService>();
-            backupServiceMock.Setup(x => x.IsBackupExisting()).Callback(() => checkBackupCalled = true);
-            backupServiceMock.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
+            backupServiceMock.Setup(x => x.IsBackupExistingAsync()).Callback(() => checkBackupCalled = true);
+            backupServiceMock.Setup(x => x.GetBackupDateAsync()).Callback(() => getBackupDateCalled = true);
 
             //execute
             var vm = new BackupViewModel(backupServiceMock.Object,
@@ -58,8 +58,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var getBackupDateCalled = false;
 
             var backupServiceMock = new Mock<IBackupService>();
-            backupServiceMock.Setup(x => x.IsBackupExisting()).Callback(() => checkBackupCalled = true);
-            backupServiceMock.Setup(x => x.GetBackupDate()).Callback(() => getBackupDateCalled = true);
+            backupServiceMock.Setup(x => x.IsBackupExistingAsync()).Callback(() => checkBackupCalled = true);
+            backupServiceMock.Setup(x => x.GetBackupDateAsync()).Callback(() => getBackupDateCalled = true);
 
             //execute
             var vm = new BackupViewModel(backupServiceMock.Object,
@@ -87,8 +87,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             DateTime returnDate = DateTime.Today;
 
             var backupServiceMock = new Mock<IBackupService>();
-            backupServiceMock.Setup(x => x.IsBackupExisting()).Returns(Task.FromResult(true));
-            backupServiceMock.Setup(x => x.GetBackupDate()).Returns(Task.FromResult(returnDate));
+            backupServiceMock.Setup(x => x.IsBackupExistingAsync()).Returns(Task.FromResult(true));
+            backupServiceMock.Setup(x => x.GetBackupDateAsync()).Returns(Task.FromResult(returnDate));
 
             //execute
             var vm = new BackupViewModel(backupServiceMock.Object,
@@ -116,7 +116,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var logoutCommandCalled = false;
 
             var backupServiceMock = new Mock<IBackupService>();
-            backupServiceMock.Setup(x => x.Logout()).Callback(() => logoutCommandCalled = true)
+            backupServiceMock.Setup(x => x.LogoutAsync()).Callback(() => logoutCommandCalled = true)
                              .Returns(Task.CompletedTask);
 
             //execute
