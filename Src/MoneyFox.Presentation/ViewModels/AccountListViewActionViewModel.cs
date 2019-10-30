@@ -9,6 +9,8 @@ namespace MoneyFox.Presentation.ViewModels
 {
     public class AccountListViewActionViewModel : BaseViewModel, IAccountListViewActionViewModel
     {
+        private const int TRANSFER_MINIMUM_ACCOUNT_COUNT = 2;
+
         private readonly IMediator mediator;
         private readonly INavigationService navigationService;
 
@@ -35,19 +37,23 @@ namespace MoneyFox.Presentation.ViewModels
         public RelayCommand GoToAddTransferCommand =>
             new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Transfer));
 
+
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        public bool IsTransferAvailable => mediator.Send(new GetAccountCountQuery()).Result >= 2;
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking", Justification = "Have to use Result")]
+        public bool IsTransferAvailable => mediator.Send(new GetAccountCountQuery()).Result >= TRANSFER_MINIMUM_ACCOUNT_COUNT;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking", Justification = "Have to use Result")]
         public bool IsAddIncomeAvailable => mediator.Send(new GetAccountCountQuery()).Result > 0;
 
         /// <summary>
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking", Justification = "Have to use Result")]
         public bool IsAddExpenseAvailable => mediator.Send(new GetAccountCountQuery()).Result > 0;
     }
 }

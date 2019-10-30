@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -27,14 +26,15 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
             }
 
             /// <inheritdoc />
-            public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken) 
+            public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
             {
                 context.Entry(request.PaymentToSave).State = EntityState.Added;
 
-                if (request.PaymentToSave.IsRecurring) {
+                if (request.PaymentToSave.IsRecurring)
+                {
                     context.Entry(request.PaymentToSave.RecurringPayment).State = EntityState.Added;
                 }
-                
+
                 await context.SaveChangesAsync(cancellationToken);
                 return Unit.Value;
             }
