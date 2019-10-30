@@ -15,12 +15,12 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
 
         public GetIfAccountWithNameExistsQueryTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Theory]

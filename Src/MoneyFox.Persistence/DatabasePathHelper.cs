@@ -21,16 +21,14 @@ namespace MoneyFox.Persistence
                 case AppPlatform.iOS:
                     Batteries_V2.Init();
                     databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DATABASE_NAME);
-
                     break;
+
                 case AppPlatform.Android:
                     databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DATABASE_NAME);
-
                     break;
 
                 case AppPlatform.UWP:
                     databasePath = DATABASE_NAME;
-
                     break;
 
                 default:

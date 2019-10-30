@@ -18,12 +18,12 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
 
         public GetCategoryBySearchTermQueryTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

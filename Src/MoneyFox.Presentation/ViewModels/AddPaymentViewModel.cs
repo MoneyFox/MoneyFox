@@ -1,21 +1,29 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
+using NLog;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class AddPaymentViewModel : ModifyPaymentViewModel
+    public class AddPaymentViewModel : ModifyPaymentViewModel 
     {
+        private ILogger logger = LogManager.GetCurrentClassLogger();
+
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
         private readonly IPaymentService paymentService;
         private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
@@ -29,6 +37,8 @@ namespace MoneyFox.Presentation.ViewModels
                                    INavigationService navigationService)
             : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService)
         {
+            this.mediator = mediator;
+            this.mapper = mapper;
             this.paymentService = paymentService;
             this.navigationService = navigationService;
             this.dialogService = dialogService;
@@ -56,14 +66,30 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SavePayment()
         {
-            try
-            {
-                await paymentService.SavePayment(SelectedPayment);
+            try {
+                var payment = new Payment(SelectedPayment.Date, 
+                                          SelectedPayment.Amount, 
+                                          SelectedPayment.Type,
+                                          mapper.Map<Account>(SelectedPayment.ChargedAccount),
+                                          mapper.Map<Account>(SelectedPayment.TargetAccount),
+                                          mapper.Map<Category>(SelectedPayment.Category),
+                                          SelectedPayment.Note);
+
+                if (SelectedPayment.IsRecurring) {
+                    payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.EndDate);
+                }
+
+                await mediator.Send(new CreatePaymentCommand(payment));
                 navigationService.GoBack();
             }
             catch (InvalidEndDateException)
             {
                 await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex);
+                throw;
             }
         }
     }

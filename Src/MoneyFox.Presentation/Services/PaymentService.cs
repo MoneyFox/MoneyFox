@@ -17,13 +17,6 @@ namespace MoneyFox.Presentation.Services
     public interface IPaymentService
     {
         /// <summary>
-        ///     Save a new payment
-        /// </summary>
-        /// <param name="paymentViewModel">View model which contains the view data.</param>
-        /// <returns>Result</returns>
-        Task SavePayment(PaymentViewModel paymentViewModel);
-
-        /// <summary>
         ///     Updates a payment.
         /// </summary>
         /// <param name="newPaymentViewModel">View model which contains the view data.</param>
@@ -52,16 +45,6 @@ namespace MoneyFox.Presentation.Services
             this.modifyPaymentAction = modifyPaymentAction;
             this.dialogService = dialogService;
             this.context = context;
-        }
-
-        /// <inheritdoc />
-        public async Task SavePayment(PaymentViewModel paymentViewModel)
-        {
-            Payment payment = await CreatePaymentFromViewModel(paymentViewModel);
-            await context.AddAsync(payment);
-
-            int count = await context.SaveChangesAsync();
-            logger.Info("{count} entities saved.", count);
         }
 
         /// <inheritdoc />

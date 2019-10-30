@@ -10,12 +10,12 @@ namespace MoneyFox.Application.Tests.Infrastructure
 
         public CommandTestBase()
         {
-            Context = TestEfCoreContextFactory.Create();
+            Context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(Context);
+            InMemoryEfCoreContextFactory.Destroy(Context);
         }
     }
 }

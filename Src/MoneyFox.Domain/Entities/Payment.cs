@@ -48,7 +48,7 @@ namespace MoneyFox.Domain.Entities
         public bool IsRecurring { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
-        public DateTime CreationTime { get; }
+        public DateTime CreationTime { get; private set; }
 
         public virtual Category Category { get; private set; }
 
@@ -58,8 +58,6 @@ namespace MoneyFox.Domain.Entities
         public virtual Account TargetAccount { get; private set; }
 
         public virtual RecurringPayment RecurringPayment { get; private set; }
-
-        public virtual IList<PaymentTag> PaymentTags { get; private set; }
 
         public void UpdatePayment(DateTime date,
                                   decimal amount,
@@ -90,7 +88,7 @@ namespace MoneyFox.Domain.Entities
             ModificationDate = DateTime.Now;
         }
 
-        public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate)
+        public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
         {
             RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note, endDate, TargetAccount, Category);
             IsRecurring = true;

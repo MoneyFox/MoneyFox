@@ -16,12 +16,12 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
 
         public CreateAccountCommandTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

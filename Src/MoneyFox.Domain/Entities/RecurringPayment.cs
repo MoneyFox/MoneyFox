@@ -47,17 +47,16 @@ namespace MoneyFox.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime StartDate { get; }
+        public DateTime StartDate { get; private set; }
         public DateTime? EndDate { get; private set; }
         public bool IsEndless { get; private set; }
         public decimal Amount { get; private set; }
-        public PaymentType Type { get; }
+        public PaymentType Type { get; private set; }
         public PaymentRecurrence Recurrence { get; private set; }
         public string Note { get; set; }
 
         public DateTime ModificationDate { get; private set; }
-
-        public DateTime CreationTime { get; }
+        public DateTime CreationTime { get; private set; }
 
         public virtual Category Category { get; private set; }
 

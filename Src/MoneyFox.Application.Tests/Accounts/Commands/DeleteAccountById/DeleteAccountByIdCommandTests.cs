@@ -18,12 +18,12 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
 
         public DeleteAccountByIdCommandTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

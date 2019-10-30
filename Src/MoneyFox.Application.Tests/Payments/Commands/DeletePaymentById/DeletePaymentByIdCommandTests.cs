@@ -17,12 +17,12 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
 
         public DeletePaymentByIdCommandTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]
