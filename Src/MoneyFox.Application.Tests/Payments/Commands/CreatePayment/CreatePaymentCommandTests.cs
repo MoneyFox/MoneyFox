@@ -29,7 +29,10 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
         public async Task CreatePayment_PaymentSaved()
         {
             // Arrange
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
+            var account = new Account("test", 80); 
+            context.Add(account);
+
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
             // Act
             Unit result = await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
