@@ -58,9 +58,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task Initialize_PaymentHasCorrectType(PaymentType type)
         {
             // Arrange
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
-                              .Returns(Task.CompletedTask);
-
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
                                                        paymentServiceMock.Object,
@@ -84,9 +81,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task Initialize_IncomeExpense_PaymentChargedAccountNotNull(PaymentType type)
         {
             // Arrange
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
-                              .Returns(Task.CompletedTask);
-
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account> {new Account("dfasdf")});
 
@@ -112,9 +106,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task Initialize_Transfer_PaymentChargedAccountNotNull()
         {
             // Arrange
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
-                              .Returns(Task.CompletedTask);
-
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account> {new Account("dfasdf"), new Account("Foo") });
             
@@ -140,9 +131,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task SavePayment_NoAccount_DialogShown()
         {
             // Arrange
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
-                              .Returns(Task.CompletedTask);
-
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
                                                        paymentServiceMock.Object,
@@ -157,7 +145,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            paymentServiceMock.Verify(x => x.SavePayment(It.IsAny<PaymentViewModel>()), Times.Never);
             dialogServiceMock.Verify(x => x.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
@@ -168,9 +155,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task SavePayment_ResultSucceeded_CorrectMethodCalls()
         {
             // Arrange
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
-                              .Returns(Task.CompletedTask);
-
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
                                                        paymentServiceMock.Object,
@@ -197,9 +181,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task SavePayment_ResultSucceededWithBackup_CorrectMethodCalls()
         {
             // Arrange
-            paymentServiceMock.Setup(x => x.SavePayment(It.IsAny<PaymentViewModel>()))
-                              .Returns(Task.CompletedTask);
-
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
