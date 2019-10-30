@@ -50,7 +50,7 @@ namespace MoneyFox.Droid.Jobs
         {
             var callback = (Messenger) intent.GetParcelableExtra("messenger");
             Message m = Message.Obtain();
-            m.What = MainActivity.MESSAGE_SERVICE_SYNC_BACKUP;
+            m.What = MainActivity.MessageServiceSyncBackup;
             m.Obj = this;
             try
             {

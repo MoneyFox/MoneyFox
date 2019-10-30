@@ -28,20 +28,24 @@ namespace MoneyFox.Droid
     [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
+        private const int MESSAGE_SERVICE_CLEAR_PAYMENT_JOB_HANDLE = 1;
+        private const int MESSAGE_SERVICE_RECURRING_PAYMENT_JOB_HANDLE = 2;
+        private const int MESSAGE_SERVICE_SYNC_BACKUP_JOB_HANDLE = 3;
+
         /// <summary>
         ///     Constant for the ClearPayment Service.
         /// </summary>
-        public const int MESSAGE_SERVICE_CLEAR_PAYMENTS = 1;
+        public static int MessageServiceClearPayments => MESSAGE_SERVICE_CLEAR_PAYMENT_JOB_HANDLE;
 
         /// <summary>
         ///     Constant for the recurring payment Service.
         /// </summary>
-        public const int MESSAGE_SERVICE_RECURRING_PAYMENTS = 2;
+        public static int MessageServiceRecurringPayments => MESSAGE_SERVICE_RECURRING_PAYMENT_JOB_HANDLE;
 
         /// <summary>
         ///     Constant for the sync backup Service.
         /// </summary>
-        public const int MESSAGE_SERVICE_SYNC_BACKUP = 3;
+        public static int MessageServiceSyncBackup => MESSAGE_SERVICE_SYNC_BACKUP_JOB_HANDLE;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -74,21 +78,18 @@ namespace MoneyFox.Droid
         {
             // Handler to create jobs.
             var handler = new Handler(msg =>
-            {
-                switch (msg.What)
-                {
-                    case MESSAGE_SERVICE_CLEAR_PAYMENTS:
-                        var clearPaymentsJob = (ClearPaymentsJob) msg.Obj;
-                        clearPaymentsJob.ScheduleTask();
-
-                        break;
-                    case MESSAGE_SERVICE_RECURRING_PAYMENTS:
-                        var recurringPaymentJob = (RecurringPaymentJob) msg.Obj;
-                        recurringPaymentJob.ScheduleTask();
-
-                        break;
-                }
-            });
+                                      {
+                                          if (msg.What == MESSAGE_SERVICE_CLEAR_PAYMENT_JOB_HANDLE)
+                                          {
+                                              var clearPaymentsJob = (ClearPaymentsJob) msg.Obj;
+                                              clearPaymentsJob.ScheduleTask();
+                                          }
+                                          else if (msg.What == MESSAGE_SERVICE_RECURRING_PAYMENT_JOB_HANDLE)
+                                          {
+                                              var recurringPaymentJob = (RecurringPaymentJob) msg.Obj;
+                                              recurringPaymentJob.ScheduleTask();
+                                          }
+                                      });
 
             // Start services and provide it a way to communicate with us.
             var startServiceIntentClearPayment = new Intent(this, typeof(ClearPaymentsJob));
