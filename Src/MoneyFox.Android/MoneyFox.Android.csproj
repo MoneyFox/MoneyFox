@@ -102,7 +102,7 @@
       <Version>2.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
-      <Version>2.2.6</Version>
+      <Version>2.2.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
       <Version>1.18.0</Version>
