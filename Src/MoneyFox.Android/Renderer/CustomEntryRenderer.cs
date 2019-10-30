@@ -27,6 +27,8 @@ namespace MoneyFox.Droid.Renderer
         {
             base.OnElementChanged(e);
 
+            Control.EditText.SetHighlightColor(Color.Accent.ToAndroid());
+
             if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Q)
             {
                 TrySetCursorPointerColorNew();
@@ -39,6 +41,7 @@ namespace MoneyFox.Droid.Renderer
 
         private void TrySetCursorPointerColorNew()
         {
+
             try
             {
                 Control.EditText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
