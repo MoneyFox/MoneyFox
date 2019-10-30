@@ -17,12 +17,12 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
         public CreatePaymentCommandTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = SqliteEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            InMemoryEfCoreContextFactory.Destroy(context);
+            SqliteEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]
@@ -43,7 +43,6 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
         public async Task CreatePaymentWithRecurring_PaymentSaved()
         {
             // Arrange
-            var cont = SqliteEfCoreContextFactory.Create();
             var account = new Account("test", 80);
             context.Add(account);
 
@@ -52,15 +51,14 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             // Act
-            Unit result = await new CreatePaymentCommand.Handler(cont).Handle(new CreatePaymentCommand(payment1), default);
+            Unit result = await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
-            Assert.Single(cont.Payments);
-            Assert.Single(cont.RecurringPayments);
-            (await cont.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
-            (await cont.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).ShouldNotBeNull();
+            Assert.Single(context.Payments);
+            Assert.Single(context.RecurringPayments);
+            (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
+            (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).ShouldNotBeNull();
 
-            SqliteEfCoreContextFactory.Destroy(cont);
         }
     }
 }
