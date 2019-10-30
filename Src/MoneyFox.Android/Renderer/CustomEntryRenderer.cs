@@ -41,7 +41,6 @@ namespace MoneyFox.Droid.Renderer
 
         private void TrySetCursorPointerColorNew()
         {
-
             try
             {
                 Control.EditText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
