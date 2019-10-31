@@ -47,7 +47,7 @@ namespace MoneyFox.Droid.Jobs
         {
             var callback = (Messenger) intent.GetParcelableExtra("messenger");
             Message m = Message.Obtain();
-            m.What = MainActivity.MESSAGE_SERVICE_RECURRING_PAYMENTS;
+            m.What = MainActivity.MessageServiceRecurringPayments;
             m.Obj = this;
             try
             {

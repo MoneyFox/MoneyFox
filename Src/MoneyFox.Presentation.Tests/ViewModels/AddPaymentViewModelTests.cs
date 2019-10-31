@@ -148,7 +148,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             dialogServiceMock.Verify(x => x.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
+            backupServiceMock.Verify(x => x.EnqueueBackupTaskAsync(0), Times.Never);
         }
 
         [Fact]
@@ -174,7 +174,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
+            backupServiceMock.Verify(x => x.EnqueueBackupTaskAsync(0), Times.Never);
         }
 
         [Fact]
@@ -202,7 +202,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
+            backupServiceMock.Verify(x => x.EnqueueBackupTaskAsync(0), Times.Once);
         }
 
         [Fact]
@@ -229,7 +229,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Assert
             mediatorMock.Verify(x => x.Send(It.IsAny<CreatePaymentCommand>(), default), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
+            backupServiceMock.Verify(x => x.EnqueueBackupTaskAsync(0), Times.Never);
         }
 
         [Fact]
@@ -258,7 +258,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Assert
             mediatorMock.Verify(x => x.Send(It.IsAny<CreatePaymentCommand>(), default), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
+            backupServiceMock.Verify(x => x.EnqueueBackupTaskAsync(0), Times.Never);
         }
     }
 }

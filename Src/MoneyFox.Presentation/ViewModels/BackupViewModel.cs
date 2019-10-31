@@ -150,13 +150,13 @@ namespace MoneyFox.Presentation.ViewModels
             IsLoadingBackupAvailability = true;
             try
             {
-                BackupAvailable = await backupService.IsBackupExisting();
-                BackupLastModified = await backupService.GetBackupDate();
+                BackupAvailable = await backupService.IsBackupExistingAsync();
+                BackupLastModified = await backupService.GetBackupDateAsync();
             }
             catch (BackupAuthenticationFailedException ex)
             {
                 Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Issue during Login process."}});
-                await backupService.Logout();
+                await backupService.LogoutAsync();
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
@@ -165,7 +165,7 @@ namespace MoneyFox.Presentation.ViewModels
                 if (ex.Error.Code == "4f37.717b")
                 {
                     Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Graph Login Exception"}});
-                    await backupService.Logout();
+                    await backupService.LogoutAsync();
                     await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                     Strings.ErrorMessageAuthenticationFailed);
                 }
@@ -180,7 +180,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             try
             {
-                await backupService.Login();
+                await backupService.LoginAsync();
             }
             catch (Exception ex)
             {
@@ -196,7 +196,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             try
             {
-                await backupService.Logout();
+                await backupService.LogoutAsync();
             }
             catch (Exception ex)
             {
@@ -215,7 +215,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             try
             {
-                await backupService.EnqueueBackupTask();
+                await backupService.EnqueueBackupTaskAsync();
 
                 BackupLastModified = DateTime.Now;
             }
@@ -233,14 +233,14 @@ namespace MoneyFox.Presentation.ViewModels
             if (!await ShowOverwriteDataInfoAsync()) return;
 
             dialogService.ShowLoadingDialog();
-            DateTime backupDate = await backupService.GetBackupDate();
+            DateTime backupDate = await backupService.GetBackupDateAsync();
             if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync()) return;
 
             dialogService.ShowLoadingDialog();
 
             try
             {
-                await backupService.RestoreBackup();
+                await backupService.RestoreBackupAsync();
                 await ShowCompletionNoteAsync();
             }
             catch (Exception ex)

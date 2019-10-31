@@ -299,7 +299,7 @@ namespace MoneyFox.Presentation.ViewModels
             if (settingsFacade.IsBackupAutouploadEnabled)
             {
 #pragma warning disable 4014
-                backupService.EnqueueBackupTask();
+                backupService.EnqueueBackupTaskAsync();
 #pragma warning restore 4014
             }
         }

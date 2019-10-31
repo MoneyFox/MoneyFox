@@ -175,11 +175,11 @@ namespace MoneyFox.iOS
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 
-                DateTime backupDate = await backupService.GetBackupDate();
+                DateTime backupDate = await backupService.GetBackupDateAsync();
 
                 if (settingsFacade.LastDatabaseUpdate > backupDate) return;
 
-                await backupService.RestoreBackup();
+                await backupService.RestoreBackupAsync();
             }
             catch (Exception ex)
             {

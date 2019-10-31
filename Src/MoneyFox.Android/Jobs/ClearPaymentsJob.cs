@@ -47,7 +47,7 @@ namespace MoneyFox.Droid.Jobs
         {
             var callback = (Messenger) intent.GetParcelableExtra("messenger");
             Message m = Message.Obtain();
-            m.What = MainActivity.MESSAGE_SERVICE_CLEAR_PAYMENTS;
+            m.What = MainActivity.MessageServiceClearPayments;
             m.Obj = this;
             try
             {

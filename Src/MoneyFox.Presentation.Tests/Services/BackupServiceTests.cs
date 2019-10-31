@@ -28,7 +28,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async () => await backupService.Login());
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.LoginAsync());
 
             // Assert
             settingsFacade.Object.IsBackupAutouploadEnabled.ShouldBeFalse();
@@ -49,7 +49,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await backupService.Login();
+            await backupService.LoginAsync();
 
             // Assert
             settingsFacade.Object.IsBackupAutouploadEnabled.ShouldBeTrue();
@@ -72,7 +72,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async () => await backupService.Logout());
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.LogoutAsync());
 
             // Assert
             settingsFacade.Object.IsBackupAutouploadEnabled.ShouldBeTrue();
@@ -93,7 +93,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await backupService.Logout();
+            await backupService.LogoutAsync();
 
             // Assert
             settingsFacade.Object.IsBackupAutouploadEnabled.ShouldBeFalse();
@@ -113,7 +113,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, new Mock<ISettingsFacade>().Object);
 
             // Act
-            bool result = await backupService.IsBackupExisting();
+            bool result = await backupService.IsBackupExistingAsync();
 
             // Assert
             result.ShouldEqual(expectedResult);
@@ -130,7 +130,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, new Mock<ISettingsFacade>().Object);
 
             // Act
-            DateTime result = await backupService.GetBackupDate();
+            DateTime result = await backupService.GetBackupDateAsync();
 
             // Assert
             result.ShouldEqual(DateTime.Today);
@@ -153,7 +153,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await backupService.RestoreBackup();
+            await backupService.RestoreBackupAsync();
 
             // Assert
             settingsFacade.Object.LastDatabaseUpdate.ShouldBeInRange(DateTime.Now.AddMinutes(-2), DateTime.Now);
@@ -176,7 +176,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async () => await backupService.RestoreBackup());
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.RestoreBackupAsync());
 
             // Assert
             settingsFacade.Object.LastDatabaseUpdate.ShouldEqual(expectedPassedDate);
@@ -199,7 +199,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await backupService.EnqueueBackupTask();
+            await backupService.EnqueueBackupTaskAsync();
 
             // Assert
             backupManagerMock.Verify(x => x.LoginAsync(), Times.Once);
@@ -223,7 +223,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async () => await backupService.EnqueueBackupTask());
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.EnqueueBackupTaskAsync());
 
             // Assert
             backupManagerMock.Verify(x => x.LoginAsync(), Times.Once);
@@ -245,7 +245,7 @@ namespace MoneyFox.Presentation.Tests.Services
             var backupService = new BackupService(backupManagerMock.Object, settingsFacade.Object);
 
             // Act
-            await backupService.EnqueueBackupTask();
+            await backupService.EnqueueBackupTaskAsync();
 
             // Assert
             backupManagerMock.Verify(x => x.LoginAsync(), Times.Never);
