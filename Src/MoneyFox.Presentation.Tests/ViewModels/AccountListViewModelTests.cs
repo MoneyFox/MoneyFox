@@ -34,7 +34,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
 
             var dialogServiceSetup = new Mock<IDialogService>();
-            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
+            dialogServiceSetup.Setup(x => x.ShowConfirmMessageAsync(It.IsAny<string>(), It.IsAny<string>(), null, null))
                               .Returns(Task.FromResult(false));
 
             var viewModel = new AccountListViewModel(mediatorMock.Object,
@@ -61,7 +61,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
 
             var dialogServiceSetup = new Mock<IDialogService>();
-            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
+            dialogServiceSetup.Setup(x => x.ShowConfirmMessageAsync(It.IsAny<string>(), It.IsAny<string>(), null, null))
                               .Returns(Task.FromResult(false));
 
             var viewModel = new AccountListViewModel(mediatorMock.Object,
@@ -88,7 +88,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
 
             var dialogServiceSetup = new Mock<IDialogService>();
-            dialogServiceSetup.Setup(x => x.ShowConfirmMessage(It.IsAny<string>(), It.IsAny<string>(), null, null))
+            dialogServiceSetup.Setup(x => x.ShowConfirmMessageAsync(It.IsAny<string>(), It.IsAny<string>(), null, null))
                               .Returns(Task.FromResult(true));
 
             var viewModel = new AccountListViewModel(mediatorMock.Object,

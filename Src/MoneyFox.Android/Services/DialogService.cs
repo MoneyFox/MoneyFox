@@ -33,10 +33,10 @@ namespace MoneyFox.Droid.Services
         }
 
         /// <inheritdoc />
-        public async Task ShowConfirmMessage(string title, string message, Action positivAction,
+        public async Task ShowConfirmMessageAsync(string title, string message, Action positivAction,
                                              string positiveButtonText = null, string negativeButtonText = null, Action negativAction = null)
         {
-            bool isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
+            bool isPositiveAnswer = await ShowConfirmMessageAsync(title, message, positiveButtonText, negativeButtonText);
 
             if (isPositiveAnswer)
                 positivAction();
@@ -45,7 +45,7 @@ namespace MoneyFox.Droid.Services
         }
 
         /// <inheritdoc />
-        public Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
+        public Task<bool> ShowConfirmMessageAsync(string title, string message, string positiveButtonText = null,
                                              string negativeButtonText = null)
         {
             // We have to hide the loading dialog first, otherwise it get's stuck.
