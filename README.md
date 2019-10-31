@@ -16,7 +16,7 @@ We have a slack team to make communication a bit easier. Write me a mail to nino
 | ------------- |-------------|-------------|-------------|
 |Windows|[Microsoft Store](https://www.microsoft.com/store/apps/9nblggh6ck9d)| Please send me your Microsoft Account | Please send me your Microsoft Account|
 |Android|[Play Store](https://play.google.com/store/apps/details?id=com.applysolutions.moneyfox) | Opt-in via Play Store | Please send me your Google ID|
-|IOS | [Not Ready yet]| [Testflight](https://testflight.apple.com/join/ycYtjupl) |[Testflight](https://testflight.apple.com/join/3RO75JDs)|
+|IOS | [AppStore](https://apps.apple.com/us/app/money-fox/id1401940067?ls=1)| [Testflight](https://testflight.apple.com/join/ycYtjupl) |[Testflight](https://testflight.apple.com/join/3RO75JDs)|
 
 ### Contribution
 
@@ -32,9 +32,8 @@ Help us translate the money fox to as many languages as possible. Head over [her
 We act under the [Contributor Covenant](https://github.com/MoneyFox/MoneyFox/blob/master/CODE_OF_CONDUCT.md)
 
 ### Tools
-We use Visual Studio 2017 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
+We use Visual Studio 2019 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
 
-Also, please install the SQLite Extension for Visual Studio.
 
 ### Contact
 Feel free to contact me. Just write me a mail or even better join our slack channel.
