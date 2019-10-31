@@ -32,9 +32,8 @@ Help us translate the money fox to as many languages as possible. Head over [her
 We act under the [Contributor Covenant](https://github.com/MoneyFox/MoneyFox/blob/master/CODE_OF_CONDUCT.md)
 
 ### Tools
-We use Visual Studio 2017 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
+We use Visual Studio 2019 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
 
-Also, please install the SQLite Extension for Visual Studio.
 
 ### Contact
 Feel free to contact me. Just write me a mail or even better join our slack channel.
