@@ -16,7 +16,7 @@ We have a slack team to make communication a bit easier. Write me a mail to nino
 | ------------- |-------------|-------------|-------------|
 |Windows|[Microsoft Store](https://www.microsoft.com/store/apps/9nblggh6ck9d)| Please send me your Microsoft Account | Please send me your Microsoft Account|
 |Android|[Play Store](https://play.google.com/store/apps/details?id=com.applysolutions.moneyfox) | Opt-in via Play Store | Please send me your Google ID|
-|IOS | [Not Ready yet]| [Testflight](https://testflight.apple.com/join/ycYtjupl) |[Testflight](https://testflight.apple.com/join/3RO75JDs)|
+|IOS | [AppStore](https://apps.apple.com/us/app/money-fox/id1401940067?ls=1)| [Testflight](https://testflight.apple.com/join/ycYtjupl) |[Testflight](https://testflight.apple.com/join/3RO75JDs)|
 
 ### Contribution
 
