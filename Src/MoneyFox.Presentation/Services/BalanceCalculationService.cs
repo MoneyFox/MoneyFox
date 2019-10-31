@@ -67,12 +67,10 @@ namespace MoneyFox.Presentation.Services
                 {
                     case PaymentType.Expense:
                         balance -= payment.Amount;
-
                         break;
 
                     case PaymentType.Income:
                         balance += payment.Amount;
-
                         break;
 
                     case PaymentType.Transfer:
@@ -82,7 +80,6 @@ namespace MoneyFox.Presentation.Services
                             {
                                 //Transfer from excluded account
                                 balance += payment.Amount;
-
                                 break;
                             }
 
@@ -90,11 +87,9 @@ namespace MoneyFox.Presentation.Services
                             {
                                 //Transfer to excluded account
                                 balance -= payment.Amount;
-
                                 break;
                             }
                         }
-
                         break;
 
                     default:
@@ -139,12 +134,16 @@ namespace MoneyFox.Presentation.Services
             return balance;
         }
 
-        private decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
+        private static decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
         {
             if (accountId == payment.ChargedAccount.Id)
+            {
                 balance -= payment.Amount;
+            }
             else
+            {
                 balance += payment.Amount;
+            }
 
             return balance;
         }
