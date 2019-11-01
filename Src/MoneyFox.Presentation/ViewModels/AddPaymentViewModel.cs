@@ -18,13 +18,12 @@ using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class AddPaymentViewModel : ModifyPaymentViewModel 
+    public class AddPaymentViewModel : ModifyPaymentViewModel
     {
-        private ILogger logger = LogManager.GetCurrentClassLogger();
+        private readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         private readonly IMediator mediator;
         private readonly IMapper mapper;
-        private readonly IPaymentService paymentService;
         private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
 
@@ -39,7 +38,6 @@ namespace MoneyFox.Presentation.ViewModels
         {
             this.mediator = mediator;
             this.mapper = mapper;
-            this.paymentService = paymentService;
             this.navigationService = navigationService;
             this.dialogService = dialogService;
         }
@@ -67,8 +65,8 @@ namespace MoneyFox.Presentation.ViewModels
         protected override async Task SavePayment()
         {
             try {
-                var payment = new Payment(SelectedPayment.Date, 
-                                          SelectedPayment.Amount, 
+                var payment = new Payment(SelectedPayment.Date,
+                                          SelectedPayment.Amount,
                                           SelectedPayment.Type,
                                           mapper.Map<Account>(SelectedPayment.ChargedAccount),
                                           mapper.Map<Account>(SelectedPayment.TargetAccount),

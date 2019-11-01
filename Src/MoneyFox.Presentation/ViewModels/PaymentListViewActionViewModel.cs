@@ -52,7 +52,9 @@ namespace MoneyFox.Presentation.ViewModels
             this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
 
+#pragma warning disable S4462 // Calls to "async" methods should not be blocking
             int accountCount = mediator.Send(new GetAccountCountQuery()).Result;
+#pragma warning restore S4462 // Calls to "async" methods should not be blocking
 
             IsTransferAvailable = accountCount >= 2;
             IsAddIncomeAvailable = accountCount >= 1;
@@ -170,7 +172,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeleteAccount()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(accountId));
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

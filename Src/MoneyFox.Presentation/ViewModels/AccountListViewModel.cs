@@ -126,7 +126,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (accountToDelete == null) return;
 
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(accountToDelete.Id));
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);

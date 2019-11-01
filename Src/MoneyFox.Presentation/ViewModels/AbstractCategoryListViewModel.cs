@@ -128,7 +128,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeleteCategory(CategoryViewModel categoryToDelete)
         {
-            if (await DialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            if (await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 await Mediator.Send(new DeleteCategoryByIdCommand(categoryToDelete.Id));
                 await Search();

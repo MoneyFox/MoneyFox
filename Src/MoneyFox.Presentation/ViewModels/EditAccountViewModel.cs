@@ -55,7 +55,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected async Task DeleteAccount()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
 
