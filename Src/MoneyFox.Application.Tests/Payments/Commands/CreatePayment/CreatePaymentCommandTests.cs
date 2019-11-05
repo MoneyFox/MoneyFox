@@ -6,6 +6,7 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using MoneyFox.Presentation.ViewModels;
 using Should;
 using Xunit;
 
@@ -35,13 +36,34 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
             // Act
-            Unit result = await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);
             (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
         }
 
+        [Theory]
+        [InlineData(PaymentType.Expense, 60)]
+        [InlineData(PaymentType.Income, 100)]
+        public async Task CreatePayment_AccountCurrentBalanceUpdated(PaymentType paymentType, decimal newCurrentBalance)
+        {
+            // Arrange
+            var account = new Account("test", 80); 
+            context.Add(account);
+            await context.SaveChangesAsync();
+
+            var payment1 = new Payment(DateTime.Now, 20, paymentType, account);
+
+            // Act
+            await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
+
+            // Assert
+            var loadedAccount = await context.Accounts.FindAsync(account.Id);
+            loadedAccount.ShouldNotBeNull();
+            loadedAccount.CurrentBalance.ShouldEqual(newCurrentBalance);
+        }
+        
         [Fact]
         public async Task CreatePaymentWithRecurring_PaymentSaved()
         {
@@ -61,7 +83,6 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             Assert.Single(context.RecurringPayments);
             (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
             (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).ShouldNotBeNull();
-
         }
     }
 }
