@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
@@ -68,8 +69,10 @@ namespace MoneyFox.Presentation.ViewModels
                 var payment = new Payment(SelectedPayment.Date,
                                           SelectedPayment.Amount,
                                           SelectedPayment.Type,
-                                          mapper.Map<Account>(SelectedPayment.ChargedAccount),
-                                          mapper.Map<Account>(SelectedPayment.TargetAccount),
+                                          await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
+                                          SelectedPayment.TargetAccount!= null 
+                                              ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) 
+                                              : null,
                                           mapper.Map<Category>(SelectedPayment.Category),
                                           SelectedPayment.Note);
 
