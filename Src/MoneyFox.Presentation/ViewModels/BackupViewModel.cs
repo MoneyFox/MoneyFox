@@ -251,17 +251,17 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task<bool> ShowOverwriteBackupInfoAsync()
         {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
         }
 
         private async Task<bool> ShowOverwriteDataInfoAsync()
         {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
         }
 
         private async Task<bool> ShowForceOverrideConfirmationAsync()
         {
-            return await dialogService.ShowConfirmMessage(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
         }
 
         private async Task ShowCompletionNoteAsync()

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MoneyFox.Domain.Exceptions;
 
@@ -15,6 +14,7 @@ namespace MoneyFox.Domain.Entities
         {
         }
 
+#pragma warning disable S107 // Methods should not have too many parameters
         public Payment(DateTime date,
                        decimal amount,
                        PaymentType type,
@@ -23,6 +23,7 @@ namespace MoneyFox.Domain.Entities
                        Category category = null,
                        string note = "",
                        RecurringPayment recurringPayment = null)
+#pragma warning restore S107 // Methods should not have too many parameters
         {
             CreationTime = DateTime.Now;
             AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);

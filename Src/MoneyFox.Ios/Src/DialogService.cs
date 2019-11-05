@@ -21,7 +21,7 @@ namespace MoneyFox.iOS
         }
 
         /// <inheritdoc />
-        public async Task ShowConfirmMessage(string title, string message, Action positivAction, string positiveButtonText = null,
+        public async Task ShowConfirmMessageAsync(string title, string message, Action positivAction, string positiveButtonText = null,
                                              string negativeButtonText = null, Action negativAction = null)
         {
             HideLoadingDialog();
@@ -47,7 +47,7 @@ namespace MoneyFox.iOS
         }
 
         /// <inheritdoc />
-        public async Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null, string negativeButtonText = null)
+        public async Task<bool> ShowConfirmMessageAsync(string title, string message, string positiveButtonText = null, string negativeButtonText = null)
         {
             // We have to hide the loading dialog first, otherwise it get's stuck
             HideLoadingDialog();
