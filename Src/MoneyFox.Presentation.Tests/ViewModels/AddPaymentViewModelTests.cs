@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;
@@ -155,6 +156,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task SavePayment_ResultSucceeded_CorrectMethodCalls()
         {
             // Arrange
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
+                        .ReturnsAsync(() => new Account("as"));
+
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
                                                        paymentServiceMock.Object,
@@ -181,6 +185,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task SavePayment_ResultSucceededWithBackup_CorrectMethodCalls()
         {
             // Arrange
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
+                        .ReturnsAsync(() => new Account("as"));
+
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
@@ -211,6 +218,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Arrange
             mediatorMock.Setup(x => x.Send(It.IsAny<CreatePaymentCommand>(), default))
                               .Callback(() => throw new Exception());
+ 
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
+                        .ReturnsAsync(() => new Account("as"));
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
@@ -239,6 +249,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             mediatorMock.Setup(x => x.Send(It.IsAny<CreatePaymentCommand>(), default))
                         .Callback(() => throw new Exception());
 
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
+                        .ReturnsAsync(() => new Account("as"));
+
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
@@ -257,6 +270,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Assert
             mediatorMock.Verify(x => x.Send(It.IsAny<CreatePaymentCommand>(), default), Times.Once);
+            mediatorMock.Verify(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             backupServiceMock.Verify(x => x.EnqueueBackupTaskAsync(0), Times.Never);
         }
