@@ -41,7 +41,6 @@
 
         <ResourceDictionary>
             <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
-            <converter:TodayMarkerVisibilityConverter x:Key="TodayMarkerVisibilityConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -68,14 +67,8 @@
                         <ViewCell>
                             <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}"
                                          Margin="0,0,0,-1">
-
-                                <BoxView HeightRequest="1" Margin="10,10,10,10"
-                                         BackgroundColor="{DynamicResource AccentColor}"
-                                         IsVisible="{Binding Key, Converter={StaticResource TodayMarkerVisibilityConverter}}"/>
-
                                 <Label Text="{Binding Key}"
                                        VerticalOptions="EndAndExpand"
-                                       Margin="6,0,0,10"
                                        Style="{StaticResource ListGroupHeaderStyle}" />
                             </StackLayout>
                         </ViewCell>

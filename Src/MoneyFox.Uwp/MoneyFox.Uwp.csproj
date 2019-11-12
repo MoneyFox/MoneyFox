@@ -156,7 +156,6 @@
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
-    <Compile Include="Converter\TodayMarkerVisibilityConverter.cs" />
     <Compile Include="Helpers\StringMatchConverter.cs" />
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
@@ -263,9 +262,6 @@
     </Compile>
     <Compile Include="Views\Controls\TagControl.xaml.cs">
       <DependentUpon>TagControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserControls\TodayMarkerUserControl.xaml.cs">
-      <DependentUpon>TodayMarkerUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsModule.cs" />
     <Compile Include="WindowsShellViewModel.cs" />
@@ -493,10 +489,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\TagControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserControls\TodayMarkerUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
