@@ -20,7 +20,6 @@ namespace MoneyFox.Presentation.ViewModels
     public class EditAccountViewModel : ModifyAccountViewModel
     {
         private readonly IBackupService backupService;
-        private readonly IDialogService dialogService;
         private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
@@ -30,13 +29,13 @@ namespace MoneyFox.Presentation.ViewModels
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
                                     IDialogService dialogService,
-                                    INavigationService navigationService) : base(settingsFacade, backupService, navigationService)
+                                    INavigationService navigationService) 
+            : base(settingsFacade, backupService, dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
-            this.dialogService = dialogService;
         }
 
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccount);
@@ -55,7 +54,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected async Task DeleteAccount()
         {
-            if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
 
