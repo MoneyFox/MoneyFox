@@ -50,13 +50,10 @@ namespace MoneyFox.Presentation.Services
         {
             return new MaterialAlertDialogConfiguration 
             {
-                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.PRIMARY),
+                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.BACKGROUND),
                 TitleTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
-                TitleFontFamily = XF.Material.Forms.Material.GetResource<OnPlatform<string>>("FontFamily.Exo2Bold"),
                 MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
-                MessageFontFamily = XF.Material.Forms.Material.GetResource<OnPlatform<string>>("FontFamily.OpenSansRegular"),
                 TintColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
-                ButtonFontFamily = XF.Material.Forms.Material.GetResource<OnPlatform<string>>("FontFamily.OpenSansSemiBold"),
                 CornerRadius = 8,
                 ScrimColor = Color.FromHex("#232F34").MultiplyAlpha(0.32),
                 ButtonAllCaps = false
@@ -66,9 +63,8 @@ namespace MoneyFox.Presentation.Services
         {
             return new MaterialLoadingDialogConfiguration()
             {
-                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.PRIMARY),
+                BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.BACKGROUND),
                 MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
-                MessageFontFamily = XF.Material.Forms.Material.GetResource<OnPlatform<string>>("FontFamily.OpenSansRegular"),
                 TintColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
                 CornerRadius = 8,
                 ScrimColor = Color.FromHex("#232F34").MultiplyAlpha(0.32)
