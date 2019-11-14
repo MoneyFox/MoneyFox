@@ -4,8 +4,9 @@ using Windows.ApplicationModel.Background;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
+using MoneyFox.Application.Backup;
 using MoneyFox.Application.Constants;
-using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.Presentation;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Uwp.Business;
@@ -38,7 +39,8 @@ namespace MoneyFox.Uwp.Tasks
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
                     new WindowsFileStore(),
-                    new ConnectivityAdapter());
+                    new ConnectivityAdapter(),
+                    ViewModelLocator.MessengerInstance);
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 

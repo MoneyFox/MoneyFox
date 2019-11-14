@@ -9,9 +9,10 @@ using Java.Lang;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
+using MoneyFox.Application.Backup;
 using MoneyFox.Application.Constants;
 using MoneyFox.Application.FileStore;
-using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.Presentation;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using NLog;
@@ -82,7 +83,8 @@ namespace MoneyFox.Droid.Jobs
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
                     ServiceLocator.Current.GetInstance<IFileStore>(),
-                    new ConnectivityAdapter());
+                    new ConnectivityAdapter(),
+                    ViewModelLocator.MessengerInstance);
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 

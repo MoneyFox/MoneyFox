@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using AutoMapper;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Presentation.ViewModels;
@@ -22,7 +23,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var viewModel = new SelectCategoryListViewModel(new Mock<IMediator>().Object,
                                                             new Mock<IMapper>().Object,
                                                             new Mock<IDialogService>().Object,
-                                                            navigationMock.Object);
+                                                            navigationMock.Object,
+                                                            new Mock<IMessenger>().Object);
 
             // Act
             viewModel.ItemClickCommand.Execute(new CategoryViewModel());

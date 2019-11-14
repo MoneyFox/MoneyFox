@@ -8,11 +8,12 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -311,7 +312,7 @@ namespace MoneyFox.Presentation.ViewModels
         private void ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
-            SelectedPayment.Category = message.SelectedCategory;
+            SelectedPayment.Category = mapper.Map<CategoryViewModel>(mediator.Send(new GetCategoryByIdQuery(message.SelectedCategoryId)));
         }
 
         private void OpenSelectCategoryList()

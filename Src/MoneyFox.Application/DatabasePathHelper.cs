@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Globalization;
 using System.IO;
-using MoneyFox.Application;
 using NLog;
 using SQLitePCL;
 
-namespace MoneyFox.Persistence
+namespace MoneyFox.Application
 {
     public static class DatabasePathHelper
     {

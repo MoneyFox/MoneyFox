@@ -10,10 +10,10 @@ using Microsoft.AppCenter.Crashes;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
+using MoneyFox.Application.Backup;
 using MoneyFox.Application.Constants;
 using MoneyFox.Application.FileStore;
 using MoneyFox.BusinessDbAccess.PaymentActions;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
 using MoneyFox.Presentation;
@@ -171,7 +171,8 @@ namespace MoneyFox.iOS
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
                     ServiceLocator.Current.GetInstance<IFileStore>(),
-                    new ConnectivityAdapter());
+                    new ConnectivityAdapter(),
+                    ViewModelLocator.MessengerInstance);
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 
