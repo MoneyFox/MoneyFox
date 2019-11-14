@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.BusinessLogic.Extensions;
+using MoneyFox.Application.Extensions;
 using Xunit;
 
 namespace MoneyFox.BusinessLogic.Tests.Extensions

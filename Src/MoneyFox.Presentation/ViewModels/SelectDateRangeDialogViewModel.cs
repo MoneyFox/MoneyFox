@@ -1,7 +1,7 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Application.Extensions;
 using MoneyFox.Application.Messages;
-using MoneyFox.BusinessLogic.Extensions;
 
 namespace MoneyFox.Presentation.ViewModels
 {
