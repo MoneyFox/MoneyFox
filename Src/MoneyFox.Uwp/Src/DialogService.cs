@@ -12,29 +12,6 @@ namespace MoneyFox.Uwp
         private LoadingDialog loadingDialog;
 
         /// <summary>
-        ///     Show a dialog with two buttons with customizable Texts. If no message is passed the dialog will have a Yes and No
-        ///     Button
-        /// </summary>
-        /// <param name="title">Title to display.</param>
-        /// <param name="message">Text to display.</param>
-        /// <param name="positiveButtonText">Text for the yes button.</param>
-        /// <param name="negativeButtonText">Text for the no button.</param>
-        /// <param name="positivAction">Action who shall be executed on the positive button click.</param>
-        /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
-        public async Task ShowConfirmMessageAsync(string title, string message, Action positivAction,
-                                             string positiveButtonText = null,
-                                             string negativeButtonText = null, Action negativAction = null)
-        {
-            HideLoadingDialog();
-            bool isPositiveAnswer = await ShowConfirmMessageAsync(title, message, positiveButtonText, negativeButtonText);
-
-            if (isPositiveAnswer)
-                positivAction();
-            else
-                negativAction?.Invoke();
-        }
-
-        /// <summary>
         ///     Show a dialog with two buttons with customizable Texts. Returns the answer.
         /// </summary>
         /// <param name="title">Title for the dialog.</param>
@@ -44,7 +21,7 @@ namespace MoneyFox.Uwp
         public async Task<bool> ShowConfirmMessageAsync(string title, string message, string positiveButtonText = null,
                                                    string negativeButtonText = null)
         {
-            HideLoadingDialog();
+            await HideLoadingDialog();
 
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(positiveButtonText ?? Strings.YesLabel));
@@ -62,7 +39,7 @@ namespace MoneyFox.Uwp
         /// <param name="message">Text to display.</param>
         public async Task ShowMessage(string title, string message)
         {
-            HideLoadingDialog();
+            await HideLoadingDialog();
 
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(Strings.OkLabel));
@@ -73,10 +50,10 @@ namespace MoneyFox.Uwp
         /// <summary>
         ///     Shows a loading Dialog.
         /// </summary>
-        public async void ShowLoadingDialog(string message = null)
+        public async Task ShowLoadingDialog(string message = null)
         {
             // Be sure no other dialog is open.
-            HideLoadingDialog();
+            await HideLoadingDialog();
 
             loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
             await loadingDialog.ShowAsync();
@@ -85,9 +62,10 @@ namespace MoneyFox.Uwp
         /// <summary>
         ///     Hides the previously opened Loading Dialog.
         /// </summary>
-        public void HideLoadingDialog()
+        public Task HideLoadingDialog()
         {
             loadingDialog?.Hide();
+            return Task.CompletedTask;
         }
     }
 }
