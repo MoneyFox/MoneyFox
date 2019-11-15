@@ -55,14 +55,6 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewModels:AccountViewModel">
                             <ViewCell>
-
-                                <ViewCell.ContextActions>
-                                    <MenuItem Clicked="EditAccount" CommandParameter="{Binding .}"
-                                              Text="{Binding Resources[EditLabel]}" />
-                                    <MenuItem Clicked="DeleteAccount" CommandParameter="{Binding .}"
-                                              Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
-                                </ViewCell.ContextActions>
-
                                 <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
                                                        ClickCommandParameter="{Binding .}"
                                                        Margin="{StaticResource SmallLeftRightTopBottomMargin}"
@@ -77,6 +69,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
                                                 <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Column="0"
@@ -87,6 +80,13 @@
                                                    HorizontalTextAlignment="End"
                                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                                    Style="{StaticResource ListItemHeaderStyle}" />
+
+                                            <material:MaterialMenuButton Grid.Column="2" 
+                                                                         ButtonType="Text"
+                                                                         Image="icon_more.png"
+                                                                         CornerRadius="24"
+                                                                         Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}" 
+                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.EditAccountCommand}" />
                                         </Grid>
                                     </StackLayout>
                                 </material:MaterialCard>

@@ -19,6 +19,7 @@ using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using NLog;
+using XF.Material.Forms.Models;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -79,20 +80,21 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public bool HasNoAccounts => !Accounts.Any();
+        public List<string> MenuActions => new List<string>{Strings.EditLabel, Strings.DeleteLabel};
 
         public AsyncCommand LoadDataCommand => new AsyncCommand(Load);
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
-        public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
+        public RelayCommand<MaterialMenuResult> EditAccountCommand => new RelayCommand<MaterialMenuResult>(EditAccount);
 
         public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(Delete);
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
-        private void EditAccount(AccountViewModel accountViewModel)
+        private void EditAccount(MaterialMenuResult result)
         {
-            navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
+            //navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
         }
 
         private async Task Load()

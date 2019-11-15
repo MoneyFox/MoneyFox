@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
+using XF.Material.Forms.Models;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
@@ -43,7 +44,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         /// <summary>
         ///     Edit the selected Account
         /// </summary>
-        RelayCommand<AccountViewModel> EditAccountCommand { get; }
+        RelayCommand<MaterialMenuResult> EditAccountCommand { get; }
 
         /// <summary>
         ///     Deletes the selected Account
