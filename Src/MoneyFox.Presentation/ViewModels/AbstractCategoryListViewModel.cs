@@ -5,10 +5,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
+using MoneyFox.Application.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
@@ -26,12 +28,16 @@ namespace MoneyFox.Presentation.ViewModels
         protected AbstractCategoryListViewModel(IMediator mediator,
                                                 IMapper mapper,
                                                 IDialogService dialogService,
-                                                INavigationService navigationService)
+                                                INavigationService navigationService,
+                                                IMessenger messenger)
         {
             Mediator = mediator;
             Mapper = mapper;
             DialogService = dialogService;
             NavigationService = navigationService;
+            MessengerInstance = messenger;
+
+            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await Search());
         }
 
         protected INavigationService NavigationService { get; }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.BusinessLogic.Extensions;
+using MoneyFox.Application.Extensions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;

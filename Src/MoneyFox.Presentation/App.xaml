@@ -41,23 +41,8 @@
                                                 Overline="{StaticResource FontFamily.RobotoRegular}"
                                                 Subtitle1="{StaticResource FontFamily.RobotoRegular}"
                                                 Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
-
-            <resources:MaterialColorConfiguration x:Key="Material.Color"
-                                             Background="{DynamicResource WindowBackgroundColor}"
-                                             Error="#B00020"
-                                             OnBackground="{DynamicResource PrimaryFontColor}"
-                                             OnError="#FFFFFF"
-                                             OnPrimary="#FFFFFF"
-                                             OnSecondary="#FFFFFF"
-                                             OnSurface="{DynamicResource PrimaryFontColor}"
-                                             Primary="{DynamicResource PrimaryColor}"
-                                             PrimaryVariant="{DynamicResource SecondaryColor}"
-                                             Secondary="{DynamicResource AccentColor}"
-                                             SecondaryVariant="{DynamicResource SecondaryAccentColor}"
-                                             Surface="{DynamicResource ListItemColor}" />
-
+            
             <resources:MaterialConfiguration x:Key="Material.Configuration"
-                                        ColorConfiguration="{StaticResource Material.Color}"
                                         FontConfiguration="{StaticResource Material.Font}" />
 
             <!-- Control Styles -->

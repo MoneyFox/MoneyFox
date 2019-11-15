@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.BusinessLogic.Extensions
+namespace MoneyFox.Application.Extensions
 {
     /// <summary>
     ///     Extension method for DateTime.

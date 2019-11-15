@@ -2,6 +2,7 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Presentation.ViewModels.Statistic;
@@ -68,5 +69,7 @@ namespace MoneyFox.Presentation
         public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
         public static SelectFilterDialogViewModel SelectFilterDialogVm => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
+
+        public static IMessenger MessengerInstance => ServiceLocator.Current.GetInstance<IMessenger>();
     }
 }

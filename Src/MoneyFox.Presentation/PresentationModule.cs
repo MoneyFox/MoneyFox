@@ -1,5 +1,6 @@
 ﻿using System;
 using Autofac;
+using GalaSoft.MvvmLight.Messaging;
 using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
@@ -21,6 +22,11 @@ namespace MoneyFox.Presentation
             builder
                 .RegisterType<Mediator>()
                 .As<IMediator>()
+                .InstancePerLifetimeScope();
+
+            builder
+                .RegisterType<Messenger>()
+                .As<IMessenger>()
                 .InstancePerLifetimeScope();
 
             // request & notification handlers

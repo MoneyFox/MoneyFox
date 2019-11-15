@@ -4,25 +4,26 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Adapters;
 using MoneyFox.Application.Constants;
+using MoneyFox.Application.Extensions;
 using MoneyFox.Application.FileStore;
-using MoneyFox.BusinessLogic.Extensions;
+using MoneyFox.Application.Messages;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Persistence;
 using NLog;
 using Logger = NLog.Logger;
 
-namespace MoneyFox.BusinessLogic.Backup
+namespace MoneyFox.Application.CloudBackup
 {
     public class BackupManager : IBackupManager, IDisposable
     {
         private readonly ICloudBackupService cloudBackupService;
-
         private readonly IFileStore fileStore;
         private readonly IConnectivityAdapter connectivity;
+        private readonly IMessenger messenger;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -30,11 +31,13 @@ namespace MoneyFox.BusinessLogic.Backup
 
         public BackupManager(ICloudBackupService cloudBackupService,
                              IFileStore fileStore,
-                             IConnectivityAdapter connectivity)
+                             IConnectivityAdapter connectivity,
+                             IMessenger messenger)
         {
             this.cloudBackupService = cloudBackupService;
             this.fileStore = fileStore;
             this.connectivity = connectivity;
+            this.messenger = messenger;
         }
 
         /// <inheritdoc />
@@ -155,6 +158,7 @@ namespace MoneyFox.BusinessLogic.Backup
             try
             {
                 await DownloadBackup();
+                messenger.Send(new BackupRestoredMessage());
             }
             catch (BackupAuthenticationFailedException ex)
             {

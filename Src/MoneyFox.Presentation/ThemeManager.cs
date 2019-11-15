@@ -4,6 +4,8 @@ using MoneyFox.Application.Adapters;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Style;
 using Xamarin.Forms;
+using XF.Material.Forms.Resources;
+using XF.Material.Forms.Resources.Typography;
 
 namespace MoneyFox.Presentation
 {
@@ -20,8 +22,6 @@ namespace MoneyFox.Presentation
             ICollection<ResourceDictionary> mergedDictionaries = Xamarin.Forms.Application.Current.Resources.MergedDictionaries;
             if (mergedDictionaries != null)
             {
-                mergedDictionaries.Clear();
-
                 //Update local key value with the new theme you select.
                 new SettingsFacade(new SettingsAdapter()).Theme = theme;
 
@@ -30,22 +30,35 @@ namespace MoneyFox.Presentation
                     case AppTheme.Light:
                     {
                         mergedDictionaries.Add(new LightTheme());
-
                         break;
                     }
 
                     case AppTheme.Dark:
                     {
                         mergedDictionaries.Add(new DarkTheme());
-
                         break;
                     }
 
                     default:
                         mergedDictionaries.Add(new LightTheme());
-
                         break;
                 }
+
+                XF.Material.Forms.Material.Init(Xamarin.Forms.Application.Current, new MaterialConfiguration {
+                    ColorConfiguration = new MaterialColorConfiguration
+                    {
+                        Background = (Color) Xamarin.Forms.Application.Current.Resources["WindowBackgroundColor"],
+                        Error = Color.FromHex("#B00020"),
+                        OnBackground = (Color) Xamarin.Forms.Application.Current.Resources["PrimaryFontColor"],
+                        OnError = Color.White,
+                        OnPrimary = (Color)Xamarin.Forms.Application.Current.Resources["PrimaryFontColor"],
+                        OnSecondary = (Color)Xamarin.Forms.Application.Current.Resources["PrimaryFontColor"],
+                        OnSurface = (Color)Xamarin.Forms.Application.Current.Resources["PrimaryFontColor"],
+                        Primary = (Color)Xamarin.Forms.Application.Current.Resources["PrimaryColor"],
+                        Secondary = (Color)Xamarin.Forms.Application.Current.Resources["SecondaryColor"],
+                        Surface = (Color)Xamarin.Forms.Application.Current.Resources["ListItemColor"]
+                    }
+                });
             }
         }
 

@@ -1,6 +1,4 @@
-using MoneyFox.Presentation.ViewModels;
-
-namespace MoneyFox.Presentation.Messages
+namespace MoneyFox.Application.Messages
 {
     /// <summary>
     ///     Used to notify other view models about a selected category.
@@ -11,15 +9,15 @@ namespace MoneyFox.Presentation.Messages
         ///     Message to notify about a selected CategoryViewModel after choosing.
         /// </summary>
         /// <param name="sender">sender</param>
-        /// <param name="selectedCategory">Selected CategoryViewModel</param>
-        public CategorySelectedMessage(object sender, CategoryViewModel selectedCategory)
+        /// <param name="selectedCategoryId">Id of the Selected Category</param>
+        public CategorySelectedMessage(object sender, int selectedCategoryId)
         {
-            SelectedCategory = selectedCategory;
+            SelectedCategoryId = selectedCategoryId;
         }
 
         /// <summary>
         ///     Selected CategoryViewModel.
         /// </summary>
-        public CategoryViewModel SelectedCategory { get; }
+        public int SelectedCategoryId { get; }
     }
 }

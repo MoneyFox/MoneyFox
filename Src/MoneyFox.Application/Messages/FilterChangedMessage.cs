@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.Presentation.Messages
+namespace MoneyFox.Application.Messages
 {
     /// <summary>
     ///     Used to notify the payment list that a filter changed.
