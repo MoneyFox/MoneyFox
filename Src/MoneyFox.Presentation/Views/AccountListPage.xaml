@@ -84,7 +84,7 @@
                                             <material:MaterialMenuButton Grid.Column="2" 
                                                                          ButtonType="Text"
                                                                          Image="icon_more.png"
-                                                                         CornerRadius="24"
+                                                                         Style="{StaticResource MenuButtonStyle}"
                                                                          Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}" 
                                                                          Command="{Binding Source={x:Reference root}, Path=BindingContext.EditAccountCommand}" />
                                         </Grid>

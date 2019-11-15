@@ -46,6 +46,13 @@
                                         FontConfiguration="{StaticResource Material.Font}" />
 
             <!-- Control Styles -->
+            <Style x:Key="MenuButtonStyle" TargetType="material:MaterialMenuButton">
+                <Setter Property="MenuBackgroundColor" Value="{DynamicResource DialogBackgroundColor}" />
+                <Setter Property="Margin" Value="-10" />
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="MenuTextColor" Value="{DynamicResource PrimaryFontColor}" />
+            </Style>
+
             <Style x:Key="SmallPageTitle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
                 <Setter Property="TextColor" Value="White" />
