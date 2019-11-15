@@ -11,8 +11,6 @@ namespace MoneyFox.Presentation.Services
 {
     public class DialogService : IDialogService
     {
-        private static IMaterialModalPage loadingDialog;
-
         public async Task ShowMessage(string title, string message) {
             await MaterialDialog.Instance.AlertAsync(message,
                                                      title,
@@ -31,6 +29,8 @@ namespace MoneyFox.Presentation.Services
             return wasConfirmed ?? false;
         }
 
+        private IMaterialModalPage loadingDialog;
+
         /// <inheritdoc />
         public async Task ShowLoadingDialog(string message = null)
         {
@@ -40,10 +40,7 @@ namespace MoneyFox.Presentation.Services
         /// <inheritdoc />
         public async Task HideLoadingDialog()
         {
-            if (loadingDialog != null)
-            {
-                await loadingDialog.DismissAsync();
-            }
+            await loadingDialog.DismissAsync();
         }
 
         private static MaterialAlertDialogConfiguration GetAlertDialogConfiguration() 
