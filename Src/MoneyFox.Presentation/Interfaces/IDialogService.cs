@@ -25,11 +25,11 @@ namespace MoneyFox.Presentation.Interfaces
         ///     Shows a loading Dialog.
         /// </summary>
         /// <param name="message">Message to display.</param>
-        Task ShowLoadingDialog(string message = null);
+        Task ShowLoadingDialogAsync(string message = null);
 
         /// <summary>
         ///     Hides the previously opened Loading Dialog.
         /// </summary>
-        Task HideLoadingDialog();
+        Task HideLoadingDialogAsync();
     }
 }

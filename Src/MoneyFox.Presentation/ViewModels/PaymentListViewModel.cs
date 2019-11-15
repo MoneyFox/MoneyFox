@@ -193,13 +193,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task Load()
         {
-            await dialogService.ShowLoadingDialog();
+            await dialogService.ShowLoadingDialogAsync();
 
             await LoadPayments(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
-            await dialogService.HideLoadingDialog();
+            await dialogService.HideLoadingDialogAsync();
         }
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)

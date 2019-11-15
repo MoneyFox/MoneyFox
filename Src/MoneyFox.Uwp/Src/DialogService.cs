@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp
         public async Task<bool> ShowConfirmMessageAsync(string title, string message, string positiveButtonText = null,
                                                    string negativeButtonText = null)
         {
-            await HideLoadingDialog();
+            await HideLoadingDialogAsync();
 
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(positiveButtonText ?? Strings.YesLabel));
@@ -39,7 +39,7 @@ namespace MoneyFox.Uwp
         /// <param name="message">Text to display.</param>
         public async Task ShowMessage(string title, string message)
         {
-            await HideLoadingDialog();
+            await HideLoadingDialogAsync();
 
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(Strings.OkLabel));
@@ -50,10 +50,10 @@ namespace MoneyFox.Uwp
         /// <summary>
         ///     Shows a loading Dialog.
         /// </summary>
-        public async Task ShowLoadingDialog(string message = null)
+        public async Task ShowLoadingDialogAsync(string message = null)
         {
             // Be sure no other dialog is open.
-            await HideLoadingDialog();
+            await HideLoadingDialogAsync();
 
             loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
             await loadingDialog.ShowAsync();
@@ -62,7 +62,7 @@ namespace MoneyFox.Uwp
         /// <summary>
         ///     Hides the previously opened Loading Dialog.
         /// </summary>
-        public Task HideLoadingDialog()
+        public Task HideLoadingDialogAsync()
         {
             loadingDialog?.Hide();
             return Task.CompletedTask;
