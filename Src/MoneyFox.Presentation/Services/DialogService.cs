@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Interfaces;
 using Xamarin.Forms;
@@ -11,8 +10,6 @@ namespace MoneyFox.Presentation.Services
 {
     public class DialogService : IDialogService
     {
-        private static IMaterialModalPage loadingDialog;
-
         public async Task ShowMessage(string title, string message) {
             await MaterialDialog.Instance.AlertAsync(message,
                                                      title,
@@ -31,19 +28,18 @@ namespace MoneyFox.Presentation.Services
             return wasConfirmed ?? false;
         }
 
+        private IMaterialModalPage loadingDialog;
+
         /// <inheritdoc />
-        public async Task ShowLoadingDialog(string message = null)
+        public async Task ShowLoadingDialogAsync(string message = null)
         {
             loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: message ?? Strings.LoadingLabel, GetLoadingDialogConfiguration());
         }
 
         /// <inheritdoc />
-        public async Task HideLoadingDialog()
+        public async Task HideLoadingDialogAsync()
         {
-            if (loadingDialog != null)
-            {
-                await loadingDialog.DismissAsync();
-            }
+            await loadingDialog.DismissAsync();
         }
 
         private static MaterialAlertDialogConfiguration GetAlertDialogConfiguration() 

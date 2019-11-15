@@ -144,8 +144,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (!IsLoggedIn) return;
 
-            if (!connectivity.IsConnected)
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            if (!connectivity.IsConnected) await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
 
             IsLoadingBackupAvailability = true;
             try
@@ -211,7 +210,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (!await ShowOverwriteBackupInfoAsync()) return;
 
-            dialogService.ShowLoadingDialog();
+            await dialogService.ShowLoadingDialogAsync();
 
             try
             {
@@ -224,7 +223,7 @@ namespace MoneyFox.Presentation.ViewModels
                 await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
 
-            dialogService.HideLoadingDialog();
+            await dialogService.HideLoadingDialogAsync();
             await ShowCompletionNoteAsync();
         }
 
@@ -232,11 +231,11 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (!await ShowOverwriteDataInfoAsync()) return;
 
-            dialogService.ShowLoadingDialog();
+            await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();
             if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync()) return;
 
-            dialogService.ShowLoadingDialog();
+            await dialogService.ShowLoadingDialogAsync();
 
             try
             {

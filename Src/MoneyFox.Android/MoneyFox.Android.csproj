@@ -166,7 +166,7 @@
       <Version>4.3.0.991211</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
-      <Version>1.5.4</Version>
+      <Version>1.5.7</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
