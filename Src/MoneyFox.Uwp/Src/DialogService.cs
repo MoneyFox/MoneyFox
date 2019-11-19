@@ -56,7 +56,7 @@ namespace MoneyFox.Uwp
             await HideLoadingDialogAsync();
 
             loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
-            await loadingDialog.ShowAsync();
+            loadingDialog.ShowAsync();
         }
 
         /// <summary>

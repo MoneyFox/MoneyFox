@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
@@ -30,12 +31,12 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AddPaymentViewModel(IMediator mediator,
                                    IMapper mapper,
-                                   IPaymentService paymentService,
                                    IDialogService dialogService,
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
-                                   INavigationService navigationService)
-            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService)
+                                   INavigationService navigationService,
+                                   IMessenger messenger)
+            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService, messenger)
         {
             this.mediator = mediator;
             this.mapper = mapper;
