@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Interfaces;
@@ -56,7 +57,14 @@ namespace MoneyFox.Uwp
             await HideLoadingDialogAsync();
 
             loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
-            loadingDialog.ShowAsync();
+
+            var coreWindow = Windows.ApplicationModel.Core.CoreApplication.MainView;
+
+            // Dispatcher needed to run on UI Thread
+            CoreDispatcher dispatcher = coreWindow.CoreWindow.Dispatcher;
+
+            // RunAsync all of the UI info.
+            await dispatcher.RunAsync(CoreDispatcherPriority.High, async () => { await loadingDialog.ShowAsync(); });
         }
 
         /// <summary>
