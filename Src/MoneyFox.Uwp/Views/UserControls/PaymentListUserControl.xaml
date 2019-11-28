@@ -84,7 +84,7 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,30,0,0"
+                            <StackPanel Margin="0,0,0,30" 
                                         Padding="{StaticResource SmallListItemPadding}">
                                 
                                 <TextBlock Margin="3,0,0,7"
