@@ -68,7 +68,7 @@ namespace MoneyFox.Presentation.ViewModels
             MessengerInstance = messenger;
 
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => { await LoadPayments(message); });
-            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await Load());
+            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await LoadData());
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -188,18 +188,22 @@ namespace MoneyFox.Presentation.ViewModels
                                                                      BalanceViewModel,
                                                                      navigationService);
 
-            await Load();
+            await LoadPaymentList();
         }
 
-        private async Task Load()
+        private async Task LoadPaymentList()
         {
             await dialogService.ShowLoadingDialogAsync();
 
+            await LoadData();
+
+            await dialogService.HideLoadingDialogAsync();
+        }
+
+        private async Task LoadData() {
             await LoadPayments(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-
-            await dialogService.HideLoadingDialogAsync();
         }
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
@@ -248,7 +252,7 @@ namespace MoneyFox.Presentation.ViewModels
 #pragma warning disable 4014
             backupService.EnqueueBackupTaskAsync();
 #pragma warning restore 4014
-            await Load();
+            await LoadPaymentList();
         }
     }
 }
