@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
-using MoneyFox.Presentation.Messages;
+using MoneyFox.Application.Messages;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -25,7 +26,9 @@ namespace MoneyFox.Presentation.ViewModels
         public SelectCategoryListViewModel(IMediator mediator,
                                            IMapper mapper,
                                            IDialogService dialogService,
-                                           INavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
+                                           INavigationService navigationService,
+                                           IMessenger messenger) 
+            : base(mediator, mapper, dialogService, navigationService, messenger)
         {
         }
 
@@ -48,7 +51,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         protected override void ItemClick(CategoryViewModel category)
         {
-            MessengerInstance.Send(new CategorySelectedMessage(this, category));
+            MessengerInstance.Send(new CategorySelectedMessage(this, category.Id));
             NavigationService.GoBack();
         }
     }

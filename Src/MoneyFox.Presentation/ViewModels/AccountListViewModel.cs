@@ -5,11 +5,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
+using MoneyFox.Application.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
@@ -41,7 +43,8 @@ namespace MoneyFox.Presentation.ViewModels
                                     IBalanceCalculationService balanceCalculationService,
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
-                                    INavigationService navigationService)
+                                    INavigationService navigationService,
+                                    IMessenger messenger)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -49,10 +52,14 @@ namespace MoneyFox.Presentation.ViewModels
             this.navigationService = navigationService;
             this.settingsFacade = settingsFacade;
 
+            MessengerInstance = messenger;
+
             BalanceViewModel = new BalanceViewModel(balanceCalculationService);
             ViewActionViewModel = new AccountListViewActionViewModel(mediator, this.navigationService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
+
+            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await Load());
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -126,7 +133,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (accountToDelete == null) return;
 
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(accountToDelete.Id));
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);

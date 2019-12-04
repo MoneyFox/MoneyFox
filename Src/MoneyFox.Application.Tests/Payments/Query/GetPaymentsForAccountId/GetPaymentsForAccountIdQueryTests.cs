@@ -20,12 +20,12 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
 
         public GetPaymentsForAccountIdQueryTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

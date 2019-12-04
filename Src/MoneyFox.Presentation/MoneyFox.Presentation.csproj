@@ -57,13 +57,15 @@
     <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="5.0.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="MediatR" Version="7.0.0" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.3.1" />
-    <PackageReference Include="MoneyFox.Microcharts.Forms" Version="1.0.0.1" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.7.0" />
+    <PackageReference Include="MoneyFox.Microcharts.Forms" Version="1.1.0.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
-    <PackageReference Include="NLog" Version="4.6.7" />
+    <PackageReference Include="NLog" Version="4.6.8" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="1.1.5.188" />
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="Xamarin.Forms" Version="4.3.0.991211" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.3.0.991211" />
+    <PackageReference Include="XF.Material" Version="1.5.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -95,19 +97,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="UserControls\IncomeExpenseBalanceUserControl.xaml.cs">
-      <DependentUpon>IncomeExpenseBalanceUserControl.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Update="Style\LightTheme.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="UserControls\CategoryOverviewSummaryUserControl.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="UserControls\IncomeExpenseBalanceUserControl.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="UserControls\ModifyAccountUserControl.xaml">
@@ -147,9 +140,6 @@
 
   <ItemGroup>
     <None Update="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Controls\FloatingActionButton.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Style\ControlStyles.xaml">

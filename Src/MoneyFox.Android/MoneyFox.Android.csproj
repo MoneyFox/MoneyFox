@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>MoneyFox.Droid</RootNamespace>
     <AssemblyName>MoneyFox.Android</AssemblyName>
-    <TargetFrameworkVersion>v9.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -83,9 +83,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AndHUD">
-      <Version>1.4.2</Version>
-    </PackageReference>
     <PackageReference Include="Autofac">
       <Version>4.9.4</Version>
     </PackageReference>
@@ -96,25 +93,25 @@
       <Version>9.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>2.1.1</Version>
+      <Version>2.6.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>2.1.1</Version>
+      <Version>2.6.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
-      <Version>2.2.6</Version>
+      <Version>2.2.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
-      <Version>1.17.0</Version>
+      <Version>1.20.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.3.1</Version>
+      <Version>4.7.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmLightLibsStd10">
       <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.6.7</Version>
+      <Version>4.6.8</Version>
     </PackageReference>
     <PackageReference Include="PCLAppConfig">
       <Version>1.0.1</Version>
@@ -123,7 +120,7 @@
       <Version>2.0.147</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>1.1.5.188</Version>
+      <Version>1.2.0.223</Version>
     </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>
@@ -158,13 +155,18 @@
     <PackageReference Include="Xamarin.Essentials">
       <Version>1.3.1</Version>
     </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="4.1.0.581479" />
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.3.0.991211</Version>
+    </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.1.0.581479</Version>
+      <Version>4.3.0.991211</Version>
+    </PackageReference>
+    <PackageReference Include="XF.Material">
+      <Version>1.5.7</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -175,9 +177,9 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Manager\BackgroundTaskManager.cs" />
-    <Compile Include="Renderer\CardViewRenderer.cs" />
     <Compile Include="Renderer\CustomEntryRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
+    <Compile Include="Renderer\CustomStepperRenderer.cs" />
     <Compile Include="Renderer\ViewGroupExtension.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
@@ -185,7 +187,6 @@
     <Compile Include="Src\PlayStoreOperations.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\DialogService.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
   </ItemGroup>
@@ -194,6 +195,15 @@
       <Link>App.config</Link>
     </AndroidAsset>
     <AndroidAsset Include="Assets\materialdesignicons.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Bold.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Medium.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AndroidAsset>
+    <AndroidAsset Include="Assets\Fonts\Roboto-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidAsset>
     <None Include="MoneyFox.Android.ruleset" />
@@ -378,5 +388,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\CustomCursor.xml" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

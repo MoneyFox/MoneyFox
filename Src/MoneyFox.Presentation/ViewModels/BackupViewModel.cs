@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
+using MoneyFox.Application.Adapters;
 using MoneyFox.Application.Resources;
-using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
@@ -144,19 +144,18 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (!IsLoggedIn) return;
 
-            if (!connectivity.IsConnected)
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            if (!connectivity.IsConnected) await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
 
             IsLoadingBackupAvailability = true;
             try
             {
-                BackupAvailable = await backupService.IsBackupExisting();
-                BackupLastModified = await backupService.GetBackupDate();
+                BackupAvailable = await backupService.IsBackupExistingAsync();
+                BackupLastModified = await backupService.GetBackupDateAsync();
             }
             catch (BackupAuthenticationFailedException ex)
             {
                 Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Issue during Login process."}});
-                await backupService.Logout();
+                await backupService.LogoutAsync();
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                 Strings.ErrorMessageAuthenticationFailed);
             }
@@ -165,7 +164,7 @@ namespace MoneyFox.Presentation.ViewModels
                 if (ex.Error.Code == "4f37.717b")
                 {
                     Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Graph Login Exception"}});
-                    await backupService.Logout();
+                    await backupService.LogoutAsync();
                     await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
                                                     Strings.ErrorMessageAuthenticationFailed);
                 }
@@ -180,7 +179,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             try
             {
-                await backupService.Login();
+                await backupService.LoginAsync();
             }
             catch (Exception ex)
             {
@@ -196,7 +195,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             try
             {
-                await backupService.Logout();
+                await backupService.LogoutAsync();
             }
             catch (Exception ex)
             {
@@ -209,13 +208,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task CreateBackup()
         {
-            if (!await ShowOverwriteBackupInfo()) return;
+            if (!await ShowOverwriteBackupInfoAsync()) return;
 
-            dialogService.ShowLoadingDialog();
+            await dialogService.ShowLoadingDialogAsync();
 
             try
             {
-                await backupService.EnqueueBackupTask();
+                await backupService.EnqueueBackupTaskAsync();
 
                 BackupLastModified = DateTime.Now;
             }
@@ -224,25 +223,24 @@ namespace MoneyFox.Presentation.ViewModels
                 await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
 
-            dialogService.HideLoadingDialog();
-            await ShowCompletionNote();
+            await dialogService.HideLoadingDialogAsync();
+            await ShowCompletionNoteAsync();
         }
 
         private async Task RestoreBackup()
         {
-            if (!await ShowOverwriteDataInfo()) return;
+            if (!await ShowOverwriteDataInfoAsync()) return;
 
-            dialogService.ShowLoadingDialog();
-            DateTime backupDate = await backupService.GetBackupDate();
+            await dialogService.ShowLoadingDialogAsync();
+            DateTime backupDate = await backupService.GetBackupDateAsync();
+            if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync()) return;
 
-            if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmation()) return;
-
-            dialogService.ShowLoadingDialog();
+            await dialogService.ShowLoadingDialogAsync();
 
             try
             {
-                await backupService.RestoreBackup();
-                await ShowCompletionNote();
+                await backupService.RestoreBackupAsync();
+                await ShowCompletionNoteAsync();
             }
             catch (Exception ex)
             {
@@ -250,22 +248,22 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task<bool> ShowOverwriteBackupInfo()
+        private async Task<bool> ShowOverwriteBackupInfoAsync()
         {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
         }
 
-        private async Task<bool> ShowOverwriteDataInfo()
+        private async Task<bool> ShowOverwriteDataInfoAsync()
         {
-            return await dialogService.ShowConfirmMessage(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
         }
 
-        private async Task<bool> ShowForceOverrideConfirmation()
+        private async Task<bool> ShowForceOverrideConfirmationAsync()
         {
-            return await dialogService.ShowConfirmMessage(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
         }
 
-        private async Task ShowCompletionNote()
+        private async Task ShowCompletionNoteAsync()
         {
             await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
         }

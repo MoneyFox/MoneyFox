@@ -6,14 +6,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
+using MoneyFox.Application.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -52,7 +53,8 @@ namespace MoneyFox.Presentation.ViewModels
                                     ISettingsFacade settingsFacade,
                                     IBalanceCalculationService balanceCalculationService,
                                     IBackupService backupService,
-                                    INavigationService navigationService)
+                                    INavigationService navigationService,
+                                    IMessenger messenger)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -63,7 +65,10 @@ namespace MoneyFox.Presentation.ViewModels
             this.backupService = backupService;
             this.navigationService = navigationService;
 
+            MessengerInstance = messenger;
+
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => { await LoadPayments(message); });
+            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await LoadData());
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -183,18 +188,22 @@ namespace MoneyFox.Presentation.ViewModels
                                                                      BalanceViewModel,
                                                                      navigationService);
 
-            await Load();
+            await LoadPaymentList();
         }
 
-        private async Task Load()
+        private async Task LoadPaymentList()
         {
-            dialogService.ShowLoadingDialog();
+            await dialogService.ShowLoadingDialogAsync();
 
+            await LoadData();
+
+            await dialogService.HideLoadingDialogAsync();
+        }
+
+        private async Task LoadData() {
             await LoadPayments(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-
-            dialogService.HideLoadingDialog();
         }
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
@@ -241,9 +250,9 @@ namespace MoneyFox.Presentation.ViewModels
             await paymentService.DeletePayment(payment);
 
 #pragma warning disable 4014
-            backupService.EnqueueBackupTask();
+            backupService.EnqueueBackupTaskAsync();
 #pragma warning restore 4014
-            await Load();
+            await LoadPaymentList();
         }
     }
 }

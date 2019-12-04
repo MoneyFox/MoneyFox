@@ -146,7 +146,10 @@
       <Version>5.1.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.6.7</Version>
+      <Version>4.6.8</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.3.0.991211</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

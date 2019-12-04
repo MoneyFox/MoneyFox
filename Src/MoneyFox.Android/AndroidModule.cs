@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using MoneyFox.Application.FileStore;
 using MoneyFox.Droid.Manager;
-using MoneyFox.Droid.Services;
 using MoneyFox.Infrastructure;
 using MoneyFox.Presentation;
 
@@ -14,7 +13,6 @@ namespace MoneyFox.Droid
             builder.RegisterModule<PresentationModule>();
             builder.RegisterModule<InfrastructureModule>();
 
-            builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();

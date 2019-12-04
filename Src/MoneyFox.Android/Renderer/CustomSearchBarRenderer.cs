@@ -34,22 +34,40 @@ namespace MoneyFox.Droid.Renderer
 
                 EditText editText = Control.GetChildrenOfType<EditText>().First();
 
-                SetCursorColor(editText);
-                TrySetCursorPointerColor(editText);
+                editText.SetHighlightColor(Color.Accent.ToAndroid());
 
-                UpdateSearchButtonColor();
-                UpdateCancelButtonColor();
+                if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Q)
+                {
+                    TrySetCursorPointerColorNew(editText);
+                    UpdateSearchButtonColorNew();
+                    UpdateCancelButtonColorNew();
+                }
+                else
+                {
+                    TrySetCursorPointerColor(editText);
+                    UpdateSearchButtonColor();
+                    UpdateCancelButtonColor();
+                }
             }
         }
 
-        private static void SetCursorColor(EditText editText)
+        private void TrySetCursorPointerColorNew(EditText editText)
         {
             try
             {
-                IntPtr intPtrTextViewClass = JNIEnv.FindClass(typeof(TextView));
-                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrTextViewClass, "mCursorDrawableRes", "I");
+                editText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
 
-                JNIEnv.SetField(editText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
+                var textSelectHandleDrawable = editText.TextSelectHandle;
+                textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                editText.TextSelectHandle = textSelectHandleDrawable;
+
+                var textSelectHandleLeftDrawable = editText.TextSelectHandleLeft;
+                textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                editText.TextSelectHandle = textSelectHandleLeftDrawable;
+
+                var textSelectHandleRightDrawable = editText.TextSelectHandleRight;
+                textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                editText.TextSelectHandle = textSelectHandleRightDrawable;
             }
             catch (Exception ex)
             {
@@ -67,7 +85,8 @@ namespace MoneyFox.Droid.Renderer
                 field.Accessible = true;
                 Object editor = field.Get(editText);
 
-                string[] fieldsNames = {"mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"};
+                string[] fieldsNames =
+                    {"mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"};
                 string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
 
                 for (var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
@@ -87,10 +106,38 @@ namespace MoneyFox.Droid.Renderer
                     field.Accessible = true;
                     field.Set(editor, handleDrawable);
                 }
+
+                IntPtr intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
+                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
+
+                JNIEnv.SetField(editText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
             }
             catch (Exception ex)
             {
                 LogManager.GetCurrentClassLogger().Error(ex);
+            }
+        }
+
+        private void UpdateSearchButtonColorNew()
+        {
+            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
+            if (searchViewCloseButtonId != 0)
+            {
+                var image = FindViewById<ImageView>(searchViewCloseButtonId);
+
+
+
+                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Color.Gray.ToAndroid(), BlendMode.SrcIn));
+            }
+        }
+
+        private void UpdateCancelButtonColorNew()
+        {
+            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
+            if (searchViewCloseButtonId != 0)
+            {
+                var image = FindViewById<ImageView>(searchViewCloseButtonId);
+                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Color.Gray.ToAndroid(), BlendMode.SrcIn));
             }
         }
 

@@ -58,7 +58,7 @@ namespace MoneyFox.Presentation.Commands
 
         void ICommand.Execute(object parameter)
         {
-            ExecuteAsync().FireAndForgetSafe();
+            ExecuteAsync().FireAndForgetSafeAsync();
         }
 
         #endregion
@@ -115,7 +115,7 @@ namespace MoneyFox.Presentation.Commands
 
         void ICommand.Execute(object parameter)
         {
-            ExecuteAsync((T) parameter).FireAndForgetSafe();
+            ExecuteAsync((T) parameter).FireAndForgetSafeAsync();
         }
 
         #endregion

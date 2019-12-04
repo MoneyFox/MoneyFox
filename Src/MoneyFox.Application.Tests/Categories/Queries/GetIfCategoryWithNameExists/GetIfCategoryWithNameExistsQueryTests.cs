@@ -17,12 +17,12 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExi
 
         public GetIfCategoryWithNameExistsQueryTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

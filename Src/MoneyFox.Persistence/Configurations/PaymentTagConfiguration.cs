@@ -11,13 +11,13 @@ namespace MoneyFox.Persistence.Configurations
         {
             builder.HasKey(pt => new {pt.PaymentId, pt.TagId});
 
-            builder.HasOne(pt => pt.Payment)
-                   .WithMany(p => p.PaymentTags)
-                   .HasForeignKey(pt => pt.PaymentId);
+            //builder.HasOne(pt => pt.Payment)
+            //       .WithMany(p => p.PaymentTags)
+            //       .HasForeignKey(pt => pt.PaymentId);
 
-            builder.HasOne(pt => pt.Tag)
-                   .WithMany(t => t.PaymentTags)
-                   .HasForeignKey(pt => pt.TagId);
+            //builder.HasOne(pt => pt.Tag)
+            //       .WithMany(t => t.PaymentTags)
+            //       .HasForeignKey(pt => pt.TagId);
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Interfaces;
@@ -12,39 +13,16 @@ namespace MoneyFox.Uwp
         private LoadingDialog loadingDialog;
 
         /// <summary>
-        ///     Show a dialog with two buttons with customizable Texts. If no message is passed the dialog will have a Yes and No
-        ///     Button
-        /// </summary>
-        /// <param name="title">Title to display.</param>
-        /// <param name="message">Text to display.</param>
-        /// <param name="positiveButtonText">Text for the yes button.</param>
-        /// <param name="negativeButtonText">Text for the no button.</param>
-        /// <param name="positivAction">Action who shall be executed on the positive button click.</param>
-        /// <param name="negativAction">Action who shall be executed on the negative button click.</param>
-        public async Task ShowConfirmMessage(string title, string message, Action positivAction,
-                                             string positiveButtonText = null,
-                                             string negativeButtonText = null, Action negativAction = null)
-        {
-            HideLoadingDialog();
-            bool isPositiveAnswer = await ShowConfirmMessage(title, message, positiveButtonText, negativeButtonText);
-
-            if (isPositiveAnswer)
-                positivAction();
-            else
-                negativAction?.Invoke();
-        }
-
-        /// <summary>
         ///     Show a dialog with two buttons with customizable Texts. Returns the answer.
         /// </summary>
         /// <param name="title">Title for the dialog.</param>
         /// <param name="message">Text for the dialog.</param>
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
-        public async Task<bool> ShowConfirmMessage(string title, string message, string positiveButtonText = null,
+        public async Task<bool> ShowConfirmMessageAsync(string title, string message, string positiveButtonText = null,
                                                    string negativeButtonText = null)
         {
-            HideLoadingDialog();
+            await HideLoadingDialogAsync();
 
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(positiveButtonText ?? Strings.YesLabel));
@@ -62,7 +40,7 @@ namespace MoneyFox.Uwp
         /// <param name="message">Text to display.</param>
         public async Task ShowMessage(string title, string message)
         {
-            HideLoadingDialog();
+            await HideLoadingDialogAsync();
 
             var dialog = new MessageDialog(message, title);
             dialog.Commands.Add(new UICommand(Strings.OkLabel));
@@ -73,21 +51,29 @@ namespace MoneyFox.Uwp
         /// <summary>
         ///     Shows a loading Dialog.
         /// </summary>
-        public async void ShowLoadingDialog(string message = null)
+        public async Task ShowLoadingDialogAsync(string message = null)
         {
             // Be sure no other dialog is open.
-            HideLoadingDialog();
+            await HideLoadingDialogAsync();
 
             loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
-            await loadingDialog.ShowAsync();
+
+            var coreWindow = Windows.ApplicationModel.Core.CoreApplication.MainView;
+
+            // Dispatcher needed to run on UI Thread
+            CoreDispatcher dispatcher = coreWindow.CoreWindow.Dispatcher;
+
+            // RunAsync all of the UI info.
+            await dispatcher.RunAsync(CoreDispatcherPriority.High, async () => { await loadingDialog.ShowAsync(); });
         }
 
         /// <summary>
         ///     Hides the previously opened Loading Dialog.
         /// </summary>
-        public void HideLoadingDialog()
+        public Task HideLoadingDialogAsync()
         {
             loadingDialog?.Hide();
+            return Task.CompletedTask;
         }
     }
 }

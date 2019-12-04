@@ -17,13 +17,6 @@ namespace MoneyFox.Presentation.Services
     public interface IPaymentService
     {
         /// <summary>
-        ///     Save a new payment
-        /// </summary>
-        /// <param name="paymentViewModel">View model which contains the view data.</param>
-        /// <returns>Result</returns>
-        Task SavePayment(PaymentViewModel paymentViewModel);
-
-        /// <summary>
         ///     Updates a payment.
         /// </summary>
         /// <param name="newPaymentViewModel">View model which contains the view data.</param>
@@ -55,16 +48,6 @@ namespace MoneyFox.Presentation.Services
         }
 
         /// <inheritdoc />
-        public async Task SavePayment(PaymentViewModel paymentViewModel)
-        {
-            Payment payment = await CreatePaymentFromViewModel(paymentViewModel);
-            await context.AddAsync(payment);
-
-            int count = await context.SaveChangesAsync();
-            logger.Info("{count} entities saved.", count);
-        }
-
-        /// <inheritdoc />
         public async Task UpdatePayment(PaymentViewModel newPaymentViewModel)
         {
             await UpdatePaymentFromViewModel(newPaymentViewModel);
@@ -75,10 +58,10 @@ namespace MoneyFox.Presentation.Services
         /// <inheritdoc />
         public async Task DeletePayment(PaymentViewModel paymentViewModel)
         {
-            if (!await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
+            if (!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
 
             if (paymentViewModel.IsRecurring
-                && await dialogService.ShowConfirmMessage(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
+                && await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
                 await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id);
 
             await modifyPaymentAction.DeletePayment(paymentViewModel.Id);
@@ -130,7 +113,7 @@ namespace MoneyFox.Presentation.Services
             if (paymentViewModel.IsRecurring
                 && payment.IsRecurring
                 && await dialogService
-                    .ShowConfirmMessage(Strings.ModifyRecurrenceTitle, Strings.ModifyRecurrenceMessage)
+                    .ShowConfirmMessageAsync(Strings.ModifyRecurrenceTitle, Strings.ModifyRecurrenceMessage)
             )
             {
                 payment.RecurringPayment.UpdateRecurringPayment(payment.Amount,

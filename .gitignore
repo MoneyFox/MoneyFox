@@ -182,8 +182,8 @@ Src/MoneyFox.Windows/_pkginfo.txt
 *.props
 *.userprefs
 MoneyFox.Droid.nuget.targets
-/Src/MoneyFox.Android/Resources/Resource.designer.cs
 Src/.sonarlint
 Src/.sonarqube
 Src/.cr
 Src/MoneyFox.Android.Infrastructure/Resources/Resource.designer.cs
+Src/MoneyFox.Android/Resources/Resource.designer.cs

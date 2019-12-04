@@ -14,7 +14,7 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.AddPaymentVm;
 
             ViewModel.PaymentType = paymentType;
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
     }
 }

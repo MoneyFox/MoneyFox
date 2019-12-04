@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using Autofac;
 using MediatR;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
@@ -14,6 +15,14 @@ namespace MoneyFox.Application
                 .RegisterType<Mediator>()
                 .As<IMediator>()
                 .InstancePerLifetimeScope();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.EndsWith("Manager", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces();
 
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>

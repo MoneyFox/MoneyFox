@@ -3,9 +3,10 @@ using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
+using MoneyFox.Application.Adapters;
+using MoneyFox.Application.CloudBackup;
 using MoneyFox.Application.Constants;
-using MoneyFox.BusinessLogic.Adapters;
-using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.Presentation;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Uwp.Business;
@@ -38,15 +39,16 @@ namespace MoneyFox.Uwp.Tasks
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
                     new WindowsFileStore(),
-                    new ConnectivityAdapter());
+                    new ConnectivityAdapter(),
+                    ViewModelLocator.MessengerInstance);
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 
-                DateTime backupDate = await backupService.GetBackupDate();
+                DateTime backupDate = await backupService.GetBackupDateAsync();
 
                 if (settingsFacade.LastDatabaseUpdate > backupDate) return;
 
-                await backupService.RestoreBackup();
+                await backupService.RestoreBackupAsync();
             }
             catch (Exception ex)
             {

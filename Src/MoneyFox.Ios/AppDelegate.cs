@@ -9,11 +9,11 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
+using MoneyFox.Application.Adapters;
+using MoneyFox.Application.CloudBackup;
 using MoneyFox.Application.Constants;
 using MoneyFox.Application.FileStore;
 using MoneyFox.BusinessDbAccess.PaymentActions;
-using MoneyFox.BusinessLogic.Adapters;
-using MoneyFox.BusinessLogic.Backup;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
 using MoneyFox.Presentation;
@@ -58,6 +58,7 @@ namespace MoneyFox.iOS
 
             Forms.Init();
             FormsMaterial.Init();
+            XF.Material.iOS.Material.Init();
             LoadApplication(new App());
             Popup.Init();
 
@@ -65,7 +66,7 @@ namespace MoneyFox.iOS
             uiApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
-            RunAppStartAsync().FireAndForgetSafe();
+            RunAppStartAsync().FireAndForgetSafeAsync();
 
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
@@ -170,15 +171,16 @@ namespace MoneyFox.iOS
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
                     ServiceLocator.Current.GetInstance<IFileStore>(),
-                    new ConnectivityAdapter());
+                    new ConnectivityAdapter(),
+                    ViewModelLocator.MessengerInstance);
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 
-                DateTime backupDate = await backupService.GetBackupDate();
+                DateTime backupDate = await backupService.GetBackupDateAsync();
 
                 if (settingsFacade.LastDatabaseUpdate > backupDate) return;
 
-                await backupService.RestoreBackup();
+                await backupService.RestoreBackupAsync();
             }
             catch (Exception ex)
             {

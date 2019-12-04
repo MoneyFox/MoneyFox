@@ -30,7 +30,7 @@ namespace MoneyFox.Domain.Entities
         public bool IsOverdrawn { get; private set; }
         public bool IsExcluded { get; private set; }
         public DateTime ModificationDate { get; private set; }
-        public DateTime CreationTime { get; }
+        public DateTime CreationTime { get; private set; }
 
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {

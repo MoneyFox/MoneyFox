@@ -17,12 +17,12 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
 
         public UpdateCategoryCommandTests()
         {
-            context = TestEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
         }
 
         public void Dispose()
         {
-            TestEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

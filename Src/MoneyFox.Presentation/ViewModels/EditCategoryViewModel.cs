@@ -62,13 +62,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeleteCategory()
         {
-            if (await dialogService.ShowConfirmMessage(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-                backupService.EnqueueBackupTask().FireAndForgetSafe();
+                backupService.EnqueueBackupTaskAsync().FireAndForgetSafeAsync();
                 await CancelCommand.ExecuteAsync();
             }
         }

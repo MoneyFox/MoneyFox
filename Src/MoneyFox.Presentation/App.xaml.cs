@@ -13,6 +13,8 @@ namespace MoneyFox.Presentation
         public App()
         {
             InitializeComponent();
+
+            XF.Material.Forms.Material.Init(this, "Material.Configuration");
             ThemeManager.LoadTheme();
 
             AppDomain.CurrentDomain.UnhandledException += (s, e) => { LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject); };

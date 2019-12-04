@@ -5,14 +5,16 @@ using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Messages;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -121,7 +123,8 @@ namespace MoneyFox.Presentation.ViewModels
                                          IDialogService dialogService,
                                          ISettingsFacade settingsFacade,
                                          IBackupService backupService,
-                                         INavigationService navigationService)
+                                         INavigationService navigationService,
+                                         IMessenger messenger)
         {
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
@@ -130,7 +133,9 @@ namespace MoneyFox.Presentation.ViewModels
             this.mediator = mediator;
             this.mapper = mapper;
 
-            MessengerInstance.Register<CategorySelectedMessage>(this, ReceiveMessage);
+            MessengerInstance = messenger;
+
+            MessengerInstance.Register<CategorySelectedMessage>(this, async (message) => await ReceiveMessage(message));
         }
 
         /// <summary>
@@ -299,7 +304,7 @@ namespace MoneyFox.Presentation.ViewModels
             if (settingsFacade.IsBackupAutouploadEnabled)
             {
 #pragma warning disable 4014
-                backupService.EnqueueBackupTask();
+                backupService.EnqueueBackupTaskAsync();
 #pragma warning restore 4014
             }
         }
@@ -308,10 +313,10 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Moved to own method for debugg reasons
         /// </summary>
         /// <param name="message">Message stent.</param>
-        private void ReceiveMessage(CategorySelectedMessage message)
+        private async Task ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
-            SelectedPayment.Category = message.SelectedCategory;
+            SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.SelectedCategoryId)));
         }
 
         private void OpenSelectCategoryList()

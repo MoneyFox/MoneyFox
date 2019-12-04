@@ -20,7 +20,7 @@ namespace MoneyFox.Uwp.Views
             if (e.Parameter != null && e.NavigationMode != NavigationMode.Back)
             {
                 ViewModel.PaymentType = (PaymentType) e.Parameter;
-                ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
+                ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
             }
         }
 

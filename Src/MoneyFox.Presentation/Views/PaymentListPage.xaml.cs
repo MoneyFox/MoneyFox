@@ -20,13 +20,7 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.PaymentListVm;
 
             ViewModel.AccountId = accountId;
-
-            PaymentList.ItemTapped += (sender, args) =>
-            {
-                PaymentList.SelectedItem = null;
-                ViewModel.EditPaymentCommand.Execute(args.Item);
-            };
-
+            
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);
 
             var filterItem = new ToolbarItem
@@ -42,7 +36,7 @@ namespace MoneyFox.Presentation.Views
 
         protected override void OnAppearing()
         {
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafe();
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
         private void OpenDialog()
@@ -50,12 +44,12 @@ namespace MoneyFox.Presentation.Views
             Navigation.PushPopupAsync(new FilterPopup
             {
                 BindingContext = ViewModelLocator.SelectFilterDialogVm
-            }).FireAndForgetSafe();
+            }).FireAndForgetSafeAsync();
         }
 
         private void AddItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushPopupAsync(new AddPaymentPopup {BindingContext = ViewModel.ViewActionViewModel}).FireAndForgetSafe();
+            Navigation.PushPopupAsync(new AddPaymentPopup {BindingContext = ViewModel.ViewActionViewModel}).FireAndForgetSafeAsync();
         }
 
         private void EditPayment(object sender, EventArgs e)
@@ -67,7 +61,7 @@ namespace MoneyFox.Presentation.Views
         private void DeletePayment(object sender, EventArgs e)
         {
             if (!(sender is MenuItem menuItem)) return;
-            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel).FireAndForgetSafe();
+            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel).FireAndForgetSafeAsync();
         }
     }
 }

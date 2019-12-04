@@ -3,11 +3,11 @@ using System.Globalization;
 using System.Threading.Tasks;
 using MediatR;
 using MoneyFox.Application;
+using MoneyFox.Application.Extensions;
+using MoneyFox.Application.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.BusinessLogic.Extensions;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Messages;
 using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic

@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl">
 
     <d:ContentView.BindingContext>
@@ -24,25 +25,19 @@
     <ContentView.Content>
         <ScrollView>
             <StackLayout Spacing="{StaticResource DefaultSpacing}">
-
-                <Label Text="{Binding AccountHeader}" Style="{DynamicResource DefaultTextStyle}" />
                 <Picker Title="{Binding AccountHeader}" ItemsSource="{Binding ChargedAccounts}"
                         Style="{StaticResource DefaultPickerStyle}"
                         SelectedItem="{Binding SelectedPayment.ChargedAccount}"
                         ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
                         SelectedIndexChanged="ChargedAccount_OnSelectedIndexChanged" />
 
-                <StackLayout Spacing="{StaticResource DefaultSpacing}"
-                             IsVisible="{Binding SelectedPayment.IsTransfer}">
-
-                    <Label Text="{Binding Resources[TargetAccountLabel]}" Style="{DynamicResource DefaultTextStyle}" />
-                    <Picker Title="{Binding  Resources[TargetAccountLabel]}"
-                            ItemsSource="{Binding TargetAccounts}"
-                            Style="{StaticResource DefaultPickerStyle}"
-                            SelectedItem="{Binding SelectedPayment.TargetAccount}"
-                            ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
-                            SelectedIndexChanged="TargetAccount_OnSelectedIndexChanged" />
-                </StackLayout>
+                <Picker Title="{Binding  Resources[TargetAccountLabel]}"
+                        ItemsSource="{Binding TargetAccounts}"
+                        Style="{StaticResource DefaultPickerStyle}"
+                        IsVisible="{Binding SelectedPayment.IsTransfer}"
+                        SelectedItem="{Binding SelectedPayment.TargetAccount}"
+                        ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
+                        SelectedIndexChanged="TargetAccount_OnSelectedIndexChanged" />
 
                 <Entry x:Name="AmountEntry"
                        Style="{StaticResource DefaultEntry}"
@@ -64,7 +59,6 @@
                     </Grid.ColumnDefinitions>
 
                     <Button Grid.Column="0"
-                            Grid.ColumnSpan="2"
                             Style="{StaticResource DefaultButtonStyle}"
                             Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
                             Command="{Binding GoToSelectCategoryDialogCommand}" />
@@ -100,14 +94,17 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="30*" />
+                        <ColumnDefinition Width="20*" />
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
                            Text="{Binding Resources[RecurringLabel]}"
                            Style="{DynamicResource DefaultTextStyle}" />
 
-                    <Switch Grid.Column="1" IsToggled="{Binding SelectedPayment.IsRecurring}" />
+                    <Switch Grid.Column="1"
+                            HorizontalOptions="End"
+                            Style="{StaticResource SwitchStyle}" 
+                            IsToggled="{Binding SelectedPayment.IsRecurring}" />
                 </Grid>
 
                 <StackLayout Spacing="{StaticResource DefaultSpacing}"
@@ -125,7 +122,7 @@
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="70*" />
-                            <ColumnDefinition Width="30*" />
+                            <ColumnDefinition Width="15*" />
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0"
@@ -133,6 +130,8 @@
                                Text="{Binding Resources[EndlessLabel]}" />
 
                         <Switch Grid.Column="1"
+                                HorizontalOptions="End"
+                                Style="{StaticResource SwitchStyle}"
                                 IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
                     </Grid>
 

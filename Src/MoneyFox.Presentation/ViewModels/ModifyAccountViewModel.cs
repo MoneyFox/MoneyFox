@@ -3,10 +3,12 @@ using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -22,10 +24,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
                                          IBackupService backupService,
+                                         IDialogService dialogService,
                                          INavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
+
+            DialogService = dialogService;
             NavigationService = navigationService;
         }
 
@@ -33,6 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected abstract Task Initialize();
 
+        protected IDialogService DialogService { get; }
         protected INavigationService NavigationService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -82,10 +88,16 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task SaveAccountBase()
         {
+            if (string.IsNullOrWhiteSpace(SelectedAccount.Name)) 
+            {
+                await DialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
             await SaveAccount();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.EnqueueBackupTask().FireAndForgetSafe();
+            if (settingsFacade.IsBackupAutouploadEnabled) backupService.EnqueueBackupTaskAsync().FireAndForgetSafeAsync();
         }
 
         private void Cancel()

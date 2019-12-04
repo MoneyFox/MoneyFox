@@ -56,9 +56,12 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NLog">
-      <Version>4.6.7</Version>
+      <Version>4.6.8</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
+    <PackageReference Include="Xamarin.Forms">
+      <Version>4.3.0.991211</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

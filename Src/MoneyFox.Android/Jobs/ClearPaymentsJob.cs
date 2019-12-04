@@ -6,8 +6,8 @@ using Android.Content;
 using Android.OS;
 using Java.Lang;
 using MoneyFox.Application;
+using MoneyFox.Application.Adapters;
 using MoneyFox.BusinessDbAccess.PaymentActions;
-using MoneyFox.BusinessLogic.Adapters;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
 using MoneyFox.Presentation.Facades;
@@ -47,7 +47,7 @@ namespace MoneyFox.Droid.Jobs
         {
             var callback = (Messenger) intent.GetParcelableExtra("messenger");
             Message m = Message.Obtain();
-            m.What = MainActivity.MESSAGE_SERVICE_CLEAR_PAYMENTS;
+            m.What = MainActivity.MessageServiceClearPayments;
             m.Obj = this;
             try
             {

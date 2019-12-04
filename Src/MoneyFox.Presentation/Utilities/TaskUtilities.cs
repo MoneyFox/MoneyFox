@@ -10,7 +10,7 @@ namespace MoneyFox.Presentation.Utilities
 
 #pragma warning disable RECS0165 // Asynchronous methods should return a Task instead of void
 #pragma warning disable S3168 // "async" methods should not return "void"
-        public static async void FireAndForgetSafe(this Task task)
+        public static async void FireAndForgetSafeAsync(this Task task)
 #pragma warning restore S3168 // "async" methods should not return "void"
 #pragma warning restore RECS0165 // Asynchronous methods should return a Task instead of void
         {

@@ -8,10 +8,11 @@ using CommonServiceLocator;
 using Java.Lang;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
+using MoneyFox.Application.Adapters;
+using MoneyFox.Application.CloudBackup;
 using MoneyFox.Application.Constants;
 using MoneyFox.Application.FileStore;
-using MoneyFox.BusinessLogic.Adapters;
-using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.Presentation;
 using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Services;
 using NLog;
@@ -50,7 +51,7 @@ namespace MoneyFox.Droid.Jobs
         {
             var callback = (Messenger) intent.GetParcelableExtra("messenger");
             Message m = Message.Obtain();
-            m.What = MainActivity.MESSAGE_SERVICE_SYNC_BACKUP;
+            m.What = MainActivity.MessageServiceSyncBackup;
             m.Obj = this;
             try
             {
@@ -82,15 +83,16 @@ namespace MoneyFox.Droid.Jobs
                 var backupManager = new BackupManager(
                     new OneDriveService(pca),
                     ServiceLocator.Current.GetInstance<IFileStore>(),
-                    new ConnectivityAdapter());
+                    new ConnectivityAdapter(),
+                    ViewModelLocator.MessengerInstance);
 
                 var backupService = new BackupService(backupManager, settingsFacade);
 
-                DateTime backupDate = await backupService.GetBackupDate();
+                DateTime backupDate = await backupService.GetBackupDateAsync();
 
                 if (settingsFacade.LastDatabaseUpdate > backupDate) return;
 
-                await backupService.RestoreBackup();
+                await backupService.RestoreBackupAsync();
 
                 JobFinished(args, false);
             }

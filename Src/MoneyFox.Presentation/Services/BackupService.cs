@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MoneyFox.BusinessLogic.Backup;
+using MoneyFox.Application.CloudBackup;
+#pragma warning disable S1128 // Unused "using" should be removed
 using MoneyFox.Domain.Exceptions;
+#pragma warning restore S1128 // Unused "using" should be removed
 using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Presentation.Services
@@ -12,39 +14,39 @@ namespace MoneyFox.Presentation.Services
         ///     Login user.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task Login();
+        Task LoginAsync();
 
         /// <summary>
         ///     Logout user.
         /// </summary>
-        Task Logout();
+        Task LogoutAsync();
 
         /// <summary>
         ///     Checks if there are backups to restore.
         /// </summary>
         /// <returns>Backups available or not.</returns>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<bool> IsBackupExisting();
+        Task<bool> IsBackupExistingAsync();
 
         /// <summary>
         ///     Returns the date when the last backup was created.
         /// </summary>
         /// <returns>Creation date of the last backup.</returns>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<DateTime> GetBackupDate();
+        Task<DateTime> GetBackupDateAsync();
 
         /// <summary>
         ///     Restores an existing backup.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
-        Task RestoreBackup();
+        Task RestoreBackupAsync();
 
         /// <summary>
         ///     Enqueues a new backup task.
         /// </summary>
         /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
-        Task EnqueueBackupTask(int attempts = 0);
+        Task EnqueueBackupTaskAsync(int attempts = 0);
     }
 
     public class BackupService : IBackupService
@@ -58,39 +60,39 @@ namespace MoneyFox.Presentation.Services
             this.settingsFacade = settingsFacade;
         }
 
-        public async Task Login()
+        public async Task LoginAsync()
         {
             await backupManager.LoginAsync();
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
         }
 
-        public async Task Logout()
+        public async Task LogoutAsync()
         {
             await backupManager.LogoutAsync();
             settingsFacade.IsLoggedInToBackupService = false;
             settingsFacade.IsBackupAutouploadEnabled = false;
         }
 
-        public async Task<bool> IsBackupExisting()
+        public async Task<bool> IsBackupExistingAsync()
         {
             return await backupManager.IsBackupExistingAsync();
         }
 
-        public async Task<DateTime> GetBackupDate()
+        public async Task<DateTime> GetBackupDateAsync()
         {
             return await backupManager.GetBackupDateAsync();
         }
 
-        public async Task RestoreBackup()
+        public async Task RestoreBackupAsync()
         {
             await backupManager.RestoreBackupAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
         }
 
-        public async Task EnqueueBackupTask(int attempts = 0)
+        public async Task EnqueueBackupTaskAsync(int attempts = 0)
         {
-            if (!settingsFacade.IsLoggedInToBackupService) await Login();
+            if (!settingsFacade.IsLoggedInToBackupService) await LoginAsync();
 
             await backupManager.EnqueueBackupTaskAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;

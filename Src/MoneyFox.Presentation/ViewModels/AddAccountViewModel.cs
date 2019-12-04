@@ -16,7 +16,6 @@ namespace MoneyFox.Presentation.ViewModels
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
-        private readonly IDialogService dialogService;
 
         public AddAccountViewModel(IMediator mediator,
                                    IMapper mapper,
@@ -24,10 +23,9 @@ namespace MoneyFox.Presentation.ViewModels
                                    IBackupService backupService,
                                    IDialogService dialogService,
                                    INavigationService navigationService)
-            : base(settingsFacade, backupService, navigationService)
+            : base(settingsFacade, backupService, dialogService, navigationService)
         {
             this.mediator = mediator;
-            this.dialogService = dialogService;
             this.mapper = mapper;
 
             Title = Strings.AddAccountTitle;
@@ -44,8 +42,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await mediator.Send(new GetIfAccountWithNameExistsQuery {AccountName = SelectedAccount.Name}))
             {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
-
+                await DialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicatedNameTitle);
                 return;
             }
 

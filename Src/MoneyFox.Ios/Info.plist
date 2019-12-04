@@ -59,6 +59,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>materialdesignicons.ttf</string>
+    <string>Fonts/Roboto-Bold.ttf</string>
+    <string>Fonts/Roboto-Regular.ttf</string>
+    <string>Fonts/Roboto-Medium.ttf</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>

@@ -23,7 +23,7 @@
 
     <ScrollViewer HorizontalScrollMode="Auto"
                   VerticalScrollBarVisibility="Auto">
-        <StackPanel Margin="12,0,12,0">
+        <StackPanel>
             <TextBox x:Uid="Name"
                      Margin="{StaticResource SmallTitleContentMargin}"
                      VerticalAlignment="Top"
