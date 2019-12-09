@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using AutoMapper;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
@@ -29,21 +30,21 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly IMapper mapper;
 
         private readonly Mock<IMediator> mediatorMock;
-        private readonly Mock<IPaymentService> paymentServiceMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
         private readonly Mock<INavigationService> navigationServiceMock;
+        private readonly Mock<IMessenger> messengerMock;
 
         public AddPaymentViewModelTests(MapperCollectionFixture fixture)
         {
             mediatorMock = new Mock<IMediator>();
             mapper = fixture.Mapper;
-            paymentServiceMock = new Mock<IPaymentService>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
+            messengerMock = new Mock<IMessenger>();
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account>());
@@ -61,11 +62,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Arrange
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
-                                                       paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
                                                        backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
+                                                       navigationServiceMock.Object,
+                                                       messengerMock.Object);
 
             addPaymentVm.PaymentType = type;
 
@@ -87,11 +88,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
-                                                       paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
                                                        backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
+                                                       navigationServiceMock.Object,
+                                                       messengerMock.Object);
 
             addPaymentVm.PaymentType = type;
 
@@ -112,11 +113,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
-                                                       paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
                                                        backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
+                                                       navigationServiceMock.Object,
+                                                       messengerMock.Object);
 
             addPaymentVm.PaymentType = PaymentType.Transfer;
 
@@ -134,11 +135,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Arrange
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
-                                                       paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
                                                        backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
+                                                       navigationServiceMock.Object,
+                                                       messengerMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
 
@@ -161,11 +162,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
-                                                       paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
                                                        backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
+                                                       navigationServiceMock.Object,
+                                                       messengerMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel{Name = "asdf"};
@@ -192,11 +193,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
-                                                       paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
                                                        backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
+                                                       navigationServiceMock.Object,
+                                                       messengerMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
@@ -224,11 +225,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
-                                                       paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
                                                        backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
+                                                       navigationServiceMock.Object,
+                                                       messengerMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
@@ -256,11 +257,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
-                                                       paymentServiceMock.Object,
                                                        dialogServiceMock.Object,
                                                        settingsFacadeMock.Object,
                                                        backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
+                                                       navigationServiceMock.Object,
+                                                       messengerMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
             addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
