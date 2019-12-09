@@ -5,7 +5,7 @@ using MoneyFox.Domain.Exceptions;
 
 #pragma warning restore S1128 // Unused "using" should be removed
 
-namespace MoneyFox.Application.CloudBackup
+namespace MoneyFox.Application.Backup
 {
     /// <summary>
     ///     Defines the interface for a BackupManager who handles the different functions of a backup.

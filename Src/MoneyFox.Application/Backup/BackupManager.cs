@@ -16,7 +16,7 @@ using MoneyFox.Domain.Exceptions;
 using NLog;
 using Logger = NLog.Logger;
 
-namespace MoneyFox.Application.CloudBackup
+namespace MoneyFox.Application.Backup
 {
     public class BackupManager : IBackupManager, IDisposable
     {
