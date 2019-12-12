@@ -33,7 +33,7 @@
                         <Image.Source>
                             <FontImageSource
                                 Glyph="{StaticResource Expense}"
-                                FontFamily="{DynamicResource MaterialFontFamily}"
+                                FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                 Size="33"
                                 Color="{DynamicResource PrimaryFontColor}" />
                         </Image.Source>
@@ -58,7 +58,7 @@
                         <Image.Source>
                             <FontImageSource
                                 Glyph="{StaticResource Income}"
-                                FontFamily="{DynamicResource MaterialFontFamily}"
+                                FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                 Size="33"
                                 Color="{DynamicResource PrimaryFontColor}" />
                         </Image.Source>
@@ -84,7 +84,7 @@
                         <Image.Source>
                             <FontImageSource
                                 Glyph="{StaticResource Transfer}"
-                                FontFamily="{DynamicResource MaterialFontFamily}"
+                                FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                 Size="33"
                                 Color="{DynamicResource PrimaryFontColor}" />
                         </Image.Source>

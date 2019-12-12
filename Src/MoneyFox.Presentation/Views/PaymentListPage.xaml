@@ -131,7 +131,7 @@
                                                 <Image.Source>
                                                     <FontImageSource
                                                         Glyph="{StaticResource Transfer}"
-                                                        FontFamily="{DynamicResource MaterialFontFamily}"
+                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                                         Color="{DynamicResource PrimaryFontColor}" />
                                                 </Image.Source>
                                             </Image>
@@ -142,7 +142,7 @@
                                                 <Image.Source>
                                                     <FontImageSource
                                                         Glyph="{StaticResource Recurring}"
-                                                        FontFamily="{DynamicResource MaterialFontFamily}"
+                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                                         Color="{DynamicResource PrimaryFontColor}" />
                                                 </Image.Source>
                                             </Image>
@@ -153,7 +153,7 @@
                                                 <Image.Source>
                                                     <FontImageSource
                                                         Glyph="{StaticResource Cleared}"
-                                                        FontFamily="{DynamicResource MaterialFontFamily}"
+                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                                         Color="{DynamicResource PrimaryFontColor}" />
                                                 </Image.Source>
                                             </Image>
@@ -174,7 +174,7 @@
                 <ImageButton.Source>
                     <FontImageSource
                         Glyph="{StaticResource Add}"
-                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                         Size="33"
                         Color="White" />
                 </ImageButton.Source>
