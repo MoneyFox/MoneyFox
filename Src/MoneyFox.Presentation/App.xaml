@@ -186,7 +186,7 @@
                 <On Platform="UWP" Value="IconCancel" />
             </OnPlatform>
 
-            <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+            <OnPlatform x:Key="MaterialDesignIconsFontFamily" x:TypeArguments="x:String">
                 <On Platform="iOS" Value="Material Design Icons" />
                 <On Platform="Android" Value="materialdesignicons.ttf#Material Design Icons" />
                 <On Platform="UWP" Value="Assets/Fonts/materialdesignicons.ttf#Material Design Icons" />
