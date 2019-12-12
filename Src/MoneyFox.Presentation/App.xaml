@@ -41,7 +41,7 @@
                                                 Overline="{StaticResource FontFamily.RobotoRegular}"
                                                 Subtitle1="{StaticResource FontFamily.RobotoRegular}"
                                                 Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
-
+            
             <resources:MaterialConfiguration x:Key="Material.Configuration"
                                         FontConfiguration="{StaticResource Material.Font}" />
 
@@ -191,12 +191,6 @@
                 <On Platform="iOS" Value="Material Design Icons" />
                 <On Platform="Android" Value="materialdesignicons.ttf#Material Design Icons" />
                 <On Platform="UWP" Value="Assets/Fonts/materialdesignicons.ttf#Material Design Icons" />
-            </OnPlatform>
-
-            <OnPlatform x:Key="MaterialIconsFontFamily" x:TypeArguments="x:String">
-                <On Platform="iOS" Value="Material Icons" />
-                <On Platform="Android" Value="mmaterialIcons-regular.ttf#Material Icons" />
-                <On Platform="UWP" Value="Assets/Fonts/mmaterialIcons-regular.ttf#Material Icons" />
             </OnPlatform>
 
             <x:String x:Key="Add">&#xf415;</x:String>

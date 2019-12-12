@@ -206,9 +206,6 @@
     <AndroidAsset Include="Assets\Fonts\Roboto-Regular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </AndroidAsset>
-    <AndroidAsset Include="Assets\materialIcons-regular.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AndroidAsset>
     <None Include="MoneyFox.Android.ruleset" />
     <None Include="Assets\AboutAssets.txt" />
     <AndroidResource Include="Resources\layout\Toolbar.axml">

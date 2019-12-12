@@ -254,9 +254,6 @@
     <BundleResource Include="Resources\Fonts\Roboto-Bold.ttf" />
     <BundleResource Include="Resources\Fonts\Roboto-Medium.ttf" />
     <BundleResource Include="Resources\Fonts\Roboto-Regular.ttf" />
-    <BundleResource Include="Resources\materialIcons-regular.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
