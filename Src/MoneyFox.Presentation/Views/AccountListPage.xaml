@@ -81,12 +81,14 @@
                                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                                    Style="{StaticResource ListItemHeaderStyle}" />
 
-                                            <material:MaterialMenuButton Grid.Column="2" 
+                                            <material:MaterialMenuButton Grid.Column="2"
                                                                          ButtonType="Text"
                                                                          Image="icon_more.png"
                                                                          Style="{StaticResource MenuButtonStyle}"
-                                                                         Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}" 
-                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.EditAccountCommand}" />
+                                                                         Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
+                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.EditAccountCommand}">
+
+                                            </material:MaterialMenuButton>
                                         </Grid>
                                     </StackLayout>
                                 </material:MaterialCard>

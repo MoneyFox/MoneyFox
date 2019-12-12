@@ -51,6 +51,7 @@
                 <Setter Property="Margin" Value="-10" />
                 <Setter Property="CornerRadius" Value="24" />
                 <Setter Property="MenuTextColor" Value="{DynamicResource PrimaryFontColor}" />
+                <Setter Property="TintColor" Value="{DynamicResource DeemphasizedColor}" />
             </Style>
 
             <Style x:Key="SmallPageTitle" TargetType="Label">
