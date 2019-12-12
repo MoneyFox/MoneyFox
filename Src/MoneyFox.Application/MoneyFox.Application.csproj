@@ -46,8 +46,4 @@
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="RecurringPayments\" />
-  </ItemGroup>
 </Project>
