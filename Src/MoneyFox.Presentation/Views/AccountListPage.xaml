@@ -86,7 +86,7 @@
                                                                          Image="icon_more.png"
                                                                          Style="{StaticResource MenuButtonStyle}"
                                                                          Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
-                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.EditAccountCommand}">
+                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}">
 
                                             </material:MaterialMenuButton>
                                         </Grid>

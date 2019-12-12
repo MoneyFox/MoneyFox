@@ -6,6 +6,7 @@ using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Interfaces;
+using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
@@ -32,8 +33,10 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public IAccountListViewActionViewModel ViewActionViewModel { get; }
         public AsyncCommand LoadDataCommand { get; }
         public RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
-        public RelayCommand<MaterialMenuResult> EditAccountCommand { get; }
+        public RelayCommand<AccountViewModel> EditAccountCommand { get; }
         public AsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
         public RelayCommand GoToAddAccountCommand { get; }
+
+        public Command<MaterialMenuResult> MenuSelectedCommand => throw new System.NotImplementedException();
     }
 }

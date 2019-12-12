@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
+using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
@@ -42,9 +43,14 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
 
         /// <summary>
+        ///     Handles the selected menu item on Android and iOS
+        /// </summary>
+        Command<MaterialMenuResult> MenuSelectedCommand { get; }
+
+        /// <summary>
         ///     Edit the selected Account
         /// </summary>
-        RelayCommand<MaterialMenuResult> EditAccountCommand { get; }
+        RelayCommand<AccountViewModel> EditAccountCommand { get; }
 
         /// <summary>
         ///     Deletes the selected Account
