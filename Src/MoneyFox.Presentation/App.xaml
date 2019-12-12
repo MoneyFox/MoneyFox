@@ -41,7 +41,7 @@
                                                 Overline="{StaticResource FontFamily.RobotoRegular}"
                                                 Subtitle1="{StaticResource FontFamily.RobotoRegular}"
                                                 Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
-            
+
             <resources:MaterialConfiguration x:Key="Material.Configuration"
                                         FontConfiguration="{StaticResource Material.Font}" />
 
