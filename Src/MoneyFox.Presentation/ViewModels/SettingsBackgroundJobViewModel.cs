@@ -1,5 +1,5 @@
-﻿using System;
-using MoneyFox.Presentation.Facades;
+﻿using MoneyFox.Application.Facades;
+using System;
 using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels

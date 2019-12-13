@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
+using MoneyFox.Application.Backup;
+using MoneyFox.Application.Facades;
 using MoneyFox.Application.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
+using Xamarin.Forms;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -68,6 +70,7 @@ namespace MoneyFox.Presentation.ViewModels
             MessengerInstance = messenger;
 
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => { await LoadPayments(message); });
+            MessengerInstance.Register<RemovePaymentMessage>(this, message => { RemovePayment(message); });
             MessengerInstance.Register<BackupRestoredMessage>(this, async message => await LoadData());
         }
 
@@ -169,12 +172,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Opens the Edit Dialog for the passed Payment
         /// </summary>
-        public RelayCommand<PaymentViewModel> EditPaymentCommand => new RelayCommand<PaymentViewModel>(EditPayment);
+        public Command<PaymentViewModel> EditPaymentCommand => new Command<PaymentViewModel>(EditPayment);
 
         /// <summary>
         ///     Deletes the passed PaymentViewModel.
         /// </summary>
-        public AsyncCommand<PaymentViewModel> DeletePaymentCommand => new AsyncCommand<PaymentViewModel>(DeletePayment);
+        public Command<PaymentViewModel> DeletePaymentCommand => new Command<PaymentViewModel>(DeletePayment);
 
         private async Task Initialize()
         {
@@ -204,6 +207,21 @@ namespace MoneyFox.Presentation.ViewModels
             await LoadPayments(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+        }
+        private void RemovePayment(RemovePaymentMessage message)
+        {
+            foreach (var dateGroup in DailyList)
+            {
+                dateGroup.RemoveAll(y => y.Id == message.PaymentId);
+            }
+
+            foreach (var monthList in Source)
+            {
+                foreach (var dailyGroup in monthList)
+                {
+                    dailyGroup.RemoveAll(y => y.Id == message.PaymentId);
+                }
+            }
         }
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
@@ -245,7 +263,8 @@ namespace MoneyFox.Presentation.ViewModels
             navigationService.NavigateTo(ViewModelLocator.EditPayment, payment.Id);
         }
 
-        private async Task DeletePayment(PaymentViewModel payment)
+        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]
+        private async void DeletePayment(PaymentViewModel payment)
         {
             await paymentService.DeletePayment(payment);
 

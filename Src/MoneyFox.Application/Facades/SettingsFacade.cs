@@ -3,7 +3,7 @@ using System.Globalization;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
 
-namespace MoneyFox.Presentation.Facades
+namespace MoneyFox.Application.Facades
 {
     /// <summary>
     ///     Provides access to the app settings.

@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-
 namespace MoneyFox.Presentation
 {
     public partial class App
@@ -20,6 +19,8 @@ namespace MoneyFox.Presentation
             AppDomain.CurrentDomain.UnhandledException += (s, e) => { LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject); };
 
             ConfigureNavigation();
+
+            Device.SetFlags(new[] { "SwipeView_Experimental" });
 
             var appShell = new AppShell();
             NavigationService.Initialize(appShell.Navigation);

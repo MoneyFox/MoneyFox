@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Interfaces;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -16,8 +16,8 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public IBalanceViewModel BalanceViewModel => new DesignTimeBalanceViewViewModel();
         public IPaymentListViewActionViewModel ViewActionViewModel { get; }
         public AsyncCommand InitializeCommand { get; }
-        public RelayCommand<PaymentViewModel> EditPaymentCommand { get; }
-        public AsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
+        public Command<PaymentViewModel> EditPaymentCommand { get; }
+        public Command<PaymentViewModel> DeletePaymentCommand { get; }
 
         public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source =>
             new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>

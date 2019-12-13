@@ -3,10 +3,10 @@ using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
+using MoneyFox.Application.Facades;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
-using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Uwp.Tasks
 {

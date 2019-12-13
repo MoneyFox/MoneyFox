@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight.Command;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
@@ -13,9 +13,9 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
 
         AsyncCommand InitializeCommand { get; }
 
-        RelayCommand<PaymentViewModel> EditPaymentCommand { get; }
+        Command<PaymentViewModel> EditPaymentCommand { get; }
 
-        AsyncCommand<PaymentViewModel> DeletePaymentCommand { get; }
+        Command<PaymentViewModel> DeletePaymentCommand { get; }
 
         ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source { get; }
 

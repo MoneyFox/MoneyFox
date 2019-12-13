@@ -4,12 +4,12 @@ using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.Application.Adapters;
+using MoneyFox.Application.Backup;
+using MoneyFox.Application.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
-using MoneyFox.Presentation.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {

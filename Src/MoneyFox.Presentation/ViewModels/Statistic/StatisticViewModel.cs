@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using MediatR;
 using MoneyFox.Application;
 using MoneyFox.Application.Extensions;
+using MoneyFox.Application.Facades;
 using MoneyFox.Application.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
 using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic

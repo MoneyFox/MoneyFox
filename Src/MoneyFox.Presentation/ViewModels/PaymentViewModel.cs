@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using AutoMapper;
+using CommonServiceLocator;
+using GalaSoft.MvvmLight.Views;
+using MediatR;
 using MoneyFox.Application.Interfaces.Mapping;
+using MoneyFox.Application.Messages;
+using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -27,6 +34,9 @@ namespace MoneyFox.Presentation.ViewModels
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
         private ObservableCollection<PaymentTagTagViewModel> paymentTags;
+
+        private IMediator mediator;
+        private INavigationService navigationService;
 
         public PaymentViewModel()
         {
@@ -263,6 +273,38 @@ namespace MoneyFox.Presentation.ViewModels
             configuration.CreateMap<Payment, PaymentViewModel>()
                          .ForMember(x => x.CurrentAccountId, opt => opt.Ignore())
                          .ReverseMap();
+        }
+
+        /// <summary>
+        ///     Opens the Edit Dialog for the passed Payment
+        /// </summary>
+        public Command<PaymentViewModel> EditPaymentCommand => new Command<PaymentViewModel>(EditPayment);
+
+        /// <summary>
+        ///     Deletes the passed PaymentViewModel.
+        /// </summary>
+        public Command<PaymentViewModel> DeletePaymentCommand => new Command<PaymentViewModel>(DeletePayment);
+
+        private void EditPayment(PaymentViewModel payment)
+        {
+            if(navigationService == null)
+            {
+                navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            }
+
+            navigationService.NavigateTo(ViewModelLocator.EditPayment, payment.Id);
+        }
+
+        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]
+        private async void DeletePayment(PaymentViewModel payment)
+        {
+            if (navigationService == null)
+            {
+                mediator = ServiceLocator.Current.GetInstance<IMediator>();
+            }
+
+            await mediator.Send(new DeletePaymentByIdCommand(payment.Id));
+            MessengerInstance.Send(new RemovePaymentMessage(payment.Id));
         }
     }
 }

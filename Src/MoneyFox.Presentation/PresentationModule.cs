@@ -39,7 +39,6 @@ namespace MoneyFox.Presentation
 
             builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly).AsImplementedInterfaces(); // via assembly scan
 
-
             builder.Register(c => PublicClientApplicationBuilder
                                   .Create(ServiceConstants.MSAL_APPLICATION_ID)
                                   .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
@@ -49,10 +48,6 @@ namespace MoneyFox.Presentation
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces();
-
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => t.Name.EndsWith("Facade", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)

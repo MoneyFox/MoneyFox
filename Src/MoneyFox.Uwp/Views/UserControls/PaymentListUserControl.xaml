@@ -9,8 +9,8 @@
              xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
              xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
              xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
-             xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
              x:Name="PaymentControl"
+             xmlns:resources="using:MoneyFox.Application.Resources"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
@@ -84,9 +84,9 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,0,0,30" 
+                            <StackPanel Margin="0,0,0,30"
                                         Padding="{StaticResource SmallListItemPadding}">
-                                
+
                                 <TextBlock Margin="3,0,0,7"
                                            Style="{ThemeResource HeaderStyle}"
                                            Text="{Binding Key}" />
@@ -126,11 +126,12 @@
                                                 <FlyoutBase.AttachedFlyout>
                                                     <MenuFlyout>
                                                         <MenuFlyoutItem Icon="Edit"
-                                                                        Click="EditPaymentViewModel"
-                                                                        Text="{Binding Resources[EditLabel]}" />
+                                                                        Command="{Binding EditPaymentCommand}"
+                                                                        Text="{x:Bind resources:Strings.EditLabel}" />
+
                                                         <MenuFlyoutItem Icon="Delete"
-                                                                        Click="DeletePaymentViewModel"
-                                                                        Text="{Binding Resources[DeleteLabel]}" />
+                                                                        Command="{Binding DeletePaymentCommand}"
+                                                                        Text="{x:Bind resources:Strings.DeleteLabel}" />
                                                     </MenuFlyout>
                                                 </FlyoutBase.AttachedFlyout>
 

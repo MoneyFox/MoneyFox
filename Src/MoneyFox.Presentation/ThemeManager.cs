@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
-using MoneyFox.Presentation.Facades;
+using MoneyFox.Application.Facades;
 using MoneyFox.Presentation.Style;
 using Xamarin.Forms;
 using XF.Material.Forms.Resources;

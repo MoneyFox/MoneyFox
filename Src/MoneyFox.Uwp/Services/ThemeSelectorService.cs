@@ -5,8 +5,8 @@ using Windows.UI.Core;
 using Windows.UI.Xaml;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
+using MoneyFox.Application.Facades;
 using MoneyFox.Presentation;
-using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Uwp.Services
 {

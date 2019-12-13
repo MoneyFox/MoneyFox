@@ -4,10 +4,10 @@ using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
+using MoneyFox.Application.Backup;
+using MoneyFox.Application.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels

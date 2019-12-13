@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Views;
+using MoneyFox.Application.Backup;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Moq;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
@@ -14,10 +17,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
     public class DeletePaymentByIdCommandTests : IDisposable
     {
         private readonly EfCoreContext context;
+        private readonly Mock<IBackupService> backupServiceMock;
 
         public DeletePaymentByIdCommandTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
+
+            backupServiceMock = new Mock<IBackupService>();
         }
 
         public void Dispose()
@@ -26,7 +32,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
         }
 
         [Fact]
-        public async Task DeletePayment_PaymentFound()
+        public async Task DeletePayment_PaymentDeleted()
         {
             // Arrange
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
@@ -34,10 +40,28 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeletePaymentByIdCommand.Handler(context).Handle(new DeletePaymentByIdCommand(payment1.Id), default);
+            await new DeletePaymentByIdCommand.Handler(context, backupServiceMock.Object).Handle(new DeletePaymentByIdCommand(payment1.Id), default);
 
             // Assert
             Assert.Empty(context.Payments);
+        }
+
+        [Fact]
+        public async Task DeletePayment_BackupUploaded()
+        {
+            // Arrange
+            backupServiceMock.Setup(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()))
+                             .Returns(Task.CompletedTask);
+
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
+            await context.AddAsync(payment1);
+            await context.SaveChangesAsync();
+
+            // Act
+            await new DeletePaymentByIdCommand.Handler(context, backupServiceMock.Object).Handle(new DeletePaymentByIdCommand(payment1.Id), default);
+
+            // Assert
+            backupServiceMock.Verify(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()), Times.Once);
         }
     }
 }

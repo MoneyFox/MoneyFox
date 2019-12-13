@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Presentation.Facades;
+﻿using MoneyFox.Application.Facades;
+using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
 using Moq;

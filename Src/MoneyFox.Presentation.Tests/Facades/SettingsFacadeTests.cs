@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
-using MoneyFox.Presentation.Facades;
+using MoneyFox.Application.Facades;
 using Moq;
 using Should;
 using Xunit;

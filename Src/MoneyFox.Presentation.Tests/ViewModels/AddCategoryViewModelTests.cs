@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MediatR;
+using MoneyFox.Application.Backup;
+using MoneyFox.Application.Facades;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;

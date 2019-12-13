@@ -6,9 +6,8 @@ using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
 using MoneyFox.Application.Backup;
 using MoneyFox.Application.Constants;
+using MoneyFox.Application.Facades;
 using MoneyFox.Presentation;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Uwp.Business;
 
 namespace MoneyFox.Uwp.Tasks

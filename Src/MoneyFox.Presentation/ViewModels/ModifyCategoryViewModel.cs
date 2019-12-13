@@ -3,10 +3,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Backup;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Facades;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels
