@@ -27,8 +27,8 @@ namespace MoneyFox.Presentation.ViewModels
 {
     public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
-        private const int MENU_RESULT_EDIT_INDEX = 1;
-        private const int MENU_RESULT_DELETE_INDEX = 2;
+        private const int MENU_RESULT_EDIT_INDEX = 0;
+        private const int MENU_RESULT_DELETE_INDEX = 1;
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 

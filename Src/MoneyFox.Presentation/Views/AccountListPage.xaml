@@ -87,7 +87,8 @@
                                                                          Image="icon_more.png"
                                                                          Style="{StaticResource MenuButtonStyle}"
                                                                          Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
-                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}">
+                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
+                                                                         CommandParameter="{Binding .}">
 
                                             </material:MaterialMenuButton>
                                         </Grid>
