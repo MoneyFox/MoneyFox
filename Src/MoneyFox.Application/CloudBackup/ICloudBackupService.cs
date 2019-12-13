@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using MoneyFox.Domain.Exceptions;
 
-namespace MoneyFox.Application.Backup
+namespace MoneyFox.Application.CloudBackup
 {
     /// <summary>
     ///     Provides Backup and Restore operations.

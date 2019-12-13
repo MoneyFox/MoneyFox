@@ -6,7 +6,7 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Backup;
+using MoneyFox.Application.CloudBackup;
 using MoneyFox.Application.Facades;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;

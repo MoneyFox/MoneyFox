@@ -10,7 +10,7 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application.Constants;
 using MoneyFox.Domain.Exceptions;
 
-namespace MoneyFox.Application.Backup
+namespace MoneyFox.Application.CloudBackup
 {
     /// <inheritdoc />
     public class OneDriveService : ICloudBackupService

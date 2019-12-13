@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
-using MoneyFox.Application.Backup;
+using MoneyFox.Application.CloudBackup;
 using MoneyFox.Application.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;

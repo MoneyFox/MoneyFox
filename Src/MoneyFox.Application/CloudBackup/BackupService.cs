@@ -18,7 +18,7 @@ using MoneyFox.Domain.Exceptions;
 using NLog;
 #pragma warning restore S1128 // Unused "using" should be removed
 
-namespace MoneyFox.Application.Backup
+namespace MoneyFox.Application.CloudBackup
 {
     public interface IBackupService
     {

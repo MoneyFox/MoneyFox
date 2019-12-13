@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Adapters;
-using MoneyFox.Application.Backup;
+using MoneyFox.Application.CloudBackup;
 using MoneyFox.Application.Facades;
 using MoneyFox.Presentation.ViewModels;
 using Moq;

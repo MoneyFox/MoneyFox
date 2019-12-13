@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
-using MoneyFox.Application.Backup;
 using MoneyFox.Application.Facades;
 using MoneyFox.Application.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;

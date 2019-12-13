@@ -2,9 +2,9 @@
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
-using MoneyFox.Application.Backup;
 using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
+using MoneyFox.Application.CloudBackup;
 using MoneyFox.Application.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
