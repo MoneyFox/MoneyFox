@@ -211,7 +211,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
-            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Once);
+            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
         }
 
         [Fact]
