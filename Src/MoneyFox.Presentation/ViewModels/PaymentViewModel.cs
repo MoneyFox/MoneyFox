@@ -43,7 +43,7 @@ namespace MoneyFox.Presentation.ViewModels
             Date = DateTime.Today;
         }
 
-        public PaymentViewModel(IMediator mediator, INavigationService navigationService)
+        public PaymentViewModel(IMediator mediator, INavigationService navigationService) : this()
         {
             this.mediator = mediator;
             this.navigationService = navigationService;
