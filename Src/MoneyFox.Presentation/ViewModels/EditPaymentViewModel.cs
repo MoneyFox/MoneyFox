@@ -24,6 +24,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>")]
         public EditPaymentViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IPaymentService paymentService,
@@ -48,7 +49,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Delete the selected CategoryViewModel from the database
         /// </summary>
-        public AsyncCommand DeleteCommand => new AsyncCommand(DeletePayment);
+        public AsyncCommand DeleteCommand => new AsyncCommand(DeletePaymentAsync);
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
@@ -78,13 +79,13 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task DeletePayment()
+        private async Task DeletePaymentAsync()
         {
             await paymentService.DeletePayment(SelectedPayment);
+            navigationService.GoBack();
 #pragma warning disable 4014
             backupService.EnqueueBackupTaskAsync();
 #pragma warning restore 4014
-            CancelCommand.Execute(null);
         }
     }
 }
