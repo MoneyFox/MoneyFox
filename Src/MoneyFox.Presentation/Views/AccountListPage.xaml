@@ -8,11 +8,12 @@
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              Visual="Material"
              x:Name="root"
              x:Class="MoneyFox.Presentation.Views.AccountListPage"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             Title="{Binding Resource[AccountsTitle]}">
+             Title="{x:Static resources:Strings.AccountsTitle}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeAccountListViewModel />
