@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -8,6 +7,7 @@
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              Visual="Material"
              x:Class="MoneyFox.Presentation.Views.AboutPage"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
@@ -18,29 +18,29 @@
         <ScrollView>
             <StackLayout Padding="6">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding Resources[VersionLabel]}"
+                    <Label Text="{x:Static resources.VersionLabel}"
                            Style="{StaticResource DefaultTextStyle}" />
                     <Label Text="{Binding Version}"
                            Style="{StaticResource DefaultTextStyle}" />
                 </StackLayout>
 
-                <Label Text="{Binding Resources[ContactLabel]}"
+                <Label Text="{x:Static resources.ContactLabel}"
                        Style="{StaticResource DefaultTextStyle}"
                        HorizontalOptions="Start" />
 
-                <Button Text="{Binding Resources[WebsiteLabel]}"
+                <Button Text="{x:Static resources.WebsiteLabel}"
                         Style="{StaticResource DefaultButtonStyle}"
                         Command="{Binding GoToWebsiteCommand}" />
 
-                <Button Text="{Binding Resources[EmailLabel]}"
+                <Button Text="{x:Static resources.EmailLabel}"
                         Style="{StaticResource DefaultButtonStyle}"
                         Command="{Binding SendMailCommand}" />
 
-                <Button Text="{Binding Resources[RateLabel]}"
+                <Button Text="{x:Static resources.RateLabel}"
                         Style="{StaticResource DefaultButtonStyle}"
                         Command="{Binding RateAppCommand}" />
 
-                <Label Text="{Binding Resources[TranslationLabel]}"
+                <Label Text="{x:Static resources.TranslationLabel}"
                        Style="{StaticResource DefaultTextStyle}" />
                 <Label Text="www.crowdin.com"
                        Style="{StaticResource DeemphasizedLabelStyle}"
@@ -50,7 +50,7 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{Binding Resources[InfoOpenSource]}"
+                <Label Text="{x:Static resources.InfoOpenSource}"
                        Style="{StaticResource DefaultTextStyle}" />
                 <Label Text="www.github.com"
                        Style="{StaticResource DeemphasizedLabelStyle}"
@@ -60,7 +60,7 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{Binding Resources[ContributerLabel]}"
+                <Label Text="{x:Static resources.ContributerLabel}"
                        Style="{StaticResource DefaultTextStyle}" />
                 <Label Text="GitHub Contribution"
                        HorizontalOptions="CenterAndExpand"
@@ -70,7 +70,7 @@
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{Binding Resources[IconDesignerLabel]}"
+                <Label Text="{x:Static resources.IconDesignerLabel}"
                        Style="{StaticResource DefaultTextStyle}" />
                 <Label Text="@Toledo Vanderson"
                        HorizontalOptions="CenterAndExpand"
