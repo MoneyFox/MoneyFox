@@ -35,13 +35,11 @@ namespace MoneyFox.Uwp.Tasks
                                                .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
                                                .Build();
 
-                var backupManager = new BackupManager(
-                    new OneDriveService(pca),
-                    new WindowsFileStore(),
-                    new ConnectivityAdapter(),
-                    ViewModelLocator.MessengerInstance);
-
-                var backupService = new BackupService(backupManager, settingsFacade);
+                var backupService = new BackupService(new OneDriveService(pca),
+                                                      new WindowsFileStore(),
+                                                      settingsFacade,
+                                                      new ConnectivityAdapter(),
+                                                      ViewModelLocator.MessengerInstance);
 
                 DateTime backupDate = await backupService.GetBackupDateAsync();
 

@@ -12,9 +12,7 @@ namespace MoneyFox.Persistence
                                                       .Options;
 
             var context = new EfCoreContext(options);
-
             context.Database.Migrate();
-
             return context;
         }
     }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
+using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
 using MoneyFox.Application.Backup;
 using MoneyFox.Application.Facades;
@@ -214,7 +215,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             try
             {
-                await backupService.EnqueueBackupTaskAsync();
+                await backupService.UploadBackupAsync(BackupMode.Manual);
 
                 BackupLastModified = DateTime.Now;
             }

@@ -35,7 +35,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 await context.SaveChangesAsync(cancellationToken);
 
 #pragma warning disable 4014
-                backupService.EnqueueBackupTaskAsync();
+                backupService.UploadBackupAsync();
 #pragma warning restore 4014
 
                 return Unit.Value;

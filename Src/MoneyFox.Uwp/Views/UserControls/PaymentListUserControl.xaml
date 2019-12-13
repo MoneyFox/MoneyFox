@@ -126,11 +126,13 @@
                                                 <FlyoutBase.AttachedFlyout>
                                                     <MenuFlyout>
                                                         <MenuFlyoutItem Icon="Edit"
-                                                                        Command="{Binding EditPaymentCommand}"
+                                                                        Command="{x:Bind EditPaymentCommand}"
+                                                                        CommandParameter="{x:Bind}"
                                                                         Text="{x:Bind resources:Strings.EditLabel}" />
 
                                                         <MenuFlyoutItem Icon="Delete"
-                                                                        Command="{Binding DeletePaymentCommand}"
+                                                                        Command="{x:Bind DeletePaymentCommand}"
+                                                                        CommandParameter="{x:Bind}"
                                                                         Text="{x:Bind resources:Strings.DeleteLabel}" />
                                                     </MenuFlyout>
                                                 </FlyoutBase.AttachedFlyout>

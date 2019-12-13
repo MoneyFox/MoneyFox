@@ -79,13 +79,12 @@ namespace MoneyFox.Droid.Jobs
                                                .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
                                                .Build();
 
-                var backupManager = new BackupManager(
+                var backupService = new BackupService(
                     new OneDriveService(pca),
                     ServiceLocator.Current.GetInstance<IFileStore>(),
+                    settingsFacade,
                     new ConnectivityAdapter(),
                     ViewModelLocator.MessengerInstance);
-
-                var backupService = new BackupService(backupManager, settingsFacade);
 
                 DateTime backupDate = await backupService.GetBackupDateAsync();
 

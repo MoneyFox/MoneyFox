@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
 
 namespace MoneyFox.Application.Facades

@@ -1,9 +1,6 @@
-#pragma warning disable S1128 // Unused "using" should be removed
 using System;
 using System.Threading.Tasks;
 using MoneyFox.Domain.Exceptions;
-
-#pragma warning restore S1128 // Unused "using" should be removed
 
 namespace MoneyFox.Application.Backup
 {
@@ -48,6 +45,6 @@ namespace MoneyFox.Application.Backup
         ///     Enqueue a new backup task
         /// </summary>
         /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
-        Task EnqueueBackupTaskAsync(int attempts = 0);
+        Task UploadBackupAsync();
     }
 }

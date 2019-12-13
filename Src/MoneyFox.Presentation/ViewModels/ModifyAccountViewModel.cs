@@ -88,7 +88,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task SaveAccountBase()
         {
-            if (string.IsNullOrWhiteSpace(SelectedAccount.Name)) 
+            if (string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
                 await DialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
@@ -97,7 +97,7 @@ namespace MoneyFox.Presentation.ViewModels
             await SaveAccount();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.EnqueueBackupTaskAsync().FireAndForgetSafeAsync();
+            if (settingsFacade.IsBackupAutouploadEnabled) backupService.UploadBackupAsync().FireAndForgetSafeAsync();
         }
 
         private void Cancel()

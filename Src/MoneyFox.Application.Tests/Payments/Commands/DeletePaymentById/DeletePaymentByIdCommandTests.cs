@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Views;
 using MoneyFox.Application.Backup;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Tests.Infrastructure;
@@ -50,7 +49,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
         public async Task DeletePayment_BackupUploaded()
         {
             // Arrange
-            backupServiceMock.Setup(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()))
+            backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>()))
                              .Returns(Task.CompletedTask);
 
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
@@ -61,7 +60,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
             await new DeletePaymentByIdCommand.Handler(context, backupServiceMock.Object).Handle(new DeletePaymentByIdCommand(payment1.Id), default);
 
             // Assert
-            backupServiceMock.Verify(x => x.EnqueueBackupTaskAsync(It.IsAny<int>()), Times.Once);
+            backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
         }
     }
 }

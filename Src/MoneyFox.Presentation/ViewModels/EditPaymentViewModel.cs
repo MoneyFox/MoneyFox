@@ -85,7 +85,7 @@ namespace MoneyFox.Presentation.ViewModels
             await paymentService.DeletePayment(SelectedPayment);
             navigationService.GoBack();
 #pragma warning disable 4014
-            backupService.EnqueueBackupTaskAsync();
+            backupService.UploadBackupAsync();
 #pragma warning restore 4014
         }
     }
