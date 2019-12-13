@@ -204,8 +204,6 @@
             <x:String x:Key="Reset">&#xf158;</x:String>
 
             <x:String x:Key="Save">&#xf193;</x:String>
-            <x:String x:Key="EditGlyph">&#xf3eb;</x:String>
-            <x:String x:Key="DeleteGlyph">&#xf1c0;</x:String>
 
         </ResourceDictionary>
     </Application.Resources>
