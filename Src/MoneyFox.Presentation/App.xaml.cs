@@ -21,6 +21,7 @@ namespace MoneyFox.Presentation
 
             ConfigureNavigation();
 
+            Device.SetFlags(new[] { "SwipeView_Experimental" });
             var appShell = new AppShell();
             NavigationService.Initialize(appShell.Navigation);
             MainPage = new NavigationPage(appShell)

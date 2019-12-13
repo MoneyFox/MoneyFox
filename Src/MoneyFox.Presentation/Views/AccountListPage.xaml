@@ -56,43 +56,82 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewModels:AccountViewModel">
                             <ViewCell>
-                                <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
+                                <SwipeView>
+
+                                    <!-- Swipe Actions -->                                    
+                                    <SwipeView.LeftItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem Text="{x:Static resources:Strings.DeleteLabel}"
+                                                       BackgroundColor="Red"
+                                                       Clicked="DeleteAccount">
+
+                                                <SwipeItem.IconImageSource>
+                                                    <FontImageSource
+                                                        Glyph="{StaticResource DeleteGlyph}"
+                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
+                                                        Color="White" />
+                                                </SwipeItem.IconImageSource>
+
+                                            </SwipeItem>
+                                        </SwipeItems>
+                                    </SwipeView.LeftItems>
+
+                                    <SwipeView.RightItems>
+                                        <SwipeItems Mode="Reveal">
+                                            <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
+                                                       BackgroundColor="LightGreen"
+                                                       Clicked="EditAccount">
+
+                                                <SwipeItem.IconImageSource>
+                                                    <FontImageSource
+                                                        Glyph="{StaticResource EditGlyph}"
+                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
+                                                        Color="White" />
+                                                </SwipeItem.IconImageSource>
+
+                                            </SwipeItem>
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <!-- Content -->
+                                    <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
                                                        ClickCommandParameter="{Binding .}"
                                                        Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                                        Style="{StaticResource ListCardStyle}">
 
-                                    <StackLayout Orientation="Vertical"
+                                        <StackLayout Orientation="Vertical"
                                                  Padding="3"
                                                  Spacing="{StaticResource DefaultSpacing}">
 
-                                        <Grid Margin="{StaticResource DefaultListItemsMargin}">
+                                            <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="70*" />
-                                                <ColumnDefinition Width="Auto" />
-                                                <ColumnDefinition Width="Auto" />
-                                            </Grid.ColumnDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="70*" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                </Grid.ColumnDefinitions>
 
-                                            <Label Grid.Column="0"
+                                                <Label Grid.Column="0"
                                                    Text="{Binding Name}"
                                                    Style="{StaticResource ListItemHeaderStyle}" />
 
-                                            <Label Grid.Column="1"
+                                                <Label Grid.Column="1"
                                                    HorizontalTextAlignment="End"
                                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                                    Style="{StaticResource ListItemHeaderStyle}" />
 
-                                            <material:MaterialMenuButton Grid.Column="2"
+                                                <material:MaterialMenuButton Grid.Column="2"
                                                                          ButtonType="Text"
                                                                          Image="icon_more.png"
                                                                          Style="{StaticResource MenuButtonStyle}"
                                                                          Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
                                                                          Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}">
 
-                                            </material:MaterialMenuButton>
-                                        </Grid>
-                                    </StackLayout>
-                                </material:MaterialCard>
+                                                </material:MaterialMenuButton>
+                                            </Grid>
+                                        </StackLayout>
+                                    </material:MaterialCard>
+                                </SwipeView>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
