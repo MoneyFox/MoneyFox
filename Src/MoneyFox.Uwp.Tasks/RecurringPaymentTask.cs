@@ -1,17 +1,17 @@
-﻿using System;
-using System.Diagnostics;
-using Windows.ApplicationModel.Background;
-using MoneyFox.Application;
+﻿using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
 using MoneyFox.Application.Facades;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
+using System;
+using System.Diagnostics;
+using Windows.ApplicationModel.Background;
 
 namespace MoneyFox.Uwp.Tasks
 {
     /// <summary>
-    ///     Periodically tests if there are new recurring payments and creates these.
+    /// Periodically tests if there are new recurring payments and creates these.
     /// </summary>
     public sealed class RecurringPaymentTask : IBackgroundTask
     {
@@ -30,7 +30,7 @@ namespace MoneyFox.Uwp.Tasks
                     .CreatePaymentsUpToRecur();
                 await context.SaveChangesAsync();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Debug.Write(ex);
                 Debug.WriteLine("RecurringPaymentTask stopped due to an error.");

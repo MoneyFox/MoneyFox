@@ -170,7 +170,6 @@
     <Compile Include="Services\RateDisplayService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Src\DialogService.cs" />
-    <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />

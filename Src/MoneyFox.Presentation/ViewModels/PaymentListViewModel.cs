@@ -194,11 +194,6 @@ namespace MoneyFox.Presentation.ViewModels
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
-        private void RemovePayment(RemovePaymentMessage message)
-        {
-            LoadData();
-        }
-
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
         {
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,

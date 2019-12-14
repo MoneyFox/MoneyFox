@@ -100,10 +100,9 @@ namespace MoneyFox.Droid
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
 
-            var backgroundTaskManager = ServiceLocator.Current.GetInstance<IBackgroundTaskManager>();
-            var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
-
-            if (backgroundTaskManager != null && settingsFacade != null) backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence);
+            var startServiceIntentSyncBackup = new Intent(this, typeof(SyncBackupJob));
+            startServiceIntentSyncBackup.PutExtra("messenger", new Messenger(handler));
+            StartService(startServiceIntentSyncBackup);
         }
 
         public override void OnBackPressed()

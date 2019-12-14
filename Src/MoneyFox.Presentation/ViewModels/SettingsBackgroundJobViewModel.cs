@@ -25,17 +25,16 @@ namespace MoneyFox.Presentation.ViewModels
     /// />
     public class SettingsBackgroundJobViewModel : BaseViewModel, ISettingsBackgroundJobViewModel
     {
+        private const int BACKUP_RECURRENCE_COUNT = 60;
+
         private readonly ISettingsFacade settingsFacade;
-        private readonly IBackgroundTaskManager backgroundTaskManager;
 
         /// <summary>
         ///     Constructor
         /// </summary>
-        public SettingsBackgroundJobViewModel(ISettingsFacade settingsFacade,
-                                              IBackgroundTaskManager backgroundTaskManager)
+        public SettingsBackgroundJobViewModel(ISettingsFacade settingsFacade)
         {
             this.settingsFacade = settingsFacade;
-            this.backgroundTaskManager = backgroundTaskManager;
         }
 
         /// <inheritdoc />
@@ -45,11 +44,6 @@ namespace MoneyFox.Presentation.ViewModels
             set
             {
                 if (settingsFacade.IsBackupAutouploadEnabled == value) return;
-
-                if (settingsFacade.IsBackupAutouploadEnabled)
-                    backgroundTaskManager.StopBackupSyncTask();
-                else
-                    backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence * 60);
                 settingsFacade.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
             }
@@ -63,8 +57,6 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 if (settingsFacade.BackupSyncRecurrence == value) return;
                 settingsFacade.BackupSyncRecurrence = value < 1 ? 1 : value;
-                backgroundTaskManager.StopBackupSyncTask();
-                backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence * 60);
                 RaisePropertyChanged();
             }
         }

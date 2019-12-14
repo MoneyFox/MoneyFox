@@ -137,6 +137,7 @@ namespace MoneyFox.iOS
             }
             catch (Exception ex)
             {
+                successful = false;
                 Debug.Write(ex);
                 Crashes.TrackError(ex);
             }
