@@ -264,9 +264,6 @@
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\TagControl.xaml.cs">
-      <DependentUpon>TagControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WindowsModule.cs" />
     <Compile Include="WindowsShellViewModel.cs" />
   </ItemGroup>
@@ -491,10 +488,6 @@
     <Page Include="Views\UserControls\PaymentListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Controls\TagControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
