@@ -14,7 +14,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Backup
+namespace MoneyFox.Application.Tests.CloudBackup
 {
     [ExcludeFromCodeCoverage]
     public class BackupServiceTests

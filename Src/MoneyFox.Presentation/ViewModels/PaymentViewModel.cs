@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using AutoMapper;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Views;
@@ -8,9 +9,12 @@ using MediatR;
 using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Application.Messages;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
+using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Presentation.Interfaces;
 using Xamarin.Forms;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -37,6 +41,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private IMediator mediator;
         private INavigationService navigationService;
+        private Presentation.Interfaces.IDialogService dialogService;
 
         public PaymentViewModel()
         {
@@ -309,7 +314,21 @@ namespace MoneyFox.Presentation.ViewModels
                 mediator = ServiceLocator.Current.GetInstance<IMediator>();
             }
 
-            await mediator.Send(new DeletePaymentByIdCommand(payment.Id));
+            if (dialogService == null)
+            {
+                dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
+            }
+
+            if (!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
+
+            var command = new DeletePaymentByIdCommand(payment.Id);
+
+            if(payment.IsRecurring)
+            {
+                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage);
+            }
+
+            await mediator.Send(command);
             MessengerInstance.Send(new RemovePaymentMessage(payment.Id));
         }
     }
