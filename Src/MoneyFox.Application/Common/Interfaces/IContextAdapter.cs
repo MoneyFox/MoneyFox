@@ -2,7 +2,7 @@
 {
     public interface IContextAdapter
     {
-        IEfCoreContextAdapter Context {get;}
+        IEfCoreContext Context {get;}
 
         public void RecreateContext();
     }

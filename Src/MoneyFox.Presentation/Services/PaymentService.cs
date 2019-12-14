@@ -34,11 +34,11 @@ namespace MoneyFox.Presentation.Services
     /// <inheritdoc />
     public class PaymentService : IPaymentService
     {
-        private readonly IEfCoreContextAdapter context;
+        private readonly IEfCoreContext context;
         private readonly IModifyPaymentAction modifyPaymentAction;
         private readonly IDialogService dialogService;
 
-        public PaymentService(IEfCoreContextAdapter context, IModifyPaymentAction modifyPaymentAction, IDialogService dialogService)
+        public PaymentService(IEfCoreContext context, IModifyPaymentAction modifyPaymentAction, IDialogService dialogService)
         {
             this.modifyPaymentAction = modifyPaymentAction;
             this.dialogService = dialogService;

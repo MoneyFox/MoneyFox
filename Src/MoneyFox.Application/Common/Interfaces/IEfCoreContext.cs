@@ -6,7 +6,7 @@ using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Common.Interfaces
 {
-    public interface IEfCoreContextAdapter
+    public interface IEfCoreContext
     {
         DbSet<Account> Accounts { get; }
         DbSet<Payment> Payments { get; }
@@ -22,7 +22,7 @@ namespace MoneyFox.Application.Common.Interfaces
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         EntityEntry Entry(object entity);
 
-        Dispose();
+        IEfCoreContext();
 
     }
 }

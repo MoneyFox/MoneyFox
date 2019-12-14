@@ -160,6 +160,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                 {
                     throw new BackupException("Error Moving downloaded backup file");
                 }
+                contextAdapter.RecreateContext();
             }
         }
 

@@ -18,9 +18,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
     public class ClearPaymentDbAccess : IClearPaymentDbAccess
     {
-        private readonly IEfCoreContextAdapter context;
+        private readonly IEfCoreContext context;
 
-        public ClearPaymentDbAccess(IEfCoreContextAdapter context)
+        public ClearPaymentDbAccess(IEfCoreContext context)
         {
             this.context = context;
         }

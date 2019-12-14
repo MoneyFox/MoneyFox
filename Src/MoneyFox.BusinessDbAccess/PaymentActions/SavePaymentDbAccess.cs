@@ -20,9 +20,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
     public class SavePaymentDbAccess : ISavePaymentDbAccess
     {
-        private readonly IEfCoreContextAdapter context;
+        private readonly IEfCoreContext context;
 
-        public SavePaymentDbAccess(IEfCoreContextAdapter context)
+        public SavePaymentDbAccess(IEfCoreContext context)
         {
             this.context = context;
         }

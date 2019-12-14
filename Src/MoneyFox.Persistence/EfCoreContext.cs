@@ -9,7 +9,7 @@ namespace MoneyFox.Persistence
     /// <summary>
     ///     Represents the data context of the application
     /// </summary>
-    public class EfCoreContext : DbContext, IEfCoreContextAdapter
+    public class EfCoreContext : DbContext, IEfCoreContext
     {
         public EfCoreContext(DbContextOptions options) : base(options)
         {
@@ -27,16 +27,9 @@ namespace MoneyFox.Persistence
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            ThrowIfNull(modelBuilder);
-
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentTagConfiguration());
-        }
-
-        private static void ThrowIfNull(ModelBuilder modelBuilder)
-        {
-            if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));
         }
     }
 }
