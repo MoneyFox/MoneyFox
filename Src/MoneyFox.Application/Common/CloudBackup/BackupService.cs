@@ -81,6 +81,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             this.fileStore = fileStore;
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
+            this.contextAdapter = contextAdapter;
         }
 
         public async Task LoginAsync()
