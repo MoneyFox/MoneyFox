@@ -1,8 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 using CommonServiceLocator;
 using Foundation;
 using Microsoft.AppCenter.Analytics;
@@ -10,7 +6,6 @@ using Microsoft.AppCenter.Crashes;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
@@ -23,9 +18,14 @@ using NLog.Targets;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
+using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using XF.Material.iOS;
 using LogLevel = NLog.LogLevel;
 
 #if !DEBUG
@@ -41,8 +41,9 @@ namespace MoneyFox.iOS
         // 15 minutes = 60 * 60 = 3600 seconds
         private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 3600;
 
-        /// <inheritdoc />
-        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
+        /// <inheritdoc/>
+        public override bool FinishedLaunching(UIApplication uiApplication,
+                                               NSDictionary launchOptions)
         {
             InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
@@ -55,13 +56,14 @@ namespace MoneyFox.iOS
 
             Forms.Init();
             FormsMaterial.Init();
-            XF.Material.iOS.Material.Init();
+            Material.Init();
             LoadApplication(new App());
             Popup.Init();
 
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             uiApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
-            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
+            UIApplication.SharedApplication
+                         .SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
             RunAppStartAsync().FireAndForgetSafeAsync();
 
@@ -87,11 +89,11 @@ namespace MoneyFox.iOS
             var config = new LoggingConfiguration();
 
             var logfile = new FileTarget("logfile")
-            {
-                FileName = GetLogPath(),
-                AutoFlush = true,
-                ArchiveEvery = FileArchivePeriod.Month
-            };
+                          {
+                              FileName = GetLogPath(),
+                              AutoFlush = true,
+                              ArchiveEvery = FileArchivePeriod.Month
+                          };
             var debugTarget = new DebugTarget("console");
 
             config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
@@ -105,7 +107,8 @@ namespace MoneyFox.iOS
             string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
 
-            if (!Directory.Exists(libFolder)) Directory.CreateDirectory(libFolder);
+            if(!Directory.Exists(libFolder))
+                Directory.CreateDirectory(libFolder);
 
             return Path.Combine(libFolder, "moneyfox.log");
         }
@@ -118,7 +121,8 @@ namespace MoneyFox.iOS
             return true;
         }
 
-        public override async void PerformFetch(UIApplication application, Action<UIBackgroundFetchResult> completionHandler)
+        public override async void PerformFetch(UIApplication application,
+                                                Action<UIBackgroundFetchResult> completionHandler)
         {
             Debug.Write("Enter Background Task");
             var successful = false;
@@ -133,14 +137,15 @@ namespace MoneyFox.iOS
                 successful = true;
                 Analytics.TrackEvent("Background fetch finished successfully.");
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 successful = false;
                 Debug.Write(ex);
                 Crashes.TrackError(ex);
             }
 
-            completionHandler(successful ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
+            completionHandler(successful
+                              ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
         }
 
         public override async void WillEnterForeground(UIApplication uiApplication)
@@ -156,24 +161,16 @@ namespace MoneyFox.iOS
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
-            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
+            if(!settingsFacade.IsBackupAutouploadEnabled
+               || !settingsFacade.IsLoggedInToBackupService)
+                return;
 
             try
             {
-                IPublicClientApplication pca = PublicClientApplicationBuilder
-                                               .Create(ServiceConstants.MSAL_APPLICATION_ID)
-                                               .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
-                                               .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
-                                               .Build();
-
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-                DateTime backupDate = await backupService.GetBackupDateAsync();
-
-                if (settingsFacade.LastDatabaseUpdate > backupDate) return;
-
                 await backupService.RestoreBackupAsync();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Debug.Write(ex);
             }
@@ -196,7 +193,7 @@ namespace MoneyFox.iOS
 
                 Debug.WriteLine("ClearPayments Job finished.");
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Crashes.TrackError(ex);
             }
@@ -221,7 +218,7 @@ namespace MoneyFox.iOS
 
                 Debug.WriteLine("RecurringPayment Job finished.");
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Crashes.TrackError(ex);
             }

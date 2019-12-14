@@ -12,7 +12,6 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Presentation;
 using NLog;
 using Debug = System.Diagnostics.Debug;
 using Exception = System.Exception;
@@ -71,19 +70,7 @@ namespace MoneyFox.Droid.Jobs
 
             try
             {
-                ExecutingPlatform.Current = AppPlatform.Android;
-
-                IPublicClientApplication pca = PublicClientApplicationBuilder
-                                               .Create(ServiceConstants.MSAL_APPLICATION_ID)
-                                               .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
-                                               .Build();
-
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-
-                DateTime backupDate = await backupService.GetBackupDateAsync();
-
-                if (settingsFacade.LastDatabaseUpdate > backupDate) return;
-
                 await backupService.RestoreBackupAsync();
 
                 JobFinished(args, false);
