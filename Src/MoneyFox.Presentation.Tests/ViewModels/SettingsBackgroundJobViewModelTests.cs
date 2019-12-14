@@ -21,14 +21,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.SetupAllProperties();
 
-            var taskStarted = false;
-
             // Act
             var vm = new SettingsBackgroundJobViewModel(settingsFacadeMock.Object);
             vm.BackupSyncRecurrence = passedValue;
 
             // Assert
-            Assert.True(taskStarted);
             Assert.Equal(expectedValue, vm.BackupSyncRecurrence);
         }
     }
