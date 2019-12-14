@@ -13,16 +13,16 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccounts
     {
         public class Handler : IRequestHandler<GetAccountsQuery, List<Account>>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<List<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts.OrderByName().ToListAsync(cancellationToken);
+                return await contextAdapter.Context.Accounts.OrderByName().ToListAsync(cancellationToken);
             }
         }
     }

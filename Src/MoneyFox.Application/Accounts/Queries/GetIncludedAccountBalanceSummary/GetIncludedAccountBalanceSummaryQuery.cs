@@ -11,16 +11,16 @@ namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary
     {
         public class Handler : IRequestHandler<GetIncludedAccountBalanceSummaryQuery, decimal>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<decimal> Handle(GetIncludedAccountBalanceSummaryQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts.AreNotExcluded().SumAsync(x => x.CurrentBalance, cancellationToken);
+                return await contextAdapter.Context.Accounts.AreNotExcluded().SumAsync(x => x.CurrentBalance, cancellationToken);
             }
         }
     }

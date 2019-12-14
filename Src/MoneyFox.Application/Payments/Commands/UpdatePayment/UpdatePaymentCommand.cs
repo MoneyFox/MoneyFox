@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 {
@@ -17,22 +17,24 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 
         public class Handler : IRequestHandler<UpdatePaymentCommand>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<Unit> Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
             {
-                Payment existingPayment = await context.Payments.FindAsync(request.Payment.Id);
+                Payment existingPayment = await contextAdapter.Context.Payments
+                                                                      .FindAsync(request.Payment.Id);
 
-                if (existingPayment != null) {
-                    context.Entry(existingPayment).CurrentValues.SetValues(request.Payment);
+                if(existingPayment != null)
+                {
+                    contextAdapter.Context.Entry(existingPayment).CurrentValues.SetValues(request.Payment);
                 }
 
-                await context.SaveChangesAsync(cancellationToken);
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

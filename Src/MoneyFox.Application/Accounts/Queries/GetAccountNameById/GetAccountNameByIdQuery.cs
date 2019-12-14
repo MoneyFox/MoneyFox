@@ -1,9 +1,9 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Accounts.Queries.GetAccountNameById
 {
@@ -18,19 +18,20 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountNameById
 
         public class Handler : IRequestHandler<GetAccountNameByIdQuery, string>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts
-                                    .Where(x => x.Id == request.AccountId)
-                                    .Select(x => x.Name)
-                                    .FirstAsync(cancellationToken);
+                return await contextAdapter.Context
+                                           .Accounts
+                                           .Where(x => x.Id == request.AccountId)
+                                           .Select(x => x.Name)
+                                           .FirstAsync(cancellationToken);
             }
         }
     }

@@ -11,6 +11,8 @@ namespace MoneyFox.Persistence
                    .As<DbContext>()
                    .AsImplementedInterfaces()
                    .SingleInstance();
+
+            builder.RegisterType<ContextAdapter>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

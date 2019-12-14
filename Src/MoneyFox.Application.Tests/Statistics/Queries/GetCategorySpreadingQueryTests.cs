@@ -1,11 +1,11 @@
-﻿using System;
+﻿using MoneyFox.Application.Statistics;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MoneyFox.Application.Statistics.Models;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;

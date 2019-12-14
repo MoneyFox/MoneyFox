@@ -20,9 +20,9 @@ namespace MoneyFox.BusinessDbAccess.PaymentActions
 
     public class RecurringPaymentDbAccess : IRecurringPaymentDbAccess
     {
-        private readonly IEfCoreContext context;
+        private readonly IEfCoreContextAdapter context;
 
-        public RecurringPaymentDbAccess(IEfCoreContext context)
+        public RecurringPaymentDbAccess(IEfCoreContextAdapter context)
         {
             this.context = context;
         }

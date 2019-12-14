@@ -12,18 +12,18 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
 
         public class Handler : IRequestHandler<CreateAccountCommand>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             /// <inheritdoc />
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
-                await context.Accounts.AddAsync(request.AccountToSave, cancellationToken);
-                await context.SaveChangesAsync(cancellationToken);
+                await contextAdapter.Context.Accounts.AddAsync(request.AccountToSave, cancellationToken);
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

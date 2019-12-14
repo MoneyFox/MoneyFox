@@ -6,7 +6,7 @@ using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Common.Interfaces
 {
-    public interface IEfCoreContext
+    public interface IEfCoreContextAdapter
     {
         DbSet<Account> Accounts { get; }
         DbSet<Payment> Payments { get; }

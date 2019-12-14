@@ -18,22 +18,22 @@ namespace MoneyFox.Application.Categories.Command.DeleteCategoryById
 
         public class Handler : IRequestHandler<DeleteCategoryByIdCommand>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
             private readonly IBackupService backupService;
 
-            public Handler(IEfCoreContext context, IBackupService backupService)
+            public Handler(IContextAdapter contextAdapter, IBackupService backupService)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
             }
 
             public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
             {
                 await backupService.RestoreBackupAsync();
-                Category entityToDelete = await context.Categories.FindAsync(request.CategoryId);
+                Category entityToDelete = await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
 
-                context.Categories.Remove(entityToDelete);
-                await context.SaveChangesAsync(cancellationToken);
+                contextAdapter.Context.Categories.Remove(entityToDelete);
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 await backupService.UploadBackupAsync();
 

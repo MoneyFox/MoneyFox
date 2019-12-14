@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Application.Resources;
-using MoneyFox.Application.Statistics.Models;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;

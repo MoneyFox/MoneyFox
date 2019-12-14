@@ -1,29 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 {
     public class GetCategorySummaryQuery : IRequest<CategorySummaryModel>
     {
         public DateTime StartDate { get; set; }
+
         public DateTime EndDate { get; set; }
 
         public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummaryQuery, CategorySummaryModel>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public GetCategorySummaryQueryHandler(IEfCoreContext context)
+            public GetCategorySummaryQueryHandler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             private List<Payment> paymentLastTwelveMonths;
@@ -33,20 +34,22 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             {
                 categoryOverviewItems = new List<CategoryOverviewItem>();
 
-                paymentLastTwelveMonths = await context.Payments
-                                                       .Include(x => x.Category)
-                                                       .Where(x => x.Date.Date >= DateTime.Today.AddMonths(-12))
-                                                       .Where(x => x.Type != PaymentType.Transfer)
-                                                       .ToListAsync(cancellationToken);
+                paymentLastTwelveMonths = await contextAdapter.Context
+                                                              .Payments
+                                                              .Include(x => x.Category)
+                                                              .Where(x => x.Date.Date >= DateTime.Today.AddMonths(-12))
+                                                              .Where(x => x.Type != PaymentType.Transfer)
+                                                              .ToListAsync(cancellationToken);
 
-                List<Payment> paymentsInTimeRange = await context.Payments
-                                                                 .Include(x => x.Category)
-                                                                 .Where(x => x.Date.Date >= request.StartDate.Date && x.Date.Date <= request.EndDate.Date)
-                                                                 .Where(x => x.Type != PaymentType.Transfer)
-                                                                 .ToListAsync(cancellationToken);
+                List<Payment> paymentsInTimeRange = await contextAdapter.Context
+                                                                        .Payments
+                                                                        .Include(x => x.Category)
+                                                                        .Where(x => x.Date.Date >= request.StartDate.Date
+                                                                                    && x.Date.Date <= request.EndDate.Date)
+                                                                        .Where(x => x.Type != PaymentType.Transfer)
+                                                                        .ToListAsync(cancellationToken);
 
-
-                foreach (Category category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category).Distinct())
+                foreach(Category category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category).Distinct())
                 {
                     CreateOverviewItem(paymentsInTimeRange, category);
                 }
@@ -58,39 +61,35 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 
                 return new CategorySummaryModel(Convert.ToDecimal(categoryOverviewItems.Where(x => x.Value > 0).Sum(x => x.Value)),
                                                 Convert.ToDecimal(categoryOverviewItems.Where(x => x.Value < 0).Sum(x => x.Value)),
-                                                categoryOverviewItems.Where(x => Math.Abs(x.Value) > 0.1m)
-                                                                     .OrderBy(x => x.Value)
-                                                                     .ToList());
+                                                categoryOverviewItems.Where(x => Math.Abs(x.Value) > 0.1m).OrderBy(x => x.Value).ToList());
             }
 
             private void CreateOverviewItem(List<Payment> payments, Category category)
             {
                 var categoryOverViewItem = new CategoryOverviewItem
-                {
-                    Label = category.Name,
-                    Value = payments.Where(x => x.Category != null)
-                                    .Where(x => x.Category.Id == category.Id)
-                                    .Where(x => x.Type != PaymentType.Transfer)
-                                    .Sum(x => x.Type == PaymentType.Expense
-                                             ? -x.Amount
-                                             : x.Amount),
-                    Average = CalculateAverageForCategory(category.Id)
-                };
+                                           {
+                                               Label = category.Name,
+                                               Value = payments.Where(x => x.Category != null)
+                                                               .Where(x => x.Category.Id == category.Id)
+                                                               .Where(x => x.Type != PaymentType.Transfer)
+                                                               .Sum(x => x.Type == PaymentType.Expense
+                                                                         ? -x.Amount : x.Amount),
+                                               Average = CalculateAverageForCategory(category.Id)
+                                           };
                 categoryOverviewItems.Add(categoryOverViewItem);
             }
 
             private void AddEntryForPaymentsWithoutCategory(List<Payment> payments)
             {
                 categoryOverviewItems.Add(new CategoryOverviewItem
-                {
-                    Label = Strings.NoCategoryLabel,
-                    Value = payments.Where(x => x.Category == null)
-                                    .Where(x => x.Type != PaymentType.Transfer)
-                                    .Sum(x => x.Type == PaymentType.Expense
-                                             ? -x.Amount
-                                             : x.Amount),
-                    Average = CalculateAverageForPaymentsWithoutCategory()
-                });
+                                          {
+                                              Label = Strings.NoCategoryLabel,
+                                              Value = payments.Where(x => x.Category == null)
+                                                              .Where(x => x.Type != PaymentType.Transfer)
+                                                              .Sum(x => x.Type == PaymentType.Expense
+                                                                        ? -x.Amount : x.Amount),
+                                              Average = CalculateAverageForPaymentsWithoutCategory()
+                                          });
             }
 
             private static void CalculatePercentage(List<CategoryOverviewItem> categories)
@@ -98,12 +97,12 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 decimal sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
                 decimal sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);
 
-                foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value < 0))
+                foreach(CategoryOverviewItem statisticItem in categories.Where(x => x.Value < 0))
                 {
                     statisticItem.Percentage = statisticItem.Value / sumNegative * 100;
                 }
 
-                foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value > 0))
+                foreach(CategoryOverviewItem statisticItem in categories.Where(x => x.Value > 0))
                 {
                     statisticItem.Percentage = statisticItem.Value / sumPositive * 100;
                 }
@@ -117,7 +116,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                          .OrderByDescending(x => x.Date)
                                          .ToList();
 
-                if (payments.Count == 0) return 0;
+                if(payments.Count == 0)
+                    return 0;
 
                 return SumForCategory(payments);
             }
@@ -129,7 +129,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                          .OrderByDescending(x => x.Date)
                                          .ToList();
 
-                if (payments.Count == 0) return 0;
+                if(payments.Count == 0)
+                    return 0;
 
                 return SumForCategory(payments);
             }
@@ -139,7 +140,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 decimal sumForCategory = payments.Sum(x => x.Amount);
                 TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
-                if (timeDiff.Days < 30) return sumForCategory;
+                if(timeDiff.Days < 30)
+                    return sumForCategory;
 
                 return Math.Round(sumForCategory / (timeDiff.Days / 30), 2, MidpointRounding.ToEven);
             }

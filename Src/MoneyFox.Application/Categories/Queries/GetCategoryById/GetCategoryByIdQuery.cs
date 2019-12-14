@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Categories.Queries.GetCategoryById
 {
@@ -17,16 +17,17 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryById
 
         public class Handler : IRequestHandler<GetCategoryByIdQuery, Category>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
-            public async Task<Category> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+            public async Task<Category> Handle(GetCategoryByIdQuery request,
+                                               CancellationToken cancellationToken)
             {
-                return await context.Categories.FindAsync(request.CategoryId);
+                return await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
             }
         }
     }

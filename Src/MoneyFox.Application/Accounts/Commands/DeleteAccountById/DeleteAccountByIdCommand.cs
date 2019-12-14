@@ -17,19 +17,19 @@ namespace MoneyFox.Application.Accounts.Commands.DeleteAccountById
 
         public class Handler : IRequestHandler<DeleteAccountByIdCommand>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<Unit> Handle(DeleteAccountByIdCommand request, CancellationToken cancellationToken)
             {
-                Account entityToDelete = await context.Accounts.FindAsync(request.AccountId);
+                Account entityToDelete = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
 
-                context.Accounts.Remove(entityToDelete);
-                await context.SaveChangesAsync(cancellationToken);
+                contextAdapter.Context.Accounts.Remove(entityToDelete);
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }

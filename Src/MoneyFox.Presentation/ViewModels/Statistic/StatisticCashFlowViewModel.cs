@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Statistics.Models;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using SkiaSharp;
 

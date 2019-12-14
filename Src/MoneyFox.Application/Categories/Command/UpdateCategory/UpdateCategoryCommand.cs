@@ -13,23 +13,23 @@ namespace MoneyFox.Application.Categories.Command.UpdateCategory
 
         public class Handler : IRequestHandler<UpdateCategoryCommand>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
             private readonly IBackupService backupService;
 
-            public Handler(IEfCoreContext context, IBackupService backupService)
+            public Handler(IContextAdapter contextAdapter, IBackupService backupService)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
             }
 
             public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
             {
-                Category existingCategory = await context.Categories.FindAsync(request.Category.Id);
+                Category existingCategory = await contextAdapter.Context.Categories.FindAsync(request.Category.Id);
 
                 existingCategory.UpdateData(request.Category.Name,
                                             request.Category.Note);
 
-                await context.SaveChangesAsync(cancellationToken);
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
                 await backupService.UploadBackupAsync();
 
                 return Unit.Value;

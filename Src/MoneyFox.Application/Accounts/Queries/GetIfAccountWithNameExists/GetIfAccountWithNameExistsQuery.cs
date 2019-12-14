@@ -12,17 +12,17 @@ namespace MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists
 
         public class Handler : IRequestHandler<GetIfAccountWithNameExistsQuery, bool>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             /// <inheritdoc />
             public async Task<bool> Handle(GetIfAccountWithNameExistsQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts.AnyWithNameAsync(request.AccountName);
+                return await contextAdapter.Context.Accounts.AnyWithNameAsync(request.AccountName);
             }
         }
     }

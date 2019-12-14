@@ -13,16 +13,17 @@ namespace MoneyFox.Application.Accounts.Queries.GetExcludedAccount
     {
         public class Handler : IRequestHandler<GetExcludedAccountQuery, List<Account>>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<List<Account>> Handle(GetExcludedAccountQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts
+                return await contextAdapter.Context
+                                    .Accounts
                                     .AreExcluded()
                                     .OrderByName()
                                     .ToListAsync(cancellationToken);

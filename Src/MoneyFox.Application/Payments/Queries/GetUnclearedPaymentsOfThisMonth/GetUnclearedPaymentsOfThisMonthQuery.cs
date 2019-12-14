@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Application.Common.QueryObjects;
+using MoneyFox.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
 {
@@ -17,23 +17,26 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
 
         public class Handler : IRequestHandler<GetUnclearedPaymentsOfThisMonthQuery, List<Payment>>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request, CancellationToken cancellationToken)
             {
-                IQueryable<Payment> query = context.Payments
-                                                   .Include(x => x.ChargedAccount)
-                                                   .Include(x => x.TargetAccount)
-                                                   .AreNotCleared()
-                                                   .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth());
+                IQueryable<Payment> query = contextAdapter.Context
+                                                          .Payments
+                                                          .Include(x => x.ChargedAccount)
+                                                          .Include(x => x.TargetAccount)
+                                                          .AreNotCleared()
+                                                          .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth());
 
-                if (request.AccountId != 0) query = query.HasAccountId(request.AccountId);
-
+                if(request.AccountId != 0)
+                {
+                    query = query.HasAccountId(request.AccountId);
+                }
                 return await query.ToListAsync(cancellationToken);
             }
         }

@@ -18,12 +18,12 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
 
         public class Handler : IRequestHandler<CreateCategoryCommand>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
             private readonly IBackupService backupService;
 
-            public Handler(IEfCoreContext context, IBackupService backupService)
+            public Handler(IContextAdapter contextAdapter, IBackupService backupService)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
             }
 
@@ -32,8 +32,8 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
             {
                 await backupService.RestoreBackupAsync();
 
-                await context.Categories.AddAsync(request.CategoryToSave, cancellationToken);
-                await context.SaveChangesAsync(cancellationToken);
+                await contextAdapter.Context.Categories.AddAsync(request.CategoryToSave, cancellationToken);
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 await backupService.UploadBackupAsync();
 

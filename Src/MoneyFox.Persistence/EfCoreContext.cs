@@ -9,7 +9,7 @@ namespace MoneyFox.Persistence
     /// <summary>
     ///     Represents the data context of the application
     /// </summary>
-    public class EfCoreContext : DbContext, IEfCoreContext
+    public class EfCoreContext : DbContext, IEfCoreContextAdapter
     {
         public EfCoreContext(DbContextOptions options) : base(options)
         {

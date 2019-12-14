@@ -10,16 +10,16 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountCount
     {
         public class Handler : IRequestHandler<GetAccountCountQuery, int>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<int> Handle(GetAccountCountQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts.CountAsync(cancellationToken);
+                return await contextAdapter.Context.Accounts.CountAsync(cancellationToken);
             }
         }
     }

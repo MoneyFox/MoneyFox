@@ -64,7 +64,6 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
-
         }
     }
 }
