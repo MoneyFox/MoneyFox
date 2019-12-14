@@ -54,8 +54,7 @@
                             <ToggleSwitch VerticalAlignment="Center"
                                           Margin="0,6,0,0"
                                           Header="{x:Bind resources:Strings.AutobackupLabel}"
-                                          IsOn="{Binding IsAutoBackupEnabled,
-                                         Mode=TwoWay}" />
+                                          IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
 
                             <StackPanel Margin="0,12,0,0">
                                 <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"

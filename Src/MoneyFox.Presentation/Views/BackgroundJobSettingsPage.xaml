@@ -2,6 +2,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.BackgroundJobSettingsPage"
@@ -16,7 +17,7 @@
         <Grid Padding="7">
             <StackLayout Spacing="0">
 
-                <Label Text="{Binding Resources[AutobackupInformationLabel]}"
+                <Label Text="{x:Static resources:Strings.AutobackupInformationLabel}"
                        Style="{StaticResource DeemphasizedLabelStyle}" />
 
                 <Grid HorizontalOptions="FillAndExpand"
@@ -29,7 +30,7 @@
 
                     <Label Grid.Column="0"
                            Style="{StaticResource DefaultTextStyle}"
-                           Text="{Binding Resources[AutobackupLabel]}" />
+                           Text="{x:Static resources:Strings.AutobackupLabel}" />
 
                     <Switch Grid.Column="1"
                             HorizontalOptions="End"
@@ -43,25 +44,26 @@
                          VerticalOptions="End"
                          IsVisible="{Binding IsLoggedIn}">
                 <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                       Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
+                       Text="{x:Static resources:Strings.LastExecutionBackgroundOperationsLabel}" />
 
                 <StackLayout Orientation="Horizontal">
                     <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionSynBackup}"
+                           Text="{x:Static resources:Strings.LastExecutionSyncBackupLabel}" />
+                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                           Text="{Binding LastExecutionSynBackup}"
                            Margin="4,0,0,0" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
+                           Text="{x:Static resources:Strings.LastExecutionClearPaymentLabel}" />
                     <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}"
                            Margin="4,0,0,0" />
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
                     <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
+                           Text="{x:Static resources:Strings.LastExecutionRecurringPaymentLabel}" />
                     <Label Style="{StaticResource DeemphasizedLabelStyle}"
                            Text="{Binding LastExecutionCreateRecurringPayments}" Margin="4,0,0,0" />
                 </StackLayout>

@@ -117,7 +117,7 @@
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        LineBreakMode="WordWrap"
                        IsVisible="{Binding HasNoAccounts}"
-                       Text="{Binding Resources[NoAccountsMessage]}" />
+                       Text="{x:Static resources:Strings.NoAccountsMessage}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>
