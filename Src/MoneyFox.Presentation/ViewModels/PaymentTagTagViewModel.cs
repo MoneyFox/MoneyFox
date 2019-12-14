@@ -1,4 +1,5 @@
-﻿using MoneyFox.Domain.Entities;
+﻿using MoneyFox.Application.Common.Interfaces.Mapping;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
