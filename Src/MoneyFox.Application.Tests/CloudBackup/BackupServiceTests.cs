@@ -313,6 +313,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
                                   .Callback(() => throw new BackupException());
 
+            cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Now);
+
             DateTime expectedPassedDate = DateTime.Now.AddDays(-3);
 
             settingsFacadeMock.SetupAllProperties();
