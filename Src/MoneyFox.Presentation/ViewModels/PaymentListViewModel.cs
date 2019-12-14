@@ -60,14 +60,9 @@ namespace MoneyFox.Presentation.ViewModels
 
             MessengerInstance = messenger;
 
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this,
-                                                                        async message =>
-                                                                        {
-                                                                            await LoadPayments(message);
-                                                                        });
-            MessengerInstance.Register<RemovePaymentMessage>(this, RemovePayment);
-            MessengerInstance.Register<BackupRestoredMessage>(this,
-                                                              async message => await LoadData());
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPayments(message));
+            MessengerInstance.Register<RemovePaymentMessage>(this, async message => await LoadData());
+            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await LoadData());
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -201,18 +196,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void RemovePayment(RemovePaymentMessage message)
         {
-            foreach(var dateGroup in DailyList)
-            {
-                dateGroup.RemoveAll(y => y.Id == message.PaymentId);
-            }
-
-            foreach(var monthList in Source)
-            {
-                foreach(var dailyGroup in monthList)
-                {
-                    dailyGroup.RemoveAll(y => y.Id == message.PaymentId);
-                }
-            }
+            LoadData();
         }
 
         private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
