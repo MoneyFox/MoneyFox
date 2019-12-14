@@ -20,7 +20,8 @@ namespace MoneyFox.Persistence
 
         public void RecreateContext()
         {
-            context.
+            context.Dispose();
+            context = null;
         }
     }
 }

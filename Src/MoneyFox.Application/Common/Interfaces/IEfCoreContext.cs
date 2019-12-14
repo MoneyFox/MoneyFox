@@ -22,7 +22,7 @@ namespace MoneyFox.Application.Common.Interfaces
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
         EntityEntry Entry(object entity);
 
-        IEfCoreContext();
+        void Dispose();
 
     }
 }
