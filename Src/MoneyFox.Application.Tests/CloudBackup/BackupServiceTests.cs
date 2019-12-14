@@ -23,7 +23,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
         private readonly Mock<IFileStore> fileStoreMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
-        private readonly Mock<IMessenger> messengerMock;
 
         public BackupServiceTests()
         {
@@ -31,7 +30,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
             fileStoreMock = new Mock<IFileStore>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             connectivityAdapterMock = new Mock<IConnectivityAdapter>();
-            messengerMock = new Mock<IMessenger>();
         }
 
         [Fact]
@@ -43,8 +41,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act / Assert
             await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LoginAsync());
@@ -64,8 +61,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await Assert.ThrowsAsync<BackupException>(async() => await backupService.LoginAsync());
@@ -88,8 +84,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await backupService.LoginAsync();
@@ -108,8 +103,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act / Assert
             await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LogoutAsync());
@@ -131,8 +125,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await Assert.ThrowsAsync<BackupException>(async() => await backupService.LogoutAsync());
@@ -155,8 +148,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await backupService.LogoutAsync();
@@ -175,8 +167,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             var result = await backupService.IsBackupExistingAsync();
@@ -197,8 +188,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             bool result = await backupService.IsBackupExistingAsync();
@@ -219,8 +209,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             bool result = await backupService.IsBackupExistingAsync();
@@ -238,8 +227,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             var result = await backupService.GetBackupDateAsync();
@@ -259,8 +247,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             DateTime result = await backupService.GetBackupDateAsync();
@@ -278,8 +265,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act / Assert
             await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.RestoreBackupAsync());
@@ -305,8 +291,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await backupService.RestoreBackupAsync();
@@ -336,8 +321,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await Assert.ThrowsAsync<BackupException>(async() => await backupService.RestoreBackupAsync());
@@ -361,8 +345,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await backupService.UploadBackupAsync();
@@ -388,8 +371,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await Assert.ThrowsAsync<BackupException>(async() => await backupService.UploadBackupAsync());
@@ -413,8 +395,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
-                                                  connectivityAdapterMock.Object,
-                                                  messengerMock.Object);
+                                                  connectivityAdapterMock.Object);
 
             // Act
             await backupService.UploadBackupAsync();

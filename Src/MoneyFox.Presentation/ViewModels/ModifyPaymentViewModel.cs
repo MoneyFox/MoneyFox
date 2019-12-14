@@ -123,8 +123,7 @@ namespace MoneyFox.Presentation.ViewModels
                                          IDialogService dialogService,
                                          ISettingsFacade settingsFacade,
                                          IBackupService backupService,
-                                         INavigationService navigationService,
-                                         IMessenger messenger)
+                                         INavigationService navigationService)
         {
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
@@ -134,7 +133,6 @@ namespace MoneyFox.Presentation.ViewModels
             this.mapper = mapper;
 
             selectedPayment = new PaymentViewModel();
-            MessengerInstance = messenger;
 
             MessengerInstance.Register<CategorySelectedMessage>(this, async (message) => await ReceiveMessage(message));
         }

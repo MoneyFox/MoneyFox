@@ -34,9 +34,8 @@ namespace MoneyFox.Presentation.ViewModels
                                    IDialogService dialogService,
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
-                                   INavigationService navigationService,
-                                   IMessenger messenger)
-            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService, messenger)
+                                   INavigationService navigationService)
+            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

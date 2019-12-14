@@ -43,8 +43,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                      balanceCalculationService.Object,
                                                      dialogServiceSetup.Object,
                                                      new Mock<ISettingsFacade>().Object,
-                                                     new Mock<INavigationService>().Object,
-                                                     new Mock<IMessenger>().Object);
+                                                     new Mock<INavigationService>().Object);
 
             // Act
             await viewModel.DeleteAccountCommand.ExecuteAsync(null);
@@ -71,8 +70,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                      balanceCalculationService.Object,
                                                      dialogServiceSetup.Object,
                                                      new Mock<ISettingsFacade>().Object,
-                                                     new Mock<INavigationService>().Object,
-                                                     new Mock<IMessenger>().Object);
+                                                     new Mock<INavigationService>().Object);
 
             // Act
             await viewModel.DeleteAccountCommand.ExecuteAsync(new AccountViewModel());
@@ -99,8 +97,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                      balanceCalculationService.Object,
                                                      dialogServiceSetup.Object,
                                                      new Mock<ISettingsFacade>().Object,
-                                                     new Mock<INavigationService>().Object,
-                                                     new Mock<IMessenger>().Object);
+                                                     new Mock<INavigationService>().Object);
 
             // Act
             await viewModel.DeleteAccountCommand.ExecuteAsync(new AccountViewModel());

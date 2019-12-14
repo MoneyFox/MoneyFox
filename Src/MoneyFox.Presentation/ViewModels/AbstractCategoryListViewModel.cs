@@ -1,11 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
@@ -14,6 +8,11 @@ using MoneyFox.Application.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -28,14 +27,12 @@ namespace MoneyFox.Presentation.ViewModels
         protected AbstractCategoryListViewModel(IMediator mediator,
                                                 IMapper mapper,
                                                 IDialogService dialogService,
-                                                INavigationService navigationService,
-                                                IMessenger messenger)
+                                                INavigationService navigationService)
         {
             Mediator = mediator;
             Mapper = mapper;
             DialogService = dialogService;
             NavigationService = navigationService;
-            MessengerInstance = messenger;
 
             MessengerInstance.Register<BackupRestoredMessage>(this, async message => await Search());
         }
@@ -106,7 +103,7 @@ namespace MoneyFox.Presentation.ViewModels
         public async Task Search(string searchText = "")
         {
             var categoriesVms =
-                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery {SearchTerm = searchText}));
+                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery { SearchTerm = searchText }));
             CategoryList = CreateGroup(categoriesVms);
         }
 

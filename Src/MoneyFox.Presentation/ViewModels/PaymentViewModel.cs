@@ -328,7 +328,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             await mediator.Send(command);
-            ServiceLocator.Current.GetInstance<IMessenger>().Send(new RemovePaymentMessage(payment.Id));
+            Messenger.Default.Send(new RemovePaymentMessage(payment.Id));
         }
     }
 }

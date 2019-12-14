@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
@@ -19,6 +13,11 @@ using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using NLog;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -48,16 +47,13 @@ namespace MoneyFox.Presentation.ViewModels
                                     IBalanceCalculationService balanceCalculationService,
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
-                                    INavigationService navigationService,
-                                    IMessenger messenger)
+                                    INavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
             this.settingsFacade = settingsFacade;
-
-            MessengerInstance = messenger;
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationService);
             ViewActionViewModel = new AccountListViewActionViewModel(mediator, this.navigationService);
@@ -84,7 +80,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public bool HasNoAccounts => !Accounts.Any();
-        public List<string> MenuActions => new List<string>{Strings.EditLabel, Strings.DeleteLabel};
+        public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
 
         public AsyncCommand LoadDataCommand => new AsyncCommand(Load);
 

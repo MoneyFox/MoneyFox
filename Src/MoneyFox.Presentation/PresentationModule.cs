@@ -1,6 +1,4 @@
-﻿using System;
-using Autofac;
-using GalaSoft.MvvmLight.Messaging;
+﻿using Autofac;
 using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
@@ -8,6 +6,7 @@ using MoneyFox.Application.Constants;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.BusinessLogic;
 using MoneyFox.Persistence;
+using System;
 
 namespace MoneyFox.Presentation
 {
@@ -19,25 +18,18 @@ namespace MoneyFox.Presentation
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();
 
-            builder
-                .RegisterType<Mediator>()
-                .As<IMediator>()
-                .InstancePerLifetimeScope();
-
-            builder
-                .RegisterType<Messenger>()
-                .As<IMessenger>()
-                .InstancePerLifetimeScope();
+            builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
 
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>
-            {
-                var c = context.Resolve<IComponentContext>();
+                                             {
+                                                 var c = context.Resolve<IComponentContext>();
 
-                return t => c.Resolve(t);
-            });
+                                                 return t => c.Resolve(t);
+                                             });
 
-            builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly).AsImplementedInterfaces(); // via assembly scan
+            builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly)
+                   .AsImplementedInterfaces(); // via assembly scan
 
             builder.Register(c => PublicClientApplicationBuilder
                                   .Create(ServiceConstants.MSAL_APPLICATION_ID)
@@ -47,17 +39,25 @@ namespace MoneyFox.Presentation
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => !t.Name
+                                 .Equals("NavigationService",
+                                         StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => !t.Name
+                                 .StartsWith("DesignTime",
+                                             StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => t.Name
+                                .EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => !t.Name
+                                 .StartsWith("DesignTime",
+                                             StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => t.Name
+                                .EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsSelf();
         }
     }
