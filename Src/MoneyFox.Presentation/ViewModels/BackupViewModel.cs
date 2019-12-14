@@ -75,19 +75,19 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <inheritdoc />
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
         /// <inheritdoc />
-        public AsyncCommand LoginCommand => new AsyncCommand(Login);
+        public AsyncCommand LoginCommand => new AsyncCommand(LoginAsync);
 
         /// <inheritdoc />
-        public AsyncCommand LogoutCommand => new AsyncCommand(Logout);
+        public AsyncCommand LogoutCommand => new AsyncCommand(LogoutAsync);
 
         /// <inheritdoc />
-        public AsyncCommand BackupCommand => new AsyncCommand(CreateBackup);
+        public AsyncCommand BackupCommand => new AsyncCommand(CreateBackupAsync);
 
         /// <inheritdoc />
-        public AsyncCommand RestoreCommand => new AsyncCommand(RestoreBackup);
+        public AsyncCommand RestoreCommand => new AsyncCommand(RestoreBackupAsync);
 
         /// <summary>
         ///     The Date when the backup was modified the last time.
@@ -136,12 +136,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task Initialize()
+        private async Task InitializeAsync()
         {
-            await Loaded();
+            await LoadedAsync();
         }
 
-        private async Task Loaded()
+        private async Task LoadedAsync()
         {
             if (!IsLoggedIn) return;
 
@@ -174,7 +174,7 @@ namespace MoneyFox.Presentation.ViewModels
             IsLoadingBackupAvailability = false;
         }
 
-        private async Task Login()
+        private async Task LoginAsync()
         {
             if (!connectivity.IsConnected) await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
 
@@ -192,10 +192,10 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             RaisePropertyChanged(nameof(IsLoggedIn));
-            await Loaded();
+            await LoadedAsync();
         }
 
-        private async Task Logout()
+        private async Task LogoutAsync()
         {
             try
             {
@@ -214,7 +214,7 @@ namespace MoneyFox.Presentation.ViewModels
             RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
-        private async Task CreateBackup()
+        private async Task CreateBackupAsync()
         {
             if (!await ShowOverwriteBackupInfoAsync()) return;
 
@@ -239,7 +239,7 @@ namespace MoneyFox.Presentation.ViewModels
             await ShowCompletionNoteAsync();
         }
 
-        private async Task RestoreBackup()
+        private async Task RestoreBackupAsync()
         {
             if (!await ShowOverwriteDataInfoAsync()) return;
 
