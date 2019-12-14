@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
 using AutoMapper;
 using CommonServiceLocator;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Interfaces.Mapping;
@@ -12,7 +12,6 @@ using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Presentation.Interfaces;
 using Xamarin.Forms;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -329,7 +328,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             await mediator.Send(command);
-            MessengerInstance.Send(new RemovePaymentMessage(payment.Id));
+            ServiceLocator.Current.GetInstance<IMessenger>().Send(new RemovePaymentMessage(payment.Id));
         }
     }
 }

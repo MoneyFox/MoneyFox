@@ -34,8 +34,6 @@ namespace MoneyFox.Presentation.Services
     /// <inheritdoc />
     public class PaymentService : IPaymentService
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         private readonly IEfCoreContext context;
         private readonly IModifyPaymentAction modifyPaymentAction;
         private readonly IDialogService dialogService;
@@ -66,30 +64,6 @@ namespace MoneyFox.Presentation.Services
 
             await modifyPaymentAction.DeletePayment(paymentViewModel.Id);
             await context.SaveChangesAsync();
-        }
-
-        private async Task<Payment> CreatePaymentFromViewModel(PaymentViewModel paymentViewModel)
-        {
-            Account chargedAccount = await GetChargedAccount(paymentViewModel);
-            Account targetAccount = await GetTargetAccount(paymentViewModel);
-            Category category = await GetCategory(paymentViewModel);
-
-            var payment = new Payment(paymentViewModel.Date, paymentViewModel.Amount, paymentViewModel.Type,
-                                      chargedAccount,
-                                      targetAccount, category, paymentViewModel.Note);
-            try
-            {
-                AddRecurringPayment(paymentViewModel, payment);
-
-                return payment;
-            }
-            catch (Exception)
-            {
-                payment.ChargedAccount.RemovePaymentAmount(payment);
-                payment.TargetAccount?.RemovePaymentAmount(payment);
-
-                throw;
-            }
         }
 
         private async Task UpdatePaymentFromViewModel(PaymentViewModel paymentViewModel)
@@ -157,17 +131,6 @@ namespace MoneyFox.Presentation.Services
             }
 
             return targetAccount;
-        }
-
-        private static void AddRecurringPayment(PaymentViewModel paymentViewModel, Payment payment)
-        {
-            if (paymentViewModel.IsRecurring)
-            {
-                payment.AddRecurringPayment(paymentViewModel.RecurringPayment.Recurrence,
-                                            paymentViewModel.RecurringPayment.IsEndless
-                                                ? null
-                                                : paymentViewModel.RecurringPayment.EndDate);
-            }
         }
     }
 }
