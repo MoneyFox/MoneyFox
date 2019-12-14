@@ -66,7 +66,6 @@ namespace MoneyFox.Application.CloudBackup
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
-        private readonly IMessenger messenger;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -75,14 +74,12 @@ namespace MoneyFox.Application.CloudBackup
         public BackupService(ICloudBackupService cloudBackupService,
                              IFileStore fileStore,
                              ISettingsFacade settingsFacade,
-                             IConnectivityAdapter connectivity,
-                             IMessenger messenger)
+                             IConnectivityAdapter connectivity)
         {
             this.cloudBackupService = cloudBackupService;
             this.fileStore = fileStore;
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
-            this.messenger = messenger;
         }
 
         public async Task LoginAsync()
@@ -136,7 +133,7 @@ namespace MoneyFox.Application.CloudBackup
 
             await DownloadBackupAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
-            messenger.Send(new BackupRestoredMessage());
+            Messenger.Default.Send(new BackupRestoredMessage());
         }
 
         private async Task DownloadBackupAsync()

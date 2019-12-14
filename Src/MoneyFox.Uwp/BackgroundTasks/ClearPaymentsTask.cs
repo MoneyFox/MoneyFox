@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using MoneyFox.Application;
 using MoneyFox.Application.Adapters;

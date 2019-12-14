@@ -48,8 +48,7 @@ namespace MoneyFox.Presentation.ViewModels
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBalanceCalculationService balanceCalculationService,
-                                    INavigationService navigationService,
-                                    IMessenger messenger)
+                                    INavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -57,8 +56,6 @@ namespace MoneyFox.Presentation.ViewModels
             this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
             this.navigationService = navigationService;
-
-            MessengerInstance = messenger;
 
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPayments(message));
             MessengerInstance.Register<RemovePaymentMessage>(this, async message => await LoadData());

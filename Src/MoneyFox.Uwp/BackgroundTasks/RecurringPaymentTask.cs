@@ -6,7 +6,6 @@ using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
 using NLog;
 using System;
-using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 
 namespace MoneyFox.Uwp.BackgroundTasks
