@@ -54,8 +54,12 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             backupServiceMock.Setup(x => x.RestoreBackupAsync()).Returns(Task.CompletedTask);
             backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
 
+            var category1 = new Category("test");
+            await context.AddAsync(category1);
+            await context.SaveChangesAsync();
+
             // Act
-            await new DeleteCategoryByIdCommand.Handler(new Mock<IEfCoreContext>().Object, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(2), default);
+            await new DeleteCategoryByIdCommand.Handler(context, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(), Times.Once);

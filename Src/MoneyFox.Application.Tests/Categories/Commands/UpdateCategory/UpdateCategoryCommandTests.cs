@@ -56,12 +56,13 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
             backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
 
             var category = new Category("test");
+            await context.AddAsync(category);
+            await context.SaveChangesAsync();
 
             // Act
             await new UpdateCategoryCommand.Handler(context, backupServiceMock.Object).Handle(new UpdateCategoryCommand { Category = category }, default);
 
             // Assert
-            backupServiceMock.Verify(x => x.RestoreBackupAsync(), Times.Once);
             backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
 
         }
