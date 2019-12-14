@@ -6,7 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Graph;
-using Microsoft.Identity.Client;
 using MoneyFox.Application.Adapters;
 using MoneyFox.Application.Constants;
 using MoneyFox.Application.Extensions;
@@ -90,23 +89,10 @@ namespace MoneyFox.Application.CloudBackup
         {
             if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
-            try
-            {
-                await cloudBackupService.LoginAsync();
+            await cloudBackupService.LoginAsync();
 
-                settingsFacade.IsLoggedInToBackupService = true;
-                settingsFacade.IsBackupAutouploadEnabled = true;
-            }
-            catch (BackupAuthenticationFailedException ex)
-            {
-                logManager.Error(ex, "Login Failed.");
-                throw;
-            }
-            catch (MsalClientException ex)
-            {
-                logManager.Error(ex, "Login Failed.");
-                throw;
-            }
+            settingsFacade.IsLoggedInToBackupService = true;
+            settingsFacade.IsBackupAutouploadEnabled = true;
         }
 
         public async Task LogoutAsync()
@@ -116,19 +102,10 @@ namespace MoneyFox.Application.CloudBackup
                 throw new NetworkConnectionException();
             }
 
-            try
-            {
-                await cloudBackupService.LogoutAsync();
+            await cloudBackupService.LogoutAsync();
 
-                settingsFacade.IsLoggedInToBackupService = false;
-                settingsFacade.IsBackupAutouploadEnabled = false;
-            }
-            catch (BackupAuthenticationFailedException ex)
-            {
-                logManager.Error(ex, "Logout Failed.");
-
-                throw;
-            }
+            settingsFacade.IsLoggedInToBackupService = false;
+            settingsFacade.IsBackupAutouploadEnabled = false;
         }
 
         public async Task<bool> IsBackupExistingAsync()
@@ -157,24 +134,9 @@ namespace MoneyFox.Application.CloudBackup
                 throw new NetworkConnectionException();
             }
 
-            try
-            {
-                await DownloadBackupAsync();
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                messenger.Send(new BackupRestoredMessage());
-            }
-            catch (BackupAuthenticationFailedException ex)
-            {
-                await LogoutAsync();
-                logManager.Error(ex, "Download Backup failed.");
-                throw;
-            }
-            catch (ServiceException ex)
-            {
-                await LogoutAsync();
-                logManager.Error(ex, "Download Backup failed.");
-                throw;
-            }
+            await DownloadBackupAsync();
+            settingsFacade.LastDatabaseUpdate = DateTime.Now;
+            messenger.Send(new BackupRestoredMessage());
         }
 
         private async Task DownloadBackupAsync()

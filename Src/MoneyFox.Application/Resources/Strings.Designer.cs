@@ -1394,6 +1394,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logout backup was canceled..
+        /// </summary>
+        public static string LogoutCanceledMessage {
+            get {
+                return ResourceManager.GetString("LogoutCanceledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logout.
         /// </summary>
         public static string LogoutLabel {
@@ -1783,6 +1792,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restoring backup was canceled..
+        /// </summary>
+        public static string RestoreBackupCanceledMessage {
+            get {
+                return ResourceManager.GetString("RestoreBackupCanceledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download the previous uploaded database backup and replace your local data with it.
         ///WARNING: Local changes you made meanwhile will be lost!.
         /// </summary>
@@ -2104,6 +2122,15 @@ namespace MoneyFox.Application.Resources {
         public static string UpdateAllLabel {
             get {
                 return ResourceManager.GetString("UpdateAllLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload backup was canceled..
+        /// </summary>
+        public static string UploadBackupCanceledMessage {
+            get {
+                return ResourceManager.GetString("UploadBackupCanceledMessage", resourceCulture);
             }
         }
         
