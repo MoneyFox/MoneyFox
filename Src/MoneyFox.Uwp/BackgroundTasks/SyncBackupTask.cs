@@ -25,10 +25,6 @@ namespace MoneyFox.Uwp.BackgroundTasks
             try
             {
                 var backupService =ServiceLocator.Current.GetInstance<IBackupService>();
-                DateTime backupDate = await backupService.GetBackupDateAsync();
-
-                if (settingsFacade.LastDatabaseUpdate > backupDate) return;
-
                 await backupService.RestoreBackupAsync();
             }
             catch (Exception ex)

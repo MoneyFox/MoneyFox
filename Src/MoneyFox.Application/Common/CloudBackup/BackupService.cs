@@ -138,6 +138,9 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         private async Task DownloadBackupAsync()
         {
+            DateTime backupDate = await GetBackupDateAsync();
+            if (settingsFacade.LastDatabaseUpdate > backupDate) return;
+
             List<string> backups = await cloudBackupService.GetFileNamesAsync();
 
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
