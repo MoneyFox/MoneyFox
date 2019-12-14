@@ -74,14 +74,6 @@
                     <DataTemplate x:DataType="viewModels:CategoryViewModel">
                         <ViewCell>
 
-                            <ViewCell.ContextActions>
-                                <MenuItem Clicked="EditCategory" CommandParameter="{Binding .}"
-                                          Text="{Binding Resources[EditLabel]}" />
-                                <MenuItem Clicked="DeleteCategory" CommandParameter="{Binding .}"
-                                          Text="{Binding Resources[DeleteLabel]}"
-                                          IsDestructive="True" />
-                            </ViewCell.ContextActions>
-
                             <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.ItemClickCommand}"
                                                    ClickCommandParameter="{Binding .}"
                                                    Margin="{StaticResource SmallLeftRightTopBottomMargin}"
@@ -90,8 +82,32 @@
                                              Padding="3"
                                              Spacing="{StaticResource DefaultSpacing}"
                                              Margin="{StaticResource DefaultListItemsMargin}">
-                                    <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
+
+                                    <Grid Margin="{StaticResource DefaultListItemsMargin}">
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70*" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+
+
+
+                                        <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
+
+
+                                        <material:MaterialMenuButton Grid.Column="2"
+                                                                         ButtonType="Text"
+                                                                         Image="icon_more.png"
+                                                                         Style="{StaticResource MenuButtonStyle}"
+                                                                         Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
+                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
+                                                                         CommandParameter="{Binding .}" />
+
+                                    </Grid>
+
                                 </StackLayout>
+
                             </material:MaterialCard>
                         </ViewCell>
 
