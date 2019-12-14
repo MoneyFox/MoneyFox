@@ -182,12 +182,15 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 await backupService.LoginAsync();
             }
+            catch (CanceledOperationException ex)
+            {
+                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.LoginCanceledMessage);
+            }
             catch (Exception ex)
             {
-                await dialogService.ShowMessage(Strings.LoginFailedTitle, ex.Message);
+                await dialogService.ShowMessage(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
             }
 
-            // ReSharper disable once ExplicitCallerInfoArgument
             RaisePropertyChanged(nameof(IsLoggedIn));
             await Loaded();
         }

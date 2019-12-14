@@ -88,8 +88,7 @@ namespace MoneyFox.Application.CloudBackup
 
         public async Task LoginAsync()
         {
-            if (!connectivity.IsConnected)
-                throw new NetworkConnectionException();
+            if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
             try
             {

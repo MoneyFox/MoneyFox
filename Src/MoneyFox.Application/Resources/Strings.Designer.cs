@@ -448,6 +448,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Canceled.
+        /// </summary>
+        public static string CanceledTitle {
+            get {
+                return ResourceManager.GetString("CanceledTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string CancelLabel {
@@ -1349,6 +1358,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login was canceled..
+        /// </summary>
+        public static string LoginCanceledMessage {
+            get {
+                return ResourceManager.GetString("LoginCanceledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We couldn&apos;t log you in. Please contact us if this issue persists..
         /// </summary>
         public static string LoginFailedMessage {
@@ -2068,6 +2086,15 @@ namespace MoneyFox.Application.Resources {
         public static string TranslationLabel {
             get {
                 return ResourceManager.GetString("TranslationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There was an issue during the operation. Error Message {0}.
+        /// </summary>
+        public static string UnknownErrorMessage {
+            get {
+                return ResourceManager.GetString("UnknownErrorMessage", resourceCulture);
             }
         }
         

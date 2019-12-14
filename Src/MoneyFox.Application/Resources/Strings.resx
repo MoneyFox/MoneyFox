@@ -814,4 +814,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Income / Expenses:</value>
   </data>
+  <data name="CanceledTitle" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="LoginCanceledMessage" xml:space="preserve">
+    <value>Login was canceled.</value>
+  </data>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an issue during the operation. Error Message {0}</value>
+  </data>
 </root>

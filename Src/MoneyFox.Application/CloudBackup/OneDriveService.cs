@@ -15,6 +15,8 @@ namespace MoneyFox.Application.CloudBackup
     /// <inheritdoc />
     public class OneDriveService : ICloudBackupService
     {
+        private const string ERROR_CODE_CANCELED = "authentication_canceled";
+
         private readonly string[] scopes = {"Files.ReadWrite"};
 
         private readonly IPublicClientApplication publicClientApplication;
@@ -44,6 +46,15 @@ namespace MoneyFox.Application.CloudBackup
             {
                 IAccount firstAccount = accounts.FirstOrDefault();
                 authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+
+                GraphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider(requestMessage =>
+                {
+                    requestMessage
+                        .Headers
+                        .Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+
+                    return Task.FromResult(0);
+                }));
             }
             catch (MsalUiRequiredException)
             {
@@ -52,15 +63,14 @@ namespace MoneyFox.Application.CloudBackup
                                                           .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                                                           .ExecuteAsync();
             }
-
-            GraphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider(requestMessage =>
+            catch (MsalClientException ex)
             {
-                requestMessage
-                    .Headers
-                    .Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
-
-                return Task.FromResult(0);
-            }));
+                if (ex.ErrorCode == ERROR_CODE_CANCELED)
+                {
+                    throw new CanceledOperationException();
+                }
+                throw;
+            }
         }
 
         /// <summary>
