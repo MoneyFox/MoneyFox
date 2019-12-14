@@ -8,14 +8,13 @@ using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Graph;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
-#pragma warning disable S1128 // Unused "using" should be removed
 using MoneyFox.Domain.Exceptions;
 using NLog;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Messages;
-#pragma warning restore S1128 // Unused "using" should be removed
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Application.Common.CloudBackup
 {
@@ -66,6 +65,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
+        private readonly IContextAdapter contextAdapter;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -74,7 +74,8 @@ namespace MoneyFox.Application.Common.CloudBackup
         public BackupService(ICloudBackupService cloudBackupService,
                              IFileStore fileStore,
                              ISettingsFacade settingsFacade,
-                             IConnectivityAdapter connectivity)
+                             IConnectivityAdapter connectivity,
+                             IContextAdapter contextAdapter)
         {
             this.cloudBackupService = cloudBackupService;
             this.fileStore = fileStore;

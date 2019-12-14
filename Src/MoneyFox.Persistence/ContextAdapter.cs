@@ -18,6 +18,6 @@ namespace MoneyFox.Persistence
             }
         }
 
-        public void RecreateContext() => throw new System.NotImplementedException();
+        public void RecreateContext() => context = EfCoreContextFactory.Create();
     }
 }
