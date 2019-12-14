@@ -34,7 +34,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
 
             public async Task<Unit> Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
             {
-                await backupService.UploadBackupAsync();
+                await backupService.RestoreBackupAsync();
 
                 Payment entityToDelete = await context.Payments.FindAsync(request.PaymentId);
 

@@ -1,13 +1,12 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
-              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             mc:Ignorable="d"
              x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl"
              x:Name="root">
 
@@ -41,7 +40,7 @@
                            Style="{StaticResource DefaultSearchBarStyle}"
                            BackgroundColor="{DynamicResource FrameHighlightColor}"
                            VerticalOptions="Start"
-                           
+
                            Placeholder="{Binding Resources[SearchLabel]}"
                            TextChanged="SearchTermChanged" />
             </Frame>
@@ -59,7 +58,7 @@
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}" 
+                            <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}"
                                          HorizontalOptions="FillAndExpand"
                                          Margin="0,0,-30,-1"
                                          Padding="0,18,0,6">
@@ -79,7 +78,7 @@
                                 <MenuItem Clicked="EditCategory" CommandParameter="{Binding .}"
                                           Text="{Binding Resources[EditLabel]}" />
                                 <MenuItem Clicked="DeleteCategory" CommandParameter="{Binding .}"
-                                          Text="{Binding Resources[DeleteLabel]}" 
+                                          Text="{Binding Resources[DeleteLabel]}"
                                           IsDestructive="True" />
                             </ViewCell.ContextActions>
 
@@ -111,7 +110,7 @@
 
             <ImageButton
                 Grid.Row="1"
-                Clicked="AddCategoryClick" 
+                Clicked="AddCategoryClick"
                 Style="{StaticResource FabPrimary}" >
                 <ImageButton.Source>
                     <FontImageSource
