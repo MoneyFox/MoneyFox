@@ -1,9 +1,11 @@
 ﻿using System.Threading.Tasks;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Moq;
 using Should;
 using Xunit;
 
@@ -12,10 +14,14 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
     public class GetIfAccountWithNameExistsQueryTests : IRequest<bool>
     {
         private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetIfAccountWithNameExistsQueryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
+
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
 
         public void Dispose()
@@ -37,7 +43,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
             await context.SaveChangesAsync();
 
             // Act
-            bool result = await new GetIfAccountWithNameExistsQuery.Handler(context).Handle(new GetIfAccountWithNameExistsQuery {AccountName = name}, default);
+            bool result = await new GetIfAccountWithNameExistsQuery.Handler(contextAdapterMock.Object).Handle(new GetIfAccountWithNameExistsQuery {AccountName = name}, default);
 
             // Assert
             result.ShouldEqual(expectedResult);

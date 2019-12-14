@@ -20,11 +20,15 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
     {
         private readonly EfCoreContext context;
         private readonly Mock<IBackupService> backupServiceMock;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public DeleteCategoryByIdCommandTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
             backupServiceMock = new Mock<IBackupService>();
+
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
 
         public void Dispose()
@@ -41,7 +45,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(context, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
             (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).ShouldBeNull();
@@ -59,7 +63,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(context, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(), Times.Once);

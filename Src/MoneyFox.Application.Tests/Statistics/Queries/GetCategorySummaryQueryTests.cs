@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Moq;
 using Should;
 using Xunit;
 
@@ -17,10 +19,14 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
     public class GetCategorySummaryQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetCategorySummaryQueryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
+
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
 
         public void Dispose()
@@ -52,7 +58,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
+            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -88,7 +94,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
+            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -122,7 +128,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
+            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -149,7 +155,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
+            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -174,7 +180,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(context).Handle(new GetCategorySummaryQuery
+            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
