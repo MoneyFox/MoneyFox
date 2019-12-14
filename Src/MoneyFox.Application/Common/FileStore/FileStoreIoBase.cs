@@ -2,7 +2,7 @@
 using System.IO;
 using NLog;
 
-namespace MoneyFox.Application.FileStore
+namespace MoneyFox.Application.Common.FileStore
 {
     public class FileStoreIoBase : FileStoreBase
     {

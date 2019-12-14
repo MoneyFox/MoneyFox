@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
-using MoneyFox.Application.Facades;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic

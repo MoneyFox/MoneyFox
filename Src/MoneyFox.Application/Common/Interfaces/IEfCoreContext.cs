@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Application.Interfaces
+namespace MoneyFox.Application.Common.Interfaces
 {
     public interface IEfCoreContext
     {

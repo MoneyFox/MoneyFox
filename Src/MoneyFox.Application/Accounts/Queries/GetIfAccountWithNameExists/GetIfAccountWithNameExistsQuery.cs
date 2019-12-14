@@ -1,8 +1,8 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MoneyFox.Application.Interfaces;
-using MoneyFox.Application.QueryObjects;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.QueryObjects;
 
 namespace MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists
 {

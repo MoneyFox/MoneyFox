@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace MoneyFox.Application.FileStore
+namespace MoneyFox.Application.Common.FileStore
 {
     public abstract class FileStoreBase : IFileStore
     {

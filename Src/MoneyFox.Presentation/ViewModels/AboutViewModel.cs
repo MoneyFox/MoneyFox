@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Application.Constants;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Interfaces;
@@ -152,7 +152,7 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task SendMail()
         {
             await emailAdapter.SendEmail(Strings.FeedbackSubject, string.Empty,
-                                         new List<string> {AppConstants.SupportMail});
+                                         new List<string> { AppConstants.SupportMail});
         }
 
         private void RateApp()

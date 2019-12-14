@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using MoneyFox.Application.Extensions;
 using Xunit;
+using MoneyFox.Application.Common.Extensions;
 
 namespace MoneyFox.BusinessLogic.Tests.Extensions
 {

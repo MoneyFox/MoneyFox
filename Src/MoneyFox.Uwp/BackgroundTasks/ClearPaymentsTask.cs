@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Facades;
+using System;
 using Windows.ApplicationModel.Background;
-using MoneyFox.Application;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Application.Facades;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;

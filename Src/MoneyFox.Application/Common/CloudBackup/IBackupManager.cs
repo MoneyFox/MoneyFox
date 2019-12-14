@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using MoneyFox.Domain.Exceptions;
 
-namespace MoneyFox.Application.CloudBackup
+namespace MoneyFox.Application.Common.CloudBackup
 {
     /// <summary>
     ///     Defines the interface for a BackupManager who handles the different functions of a backup.

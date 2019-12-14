@@ -1,9 +1,9 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Application.CloudBackup;
-using MoneyFox.Application.Constants;
-using MoneyFox.Application.Facades;
-using MoneyFox.Application.FileStore;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Constants;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Domain.Exceptions;
 using Moq;
 using Should;

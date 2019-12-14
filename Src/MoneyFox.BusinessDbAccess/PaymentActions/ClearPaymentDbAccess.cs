@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.Interfaces;
-using MoneyFox.Application.QueryObjects;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Application.Common.QueryObjects;
 
 namespace MoneyFox.BusinessDbAccess.PaymentActions
 {

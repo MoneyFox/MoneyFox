@@ -8,12 +8,10 @@ using Foundation;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Identity.Client;
-using MoneyFox.Application;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Application.CloudBackup;
-using MoneyFox.Application.Constants;
-using MoneyFox.Application.Facades;
-using MoneyFox.Application.FileStore;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Constants;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
@@ -48,7 +46,7 @@ namespace MoneyFox.iOS
         {
             InitLogger();
             ConfigurationManager.Initialise(PortableStream.Current);
-            ExecutingPlatform.Current = AppPlatform.iOS;
+            MoneyFox.Application.Common.ExecutingPlatform.Current = MoneyFox.Application.Common.AppPlatform.iOS;
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));

@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Application.QueryObjects
+namespace MoneyFox.Application.Common.QueryObjects
 {
     /// <summary>
     ///     Query Objects for account queries.

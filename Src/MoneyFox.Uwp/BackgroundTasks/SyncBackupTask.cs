@@ -1,11 +1,11 @@
 ﻿using System;
 using Windows.ApplicationModel.Background;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Application.CloudBackup;
-using MoneyFox.Application.Facades;
 using NLog;
 using Logger = NLog.Logger;
 using CommonServiceLocator;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 
 namespace MoneyFox.Uwp.BackgroundTasks
 {

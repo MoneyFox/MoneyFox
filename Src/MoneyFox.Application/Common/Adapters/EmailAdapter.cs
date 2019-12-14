@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.AppCenter.Crashes;
 using Xamarin.Essentials;
 
-namespace MoneyFox.Application.Adapters
+namespace MoneyFox.Application.Common.Adapters
 {
     public interface IEmailAdapter
     {

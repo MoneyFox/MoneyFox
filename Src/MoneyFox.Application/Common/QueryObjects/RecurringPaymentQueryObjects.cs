@@ -2,7 +2,7 @@
 using System.Linq;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Application.QueryObjects
+namespace MoneyFox.Application.Common.QueryObjects
 {
     public static class RecurringPaymentQueryObjects
     {

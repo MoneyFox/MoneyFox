@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.FileStore;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using MoneyFox.Application.FileStore;
 using NLog;
 
 namespace MoneyFox.Uwp.Src

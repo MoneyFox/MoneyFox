@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace MoneyFox.Application.Extensions
+namespace MoneyFox.Application.Common.Extensions
 {
     public static class StreamExtension
     {

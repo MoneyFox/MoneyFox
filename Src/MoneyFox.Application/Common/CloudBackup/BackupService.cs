@@ -6,18 +6,18 @@ using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Graph;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Application.Constants;
-using MoneyFox.Application.Extensions;
-using MoneyFox.Application.Facades;
-using MoneyFox.Application.FileStore;
-using MoneyFox.Application.Messages;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Constants;
 #pragma warning disable S1128 // Unused "using" should be removed
 using MoneyFox.Domain.Exceptions;
 using NLog;
+using MoneyFox.Application.Common.Extensions;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.FileStore;
+using MoneyFox.Application.Common.Messages;
 #pragma warning restore S1128 // Unused "using" should be removed
 
-namespace MoneyFox.Application.CloudBackup
+namespace MoneyFox.Application.Common.CloudBackup
 {
     public interface IBackupService
     {

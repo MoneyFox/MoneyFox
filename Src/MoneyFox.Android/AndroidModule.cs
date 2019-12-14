@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using MoneyFox.Application.FileStore;
+using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Infrastructure;
 using MoneyFox.Presentation;
 

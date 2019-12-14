@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Adapters;
+using System;
 using System.Globalization;
-using MoneyFox.Application.Adapters;
 
-namespace MoneyFox.Application.Facades
+namespace MoneyFox.Application.Common.Facades
 {
     /// <summary>
     ///     Provides access to the app settings.
@@ -64,7 +64,7 @@ namespace MoneyFox.Application.Facades
         private const int BACKUP_SYNC_RECURRENCE_KEY_DEFAULT = 3;
 
         private const string THEME_KEYNAME = "Theme";
-        private const int THEME_KEYDEFAULT = (int) AppTheme.Light;
+        private const int THEME_KEYDEFAULT = (int)AppTheme.Light;
 
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT = "";

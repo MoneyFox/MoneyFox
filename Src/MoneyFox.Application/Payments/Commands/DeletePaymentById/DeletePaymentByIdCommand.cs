@@ -4,8 +4,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.CloudBackup;
-using MoneyFox.Application.Interfaces;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Payments.Commands.DeletePaymentById

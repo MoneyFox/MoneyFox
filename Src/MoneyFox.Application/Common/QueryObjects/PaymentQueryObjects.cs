@@ -3,7 +3,7 @@ using System.Linq;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Application.QueryObjects
+namespace MoneyFox.Application.Common.QueryObjects
 {
     /// <summary>
     ///     Provides Extensions for payments queries.

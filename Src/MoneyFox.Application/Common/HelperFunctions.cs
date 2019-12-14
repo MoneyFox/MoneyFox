@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.Application
+namespace MoneyFox.Application.Common
 {
     /// <summary>
     ///     Utility methods

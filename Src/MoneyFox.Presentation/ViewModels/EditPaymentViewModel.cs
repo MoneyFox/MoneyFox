@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
-using MoneyFox.Application.CloudBackup;
-using MoneyFox.Application.Facades;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;

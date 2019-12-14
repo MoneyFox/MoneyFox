@@ -4,7 +4,7 @@ using System.IO;
 using NLog;
 using SQLitePCL;
 
-namespace MoneyFox.Application
+namespace MoneyFox.Application.Common
 {
     public static class DatabasePathHelper
     {

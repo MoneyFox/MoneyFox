@@ -6,12 +6,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.Interfaces;
-using MoneyFox.Application.QueryObjects;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics.Models;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Application.Common.QueryObjects;
 
 namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
 {

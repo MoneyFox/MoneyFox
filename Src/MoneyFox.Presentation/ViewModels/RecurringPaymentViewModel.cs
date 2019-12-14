@@ -1,5 +1,4 @@
 ﻿using System;
-using MoneyFox.Application.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 

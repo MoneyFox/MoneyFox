@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Application.Constants
+﻿namespace MoneyFox.Application.Common.Constants
 {
     /// <summary>
     ///     String Constants for usage in the app

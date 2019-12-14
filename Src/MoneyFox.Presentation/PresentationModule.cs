@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
-using MoneyFox.Application.Constants;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.BusinessLogic;
 using MoneyFox.Persistence;

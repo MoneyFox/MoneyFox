@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Application.Messages
+﻿namespace MoneyFox.Application.Common.Messages
 {
     /// <summary>
     ///     Message to remove the passed message.

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AppCenter.Crashes;
 using Xamarin.Essentials;
 
-namespace MoneyFox.Application.Adapters
+namespace MoneyFox.Application.Common.Adapters
 {
     /// <summary>
     ///     Provides access to the connectivity state.

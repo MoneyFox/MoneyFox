@@ -1,4 +1,4 @@
-namespace MoneyFox.Application.Messages
+namespace MoneyFox.Application.Common.Messages
 {
     /// <summary>
     ///     Used to notify other view models about a selected category.

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace MoneyFox.Application.Interfaces.Mapping
+namespace MoneyFox.Application.Common.Interfaces.Mapping
 {
     public interface IHaveCustomMapping
     {

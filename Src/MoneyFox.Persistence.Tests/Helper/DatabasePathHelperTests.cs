@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Application;
+﻿using MoneyFox.Application.Common;
+using System.Diagnostics.CodeAnalysis;
 using Should;
 using Xunit;
 

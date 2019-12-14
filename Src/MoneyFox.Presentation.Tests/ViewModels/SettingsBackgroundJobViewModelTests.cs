@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Facades;
+﻿using MoneyFox.Application.Common.Facades;
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Presentation.ViewModels;
 using Moq;

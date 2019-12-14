@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Application
+﻿namespace MoneyFox.Application.Common
 {
     public enum AppTheme
     {

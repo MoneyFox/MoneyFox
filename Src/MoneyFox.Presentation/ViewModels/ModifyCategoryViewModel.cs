@@ -4,8 +4,8 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.CloudBackup;
-using MoneyFox.Application.Facades;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
 
