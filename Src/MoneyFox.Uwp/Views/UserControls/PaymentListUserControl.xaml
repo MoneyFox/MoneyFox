@@ -218,7 +218,7 @@
         </SemanticZoom>
 
         <TextBlock Grid.Row="1"
-                   Text="{Binding Resources[NoPaymentsMessage]}"
+                   Text="{x:Bind resources:Strings.NoPaymentsMessage}"
                    Margin="6"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"

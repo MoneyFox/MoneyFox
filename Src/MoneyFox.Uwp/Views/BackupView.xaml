@@ -54,46 +54,51 @@
                     Visibility="{Binding IsLoggedIn,
                                          Converter={StaticResource BooleanVisibilityConverter}}" />
 
-            <TextBlock Margin="{StaticResource MediumTopMargin}"
+            <StackPanel Visibility="{Binding IsLoggedIn,
+                                         Converter={StaticResource BooleanVisibilityConverter}}">
+
+                <TextBlock Margin="{StaticResource MediumTopMargin}"
                        Text="{x:Bind resources:Strings.BackupInformationLabel}"
                        TextWrapping="WrapWholeWords" />
 
-            <Button HorizontalAlignment="Stretch"
+                <Button HorizontalAlignment="Stretch"
                     Command="{Binding BackupCommand}"
                     Content="{x:Bind resources:Strings.CreateBackupLabel}" />
 
-            <TextBlock Margin="{StaticResource MediumTopMargin}"
+                <TextBlock Margin="{StaticResource MediumTopMargin}"
                        Text="{x:Bind resources:Strings.RestoreBackupInformationLabel}"
                        TextWrapping="WrapWholeWords" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="41*" />
-                    <ColumnDefinition Width="4*" />
-                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="41*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
 
-                <Button Grid.ColumnSpan="2"
+                    <Button Grid.ColumnSpan="2"
                         HorizontalAlignment="Stretch"
                         Command="{Binding RestoreCommand}"
                         Content="{x:Bind resources:Strings.RestoreBackupLabel}"
                         IsEnabled="{Binding BackupAvailable}" />
 
-                <ProgressRing Grid.Column="1"
+                    <ProgressRing Grid.Column="1"
                               Margin="0,3,0,3"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch"
                               Background="Transparent"
                               IsActive="{Binding IsLoadingBackupAvailability}" />
-            </Grid>
+                </Grid>
 
-            <StackPanel Margin="0,15,0,7"
+                <StackPanel Margin="0,15,0,7"
                         Orientation="Horizontal"
                         Visibility="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                    <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                            Text="{x:Bind resources:Strings.LastBackupDateLabel}" />
-                <TextBlock Margin="5,0,0,0"
+                    <TextBlock Margin="5,0,0,0"
                            Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                            Text="{Binding BackupLastModified}"
                            TextWrapping="WrapWholeWords" />
+                </StackPanel>
+
             </StackPanel>
         </StackPanel>
 
