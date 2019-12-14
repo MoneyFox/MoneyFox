@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Diagnostics;
 using Windows.ApplicationModel.Background;
 using Microsoft.Identity.Client;
-using MoneyFox.Application;
 using MoneyFox.Application.Adapters;
 using MoneyFox.Application.CloudBackup;
 using MoneyFox.Application.Constants;
 using MoneyFox.Application.Facades;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Business;
+using NLog;
+using Logger = NLog.Logger;
 
-namespace MoneyFox.Uwp.Tasks
+namespace MoneyFox.Uwp.BackgroundTasks
 {
-    /// <inheritdoc />
-    /// <summary>
-    ///     Background task to sync the backup with OneDrive.
-    /// </summary>
-    public sealed class SyncBackupTask : IBackgroundTask
+    public class SyncBackupTask
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         public async void Run(IBackgroundTaskInstance taskInstance)
         {
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
-            Debug.WriteLine("Sync Backup started.");
-            ExecutingPlatform.Current = AppPlatform.UWP;
+            logManager.Debug("Sync Backup started.");
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
@@ -49,13 +46,12 @@ namespace MoneyFox.Uwp.Tasks
             }
             catch (Exception ex)
             {
-                Debug.WriteLine(ex);
-                Debug.WriteLine("Sync Backup failed.");
+                logManager.Error(ex, "Sync Backup failed.");
             }
             finally
             {
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-                Debug.WriteLine("Sync Backup finished.");
+                logManager.Debug("Sync Backup finished.");
                 deferral.Complete();
             }
         }

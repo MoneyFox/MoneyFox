@@ -143,6 +143,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BackgroundTasks\ClearPaymentsTask.cs" />
+    <Compile Include="BackgroundTasks\RecurringPaymentTask.cs" />
+    <Compile Include="BackgroundTasks\SyncBackupTask.cs" />
     <Compile Include="Converter\AmountFormatDecimalConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ClickConverter.cs" />
@@ -568,6 +571,10 @@
       <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
       <Name>MoneyFox.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj">
+      <Project>{58FB652B-1B0E-420F-A380-B1B7699077B2}</Project>
+      <Name>MoneyFox.BusinessDbAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj">
       <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
       <Name>MoneyFox.BusinessLogic</Name>
@@ -580,6 +587,10 @@
       <Project>{E9810ECA-4DA3-4E3A-BD8D-5E6117B1BD70}</Project>
       <Name>MoneyFox.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
+      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
+      <Name>MoneyFox.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
       <Name>MoneyFox.Presentation</Name>
@@ -587,10 +598,6 @@
     <ProjectReference Include="..\MoneyFox.Uwp.Business\MoneyFox.Uwp.Business.csproj">
       <Project>{0dd3cc25-2ba5-4d77-b47a-6e3925c0792f}</Project>
       <Name>MoneyFox.Uwp.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Uwp.Tasks\MoneyFox.Uwp.Tasks.csproj">
-      <Project>{B742F72D-3ECA-4E9D-959F-1D26FCAD99C1}</Project>
-      <Name>MoneyFox.Uwp.Tasks</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

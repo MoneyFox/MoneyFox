@@ -6,10 +6,12 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.BackgroundTasks;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
 using NLog;
 using UnhandledExceptionEventArgs = Windows.UI.Xaml.UnhandledExceptionEventArgs;
+using Windows.ApplicationModel.Background;
 
 namespace MoneyFox.Uwp
 {
@@ -54,6 +56,12 @@ namespace MoneyFox.Uwp
         protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
+
+            IBackgroundTaskInstance taskInstance = args.TaskInstance;
+
+            new SyncBackupTask().Run(taskInstance);
+            new ClearPaymentsTask().Run(taskInstance);
+            new RecurringPaymentTask().Run(taskInstance);
         }
 
         private void OverrideTitleBarColor()

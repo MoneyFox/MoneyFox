@@ -1,6 +1,4 @@
 ﻿using Windows.ApplicationModel.Background;
-using Microsoft.Toolkit.Uwp.Helpers;
-using MoneyFox.Uwp.Tasks;
 
 namespace MoneyFox.Uwp.Services
 {
@@ -10,9 +8,11 @@ namespace MoneyFox.Uwp.Services
 
         public static void RegisterBackgroundTasks()
         {
-            BackgroundTaskHelper.Register(typeof(ClearPaymentsTask), new TimeTrigger(TASK_RECURRENCE_COUNT, false));
-            BackgroundTaskHelper.Register(typeof(RecurringPaymentTask), new TimeTrigger(TASK_RECURRENCE_COUNT, false));
-            BackgroundTaskHelper.Register(typeof(SyncBackupTask), new TimeTrigger(TASK_RECURRENCE_COUNT, false));
+            var builder = new BackgroundTaskBuilder();
+            builder.Name = "BackgroundTasks";
+            builder.SetTrigger(new TimeTrigger(TASK_RECURRENCE_COUNT, true));
+
+            builder.Register();
         }
     }
 }
