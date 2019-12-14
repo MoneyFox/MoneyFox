@@ -168,12 +168,7 @@ namespace MoneyFox.iOS
                                                .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
                                                .Build();
 
-                var backupService = new BackupService(new OneDriveService(pca),
-                    ServiceLocator.Current.GetInstance<IFileStore>(),
-                    settingsFacade,
-                    new ConnectivityAdapter(),
-                    ViewModelLocator.MessengerInstance);
-
+                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 DateTime backupDate = await backupService.GetBackupDateAsync();
 
                 if (settingsFacade.LastDatabaseUpdate > backupDate) return;
