@@ -201,7 +201,7 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 await backupService.LogoutAsync();
             }
-            catch (BackupOperationCanceledException ex)
+            catch (BackupOperationCanceledException)
             {
                 await dialogService.ShowMessage(Strings.CanceledTitle, Strings.LogoutCanceledMessage);
             }

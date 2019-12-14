@@ -1,7 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;

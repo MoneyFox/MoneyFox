@@ -81,7 +81,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             // Act
-            Unit result = await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);

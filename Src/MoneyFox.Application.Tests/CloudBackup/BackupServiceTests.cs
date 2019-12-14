@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Messaging;
-using MoneyFox.Application.Common.Adapters;
+﻿using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;

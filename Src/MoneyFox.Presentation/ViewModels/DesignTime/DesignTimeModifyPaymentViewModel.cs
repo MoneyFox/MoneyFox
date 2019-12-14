@@ -14,7 +14,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
     {
         public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
 
-        public bool IsTransfer { get; } = false;
+        public bool IsTransfer { get; }
         public DateTime EndDate { get; } = DateTime.Now;
         public PaymentRecurrence Recurrence { get; } = PaymentRecurrence.Monthly;
 

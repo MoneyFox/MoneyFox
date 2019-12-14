@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Application.Common.Facades;
 using System;
-using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -25,8 +24,6 @@ namespace MoneyFox.Presentation.ViewModels
     /// />
     public class SettingsBackgroundJobViewModel : BaseViewModel, ISettingsBackgroundJobViewModel
     {
-        private const int BACKUP_RECURRENCE_COUNT = 60;
-
         private readonly ISettingsFacade settingsFacade;
 
         /// <summary>
