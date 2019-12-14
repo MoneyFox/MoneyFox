@@ -172,12 +172,14 @@
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\RateDisplayService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
+    <Compile Include="Src\AsyncExtensions.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
     <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
+    <Compile Include="Src\WindowsFileStore.cs" />
     <Compile Include="Views\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
@@ -594,10 +596,6 @@
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
       <Name>MoneyFox.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Uwp.Business\MoneyFox.Uwp.Business.csproj">
-      <Project>{0dd3cc25-2ba5-4d77-b47a-6e3925c0792f}</Project>
-      <Name>MoneyFox.Uwp.Business</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

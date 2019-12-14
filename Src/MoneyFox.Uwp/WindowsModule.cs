@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using MoneyFox.Infrastructure;
 using MoneyFox.Presentation;
-using MoneyFox.Uwp.Business;
+using MoneyFox.Uwp.Src;
 
 namespace MoneyFox.Uwp
 {

@@ -4,7 +4,7 @@ using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Uwp.Src
 {
     public static class ThemedImageConverterLogic
     {

@@ -6,7 +6,7 @@ using Windows.Storage.Streams;
 using MoneyFox.Application.FileStore;
 using NLog;
 
-namespace MoneyFox.Uwp.Business
+namespace MoneyFox.Uwp.Src
 {
     public class WindowsFileStore : FileStoreBase
     {
