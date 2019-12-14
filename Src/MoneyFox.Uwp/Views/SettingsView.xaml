@@ -8,6 +8,7 @@
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+      xmlns:resources="using:MoneyFox.Application.Resources"
       xmlns:helpers="using:MoneyFox.Uwp.Helpers"
       mc:Ignorable="d"
       DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
@@ -34,7 +35,7 @@
             <!--  Settings  -->
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="{Binding Resources[SettingsTitle]}"
+                    <TextBlock Text="{x:Bind resources:Strings.SettingsTitle}"
                                Style="{StaticResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0" />
                 </PivotItem.Header>
@@ -43,48 +44,41 @@
                         <!-- Background Job -->
                         <StackPanel DataContext="{Binding BackgroundJobViewModel}">
                             <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                       Text="{Binding Resources[BackupTitle]}"
+                                       Text="{x:Bind resources:Strings.BackupTitle}"
                                        TextWrapping="WrapWholeWords" />
 
                             <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                       Text="{Binding Resources[AutobackupInformationLabel]}"
+                                       Text="{x:Bind resources:Strings.AutobackupInformationLabel}"
                                        TextWrapping="WrapWholeWords" />
 
                             <ToggleSwitch VerticalAlignment="Center"
                                           Margin="0,6,0,0"
-                                          Header="{Binding Resources[AutobackupLabel]}"
+                                          Header="{x:Bind resources:Strings.AutobackupLabel}"
                                           IsOn="{Binding IsAutoBackupEnabled,
                                          Mode=TwoWay}" />
 
-                            <TextBlock Margin="0,10,0,3"
-                                       Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                       Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
-                                       TextWrapping="WrapWholeWords" />
-
-                            <input:RadNumericBox
-                                Value="{Binding BackupSyncRecurrence, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-
                             <StackPanel Margin="0,12,0,0">
                                 <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                           Text="{Binding Resources[LastExecutionBackgroundOperationsLabel]}" />
+                                           Text="{x:Bind resources:Strings.LastExecutionBackgroundOperationsLabel}" />
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{Binding Resources[LastExecutionSyncBackupLabel]}" />
+                                               Text="{x:Bind resources:Strings.LastExecutionSyncBackupLabel}" />
+
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding LastExecutionSynBackup}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{Binding Resources[LastExecutionClearPaymentLabel]}" />
+                                               Text="{x:Bind resources:Strings.LastExecutionClearPaymentLabel}" />
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding LastExecutionClearPayments}" />
                                 </StackPanel>
 
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{Binding Resources[LastExecutionRecurringPaymentLabel]}" />
+                                               Text="{x:Bind resources:Strings.LastExecutionRecurringPaymentLabel}" />
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{Binding LastExecutionCreateRecurringPayments}" />
                                 </StackPanel>
@@ -95,12 +89,12 @@
                         <!-- Personalizations -->
                         <StackPanel DataContext="{Binding PersonalizationViewModel}" Margin="0,24,0,0">
                             <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                       Text="{Binding Resources[PersonalizationTitle]}"
+                                       Text="{x:Bind resources:Strings.PersonalizationTitle}"
                                        TextWrapping="WrapWholeWords" />
 
                             <StackPanel>
                                 <RadioButton
-                                    Content="{Binding Resources[LightLabel]}"
+                                    Content="{x:Bind resources:Strings.LightLabel}"
                                     GroupName="AppTheme"
                                     IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
                                     Command="{Binding SwitchThemeCommand}"
@@ -108,7 +102,7 @@
                                     <RadioButton.CommandParameter>Light</RadioButton.CommandParameter>
                                 </RadioButton>
                                 <RadioButton
-                                    Content="{Binding Resources[DarkLabel]}"
+                                    Content="{x:Bind resources:Strings.DarkLabel}"
                                     GroupName="AppTheme"
                                     IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
                                     Command="{Binding SwitchThemeCommand}"
@@ -116,7 +110,7 @@
                                     <RadioButton.CommandParameter>Dark</RadioButton.CommandParameter>
                                 </RadioButton>
                                 <RadioButton
-                                    Content="{Binding Resources[WindowsDefaultLabel]}"
+                                    Content="{x:Bind resources:Strings.WindowsDefaultLabel}"
                                     GroupName="AppTheme"
                                     IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
                                     Command="{Binding SwitchThemeCommand}"
@@ -132,7 +126,7 @@
             <!--  About  -->
             <PivotItem>
                 <PivotItem.Header>
-                    <TextBlock Text="{Binding Resources[AboutTitle]}"
+                    <TextBlock Text="{x:Bind resources:Strings.AboutTitle}"
                                Style="{ThemeResource UwpPageTitleStyle}"
                                Margin="0,0,-10,0" />
                 </PivotItem.Header>

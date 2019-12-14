@@ -76,18 +76,6 @@ namespace MoneyFox.Presentation.Tests.Facades
         }
 
         [Fact]
-        public void Ctor_DefaultValues_BackupSyncRecurrenceThreeHours()
-        {
-            // Arrange
-
-            // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
-
-            // Assert
-            settingsfacade.BackupSyncRecurrence.ShouldEqual(3);
-        }
-
-        [Fact]
         public void Ctor_DefaultValues_LastExecutionTimeStampSyncBackupMinDate()
         {
             // Arrange

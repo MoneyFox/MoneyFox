@@ -37,27 +37,6 @@
                             IsToggled="{Binding IsAutoBackupEnabled}" />
                 </Grid>
 
-                <Label Text="{Binding Resources[BackupSyncRecurrenceInfoLabel]}"
-                       Style="{StaticResource DeemphasizedLabelStyle}"
-                       Margin="0,6,0,0" />
-
-                <Grid HorizontalOptions="FillAndExpand"
-                      Margin="0,5,0,0">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="30*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Label Grid.Column="0"
-                           VerticalTextAlignment="Center"
-                           Style="{StaticResource DefaultTextStyle}"
-                           Text="{Binding BackupSyncRecurrence}" />
-
-                    <Stepper Grid.Column="1"
-                             Value="{Binding BackupSyncRecurrence}" />
-                </Grid>
-
             </StackLayout>
 
             <StackLayout Spacing="0"

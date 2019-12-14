@@ -385,24 +385,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the interval to check for changed data..
-        /// </summary>
-        public static string BackupSyncRecurrenceInfoLabel {
-            get {
-                return ResourceManager.GetString("BackupSyncRecurrenceInfoLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Backup Recurrence.
-        /// </summary>
-        public static string BackupSyncRecurrenceLabel {
-            get {
-                return ResourceManager.GetString("BackupSyncRecurrenceLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Backup.
         /// </summary>
         public static string BackupTitle {

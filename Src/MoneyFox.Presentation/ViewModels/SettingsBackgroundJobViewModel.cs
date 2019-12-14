@@ -10,11 +10,6 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         bool IsAutoBackupEnabled { get; }
 
-        /// <summary>
-        ///     Amount of hours to sync the backup.
-        /// </summary>
-        int BackupSyncRecurrence { get; }
-
         DateTime LastExecutionSynBackup { get; }
         DateTime LastExecutionClearPayments { get; }
         DateTime LastExecutionCreateRecurringPayments { get; }
@@ -42,18 +37,6 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 if (settingsFacade.IsBackupAutouploadEnabled == value) return;
                 settingsFacade.IsBackupAutouploadEnabled = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <inheritdoc />
-        public int BackupSyncRecurrence
-        {
-            get => settingsFacade.BackupSyncRecurrence;
-            set
-            {
-                if (settingsFacade.BackupSyncRecurrence == value) return;
-                settingsFacade.BackupSyncRecurrence = value < 1 ? 1 : value;
                 RaisePropertyChanged();
             }
         }
