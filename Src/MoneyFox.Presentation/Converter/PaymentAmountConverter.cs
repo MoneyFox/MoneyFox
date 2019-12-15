@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using MoneyFox.Domain;
+using MoneyFox.Application.Common.ConverterLogic;
 using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms;
 
@@ -11,8 +11,6 @@ namespace MoneyFox.Presentation.Converter
     /// </summary>
     public class PaymentAmountConverter : IValueConverter
     {
-        private const string IGNORE_TRANSFER = "IgnoreTransfer";
-
         /// <summary>
         ///     Adds a plus or a minus to the payment amont on the UI based on if it is a income or a expense
         /// </summary>
@@ -22,35 +20,12 @@ namespace MoneyFox.Presentation.Converter
         /// <param name="culture">Not used..</param>
         /// <returns>The convert.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            if (value == null) return string.Empty;
-
-            var payment = (PaymentViewModel) value;
-            var param = parameter as string;
-            string sign;
-
-            if (payment.Type == PaymentType.Transfer)
-            {
-                string condition;
-                condition = payment.ChargedAccountId == payment.CurrentAccountId ? "-" : "+";
-                sign = param == IGNORE_TRANSFER ? "-" : condition;
-            }
-            else
-            {
-                sign = payment.Type == (int) PaymentType.Expense
-                       ? "-"
-                       : "+";
-            }
-
-            return sign + " " + $"{payment.Amount:C2}";
-        }
+            => PaymentAmountConverterLogic.GetFormattedAmountString(value as PaymentViewModel, parameter as string);
 
         /// <summary>
         ///     Not Implemented.
         /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+            => throw new NotSupportedException();
     }
 }
