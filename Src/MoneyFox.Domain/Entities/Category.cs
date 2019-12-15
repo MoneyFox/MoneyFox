@@ -15,6 +15,8 @@ namespace MoneyFox.Domain.Entities
         public Category(string name, string note = "")
         {
             CreationTime = DateTime.Now;
+            Payments = new List<Payment>();
+
             UpdateData(name, note);
         }
 
@@ -25,7 +27,7 @@ namespace MoneyFox.Domain.Entities
         [Required]
         public string Name { get; private set; }
 
-        public string Note { get; private set; }
+        public string? Note { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
 

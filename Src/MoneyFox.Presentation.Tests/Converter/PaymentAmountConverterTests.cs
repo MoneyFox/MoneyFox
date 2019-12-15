@@ -14,8 +14,8 @@ namespace MoneyFox.Presentation.Tests.Converter
     [Collection("MvxIocCollection")]
     public class PaymentAmountConverterTests
     {
-        private Mock<IMediator> mediatorMock;
-        private Mock<INavigationService> navigationService;
+        readonly Mock<IMediator> mediatorMock;
+        readonly Mock<INavigationService> navigationService;
 
         public PaymentAmountConverterTests()
         {

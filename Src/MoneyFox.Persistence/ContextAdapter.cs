@@ -4,24 +4,12 @@ namespace MoneyFox.Persistence
 {
     public class ContextAdapter : IContextAdapter
     {
-        private IEfCoreContext context;
-
-        public IEfCoreContext Context
-        {
-            get
-            {
-                if(context == null)
-                {
-                    context = EfCoreContextFactory.Create();
-                }
-                return context;
-            }
-        }
+        public IEfCoreContext Context { get; private set; } = EfCoreContextFactory.Create();
 
         public void RecreateContext()
         {
-            context.Dispose();
-            context = null;
+            Context.Dispose();
+            Context = EfCoreContextFactory.Create();
         }
     }
 }
