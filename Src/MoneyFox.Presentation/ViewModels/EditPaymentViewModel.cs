@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
@@ -80,11 +81,16 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeletePaymentAsync()
         {
-            await paymentService.DeletePayment(SelectedPayment);
-            navigationService.GoBack();
-#pragma warning disable 4014
-            backupService.UploadBackupAsync();
-#pragma warning restore 4014
+            if (!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage, Strings.YesLabel, Strings.NoLabel)) return;
+
+            var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
+
+            if (SelectedPayment.IsRecurring)
+            {
+                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage);
+            }
+
+            await mediator.Send(command);
         }
     }
 }

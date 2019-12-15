@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
@@ -7,7 +6,6 @@ using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
-using NLog;
 
 namespace MoneyFox.Presentation.Services
 {
@@ -22,13 +20,6 @@ namespace MoneyFox.Presentation.Services
         /// <param name="newPaymentViewModel">View model which contains the view data.</param>
         /// <returns>Result</returns>
         Task UpdatePayment(PaymentViewModel newPaymentViewModel);
-
-        /// <summary>
-        ///     Deletes a existing payment
-        /// </summary>
-        /// <param name="paymentViewModel">View model which contains the view data.</param>
-        /// <returns>Result</returns>
-        Task DeletePayment(PaymentViewModel paymentViewModel);
     }
 
     /// <inheritdoc />
@@ -50,19 +41,6 @@ namespace MoneyFox.Presentation.Services
         {
             await UpdatePaymentFromViewModel(newPaymentViewModel);
 
-            await context.SaveChangesAsync();
-        }
-
-        /// <inheritdoc />
-        public async Task DeletePayment(PaymentViewModel paymentViewModel)
-        {
-            if (!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage)) return;
-
-            if (paymentViewModel.IsRecurring
-                && await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage))
-                await modifyPaymentAction.DeleteRecurringPayment(paymentViewModel.RecurringPayment.Id);
-
-            await modifyPaymentAction.DeletePayment(paymentViewModel.Id);
             await context.SaveChangesAsync();
         }
 
