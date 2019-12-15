@@ -5,7 +5,7 @@ using MoneyFox.Application.Common.ConverterLogic;
 
 namespace MoneyFox.Uwp.Converter
 {
-    public class NativePaymentAmountConverter : IValueConverter
+    public class PaymentAmountConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, string language)

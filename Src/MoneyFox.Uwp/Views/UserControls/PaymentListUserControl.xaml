@@ -18,7 +18,7 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <converter:NativePaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
