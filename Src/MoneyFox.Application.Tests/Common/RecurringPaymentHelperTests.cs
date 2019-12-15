@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using Should;
 using Xunit;
 using MoneyFox.Application.Common.Extensions;
+using MoneyFox.Application.Common;
 
 namespace MoneyFox.BusinessLogic.Tests.PaymentActions
 {
