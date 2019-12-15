@@ -49,7 +49,7 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                              x))
                                     .ToList();
 
-                contextAdapter.Context.Payments.AddRange();
+                contextAdapter.Context.Payments.AddRange(recPaymentsToCreate);
                 await contextAdapter.Context.SaveChangesAsync();
 
                 return Unit.Value;
