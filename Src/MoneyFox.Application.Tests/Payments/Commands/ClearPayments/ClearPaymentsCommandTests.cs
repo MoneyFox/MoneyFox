@@ -8,12 +8,14 @@ using Moq;
 using Should;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
 {
+    [ExcludeFromCodeCoverage]
     public class ClearPaymentsCommandTests : IDisposable
     {
         private readonly EfCoreContext context;
@@ -21,7 +23,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
 
         public ClearPaymentsCommandTests()
         {
-            context = SQLiteEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
 
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);

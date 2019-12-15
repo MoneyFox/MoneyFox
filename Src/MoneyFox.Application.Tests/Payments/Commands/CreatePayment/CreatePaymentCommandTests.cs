@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
+﻿using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -8,6 +6,8 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
 using Should;
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
@@ -19,7 +19,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
         public CreatePaymentCommandTests()
         {
-            context = SQLiteEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
 
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
