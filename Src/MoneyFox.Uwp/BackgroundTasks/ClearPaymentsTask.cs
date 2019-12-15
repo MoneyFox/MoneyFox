@@ -1,12 +1,11 @@
-﻿using MoneyFox.Application.Common;
+﻿using CommonServiceLocator;
+using MediatR;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Payments.Commands.ClearPayments;
+using NLog;
 using System;
 using Windows.ApplicationModel.Background;
-using MoneyFox.BusinessDbAccess.PaymentActions;
-using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.Persistence;
-using NLog;
 
 namespace MoneyFox.Uwp.BackgroundTasks
 {
@@ -21,16 +20,13 @@ namespace MoneyFox.Uwp.BackgroundTasks
         {
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
             logManager.Debug("ClearPayment started");
-            ExecutingPlatform.Current = AppPlatform.UWP;
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try
             {
-                EfCoreContext context = EfCoreContextFactory.Create();
-                await new ClearPaymentAction(new ClearPaymentDbAccess(context))
-                    .ClearPaymentsAsync();
-                await context.SaveChangesAsync();
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                await mediator.Send(new ClearPaymentsCommand());
             }
             catch (Exception ex)
             {
