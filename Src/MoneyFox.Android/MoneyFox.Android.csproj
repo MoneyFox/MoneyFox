@@ -229,10 +229,6 @@
       <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
       <Name>MoneyFox.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.BusinessDbAccess\MoneyFox.BusinessDbAccess.csproj">
-      <Project>{58FB652B-1B0E-420F-A380-B1B7699077B2}</Project>
-      <Name>MoneyFox.BusinessDbAccess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
       <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
       <Name>MoneyFox.Domain</Name>
