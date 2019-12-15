@@ -60,7 +60,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
                                                  payment1.TargetAccount != null
                                                      ? payment1.TargetAccount.Id
                                                      : 0,
-                                                 true),
+                                                 false),
                         default);
 
             // Assert
