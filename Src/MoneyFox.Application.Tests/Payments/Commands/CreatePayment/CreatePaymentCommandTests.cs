@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Tests.Infrastructure;

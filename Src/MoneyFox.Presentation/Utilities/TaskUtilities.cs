@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using NLog;
 
@@ -8,11 +9,10 @@ namespace MoneyFox.Presentation.Utilities
     {
         private static readonly Logger Logger = LogManager.GetLogger("TaskLogger");
 
-#pragma warning disable RECS0165 // Asynchronous methods should return a Task instead of void
-#pragma warning disable S3168 // "async" methods should not return "void"
+        [SuppressMessage("Minor Code Smell", "S4261:Methods should be named according to their synchronicities", Justification = "Wanted")]
+        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Wanted")]
+        [SuppressMessage("Minor Code Smell", "S2221:\"Exception\" should not be caught when not required by called methods", Justification = "Catch all exception")]
         public static async void FireAndForgetSafeAsync(this Task task)
-#pragma warning restore S3168 // "async" methods should not return "void"
-#pragma warning restore RECS0165 // Asynchronous methods should return a Task instead of void
         {
             try
             {

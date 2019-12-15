@@ -82,9 +82,8 @@ namespace MoneyFox.BusinessLogic.PaymentActions
             {
                 DateTime date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
 
-                //todo: why double?
-                double value = recurringPayment.StartDate.Day; //the Day value i.e. 31
-                double max = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
+                int value = recurringPayment.StartDate.Day; //the Day value i.e. 31
+                int max = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
                 double difference = -(value - max);
 
                 if (difference < 0) date = date.AddDays(difference);

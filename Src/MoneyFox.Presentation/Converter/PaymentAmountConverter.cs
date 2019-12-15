@@ -31,20 +31,15 @@ namespace MoneyFox.Presentation.Converter
 
             if (payment.Type == PaymentType.Transfer)
             {
-                if (param == IGNORE_TRANSFER)
-                    sign = "-";
-                else
-                {
-                    sign = payment.ChargedAccountId == payment.CurrentAccountId
-                        ? "-"
-                        : "+";
-                }
+                string condition;
+                condition = payment.ChargedAccountId == payment.CurrentAccountId ? "-" : "+";
+                sign = param == IGNORE_TRANSFER ? "-" : condition;
             }
             else
             {
                 sign = payment.Type == (int) PaymentType.Expense
-                    ? "-"
-                    : "+";
+                       ? "-"
+                       : "+";
             }
 
             return sign + " " + $"{payment.Amount:C2}";
@@ -55,7 +50,7 @@ namespace MoneyFox.Presentation.Converter
         /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }
