@@ -1,20 +1,21 @@
-using System;
-using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
+using CommonServiceLocator;
 using Java.Lang;
+using MediatR;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.BusinessDbAccess.PaymentActions;
-using MoneyFox.BusinessLogic.PaymentActions;
+using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Persistence;
 using NLog;
+using System;
+using System.Threading.Tasks;
+using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Exception = System.Exception;
-using JobSchedulerType = Android.App.Job.JobScheduler;
 
 #pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
 namespace MoneyFox.Droid.Jobs
@@ -69,15 +70,15 @@ namespace MoneyFox.Droid.Jobs
                 ExecutingPlatform.Current = AppPlatform.Android;
 
                 EfCoreContext context = EfCoreContextFactory.Create();
-                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPaymentsAsync();
-                await context.SaveChangesAsync();
+
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                await mediator.Send(new ClearPaymentsCommand());
 
                 JobFinished(args, false);
             }
             catch (Exception ex)
             {
                 LogManager.GetCurrentClassLogger().Fatal(ex);
-
                 throw;
             }
             finally

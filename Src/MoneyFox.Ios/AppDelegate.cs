@@ -1,12 +1,14 @@
 ﻿using Autofac;
 using CommonServiceLocator;
 using Foundation;
+using MediatR;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
@@ -26,6 +28,7 @@ using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using XF.Material.iOS;
+using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
 
 #if !DEBUG
@@ -40,6 +43,8 @@ namespace MoneyFox.iOS
         // Minimum number of seconds between a background refresh
         // 15 minutes = 60 * 60 = 3600 seconds
         private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 3600;
+
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         /// <inheritdoc/>
         public override bool FinishedLaunching(UIApplication uiApplication,
@@ -62,8 +67,7 @@ namespace MoneyFox.iOS
 
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             uiApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
-            UIApplication.SharedApplication
-                         .SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
+            UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
 
             RunAppStartAsync().FireAndForgetSafeAsync();
 
@@ -77,7 +81,7 @@ namespace MoneyFox.iOS
             ViewModelLocator.RegisterServices(builder);
         }
 
-        protected static async Task RunAppStartAsync()
+        protected async Task RunAppStartAsync()
         {
             await SyncBackupAsync();
             await ClearPaymentsAsync();
@@ -117,14 +121,13 @@ namespace MoneyFox.iOS
         public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
         {
             AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
-
             return true;
         }
 
         public override async void PerformFetch(UIApplication application,
                                                 Action<UIBackgroundFetchResult> completionHandler)
         {
-            Debug.Write("Enter Background Task");
+            logManager.Debug("Background fetch started.");
             var successful = false;
             try
             {
@@ -135,7 +138,7 @@ namespace MoneyFox.iOS
                 await CreateRecurringPaymentsAsync();
 
                 successful = true;
-                Analytics.TrackEvent("Background fetch finished successfully.");
+                logManager.Debug("Background fetch finished successfully");
             }
             catch(Exception ex)
             {
@@ -145,7 +148,8 @@ namespace MoneyFox.iOS
             }
 
             completionHandler(successful
-                              ? UIBackgroundFetchResult.NewData : UIBackgroundFetchResult.Failed);
+                              ? UIBackgroundFetchResult.NewData
+                              : UIBackgroundFetchResult.Failed);
         }
 
         public override async void WillEnterForeground(UIApplication uiApplication)
@@ -157,12 +161,11 @@ namespace MoneyFox.iOS
             await CreateRecurringPaymentsAsync();
         }
 
-        private static async Task SyncBackupAsync()
+        private async Task SyncBackupAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
-            if(!settingsFacade.IsBackupAutouploadEnabled
-               || !settingsFacade.IsLoggedInToBackupService)
+            if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
                 return;
 
             try
@@ -172,6 +175,7 @@ namespace MoneyFox.iOS
             }
             catch(Exception ex)
             {
+                logManager.Error("Sync Backup Failed.", ex);
                 Debug.Write(ex);
             }
             finally
@@ -180,22 +184,21 @@ namespace MoneyFox.iOS
             }
         }
 
-        private static async Task ClearPaymentsAsync()
+        private async Task ClearPaymentsAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             try
             {
-                Debug.WriteLine("ClearPayments Job started");
+                logManager.Debug("ClearPayment started.");
 
-                EfCoreContext context = EfCoreContextFactory.Create();
-                await new ClearPaymentAction(new ClearPaymentDbAccess(context)).ClearPaymentsAsync();
-                context.SaveChanges();
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                await mediator.Send(new ClearPaymentsCommand());
 
-                Debug.WriteLine("ClearPayments Job finished.");
+                logManager.Debug("ClearPayments Job Finished.");
             }
             catch(Exception ex)
             {
-                Crashes.TrackError(ex);
+                logManager.Error("Clear Payments Failed!", ex);
             }
             finally
             {
@@ -203,24 +206,25 @@ namespace MoneyFox.iOS
             }
         }
 
-        private static async Task CreateRecurringPaymentsAsync()
+        private async Task CreateRecurringPaymentsAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try
             {
-                Debug.WriteLine("RecurringPayment Job started.");
+                logManager.Debug("RecurringPayment Job started.");
 
                 EfCoreContext context = EfCoreContextFactory.Create();
                 await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
                     .CreatePaymentsUpToRecur();
                 context.SaveChanges();
 
-                Debug.WriteLine("RecurringPayment Job finished.");
+                logManager.Debug("RecurringPayment Job finished.");
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Crashes.TrackError(ex);
+                logManager.Error("RecurringPayment Job Failed!", ex);
             }
             finally
             {
