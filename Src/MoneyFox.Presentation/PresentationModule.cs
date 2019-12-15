@@ -4,7 +4,6 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
-using MoneyFox.BusinessLogic;
 using MoneyFox.Persistence;
 using System;
 
@@ -14,7 +13,6 @@ namespace MoneyFox.Presentation
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule<BusinessLogicModule>();
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();
 
@@ -28,8 +26,7 @@ namespace MoneyFox.Presentation
                                                  return t => c.Resolve(t);
                                              });
 
-            builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly)
-                   .AsImplementedInterfaces(); // via assembly scan
+            builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly).AsImplementedInterfaces(); // via assembly scan
 
             builder.Register(c => PublicClientApplicationBuilder
                                   .Create(ServiceConstants.MSAL_APPLICATION_ID)
@@ -39,25 +36,17 @@ namespace MoneyFox.Presentation
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => !t.Name
-                                 .Equals("NavigationService",
-                                         StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => !t.Name
-                                 .StartsWith("DesignTime",
-                                             StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => t.Name
-                                .EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => !t.Name
-                                 .StartsWith("DesignTime",
-                                             StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => t.Name
-                                .EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsSelf();
         }
     }
