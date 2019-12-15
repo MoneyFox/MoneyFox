@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
+using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using MoneyFox.BusinessDbAccess.PaymentActions;
 using MoneyFox.BusinessLogic.PaymentActions;
 using MoneyFox.Persistence;
@@ -214,10 +215,8 @@ namespace MoneyFox.iOS
             {
                 logManager.Debug("RecurringPayment Job started.");
 
-                EfCoreContext context = EfCoreContextFactory.Create();
-                await new RecurringPaymentAction(new RecurringPaymentDbAccess(context))
-                    .CreatePaymentsUpToRecur();
-                context.SaveChanges();
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                await mediator.Send(new CreateRecurringPaymentsCommand());
 
                 logManager.Debug("RecurringPayment Job finished.");
 
