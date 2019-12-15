@@ -3,7 +3,7 @@ using System.IO;
 using Xunit;
 using MoneyFox.Application.Common.Extensions;
 
-namespace MoneyFox.BusinessLogic.Tests.Extensions
+namespace MoneyFox.Application.Tests.Common.Extensions
 {
     [ExcludeFromCodeCoverage]
     public class StreamExtensionTests
