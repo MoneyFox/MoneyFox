@@ -14,17 +14,17 @@ namespace MoneyFox.iOS.Renderer
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
-            if (Control != null)
-            {
-                if (ThemeManager.CurrentTheme() == AppTheme.Dark)
-                {
-                    UISearchBar searchBar = Control;
-                    searchBar.BarStyle = UIBarStyle.Black;
 
-                    var color = (Color) Xamarin.Forms.Application.Current.Resources["FrameHighlightColor"];
-                    searchBar.BackgroundColor = color.ToUIColor();
-                    searchBar.BarTintColor = color.ToUIColor();
-                }
+            if (Control == null) return;
+
+            if (ThemeManager.CurrentTheme() == AppTheme.Dark)
+            {
+                UISearchBar searchBar = Control;
+                searchBar.BarStyle = UIBarStyle.Black;
+
+                var color = (Color)Xamarin.Forms.Application.Current.Resources["FrameHighlightColor"];
+                searchBar.BackgroundColor = color.ToUIColor();
+                searchBar.BarTintColor = color.ToUIColor();
             }
         }
     }

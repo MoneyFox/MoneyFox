@@ -182,7 +182,7 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 await backupService.LoginAsync();
             }
-            catch (BackupOperationCanceledException ex)
+            catch (BackupOperationCanceledException)
             {
                 await dialogService.ShowMessage(Strings.CanceledTitle, Strings.LoginCanceledMessage);
             }
@@ -226,7 +226,7 @@ namespace MoneyFox.Presentation.ViewModels
 
                 BackupLastModified = DateTime.Now;
             }
-            catch (BackupOperationCanceledException ex)
+            catch (BackupOperationCanceledException)
             {
                 await dialogService.ShowMessage(Strings.CanceledTitle, Strings.UploadBackupCanceledMessage);
             }
@@ -254,7 +254,7 @@ namespace MoneyFox.Presentation.ViewModels
                 await backupService.RestoreBackupAsync();
                 await ShowCompletionNoteAsync();
             }
-            catch (BackupOperationCanceledException ex)
+            catch (BackupOperationCanceledException)
             {
                 await dialogService.ShowMessage(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
             }
