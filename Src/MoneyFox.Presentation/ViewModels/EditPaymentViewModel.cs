@@ -11,6 +11,7 @@ using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -25,15 +26,19 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>")]
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>")]
         public EditPaymentViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IPaymentService paymentService,
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
-                                    INavigationService navigationService)
-            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService)
+                                    INavigationService navigationService) : base(mediator,
+                                                                                 mapper,
+                                                                                 dialogService,
+                                                                                 settingsFacade,
+                                                                                 backupService,
+                                                                                 navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -47,7 +52,7 @@ namespace MoneyFox.Presentation.ViewModels
         public int PaymentId { get; set; }
 
         /// <summary>
-        ///     Delete the selected CategoryViewModel from the database
+        /// Delete the selected CategoryViewModel from the database
         /// </summary>
         public AsyncCommand DeleteCommand => new AsyncCommand(DeletePaymentAsync);
 
@@ -61,7 +66,8 @@ namespace MoneyFox.Presentation.ViewModels
 
             // We have to set this here since otherwise the end date is null. This causes a crash on android.
             // Also it's user unfriendly if you the default end date is the 1.1.0001.
-            if (SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment.IsEndless) SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
+            if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment.IsEndless)
+                SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
 
             Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, true);
         }
@@ -73,7 +79,7 @@ namespace MoneyFox.Presentation.ViewModels
                 await paymentService.UpdatePayment(SelectedPayment);
                 navigationService.GoBack();
             }
-            catch (InvalidEndDateException)
+            catch(InvalidEndDateException)
             {
                 await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
             }
@@ -81,13 +87,17 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeletePaymentAsync()
         {
-            if (!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage, Strings.YesLabel, Strings.NoLabel)) return;
+            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                                                            Strings.DeletePaymentConfirmationMessage,
+                                                            Strings.YesLabel,
+                                                            Strings.NoLabel)) return;
 
             var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
 
-            if (SelectedPayment.IsRecurring)
+            if(SelectedPayment.IsRecurring)
             {
-                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle, Strings.DeleteRecurringPaymentMessage);
+                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
+                                                                                             Strings.DeleteRecurringPaymentMessage);
             }
 
             await mediator.Send(command);
