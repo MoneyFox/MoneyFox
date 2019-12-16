@@ -177,7 +177,7 @@
                    Style="{StaticResource DeemphasizedLabelStyle}"
                    LineBreakMode="WordWrap"
                    IsVisible="{Binding IsPaymentsEmpty}"
-                   Text="{Binding Resources[NoPaymentsMessage]}" />
+                   Text="{x:Static resources:Strings.NoPaymentsMessage}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

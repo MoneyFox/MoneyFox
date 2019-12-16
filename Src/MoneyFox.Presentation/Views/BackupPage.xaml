@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage x:Class="MoneyFox.Presentation.Views.BackupPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
-             xmlns:effects="clr-namespace:MoneyFox.Presentation.Effects;assembly=MoneyFox.Presentation"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             x:Class="MoneyFox.Presentation.Views.BackupPage"
-             Visual="Material"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             mc:Ignorable="d"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
+             Visual="Material">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeBackupViewModel />
@@ -25,65 +23,63 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-
         <Grid Padding="7">
             <StackLayout VerticalOptions="StartAndExpand">
-
-                <Button Text="{Binding Resources[LoginLabel]}"
+                <Button Command="{Binding LoginCommand}"
                         IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
                         Style="{StaticResource DefaultButtonStyle}"
-                        Command="{Binding LoginCommand}" />
-
-                <Button Text="{Binding Resources[LogoutLabel]}"
+                        Text="{x:Static resources:Strings.LoginLabel}" />
+                <Button Command="{Binding LogoutCommand}"
                         IsVisible="{Binding IsLoggedIn}"
                         Style="{StaticResource DefaultButtonStyle}"
-                        Command="{Binding LogoutCommand}" />
-
+                        Text="{x:Static resources:Strings.LogoutLabel}" />
                 <StackLayout IsVisible="{Binding IsLoggedIn}"
                              Spacing="{StaticResource DefaultSpacing}">
-
-                    <Label Text="{Binding Resources[BackupInformationLabel]}"
+                    
+                    <Label HorizontalOptions="StartAndExpand"
                            Style="{StaticResource DeemphasizedLabelStyle}"
-                           HorizontalOptions="StartAndExpand" />
+                           Text="{x:Static resources:Strings.BackupInformationLabel}" />
 
                     <Button x:Name="ButtonRestoreBackup"
+                            Command="{Binding BackupCommand}"
                             Style="{StaticResource DefaultButtonStyle}"
-                            Text="{Binding Resources[CreateBackupLabel]}"
-                            Command="{Binding BackupCommand}" />
-
-                    <Label Text="{Binding Resources[RestoreBackupInformationLabel]}"
+                            Text="{x:Static resources:Strings.CreateBackupLabel}" />
+                    
+                    <Label HorizontalOptions="StartAndExpand"
                            Style="{StaticResource DeemphasizedLabelStyle}"
-                           HorizontalOptions="StartAndExpand" />
-
-                    <Button Text="{Binding Resources[RestoreBackupLabel]}"
+                           Text="{x:Static resources:Strings.RestoreBackupInformationLabel}" />
+                    
+                    <Button Command="{Binding RestoreCommand}"
                             Style="{StaticResource DefaultButtonStyle}"
-                            Command="{Binding RestoreCommand}" />
-
-                    <ActivityIndicator Color="DarkBlue" IsRunning="{Binding IsLoadingBackupAvailability}"
+                            Text="{x:Static resources:Strings.RestoreBackupLabel}" />
+                    
+                    <ActivityIndicator Color="DarkBlue"
+                                       HeightRequest="20"
+                                       HorizontalOptions="End"
+                                       IsRunning="{Binding IsLoadingBackupAvailability}"
                                        IsVisible="{Binding IsLoadingBackupAvailability}"
-                                       VerticalOptions="CenterAndExpand" HorizontalOptions="End" HeightRequest="20">
+                                       VerticalOptions="CenterAndExpand">
                         <ActivityIndicator.WidthRequest>
                             <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="iOS" Value="20" />
-                                <On Platform="UWP" Value="80" />
-                                <On Platform="Android" Value="20" />
+                                <On Value="20" Platform="iOS" />
+                                <On Value="80" Platform="UWP" />
+                                <On Value="20" Platform="Android" />
                             </OnPlatform>
                         </ActivityIndicator.WidthRequest>
                     </ActivityIndicator>
-
-                    <StackLayout Orientation="Horizontal"
-                                 IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                        <Label Text="{Binding Resources[LastBackupDateLabel]}"
+                    <StackLayout IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}" Orientation="Horizontal">
+                        <Label HorizontalOptions="Start"
                                Style="{StaticResource DeemphasizedLabelStyle}"
-                               HorizontalOptions="Start" />
-                        <Label Text="{Binding BackupLastModified}"
-                               Style="{StaticResource DeemphasizedLabelStyle}"
+                               Text="{x:Static resources:Strings.LastBackupDateLabel}" />
+                        <Label Margin="3,0,0,0"
                                HorizontalOptions="Start"
-                               Margin="3,0,0,0"
-                               LineBreakMode="WordWrap" />
+                               LineBreakMode="WordWrap"
+                               Style="{StaticResource DeemphasizedLabelStyle}"
+                               Text="{Binding BackupLastModified}" />
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
+
 </ContentPage>
