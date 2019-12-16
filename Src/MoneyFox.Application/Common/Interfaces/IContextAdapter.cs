@@ -4,6 +4,6 @@
     {
         IEfCoreContext Context {get;}
 
-        public void RecreateContext();
+        void RecreateContext();
     }
 }
