@@ -50,7 +50,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
-        Task RestoreBackupAsync();
+        Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic);
 
         /// <summary>
         ///     Enqueues a new backup task.
@@ -126,15 +126,21 @@ namespace MoneyFox.Application.Common.CloudBackup
             return date.ToLocalTime();
         }
 
-        public async Task RestoreBackupAsync()
+        public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if(!connectivity.IsConnected)
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            {
+                return;
+            }
+
+            if (!connectivity.IsConnected)
             {
                 throw new NetworkConnectionException();
             }
 
             await DownloadBackupAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
+            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
             Messenger.Default.Send(new BackupRestoredMessage());
         }
 

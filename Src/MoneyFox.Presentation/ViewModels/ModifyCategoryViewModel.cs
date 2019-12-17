@@ -48,14 +48,15 @@ namespace MoneyFox.Presentation.ViewModels
         protected ModifyCategoryViewModel(IMediator mediator,
                                           ISettingsFacade settingsFacade,
                                           IBackupService backupService,
-                                          INavigationService navigationService, IMapper mapper)
+                                          INavigationService navigationService, 
+                                          IMapper mapper)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
             this.mediator = mediator;
+            this.mapper = mapper;
 
             NavigationService = navigationService;
-            this.mapper = mapper;
         }
 
         protected abstract Task Initialize();
@@ -105,9 +106,7 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task SaveCategoryBase()
         {
             await SaveCategory();
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.UploadBackupAsync().FireAndForgetSafeAsync();
+            await Cancel();
         }
 
         private async Task Cancel()

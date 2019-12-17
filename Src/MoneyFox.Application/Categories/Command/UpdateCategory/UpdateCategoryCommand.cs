@@ -9,7 +9,12 @@ namespace MoneyFox.Application.Categories.Command.UpdateCategory
 {
     public class UpdateCategoryCommand : IRequest
     {
-        public Category Category { get; set; }
+        public UpdateCategoryCommand(Category category)
+        {
+            Category = category;
+        }
+
+        public Category Category { get; }
 
         public class Handler : IRequestHandler<UpdateCategoryCommand>
         {

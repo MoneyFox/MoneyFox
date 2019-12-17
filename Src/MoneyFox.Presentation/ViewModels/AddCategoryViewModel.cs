@@ -54,8 +54,6 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
-
-            NavigationService.GoBack();
         }
     }
 }

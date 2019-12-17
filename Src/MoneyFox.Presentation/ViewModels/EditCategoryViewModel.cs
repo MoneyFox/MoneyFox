@@ -6,7 +6,9 @@ using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
+using MoneyFox.Application.Categories.Command.UpdateCategory;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
@@ -56,8 +58,20 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SaveCategory()
         {
-            await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
-            await CancelCommand.ExecuteAsync();
+
+            if (string.IsNullOrEmpty(SelectedCategory.Name))
+            {
+                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
+            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery { CategoryName = SelectedCategory.Name }))
+            {
+                await dialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+                return;
+            }
+
+            await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
         }
 
         private async Task DeleteCategory()

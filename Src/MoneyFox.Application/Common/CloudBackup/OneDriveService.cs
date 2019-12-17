@@ -159,7 +159,9 @@ namespace MoneyFox.Application.Common.CloudBackup
             try
             {
                 if(GraphServiceClient == null)
+                {
                     await LoginAsync();
+                }
 
                 await MoveToAppFolderAsync();
                 DriveItem existingBackup = (await GraphServiceClient
