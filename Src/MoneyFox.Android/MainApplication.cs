@@ -7,11 +7,8 @@ using MoneyFox.Presentation;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-
-#if DEBUG
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
-#endif
 
 namespace MoneyFox.Droid
 {
