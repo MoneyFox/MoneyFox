@@ -35,7 +35,6 @@ namespace MoneyFox.Presentation.ViewModels
         protected override Task Initialize()
         {
             SelectedCategory = new CategoryViewModel();
-
             return Task.CompletedTask;
         }
 
@@ -54,6 +53,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
+            NavigationService.GoBack();
         }
     }
 }
