@@ -8,8 +8,9 @@ using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-#if !DEBUG
+#if DEBUG
 using PCLAppConfig;
+using PCLAppConfig.FileSystemStream;
 #endif
 
 namespace MoneyFox.Droid
@@ -26,6 +27,8 @@ namespace MoneyFox.Droid
 
         public override void OnCreate()
         {
+            if (ConfigurationManager.AppSettings == null) ConfigurationManager.Initialise(PortableStream.Current);
+
             InitLogger();
 
             logManager.Info("Application Started.");
