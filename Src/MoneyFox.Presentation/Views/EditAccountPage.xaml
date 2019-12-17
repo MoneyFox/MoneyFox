@@ -29,7 +29,7 @@
                 <ImageButton.Source>
                     <FontImageSource
                         Glyph="{StaticResource Save}"
-                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                         Color="White" />
                 </ImageButton.Source>
             </ImageButton>

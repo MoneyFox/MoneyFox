@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using MoneyFox.Infrastructure;
 using MoneyFox.Presentation;
-using MoneyFox.Uwp.Business;
+using MoneyFox.Uwp.Src;
 
 namespace MoneyFox.Uwp
 {
@@ -15,7 +15,6 @@ namespace MoneyFox.Uwp
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
-            builder.RegisterType<BackgroundTaskManager>().AsImplementedInterfaces();
             builder.RegisterType<WindowsFileStore>().AsImplementedInterfaces();
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
         }

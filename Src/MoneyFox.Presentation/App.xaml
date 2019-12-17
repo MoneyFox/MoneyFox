@@ -41,11 +41,19 @@
                                                 Overline="{StaticResource FontFamily.RobotoRegular}"
                                                 Subtitle1="{StaticResource FontFamily.RobotoRegular}"
                                                 Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
-            
+
             <resources:MaterialConfiguration x:Key="Material.Configuration"
                                         FontConfiguration="{StaticResource Material.Font}" />
 
             <!-- Control Styles -->
+            <Style x:Key="MenuButtonStyle" TargetType="material:MaterialMenuButton">
+                <Setter Property="MenuBackgroundColor" Value="{DynamicResource DialogBackgroundColor}" />
+                <Setter Property="Margin" Value="-10" />
+                <Setter Property="CornerRadius" Value="24" />
+                <Setter Property="MenuTextColor" Value="{DynamicResource PrimaryFontColor}" />
+                <Setter Property="TintColor" Value="{DynamicResource DeemphasizedColor}" />
+            </Style>
+
             <Style x:Key="SmallPageTitle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
                 <Setter Property="TextColor" Value="White" />
@@ -179,7 +187,7 @@
                 <On Platform="UWP" Value="IconCancel" />
             </OnPlatform>
 
-            <OnPlatform x:Key="MaterialFontFamily" x:TypeArguments="x:String">
+            <OnPlatform x:Key="MaterialDesignIconsFontFamily" x:TypeArguments="x:String">
                 <On Platform="iOS" Value="Material Design Icons" />
                 <On Platform="Android" Value="materialdesignicons.ttf#Material Design Icons" />
                 <On Platform="UWP" Value="Assets/Fonts/materialdesignicons.ttf#Material Design Icons" />
@@ -196,7 +204,8 @@
             <x:String x:Key="Reset">&#xf158;</x:String>
 
             <x:String x:Key="Save">&#xf193;</x:String>
-
+            <x:String x:Key="EditGlyph">&#xf3eb;</x:String>
+            <x:String x:Key="DeleteGlyph">&#xf1c0;</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

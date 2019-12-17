@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MoneyFox.Application.Interfaces;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Accounts.Queries.GetAccountById
@@ -17,16 +17,16 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountById
 
         public class Handler : IRequestHandler<GetAccountByIdQuery, Account>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts.FindAsync(request.AccountId);
+                return await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
             }
         }
     }

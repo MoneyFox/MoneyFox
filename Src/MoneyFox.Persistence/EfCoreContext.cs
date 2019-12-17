@@ -1,6 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence.Configurations;
 
@@ -15,10 +14,10 @@ namespace MoneyFox.Persistence
         {
         }
 
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<Payment> Payments { get; set; }
-        public DbSet<RecurringPayment> RecurringPayments { get; set; }
-        public DbSet<Category> Categories { get; set; }
+        public DbSet<Account> Accounts { get; set; } = null!;
+        public DbSet<Payment> Payments { get; set; } = null!;
+        public DbSet<RecurringPayment> RecurringPayments { get; set; } = null!;
+        public DbSet<Category> Categories { get; set; } = null!;
 
         /// <summary>
         ///     Called when the models are created.
@@ -27,16 +26,9 @@ namespace MoneyFox.Persistence
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            ThrowIfNull(modelBuilder);
-
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentTagConfiguration());
-        }
-
-        private static void ThrowIfNull(ModelBuilder modelBuilder)
-        {
-            if (modelBuilder == null) throw new ArgumentNullException(nameof(modelBuilder));
         }
     }
 }

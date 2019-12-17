@@ -1,11 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
-using MoneyFox.Presentation.Facades;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
@@ -43,8 +42,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                      balanceCalculationService.Object,
                                                      dialogServiceSetup.Object,
                                                      new Mock<ISettingsFacade>().Object,
-                                                     new Mock<INavigationService>().Object,
-                                                     new Mock<IMessenger>().Object);
+                                                     new Mock<INavigationService>().Object);
 
             // Act
             await viewModel.DeleteAccountCommand.ExecuteAsync(null);
@@ -71,8 +69,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                      balanceCalculationService.Object,
                                                      dialogServiceSetup.Object,
                                                      new Mock<ISettingsFacade>().Object,
-                                                     new Mock<INavigationService>().Object,
-                                                     new Mock<IMessenger>().Object);
+                                                     new Mock<INavigationService>().Object);
 
             // Act
             await viewModel.DeleteAccountCommand.ExecuteAsync(new AccountViewModel());
@@ -99,8 +96,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                      balanceCalculationService.Object,
                                                      dialogServiceSetup.Object,
                                                      new Mock<ISettingsFacade>().Object,
-                                                     new Mock<INavigationService>().Object,
-                                                     new Mock<IMessenger>().Object);
+                                                     new Mock<INavigationService>().Object);
 
             // Act
             await viewModel.DeleteAccountCommand.ExecuteAsync(new AccountViewModel());

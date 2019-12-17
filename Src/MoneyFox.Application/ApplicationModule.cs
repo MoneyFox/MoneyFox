@@ -24,6 +24,10 @@ namespace MoneyFox.Application
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
 
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.EndsWith("Facade", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces();
+
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>
             {

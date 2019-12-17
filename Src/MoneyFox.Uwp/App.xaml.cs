@@ -6,10 +6,12 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.BackgroundTasks;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
 using NLog;
 using UnhandledExceptionEventArgs = Windows.UI.Xaml.UnhandledExceptionEventArgs;
+using Windows.ApplicationModel.Background;
 
 namespace MoneyFox.Uwp
 {
@@ -54,9 +56,15 @@ namespace MoneyFox.Uwp
         protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
+
+            IBackgroundTaskInstance taskInstance = args.TaskInstance;
+
+            new SyncBackupTask().Run(taskInstance);
+            new ClearPaymentsTask().Run(taskInstance);
+            new RecurringPaymentTask().Run(taskInstance);
         }
 
-        private void OverrideTitleBarColor()
+        private static void OverrideTitleBarColor()
         {
             //draw into the title bar
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
@@ -68,7 +76,7 @@ namespace MoneyFox.Uwp
             viewTitleBar.ButtonForegroundColor = Colors.LightGray;
         }
 
-        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             LogManager.GetCurrentClassLogger().Fatal(e.Exception);
         }
@@ -80,7 +88,7 @@ namespace MoneyFox.Uwp
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        public void OnSuspending(object sender, SuspendingEventArgs e)
+        public static void OnSuspending(object sender, SuspendingEventArgs e)
         {
             LogManager.GetCurrentClassLogger().Info("Application Suspending.");
             LogManager.Shutdown();

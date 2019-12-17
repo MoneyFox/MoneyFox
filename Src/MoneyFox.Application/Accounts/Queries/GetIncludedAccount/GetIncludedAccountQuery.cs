@@ -3,9 +3,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.Interfaces;
-using MoneyFox.Application.QueryObjects;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Application.Common.QueryObjects;
 
 namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccount
 {
@@ -13,16 +13,17 @@ namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccount
     {
         public class Handler : IRequestHandler<GetIncludedAccountQuery, List<Account>>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<List<Account>> Handle(GetIncludedAccountQuery request, CancellationToken cancellationToken)
             {
-                return await context.Accounts
+                return await contextAdapter.Context
+                                    .Accounts
                                     .AreNotExcluded()
                                     .OrderByName()
                                     .ToListAsync(cancellationToken);

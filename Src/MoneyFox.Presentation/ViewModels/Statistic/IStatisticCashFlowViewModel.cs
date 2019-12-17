@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Microcharts;
-using MoneyFox.Application.Statistics.Models;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Presentation.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic

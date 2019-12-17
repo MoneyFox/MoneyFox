@@ -69,7 +69,5 @@ namespace MoneyFox.Presentation
         public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
         public static SelectFilterDialogViewModel SelectFilterDialogVm => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
-
-        public static IMessenger MessengerInstance => ServiceLocator.Current.GetInstance<IMessenger>();
     }
 }

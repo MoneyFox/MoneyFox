@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
-using MoneyFox.Application.Interfaces.Mapping;
+using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Infrastructure

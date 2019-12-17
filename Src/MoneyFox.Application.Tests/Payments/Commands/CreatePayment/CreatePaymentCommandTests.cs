@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
-using MoneyFox.Presentation.ViewModels;
+using Moq;
 using Should;
+using System;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
@@ -15,10 +15,14 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
     public class CreatePaymentCommandTests : IDisposable
     {
         private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public CreatePaymentCommandTests()
         {
-            context = SQLiteEfCoreContextFactory.Create();
+            context = InMemoryEfCoreContextFactory.Create();
+
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
 
         public void Dispose()
@@ -30,13 +34,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
         public async Task CreatePayment_PaymentSaved()
         {
             // Arrange
-            var account = new Account("test", 80); 
+            var account = new Account("test", 80);
             context.Add(account);
 
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
             // Act
-            await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);
@@ -49,21 +53,21 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
         public async Task CreatePayment_AccountCurrentBalanceUpdated(PaymentType paymentType, decimal newCurrentBalance)
         {
             // Arrange
-            var account = new Account("test", 80); 
+            var account = new Account("test", 80);
             context.Add(account);
             await context.SaveChangesAsync();
 
             var payment1 = new Payment(DateTime.Now, 20, paymentType, account);
 
             // Act
-            await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             var loadedAccount = await context.Accounts.FindAsync(account.Id);
             loadedAccount.ShouldNotBeNull();
             loadedAccount.CurrentBalance.ShouldEqual(newCurrentBalance);
         }
-        
+
         [Fact]
         public async Task CreatePaymentWithRecurring_PaymentSaved()
         {
@@ -76,7 +80,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             // Act
-            Unit result = await new CreatePaymentCommand.Handler(context).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);

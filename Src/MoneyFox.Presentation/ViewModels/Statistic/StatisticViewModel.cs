@@ -2,13 +2,13 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 using MediatR;
-using MoneyFox.Application;
-using MoneyFox.Application.Extensions;
-using MoneyFox.Application.Messages;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
 using SkiaSharp;
+using MoneyFox.Application.Common.Extensions;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Messages;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {

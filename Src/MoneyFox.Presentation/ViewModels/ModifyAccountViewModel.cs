@@ -3,10 +3,10 @@ using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -88,7 +88,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task SaveAccountBase()
         {
-            if (string.IsNullOrWhiteSpace(SelectedAccount.Name)) 
+            if (string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
                 await DialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
@@ -97,7 +97,7 @@ namespace MoneyFox.Presentation.ViewModels
             await SaveAccount();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.EnqueueBackupTaskAsync().FireAndForgetSafeAsync();
+            if (settingsFacade.IsBackupAutouploadEnabled) backupService.UploadBackupAsync().FireAndForgetSafeAsync();
         }
 
         private void Cancel()

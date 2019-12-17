@@ -1,55 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.AppCenter.Crashes;
+﻿using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
-using MoneyFox.Application.Adapters;
+using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Interfaces;
-using MoneyFox.Presentation.Services;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public interface IBackupViewModel
     {
         /// <summary>
-        ///     Initialize View Model.
+        /// Initialize View Model.
         /// </summary>
         AsyncCommand InitializeCommand { get; }
 
         /// <summary>
-        ///     Makes the first login and sets the setting for the future navigation to this page.
+        /// Makes the first login and sets the setting for the future navigation to this page.
         /// </summary>
         AsyncCommand LoginCommand { get; }
 
         /// <summary>
-        ///     Logs the user out from the backup service.
+        /// Logs the user out from the backup service.
         /// </summary>
         AsyncCommand LogoutCommand { get; }
 
         /// <summary>
-        ///     Will create a backup of the database and upload it to OneDrive
+        /// Will create a backup of the database and upload it to OneDrive
         /// </summary>
         AsyncCommand BackupCommand { get; }
 
         /// <summary>
-        ///     Will download the database backup from OneDrive and overwrite the
-        ///     local database with the downloaded.
-        ///     All data models are then reloaded.
+        /// Will download the database backup from OneDrive and overwrite the     local database with the downloaded.     All
+        /// data models are then reloaded.
         /// </summary>
         AsyncCommand RestoreCommand { get; }
 
         DateTime BackupLastModified { get; }
+
         bool IsLoadingBackupAvailability { get; }
+
         bool IsLoggedIn { get; }
+
         bool BackupAvailable { get; }
     }
 
     /// <summary>
-    ///     Representation of the backup view.
+    /// Representation of the backup view.
     /// </summary>
     public class BackupViewModel : BaseViewModel, IBackupViewModel
     {
@@ -73,78 +76,83 @@ namespace MoneyFox.Presentation.ViewModels
             this.settingsFacade = settingsFacade;
         }
 
-        /// <inheritdoc />
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+        /// <inheritdoc/>
+        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
-        /// <inheritdoc />
-        public AsyncCommand LoginCommand => new AsyncCommand(Login);
+        /// <inheritdoc/>
+        public AsyncCommand LoginCommand => new AsyncCommand(LoginAsync);
 
-        /// <inheritdoc />
-        public AsyncCommand LogoutCommand => new AsyncCommand(Logout);
+        /// <inheritdoc/>
+        public AsyncCommand LogoutCommand => new AsyncCommand(LogoutAsync);
 
-        /// <inheritdoc />
-        public AsyncCommand BackupCommand => new AsyncCommand(CreateBackup);
+        /// <inheritdoc/>
+        public AsyncCommand BackupCommand => new AsyncCommand(CreateBackupAsync);
 
-        /// <inheritdoc />
-        public AsyncCommand RestoreCommand => new AsyncCommand(RestoreBackup);
+        /// <inheritdoc/>
+        public AsyncCommand RestoreCommand => new AsyncCommand(RestoreBackupAsync);
 
         /// <summary>
-        ///     The Date when the backup was modified the last time.
+        /// The Date when the backup was modified the last time.
         /// </summary>
         public DateTime BackupLastModified
         {
             get => backupLastModified;
             private set
             {
-                if (backupLastModified == value) return;
+                if(backupLastModified == value)
+                    return;
                 backupLastModified = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Indicator that the app is checking if backups available.
+        /// Indicator that the app is checking if backups available.
         /// </summary>
         public bool IsLoadingBackupAvailability
         {
             get => isLoadingBackupAvailability;
             private set
             {
-                if (isLoadingBackupAvailability == value) return;
+                if(isLoadingBackupAvailability == value)
+                    return;
                 isLoadingBackupAvailability = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Indicator that the user logged in to the backup service.
+        /// Indicator that the user logged in to the backup service.
         /// </summary>
         public bool IsLoggedIn => settingsFacade.IsLoggedInToBackupService;
 
         /// <summary>
-        ///     Indicates if a backup is available for restore.
+        /// Indicates if a backup is available for restore.
         /// </summary>
         public bool BackupAvailable
         {
             get => backupAvailable;
             private set
             {
-                if (backupAvailable == value) return;
+                if(backupAvailable == value)
+                    return;
                 backupAvailable = value;
                 RaisePropertyChanged();
             }
         }
 
-        private async Task Initialize()
+        private async Task InitializeAsync()
         {
-            await Loaded();
+            await LoadedAsync();
         }
 
-        private async Task Loaded()
+        private async Task LoadedAsync()
         {
-            if (!IsLoggedIn) return;
+            if(!IsLoggedIn)
+                return;
 
-            if (!connectivity.IsConnected) await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            if(!connectivity.IsConnected)
+                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
 
             IsLoadingBackupAvailability = true;
             try
@@ -152,52 +160,58 @@ namespace MoneyFox.Presentation.ViewModels
                 BackupAvailable = await backupService.IsBackupExistingAsync();
                 BackupLastModified = await backupService.GetBackupDateAsync();
             }
-            catch (BackupAuthenticationFailedException ex)
+            catch(BackupAuthenticationFailedException ex)
             {
-                Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Issue during Login process."}});
+                Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Issue during Login process." } });
                 await backupService.LogoutAsync();
-                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                Strings.ErrorMessageAuthenticationFailed);
+                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
             }
-            catch (ServiceException ex)
+            catch(ServiceException ex)
             {
-                if (ex.Error.Code == "4f37.717b")
+                if(ex.Error.Code == "4f37.717b")
                 {
-                    Crashes.TrackError(ex, new Dictionary<string, string> {{"Info", "Graph Login Exception"}});
+                    Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Graph Login Exception" } });
                     await backupService.LogoutAsync();
-                    await dialogService.ShowMessage(Strings.AuthenticationFailedTitle,
-                                                    Strings.ErrorMessageAuthenticationFailed);
+                    await dialogService.ShowMessage(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
                 }
             }
 
             IsLoadingBackupAvailability = false;
         }
 
-        private async Task Login()
+        private async Task LoginAsync()
         {
-            if (!connectivity.IsConnected) await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            if(!connectivity.IsConnected)
+                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
 
             try
             {
                 await backupService.LoginAsync();
             }
-            catch (Exception ex)
+            catch(BackupOperationCanceledException)
             {
-                await dialogService.ShowMessage(Strings.LoginFailedTitle, ex.Message);
+                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.LoginCanceledMessage);
+            }
+            catch(Exception ex)
+            {
+                await dialogService.ShowMessage(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
             }
 
-            // ReSharper disable once ExplicitCallerInfoArgument
             RaisePropertyChanged(nameof(IsLoggedIn));
-            await Loaded();
+            await LoadedAsync();
         }
 
-        private async Task Logout()
+        private async Task LogoutAsync()
         {
             try
             {
                 await backupService.LogoutAsync();
             }
-            catch (Exception ex)
+            catch(BackupOperationCanceledException)
+            {
+                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.LogoutCanceledMessage);
+            }
+            catch(Exception ex)
             {
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.Message);
             }
@@ -206,19 +220,24 @@ namespace MoneyFox.Presentation.ViewModels
             RaisePropertyChanged(nameof(IsLoggedIn));
         }
 
-        private async Task CreateBackup()
+        private async Task CreateBackupAsync()
         {
-            if (!await ShowOverwriteBackupInfoAsync()) return;
+            if(!await ShowOverwriteBackupInfoAsync())
+                return;
 
             await dialogService.ShowLoadingDialogAsync();
 
             try
             {
-                await backupService.EnqueueBackupTaskAsync();
+                await backupService.UploadBackupAsync(BackupMode.Manual);
 
                 BackupLastModified = DateTime.Now;
             }
-            catch (Exception ex)
+            catch(BackupOperationCanceledException)
+            {
+                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.UploadBackupCanceledMessage);
+            }
+            catch(Exception ex)
             {
                 await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
@@ -227,13 +246,15 @@ namespace MoneyFox.Presentation.ViewModels
             await ShowCompletionNoteAsync();
         }
 
-        private async Task RestoreBackup()
+        private async Task RestoreBackupAsync()
         {
-            if (!await ShowOverwriteDataInfoAsync()) return;
+            if(!await ShowOverwriteDataInfoAsync())
+                return;
 
             await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();
-            if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync()) return;
+            if(settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync())
+                return;
 
             await dialogService.ShowLoadingDialogAsync();
 
@@ -242,7 +263,11 @@ namespace MoneyFox.Presentation.ViewModels
                 await backupService.RestoreBackupAsync();
                 await ShowCompletionNoteAsync();
             }
-            catch (Exception ex)
+            catch(BackupOperationCanceledException)
+            {
+                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
+            }
+            catch(Exception ex)
             {
                 await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
@@ -250,17 +275,26 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task<bool> ShowOverwriteBackupInfoAsync()
         {
-            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle, Strings.OverwriteBackupMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
+                                                               Strings.OverwriteBackupMessage,
+                                                               Strings.YesLabel,
+                                                               Strings.NoLabel);
         }
 
         private async Task<bool> ShowOverwriteDataInfoAsync()
         {
-            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle, Strings.OverwriteDataMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
+                                                               Strings.OverwriteDataMessage,
+                                                               Strings.YesLabel,
+                                                               Strings.NoLabel);
         }
 
         private async Task<bool> ShowForceOverrideConfirmationAsync()
         {
-            return await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle, Strings.ForceOverrideBackupMessage);
+            return await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle,
+                                                               Strings.ForceOverrideBackupMessage,
+                                                               Strings.YesLabel,
+                                                               Strings.NoLabel);
         }
 
         private async Task ShowCompletionNoteAsync()

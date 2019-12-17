@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Constants;
+using System;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
 using Windows.UI.StartScreen;
-using MoneyFox.Application.Constants;
 using MoneyFox.Application.Resources;
 using NLog;
 

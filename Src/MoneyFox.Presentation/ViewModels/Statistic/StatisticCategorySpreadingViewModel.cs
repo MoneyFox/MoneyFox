@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microcharts;
-using MoneyFox.Application.Statistics.Models;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
-using MoneyFox.Presentation.Facades;
 using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic

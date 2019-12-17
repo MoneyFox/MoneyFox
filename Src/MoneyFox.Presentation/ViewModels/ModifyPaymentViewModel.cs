@@ -10,12 +10,12 @@ using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Messages;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -111,7 +111,7 @@ namespace MoneyFox.Presentation.ViewModels
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
 
         private PaymentRecurrence recurrence;
-        private PaymentViewModel selectedPayment = new PaymentViewModel();
+        private PaymentViewModel selectedPayment;
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
         private string title;
 
@@ -123,8 +123,7 @@ namespace MoneyFox.Presentation.ViewModels
                                          IDialogService dialogService,
                                          ISettingsFacade settingsFacade,
                                          IBackupService backupService,
-                                         INavigationService navigationService,
-                                         IMessenger messenger)
+                                         INavigationService navigationService)
         {
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
@@ -133,7 +132,7 @@ namespace MoneyFox.Presentation.ViewModels
             this.mediator = mediator;
             this.mapper = mapper;
 
-            MessengerInstance = messenger;
+            selectedPayment = new PaymentViewModel();
 
             MessengerInstance.Register<CategorySelectedMessage>(this, async (message) => await ReceiveMessage(message));
         }
@@ -301,12 +300,10 @@ namespace MoneyFox.Presentation.ViewModels
             await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled)
-            {
+
 #pragma warning disable 4014
-                backupService.EnqueueBackupTaskAsync();
+            backupService.UploadBackupAsync();
 #pragma warning restore 4014
-            }
         }
 
         /// <summary>

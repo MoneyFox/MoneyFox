@@ -4,9 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
-             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             xmlns:presentation="clr-namespace:MoneyFox.Presentation"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"             
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              Visual="Material"
@@ -19,7 +19,7 @@
 
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="{Binding Resources[CategorySpreadingTitle]}"
+            <Label Text="{x:Static resources:Strings.CategorySpreadingTitle}"
                    LineBreakMode="TailTruncation"
                    Style="{StaticResource SmallPageTitle}" />
 

@@ -3,7 +3,7 @@ using Windows.ApplicationModel.Store;
 using Windows.System;
 using MoneyFox.Presentation.Interfaces;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Uwp.Src
 {
     public class MarketplaceOperations : IStoreOperations
     {

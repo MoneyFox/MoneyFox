@@ -385,24 +385,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set the interval to check for changed data..
-        /// </summary>
-        public static string BackupSyncRecurrenceInfoLabel {
-            get {
-                return ResourceManager.GetString("BackupSyncRecurrenceInfoLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Backup Recurrence.
-        /// </summary>
-        public static string BackupSyncRecurrenceLabel {
-            get {
-                return ResourceManager.GetString("BackupSyncRecurrenceLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Backup.
         /// </summary>
         public static string BackupTitle {
@@ -444,6 +426,15 @@ namespace MoneyFox.Application.Resources {
         public static string BiweeklyLabel {
             get {
                 return ResourceManager.GetString("BiweeklyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Canceled.
+        /// </summary>
+        public static string CanceledTitle {
+            get {
+                return ResourceManager.GetString("CanceledTitle", resourceCulture);
             }
         }
         
@@ -1349,6 +1340,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Login was canceled..
+        /// </summary>
+        public static string LoginCanceledMessage {
+            get {
+                return ResourceManager.GetString("LoginCanceledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We couldn&apos;t log you in. Please contact us if this issue persists..
         /// </summary>
         public static string LoginFailedMessage {
@@ -1372,6 +1372,15 @@ namespace MoneyFox.Application.Resources {
         public static string LoginLabel {
             get {
                 return ResourceManager.GetString("LoginLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logout backup was canceled..
+        /// </summary>
+        public static string LogoutCanceledMessage {
+            get {
+                return ResourceManager.GetString("LogoutCanceledMessage", resourceCulture);
             }
         }
         
@@ -1765,6 +1774,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restoring backup was canceled..
+        /// </summary>
+        public static string RestoreBackupCanceledMessage {
+            get {
+                return ResourceManager.GetString("RestoreBackupCanceledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Download the previous uploaded database backup and replace your local data with it.
         ///WARNING: Local changes you made meanwhile will be lost!.
         /// </summary>
@@ -2072,11 +2090,29 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There was an issue during the operation. Error Message {0}.
+        /// </summary>
+        public static string UnknownErrorMessage {
+            get {
+                return ResourceManager.GetString("UnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes, update All.
         /// </summary>
         public static string UpdateAllLabel {
             get {
                 return ResourceManager.GetString("UpdateAllLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Upload backup was canceled..
+        /// </summary>
+        public static string UploadBackupCanceledMessage {
+            get {
+                return ResourceManager.GetString("UploadBackupCanceledMessage", resourceCulture);
             }
         }
         

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Utilities;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Groups
 {
@@ -25,7 +25,7 @@ namespace MoneyFox.Presentation.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        public DateListGroupCollection(string key, RelayCommand<T> itemClickCommand = null)
+        public DateListGroupCollection(string key, Command<T> itemClickCommand = null)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
@@ -42,7 +42,7 @@ namespace MoneyFox.Presentation.Groups
         /// <summary>
         ///     The command to execute on a click.
         /// </summary>
-        public RelayCommand<T> ItemClickCommand { get; }
+        public Command<T> ItemClickCommand { get; }
 
         /// <summary>
         ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
@@ -54,7 +54,7 @@ namespace MoneyFox.Presentation.Groups
         /// <param name="itemClickCommand">The command to execute on a click.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroupCollection<T>> CreateGroups(IEnumerable<T> items, GetKeyDelegate getKey,
-                                                                    GetSortKeyDelegate getSortKey, bool sort = true, RelayCommand<T> itemClickCommand = null)
+                                                                    GetSortKeyDelegate getSortKey, bool sort = true, Command<T> itemClickCommand = null)
         {
             ThrowIfNull(items);
 

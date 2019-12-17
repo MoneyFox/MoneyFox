@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using MoneyFox.Application.QueryObjects;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using Xunit;
+using MoneyFox.Application.Common.QueryObjects;
 
 namespace MoneyFox.Application.Tests.QueryObjects
 {

@@ -4,7 +4,7 @@ using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Uwp.Services;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Uwp.Src
 {
     public class ThemeSelectorAdapter : IThemeSelectorAdapter
     {

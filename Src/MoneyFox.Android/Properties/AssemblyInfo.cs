@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using System.Resources;
 using System.Runtime.InteropServices;
 using Android;
 using Android.App;
@@ -9,12 +10,12 @@ using Android.App;
 [assembly: AssemblyTitle("MoneyFox.Android")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Apply Solutions GmbH")]
 [assembly: AssemblyProduct("MoneyFox.Android")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
+[assembly: NeutralResourcesLanguage("en-UK")]
 
 // Version information for an assembly consists of the following four values:
 //

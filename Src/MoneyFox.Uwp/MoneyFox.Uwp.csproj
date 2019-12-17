@@ -31,6 +31,8 @@
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <GenerateTestArtifacts>True</GenerateTestArtifacts>
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -143,6 +145,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="BackgroundTasks\ClearPaymentsTask.cs" />
+    <Compile Include="BackgroundTasks\RecurringPaymentTask.cs" />
+    <Compile Include="BackgroundTasks\SyncBackupTask.cs" />
     <Compile Include="Converter\AmountFormatDecimalConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ClickConverter.cs" />
@@ -150,7 +155,7 @@
     <Compile Include="Converter\DateVisibilityConverter.cs" />
     <Compile Include="Converter\DecimalConverter.cs" />
     <Compile Include="Converter\NativeAmountFormatConverter.cs" />
-    <Compile Include="Converter\NativePaymentAmountConverter.cs" />
+    <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
     <Compile Include="Converter\PaymentHeaderConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
@@ -169,13 +174,14 @@
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\RateDisplayService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
+    <Compile Include="Src\AsyncExtensions.cs" />
     <Compile Include="Src\DialogService.cs" />
-    <Compile Include="Src\BackgroundTaskManager.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
     <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
+    <Compile Include="Src\WindowsFileStore.cs" />
     <Compile Include="Views\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
@@ -260,9 +266,6 @@
     <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\TagControl.xaml.cs">
-      <DependentUpon>TagControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="WindowsModule.cs" />
     <Compile Include="WindowsShellViewModel.cs" />
   </ItemGroup>
@@ -334,7 +337,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <None Include="MoneyFox.Uwp_TemporaryKey.pfx" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -488,10 +490,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\TagControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
@@ -569,10 +567,6 @@
       <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
       <Name>MoneyFox.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.BusinessLogic\MoneyFox.BusinessLogic.csproj">
-      <Project>{4B351F9B-D87E-4C23-84BF-2E253801F880}</Project>
-      <Name>MoneyFox.BusinessLogic</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
       <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
       <Name>MoneyFox.Domain</Name>
@@ -581,17 +575,13 @@
       <Project>{E9810ECA-4DA3-4E3A-BD8D-5E6117B1BD70}</Project>
       <Name>MoneyFox.Infrastructure</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
+      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
+      <Name>MoneyFox.Persistence</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
       <Name>MoneyFox.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Uwp.Business\MoneyFox.Uwp.Business.csproj">
-      <Project>{0dd3cc25-2ba5-4d77-b47a-6e3925c0792f}</Project>
-      <Name>MoneyFox.Uwp.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Uwp.Tasks\MoneyFox.Uwp.Tasks.csproj">
-      <Project>{B742F72D-3ECA-4E9D-959F-1D26FCAD99C1}</Project>
-      <Name>MoneyFox.Uwp.Tasks</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -696,7 +686,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
