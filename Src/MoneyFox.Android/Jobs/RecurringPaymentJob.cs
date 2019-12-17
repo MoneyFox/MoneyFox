@@ -4,13 +4,12 @@ using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
+using CommonServiceLocator;
 using Java.Lang;
-using MoneyFox.Application;
-using MoneyFox.Application.Adapters;
-using MoneyFox.BusinessDbAccess.PaymentActions;
-using MoneyFox.BusinessLogic.PaymentActions;
-using MoneyFox.Persistence;
-using MoneyFox.Presentation.Facades;
+using MediatR;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using NLog;
 using Debug = System.Diagnostics.Debug;
 using Exception = System.Exception;
@@ -67,11 +66,8 @@ namespace MoneyFox.Droid.Jobs
 
             try
             {
-                ExecutingPlatform.Current = AppPlatform.Android;
-
-                EfCoreContext context = EfCoreContextFactory.Create();
-                await new RecurringPaymentAction(new RecurringPaymentDbAccess(context)).CreatePaymentsUpToRecur();
-                await context.SaveChangesAsync();
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                await mediator.Send(new CreateRecurringPaymentsCommand());
 
                 Debug.WriteLine("RecurringPayment Job finished.");
                 JobFinished(args, false);

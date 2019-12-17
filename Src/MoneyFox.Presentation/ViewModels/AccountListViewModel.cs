@@ -1,30 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
-using MoneyFox.Application.Messages;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using NLog;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using XF.Material.Forms.Models;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public class AccountListViewModel : BaseViewModel, IAccountListViewModel
     {
+        private const int MENU_RESULT_EDIT_INDEX = 0;
+        private const int MENU_RESULT_DELETE_INDEX = 1;
+
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private readonly IMediator mediator;
@@ -43,16 +47,13 @@ namespace MoneyFox.Presentation.ViewModels
                                     IBalanceCalculationService balanceCalculationService,
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
-                                    INavigationService navigationService,
-                                    IMessenger messenger)
+                                    INavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
             this.dialogService = dialogService;
             this.navigationService = navigationService;
             this.settingsFacade = settingsFacade;
-
-            MessengerInstance = messenger;
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationService);
             ViewActionViewModel = new AccountListViewActionViewModel(mediator, this.navigationService);
@@ -79,16 +80,40 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public bool HasNoAccounts => !Accounts.Any();
+        public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
 
         public AsyncCommand LoadDataCommand => new AsyncCommand(Load);
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
+        public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
+
         public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
 
-        public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(Delete);
+        public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(DeleteAsync);
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as event handler.>")]
+        private async void MenuSelected(MaterialMenuResult menuResult)
+        {
+            var accountViewModel = menuResult.Parameter as AccountViewModel;
+
+            switch (menuResult.Index)
+            {
+                case MENU_RESULT_EDIT_INDEX:
+                    navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
+                    break;
+
+                case MENU_RESULT_DELETE_INDEX:
+                    await DeleteAsync(accountViewModel);
+                    break;
+
+                default:
+                    logManager.Warn("Invalid Index for Menu Selected in Account List. Index: {0}", menuResult.Index);
+                    break;
+            }
+        }
 
         private void EditAccount(AccountViewModel accountViewModel)
         {
@@ -129,7 +154,7 @@ namespace MoneyFox.Presentation.ViewModels
             navigationService.NavigateTo(ViewModelLocator.PaymentList, accountViewModel.Id);
         }
 
-        private async Task Delete(AccountViewModel accountToDelete)
+        private async Task DeleteAsync(AccountViewModel accountToDelete)
         {
             if (accountToDelete == null) return;
 

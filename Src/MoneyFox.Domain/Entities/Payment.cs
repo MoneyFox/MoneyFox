@@ -1,15 +1,17 @@
-﻿using System;
+﻿using MoneyFox.Domain.Exceptions;
+using NLog;
+using System;
 using System.ComponentModel.DataAnnotations;
-using MoneyFox.Domain.Exceptions;
 
 namespace MoneyFox.Domain.Entities
 {
     /// <summary>
-    ///     Database model for payments. Includes expenses, income and transfers.
-    ///     Database table: Payments
+    /// Database model for payments. Includes expenses, income and transfers.     Database table: Payments
     /// </summary>
     public class Payment
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private Payment()
         {
         }
@@ -19,8 +21,8 @@ namespace MoneyFox.Domain.Entities
                        decimal amount,
                        PaymentType type,
                        Account chargedAccount,
-                       Account targetAccount = null,
-                       Category category = null,
+                       Account? targetAccount = null,
+                       Category? category = null,
                        string note = "",
                        RecurringPayment recurringPayment = null)
 #pragma warning restore S107 // Methods should not have too many parameters
@@ -30,7 +32,7 @@ namespace MoneyFox.Domain.Entities
 
             ClearPayment();
 
-            if (recurringPayment != null)
+            if(recurringPayment != null)
             {
                 RecurringPayment = recurringPayment;
                 IsRecurring = true;
@@ -42,30 +44,42 @@ namespace MoneyFox.Domain.Entities
         public int? CategoryId { get; private set; }
 
         public DateTime Date { get; private set; }
+
         public decimal Amount { get; private set; }
+
         public bool IsCleared { get; private set; }
+
         public PaymentType Type { get; private set; }
-        public string Note { get; private set; }
+
+        private string note;
+
+        public string Note
+        {
+            private set => note = value;
+            get { return note ?? string.Empty; }
+        }
+
         public bool IsRecurring { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
+
         public DateTime CreationTime { get; private set; }
 
-        public virtual Category Category { get; private set; }
+        public virtual Category? Category {get;private set;}
 
         [Required]
         public virtual Account ChargedAccount { get; private set; }
 
-        public virtual Account TargetAccount { get; private set; }
+        public virtual Account? TargetAccount { get; private set; }
 
-        public virtual RecurringPayment RecurringPayment { get; private set; }
+        public virtual RecurringPayment? RecurringPayment { get; private set; }
 
         public void UpdatePayment(DateTime date,
                                   decimal amount,
                                   PaymentType type,
                                   Account chargedAccount,
-                                  Account targetAccount = null,
-                                  Category category = null,
+                                  Account? targetAccount = null,
+                                  Category? category = null,
                                   string note = "")
         {
             ChargedAccount.RemovePaymentAmount(this);
@@ -76,8 +90,13 @@ namespace MoneyFox.Domain.Entities
             ClearPayment();
         }
 
-        private void AssignValues(DateTime date, decimal amount, PaymentType type, Account chargedAccount, Account targetAccount,
-                                  Category category, string note)
+        private void AssignValues(DateTime date,
+                                  decimal amount,
+                                  PaymentType type,
+                                  Account chargedAccount,
+                                  Account? targetAccount,
+                                  Category? category,
+                                  string note)
         {
             Date = date;
             Amount = amount;
@@ -106,7 +125,15 @@ namespace MoneyFox.Domain.Entities
             IsCleared = Date.Date <= DateTime.Today.Date;
             ChargedAccount.AddPaymentAmount(this);
 
-            if (Type == PaymentType.Transfer) TargetAccount.AddPaymentAmount(this);
+            if(Type == PaymentType.Transfer)
+            {
+                if(TargetAccount == null)
+                {
+                    logManager.Warn($"Target Account on clearing was null for payment {Id}");
+                    return;
+                }
+                TargetAccount.AddPaymentAmount(this);                
+            }
         }
     }
 }

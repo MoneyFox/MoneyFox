@@ -5,11 +5,11 @@ using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
-using MoneyFox.Application.Messages;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 

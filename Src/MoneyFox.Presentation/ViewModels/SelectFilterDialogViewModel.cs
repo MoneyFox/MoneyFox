@@ -1,5 +1,5 @@
-﻿using System;
-using MoneyFox.Application.Messages;
+﻿using MoneyFox.Application.Common.Messages;
+using System;
 
 namespace MoneyFox.Presentation.ViewModels
 {

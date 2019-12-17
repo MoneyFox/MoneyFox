@@ -26,7 +26,7 @@ namespace MoneyFox.Domain.Entities
         public string Name { get; private set; }
 
         public decimal CurrentBalance { get; private set; }
-        public string Note { get; private set; }
+        public string? Note { get; private set; }
         public bool IsOverdrawn { get; private set; }
         public bool IsExcluded { get; private set; }
         public DateTime ModificationDate { get; private set; }

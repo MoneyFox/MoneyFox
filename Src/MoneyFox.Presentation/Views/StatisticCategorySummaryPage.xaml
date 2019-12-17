@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
@@ -18,7 +17,7 @@
 
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="{Binding Resources[CategorySummaryTitle]}"
+            <Label Text="{x:Static resources:Strings.CategorySummaryTitle}"
                    LineBreakMode="TailTruncation"
                    Style="{StaticResource SmallPageTitle}" />
             <userControls:StatisticDateRangeUserControl />

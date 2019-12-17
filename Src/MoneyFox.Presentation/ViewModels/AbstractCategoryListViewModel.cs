@@ -1,25 +1,32 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
-using MoneyFox.Application.Messages;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
+using NLog;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+using XF.Material.Forms.Models;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : BaseViewModel
     {
+        private const int MENU_RESULT_EDIT_INDEX = 0;
+        private const int MENU_RESULT_DELETE_INDEX = 1;
+
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source;
 
         /// <summary>
@@ -28,14 +35,12 @@ namespace MoneyFox.Presentation.ViewModels
         protected AbstractCategoryListViewModel(IMediator mediator,
                                                 IMapper mapper,
                                                 IDialogService dialogService,
-                                                INavigationService navigationService,
-                                                IMessenger messenger)
+                                                INavigationService navigationService)
         {
             Mediator = mediator;
             Mapper = mapper;
             DialogService = dialogService;
             NavigationService = navigationService;
-            MessengerInstance = messenger;
 
             MessengerInstance.Register<BackupRestoredMessage>(this, async message => await Search());
         }
@@ -67,6 +72,10 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
+
+        public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
+
+        public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
 
         public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearing);
 
@@ -106,8 +115,30 @@ namespace MoneyFox.Presentation.ViewModels
         public async Task Search(string searchText = "")
         {
             var categoriesVms =
-                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery {SearchTerm = searchText}));
+                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery { SearchTerm = searchText }));
             CategoryList = CreateGroup(categoriesVms);
+        }
+
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as event handler.>")]
+        private async void MenuSelected(MaterialMenuResult menuResult)
+        {
+            var categoryViewModel = menuResult.Parameter as CategoryViewModel;
+
+            switch (menuResult.Index)
+            {
+                case MENU_RESULT_EDIT_INDEX:
+                    EditCategory(categoryViewModel);
+                    break;
+
+                case MENU_RESULT_DELETE_INDEX:
+                    await DeleteCategory(categoryViewModel);
+                    break;
+
+                default:
+                    logManager.Warn("Invalid Index for Menu Selected in Account List. Index: {0}", menuResult.Index);
+                    break;
+            }
         }
 
         private void EditCategory(CategoryViewModel category)

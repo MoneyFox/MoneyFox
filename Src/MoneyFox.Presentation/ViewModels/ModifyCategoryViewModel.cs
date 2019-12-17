@@ -1,13 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
-using MoneyFox.Presentation.Utilities;
+using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -35,8 +34,6 @@ namespace MoneyFox.Presentation.ViewModels
     public abstract class ModifyCategoryViewModel : BaseViewModel, IModifyCategoryViewModel
     {
         private readonly IMediator mediator;
-        private readonly ISettingsFacade settingsFacade;
-        private readonly IBackupService backupService;
         private readonly IMapper mapper;
 
         private CategoryViewModel selectedCategory;
@@ -46,16 +43,15 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(IMediator mediator,
-                                          ISettingsFacade settingsFacade,
-                                          IBackupService backupService,
-                                          INavigationService navigationService, IMapper mapper)
+                                          INavigationService navigationService, 
+                                          IMapper mapper,
+                                          IDialogService dialogService)
         {
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
             this.mediator = mediator;
+            this.mapper = mapper;
 
             NavigationService = navigationService;
-            this.mapper = mapper;
+            DialogService = dialogService;
         }
 
         protected abstract Task Initialize();
@@ -63,6 +59,8 @@ namespace MoneyFox.Presentation.ViewModels
         protected abstract Task SaveCategory();
 
         protected INavigationService NavigationService { get; }
+
+        protected IDialogService DialogService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
@@ -104,10 +102,19 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task SaveCategoryBase()
         {
-            await SaveCategory();
+            if (string.IsNullOrEmpty(SelectedCategory.Name))
+            {
+                await DialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
 
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.EnqueueBackupTaskAsync().FireAndForgetSafeAsync();
+            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery { CategoryName = SelectedCategory.Name }))
+            {
+                await DialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+                return;
+            }
+
+            await SaveCategory();
         }
 
         private async Task Cancel()

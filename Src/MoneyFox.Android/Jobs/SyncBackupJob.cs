@@ -1,24 +1,18 @@
-using System;
-using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
 using Android.Content;
 using Android.OS;
 using CommonServiceLocator;
 using Java.Lang;
-using Microsoft.Identity.Client;
-using MoneyFox.Application;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Application.CloudBackup;
-using MoneyFox.Application.Constants;
-using MoneyFox.Application.FileStore;
-using MoneyFox.Presentation;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using NLog;
+using System;
+using System.Threading.Tasks;
+using JobSchedulerType = Android.App.Job.JobScheduler;
 using Debug = System.Diagnostics.Debug;
 using Exception = System.Exception;
-using JobSchedulerType = Android.App.Job.JobScheduler;
 
 #pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
 namespace MoneyFox.Droid.Jobs
@@ -49,7 +43,7 @@ namespace MoneyFox.Droid.Jobs
         /// <inheritdoc />
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            var callback = (Messenger) intent.GetParcelableExtra("messenger");
+            var callback = (Messenger)intent.GetParcelableExtra("messenger");
             Message m = Message.Obtain();
             m.What = MainActivity.MessageServiceSyncBackup;
             m.Obj = this;
@@ -73,25 +67,7 @@ namespace MoneyFox.Droid.Jobs
 
             try
             {
-                ExecutingPlatform.Current = AppPlatform.Android;
-
-                IPublicClientApplication pca = PublicClientApplicationBuilder
-                                               .Create(ServiceConstants.MSAL_APPLICATION_ID)
-                                               .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
-                                               .Build();
-
-                var backupManager = new BackupManager(
-                    new OneDriveService(pca),
-                    ServiceLocator.Current.GetInstance<IFileStore>(),
-                    new ConnectivityAdapter(),
-                    ViewModelLocator.MessengerInstance);
-
-                var backupService = new BackupService(backupManager, settingsFacade);
-
-                DateTime backupDate = await backupService.GetBackupDateAsync();
-
-                if (settingsFacade.LastDatabaseUpdate > backupDate) return;
-
+                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
                 JobFinished(args, false);
@@ -126,7 +102,7 @@ namespace MoneyFox.Droid.Jobs
             builder.SetRequiresDeviceIdle(false);
             builder.SetRequiresCharging(false);
 
-            var tm = (JobSchedulerType) GetSystemService(JobSchedulerService);
+            var tm = (JobSchedulerType)GetSystemService(JobSchedulerService);
             tm.Schedule(builder.Build());
         }
     }

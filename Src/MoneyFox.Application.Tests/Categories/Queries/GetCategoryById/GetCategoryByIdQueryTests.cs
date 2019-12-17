@@ -2,9 +2,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Moq;
 using Should;
 using Xunit;
 
@@ -14,10 +16,14 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
     public class GetCategoryByIdQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetCategoryByIdQueryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
+
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
 
         public void Dispose()
@@ -31,7 +37,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
             // Arrange
 
             // Act
-            Category result = await new GetCategoryByIdQuery.Handler(context).Handle(new GetCategoryByIdQuery(999), default);
+            Category result = await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryByIdQuery(999), default);
 
             // Assert
             result.ShouldBeNull();
@@ -46,7 +52,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            Category result = await new GetCategoryByIdQuery.Handler(context).Handle(new GetCategoryByIdQuery(testCat1.Id), default);
+            Category result = await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryByIdQuery(testCat1.Id), default);
 
             // Assert
             result.ShouldNotBeNull();

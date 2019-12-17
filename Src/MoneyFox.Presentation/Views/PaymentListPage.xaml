@@ -5,7 +5,7 @@
              mc:Ignorable="d"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
-             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
@@ -78,21 +78,12 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="viewModels:PaymentViewModel">
                         <ViewCell>
-
-                            <ViewCell.ContextActions>
-                                <MenuItem Clicked="EditPayment" CommandParameter="{Binding .}"
-                                          Text="{Binding Resources[EditLabel]}" />
-                                <MenuItem Clicked="DeletePayment" CommandParameter="{Binding .}"
-                                          Text="{Binding Resources[DeleteLabel]}"
-                                          IsDestructive="True" />
-                            </ViewCell.ContextActions>
-
                             <material:MaterialCard HeightRequest="50"
-                                                    ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.EditPaymentCommand}"
-                                                    ClickCommandParameter="{Binding .}"
-                                                    Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                                    Style="{StaticResource ListCardStyle}"
-                                                    VerticalOptions="FillAndExpand">
+                                                   Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                                   ClickCommand="{Binding EditPaymentCommand}"
+                                                   ClickCommandParameter="{Binding .}"
+                                                   Style="{StaticResource ListCardStyle}"
+                                                   VerticalOptions="FillAndExpand">
 
                                 <RelativeLayout Margin="{StaticResource DefaultListItemsMargin}"
                                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant = 0}">
@@ -131,7 +122,7 @@
                                                 <Image.Source>
                                                     <FontImageSource
                                                         Glyph="{StaticResource Transfer}"
-                                                        FontFamily="{DynamicResource MaterialFontFamily}"
+                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                                         Color="{DynamicResource PrimaryFontColor}" />
                                                 </Image.Source>
                                             </Image>
@@ -142,7 +133,7 @@
                                                 <Image.Source>
                                                     <FontImageSource
                                                         Glyph="{StaticResource Recurring}"
-                                                        FontFamily="{DynamicResource MaterialFontFamily}"
+                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                                         Color="{DynamicResource PrimaryFontColor}" />
                                                 </Image.Source>
                                             </Image>
@@ -153,7 +144,7 @@
                                                 <Image.Source>
                                                     <FontImageSource
                                                         Glyph="{StaticResource Cleared}"
-                                                        FontFamily="{DynamicResource MaterialFontFamily}"
+                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                                         Color="{DynamicResource PrimaryFontColor}" />
                                                 </Image.Source>
                                             </Image>
@@ -167,14 +158,13 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-
             <ImageButton
                 Clicked="AddItem_Clicked"
                 Style="{StaticResource FabPrimary}">
                 <ImageButton.Source>
                     <FontImageSource
                         Glyph="{StaticResource Add}"
-                        FontFamily="{DynamicResource MaterialFontFamily}"
+                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                         Size="33"
                         Color="White" />
                 </ImageButton.Source>
@@ -187,7 +177,7 @@
                    Style="{StaticResource DeemphasizedLabelStyle}"
                    LineBreakMode="WordWrap"
                    IsVisible="{Binding IsPaymentsEmpty}"
-                   Text="{Binding Resources[NoPaymentsMessage]}" />
+                   Text="{x:Static resources:Strings.NoPaymentsMessage}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

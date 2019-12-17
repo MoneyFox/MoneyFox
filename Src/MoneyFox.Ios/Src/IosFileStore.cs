@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.FileStore;
+﻿using MoneyFox.Application.Common.FileStore;
 
 namespace MoneyFox.iOS
 {

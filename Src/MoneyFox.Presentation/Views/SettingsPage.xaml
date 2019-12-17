@@ -42,7 +42,7 @@
                                         <Image.Source>
                                             <FontImageSource
                                                 Glyph="{Binding Icon}"
-                                                FontFamily="{DynamicResource MaterialFontFamily}"
+                                                FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                                 Color="{DynamicResource PrimaryFontColor}" />
                                         </Image.Source>
                                     </Image>

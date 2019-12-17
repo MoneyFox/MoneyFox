@@ -9,29 +9,19 @@ namespace MoneyFox.Domain.Exceptions
     [Serializable]
     public class BackupAuthenticationFailedException : Exception
     {
-        /// <summary>
-        ///     Creates an Backup Exception
-        /// </summary>
         public BackupAuthenticationFailedException()
         {
         }
 
-        /// <summary>
-        ///     Creates an Backup Exception
-        /// </summary>
-        /// <param name="message">Exception message to show to the user.</param>
-        public BackupAuthenticationFailedException(string message)
-            : base(message)
+        public BackupAuthenticationFailedException(string message) : base(message)
         {
         }
 
-        /// <summary>
-        ///     Creates an Backup Exception
-        /// </summary>
-        /// <param name="message">Exception message to show to the user.</param>
-        /// <param name="exception">Inner Exception of the backup exception.</param>
-        public BackupAuthenticationFailedException(string message, Exception exception)
-            : base(message, exception)
+        public BackupAuthenticationFailedException(Exception exception) : base("Backup Authentication Failed", exception)
+        {
+        }
+
+        public BackupAuthenticationFailedException(string message, Exception exception) : base(message, exception)
         {
         }
 

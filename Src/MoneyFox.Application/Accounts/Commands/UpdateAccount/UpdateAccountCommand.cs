@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
-using MoneyFox.Application.Interfaces;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
@@ -12,23 +12,25 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
 
         public class Handler : IRequestHandler<UpdateAccountCommand>
         {
-            private readonly IEfCoreContext context;
+            private readonly IContextAdapter contextAdapter;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IContextAdapter contextAdapter)
             {
-                this.context = context;
+                this.contextAdapter = contextAdapter;
             }
 
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
-                Account existingAccount = await context.Accounts.FindAsync(request.Account.Id);
+                Account existingAccount = await contextAdapter.Context
+                                                              .Accounts
+                                                              .FindAsync(request.Account.Id);
 
                 existingAccount.UpdateAccount(request.Account.Name,
                                               request.Account.CurrentBalance,
                                               request.Account.Note,
                                               request.Account.IsExcluded);
 
-                await context.SaveChangesAsync(cancellationToken);
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 return Unit.Value;
             }
