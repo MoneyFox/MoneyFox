@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Domain.Exceptions;
+using NLog;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,6 +10,8 @@ namespace MoneyFox.Domain.Entities
     /// </summary>
     public class Payment
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private Payment()
         {
         }
@@ -67,9 +70,9 @@ namespace MoneyFox.Domain.Entities
         [Required]
         public virtual Account ChargedAccount { get; private set; }
 
-        public virtual Account TargetAccount { get; private set; }
+        public virtual Account? TargetAccount { get; private set; }
 
-        public virtual RecurringPayment RecurringPayment { get; private set; }
+        public virtual RecurringPayment? RecurringPayment { get; private set; }
 
         public void UpdatePayment(DateTime date,
                                   decimal amount,
@@ -124,7 +127,12 @@ namespace MoneyFox.Domain.Entities
 
             if(Type == PaymentType.Transfer)
             {
-                TargetAccount.AddPaymentAmount(this);
+                if(TargetAccount == null)
+                {
+                    logManager.Warn($"Target Account on clearing was null for payment {Id}");
+                    return;
+                }
+                TargetAccount.AddPaymentAmount(this);                
             }
         }
     }
