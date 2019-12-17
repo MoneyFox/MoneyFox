@@ -31,6 +31,7 @@ using LogLevel = NLog.LogLevel;
 
 #if !DEBUG
 using Microsoft.AppCenter;
+using PCLAppConfig;
 #endif
 
 namespace MoneyFox.iOS
@@ -97,6 +98,16 @@ namespace MoneyFox.iOS
                               ArchiveEvery = FileArchivePeriod.Month
                           };
             var debugTarget = new DebugTarget("console");
+
+#if !DEBUG
+            // Configure AppCenter
+            var appCenterTarget = new AppCenterTarget("appcenter")
+            {
+                AppSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"]
+            };
+
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
+#endif
 
             config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
