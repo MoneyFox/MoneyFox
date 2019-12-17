@@ -252,8 +252,10 @@ namespace MoneyFox.Application.Tests.CloudBackup
         public async Task GetBackupDate_CorrectCall()
         {
             // Arrange
-            connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
+            settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
+            settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
+            connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Today);
 
             var backupService = new BackupService(cloudBackupServiceMock.Object,
@@ -275,6 +277,9 @@ namespace MoneyFox.Application.Tests.CloudBackup
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
 
+            settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
+            settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
+
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
@@ -293,14 +298,17 @@ namespace MoneyFox.Application.Tests.CloudBackup
 
             DateTime expectedPassedDate = DateTime.Now.AddDays(-3);
 
+            settingsFacadeMock.SetupAllProperties();
+            settingsFacadeMock.Object.LastDatabaseUpdate = expectedPassedDate;
+            settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
+            settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
+
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
                                   .ReturnsAsync(new Mock<Stream>().Object);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
                                   .ReturnsAsync(new List<string> { "asd" });
 
-            settingsFacadeMock.SetupAllProperties();
-            settingsFacadeMock.Object.LastDatabaseUpdate = expectedPassedDate;
 
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
@@ -322,6 +330,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
+            DateTime expectedPassedDate = DateTime.Now.AddDays(-3);
+            settingsFacadeMock.SetupAllProperties();
+            settingsFacadeMock.Object.LastDatabaseUpdate = expectedPassedDate;
+            settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
+            settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
+
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
                       .ReturnsAsync(new List<string> { DatabaseConstants.BACKUP_NAME });
 
@@ -329,11 +343,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                   .Callback(() => throw new BackupException());
 
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Now);
-
-            DateTime expectedPassedDate = DateTime.Now.AddDays(-3);
-
-            settingsFacadeMock.SetupAllProperties();
-            settingsFacadeMock.Object.LastDatabaseUpdate = expectedPassedDate;
 
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,

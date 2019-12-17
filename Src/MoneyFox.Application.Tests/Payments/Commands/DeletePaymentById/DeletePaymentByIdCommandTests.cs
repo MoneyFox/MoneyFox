@@ -57,7 +57,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
             // Arrange
             backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>()))
                              .Returns(Task.CompletedTask);
-            backupServiceMock.Setup(x => x.RestoreBackupAsync())
+            backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()))
                              .Returns(Task.CompletedTask);
 
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
@@ -68,7 +68,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
             await new DeletePaymentByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new DeletePaymentByIdCommand(payment1.Id), default);
 
             // Assert
-            backupServiceMock.Verify(x => x.RestoreBackupAsync(), Times.Once);
+            backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);
             backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
         }
     }

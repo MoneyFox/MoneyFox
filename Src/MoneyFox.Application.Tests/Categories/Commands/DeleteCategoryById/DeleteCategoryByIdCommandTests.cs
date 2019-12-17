@@ -55,7 +55,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
         public async Task SyncDoneOnCreation()
         {
             // Arrange
-            backupServiceMock.Setup(x => x.RestoreBackupAsync()).Returns(Task.CompletedTask);
+            backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
             backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
 
             var category1 = new Category("test");
@@ -66,7 +66,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
-            backupServiceMock.Verify(x => x.RestoreBackupAsync(), Times.Once);
+            backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);
             backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
         }
     }

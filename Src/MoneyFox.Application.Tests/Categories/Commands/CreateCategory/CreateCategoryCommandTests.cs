@@ -51,7 +51,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
         public async Task SyncDoneOnCreation()
         {
             // Arrange
-            backupServiceMock.Setup(x => x.RestoreBackupAsync()).Returns(Task.CompletedTask);
+            backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
             backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
 
             var category = new Category("test");
@@ -60,7 +60,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
             await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new CreateCategoryCommand(category), default);
 
             // Assert
-            backupServiceMock.Verify(x => x.RestoreBackupAsync(), Times.Once);
+            backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);
             backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
 
         }
