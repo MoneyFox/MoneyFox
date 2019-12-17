@@ -4,7 +4,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
@@ -14,24 +13,6 @@ namespace MoneyFox.Uwp.Views.UserControls
         public PaymentListUserControl()
         {
             InitializeComponent();
-        }
-
-        private void EditPaymentViewModel(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement) sender;
-
-            if (!(element.DataContext is PaymentViewModel payment)) return;
-            var viewmodel = DataContext as PaymentListViewModel;
-
-            viewmodel?.EditPaymentCommand.Execute(payment);
-        }
-
-        private void DeletePaymentViewModel(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement) sender;
-
-            if (!(element.DataContext is PaymentViewModel payment)) return;
-            (DataContext as PaymentListViewModel)?.DeletePaymentCommand.ExecuteAsync(payment).FireAndForgetSafeAsync();
         }
 
         private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e)

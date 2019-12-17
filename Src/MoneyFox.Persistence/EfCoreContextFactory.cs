@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application;
+using MoneyFox.Application.Common;
 
 namespace MoneyFox.Persistence
 {
@@ -12,9 +12,7 @@ namespace MoneyFox.Persistence
                                                       .Options;
 
             var context = new EfCoreContext(options);
-
             context.Database.Migrate();
-
             return context;
         }
     }

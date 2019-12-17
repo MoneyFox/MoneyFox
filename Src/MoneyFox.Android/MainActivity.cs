@@ -3,13 +3,10 @@ using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using CommonServiceLocator;
 using Microsoft.Identity.Client;
-using MoneyFox.Application;
+using MoneyFox.Application.Common;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Presentation;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Interfaces;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
@@ -100,10 +97,9 @@ namespace MoneyFox.Droid
             startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentRecurringPayment);
 
-            var backgroundTaskManager = ServiceLocator.Current.GetInstance<IBackgroundTaskManager>();
-            var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
-
-            if (backgroundTaskManager != null && settingsFacade != null) backgroundTaskManager.StartBackupSyncTask(settingsFacade.BackupSyncRecurrence);
+            var startServiceIntentSyncBackup = new Intent(this, typeof(SyncBackupJob));
+            startServiceIntentSyncBackup.PutExtra("messenger", new Messenger(handler));
+            StartService(startServiceIntentSyncBackup);
         }
 
         public override void OnBackPressed()

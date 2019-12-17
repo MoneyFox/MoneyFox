@@ -72,7 +72,7 @@
                         <ImageButton.Source>
                             <FontImageSource
                                 Glyph="{StaticResource Reset}"
-                                FontFamily="{DynamicResource MaterialFontFamily}"
+                                FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                                 Size="33"
                                 Color="{DynamicResource PrimaryFontColor}" />
                         </ImageButton.Source>

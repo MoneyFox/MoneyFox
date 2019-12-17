@@ -8,11 +8,12 @@
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              Visual="Material"
              x:Name="root"
              x:Class="MoneyFox.Presentation.Views.AccountListPage"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             Title="{Binding Resource[AccountsTitle]}">
+             Title="{x:Static resources:Strings.AccountsTitle}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeAccountListViewModel />
@@ -55,14 +56,6 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewModels:AccountViewModel">
                             <ViewCell>
-
-                                <ViewCell.ContextActions>
-                                    <MenuItem Clicked="EditAccount" CommandParameter="{Binding .}"
-                                              Text="{Binding Resources[EditLabel]}" />
-                                    <MenuItem Clicked="DeleteAccount" CommandParameter="{Binding .}"
-                                              Text="{Binding Resources[DeleteLabel]}" IsDestructive="True" />
-                                </ViewCell.ContextActions>
-
                                 <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
                                                        ClickCommandParameter="{Binding .}"
                                                        Margin="{StaticResource SmallLeftRightTopBottomMargin}"
@@ -77,6 +70,7 @@
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="70*" />
                                                 <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
                                             <Label Grid.Column="0"
@@ -87,6 +81,15 @@
                                                    HorizontalTextAlignment="End"
                                                    Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                                    Style="{StaticResource ListItemHeaderStyle}" />
+
+                                            <material:MaterialMenuButton Grid.Column="2"
+                                                                         ButtonType="Text"
+                                                                         Image="icon_more.png"
+                                                                         Style="{StaticResource MenuButtonStyle}"
+                                                                         Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
+                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
+                                                                         CommandParameter="{Binding .}" />
+
                                         </Grid>
                                     </StackLayout>
                                 </material:MaterialCard>
@@ -101,7 +104,7 @@
                     <ImageButton.Source>
                         <FontImageSource
                             Glyph="{StaticResource Add}"
-                            FontFamily="{DynamicResource MaterialFontFamily}"
+                            FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
                             Size="33"
                             Color="White" />
                     </ImageButton.Source>
@@ -114,7 +117,7 @@
                        Style="{StaticResource DeemphasizedLabelStyle}"
                        LineBreakMode="WordWrap"
                        IsVisible="{Binding HasNoAccounts}"
-                       Text="{Binding Resources[NoAccountsMessage]}" />
+                       Text="{x:Static resources:Strings.NoAccountsMessage}" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

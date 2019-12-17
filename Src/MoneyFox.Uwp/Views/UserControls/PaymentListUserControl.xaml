@@ -9,8 +9,8 @@
              xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
              xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
              xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
-             xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
              x:Name="PaymentControl"
+             xmlns:resources="using:MoneyFox.Application.Resources"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
@@ -18,7 +18,7 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <converter:NativePaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
@@ -84,9 +84,9 @@
 
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Margin="0,0,0,30" 
+                            <StackPanel Margin="0,0,0,30"
                                         Padding="{StaticResource SmallListItemPadding}">
-                                
+
                                 <TextBlock Margin="3,0,0,7"
                                            Style="{ThemeResource HeaderStyle}"
                                            Text="{Binding Key}" />
@@ -126,11 +126,14 @@
                                                 <FlyoutBase.AttachedFlyout>
                                                     <MenuFlyout>
                                                         <MenuFlyoutItem Icon="Edit"
-                                                                        Click="EditPaymentViewModel"
-                                                                        Text="{Binding Resources[EditLabel]}" />
+                                                                        Command="{x:Bind EditPaymentCommand}"
+                                                                        CommandParameter="{x:Bind}"
+                                                                        Text="{x:Bind resources:Strings.EditLabel}" />
+
                                                         <MenuFlyoutItem Icon="Delete"
-                                                                        Click="DeletePaymentViewModel"
-                                                                        Text="{Binding Resources[DeleteLabel]}" />
+                                                                        Command="{x:Bind DeletePaymentCommand}"
+                                                                        CommandParameter="{x:Bind}"
+                                                                        Text="{x:Bind resources:Strings.DeleteLabel}" />
                                                     </MenuFlyout>
                                                 </FlyoutBase.AttachedFlyout>
 
@@ -215,7 +218,7 @@
         </SemanticZoom>
 
         <TextBlock Grid.Row="1"
-                   Text="{Binding Resources[NoPaymentsMessage]}"
+                   Text="{x:Bind resources:Strings.NoPaymentsMessage}"
                    Margin="6"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"

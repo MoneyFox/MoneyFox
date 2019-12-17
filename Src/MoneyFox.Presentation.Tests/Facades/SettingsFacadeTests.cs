@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Facades;
+using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Application;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Presentation.Facades;
 using Moq;
 using Should;
 using Xunit;
@@ -73,18 +73,6 @@ namespace MoneyFox.Presentation.Tests.Facades
 
             // Assert
             settingsfacade.IsLoggedInToBackupService.ShouldBeFalse();
-        }
-
-        [Fact]
-        public void Ctor_DefaultValues_BackupSyncRecurrenceThreeHours()
-        {
-            // Arrange
-
-            // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
-
-            // Assert
-            settingsfacade.BackupSyncRecurrence.ShouldEqual(3);
         }
 
         [Fact]

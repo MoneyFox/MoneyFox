@@ -6,14 +6,14 @@ using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using NLog;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -34,9 +34,8 @@ namespace MoneyFox.Presentation.ViewModels
                                    IDialogService dialogService,
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
-                                   INavigationService navigationService,
-                                   IMessenger messenger)
-            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService, messenger)
+                                   INavigationService navigationService)
+            : base(mediator, mapper, dialogService, settingsFacade, backupService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

@@ -5,13 +5,15 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Application.Statistics.Models;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
+using Moq;
 using Should;
 using Xunit;
 
@@ -21,10 +23,14 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
     public class GetCashFlowQueryHandlerTests : IDisposable
     {
         private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetCashFlowQueryHandlerTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
+
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
         }
 
         public void Dispose()
@@ -46,7 +52,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(context).Handle(new GetCashFlowQuery
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -64,7 +70,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(context).Handle(new GetCashFlowQuery
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -82,7 +88,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(context).Handle(new GetCashFlowQuery
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -110,7 +116,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(context).Handle(new GetCashFlowQuery
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -135,7 +141,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(context).Handle(new GetCashFlowQuery
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
@@ -157,7 +163,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(context).Handle(new GetCashFlowQuery
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)

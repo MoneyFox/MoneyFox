@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
-using MoneyFox.Application.Messages;
+using MoneyFox.Application.Common.Messages;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -26,9 +26,8 @@ namespace MoneyFox.Presentation.ViewModels
         public SelectCategoryListViewModel(IMediator mediator,
                                            IMapper mapper,
                                            IDialogService dialogService,
-                                           INavigationService navigationService,
-                                           IMessenger messenger) 
-            : base(mediator, mapper, dialogService, navigationService, messenger)
+                                           INavigationService navigationService)
+            : base(mediator, mapper, dialogService, navigationService)
         {
         }
 

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.Interfaces;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists
 {

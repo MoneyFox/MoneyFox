@@ -5,7 +5,7 @@ using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Autofac;
-using MoneyFox.Application;
+using MoneyFox.Application.Common;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Views;

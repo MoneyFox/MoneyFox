@@ -7,11 +7,11 @@ using MediatR;
 using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using NLog;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
@@ -68,7 +68,7 @@ namespace MoneyFox.Presentation.ViewModels
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-                backupService.EnqueueBackupTaskAsync().FireAndForgetSafeAsync();
+                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
                 await CancelCommand.ExecuteAsync();
             }
         }

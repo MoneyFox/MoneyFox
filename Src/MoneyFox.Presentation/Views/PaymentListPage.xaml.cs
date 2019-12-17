@@ -20,7 +20,7 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.PaymentListVm;
 
             ViewModel.AccountId = accountId;
-            
+
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);
 
             var filterItem = new ToolbarItem
@@ -50,18 +50,6 @@ namespace MoneyFox.Presentation.Views
         private void AddItem_Clicked(object sender, EventArgs e)
         {
             Navigation.PushPopupAsync(new AddPaymentPopup {BindingContext = ViewModel.ViewActionViewModel}).FireAndForgetSafeAsync();
-        }
-
-        private void EditPayment(object sender, EventArgs e)
-        {
-            if (!(sender is MenuItem menuItem)) return;
-            ViewModel.EditPaymentCommand.Execute(menuItem.CommandParameter as PaymentViewModel);
-        }
-
-        private void DeletePayment(object sender, EventArgs e)
-        {
-            if (!(sender is MenuItem menuItem)) return;
-            ViewModel.DeletePaymentCommand.ExecuteAsync(menuItem.CommandParameter as PaymentViewModel).FireAndForgetSafeAsync();
         }
     }
 }

@@ -7,11 +7,12 @@ namespace MoneyFox.Persistence
     {
         protected override void Load(ContainerBuilder builder)
         {
-            EfCoreContext context = EfCoreContextFactory.Create();
-            builder.RegisterInstance(context)
+            builder.Register(c => EfCoreContextFactory.Create())
                    .As<DbContext>()
                    .AsImplementedInterfaces()
-                   .AsSelf();
+                   .SingleInstance();
+
+            builder.RegisterType<ContextAdapter>().AsImplementedInterfaces().SingleInstance();
         }
     }
 }

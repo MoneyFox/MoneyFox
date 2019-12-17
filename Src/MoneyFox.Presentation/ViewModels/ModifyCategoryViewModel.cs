@@ -4,9 +4,9 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -107,7 +107,7 @@ namespace MoneyFox.Presentation.ViewModels
             await SaveCategory();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.EnqueueBackupTaskAsync().FireAndForgetSafeAsync();
+            if (settingsFacade.IsBackupAutouploadEnabled) backupService.UploadBackupAsync().FireAndForgetSafeAsync();
         }
 
         private async Task Cancel()

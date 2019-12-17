@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Constants;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Adapters;
-using MoneyFox.Application.Constants;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;

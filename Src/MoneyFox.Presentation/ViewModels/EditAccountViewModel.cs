@@ -7,11 +7,11 @@ using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Utilities;
 using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
@@ -60,7 +60,7 @@ namespace MoneyFox.Presentation.ViewModels
 
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 NavigationService.GoBack();
-                backupService.EnqueueBackupTaskAsync().FireAndForgetSafeAsync();
+                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
             }
         }
     }

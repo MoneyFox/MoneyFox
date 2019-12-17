@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Facades;
+using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using MoneyFox.Application;
-using MoneyFox.Application.Adapters;
 using MoneyFox.Presentation;
-using MoneyFox.Presentation.Facades;
 
 namespace MoneyFox.Uwp.Services
 {
