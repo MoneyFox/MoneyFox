@@ -14,7 +14,7 @@ namespace MoneyFox.Uwp.Helpers
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }
