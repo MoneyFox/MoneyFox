@@ -1376,7 +1376,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Logout backup was canceled..
+        ///   Looks up a localized string similar to Logout was canceled..
         /// </summary>
         public static string LogoutCanceledMessage {
             get {
