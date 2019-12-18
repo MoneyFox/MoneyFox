@@ -186,7 +186,6 @@
     <Compile Include="Renderer\ViewGroupExtension.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
-    <Compile Include="Src\Localize.cs" />
     <Compile Include="Src\PlayStoreOperations.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
