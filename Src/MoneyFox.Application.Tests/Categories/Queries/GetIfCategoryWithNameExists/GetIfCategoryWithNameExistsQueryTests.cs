@@ -34,10 +34,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExi
             await context.SaveChangesAsync();
 
             // Act
-            bool result = await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(new GetIfCategoryWithNameExistsQuery
-            {
-                CategoryName = "Foo"
-            }, default);
+            bool result = await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(new GetIfCategoryWithNameExistsQuery("Foo"), default);
 
             // Assert
             result.ShouldBeFalse();
@@ -52,10 +49,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExi
             await context.SaveChangesAsync();
 
             // Act
-            bool result = await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(new GetIfCategoryWithNameExistsQuery
-            {
-                CategoryName = testCat1.Name
-            }, default);
+            bool result = await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(new GetIfCategoryWithNameExistsQuery(testCat1.Name), default);
 
             // Assert
             result.ShouldBeTrue();

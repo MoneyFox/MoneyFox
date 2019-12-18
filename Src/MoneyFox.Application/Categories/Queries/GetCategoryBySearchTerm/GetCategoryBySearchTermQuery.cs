@@ -12,7 +12,12 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
 {
     public class GetCategoryBySearchTermQuery : IRequest<List<Category>>
     {
-        public string SearchTerm { get; set; }
+        public GetCategoryBySearchTermQuery(string searchTerm = "")
+        {
+            SearchTerm = searchTerm;
+        }
+
+        public string SearchTerm { get; }
 
         public class Handler : IRequestHandler<GetCategoryBySearchTermQuery, List<Category>>
         {
