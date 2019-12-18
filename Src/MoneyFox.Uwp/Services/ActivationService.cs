@@ -66,14 +66,14 @@ namespace MoneyFox.Uwp.Services
         private async Task InitializeAsync(object activationArgs)
         {
             ExecutingPlatform.Current = AppPlatform.UWP;
-            LoggerService.Initialize();
-
             ConfigurationManager.Initialise(PortableStream.Current);
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
 #if !DEBUG
-                AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
+
+            LoggerService.Initialize();
 
             NavigationServiceEx navService = ConfigureNavigation();
             RegisterServices(navService);
