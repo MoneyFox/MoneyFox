@@ -183,7 +183,6 @@
     <Compile Include="MainApplication.cs" />
     <Compile Include="Renderer\CustomEntryRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
-    <Compile Include="Renderer\CustomStepperRenderer.cs" />
     <Compile Include="Renderer\ViewGroupExtension.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Src\DroidAppInformation.cs" />
