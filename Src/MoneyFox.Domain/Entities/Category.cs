@@ -27,7 +27,13 @@ namespace MoneyFox.Domain.Entities
         [Required]
         public string Name { get; private set; }
 
-        public string? Note { get; private set; }
+        private string note;
+
+        public string Note
+        {
+            private set => note = value;
+            get { return note ?? string.Empty; }
+        }
 
         public DateTime ModificationDate { get; private set; }
 
