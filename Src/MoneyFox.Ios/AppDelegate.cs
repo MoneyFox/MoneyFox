@@ -5,6 +5,7 @@ using MediatR;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Identity.Client;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
@@ -49,9 +50,9 @@ namespace MoneyFox.iOS
         public override bool FinishedLaunching(UIApplication uiApplication,
                                                NSDictionary launchOptions)
         {
-            InitLogger();
+            ExecutingPlatform.Current = MoneyFox.Application.Common.AppPlatform.iOS;
             ConfigurationManager.Initialise(PortableStream.Current);
-            MoneyFox.Application.Common.ExecutingPlatform.Current = MoneyFox.Application.Common.AppPlatform.iOS;
+            InitLogger();
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));

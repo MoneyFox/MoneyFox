@@ -8,7 +8,6 @@ using MoneyFox.Application.Common;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Presentation;
 using PCLAppConfig;
-using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
@@ -48,8 +47,6 @@ namespace MoneyFox.Droid
         {
             ParentActivityWrapper.ParentActivity = this;
             ExecutingPlatform.Current = AppPlatform.Android;
-
-            if (ConfigurationManager.AppSettings == null) ConfigurationManager.Initialise(PortableStream.Current);
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
