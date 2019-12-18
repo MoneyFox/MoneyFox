@@ -27,16 +27,12 @@ namespace MoneyFox.Presentation
                 switch (theme)
                 {
                     case AppTheme.Light:
-                    {
                         mergedDictionaries.Add(new LightTheme());
                         break;
-                    }
 
                     case AppTheme.Dark:
-                    {
                         mergedDictionaries.Add(new DarkTheme());
                         break;
-                    }
 
                     default:
                         mergedDictionaries.Add(new LightTheme());
