@@ -203,7 +203,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => chargedAccount;
             set
             {
-                if(chargedAccount.Equals(value)) return;
+                if(chargedAccount == value) return;
                 chargedAccount = value;
                 RaisePropertyChanged();
             }
@@ -218,7 +218,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => targetAccount;
             set
             {
-                if(targetAccount.Equals(value)) return;
+                if(targetAccount == value) return;
                 targetAccount = value;
                 RaisePropertyChanged();
             }
