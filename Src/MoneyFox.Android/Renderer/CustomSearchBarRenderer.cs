@@ -131,8 +131,7 @@ namespace MoneyFox.Droid.Renderer
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
             if (searchViewCloseButtonId != 0)
             {
-                var image = FindViewById<ImageView>(searchViewCloseButtonId);
-                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Color.Gray.ToAndroid(), BlendMode.SrcIn));
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
             }
         }
 
@@ -141,15 +140,7 @@ namespace MoneyFox.Droid.Renderer
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
             if (searchViewCloseButtonId != 0)
             {
-                var image = FindViewById<ImageView>(searchViewCloseButtonId);
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                {
-                    image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
-                }
-                else
-                {
-                    image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
-                }
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
             }
         }
 
@@ -158,16 +149,7 @@ namespace MoneyFox.Droid.Renderer
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
             if (searchViewCloseButtonId != 0)
             {
-                var image = FindViewById<ImageView>(searchViewCloseButtonId);
-
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                {
-                    image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
-                }
-                else
-                {
-                    image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
-                }
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
             }
         }
 
@@ -178,14 +160,19 @@ namespace MoneyFox.Droid.Renderer
             {
                 var image = FindViewById<ImageView>(searchViewCloseButtonId);
 
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                {
-                    image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
-                }
-                else
-                {
-                    image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
-                }
+                SetColorGray(image);
+            }
+        }
+
+        private static void SetColorGray(ImageView image)
+        {
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+            {
+                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
+            } 
+            else
+            {
+                image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
             }
         }
     }
