@@ -27,7 +27,7 @@ namespace MoneyFox.Droid.Renderer
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
-            if (Control != null)
+            if(Control != null)
             {
                 SearchView searchView = Control;
                 searchView.Iconified = false;
@@ -37,18 +37,9 @@ namespace MoneyFox.Droid.Renderer
 
                 editText.SetHighlightColor(Color.Accent.ToAndroid());
 
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                {
-                    TrySetCursorPointerColorNew(editText);
-                    UpdateSearchButtonColorNew();
-                    UpdateCancelButtonColorNew();
-                }
-                else
-                {
-                    TrySetCursorPointerColor(editText);
-                    UpdateSearchButtonColor();
-                    UpdateCancelButtonColor();
-                }
+                TrySetCursorPointerColorNew(editText);
+                UpdateSearchButtonColorNew();
+                UpdateCancelButtonColorNew();
             }
         }
 
@@ -169,7 +160,7 @@ namespace MoneyFox.Droid.Renderer
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
             {
                 image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
-            } 
+            }
             else
             {
                 image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
