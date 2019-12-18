@@ -77,7 +77,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
 
-        public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearing);
+        public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearingAsync);
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
@@ -104,7 +104,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public RelayCommand<CategoryViewModel> CreateNewCategoryCommand => new RelayCommand<CategoryViewModel>(CreateNewCategory);
 
-        public async Task ViewAppearing()
+        public async Task ViewAppearingAsync()
         {
             await Search();
         }
