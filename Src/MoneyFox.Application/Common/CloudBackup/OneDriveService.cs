@@ -16,6 +16,7 @@ namespace MoneyFox.Application.Common.CloudBackup
     /// <inheritdoc/>
     public class OneDriveService : ICloudBackupService
     {
+        private const int BACKUP_ARCHIVE_COUNT = 5;
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
         private readonly string[] scopes = { "Files.ReadWrite" };
 
@@ -274,7 +275,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                                                       .Request()
                                                                                       .GetAsync();
 
-            if(archiveBackups.Count < 5)
+            if(archiveBackups.Count < BACKUP_ARCHIVE_COUNT)
                 return;
             DriveItem oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
 

@@ -111,7 +111,6 @@ namespace MoneyFox.Uwp
             if (e.SourcePageType == typeof(SettingsPage))
             {
                 Selected = navigationView.SettingsItem as WinUI.NavigationViewItem;
-
                 return;
             }
 

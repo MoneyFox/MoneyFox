@@ -8,7 +8,9 @@ namespace MoneyFox.Domain.Entities
     public class Category
     {
         //used by EF Core
+#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         private Category()
+#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         {
         }
 
