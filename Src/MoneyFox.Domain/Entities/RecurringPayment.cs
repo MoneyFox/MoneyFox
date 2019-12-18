@@ -20,7 +20,7 @@ namespace MoneyFox.Domain.Entities
                                 PaymentType type,
                                 PaymentRecurrence recurrence,
                                 Account chargedAccount,
-                                string? note = "",
+                                string note = "",
                                 DateTime? endDate = null,
                                 Account? targetAccount = null,
                                 Category? category = null)
