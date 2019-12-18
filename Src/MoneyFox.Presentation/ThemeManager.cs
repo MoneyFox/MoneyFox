@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using MoneyFox.Presentation.Style;
 using Xamarin.Forms;
 using XF.Material.Forms.Resources;
-using XF.Material.Forms.Resources.Typography;
 
 namespace MoneyFox.Presentation
 {
