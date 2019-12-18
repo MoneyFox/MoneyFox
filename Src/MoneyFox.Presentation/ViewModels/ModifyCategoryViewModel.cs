@@ -43,7 +43,7 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(IMediator mediator,
-                                          INavigationService navigationService, 
+                                          INavigationService navigationService,
                                           IMapper mapper,
                                           IDialogService dialogService)
         {
@@ -108,7 +108,7 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery { CategoryName = SelectedCategory.Name }))
+            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
             {
                 await DialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
                 return;
