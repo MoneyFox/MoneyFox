@@ -46,13 +46,13 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteCategory);
 
-        protected override async Task Initialize()
+        protected override async Task InitializeAsync()
         {
             SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(CategoryId)));
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
         }
 
-        protected override async Task SaveCategory()
+        protected override async Task SaveCategoryAsync()
         {
             await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
 
