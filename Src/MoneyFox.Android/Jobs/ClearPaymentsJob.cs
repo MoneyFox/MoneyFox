@@ -67,10 +67,6 @@ namespace MoneyFox.Droid.Jobs
             var settingsManager = new SettingsFacade(new SettingsAdapter());
             try
             {
-                ExecutingPlatform.Current = AppPlatform.Android;
-
-                EfCoreContext context = EfCoreContextFactory.Create();
-
                 var mediator = ServiceLocator.Current.GetInstance<IMediator>();
                 await mediator.Send(new ClearPaymentsCommand());
 

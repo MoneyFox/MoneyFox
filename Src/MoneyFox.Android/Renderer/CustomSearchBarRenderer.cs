@@ -27,7 +27,7 @@ namespace MoneyFox.Droid.Renderer
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
-            if(Control != null)
+            if (Control != null)
             {
                 SearchView searchView = Control;
                 searchView.Iconified = false;
@@ -37,13 +37,21 @@ namespace MoneyFox.Droid.Renderer
 
                 editText.SetHighlightColor(Color.Accent.ToAndroid());
 
-                TrySetCursorPointerColorNew(editText);
-                UpdateSearchButtonColorNew();
-                UpdateCancelButtonColorNew();
+                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                {
+                    TrySetCursorPointerColorNew(editText);
+                }
+                else
+                {
+                    TrySetCursorPointerColor(editText);
+                }
+
+                UpdateSearchButtonColor();
+                UpdateCancelButtonColor();
             }
         }
 
-        private void TrySetCursorPointerColorNew(EditText editText)
+        private static void TrySetCursorPointerColorNew(EditText editText)
         {
             try
             {
@@ -117,24 +125,6 @@ namespace MoneyFox.Droid.Renderer
             }
         }
 
-        private void UpdateSearchButtonColorNew()
-        {
-            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
-            if (searchViewCloseButtonId != 0)
-            {
-                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
-            }
-        }
-
-        private void UpdateCancelButtonColorNew()
-        {
-            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
-            if (searchViewCloseButtonId != 0)
-            {
-                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
-            }
-        }
-
         private void UpdateSearchButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
@@ -149,9 +139,7 @@ namespace MoneyFox.Droid.Renderer
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
             if (searchViewCloseButtonId != 0)
             {
-                var image = FindViewById<ImageView>(searchViewCloseButtonId);
-
-                SetColorGray(image);
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
             }
         }
 
