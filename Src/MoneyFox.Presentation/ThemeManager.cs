@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using MoneyFox.Presentation.Style;
 using Xamarin.Forms;
 using XF.Material.Forms.Resources;
-using XF.Material.Forms.Resources.Typography;
 
 namespace MoneyFox.Presentation
 {
@@ -28,16 +27,12 @@ namespace MoneyFox.Presentation
                 switch (theme)
                 {
                     case AppTheme.Light:
-                    {
                         mergedDictionaries.Add(new LightTheme());
                         break;
-                    }
 
                     case AppTheme.Dark:
-                    {
                         mergedDictionaries.Add(new DarkTheme());
                         break;
-                    }
 
                     default:
                         mergedDictionaries.Add(new LightTheme());

@@ -40,19 +40,18 @@ namespace MoneyFox.Droid.Renderer
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                 {
                     TrySetCursorPointerColorNew(editText);
-                    UpdateSearchButtonColorNew();
-                    UpdateCancelButtonColorNew();
                 }
                 else
                 {
                     TrySetCursorPointerColor(editText);
-                    UpdateSearchButtonColor();
-                    UpdateCancelButtonColor();
                 }
+
+                UpdateSearchButtonColor();
+                UpdateCancelButtonColor();
             }
         }
 
-        private void TrySetCursorPointerColorNew(EditText editText)
+        private static void TrySetCursorPointerColorNew(EditText editText)
         {
             try
             {
@@ -126,48 +125,12 @@ namespace MoneyFox.Droid.Renderer
             }
         }
 
-        private void UpdateSearchButtonColorNew()
-        {
-            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
-            if (searchViewCloseButtonId != 0)
-            {
-                var image = FindViewById<ImageView>(searchViewCloseButtonId);
-                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Color.Gray.ToAndroid(), BlendMode.SrcIn));
-            }
-        }
-
-        private void UpdateCancelButtonColorNew()
-        {
-            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
-            if (searchViewCloseButtonId != 0)
-            {
-                var image = FindViewById<ImageView>(searchViewCloseButtonId);
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                {
-                    image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
-                }
-                else
-                {
-                    image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
-                }
-            }
-        }
-
         private void UpdateSearchButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
             if (searchViewCloseButtonId != 0)
             {
-                var image = FindViewById<ImageView>(searchViewCloseButtonId);
-
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                {
-                    image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
-                }
-                else
-                {
-                    image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
-                }
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
             }
         }
 
@@ -176,16 +139,19 @@ namespace MoneyFox.Droid.Renderer
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
             if (searchViewCloseButtonId != 0)
             {
-                var image = FindViewById<ImageView>(searchViewCloseButtonId);
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
+            }
+        }
 
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                {
-                    image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
-                }
-                else
-                {
-                    image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
-                }
+        private static void SetColorGray(ImageView image)
+        {
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+            {
+                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
+            }
+            else
+            {
+                image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
             }
         }
     }

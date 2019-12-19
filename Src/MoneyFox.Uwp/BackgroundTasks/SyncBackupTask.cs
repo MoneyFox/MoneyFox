@@ -6,6 +6,7 @@ using CommonServiceLocator;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.BackgroundTasks
 {
@@ -13,7 +14,7 @@ namespace MoneyFox.Uwp.BackgroundTasks
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        public async void Run(IBackgroundTaskInstance taskInstance)
+        public async Task RunAsync(IBackgroundTaskInstance taskInstance)
         {
             BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
             logManager.Debug("Sync Backup started.");

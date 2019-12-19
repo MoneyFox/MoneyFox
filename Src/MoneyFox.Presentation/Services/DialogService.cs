@@ -57,7 +57,7 @@ namespace MoneyFox.Presentation.Services
         }
         private static MaterialLoadingDialogConfiguration GetLoadingDialogConfiguration() 
         {
-            return new MaterialLoadingDialogConfiguration()
+            return new MaterialLoadingDialogConfiguration
             {
                 BackgroundColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.BACKGROUND),
                 MessageTextColor = XF.Material.Forms.Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),

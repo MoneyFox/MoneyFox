@@ -210,21 +210,10 @@ namespace MoneyFox.Application.Common.CloudBackup
                 await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync(attempts + 1);
             }
-            catch (BackupAuthenticationFailedException ex)
+            catch(Exception ex) when (ex is BackupAuthenticationFailedException || ex is ServiceException)
             {
                 logManager.Error(ex, "Enqueue Backup failed.");
                 await LogoutAsync();
-                throw;
-            }
-            catch (ServiceException ex)
-            {
-                logManager.Error(ex, "Enqueue Backup failed.");
-                await LogoutAsync();
-                throw;
-            }
-            catch (Exception ex)
-            {
-                logManager.Error(ex, "Enqueue Backup failed.");
                 throw;
             }
 

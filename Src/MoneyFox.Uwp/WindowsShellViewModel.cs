@@ -48,7 +48,7 @@ namespace MoneyFox.Uwp
             set => Set(ref selected, value);
         }
 
-        public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new AsyncCommand(OnLoaded));
+        public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new AsyncCommand(OnLoadedAsync));
 
         public ICommand ItemInvokedCommand =>
             itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
@@ -65,7 +65,7 @@ namespace MoneyFox.Uwp
             this.navigationView.BackRequested += OnBackRequested;
         }
 
-        private async Task OnLoaded()
+        private async Task OnLoadedAsync()
         {
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
@@ -111,7 +111,6 @@ namespace MoneyFox.Uwp
             if (e.SourcePageType == typeof(SettingsPage))
             {
                 Selected = navigationView.SettingsItem as WinUI.NavigationViewItem;
-
                 return;
             }
 

@@ -7,13 +7,13 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
 using MoneyFox.Droid.Jobs;
 using MoneyFox.Presentation;
-using PCLAppConfig;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 using Platform = Xamarin.Essentials.Platform;
 
 #if !DEBUG
+using PCLAppConfig;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;

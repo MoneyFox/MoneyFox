@@ -29,6 +29,12 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             InMemoryEfCoreContextFactory.Destroy(context);
         }
 

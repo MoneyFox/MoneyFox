@@ -70,8 +70,8 @@ namespace MoneyFox.Presentation.ViewModels
                                           SelectedPayment.Amount,
                                           SelectedPayment.Type,
                                           await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
-                                          SelectedPayment.TargetAccount!= null 
-                                              ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id)) 
+                                          SelectedPayment.TargetAccount!= null
+                                              ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
                                               : null,
                                           mapper.Map<Category>(SelectedPayment.Category),
                                           SelectedPayment.Note);

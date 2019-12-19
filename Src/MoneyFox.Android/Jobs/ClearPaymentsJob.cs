@@ -5,11 +5,9 @@ using Android.OS;
 using CommonServiceLocator;
 using Java.Lang;
 using MediatR;
-using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
-using MoneyFox.Persistence;
 using NLog;
 using System;
 using System.Threading.Tasks;
@@ -67,10 +65,6 @@ namespace MoneyFox.Droid.Jobs
             var settingsManager = new SettingsFacade(new SettingsAdapter());
             try
             {
-                ExecutingPlatform.Current = AppPlatform.Android;
-
-                EfCoreContext context = EfCoreContextFactory.Create();
-
                 var mediator = ServiceLocator.Current.GetInstance<IMediator>();
                 await mediator.Send(new ClearPaymentsCommand());
 

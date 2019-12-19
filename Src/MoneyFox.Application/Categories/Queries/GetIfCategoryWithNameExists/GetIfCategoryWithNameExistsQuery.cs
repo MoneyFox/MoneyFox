@@ -8,7 +8,12 @@ namespace MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists
 {
     public class GetIfCategoryWithNameExistsQuery : IRequest<bool>
     {
-        public string CategoryName { get; set; }
+        public GetIfCategoryWithNameExistsQuery(string categoryName)
+        {
+            CategoryName = categoryName;
+        }
+
+        public string CategoryName { get; }
 
         public class Handler : IRequestHandler<GetIfCategoryWithNameExistsQuery, bool>
         {

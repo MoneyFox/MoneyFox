@@ -24,7 +24,6 @@ namespace MoneyFox.Uwp.Src
             catch (Exception ex)
             {
                 logger.Error(ex);
-
                 return null;
             }
         }
@@ -48,7 +47,6 @@ namespace MoneyFox.Uwp.Src
             catch (Exception ex)
             {
                 logger.Error(ex);
-
                 return false;
             }
         }
@@ -71,7 +69,6 @@ namespace MoneyFox.Uwp.Src
             catch (Exception ex)
             {
                 logger.Error(ex);
-
                 throw;
             }
         }

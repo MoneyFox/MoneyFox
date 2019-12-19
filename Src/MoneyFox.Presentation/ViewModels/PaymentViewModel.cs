@@ -203,8 +203,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => chargedAccount;
             set
             {
-                if(chargedAccount == value)
-                    return;
+                if(chargedAccount == value) return;
                 chargedAccount = value;
                 RaisePropertyChanged();
             }
@@ -219,8 +218,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => targetAccount;
             set
             {
-                if(targetAccount == value)
-                    return;
+                if(targetAccount == value) return;
                 targetAccount = value;
                 RaisePropertyChanged();
             }
@@ -234,8 +232,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => categoryViewModel;
             set
             {
-                if(categoryViewModel == value)
-                    return;
+                if(categoryViewModel == value) return;
                 categoryViewModel = value;
                 RaisePropertyChanged();
             }
@@ -249,8 +246,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => recurringPaymentViewModel;
             set
             {
-                if(recurringPaymentViewModel == value)
-                    return;
+                if(recurringPaymentViewModel == value) return;
                 recurringPaymentViewModel = value;
                 RaisePropertyChanged();
             }
@@ -264,8 +260,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => paymentTags;
             set
             {
-                if(paymentTags == value)
-                    return;
+                if(paymentTags == value) return;
                 paymentTags = value;
                 RaisePropertyChanged();
             }
@@ -286,8 +281,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => currentAccountId;
             set
             {
-                if(currentAccountId == value)
-                    return;
+                if(currentAccountId == value) return;
                 currentAccountId = value;
                 RaisePropertyChanged();
             }
