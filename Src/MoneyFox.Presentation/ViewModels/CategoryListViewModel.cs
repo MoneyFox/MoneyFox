@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using AutoMapper;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Presentation.Commands;

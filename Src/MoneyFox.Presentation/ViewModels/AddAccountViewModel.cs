@@ -40,9 +40,9 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SaveAccount()
         {
-            if (await mediator.Send(new GetIfAccountWithNameExistsQuery {AccountName = SelectedAccount.Name}))
+            if (await mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name)))
             {
-                await DialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicatedNameTitle);
+                await DialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
                 return;
             }
 

@@ -42,7 +42,7 @@ namespace MoneyFox.Presentation.ViewModels
             DialogService = dialogService;
             NavigationService = navigationService;
 
-            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await Search());
+            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await SearchAsync());
         }
 
         protected INavigationService NavigationService { get; }
@@ -77,12 +77,12 @@ namespace MoneyFox.Presentation.ViewModels
 
         public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
 
-        public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearing);
+        public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearingAsync);
 
         /// <summary>
         ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
-        public AsyncCommand<CategoryViewModel> DeleteCategoryCommand => new AsyncCommand<CategoryViewModel>(DeleteCategory);
+        public AsyncCommand<CategoryViewModel> DeleteCategoryCommand => new AsyncCommand<CategoryViewModel>(DeleteCategoryAsync);
 
         /// <summary>
         ///     Edit the currently selected CategoryViewModel
@@ -97,25 +97,25 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Executes a search for the passed term and updates the displayed list.
         /// </summary>
-        public AsyncCommand<string> SearchCommand => new AsyncCommand<string>(Search);
+        public AsyncCommand<string> SearchCommand => new AsyncCommand<string>(SearchAsync);
 
         /// <summary>
         ///     Create and save a new CategoryViewModel group
         /// </summary>
         public RelayCommand<CategoryViewModel> CreateNewCategoryCommand => new RelayCommand<CategoryViewModel>(CreateNewCategory);
 
-        public async Task ViewAppearing()
+        public async Task ViewAppearingAsync()
         {
-            await Search();
+            await SearchAsync();
         }
 
         /// <summary>
         ///     Performs a search with the text in the search text property
         /// </summary>
-        public async Task Search(string searchText = "")
+        public async Task SearchAsync(string searchText = "")
         {
             var categoriesVms =
-                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery { SearchTerm = searchText }));
+                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
             CategoryList = CreateGroup(categoriesVms);
         }
 
@@ -132,7 +132,7 @@ namespace MoneyFox.Presentation.ViewModels
                     break;
 
                 case MENU_RESULT_DELETE_INDEX:
-                    await DeleteCategory(categoryViewModel);
+                    await DeleteCategoryAsync(categoryViewModel);
                     break;
 
                 default:
@@ -151,7 +151,7 @@ namespace MoneyFox.Presentation.ViewModels
             NavigationService.NavigateTo(ViewModelLocator.AddCategory);
         }
 
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(List<CategoryViewModel> categories)
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(IEnumerable<CategoryViewModel> categories)
         {
             return new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
                 AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categories,
@@ -163,12 +163,12 @@ namespace MoneyFox.Presentation.ViewModels
                                                                               itemClickCommand: ItemClickCommand));
         }
 
-        private async Task DeleteCategory(CategoryViewModel categoryToDelete)
+        private async Task DeleteCategoryAsync(CategoryViewModel categoryToDelete)
         {
             if (await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 await Mediator.Send(new DeleteCategoryByIdCommand(categoryToDelete.Id));
-                await Search();
+                await SearchAsync();
             }
         }
     }

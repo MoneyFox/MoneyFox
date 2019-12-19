@@ -14,7 +14,7 @@ namespace MoneyFox.Presentation.Tests.Collections
 
     public class MapperCollectionFixture : IDisposable
     {
-        public IMapper Mapper { get; set; }
+        public IMapper? Mapper { get; private set; }
 
         public MapperCollectionFixture()
         {
@@ -23,7 +23,14 @@ namespace MoneyFox.Presentation.Tests.Collections
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             Mapper = null;
+
         }
     }
 }

@@ -20,7 +20,7 @@ namespace MoneyFox.Domain.Entities
                                 PaymentType type,
                                 PaymentRecurrence recurrence,
                                 Account chargedAccount,
-                                string? note = "",
+                                string note = "",
                                 DateTime? endDate = null,
                                 Account? targetAccount = null,
                                 Category? category = null)
@@ -55,7 +55,14 @@ namespace MoneyFox.Domain.Entities
         public decimal Amount { get; private set; }
         public PaymentType Type { get; private set; }
         public PaymentRecurrence Recurrence { get; private set; }
-        public string? Note { get; set; }
+
+        private string note;
+
+        public string Note
+        {
+            private set => note = value;
+            get { return note ?? string.Empty; }
+        }
 
         public DateTime ModificationDate { get; private set; }
         public DateTime CreationTime { get; private set; }

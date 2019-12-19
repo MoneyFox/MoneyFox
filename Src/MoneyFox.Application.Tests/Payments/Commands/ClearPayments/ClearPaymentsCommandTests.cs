@@ -31,7 +31,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
 
         public void Dispose()
         {
-            SQLiteEfCoreContextFactory.Destroy(context);
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            InMemoryEfCoreContextFactory.Destroy(context);
         }
 
         [Fact]

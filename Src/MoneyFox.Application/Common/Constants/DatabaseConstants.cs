@@ -10,26 +10,26 @@ namespace MoneyFox.Application.Common.Constants
         /// <summary>
         ///     Name of the SQLite database
         /// </summary>
-        public const string DB_NAME = "moneyfox3.db";
+        public static string DB_NAME => "moneyfox3.db";
 
         /// <summary>
         ///     Name of the Backup Folder
         /// </summary>
-        public const string BACKUP_FOLDER_NAME = "MoneyFoxBackup";
+        public static string BACKUP_FOLDER_NAME => "MoneyFoxBackup";
 
         /// <summary>
         ///     Name of the Backup Folder
         /// </summary>
-        public const string ARCHIVE_FOLDER_NAME = "Archive";
+        public static string ARCHIVE_FOLDER_NAME => "Archive";
 
         /// <summary>
         ///     Name of the database backup
         /// </summary>
-        public const string BACKUP_NAME = "backupmoneyfox3.db";
+        public static string BACKUP_NAME => "backupmoneyfox3.db";
 
         /// <summary>
         ///     Name of the database backup archive
         /// </summary>
-        public const string BACKUP_ARCHIVE_NAME = "backupmoneyfox3_{0}.db";
+        public static string BACKUP_ARCHIVE_NAME => "backupmoneyfox3_{0}.db";
     }
 }
