@@ -6,7 +6,6 @@
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:converter="using:MoneyFox.Uwp.Converter"
-      xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
       xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
