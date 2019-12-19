@@ -1,13 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              x:Class="MoneyFox.Presentation.UserControls.ModifyPaymentUserControl">
 
     <d:ContentView.BindingContext>
@@ -25,13 +23,14 @@
     <ContentView.Content>
         <ScrollView>
             <StackLayout Spacing="{StaticResource DefaultSpacing}">
-                <Picker Title="{Binding AccountHeader}" ItemsSource="{Binding ChargedAccounts}"
+                <Picker Title="{Binding AccountHeader}"
+                        ItemsSource="{Binding ChargedAccounts}"
                         Style="{StaticResource DefaultPickerStyle}"
                         SelectedItem="{Binding SelectedPayment.ChargedAccount}"
                         ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}"
                         SelectedIndexChanged="ChargedAccount_OnSelectedIndexChanged" />
 
-                <Picker Title="{Binding  Resources[TargetAccountLabel]}"
+                <Picker Title="{x:Static resources:Strings.TargetAccountLabel}"
                         ItemsSource="{Binding TargetAccounts}"
                         Style="{StaticResource DefaultPickerStyle}"
                         IsVisible="{Binding SelectedPayment.IsTransfer}"
@@ -42,12 +41,12 @@
                 <Entry x:Name="AmountEntry"
                        Style="{StaticResource DefaultEntry}"
                        Text="{Binding AmountString}"
-                       Placeholder="{Binding Resources[AmountLabel]}"
+                       Placeholder="{x:Static resources:Strings.AmountLabel}"
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        Focused="AmountFieldGotFocus" />
 
-                <Label Text="{Binding Resources[CategoryLabel]}"
+                <Label Text="{x:Static resources:Strings.CategoryLabel}"
                        Style="{DynamicResource DefaultTextStyle}"
                        Margin="0,5,0,0" />
 
@@ -79,7 +78,7 @@
                     </ImageButton>
                 </Grid>
 
-                <Label Text="{Binding Resources[DateLabel]}"
+                <Label Text="{x:Static resources:Strings.DateLabel}"
                        Style="{DynamicResource DefaultTextStyle}"
                        Margin="0,5,0,0" />
 
@@ -87,7 +86,7 @@
                             Style="{StaticResource DefaultDatePickerStyle}" />
 
                 <Entry Style="{StaticResource DefaultEntry}"
-                       Placeholder="{Binding Resources[NoteLabel]}"
+                       Placeholder="{x:Static resources:Strings.NoteLabel}"
                        Text="{Binding SelectedPayment.Note}" />
 
                 <Grid HorizontalOptions="FillAndExpand">
@@ -98,18 +97,18 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Text="{Binding Resources[RecurringLabel]}"
+                           Text="{x:Static resources:Strings.RecurringLabel}"
                            Style="{DynamicResource DefaultTextStyle}" />
 
                     <Switch Grid.Column="1"
                             HorizontalOptions="End"
-                            Style="{StaticResource SwitchStyle}" 
+                            Style="{StaticResource SwitchStyle}"
                             IsToggled="{Binding SelectedPayment.IsRecurring}" />
                 </Grid>
 
                 <StackLayout Spacing="{StaticResource DefaultSpacing}"
                              IsVisible="{Binding SelectedPayment.IsRecurring}">
-                    <Label Text="{Binding Resources[RecurrenceLabel]}"
+                    <Label Text="{x:Static resources:Strings.RecurrenceLabel}"
                            Style="{DynamicResource DefaultTextStyle}"
                            Margin="0,5,0,0" />
                     <Picker ItemsSource="{Binding RecurrenceList}"
@@ -127,7 +126,7 @@
 
                         <Label Grid.Column="0"
                                Style="{DynamicResource DefaultTextStyle}"
-                               Text="{Binding Resources[EndlessLabel]}" />
+                               Text="{x:Static resources:Strings.EndlessLabel}" />
 
                         <Switch Grid.Column="1"
                                 HorizontalOptions="End"
@@ -138,7 +137,7 @@
                     <StackLayout
                         IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}"
                         Spacing="{StaticResource DefaultSpacing}">
-                        <Label Text="{Binding Resources[EnddateLabel]}"
+                        <Label Text="{x:Static resources:Strings.EnddateLabel}"
                                Style="{DynamicResource DefaultTextStyle}"
 
                                Margin="{StaticResource MediumBottomMargin}" />
@@ -150,7 +149,7 @@
 
                 <!-- This delete button is only for ios, since there can be only one menu item -->
                 <Button x:Name="DeletePaymentButton"
-                        Text="{Binding Resources[DeleteLabel]}"
+                        Text="{x:Static resources:Strings.DeleteLabel}"
                         Style="{StaticResource DeleteButtonStyle}"
                         Command="{Binding DeleteCommand}">
 

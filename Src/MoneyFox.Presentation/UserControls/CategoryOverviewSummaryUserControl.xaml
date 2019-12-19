@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:controls="clr-namespace:MoneyFox.Presentation.Controls;assembly=MoneyFox.Presentation"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
              mc:Ignorable="d"
@@ -29,7 +29,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <material:MaterialCard Margin="{StaticResource SmallLeftRightTopBottomMargin}" 
+                            <material:MaterialCard Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                                    Style="{StaticResource ListCardStyle}">
 
                                 <StackLayout Padding="3"
@@ -64,7 +64,7 @@
                                     </Grid>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Resources[MonthlyAverageLabel]}"
+                                        <Label Text="{x:Static resources:Strings.MonthlyAverageLabel}"
                                                Style="{DynamicResource DeemphasizedLabelStyle}" />
                                         <Label
                                             Text="{Binding Average, Converter={StaticResource AmountValueConverter}}"
@@ -84,7 +84,7 @@
                    Style="{DynamicResource DeemphasizedLabelStyle}"
                    LineBreakMode="WordWrap"
                    IsVisible="{Binding HasData, Converter={StaticResource InverseBoolConverter}}"
-                   Text="{Binding Resources[NoStatisticItemsMessage]}" />
+                   Text="{x:Static resources:Strings.NoStatisticItemsMessage}" />
         </Grid>
 
     </ContentView.Content>
