@@ -8,7 +8,12 @@ namespace MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists
 {
     public class GetIfAccountWithNameExistsQuery : IRequest<bool>
     {
-        public string AccountName { get; set; }
+        public GetIfAccountWithNameExistsQuery(string accountName)
+        {
+            AccountName = accountName;
+        }
+
+        public string AccountName { get; }
 
         public class Handler : IRequestHandler<GetIfAccountWithNameExistsQuery, bool>
         {

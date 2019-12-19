@@ -513,14 +513,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Einbezogene Konten</value>
   </data>
-  <data name="BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Interval festlegen um auf geänderte Daten zu prüfen.</value>
-  </data>
   <data name="HourLabel" xml:space="preserve">
     <value>Stunde(n)</value>
-  </data>
-  <data name="BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Sicherungsperiodizität</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Halbjährlich</value>
@@ -812,5 +806,23 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Einnahmen / Ausgaben:</value>
+  </data>
+  <data name="CanceledTitle" xml:space="preserve">
+    <value>Abgebrochen</value>
+  </data>
+  <data name="LoginCanceledMessage" xml:space="preserve">
+    <value>Login wurde abgebrochen.</value>
+  </data>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>Es gab ein Problem während der Operation. Fehlermeldung {0}</value>
+  </data>
+  <data name="LogoutCanceledMessage" xml:space="preserve">
+    <value>Logout wurde abgebrochen.</value>
+  </data>
+  <data name="RestoreBackupCanceledMessage" xml:space="preserve">
+    <value>Wiederherstellung der Sicherung wurde abgebrochen.</value>
+  </data>
+  <data name="UploadBackupCanceledMessage" xml:space="preserve">
+    <value>Upload der Sicherung wurde abgebrochen.</value>
   </data>
 </root>

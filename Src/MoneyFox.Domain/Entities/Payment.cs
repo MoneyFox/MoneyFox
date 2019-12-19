@@ -24,7 +24,7 @@ namespace MoneyFox.Domain.Entities
                        Account? targetAccount = null,
                        Category? category = null,
                        string note = "",
-                       RecurringPayment recurringPayment = null)
+                       RecurringPayment? recurringPayment = null)
 #pragma warning restore S107 // Methods should not have too many parameters
         {
             CreationTime = DateTime.Now;
@@ -132,7 +132,7 @@ namespace MoneyFox.Domain.Entities
                     logManager.Warn($"Target Account on clearing was null for payment {Id}");
                     return;
                 }
-                TargetAccount.AddPaymentAmount(this);                
+                TargetAccount.AddPaymentAmount(this);
             }
         }
     }

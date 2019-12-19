@@ -511,14 +511,8 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Cuentas incluidas</value>
   </data>
-  <data name="BackupSyncRecurrenceInfoLabel" xml:space="preserve">
-    <value>Establecer el intervalo para comprobar cambios en los datos.</value>
-  </data>
   <data name="HourLabel" xml:space="preserve">
     <value>Hora(s)</value>
-  </data>
-  <data name="BackupSyncRecurrenceLabel" xml:space="preserve">
-    <value>Backup Recurrence</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Biannually</value>
@@ -811,5 +805,23 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Income / Expenses:</value>
+  </data>
+  <data name="CanceledTitle" xml:space="preserve">
+    <value>Canceled</value>
+  </data>
+  <data name="LoginCanceledMessage" xml:space="preserve">
+    <value>Login was canceled.</value>
+  </data>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>There was an issue during the operation. Error Message {0}</value>
+  </data>
+  <data name="LogoutCanceledMessage" xml:space="preserve">
+    <value>Logout backup was canceled.</value>
+  </data>
+  <data name="RestoreBackupCanceledMessage" xml:space="preserve">
+    <value>Restoring backup was canceled.</value>
+  </data>
+  <data name="UploadBackupCanceledMessage" xml:space="preserve">
+    <value>Upload backup was canceled.</value>
   </data>
 </root>

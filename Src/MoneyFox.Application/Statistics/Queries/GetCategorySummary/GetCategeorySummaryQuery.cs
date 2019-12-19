@@ -64,7 +64,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                                 categoryOverviewItems.Where(x => Math.Abs(x.Value) > 0.1m).OrderBy(x => x.Value).ToList());
             }
 
-            private void CreateOverviewItem(List<Payment> payments, Category category)
+            private void CreateOverviewItem(IEnumerable<Payment> payments, Category category)
             {
                 var categoryOverViewItem = new CategoryOverviewItem
                                            {
@@ -135,7 +135,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 return SumForCategory(payments);
             }
 
-            private static decimal SumForCategory(List<Payment> payments)
+            private static decimal SumForCategory(IEnumerable<Payment> payments)
             {
                 decimal sumForCategory = payments.Sum(x => x.Amount);
                 TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);

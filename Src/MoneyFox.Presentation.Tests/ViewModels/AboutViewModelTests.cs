@@ -20,7 +20,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task SendMail_NoParams_CommandCalled()
         {
             var composeMailSetup = new Mock<IEmailAdapter>();
-            composeMailSetup.Setup(x => x.SendEmail(It.Is<string>(s => s == Strings.FeedbackSubject),
+            composeMailSetup.Setup(x => x.SendEmailAsync(It.Is<string>(s => s == Strings.FeedbackSubject),
                                                     It.IsAny<string>(),
                                                     It.IsAny<List<string>>()))
                             .Returns(Task.CompletedTask);
@@ -31,7 +31,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                      new Mock<IStoreOperations>().Object)
                   .SendMailCommand.ExecuteAsync();
 
-            composeMailSetup.Verify(x => x.SendEmail(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()), Times.Once);
+            composeMailSetup.Verify(x => x.SendEmailAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>()), Times.Once);
         }
 
         [Fact]

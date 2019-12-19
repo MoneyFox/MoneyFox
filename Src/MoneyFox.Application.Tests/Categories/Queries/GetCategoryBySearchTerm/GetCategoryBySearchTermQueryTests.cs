@@ -61,7 +61,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
 
             // Act
             List<Category> result =
-                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery {SearchTerm = "guid"}, default);
+                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery("guid"), default);
 
             // Assert
             Assert.Single(result);

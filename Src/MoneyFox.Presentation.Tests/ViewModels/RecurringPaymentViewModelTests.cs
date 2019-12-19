@@ -20,7 +20,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Assert
             vm.Recurrence.ShouldEqual(PaymentRecurrence.Daily);
-            vm.EndDate.Value.Date.ShouldEqual(DateTime.Today);
+            vm.EndDate?.Date.ShouldEqual(DateTime.Today);
         }
     }
 }

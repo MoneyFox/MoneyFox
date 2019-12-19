@@ -59,9 +59,9 @@ namespace MoneyFox.Uwp
 
             IBackgroundTaskInstance taskInstance = args.TaskInstance;
 
-            new SyncBackupTask().Run(taskInstance);
             new ClearPaymentsTask().Run(taskInstance);
             new RecurringPaymentTask().Run(taskInstance);
+            await new SyncBackupTask().RunAsync(taskInstance);
         }
 
         private static void OverrideTitleBarColor()

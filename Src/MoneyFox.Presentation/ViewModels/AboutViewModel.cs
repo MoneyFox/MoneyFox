@@ -151,7 +151,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task SendMail()
         {
-            await emailAdapter.SendEmail(Strings.FeedbackSubject, string.Empty,
+            await emailAdapter.SendEmailAsync(Strings.FeedbackSubject, string.Empty,
                                          new List<string> { AppConstants.SupportMail});
         }
 

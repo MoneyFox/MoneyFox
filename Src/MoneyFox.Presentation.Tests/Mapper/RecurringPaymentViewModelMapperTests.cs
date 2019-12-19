@@ -51,7 +51,7 @@ namespace MoneyFox.Presentation.Tests.Mapper
             result.Recurrence.ShouldEqual(recurringPayment.Recurrence);
             result.Note.ShouldEqual(recurringPayment.Note);
             result.ChargedAccount.Name.ShouldEqual(recurringPayment.ChargedAccount.Name);
-            result.Category.Name.ShouldEqual(recurringPayment.Category.Name);
+            result.Category.Name.ShouldEqual(recurringPayment.Category?.Name);
             result.EndDate.ShouldEqual(recurringPayment.EndDate);
         }
     }

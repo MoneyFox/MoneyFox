@@ -3,6 +3,8 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <LangVersion>8.0</LangVersion>
+    <Nullable>enable</Nullable>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F68BCA5A-D029-4981-99A7-14BC968D12CA}</ProjectGuid>
@@ -14,8 +16,6 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ReleaseVersion>0.12.0.0</ReleaseVersion>
-    <LangVersion>8.0</LangVersion>
-    <Nullable>enable</Nullable>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -144,7 +144,6 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderer\CustomStepperRenderer.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\IosFileStore.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />

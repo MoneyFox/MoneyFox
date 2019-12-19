@@ -76,7 +76,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
             return statisticList;
         }
 
-        private static void AddOtherItem(List<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
+        private static void AddOtherItem(IEnumerable<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
             if(statisticList.Count < 6)
                 return;

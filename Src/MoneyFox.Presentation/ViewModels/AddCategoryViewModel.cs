@@ -30,13 +30,13 @@ namespace MoneyFox.Presentation.ViewModels
             Title = Strings.AddCategoryTitle;
         }
 
-        protected override Task Initialize()
+        protected override Task InitializeAsync()
         {
             SelectedCategory = new CategoryViewModel();
             return Task.CompletedTask;
         }
 
-        protected override async Task SaveCategory()
+        protected override async Task SaveCategoryAsync()
         {
             await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
             NavigationService.GoBack();

@@ -43,7 +43,7 @@ namespace MoneyFox.Presentation.ViewModels
         ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(IMediator mediator,
-                                          INavigationService navigationService, 
+                                          INavigationService navigationService,
                                           IMapper mapper,
                                           IDialogService dialogService)
         {
@@ -54,22 +54,22 @@ namespace MoneyFox.Presentation.ViewModels
             DialogService = dialogService;
         }
 
-        protected abstract Task Initialize();
+        protected abstract Task InitializeAsync();
 
-        protected abstract Task SaveCategory();
+        protected abstract Task SaveCategoryAsync();
 
         protected INavigationService NavigationService { get; }
 
         protected IDialogService DialogService { get; }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBase);
+        public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBaseAsync);
 
         /// <summary>
         ///     Cancel the current operation
         /// </summary>
-        public AsyncCommand CancelCommand => new AsyncCommand(Cancel);
+        public AsyncCommand CancelCommand => new AsyncCommand(CancelAsync);
 
         /// <summary>
         ///     The currently selected CategoryViewModel
@@ -100,7 +100,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public int CategoryId { get; set; }
 
-        private async Task SaveCategoryBase()
+        private async Task SaveCategoryBaseAsync()
         {
             if (string.IsNullOrEmpty(SelectedCategory.Name))
             {
@@ -108,16 +108,16 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery { CategoryName = SelectedCategory.Name }))
+            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
             {
                 await DialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
                 return;
             }
 
-            await SaveCategory();
+            await SaveCategoryAsync();
         }
 
-        private async Task Cancel()
+        private async Task CancelAsync()
         {
             SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
             NavigationService.GoBack();

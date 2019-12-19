@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using NLog;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using Microsoft.AppCenter.Crashes;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Application.Common.Adapters
 {
     public interface IEmailAdapter
     {
-        Task SendEmail(string subject, string body, List<string> recipients);
+        Task SendEmailAsync(string subject, string body, List<string> recipients);
     }
 
     public class EmailAdapter : IEmailAdapter
     {
-        public async Task SendEmail(string subject, string body, List<string> recipients)
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
+        public async Task SendEmailAsync(string subject, string body, List<string> recipients)
         {
             try
             {
@@ -26,7 +28,7 @@ namespace MoneyFox.Application.Common.Adapters
             }
             catch (FeatureNotSupportedException ex)
             {
-                Crashes.TrackError(ex);
+                logManager.Warn(ex);
             }
         }
     }
