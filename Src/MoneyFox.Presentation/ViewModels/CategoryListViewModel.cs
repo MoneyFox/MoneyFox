@@ -12,7 +12,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Defines the interface for a category list.
     /// </summary>
-    public interface ICategoryListViewModel : IBaseViewModel
+    public interface ICategoryListViewModel
     {
         /// <summary>
         ///     List of categories.

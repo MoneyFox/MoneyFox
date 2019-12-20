@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
@@ -22,7 +21,7 @@ using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface IModifyPaymentViewModel : IBaseViewModel
+    public interface IModifyPaymentViewModel
     {
         /// <summary>
         ///     Indicates if the PaymentViewModel is a transfer.

@@ -11,7 +11,7 @@ using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface IModifyCategoryViewModel : IBaseViewModel
+    public interface IModifyCategoryViewModel
     {
         /// <summary>
         ///     Saves changes to a CategoryViewModel
