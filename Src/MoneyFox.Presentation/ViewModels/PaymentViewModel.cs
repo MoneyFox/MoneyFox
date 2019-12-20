@@ -36,7 +36,6 @@ namespace MoneyFox.Presentation.ViewModels
         private AccountViewModel targetAccount;
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
-        private ObservableCollection<PaymentTagTagViewModel> paymentTags;
 
         private IMediator mediator;
         private INavigationService navigationService;
@@ -248,20 +247,6 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 if(recurringPaymentViewModel == value) return;
                 recurringPaymentViewModel = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// The <see cref="RecurringPayment"/> if it's recurring.
-        /// </summary>
-        public ObservableCollection<PaymentTagTagViewModel> PaymentTags
-        {
-            get => paymentTags;
-            set
-            {
-                if(paymentTags == value) return;
-                paymentTags = value;
                 RaisePropertyChanged();
             }
         }
