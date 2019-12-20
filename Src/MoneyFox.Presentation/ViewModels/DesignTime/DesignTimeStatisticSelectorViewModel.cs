@@ -1,18 +1,14 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Models;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Statistic;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
     {
-        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
-
         public List<StatisticSelectorType> StatisticItems => new List<StatisticSelectorType>
         {
             new StatisticSelectorType

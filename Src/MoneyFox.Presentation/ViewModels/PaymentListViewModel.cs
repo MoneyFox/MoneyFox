@@ -104,7 +104,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => viewActionViewModel;
             private set
             {
-                if(viewActionViewModel == value)
+                if (viewActionViewModel == value)
                     return;
                 viewActionViewModel = value;
                 RaisePropertyChanged();
@@ -149,7 +149,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => title;
             private set
             {
-                if(title == value)
+                if (title == value)
                     return;
                 title = value;
                 RaisePropertyChanged();
@@ -196,12 +196,12 @@ namespace MoneyFox.Presentation.ViewModels
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                                                                          filterMessage.TimeRangeStart,
                                                                                                                          filterMessage.TimeRangeEnd)
-                {
-                    IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                    IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-                }));
+            {
+                IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+            }));
 
-            foreach(PaymentViewModel payment in loadedPayments)
+            foreach (PaymentViewModel payment in loadedPayments)
             {
                 payment.CurrentAccountId = AccountId;
             }

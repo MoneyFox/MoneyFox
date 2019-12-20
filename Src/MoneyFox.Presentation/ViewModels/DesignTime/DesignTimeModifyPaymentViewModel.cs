@@ -1,19 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeModifyPaymentViewModel : IModifyPaymentViewModel
     {
-        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
-
         public bool IsTransfer { get; }
         public DateTime EndDate { get; } = DateTime.Now;
         public PaymentRecurrence Recurrence { get; } = PaymentRecurrence.Monthly;

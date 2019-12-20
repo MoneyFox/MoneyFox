@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Common.Messages;

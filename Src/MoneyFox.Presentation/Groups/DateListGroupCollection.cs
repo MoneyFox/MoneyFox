@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.Utilities;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Groups
@@ -29,10 +26,7 @@ namespace MoneyFox.Presentation.Groups
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
-            Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
         }
-
-        public LocalizedResources Resources { get; }
 
         /// <summary>
         ///     The Key of this group.

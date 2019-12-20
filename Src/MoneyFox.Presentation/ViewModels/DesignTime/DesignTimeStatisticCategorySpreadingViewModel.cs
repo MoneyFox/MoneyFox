@@ -1,25 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using Microcharts;
-using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Statistic;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeStatisticCategorySpreadingViewModel : IStatisticCategorySpreadingViewModel
     {
-        public DesignTimeStatisticCategorySpreadingViewModel()
-        {
-            Resources = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
-        }
-
-        /// <inheritdoc />
-        public LocalizedResources Resources { get; }
-
         public string Title => "I AM A MIGHTY TITLE";
 
         public DonutChart Chart => new DonutChart
