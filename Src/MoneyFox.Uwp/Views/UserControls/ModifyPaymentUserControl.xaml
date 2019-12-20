@@ -97,7 +97,7 @@
                                                Converter={StaticResource DateTimeToDateTimeOffsetConverter},
                                                Mode=TwoWay,
                                                UpdateSourceTrigger=PropertyChanged}"
-                            Header="{Binding Resources[DateLabel]}" />
+                            Header="{x:Bind resources:Strings.DateLabel}" />
                 <TextBox Margin="{StaticResource SmallTitleContentMargin}"
                          Header="{x:Bind resources:Strings.NoteLabel}"
                          Text="{Binding SelectedPayment.Note,

@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              x:Class="MoneyFox.Presentation.Views.EditAccountPage"
              Visual="Material"
              BackgroundColor="{DynamicResource WindowBackgroundColor}">
@@ -41,7 +40,7 @@
             <userControls:ModifyAccountUserControl />
 
             <Button x:Name="DeleteAccountButton"
-                    Text="{Binding Resources[DeleteLabel]}"
+                    Text="{x:Static resources:Strings.DeleteLabel}"
                     Style="{StaticResource DeleteButtonStyle}"
                     Command="{Binding DeleteCommand}"
                     Margin="0,12,0,0" />

@@ -8,6 +8,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
+    xmlns:resources="using:MoneyFox.Application.Resources"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -31,14 +32,14 @@
         <StackPanel Margin="12,0,12,0">
             <TextBox Margin="{StaticResource SmallTitleContentMargin}"
                      VerticalAlignment="Top"
-                     Header="{Binding Resources[AccountNameLabel]}"
+                     Header="{x:Bind resources:Strings.AccountNameLabel}"
                      Text="{Binding SelectedAccount.Name,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}" />
             <TextBox x:Name="TextBoxCurrentBalance"
                      Margin="{StaticResource SmallTitleContentMargin}"
                      GotFocus="TextBoxOnFocus"
-                     Header="{Binding Resources[CurrentBalanceLabel]}"
+                     Header="{x:Bind resources:Strings.CurrentBalanceLabel}"
                      InputScope="Number"
                      Text="{Binding SelectedAccount.CurrentBalance,
                                         Mode=TwoWay,
@@ -47,7 +48,7 @@
                      TextAlignment="Right" />
             <TextBox Margin="{StaticResource SmallTitleContentMargin}"
                      VerticalAlignment="Top"
-                     Header="{Binding Resources[NoteLabel]}"
+                     Header="{x:Bind resources:Strings.NoteLabel}"
                      Text="{Binding SelectedAccount.Note,
                                         Mode=TwoWay,
                                         UpdateSourceTrigger=PropertyChanged}"
@@ -55,7 +56,7 @@
 
             <CheckBox Margin="{StaticResource SmallTitleContentMargin}"
                       VerticalAlignment="Top"
-                      Content="{Binding Resources[IsExcludedLabel]}"
+                      Content="{x:Bind resources:Strings.IsExcludedLabel}"
                       IsChecked="{Binding SelectedAccount.IsExcluded,
                                               Mode=TwoWay,
                                               UpdateSourceTrigger=PropertyChanged}" />
