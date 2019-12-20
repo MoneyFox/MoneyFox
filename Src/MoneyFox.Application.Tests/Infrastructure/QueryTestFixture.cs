@@ -23,7 +23,7 @@ namespace MoneyFox.Application.Tests.Infrastructure
 
         protected virtual void Dispose(bool disposing)
         {
-            InMemoryEfCoreContextFactory.Destroy(context);
+            InMemoryEfCoreContextFactory.Destroy(Context);
         }
     }
 
