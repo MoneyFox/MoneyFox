@@ -8,7 +8,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
     public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
     {
         /// <inheritdoc />
-        public IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; } = new IncomeExpenseBalanceViewModel {TotalEarned = 400, TotalSpent = 600};
+        public IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; } = new IncomeExpenseBalanceViewModel { TotalEarned = 400, TotalSpent = 600 };
 
         public ObservableCollection<CategoryOverviewViewModel> CategorySummary => new ObservableCollection<CategoryOverviewViewModel>
         {
