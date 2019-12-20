@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using MoneyFox.Application.Common.Interfaces;
+using System.Threading.Tasks;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Interfaces;
 using Xamarin.Forms;
 using XF.Material.Forms.Resources;
 using XF.Material.Forms.UI.Dialogs;

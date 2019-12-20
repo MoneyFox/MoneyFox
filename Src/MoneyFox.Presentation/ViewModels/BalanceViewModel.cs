@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
@@ -8,7 +9,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Representation of the BalanceView
     /// </summary>
-    public class BalanceViewModel : BaseViewModel, IBalanceViewModel
+    public class BalanceViewModel : ViewModelBase, IBalanceViewModel
     {
         private readonly IBalanceCalculationService balanceCalculationService;
 

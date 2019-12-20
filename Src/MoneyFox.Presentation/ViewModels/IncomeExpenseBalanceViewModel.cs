@@ -1,6 +1,8 @@
-﻿namespace MoneyFox.Presentation.ViewModels
+﻿using GalaSoft.MvvmLight;
+
+namespace MoneyFox.Presentation.ViewModels
 {
-    public class IncomeExpenseBalanceViewModel : BaseViewModel
+    public class IncomeExpenseBalanceViewModel : ViewModelBase
     {
         private decimal totalEarned;
         private decimal totalSpent;

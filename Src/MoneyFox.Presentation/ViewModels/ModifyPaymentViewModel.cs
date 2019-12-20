@@ -4,8 +4,8 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
@@ -17,11 +17,10 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface IModifyPaymentViewModel : IBaseViewModel
+    public interface IModifyPaymentViewModel
     {
         /// <summary>
         ///     Indicates if the PaymentViewModel is a transfer.
@@ -100,12 +99,12 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
+    public abstract class ModifyPaymentViewModel : ViewModelBase, IModifyPaymentViewModel
     {
         private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IBackupService backupService;
-        private readonly IDialogService dialogService;
+        private readonly Application.Common.Interfaces.IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
@@ -120,7 +119,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         protected ModifyPaymentViewModel(IMediator mediator,
                                          IMapper mapper,
-                                         IDialogService dialogService,
+                                         Application.Common.Interfaces.IDialogService dialogService,
                                          ISettingsFacade settingsFacade,
                                          IBackupService backupService,
                                          INavigationService navigationService)

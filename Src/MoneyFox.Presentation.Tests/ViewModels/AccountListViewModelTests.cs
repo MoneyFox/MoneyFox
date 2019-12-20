@@ -9,7 +9,6 @@ using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Xunit;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
@@ -33,7 +32,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
 
-            var dialogServiceSetup = new Mock<IDialogService>();
+            var dialogServiceSetup = new Mock<Application.Common.Interfaces.IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessageAsync(It.IsAny<string>(), It.IsAny<string>(), null, null))
                               .Returns(Task.FromResult(false));
 
@@ -60,7 +59,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
 
-            var dialogServiceSetup = new Mock<IDialogService>();
+            var dialogServiceSetup = new Mock<Application.Common.Interfaces.IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessageAsync(It.IsAny<string>(), It.IsAny<string>(), null, null))
                               .Returns(Task.FromResult(false));
 
@@ -87,7 +86,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var balanceCalculationService = new Mock<IBalanceCalculationService>();
 
-            var dialogServiceSetup = new Mock<IDialogService>();
+            var dialogServiceSetup = new Mock<Application.Common.Interfaces.IDialogService>();
             dialogServiceSetup.Setup(x => x.ShowConfirmMessageAsync(It.IsAny<string>(), It.IsAny<string>(), null, null))
                               .Returns(Task.FromResult(true));
 

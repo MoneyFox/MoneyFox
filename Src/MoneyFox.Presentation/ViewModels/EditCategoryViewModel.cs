@@ -14,7 +14,6 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
 using NLog;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -28,7 +27,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMapper mapper;
 
         public EditCategoryViewModel(IMediator mediator,
-                                     IDialogService dialogService,
+                                     Application.Common.Interfaces.IDialogService dialogService,
                                      ISettingsFacade settingsFacade,
                                      IBackupService backupService,
                                      INavigationService navigationService,

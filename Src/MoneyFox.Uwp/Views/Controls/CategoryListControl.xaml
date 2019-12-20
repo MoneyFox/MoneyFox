@@ -7,6 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
              xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
+             xmlns:resources="using:MoneyFox.Application.Resources"
              d:DesignHeight="300"
              d:DesignWidth="400"
              mc:Ignorable="d">
@@ -26,10 +27,10 @@
                     <MenuFlyout>
                         <MenuFlyoutItem Icon="Edit"
                                         Click="EditCategory"
-                                        Text="{Binding Resources[EditLabel]}" />
+                                        Text="{x:Bind resources:Strings.EditLabel}" />
                         <MenuFlyoutItem Icon="Delete"
                                         Click="DeleteCategory"
-                                        Text="{Binding Resources[DeleteLabel]}" />
+                                        Text="{x:Bind resources:Strings.DeleteLabel}" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
                 <StackPanel Padding="{StaticResource SmallListItemPadding}"
@@ -129,7 +130,7 @@
 
         <TextBlock Grid.Row="1"
                    Margin="6"
-                   Text="{Binding Resources[NoCategoriesMessage]}"
+                   Text="{x:Bind resources:Strings.NoCategoriesMessage}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"

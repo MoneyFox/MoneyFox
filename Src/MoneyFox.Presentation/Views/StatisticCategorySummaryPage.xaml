@@ -9,7 +9,7 @@
              x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
              Visual="Material"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             Title="{Binding Resources[CategorySummaryTitle]}">
+             Title="{x:Static resources:Strings.CategorySummaryTitle}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeStatisticCategorySummaryViewModel />

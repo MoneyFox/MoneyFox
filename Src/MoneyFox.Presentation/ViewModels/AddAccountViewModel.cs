@@ -8,7 +8,6 @@ using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -21,7 +20,7 @@ namespace MoneyFox.Presentation.ViewModels
                                    IMapper mapper,
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
-                                   IDialogService dialogService,
+                                   Application.Common.Interfaces.IDialogService dialogService,
                                    INavigationService navigationService)
             : base(settingsFacade, backupService, dialogService, navigationService)
         {

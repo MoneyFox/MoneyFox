@@ -1,14 +1,9 @@
-﻿using System.Globalization;
-using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Utilities;
+﻿using GalaSoft.MvvmLight.Command;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeModifyAccountViewModel
     {
-        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
-
         /// <inheritdoc />
         public bool IsEdit { get; }
 

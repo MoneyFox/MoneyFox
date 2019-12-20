@@ -29,6 +29,12 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             InMemoryEfCoreContextFactory.Destroy(context);
         }
 

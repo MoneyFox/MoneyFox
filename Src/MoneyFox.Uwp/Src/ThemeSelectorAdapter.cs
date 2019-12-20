@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Interfaces;
+using System;
 using Windows.UI.Xaml;
-using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Uwp.Services;
 

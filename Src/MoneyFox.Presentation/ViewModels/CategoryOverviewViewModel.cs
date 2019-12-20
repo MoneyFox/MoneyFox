@@ -1,8 +1,9 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using System;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class CategoryOverviewViewModel : BaseViewModel
+    public class CategoryOverviewViewModel : ViewModelBase
     {
         private string label;
         private decimal value;

@@ -8,6 +8,7 @@
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:resources="using:MoneyFox.Application.Resources"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       NavigationCacheMode="Disabled"
       mc:Ignorable="d"
@@ -29,19 +30,19 @@
                 Placement="Top">
             <ListBox SelectionMode="Multiple">
                 <ListBoxItem>
-                    <CheckBox Content="Cleared" x:Uid="ClearedLabel"
+                    <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}"
                               IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox Content="Recurring" x:Uid="RecurringLabel"
+                    <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}"
                               IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <DatePicker Header="Time Range Start" x:Uid="TimeRangeStart"
+                    <DatePicker Header="{x:Bind resources:Strings.TimeRangeStartLabel}"
                                 Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <DatePicker Header="Time Range End" x:Uid="TimeRangeEnd"
+                    <DatePicker Header="{x:Bind resources:Strings.TimeRangeEndLabel}"
                                 Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" />
                 </ListBoxItem>
             </ListBox>
@@ -70,32 +71,27 @@
                     DataContext="{Binding ViewActionViewModel}"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="FilterLabel"
-                              Icon="Filter"
-                              Label="Filter"
+                <AppBarButton Icon="Filter"
+                              Label="{x:Bind resources:Strings.FilterLabel}"
                               FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
                               Click="AppBarToggleButton_Click" />
-                <AppBarButton x:Uid="AddIncomeLabel"
-                              Command="{Binding GoToAddIncomeCommand}"
+                <AppBarButton Command="{Binding GoToAddIncomeCommand}"
                               IsEnabled="{Binding IsAddIncomeAvailable}"
                               Icon="Add"
-                              Label="add income" />
-                <AppBarButton x:Uid="AddExpenseLabel"
-                              Command="{Binding GoToAddExpenseCommand}"
+                              Label="{x:Bind resources:Strings.AddIncomeLabel}" />
+                <AppBarButton Command="{Binding GoToAddExpenseCommand}"
                               IsEnabled="{Binding IsAddExpenseAvailable}"
                               Icon="Remove"
-                              Label="add spending" />
-                <AppBarButton x:Uid="AddTransferLabel"
-                              Command="{Binding GoToAddTransferCommand}"
+                              Label="{x:Bind resources:Strings.AddExpenseLabel}" />
+                <AppBarButton Command="{Binding GoToAddTransferCommand}"
                               IsEnabled="{Binding IsTransferAvailable}"
                               Icon="Switch"
-                              Label="add transfer" />
+                              Label="{x:Bind resources:Strings.AddTransferLabel}" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="DeleteAccountLabel"
-                              Command="{Binding DeleteAccountCommand}"
-                              Icon="Add"
-                              Label="Delete Account" />
+                <AppBarButton Command="{Binding DeleteAccountCommand}"
+                              Icon="Delete"
+                              Label="{x:Bind resources:Strings.DeleteAccountLabel}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

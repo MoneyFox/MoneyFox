@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Application.Common.CloudBackup;
@@ -8,11 +9,10 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public abstract class ModifyAccountViewModel : BaseViewModel
+    public abstract class ModifyAccountViewModel : ViewModelBase
     {
         private readonly IBackupService backupService;
         private readonly ISettingsFacade settingsFacade;
@@ -24,7 +24,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
                                          IBackupService backupService,
-                                         IDialogService dialogService,
+                                         Application.Common.Interfaces.IDialogService dialogService,
                                          INavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;
@@ -38,7 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected abstract Task Initialize();
 
-        protected IDialogService DialogService { get; }
+        protected Application.Common.Interfaces.IDialogService DialogService { get; }
         protected INavigationService NavigationService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);

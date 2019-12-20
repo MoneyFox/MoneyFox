@@ -1,11 +1,12 @@
 ﻿using System;
+using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class RecurringPaymentViewModel : BaseViewModel, IMapFrom<RecurringPayment>
+    public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>
     {
         private int id;
         private DateTime startDate;

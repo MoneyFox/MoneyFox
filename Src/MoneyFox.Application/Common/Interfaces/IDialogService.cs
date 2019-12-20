@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyFox.Presentation.Interfaces
+namespace MoneyFox.Application.Common.Interfaces
 {
     public interface IDialogService
     {
@@ -18,13 +18,13 @@ namespace MoneyFox.Presentation.Interfaces
         /// <param name="message">Message for the dialog.</param>
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
-        Task<bool> ShowConfirmMessageAsync(string title, string message, string positiveButtonText = null, string negativeButtonText = null);
+        Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null);
 
         /// <summary>
         ///     Shows a loading Dialog.
         /// </summary>
         /// <param name="message">Message to display.</param>
-        Task ShowLoadingDialogAsync(string message = null);
+        Task ShowLoadingDialogAsync(string? message = null);
 
         /// <summary>
         ///     Hides the previously opened Loading Dialog.

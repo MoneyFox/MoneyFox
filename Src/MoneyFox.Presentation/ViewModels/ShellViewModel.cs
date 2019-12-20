@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 
@@ -7,7 +8,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Representation of the MainView
     /// </summary>
-    public class ShellViewModel : BaseViewModel
+    public class ShellViewModel : ViewModelBase
     {
         private readonly INavigationService navigationService;
 

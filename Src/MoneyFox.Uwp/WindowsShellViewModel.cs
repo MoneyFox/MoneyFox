@@ -17,10 +17,11 @@ using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
 using NLog;
 using WinUI = Microsoft.UI.Xaml.Controls;
+using GalaSoft.MvvmLight;
 
 namespace MoneyFox.Uwp
 {
-    public class WindowsShellViewModel : BaseViewModel
+    public class WindowsShellViewModel : ViewModelBase
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 

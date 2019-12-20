@@ -5,14 +5,13 @@ using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
     ///     Defines the interface for a category list.
     /// </summary>
-    public interface ICategoryListViewModel : IBaseViewModel
+    public interface ICategoryListViewModel
     {
         /// <summary>
         ///     List of categories.
@@ -47,7 +46,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public CategoryListViewModel(IMediator mediator,
                                      IMapper mapper,
-                                     IDialogService dialogService,
+                                     Application.Common.Interfaces.IDialogService dialogService,
                                      INavigationService navigationService) 
             : base(mediator, mapper, dialogService, navigationService)
         {

@@ -7,7 +7,6 @@ using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -17,7 +16,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMapper mapper;
 
         public AddCategoryViewModel(IMediator mediator,
-                                    IDialogService dialogService,
+                                    Application.Common.Interfaces.IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
                                     INavigationService navigationService,

@@ -1,9 +1,10 @@
+using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class CategoryViewModel : BaseViewModel, IMapFrom<Category>
+    public class CategoryViewModel : ViewModelBase, IMapFrom<Category>
     {
         private int id;
         private string name;

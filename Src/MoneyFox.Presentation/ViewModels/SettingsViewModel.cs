@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Application.Resources;
@@ -7,7 +8,7 @@ using MoneyFox.Presentation.Models;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface ISettingsViewModel : IBaseViewModel
+    public interface ISettingsViewModel
     {
         /// <summary>
         ///     Contains all available Settings items.
@@ -31,7 +32,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     ViewModel for the settings view.
     /// </summary>
-    public class SettingsViewModel : BaseViewModel, ISettingsViewModel
+    public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {
         private readonly INavigationService navigationService;
 

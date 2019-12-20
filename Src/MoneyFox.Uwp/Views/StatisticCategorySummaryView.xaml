@@ -9,6 +9,7 @@
       xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
       xmlns:converter="using:MoneyFox.Uwp.Converter"
       xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+      xmlns:resources="using:MoneyFox.Application.Resources"
       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
       mc:Ignorable="d"
@@ -40,7 +41,7 @@
                     </Grid>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                   Text="{Binding Resources[MonthlyAverageLabel]}" />
+                                   Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
                         <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                                    Margin="3,0,0,0"
                                    Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />

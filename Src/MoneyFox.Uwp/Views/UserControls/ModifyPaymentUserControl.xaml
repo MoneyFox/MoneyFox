@@ -9,8 +9,7 @@
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
     xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-    xmlns:uwp="using:FontAwesome.UWP"
-    xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
     mc:Ignorable="d"
     d:DesignHeight="300"
@@ -64,7 +63,7 @@
 
                 <ComboBox Margin="{StaticResource SmallTitleContentMargin}"
                           HorizontalAlignment="Stretch"
-                          Header="{Binding Resources[TargetAccountLabel]}"
+                          Header="{x:Bind resources:Strings.TargetAccountLabel}"
                           ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
                           ItemsSource="{Binding TargetAccounts,
                                                     Mode=TwoWay,
@@ -82,7 +81,7 @@
 
                 </ComboBox>
                 <TextBox Margin="{StaticResource SmallTitleContentMargin}"
-                         Header="{Binding Resources[AmountLabel]}"
+                         Header="{x:Bind resources:Strings.AmountLabel}"
                          InputScope="Number"
                          Text="{Binding SelectedPayment.Amount,
                                             Mode=TwoWay,
@@ -98,9 +97,9 @@
                                                Converter={StaticResource DateTimeToDateTimeOffsetConverter},
                                                Mode=TwoWay,
                                                UpdateSourceTrigger=PropertyChanged}"
-                            Header="{Binding Resources[DateLabel]}" />
+                            Header="{x:Bind resources:Strings.DateLabel}" />
                 <TextBox Margin="{StaticResource SmallTitleContentMargin}"
-                         Header="{Binding Resources[NoteLabel]}"
+                         Header="{x:Bind resources:Strings.NoteLabel}"
                          Text="{Binding SelectedPayment.Note,
                                             Mode=TwoWay,
                                             UpdateSourceTrigger=PropertyChanged}"
@@ -108,20 +107,20 @@
                 <!--  We set the binding as OneTime and update the value in the code behind to ensure that it is visible when the animation plays  -->
                 <ToggleSwitch Margin="{StaticResource SmallTitleContentMargin}"
                               VerticalAlignment="Stretch"
-                              Header="{Binding Resources[RecurringLabel]}"
+                              Header="{x:Bind resources:Strings.RecurringLabel}"
                               IsOn="{Binding SelectedPayment.IsRecurring,
                                                  Mode=TwoWay}"
                               Toggled="ToggleRecurringVisibility" />
                 <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibilityInitialy">
                     <ComboBox HorizontalAlignment="Stretch"
                               Margin="{StaticResource SmallTitleContentMargin}"
-                              Header="{Binding Resources[RecurrenceLabel]}"
+                              Header="{x:Bind resources:Strings.RecurrenceLabel}"
                               ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}"
                               ItemsSource="{Binding RecurrenceList}"
                               SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence,
                                                          Mode=TwoWay,
                                                          UpdateSourceTrigger=PropertyChanged}" />
-                    <CheckBox Content="{Binding Resources[EndlessLabel]}"
+                    <CheckBox Content="{x:Bind resources:Strings.EndlessLabel}"
                               Margin="{StaticResource SmallTitleContentMargin}"
                               IsChecked="{Binding SelectedPayment.RecurringPayment.IsEndless,
                                                       Mode=TwoWay,
@@ -131,7 +130,7 @@
                                                    Converter={StaticResource DateTimeToDateTimeOffsetConverter},
                                                    Mode=TwoWay,
                                                    UpdateSourceTrigger=PropertyChanged}"
-                                Header="{Binding Resources[EnddateLabel]}"
+                                Header="{x:Bind resources:Strings.EnddateLabel}"
                                 Visibility="{Binding SelectedPayment.RecurringPayment.IsEndless,
                                                          Converter={StaticResource BooleanVisibilityConverter},
                                                          ConverterParameter=revert}" />

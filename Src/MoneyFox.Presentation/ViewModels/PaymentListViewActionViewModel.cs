@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
@@ -11,17 +12,16 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Interfaces;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     /// <inheritdoc cref="IPaymentListViewActionViewModel" />
     /// />
-    public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
+    public class PaymentListViewActionViewModel : ViewModelBase, IPaymentListViewActionViewModel
     {
         private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
-        private readonly IDialogService dialogService;
+        private readonly Application.Common.Interfaces.IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly INavigationService navigationService;
 
@@ -40,7 +40,7 @@ namespace MoneyFox.Presentation.ViewModels
         public PaymentListViewActionViewModel(int accountId,
                                               IMediator mediator,
                                               ISettingsFacade settingsFacade,
-                                              IDialogService dialogService,
+                                              Application.Common.Interfaces.IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
                                               INavigationService navigationService)
         {

@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface IModifyCategoryViewModel : IBaseViewModel
+    public interface IModifyCategoryViewModel
     {
         /// <summary>
         ///     Saves changes to a CategoryViewModel
@@ -31,7 +31,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public abstract class ModifyCategoryViewModel : BaseViewModel, IModifyCategoryViewModel
+    public abstract class ModifyCategoryViewModel : ViewModelBase, IModifyCategoryViewModel
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
@@ -45,7 +45,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected ModifyCategoryViewModel(IMediator mediator,
                                           INavigationService navigationService,
                                           IMapper mapper,
-                                          IDialogService dialogService)
+                                          Application.Common.Interfaces.IDialogService dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -60,7 +60,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected INavigationService NavigationService { get; }
 
-        protected IDialogService DialogService { get; }
+        protected Application.Common.Interfaces.IDialogService DialogService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 

@@ -13,7 +13,6 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -28,7 +27,7 @@ namespace MoneyFox.Presentation.ViewModels
                                     IMapper mapper,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
-                                    IDialogService dialogService,
+                                    Application.Common.Interfaces.IDialogService dialogService,
                                     INavigationService navigationService) 
             : base(settingsFacade, backupService, dialogService, navigationService)
         {
