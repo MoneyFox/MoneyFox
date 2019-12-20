@@ -5,9 +5,9 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels
 {

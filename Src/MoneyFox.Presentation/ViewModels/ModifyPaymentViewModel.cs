@@ -17,7 +17,6 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -105,7 +104,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IBackupService backupService;
-        private readonly IDialogService dialogService;
+        private readonly Application.Common.Interfaces.IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
@@ -120,7 +119,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         protected ModifyPaymentViewModel(IMediator mediator,
                                          IMapper mapper,
-                                         IDialogService dialogService,
+                                         Application.Common.Interfaces.IDialogService dialogService,
                                          ISettingsFacade settingsFacade,
                                          IBackupService backupService,
                                          INavigationService navigationService)

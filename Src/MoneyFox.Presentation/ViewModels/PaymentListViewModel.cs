@@ -16,7 +16,6 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -28,7 +27,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
-        private readonly IDialogService dialogService;
+        private readonly Application.Common.Interfaces.IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
@@ -45,7 +44,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public PaymentListViewModel(IMediator mediator,
                                     IMapper mapper,
-                                    IDialogService dialogService,
+                                    Application.Common.Interfaces.IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBalanceCalculationService balanceCalculationService,
                                     INavigationService navigationService)

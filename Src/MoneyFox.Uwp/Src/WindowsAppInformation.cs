@@ -1,6 +1,6 @@
-﻿using System.Globalization;
+﻿using MoneyFox.Application.Common.Interfaces;
+using System.Globalization;
 using Windows.ApplicationModel;
-using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Uwp.Src
 {

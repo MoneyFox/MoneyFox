@@ -7,7 +7,6 @@ using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -46,7 +45,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected ModifyCategoryViewModel(IMediator mediator,
                                           INavigationService navigationService,
                                           IMapper mapper,
-                                          IDialogService dialogService)
+                                          Application.Common.Interfaces.IDialogService dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -61,7 +60,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected INavigationService NavigationService { get; }
 
-        protected IDialogService DialogService { get; }
+        protected Application.Common.Interfaces.IDialogService DialogService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 

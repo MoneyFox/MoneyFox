@@ -13,7 +13,6 @@ using MoneyFox.Presentation.Utilities;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -22,12 +21,12 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly INavigationService navigationService;
-        private readonly IDialogService dialogService;
+        private readonly Application.Common.Interfaces.IDialogService dialogService;
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Intended")]
         public EditPaymentViewModel(IMediator mediator,
                                     IMapper mapper,
-                                    IDialogService dialogService,
+                                    Application.Common.Interfaces.IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
                                     INavigationService navigationService) : base(mediator,

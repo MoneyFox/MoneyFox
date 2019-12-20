@@ -14,7 +14,6 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -41,7 +40,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private IMediator mediator;
         private INavigationService navigationService;
-        private IDialogService dialogService;
+        private Application.Common.Interfaces.IDialogService dialogService;
 
         public PaymentViewModel()
         {
@@ -323,7 +322,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             if(dialogService == null)
             {
-                dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
+                dialogService = ServiceLocator.Current.GetInstance<Application.Common.Interfaces.IDialogService>();
             }
 
             if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,

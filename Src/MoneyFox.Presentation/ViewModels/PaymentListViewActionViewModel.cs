@@ -12,7 +12,6 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Interfaces;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -22,7 +21,7 @@ namespace MoneyFox.Presentation.ViewModels
     {
         private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
-        private readonly IDialogService dialogService;
+        private readonly Application.Common.Interfaces.IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly INavigationService navigationService;
 
@@ -41,7 +40,7 @@ namespace MoneyFox.Presentation.ViewModels
         public PaymentListViewActionViewModel(int accountId,
                                               IMediator mediator,
                                               ISettingsFacade settingsFacade,
-                                              IDialogService dialogService,
+                                              Application.Common.Interfaces.IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
                                               INavigationService navigationService)
         {

@@ -21,7 +21,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -34,7 +33,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private readonly IMediator mediator;
         private readonly IMapper mapper;
-        private readonly IDialogService dialogService;
+        private readonly Application.Common.Interfaces.IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
         private readonly INavigationService navigationService;
 
@@ -46,7 +45,7 @@ namespace MoneyFox.Presentation.ViewModels
         public AccountListViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IBalanceCalculationService balanceCalculationService,
-                                    IDialogService dialogService,
+                                    Application.Common.Interfaces.IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     INavigationService navigationService)
         {

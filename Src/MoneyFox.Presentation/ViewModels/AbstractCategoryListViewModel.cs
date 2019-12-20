@@ -17,7 +17,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -35,7 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         protected AbstractCategoryListViewModel(IMediator mediator,
                                                 IMapper mapper,
-                                                IDialogService dialogService,
+                                                Application.Common.Interfaces.IDialogService dialogService,
                                                 INavigationService navigationService)
         {
             Mediator = mediator;
@@ -50,7 +49,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected IMediator Mediator { get; }
         protected IMapper Mapper { get; }
-        protected IDialogService DialogService { get; }
+        protected Application.Common.Interfaces.IDialogService DialogService { get; }
 
         /// <summary>
         ///     Handle the selection of a CategoryViewModel in the list
