@@ -130,7 +130,7 @@
 
         <TextBlock Grid.Row="1"
                    Margin="6"
-                   Text="{Binding Resources[NoCategoriesMessage]}"
+                   Text="{x:Bind resources:Strings.NoCategoriesMessage}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
