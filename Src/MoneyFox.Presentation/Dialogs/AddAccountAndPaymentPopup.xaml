@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+                 xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
                  Visual="Material"
                  x:Class="MoneyFox.Presentation.Dialogs.AddAccountAndPaymentPopup">
 
@@ -19,7 +18,7 @@
 
             <StackLayout>
 
-                <Label Text="{Binding Resources[AddTitle]}"
+                <Label Text="{x:Static resources:Strings.AddTitle}"
                        Style="{StaticResource ListItemHeaderStyle}" />
 
                 <Grid Margin="0,6,0,0"
@@ -42,7 +41,7 @@
                     </Image>
 
                     <Label Grid.Column="1"
-                           Text="{Binding Resources[AddAccountLabel]}"
+                           Text="{x:Static resources:Strings.AddAccountLabel}"
                            Style="{StaticResource DefaultTextStyle}"
                            HorizontalOptions="Start"
                            VerticalOptions="CenterAndExpand" />
@@ -67,7 +66,7 @@
                     </Image>
 
                     <Label Grid.Column="1"
-                           Text="{Binding Resources[AddExpenseLabel]}"
+                           Text="{x:Static resources:Strings.AddExpenseLabel}"
                            Style="{StaticResource DefaultTextStyle}"
                            HorizontalOptions="Start"
                            VerticalOptions="CenterAndExpand" />
@@ -92,7 +91,7 @@
                     </Image>
 
                     <Label Grid.Column="1"
-                           Text="{Binding Resources[AddIncomeLabel]}"
+                           Text="{x:Static resources:Strings.AddIncomeLabel}"
                            Style="{StaticResource DefaultTextStyle}"
                            HorizontalOptions="Start"
                            VerticalOptions="CenterAndExpand" />
@@ -117,7 +116,7 @@
                     </Image>
 
                     <Label Grid.Column="1"
-                           Text="{Binding Resources[AddTransferLabel]}"
+                           Text="{x:Static resources:Strings.AddTransferLabel}"
                            Style="{StaticResource DefaultTextStyle}"
                            HorizontalOptions="Start"
                            VerticalOptions="CenterAndExpand" />
