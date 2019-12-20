@@ -9,6 +9,7 @@
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
       xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
+      xmlns:resources="using:MoneyFox.Application.Resources"
       DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
       mc:Ignorable="d">
 
@@ -29,23 +30,25 @@
 
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
-            <StackPanel HorizontalAlignment="Stretch"
+                
+                <StackPanel HorizontalAlignment="Stretch"
                         Margin="{StaticResource SmallListItemMargin}"
-                        Background="{ThemeResource ListItemBrush}"
                         RightTapped="AccountList_RightTapped">
-                <FlyoutBase.AttachedFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem Icon="Edit"
+                    <FlyoutBase.AttachedFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem Icon="Edit"
                                         Click="Edit_OnClick"
-                                        Text="{Binding Resources[EditLabel]}" />
-                        <MenuFlyoutItem Icon="Delete"
+                                        Text="{x:Bind resources:Strings.EditLabel}" />
+                            <MenuFlyoutItem Icon="Delete"
                                         Click="Delete_OnClick"
-                                        Text="{Binding Resources[DeleteLabel]}" />
-                    </MenuFlyout>
+                                        Text="{x:Bind resources:Strings.DeleteLabel}" />
+                        </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
 
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
-                            Padding="{StaticResource SmallListItemPadding}">
+                            Padding="{StaticResource SmallListItemPadding}"                        
+                                Background="{ThemeResource ListItemBrush}"
+>
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                    Text="{x:Bind Name}"
@@ -150,7 +153,7 @@
 
         <TextBlock Grid.Row="1"
                    Margin="6"
-                   Text="{Binding Resources[NoAccountsMessage]}"
+                   Text="{x:Bind resources:Strings.NoAccountsMessage}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
@@ -163,27 +166,23 @@
                     Margin="{StaticResource NegativeMediumLeftRightMargin}"
                     DataContext="{Binding ViewActionViewModel}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="AddIncomeLabel"
-                              Command="{Binding GoToAddIncomeCommand}"
+                <AppBarButton Command="{Binding GoToAddIncomeCommand}"
                               Icon="Add"
                               IsEnabled="{Binding IsAddIncomeAvailable}"
-                              Label="add income" />
-                <AppBarButton x:Uid="AddExpenseLabel"
-                              Command="{Binding GoToAddExpenseCommand}"
+                              Label="{x:Bind resources:Strings.AddIncomeLabel}" />
+                <AppBarButton Command="{Binding GoToAddExpenseCommand}"
                               Icon="Remove"
                               IsEnabled="{Binding IsAddExpenseAvailable}"
-                              Label="add spending" />
-                <AppBarButton x:Uid="AddTransferLabel"
-                              Command="{Binding GoToAddTransferCommand}"
+                              Label="{x:Bind resources:Strings.AddExpenseLabel}" />
+                <AppBarButton Command="{Binding GoToAddTransferCommand}"
                               Icon="Switch"
                               IsEnabled="{Binding IsTransferAvailable}"
-                              Label="add transfer" />
+                              Label="{x:Bind resources:Strings.AddTransferLabel}" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="AddAccountLabel"
-                              Command="{Binding GoToAddAccountCommand}"
+                <AppBarButton Command="{Binding GoToAddAccountCommand}"
                               Icon="Add"
-                              Label="Add Account" />
+                              Label="{x:Bind resources:Strings.AddAccountLabel}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

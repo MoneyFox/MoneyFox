@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:resources="using:MoneyFox.Application.Resources"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding EditPaymentVm, Source={StaticResource Locator}}"
@@ -29,20 +30,17 @@
                     Grid.Row="2"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="DoneLabel"
-                              Command="{Binding SaveCommand}"
+                <AppBarButton Command="{Binding SaveCommand}"
                               Icon="Save"
-                              Label="Done" />
-                <AppBarButton x:Uid="CancelLabel"
-                              Command="{Binding CancelCommand}"
+                              Label="{x:Bind resources:Strings.DoneLabel}" />
+                <AppBarButton Command="{Binding CancelCommand}"
                               Icon="Cancel"
-                              Label="Cancel" />
+                              Label="{x:Bind resources:Strings.CancelLabel}" />
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="DeleteLabel"
-                              Command="{Binding DeleteCommand}"
+                <AppBarButton Command="{Binding DeleteCommand}"
                               Icon="Delete"
-                              Label="Delete" />
+                              Label="{x:Bind resources:Strings.DeleteLabel}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

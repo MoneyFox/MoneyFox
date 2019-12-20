@@ -826,4 +826,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Upload backup was canceled.</value>
   </data>
+  <data name="DeleteAccountLabel" xml:space="preserve">
+    <value>Delete Account</value>
+  </data>
 </root>

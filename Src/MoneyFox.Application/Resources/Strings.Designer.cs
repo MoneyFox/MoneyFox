@@ -727,6 +727,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete Account.
+        /// </summary>
+        public static string DeleteAccountLabel {
+            get {
+                return ResourceManager.GetString("DeleteAccountLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this Category?.
         /// </summary>
         public static string DeleteCategoryConfirmationMessage {
