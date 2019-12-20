@@ -15,8 +15,8 @@ namespace MoneyFox.Application.Common
         public static bool CheckIfRepeatable(Payment payment)
         {
             if (!payment.IsCleared) return false;
-
-            if (payment.IsRecurring && payment.RecurringPayment == null) throw new RecurringPaymentNullException();
+            if (!payment.IsRecurring) return false;
+            if (payment.RecurringPayment == null) throw new RecurringPaymentNullException();
 
             switch (payment.RecurringPayment.Recurrence)
             {
