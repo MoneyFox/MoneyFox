@@ -1,9 +1,10 @@
-﻿using MoneyFox.Application.Common.Facades;
+﻿using GalaSoft.MvvmLight;
+using MoneyFox.Application.Common.Facades;
 using System;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface ISettingsBackgroundJobViewModel : IBaseViewModel
+    public interface ISettingsBackgroundJobViewModel
     {
         /// <summary>
         ///     Indicates if the autobackup is enabled or disabled.
@@ -17,7 +18,7 @@ namespace MoneyFox.Presentation.ViewModels
 
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel" />
     /// />
-    public class SettingsBackgroundJobViewModel : BaseViewModel, ISettingsBackgroundJobViewModel
+    public class SettingsBackgroundJobViewModel : ViewModelBase, ISettingsBackgroundJobViewModel
     {
         private readonly ISettingsFacade settingsFacade;
 

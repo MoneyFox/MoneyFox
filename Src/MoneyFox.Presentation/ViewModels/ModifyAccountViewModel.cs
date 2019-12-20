@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Application.Common.CloudBackup;
@@ -12,7 +13,7 @@ using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public abstract class ModifyAccountViewModel : BaseViewModel
+    public abstract class ModifyAccountViewModel : ViewModelBase
     {
         private readonly IBackupService backupService;
         private readonly ISettingsFacade settingsFacade;

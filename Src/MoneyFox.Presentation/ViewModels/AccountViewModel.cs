@@ -1,4 +1,5 @@
 ﻿using System;
+using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 
@@ -7,7 +8,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Representation of an account view.
     /// </summary>
-    public class AccountViewModel : BaseViewModel, IMapFrom<Account>
+    public class AccountViewModel : ViewModelBase, IMapFrom<Account>
     {
         private int id;
         private string name;

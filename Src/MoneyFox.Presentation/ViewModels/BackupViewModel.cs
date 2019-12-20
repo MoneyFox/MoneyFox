@@ -1,4 +1,5 @@
-﻿using Microsoft.AppCenter.Crashes;
+﻿using GalaSoft.MvvmLight;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
@@ -54,7 +55,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     /// Representation of the backup view.
     /// </summary>
-    public class BackupViewModel : BaseViewModel, IBackupViewModel
+    public class BackupViewModel : ViewModelBase, IBackupViewModel
     {
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;

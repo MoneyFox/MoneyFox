@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
@@ -7,7 +8,7 @@ using MoneyFox.Presentation.ViewModels.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class AccountListViewActionViewModel : BaseViewModel, IAccountListViewActionViewModel
+    public class AccountListViewActionViewModel : ViewModelBase, IAccountListViewActionViewModel
     {
         private const int TRANSFER_MINIMUM_ACCOUNT_COUNT = 2;
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
@@ -17,7 +18,7 @@ namespace MoneyFox.Presentation.ViewModels
 {
     /// <inheritdoc cref="IPaymentListViewActionViewModel" />
     /// />
-    public class PaymentListViewActionViewModel : BaseViewModel, IPaymentListViewActionViewModel
+    public class PaymentListViewActionViewModel : ViewModelBase, IPaymentListViewActionViewModel
     {
         private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;

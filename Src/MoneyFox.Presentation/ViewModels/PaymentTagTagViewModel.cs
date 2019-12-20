@@ -1,9 +1,10 @@
-﻿using MoneyFox.Application.Common.Interfaces.Mapping;
+﻿using GalaSoft.MvvmLight;
+using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class PaymentTagTagViewModel : BaseViewModel, IMapFrom<PaymentTag>
+    public class PaymentTagTagViewModel : ViewModelBase, IMapFrom<PaymentTag>
     {
         private int id;
         private string name;

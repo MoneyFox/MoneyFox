@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
@@ -10,7 +11,7 @@ using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface IAboutViewModel : IBaseViewModel
+    public interface IAboutViewModel
     {
         /// <summary>
         ///     Opens the webbrowser and loads to the apply solutions
@@ -68,7 +69,7 @@ namespace MoneyFox.Presentation.ViewModels
         string SupportMail { get; }
     }
 
-    public class AboutViewModel : BaseViewModel, IAboutViewModel
+    public class AboutViewModel : ViewModelBase, IAboutViewModel
     {
         private readonly IAppInformation appInformation;
         private readonly IBrowserAdapter browserAdapter;

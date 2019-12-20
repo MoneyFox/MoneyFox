@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
@@ -31,7 +32,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public abstract class ModifyCategoryViewModel : BaseViewModel, IModifyCategoryViewModel
+    public abstract class ModifyCategoryViewModel : ViewModelBase, IModifyCategoryViewModel
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;

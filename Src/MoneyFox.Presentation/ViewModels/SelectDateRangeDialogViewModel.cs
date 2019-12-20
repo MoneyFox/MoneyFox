@@ -1,11 +1,12 @@
 ﻿using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Messages;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface ISelectDateRangeDialogViewModel : IBaseViewModel
+    public interface ISelectDateRangeDialogViewModel
     {
         DateTime StartDate { get; set; }
         DateTime EndDate { get; set; }
@@ -13,7 +14,7 @@ namespace MoneyFox.Presentation.ViewModels
         RelayCommand DoneCommand { get; set; }
     }
 
-    public class SelectDateRangeDialogViewModel : BaseViewModel
+    public class SelectDateRangeDialogViewModel : ViewModelBase
     {
         private DateTime startDate;
         private DateTime endDate;

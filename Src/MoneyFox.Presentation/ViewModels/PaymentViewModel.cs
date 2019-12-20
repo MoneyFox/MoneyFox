@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CommonServiceLocator;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
@@ -20,7 +21,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     /// Handles the view representation of a payment.
     /// </summary>
-    public class PaymentViewModel : BaseViewModel, IHaveCustomMapping
+    public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
     {
         private int id;
         private int chargedAccountId;

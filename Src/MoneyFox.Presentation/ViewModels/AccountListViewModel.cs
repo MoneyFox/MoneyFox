@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
@@ -24,7 +25,7 @@ using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public class AccountListViewModel : BaseViewModel, IAccountListViewModel
+    public class AccountListViewModel : ViewModelBase, IAccountListViewModel
     {
         private const int MENU_RESULT_EDIT_INDEX = 0;
         private const int MENU_RESULT_DELETE_INDEX = 1;

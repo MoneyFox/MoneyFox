@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
@@ -100,7 +101,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     ///     Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : BaseViewModel, IModifyPaymentViewModel
+    public abstract class ModifyPaymentViewModel : ViewModelBase, IModifyPaymentViewModel
     {
         private readonly IMapper mapper;
         private readonly IMediator mediator;

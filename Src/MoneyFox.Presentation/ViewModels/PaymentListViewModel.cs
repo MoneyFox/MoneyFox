@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
@@ -23,7 +23,7 @@ namespace MoneyFox.Presentation.ViewModels
     /// <summary>
     /// Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
+    public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
