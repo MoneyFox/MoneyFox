@@ -1,11 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+             mc:Ignorable="d"
              x:Class="MoneyFox.Presentation.UserControls.ModifyAccountUserControl">
 
     <d:ContentView.BindingContext>
@@ -17,19 +16,19 @@
             <StackLayout Spacing="{StaticResource DefaultSpacing}">
 
                 <Entry Style="{StaticResource DefaultEntry}"
-                       Placeholder="{Binding Resources[AccountNameLabel]}"
+                       Placeholder="{x:Static resources:Strings.AccountNameLabel}"
                        Text="{Binding SelectedAccount.Name}" />
 
                 <Entry x:Name="AmountEntry"
                        Style="{StaticResource DefaultEntry}"
-                       Placeholder="{Binding Resources[CurrentBalanceLabel]}"
+                       Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
                        Text="{Binding AmountString}"
                        Keyboard="Numeric"
                        HorizontalTextAlignment="End"
                        Focused="AmountFieldGotFocused" />
 
                 <Entry Style="{StaticResource DefaultEntry}"
-                       Placeholder="{Binding Resources[NoteLabel]}"
+                       Placeholder="{x:Static resources:Strings.NoteLabel}"
                        Text="{Binding SelectedAccount.Note}" />
 
                 <Grid HorizontalOptions="FillAndExpand"
@@ -41,9 +40,9 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Grid.Column="0"
-                           Text="{Binding Resources[IsExcludedLabel]}"
+                           Text="{x:Static resources:Strings.IsExcludedLabel}"
                            Style="{StaticResource DefaultTextStyle}" />
-                    <Switch Grid.Column="1" 
+                    <Switch Grid.Column="1"
                             HorizontalOptions="End"
                             Style="{StaticResource SwitchStyle}"
                             IsToggled="{Binding SelectedAccount.IsExcluded}" />

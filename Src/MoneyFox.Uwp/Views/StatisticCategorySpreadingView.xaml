@@ -8,6 +8,7 @@
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:resources="using:MoneyFox.Application.Resources"
       mc:Ignorable="d"
       DataContext="{Binding StatisticCategorySpreadingVm, Source={StaticResource Locator}}">
 
@@ -32,7 +33,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Resources[CategorySpreadingTitle]}"
+        <TextBlock Text="{x:Bind resources:Strings.CategorySpreadingTitle}"
                    Style="{ThemeResource UwpPageTitleStyle}" />
 
         <Grid Grid.Row="1">

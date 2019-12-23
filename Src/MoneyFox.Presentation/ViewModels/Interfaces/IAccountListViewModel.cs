@@ -10,7 +10,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
     /// <summary>
     ///     Representation of the AccountListView.
     /// </summary>
-    public interface IAccountListViewModel : IBaseViewModel
+    public interface IAccountListViewModel
     {
         /// <summary>
         ///     All existing accounts

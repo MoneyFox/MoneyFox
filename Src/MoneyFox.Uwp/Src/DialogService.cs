@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Interfaces;
+using System;
 using System.Threading.Tasks;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Uwp.Views.Dialogs;
 
 namespace MoneyFox.Uwp.Src

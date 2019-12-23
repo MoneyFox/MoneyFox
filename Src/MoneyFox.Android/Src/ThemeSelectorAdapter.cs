@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Presentation;
-using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Droid
 {

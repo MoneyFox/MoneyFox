@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Common.Messages;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -25,7 +23,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public SelectCategoryListViewModel(IMediator mediator,
                                            IMapper mapper,
-                                           IDialogService dialogService,
+                                           Application.Common.Interfaces.IDialogService dialogService,
                                            INavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
         {

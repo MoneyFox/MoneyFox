@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Messaging;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
@@ -16,19 +16,18 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
     /// Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : BaseViewModel, IPaymentListViewModel
+    public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
-        private readonly IDialogService dialogService;
+        private readonly Application.Common.Interfaces.IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
@@ -45,7 +44,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public PaymentListViewModel(IMediator mediator,
                                     IMapper mapper,
-                                    IDialogService dialogService,
+                                    Application.Common.Interfaces.IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBalanceCalculationService balanceCalculationService,
                                     INavigationService navigationService)
@@ -104,7 +103,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => viewActionViewModel;
             private set
             {
-                if(viewActionViewModel == value)
+                if (viewActionViewModel == value)
                     return;
                 viewActionViewModel = value;
                 RaisePropertyChanged();
@@ -149,7 +148,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => title;
             private set
             {
-                if(title == value)
+                if (title == value)
                     return;
                 title = value;
                 RaisePropertyChanged();
@@ -196,12 +195,12 @@ namespace MoneyFox.Presentation.ViewModels
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                                                                          filterMessage.TimeRangeStart,
                                                                                                                          filterMessage.TimeRangeEnd)
-                {
-                    IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                    IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-                }));
+            {
+                IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+            }));
 
-            foreach(PaymentViewModel payment in loadedPayments)
+            foreach (PaymentViewModel payment in loadedPayments)
             {
                 payment.CurrentAccountId = AccountId;
             }

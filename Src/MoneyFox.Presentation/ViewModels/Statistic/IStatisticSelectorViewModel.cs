@@ -4,7 +4,7 @@ using MoneyFox.Presentation.Models;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
-    public interface IStatisticSelectorViewModel : IBaseViewModel
+    public interface IStatisticSelectorViewModel
     {
         List<StatisticSelectorType> StatisticItems { get; }
 

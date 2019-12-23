@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Interfaces;
+using System;
 using Windows.ApplicationModel.Store;
 using Windows.System;
-using MoneyFox.Presentation.Interfaces;
 
 namespace MoneyFox.Uwp.Src
 {

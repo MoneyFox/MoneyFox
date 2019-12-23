@@ -9,13 +9,14 @@ using SkiaSharp;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Messages;
+using GalaSoft.MvvmLight;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     /// <summary>
     ///     Represents the statistic view.
     /// </summary>
-    public abstract class StatisticViewModel : BaseViewModel
+    public abstract class StatisticViewModel : ViewModelBase
     {
         private DateTime startDate;
         private DateTime endDate;

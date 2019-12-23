@@ -10,6 +10,7 @@
       xmlns:helpers="using:MoneyFox.Uwp.Helpers"
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:resources="using:MoneyFox.Application.Resources"
       RequestedTheme="Light"
       mc:Ignorable="d">
 
@@ -480,28 +481,28 @@
 
             <winui:NavigationView.MenuItems>
 
-                <winui:NavigationViewItem Content="{Binding Resources[AccountsTitle]}"
+                <winui:NavigationViewItem Content="{x:Bind resources:Strings.AccountsTitle}"
                                           helpers:NavHelper.NavigateTo="AccountListViewModel">
                     <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{Binding Resources[StatisticsTitle]}"
+                <winui:NavigationViewItem Content="{x:Bind resources:Strings.StatisticsTitle}"
                                           helpers:NavHelper.NavigateTo="StatisticSelectorViewModel">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{Binding Resources[CategoriesTitle]}"
+                <winui:NavigationViewItem Content="{x:Bind resources:Strings.CategoriesTitle}"
                                           helpers:NavHelper.NavigateTo="CategoryListViewModel">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{Binding Resources[BackupTitle]}"
+                <winui:NavigationViewItem Content="{x:Bind resources:Strings.BackupTitle}"
                                           helpers:NavHelper.NavigateTo="BackupViewModel">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />

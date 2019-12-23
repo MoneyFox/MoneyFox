@@ -1,11 +1,11 @@
 ﻿using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
+using MoneyFox.Application.Common.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Interfaces;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MoneyFox.Application.Resources;
@@ -7,7 +8,7 @@ using MoneyFox.Presentation.Models;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
-    public class StatisticSelectorViewModel : BaseViewModel, IStatisticSelectorViewModel
+    public class StatisticSelectorViewModel : ViewModelBase, IStatisticSelectorViewModel
     {
         private readonly INavigationService navigationService;
 

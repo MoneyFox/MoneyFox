@@ -185,7 +185,7 @@ namespace MoneyFox.iOS
             }
             catch(Exception ex)
             {
-                logManager.Error("Sync Backup Failed.", ex);
+                logManager.Error(ex, "Sync Backup Failed.");
                 Debug.Write(ex);
             }
             finally
@@ -208,7 +208,7 @@ namespace MoneyFox.iOS
             }
             catch(Exception ex)
             {
-                logManager.Error("Clear Payments Failed!", ex);
+                logManager.Error(ex, "Clear Payments Failed!");
             }
             finally
             {
@@ -232,7 +232,7 @@ namespace MoneyFox.iOS
             }
             catch (Exception ex)
             {
-                logManager.Error("RecurringPayment Job Failed!", ex);
+                logManager.Error(ex, "RecurringPayment Job Failed!");
             }
             finally
             {

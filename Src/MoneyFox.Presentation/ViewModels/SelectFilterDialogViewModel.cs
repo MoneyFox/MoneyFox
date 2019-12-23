@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Common.Messages;
+﻿using GalaSoft.MvvmLight;
+using MoneyFox.Application.Common.Messages;
 using System;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -11,7 +12,7 @@ namespace MoneyFox.Presentation.ViewModels
         DateTime TimeRangeEnd { get; set; }
     }
 
-    public class SelectFilterDialogViewModel : BaseViewModel, ISelectFilterDialogViewModel
+    public class SelectFilterDialogViewModel : ViewModelBase, ISelectFilterDialogViewModel
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;

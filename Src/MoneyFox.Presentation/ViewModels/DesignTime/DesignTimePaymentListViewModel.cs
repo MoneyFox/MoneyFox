@@ -1,9 +1,6 @@
 ﻿using System.Collections.ObjectModel;
-using System.Globalization;
-using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using Xamarin.Forms;
 
@@ -11,8 +8,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
-        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
-
         public IBalanceViewModel BalanceViewModel => new DesignTimeBalanceViewViewModel();
         public IPaymentListViewActionViewModel ViewActionViewModel { get; }
         public AsyncCommand InitializeCommand { get; }

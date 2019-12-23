@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
@@ -16,11 +17,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public abstract class AbstractCategoryListViewModel : BaseViewModel
+    public abstract class AbstractCategoryListViewModel : ViewModelBase
     {
         private const int MENU_RESULT_EDIT_INDEX = 0;
         private const int MENU_RESULT_DELETE_INDEX = 1;
@@ -34,7 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         protected AbstractCategoryListViewModel(IMediator mediator,
                                                 IMapper mapper,
-                                                IDialogService dialogService,
+                                                Application.Common.Interfaces.IDialogService dialogService,
                                                 INavigationService navigationService)
         {
             Mediator = mediator;
@@ -49,7 +49,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected IMediator Mediator { get; }
         protected IMapper Mapper { get; }
-        protected IDialogService DialogService { get; }
+        protected Application.Common.Interfaces.IDialogService DialogService { get; }
 
         /// <summary>
         ///     Handle the selection of a CategoryViewModel in the list

@@ -1,17 +1,18 @@
 ﻿using System.Windows.Input;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Presentation.Interfaces;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    public interface ISettingsPersonalizationViewModel : IBaseViewModel
+    public interface ISettingsPersonalizationViewModel
     {
         string ElementTheme { get; }
 
         ICommand SwitchThemeCommand { get; }
     }
 
-    public class SettingsPersonalizationViewModel : BaseViewModel, ISettingsPersonalizationViewModel
+    public class SettingsPersonalizationViewModel : ViewModelBase, ISettingsPersonalizationViewModel
     {
         private readonly IThemeSelectorAdapter themeSelectorAdapter;
 

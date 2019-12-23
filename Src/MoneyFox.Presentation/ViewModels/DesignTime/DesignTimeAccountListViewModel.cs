@@ -1,10 +1,7 @@
 ﻿using System.Collections.ObjectModel;
-using System.Globalization;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
@@ -13,8 +10,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeAccountListViewModel : IAccountListViewModel
     {
-        public LocalizedResources Resources { get; } = new LocalizedResources(typeof(Strings), CultureInfo.CurrentUICulture);
-
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts { get; } =
             new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>
             {

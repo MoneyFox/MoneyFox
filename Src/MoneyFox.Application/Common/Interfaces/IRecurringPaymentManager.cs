@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace MoneyFox.Presentation.Interfaces
+namespace MoneyFox.Application.Common.Interfaces
 {
     /// <summary>
     ///     Manages operations with recurring payments

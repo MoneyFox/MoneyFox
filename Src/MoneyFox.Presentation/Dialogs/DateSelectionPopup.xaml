@@ -1,9 +1,8 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+﻿<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
                  Visual="Material"
                  x:Class="MoneyFox.Presentation.Dialogs.DateSelectionPopup">
 
@@ -30,23 +29,23 @@
             <!--You can use any elements here which are extended from Xamarin.Forms.View-->
             <StackLayout>
 
-                <Label Text="{Binding Resources[SelectDateLabel]}"
+                <Label Text="{x:Static resources:Strings.SelectDateLabel}"
                        Style="{StaticResource ListItemHeaderStyle}" />
 
                 <Grid>
                     <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{Binding Resources[TimeRangeStartLabel]}"
+                           Text="{x:Static resources:Strings.TimeRangeStartLabel}"
                            HorizontalOptions="StartAndExpand" />
                 </Grid>
                 <DatePicker Date="{Binding StartDate}"
                             Style="{StaticResource DefaultDatePickerStyle}" />
 
                 <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                       Text="{Binding Resources[TimeRangeEndLabel]}" />
+                       Text="{x:Static resources:Strings.TimeRangeEndLabel}" />
                 <DatePicker Date="{Binding EndDate}"
                             Style="{StaticResource DefaultDatePickerStyle}" />
 
-                <Button Text="{Binding Resources[DoneLabel]}"
+                <Button Text="{x:Static resources:Strings.DoneLabel}"
                         Style="{StaticResource DefaultButtonStyle}"
                         Clicked="Button_OnClicked" />
             </StackLayout>

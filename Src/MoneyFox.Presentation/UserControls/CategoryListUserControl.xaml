@@ -6,6 +6,7 @@
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
              xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl"
              x:Name="root">
@@ -41,7 +42,7 @@
                            BackgroundColor="{DynamicResource FrameHighlightColor}"
                            VerticalOptions="Start"
 
-                           Placeholder="{Binding Resources[SearchLabel]}"
+                           Placeholder="{x:Static resources:Strings.SearchLabel}"
                            TextChanged="SearchTermChanged" />
             </Frame>
 
@@ -91,10 +92,7 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
-
-
                                         <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
-
 
                                         <material:MaterialMenuButton Grid.Column="2"
                                                                          ButtonType="Text"
@@ -122,7 +120,7 @@
                    Style="{StaticResource DeemphasizedLabelStyle}"
                    LineBreakMode="WordWrap"
                    IsVisible="{Binding IsCategoriesEmpty}"
-                   Text="{Binding Resources[NoCategoriesMessage]}"/>
+                   Text="{x:Static resources:Strings.NoCategoriesMessage}"/>
 
             <ImageButton
                 Grid.Row="1"

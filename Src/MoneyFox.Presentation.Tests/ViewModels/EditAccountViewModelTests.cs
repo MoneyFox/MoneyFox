@@ -10,7 +10,6 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Xunit;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
@@ -21,7 +20,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly Mock<IMapper> mapperMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
-        private readonly Mock<IDialogService> dialogServiceMock;
+        private readonly Mock<Application.Common.Interfaces.IDialogService> dialogServiceMock;
         private readonly Mock<INavigationService> navigationServiceMock;
 
         public EditAccountViewModelTests()
@@ -30,7 +29,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             mapperMock = new Mock<IMapper>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
-            dialogServiceMock = new Mock<IDialogService>();
+            dialogServiceMock = new Mock<Application.Common.Interfaces.IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CommonServiceLocator;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using MediatR;
@@ -13,14 +14,13 @@ using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
     /// Handles the view representation of a payment.
     /// </summary>
-    public class PaymentViewModel : BaseViewModel, IHaveCustomMapping
+    public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
     {
         private int id;
         private int chargedAccountId;
@@ -36,11 +36,10 @@ namespace MoneyFox.Presentation.ViewModels
         private AccountViewModel targetAccount;
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
-        private ObservableCollection<PaymentTagTagViewModel> paymentTags;
 
         private IMediator mediator;
         private INavigationService navigationService;
-        private IDialogService dialogService;
+        private Application.Common.Interfaces.IDialogService dialogService;
 
         public PaymentViewModel()
         {
@@ -253,20 +252,6 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        /// The <see cref="RecurringPayment"/> if it's recurring.
-        /// </summary>
-        public ObservableCollection<PaymentTagTagViewModel> PaymentTags
-        {
-            get => paymentTags;
-            set
-            {
-                if(paymentTags == value) return;
-                paymentTags = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
         /// This is a shortcut to access if the payment is a transfer or not.
         /// </summary>
         public bool IsTransfer => Type == PaymentType.Transfer;
@@ -322,7 +307,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             if(dialogService == null)
             {
-                dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
+                dialogService = ServiceLocator.Current.GetInstance<Application.Common.Interfaces.IDialogService>();
             }
 
             if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
