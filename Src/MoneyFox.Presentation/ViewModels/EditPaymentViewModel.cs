@@ -74,8 +74,10 @@ namespace MoneyFox.Presentation.ViewModels
                 bool updateRecurring = false;
                 if(SelectedPayment.IsRecurring)
                 {
-                    updateRecurring = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
-                                                                                  Strings.DeleteRecurringPaymentMessage);
+                    updateRecurring = await dialogService.ShowConfirmMessageAsync(Strings.ModifyRecurrenceTitle,
+                                                                                  Strings.ModifyRecurrenceMessage,
+                                                                                  Strings.YesLabel,
+                                                                                  Strings.NoLabel);
                 }
 
                 var command = new UpdatePaymentCommand(SelectedPayment.Id,
