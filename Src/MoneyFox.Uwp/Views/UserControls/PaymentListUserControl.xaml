@@ -117,7 +117,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate x:DataType="viewModels:PaymentViewModel">
                                             <Grid MinWidth="100"
-                                                  Margin="{StaticResource SmallListItemMargin}"
+                                                  Margin="{StaticResource NegativeMediumLeftRighWithSmallToptMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"
                                                   Background="{ThemeResource ListItemBrush}"
                                                   HorizontalAlignment="Stretch"
