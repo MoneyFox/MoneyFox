@@ -30,24 +30,24 @@
 
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
-                
-                <StackPanel HorizontalAlignment="Stretch"
-                        Margin="{StaticResource SmallListItemMargin}"
+
+            <StackPanel HorizontalAlignment="Stretch"
+                        Margin="{StaticResource NegativeMediumLeftRightMargin}"
                         RightTapped="AccountList_RightTapped">
-                    <FlyoutBase.AttachedFlyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem Icon="Edit"
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Icon="Edit"
                                         Click="Edit_OnClick"
                                         Text="{x:Bind resources:Strings.EditLabel}" />
-                            <MenuFlyoutItem Icon="Delete"
+                        <MenuFlyoutItem Icon="Delete"
                                         Click="Delete_OnClick"
                                         Text="{x:Bind resources:Strings.DeleteLabel}" />
-                        </MenuFlyout>
+                    </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
 
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
-                            Padding="{StaticResource SmallListItemPadding}"                        
-                                Background="{ThemeResource ListItemBrush}"
+                            Padding="{StaticResource SmallListItemPadding}"
+                            Background="{ThemeResource ListItemBrush}"
 >
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"

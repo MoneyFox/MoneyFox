@@ -8,7 +8,7 @@
     <!-- Small size Margin -->
     <Thickness x:Key="SmallListItemMargin">0,2,0,0</Thickness>
     <Thickness x:Key="SmallTitleContentMargin">0,7,0,0</Thickness>
-    <Thickness x:Key="SmallListItemPadding">0,4,0,4</Thickness>
+    <Thickness x:Key="SmallListItemPadding">12,5,12,5</Thickness>
 
     <!--Medium size margins-->
     <Thickness x:Key="MediumLeftRightMargin">12,0,12,0</Thickness>
