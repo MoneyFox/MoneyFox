@@ -280,21 +280,21 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         /// Opens the Edit Dialog for the passed Payment
         /// </summary>
-        public Command<PaymentViewModel> EditPaymentCommand => new Command<PaymentViewModel>(EditPayment);
+        public Command EditPaymentCommand => new Command(EditPayment);
 
         /// <summary>
         /// Deletes the passed PaymentViewModel.
         /// </summary>
         public Command<PaymentViewModel> DeletePaymentCommand => new Command<PaymentViewModel>(DeletePayment);
 
-        private void EditPayment(PaymentViewModel payment)
+        private void EditPayment()
         {
             if(navigationService == null)
             {
                 navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
             }
 
-            navigationService.NavigateTo(ViewModelLocator.EditPayment, payment.Id);
+            navigationService.NavigateTo(ViewModelLocator.EditPayment, Id);
         }
 
         [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]
