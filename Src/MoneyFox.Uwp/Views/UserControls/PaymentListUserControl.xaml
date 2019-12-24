@@ -97,15 +97,9 @@
                                           IsItemClickEnabled="True"
                                           IsSynchronizedWithCurrentItem="False"
                                           ItemsSource="{Binding}"
+                                          ItemClick="ListView_ItemClick"
                                           ScrollViewer.VerticalScrollMode="Disabled"
                                           ShowsScrollingPlaceholders="false">
-
-                                    <interactivity:Interaction.Behaviors>
-                                        <core:EventTriggerBehavior EventName="ItemClick">
-                                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}"
-                                                                      InputConverter="{StaticResource ClickConverter}" />
-                                        </core:EventTriggerBehavior>
-                                    </interactivity:Interaction.Behaviors>
 
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
@@ -117,7 +111,7 @@
                                     <ListView.ItemTemplate>
                                         <DataTemplate x:DataType="viewModels:PaymentViewModel">
                                             <Grid MinWidth="100"
-                                                  Margin="{StaticResource SmallListItemMargin}"
+                                                  Margin="{StaticResource NegativeMediumLeftRighWithSmallToptMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"
                                                   Background="{ThemeResource ListItemBrush}"
                                                   HorizontalAlignment="Stretch"
@@ -193,6 +187,7 @@
                                                 </Grid>
                                             </Grid>
                                         </DataTemplate>
+
                                     </ListView.ItemTemplate>
 
                                 </ListView>

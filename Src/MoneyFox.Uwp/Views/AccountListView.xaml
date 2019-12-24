@@ -63,7 +63,8 @@
         </DataTemplate>
 
         <DataTemplate x:Key="GroupHeaderTemplate">
-            <Border Background="Transparent" Padding="3">
+            <Border Background="Transparent"
+                    Padding="3">
                 <TextBlock HorizontalAlignment="Left"
                            VerticalAlignment="Center"
                            Margin="{StaticResource MediumLeftRightMargin}"

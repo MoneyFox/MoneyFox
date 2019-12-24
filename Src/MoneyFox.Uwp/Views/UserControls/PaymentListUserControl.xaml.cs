@@ -36,5 +36,11 @@ namespace MoneyFox.Uwp.Views.UserControls
 
             PaymentListView.ScrollIntoView(selectedGroupCollection, ScrollIntoViewAlignment.Leading);
         }
+
+        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            var viewModel = e.ClickedItem as PaymentViewModel;
+            viewModel.EditPaymentCommand.Execute(null);
+        }
     }
 }
