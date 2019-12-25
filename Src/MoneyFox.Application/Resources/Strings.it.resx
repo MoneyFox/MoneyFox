@@ -818,12 +818,15 @@ ATTENZIONE: i dati locali saranno persi!</value>
     <value>There was an issue during the operation. Error Message {0}</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout backup was canceled.</value>
+    <value>Logout was canceled.</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>Restoring backup was canceled.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Upload backup was canceled.</value>
+  </data>
+  <data name="DeleteAccountLabel" xml:space="preserve">
+    <value>Delete Account</value>
   </data>
 </root>
