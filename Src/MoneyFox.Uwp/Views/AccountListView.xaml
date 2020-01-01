@@ -34,6 +34,7 @@
             <StackPanel HorizontalAlignment="Stretch"
                         Margin="{StaticResource NegativeMediumLeftRightMargin}"
                         RightTapped="AccountList_RightTapped">
+
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Icon="Edit"
