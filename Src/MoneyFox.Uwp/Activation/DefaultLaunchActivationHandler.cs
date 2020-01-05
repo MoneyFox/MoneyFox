@@ -10,7 +10,7 @@ namespace MoneyFox.Uwp.Activation
     {
         private readonly string navElement;
 
-        public NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<NavigationServiceEx>();
+        public NavigationService NavigationService => ServiceLocator.Current.GetInstance<NavigationService>();
 
         public DefaultLaunchActivationHandler(Type navElement)
         {

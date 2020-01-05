@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp
             set => Set(ref isBackEnabled, value);
         }
 
-        public static NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<INavigationService>() as NavigationServiceEx;
+        public static NavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>() as NavigationService;
 
         public WinUI.NavigationViewItem Selected
         {

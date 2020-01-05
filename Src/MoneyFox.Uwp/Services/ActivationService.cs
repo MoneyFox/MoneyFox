@@ -75,7 +75,7 @@ namespace MoneyFox.Uwp.Services
 
             LoggerService.Initialize();
 
-            NavigationServiceEx navService = ConfigureNavigation();
+            NavigationService navService = ConfigureNavigation();
             RegisterServices(navService);
 
             Forms.Init(activationArgs as LaunchActivatedEventArgs);
@@ -85,7 +85,7 @@ namespace MoneyFox.Uwp.Services
             await JumpListService.InitializeAsync();
         }
 
-        private static void RegisterServices(NavigationServiceEx nav)
+        private static void RegisterServices(NavigationService nav)
         {
             var builder = new ContainerBuilder();
 
@@ -97,9 +97,9 @@ namespace MoneyFox.Uwp.Services
             ViewModelLocator.RegisterServices(builder);
         }
 
-        public NavigationServiceEx ConfigureNavigation()
+        public NavigationService ConfigureNavigation()
         {
-            var nav = new NavigationServiceEx();
+            var nav = new NavigationService();
 
             nav.Configure(ViewModelLocator.AccountList, typeof(AccountListView));
             nav.Configure(ViewModelLocator.PaymentList, typeof(PaymentListView));

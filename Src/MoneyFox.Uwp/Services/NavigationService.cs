@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Services
 {
-    public class NavigationServiceEx : INavigationService
+    public class NavigationService : INavigationService
     {
         public event NavigatedEventHandler Navigated;
 
