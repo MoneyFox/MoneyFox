@@ -60,7 +60,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
 
-            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await Load());
+            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await LoadAsync());
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -82,7 +82,7 @@ namespace MoneyFox.Presentation.ViewModels
         public bool HasNoAccounts => !Accounts.Any();
         public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
 
-        public AsyncCommand LoadDataCommand => new AsyncCommand(Load);
+        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadAsync);
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
@@ -120,7 +120,7 @@ namespace MoneyFox.Presentation.ViewModels
             navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
         }
 
-        private async Task Load()
+        private async Task LoadAsync()
         {
             try
             {
@@ -135,7 +135,6 @@ namespace MoneyFox.Presentation.ViewModels
                 Accounts.Clear();
 
                 if (includedAlphaGroup.Any()) Accounts.Add(includedAlphaGroup);
-
                 if (excludedAlphaGroup.Any()) Accounts.Add(excludedAlphaGroup);
 
                 RaisePropertyChanged(nameof(HasNoAccounts));
@@ -164,7 +163,7 @@ namespace MoneyFox.Presentation.ViewModels
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
 
                 Accounts.Clear();
-                await Load();
+                await LoadAsync();
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
