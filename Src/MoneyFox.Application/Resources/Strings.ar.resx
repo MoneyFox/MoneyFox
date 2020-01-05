@@ -429,50 +429,50 @@ Do you want to go the the store to rate?</value>
     <value>إنشاء نسخة احتياطية</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>أخر نسخة احتياطية تم إنشاءها في:</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>تسجيل الدخول</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>تسجيل الخروج</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>حمل النسخة الاحتباطية المرفوعة مسبقاَ واستبدل البيانات الحالية بها.
+تحذير: التغييرات الحالية سوف يتم حذفها!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>استرجاع النسخة الاحتياطية</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>اسم الحساب</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>الرصيد الحالي</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>ملاحظة</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>المبلغ</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>فئة</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>لا نهائي</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>متكرر</value>
   </data>
   <data name="EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
+    <value>لا يوجد تصنيفات. لاضافة فئة اضغط على زر "الزائد" في الأسفل.</value>
   </data>
   <data name="SearchStringLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>البحث</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
