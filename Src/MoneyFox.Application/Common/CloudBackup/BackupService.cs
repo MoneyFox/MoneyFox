@@ -141,7 +141,6 @@ namespace MoneyFox.Application.Common.CloudBackup
             await DownloadBackupAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            Messenger.Default.Send(new BackupRestoredMessage());
         }
 
         private async Task DownloadBackupAsync()

@@ -66,6 +66,7 @@
                                  HeightRequest="30"
                                  WidthRequest="30"
                                  BackgroundColor="Transparent"
+                                 VerticalOptions="Center"
                                  Command="{Binding ResetCategoryCommand}"
                                  Margin="0,0,2,0">
                         <ImageButton.Source>
@@ -83,6 +84,7 @@
                        Margin="0,5,0,0" />
 
                 <DatePicker Date="{Binding SelectedPayment.Date}"
+                            Format="D"
                             Style="{StaticResource DefaultDatePickerStyle}" />
 
                 <Entry Style="{StaticResource DefaultEntry}"
@@ -142,6 +144,7 @@
 
                                Margin="{StaticResource MediumBottomMargin}" />
                         <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}"
+                                    Format="D"
                                     Style="{StaticResource DefaultDatePickerStyle}" />
                     </StackLayout>
 
