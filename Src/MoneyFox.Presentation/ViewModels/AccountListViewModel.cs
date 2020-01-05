@@ -7,7 +7,6 @@ using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
@@ -59,8 +58,6 @@ namespace MoneyFox.Presentation.ViewModels
             ViewActionViewModel = new AccountListViewActionViewModel(mediator, this.navigationService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
-
-            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await LoadAsync());
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
