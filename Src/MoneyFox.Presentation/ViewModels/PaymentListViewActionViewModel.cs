@@ -2,11 +2,11 @@
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
@@ -40,7 +40,7 @@ namespace MoneyFox.Presentation.ViewModels
         public PaymentListViewActionViewModel(int accountId,
                                               IMediator mediator,
                                               ISettingsFacade settingsFacade,
-                                              Application.Common.Interfaces.IDialogService dialogService,
+                                              IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
                                               INavigationService navigationService)
         {

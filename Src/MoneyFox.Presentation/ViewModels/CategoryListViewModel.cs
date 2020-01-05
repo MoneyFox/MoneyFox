@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using AutoMapper;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
 
@@ -46,8 +46,8 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public CategoryListViewModel(IMediator mediator,
                                      IMapper mapper,
-                                     Application.Common.Interfaces.IDialogService dialogService,
-                                     INavigationService navigationService) 
+                                     IDialogService dialogService,
+                                     INavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
         {
         }

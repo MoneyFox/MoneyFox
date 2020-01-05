@@ -2,13 +2,13 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
@@ -27,8 +27,8 @@ namespace MoneyFox.Presentation.ViewModels
                                     IMapper mapper,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
-                                    Application.Common.Interfaces.IDialogService dialogService,
-                                    INavigationService navigationService) 
+                                    IDialogService dialogService,
+                                    INavigationService navigationService)
             : base(settingsFacade, backupService, dialogService, navigationService)
         {
             this.mediator = mediator;

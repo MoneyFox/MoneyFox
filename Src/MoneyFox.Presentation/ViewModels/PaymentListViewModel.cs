@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Presentation.Commands;
@@ -27,7 +27,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
-        private readonly Application.Common.Interfaces.IDialogService dialogService;
+        private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
@@ -44,7 +44,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public PaymentListViewModel(IMediator mediator,
                                     IMapper mapper,
-                                    Application.Common.Interfaces.IDialogService dialogService,
+                                    IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBalanceCalculationService balanceCalculationService,
                                     INavigationService navigationService)

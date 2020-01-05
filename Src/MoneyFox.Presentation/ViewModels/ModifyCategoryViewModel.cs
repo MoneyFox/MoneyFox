@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 
@@ -45,7 +45,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected ModifyCategoryViewModel(IMediator mediator,
                                           INavigationService navigationService,
                                           IMapper mapper,
-                                          Application.Common.Interfaces.IDialogService dialogService)
+                                          IDialogService dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

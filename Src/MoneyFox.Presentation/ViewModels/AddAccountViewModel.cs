@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 
@@ -20,7 +20,7 @@ namespace MoneyFox.Presentation.ViewModels
                                    IMapper mapper,
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
-                                   Application.Common.Interfaces.IDialogService dialogService,
+                                   IDialogService dialogService,
                                    INavigationService navigationService)
             : base(settingsFacade, backupService, dialogService, navigationService)
         {

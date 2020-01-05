@@ -1,6 +1,6 @@
-﻿using GalaSoft.MvvmLight.Views;
-using MediatR;
+﻿using MediatR;
 using MoneyFox.Application.Common.ConverterLogic;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.ViewModels;
 using Moq;

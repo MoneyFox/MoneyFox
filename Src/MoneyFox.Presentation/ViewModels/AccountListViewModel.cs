@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
@@ -32,7 +32,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private readonly IMediator mediator;
         private readonly IMapper mapper;
-        private readonly Application.Common.Interfaces.IDialogService dialogService;
+        private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
         private readonly INavigationService navigationService;
 
@@ -44,7 +44,7 @@ namespace MoneyFox.Presentation.ViewModels
         public AccountListViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IBalanceCalculationService balanceCalculationService,
-                                    Application.Common.Interfaces.IDialogService dialogService,
+                                    IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     INavigationService navigationService)
         {

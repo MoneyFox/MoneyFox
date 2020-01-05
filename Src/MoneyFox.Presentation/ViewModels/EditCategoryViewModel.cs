@@ -2,13 +2,13 @@
 using System.Globalization;
 using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Command.UpdateCategory;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Commands;
@@ -27,7 +27,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMapper mapper;
 
         public EditCategoryViewModel(IMediator mediator,
-                                     Application.Common.Interfaces.IDialogService dialogService,
+                                     IDialogService dialogService,
                                      ISettingsFacade settingsFacade,
                                      IBackupService backupService,
                                      INavigationService navigationService,

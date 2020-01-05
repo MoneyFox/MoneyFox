@@ -9,7 +9,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.Views;
@@ -18,6 +17,7 @@ using MoneyFox.Uwp.Services;
 using NLog;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp
 {
@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp
             set => Set(ref isBackEnabled, value);
         }
 
-        public static NavigationServiceEx NavigationService => ServiceLocator.Current.GetInstance<INavigationService>() as NavigationServiceEx;
+        public static NavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>() as NavigationService;
 
         public WinUI.NavigationViewItem Selected
         {

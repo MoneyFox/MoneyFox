@@ -1,8 +1,7 @@
-﻿using System.IO;
-using Windows.Storage;
-using NLog;
+﻿using NLog;
 using NLog.Config;
 using NLog.Targets;
+using MoneyFox.Application.Common;
 
 #if !DEBUG
 using PCLAppConfig;
@@ -19,11 +18,11 @@ namespace MoneyFox.Uwp.Services
             // Configure file
             var logfile = new FileTarget("logfile")
             {
-                FileName = Path.Combine(ApplicationData.Current.LocalCacheFolder.Path, "moneyfox.log"),
+                FileName = LogPathHelper.GetLogPath(),
                 AutoFlush = true,
                 ArchiveEvery = FileArchivePeriod.Month
             };
-            
+
             // Configure console
             var debugTarget = new DebugTarget("console");
 
@@ -40,7 +39,6 @@ namespace MoneyFox.Uwp.Services
 
             config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
-
 
             LogManager.Configuration = config;
         }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Models;
@@ -52,22 +52,17 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
         private void GoToStatistic(StatisticSelectorType item)
         {
-            switch (item.Type)
+            if (item.Type == StatisticType.Cashflow)
             {
-                case StatisticType.Cashflow:
-                    navigationService.NavigateTo(ViewModelLocator.StatisticCashFlow);
-
-                    break;
-
-                case StatisticType.CategorySpreading:
-                    navigationService.NavigateTo(ViewModelLocator.StatisticCategorySpreading);
-
-                    break;
-
-                case StatisticType.CategorySummary:
-                    navigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
-
-                    break;
+                navigationService.NavigateTo(ViewModelLocator.StatisticCashFlow);
+            }
+            else if (item.Type == StatisticType.CategorySpreading)
+            {
+                navigationService.NavigateTo(ViewModelLocator.StatisticCategorySpreading);
+            }
+            else if (item.Type == StatisticType.CategorySummary)
+            {
+                navigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
             }
         }
     }

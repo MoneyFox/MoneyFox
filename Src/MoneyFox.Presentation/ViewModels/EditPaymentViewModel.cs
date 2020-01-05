@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
@@ -26,7 +26,7 @@ namespace MoneyFox.Presentation.ViewModels
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Intended")]
         public EditPaymentViewModel(IMediator mediator,
                                     IMapper mapper,
-                                    Application.Common.Interfaces.IDialogService dialogService,
+                                    IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
                                     INavigationService navigationService) : base(mediator,

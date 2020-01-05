@@ -3,9 +3,9 @@ using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
@@ -24,7 +24,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
                                          IBackupService backupService,
-                                         Application.Common.Interfaces.IDialogService dialogService,
+                                         IDialogService dialogService,
                                          INavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;

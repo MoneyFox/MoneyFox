@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
@@ -104,7 +104,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IBackupService backupService;
-        private readonly Application.Common.Interfaces.IDialogService dialogService;
+        private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
@@ -119,7 +119,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         protected ModifyPaymentViewModel(IMediator mediator,
                                          IMapper mapper,
-                                         Application.Common.Interfaces.IDialogService dialogService,
+                                         IDialogService dialogService,
                                          ISettingsFacade settingsFacade,
                                          IBackupService backupService,
                                          INavigationService navigationService)
@@ -317,7 +317,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void OpenSelectCategoryList()
         {
-            navigationService.NavigateTo(ViewModelLocator.SelectCategoryList);
+            navigationService.NavigateToModal(ViewModelLocator.SelectCategoryList);
         }
 
         private void ResetSelection()
