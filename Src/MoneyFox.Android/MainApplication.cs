@@ -3,6 +3,7 @@ using System.IO;
 using Android.App;
 using Android.Runtime;
 using Autofac;
+using MoneyFox.Application.Common;
 using MoneyFox.Presentation;
 using NLog;
 using NLog.Config;
@@ -68,7 +69,7 @@ namespace MoneyFox.Droid
 
             var logfile = new FileTarget("logfile")
             {
-                FileName = Path.Combine(Path.Combine(GetExternalFilesDir(null).AbsolutePath, "moneyfox.log")),
+                FileName = LogPathHelper.GetLogPath(),
                 AutoFlush = true,
                 ArchiveEvery = FileArchivePeriod.Month
             };

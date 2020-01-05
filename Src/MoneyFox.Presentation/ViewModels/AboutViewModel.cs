@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
@@ -153,7 +154,8 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task SendMail()
         {
             await emailAdapter.SendEmailAsync(Strings.FeedbackSubject, string.Empty,
-                                         new List<string> { AppConstants.SupportMail});
+                                         new List<string> { AppConstants.SupportMail},
+                                         new List<string> { LogPathHelper.GetLogPath() });
         }
 
         private void RateApp()

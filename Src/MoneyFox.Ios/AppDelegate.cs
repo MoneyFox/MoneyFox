@@ -94,7 +94,7 @@ namespace MoneyFox.iOS
 
             var logfile = new FileTarget("logfile")
                           {
-                              FileName = GetLogPath(),
+                              FileName = LogPathHelper.GetLogPath(),
                               AutoFlush = true,
                               ArchiveEvery = FileArchivePeriod.Month
                           };
@@ -114,17 +114,6 @@ namespace MoneyFox.iOS
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
 
             LogManager.Configuration = config;
-        }
-
-        private static string GetLogPath()
-        {
-            string docFolder = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            string libFolder = Path.Combine(docFolder, "..", "Library", "Databases");
-
-            if(!Directory.Exists(libFolder))
-                Directory.CreateDirectory(libFolder);
-
-            return Path.Combine(libFolder, "moneyfox.log");
         }
 
         // Needed for auth
