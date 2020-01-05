@@ -76,7 +76,7 @@ namespace MoneyFox.Presentation
                     GetConstructor(pageKey, parameter, out constructor, out parameters);
 
                     var page = constructor.Invoke(parameters) as Page;
-                    Navigation.PushModalAsync(page);
+                    Navigation.PushModalAsync(new NavigationPage(page) { BarBackgroundColor = (Color)Xamarin.Forms.Application.Current.Resources["PrimaryColor"] });
                 }
                 else
                 {

@@ -317,7 +317,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void OpenSelectCategoryList()
         {
-            navigationService.NavigateTo(ViewModelLocator.SelectCategoryList);
+            navigationService.NavigateToModal(ViewModelLocator.SelectCategoryList);
         }
 
         private void ResetSelection()

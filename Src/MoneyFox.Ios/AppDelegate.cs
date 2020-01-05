@@ -50,7 +50,7 @@ namespace MoneyFox.iOS
         public override bool FinishedLaunching(UIApplication uiApplication,
                                                NSDictionary launchOptions)
         {
-            ExecutingPlatform.Current = MoneyFox.Application.Common.AppPlatform.iOS;
+            ExecutingPlatform.Current = AppPlatform.iOS;
             ConfigurationManager.Initialise(PortableStream.Current);
             InitLogger();
 
