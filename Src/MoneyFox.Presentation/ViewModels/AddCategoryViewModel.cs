@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 
@@ -16,7 +16,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMapper mapper;
 
         public AddCategoryViewModel(IMediator mediator,
-                                    Application.Common.Interfaces.IDialogService dialogService,
+                                    IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
                                     INavigationService navigationService,

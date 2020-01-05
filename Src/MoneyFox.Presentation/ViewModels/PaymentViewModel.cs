@@ -2,8 +2,8 @@
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
@@ -11,7 +11,6 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using System;
-using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 
@@ -39,7 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private IMediator mediator;
         private INavigationService navigationService;
-        private Application.Common.Interfaces.IDialogService dialogService;
+        private IDialogService dialogService;
 
         public PaymentViewModel()
         {

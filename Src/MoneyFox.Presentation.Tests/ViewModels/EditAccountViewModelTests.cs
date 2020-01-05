@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
@@ -20,7 +20,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly Mock<IMapper> mapperMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
-        private readonly Mock<Application.Common.Interfaces.IDialogService> dialogServiceMock;
+        private readonly Mock<IDialogService> dialogServiceMock;
         private readonly Mock<INavigationService> navigationServiceMock;
 
         public EditAccountViewModelTests()
@@ -29,7 +29,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             mapperMock = new Mock<IMapper>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
-            dialogServiceMock = new Mock<Application.Common.Interfaces.IDialogService>();
+            dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))

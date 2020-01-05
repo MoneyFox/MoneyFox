@@ -9,7 +9,6 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.Views;
@@ -18,6 +17,7 @@ using MoneyFox.Uwp.Services;
 using NLog;
 using WinUI = Microsoft.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp
 {

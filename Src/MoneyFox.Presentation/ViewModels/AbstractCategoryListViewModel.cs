@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
@@ -33,7 +33,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         protected AbstractCategoryListViewModel(IMediator mediator,
                                                 IMapper mapper,
-                                                Application.Common.Interfaces.IDialogService dialogService,
+                                                IDialogService dialogService,
                                                 INavigationService navigationService)
         {
             Mediator = mediator;

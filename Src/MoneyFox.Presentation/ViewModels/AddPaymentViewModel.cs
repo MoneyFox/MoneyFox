@@ -2,11 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using GalaSoft.MvvmLight.Views;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
@@ -25,7 +25,7 @@ namespace MoneyFox.Presentation.ViewModels
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly INavigationService navigationService;
-        private readonly Application.Common.Interfaces.IDialogService dialogService;
+        private readonly IDialogService dialogService;
 
         public AddPaymentViewModel(IMediator mediator,
                                    IMapper mapper,
