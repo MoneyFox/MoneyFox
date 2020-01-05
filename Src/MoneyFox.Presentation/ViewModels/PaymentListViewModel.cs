@@ -58,7 +58,6 @@ namespace MoneyFox.Presentation.ViewModels
 
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPayments(message));
             MessengerInstance.Register<RemovePaymentMessage>(this, async message => await LoadData());
-            MessengerInstance.Register<BackupRestoredMessage>(this, async message => await LoadData());
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
