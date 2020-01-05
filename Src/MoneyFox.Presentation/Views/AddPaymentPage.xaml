@@ -14,15 +14,16 @@
     </d:ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <AbsoluteLayout>
+        <Grid>
             <Label Text="{Binding Title}"
-                   VerticalOptions="CenterAndExpand"
+                   VerticalOptions="Center"
                    Style="{StaticResource PageTitleStyle}" />
 
             <ImageButton BackgroundColor="Transparent"
-                         AbsoluteLayout.LayoutBounds="1,0,33,33"
-                         AbsoluteLayout.LayoutFlags="XProportional"
-                         Margin="0,0,6,0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         HeightRequest="30"
+                         WidthRequest="30"
                          Command="{Binding SaveCommand}">
                 <ImageButton.Source>
                     <FontImageSource
@@ -31,7 +32,7 @@
                         Color="White" />
                 </ImageButton.Source>
             </ImageButton>
-        </AbsoluteLayout>
+        </Grid>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>

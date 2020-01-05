@@ -28,9 +28,6 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
     <EmbedAssembliesIntoApk>false</EmbedAssembliesIntoApk>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidSupportedAbis />
@@ -38,7 +35,6 @@
     <CodeAnalysisRuleSet>MoneyFox.Android.ruleset</CodeAnalysisRuleSet>
     <MandroidI18n />
     <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidLinkMode>None</AndroidLinkMode>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -50,20 +46,14 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
     <AndroidSupportedAbis>armeabi-v7a;arm64-v8a</AndroidSupportedAbis>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
-    <AndroidEnableMultiDex>false</AndroidEnableMultiDex>
     <JavaMaximumHeapSize>1G</JavaMaximumHeapSize>
     <CodeAnalysisRuleSet>MoneyFox.Android.ruleset</CodeAnalysisRuleSet>
-    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidUseAapt2>true</AndroidUseAapt2>
     <AndroidUseAapt2>false</AndroidUseAapt2>
-    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidLinkTool>r8</AndroidLinkTool>
     <AndroidPackageFormat>aab</AndroidPackageFormat>
@@ -228,11 +218,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
-      <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
+      <Project>{9777F861-F072-4FB3-A23E-09F37DF90CC1}</Project>
       <Name>MoneyFox.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
-      <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
+      <Project>{3BBF9997-7AF3-411F-B6E3-88E9EC97C073}</Project>
       <Name>MoneyFox.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
@@ -240,7 +230,7 @@
       <Name>MoneyFox.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
-      <Project>{20A511B0-4372-4AA9-B27D-C36E49A022FB}</Project>
+      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
       <Name>MoneyFox.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
