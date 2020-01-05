@@ -15,7 +15,7 @@
     </d:ContentPage.BindingContext>
 
     <NavigationPage.TitleView>
-        <AbsoluteLayout>
+        <Grid>
             <Label Text="{Binding Title}"
                    VerticalOptions="CenterAndExpand"
                    Style="{StaticResource PageTitleStyle}" />
@@ -32,7 +32,7 @@
                         Color="White" />
                 </ImageButton.Source>
             </ImageButton>
-        </AbsoluteLayout>
+        </Grid>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>

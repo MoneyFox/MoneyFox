@@ -66,6 +66,7 @@
                                  HeightRequest="30"
                                  WidthRequest="30"
                                  BackgroundColor="Transparent"
+                                 VerticalOptions="Center"
                                  Command="{Binding ResetCategoryCommand}"
                                  Margin="0,0,2,0">
                         <ImageButton.Source>
