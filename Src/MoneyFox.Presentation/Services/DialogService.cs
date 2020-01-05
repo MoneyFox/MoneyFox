@@ -65,7 +65,7 @@ namespace MoneyFox.Presentation.Services
         {
             return new MaterialAlertDialogConfiguration
                    {
-                       BackgroundColor = Material.GetResource<Color>(MaterialConstants.Color.BACKGROUND),
+                       BackgroundColor = (Color)Xamarin.Forms.Application.Current.Resources["DialogBackgroundColor"],
                        TitleTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
                        MessageTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
                        TintColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
@@ -78,7 +78,7 @@ namespace MoneyFox.Presentation.Services
         {
             return new MaterialLoadingDialogConfiguration
                    {
-                       BackgroundColor = Material.GetResource<Color>(MaterialConstants.Color.BACKGROUND),
+                       BackgroundColor = (Color)Xamarin.Forms.Application.Current.Resources["DialogBackgroundColor"],
                        MessageTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
                        TintColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
                        CornerRadius = 8,
