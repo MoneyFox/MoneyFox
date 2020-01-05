@@ -118,154 +118,154 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About</value>
+    <value>عن التطبيق</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an Account.</value>
+    <value>الرجاء اختيار حساب.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>Accounts</value>
+    <value>الحسابات</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
+    <value>إضافة حساب</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>دخل</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Expense</value>
+    <value>مصروف</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>تحويل</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
   <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>There where an error while create your backup. Please try again later.</value>
+    <value>لقد حدث خطأ أثناء عملية النسخ الاحتياطي. الرجاء المحاولة مرة أخرى.</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
-    <value>Backup</value>
+    <value>النسخ الاحتياطي</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Cashflow</value>
+    <value>التدفق النقدي</value>
   </data>
   <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
+    <value>لقد قمت بتحديث دفعة متكررة، هل تريد تحديث الدفعات المستقبلية أيضاً؟</value>
   </data>
   <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
     <value>Update Recurrence?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Daily</value>
+    <value>يومياً</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Daily without weekend</value>
+    <value>يومياً عدا عطلة الأسبوع</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Account?</value>
+    <value>هل تريد حقاً حذف هذا الحساب؟</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Category?</value>
+    <value>هل تريد حقاً حذف هذا الفئة؟</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Delete</value>
+    <value>حذف</value>
   </data>
   <data name="SecurityTitle" xml:space="preserve">
-    <value>Security</value>
+    <value>الأمان</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Delete?</value>
+    <value>حذف؟</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Payment?</value>
+    <value>هل تريد حقاً حذف هذه الدفعة؟</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Edit</value>
+    <value>تعديل</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expenses</value>
+    <value>النفقات</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Feedback Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Edit Income</value>
+    <value>تعديل الدخل</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>المكاسب</value>
   </data>
   <data name="JustThisLabel" xml:space="preserve">
-    <value>No, just this</value>
+    <value>كلا، فقط هذه</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Mandatory field</value>
+    <value>حقل اجباري</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Monthly</value>
+    <value>شهرياً</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Please insert a name.</value>
+    <value>الرجاء إدخال اسم.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>لا</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
+    <value>حسناً</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existing backups will be overwritten. Do you wanna continue?</value>
+    <value>النسخ الاحتياطية القديمة سوف يتم استبدالها، هل تريد الاستمرار؟</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Overwrite?</value>
+    <value>استبدال؟</value>
   </data>
   <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Yes, update All</value>
+    <value>نعم، حدّث الكل</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenue</value>
+    <value>الإيراد</value>
   </data>
   <data name="SelectDateTitle" xml:space="preserve">
-    <value>Select Date</value>
+    <value>حدد تاريخ</value>
   </data>
   <data name="SelectOperationLabel" xml:space="preserve">
     <value>select operation</value>
   </data>
   <data name="SettingsLabel" xml:space="preserve">
-    <value>Settings</value>
+    <value>الإعدادات</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Expense</value>
+    <value>تعديل النفقات</value>
   </data>
   <data name="StatisticsLabel" xml:space="preserve">
-    <value>Statistics</value>
+    <value>الإحصائيات</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>الإحصائيات</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
-    <value>Success!</value>
+    <value>تم بنجاح!</value>
   </data>
   <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Task was successful completed.</value>
+    <value>تمت العملية بنجاح.</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Edit Transfer</value>
+    <value>تعديل التحويل</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Weekly</value>
+    <value>أسبوعياً</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Yearly</value>
+    <value>سنوياً</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>نعم</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+    <value>سيتم حذف المعلومات المحلية. هل تريد الاستمرار؟</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Add Income</value>
+    <value>إضافة الدخل</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Add Expense</value>
@@ -407,72 +407,72 @@ Do you want to go the the store to rate?</value>
     <value>The app icon was created by:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>هذا مشروع مفتوح المصدر - ونحن نود أن نعمل معك! لا تتردد في المساهمة.
+انقر هنا لزيارة المصدر:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>قيّم هذا التطبيق!</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>هل يوجد شيء غير مترجم بشكل صحيح أو غير مترجم على الإطلاق؟ ساعدنا! اذهب لـ Crowdin وساعدنا في ترجمة Money Fox:</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Password</value>
+    <value>كلمة المرور</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>مرحباً!</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
+    <value>لا يوجد حسابات. لأضافة حساب اضغط على زر "الزائد" في الأسفل.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>إنشاء نسخة احتياطية</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>أخر نسخة احتياطية تم إنشاءها في:</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>تسجيل الدخول</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>تسجيل الخروج</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>حمل النسخة الاحتباطية المرفوعة مسبقاَ واستبدل البيانات الحالية بها.
+تحذير: التغييرات الحالية سوف يتم حذفها!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>استرجاع النسخة الاحتياطية</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>اسم الحساب</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>الرصيد الحالي</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>ملاحظة</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>المبلغ</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>فئة</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>التاريخ</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>لا نهائي</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>متكرر</value>
   </data>
   <data name="EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>There are no categories. Add one by tapping on the plus button at bottom.</value>
+    <value>لا يوجد تصنيفات. لاضافة فئة اضغط على زر "الزائد" في الأسفل.</value>
   </data>
   <data name="SearchStringLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>البحث</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
