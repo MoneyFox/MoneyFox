@@ -262,10 +262,10 @@
     <value>نعم</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+    <value>سيتم حذف المعلومات المحلية. هل تريد الاستمرار؟</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Add Income</value>
+    <value>إضافة الدخل</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Add Expense</value>
@@ -407,26 +407,26 @@ Do you want to go the the store to rate?</value>
     <value>The app icon was created by:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>هذا مشروع مفتوح المصدر - ونحن نود أن نعمل معك! لا تتردد في المساهمة.
+انقر هنا لزيارة المصدر:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>قيّم هذا التطبيق!</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>هل يوجد شيء غير مترجم بشكل صحيح أو غير مترجم على الإطلاق؟ ساعدنا! اذهب لـ Crowdin وساعدنا في ترجمة Money Fox:</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
-    <value>Password</value>
+    <value>كلمة المرور</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>مرحباً!</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
+    <value>لا يوجد حسابات. لأضافة حساب اضغط على زر "الزائد" في الأسفل.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>إنشاء نسخة احتياطية</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Last Backup created at:</value>
