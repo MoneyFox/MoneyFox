@@ -121,31 +121,31 @@
     <value>عن التطبيق</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an Account.</value>
+    <value>الرجاء اختيار حساب.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>Accounts</value>
+    <value>الحسابات</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
+    <value>إضافة حساب</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>دخل</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Expense</value>
+    <value>مصروف</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>تحويل</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
   <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>There where an error while create your backup. Please try again later.</value>
+    <value>لقد حدث خطأ أثناء عملية النسخ الاحتياطي. الرجاء المحاولة مرة أخرى.</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
-    <value>Backup</value>
+    <value>النسخ الاحتياطي</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
