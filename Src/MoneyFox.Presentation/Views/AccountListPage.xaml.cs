@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
@@ -16,6 +17,19 @@ namespace MoneyFox.Presentation.Views
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.AccountListVm;
+
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                var addItem = new ToolbarItem
+                {
+                    Text = Strings.AddTitle,
+                    Priority = 0,
+                    Order = ToolbarItemOrder.Primary
+                };
+                addItem.Clicked += AddItem_Clicked;
+
+                ToolbarItems.Add(addItem);
+            }
         }
 
         protected override void OnAppearing()

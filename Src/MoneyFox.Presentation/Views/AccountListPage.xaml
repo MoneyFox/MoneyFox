@@ -98,17 +98,21 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <ImageButton
-                    Clicked="AddItem_Clicked"
-                    Style="{StaticResource FabPrimary}">
-                    <ImageButton.Source>
-                        <FontImageSource
-                            Glyph="{StaticResource Add}"
-                            FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
-                            Size="33"
-                            Color="White" />
-                    </ImageButton.Source>
-                </ImageButton>
+                <OnPlatform x:TypeArguments="View">
+                    <OnPlatform.Android>
+                        <ImageButton
+                            Clicked="AddItem_Clicked"
+                            Style="{StaticResource FabPrimary}">
+                            <ImageButton.Source>
+                                <FontImageSource
+                                    Glyph="{StaticResource Add}"
+                                    FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
+                                    Size="33"
+                                    Color="White" />
+                            </ImageButton.Source>
+                        </ImageButton>
+                    </OnPlatform.Android>
+                </OnPlatform>
 
                 <Label Margin="6"
                        x:Name="PlaceHolderLabel"
