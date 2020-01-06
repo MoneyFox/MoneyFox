@@ -40,19 +40,31 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        public bool CanGoBack => Frame.CanGoBack;
+        public string CurrentPageKey { get; }
 
-        public bool CanGoForward => Frame.CanGoForward;
-
-        public void GoBack()
+        public void Configure(string key, Type pageType)
         {
-            if(CanGoBack)
-                Frame.GoBack();
+            lock (pages)
+            {
+                if (pages.ContainsKey(key))
+                    throw new ArgumentException(string.Format("Key is not in page collection. Key: {0}", key));
+
+                if (pages.Any(p => p.Value == pageType))
+                    throw new ArgumentException(string.Format("Type Already Configured. Type: {0}", pages.First(p => p.Value == pageType).Key));
+
+                pages.Add(key, pageType);
+            }
         }
 
-        public void GoForward()
+        public string GetNameOfRegisteredPage(Type page)
         {
-            Frame.GoForward();
+            lock (pages)
+            {
+                if (pages.ContainsValue(page))
+                    return pages.FirstOrDefault(p => p.Value == page).Key;
+
+                throw new ArgumentException($"ExceptionNavigationServiceExPageUnknown. Page name: {page.Name}");
+            }
         }
 
         public void NavigateTo(string pageKey)
@@ -77,32 +89,28 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        public string CurrentPageKey { get; }
+        public void NavigateToModal(string pageKey) => NavigateTo(pageKey);
 
-        public void Configure(string key, Type pageType)
+        public void NavigateToModal(string pageKey, object parameter) => NavigateTo(pageKey, parameter);
+        
+        public bool CanGoBack => Frame.CanGoBack;
+
+        public bool CanGoForward => Frame.CanGoForward;
+
+        public void GoBack()
         {
-            lock(pages)
+            if (CanGoBack)
             {
-                if(pages.ContainsKey(key))
-                    throw new ArgumentException(string.Format("Key is not in page collection. Key: {0}", key));
-
-                if(pages.Any(p => p.Value == pageType))
-                    throw new ArgumentException(string.Format("Type Already Configured. Type: {0}", pages.First(p => p.Value == pageType).Key));
-
-                pages.Add(key, pageType);
+                Frame.GoBack();
             }
         }
 
-        public string GetNameOfRegisteredPage(Type page)
+        public void GoForward()
         {
-            lock(pages)
-            {
-                if(pages.ContainsValue(page))
-                    return pages.FirstOrDefault(p => p.Value == page).Key;
-
-                throw new ArgumentException($"ExceptionNavigationServiceExPageUnknown. Page name: {page.Name}");
-            }
+            Frame.GoForward();
         }
+
+        public void GoBackModal() => GoBack();
 
         private void RegisterFrameEvents()
         {
@@ -131,9 +139,5 @@ namespace MoneyFox.Uwp.Services
         {
             Navigated?.Invoke(sender, e);
         }
-
-        public void NavigateToModal(string pageKey) => NavigateTo(pageKey);
-
-        public void NavigateToModal(string pageKey, object parameter) => NavigateTo(pageKey, parameter);
     }
 }

@@ -29,9 +29,20 @@ namespace MoneyFox.Presentation
             }
         }
 
-        public void GoBack()
+        public static void Configure(string pageKey, Type pageType)
         {
-            Navigation.PopAsync();
+            lock (PagesByKey)
+            {
+                if (PagesByKey.ContainsKey(pageKey))
+                    PagesByKey[pageKey] = pageType;
+                else
+                    PagesByKey.Add(pageKey, pageType);
+            }
+        }
+
+        public static void Initialize(INavigation navigation)
+        {
+            Navigation = navigation;
         }
 
         public void NavigateTo(string pageKey)
@@ -127,20 +138,8 @@ namespace MoneyFox.Presentation
             }
         }
 
-        public static void Configure(string pageKey, Type pageType)
-        {
-            lock (PagesByKey)
-            {
-                if (PagesByKey.ContainsKey(pageKey))
-                    PagesByKey[pageKey] = pageType;
-                else
-                    PagesByKey.Add(pageKey, pageType);
-            }
-        }
+        public void GoBack() => Navigation.PopAsync();
 
-        public static void Initialize(INavigation navigation)
-        {
-            Navigation = navigation;
-        }
+        public void GoBackModal() => Navigation.PopModalAsync();
     }
 }

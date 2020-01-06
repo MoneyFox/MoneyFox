@@ -13,5 +13,7 @@
         void NavigateToModal(string pageKey);
 
         void NavigateToModal(string pageKey, object parameter);
+
+        void GoBackModal();
     }
 }
