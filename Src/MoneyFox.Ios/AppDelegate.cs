@@ -21,7 +21,6 @@ using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
 using System;
 using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
 using UIKit;
 using Xamarin.Forms;

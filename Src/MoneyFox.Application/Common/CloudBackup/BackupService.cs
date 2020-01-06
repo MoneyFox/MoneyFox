@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Graph;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
@@ -13,7 +12,6 @@ using NLog;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
-using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Application.Common.CloudBackup
@@ -194,7 +192,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                                           cancellationTokenSource.Token);
             try
             {
-                if (await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabaseConstants.DB_NAME)))
+                if (await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabasePathHelper.GetDbPath())))
                 {
                     semaphoreSlim.Release();
                 }
