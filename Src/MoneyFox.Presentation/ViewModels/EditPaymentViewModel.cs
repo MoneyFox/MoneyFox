@@ -96,7 +96,10 @@ namespace MoneyFox.Presentation.ViewModels
                                                        SelectedPayment.TargetAccount != null
                                                            ? SelectedPayment.TargetAccount.Id
                                                            : 0,
-                                                       updateRecurring);
+                                                       updateRecurring,
+                                                       SelectedPayment.RecurringPayment?.Recurrence,
+                                                       SelectedPayment.RecurringPayment?.IsEndless,
+                                                       SelectedPayment.RecurringPayment?.EndDate);
 
                 await mediator.Send(command);
                 navigationService.GoBack();
