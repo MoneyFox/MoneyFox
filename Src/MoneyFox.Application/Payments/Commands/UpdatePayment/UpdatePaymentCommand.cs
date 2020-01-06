@@ -22,7 +22,10 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                                     int categoryId,
                                     int chargedAccountId,
                                     int targetAccountId,
-                                    bool updateRecurringPayment)
+                                    bool updateRecurringPayment,
+                                    PaymentRecurrence? recurrence,
+                                    bool? isEndless,
+                                    DateTime? endDate)
         {
             Id = id;
             Date = date;
@@ -35,6 +38,9 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
             ChargedAccountId = chargedAccountId;
             TargetAccountId = targetAccountId;
             UpdateRecurringPayment = updateRecurringPayment;
+            PaymentRecurrence = recurrence;
+            IsEndless = isEndless;
+            EndDate = endDate;
         }
 
         public int Id { get; private set; }
@@ -56,6 +62,12 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
         public int ChargedAccountId { get; private set; }
 
         public int TargetAccountId { get; private set; }
+
+        public PaymentRecurrence? PaymentRecurrence { get; private set; }
+
+        public bool? IsEndless { get; private set; }
+
+        public DateTime? EndDate { get; private set; }
 
         public bool UpdateRecurringPayment { get; private set; }
 
@@ -84,15 +96,24 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 
                 if(request.UpdateRecurringPayment)
                 {
-                    existingPayment.RecurringPayment
-                                   .UpdateRecurringPayment(existingPayment.Amount,
-                                                           existingPayment.RecurringPayment.Recurrence,
-                                                           existingPayment.ChargedAccount,
-                                                           existingPayment.Note,
-                                                           existingPayment.RecurringPayment.IsEndless
-                                                           ? null
-                                                           : existingPayment.RecurringPayment.EndDate,
-                                                           existingPayment.TargetAccount);
+                    if(existingPayment.IsRecurring)
+                    {
+                        existingPayment.RecurringPayment
+                                       .UpdateRecurringPayment(existingPayment.Amount,
+                                                               existingPayment.RecurringPayment.Recurrence,
+                                                               existingPayment.ChargedAccount,
+                                                               existingPayment.Note,
+                                                               existingPayment.RecurringPayment.IsEndless
+                                                               ? null : existingPayment.RecurringPayment.EndDate,
+                                                               existingPayment.TargetAccount);
+                    }
+                    else
+                    {
+                        if(request.PaymentRecurrence.HasValue)
+                        {
+                            existingPayment.AddRecurringPayment(request.PaymentRecurrence.Value, request.EndDate);
+                        }
+                    }
                 }
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
