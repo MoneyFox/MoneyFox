@@ -57,7 +57,7 @@ namespace MoneyFox.Application.Common.Adapters
 
                 foreach(var path in filePaths)
                 {
-                    message.Attachments.Add(new EmailAttachment(path));
+                    message.Attachments.Add(new EmailAttachment(path, "txt"));
                 }
 
                 await Email.ComposeAsync(message);
