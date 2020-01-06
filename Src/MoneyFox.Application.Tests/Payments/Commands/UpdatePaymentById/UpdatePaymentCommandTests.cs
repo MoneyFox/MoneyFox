@@ -42,7 +42,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
         public async Task UpdatePayment_PaymentFound()
         {
             // Arrange
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));            
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
 
@@ -66,7 +66,10 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
                                                  payment1.TargetAccount != null
                                                      ? payment1.TargetAccount.Id
                                                      : 0,
-                                                 false),
+                                                 false,
+                                                 null,
+                                                 null,
+                                                 null),
                         default);
 
             // Assert
