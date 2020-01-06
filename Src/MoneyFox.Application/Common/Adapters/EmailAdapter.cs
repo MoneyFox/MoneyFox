@@ -19,7 +19,7 @@ namespace MoneyFox.Application.Common.Adapters
 
         IDialogService dialogService;
 
-        public EmailAdapter( dialogService)
+        public EmailAdapter(IDialogService dialogService)
         {
             this.dialogService = dialogService;
         }
