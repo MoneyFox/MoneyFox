@@ -6,11 +6,11 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 {
     public class CurrencyConverterService : ICurrencyConverterService
     {
-        private string apiKey;
+        private readonly string apiKey;
 
-        public CurrencyConverterService(string apiKey)
+        public CurrencyConverterService(TokenObject tokenObject)
         {
-            this.apiKey = apiKey;
+            apiKey = tokenObject.CurrencyConverterApi;
         }
 
         public double Convert(double amount, string from, string to)
