@@ -817,7 +817,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Es gab ein Problem während der Operation. Fehlermeldung {0}</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>Logout wurde abgebrochen.</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>Wiederherstellung der Sicherung wurde abgebrochen.</value>
@@ -826,6 +826,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Upload der Sicherung wurde abgebrochen.</value>
   </data>
   <data name="DeleteAccountLabel" xml:space="preserve">
-    <value>Delete Account</value>
+    <value>Konto löschen</value>
   </data>
 </root>
