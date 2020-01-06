@@ -35,21 +35,21 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSContactsUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require contact access.</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require calendar access.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require microphone access.</string>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require Music Access.</string>
 	<key>NSSiriUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require Siri Access.</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <false/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -59,9 +59,9 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>materialdesignicons.ttf</string>
-    <string>Fonts/Roboto-Bold.ttf</string>
-    <string>Fonts/Roboto-Regular.ttf</string>
-    <string>Fonts/Roboto-Medium.ttf</string>
+		<string>Fonts/Roboto-Bold.ttf</string>
+		<string>Fonts/Roboto-Regular.ttf</string>
+		<string>Fonts/Roboto-Medium.ttf</string>
 	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
@@ -70,8 +70,8 @@
 			<string>com.applysolutions.moneyfox</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-        <string>msala00a3e4cd-b4b0-4730-be62-5fcf90a94a1d</string>
-      </array>
+				<string>msala00a3e4cd-b4b0-4730-be62-5fcf90a94a1d</string>
+			</array>
 		</dict>
 	</array>
 </dict>

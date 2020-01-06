@@ -49,5 +49,7 @@
         ///     ID string for add transfer shortcuts
         /// </summary>
         public static string AddTransferTileId => "AddTransferTile";
+
+        public static string LogFileName => "moneyfox.log";
     }
 }
