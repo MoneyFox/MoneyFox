@@ -1,7 +1,9 @@
 ﻿using NLog;
 using NLog.Config;
 using NLog.Targets;
-using MoneyFox.Application.Common;
+using System.IO;
+using Xamarin.Essentials;
+using MoneyFox.Application.Common.Constants;
 
 #if !DEBUG
 using PCLAppConfig;
@@ -18,7 +20,7 @@ namespace MoneyFox.Uwp.Services
             // Configure file
             var logfile = new FileTarget("logfile")
             {
-                FileName = LogPathHelper.GetLogPath(),
+                FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
                 AutoFlush = true,
                 ArchiveEvery = FileArchivePeriod.Month
             };
