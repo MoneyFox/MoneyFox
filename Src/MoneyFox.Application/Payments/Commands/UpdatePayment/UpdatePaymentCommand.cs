@@ -94,11 +94,11 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                                               await contextAdapter.Context.Categories.FindAsync(request.CategoryId),
                                               request.Note);
 
-                if(request.UpdateRecurringPayment)
+                if(request.IsRecurring && request.UpdateRecurringPayment)
                 {
                     if(existingPayment.IsRecurring)
                     {
-                        existingPayment.RecurringPayment
+                        existingPayment.RecurringPayment!
                                        .UpdateRecurringPayment(existingPayment.Amount,
                                                                existingPayment.RecurringPayment.Recurrence,
                                                                existingPayment.ChargedAccount,
@@ -114,6 +114,10 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                             existingPayment.AddRecurringPayment(request.PaymentRecurrence.Value, request.EndDate);
                         }
                     }
+                }
+                else if(!request.IsRecurring && request.UpdateRecurringPayment)
+                {
+                    existingPayment.RemoveRecurringPayment();
                 }
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
