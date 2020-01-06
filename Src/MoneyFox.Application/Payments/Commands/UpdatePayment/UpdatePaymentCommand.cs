@@ -116,7 +116,7 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                                                                 ? null : request.EndDate);
                     }
                 }
-                else if(!request.IsRecurring)
+                else if(!request.IsRecurring && existingPayment.RecurringPayment != null)
                 {
                     contextAdapter.Context.RecurringPayments
                                           .Remove(existingPayment.RecurringPayment!);
