@@ -2,6 +2,7 @@
 using NLog;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
@@ -56,7 +57,10 @@ namespace MoneyFox.Application.Common.Adapters
 
                 foreach(var path in filePaths)
                 {
-                    message.Attachments.Add(new EmailAttachment(path));
+                    if (File.Exists(path))
+                    {
+                        message.Attachments.Add(new EmailAttachment(path));
+                    }
                 }
 
                 await Email.ComposeAsync(message);
