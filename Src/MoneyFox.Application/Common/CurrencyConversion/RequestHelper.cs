@@ -20,7 +20,7 @@ namespace MoneyFox.Application.Common.CurrencyConversion
             var data = JObject.Parse(jsonString)["results"].ToArray();
             return data.Select(item => item.First.ToObject<Currency>()).ToList();
         }
-        
+
         public static double ExchangeRate(string from, string to, string apiKey = null)
         {
             string url = BaseUrl + "convert?q=" + from + "_" + to + "&compact=ultra&apiKey=" + apiKey;
