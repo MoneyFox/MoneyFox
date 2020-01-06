@@ -1,4 +1,6 @@
-﻿using NLog;
+﻿using MoneyFox.Application.Common.Interfaces;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -14,6 +16,13 @@ namespace MoneyFox.Application.Common.Adapters
     public class EmailAdapter : IEmailAdapter
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
+        IDialogService dialogService;
+
+        public EmailAdapter( dialogService)
+        {
+            this.dialogService = dialogService;
+        }
 
         public async Task SendEmailAsync(string subject, string body, List<string> recipients)
         {
@@ -55,6 +64,11 @@ namespace MoneyFox.Application.Common.Adapters
             catch (FeatureNotSupportedException ex)
             {
                 logManager.Warn(ex);
+                await dialogService.ShowMessage("Warning", ex.ToString());
+            }
+            catch (Exception ex)
+            {
+                await dialogService.ShowMessage("Error", ex.ToString());
             }
         }
     }
