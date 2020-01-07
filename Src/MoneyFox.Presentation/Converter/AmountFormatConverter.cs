@@ -19,11 +19,8 @@ namespace MoneyFox.Presentation.Converter
         /// <returns>Converted currency string.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var noParens = (NumberFormatInfo) culture.NumberFormat.Clone();
-            noParens.CurrencyNegativePattern = 1;
             var currencyValue = (decimal) value;
-
-            return currencyValue.ToString("C", noParens);
+            return currencyValue.ToString("C", CultureHelper.CurrentCulture);
         }
 
         /// <summary>
