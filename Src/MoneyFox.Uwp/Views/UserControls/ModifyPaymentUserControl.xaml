@@ -23,7 +23,7 @@
         <converter:AmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
-        <converter:NativeRecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
+        <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
         <converter:DecimalConverter x:Key="DecimalConverter" />
 
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels:AccountViewModel">
