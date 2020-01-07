@@ -242,16 +242,16 @@
     <Compile Include="Views\UserControls\AboutUserControl.xaml.cs">
       <DependentUpon>AboutUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\BalanceControl.xaml.cs">
+    <Compile Include="Views\UserControls\BalanceControl.xaml.cs">
       <DependentUpon>BalanceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CategoryListControl.xaml.cs">
+    <Compile Include="Views\UserControls\CategoryListControl.xaml.cs">
       <DependentUpon>CategoryListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CategorySelectionControl.xaml.cs">
+    <Compile Include="Views\UserControls\CategorySelectionControl.xaml.cs">
       <DependentUpon>CategorySelectionControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\IncomeExpenseBalanceUserControl.xaml.cs">
+    <Compile Include="Views\UserControls\IncomeExpenseBalanceUserControl.xaml.cs">
       <DependentUpon>IncomeExpenseBalanceUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
@@ -458,21 +458,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\BalanceControl.xaml">
+    <Page Include="Views\UserControls\BalanceControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CategoryListControl.xaml">
+    <Page Include="Views\UserControls\CategoryListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CategorySelectionControl.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\UserControls\CategorySelectionControl.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\IncomeExpenseBalanceUserControl.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\UserControls\IncomeExpenseBalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\UserControls\ModifyAccountUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>

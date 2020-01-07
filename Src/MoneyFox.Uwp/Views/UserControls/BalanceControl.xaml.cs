@@ -1,7 +1,7 @@
 ﻿using Windows.ApplicationModel;
 using MoneyFox.Presentation.ViewModels.DesignTime;
 
-namespace MoneyFox.Uwp.Controls
+namespace MoneyFox.Uwp.Views.UserControls
 {
     public sealed partial class BalanceControl
     {

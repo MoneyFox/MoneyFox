@@ -6,10 +6,10 @@
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:controls="clr-namespace:MoneyFox.Uwp.Controls"
       xmlns:converter="using:MoneyFox.Uwp.Converter"
-      xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels.Settings;assembly=MoneyFox.Presentation"
       xmlns:resources="using:MoneyFox.Application.Resources"
+      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
       mc:Ignorable="d"
