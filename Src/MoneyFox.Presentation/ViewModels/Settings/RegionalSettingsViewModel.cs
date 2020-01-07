@@ -1,35 +1,48 @@
-﻿using MoneyFox.Application.Common.CurrencyConversion;
-using MoneyFox.Application.Common.CurrencyConversion.Models;
+﻿using GalaSoft.MvvmLight;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Presentation.Commands;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {
-    public class RegionalSettingsViewModel : IRegionalSettingsViewModel
+    public class RegionalSettingsViewModel : ViewModelBase, IRegionalSettingsViewModel
     {
-        private readonly ICurrencyConverterService currencyConverterService;
+        private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
 
-        public RegionalSettingsViewModel(ICurrencyConverterService currencyConverterService, IDialogService dialogService)
+        public RegionalSettingsViewModel(ISettingsFacade settingsFacade,
+                                         IDialogService dialogService)
         {
-            this.currencyConverterService = currencyConverterService;
+            this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
 
-            AvailableCurrencies = new ObservableCollection<Currency>();
+            AvailableCultures = new ObservableCollection<CultureInfo>();
         }
 
-        public ObservableCollection<Currency> AvailableCurrencies { get; }
+        private CultureInfo selectedCulture;
+        public CultureInfo SelectedCulture
+        {
+            get => selectedCulture;
+            set
+            {
+                selectedCulture = value;
+                RaisePropertyChanged();
+            }
+        }
+        public ObservableCollection<CultureInfo> AvailableCultures { get; }
 
-        public AsyncCommand LoadAvailableCurrenciesCommand => new AsyncCommand(LoadAvailableCurrenciesAsync);
+        public AsyncCommand LoadAvailableCulturesCommand => new AsyncCommand(LoadAvailableCulturesAsync);
 
-        private async Task LoadAvailableCurrenciesAsync()
+        private async Task LoadAvailableCulturesAsync()
         {
             await dialogService.ShowLoadingDialogAsync();
 
-            var currencies = await currencyConverterService.GetAllCurrenciesAsync();
-            currencies.ForEach(AvailableCurrencies.Add);
+            CultureInfo.GetCultures(CultureTypes.AllCultures).ToList().ForEach(AvailableCultures.Add);
+            SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
 
             await dialogService.HideLoadingDialogAsync();
         }

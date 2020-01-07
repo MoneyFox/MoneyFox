@@ -14,5 +14,10 @@ namespace MoneyFox.Uwp.Views.Settings
 
             if (DesignMode.DesignModeEnabled) DataContext = new DesignTimeRegionalSettingsViewModel();
         }
+
+        private async void ComboBox_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            await ViewModel.LoadAvailableCulturesCommand.ExecuteAsync();
+        }
     }
 }

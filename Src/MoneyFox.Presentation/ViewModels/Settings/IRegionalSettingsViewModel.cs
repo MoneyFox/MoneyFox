@@ -1,13 +1,15 @@
-﻿using MoneyFox.Application.Common.CurrencyConversion.Models;
-using MoneyFox.Presentation.Commands;
+﻿using MoneyFox.Presentation.Commands;
 using System.Collections.ObjectModel;
+using System.Globalization;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {
     public interface IRegionalSettingsViewModel
     {
-        ObservableCollection<Currency> AvailableCurrencies { get; }
+        CultureInfo SelectedCulture { get; set; }
 
-        AsyncCommand LoadAvailableCurrenciesCommand { get; }
+        ObservableCollection<CultureInfo> AvailableCultures { get; }
+
+        AsyncCommand LoadAvailableCulturesCommand { get; }
     }
 }

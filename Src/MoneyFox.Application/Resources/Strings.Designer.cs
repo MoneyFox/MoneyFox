@@ -718,20 +718,20 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default Currency.
+        ///   Looks up a localized string similar to Default Region.
         /// </summary>
-        public static string DefaultCurrencyHeader {
+        public static string DefaultRegionHeader {
             get {
-                return ResourceManager.GetString("DefaultCurrencyHeader", resourceCulture);
+                return ResourceManager.GetString("DefaultRegionHeader", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This currency will be used as a default for your payments and accounts..
+        ///   Looks up a localized string similar to This region will be used as a default for your application..
         /// </summary>
-        public static string DefaultCurrencyText {
+        public static string DefaultRegionText {
             get {
-                return ResourceManager.GetString("DefaultCurrencyText", resourceCulture);
+                return ResourceManager.GetString("DefaultRegionText", resourceCulture);
             }
         }
         
@@ -1083,6 +1083,42 @@ namespace MoneyFox.Application.Resources {
         public static string IconDesignerLabel {
             get {
                 return ResourceManager.GetString("IconDesignerLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ignore for translation.
+        /// </summary>
+        public static string IgnoreForTranslationHeader {
+            get {
+                return ResourceManager.GetString("IgnoreForTranslationHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use selected region.
+        /// </summary>
+        public static string IgnoreForTranslationOff {
+            get {
+                return ResourceManager.GetString("IgnoreForTranslationOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use computer setting.
+        /// </summary>
+        public static string IgnoreForTranslationOn {
+            get {
+                return ResourceManager.GetString("IgnoreForTranslationOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If this setting is activated we will ignore the selected region for translating the application. Instead the setting of your computer is used..
+        /// </summary>
+        public static string IgnoreForTranslationText {
+            get {
+                return ResourceManager.GetString("IgnoreForTranslationText", resourceCulture);
             }
         }
         
