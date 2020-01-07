@@ -8,7 +8,7 @@ namespace MoneyFox.Uwp.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var currencyValue = (decimal) value;
+            var currencyValue = (decimal)value;
             return currencyValue.ToString("C", CultureHelper.CurrentCulture);
         }
 
