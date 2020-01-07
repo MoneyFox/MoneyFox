@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoneyFox.Presentation;
+using System;
 using System.Globalization;
 using Windows.UI.Xaml.Data;
 
@@ -8,11 +9,8 @@ namespace MoneyFox.Uwp.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var noParens = (NumberFormatInfo) CultureInfo.CurrentUICulture.NumberFormat.Clone();
-            noParens.CurrencyNegativePattern = 1;
             var currencyValue = (decimal) value;
-
-            return currencyValue.ToString("C", noParens);
+            return currencyValue.ToString("C", CultureHelper.CurrentCulture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
