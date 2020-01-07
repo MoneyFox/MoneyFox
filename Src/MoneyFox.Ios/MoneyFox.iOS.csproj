@@ -254,6 +254,7 @@
     <BundleResource Include="Resources\Fonts\Roboto-Bold.ttf" />
     <BundleResource Include="Resources\Fonts\Roboto-Medium.ttf" />
     <BundleResource Include="Resources\Fonts\Roboto-Regular.ttf" />
+    <Compile Include="Renderer\CustomContentPageRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Default-568h%402x.png" />
