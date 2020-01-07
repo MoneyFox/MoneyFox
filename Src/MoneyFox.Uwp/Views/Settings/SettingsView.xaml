@@ -8,7 +8,7 @@
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:resources="using:MoneyFox.Application.Resources"
       xmlns:helpers="using:MoneyFox.Uwp.Helpers"
-      xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
+      xmlns:userControls="using:MoneyFox.Uwp.Views.Settings"
       mc:Ignorable="d"
       DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
 
