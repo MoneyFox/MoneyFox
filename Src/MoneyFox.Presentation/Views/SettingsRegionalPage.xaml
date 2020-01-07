@@ -5,7 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             mc:Ignorable="d">
+             mc:Ignorable="d"
+             Visual="Material"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}" >
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeRegionalSettingsViewModel />
@@ -22,7 +24,8 @@
 
             <Picker Style="{StaticResource DefaultPickerStyle}"
                     ItemsSource="{Binding AvailableCultures}"
-                    SelectedItem="{Binding SelectedCulture, Mode=TwoWay}" />
+                    SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"
+                    ItemDisplayBinding="{Binding DisplayName}"/>
         </StackLayout>
     </ContentPage.Content>
 

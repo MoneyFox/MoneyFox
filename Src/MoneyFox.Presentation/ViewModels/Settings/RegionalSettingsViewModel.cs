@@ -29,8 +29,10 @@ namespace MoneyFox.Presentation.ViewModels.Settings
             get => selectedCulture;
             set
             {
+                if(selectedCulture == value) return;
                 selectedCulture = value;
                 settingsFacade.DefaultCulture = selectedCulture.Name;
+                CultureHelper.CurrentCulture = selectedCulture;
                 RaisePropertyChanged();
             }
         }
@@ -42,7 +44,7 @@ namespace MoneyFox.Presentation.ViewModels.Settings
         {
             await dialogService.ShowLoadingDialogAsync();
 
-            CultureInfo.GetCultures(CultureTypes.AllCultures).ToList().ForEach(AvailableCultures.Add);
+            CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
             SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
 
             await dialogService.HideLoadingDialogAsync();
