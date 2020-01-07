@@ -72,6 +72,13 @@ namespace MoneyFox.Presentation.ViewModels.Settings
             },
             new SettingsSelectorType
             {
+                Name = Strings.SettingsRegionalLabel,
+                Icon = "\uf8ae",
+                Description = Strings.RegionalSettingsDescriptionText,
+                Type = SettingsType.Regional
+            },
+            new SettingsSelectorType
+            {
                 Name = Strings.CategoriesLabel,
                 Icon = "\uf316",
                 Description = Strings.CategoriesSettingsDescription,
@@ -109,27 +116,26 @@ namespace MoneyFox.Presentation.ViewModels.Settings
             {
                 case SettingsType.Personalization:
                     navigationService.NavigateTo(ViewModelLocator.SettingsPersonalization);
+                    break;
 
+                case SettingsType.Regional:
+                    navigationService.NavigateTo(ViewModelLocator.SettingsRegional);
                     break;
 
                 case SettingsType.Categories:
                     navigationService.NavigateTo(ViewModelLocator.CategoryList);
-
                     break;
 
                 case SettingsType.BackgroundJob:
                     navigationService.NavigateTo(ViewModelLocator.SettingsBackgroundJob);
-
                     break;
 
                 case SettingsType.Backup:
                     navigationService.NavigateTo(ViewModelLocator.Backup);
-
                     break;
 
                 case SettingsType.About:
                     navigationService.NavigateTo(ViewModelLocator.About);
-
                     break;
             }
         }

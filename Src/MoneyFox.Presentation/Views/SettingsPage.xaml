@@ -16,12 +16,12 @@
 
     <ContentPage.Content>
         <ListView x:Name="SettingsList"
-                  ItemsSource="{Binding SettingsList}" 
+                  ItemsSource="{Binding SettingsList}"
                   HasUnevenRows="True"
                   BackgroundColor="Transparent"
                   CachingStrategy="RecycleElementAndDataTemplate"
                   SeparatorVisibility="None" >
-            
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -33,7 +33,7 @@
                             <StackLayout Orientation="Vertical"
                                          Padding="3"
                                          Spacing="{DynamicResource DefaultSpacing}">
-                                
+
                                 <StackLayout Orientation="Horizontal"
                                              Spacing="{DynamicResource DefaultSpacing}">
 
@@ -46,10 +46,10 @@
                                                 Color="{DynamicResource PrimaryFontColor}" />
                                         </Image.Source>
                                     </Image>
-                                    
-                                    <Label Text="{Binding Name}" 
+
+                                    <Label Text="{Binding Name}"
                                            Style="{DynamicResource ListItemHeaderStyle}" />
-                                    
+
                                 </StackLayout>
                                 <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                             </StackLayout>

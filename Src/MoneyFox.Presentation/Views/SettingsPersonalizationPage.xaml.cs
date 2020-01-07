@@ -15,7 +15,6 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.SettingsPersonalizationVm;
 
             ThemePicker.ItemsSource = new List<string> {Strings.LightLabel, Strings.DarkLabel};
-
             ThemePicker.SelectedIndex = ViewModel.ElementTheme == "Light" ? 0 : 1;
         }
 

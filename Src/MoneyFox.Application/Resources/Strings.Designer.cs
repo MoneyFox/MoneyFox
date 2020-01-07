@@ -1801,6 +1801,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set region settings for your application..
+        /// </summary>
+        public static string RegionalSettingsDescriptionText {
+            get {
+                return ResourceManager.GetString("RegionalSettingsDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restoring backup was canceled..
         /// </summary>
         public static string RestoreBackupCanceledMessage {
@@ -1969,6 +1978,15 @@ namespace MoneyFox.Application.Resources {
         public static string SettingsPersonalizationLabel {
             get {
                 return ResourceManager.GetString("SettingsPersonalizationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regional Settings.
+        /// </summary>
+        public static string SettingsRegionalLabel {
+            get {
+                return ResourceManager.GetString("SettingsRegionalLabel", resourceCulture);
             }
         }
         

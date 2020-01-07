@@ -16,6 +16,5 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public AsyncCommand LoadAvailableCulturesCommand => throw new System.NotImplementedException();
 
         public CultureInfo SelectedCulture { get; set; } = CultureInfo.CurrentCulture;
-        public int SelectedCultureIndex { get => 1; set => throw new System.NotImplementedException(); }
     }
 }

@@ -37,7 +37,7 @@ namespace MoneyFox.Presentation
         public static string Backup => nameof(BackupViewModel);
 
         //*****************
-        //  Statistics 
+        //  Statistics
         //*****************
         public static string StatisticSelector => nameof(StatisticSelectorViewModel);
         public static string StatisticCashFlow => nameof(StatisticCashFlowViewModel);
@@ -45,10 +45,10 @@ namespace MoneyFox.Presentation
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
 
         //*****************
-        //  Settings 
+        //  Settings
         //*****************
         public static string About => nameof(AboutViewModel);
-        public static string RegionalSettings => nameof(RegionalSettingsViewModel);
+        public static string SettingsRegional => nameof(RegionalSettingsViewModel);
         public static string Settings => nameof(SettingsViewModel);
         public static string SettingsBackgroundJob => nameof(SettingsBackgroundJobViewModel);
         public static string SettingsPersonalization => nameof(SettingsPersonalizationViewModel);
@@ -67,13 +67,13 @@ namespace MoneyFox.Presentation
         public static BackupViewModel BackupVm => ServiceLocator.Current.GetInstance<BackupViewModel>();
 
         //*****************
-        //  Common 
+        //  Common
         //*****************
         public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
         public static SelectFilterDialogViewModel SelectFilterDialogVm => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
 
         //*****************
-        //  Statistics 
+        //  Statistics
         //*****************
         public static StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
         public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
@@ -81,7 +81,7 @@ namespace MoneyFox.Presentation
         public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
 
         //*****************
-        //  Settings 
+        //  Settings
         //*****************
         public static SettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<SettingsViewModel>();
         public static SettingsBackgroundJobViewModel SettingsBackgroundVm => ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
