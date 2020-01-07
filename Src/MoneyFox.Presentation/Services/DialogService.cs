@@ -34,8 +34,8 @@ namespace MoneyFox.Presentation.Services
             bool? wasConfirmed = await MaterialDialog.Instance
                                                      .ConfirmAsync(message,
                                                                    title,
-                                                                   Strings.OkLabel,
-                                                                   Strings.CancelLabel,
+                                                                   Strings.YesLabel,
+                                                                   Strings.NoLabel,
                                                                    GetAlertDialogConfiguration());
 
             return wasConfirmed ?? false;

@@ -30,7 +30,7 @@ namespace MoneyFox.Droid.Renderer
 
             Control.EditText.SetHighlightColor(Color.Accent.ToAndroid());
 
-            if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Q)
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
             {
                 TrySetCursorPointerColorNew();
             }

@@ -23,11 +23,24 @@ namespace MoneyFox.Presentation.Views
 
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);
 
+            if (Device.RuntimePlatform == Device.iOS)
+            {
+                var addItem = new ToolbarItem
+                {
+                    Text = Strings.AddTitle,
+                    Priority = 0,
+                    Order = ToolbarItemOrder.Primary
+                };
+                addItem.Clicked += AddItem_Clicked;
+
+                ToolbarItems.Add(addItem);
+            }
+
             var filterItem = new ToolbarItem
             {
                 Command = new Command(OpenDialog),
                 Text = Strings.FilterLabel,
-                Priority = 0,
+                Priority = 1,
                 Order = ToolbarItemOrder.Primary
             };
 

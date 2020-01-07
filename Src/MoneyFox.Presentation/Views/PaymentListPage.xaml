@@ -168,6 +168,13 @@
                         Size="33"
                         Color="White" />
                 </ImageButton.Source>
+    
+                <ImageButton.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <OnPlatform.Android>true</OnPlatform.Android>
+                        <OnPlatform.iOS>false</OnPlatform.iOS>
+                    </OnPlatform>
+                </ImageButton.IsVisible>
             </ImageButton>
 
             <Label Margin="6"
