@@ -6,7 +6,7 @@
       xmlns:i="using:Microsoft.Xaml.Interactivity"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
+      xmlns:controls="clr-namespace:MoneyFox.Uwp.Controls"
       xmlns:resources="using:MoneyFox.Application.Resources"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d"

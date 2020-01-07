@@ -8,7 +8,7 @@
       xmlns:converter="using:MoneyFox.Uwp.Converter"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels.Settings;assembly=MoneyFox.Presentation"
-      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
+      xmlns:controls="clr-namespace:MoneyFox.Uwp.Controls"
       xmlns:resources="using:MoneyFox.Application.Resources"
       DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
       mc:Ignorable="d">
