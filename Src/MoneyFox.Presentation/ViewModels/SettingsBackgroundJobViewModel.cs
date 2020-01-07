@@ -17,7 +17,6 @@ namespace MoneyFox.Presentation.ViewModels
     }
 
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel" />
-    /// />
     public class SettingsBackgroundJobViewModel : ViewModelBase, ISettingsBackgroundJobViewModel
     {
         private readonly ISettingsFacade settingsFacade;

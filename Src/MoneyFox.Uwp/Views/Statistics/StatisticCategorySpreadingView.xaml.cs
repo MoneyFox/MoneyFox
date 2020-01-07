@@ -3,11 +3,11 @@ using Windows.UI.Xaml;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Views.Dialogs;
 
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Uwp.Views.Statistics
 {
-    public sealed partial class StatisticCashFlowView
+    public sealed partial class StatisticCategorySpreadingView
     {
-        public StatisticCashFlowView()
+        public StatisticCategorySpreadingView()
         {
             InitializeComponent();
         }

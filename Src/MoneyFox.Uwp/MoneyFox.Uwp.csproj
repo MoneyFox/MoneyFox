@@ -227,16 +227,16 @@
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StatisticCashFlowView.xaml.cs">
+    <Compile Include="Views\Statistics\StatisticCashFlowView.xaml.cs">
       <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StatisticCategorySpreadingView.xaml.cs">
+    <Compile Include="Views\Statistics\StatisticCategorySpreadingView.xaml.cs">
       <DependentUpon>StatisticCategorySpreadingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StatisticCategorySummaryView.xaml.cs">
+    <Compile Include="Views\Statistics\StatisticCategorySummaryView.xaml.cs">
       <DependentUpon>StatisticCategorySummaryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StatisticSelectorView.xaml.cs">
+    <Compile Include="Views\Statistics\StatisticSelectorView.xaml.cs">
       <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\AboutUserControl.xaml.cs">
@@ -438,19 +438,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\StatisticCashFlowView.xaml">
+    <Page Include="Views\Statistics\StatisticCashFlowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\StatisticCategorySpreadingView.xaml">
+    <Page Include="Views\Statistics\StatisticCategorySpreadingView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\StatisticCategorySummaryView.xaml">
+    <Page Include="Views\Statistics\StatisticCategorySummaryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\StatisticSelectorView.xaml">
+    <Page Include="Views\Statistics\StatisticSelectorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
