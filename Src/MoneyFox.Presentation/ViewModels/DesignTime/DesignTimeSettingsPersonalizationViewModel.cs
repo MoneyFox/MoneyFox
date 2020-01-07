@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using MoneyFox.Presentation.ViewModels.Settings;
+using System.Windows.Input;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

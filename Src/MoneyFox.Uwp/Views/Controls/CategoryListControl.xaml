@@ -6,7 +6,7 @@
              xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
-             xmlns:viewModels1="using:MoneyFox.Presentation.ViewModels"
+             xmlns:viewModels1="clr-namespace:MoneyFox.Presentation.ViewModels.Settings;assembly=MoneyFox.Presentation"
              xmlns:resources="using:MoneyFox.Application.Resources"
              d:DesignHeight="300"
              d:DesignWidth="400"

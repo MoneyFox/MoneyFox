@@ -2,7 +2,7 @@
 using MoneyFox.Application.Common.Facades;
 using System;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Presentation.ViewModels.Settings
 {
     public interface ISettingsBackgroundJobViewModel
     {

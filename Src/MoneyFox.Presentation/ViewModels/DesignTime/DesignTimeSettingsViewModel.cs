@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Models;
+using MoneyFox.Presentation.ViewModels.Settings;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

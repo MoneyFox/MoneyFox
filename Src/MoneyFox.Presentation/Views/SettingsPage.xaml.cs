@@ -1,4 +1,4 @@
-﻿using MoneyFox.Presentation.ViewModels;
+﻿using MoneyFox.Presentation.ViewModels.Settings;
 
 namespace MoneyFox.Presentation.Views
 {

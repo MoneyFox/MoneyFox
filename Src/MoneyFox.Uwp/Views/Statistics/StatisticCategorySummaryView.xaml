@@ -8,7 +8,7 @@
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
       xmlns:converter="using:MoneyFox.Uwp.Converter"
-      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+      xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels.Settings;assembly=MoneyFox.Presentation"
       xmlns:resources="using:MoneyFox.Application.Resources"
       d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"

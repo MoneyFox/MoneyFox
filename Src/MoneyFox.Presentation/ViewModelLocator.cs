@@ -4,6 +4,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Presentation.ViewModels.Settings;
 using MoneyFox.Presentation.ViewModels.Statistic;
 
 namespace MoneyFox.Presentation

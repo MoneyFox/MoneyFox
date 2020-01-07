@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.ViewModels.Settings;
 
 namespace MoneyFox.Presentation.Views
 {

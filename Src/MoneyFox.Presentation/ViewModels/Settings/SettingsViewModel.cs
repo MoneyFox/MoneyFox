@@ -6,7 +6,7 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Models;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Presentation.ViewModels.Settings
 {
     public interface ISettingsViewModel
     {

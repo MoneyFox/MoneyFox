@@ -10,7 +10,7 @@ using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.ViewModels.Settings;
 using MoneyFox.Presentation.Views;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;

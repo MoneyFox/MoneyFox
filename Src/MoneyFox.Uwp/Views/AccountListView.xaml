@@ -7,7 +7,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:converter="using:MoneyFox.Uwp.Converter"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+      xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels.Settings;assembly=MoneyFox.Presentation"
       xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
       xmlns:resources="using:MoneyFox.Application.Resources"
       DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
