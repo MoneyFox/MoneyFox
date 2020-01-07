@@ -8,6 +8,7 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
@@ -21,8 +22,10 @@ using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
 using UIKit;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using XF.Material.iOS;
@@ -93,7 +96,7 @@ namespace MoneyFox.iOS
 
             var logfile = new FileTarget("logfile")
                           {
-                              FileName = LogPathHelper.GetLogPath(),
+                              FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
                               AutoFlush = true,
                               ArchiveEvery = FileArchivePeriod.Month
                           };

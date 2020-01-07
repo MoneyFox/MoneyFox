@@ -35,21 +35,21 @@
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
 	<key>NSContactsUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require contact access.</string>
 	<key>NSCalendarsUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require calendar access.</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require microphone access.</string>
 	<key>NSAppleMusicUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require Music Access.</string>
 	<key>NSSiriUsageDescription</key>
-	<string>We need to use this data in order to ensure the best user experience.</string>
+	<string>This app does not require Siri Access.</string>
 	<key>XSLaunchImageAssets</key>
 	<string>Resources/Assets.xcassets/LaunchImages.launchimage</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
+  <key>UIViewControllerBasedStatusBarAppearance</key>
+  <false/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>

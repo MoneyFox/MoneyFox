@@ -4,12 +4,14 @@ using Android.App;
 using Android.Runtime;
 using Autofac;
 using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Presentation;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
+using Xamarin.Essentials;
 
 namespace MoneyFox.Droid
 {
@@ -69,7 +71,7 @@ namespace MoneyFox.Droid
 
             var logfile = new FileTarget("logfile")
             {
-                FileName = LogPathHelper.GetLogPath(),
+                FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
                 AutoFlush = true,
                 ArchiveEvery = FileArchivePeriod.Month
             };

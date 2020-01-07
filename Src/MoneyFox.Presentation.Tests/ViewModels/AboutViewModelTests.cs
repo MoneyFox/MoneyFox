@@ -17,25 +17,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class AboutViewModelTests
     {
         [Fact]
-        public async Task SendMail_NoParams_CommandCalled()
-        {
-            var composeMailSetup = new Mock<IEmailAdapter>();
-            composeMailSetup.Setup(x => x.SendEmailAsync(It.Is<string>(s => s == Strings.FeedbackSubject),
-                                                    It.IsAny<string>(),
-                                                    It.IsAny<List<string>>(),
-                                                    It.IsAny<List<string>>()))
-                            .Returns(Task.CompletedTask);
-
-            await new AboutViewModel(new Mock<IAppInformation>().Object,
-                                     composeMailSetup.Object,
-                                     new Mock<IBrowserAdapter>().Object,
-                                     new Mock<IStoreOperations>().Object)
-                  .SendMailCommand.ExecuteAsync();
-
-            composeMailSetup.Verify(x => x.SendEmailAsync(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<List<string>>(), It.IsAny<List<string>>()), Times.Once);
-        }
-
-        [Fact]
         public void SupportMail_NoParams_ReturnCorrectMail()
         {
             new AboutViewModel(new Mock<IAppInformation>().Object,
