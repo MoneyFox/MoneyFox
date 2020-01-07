@@ -62,10 +62,10 @@
     <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchLink>None</MtouchLink>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -75,9 +75,9 @@
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
     <ConsolePause>false</ConsolePause>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
+    <CodesignKey>iPhone Distribution: Apply Solutions GmbH (HTWW78XH49)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
+    <CodesignProvision>MoneyFox Distribution</CodesignProvision>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchUseLlvm>true</MtouchUseLlvm>
@@ -116,13 +116,9 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhoneSimulator'">
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppStore|iPhoneSimulator'">
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|iPhoneSimulator'">
     <OutputPath>bin\iPhoneSimulator\ReleaseUWP\</OutputPath>
@@ -132,8 +128,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|iPhone'">
     <OutputPath>bin\iPhone\ReleaseUWP\</OutputPath>
@@ -143,8 +137,6 @@
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Effects\DeleteButtonEffect.cs" />
@@ -342,11 +334,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
-      <Project>{9777F861-F072-4FB3-A23E-09F37DF90CC1}</Project>
+      <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
       <Name>MoneyFox.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
-      <Project>{3BBF9997-7AF3-411F-B6E3-88E9EC97C073}</Project>
+      <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
       <Name>MoneyFox.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
@@ -354,7 +346,7 @@
       <Name>MoneyFox.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
-      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
+      <Project>{20A511B0-4372-4AA9-B27D-C36E49A022FB}</Project>
       <Name>MoneyFox.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
