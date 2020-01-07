@@ -26,6 +26,8 @@ namespace MoneyFox.Presentation.ViewModels.Settings
         /// </summary>
         ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
 
+        IRegionalSettingsViewModel RegionalSettingsViewModel { get; }
+
         ISettingsPersonalizationViewModel PersonalizationViewModel { get; }
     }
 
@@ -39,16 +41,24 @@ namespace MoneyFox.Presentation.ViewModels.Settings
         public SettingsViewModel(INavigationService navigationService,
                                  IAboutViewModel aboutViewModel,
                                  ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel,
+                                 IRegionalSettingsViewModel regionalSettingsViewModel,
                                  ISettingsPersonalizationViewModel settingsPersonalizationViewModel)
         {
             this.navigationService = navigationService;
 
             AboutViewModel = aboutViewModel;
             BackgroundJobViewModel = settingsBackgroundJobViewModel;
+            RegionalSettingsViewModel = regionalSettingsViewModel;
             PersonalizationViewModel = settingsPersonalizationViewModel;
         }
 
         public IAboutViewModel AboutViewModel { get; }
+
+        public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; private set; }
+
+        public ISettingsPersonalizationViewModel PersonalizationViewModel { get; private set; }
+
+        public IRegionalSettingsViewModel RegionalSettingsViewModel { get; private set; }
 
         /// <inheritdoc />
         public ObservableCollection<SettingsSelectorType> SettingsList => new ObservableCollection<SettingsSelectorType>
@@ -92,9 +102,6 @@ namespace MoneyFox.Presentation.ViewModels.Settings
 
         /// <inheritdoc />
         public RelayCommand<SettingsSelectorType> GoToSettingCommand => new RelayCommand<SettingsSelectorType>(GoToSettings);
-
-        public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; set; }
-        public ISettingsPersonalizationViewModel PersonalizationViewModel { get; set; }
 
         private void GoToSettings(SettingsSelectorType item)
         {

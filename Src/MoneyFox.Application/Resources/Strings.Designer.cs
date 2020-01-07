@@ -718,6 +718,24 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default Currency.
+        /// </summary>
+        public static string DefaultCurrencyHeader {
+            get {
+                return ResourceManager.GetString("DefaultCurrencyHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This currency will be used as a default for your payments and accounts..
+        /// </summary>
+        public static string DefaultCurrencyText {
+            get {
+                return ResourceManager.GetString("DefaultCurrencyText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this Account?.
         /// </summary>
         public static string DeleteAccountConfirmationMessage {

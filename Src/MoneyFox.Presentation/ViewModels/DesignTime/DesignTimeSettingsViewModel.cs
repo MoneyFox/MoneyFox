@@ -31,5 +31,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
 
         public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
         public ISettingsPersonalizationViewModel PersonalizationViewModel { get; }
+
+        public IRegionalSettingsViewModel RegionalSettingsViewModel { get; }
     }
 }

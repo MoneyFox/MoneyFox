@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Application.Common.CurrencyConversion.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Common.CurrencyConversion
@@ -25,9 +26,9 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         public List<Currency> GetAllCurrencies()
         {
-            return RequestHelper.GetAllCurrencies(apiKey);
+            return RequestHelper.GetAllCurrencies(apiKey).OrderBy(x => x.CurrencyName).ToList();
         }
-        
+
         public async Task<List<Currency>> GetAllCurrenciesAsync()
         {
             return await Task.Run(() => GetAllCurrencies());

@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
-    public class DesignTimeRegionalSettingsViewModelFoo : IRegionalSettingsViewModel
+    public class DesignTimeRegionalSettingsViewModel : IRegionalSettingsViewModel
     {
         public ObservableCollection<Currency> AvailableCurrencies => new ObservableCollection<Currency>
         {

@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:core="using:Microsoft.Xaml.Interactions.Core"
              xmlns:i="using:Microsoft.Xaml.Interactivity"
+             xmlns:resources="using:MoneyFox.Application.Resources"
              mc:Ignorable="d"
              d:DesignHeight="300"
              d:DesignWidth="400"
@@ -12,12 +13,20 @@
 
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadAvailableCurrenciesCommand}" />
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadAvailableCurrenciesCommand}" />
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
     <StackPanel>
-        <AutoSuggestBox ItemsSource="{Binding AvailableCurrencies}" />
+        <TextBlock Text="{x:Bind resources:Strings.DefaultCurrencyText}"
+                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                   TextWrapping="WrapWholeWords" />
+
+        <ComboBox ItemsSource="{x:Bind ViewModel.AvailableCurrencies}"
+                  Header="{x:Bind resources:Strings.DefaultCurrencyHeader}"
+                  DisplayMemberPath="Id"
+                  HorizontalAlignment="Stretch">
+        </ComboBox>
     </StackPanel>
 
 </UserControl>
