@@ -20,7 +20,7 @@
     </d:Page.DataContext>
 
     <UserControl.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountConverter" />
+        <converter:AmountFormatConverter x:Key="AmountConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:NativeRecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />

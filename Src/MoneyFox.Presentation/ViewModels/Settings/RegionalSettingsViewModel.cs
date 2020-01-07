@@ -30,6 +30,7 @@ namespace MoneyFox.Presentation.ViewModels.Settings
             set
             {
                 selectedCulture = value;
+                settingsFacade.DefaultCulture = selectedCulture.Name;
                 RaisePropertyChanged();
             }
         }

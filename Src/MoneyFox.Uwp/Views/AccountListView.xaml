@@ -24,7 +24,7 @@
     </i:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 

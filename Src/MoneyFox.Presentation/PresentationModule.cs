@@ -2,10 +2,13 @@
 using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
+using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
 using System;
+using System.Globalization;
 
 namespace MoneyFox.Presentation
 {
@@ -48,6 +51,8 @@ namespace MoneyFox.Presentation
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsSelf();
+
+            CultureHelper.CurrentCulture = CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
         }
     }
 }

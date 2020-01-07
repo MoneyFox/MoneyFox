@@ -20,7 +20,7 @@
     </d:MvxWindowsPage.DataContext>
 
     <Page.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
 
         <DataTemplate x:Key="CategoryOverviewItemTemplate"
                       x:DataType="viewModels:CategoryOverviewViewModel">

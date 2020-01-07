@@ -154,7 +154,7 @@
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Converter\DateVisibilityConverter.cs" />
     <Compile Include="Converter\DecimalConverter.cs" />
-    <Compile Include="Converter\NativeAmountFormatConverter.cs" />
+    <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="Converter\NativeRecurrenceTypeConverter.cs" />
     <Compile Include="Converter\PaymentHeaderConverter.cs" />

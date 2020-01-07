@@ -20,14 +20,6 @@
                   Loaded="ComboBox_Loaded"
                   DisplayMemberPath="DisplayName"
                   HorizontalAlignment="Stretch" />
-
-        <TextBlock Text="{x:Bind resources:Strings.IgnoreForTranslationText}"
-                   Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                   TextWrapping="WrapWholeWords" />
-
-        <ToggleSwitch Header="{x:Bind resources:Strings.IgnoreForTranslationHeader}"
-                      OffContent="{x:Bind resources:Strings.IgnoreForTranslationOff}"
-                      OnContent="{x:Bind resources:Strings.IgnoreForTranslationOn}" />
     </StackPanel>
 
 </UserControl>

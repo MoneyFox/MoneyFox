@@ -4,7 +4,7 @@ using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.Converter
 {
-    public class NativeAmountFormatConverter : IValueConverter
+    public class AmountFormatConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

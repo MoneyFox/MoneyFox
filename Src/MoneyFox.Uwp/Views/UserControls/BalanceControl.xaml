@@ -9,7 +9,7 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </UserControl.Resources>
 
     <StackPanel Orientation="Horizontal">

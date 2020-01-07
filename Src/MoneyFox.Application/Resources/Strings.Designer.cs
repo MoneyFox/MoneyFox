@@ -1087,42 +1087,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ignore for translation.
-        /// </summary>
-        public static string IgnoreForTranslationHeader {
-            get {
-                return ResourceManager.GetString("IgnoreForTranslationHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use selected region.
-        /// </summary>
-        public static string IgnoreForTranslationOff {
-            get {
-                return ResourceManager.GetString("IgnoreForTranslationOff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Use computer setting.
-        /// </summary>
-        public static string IgnoreForTranslationOn {
-            get {
-                return ResourceManager.GetString("IgnoreForTranslationOn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to If this setting is activated we will ignore the selected region for translating the application. Instead the setting of your computer is used..
-        /// </summary>
-        public static string IgnoreForTranslationText {
-            get {
-                return ResourceManager.GetString("IgnoreForTranslationText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Included Accounts.
         /// </summary>
         public static string IncludedAccountsHeader {

@@ -835,16 +835,4 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="DefaultRegionText" xml:space="preserve">
     <value>This region will be used as a default for your application.</value>
   </data>
-  <data name="IgnoreForTranslationHeader" xml:space="preserve">
-    <value>Ignore for translation</value>
-  </data>
-  <data name="IgnoreForTranslationOff" xml:space="preserve">
-    <value>Use selected region</value>
-  </data>
-  <data name="IgnoreForTranslationOn" xml:space="preserve">
-    <value>Use computer setting</value>
-  </data>
-  <data name="IgnoreForTranslationText" xml:space="preserve">
-    <value>If this setting is activated we will ignore the selected region for translating the application. Instead the setting of your computer is used.</value>
-  </data>
 </root>
