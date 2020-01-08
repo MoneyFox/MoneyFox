@@ -9,7 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="ViewModels\EditPaymentViewModelTests.cs" />
     <Compile Remove="ViewModels\PaymentListViewActionViewModelTests.cs" />
     <Compile Remove="ViewModels\PaymentListViewModelTests.cs" />
   </ItemGroup>

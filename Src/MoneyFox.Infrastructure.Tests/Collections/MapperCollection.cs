@@ -11,6 +11,7 @@ namespace MoneyFox.Infrastructure.Tests.Collections
     {
     }
 
+    [ExcludeFromCodeCoverage]
     public class MapperCollectionFixture : IDisposable
     {
         public IMapper Mapper { get; set; }

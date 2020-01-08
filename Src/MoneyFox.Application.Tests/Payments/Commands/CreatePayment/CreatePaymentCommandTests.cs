@@ -7,11 +7,13 @@ using MoneyFox.Persistence;
 using Moq;
 using Should;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 {
+    [ExcludeFromCodeCoverage]
     public class CreatePaymentCommandTests : IDisposable
     {
         private readonly EfCoreContext context;

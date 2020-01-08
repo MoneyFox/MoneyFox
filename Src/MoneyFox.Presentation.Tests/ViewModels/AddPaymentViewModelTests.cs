@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
@@ -27,11 +29,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     public class AddPaymentViewModelTests
     {
         private readonly IMapper mapper;
-
         private readonly Mock<IMediator> mediatorMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
-        private readonly Mock<Application.Common.Interfaces.IDialogService> dialogServiceMock;
+        private readonly Mock<IDialogService> dialogServiceMock;
         private readonly Mock<INavigationService> navigationServiceMock;
 
         public AddPaymentViewModelTests(MapperCollectionFixture fixture)
@@ -40,7 +41,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             mapper = fixture.Mapper;
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
-            dialogServiceMock = new Mock<Application.Common.Interfaces.IDialogService>();
+            dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
@@ -124,6 +125,24 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
+        public async Task AmountStringSetOnInit()
+        {
+            // Arrange
+            var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
+                                                       mapper,
+                                                       dialogServiceMock.Object,
+                                                       settingsFacadeMock.Object,
+                                                       backupServiceMock.Object,
+                                                       navigationServiceMock.Object);
+
+            // Act
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
+
+            // Assert
+            addPaymentVm.AmountString.ShouldEqual("0.00");
+        }
+
+        [Fact]
         public async Task SavePayment_NoAccount_DialogShown()
         {
             // Arrange
@@ -144,6 +163,61 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
+        }
+
+        [Fact]
+        public async Task ShowMessageIfAmountIsNegativeOnSave()
+        {
+            // Arrange
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
+                        .ReturnsAsync(() => new Account("as"));
+
+            var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
+                                                       mapper,
+                                                       dialogServiceMock.Object,
+                                                       settingsFacadeMock.Object,
+                                                       backupServiceMock.Object,
+                                                       navigationServiceMock.Object);
+
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
+            addPaymentVm.AmountString = "-2";
+
+            // Act
+            await addPaymentVm.SaveCommand.ExecuteAsync();
+
+            // Assert
+            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage), Times.Once);
+            navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
+            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
+            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
+        }
+
+        [Theory]
+        [InlineData("0")]
+        [InlineData("2")]
+        public async Task ShowNoMessageIfAmountIsPositiveOnSave(string amountString)
+        {
+            // Arrange
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
+                        .ReturnsAsync(() => new Account("as"));
+
+            var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
+                                                       mapper,
+                                                       dialogServiceMock.Object,
+                                                       settingsFacadeMock.Object,
+                                                       backupServiceMock.Object,
+                                                       navigationServiceMock.Object);
+
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" }; 
+            addPaymentVm.AmountString = amountString;
+
+            // Act
+            await addPaymentVm.SaveCommand.ExecuteAsync();
+
+            // Assert
+            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage), Times.Never);
         }
 
         [Fact]
@@ -263,6 +337,43 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             mediatorMock.Verify(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
+        }
+
+        [Theory]
+        [InlineData("de-CH", "12.20", 12.20)]
+        [InlineData("de-DE", "12,20", 12.20)]
+        [InlineData("en-US", "12.20", 12.20)]
+        [InlineData("ru-RU", "12,20", 12.20)]
+        [InlineData("de-CH", "-12.20", -12.20)]
+        [InlineData("de-DE", "-12,20", -12.20)]
+        [InlineData("en-US", "-12.20", -12.20)]
+        [InlineData("ru-RU", "-12,20", -12.20)]
+        public async Task AmountCorrectlyFormattedOnSave(string cultureString, string amountString, decimal expectedAmount)
+        {
+            // Arrange
+            var cultureInfo = new CultureInfo(cultureString);
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
+                        .ReturnsAsync(() => new Account("as"));
+
+            var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
+                                                       mapper,
+                                                       dialogServiceMock.Object,
+                                                       settingsFacadeMock.Object,
+                                                       backupServiceMock.Object,
+                                                       navigationServiceMock.Object);
+
+            await addPaymentVm.InitializeCommand.ExecuteAsync();
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
+
+            // Act
+            addPaymentVm.AmountString = amountString;
+            await addPaymentVm.SaveCommand.ExecuteAsync();
+
+            // Assert
+            addPaymentVm.SelectedPayment.Amount.ShouldEqual(expectedAmount);
         }
     }
 }

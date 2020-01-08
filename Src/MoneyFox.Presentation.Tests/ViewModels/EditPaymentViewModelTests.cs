@@ -1,307 +1,158 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using AutoMapper;
-using GalaSoft.MvvmLight.Views;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Payments.Commands.UpdatePayment;
+using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Presentation.Facades;
-using MoneyFox.Presentation.Services;
+using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
-using IDialogService = MoneyFox.Presentation.Interfaces.IDialogService;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
+    [Collection("AutoMapperCollection")]
     public class EditPaymentViewModelTests
     {
+        private readonly IMapper mapper;
         private readonly Mock<IMediator> mediatorMock;
-        private readonly Mock<IMapper> mapperMock;
-        private readonly Mock<IPaymentService> paymentServiceMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
         private readonly Mock<INavigationService> navigationServiceMock;
 
-        public EditPaymentViewModelTests()
+        public EditPaymentViewModelTests(MapperCollectionFixture fixture)
         {
             mediatorMock = new Mock<IMediator>();
-            mapperMock = new Mock<IMapper>();
-            paymentServiceMock = new Mock<IPaymentService>();
+            mapper = fixture.Mapper!;
+
             settingsFacadeMock = new Mock<ISettingsFacade>();
             backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
 
-
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account>());
+            mediatorMock.Setup(x => x.Send(It.IsAny<UpdatePaymentCommand>(), default))
+                        .ReturnsAsync(Unit.Value);
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetPaymentByIdQuery>(), default))
+                        .ReturnsAsync(new Payment(DateTime.Now, 12.10M, PaymentType.Expense, new Account("sad", 0)));
         }
 
         [Fact]
-        public async Task Initialize_EndlessRecurringPayment_EndDateNotNull()
+        public async Task AmountStringSetOnInit()
         {
-            // Arrange
-            const int paymentId = 99;
+            // Arrange            
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetPaymentByIdQuery>(), default))
+                        .ReturnsAsync(new Payment(DateTime.Now, 12.10M, PaymentType.Expense, new Account("sad", 0)));
 
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                           .ReturnsAsync(new PaymentViewModel
-                           {
-                               IsRecurring = true,
-                               RecurringPayment = new RecurringPaymentViewModel
-                               {
-                                   IsEndless = true, EndDate = null
-                               }
-                           });
-
-            var editPaymentVm = new EditPaymentViewModel(null, crudServiceMock.Object, null, null, null, null);
+            var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
+                                                         mapper,
+                                                         dialogServiceMock.Object,
+                                                         settingsFacadeMock.Object,
+                                                         backupServiceMock.Object,
+                                                         navigationServiceMock.Object);
 
             // Act
-            editPaymentVm.PaymentId = paymentId;
             await editPaymentVm.InitializeCommand.ExecuteAsync();
 
             // Assert
-            editPaymentVm.SelectedPayment.RecurringPayment.IsEndless.ShouldBeTrue();
-            editPaymentVm.SelectedPayment.RecurringPayment.EndDate.HasValue.ShouldBeTrue();
+            editPaymentVm.AmountString.ShouldEqual("12.10");
         }
 
-        [Fact]
-        public async Task Initialize_RecurringPayment_EndDateCorrect()
+        [Theory]
+        [InlineData("de-CH", "12.20", 12.20)]
+        [InlineData("de-DE", "12,20", 12.20)]
+        [InlineData("en-US", "12.20", 12.20)]
+        [InlineData("ru-RU", "12,20", 12.20)]
+        [InlineData("de-CH", "-12.20", -12.20)]
+        [InlineData("de-DE", "-12,20", -12.20)]
+        [InlineData("en-US", "-12.20", -12.20)]
+        [InlineData("ru-RU", "-12,20", -12.20)]
+        public async Task AmountCorrectlyFormattedOnSave(string cultureString, string amountString, decimal expectedAmount)
         {
             // Arrange
-            const int paymentId = 99;
-            var endDate = DateTime.Today.AddDays(-7);
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                           .ReturnsAsync(new PaymentViewModel
-                           {
-                               IsRecurring = true,
-                               RecurringPayment = new RecurringPaymentViewModel
-                               {
-                                   IsEndless = false, EndDate = endDate
-                               }
-                           });
+            var cultureInfo = new CultureInfo(cultureString);
+            Thread.CurrentThread.CurrentCulture = cultureInfo;
+            Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
-            var editPaymentVm = new EditPaymentViewModel(null, crudServiceMock.Object, null, null, null, null);
+            var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
+                                                         mapper,
+                                                         dialogServiceMock.Object,
+                                                         settingsFacadeMock.Object,
+                                                         backupServiceMock.Object,
+                                                         navigationServiceMock.Object);
+
+            await editPaymentVm.InitializeCommand.ExecuteAsync();
+            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
 
             // Act
-            editPaymentVm.PaymentId = paymentId;
-            await editPaymentVm.InitializeCommand.ExecuteAsync();
+            editPaymentVm.AmountString = amountString;
+            await editPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            editPaymentVm.SelectedPayment.RecurringPayment.IsEndless.ShouldBeFalse();
-            editPaymentVm.SelectedPayment.RecurringPayment.EndDate.ShouldEqual(endDate);
+            editPaymentVm.SelectedPayment.Amount.ShouldEqual(expectedAmount);
         }
 
-
         [Fact]
-        public async Task SavePayment_NoAccount_DialogShown()
+        public async Task ShowMessageIfAmountIsNegativeOnSave()
         {
             // Arrange
-            const int paymentId = 99;
+            var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
+                                                         mapper,
+                                                         dialogServiceMock.Object,
+                                                         settingsFacadeMock.Object,
+                                                         backupServiceMock.Object,
+                                                         navigationServiceMock.Object);
 
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
-                {
-                    IsRecurring = true,
-                    RecurringPayment = new RecurringPaymentViewModel
-                    {
-                        IsEndless = true,
-                        EndDate = null
-                    }
-                });
-
-            var editPaymentVm = new EditPaymentViewModel(paymentServiceMock.Object,
-                                                       crudServiceMock.Object,
-                                                       dialogServiceMock.Object,
-                                                       settingsFacadeMock.Object,
-                                                       backupServiceMock.Object,
-                                                       navigationServiceMock.Object);
-
-            editPaymentVm.PaymentId = paymentId;
             await editPaymentVm.InitializeCommand.ExecuteAsync();
+            editPaymentVm.AmountString = "-2";
 
             // Act
             await editPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Never);
-            dialogServiceMock.Verify(x => x.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage), Times.Once);
+            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
+            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
         }
 
-        [Fact]
-        public async Task SavePayment_ResultSucceeded_CorrectMethodCalls()
+        [Theory]
+        [InlineData("0")]
+        [InlineData("2")]
+        public async Task ShowNoMessageIfAmountIsPositiveOnSave(string amountString)
         {
             // Arrange
-            const int paymentId = 99;
+            var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
+                                                         mapper,
+                                                         dialogServiceMock.Object,
+                                                         settingsFacadeMock.Object,
+                                                         backupServiceMock.Object,
+                                                         navigationServiceMock.Object);
 
-            paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
-                              .Returns(Task.CompletedTask);
-
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
-                {
-                    IsRecurring = true,
-                    RecurringPayment = new RecurringPaymentViewModel
-                    {
-                        IsEndless = true,
-                        EndDate = null
-                    }
-                });
-
-            var editPaymentVm = new EditPaymentViewModel(paymentServiceMock.Object,
-                crudServiceMock.Object,
-                dialogServiceMock.Object,
-                settingsFacadeMock.Object,
-                backupServiceMock.Object,
-                navigationServiceMock.Object);
-
-            editPaymentVm.PaymentId = paymentId;
             await editPaymentVm.InitializeCommand.ExecuteAsync();
-            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
+            editPaymentVm.AmountString = amountString;
 
             // Act
             await editPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Once);
-            dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
-            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
-        }
-
-        [Fact]
-        public async Task SavePayment_ResultFailed_CorrectMethodCalls()
-        {
-            // Arrange
-            const int paymentId = 99;
-
-            paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
-                              .Callback(() => throw new Exception());
-
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
-                {
-                    IsRecurring = true,
-                    RecurringPayment = new RecurringPaymentViewModel
-                    {
-                        IsEndless = true,
-                        EndDate = null
-                    }
-                });
-
-            var editPaymentVm = new EditPaymentViewModel(paymentServiceMock.Object,
-                crudServiceMock.Object,
-                dialogServiceMock.Object,
-                settingsFacadeMock.Object,
-                backupServiceMock.Object,
-                navigationServiceMock.Object);
-
-            editPaymentVm.PaymentId = paymentId;
-            await editPaymentVm.InitializeCommand.ExecuteAsync();
-            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
-
-            // Act
-            await Assert.ThrowsAsync<Exception>(async () =>  await editPaymentVm.SaveCommand.ExecuteAsync());
-
-            // Assert
-            paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Once);
-            navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Never);
-        }
-
-        [Fact]
-        public async Task SavePayment_ResultSucceededWithBackup_CorrectMethodCalls()
-        {
-            // Arrange
-            const int paymentId = 99;
-
-            paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
-                              .Returns(Task.CompletedTask);
-
-            settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
-
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
-                {
-                    IsRecurring = true,
-                    RecurringPayment = new RecurringPaymentViewModel
-                    {
-                        IsEndless = true,
-                        EndDate = null
-                    }
-                });
-
-            var editPaymentVm = new EditPaymentViewModel(paymentServiceMock.Object,
-                crudServiceMock.Object,
-                dialogServiceMock.Object,
-                settingsFacadeMock.Object,
-                backupServiceMock.Object,
-                navigationServiceMock.Object);
-
-            editPaymentVm.PaymentId = paymentId;
-            await editPaymentVm.InitializeCommand.ExecuteAsync();
-            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
-
-            // Act
-            await editPaymentVm.SaveCommand.ExecuteAsync();
-
-            // Assert
-            paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Once);
-            dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
-            navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
-            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
-            backupServiceMock.Verify(x => x.EnqueueBackupTask(0), Times.Once);
-        }
-
-        [Fact]
-        public async Task SavePayment_ResultFailedWithBackup_CorrectMethodCalls()
-        {
-            // Arrange
-            const int paymentId = 99;
-
-            paymentServiceMock.Setup(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()))
-                              .Callback(() => throw new Exception());
-
-            settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
-
-            crudServiceMock.Setup(x => x.ReadSingleAsync<PaymentViewModel>(It.IsAny<int>()))
-                .ReturnsAsync(new PaymentViewModel
-                {
-                    IsRecurring = true,
-                    RecurringPayment = new RecurringPaymentViewModel
-                    {
-                        IsEndless = true,
-                        EndDate = null
-                    }
-                });
-
-            var editPaymentVm = new EditPaymentViewModel(paymentServiceMock.Object,
-                crudServiceMock.Object,
-                dialogServiceMock.Object,
-                settingsFacadeMock.Object,
-                backupServiceMock.Object,
-                navigationServiceMock.Object);
-
-            editPaymentVm.PaymentId = paymentId;
-            await editPaymentVm.InitializeCommand.ExecuteAsync();
-            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel();
-
-            // Act
-            await Assert.ThrowsAsync<Exception>(async () => await editPaymentVm.SaveCommand.ExecuteAsync());
-
-            // Assert
-            paymentServiceMock.Verify(x => x.UpdatePayment(It.IsAny<PaymentViewModel>()), Times.Once);
-            navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
+            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage), Times.Never);
         }
     }
 }

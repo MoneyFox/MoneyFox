@@ -1,12 +1,14 @@
 ﻿using Windows.UI.Xaml;
-using Microsoft.AppCenter.Analytics;
 using Microsoft.Toolkit.Uwp.UI.Animations;
 using MoneyFox.Presentation.ViewModels;
+using NLog;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {
     public sealed partial class ModifyPaymentUserControl
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         public ModifyPaymentUserControl()
         {
             InitializeComponent();
@@ -29,15 +31,13 @@ namespace MoneyFox.Uwp.Views.UserControls
 
             if (viewModel == null)
             {
-                Analytics.TrackEvent("Error: viewModel is null on SetVisibilityInitialy");
-
+                logManager.Warn("ViewModel is null on SetVisibilityInitially");
                 return;
             }
 
             if (viewModel.SelectedPayment == null)
             {
-                Analytics.TrackEvent("Error: SelectedPayment is null on SetVisibilityInitialy");
-
+                logManager.Warn("SelectedPayment is null on SetVisibilityInitially");
                 return;
             }
 
