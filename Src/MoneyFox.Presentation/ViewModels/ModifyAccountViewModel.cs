@@ -69,20 +69,15 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        /// <summary>
-        ///     Property to format amount string to decimal with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to decimal
-        ///     without the correct culture.
-        /// </summary>
+        private string amountString;
         public string AmountString
         {
-            get => HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
+            get => amountString;
             set
             {
-                // we remove all separator chars to ensure that it works in all regions
-                string amountString = HelperFunctions.RemoveGroupingSeparators(value);
-                if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
-                    SelectedAccount.CurrentBalance = convertedValue;
+                if(amountString == value) return;
+                amountString = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -92,6 +87,11 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 await DialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
+            }
+
+            if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
+                SelectedAccount.CurrentBalance = convertedValue;
             }
 
             await SaveAccount();
