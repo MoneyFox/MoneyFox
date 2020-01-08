@@ -132,8 +132,6 @@ namespace MoneyFox.iOS
             var successful = false;
             try
             {
-                Analytics.TrackEvent("Start background fetch.");
-
                 await SyncBackupAsync();
                 await ClearPaymentsAsync();
                 await CreateRecurringPaymentsAsync();
@@ -144,8 +142,7 @@ namespace MoneyFox.iOS
             catch(Exception ex)
             {
                 successful = false;
-                Debug.Write(ex);
-                Crashes.TrackError(ex);
+                logManager.Warn("Background fetch finished unsuccessfully!", ex);
             }
 
             completionHandler(successful
