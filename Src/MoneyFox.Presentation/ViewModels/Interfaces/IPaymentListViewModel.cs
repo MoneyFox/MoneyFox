@@ -11,6 +11,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         IPaymentListViewActionViewModel ViewActionViewModel { get; }
 
         AsyncCommand InitializeCommand { get; }
+        AsyncCommand LoadDataCommand { get; }
 
         ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source { get; }
 
