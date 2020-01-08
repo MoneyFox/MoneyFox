@@ -116,8 +116,7 @@ namespace MoneyFox.Presentation.ViewModels
             if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
                                                             Strings.DeletePaymentConfirmationMessage,
                                                             Strings.YesLabel,
-                                                            Strings.NoLabel))
-                return;
+                                                            Strings.NoLabel)) return;
 
             var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
 
@@ -128,6 +127,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             await mediator.Send(command);
+            navigationService.GoBack();
         }
     }
 }

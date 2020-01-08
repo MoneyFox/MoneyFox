@@ -16,7 +16,6 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Utilities;
 using NLog;
 
 namespace MoneyFox.Presentation.ViewModels
