@@ -232,6 +232,24 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create..
+        /// </summary>
+        public static string AmountMayNotBeNegativeMessage {
+            get {
+                return ResourceManager.GetString("AmountMayNotBeNegativeMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Negative amount.
+        /// </summary>
+        public static string AmountMayNotBeNegativeTitle {
+            get {
+                return ResourceManager.GetString("AmountMayNotBeNegativeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Money Fox.
         /// </summary>
         public static string ApplicationTitle {

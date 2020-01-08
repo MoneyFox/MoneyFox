@@ -215,20 +215,15 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        /// <summary>
-        ///     Property to format amount string to double with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to double
-        ///     without the correct culture.
-        /// </summary>
+        private string amountString;
         public string AmountString
         {
-            get => HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
+            get => amountString;
             set
             {
-                // we remove all separator chars to ensure that it works in all regions
-                string amountString = HelperFunctions.RemoveGroupingSeparators(value);
-                if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
-                    SelectedPayment.Amount = convertedValue;
+                if (amountString == value) return;
+                amountString = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -292,7 +287,17 @@ namespace MoneyFox.Presentation.ViewModels
             if (SelectedPayment.ChargedAccount == null)
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
+                return;
+            }
 
+            if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
+                SelectedPayment.Amount = convertedValue;
+            }
+
+            if (SelectedPayment.Amount < 0)
+            {
+                await dialogService.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage);
                 return;
             }
 
