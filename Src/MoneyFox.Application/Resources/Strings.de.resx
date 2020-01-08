@@ -829,9 +829,9 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Konto löschen</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+    <value>Der Betrag darf nicht negativ sein. Ob ein Betrag subtrahiert oder addiert werden muss, wird durch den Typ der Zahlung bestimmt.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>Negativer Betrag</value>
   </data>
 </root>
