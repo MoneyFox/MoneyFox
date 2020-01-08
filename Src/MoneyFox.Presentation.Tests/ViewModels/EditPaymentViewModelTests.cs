@@ -120,6 +120,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                          navigationServiceMock.Object);
 
             await editPaymentVm.InitializeCommand.ExecuteAsync();
+            editPaymentVm.AmountString = "-2";
 
             // Act
             await editPaymentVm.SaveCommand.ExecuteAsync();
@@ -129,6 +130,29 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
+        }
+
+        [Theory]
+        [InlineData("0")]
+        [InlineData("2")]
+        public async Task ShowNoMessageIfAmountIsPositiveOnSave(string amountString)
+        {
+            // Arrange
+            var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
+                                                         mapper,
+                                                         dialogServiceMock.Object,
+                                                         settingsFacadeMock.Object,
+                                                         backupServiceMock.Object,
+                                                         navigationServiceMock.Object);
+
+            await editPaymentVm.InitializeCommand.ExecuteAsync();
+            editPaymentVm.AmountString = amountString;
+
+            // Act
+            await editPaymentVm.SaveCommand.ExecuteAsync();
+
+            // Assert
+            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage), Times.Never);
         }
     }
 }
