@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using AutoMapper;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -9,6 +10,7 @@ using Xunit;
 
 namespace MoneyFox.Infrastructure.Tests.Mappings
 {
+    [ExcludeFromCodeCoverage]
     [Collection("AutoMapperCollection")]
     public class PaymentMappingTests
     {

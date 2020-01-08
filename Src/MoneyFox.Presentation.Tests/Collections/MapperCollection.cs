@@ -12,6 +12,7 @@ namespace MoneyFox.Presentation.Tests.Collections
     {
     }
 
+    [ExcludeFromCodeCoverage]
     public class MapperCollectionFixture : IDisposable
     {
         public IMapper? Mapper { get; private set; }
