@@ -17,6 +17,7 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
+using NLog;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -101,6 +102,8 @@ namespace MoneyFox.Presentation.ViewModels
     /// </summary>
     public abstract class ModifyPaymentViewModel : ViewModelBase, IModifyPaymentViewModel
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IBackupService backupService;
@@ -290,9 +293,13 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
             {
                 SelectedPayment.Amount = convertedValue;
+            }
+            else
+            {
+                logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
             }
 
             if (SelectedPayment.Amount < 0)

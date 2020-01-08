@@ -9,11 +9,14 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
+using NLog;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public abstract class ModifyAccountViewModel : ViewModelBase
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private readonly IBackupService backupService;
         private readonly ISettingsFacade settingsFacade;
 
@@ -89,9 +92,13 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
             {
                 SelectedAccount.CurrentBalance = convertedValue;
+            }
+            else
+            {
+                logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
             }
 
             await SaveAccount();
