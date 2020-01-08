@@ -48,6 +48,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected override async Task Initialize()
         {
             Title = PaymentTypeHelper.GetViewTitleForType(PaymentType, false);
+            AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
             SelectedPayment.Type = PaymentType;
 
             await base.Initialize();

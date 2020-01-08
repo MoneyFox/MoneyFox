@@ -9,11 +9,14 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Utilities;
+using NLog;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public abstract class ModifyAccountViewModel : ViewModelBase
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private readonly IBackupService backupService;
         private readonly ISettingsFacade settingsFacade;
 
@@ -69,20 +72,15 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        /// <summary>
-        ///     Property to format amount string to decimal with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to decimal
-        ///     without the correct culture.
-        /// </summary>
+        private string amountString;
         public string AmountString
         {
-            get => HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
+            get => amountString;
             set
             {
-                // we remove all separator chars to ensure that it works in all regions
-                string amountString = HelperFunctions.RemoveGroupingSeparators(value);
-                if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
-                    SelectedAccount.CurrentBalance = convertedValue;
+                if(amountString == value) return;
+                amountString = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -92,6 +90,15 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 await DialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
+            }
+
+            if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
+                SelectedAccount.CurrentBalance = convertedValue;
+            }
+            else
+            {
+                logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
             }
 
             await SaveAccount();

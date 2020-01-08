@@ -20,7 +20,6 @@ namespace MoneyFox.iOS.Renderer
             if (ThemeManager.CurrentTheme() == AppTheme.Dark)
             {
                 UISearchBar searchBar = Control;
-                searchBar.BarStyle = UIBarStyle.Black;
 
                 var color = (Color)Xamarin.Forms.Application.Current.Resources["FrameHighlightColor"];
                 searchBar.BackgroundColor = color.ToUIColor();

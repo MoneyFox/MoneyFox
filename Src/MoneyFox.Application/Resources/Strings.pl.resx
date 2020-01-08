@@ -827,4 +827,10 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="DeleteAccountLabel" xml:space="preserve">
     <value>Delete Account</value>
   </data>
+  <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
+    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+  </data>
+  <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
+    <value>Negative amount</value>
+  </data>
 </root>

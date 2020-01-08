@@ -42,6 +42,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected override async Task Initialize()
         {
             SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(AccountId)));
+            AmountString = HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 

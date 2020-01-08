@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
@@ -11,6 +12,7 @@ using Xunit;
 
 namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
 {
+    [ExcludeFromCodeCoverage]
     public class GetIfAccountWithNameExistsQueryTests : IRequest<bool>
     {
         private readonly EfCoreContext context;
