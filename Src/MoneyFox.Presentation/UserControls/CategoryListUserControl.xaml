@@ -20,13 +20,6 @@
           <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
           <Setter Property="PlaceholderColor" Value="{DynamicResource DeemphasizedColor}" />
       </Style>
-
-      <Style x:Key="HighlightFrame" TargetType="Frame">
-          <Setter Property="BackgroundColor" Value="{DynamicResource FrameHighlightColor}" />
-          <Setter Property="CornerRadius" Value="10" />
-          <Setter Property="Margin" Value="{DynamicResource MediumLeftTopRightBottomMargin}" />
-          <Setter Property="Padding" Value="3" />
-      </Style>
   </ContentView.Resources>
 
     <ContentView.Content>
@@ -36,15 +29,12 @@
                 <RowDefinition Height="240*" />
             </Grid.RowDefinitions>
 
-            <Frame Style="{StaticResource HighlightFrame}">
-                <SearchBar x:Name="SearchBar"
-                           Style="{StaticResource DefaultSearchBarStyle}"
-                           BackgroundColor="{DynamicResource FrameHighlightColor}"
-                           VerticalOptions="Start"
-
-                           Placeholder="{x:Static resources:Strings.SearchLabel}"
-                           TextChanged="SearchTermChanged" />
-            </Frame>
+            <SearchBar x:Name="SearchBar"
+                    Style="{StaticResource DefaultSearchBarStyle}"
+                    BackgroundColor="{DynamicResource FrameHighlightColor}"
+                    VerticalOptions="Start"
+                    Placeholder="{x:Static resources:Strings.SearchLabel}"
+                    TextChanged="SearchTermChanged" />
 
             <ListView x:Name="CategoryList"
                       Grid.Row="1"
@@ -133,6 +123,13 @@
                         Size="33"
                         Color="White" />
                 </ImageButton.Source>
+
+                <ImageButton.IsVisible>
+                    <OnPlatform x:TypeArguments="x:Boolean">
+                        <OnPlatform.Android>true</OnPlatform.Android>
+                        <OnPlatform.iOS>false</OnPlatform.iOS>
+                    </OnPlatform>
+                </ImageButton.IsVisible>
             </ImageButton>
         </Grid>
     </ContentView.Content>
