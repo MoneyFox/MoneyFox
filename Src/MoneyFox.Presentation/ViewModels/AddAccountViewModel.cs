@@ -8,6 +8,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Presentation.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -33,6 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected override Task Initialize()
         {
             SelectedAccount = new AccountViewModel();
+            AmountString = HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
 
             return Task.CompletedTask;
         }

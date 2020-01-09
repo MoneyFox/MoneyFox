@@ -828,4 +828,10 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="DeleteAccountLabel" xml:space="preserve">
     <value>Konto löschen</value>
   </data>
+  <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
+    <value>Der Betrag darf nicht negativ sein. Ob ein Betrag subtrahiert oder addiert werden muss, wird durch den Typ der Zahlung bestimmt.</value>
+  </data>
+  <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
+    <value>Negativer Betrag</value>
+  </data>
 </root>

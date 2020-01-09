@@ -32,5 +32,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public string Title => "Sparkonto";
         public int AccountId { get; } = 13;
         public bool IsPaymentsEmpty { get; }
+
+        public AsyncCommand LoadDataCommand => throw new System.NotImplementedException();
     }
 }

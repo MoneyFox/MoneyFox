@@ -16,7 +16,7 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Utilities;
+using NLog;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -101,6 +101,8 @@ namespace MoneyFox.Presentation.ViewModels
     /// </summary>
     public abstract class ModifyPaymentViewModel : ViewModelBase, IModifyPaymentViewModel
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IBackupService backupService;
@@ -215,20 +217,15 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        /// <summary>
-        ///     Property to format amount string to double with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to double
-        ///     without the correct culture.
-        /// </summary>
+        private string amountString;
         public string AmountString
         {
-            get => HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
+            get => amountString;
             set
             {
-                // we remove all separator chars to ensure that it works in all regions
-                string amountString = HelperFunctions.RemoveGroupingSeparators(value);
-                if (decimal.TryParse(amountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
-                    SelectedPayment.Amount = convertedValue;
+                if (amountString == value) return;
+                amountString = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -292,7 +289,21 @@ namespace MoneyFox.Presentation.ViewModels
             if (SelectedPayment.ChargedAccount == null)
             {
                 await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
+                return;
+            }
 
+            if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
+                SelectedPayment.Amount = convertedValue;
+            }
+            else
+            {
+                logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
+            }
+
+            if (SelectedPayment.Amount < 0)
+            {
+                await dialogService.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage);
                 return;
             }
 

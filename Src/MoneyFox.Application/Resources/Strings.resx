@@ -841,4 +841,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="RegionalSettingsDescriptionText" xml:space="preserve">
     <value>Set region settings for your application.</value>
   </data>
+  <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
+    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+  </data>
+  <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
+    <value>Negative amount</value>
+  </data>
 </root>

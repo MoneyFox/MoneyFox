@@ -28,7 +28,7 @@ namespace MoneyFox.Presentation.Utilities
         /// <returns>Formated string.</returns>
         public static string FormatLargeNumbers(decimal value)
         {
-            return value.ToString("N", CultureInfo.CurrentCulture);
+            return value.ToString("N2", CultureInfo.CurrentCulture);
         }
 
         /// <summary>

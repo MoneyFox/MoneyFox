@@ -23,7 +23,7 @@ namespace MoneyFox.Presentation.Tests.Utilities
         [InlineData(6000000.4567)]
         public void FormatLargeNumbers_ValidString(decimal amount)
         {
-            HelperFunctions.FormatLargeNumbers(amount).ShouldEqual(amount.ToString("N"));
+            HelperFunctions.FormatLargeNumbers(amount).ShouldEqual(amount.ToString("N2"));
         }
 
         [Theory]
