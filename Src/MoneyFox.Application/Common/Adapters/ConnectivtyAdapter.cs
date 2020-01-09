@@ -1,5 +1,4 @@
-﻿using Microsoft.AppCenter.Crashes;
-using NLog;
+﻿using NLog;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Application.Common.Adapters

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using NLog;
+﻿using NLog;
 using System;
 using Xamarin.Essentials;
 

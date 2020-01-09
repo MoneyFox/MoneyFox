@@ -1,6 +1,5 @@
 ﻿using System;
 using CoreGraphics;
-using Microsoft.AppCenter.Crashes;
 using MoneyFox.iOS.Effects;
 using NLog;
 using UIKit;
@@ -22,7 +21,7 @@ namespace MoneyFox.iOS.Effects
         {
             try
             {
-                var button = (UIButton) Control;
+                var button = (UIButton)Control;
                 button.Layer.BorderWidth = 2;
                 button.Layer.BackgroundColor = UIColor.Red.CGColor;
                 button.Layer.BorderColor = UIColor.White.CGColor;

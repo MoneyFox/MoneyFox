@@ -22,7 +22,7 @@ namespace MoneyFox.Droid.Jobs
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class SyncBackupJob : JobService
     {
-        private Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         private const int SYNC_BACK_JOB_ID = 30;
         private const int JOB_INTERVAL = 60 * 60 * 1000;
