@@ -1,5 +1,3 @@
-using System;
-using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
 using Android.Content;
@@ -11,9 +9,10 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using NLog;
-using Debug = System.Diagnostics.Debug;
-using Exception = System.Exception;
+using System;
+using System.Threading.Tasks;
 using JobSchedulerType = Android.App.Job.JobScheduler;
+using Exception = System.Exception;
 
 #pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
 namespace MoneyFox.Droid.Jobs
@@ -24,6 +23,8 @@ namespace MoneyFox.Droid.Jobs
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class RecurringPaymentJob : JobService
     {
+        readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         private const int RECURRING_PAYMENT_JOB_ID = 20;
         private const int JOB_INTERVAL = 60 * 60 * 1000;
 
@@ -44,7 +45,7 @@ namespace MoneyFox.Droid.Jobs
         /// <inheritdoc />
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            var callback = (Messenger) intent.GetParcelableExtra("messenger");
+            var callback = (Messenger)intent.GetParcelableExtra("messenger");
             Message m = Message.Obtain();
             m.What = MainActivity.MessageServiceRecurringPayments;
             m.Obj = this;
@@ -54,7 +55,7 @@ namespace MoneyFox.Droid.Jobs
             }
             catch (RemoteException e)
             {
-                Debug.WriteLine(e);
+                logger.Error(e, "OnStart Create Recurring Pamyents Job.");
             }
 
             return StartCommandResult.NotSticky;
@@ -69,12 +70,12 @@ namespace MoneyFox.Droid.Jobs
                 var mediator = ServiceLocator.Current.GetInstance<IMediator>();
                 await mediator.Send(new CreateRecurringPaymentsCommand());
 
-                Debug.WriteLine("RecurringPayment Job finished.");
+                logger.Info("Recurring Payments Created.");
                 JobFinished(args, false);
             }
             catch (Exception ex)
             {
-                LogManager.GetCurrentClassLogger().Fatal(ex);
+                logger.Fatal(ex);
 
                 throw;
             }
@@ -100,7 +101,7 @@ namespace MoneyFox.Droid.Jobs
             builder.SetRequiresDeviceIdle(false);
             builder.SetRequiresCharging(false);
 
-            var tm = (JobSchedulerType) GetSystemService(JobSchedulerService);
+            var tm = (JobSchedulerType)GetSystemService(JobSchedulerService);
             tm.Schedule(builder.Build());
         }
     }

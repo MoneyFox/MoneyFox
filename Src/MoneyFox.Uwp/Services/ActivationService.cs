@@ -28,7 +28,7 @@ namespace MoneyFox.Uwp.Services
         private readonly Type defaultNavItem;
         private readonly Lazy<UIElement> shell;
 
-        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell = null)
+        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell)
         {
             this.app = app;
             this.shell = shell;

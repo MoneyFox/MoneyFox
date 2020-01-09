@@ -30,7 +30,7 @@ namespace MoneyFox.Uwp.BackgroundTasks
             }
             catch (Exception ex)
             {
-                logManager.Warn(ex, "RecurringPaymentTask stopped due to an error.");
+                logManager.Error(ex, "RecurringPaymentTask stopped due to an error.");
             }
             finally
             {
