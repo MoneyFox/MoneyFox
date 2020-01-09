@@ -62,6 +62,8 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
+        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadData);
+
 
         /// <summary>
         /// Indicator if there are payments or not.
