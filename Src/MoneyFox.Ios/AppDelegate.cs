@@ -2,8 +2,6 @@
 using CommonServiceLocator;
 using Foundation;
 using MediatR;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
@@ -142,7 +140,7 @@ namespace MoneyFox.iOS
             catch(Exception ex)
             {
                 successful = false;
-                logManager.Warn("Background fetch finished unsuccessfully!", ex);
+                logManager.Warn(ex, "Background fetch finished unsuccessfully!");
             }
 
             completionHandler(successful
