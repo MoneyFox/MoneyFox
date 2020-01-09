@@ -1,4 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
@@ -27,6 +28,12 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
         }
 
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             InMemoryEfCoreContextFactory.Destroy(context);
         }
