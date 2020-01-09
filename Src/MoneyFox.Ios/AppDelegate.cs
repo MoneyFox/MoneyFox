@@ -32,7 +32,8 @@ using LogLevel = NLog.LogLevel;
 
 #if !DEBUG
 using Microsoft.AppCenter;
-using PCLAppConfig;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 #endif
 
 namespace MoneyFox.iOS
