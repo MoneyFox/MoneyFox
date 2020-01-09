@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -57,6 +58,8 @@ namespace MoneyFox.Presentation.ViewModels
     /// </summary>
     public class BackupViewModel : ViewModelBase, IBackupViewModel
     {
+        private Logger logger = LogManager.GetCurrentClassLogger();
+
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
@@ -163,7 +166,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch(BackupAuthenticationFailedException ex)
             {
-                Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Issue during Login process." } });
+                logger.Error(ex, "Issue during Login process.");
                 await backupService.LogoutAsync();
                 await dialogService.ShowMessage(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
             }
@@ -171,7 +174,6 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 if(ex.Error.Code == "4f37.717b")
                 {
-                    Crashes.TrackError(ex, new Dictionary<string, string> { { "Info", "Graph Login Exception" } });
                     await backupService.LogoutAsync();
                     await dialogService.ShowMessage(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
                 }
@@ -195,6 +197,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch(Exception ex)
             {
+                logger.Error(ex, "Login Failed.");
                 await dialogService.ShowMessage(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
             }
 
@@ -214,6 +217,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch(Exception ex)
             {
+                logger.Error(ex, "Logout Failed.");
                 await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.Message);
             }
 
@@ -240,6 +244,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch(Exception ex)
             {
+                logger.Error(ex, "Create Backup failed.");
                 await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
 
@@ -269,6 +274,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch(Exception ex)
             {
+                logger.Error(ex, "Restore Backup failed.");
                 await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
             }
         }

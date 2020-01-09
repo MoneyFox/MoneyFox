@@ -45,11 +45,13 @@ namespace MoneyFox.Presentation.Views
             };
 
             ToolbarItems.Add(filterItem);
+
+            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
         protected override void OnAppearing()
         {
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.LoadDataCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
         private void OpenDialog()
