@@ -2,6 +2,7 @@
 using CoreGraphics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.iOS.Effects;
+using NLog;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -15,6 +16,8 @@ namespace MoneyFox.iOS.Effects
     /// </summary>
     public class DeleteButtonEffect : PlatformEffect
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         protected override void OnAttached()
         {
             try
@@ -30,7 +33,7 @@ namespace MoneyFox.iOS.Effects
             }
             catch (Exception ex)
             {
-                Crashes.TrackError(ex);
+                logManager.Error(ex, "Failed to attach delete button effect.");
             }
         }
 

@@ -11,7 +11,6 @@ using NLog;
 using System;
 using System.Threading.Tasks;
 using JobSchedulerType = Android.App.Job.JobScheduler;
-using Debug = System.Diagnostics.Debug;
 using Exception = System.Exception;
 
 #pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
@@ -23,6 +22,8 @@ namespace MoneyFox.Droid.Jobs
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class SyncBackupJob : JobService
     {
+        private Logger logger = LogManager.GetCurrentClassLogger();
+
         private const int SYNC_BACK_JOB_ID = 30;
         private const int JOB_INTERVAL = 60 * 60 * 1000;
 
@@ -53,7 +54,7 @@ namespace MoneyFox.Droid.Jobs
             }
             catch (RemoteException e)
             {
-                Debug.WriteLine(e);
+                logger.Error(e, "OnStart Create SyncBackup Job.");
             }
 
             return StartCommandResult.NotSticky;
@@ -70,12 +71,12 @@ namespace MoneyFox.Droid.Jobs
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
+                logger.Info("Backup synced.");
                 JobFinished(args, false);
             }
             catch (Exception ex)
             {
-                LogManager.GetCurrentClassLogger().Fatal(ex);
-
+                logger.Fatal(ex);
                 throw;
             }
             finally

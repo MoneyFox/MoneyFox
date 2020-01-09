@@ -24,6 +24,8 @@ namespace MoneyFox.Droid.Jobs
     [Service(Exported = true, Permission = "android.permission.BIND_JOB_SERVICE")]
     public class ClearPaymentsJob : JobService
     {
+        private Logger logger = LogManager.GetCurrentClassLogger();
+
         private const int CLEAR_PAYMENT_JOB_ID = 10;
         private const int JOB_INTERVAL = 60 * 60 * 1000;
 
@@ -54,7 +56,7 @@ namespace MoneyFox.Droid.Jobs
             }
             catch (RemoteException e)
             {
-                Debug.WriteLine(e);
+                logger.Error(e, "OnStart Clear Payment Job.");
             }
 
             return StartCommandResult.NotSticky;
@@ -68,11 +70,12 @@ namespace MoneyFox.Droid.Jobs
                 var mediator = ServiceLocator.Current.GetInstance<IMediator>();
                 await mediator.Send(new ClearPaymentsCommand());
 
+                logger.Info("Payments Cleared.");
                 JobFinished(args, false);
             }
             catch (Exception ex)
             {
-                LogManager.GetCurrentClassLogger().Fatal(ex);
+                logger.Fatal(ex);
                 throw;
             }
             finally

@@ -177,6 +177,7 @@ namespace MoneyFox.Presentation.ViewModels
                     await backupService.LogoutAsync();
                     await dialogService.ShowMessage(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
                 }
+                logger.Error(ex, "Issue on loading backup view.");
             }
 
             IsLoadingBackupAvailability = false;
@@ -270,6 +271,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch(BackupOperationCanceledException)
             {
+                logger.Info("Restoring the backup was canceled by the user.");
                 await dialogService.ShowMessage(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
             }
             catch(Exception ex)
