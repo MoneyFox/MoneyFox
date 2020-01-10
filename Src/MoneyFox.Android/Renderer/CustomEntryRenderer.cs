@@ -20,6 +20,8 @@ namespace MoneyFox.Droid.Renderer
 {
     public class CustomEntryRenderer : MaterialEntryRenderer
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public CustomEntryRenderer(Context context) : base(context)
         {
         }
@@ -60,7 +62,7 @@ namespace MoneyFox.Droid.Renderer
             }
             catch (Exception ex)
             {
-                LogManager.GetCurrentClassLogger().Error(ex);
+                logger.Error(ex, "Error creating in the CustomEntry Renderer");
             }
         }
 
@@ -110,7 +112,7 @@ namespace MoneyFox.Droid.Renderer
             }
             catch (Exception ex)
             {
-                LogManager.GetCurrentClassLogger().Error(ex);
+                logger.Error(ex, "Error setting the cursor color for CustomEntry.");
             }
         }
     }

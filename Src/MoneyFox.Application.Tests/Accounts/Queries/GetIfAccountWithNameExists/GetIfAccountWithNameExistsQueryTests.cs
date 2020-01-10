@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
@@ -13,7 +13,7 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
 {
     [ExcludeFromCodeCoverage]
-    public class GetIfAccountWithNameExistsQueryTests : IRequest<bool>
+    public class GetIfAccountWithNameExistsQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
@@ -27,6 +27,12 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
         }
 
         public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             InMemoryEfCoreContextFactory.Destroy(context);
         }

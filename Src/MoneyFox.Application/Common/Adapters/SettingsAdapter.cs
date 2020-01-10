@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NLog;
+using System;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Application.Common.Adapters
@@ -59,6 +60,8 @@ namespace MoneyFox.Application.Common.Adapters
 
     public class SettingsAdapter : ISettingsAdapter
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         public bool GetValue(string key, bool defaultValue)
         {
             try
@@ -67,8 +70,8 @@ namespace MoneyFox.Application.Common.Adapters
             }
             catch (InvalidCastException)
             {
+                logManager.Error($"Value {key} couldn't be parsed to bool.");
                 Preferences.Set(key, defaultValue);
-
                 return defaultValue;
             }
         }
@@ -81,8 +84,9 @@ namespace MoneyFox.Application.Common.Adapters
             }
             catch (InvalidCastException)
             {
-                Preferences.Set(key, defaultValue);
+                logManager.Error($"Value {key} couldn't be parsed to string.");
 
+                Preferences.Set(key, defaultValue);
                 return defaultValue;
             }
         }
@@ -95,8 +99,9 @@ namespace MoneyFox.Application.Common.Adapters
             }
             catch (InvalidCastException)
             {
-                Preferences.Set(key, defaultValue);
+                logManager.Error($"Value {key} couldn't be parsed to int.");
 
+                Preferences.Set(key, defaultValue);
                 return defaultValue;
             }
         }
