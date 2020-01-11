@@ -140,12 +140,12 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void EditCategory(CategoryViewModel category)
         {
-            NavigationService.NavigateTo(ViewModelLocator.EditCategory, category.Id);
+            NavigationService.NavigateToModal(ViewModelLocator.EditCategory, category.Id);
         }
 
         private void CreateNewCategory(CategoryViewModel category)
         {
-            NavigationService.NavigateTo(ViewModelLocator.AddCategory);
+            NavigationService.NavigateToModal(ViewModelLocator.AddCategory);
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(IEnumerable<CategoryViewModel> categories)
