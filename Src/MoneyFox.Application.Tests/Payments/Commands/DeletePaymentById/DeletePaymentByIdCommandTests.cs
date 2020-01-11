@@ -33,6 +33,12 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             InMemoryEfCoreContextFactory.Destroy(context);
         }
 

@@ -57,7 +57,6 @@ namespace MoneyFox.Application.Common.FileStore
             catch (Exception ex)
             {
                 logger.Error(ex.ToString);
-
                 return false;
             }
         }

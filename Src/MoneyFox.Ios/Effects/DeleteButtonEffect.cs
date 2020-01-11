@@ -1,7 +1,7 @@
 ﻿using System;
 using CoreGraphics;
-using Microsoft.AppCenter.Crashes;
 using MoneyFox.iOS.Effects;
+using NLog;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -15,11 +15,13 @@ namespace MoneyFox.iOS.Effects
     /// </summary>
     public class DeleteButtonEffect : PlatformEffect
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         protected override void OnAttached()
         {
             try
             {
-                var button = (UIButton) Control;
+                var button = (UIButton)Control;
                 button.Layer.BorderWidth = 2;
                 button.Layer.BackgroundColor = UIColor.Red.CGColor;
                 button.Layer.BorderColor = UIColor.White.CGColor;
@@ -30,7 +32,7 @@ namespace MoneyFox.iOS.Effects
             }
             catch (Exception ex)
             {
-                Crashes.TrackError(ex);
+                logManager.Error(ex, "Failed to attach delete button effect.");
             }
         }
 
