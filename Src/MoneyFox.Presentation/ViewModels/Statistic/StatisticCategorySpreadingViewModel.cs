@@ -8,6 +8,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using SkiaSharp;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -16,6 +17,9 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
+        static string fontFamily = Device.RuntimePlatform == Device.iOS ? "Lobster-Regular" : null;
+        private SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
+
         private DonutChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
@@ -53,15 +57,15 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         }
 
         /// <summary>
-        ///     Set a custom CategprySpreadingModel with the set Start and End date
+        ///     Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task Load()
         {
             StatisticItems =
                 new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery {StartDate = StartDate, EndDate = EndDate}));
 
-            List<Entry> microChartItems = StatisticItems
-                                          .Select(x => new Entry(x.Value)
+            List<Microcharts.Entry> microChartItems = StatisticItems
+                                          .Select(x => new Microcharts.Entry(x.Value)
                                           {
                                               Label = x.Label,
                                               ValueLabel = x.ValueLabel,
@@ -73,7 +77,8 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             {
                 Entries = microChartItems,
                 BackgroundColor = BackgroundColor,
-                LabelTextSize = 26f
+                LabelTextSize = 26f,
+                Typeface = typeFaceForIOS12
             };
         }
     }
