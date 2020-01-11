@@ -835,4 +835,7 @@ Do you want to go the the store to rate?</value>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
     <value>Negative amount</value>
   </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

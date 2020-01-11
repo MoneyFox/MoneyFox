@@ -833,4 +833,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
     <value>Negative amount</value>
   </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

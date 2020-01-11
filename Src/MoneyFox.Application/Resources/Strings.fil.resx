@@ -833,4 +833,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
     <value>Negative amount</value>
   </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>
