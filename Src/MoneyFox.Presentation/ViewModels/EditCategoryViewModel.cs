@@ -55,7 +55,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
 
-            NavigationService.GoBack();
+            NavigationService.GoBackModal();
         }
 
         private async Task DeleteCategory()
