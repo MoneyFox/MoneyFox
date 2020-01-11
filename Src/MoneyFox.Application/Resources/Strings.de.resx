@@ -835,6 +835,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Negativer Betrag</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>Speichern</value>
   </data>
 </root>
