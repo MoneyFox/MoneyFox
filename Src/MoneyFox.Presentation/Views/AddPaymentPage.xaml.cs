@@ -1,6 +1,8 @@
-﻿using MoneyFox.Domain;
+﻿using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
 {
@@ -12,6 +14,16 @@ namespace MoneyFox.Presentation.Views
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.AddPaymentVm;
+
+            var saveItem = new ToolbarItem
+            {
+                Command = new Command(async () => await ViewModel.SaveCommand.ExecuteAsync()),
+                Text = Strings.SaveLabel,
+                Priority = 0,
+                Order = ToolbarItemOrder.Primary
+            };
+
+            ToolbarItems.Add(saveItem);
 
             ViewModel.PaymentType = paymentType;
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();

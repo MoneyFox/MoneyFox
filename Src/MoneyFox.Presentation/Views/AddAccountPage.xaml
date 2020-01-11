@@ -8,33 +8,12 @@
              x:Class="MoneyFox.Presentation.Views.AddAccountPage"
              Visual="Material"
              mc:Ignorable="d"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+             BackgroundColor="{DynamicResource WindowBackgroundColor}"
+             Title="{Binding Title}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyAccountViewModel />
     </d:ContentPage.BindingContext>
-
-    <NavigationPage.TitleView>
-        <Grid>
-            <Label Text="{Binding Title}"
-                   VerticalOptions="CenterAndExpand"
-                   Style="{StaticResource PageTitleStyle}" />
-
-            <ImageButton BackgroundColor="Transparent"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         HeightRequest="30"
-                         WidthRequest="30"
-                         Command="{Binding SaveCommand}">
-                <ImageButton.Source>
-                    <FontImageSource
-                        Glyph="{StaticResource Save}"
-                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
-                        Color="White" />
-                </ImageButton.Source>
-            </ImageButton>
-        </Grid>
-    </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <userControls:ModifyAccountUserControl Margin="{StaticResource DefaultMargin}" />

@@ -23,7 +23,7 @@ namespace MoneyFox.Presentation.Views
                 var addItem = new ToolbarItem
                 {
                     Text = Strings.AddTitle,
-                    Priority = -1,
+                    Priority = 1,
                     Order = ToolbarItemOrder.Primary
                 };
                 addItem.Clicked += AddCategoryClick;
@@ -34,7 +34,7 @@ namespace MoneyFox.Presentation.Views
             {
                 Command = new Command(async () => await Close()),
                 Text = Strings.CancelLabel,
-                Priority = 0,
+                Priority = Device.RuntimePlatform == Device.iOS ? -1 : 0,
                 Order = ToolbarItemOrder.Primary
             };
 
