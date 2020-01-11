@@ -7,6 +7,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using SkiaSharp;
+using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -16,6 +17,9 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     public class
         StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
+        static string fontFamily = Device.RuntimePlatform == Device.iOS ? "Lobster-Regular" : null;
+        private SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
+
         private BarChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
@@ -64,7 +68,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
             Chart = new BarChart
             {
-                Entries = StatisticItems.Select(x => new Entry(x.Value)
+                Entries = StatisticItems.Select(x => new Microcharts.Entry(x.Value)
                                         {
                                             Label = x.Label,
                                             ValueLabel = x.ValueLabel,
@@ -73,7 +77,8 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                                         .ToList(),
                 BackgroundColor = BackgroundColor,
                 Margin = 20,
-                LabelTextSize = 26f
+                LabelTextSize = 26f,
+                Typeface = typeFaceForIOS12
             };
         }
     }
