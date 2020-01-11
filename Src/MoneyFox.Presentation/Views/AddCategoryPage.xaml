@@ -7,33 +7,12 @@
              xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
              x:Class="MoneyFox.Presentation.Views.AddCategoryPage"
              Visual="Material"
+             Title="{Binding Title}"
              BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyCategoryViewModel />
     </d:ContentPage.BindingContext>
-
-    <NavigationPage.TitleView>
-        <Grid>
-            <Label Text="{Binding Title}"
-                   VerticalOptions="CenterAndExpand"
-                   Style="{StaticResource PageTitleStyle}" />
-
-            <ImageButton BackgroundColor="Transparent"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         HeightRequest="30"
-                         WidthRequest="30"
-                         Command="{Binding SaveCommand}">
-                <ImageButton.Source>
-                    <FontImageSource
-                        Glyph="{StaticResource Save}"
-                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
-                        Color="White" />
-                </ImageButton.Source>
-            </ImageButton>
-        </Grid>
-    </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <userControls:ModifyCategoryUserControl Margin="{StaticResource DefaultMargin}" />
