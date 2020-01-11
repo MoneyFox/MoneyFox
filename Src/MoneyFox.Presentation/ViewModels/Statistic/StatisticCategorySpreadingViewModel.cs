@@ -57,7 +57,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         }
 
         /// <summary>
-        ///     Set a custom CategprySpreadingModel with the set Start and End date
+        ///     Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task Load()
         {
