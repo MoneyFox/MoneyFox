@@ -10,33 +10,12 @@
              xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
              x:Class="MoneyFox.Presentation.Views.EditPaymentPage"
              Visual="Material"
+             Title="{Binding Title}"
              BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyPaymentViewModel />
     </d:ContentPage.BindingContext>
-
-    <NavigationPage.TitleView>
-        <Grid>
-            <Label Text="{Binding Title}"
-                   VerticalOptions="CenterAndExpand"
-                   Style="{StaticResource PageTitleStyle}" />
-
-            <ImageButton BackgroundColor="Transparent"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         HeightRequest="30"
-                         WidthRequest="30"
-                         Command="{Binding SaveCommand}">
-                <ImageButton.Source>
-                    <FontImageSource
-                        Glyph="{StaticResource Save}"
-                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
-                        Color="White" />
-                </ImageButton.Source>
-            </ImageButton>
-        </Grid>
-    </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <StackLayout Margin="{StaticResource DefaultMargin}">
