@@ -83,10 +83,9 @@
                 <TextBox Margin="{StaticResource SmallTitleContentMargin}"
                          Header="{x:Bind resources:Strings.AmountLabel}"
                          InputScope="Number"
-                         Text="{Binding SelectedPayment.Amount,
-                                            Mode=TwoWay,
-                                            UpdateSourceTrigger=PropertyChanged,
-                                            Converter={StaticResource DecimalConverter}}"
+                         Text="{Binding AmountString,
+                                        Mode=TwoWay,
+                                        UpdateSourceTrigger=PropertyChanged}"
                          TextAlignment="Right" />
 
                 <controls:CategorySelectionControl />
