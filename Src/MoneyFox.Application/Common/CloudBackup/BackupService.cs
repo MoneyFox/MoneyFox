@@ -90,6 +90,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
+
+            logManager.Info("Successfully logged in.");
         }
 
         public async Task LogoutAsync()
@@ -103,6 +105,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             settingsFacade.IsLoggedInToBackupService = false;
             settingsFacade.IsBackupAutouploadEnabled = false;
+
+            logManager.Info("Successfully logged out.");
         }
 
         public async Task<bool> IsBackupExistingAsync()
@@ -207,9 +211,14 @@ namespace MoneyFox.Application.Common.CloudBackup
                 await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync(attempts + 1);
             }
-            catch(Exception ex) when (ex is BackupAuthenticationFailedException || ex is ServiceException)
+            catch (ServiceException ex)
             {
-                logManager.Error(ex, "Enqueue Backup failed.");
+                logManager.Error(ex, "ServiceException when tried to enqueue Backup.");
+                throw;
+            }
+            catch (BackupAuthenticationFailedException ex)
+            {
+                logManager.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
                 await LogoutAsync();
                 throw;
             }

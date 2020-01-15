@@ -772,19 +772,19 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
     <value>Deixe um comentário!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+    <value>Você modificou um pagamento recorrente. Deseja atualizar a recorrência?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modify Recurrence</value>
+    <value>Modificar Recorrência</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+    <value>Seu banco de dados local tem uma data de modificação mais recente do que a do OneDrive. Você quer substituir seus dados locais?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Override Local Data</value>
+    <value>Sobrescrever Dados Locais</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>Seus dados serão salvos em sua conta do OneDrive. Você os encontrará na pasta do Application em uma nova pasta chamada "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
     <value>Escuro</value>
@@ -808,30 +808,33 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
     <value>Receitas/Despesas:</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Cancelado</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>Login was canceled.</value>
+    <value>Autenticação cancelada.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Houve um problema durante a operação. Mensagem de erro {0}</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>A saída foi cancelada.</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Restoring backup was canceled.</value>
+    <value>A restauração do backup foi cancelada.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Upload backup was canceled.</value>
+    <value>O backup foi cancelado.</value>
   </data>
   <data name="DeleteAccountLabel" xml:space="preserve">
-    <value>Delete Account</value>
+    <value>Remover Conta</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+    <value>O montante não pode ser negativo. Se ele for subtraído ou adicionado será determinado pelo tipo de pagamento que você criar.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>Montante negativo</value>
+  </data>
+  <data name="SaveLabel" xml:space="preserve">
+    <value>Salvar</value>
   </data>
 </root>

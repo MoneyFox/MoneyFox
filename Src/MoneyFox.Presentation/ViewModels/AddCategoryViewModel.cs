@@ -38,7 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected override async Task SaveCategoryAsync()
         {
             await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
-            NavigationService.GoBack();
+            NavigationService.GoBackModal();
         }
     }
 }
