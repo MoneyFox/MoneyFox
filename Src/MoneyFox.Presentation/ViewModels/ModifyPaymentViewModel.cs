@@ -299,6 +299,8 @@ namespace MoneyFox.Presentation.ViewModels
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
+                await dialogService.ShowMessage(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
+                return;
             }
 
             if (SelectedPayment.Amount < 0)

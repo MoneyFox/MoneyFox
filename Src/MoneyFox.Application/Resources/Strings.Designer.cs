@@ -1160,6 +1160,33 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your payment amount seems to be an invalid number. Please check that you haven&apos;t entered any special characters and used the correct separator..
+        /// </summary>
+        public static string InvalidNumberAmountMessage {
+            get {
+                return ResourceManager.GetString("InvalidNumberAmountMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your current balance seems to be an invalid number. Please check that you haven&apos;t entered any special characters and used the correct separator..
+        /// </summary>
+        public static string InvalidNumberCurrentBalanceMessage {
+            get {
+                return ResourceManager.GetString("InvalidNumberCurrentBalanceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Number.
+        /// </summary>
+        public static string InvalidNumberTitle {
+            get {
+                return ResourceManager.GetString("InvalidNumberTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cleared.
         /// </summary>
         public static string IsClearedLabel {

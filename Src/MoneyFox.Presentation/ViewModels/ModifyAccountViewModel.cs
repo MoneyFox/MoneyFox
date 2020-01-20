@@ -99,6 +99,8 @@ namespace MoneyFox.Presentation.ViewModels
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
+                await DialogService.ShowMessage(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
+                return;
             }
 
             await SaveAccount();

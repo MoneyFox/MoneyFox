@@ -41,10 +41,9 @@
                      GotFocus="TextBoxOnFocus"
                      Header="{x:Bind resources:Strings.CurrentBalanceLabel}"
                      InputScope="Number"
-                     Text="{Binding SelectedAccount.CurrentBalance,
-                                        Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged,
-                                        Converter={StaticResource DecimalConverter}}"
+                     Text="{Binding AmountString,
+                                    Mode=TwoWay,
+                                    UpdateSourceTrigger=PropertyChanged}"
                      TextAlignment="Right" />
             <TextBox Margin="{StaticResource SmallTitleContentMargin}"
                      VerticalAlignment="Top"
