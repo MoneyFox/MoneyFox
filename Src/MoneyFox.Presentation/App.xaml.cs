@@ -14,7 +14,6 @@ namespace MoneyFox.Presentation
             InitializeComponent();
 
             XF.Material.Forms.Material.Init(this, "Material.Configuration");
-            ThemeManager.LoadTheme();
 
             AppDomain.CurrentDomain.UnhandledException += (s, e) => { LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject); };
 
@@ -22,11 +21,8 @@ namespace MoneyFox.Presentation
 
             var appShell = new AppShell();
             NavigationService.Initialize(appShell.Navigation);
-            MainPage = new NavigationPage(appShell)
-            {
-                BarBackgroundColor = Color.FromHex("#314a9b"),
-                BarTextColor = Color.White
-            };
+            MainPage = new NavigationPage(appShell);
+            ThemeManager.LoadTheme();
         }
 
         public void ConfigureNavigation()
