@@ -838,4 +838,13 @@ Lütfen ayarlara gidip etkinleştirin!</value>
   <data name="SaveLabel" xml:space="preserve">
     <value>Save</value>
   </data>
+  <data name="InvalidNumberAmountMessage" xml:space="preserve">
+    <value>Your payment amount seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+  </data>
+  <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
+    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+  </data>
+  <data name="InvalidNumberTitle" xml:space="preserve">
+    <value>Invalid Number</value>
+  </data>
 </root>
