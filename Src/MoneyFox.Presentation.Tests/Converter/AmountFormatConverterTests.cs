@@ -16,13 +16,16 @@ namespace MoneyFox.Presentation.Tests.Converter
         [InlineData("en-US")] // United States
         [InlineData("en-GB")] // United Kingdom
         [InlineData("it-IT")] // Italian
-        public void Convert_NegativeAndDifferentCurrency_FloatAmount_ValidString(string cultureID)
+        public void Convert_NegativeAndDifferentCurrency_FloatAmount_ValidString(string cultureId)
         {
-            var testCulture = new CultureInfo(cultureID, false);
+            CultureHelper.CurrentCulture = new CultureInfo(cultureId, false);
             decimal amount = -88.23m;
-            var positiveAmount = 88.23m;
-            new AmountFormatConverter().Convert(amount, null, null, testCulture)
-                                       .ShouldEqual("-" + testCulture.NumberFormat.CurrencySymbol + positiveAmount.ToString(testCulture));
+
+            new AmountFormatConverter()
+               .Convert(amount, null, null, CultureInfo.CurrentCulture)
+               .ShouldEqual(amount.ToString("C", new CultureInfo(cultureId, false)));
+
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
     }
 }
