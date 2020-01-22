@@ -13,6 +13,7 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.ShellVm;
 
             On<Android>().SetToolbarPlacement(ToolbarPlacement.Bottom);
+            On<Android>().SetIsSwipePagingEnabled(false);
         }
     }
 }
