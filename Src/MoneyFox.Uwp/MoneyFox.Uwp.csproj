@@ -556,7 +556,7 @@
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="Telerik.UI.for.UniversalWindowsPlatform">
-      <Version>1.0.1.7</Version>
+      <Version>1.0.1.8</Version>
     </PackageReference>
     <PackageReference Include="UniversalRateReminder">
       <Version>2.2.0</Version>
