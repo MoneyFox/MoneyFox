@@ -837,4 +837,13 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="SaveLabel" xml:space="preserve">
     <value>Speichern</value>
   </data>
+  <data name="InvalidNumberAmountMessage" xml:space="preserve">
+    <value>Ihr Zahlungsbetrag scheint eine ungültige Zahl zu sein. Bitte überprüfen Sie, dass Sie keine Sonderzeichen eingegeben und das richtige Trennzeichen verwendet haben.</value>
+  </data>
+  <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
+    <value>Ihr aktueller Kontostand scheint eine ungültige Zahl zu sein. Bitte überprüfen Sie, dass Sie keine Sonderzeichen eingegeben und das richtige Trennzeichen verwendet haben.</value>
+  </data>
+  <data name="InvalidNumberTitle" xml:space="preserve">
+    <value>Ungültige Zahl</value>
+  </data>
 </root>
