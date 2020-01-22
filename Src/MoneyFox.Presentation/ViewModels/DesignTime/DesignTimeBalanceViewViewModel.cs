@@ -12,6 +12,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public decimal EndOfMonthBalance => 9784;
 
         /// <inheritdoc />
-        public AsyncCommand UpdateBalanceCommand { get; };
+        public AsyncCommand UpdateBalanceCommand { get; }
     }
 }
