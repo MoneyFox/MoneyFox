@@ -9,11 +9,11 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 {
     public static class RequestHelper
     {
-        public const string BaseUrl = "https://free.currconv.com/api/v7/";
+        public const string BASE_URL = "https://free.currconv.com/api/v7/";
 
         public static List<Currency> GetAllCurrencies(string apiKey)
         {
-            string url = BaseUrl + $"currencies?apiKey={apiKey}";
+            string url = BASE_URL + $"currencies?apiKey={apiKey}";
 
             var jsonString = GetResponse(url);
 
@@ -23,7 +23,7 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         public static double ExchangeRate(string from, string to, string apiKey)
         {
-            string url = BaseUrl + $"convert?q={from}_{to}&compact=ultra&apiKey={apiKey}";
+            string url = BASE_URL + $"convert?q={from}_{to}&compact=ultra&apiKey={apiKey}";
 
             var jsonString = GetResponse(url);
             return JObject.Parse(jsonString).First.First["val"].ToObject<double>();

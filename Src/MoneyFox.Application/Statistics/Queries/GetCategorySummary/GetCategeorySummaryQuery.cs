@@ -49,7 +49,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                                                         .Where(x => x.Type != PaymentType.Transfer)
                                                                         .ToListAsync(cancellationToken);
 
-                foreach(Category category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category).Distinct())
+                foreach(Category category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category!).Distinct())
                 {
                     CreateOverviewItem(paymentsInTimeRange, category);
                 }
