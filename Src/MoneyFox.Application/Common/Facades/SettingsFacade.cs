@@ -1,6 +1,6 @@
-﻿using MoneyFox.Application.Common.Adapters;
-using System;
+﻿using System;
 using System.Globalization;
+using MoneyFox.Application.Common.Adapters;
 
 namespace MoneyFox.Application.Common.Facades
 {
@@ -57,7 +57,7 @@ namespace MoneyFox.Application.Common.Facades
         private const bool BACKUP_LOGGEDIN_KEY_DEFAULT = false;
 
         private const string THEME_KEYNAME = "Theme";
-        private const int THEME_KEYDEFAULT = (int)AppTheme.Light;
+        private const int THEME_KEYDEFAULT = (int) AppTheme.Light;
 
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT = "";
@@ -133,7 +133,8 @@ namespace MoneyFox.Application.Common.Facades
 
                 return DateTime.MinValue;
             }
-            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
+                                               value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <inheritdoc />
@@ -150,7 +151,8 @@ namespace MoneyFox.Application.Common.Facades
 
                 return DateTime.MinValue;
             }
-            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
+                                               value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <inheritdoc />
@@ -167,7 +169,8 @@ namespace MoneyFox.Application.Common.Facades
 
                 return DateTime.MinValue;
             }
-            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
+                                               value.ToString(CultureInfo.InvariantCulture));
         }
 
         public string DefaultCulture

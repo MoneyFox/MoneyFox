@@ -64,11 +64,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            CategorySummaryModel result =
+                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                    {
+                        StartDate = DateTime.Today.AddDays(-3),
+                        EndDate = DateTime.Today.AddDays(3)
+                    }, default);
 
             // Assert
             result.CategoryOverviewItems.Count.ShouldEqual(4);
@@ -100,11 +102,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            CategorySummaryModel result =
+                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                    {
+                        StartDate = DateTime.Today.AddDays(-3),
+                        EndDate = DateTime.Today.AddDays(3)
+                    }, default);
 
             // Assert
             result.CategoryOverviewItems[0].Label.ShouldEqual(testCat1.Name);
@@ -134,11 +138,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            CategorySummaryModel result =
+                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                    {
+                        StartDate = DateTime.Today.AddDays(-3),
+                        EndDate = DateTime.Today.AddDays(3)
+                    }, default);
 
             // Assert
             result.CategoryOverviewItems[0].Percentage.ShouldEqual(60);
@@ -161,11 +167,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            CategorySummaryModel result =
+                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                    {
+                        StartDate = DateTime.Today.AddDays(-3),
+                        EndDate = DateTime.Today.AddDays(3)
+                    }, default);
 
             // Assert
             result.CategoryOverviewItems[0].Value.ShouldEqual(-60);
@@ -186,11 +194,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            CategorySummaryModel result = await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySummaryQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            CategorySummaryModel result =
+                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                    {
+                        StartDate = DateTime.Today.AddDays(-3),
+                        EndDate = DateTime.Today.AddDays(3)
+                    }, default);
 
             // Assert
             result.CategoryOverviewItems[0].Label.ShouldEqual(Strings.NoCategoryLabel);

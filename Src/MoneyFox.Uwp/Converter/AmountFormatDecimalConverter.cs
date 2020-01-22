@@ -1,6 +1,6 @@
-﻿using MoneyFox.Presentation;
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
+using MoneyFox.Presentation;
 
 namespace MoneyFox.Uwp.Converter
 {
@@ -8,7 +8,7 @@ namespace MoneyFox.Uwp.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var currencyValue = (decimal)value;
+            var currencyValue = (decimal) value;
             return currencyValue.ToString("C", CultureHelper.CurrentCulture);
         }
 

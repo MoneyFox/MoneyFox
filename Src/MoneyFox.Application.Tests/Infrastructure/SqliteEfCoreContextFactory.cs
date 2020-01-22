@@ -10,8 +10,8 @@ namespace MoneyFox.Application.Tests.Infrastructure
         public static EfCoreContext Create()
         {
             DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
-                                                      .UseSqlite($"Filename=Foo.db")
-                                                      .Options;
+                                                     .UseSqlite("Filename=Foo.db")
+                                                     .Options;
 
             var context = new EfCoreContext(options);
 

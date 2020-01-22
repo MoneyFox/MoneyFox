@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using Xunit;
-using MoneyFox.Application.Common.QueryObjects;
 
 namespace MoneyFox.Application.Tests.QueryObjects
 {
@@ -22,7 +22,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                     new Payment(DateTime.Now, 13, PaymentType.Expense, new Account("d")),
                     new Payment(DateTime.Now.AddDays(-1), 14, PaymentType.Expense, new Account("d"))
                 }
-                .AsQueryable();
+               .AsQueryable();
 
             // Act
             List<Payment> resultList = paymentListQuery.HasDateLargerEqualsThan(DateTime.Now).ToList();
@@ -43,7 +43,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                     new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
                     new Payment(DateTime.Now.AddDays(1), 14, PaymentType.Expense, new Account("d"))
                 }
-                .AsQueryable();
+               .AsQueryable();
 
             // Act
             List<Payment> resultList = paymentListQuery.AreCleared().ToList();
@@ -63,7 +63,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                     new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
                     new Payment(DateTime.Now.AddDays(1), 14, PaymentType.Expense, new Account("d"))
                 }
-                .AsQueryable();
+               .AsQueryable();
 
             // Act
             List<Payment> resultList = paymentListQuery.AreNotCleared().ToList();
@@ -86,7 +86,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                     new Payment(DateTime.Now, 15, PaymentType.Income, new Account("d"), new Account("t")),
                     new Payment(DateTime.Now, 16, PaymentType.Transfer, new Account("d"), new Account("t"))
                 }
-                .AsQueryable();
+               .AsQueryable();
 
             // Act
             List<Payment> resultList = paymentListQuery.WithoutTransfers().ToList();

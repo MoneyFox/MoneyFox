@@ -9,6 +9,7 @@ using MoneyFox.Application.Common;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Views;
+using MoneyFox.Uwp.Views.Statistics;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Xamarin.Forms;
@@ -112,10 +113,10 @@ namespace MoneyFox.Uwp.Services
             nav.Configure(ViewModelLocator.EditCategory, typeof(EditCategoryView));
             nav.Configure(ViewModelLocator.EditPayment, typeof(EditPaymentView));
             nav.Configure(ViewModelLocator.Settings, typeof(SettingsView));
-            nav.Configure(ViewModelLocator.StatisticSelector, typeof(Views.Statistics.StatisticSelectorView));
-            nav.Configure(ViewModelLocator.StatisticCashFlow, typeof(Views.Statistics.StatisticCashFlowView));
-            nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(Views.Statistics.StatisticCategorySpreadingView));
-            nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(Views.Statistics.StatisticCategorySummaryView));
+            nav.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorView));
+            nav.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowView));
+            nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingView));
+            nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryView));
             nav.Configure(ViewModelLocator.Backup, typeof(BackupView));
 
             return nav;

@@ -1,6 +1,7 @@
-﻿using MoneyFox.Presentation.ViewModels.DesignTime;
+﻿using Windows.ApplicationModel;
+using Windows.UI.Xaml;
+using MoneyFox.Presentation.ViewModels.DesignTime;
 using MoneyFox.Presentation.ViewModels.Settings;
-using Windows.ApplicationModel;
 
 namespace MoneyFox.Uwp.Views.Settings
 {
@@ -15,7 +16,7 @@ namespace MoneyFox.Uwp.Views.Settings
             if (DesignMode.DesignModeEnabled) DataContext = new DesignTimeRegionalSettingsViewModel();
         }
 
-        private async void ComboBox_Loaded(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             await ViewModel.LoadAvailableCulturesCommand.ExecuteAsync();
         }

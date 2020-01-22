@@ -1,8 +1,7 @@
-﻿using MoneyFox.Application.Common.CurrencyConversion.Models;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.CurrencyConversion.Models;
 
 namespace MoneyFox.Application.Common.CurrencyConversion
 {

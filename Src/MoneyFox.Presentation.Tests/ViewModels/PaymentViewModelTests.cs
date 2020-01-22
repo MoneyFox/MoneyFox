@@ -52,7 +52,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public void IsRecurring_SetFalse_RecurringViewModelSetNull()
         {
             // Arrange
-            var vm = new PaymentViewModel(mediatorMock.Object, navigationService.Object) { IsRecurring = true};
+            var vm = new PaymentViewModel(mediatorMock.Object, navigationService.Object) {IsRecurring = true};
             vm.RecurringPayment.ShouldNotBeNull();
 
             // Act

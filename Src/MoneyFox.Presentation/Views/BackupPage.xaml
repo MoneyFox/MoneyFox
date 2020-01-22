@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage x:Class="MoneyFox.Presentation.Views.BackupPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -35,7 +36,7 @@
                         Text="{x:Static resources:Strings.LogoutLabel}" />
                 <StackLayout IsVisible="{Binding IsLoggedIn}"
                              Spacing="{StaticResource DefaultSpacing}">
-                    
+
                     <Label HorizontalOptions="StartAndExpand"
                            Style="{StaticResource DeemphasizedLabelStyle}"
                            Text="{x:Static resources:Strings.BackupInformationLabel}" />
@@ -44,15 +45,15 @@
                             Command="{Binding BackupCommand}"
                             Style="{StaticResource DefaultButtonStyle}"
                             Text="{x:Static resources:Strings.CreateBackupLabel}" />
-                    
+
                     <Label HorizontalOptions="StartAndExpand"
                            Style="{StaticResource DeemphasizedLabelStyle}"
                            Text="{x:Static resources:Strings.RestoreBackupInformationLabel}" />
-                    
+
                     <Button Command="{Binding RestoreCommand}"
                             Style="{StaticResource DefaultButtonStyle}"
                             Text="{x:Static resources:Strings.RestoreBackupLabel}" />
-                    
+
                     <ActivityIndicator Color="DarkBlue"
                                        HeightRequest="20"
                                        HorizontalOptions="End"
@@ -67,7 +68,9 @@
                             </OnPlatform>
                         </ActivityIndicator.WidthRequest>
                     </ActivityIndicator>
-                    <StackLayout IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}" Orientation="Horizontal">
+                    <StackLayout
+                        IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}"
+                        Orientation="Horizontal">
                         <Label HorizontalOptions="Start"
                                Style="{StaticResource DeemphasizedLabelStyle}"
                                Text="{x:Static resources:Strings.LastBackupDateLabel}" />

@@ -1,15 +1,21 @@
-﻿using MoneyFox.Application.Common.Interfaces.Mapping;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MoneyFox.Application.Common.Interfaces.Mapping;
 
 namespace MoneyFox.Infrastructure
 {
     public sealed class Map
     {
-        public Type Source { get; set; }
-        public Type Destination { get; set; }
+        public Map(Type source, Type destination)
+        {
+            Source = source;
+            Destination = destination;
+        }
+
+        public Type Source { get; }
+        public Type Destination { get; }
     }
 
     public static class MapperProfileHelper
@@ -25,11 +31,7 @@ namespace MoneyFox.Infrastructure
                     instance.IsGenericType && instance.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
                     !type.IsAbstract &&
                     !type.IsInterface
-                select new Map
-                {
-                    Source = type.GetInterfaces().First(x => x.Name.Contains("MapFrom")).GetGenericArguments().First(),
-                    Destination = type
-                }).ToList();
+                select new Map(type.GetInterfaces().First(x => x.Name.Contains("MapFrom")).GetGenericArguments().First(), type)).ToList();
 
             return mapsFrom;
         }

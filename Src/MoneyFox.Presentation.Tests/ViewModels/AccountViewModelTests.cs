@@ -36,7 +36,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         }
 
         [Fact]
-        [SuppressMessage("Major Bug", "S1764:Identical expressions should not be used on both sides of a binary operator", Justification = "<Pending>")]
+        [SuppressMessage("Major Bug", "S1764:Identical expressions should not be used on both sides of a binary operator",
+                         Justification = "<Pending>")]
         public void Equals_SameObject_True()
         {
             // Arrange

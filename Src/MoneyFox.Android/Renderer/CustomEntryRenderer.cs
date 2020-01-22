@@ -1,18 +1,18 @@
 ﻿using System;
 using Android.Content;
+using Android.Graphics;
+using Android.Graphics.Drawables;
+using Android.OS;
+using Android.Runtime;
+using Android.Widget;
+using Java.Lang.Reflect;
 using MoneyFox.Droid.Renderer;
 using NLog;
 using Xamarin.Forms;
 using Xamarin.Forms.Material.Android;
 using Xamarin.Forms.Platform.Android;
-using Android.Graphics;
-using Android.Graphics.Drawables;
-using Android.Runtime;
-using Android.Widget;
-using Java.Lang.Reflect;
 using Color = Xamarin.Forms.Color;
 using Object = Java.Lang.Object;
-using Android.OS;
 
 [assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
 
@@ -23,8 +23,7 @@ namespace MoneyFox.Droid.Renderer
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public CustomEntryRenderer(Context context) : base(context)
-        {
-        }
+        { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
         {
@@ -33,13 +32,9 @@ namespace MoneyFox.Droid.Renderer
             Control.EditText.SetHighlightColor(Color.Accent.ToAndroid());
 
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-            {
                 TrySetCursorPointerColorNew();
-            }
             else
-            {
                 TrySetCursorPointerColor();
-            }
         }
 
         private void TrySetCursorPointerColorNew()
@@ -48,15 +43,15 @@ namespace MoneyFox.Droid.Renderer
             {
                 Control.EditText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
 
-                var textSelectHandleDrawable = Control.EditText.TextSelectHandle;
+                Drawable textSelectHandleDrawable = Control.EditText.TextSelectHandle;
                 textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
                 Control.EditText.TextSelectHandle = textSelectHandleDrawable;
 
-                var textSelectHandleLeftDrawable = Control.EditText.TextSelectHandleLeft;
+                Drawable textSelectHandleLeftDrawable = Control.EditText.TextSelectHandleLeft;
                 textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
                 Control.EditText.TextSelectHandle = textSelectHandleLeftDrawable;
 
-                var textSelectHandleRightDrawable = Control.EditText.TextSelectHandleRight;
+                Drawable textSelectHandleRightDrawable = Control.EditText.TextSelectHandleRight;
                 textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
                 Control.EditText.TextSelectHandle = textSelectHandleRightDrawable;
             }
@@ -92,13 +87,9 @@ namespace MoneyFox.Droid.Renderer
                     Drawable handleDrawable = Resources.GetDrawable(handle, null);
 
                     if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                    {
                         handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
-                    } 
                     else
-                    {
                         handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
-                    }
 
                     field = editor.Class.GetDeclaredField(drawableName);
                     field.Accessible = true;

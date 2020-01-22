@@ -29,6 +29,5 @@ namespace MoneyFox.Application.Tests.Infrastructure
 
     [CollectionDefinition("QueryCollection")]
     public class QueryCollection : ICollectionFixture<QueryTestFixture>
-    {
-    }
+    { }
 }
