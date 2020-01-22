@@ -20,6 +20,9 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 
         public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummaryQuery, CategorySummaryModel>
         {
+            private const int PERCENTAGE_DIVIDER = 100;
+            private const int DAY_DIVIDER = 30;
+
             private readonly IContextAdapter contextAdapter;
 
             public GetCategorySummaryQueryHandler(IContextAdapter contextAdapter)
@@ -101,12 +104,12 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 
                 foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value < 0))
                 {
-                    statisticItem.Percentage = statisticItem.Value / sumNegative * 100;
+                    statisticItem.Percentage = statisticItem.Value / sumNegative * PERCENTAGE_DIVIDER;
                 }
 
                 foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value > 0))
                 {
-                    statisticItem.Percentage = statisticItem.Value / sumPositive * 100;
+                    statisticItem.Percentage = statisticItem.Value / sumPositive * PERCENTAGE_DIVIDER;
                 }
             }
 
@@ -142,10 +145,10 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 decimal sumForCategory = payments.Sum(x => x.Amount);
                 TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
-                if (timeDiff.Days < 30)
+                if (timeDiff.Days < DAY_DIVIDER)
                     return sumForCategory;
 
-                return Math.Round(sumForCategory / (timeDiff.Days / 30), 2, MidpointRounding.ToEven);
+                return Math.Round(sumForCategory / (timeDiff.Days / DAY_DIVIDER), 2, MidpointRounding.ToEven);
             }
         }
     }

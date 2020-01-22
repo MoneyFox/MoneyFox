@@ -15,6 +15,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 {
     public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySpreadingQuery, IEnumerable<StatisticEntry>>
     {
+        private const int NUMBER_OF_STATISTIC_ITEMS = 6;
+
         public static readonly string[] Colors =
             {"#266489", "#68B9C0", "#90D585", "#F3C151", "#F37F64", "#424856", "#8F97A4"};
 
@@ -81,7 +83,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 
         private static void AddOtherItem(IEnumerable<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
-            if (statisticList.Count < 6)
+            if (statisticList.Count < NUMBER_OF_STATISTIC_ITEMS)
                 return;
 
             float otherValue = statisticData
