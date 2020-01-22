@@ -205,6 +205,10 @@ namespace MoneyFox.Application.Common.CloudBackup
                     cancellationTokenSource.Cancel();
                 }
             }
+            catch (FileNotFoundException ex)
+            {
+                logManager.Error(ex, "Backup failed because database was not found.");
+            }
             catch (OperationCanceledException ex)
             {
                 logManager.Error(ex, "Enqueue Backup failed.");
