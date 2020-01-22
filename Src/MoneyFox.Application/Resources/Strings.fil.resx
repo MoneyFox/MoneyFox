@@ -827,6 +827,18 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="DeleteAccountLabel" xml:space="preserve">
     <value>Delete Account</value>
   </data>
+  <data name="DefaultRegionHeader" xml:space="preserve">
+    <value>Default Region</value>
+  </data>
+  <data name="DefaultRegionText" xml:space="preserve">
+    <value>This region will be used as a default for your application.</value>
+  </data>
+  <data name="SettingsRegionalLabel" xml:space="preserve">
+    <value>Regional Settings</value>
+  </data>
+  <data name="RegionalSettingsDescriptionText" xml:space="preserve">
+    <value>Set region settings for your application.</value>
+  </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
   </data>
