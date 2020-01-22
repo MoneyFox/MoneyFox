@@ -1,4 +1,6 @@
-﻿using Autofac;
+﻿using System;
+using System.Globalization;
+using Autofac;
 using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
@@ -7,8 +9,6 @@ using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
-using System;
-using System.Globalization;
 
 namespace MoneyFox.Presentation
 {
@@ -32,10 +32,10 @@ namespace MoneyFox.Presentation
             builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly).AsImplementedInterfaces(); // via assembly scan
 
             builder.Register(c => PublicClientApplicationBuilder
-                                  .Create(ServiceConstants.MSAL_APPLICATION_ID)
-                                  .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
-                                  .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
-                                  .Build());
+                                 .Create(ServiceConstants.MSAL_APPLICATION_ID)
+                                 .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                                 .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+                                 .Build());
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))

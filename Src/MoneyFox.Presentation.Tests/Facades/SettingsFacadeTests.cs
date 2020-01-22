@@ -1,8 +1,8 @@
-﻿using MoneyFox.Application.Common;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
-using System;
-using System.Diagnostics.CodeAnalysis;
 using Moq;
 using Should;
 using Xunit;

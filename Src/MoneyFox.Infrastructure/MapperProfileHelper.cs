@@ -1,8 +1,8 @@
-﻿using MoneyFox.Application.Common.Interfaces.Mapping;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MoneyFox.Application.Common.Interfaces.Mapping;
 
 namespace MoneyFox.Infrastructure
 {

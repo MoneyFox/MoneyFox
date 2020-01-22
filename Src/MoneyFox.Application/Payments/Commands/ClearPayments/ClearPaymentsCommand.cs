@@ -1,11 +1,12 @@
-﻿using MediatR;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Commands.ClearPayments
 {
@@ -22,13 +23,13 @@ namespace MoneyFox.Application.Payments.Commands.ClearPayments
 
             public async Task<Unit> Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
             {
-                var unclearedPayments = await contextAdapter.Context
-                                                   .Payments
-                                                   .Include(x => x.ChargedAccount)
-                                                   .Include(x => x.TargetAccount)
-                                                   .AsQueryable()
-                                                   .AreNotCleared()
-                                                   .ToListAsync();
+                List<Payment> unclearedPayments = await contextAdapter.Context
+                                                                      .Payments
+                                                                      .Include(x => x.ChargedAccount)
+                                                                      .Include(x => x.TargetAccount)
+                                                                      .AsQueryable()
+                                                                      .AreNotCleared()
+                                                                      .ToListAsync();
 
                 foreach (Payment payment in unclearedPayments)
                 {

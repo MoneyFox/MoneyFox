@@ -90,6 +90,7 @@ namespace MoneyFox.Presentation.Services
                                 break;
                             }
                         }
+
                         break;
 
                     default:
@@ -137,13 +138,9 @@ namespace MoneyFox.Presentation.Services
         private static decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
         {
             if (accountId == payment.ChargedAccount.Id)
-            {
                 balance -= payment.Amount;
-            }
             else
-            {
                 balance += payment.Amount;
-            }
 
             return balance;
         }

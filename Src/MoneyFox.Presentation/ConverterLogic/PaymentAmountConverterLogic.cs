@@ -12,7 +12,7 @@ namespace MoneyFox.Application.Common.ConverterLogic
         {
             if (payment == null) return string.Empty;
 
-            var param = parameter;
+            string param = parameter;
             string sign;
 
             if (payment.Type == PaymentType.Transfer)
@@ -23,9 +23,9 @@ namespace MoneyFox.Application.Common.ConverterLogic
             }
             else
             {
-                sign = payment.Type == (int)PaymentType.Expense
-                       ? "-"
-                       : "+";
+                sign = payment.Type == (int) PaymentType.Expense
+                    ? "-"
+                    : "+";
             }
 
             return sign + " " + $"{payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";

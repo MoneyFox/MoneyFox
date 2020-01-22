@@ -1,5 +1,5 @@
-﻿using MoneyFox.Presentation.ViewModels.Settings;
-using System;
+﻿using System;
+using MoneyFox.Presentation.ViewModels.Settings;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

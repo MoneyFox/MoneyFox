@@ -1,20 +1,19 @@
-﻿using MoneyFox.Domain.Exceptions;
-using NLog;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
+using MoneyFox.Domain.Exceptions;
+using NLog;
 
 namespace MoneyFox.Domain.Entities
 {
     /// <summary>
-    /// Database model for payments. Includes expenses, income and transfers.     Database table: Payments
+    ///     Database model for payments. Includes expenses, income and transfers.     Database table: Payments
     /// </summary>
     public class Payment
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private Payment()
-        {
-        }
+        { }
 
 #pragma warning disable S107 // Methods should not have too many parameters
         public Payment(DateTime date,
@@ -32,7 +31,7 @@ namespace MoneyFox.Domain.Entities
 
             ClearPayment();
 
-            if(recurringPayment != null)
+            if (recurringPayment != null)
             {
                 RecurringPayment = recurringPayment;
                 IsRecurring = true;
@@ -56,7 +55,7 @@ namespace MoneyFox.Domain.Entities
         public string Note
         {
             private set => note = value;
-            get { return note ?? string.Empty; }
+            get => note ?? string.Empty;
         }
 
         public bool IsRecurring { get; private set; }
@@ -65,10 +64,9 @@ namespace MoneyFox.Domain.Entities
 
         public DateTime CreationTime { get; private set; }
 
-        public virtual Category? Category {get;private set;}
+        public virtual Category? Category { get; private set; }
 
-        [Required]
-        public virtual Account ChargedAccount { get; private set; }
+        [Required] public virtual Account ChargedAccount { get; private set; }
 
         public virtual Account? TargetAccount { get; private set; }
 
@@ -125,13 +123,14 @@ namespace MoneyFox.Domain.Entities
             IsCleared = Date.Date <= DateTime.Today.Date;
             ChargedAccount.AddPaymentAmount(this);
 
-            if(Type == PaymentType.Transfer)
+            if (Type == PaymentType.Transfer)
             {
-                if(TargetAccount == null)
+                if (TargetAccount == null)
                 {
                     logManager.Warn($"Target Account on clearing was null for payment {Id}");
                     return;
                 }
+
                 TargetAccount.AddPaymentAmount(this);
             }
         }

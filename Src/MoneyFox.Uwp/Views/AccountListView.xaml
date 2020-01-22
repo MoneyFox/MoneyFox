@@ -48,8 +48,7 @@
 
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
                             Padding="{StaticResource SmallListItemPadding}"
-                            Background="{ThemeResource ListItemBrush}"
->
+                            Background="{ThemeResource ListItemBrush}">
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                    Text="{x:Bind Name}"

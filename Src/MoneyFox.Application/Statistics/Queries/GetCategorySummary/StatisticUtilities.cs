@@ -12,10 +12,10 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
         public static void RoundStatisticItems(List<CategoryOverviewItem> items)
         {
             items.ForEach(x =>
-            {
-                x.Value = Math.Round(x.Value, 2, MidpointRounding.AwayFromZero);
-                x.Percentage = Math.Round(x.Percentage, 2, MidpointRounding.AwayFromZero);
-            });
+                          {
+                              x.Value = Math.Round(x.Value, 2, MidpointRounding.AwayFromZero);
+                              x.Percentage = Math.Round(x.Percentage, 2, MidpointRounding.AwayFromZero);
+                          });
         }
     }
 }

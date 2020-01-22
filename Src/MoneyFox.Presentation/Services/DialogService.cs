@@ -1,6 +1,6 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms;
 using XF.Material.Forms.Resources;
@@ -13,10 +13,7 @@ namespace MoneyFox.Presentation.Services
     {
         public async Task ShowMessage(string title, string message)
         {
-            if(loadingDialog != null)
-            {
-                await HideLoadingDialogAsync();
-            }
+            if (loadingDialog != null) await HideLoadingDialogAsync();
 
             await MaterialDialog.Instance.AlertAsync(message, title, Strings.OkLabel, GetAlertDialogConfiguration());
         }
@@ -26,10 +23,7 @@ namespace MoneyFox.Presentation.Services
                                                         string positiveButtonText = null,
                                                         string negativeButtonText = null)
         {
-            if(loadingDialog != null)
-            {
-                await HideLoadingDialogAsync();
-            }
+            if (loadingDialog != null) await HideLoadingDialogAsync();
 
             bool? wasConfirmed = await MaterialDialog.Instance
                                                      .ConfirmAsync(message,
@@ -43,19 +37,16 @@ namespace MoneyFox.Presentation.Services
 
         private IMaterialModalPage loadingDialog;
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task ShowLoadingDialogAsync(string message = null)
         {
-            if(loadingDialog != null)
-            {
-                await HideLoadingDialogAsync();
-            }
+            if (loadingDialog != null) await HideLoadingDialogAsync();
 
             loadingDialog = await MaterialDialog.Instance
-                                                .LoadingDialogAsync(message: message ?? Strings.LoadingLabel, GetLoadingDialogConfiguration());
+                                                .LoadingDialogAsync(message ?? Strings.LoadingLabel, GetLoadingDialogConfiguration());
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task HideLoadingDialogAsync()
         {
             await loadingDialog.DismissAsync();
@@ -64,26 +55,27 @@ namespace MoneyFox.Presentation.Services
         private static MaterialAlertDialogConfiguration GetAlertDialogConfiguration()
         {
             return new MaterialAlertDialogConfiguration
-                   {
-                       BackgroundColor = (Color)Xamarin.Forms.Application.Current.Resources["DialogBackgroundColor"],
-                       TitleTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
-                       MessageTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
-                       TintColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
-                       CornerRadius = 8,
-                       ScrimColor = Color.FromHex("#232F34").MultiplyAlpha(0.32),
-                       ButtonAllCaps = false
-                   };
+            {
+                BackgroundColor = (Color) Xamarin.Forms.Application.Current.Resources["DialogBackgroundColor"],
+                TitleTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
+                MessageTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
+                TintColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
+                CornerRadius = 8,
+                ScrimColor = Color.FromHex("#232F34").MultiplyAlpha(0.32),
+                ButtonAllCaps = false
+            };
         }
+
         private static MaterialLoadingDialogConfiguration GetLoadingDialogConfiguration()
         {
             return new MaterialLoadingDialogConfiguration
-                   {
-                       BackgroundColor = (Color)Xamarin.Forms.Application.Current.Resources["DialogBackgroundColor"],
-                       MessageTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
-                       TintColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
-                       CornerRadius = 8,
-                       ScrimColor = Color.FromHex("#232F34").MultiplyAlpha(0.32)
-                   };
+            {
+                BackgroundColor = (Color) Xamarin.Forms.Application.Current.Resources["DialogBackgroundColor"],
+                MessageTextColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY).MultiplyAlpha(0.8),
+                TintColor = Material.GetResource<Color>(MaterialConstants.Color.ON_PRIMARY),
+                CornerRadius = 8,
+                ScrimColor = Color.FromHex("#232F34").MultiplyAlpha(0.32)
+            };
         }
     }
 }

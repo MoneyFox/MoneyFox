@@ -38,7 +38,9 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
                 {
                     if (request.PaymentToSave.RecurringPayment == null)
                     {
-                        var exception = new RecurringPaymentNullException($"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
+                        var exception =
+                            new
+                                RecurringPaymentNullException($"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
                         logger.Error(exception);
                         throw exception;
                     }

@@ -17,13 +17,13 @@ namespace MoneyFox.iOS
         public void Include(UIButton uiButton)
         {
             uiButton.TouchUpInside += (s, e) =>
-                uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
+                                          uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
         }
 
         public void Include(UIBarButtonItem barButton)
         {
             barButton.Clicked += (s, e) =>
-                barButton.Title = barButton.Title + "";
+                                     barButton.Title = barButton.Title + "";
         }
 
         public void Include(UITextField textField)
@@ -87,25 +87,25 @@ namespace MoneyFox.iOS
         public void Include(INotifyCollectionChanged changed)
         {
             changed.CollectionChanged += (s, e) =>
-            {
-                string test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
-            };
+                                         {
+                                             string test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
+                                         };
         }
 
         public void Include(ICommand command)
         {
             command.CanExecuteChanged += (s, e) =>
-            {
-                if (command.CanExecute(null)) command.Execute(null);
-            };
+                                         {
+                                             if (command.CanExecute(null)) command.Execute(null);
+                                         };
         }
 
         public void Include(INotifyPropertyChanged changed)
         {
             changed.PropertyChanged += (sender, e) =>
-            {
-                string test = e.PropertyName;
-            };
+                                       {
+                                           string test = e.PropertyName;
+                                       };
         }
     }
 }

@@ -1,13 +1,13 @@
-﻿using MediatR;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
 {
@@ -33,10 +33,7 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
                                                           .AreNotCleared()
                                                           .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth());
 
-                if(request.AccountId != 0)
-                {
-                    query = query.HasAccountId(request.AccountId);
-                }
+                if (request.AccountId != 0) query = query.HasAccountId(request.AccountId);
                 return await query.ToListAsync(cancellationToken);
             }
         }

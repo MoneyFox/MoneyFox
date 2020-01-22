@@ -21,7 +21,7 @@ namespace MoneyFox.Presentation.ViewModels
     {
         private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
-        private readonly Application.Common.Interfaces.IDialogService dialogService;
+        private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
         private readonly INavigationService navigationService;
 

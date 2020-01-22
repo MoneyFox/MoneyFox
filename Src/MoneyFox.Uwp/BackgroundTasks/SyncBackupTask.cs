@@ -1,12 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
-using NLog;
-using Logger = NLog.Logger;
 using CommonServiceLocator;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
-using System.Threading.Tasks;
+using NLog;
 
 namespace MoneyFox.Uwp.BackgroundTasks
 {
@@ -25,7 +24,7 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
             try
             {
-                var backupService =ServiceLocator.Current.GetInstance<IBackupService>();
+                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
             }
             catch (Exception ex)

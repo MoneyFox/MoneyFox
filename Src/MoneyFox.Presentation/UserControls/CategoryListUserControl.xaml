@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -15,26 +16,26 @@
         <designTime:DesignTimeCategoryListViewModel />
     </d:ContentView.BindingContext>
 
-  <ContentView.Resources>
-      <Style x:Key="DefaultSearchBarStyle" TargetType="SearchBar">
-          <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
-          <Setter Property="PlaceholderColor" Value="{DynamicResource DeemphasizedColor}" />
-      </Style>
-  </ContentView.Resources>
+    <ContentView.Resources>
+        <Style x:Key="DefaultSearchBarStyle" TargetType="SearchBar">
+            <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
+            <Setter Property="PlaceholderColor" Value="{DynamicResource DeemphasizedColor}" />
+        </Style>
+    </ContentView.Resources>
 
     <ContentView.Content>
-        <Grid VerticalOptions="FillAndExpand" >
+        <Grid VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
                 <RowDefinition Height="240*" />
             </Grid.RowDefinitions>
 
             <SearchBar x:Name="SearchBar"
-                    Style="{StaticResource DefaultSearchBarStyle}"
-                    BackgroundColor="{DynamicResource FrameHighlightColor}"
-                    VerticalOptions="Start"
-                    Placeholder="{x:Static resources:Strings.SearchLabel}"
-                    TextChanged="SearchTermChanged" />
+                       Style="{StaticResource DefaultSearchBarStyle}"
+                       BackgroundColor="{DynamicResource FrameHighlightColor}"
+                       VerticalOptions="Start"
+                       Placeholder="{x:Static resources:Strings.SearchLabel}"
+                       TextChanged="SearchTermChanged" />
 
             <ListView x:Name="CategoryList"
                       Grid.Row="1"
@@ -55,7 +56,7 @@
                                          Padding="0,18,0,6">
                                 <Label Text="{Binding Key}"
                                        VerticalOptions="CenterAndExpand"
-                                       Style="{StaticResource ListGroupHeaderStyle}"  />
+                                       Style="{StaticResource ListGroupHeaderStyle}" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -65,10 +66,11 @@
                     <DataTemplate x:DataType="viewModels:CategoryViewModel">
                         <ViewCell>
 
-                            <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.ItemClickCommand}"
-                                                   ClickCommandParameter="{Binding .}"
-                                                   Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                                   Style="{StaticResource ListCardStyle}">
+                            <material:MaterialCard
+                                ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.ItemClickCommand}"
+                                ClickCommandParameter="{Binding .}"
+                                Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                Style="{StaticResource ListCardStyle}">
                                 <StackLayout Orientation="Vertical"
                                              Padding="3"
                                              Spacing="{StaticResource DefaultSpacing}"
@@ -85,12 +87,12 @@
                                         <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
 
                                         <material:MaterialMenuButton Grid.Column="2"
-                                                                         ButtonType="Text"
-                                                                         Image="icon_more.png"
-                                                                         Style="{StaticResource MenuButtonStyle}"
-                                                                         Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
-                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
-                                                                         CommandParameter="{Binding .}" />
+                                                                     ButtonType="Text"
+                                                                     Image="icon_more.png"
+                                                                     Style="{StaticResource MenuButtonStyle}"
+                                                                     Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
+                                                                     Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
+                                                                     CommandParameter="{Binding .}" />
 
                                     </Grid>
 
@@ -110,12 +112,12 @@
                    Style="{StaticResource DeemphasizedLabelStyle}"
                    LineBreakMode="WordWrap"
                    IsVisible="{Binding IsCategoriesEmpty}"
-                   Text="{x:Static resources:Strings.NoCategoriesMessage}"/>
+                   Text="{x:Static resources:Strings.NoCategoriesMessage}" />
 
             <ImageButton
                 Grid.Row="1"
                 Clicked="AddCategoryClick"
-                Style="{StaticResource FabPrimary}" >
+                Style="{StaticResource FabPrimary}">
                 <ImageButton.Source>
                     <FontImageSource
                         Glyph="{StaticResource Add}"

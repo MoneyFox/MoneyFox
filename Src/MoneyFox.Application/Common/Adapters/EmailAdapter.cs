@@ -1,6 +1,6 @@
-﻿using NLog;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using NLog;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Application.Common.Adapters
@@ -45,7 +45,7 @@ namespace MoneyFox.Application.Common.Adapters
                     To = recipients
                 };
 
-                foreach(var path in filePaths)
+                foreach (string path in filePaths)
                 {
                     message.Attachments.Add(new EmailAttachment(path, "txt"));
                 }

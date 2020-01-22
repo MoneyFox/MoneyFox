@@ -9,8 +9,7 @@ namespace MoneyFox.Presentation.Tests.Collections
     [ExcludeFromCodeCoverage]
     [CollectionDefinition("AutoMapperCollection")]
     public class MapperCollection : ICollectionFixture<MapperCollectionFixture>
-    {
-    }
+    { }
 
     [ExcludeFromCodeCoverage]
     public class MapperCollectionFixture : IDisposable

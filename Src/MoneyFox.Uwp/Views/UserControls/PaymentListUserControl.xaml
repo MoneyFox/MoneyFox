@@ -57,7 +57,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:BalanceControl Grid.Row="0" 
+        <controls:BalanceControl Grid.Row="0"
                                  DataContext="{Binding BalanceViewModel}"
                                  Margin="{StaticResource MediumLeftRightMargin}" />
 

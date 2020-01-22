@@ -135,7 +135,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             selectedPayment = new PaymentViewModel();
 
-            MessengerInstance.Register<CategorySelectedMessage>(this, async (message) => await ReceiveMessage(message));
+            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessage(message));
         }
 
         /// <summary>
@@ -218,6 +218,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         private string amountString;
+
         public string AmountString
         {
             get => amountString;
@@ -293,9 +294,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
-            {
                 SelectedPayment.Amount = convertedValue;
-            }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
@@ -325,7 +324,8 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task ReceiveMessage(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
-            SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.SelectedCategoryId)));
+            SelectedPayment.Category =
+                mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.SelectedCategoryId)));
         }
 
         private void OpenSelectCategoryList()

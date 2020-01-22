@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.ViewModels.Interfaces;
@@ -33,6 +34,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public int AccountId { get; } = 13;
         public bool IsPaymentsEmpty { get; }
 
-        public AsyncCommand LoadDataCommand => throw new System.NotImplementedException();
+        public AsyncCommand LoadDataCommand => throw new NotImplementedException();
     }
 }

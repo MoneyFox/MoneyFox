@@ -1,8 +1,8 @@
-﻿using MoneyFox.Application.Common.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MoneyFox.Application.Common.Interfaces;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation
@@ -71,6 +71,7 @@ namespace MoneyFox.Presentation
                 }
             }
         }
+
         public void NavigateToModal(string pageKey)
         {
             NavigateToModal(pageKey, null);
@@ -87,7 +88,10 @@ namespace MoneyFox.Presentation
                     GetConstructor(pageKey, parameter, out constructor, out parameters);
 
                     var page = constructor.Invoke(parameters) as Page;
-                    Navigation.PushModalAsync(new NavigationPage(page) { BarBackgroundColor = (Color)Xamarin.Forms.Application.Current.Resources["PrimaryColor"] });
+                    Navigation.PushModalAsync(new NavigationPage(page)
+                    {
+                        BarBackgroundColor = (Color) Xamarin.Forms.Application.Current.Resources["PrimaryColor"]
+                    });
                 }
                 else
                 {
@@ -109,37 +113,42 @@ namespace MoneyFox.Presentation
                                   .FirstOrDefault(c => !c.GetParameters().Any());
 
                 parameters = new object[]
-                {
-                };
+                    { };
             }
             else
             {
                 constructor = type.GetTypeInfo()
                                   .DeclaredConstructors
                                   .FirstOrDefault(
-                                      c =>
-                                      {
-                                          ParameterInfo[] p = c.GetParameters();
+                                                  c =>
+                                                  {
+                                                      ParameterInfo[] p = c.GetParameters();
 
-                                          return p.Count() == 1
-                                                 && p[0].ParameterType == parameter.GetType();
-                                      });
+                                                      return p.Count() == 1
+                                                             && p[0].ParameterType == parameter.GetType();
+                                                  });
 
                 parameters = new[]
                 {
-                            parameter
-                        };
+                    parameter
+                };
             }
 
             if (constructor == null)
             {
                 throw new InvalidOperationException(
-                    "No suitable constructor found for page " + pageKey);
+                                                    "No suitable constructor found for page " + pageKey);
             }
         }
 
-        public void GoBack() => Navigation.PopAsync();
+        public void GoBack()
+        {
+            Navigation.PopAsync();
+        }
 
-        public void GoBackModal() => Navigation.PopModalAsync();
+        public void GoBackModal()
+        {
+            Navigation.PopModalAsync();
+        }
     }
 }

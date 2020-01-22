@@ -54,7 +54,15 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
 
             // Act
             List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
+                                                                                                                    new
+                                                                                                                        GetPaymentsForAccountIdQuery(account.Id,
+                                                                                                                                                     DateTime
+                                                                                                                                                        .Now
+                                                                                                                                                        .AddDays(-1),
+                                                                                                                                                     DateTime
+                                                                                                                                                        .Now
+                                                                                                                                                        .AddDays(1)),
+                                                                                                                    default);
 
             // Assert
             result.First().Id.ShouldEqual(payment1.Id);
@@ -74,7 +82,15 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
 
             // Act
             List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
+                                                                                                                    new
+                                                                                                                        GetPaymentsForAccountIdQuery(account.Id,
+                                                                                                                                                     DateTime
+                                                                                                                                                        .Now
+                                                                                                                                                        .AddDays(-1),
+                                                                                                                                                     DateTime
+                                                                                                                                                        .Now
+                                                                                                                                                        .AddDays(1)),
+                                                                                                                    default);
 
             // Assert
             result.First().Id.ShouldEqual(payment2.Id);

@@ -1,11 +1,11 @@
-﻿using MediatR;
+﻿using System.Diagnostics.CodeAnalysis;
+using MediatR;
 using MoneyFox.Application.Common.ConverterLogic;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
-using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ConverterLogic
@@ -14,8 +14,8 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
     [Collection("MvxIocCollection")]
     public class PaymentAmountConverterLogicTests
     {
-        readonly Mock<IMediator> mediatorMock;
-        readonly Mock<INavigationService> navigationService;
+        private readonly Mock<IMediator> mediatorMock;
+        private readonly Mock<INavigationService> navigationService;
 
         public PaymentAmountConverterLogicTests()
         {
@@ -26,17 +26,19 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
         [Fact]
         public void Converter_Payment_NegativeAmountSign()
         {
-            PaymentAmountConverterLogic.GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) { Amount = 80, Type = PaymentType.Expense },
-                                                                 string.Empty)
-                                       .ShouldEqual($"- {80:C}");
+            PaymentAmountConverterLogic
+               .GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) {Amount = 80, Type = PaymentType.Expense},
+                                         string.Empty)
+               .ShouldEqual($"- {80:C}");
         }
 
         [Fact]
         public void Converter_Payment_PositiveAmountSign()
         {
-            PaymentAmountConverterLogic.GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) { Amount = 80, Type = PaymentType.Income },
-                                                                 string.Empty)
-                                       .ShouldEqual($"+ {80:C}");
+            PaymentAmountConverterLogic
+               .GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) {Amount = 80, Type = PaymentType.Income},
+                                         string.Empty)
+               .ShouldEqual($"+ {80:C}");
         }
 
         [Fact]
@@ -49,13 +51,13 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
             };
 
             PaymentAmountConverterLogic.GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object)
-                                                                 {
-                                                                     Amount = 80,
-                                                                     Type = PaymentType.Transfer,
-                                                                     ChargedAccountId = account.Id,
-                                                                     ChargedAccount = account,
-                                                                     CurrentAccountId = account.Id
-                                                                 }, string.Empty)
+                                        {
+                                            Amount = 80,
+                                            Type = PaymentType.Transfer,
+                                            ChargedAccountId = account.Id,
+                                            ChargedAccount = account,
+                                            CurrentAccountId = account.Id
+                                        }, string.Empty)
                                        .ShouldEqual($"- {80:C}");
         }
 
@@ -69,12 +71,12 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
             };
 
             PaymentAmountConverterLogic.GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object)
-                                                                 {
-                                                                     Amount = 80,
-                                                                     Type = PaymentType.Transfer,
-                                                                     ChargedAccount = new AccountViewModel(),
-                                                                     CurrentAccountId = account.Id
-                                                                 }, string.Empty)
+                                        {
+                                            Amount = 80,
+                                            Type = PaymentType.Transfer,
+                                            ChargedAccount = new AccountViewModel(),
+                                            CurrentAccountId = account.Id
+                                        }, string.Empty)
                                        .ShouldEqual($"+ {80:C}");
         }
     }

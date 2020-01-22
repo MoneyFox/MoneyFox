@@ -60,7 +60,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected INavigationService NavigationService { get; }
 
-        protected Application.Common.Interfaces.IDialogService DialogService { get; }
+        protected IDialogService DialogService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 

@@ -105,7 +105,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
-                        .ReturnsAsync(new List<Account> {new Account("dfasdf"), new Account("Foo") });
+                        .ReturnsAsync(new List<Account> {new Account("dfasdf"), new Account("Foo")});
 
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
@@ -180,14 +180,15 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        navigationServiceMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
-            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel {Name = "asdf"};
             addPaymentVm.AmountString = "-2";
 
             // Act
             await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage), Times.Once);
+            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
+                                     Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
@@ -210,14 +211,15 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        navigationServiceMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
-            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" }; 
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel {Name = "asdf"};
             addPaymentVm.AmountString = amountString;
 
             // Act
             await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage), Times.Never);
+            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
+                                     Times.Never);
         }
 
         [Fact]
@@ -235,7 +237,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        navigationServiceMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
-            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel{Name = "asdf"};
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel {Name = "asdf"};
 
             // Act
             await addPaymentVm.SaveCommand.ExecuteAsync();
@@ -265,7 +267,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        navigationServiceMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
-            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel {Name = "asdf"};
 
             // Act
             await addPaymentVm.SaveCommand.ExecuteAsync();
@@ -283,7 +285,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             mediatorMock.Setup(x => x.Send(It.IsAny<CreatePaymentCommand>(), default))
-                              .Callback(() => throw new Exception());
+                        .Callback(() => throw new Exception());
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
                         .ReturnsAsync(() => new Account("as"));
@@ -296,7 +298,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        navigationServiceMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
-            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel {Name = "asdf"};
 
             // Act
             await Assert.ThrowsAsync<Exception>(async () => await addPaymentVm.SaveCommand.ExecuteAsync());
@@ -327,7 +329,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        navigationServiceMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
-            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel {Name = "asdf"};
 
             // Act
             await Assert.ThrowsAsync<Exception>(async () => await addPaymentVm.SaveCommand.ExecuteAsync());
@@ -366,7 +368,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                        navigationServiceMock.Object);
 
             await addPaymentVm.InitializeCommand.ExecuteAsync();
-            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
+            addPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel {Name = "asdf"};
 
             // Act
             addPaymentVm.AmountString = amountString;

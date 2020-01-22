@@ -10,8 +10,7 @@ namespace MoneyFox.Domain.Entities
 #pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         private Account()
 #pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-        {
-        }
+        { }
 
         public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
@@ -24,8 +23,7 @@ namespace MoneyFox.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
-        [Required]
-        public string Name { get; private set; }
+        [Required] public string Name { get; private set; }
 
         public decimal CurrentBalance { get; private set; }
 
@@ -34,7 +32,7 @@ namespace MoneyFox.Domain.Entities
         public string Note
         {
             private set => note = value;
-            get { return note ?? string.Empty; }
+            get => note ?? string.Empty;
         }
 
         public bool IsOverdrawn { get; private set; }

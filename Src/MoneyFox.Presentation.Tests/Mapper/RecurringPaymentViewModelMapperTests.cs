@@ -25,7 +25,8 @@ namespace MoneyFox.Presentation.Tests.Mapper
         public void RecurringPaymentMappedToCorrectType()
         {
             // Arrange
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("asdf"));
+            var recurringPayment =
+                new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("asdf"));
 
             // Act
             var result = mapper.Map<RecurringPaymentViewModel>(recurringPayment);
@@ -38,7 +39,8 @@ namespace MoneyFox.Presentation.Tests.Mapper
         public void RecurringPaymentFieldsCorrectlyMapped()
         {
             // Arrange
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("asdf"), "asdf",
+            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily,
+                                                        new Account("asdf"), "asdf",
                                                         DateTime.Today, new Account("fasdf"), new Category("gfds"));
 
             // Act

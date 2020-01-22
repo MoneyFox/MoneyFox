@@ -41,7 +41,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected abstract Task Initialize();
 
-        protected Application.Common.Interfaces.IDialogService DialogService { get; }
+        protected IDialogService DialogService { get; }
         protected INavigationService NavigationService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -73,12 +73,13 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         private string amountString;
+
         public string AmountString
         {
             get => amountString;
             set
             {
-                if(amountString == value) return;
+                if (amountString == value) return;
                 amountString = value;
                 RaisePropertyChanged();
             }
@@ -93,9 +94,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
-            {
                 SelectedAccount.CurrentBalance = convertedValue;
-            }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");

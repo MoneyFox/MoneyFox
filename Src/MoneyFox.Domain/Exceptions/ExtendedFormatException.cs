@@ -11,8 +11,7 @@ namespace MoneyFox.Domain.Exceptions
     public class ExtendedFormatException : Exception
     {
         public ExtendedFormatException()
-        {
-        }
+        { }
 
         /// <summary>
         ///     Creates an Format Exception and will add additional information about your culture.
@@ -20,8 +19,7 @@ namespace MoneyFox.Domain.Exceptions
         /// <param name="message">Exception message to show to the user.</param>
         public ExtendedFormatException(string message) :
             base(GetMessageWithRegionInfo(message, string.Empty))
-        {
-        }
+        { }
 
         /// <summary>
         ///     Creates an Format Exception and will add additional information about your culture.
@@ -30,16 +28,13 @@ namespace MoneyFox.Domain.Exceptions
         /// <param name="textToParse">The text the system couldn't parse.</param>
         public ExtendedFormatException(Exception exception, string textToParse)
             : base(GetMessageWithRegionInfo(exception?.Message ?? "", textToParse), exception)
-        {
-        }
+        { }
 
         public ExtendedFormatException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        { }
 
         protected ExtendedFormatException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        { }
 
         private static string GetMessageWithRegionInfo(string message, string textToParse)
         {

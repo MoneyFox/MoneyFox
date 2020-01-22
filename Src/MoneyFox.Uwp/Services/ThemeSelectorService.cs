@@ -1,11 +1,11 @@
-﻿using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.Facades;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
+using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Presentation;
 
 namespace MoneyFox.Uwp.Services
@@ -34,9 +34,11 @@ namespace MoneyFox.Uwp.Services
             foreach (CoreApplicationView view in CoreApplication.Views)
             {
                 await view.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                {
-                    if (Window.Current.Content is FrameworkElement frameworkElement) frameworkElement.RequestedTheme = Theme;
-                });
+                                                                              {
+                                                                                  if (Window.Current.Content is FrameworkElement
+                                                                                      frameworkElement)
+                                                                                      frameworkElement.RequestedTheme = Theme;
+                                                                              });
             }
         }
 

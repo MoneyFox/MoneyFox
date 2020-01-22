@@ -7,7 +7,7 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              Visual="Material"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}" >
+             BackgroundColor="{DynamicResource WindowBackgroundColor}">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeRegionalSettingsViewModel />
@@ -25,7 +25,7 @@
             <Picker Style="{StaticResource DefaultPickerStyle}"
                     ItemsSource="{Binding AvailableCultures}"
                     SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"
-                    ItemDisplayBinding="{Binding DisplayName}"/>
+                    ItemDisplayBinding="{Binding DisplayName}" />
         </StackLayout>
     </ContentPage.Content>
 

@@ -1,6 +1,6 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Messages;
-using System;
 
 namespace MoneyFox.Presentation.ViewModels
 {

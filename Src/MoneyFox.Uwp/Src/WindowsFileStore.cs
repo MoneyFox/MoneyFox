@@ -1,9 +1,9 @@
-﻿using MoneyFox.Application.Common.FileStore;
-using System;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using MoneyFox.Application.Common.FileStore;
 using NLog;
 
 namespace MoneyFox.Uwp.Src
@@ -106,7 +106,9 @@ namespace MoneyFox.Uwp.Src
             string directory = Path.GetDirectoryName(fullPath);
             string fileName = Path.GetFileName(fullPath);
             StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
-            StorageFile storageFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting).AsTask().ConfigureAwait(false);
+            StorageFile storageFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting)
+                                                         .AsTask()
+                                                         .ConfigureAwait(false);
 
             return storageFile;
         }

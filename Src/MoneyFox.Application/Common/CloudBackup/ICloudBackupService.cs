@@ -1,9 +1,10 @@
+#pragma warning disable S1128 // Unused "using" should be removed
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-#pragma warning disable S1128 // Unused "using" should be removed
 using MoneyFox.Domain.Exceptions;
+
 #pragma warning restore S1128 // Unused "using" should be removed
 
 namespace MoneyFox.Application.Common.CloudBackup

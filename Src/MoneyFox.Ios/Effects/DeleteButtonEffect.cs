@@ -21,7 +21,7 @@ namespace MoneyFox.iOS.Effects
         {
             try
             {
-                var button = (UIButton)Control;
+                var button = (UIButton) Control;
                 button.Layer.BorderWidth = 2;
                 button.Layer.BackgroundColor = UIColor.Red.CGColor;
                 button.Layer.BorderColor = UIColor.White.CGColor;
@@ -37,7 +37,6 @@ namespace MoneyFox.iOS.Effects
         }
 
         protected override void OnDetached()
-        {
-        }
+        { }
     }
 }

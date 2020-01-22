@@ -41,13 +41,9 @@ namespace MoneyFox.Application.Common.FileStore
                 if (File.Exists(fullTo))
                 {
                     if (overwrite)
-                    {
                         File.Delete(fullTo);
-                    }
                     else
-                    {
                         return false;
-                    }
                 }
 
                 File.Move(fullFrom, fullTo);
