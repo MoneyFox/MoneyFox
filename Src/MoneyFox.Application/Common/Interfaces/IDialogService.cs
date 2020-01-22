@@ -9,7 +9,7 @@ namespace MoneyFox.Application.Common.Interfaces
         /// </summary>
         /// <param name="title">Title to display.</param>
         /// <param name="message">Text to display.</param>
-        Task ShowMessage(string title, string message);
+        Task ShowMessageAsync(string title, string message);
 
         /// <summary>
         ///     Show a dialog with two buttons with customizable Texts. Returns the answer.

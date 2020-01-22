@@ -126,7 +126,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             await editPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
+            dialogServiceMock.Verify(x => x.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
                                      Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
@@ -153,7 +153,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             await editPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
+            dialogServiceMock.Verify(x => x.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
                                      Times.Never);
         }
     }

@@ -89,7 +89,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
-                await DialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
 
@@ -98,7 +98,7 @@ namespace MoneyFox.Presentation.ViewModels
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
-                await DialogService.ShowMessage(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
+                await DialogService.ShowMessageAsync(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
                 return;
             }
 

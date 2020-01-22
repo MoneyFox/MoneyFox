@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp.Src
         /// </summary>
         /// <param name="title">Title to display.</param>
         /// <param name="message">Text to display.</param>
-        public async Task ShowMessage(string title, string message)
+        public async Task ShowMessageAsync(string title, string message)
         {
             await HideLoadingDialogAsync();
 

@@ -11,7 +11,7 @@ namespace MoneyFox.Presentation.Services
 {
     public class DialogService : IDialogService
     {
-        public async Task ShowMessage(string title, string message)
+        public async Task ShowMessageAsync(string title, string message)
         {
             if (loadingDialog != null) await HideLoadingDialogAsync();
 

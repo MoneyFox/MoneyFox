@@ -159,7 +159,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            dialogServiceMock.Verify(x => x.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage), Times.Once);
+            dialogServiceMock.Verify(x => x.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage), Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
@@ -187,7 +187,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
+            dialogServiceMock.Verify(x => x.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
                                      Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
@@ -218,7 +218,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             await addPaymentVm.SaveCommand.ExecuteAsync();
 
             // Assert
-            dialogServiceMock.Verify(x => x.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
+            dialogServiceMock.Verify(x => x.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
                                      Times.Never);
         }
 
@@ -244,7 +244,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Assert
             mediatorMock.Verify(x => x.Send(It.IsAny<CreatePaymentCommand>(), default), Times.Once);
-            dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            dialogServiceMock.Verify(x => x.ShowMessageAsync(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
@@ -274,7 +274,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             // Assert
             mediatorMock.Verify(x => x.Send(It.IsAny<CreatePaymentCommand>(), default), Times.Once);
-            dialogServiceMock.Verify(x => x.ShowMessage(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
+            dialogServiceMock.Verify(x => x.ShowMessageAsync(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);

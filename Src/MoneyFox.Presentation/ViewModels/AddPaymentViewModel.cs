@@ -84,7 +84,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch (InvalidEndDateException)
             {
-                await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+                await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
             }
             catch (Exception ex)
             {

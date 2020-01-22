@@ -289,7 +289,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (SelectedPayment.ChargedAccount == null)
             {
-                await dialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
+                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
                 return;
             }
 
@@ -298,13 +298,13 @@ namespace MoneyFox.Presentation.ViewModels
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
-                await dialogService.ShowMessage(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
+                await dialogService.ShowMessageAsync(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
                 return;
             }
 
             if (SelectedPayment.Amount < 0)
             {
-                await dialogService.ShowMessage(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage);
+                await dialogService.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage);
                 return;
             }
 

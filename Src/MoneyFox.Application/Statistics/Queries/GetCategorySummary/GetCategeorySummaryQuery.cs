@@ -73,7 +73,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 {
                     Label = category.Name,
                     Value = payments.Where(x => x.Category != null)
-                                    .Where(x => x.Category.Id == category.Id)
+                                    .Where(x => x.Category!.Id == category.Id)
                                     .Where(x => x.Type != PaymentType.Transfer)
                                     .Sum(x => x.Type == PaymentType.Expense
                                              ? -x.Amount
@@ -117,7 +117,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             {
                 List<Payment> payments = paymentLastTwelveMonths
                                         .Where(x => x.Category != null)
-                                        .Where(x => x.Category.Id == id)
+                                        .Where(x => x.Category!.Id == id)
                                         .OrderByDescending(x => x.Date)
                                         .ToList();
 

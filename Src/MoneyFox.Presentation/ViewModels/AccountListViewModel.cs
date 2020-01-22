@@ -140,7 +140,7 @@ namespace MoneyFox.Presentation.ViewModels
             catch (Exception ex)
             {
                 logManager.Error(ex);
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
+                await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.ToString());
             }
         }
 
