@@ -19,7 +19,8 @@
     <Color x:Key="BarSelectedItemColor">White</Color>
     <Color x:Key="FrameHighlightColor">#2d2d30</Color>
     <Color x:Key="ButtonBackgroundColor">#333333</Color>
-    <Color x:Key="AppBarColor">#4C4B4B</Color>
+    <Color x:Key="AppBarColor">#314a9b</Color>
+    <Color x:Key="AppBarFontColorColor">White</Color>
 
     <!-- Font Colors -->
     <Color x:Key="InvertedPrimaryFontColor">Black</Color>
