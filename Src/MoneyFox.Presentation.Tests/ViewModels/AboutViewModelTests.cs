@@ -1,12 +1,12 @@
 ﻿using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Presentation.ViewModels;
-using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using MoneyFox.Presentation.ViewModels;
+using Moq;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels

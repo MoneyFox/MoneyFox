@@ -19,7 +19,7 @@ namespace MoneyFox.Presentation.Converter
         /// <returns>The converted string.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return ((DateTime) value).ToString("D", CultureInfo.CurrentUICulture);
+            return ((DateTime) value).ToString("D", CultureHelper.CurrentCulture);
         }
 
         /// <summary>

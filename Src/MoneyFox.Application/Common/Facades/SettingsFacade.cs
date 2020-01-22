@@ -44,6 +44,8 @@ namespace MoneyFox.Application.Common.Facades
         ///     Returns the time stamp when the last job to create recurring payments was executed.
         /// </summary>
         DateTime LastExecutionTimeStampRecurringPayments { get; set; }
+
+        string DefaultCulture { get; set; }
     }
 
     public class SettingsFacade : ISettingsFacade
@@ -65,6 +67,9 @@ namespace MoneyFox.Application.Common.Facades
 
         private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME = "LastExecutionTimeStampRecurringPayments";
         private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT = "";
+
+        private const string DEFAULT_CULTURE_KEYNAME = "DefaultCulture";
+        private readonly string DEFAULT_CULTURE_KEYDEFAULT = CultureInfo.CurrentCulture.Name;
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
@@ -163,6 +168,12 @@ namespace MoneyFox.Application.Common.Facades
                 return DateTime.MinValue;
             }
             set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        public string DefaultCulture
+        {
+            get => settingsAdapter.GetValue(DEFAULT_CULTURE_KEYNAME, DEFAULT_CULTURE_KEYDEFAULT);
+            set => settingsAdapter.AddOrUpdate(DEFAULT_CULTURE_KEYNAME, value);
         }
     }
 }

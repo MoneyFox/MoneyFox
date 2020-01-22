@@ -4,11 +4,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
-             xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
              xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-             xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
              x:Name="PaymentControl"
              xmlns:resources="using:MoneyFox.Application.Resources"
+             xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
+             xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
@@ -57,7 +57,8 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <controls:BalanceControl Grid.Row="0" DataContext="{Binding BalanceViewModel}"
+        <controls:BalanceControl Grid.Row="0" 
+                                 DataContext="{Binding BalanceViewModel}"
                                  Margin="{StaticResource MediumLeftRightMargin}" />
 
         <SemanticZoom Grid.Row="1">

@@ -736,6 +736,24 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default Region.
+        /// </summary>
+        public static string DefaultRegionHeader {
+            get {
+                return ResourceManager.GetString("DefaultRegionHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This region will be used as a default for your application..
+        /// </summary>
+        public static string DefaultRegionText {
+            get {
+                return ResourceManager.GetString("DefaultRegionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you really want to delete this Account?.
         /// </summary>
         public static string DeleteAccountConfirmationMessage {
@@ -1828,6 +1846,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set region settings for your application..
+        /// </summary>
+        public static string RegionalSettingsDescriptionText {
+            get {
+                return ResourceManager.GetString("RegionalSettingsDescriptionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restoring backup was canceled..
         /// </summary>
         public static string RestoreBackupCanceledMessage {
@@ -2005,6 +2032,15 @@ namespace MoneyFox.Application.Resources {
         public static string SettingsPersonalizationLabel {
             get {
                 return ResourceManager.GetString("SettingsPersonalizationLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regional Settings.
+        /// </summary>
+        public static string SettingsRegionalLabel {
+            get {
+                return ResourceManager.GetString("SettingsRegionalLabel", resourceCulture);
             }
         }
         

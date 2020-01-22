@@ -3,13 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:resources="using:MoneyFox.Application.Resources"
       xmlns:helpers="using:MoneyFox.Uwp.Helpers"
+      xmlns:userControls="using:MoneyFox.Uwp.Views.Settings"
       mc:Ignorable="d"
       DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
 
@@ -85,8 +84,12 @@
 
                         </StackPanel>
 
+                        <!-- Regional Settings -->
+                        <userControls:RegionalSettingsUserControl Margin="{StaticResource LargeTopMargin}"
+                                                                  DataContext="{Binding RegionalSettingsViewModel}" />
+
                         <!-- Personalizations -->
-                        <StackPanel DataContext="{Binding PersonalizationViewModel}" Margin="0,24,0,0">
+                        <StackPanel DataContext="{Binding PersonalizationViewModel}" Margin="{StaticResource LargeTopMargin}">
                             <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                        Text="{x:Bind resources:Strings.PersonalizationTitle}"
                                        TextWrapping="WrapWholeWords" />

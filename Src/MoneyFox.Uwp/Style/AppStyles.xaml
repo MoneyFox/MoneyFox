@@ -20,7 +20,7 @@
 
     <SolidColorBrush x:Key="SplitViewToggleButtonForeground"
                      Color="{StaticResource ColorHamburgerButton}" />
-    
+
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
                      Color="{StaticResource ColorCustomBackground}" />
 

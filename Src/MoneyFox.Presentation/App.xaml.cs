@@ -37,14 +37,19 @@ namespace MoneyFox.Presentation
             NavigationService.Configure(ViewModelLocator.EditAccount, typeof(EditAccountPage));
             NavigationService.Configure(ViewModelLocator.EditCategory, typeof(EditCategoryPage));
             NavigationService.Configure(ViewModelLocator.EditPayment, typeof(EditPaymentPage));
-            NavigationService.Configure(ViewModelLocator.SettingsBackgroundJob, typeof(BackgroundJobSettingsPage));
-            NavigationService.Configure(ViewModelLocator.SettingsPersonalization, typeof(SettingsPersonalizationPage));
+            NavigationService.Configure(ViewModelLocator.Backup, typeof(BackupPage));
+
+            // Statistics
             NavigationService.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorPage));
             NavigationService.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowPage));
             NavigationService.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingPage));
             NavigationService.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryPage));
+
+            // Settings
+            NavigationService.Configure(ViewModelLocator.SettingsRegional, typeof(SettingsRegionalPage));
+            NavigationService.Configure(ViewModelLocator.SettingsBackgroundJob, typeof(BackgroundJobSettingsPage));
+            NavigationService.Configure(ViewModelLocator.SettingsPersonalization, typeof(SettingsPersonalizationPage));
             NavigationService.Configure(ViewModelLocator.About, typeof(AboutPage));
-            NavigationService.Configure(ViewModelLocator.Backup, typeof(BackupPage));
         }
     }
 }

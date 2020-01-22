@@ -4,6 +4,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Presentation.ViewModels.Settings;
 using MoneyFox.Presentation.ViewModels.Statistic;
 
 namespace MoneyFox.Presentation
@@ -34,14 +35,23 @@ namespace MoneyFox.Presentation
         public static string EditCategory => nameof(EditCategoryViewModel);
         public static string EditPayment => nameof(EditPaymentViewModel);
         public static string Backup => nameof(BackupViewModel);
-        public static string Settings => nameof(SettingsViewModel);
-        public static string SettingsBackgroundJob => nameof(SettingsBackgroundJobViewModel);
-        public static string SettingsPersonalization => nameof(SettingsPersonalizationViewModel);
+
+        //*****************
+        //  Statistics
+        //*****************
         public static string StatisticSelector => nameof(StatisticSelectorViewModel);
         public static string StatisticCashFlow => nameof(StatisticCashFlowViewModel);
         public static string StatisticCategorySpreading => nameof(StatisticCategorySpreadingViewModel);
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
+
+        //*****************
+        //  Settings
+        //*****************
         public static string About => nameof(AboutViewModel);
+        public static string SettingsRegional => nameof(RegionalSettingsViewModel);
+        public static string Settings => nameof(SettingsViewModel);
+        public static string SettingsBackgroundJob => nameof(SettingsBackgroundJobViewModel);
+        public static string SettingsPersonalization => nameof(SettingsPersonalizationViewModel);
 
         public static ShellViewModel ShellVm => ServiceLocator.Current.GetInstance<ShellViewModel>();
         public static IAccountListViewModel AccountListVm => ServiceLocator.Current.GetInstance<IAccountListViewModel>();
@@ -55,18 +65,28 @@ namespace MoneyFox.Presentation
         public static EditCategoryViewModel EditCategoryVm => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
         public static EditPaymentViewModel EditPaymentVm => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
         public static BackupViewModel BackupVm => ServiceLocator.Current.GetInstance<BackupViewModel>();
+
+        //*****************
+        //  Common
+        //*****************
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
+        public static SelectFilterDialogViewModel SelectFilterDialogVm => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
+
+        //*****************
+        //  Statistics
+        //*****************
+        public static StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
+        public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+
+        //*****************
+        //  Settings
+        //*****************
         public static SettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<SettingsViewModel>();
         public static SettingsBackgroundJobViewModel SettingsBackgroundVm => ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
         public static SettingsPersonalizationViewModel SettingsPersonalizationVm => ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
-        public static StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
-        public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
-
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm =>
-            ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
-
-        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
         public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
-        public static SelectFilterDialogViewModel SelectFilterDialogVm => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
+        public static RegionalSettingsViewModel RegionalSettingsVm => ServiceLocator.Current.GetInstance<RegionalSettingsViewModel>();
     }
 }

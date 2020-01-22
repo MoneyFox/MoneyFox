@@ -1,0 +1,32 @@
+﻿<ContentPage x:Class="MoneyFox.Presentation.Views.SettingsRegionalPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             mc:Ignorable="d"
+             Visual="Material"
+             BackgroundColor="{DynamicResource WindowBackgroundColor}" >
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeRegionalSettingsViewModel />
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Padding="6">
+            <Label Style="{StaticResource DeemphasizedLabelStyle}"
+                   Text="{x:Static resources:Strings.DefaultRegionText}" />
+
+            <Label HorizontalOptions="StartAndExpand"
+                   Style="{StaticResource DefaultTextStyle}"
+                   Text="{x:Static resources:Strings.DefaultRegionHeader}" />
+
+            <Picker Style="{StaticResource DefaultPickerStyle}"
+                    ItemsSource="{Binding AvailableCultures}"
+                    SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"
+                    ItemDisplayBinding="{Binding DisplayName}"/>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

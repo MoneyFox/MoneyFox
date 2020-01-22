@@ -1,4 +1,4 @@
-﻿<Page x:Class="MoneyFox.Uwp.Views.StatisticSelectorView"
+﻿<Page x:Class="MoneyFox.Uwp.Views.Statistics.StatisticSelectorView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
