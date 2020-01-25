@@ -14,7 +14,8 @@
     x:Class="MoneyFox.Presentation.Views.AppShell">
 
     <pages:AccountListPage Title="{x:Static resources:Strings.AccountsTitle}" IconImageSource="ic_accounts_black.png" />
-    <pages:StatisticSelectorPage Title="{x:Static resources:Strings.StatisticsTitle}" IconImageSource="ic_statistics_black.png" />
+    <pages:StatisticSelectorPage Title="{x:Static resources:Strings.StatisticsTitle}"
+                                 IconImageSource="ic_statistics_black.png" />
     <pages:SettingsPage Title="{x:Static resources:Strings.SettingsTitle}" IconImageSource="ic_settings_black.png" />
 
 </TabbedPage>

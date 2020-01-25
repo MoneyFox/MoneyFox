@@ -7,6 +7,12 @@ namespace MoneyFox.Application.Common
 {
     public static class RecurringPaymentHelper
     {
+        private const int WEEKLY_RECURRENCE_DAYS = 7;
+        private const int BIWEEKLY_RECURRENCE_DAYS = 14;
+        private const int QUARTERLY_RECURRENCE_DAYS = 93;
+        private const int BIANNUALLY_RECURRENCE_DAYS = 184;
+        private const int BIMONTHLY_RECURRENCE_MONTHS = -2;
+
         /// <summary>
         ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
         /// </summary>
@@ -31,18 +37,18 @@ namespace MoneyFox.Application.Common
                 case PaymentRecurrence.Weekly:
                     TimeSpan daysWeekly = DateTime.Now - payment.Date;
 
-                    return daysWeekly.Days >= 7;
+                    return daysWeekly.Days >= WEEKLY_RECURRENCE_DAYS;
 
                 case PaymentRecurrence.Biweekly:
                     TimeSpan daysBiweekly = DateTime.Now - payment.Date;
 
-                    return daysBiweekly.Days >= 14;
+                    return daysBiweekly.Days >= BIWEEKLY_RECURRENCE_DAYS;
 
                 case PaymentRecurrence.Monthly:
                     return DateTime.Now.Month != payment.Date.Month;
 
                 case PaymentRecurrence.Bimonthly:
-                    DateTime date = DateTime.Now.AddMonths(-2);
+                    DateTime date = DateTime.Now.AddMonths(BIMONTHLY_RECURRENCE_MONTHS);
 
                     return payment.Date.Month <= date.Month && payment.Date.Year == date.Year;
 
@@ -65,15 +71,14 @@ namespace MoneyFox.Application.Common
         private static bool CheckQuarterly(Payment payment)
         {
             TimeSpan dateDiff = DateTime.Now - payment.Date;
-
-            return dateDiff.TotalDays >= 93;
+            return dateDiff.TotalDays >= QUARTERLY_RECURRENCE_DAYS;
         }
 
         private static bool CheckBiannually(Payment payment)
         {
             TimeSpan dateDiff = DateTime.Now - payment.Date;
 
-            return dateDiff.TotalDays >= 184;
+            return dateDiff.TotalDays >= BIANNUALLY_RECURRENCE_DAYS;
         }
 
         public static DateTime GetPaymentDateFromRecurring(RecurringPayment recurringPayment)

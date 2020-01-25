@@ -12,47 +12,47 @@ namespace MoneyFox.Persistence.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<DateTime>(
-                "CreationTime",
-                "RecurringPayments",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                                                 "CreationTime",
+                                                 "RecurringPayments",
+                                                 nullable: false,
+                                                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                "CreationTime",
-                "Payments",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                                                 "CreationTime",
+                                                 "Payments",
+                                                 nullable: false,
+                                                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                "CreationTime",
-                "Categories",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                                                 "CreationTime",
+                                                 "Categories",
+                                                 nullable: false,
+                                                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
             migrationBuilder.AddColumn<DateTime>(
-                "CreationTime",
-                "Accounts",
-                nullable: false,
-                defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
+                                                 "CreationTime",
+                                                 "Accounts",
+                                                 nullable: false,
+                                                 defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                "CreationTime",
-                "RecurringPayments");
+                                        "CreationTime",
+                                        "RecurringPayments");
 
             migrationBuilder.DropColumn(
-                "CreationTime",
-                "Payments");
+                                        "CreationTime",
+                                        "Payments");
 
             migrationBuilder.DropColumn(
-                "CreationTime",
-                "Categories");
+                                        "CreationTime",
+                                        "Categories");
 
             migrationBuilder.DropColumn(
-                "CreationTime",
-                "Accounts");
+                                        "CreationTime",
+                                        "Accounts");
         }
     }
 }

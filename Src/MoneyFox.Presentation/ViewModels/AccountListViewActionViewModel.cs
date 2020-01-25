@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Diagnostics.CodeAnalysis;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
@@ -42,19 +43,22 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking", Justification = "Have to use Result")]
+        [SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking",
+                         Justification = "Have to use Result")]
         public bool IsTransferAvailable => mediator.Send(new GetAccountCountQuery()).Result >= TRANSFER_MINIMUM_ACCOUNT_COUNT;
 
         /// <summary>
         ///     Indicates if the button to add new income should be enabled.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking", Justification = "Have to use Result")]
+        [SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking",
+                         Justification = "Have to use Result")]
         public bool IsAddIncomeAvailable => mediator.Send(new GetAccountCountQuery()).Result > 0;
 
         /// <summary>
         ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking", Justification = "Have to use Result")]
+        [SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking",
+                         Justification = "Have to use Result")]
         public bool IsAddExpenseAvailable => mediator.Send(new GetAccountCountQuery()).Result > 0;
     }
 }

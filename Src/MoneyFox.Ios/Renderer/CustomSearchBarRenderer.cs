@@ -21,7 +21,7 @@ namespace MoneyFox.iOS.Renderer
             {
                 UISearchBar searchBar = Control;
 
-                var color = (Color)Xamarin.Forms.Application.Current.Resources["FrameHighlightColor"];
+                var color = (Color) Xamarin.Forms.Application.Current.Resources["FrameHighlightColor"];
                 searchBar.BackgroundColor = color.ToUIColor();
                 searchBar.BarTintColor = color.ToUIColor();
             }

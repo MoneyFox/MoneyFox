@@ -4,12 +4,12 @@ namespace MoneyFox.Presentation.Views
 {
     public partial class StatisticSelectorPage
     {
-		public StatisticSelectorPage ()
-		{
-			InitializeComponent();
+        public StatisticSelectorPage()
+        {
+            InitializeComponent();
             BindingContext = ViewModelLocator.StatisticSelectorVm;
 
-		    Title = Strings.StatisticsTitle;
-		}
+            Title = Strings.StatisticsTitle;
+        }
     }
 }

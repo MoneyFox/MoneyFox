@@ -23,6 +23,5 @@ namespace MoneyFox.Application.Common.Interfaces
         EntityEntry Entry(object entity);
 
         void Dispose();
-
     }
 }

@@ -47,8 +47,11 @@ namespace MoneyFox.Presentation.Groups
         /// <param name="sort">Will sort the data if true.</param>
         /// <param name="itemClickCommand">The command to execute on a click.</param>
         /// <returns>An items source for a LongListSelector</returns>
-        public static List<DateListGroupCollection<T>> CreateGroups(IEnumerable<T> items, GetKeyDelegate getKey,
-                                                                    GetSortKeyDelegate getSortKey, bool sort = true, Command<T> itemClickCommand = null)
+        public static List<DateListGroupCollection<T>> CreateGroups(IEnumerable<T> items,
+                                                                    GetKeyDelegate getKey,
+                                                                    GetSortKeyDelegate getSortKey,
+                                                                    bool sort = true,
+                                                                    Command<T> itemClickCommand = null)
         {
             ThrowIfNull(items);
 

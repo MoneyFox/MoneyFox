@@ -1,4 +1,10 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
@@ -13,11 +19,6 @@ using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using NLog;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
@@ -77,7 +78,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public bool HasNoAccounts => !Accounts.Any();
-        public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
+        public List<string> MenuActions => new List<string> {Strings.EditLabel, Strings.DeleteLabel};
 
         public AsyncCommand LoadDataCommand => new AsyncCommand(LoadAsync);
 
@@ -91,7 +92,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as event handler.>")]
+        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as event handler.>")]
         private async void MenuSelected(MaterialMenuResult menuResult)
         {
             var accountViewModel = menuResult.Parameter as AccountViewModel;
@@ -139,7 +140,7 @@ namespace MoneyFox.Presentation.ViewModels
             catch (Exception ex)
             {
                 logManager.Error(ex);
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.ToString());
+                await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.ToString());
             }
         }
 

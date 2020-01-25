@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Microsoft.Graph;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
-using MoneyFox.Domain.Exceptions;
-using NLog;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Domain.Exceptions;
+using NLog;
 
 namespace MoneyFox.Application.Common.CloudBackup
 {
@@ -96,10 +96,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task LogoutAsync()
         {
-            if(!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
+            if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
             await cloudBackupService.LogoutAsync();
 
@@ -119,10 +116,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task<DateTime> GetBackupDateAsync()
         {
-            if(!connectivity.IsConnected)
-            {
-                return DateTime.MinValue;
-            }
+            if (!connectivity.IsConnected) return DateTime.MinValue;
 
             DateTime date = await cloudBackupService.GetBackupDateAsync();
             return date.ToLocalTime();
@@ -130,15 +124,9 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
-            {
-                return;
-            }
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled) return;
 
-            if (!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
+            if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
             await DownloadBackupAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
@@ -155,7 +143,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
                 using (Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
-                                                                                  DatabaseConstants.BACKUP_NAME))
+                                                                                   DatabaseConstants.BACKUP_NAME))
                 {
                     fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
                 }
@@ -164,20 +152,14 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                      DatabasePathHelper.GetDbPath(),
                                                      true);
 
-                if(!moveSucceed)
-                {
-                    throw new BackupException("Error Moving downloaded backup file");
-                }
+                if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
                 contextAdapter.RecreateContext();
             }
         }
 
         public async Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
-            {
-                return;
-            }
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled) return;
 
             if (!settingsFacade.IsLoggedInToBackupService) await LoginAsync();
 
@@ -187,23 +169,20 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         private async Task EnqueueBackupTaskAsync(int attempts = 0)
         {
-            if(!connectivity.IsConnected)
-            {
-                throw new NetworkConnectionException();
-            }
+            if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
             await semaphoreSlim.WaitAsync(ServiceConstants.BACKUP_OPERATION_TIMEOUT,
                                           cancellationTokenSource.Token);
             try
             {
                 if (await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabasePathHelper.GetDbPath())))
-                {
                     semaphoreSlim.Release();
-                }
                 else
-                {
                     cancellationTokenSource.Cancel();
-                }
+            }
+            catch (FileNotFoundException ex)
+            {
+                logManager.Error(ex, "Backup failed because database was not found.");
             }
             catch (OperationCanceledException ex)
             {

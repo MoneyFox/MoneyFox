@@ -11,7 +11,7 @@ namespace MoneyFox.iOS
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
+            builder.Register(c => new TokenObject {CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]});
 
             builder.RegisterModule<PresentationModule>();
             builder.RegisterModule<InfrastructureModule>();
@@ -20,7 +20,8 @@ namespace MoneyFox.iOS
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<NavigationService>().AsImplementedInterfaces();
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
-            builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))).AsImplementedInterfaces();
+            builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
+                   .AsImplementedInterfaces();
         }
     }
 }

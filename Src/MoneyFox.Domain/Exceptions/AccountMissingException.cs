@@ -10,8 +10,7 @@ namespace MoneyFox.Domain.Exceptions
         ///     Creates an AccountMissingException Exception
         /// </summary>
         public AccountMissingException()
-        {
-        }
+        { }
 
         /// <summary>
         ///     Creates an AccountMissingException Exception
@@ -19,8 +18,7 @@ namespace MoneyFox.Domain.Exceptions
         /// <param name="message">Exception message to show to the user.</param>
         public AccountMissingException(string message)
             : base(message)
-        {
-        }
+        { }
 
         /// <summary>
         ///     Creates an AccountMissingException Exception
@@ -28,11 +26,9 @@ namespace MoneyFox.Domain.Exceptions
         /// <param name="message">Exception message to show to the user.</param>
         /// <param name="exception">Inner Exception of the backup exception.</param>
         public AccountMissingException(string message, Exception exception) : base(message, exception)
-        {
-        }
+        { }
 
         protected AccountMissingException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        { }
     }
 }

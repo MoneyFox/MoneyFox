@@ -1,4 +1,8 @@
-﻿using Autofac;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using System.Threading.Tasks;
+using Autofac;
 using CommonServiceLocator;
 using Foundation;
 using MediatR;
@@ -18,10 +22,6 @@ using NLog.Targets;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
 using UIKit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -47,7 +47,7 @@ namespace MoneyFox.iOS
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication uiApplication,
                                                NSDictionary launchOptions)
         {
@@ -145,8 +145,8 @@ namespace MoneyFox.iOS
             }
 
             completionHandler(successful
-                              ? UIBackgroundFetchResult.NewData
-                              : UIBackgroundFetchResult.Failed);
+                                  ? UIBackgroundFetchResult.NewData
+                                  : UIBackgroundFetchResult.Failed);
         }
 
         public override async void WillEnterForeground(UIApplication uiApplication)
@@ -215,7 +215,6 @@ namespace MoneyFox.iOS
                 await mediator.Send(new CreateRecurringPaymentsCommand());
 
                 logManager.Debug("RecurringPayment Job finished.");
-
             }
             catch (Exception ex)
             {

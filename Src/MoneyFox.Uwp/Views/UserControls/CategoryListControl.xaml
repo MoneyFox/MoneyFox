@@ -33,10 +33,10 @@
                 </FlyoutBase.AttachedFlyout>
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
                             Padding="{StaticResource SmallListItemPadding}"
-                            Background="{ThemeResource ListItemBrush}" >
+                            Background="{ThemeResource ListItemBrush}">
 
-                <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                           Text="{x:Bind Name}" />
+                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                               Text="{x:Bind Name}" />
                 </StackPanel>
             </StackPanel>
         </DataTemplate>

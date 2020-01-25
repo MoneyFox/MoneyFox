@@ -1,8 +1,8 @@
-﻿using MoneyFox.Application.Common.Constants;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
 using Windows.UI.StartScreen;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Resources;
 using NLog;
 
@@ -26,18 +26,18 @@ namespace MoneyFox.Uwp.Services
                 jumpList.Items.Clear();
                 jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
 
-                JumpListItem listItemAddIncome = JumpListItem.CreateWithArguments(AppConstants.AddIncomeTileId,
-                                                                                  Strings.AddIncomeLabel);
+                var listItemAddIncome = JumpListItem.CreateWithArguments(AppConstants.AddIncomeTileId,
+                                                                         Strings.AddIncomeLabel);
                 listItemAddIncome.Logo = new Uri(INCOME_ICON);
                 jumpList.Items.Add(listItemAddIncome);
 
-                JumpListItem listItemAddSpending = JumpListItem.CreateWithArguments(AppConstants.AddExpenseTileId,
-                                                                                    Strings.AddExpenseLabel);
+                var listItemAddSpending = JumpListItem.CreateWithArguments(AppConstants.AddExpenseTileId,
+                                                                           Strings.AddExpenseLabel);
                 listItemAddSpending.Logo = new Uri(EXPENSE_ICON);
                 jumpList.Items.Add(listItemAddSpending);
 
-                JumpListItem listItemAddTransfer = JumpListItem.CreateWithArguments(AppConstants.AddTransferTileId,
-                                                                                    Strings.AddTransferLabel);
+                var listItemAddTransfer = JumpListItem.CreateWithArguments(AppConstants.AddTransferTileId,
+                                                                           Strings.AddTransferLabel);
                 listItemAddTransfer.Logo = new Uri(TRANSFER_ICON);
                 jumpList.Items.Add(listItemAddTransfer);
 

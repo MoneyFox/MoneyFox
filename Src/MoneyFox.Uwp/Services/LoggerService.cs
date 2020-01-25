@@ -1,9 +1,9 @@
-﻿using NLog;
+﻿using System.IO;
+using MoneyFox.Application.Common.Constants;
+using NLog;
 using NLog.Config;
 using NLog.Targets;
-using System.IO;
 using Xamarin.Essentials;
-using MoneyFox.Application.Common.Constants;
 
 #if !DEBUG
 using PCLAppConfig;

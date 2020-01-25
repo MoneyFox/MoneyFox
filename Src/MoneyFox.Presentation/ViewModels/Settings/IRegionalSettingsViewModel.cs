@@ -1,6 +1,6 @@
-﻿using MoneyFox.Presentation.Commands;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Globalization;
+using MoneyFox.Presentation.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {

@@ -29,7 +29,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AddPaymentViewModel(IMediator mediator,
                                    IMapper mapper,
-                                   Application.Common.Interfaces.IDialogService dialogService,
+                                   IDialogService dialogService,
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
                                    INavigationService navigationService)
@@ -64,27 +64,27 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SavePayment()
         {
-            try {
+            try
+            {
                 var payment = new Payment(SelectedPayment.Date,
                                           SelectedPayment.Amount,
                                           SelectedPayment.Type,
                                           await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
-                                          SelectedPayment.TargetAccount!= null
+                                          SelectedPayment.TargetAccount != null
                                               ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
                                               : null,
                                           mapper.Map<Category>(SelectedPayment.Category),
                                           SelectedPayment.Note);
 
-                if (SelectedPayment.IsRecurring) {
+                if (SelectedPayment.IsRecurring)
                     payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.EndDate);
-                }
 
                 await mediator.Send(new CreatePaymentCommand(payment));
                 navigationService.GoBack();
             }
             catch (InvalidEndDateException)
             {
-                await dialogService.ShowMessage(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+                await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
             }
             catch (Exception ex)
             {

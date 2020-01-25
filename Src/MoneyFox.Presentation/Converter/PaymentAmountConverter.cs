@@ -20,12 +20,16 @@ namespace MoneyFox.Presentation.Converter
         /// <param name="culture">Not used..</param>
         /// <returns>The convert.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-            => PaymentAmountConverterLogic.GetFormattedAmountString(value as PaymentViewModel, parameter as string);
+        {
+            return PaymentAmountConverterLogic.GetFormattedAmountString(value as PaymentViewModel, parameter as string);
+        }
 
         /// <summary>
         ///     Not Implemented.
         /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-            => throw new NotSupportedException();
+        {
+            throw new NotSupportedException();
+        }
     }
 }

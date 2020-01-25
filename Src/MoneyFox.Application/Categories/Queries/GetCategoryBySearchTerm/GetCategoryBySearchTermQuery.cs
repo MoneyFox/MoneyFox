@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Application.Common.QueryObjects;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
 {
@@ -35,9 +35,7 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
                                                                             .OrderBy(x => x.Name);
 
                 if (!string.IsNullOrEmpty(request.SearchTerm))
-                {
                     return await categoriesQuery.WhereNameContains(request.SearchTerm).ToListAsync(cancellationToken);
-                }
 
                 return await categoriesQuery.ToListAsync(cancellationToken);
             }

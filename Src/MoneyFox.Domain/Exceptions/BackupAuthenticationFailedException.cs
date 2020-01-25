@@ -10,23 +10,18 @@ namespace MoneyFox.Domain.Exceptions
     public class BackupAuthenticationFailedException : Exception
     {
         public BackupAuthenticationFailedException()
-        {
-        }
+        { }
 
         public BackupAuthenticationFailedException(string message) : base(message)
-        {
-        }
+        { }
 
         public BackupAuthenticationFailedException(Exception exception) : base("Backup Authentication Failed", exception)
-        {
-        }
+        { }
 
         public BackupAuthenticationFailedException(string message, Exception exception) : base(message, exception)
-        {
-        }
+        { }
 
         protected BackupAuthenticationFailedException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        { }
     }
 }

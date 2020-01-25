@@ -15,7 +15,9 @@ namespace MoneyFox.Presentation.Tests.Groups
         {
             // Arrange
             // Act / Assert
-            Assert.Throws<GroupListParameterNullException>(() => DateListGroupCollection<PaymentViewModel>.CreateGroups(null, s => "", s => DateTime.Now));
+            Assert.Throws<GroupListParameterNullException>(() =>
+                                                               DateListGroupCollection<PaymentViewModel>.CreateGroups(null, s => "",
+                                                                                                                      s => DateTime.Now));
         }
     }
 }

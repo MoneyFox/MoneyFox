@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
@@ -32,6 +33,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         public AsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
         public RelayCommand GoToAddAccountCommand { get; }
 
-        public Command<MaterialMenuResult> MenuSelectedCommand => throw new System.NotImplementedException();
+        public Command<MaterialMenuResult> MenuSelectedCommand => throw new NotImplementedException();
     }
 }
