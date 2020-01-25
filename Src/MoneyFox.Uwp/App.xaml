@@ -11,7 +11,7 @@
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <ResourceDictionary.MergedDictionaries>
-                        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
+                        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                         <ResourceDictionary Source="Style/ColorsDark.xaml" />
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
                         <ResourceDictionary Source="Style/TextStyles.xaml" />
@@ -22,7 +22,7 @@
 
                 <ResourceDictionary x:Key="Light">
                     <ResourceDictionary.MergedDictionaries>
-                        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
+                        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
                         <ResourceDictionary Source="Style/ColorsLight.xaml" />
                         <ResourceDictionary Source="Style/AppStyles.xaml" />
                         <ResourceDictionary Source="Style/TextStyles.xaml" />

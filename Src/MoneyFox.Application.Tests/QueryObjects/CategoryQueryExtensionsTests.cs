@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
 using Xunit;
-using MoneyFox.Application.Common.QueryObjects;
 
 namespace MoneyFox.Application.Tests.QueryObjects
 {
@@ -20,7 +20,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                     new Category("Foo2"),
                     new Category("absd")
                 }
-                .AsQueryable();
+               .AsQueryable();
 
             // Act
             List<Category> resultList = categoryQueryList.WhereNameContains("Foo").ToList();
@@ -41,7 +41,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
                     new Category("Foo3"),
                     new Category("Foo1")
                 }
-                .AsQueryable();
+               .AsQueryable();
 
             // Act
             List<Category> resultList = categoryQueryList.OrderByName().ToList();

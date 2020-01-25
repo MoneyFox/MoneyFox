@@ -70,7 +70,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             const int accountId = 99;
 
             mapperMock.Setup(x => x.Map<AccountViewModel>(It.IsAny<Account>()))
-                      .Returns(new AccountViewModel { CurrentBalance = 99 });
+                      .Returns(new AccountViewModel {CurrentBalance = 99});
 
             var editAccountVm = new EditAccountViewModel(mediatorMock.Object,
                                                          mapperMock.Object,

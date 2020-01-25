@@ -1,6 +1,6 @@
-﻿using MoneyFox.Application.Common.Adapters;
-using System;
+﻿using System;
 using System.Globalization;
+using MoneyFox.Application.Common.Adapters;
 
 namespace MoneyFox.Application.Common.Facades
 {
@@ -44,6 +44,8 @@ namespace MoneyFox.Application.Common.Facades
         ///     Returns the time stamp when the last job to create recurring payments was executed.
         /// </summary>
         DateTime LastExecutionTimeStampRecurringPayments { get; set; }
+
+        string DefaultCulture { get; set; }
     }
 
     public class SettingsFacade : ISettingsFacade
@@ -55,7 +57,7 @@ namespace MoneyFox.Application.Common.Facades
         private const bool BACKUP_LOGGEDIN_KEY_DEFAULT = false;
 
         private const string THEME_KEYNAME = "Theme";
-        private const int THEME_KEYDEFAULT = (int)AppTheme.Light;
+        private const int THEME_KEYDEFAULT = (int) AppTheme.Light;
 
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT = "";
@@ -65,6 +67,9 @@ namespace MoneyFox.Application.Common.Facades
 
         private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME = "LastExecutionTimeStampRecurringPayments";
         private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT = "";
+
+        private const string DEFAULT_CULTURE_KEYNAME = "DefaultCulture";
+        private readonly string DEFAULT_CULTURE_KEYDEFAULT = CultureInfo.CurrentCulture.Name;
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
 
@@ -128,7 +133,8 @@ namespace MoneyFox.Application.Common.Facades
 
                 return DateTime.MinValue;
             }
-            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
+                                               value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <inheritdoc />
@@ -145,7 +151,8 @@ namespace MoneyFox.Application.Common.Facades
 
                 return DateTime.MinValue;
             }
-            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
+                                               value.ToString(CultureInfo.InvariantCulture));
         }
 
         /// <inheritdoc />
@@ -162,7 +169,14 @@ namespace MoneyFox.Application.Common.Facades
 
                 return DateTime.MinValue;
             }
-            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME, value.ToString(CultureInfo.InvariantCulture));
+            set => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
+                                               value.ToString(CultureInfo.InvariantCulture));
+        }
+
+        public string DefaultCulture
+        {
+            get => settingsAdapter.GetValue(DEFAULT_CULTURE_KEYNAME, DEFAULT_CULTURE_KEYDEFAULT);
+            set => settingsAdapter.AddOrUpdate(DEFAULT_CULTURE_KEYNAME, value);
         }
     }
 }

@@ -16,7 +16,9 @@ namespace MoneyFox.Presentation.Tests.Groups
             // Arrange
             // Act / Assert
             Assert.Throws<GroupListParameterNullException>(
-                () => AlphaGroupListGroupCollection<PaymentViewModel>.CreateGroups(null, CultureInfo.CurrentUICulture, s => ""));
+                                                           () =>
+                                                               AlphaGroupListGroupCollection<PaymentViewModel>
+                                                                  .CreateGroups(null, CultureInfo.CurrentUICulture, s => ""));
         }
     }
 }

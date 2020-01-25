@@ -49,8 +49,7 @@ namespace MoneyFox.Presentation.ViewModels
                                      IDialogService dialogService,
                                      INavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
-        {
-        }
+        { }
 
         /// <summary>
         ///     Post selected CategoryViewModel to message hub

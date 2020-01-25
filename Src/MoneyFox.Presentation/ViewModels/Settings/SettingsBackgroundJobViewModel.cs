@@ -1,8 +1,8 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Facades;
-using System;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Presentation.ViewModels.Settings
 {
     public interface ISettingsBackgroundJobViewModel
     {
@@ -17,7 +17,6 @@ namespace MoneyFox.Presentation.ViewModels
     }
 
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel" />
-    /// />
     public class SettingsBackgroundJobViewModel : ViewModelBase, ISettingsBackgroundJobViewModel
     {
         private readonly ISettingsFacade settingsFacade;

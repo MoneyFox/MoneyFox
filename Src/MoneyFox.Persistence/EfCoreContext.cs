@@ -11,8 +11,7 @@ namespace MoneyFox.Persistence
     public class EfCoreContext : DbContext, IEfCoreContext
     {
         public EfCoreContext(DbContextOptions options) : base(options)
-        {
-        }
+        { }
 
         public DbSet<Account> Accounts { get; set; } = null!;
         public DbSet<Payment> Payments { get; set; } = null!;

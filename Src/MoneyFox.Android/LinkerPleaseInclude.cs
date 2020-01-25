@@ -29,9 +29,9 @@ namespace MoneyFox.Droid
         public void Include(INotifyPropertyChanged changed)
         {
             changed.PropertyChanged += (sender, e) =>
-            {
-                string test = e.PropertyName;
-            };
+                                       {
+                                           string test = e.PropertyName;
+                                       };
         }
 
         /// <summary>
@@ -115,9 +115,9 @@ namespace MoneyFox.Droid
         public void Include(ICommand command)
         {
             command.CanExecuteChanged += (s, e) =>
-            {
-                if (command.CanExecute(null)) command.Execute(null);
-            };
+                                         {
+                                             if (command.CanExecute(null)) command.Execute(null);
+                                         };
         }
     }
 }

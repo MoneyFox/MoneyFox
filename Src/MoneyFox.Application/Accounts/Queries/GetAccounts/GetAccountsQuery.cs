@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Application.Common.QueryObjects;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Accounts.Queries.GetAccounts
 {

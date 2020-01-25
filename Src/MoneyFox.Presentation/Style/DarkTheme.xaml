@@ -14,11 +14,13 @@
     <!-- Control Colors -->
     <Color x:Key="WindowBackgroundColor">#201f1f</Color>
     <Color x:Key="DialogBackgroundColor">#3c4043</Color>
-    <Color x:Key="BottomTabBarColor">#3e3e42</Color>
+    <Color x:Key="BottomTabBarColor">#4C4B4B</Color>
     <Color x:Key="BarItemColor">#3e3e42</Color>
     <Color x:Key="BarSelectedItemColor">White</Color>
     <Color x:Key="FrameHighlightColor">#2d2d30</Color>
     <Color x:Key="ButtonBackgroundColor">#333333</Color>
+    <Color x:Key="AppBarColor">#314a9b</Color>
+    <Color x:Key="AppBarFontColorColor">White</Color>
 
     <!-- Font Colors -->
     <Color x:Key="InvertedPrimaryFontColor">Black</Color>

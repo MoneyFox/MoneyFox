@@ -1,6 +1,6 @@
+using System.Collections.ObjectModel;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
-using System.Collections.ObjectModel;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {

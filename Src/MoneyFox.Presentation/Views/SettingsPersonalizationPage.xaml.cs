@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Presentation.ViewModels.Settings;
 
 namespace MoneyFox.Presentation.Views
 {
@@ -15,7 +15,6 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.SettingsPersonalizationVm;
 
             ThemePicker.ItemsSource = new List<string> {Strings.LightLabel, Strings.DarkLabel};
-
             ThemePicker.SelectedIndex = ViewModel.ElementTheme == "Light" ? 0 : 1;
         }
 

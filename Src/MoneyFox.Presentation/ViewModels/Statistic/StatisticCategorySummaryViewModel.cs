@@ -52,16 +52,19 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            CategorySummaryModel categorySummaryModel = await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
+            CategorySummaryModel categorySummaryModel =
+                await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
 
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
-                categorySummaryModel.CategoryOverviewItems.Select(x => new CategoryOverviewViewModel
-                {
-                    Value = x.Value,
-                    Average = x.Average,
-                    Label = x.Label,
-                    Percentage = x.Percentage
-                }));
+                                                                                  categorySummaryModel
+                                                                                     .CategoryOverviewItems
+                                                                                     .Select(x => new CategoryOverviewViewModel
+                                                                                      {
+                                                                                          Value = x.Value,
+                                                                                          Average = x.Average,
+                                                                                          Label = x.Label,
+                                                                                          Percentage = x.Percentage
+                                                                                      }));
 
 
             IncomeExpenseBalance = new IncomeExpenseBalanceViewModel

@@ -1,4 +1,4 @@
-﻿using MoneyFox.Presentation.ViewModels;
+﻿using MoneyFox.Presentation.ViewModels.Settings;
 
 namespace MoneyFox.Presentation.Views
 {
@@ -10,10 +10,10 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.SettingsVm;
 
             SettingsList.ItemTapped += (sender, args) =>
-            {
-                SettingsList.SelectedItem = null;
-                (BindingContext as SettingsViewModel)?.GoToSettingCommand.Execute(args.Item);
-            };
+                                       {
+                                           SettingsList.SelectedItem = null;
+                                           (BindingContext as SettingsViewModel)?.GoToSettingCommand.Execute(args.Item);
+                                       };
         }
     }
 }

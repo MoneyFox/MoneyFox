@@ -78,7 +78,7 @@ namespace MoneyFox.Presentation.Tests.Services
                         .ReturnsAsync(paymentList);
             // Act
             decimal result = await new BalanceCalculationService(mediatorMock.Object)
-                .GetTotalEndOfMonthBalance();
+               .GetTotalEndOfMonthBalance();
 
             // Assert
             Assert.Equal(200, result);

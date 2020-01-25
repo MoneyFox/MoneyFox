@@ -1,16 +1,16 @@
-﻿using CommonServiceLocator;
+﻿using System;
+using Windows.ApplicationModel.Background;
+using CommonServiceLocator;
 using MediatR;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using NLog;
-using System;
-using Windows.ApplicationModel.Background;
 
 namespace MoneyFox.Uwp.BackgroundTasks
 {
     /// <summary>
-    /// Periodically tests if there are new recurring payments and creates these.
+    ///     Periodically tests if there are new recurring payments and creates these.
     /// </summary>
     public sealed class RecurringPaymentTask : IBackgroundTask
     {

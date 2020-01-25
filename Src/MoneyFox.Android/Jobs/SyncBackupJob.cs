@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using Android.App;
 using Android.App.Job;
 using Android.Content;
@@ -8,10 +10,8 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using NLog;
-using System;
-using System.Threading.Tasks;
-using JobSchedulerType = Android.App.Job.JobScheduler;
 using Exception = System.Exception;
+using JobSchedulerType = Android.App.Job.JobScheduler;
 
 #pragma warning disable S927 // parameter names should match base declaration and other partial definitions: Not possible since base uses reserver word.
 namespace MoneyFox.Droid.Jobs
@@ -44,7 +44,7 @@ namespace MoneyFox.Droid.Jobs
         /// <inheritdoc />
         public override StartCommandResult OnStartCommand(Intent intent, StartCommandFlags flags, int startId)
         {
-            var callback = (Messenger)intent.GetParcelableExtra("messenger");
+            var callback = (Messenger) intent.GetParcelableExtra("messenger");
             Message m = Message.Obtain();
             m.What = MainActivity.MessageServiceSyncBackup;
             m.Obj = this;
@@ -94,7 +94,7 @@ namespace MoneyFox.Droid.Jobs
 
             var builder = new JobInfo.Builder(SYNC_BACK_JOB_ID,
                                               new ComponentName(
-                                                  this, Class.FromType(typeof(SyncBackupJob))));
+                                                                this, Class.FromType(typeof(SyncBackupJob))));
 
             // convert hours into millisecond
             builder.SetPeriodic(JOB_INTERVAL * interval);
@@ -103,7 +103,7 @@ namespace MoneyFox.Droid.Jobs
             builder.SetRequiresDeviceIdle(false);
             builder.SetRequiresCharging(false);
 
-            var tm = (JobSchedulerType)GetSystemService(JobSchedulerService);
+            var tm = (JobSchedulerType) GetSystemService(JobSchedulerService);
             tm.Schedule(builder.Build());
         }
     }

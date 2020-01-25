@@ -7,41 +7,41 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace MoneyFox.Presentation.UserControls
 {
-	public partial class CategoryListUserControl
-	{
-	    private AbstractCategoryListViewModel ViewModel => (AbstractCategoryListViewModel) BindingContext;
+    public partial class CategoryListUserControl
+    {
+        private AbstractCategoryListViewModel ViewModel => (AbstractCategoryListViewModel) BindingContext;
 
-		public CategoryListUserControl ()
-		{
-			InitializeComponent ();
+        public CategoryListUserControl()
+        {
+            InitializeComponent();
 
             CategoryList.On<Android>().SetIsFastScrollEnabled(true);
         }
 
-	    private void EditCategory(object sender, EventArgs e)
-	    {
-	        var menuItem = sender as MenuItem;
-	        if (menuItem == null) return;
+        private void EditCategory(object sender, EventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem == null) return;
 
             ViewModel.EditCategoryCommand.Execute(menuItem.CommandParameter);
-	    }
+        }
 
-	    private void DeleteCategory(object sender, EventArgs e)
-	    {
-	        var menuItem = sender as MenuItem;
-	        if (menuItem == null) return;
+        private void DeleteCategory(object sender, EventArgs e)
+        {
+            var menuItem = sender as MenuItem;
+            if (menuItem == null) return;
 
             ViewModel.DeleteCategoryCommand.ExecuteAsync((CategoryViewModel) menuItem.CommandParameter).FireAndForgetSafeAsync();
-	    }
+        }
 
-	    private void AddCategoryClick(object sender, EventArgs e)
-	    {
-	        ViewModel.CreateNewCategoryCommand.Execute(null);
-	    }
+        private void AddCategoryClick(object sender, EventArgs e)
+        {
+            ViewModel.CreateNewCategoryCommand.Execute(null);
+        }
 
-	    private void SearchTermChanged(object sender, TextChangedEventArgs e)
-	    {
-	        ViewModel.SearchCommand.ExecuteAsync(e.NewTextValue).FireAndForgetSafeAsync();
+        private void SearchTermChanged(object sender, TextChangedEventArgs e)
+        {
+            ViewModel.SearchCommand.ExecuteAsync(e.NewTextValue).FireAndForgetSafeAsync();
         }
     }
 }

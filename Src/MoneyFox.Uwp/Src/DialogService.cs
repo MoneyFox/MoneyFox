@@ -1,8 +1,9 @@
-﻿using MoneyFox.Application.Common.Interfaces;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Popups;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.Views.Dialogs;
 
@@ -19,8 +20,10 @@ namespace MoneyFox.Uwp.Src
         /// <param name="message">Text for the dialog.</param>
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
-        public async Task<bool> ShowConfirmMessageAsync(string title, string message, string positiveButtonText = null,
-                                                   string negativeButtonText = null)
+        public async Task<bool> ShowConfirmMessageAsync(string title,
+                                                        string message,
+                                                        string positiveButtonText = null,
+                                                        string negativeButtonText = null)
         {
             await HideLoadingDialogAsync();
 
@@ -38,7 +41,7 @@ namespace MoneyFox.Uwp.Src
         /// </summary>
         /// <param name="title">Title to display.</param>
         /// <param name="message">Text to display.</param>
-        public async Task ShowMessage(string title, string message)
+        public async Task ShowMessageAsync(string title, string message)
         {
             await HideLoadingDialogAsync();
 
@@ -58,7 +61,7 @@ namespace MoneyFox.Uwp.Src
 
             loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
 
-            var coreWindow = Windows.ApplicationModel.Core.CoreApplication.MainView;
+            CoreApplicationView coreWindow = CoreApplication.MainView;
 
             // Dispatcher needed to run on UI Thread
             CoreDispatcher dispatcher = coreWindow.CoreWindow.Dispatcher;

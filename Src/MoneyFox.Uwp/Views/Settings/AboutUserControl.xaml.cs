@@ -2,7 +2,7 @@
 using Windows.UI.Xaml;
 using Microsoft.Services.Store.Engagement;
 
-namespace MoneyFox.Uwp.Views.UserControls
+namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class AboutUserControl
     {

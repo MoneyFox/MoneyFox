@@ -51,7 +51,8 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object)
+               .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
             (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).ShouldBeNull();
@@ -69,7 +70,8 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object)
+               .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);

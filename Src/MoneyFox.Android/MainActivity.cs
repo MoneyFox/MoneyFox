@@ -10,6 +10,7 @@ using MoneyFox.Presentation;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
+using XF.Material.Droid;
 using Platform = Xamarin.Essentials.Platform;
 
 #if !DEBUG
@@ -60,7 +61,7 @@ namespace MoneyFox.Droid
             Popup.Init(this, savedInstanceState);
             Forms.Init(this, savedInstanceState);
             FormsMaterial.Init(this, savedInstanceState);
-            XF.Material.Droid.Material.Init(this, savedInstanceState);
+            Material.Init(this, savedInstanceState);
 
             LoadApplication(new App());
             Platform.Init(this, savedInstanceState);
@@ -101,7 +102,7 @@ namespace MoneyFox.Droid
 
         public override void OnBackPressed()
         {
-            XF.Material.Droid.Material.HandleBackButton(base.OnBackPressed);
+            Material.HandleBackButton(base.OnBackPressed);
         }
 
         // Needed for auth, so that MSAL can intercept the response from the browser

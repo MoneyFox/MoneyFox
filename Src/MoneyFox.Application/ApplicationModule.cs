@@ -11,10 +11,9 @@ namespace MoneyFox.Application
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder
-                .RegisterType<Mediator>()
-                .As<IMediator>()
-                .InstancePerLifetimeScope();
+            builder.RegisterType<Mediator>()
+                   .As<IMediator>()
+                   .InstancePerLifetimeScope();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Manager", StringComparison.CurrentCultureIgnoreCase))
@@ -30,11 +29,10 @@ namespace MoneyFox.Application
 
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>
-            {
-                var c = context.Resolve<IComponentContext>();
-
-                return t => c.Resolve(t);
-            });
+                                             {
+                                                 var c = context.Resolve<IComponentContext>();
+                                                 return t => c.Resolve(t);
+                                             });
 
             builder.RegisterAssemblyTypes(typeof(GetCashFlowQuery).GetTypeInfo().Assembly).AsImplementedInterfaces();
         }

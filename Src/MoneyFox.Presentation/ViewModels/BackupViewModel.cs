@@ -1,4 +1,6 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using Microsoft.Graph;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
@@ -9,36 +11,34 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.Commands;
 using NLog;
-using System;
-using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public interface IBackupViewModel
     {
         /// <summary>
-        /// Initialize View Model.
+        ///     Initialize View Model.
         /// </summary>
         AsyncCommand InitializeCommand { get; }
 
         /// <summary>
-        /// Makes the first login and sets the setting for the future navigation to this page.
+        ///     Makes the first login and sets the setting for the future navigation to this page.
         /// </summary>
         AsyncCommand LoginCommand { get; }
 
         /// <summary>
-        /// Logs the user out from the backup service.
+        ///     Logs the user out from the backup service.
         /// </summary>
         AsyncCommand LogoutCommand { get; }
 
         /// <summary>
-        /// Will create a backup of the database and upload it to OneDrive
+        ///     Will create a backup of the database and upload it to OneDrive
         /// </summary>
         AsyncCommand BackupCommand { get; }
 
         /// <summary>
-        /// Will download the database backup from OneDrive and overwrite the     local database with the downloaded.     All
-        /// data models are then reloaded.
+        ///     Will download the database backup from OneDrive and overwrite the     local database with the downloaded.     All
+        ///     data models are then reloaded.
         /// </summary>
         AsyncCommand RestoreCommand { get; }
 
@@ -52,11 +52,11 @@ namespace MoneyFox.Presentation.ViewModels
     }
 
     /// <summary>
-    /// Representation of the backup view.
+    ///     Representation of the backup view.
     /// </summary>
     public class BackupViewModel : ViewModelBase, IBackupViewModel
     {
-        readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
@@ -78,23 +78,23 @@ namespace MoneyFox.Presentation.ViewModels
             this.settingsFacade = settingsFacade;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public AsyncCommand LoginCommand => new AsyncCommand(LoginAsync);
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public AsyncCommand LogoutCommand => new AsyncCommand(LogoutAsync);
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public AsyncCommand BackupCommand => new AsyncCommand(CreateBackupAsync);
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public AsyncCommand RestoreCommand => new AsyncCommand(RestoreBackupAsync);
 
         /// <summary>
-        /// The Date when the backup was modified the last time.
+        ///     The Date when the backup was modified the last time.
         /// </summary>
         public DateTime BackupLastModified
         {
@@ -109,7 +109,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        /// Indicator that the app is checking if backups available.
+        ///     Indicator that the app is checking if backups available.
         /// </summary>
         public bool IsLoadingBackupAvailability
         {
@@ -124,12 +124,12 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        /// Indicator that the user logged in to the backup service.
+        ///     Indicator that the user logged in to the backup service.
         /// </summary>
         public bool IsLoggedIn => settingsFacade.IsLoggedInToBackupService;
 
         /// <summary>
-        /// Indicates if a backup is available for restore.
+        ///     Indicates if a backup is available for restore.
         /// </summary>
         public bool BackupAvailable
         {
@@ -154,7 +154,7 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
 
             if (!connectivity.IsConnected)
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+                await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
 
             IsLoadingBackupAvailability = true;
             try
@@ -166,15 +166,16 @@ namespace MoneyFox.Presentation.ViewModels
             {
                 logger.Error(ex, "Issue during Login process.");
                 await backupService.LogoutAsync();
-                await dialogService.ShowMessage(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
+                await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
             }
             catch (ServiceException ex)
             {
                 if (ex.Error.Code == "4f37.717b")
                 {
                     await backupService.LogoutAsync();
-                    await dialogService.ShowMessage(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
+                    await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
                 }
+
                 logger.Error(ex, "Issue on loading backup view.");
             }
 
@@ -184,7 +185,7 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task LoginAsync()
         {
             if (!connectivity.IsConnected)
-                await dialogService.ShowMessage(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+                await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
 
             try
             {
@@ -192,12 +193,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch (BackupOperationCanceledException)
             {
-                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.LoginCanceledMessage);
+                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.LoginCanceledMessage);
             }
             catch (Exception ex)
             {
                 logger.Error(ex, "Login Failed.");
-                await dialogService.ShowMessage(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
+                await dialogService.ShowMessageAsync(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
             }
 
             RaisePropertyChanged(nameof(IsLoggedIn));
@@ -212,12 +213,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch (BackupOperationCanceledException)
             {
-                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.LogoutCanceledMessage);
+                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.LogoutCanceledMessage);
             }
             catch (Exception ex)
             {
                 logger.Error(ex, "Logout Failed.");
-                await dialogService.ShowMessage(Strings.GeneralErrorTitle, ex.Message);
+                await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.Message);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
@@ -239,12 +240,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
             catch (BackupOperationCanceledException)
             {
-                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.UploadBackupCanceledMessage);
+                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.UploadBackupCanceledMessage);
             }
             catch (Exception ex)
             {
                 logger.Error(ex, "Create Backup failed.");
-                await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
+                await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
             }
 
             await dialogService.HideLoadingDialogAsync();
@@ -270,12 +271,12 @@ namespace MoneyFox.Presentation.ViewModels
             catch (BackupOperationCanceledException)
             {
                 logger.Info("Restoring the backup was canceled by the user.");
-                await dialogService.ShowMessage(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
+                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
             }
             catch (Exception ex)
             {
                 logger.Error(ex, "Restore Backup failed.");
-                await dialogService.ShowMessage(Strings.BackupFailedTitle, ex.Message);
+                await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
             }
         }
 
@@ -305,7 +306,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task ShowCompletionNoteAsync()
         {
-            await dialogService.ShowMessage(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
+            await dialogService.ShowMessageAsync(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
         }
     }
 }

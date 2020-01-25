@@ -21,8 +21,7 @@ namespace MoneyFox.Droid
 
         public MainApplication(IntPtr handle, JniHandleOwnership transer)
             : base(handle, transer)
-        {
-        }
+        { }
 
         public override void OnCreate()
         {
@@ -40,7 +39,7 @@ namespace MoneyFox.Droid
             base.OnCreate();
         }
 
-        void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
+        private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
         {
             logManager.Fatal(e.Exception, "Application Terminating. 1");
         }

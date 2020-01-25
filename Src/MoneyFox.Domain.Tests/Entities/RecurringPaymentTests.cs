@@ -15,7 +15,8 @@ namespace MoneyFox.Domain.Tests.Entities
         {
             // Arrange
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, null, "note"));
+            Assert.Throws<ArgumentNullException>(() => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily,
+                                                                            null, "note"));
         }
 
         [Fact]
@@ -69,7 +70,8 @@ namespace MoneyFox.Domain.Tests.Entities
         {
             // Arrange
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note");
+            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"),
+                                                        "note");
 
             // Assert
             recurringPayment.IsEndless.ShouldBeTrue();
@@ -80,7 +82,8 @@ namespace MoneyFox.Domain.Tests.Entities
         {
             // Arrange
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"), "note",
+            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily, new Account("Foo"),
+                                                        "note",
                                                         DateTime.Today);
 
             // Assert
@@ -94,7 +97,8 @@ namespace MoneyFox.Domain.Tests.Entities
             // Arrange
             // Act / Assert
             Assert.Throws<InvalidEndDateException>(()
-                                                       => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily,
+                                                       => new RecurringPayment(DateTime.Now, 123, PaymentType.Expense,
+                                                                               PaymentRecurrence.Daily,
                                                                                new Account("Foo"), "note", DateTime.Today.AddDays(-1)));
         }
 

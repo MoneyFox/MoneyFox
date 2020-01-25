@@ -1,9 +1,9 @@
-﻿using AutoMapper;
+﻿using System.Diagnostics.CodeAnalysis;
+using AutoMapper;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Should;
-using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Infrastructure.Tests.Mappings

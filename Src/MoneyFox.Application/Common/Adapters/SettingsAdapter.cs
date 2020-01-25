@@ -1,5 +1,5 @@
-﻿using NLog;
-using System;
+﻿using System;
+using NLog;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Application.Common.Adapters

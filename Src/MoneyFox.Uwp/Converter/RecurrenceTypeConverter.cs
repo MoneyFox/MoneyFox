@@ -5,7 +5,7 @@ using MoneyFox.Presentation.Converter;
 
 namespace MoneyFox.Uwp.Converter
 {
-    public class NativeRecurrenceTypeConverter : IValueConverter
+    public class RecurrenceTypeConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Uwp.Views
+﻿namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticSelectorView
     {

@@ -19,7 +19,7 @@ namespace MoneyFox.Application.Common.FileStore
         {
             string fullPath = AppendPath(path);
 
-            if (!File.Exists(fullPath)) return null;
+            if (!File.Exists(fullPath)) throw new FileNotFoundException("File could not be opened.", path);
 
             return File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         }
@@ -41,13 +41,9 @@ namespace MoneyFox.Application.Common.FileStore
                 if (File.Exists(fullTo))
                 {
                     if (overwrite)
-                    {
                         File.Delete(fullTo);
-                    }
                     else
-                    {
                         return false;
-                    }
                 }
 
                 File.Move(fullFrom, fullTo);

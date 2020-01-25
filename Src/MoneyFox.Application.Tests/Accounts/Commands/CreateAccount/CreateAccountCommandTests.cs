@@ -43,7 +43,8 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
             var account = new Account("test", 80);
 
             // Act
-            await new CreateAccountCommand.Handler(contextAdapterMock.Object).Handle(new CreateAccountCommand {AccountToSave = account}, default);
+            await new CreateAccountCommand.Handler(contextAdapterMock.Object).Handle(new CreateAccountCommand {AccountToSave = account},
+                                                                                     default);
 
             // Assert
             Assert.Single(context.Accounts);

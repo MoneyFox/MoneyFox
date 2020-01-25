@@ -19,7 +19,8 @@ namespace MoneyFox.Application.Common
             {
                 case AppPlatform.iOS:
                     Batteries_V2.Init();
-                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library", DATABASE_NAME);
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library",
+                                                DATABASE_NAME);
                     break;
 
                 case AppPlatform.Android:

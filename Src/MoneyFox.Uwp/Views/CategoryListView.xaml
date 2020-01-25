@@ -7,7 +7,7 @@
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
+      xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
       mc:Ignorable="d"
       DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}">
 

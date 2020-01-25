@@ -48,7 +48,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             await context.SaveChangesAsync();
 
             // Act
-            List<Account> result = await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(new GetIncludedAccountQuery(), default);
+            List<Account> result =
+                await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(new GetIncludedAccountQuery(), default);
 
             // Assert
             Assert.Single(result);

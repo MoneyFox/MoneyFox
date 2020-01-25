@@ -47,7 +47,8 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
             var category = new Category("test");
 
             // Act
-            await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new CreateCategoryCommand(category), default);
+            await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object)
+               .Handle(new CreateCategoryCommand(category), default);
 
             // Assert
             Assert.Single(context.Categories);
@@ -63,12 +64,12 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
             var category = new Category("test");
 
             // Act
-            await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object).Handle(new CreateCategoryCommand(category), default);
+            await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object)
+               .Handle(new CreateCategoryCommand(category), default);
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);
             backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
-
         }
     }
 }

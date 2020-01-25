@@ -1,7 +1,9 @@
 ﻿using Autofac;
+using MoneyFox.Application.Common;
 using MoneyFox.Infrastructure;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Src;
+using PCLAppConfig;
 
 namespace MoneyFox.Uwp
 {
@@ -9,6 +11,8 @@ namespace MoneyFox.Uwp
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.Register(c => new TokenObject {CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]});
+
             builder.RegisterModule<PresentationModule>();
             builder.RegisterModule<InfrastructureModule>();
 

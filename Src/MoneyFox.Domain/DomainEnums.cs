@@ -31,6 +31,7 @@
     public enum SettingsType
     {
         Personalization,
+        Regional,
         Categories,
         Backup,
         BackgroundJob,

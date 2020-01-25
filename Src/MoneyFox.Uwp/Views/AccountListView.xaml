@@ -7,9 +7,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:converter="using:MoneyFox.Uwp.Converter"
       xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
-      xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
       xmlns:resources="using:MoneyFox.Application.Resources"
+      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+      xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
       DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
       mc:Ignorable="d">
 
@@ -24,7 +24,7 @@
     </i:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter:NativeAmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
@@ -48,8 +48,7 @@
 
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
                             Padding="{StaticResource SmallListItemPadding}"
-                            Background="{ThemeResource ListItemBrush}"
->
+                            Background="{ThemeResource ListItemBrush}">
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                    Text="{x:Bind Name}"
