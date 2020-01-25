@@ -829,16 +829,16 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Konto löschen</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>Standard Region</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>Diese Region wird als Standard für Ihre Anwendung verwendet.</value>
   </data>
   <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
+    <value>Regionale Einstellungen</value>
   </data>
   <data name="RegionalSettingsDescriptionText" xml:space="preserve">
-    <value>Set region settings for your application.</value>
+    <value>Regionseinstellungen für Ihre Anwendung festlegen.</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>Der Betrag darf nicht negativ sein. Ob ein Betrag subtrahiert oder addiert werden muss, wird durch den Typ der Zahlung bestimmt.</value>
