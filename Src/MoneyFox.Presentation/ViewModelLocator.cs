@@ -69,7 +69,9 @@ namespace MoneyFox.Presentation
         //*****************
         //  Common
         //*****************
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm =>
+            ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
+
         public static SelectFilterDialogViewModel SelectFilterDialogVm => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
 
         //*****************
@@ -77,15 +79,24 @@ namespace MoneyFox.Presentation
         //*****************
         public static StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
         public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
-        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm =>
+            ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm =>
+            ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
 
         //*****************
         //  Settings
         //*****************
         public static SettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-        public static SettingsBackgroundJobViewModel SettingsBackgroundVm => ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
-        public static SettingsPersonalizationViewModel SettingsPersonalizationVm => ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
+
+        public static SettingsBackgroundJobViewModel SettingsBackgroundVm =>
+            ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
+
+        public static SettingsPersonalizationViewModel SettingsPersonalizationVm =>
+            ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
+
         public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public static RegionalSettingsViewModel RegionalSettingsVm => ServiceLocator.Current.GetInstance<RegionalSettingsViewModel>();
     }

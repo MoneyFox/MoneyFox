@@ -56,10 +56,11 @@
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="viewModels:AccountViewModel">
                             <ViewCell>
-                                <material:MaterialCard ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
-                                                       ClickCommandParameter="{Binding .}"
-                                                       Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                                       Style="{StaticResource ListCardStyle}">
+                                <material:MaterialCard
+                                    ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
+                                    ClickCommandParameter="{Binding .}"
+                                    Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                    Style="{StaticResource ListCardStyle}">
 
                                     <StackLayout Orientation="Vertical"
                                                  Padding="3"

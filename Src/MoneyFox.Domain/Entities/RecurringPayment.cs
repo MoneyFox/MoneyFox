@@ -12,7 +12,8 @@ namespace MoneyFox.Domain.Entities
         /// <summary>
         ///     EF Core constructor
         /// </summary>
-        private RecurringPayment() {}
+        private RecurringPayment()
+        { }
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>")]
         public RecurringPayment(DateTime startDate,
@@ -61,7 +62,7 @@ namespace MoneyFox.Domain.Entities
         public string Note
         {
             private set => note = value;
-            get { return note ?? string.Empty; }
+            get => note ?? string.Empty;
         }
 
         public DateTime ModificationDate { get; private set; }

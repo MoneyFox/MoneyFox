@@ -60,7 +60,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected INavigationService NavigationService { get; }
 
-        protected Application.Common.Interfaces.IDialogService DialogService { get; }
+        protected IDialogService DialogService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
@@ -104,13 +104,13 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (string.IsNullOrEmpty(SelectedCategory.Name))
             {
-                await DialogService.ShowMessage(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
 
             if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
             {
-                await DialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+                await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
                 return;
             }
 

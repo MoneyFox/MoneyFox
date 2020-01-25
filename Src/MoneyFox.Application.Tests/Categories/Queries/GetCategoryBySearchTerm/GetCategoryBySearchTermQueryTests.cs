@@ -49,7 +49,9 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
             await context.SaveChangesAsync();
 
             // Act
-            List<Category> result = await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery(), default);
+            List<Category> result =
+                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery(),
+                                                                                                 default);
 
             // Assert
             result.Count.ShouldEqual(2);
@@ -67,7 +69,8 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
 
             // Act
             List<Category> result =
-                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery("guid"), default);
+                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery("guid"),
+                                                                                                 default);
 
             // Assert
             Assert.Single(result);

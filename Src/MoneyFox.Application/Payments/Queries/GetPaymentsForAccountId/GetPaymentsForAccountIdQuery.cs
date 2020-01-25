@@ -1,13 +1,13 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.QueryObjects;
-using MoneyFox.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using MediatR;
+using Microsoft.EntityFrameworkCore;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.QueryObjects;
+using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
 {
@@ -49,9 +49,9 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
                                                                  .Include(x => x.RecurringPayment)
                                                                  .HasAccountId(request.AccountId);
 
-                if(request.IsClearedFilterActive)
+                if (request.IsClearedFilterActive)
                     paymentQuery = paymentQuery.AreCleared();
-                if(request.IsRecurringFilterActive)
+                if (request.IsRecurringFilterActive)
                     paymentQuery = paymentQuery.AreRecurring();
 
                 paymentQuery = paymentQuery.Where(x => x.Date >= request.TimeRangeStart);

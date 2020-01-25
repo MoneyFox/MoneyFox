@@ -1,14 +1,14 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -155,8 +155,8 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task SendMail()
         {
             await emailAdapter.SendEmailAsync(Strings.FeedbackSubject, string.Empty,
-                                         new List<string> { AppConstants.SupportMail },
-                                         new List<string> { Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName) });
+                                              new List<string> {AppConstants.SupportMail},
+                                              new List<string> {Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName)});
         }
 
         private void RateApp()

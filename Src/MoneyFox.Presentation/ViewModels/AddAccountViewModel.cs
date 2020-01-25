@@ -43,7 +43,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             if (await mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name)))
             {
-                await DialogService.ShowMessage(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
+                await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
                 return;
             }
 

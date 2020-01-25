@@ -26,22 +26,22 @@
                         iOS="Roboto-Medium" />
 
             <typography:MaterialFontConfiguration x:Key="Material.Font"
-                                                Body1="{StaticResource FontFamily.RobotoRegular}"
-                                                Body2="{StaticResource FontFamily.RobotoRegular}"
-                                                Button="{StaticResource FontFamily.RobotoMedium}"
-                                                Caption="{StaticResource FontFamily.RobotoRegular}"
-                                                H1="{StaticResource FontFamily.RobotoRegular}"
-                                                H2="{StaticResource FontFamily.RobotoRegular}"
-                                                H3="{StaticResource FontFamily.RobotoRegular}"
-                                                H4="{StaticResource FontFamily.RobotoRegular}"
-                                                H5="{StaticResource FontFamily.RobotoRegular}"
-                                                H6="{StaticResource FontFamily.RobotoMedium}"
-                                                Overline="{StaticResource FontFamily.RobotoRegular}"
-                                                Subtitle1="{StaticResource FontFamily.RobotoRegular}"
-                                                Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
+                                                  Body1="{StaticResource FontFamily.RobotoRegular}"
+                                                  Body2="{StaticResource FontFamily.RobotoRegular}"
+                                                  Button="{StaticResource FontFamily.RobotoMedium}"
+                                                  Caption="{StaticResource FontFamily.RobotoRegular}"
+                                                  H1="{StaticResource FontFamily.RobotoRegular}"
+                                                  H2="{StaticResource FontFamily.RobotoRegular}"
+                                                  H3="{StaticResource FontFamily.RobotoRegular}"
+                                                  H4="{StaticResource FontFamily.RobotoRegular}"
+                                                  H5="{StaticResource FontFamily.RobotoRegular}"
+                                                  H6="{StaticResource FontFamily.RobotoMedium}"
+                                                  Overline="{StaticResource FontFamily.RobotoRegular}"
+                                                  Subtitle1="{StaticResource FontFamily.RobotoRegular}"
+                                                  Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
 
             <resources:MaterialConfiguration x:Key="Material.Configuration"
-                                        FontConfiguration="{StaticResource Material.Font}" />
+                                             FontConfiguration="{StaticResource Material.Font}" />
 
             <!-- Control Styles -->
             <Style x:Key="MenuButtonStyle" TargetType="material:MaterialMenuButton">

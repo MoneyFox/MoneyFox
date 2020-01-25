@@ -11,8 +11,7 @@ namespace MoneyFox.Domain.Entities
 #pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         private Category()
 #pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-        {
-        }
+        { }
 
         public Category(string name, string note = "")
         {
@@ -26,15 +25,14 @@ namespace MoneyFox.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
-        [Required]
-        public string Name { get; private set; }
+        [Required] public string Name { get; private set; }
 
         private string note;
 
         public string Note
         {
             private set => note = value;
-            get { return note ?? string.Empty; }
+            get => note ?? string.Empty;
         }
 
         public DateTime ModificationDate { get; private set; }

@@ -89,7 +89,8 @@
                                                                   DataContext="{Binding RegionalSettingsViewModel}" />
 
                         <!-- Personalizations -->
-                        <StackPanel DataContext="{Binding PersonalizationViewModel}" Margin="{StaticResource LargeTopMargin}">
+                        <StackPanel DataContext="{Binding PersonalizationViewModel}"
+                                    Margin="{StaticResource LargeTopMargin}">
                             <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                        Text="{x:Bind resources:Strings.PersonalizationTitle}"
                                        TextWrapping="WrapWholeWords" />

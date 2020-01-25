@@ -1,15 +1,15 @@
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight;
 using MediatR;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Commands;
-using SkiaSharp;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Messages;
-using GalaSoft.MvvmLight;
+using MoneyFox.Application.Resources;
+using MoneyFox.Presentation.Commands;
+using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -31,8 +31,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// </summary>
         protected StatisticViewModel(IMediator mediator, ISettingsFacade settingsManager)
             : this(DateTime.Today.GetFirstDayOfMonth(), DateTime.Today.GetLastDayOfMonth(), mediator, settingsManager)
-        {
-        }
+        { }
 
         /// <summary>
         ///     Creates a Statistic ViewModel with custom start and end date
@@ -51,11 +50,11 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                 : SKColor.Parse("#EFF2F5");
 
             MessengerInstance.Register<DateSelectedMessage>(this, async message =>
-            {
-                StartDate = message.StartDate;
-                EndDate = message.EndDate;
-                await Load();
-            });
+                                                                  {
+                                                                      StartDate = message.StartDate;
+                                                                      EndDate = message.EndDate;
+                                                                      await Load();
+                                                                  });
         }
 
         public AsyncCommand LoadedCommand => new AsyncCommand(Load);

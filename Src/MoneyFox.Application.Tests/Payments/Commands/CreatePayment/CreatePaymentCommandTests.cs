@@ -1,4 +1,7 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -6,9 +9,6 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
 using Should;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
@@ -71,7 +71,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
-            var loadedAccount = await context.Accounts.FindAsync(account.Id);
+            Account loadedAccount = await context.Accounts.FindAsync(account.Id);
             loadedAccount.ShouldNotBeNull();
             loadedAccount.CurrentBalance.ShouldEqual(newCurrentBalance);
         }

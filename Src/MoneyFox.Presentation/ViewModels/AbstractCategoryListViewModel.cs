@@ -1,4 +1,10 @@
-﻿using AutoMapper;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
+using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
@@ -9,11 +15,6 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.Groups;
 using NLog;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
@@ -46,7 +47,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected IMediator Mediator { get; }
         protected IMapper Mapper { get; }
-        protected Application.Common.Interfaces.IDialogService DialogService { get; }
+        protected IDialogService DialogService { get; }
 
         /// <summary>
         ///     Handle the selection of a CategoryViewModel in the list
@@ -70,7 +71,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
 
-        public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
+        public List<string> MenuActions => new List<string> {Strings.EditLabel, Strings.DeleteLabel};
 
         public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
 
@@ -117,7 +118,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as event handler.>")]
+        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as event handler.>")]
         private async void MenuSelected(MaterialMenuResult menuResult)
         {
             var categoryViewModel = menuResult.Parameter as CategoryViewModel;
@@ -148,16 +149,25 @@ namespace MoneyFox.Presentation.ViewModels
             NavigationService.NavigateToModal(ViewModelLocator.AddCategory);
         }
 
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(IEnumerable<CategoryViewModel> categories)
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(
+            IEnumerable<CategoryViewModel> categories)
         {
             return new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
-                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categories,
-                                                                              CultureInfo.CurrentUICulture,
-                                                                              s => string.IsNullOrEmpty(s.Name)
-                                                                                  ? "-"
-                                                                                  : s.Name[0].ToString(CultureInfo.InvariantCulture)
-                                                                                     .ToUpper(CultureInfo.InvariantCulture),
-                                                                              itemClickCommand: ItemClickCommand));
+                                                                                              AlphaGroupListGroupCollection<
+                                                                                                      CategoryViewModel>
+                                                                                                 .CreateGroups(categories,
+                                                                                                               CultureInfo.CurrentUICulture,
+                                                                                                               s =>
+                                                                                                                   string
+                                                                                                                      .IsNullOrEmpty(s.Name)
+                                                                                                                       ? "-"
+                                                                                                                       : s.Name[0]
+                                                                                                                          .ToString(CultureInfo
+                                                                                                                                       .InvariantCulture)
+                                                                                                                          .ToUpper(CultureInfo
+                                                                                                                                      .InvariantCulture),
+                                                                                                               itemClickCommand:
+                                                                                                               ItemClickCommand));
         }
 
         private async Task DeleteCategoryAsync(CategoryViewModel categoryToDelete)

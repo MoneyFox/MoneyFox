@@ -23,8 +23,7 @@ namespace MoneyFox.Droid.Renderer
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public CustomSearchBarRenderer(Context context) : base(context)
-        {
-        }
+        { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
@@ -40,13 +39,9 @@ namespace MoneyFox.Droid.Renderer
                 editText.SetHighlightColor(Color.Accent.ToAndroid());
 
                 if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                {
                     TrySetCursorPointerColorNew(editText);
-                }
                 else
-                {
                     TrySetCursorPointerColor(editText);
-                }
 
                 UpdateSearchButtonColor();
                 UpdateCancelButtonColor();
@@ -59,15 +54,15 @@ namespace MoneyFox.Droid.Renderer
             {
                 editText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
 
-                var textSelectHandleDrawable = editText.TextSelectHandle;
+                Drawable textSelectHandleDrawable = editText.TextSelectHandle;
                 textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
                 editText.TextSelectHandle = textSelectHandleDrawable;
 
-                var textSelectHandleLeftDrawable = editText.TextSelectHandleLeft;
+                Drawable textSelectHandleLeftDrawable = editText.TextSelectHandleLeft;
                 textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
                 editText.TextSelectHandle = textSelectHandleLeftDrawable;
 
-                var textSelectHandleRightDrawable = editText.TextSelectHandleRight;
+                Drawable textSelectHandleRightDrawable = editText.TextSelectHandleRight;
                 textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
                 editText.TextSelectHandle = textSelectHandleRightDrawable;
             }
@@ -103,13 +98,9 @@ namespace MoneyFox.Droid.Renderer
                     Drawable handleDrawable = Resources.GetDrawable(handle, null);
 
                     if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                    {
                         handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
-                    }
                     else
-                    {
                         handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
-                    }
 
                     field = editor.Class.GetDeclaredField(drawableName);
                     field.Accessible = true;
@@ -130,31 +121,21 @@ namespace MoneyFox.Droid.Renderer
         private void UpdateSearchButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
-            if (searchViewCloseButtonId != 0)
-            {
-                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
-            }
+            if (searchViewCloseButtonId != 0) SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
         }
 
         private void UpdateCancelButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
-            if (searchViewCloseButtonId != 0)
-            {
-                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
-            }
+            if (searchViewCloseButtonId != 0) SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
         }
 
         private static void SetColorGray(ImageView image)
         {
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-            {
                 image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
-            }
             else
-            {
                 image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
-            }
         }
     }
 }

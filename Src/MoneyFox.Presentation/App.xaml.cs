@@ -3,8 +3,10 @@ using MoneyFox.Presentation.Views;
 using NLog;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XF.Material.Forms;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+
 namespace MoneyFox.Presentation
 {
     public partial class App
@@ -13,7 +15,7 @@ namespace MoneyFox.Presentation
         {
             InitializeComponent();
 
-            XF.Material.Forms.Material.Init(this, "Material.Configuration");
+            Material.Init(this, "Material.Configuration");
 
             AppDomain.CurrentDomain.UnhandledException += (s, e) => { LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject); };
 

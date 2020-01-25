@@ -1,7 +1,8 @@
-﻿using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels.Settings;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using MoneyFox.Presentation.Commands;
+using MoneyFox.Presentation.ViewModels.Settings;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
@@ -13,7 +14,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             new CultureInfo("en-US")
         };
 
-        public AsyncCommand LoadAvailableCulturesCommand => throw new System.NotImplementedException();
+        public AsyncCommand LoadAvailableCulturesCommand => throw new NotImplementedException();
 
         public CultureInfo SelectedCulture { get; set; } = CultureInfo.CurrentCulture;
     }
