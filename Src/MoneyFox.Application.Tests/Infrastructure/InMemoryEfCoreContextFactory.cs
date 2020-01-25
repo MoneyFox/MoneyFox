@@ -11,8 +11,8 @@ namespace MoneyFox.Application.Tests.Infrastructure
         public static EfCoreContext Create()
         {
             DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
-                                                      .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                                                      .Options;
+                                                     .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                                                     .Options;
 
             var context = new EfCoreContext(options);
 

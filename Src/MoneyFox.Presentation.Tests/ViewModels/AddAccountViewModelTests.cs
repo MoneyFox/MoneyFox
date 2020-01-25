@@ -73,13 +73,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var cultureInfo = new CultureInfo(cultureString);
             Thread.CurrentThread.CurrentCulture = cultureInfo;
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
-            
+
             var mediatorMock = new Mock<IMediator>();
             var mapperMock = new Mock<IMapper>();
             var settingsFacadeMock = new Mock<ISettingsFacade>();
             var navigationServiceMock = new Mock<INavigationService>();
 
-            var addAccountVm = new AddAccountViewModel(mediatorMock.Object, mapperMock.Object, settingsFacadeMock.Object, null, null, navigationServiceMock.Object);
+            var addAccountVm = new AddAccountViewModel(mediatorMock.Object, mapperMock.Object, settingsFacadeMock.Object, null, null,
+                                                       navigationServiceMock.Object);
             addAccountVm.SelectedAccount.Name = "Foo";
 
             // Act

@@ -10,13 +10,13 @@ namespace MoneyFox.Application.Common.FileStore
         public void WriteFile(string path, IEnumerable<byte> contents)
         {
             WriteFileCommon(path, stream =>
-            {
-                using (var binaryWriter = new BinaryWriter(stream))
-                {
-                    binaryWriter.Write(contents.ToArray());
-                    binaryWriter.Flush();
-                }
-            });
+                                  {
+                                      using (var binaryWriter = new BinaryWriter(stream))
+                                      {
+                                          binaryWriter.Write(contents.ToArray());
+                                          binaryWriter.Flush();
+                                      }
+                                  });
         }
 
         public abstract Stream OpenRead(string path);

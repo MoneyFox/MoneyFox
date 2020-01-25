@@ -39,7 +39,8 @@ namespace MoneyFox.Presentation.Views
 
         private void AddItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushPopupAsync(new AddAccountAndPaymentPopup {BindingContext = ViewModel?.ViewActionViewModel}).FireAndForgetSafeAsync();
+            Navigation.PushPopupAsync(new AddAccountAndPaymentPopup {BindingContext = ViewModel?.ViewActionViewModel})
+                      .FireAndForgetSafeAsync();
         }
 
         private void EditAccount(object sender, EventArgs e)

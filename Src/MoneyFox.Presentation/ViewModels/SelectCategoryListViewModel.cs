@@ -26,8 +26,7 @@ namespace MoneyFox.Presentation.ViewModels
                                            IDialogService dialogService,
                                            INavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
-        {
-        }
+        { }
 
         /// <summary>
         ///     CategoryViewModel currently selected in the view.

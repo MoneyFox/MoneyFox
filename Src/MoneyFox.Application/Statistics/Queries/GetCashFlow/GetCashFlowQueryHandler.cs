@@ -1,16 +1,16 @@
-﻿using MediatR;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
 {
@@ -66,7 +66,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                                 Color = BLUE_HEX_CODE
                             };
 
-            return new List<StatisticEntry> { income, spent, increased };
+
+            return new List<StatisticEntry> {income, spent, increased};
         }
     }
 }

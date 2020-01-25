@@ -11,7 +11,7 @@ namespace MoneyFox.Droid
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
+            builder.Register(c => new TokenObject {CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]});
 
             builder.RegisterModule<PresentationModule>();
             builder.RegisterModule<InfrastructureModule>();

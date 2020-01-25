@@ -5,8 +5,7 @@ namespace MoneyFox.iOS
     public class IosFileStore : FileStoreIoBase
     {
         public IosFileStore(string basePath) : base(basePath)
-        {
-        }
+        { }
 
         public const string ResScheme = "res:";
 

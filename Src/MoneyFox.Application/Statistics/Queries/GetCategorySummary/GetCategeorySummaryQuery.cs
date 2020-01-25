@@ -1,14 +1,14 @@
-﻿using MediatR;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 {
@@ -20,6 +20,9 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 
         public class GetCategorySummaryQueryHandler : IRequestHandler<GetCategorySummaryQuery, CategorySummaryModel>
         {
+            private const int PERCENTAGE_DIVIDER = 100;
+            private const int DAY_DIVIDER = 30;
+
             private readonly IContextAdapter contextAdapter;
 
             public GetCategorySummaryQueryHandler(IContextAdapter contextAdapter)
@@ -49,7 +52,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                                                         .Where(x => x.Type != PaymentType.Transfer)
                                                                         .ToListAsync(cancellationToken);
 
-                foreach(Category category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category).Distinct())
+                foreach (Category category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category!).Distinct())
                 {
                     CreateOverviewItem(paymentsInTimeRange, category);
                 }
@@ -67,29 +70,31 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             private void CreateOverviewItem(IEnumerable<Payment> payments, Category category)
             {
                 var categoryOverViewItem = new CategoryOverviewItem
-                                           {
-                                               Label = category.Name,
-                                               Value = payments.Where(x => x.Category != null)
-                                                               .Where(x => x.Category.Id == category.Id)
-                                                               .Where(x => x.Type != PaymentType.Transfer)
-                                                               .Sum(x => x.Type == PaymentType.Expense
-                                                                         ? -x.Amount : x.Amount),
-                                               Average = CalculateAverageForCategory(category.Id)
-                                           };
+                {
+                    Label = category.Name,
+                    Value = payments.Where(x => x.Category != null)
+                                    .Where(x => x.Category!.Id == category.Id)
+                                    .Where(x => x.Type != PaymentType.Transfer)
+                                    .Sum(x => x.Type == PaymentType.Expense
+                                             ? -x.Amount
+                                             : x.Amount),
+                    Average = CalculateAverageForCategory(category.Id)
+                };
                 categoryOverviewItems.Add(categoryOverViewItem);
             }
 
             private void AddEntryForPaymentsWithoutCategory(List<Payment> payments)
             {
                 categoryOverviewItems.Add(new CategoryOverviewItem
-                                          {
-                                              Label = Strings.NoCategoryLabel,
-                                              Value = payments.Where(x => x.Category == null)
-                                                              .Where(x => x.Type != PaymentType.Transfer)
-                                                              .Sum(x => x.Type == PaymentType.Expense
-                                                                        ? -x.Amount : x.Amount),
-                                              Average = CalculateAverageForPaymentsWithoutCategory()
-                                          });
+                {
+                    Label = Strings.NoCategoryLabel,
+                    Value = payments.Where(x => x.Category == null)
+                                    .Where(x => x.Type != PaymentType.Transfer)
+                                    .Sum(x => x.Type == PaymentType.Expense
+                                             ? -x.Amount
+                                             : x.Amount),
+                    Average = CalculateAverageForPaymentsWithoutCategory()
+                });
             }
 
             private static void CalculatePercentage(List<CategoryOverviewItem> categories)
@@ -97,26 +102,26 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 decimal sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
                 decimal sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);
 
-                foreach(CategoryOverviewItem statisticItem in categories.Where(x => x.Value < 0))
+                foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value < 0))
                 {
-                    statisticItem.Percentage = statisticItem.Value / sumNegative * 100;
+                    statisticItem.Percentage = statisticItem.Value / sumNegative * PERCENTAGE_DIVIDER;
                 }
 
-                foreach(CategoryOverviewItem statisticItem in categories.Where(x => x.Value > 0))
+                foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value > 0))
                 {
-                    statisticItem.Percentage = statisticItem.Value / sumPositive * 100;
+                    statisticItem.Percentage = statisticItem.Value / sumPositive * PERCENTAGE_DIVIDER;
                 }
             }
 
             private decimal CalculateAverageForCategory(int id)
             {
                 List<Payment> payments = paymentLastTwelveMonths
-                                         .Where(x => x.Category != null)
-                                         .Where(x => x.Category.Id == id)
-                                         .OrderByDescending(x => x.Date)
-                                         .ToList();
+                                        .Where(x => x.Category != null)
+                                        .Where(x => x.Category!.Id == id)
+                                        .OrderByDescending(x => x.Date)
+                                        .ToList();
 
-                if(payments.Count == 0)
+                if (payments.Count == 0)
                     return 0;
 
                 return SumForCategory(payments);
@@ -125,11 +130,11 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             private decimal CalculateAverageForPaymentsWithoutCategory()
             {
                 List<Payment> payments = paymentLastTwelveMonths
-                                         .Where(x => x.Category == null)
-                                         .OrderByDescending(x => x.Date)
-                                         .ToList();
+                                        .Where(x => x.Category == null)
+                                        .OrderByDescending(x => x.Date)
+                                        .ToList();
 
-                if(payments.Count == 0)
+                if (payments.Count == 0)
                     return 0;
 
                 return SumForCategory(payments);
@@ -140,10 +145,10 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 decimal sumForCategory = payments.Sum(x => x.Amount);
                 TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
-                if(timeDiff.Days < 30)
+                if (timeDiff.Days < DAY_DIVIDER)
                     return sumForCategory;
 
-                return Math.Round(sumForCategory / (timeDiff.Days / 30), 2, MidpointRounding.ToEven);
+                return Math.Round(sumForCategory / (timeDiff.Days / DAY_DIVIDER), 2, MidpointRounding.ToEven);
             }
         }
     }

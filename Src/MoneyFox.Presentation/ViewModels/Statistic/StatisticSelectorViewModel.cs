@@ -53,17 +53,10 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         private void GoToStatistic(StatisticSelectorType item)
         {
             if (item.Type == StatisticType.Cashflow)
-            {
                 navigationService.NavigateTo(ViewModelLocator.StatisticCashFlow);
-            }
             else if (item.Type == StatisticType.CategorySpreading)
-            {
                 navigationService.NavigateTo(ViewModelLocator.StatisticCategorySpreading);
-            }
-            else if (item.Type == StatisticType.CategorySummary)
-            {
-                navigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
-            }
+            else if (item.Type == StatisticType.CategorySummary) navigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
         }
     }
 }

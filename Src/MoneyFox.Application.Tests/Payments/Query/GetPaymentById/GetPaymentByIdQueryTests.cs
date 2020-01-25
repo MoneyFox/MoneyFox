@@ -59,7 +59,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById
             await context.SaveChangesAsync();
 
             // Act
-            Payment result = await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(payment1.Id), default);
+            Payment result =
+                await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(payment1.Id), default);
 
             // Assert
             result.ShouldNotBeNull();

@@ -29,10 +29,10 @@ namespace MoneyFox.Application
 
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>
-            {
-                var c = context.Resolve<IComponentContext>();
-                return t => c.Resolve(t);
-            });
+                                             {
+                                                 var c = context.Resolve<IComponentContext>();
+                                                 return t => c.Resolve(t);
+                                             });
 
             builder.RegisterAssemblyTypes(typeof(GetCashFlowQuery).GetTypeInfo().Assembly).AsImplementedInterfaces();
         }

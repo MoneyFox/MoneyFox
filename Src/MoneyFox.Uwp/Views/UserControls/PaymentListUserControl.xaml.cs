@@ -29,8 +29,9 @@ namespace MoneyFox.Uwp.Views.UserControls
 
             // Select first group with a cleared payment in it
             DateListGroupCollection<PaymentViewModel> selectedGroupCollection = PaymentListView
-                                                                                .Items.Select(x => (DateListGroupCollection<PaymentViewModel>) x)
-                                                                                .FirstOrDefault(group => group.Any(x => x.IsCleared));
+                                                                               .Items
+                                                                               .Select(x => (DateListGroupCollection<PaymentViewModel>) x)
+                                                                               .FirstOrDefault(group => group.Any(x => x.IsCleared));
 
             if (selectedGroupCollection == null) return;
 

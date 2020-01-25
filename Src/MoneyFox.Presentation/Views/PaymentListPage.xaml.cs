@@ -57,9 +57,10 @@ namespace MoneyFox.Presentation.Views
         private void OpenDialog()
         {
             Navigation.PushPopupAsync(new FilterPopup
-            {
-                BindingContext = ViewModelLocator.SelectFilterDialogVm
-            }).FireAndForgetSafeAsync();
+                       {
+                           BindingContext = ViewModelLocator.SelectFilterDialogVm
+                       })
+                      .FireAndForgetSafeAsync();
         }
 
         private void AddItem_Clicked(object sender, EventArgs e)

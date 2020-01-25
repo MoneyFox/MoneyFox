@@ -51,7 +51,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             await context.SaveChangesAsync();
 
             // Act
-            decimal result = await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object).Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+            decimal result =
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
+                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
             result.ShouldEqual(220);

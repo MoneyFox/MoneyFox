@@ -8,6 +8,7 @@ using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using SkiaSharp;
 using Xamarin.Forms;
+using Entry = Microcharts.Entry;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -68,12 +69,12 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
             Chart = new BarChart
             {
-                Entries = StatisticItems.Select(x => new Microcharts.Entry(x.Value)
-                                        {
-                                            Label = x.Label,
-                                            ValueLabel = x.ValueLabel,
-                                            Color = SKColor.Parse(x.Color)
-                                        })
+                Entries = StatisticItems.Select(x => new Entry(x.Value)
+                                         {
+                                             Label = x.Label,
+                                             ValueLabel = x.ValueLabel,
+                                             Color = SKColor.Parse(x.Color)
+                                         })
                                         .ToList(),
                 BackgroundColor = BackgroundColor,
                 Margin = 20,

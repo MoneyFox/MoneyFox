@@ -1,12 +1,12 @@
-﻿using GalaSoft.MvvmLight;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Presentation.Commands;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Application;
+using GalaSoft.MvvmLight;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Presentation.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {
@@ -25,18 +25,20 @@ namespace MoneyFox.Presentation.ViewModels.Settings
         }
 
         private CultureInfo selectedCulture;
+
         public CultureInfo SelectedCulture
         {
             get => selectedCulture;
             set
             {
-                if(selectedCulture == value) return;
+                if (selectedCulture == value) return;
                 selectedCulture = value;
                 settingsFacade.DefaultCulture = selectedCulture.Name;
                 CultureHelper.CurrentCulture = selectedCulture;
                 RaisePropertyChanged();
             }
         }
+
         public ObservableCollection<CultureInfo> AvailableCultures { get; }
 
         public AsyncCommand LoadAvailableCulturesCommand => new AsyncCommand(LoadAvailableCulturesAsync);

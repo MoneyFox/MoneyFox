@@ -8,7 +8,9 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Settings;
 using MoneyFox.Presentation.Views;
@@ -16,8 +18,6 @@ using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
 using NLog;
 using WinUI = Microsoft.UI.Xaml.Controls;
-using GalaSoft.MvvmLight;
-using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp
 {
@@ -25,7 +25,9 @@ namespace MoneyFox.Uwp
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        private readonly KeyboardAccelerator altLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
+        private readonly KeyboardAccelerator altLeftKeyboardAccelerator =
+            BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
+
         private readonly KeyboardAccelerator backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
         private bool isBackEnabled;

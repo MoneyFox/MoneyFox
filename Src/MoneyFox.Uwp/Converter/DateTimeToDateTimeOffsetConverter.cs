@@ -1,4 +1,3 @@
-using MoneyFox.Presentation;
 using System;
 using Windows.UI.Xaml.Data;
 using MoneyFox.Application;
@@ -11,7 +10,7 @@ namespace MoneyFox.Uwp.Converter
         {
             try
             {
-                DateTime date = System.Convert.ToDateTime(value, CultureHelper.CurrentCulture);
+                var date = System.Convert.ToDateTime(value, CultureHelper.CurrentCulture);
                 return new DateTimeOffset(date);
             }
             catch (ArgumentOutOfRangeException)

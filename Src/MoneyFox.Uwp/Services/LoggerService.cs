@@ -1,9 +1,9 @@
-﻿using NLog;
+﻿using System.IO;
+using MoneyFox.Application.Common.Constants;
+using NLog;
 using NLog.Config;
 using NLog.Targets;
-using System.IO;
 using Xamarin.Essentials;
-using MoneyFox.Application.Common.Constants;
 
 #if !DEBUG
 using PCLAppConfig;
@@ -30,12 +30,12 @@ namespace MoneyFox.Uwp.Services
 
 #if !DEBUG
             // Configure AppCenter
-            var appCenterTarget = new AppCenterTarget("appcenter")
-            {
-                AppSecret = ConfigurationManager.AppSettings["WindowsAppcenterSecret"]
-            };
+            //var appCenterTarget = new AppCenterTarget("appcenter")
+            //{
+            //    AppSecret = ConfigurationManager.AppSettings["WindowsAppcenterSecret"]
+            //};
 
-            config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
+            //config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
 #endif
 
 

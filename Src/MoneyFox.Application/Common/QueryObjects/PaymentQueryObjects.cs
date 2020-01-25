@@ -80,7 +80,8 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <returns>Query filtered for the account id.</returns>
         public static IQueryable<Payment> HasAccountId(this IQueryable<Payment> query, int accountId)
         {
-            return query.Where(payment => payment.ChargedAccount.Id == accountId || payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
+            return query.Where(payment => payment.ChargedAccount.Id == accountId ||
+                                          payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
         }
 
         /// <summary>

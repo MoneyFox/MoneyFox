@@ -1,9 +1,9 @@
-﻿using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
@@ -116,7 +116,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var logoutCommandCalled = false;
 
             var backupServiceMock = new Mock<IBackupService>();
-            backupServiceMock.Setup(x => x.LogoutAsync()).Callback(() => logoutCommandCalled = true)
+            backupServiceMock.Setup(x => x.LogoutAsync())
+                             .Callback(() => logoutCommandCalled = true)
                              .Returns(Task.CompletedTask);
 
             //execute
