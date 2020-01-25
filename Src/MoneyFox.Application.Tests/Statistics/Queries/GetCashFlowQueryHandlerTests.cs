@@ -137,14 +137,14 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_USVersion_CorrectNegativeSign()
         {
             // Arrange
-            var cultureInfo = new CultureInfo("en-US");
-            CultureHelper.CurrentCulture = cultureInfo;
-
             context.AddRange(new List<Payment>
             {
                 new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
             });
             context.SaveChanges();
+
+            var cultureInfo = new CultureInfo("en-US");
+            CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
@@ -162,7 +162,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
         [Theory]
         [InlineData("en-US", '$')]
-        [InlineData("de-CH", 'C')]
         public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
         {
             // Arrange
@@ -180,8 +179,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             result[0].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
             result[1].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
             result[2].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
-
-            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
     }
 }
