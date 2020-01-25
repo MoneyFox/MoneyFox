@@ -112,8 +112,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             var cultureInfo = new CultureInfo(culture);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            CultureHelper.CurrentCulture = cultureInfo;
 
             context.AddRange(new List<Payment>
             {
@@ -130,6 +129,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Assert
             result[2].ValueLabel[indexNegativeSign].ShouldEqual(expectedNegativeSign);
+
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Fact]
@@ -137,8 +138,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             var cultureInfo = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            CultureHelper.CurrentCulture = cultureInfo;
 
             context.AddRange(new List<Payment>
             {
@@ -156,6 +156,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Assert
             // We have to test here for Mac since they have a different standard sign than Windows.
             result[2].ValueLabel[0].ShouldEqual(RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? '-' : '(');
+
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Theory]
@@ -165,8 +167,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             var cultureInfo = new CultureInfo(culture);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
@@ -179,6 +180,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             result[0].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
             result[1].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
             result[2].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
+
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
     }
 }
