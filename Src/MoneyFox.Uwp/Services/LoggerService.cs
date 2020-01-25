@@ -30,12 +30,12 @@ namespace MoneyFox.Uwp.Services
 
 #if !DEBUG
             // Configure AppCenter
-            var appCenterTarget = new AppCenterTarget("appcenter")
-            {
-                AppSecret = ConfigurationManager.AppSettings["WindowsAppcenterSecret"]
-            };
+            //var appCenterTarget = new AppCenterTarget("appcenter")
+            //{
+            //    AppSecret = ConfigurationManager.AppSettings["WindowsAppcenterSecret"]
+            //};
 
-            config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
+            //config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
 #endif
 
 
