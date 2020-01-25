@@ -2,7 +2,6 @@
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using Remotion.Linq.Clauses;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
