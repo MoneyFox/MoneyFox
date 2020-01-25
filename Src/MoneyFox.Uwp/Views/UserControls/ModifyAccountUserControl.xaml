@@ -17,10 +17,6 @@
         <designTime:DesignTimeModifyAccountViewModel />
     </d:Page.DataContext>
 
-    <UserControl.Resources>
-        <converter:DecimalConverter x:Key="DecimalConverter" />
-    </UserControl.Resources>
-
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding InitializeCommand}" />

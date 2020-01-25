@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Presentation;
 using System;
-using System.Globalization;
 using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.Converter
