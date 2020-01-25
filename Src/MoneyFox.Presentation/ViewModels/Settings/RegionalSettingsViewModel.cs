@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Application;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {

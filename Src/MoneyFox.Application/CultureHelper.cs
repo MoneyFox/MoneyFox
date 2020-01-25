@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace MoneyFox.Presentation
+namespace MoneyFox.Application
 {
     public static class CultureHelper
     {

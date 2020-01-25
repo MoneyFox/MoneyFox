@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using MoneyFox.Application;
 using Should;
 using Xunit;
 

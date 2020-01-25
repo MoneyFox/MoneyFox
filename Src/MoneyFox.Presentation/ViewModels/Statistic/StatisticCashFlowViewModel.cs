@@ -17,8 +17,8 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     public class
         StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
-        static string fontFamily = Device.RuntimePlatform == Device.iOS ? "Lobster-Regular" : null;
-        private SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
+        private static readonly string fontFamily = Device.RuntimePlatform == Device.iOS ? "Lobster-Regular" : null;
+        private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
         private BarChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
