@@ -189,10 +189,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
         {
             // Arrange
-            var cultureInfo = new CultureInfo(culture);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
-
             var account = new Account("test");
             var paymentList = new List<Payment>
             {
@@ -203,6 +199,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
+
+            var cultureInfo = new CultureInfo(culture);
+            CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
             List<StatisticEntry> result =
