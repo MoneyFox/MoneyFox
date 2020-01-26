@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
+using Should;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceSummary
@@ -46,12 +46,13 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceS
             await context.AddAsync(accountExcluded);
             await context.AddAsync(accountIncluded);
             await context.SaveChangesAsync();
-            
+
             // Act
             var result =
-                await new GetExcludedAccountQuery.Handler(contextAdapterMock.Object).Handle(new GetExcludedAccountQuery(), default);
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object).Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
+            result.ShouldEqual(80);
         }
     }
 }

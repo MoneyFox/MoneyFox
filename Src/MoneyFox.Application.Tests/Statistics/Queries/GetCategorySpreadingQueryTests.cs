@@ -185,7 +185,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
         [Theory]
         [InlineData("en-US", '$')]
-        [InlineData("de-CH", 'C')]
         public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
         {
             // Arrange
