@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
@@ -19,6 +18,7 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
     [ExcludeFromCodeCoverage]
+    [Collection("CultureCollection")]
     public class GetCategorySpreadingQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
@@ -185,9 +185,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
         [Theory]
         [InlineData("en-US", '$')]
+        [InlineData("de-CH", 'C')]
         public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
         {
             // Arrange
+            var cultureInfo = new CultureInfo(culture);
+            CultureHelper.CurrentCulture = cultureInfo;
+
             var account = new Account("test");
             var paymentList = new List<Payment>
             {
@@ -198,9 +202,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
-
-            var cultureInfo = new CultureInfo(culture);
-            CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
             List<StatisticEntry> result =
