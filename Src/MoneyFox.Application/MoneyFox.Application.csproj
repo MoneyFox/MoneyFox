@@ -26,6 +26,7 @@
     <PackageReference Include="Xamarin.Forms" Version="4.4.0.991537" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.7.1" />
     <PackageReference Include="Microsoft.Graph" Version="1.21.0" />
+    <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
   </ItemGroup>
 
   <ItemGroup>
