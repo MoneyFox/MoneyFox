@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Globalization;
-using MoneyFox.Application.Common.ConverterLogic;
+using MoneyFox.Presentation.ConverterLogic;
 using MoneyFox.Presentation.ViewModels;
 using Xamarin.Forms;
 
