@@ -108,7 +108,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
         [Theory]
         [InlineData("de-CH", 3, '-')]
-        [InlineData("en-US", 0, '(')]
         public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign, char expectedNegativeSign)
         {
             // Arrange
