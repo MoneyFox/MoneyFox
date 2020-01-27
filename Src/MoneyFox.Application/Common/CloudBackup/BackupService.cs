@@ -59,6 +59,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
     public class BackupService : IBackupService, IDisposable
     {
+        private const string CODE_TIMEOUT = "timeout";
+
         private readonly ICloudBackupService cloudBackupService;
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
@@ -68,7 +70,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
+        
         public BackupService(ICloudBackupService cloudBackupService,
                              IFileStore fileStore,
                              ISettingsFacade settingsFacade,
@@ -198,7 +200,6 @@ namespace MoneyFox.Application.Common.CloudBackup
             catch (BackupAuthenticationFailedException ex)
             {
                 logManager.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
-                await LogoutAsync();
                 throw;
             }
 

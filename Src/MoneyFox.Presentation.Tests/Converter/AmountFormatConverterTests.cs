@@ -8,6 +8,7 @@ using Xunit;
 namespace MoneyFox.Presentation.Tests.Converter
 {
     [ExcludeFromCodeCoverage]
+    [Collection("CultureCollection")]
     public class AmountFormatConverterTests
     {
         [Theory] // Currencies: 

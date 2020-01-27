@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
@@ -20,6 +19,7 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
     [ExcludeFromCodeCoverage]
+    [Collection("CultureCollection")]
     public class GetCashFlowQueryHandlerTests : IDisposable
     {
         private readonly EfCoreContext context;
@@ -162,6 +162,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
         [Theory]
         [InlineData("en-US", '$')]
+        [InlineData("de-CH", 'C')]
         public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
         {
             // Arrange
