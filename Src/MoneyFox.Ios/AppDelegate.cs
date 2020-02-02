@@ -59,6 +59,7 @@ namespace MoneyFox.iOS
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
             RegisterServices();
+            RunAppStartAsync().FireAndForgetSafeAsync();
 
             Forms.Init();
             FormsMaterial.Init();
@@ -69,8 +70,6 @@ namespace MoneyFox.iOS
             UIApplication.SharedApplication.StatusBarStyle = UIStatusBarStyle.BlackOpaque;
             uiApplication.SetMinimumBackgroundFetchInterval(MINIMUM_BACKGROUND_FETCH_INTERVAL);
             UIApplication.SharedApplication.SetMinimumBackgroundFetchInterval(UIApplication.BackgroundFetchIntervalMinimum);
-
-            RunAppStartAsync().FireAndForgetSafeAsync();
 
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
