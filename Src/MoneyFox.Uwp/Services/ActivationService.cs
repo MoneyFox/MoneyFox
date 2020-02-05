@@ -5,6 +5,7 @@ using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Autofac;
+using Microsoft.Toolkit.Helpers;
 using MoneyFox.Application.Common;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
@@ -81,9 +82,10 @@ namespace MoneyFox.Uwp.Services
 
             Forms.Init(activationArgs as LaunchActivatedEventArgs);
             new Presentation.App();
-            BackgroundTaskService.RegisterBackgroundTasks();
-            ThemeSelectorService.Initialize(app.RequestedTheme);
+
+            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await JumpListService.InitializeAsync();
+            ThemeSelectorService.Initialize(app.RequestedTheme);
         }
 
         private static void RegisterServices(NavigationService nav)
