@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using NavigationView = Microsoft.UI.Xaml.Controls.NavigationView;
 using NavigationViewItemInvokedEventArgs = Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs;
@@ -28,12 +29,12 @@ namespace MoneyFox.Uwp.Views
                 var flyout = FlyoutBase.GetAttachedFlyout(openStatisticMenu);
                 flyout.ShowAt(openStatisticMenu);
             }
+        }
 
-            if (args.InvokedItemContainer == openSettingsMenu)
-            {
-                var flyout = FlyoutBase.GetAttachedFlyout(openSettingsMenu);
-                flyout.ShowAt(openSettingsMenu);
-            }
+        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var flyout = FlyoutBase.GetAttachedFlyout(SettingsButton);
+            flyout.ShowAt(SettingsButton);
         }
     }
 }
