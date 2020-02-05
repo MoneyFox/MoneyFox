@@ -121,6 +121,7 @@ namespace MoneyFox.Uwp.Services
             nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingView));
             nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryView));
             nav.Configure(ViewModelLocator.Backup, typeof(BackupView));
+            nav.Configure(ViewModelLocator.About, typeof(AboutView));
 
             return nav;
         }

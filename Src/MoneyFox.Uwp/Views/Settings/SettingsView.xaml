@@ -29,7 +29,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <ScrollViewer Margin="0,0,-10,0">
             <StackPanel Margin="0,0,20,0">
                 <!-- Background Job -->
