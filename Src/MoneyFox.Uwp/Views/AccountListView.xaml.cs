@@ -3,6 +3,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Presentation.ViewModels.DesignTime;
@@ -12,8 +13,10 @@ namespace MoneyFox.Uwp.Views
     /// <summary>
     ///     View to display an list of accounts.
     /// </summary>
-    public sealed partial class AccountListView
+    public sealed partial class AccountListView : BaseView
     {
+        public override string Header => Strings.AccountsTitle;
+
         /// <summary>
         ///     Initialize View.
         /// </summary>
