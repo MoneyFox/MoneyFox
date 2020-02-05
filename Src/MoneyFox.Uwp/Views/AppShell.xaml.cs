@@ -1,4 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using NavigationView = Microsoft.UI.Xaml.Controls.NavigationView;
+using NavigationViewItemInvokedEventArgs = Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -17,5 +20,20 @@ namespace MoneyFox.Uwp.Views
         }
 
         public Frame MainFrame => ContentFrame;
+
+        private void NavView_OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.InvokedItemContainer == openStatisticMenu)
+            {
+                var flyout = FlyoutBase.GetAttachedFlyout(openStatisticMenu);
+                flyout.ShowAt(openStatisticMenu);
+            }
+
+            if (args.InvokedItemContainer == openSettingsMenu)
+            {
+                var flyout = FlyoutBase.GetAttachedFlyout(openSettingsMenu);
+                flyout.ShowAt(openSettingsMenu);
+            }
+        }
     }
 }

@@ -30,8 +30,40 @@
                               SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
                               IsBackButtonVisible="Visible"
                               PaneDisplayMode="Top"
+                              ItemInvoked="NavView_OnItemInvoked"
                               AlwaysShowHeader="False"
-                              IsSettingsVisible="True">
+                              IsSettingsVisible="false">
+
+            <winui:NavigationView.PaneFooter>
+                <winui:NavigationViewItem x:Name="openSettingsMenu">
+                    <winui:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE713;" />
+                    </winui:NavigationViewItem.Icon>
+
+                    <FlyoutBase.AttachedFlyout>
+                        <MenuFlyout Placement="Bottom">
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CashFlowStatisticTitle}">
+                                <MenuFlyoutItem.Icon>
+                                    <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CategorySpreadingTitle}">
+                                <MenuFlyoutItem.Icon>
+                                    <uwp:FontAwesome Icon="PieChart" FontSize="90" HorizontalAlignment="Center" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CategorySummaryTitle}">
+                                <MenuFlyoutItem.Icon>
+                                    <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </FlyoutBase.AttachedFlyout>
+
+                </winui:NavigationViewItem>
+            </winui:NavigationView.PaneFooter>
 
             <winui:NavigationView.MenuItems>
 
@@ -42,11 +74,49 @@
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem Content="{x:Bind resources:Strings.StatisticsTitle}"
-                                          helpers:NavHelper.NavigateTo="StatisticSelectorViewModel">
+                <winui:NavigationViewItem SelectsOnInvoked="False" x:Name="openStatisticMenu">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
                     </winui:NavigationViewItem.Icon>
+
+                    <winui:NavigationViewItem.Content>
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <TextBlock
+                                Margin="0"
+                                VerticalAlignment="Center"
+                                Text="{x:Bind resources:Strings.StatisticsTitle}" />
+                            <TextBlock
+                                Margin="6,0,0,0"
+                                VerticalAlignment="Center"
+                                AutomationProperties.AccessibilityView="Raw"
+                                FontFamily="Segoe MDL2 Assets"
+                                FontSize="12"
+                                Text="&#xE70D;" />
+                        </StackPanel>
+                    </winui:NavigationViewItem.Content>
+
+                    <FlyoutBase.AttachedFlyout>
+                        <MenuFlyout Placement="Bottom">
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CashFlowStatisticTitle}">
+                                <MenuFlyoutItem.Icon>
+                                    <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CategorySpreadingTitle}">
+                                <MenuFlyoutItem.Icon>
+                                    <uwp:FontAwesome Icon="PieChart" FontSize="90" HorizontalAlignment="Center" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CategorySummaryTitle}">
+                                <MenuFlyoutItem.Icon>
+                                    <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
+                                </MenuFlyoutItem.Icon>
+                            </MenuFlyoutItem>
+                        </MenuFlyout>
+                    </FlyoutBase.AttachedFlyout>
+
                 </winui:NavigationViewItem>
 
                 <winui:NavigationViewItem Content="{x:Bind resources:Strings.CategoriesTitle}"

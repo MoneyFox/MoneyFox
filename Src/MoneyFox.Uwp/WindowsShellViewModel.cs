@@ -89,9 +89,23 @@ namespace MoneyFox.Uwp
                 return;
             }
 
+
+
             WinUI.NavigationViewItem item = navigationView.MenuItems
                                                           .OfType<WinUI.NavigationViewItem>()
-                                                          .First(menuItem => (string) menuItem.Content == (string) args.InvokedItem);
+                                                          .FirstOrDefault(menuItem =>
+                                                                          {
+                                                                              if (menuItem.Content is string content
+                                                                                  && args.InvokedItem is string invokedItem)
+                                                                              {
+                                                                                  return content == invokedItem;
+                                                                              }
+
+                                                                              return false;
+                                                                          });
+
+            if (item == null) return;
+
             var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
 
             logger.Info("Navigate to page key {key}", pageKey);
