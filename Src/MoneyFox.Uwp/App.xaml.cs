@@ -56,12 +56,6 @@ namespace MoneyFox.Uwp
         protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
         {
             await ActivationService.ActivateAsync(args);
-
-            IBackgroundTaskInstance taskInstance = args.TaskInstance;
-
-            new ClearPaymentsTask().Run(taskInstance);
-            new RecurringPaymentTask().Run(taskInstance);
-            await new SyncBackupTask().RunAsync(taskInstance);
         }
 
         private static void OverrideTitleBarColor()
