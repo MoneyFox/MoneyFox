@@ -10,6 +10,7 @@ using MoneyFox.Application.Common;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Views;
+using MoneyFox.Uwp.Views.Settings;
 using MoneyFox.Uwp.Views.Statistics;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;

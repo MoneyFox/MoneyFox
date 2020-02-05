@@ -39,25 +39,25 @@
                     <AppBarButton Icon="Setting" x:Name="SettingsButton" Click="SettingsButton_OnClick">
                         <FlyoutBase.AttachedFlyout>
                             <MenuFlyout Placement="BottomEdgeAlignedRight">
-                                <MenuFlyoutItem Text="{x:Bind resources:Strings.CategoriesTitle}">
+                                <MenuFlyoutItem Text="{x:Bind resources:Strings.CategoriesTitle}" Click="CategoriesMenuClick">
                                     <MenuFlyoutItem.Icon>
                                         <uwp:FontAwesome Icon="Tags" FontSize="90" HorizontalAlignment="Center" />
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
 
-                                <MenuFlyoutItem Text="{x:Bind resources:Strings.BackupTitle}">
+                                <MenuFlyoutItem Text="{x:Bind resources:Strings.BackupTitle}" Click="BackupMenuClick">
                                     <MenuFlyoutItem.Icon>
                                         <uwp:FontAwesome Icon="CloudUpload" FontSize="90" HorizontalAlignment="Center" />
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
 
-                                <MenuFlyoutItem Text="{x:Bind resources:Strings.SettingsTitle}">
+                                <MenuFlyoutItem Text="{x:Bind resources:Strings.SettingsTitle}" Click="SettingsMenuClick">
                                     <MenuFlyoutItem.Icon>
                                         <FontIcon Glyph="&#xE713;" />
                                     </MenuFlyoutItem.Icon>
                                 </MenuFlyoutItem>
 
-                                <MenuFlyoutItem Text="{x:Bind resources:Strings.AboutTitle}">
+                                <MenuFlyoutItem Text="{x:Bind resources:Strings.AboutTitle}" Click="AboutMenuClick">
                                     <MenuFlyoutItem.Icon>
                                         <uwp:FontAwesome Icon="Info" FontSize="90" HorizontalAlignment="Center" />
                                     </MenuFlyoutItem.Icon>
@@ -101,19 +101,19 @@
 
                     <FlyoutBase.AttachedFlyout>
                         <MenuFlyout Placement="Bottom">
-                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CashFlowStatisticTitle}">
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CashFlowStatisticTitle}" Click="CashFlowStatisticMenuClick">
                                 <MenuFlyoutItem.Icon>
                                     <uwp:FontAwesome Icon="BarChart" FontSize="90" HorizontalAlignment="Center" />
                                 </MenuFlyoutItem.Icon>
                             </MenuFlyoutItem>
 
-                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CategorySpreadingTitle}">
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CategorySpreadingTitle}" Click="CategorySpreadingMenuClick">
                                 <MenuFlyoutItem.Icon>
                                     <uwp:FontAwesome Icon="PieChart" FontSize="90" HorizontalAlignment="Center" />
                                 </MenuFlyoutItem.Icon>
                             </MenuFlyoutItem>
 
-                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CategorySummaryTitle}">
+                            <MenuFlyoutItem Text="{x:Bind resources:Strings.CategorySummaryTitle}" Click="CategorySummaryMenuClick">
                                 <MenuFlyoutItem.Icon>
                                     <uwp:FontAwesome Icon="List" FontSize="90" HorizontalAlignment="Center" />
                                 </MenuFlyoutItem.Icon>

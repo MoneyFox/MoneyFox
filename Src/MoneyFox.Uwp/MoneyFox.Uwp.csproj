@@ -223,6 +223,9 @@
     <Compile Include="Views\SelectCategoryListView.xaml.cs">
       <DependentUpon>SelectCategoryListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Settings\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Settings\RegionalSettingsUserControl.xaml.cs">
       <DependentUpon>RegionalSettingsUserControl.xaml</DependentUpon>
     </Compile>
@@ -240,9 +243,6 @@
     </Compile>
     <Compile Include="Views\Statistics\StatisticSelectorView.xaml.cs">
       <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings\AboutUserControl.xaml.cs">
-      <DependentUpon>AboutUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\BalanceControl.xaml.cs">
       <DependentUpon>BalanceControl.xaml</DependentUpon>
@@ -436,6 +436,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Settings\AboutView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Settings\RegionalSettingsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -457,10 +461,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Statistics\StatisticSelectorView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Settings\AboutUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

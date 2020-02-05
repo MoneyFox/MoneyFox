@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Uwp.Views
+﻿namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class SettingsView
     {

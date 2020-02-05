@@ -1,6 +1,10 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
+using CommonServiceLocator;
+using GalaSoft.MvvmLight.Views;
+using MoneyFox.Presentation;
+using NavigationService = GalaSoft.MvvmLight.Views.NavigationService;
 using NavigationView = Microsoft.UI.Xaml.Controls.NavigationView;
 using NavigationViewItemInvokedEventArgs = Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs;
 
@@ -17,6 +21,7 @@ namespace MoneyFox.Uwp.Views
         {
             InitializeComponent();
             DataContext = new WindowsShellViewModel();
+
             ViewModel.Initialize(ContentFrame, NavView, KeyboardAccelerators);
         }
 
@@ -35,6 +40,41 @@ namespace MoneyFox.Uwp.Views
         {
             var flyout = FlyoutBase.GetAttachedFlyout(SettingsButton);
             flyout.ShowAt(SettingsButton);
+        }
+
+        private void CategoriesMenuClick(object sender, RoutedEventArgs e)
+        {
+            WindowsShellViewModel.NavigationService.NavigateTo(ViewModelLocator.CategoryList);
+        }
+
+        private void BackupMenuClick(object sender, RoutedEventArgs e)
+        {
+            WindowsShellViewModel.NavigationService.NavigateTo(ViewModelLocator.Backup);
+        }
+
+        private void SettingsMenuClick(object sender, RoutedEventArgs e)
+        {
+            WindowsShellViewModel.NavigationService.NavigateTo(ViewModelLocator.Settings);
+        }
+
+        private void AboutMenuClick(object sender, RoutedEventArgs e)
+        {
+            WindowsShellViewModel.NavigationService.NavigateTo(ViewModelLocator.About);
+        }
+
+        private void CashFlowStatisticMenuClick(object sender, RoutedEventArgs e)
+        {
+            WindowsShellViewModel.NavigationService.NavigateTo(ViewModelLocator.StatisticCashFlow);
+        }
+
+        private void CategorySpreadingMenuClick(object sender, RoutedEventArgs e)
+        {
+            WindowsShellViewModel.NavigationService.NavigateTo(ViewModelLocator.StatisticCategorySpreading);
+        }
+
+        private void CategorySummaryMenuClick(object sender, RoutedEventArgs e)
+        {
+            WindowsShellViewModel.NavigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
         }
     }
 }

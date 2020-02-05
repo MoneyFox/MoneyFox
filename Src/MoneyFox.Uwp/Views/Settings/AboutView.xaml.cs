@@ -4,9 +4,9 @@ using Microsoft.Services.Store.Engagement;
 
 namespace MoneyFox.Uwp.Views.Settings
 {
-    public sealed partial class AboutUserControl
+    public sealed partial class AboutView
     {
-        public AboutUserControl()
+        public AboutView()
         {
             InitializeComponent();
 
