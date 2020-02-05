@@ -83,10 +83,9 @@ namespace MoneyFox.Uwp.Services
             Forms.Init(activationArgs as LaunchActivatedEventArgs);
             new Presentation.App();
 
-            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync().ConfigureAwait(false);
-
-            ThemeSelectorService.Initialize(app.RequestedTheme);
+            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await JumpListService.InitializeAsync();
+            ThemeSelectorService.Initialize(app.RequestedTheme);
         }
 
         private static void RegisterServices(NavigationService nav)
