@@ -116,7 +116,6 @@ namespace MoneyFox.Uwp.Services
             nav.Configure(ViewModelLocator.EditCategory, typeof(EditCategoryView));
             nav.Configure(ViewModelLocator.EditPayment, typeof(EditPaymentView));
             nav.Configure(ViewModelLocator.Settings, typeof(SettingsView));
-            nav.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorView));
             nav.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowView));
             nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingView));
             nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryView));

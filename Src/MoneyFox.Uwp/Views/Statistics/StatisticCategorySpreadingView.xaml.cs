@@ -2,11 +2,14 @@
 using Windows.UI.Xaml;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Views.Dialogs;
+using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCategorySpreadingView
     {
+        public override string Header => Strings.CategorySpreadingTitle;
+
         public StatisticCategorySpreadingView()
         {
             InitializeComponent();

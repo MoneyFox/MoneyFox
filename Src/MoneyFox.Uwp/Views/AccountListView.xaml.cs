@@ -13,7 +13,7 @@ namespace MoneyFox.Uwp.Views
     /// <summary>
     ///     View to display an list of accounts.
     /// </summary>
-    public sealed partial class AccountListView : BaseView
+    public sealed partial class AccountListView
     {
         public override string Header => Strings.AccountsTitle;
 

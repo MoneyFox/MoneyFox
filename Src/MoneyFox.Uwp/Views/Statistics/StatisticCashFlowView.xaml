@@ -1,4 +1,4 @@
-﻿<Page x:Class="MoneyFox.Uwp.Views.Statistics.StatisticCashFlowView"
+﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.Statistics.StatisticCashFlowView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,6 +8,7 @@
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
       xmlns:resources="using:MoneyFox.Application.Resources"
+      xmlns:views="using:MoneyFox.Uwp.Views"
       mc:Ignorable="d"
       DataContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">
 
@@ -24,7 +25,6 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
@@ -33,13 +33,13 @@
         <TextBlock Text="{x:Bind resources:Strings.CashFlowStatisticTitle}"
                    Style="{ThemeResource UwpPageTitleStyle}" />
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="0">
             <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                        Text="{Binding Title}"
                        VerticalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <chart:RadCartesianChart>
                 <chart:RadCartesianChart.HorizontalAxis>
                     <chart:CategoricalAxis />
@@ -58,7 +58,7 @@
                 </chart:BarSeries>
             </chart:RadCartesianChart>
         </Grid>
-        <CommandBar Grid.Row="3"
+        <CommandBar Grid.Row="2"
                     Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
@@ -70,4 +70,4 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</Page>
+</views:BaseView>

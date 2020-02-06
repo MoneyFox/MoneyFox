@@ -1,4 +1,4 @@
-﻿<Page
+﻿<views:BaseView
     x:Class="MoneyFox.Uwp.Views.Settings.AboutView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,6 +8,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:views="using:MoneyFox.Uwp.Views"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -189,4 +190,4 @@
         </ScrollViewer>
     </Grid>
 
-</Page>
+</views:BaseView>

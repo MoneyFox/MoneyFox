@@ -1,4 +1,4 @@
-﻿<Page x:Class="MoneyFox.Uwp.Views.Settings.SettingsView"
+﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.Settings.SettingsView"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -9,6 +9,7 @@
       xmlns:resources="using:MoneyFox.Application.Resources"
       xmlns:helpers="using:MoneyFox.Uwp.Helpers"
       xmlns:userControls="using:MoneyFox.Uwp.Views.Settings"
+      xmlns:views="using:MoneyFox.Uwp.Views"
       mc:Ignorable="d"
       DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
 
@@ -117,4 +118,4 @@
             </StackPanel>
         </ScrollViewer>
     </Grid>
-</Page>
+</views:BaseView>

@@ -242,9 +242,6 @@
     <Compile Include="Views\Statistics\StatisticCategorySummaryView.xaml.cs">
       <DependentUpon>StatisticCategorySummaryView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Statistics\StatisticSelectorView.xaml.cs">
-      <DependentUpon>StatisticSelectorView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\BalanceControl.xaml.cs">
       <DependentUpon>BalanceControl.xaml</DependentUpon>
     </Compile>
@@ -458,10 +455,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Statistics\StatisticCategorySummaryView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Statistics\StatisticSelectorView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
