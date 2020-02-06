@@ -66,8 +66,6 @@ namespace MoneyFox.Uwp
             //remove the solid-colored backgrounds behind the caption controls and system back button
             ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
             viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
-            viewTitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
-            viewTitleBar.ButtonForegroundColor = Colors.LightGray;
         }
 
         private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
