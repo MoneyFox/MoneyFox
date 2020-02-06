@@ -64,6 +64,7 @@
                                                Text="{x:Bind resources:Strings.LastExecutionSyncBackupLabel}" />
 
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
+                                               Margin="3,0,0,0"
                                                Text="{Binding LastExecutionSynBackup}" />
                                 </StackPanel>
 
@@ -71,6 +72,7 @@
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{x:Bind resources:Strings.LastExecutionClearPaymentLabel}" />
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
+                                               Margin="3,0,0,0"
                                                Text="{Binding LastExecutionClearPayments}" />
                                 </StackPanel>
 
@@ -78,6 +80,7 @@
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
                                                Text="{x:Bind resources:Strings.LastExecutionRecurringPaymentLabel}" />
                                     <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
+                                               Margin="3,0,0,0"
                                                Text="{Binding LastExecutionCreateRecurringPayments}" />
                                 </StackPanel>
                             </StackPanel>
