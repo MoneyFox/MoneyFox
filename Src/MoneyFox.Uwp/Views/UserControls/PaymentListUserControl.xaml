@@ -116,7 +116,7 @@
                                                   HorizontalAlignment="Stretch"
                                                   RightTapped="PaymentViewModelList_RightTapped">
 
-                                                <FlyoutBase.AttachedFlyout>
+                                                <Grid.ContextFlyout>
                                                     <MenuFlyout>
                                                         <MenuFlyoutItem Icon="Edit"
                                                                         Command="{x:Bind EditPaymentCommand}"
@@ -128,7 +128,7 @@
                                                                         CommandParameter="{x:Bind}"
                                                                         Text="{x:Bind resources:Strings.DeleteLabel}" />
                                                     </MenuFlyout>
-                                                </FlyoutBase.AttachedFlyout>
+                                                </Grid.ContextFlyout>
 
                                                 <Grid Margin="{StaticResource MediumLeftRightMargin}">
                                                     <StackPanel VerticalAlignment="Center"

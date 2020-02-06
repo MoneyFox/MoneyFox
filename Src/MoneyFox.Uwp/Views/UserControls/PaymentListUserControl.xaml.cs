@@ -15,13 +15,6 @@ namespace MoneyFox.Uwp.Views.UserControls
             InitializeComponent();
         }
 
-        private void PaymentViewModelList_RightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
-
-            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
-        }
 
         private void PaymentListView_OnLoaded(object sender, RoutedEventArgs e)
         {

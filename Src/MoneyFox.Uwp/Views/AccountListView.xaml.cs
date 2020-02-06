@@ -1,8 +1,5 @@
 ﻿using Windows.ApplicationModel;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
@@ -25,14 +22,6 @@ namespace MoneyFox.Uwp.Views
             InitializeComponent();
 
             if (DesignMode.DesignModeEnabled) DataContext = new DesignTimeAccountListViewModel();
-        }
-
-        private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
-
-            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)

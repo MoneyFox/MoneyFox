@@ -33,10 +33,9 @@
                       x:DataType="viewModels:AccountViewModel">
 
             <StackPanel HorizontalAlignment="Stretch"
-                        Margin="{StaticResource NegativeMediumLeftRightMargin}"
                         RightTapped="AccountList_RightTapped">
 
-                <FlyoutBase.AttachedFlyout>
+                <StackPanel.ContextFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Icon="Edit"
                                         Click="Edit_OnClick"
@@ -45,10 +44,9 @@
                                         Click="Delete_OnClick"
                                         Text="{x:Bind resources:Strings.DeleteLabel}" />
                     </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
+                </StackPanel.ContextFlyout>
 
-                <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
-                            Padding="{StaticResource SmallListItemPadding}"
+                <StackPanel Padding="{StaticResource SmallListItemPadding}"
                             Background="{ThemeResource ListItemBrush}">
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
