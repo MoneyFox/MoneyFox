@@ -50,7 +50,7 @@
                               Source="{Binding Source}" />
     </UserControl.Resources>
 
-    <Grid Margin="{StaticResource NegativeMediumLeftRightMargin}">
+    <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -61,7 +61,7 @@
                                  DataContext="{Binding BalanceViewModel}"
                                  Margin="{StaticResource MediumLeftRightMargin}" />
 
-        <SemanticZoom Grid.Row="1">
+        <SemanticZoom Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <SemanticZoom.ZoomedInView>
                 <ListView IsItemClickEnabled="False"
                           ItemsSource="{Binding Source={StaticResource Groups}}"
@@ -113,8 +113,7 @@
                                                   Margin="{StaticResource NegativeMediumLeftRighWithSmallToptMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"
                                                   Background="{ThemeResource ListItemBrush}"
-                                                  HorizontalAlignment="Stretch"
-                                                  RightTapped="PaymentViewModelList_RightTapped">
+                                                  HorizontalAlignment="Stretch">
 
                                                 <Grid.ContextFlyout>
                                                     <MenuFlyout>

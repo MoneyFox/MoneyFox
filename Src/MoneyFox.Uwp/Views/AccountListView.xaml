@@ -32,8 +32,7 @@
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
 
-            <StackPanel HorizontalAlignment="Stretch"
-                        RightTapped="AccountList_RightTapped">
+            <StackPanel HorizontalAlignment="Stretch">
 
                 <StackPanel.ContextFlyout>
                     <MenuFlyout>
