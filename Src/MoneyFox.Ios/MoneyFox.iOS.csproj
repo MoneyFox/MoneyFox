@@ -143,6 +143,7 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderer\NavigationPageRenderer.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\IosFileStore.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
