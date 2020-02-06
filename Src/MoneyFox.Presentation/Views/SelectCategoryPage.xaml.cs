@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Internal;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
@@ -44,6 +45,16 @@ namespace MoneyFox.Presentation.Views
         protected override void OnAppearing()
         {
             ViewModel.AppearingCommand.ExecuteAsync().FireAndForgetSafeAsync();
+        }
+
+        protected override async void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            if (Navigation.ModalStack.Any())
+            {
+                await Navigation.PopModalAsync();
+            }
         }
 
         private void AddCategoryClick(object sender, EventArgs e)
