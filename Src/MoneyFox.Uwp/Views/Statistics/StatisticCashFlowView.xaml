@@ -30,9 +30,6 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Text="{x:Bind resources:Strings.CashFlowStatisticTitle}"
-                   Style="{ThemeResource UwpPageTitleStyle}" />
-
         <Grid Grid.Row="0">
             <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                        Text="{Binding Title}"
