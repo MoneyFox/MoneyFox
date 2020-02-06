@@ -18,10 +18,7 @@ namespace MoneyFox.iOS.Renderer
             {
                 if (parent != null)
                 {
-                    if (UIDevice.CurrentDevice.CheckSystemVersion(13, 0))
-                    {
-                        parent.ModalPresentationStyle = UIModalPresentationStyle.Automatic;
-                    }
+                    parent.ModalPresentationStyle = UIModalPresentationStyle.Automatic;
                 }
 
                 base.WillMoveToParentViewController(parent);
