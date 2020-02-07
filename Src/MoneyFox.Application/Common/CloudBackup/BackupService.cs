@@ -70,7 +70,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-        
+
         public BackupService(ICloudBackupService cloudBackupService,
                              IFileStore fileStore,
                              ISettingsFacade settingsFacade,
