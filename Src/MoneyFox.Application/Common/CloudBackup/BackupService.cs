@@ -69,7 +69,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public BackupService(ICloudBackupService cloudBackupService,
                              IFileStore fileStore,
@@ -93,7 +93,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
 
-            logManager.Info("Successfully logged in.");
+            logger.Info("Successfully logged in.");
         }
 
         public async Task LogoutAsync()
@@ -105,7 +105,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             settingsFacade.IsLoggedInToBackupService = false;
             settingsFacade.IsBackupAutouploadEnabled = false;
 
-            logManager.Info("Successfully logged out.");
+            logger.Info("Successfully logged out.");
         }
 
         public async Task<bool> IsBackupExistingAsync()
@@ -184,26 +184,26 @@ namespace MoneyFox.Application.Common.CloudBackup
             }
             catch (FileNotFoundException ex)
             {
-                logManager.Error(ex, "Backup failed because database was not found.");
+                logger.Error(ex, "Backup failed because database was not found.");
             }
             catch (OperationCanceledException ex)
             {
-                logManager.Error(ex, "Enqueue Backup failed.");
+                logger.Error(ex, "Enqueue Backup failed.");
                 await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync(attempts + 1);
             }
             catch (ServiceException ex)
             {
-                logManager.Error(ex, "ServiceException when tried to enqueue Backup.");
+                logger.Error(ex, "ServiceException when tried to enqueue Backup.");
                 throw;
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                logManager.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
+                logger.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
                 throw;
             }
 
-            logManager.Warn("Enqueue Backup failed.");
+            logger.Warn("Enqueue Backup failed.");
         }
 
         public void Dispose()
