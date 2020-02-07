@@ -2,7 +2,6 @@
 using CommonServiceLocator;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using NLog;
 using Xamarin.Forms;
@@ -29,7 +28,6 @@ namespace MoneyFox.Presentation.Views
         {
             var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
             var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-            var dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
 
             if (e.Value && !settingsFacade.IsLoggedInToBackupService)
             {
