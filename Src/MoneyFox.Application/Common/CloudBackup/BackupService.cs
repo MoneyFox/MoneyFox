@@ -126,7 +126,11 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled) return;
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            {
+                logger.Info("Backup is in Automatic Mode but Auto Backup isn't enabled.");
+                return;
+            }
 
             if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
@@ -138,32 +142,49 @@ namespace MoneyFox.Application.Common.CloudBackup
         private async Task DownloadBackupAsync()
         {
             DateTime backupDate = await GetBackupDateAsync();
-            if (settingsFacade.LastDatabaseUpdate > backupDate) return;
+            if (settingsFacade.LastDatabaseUpdate > backupDate)
+            {
+                logger.Info("Last local change is after the last adjustment on the remote backup.");
+                return;
+            }
 
             List<string> backups = await cloudBackupService.GetFileNamesAsync();
 
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
+                logger.Info("New backup found. Starting download.");
                 using (Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
                                                                                    DatabaseConstants.BACKUP_NAME))
                 {
                     fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
                 }
 
+                logger.Info("Backup downloaded. Replace current file.");
+
                 bool moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME,
                                                      DatabasePathHelper.GetDbPath(),
                                                      true);
 
                 if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
+
+                logger.Info("Recreate database context.");
                 contextAdapter.RecreateContext();
             }
         }
 
         public async Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled) return;
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            {
+                logger.Info("Backup is in Automatic Mode but Auto Backup isn't enabled.");
+                return;
+            }
 
-            if (!settingsFacade.IsLoggedInToBackupService) await LoginAsync();
+            if (!settingsFacade.IsLoggedInToBackupService)
+            {
+                logger.Info("Upload started, but not loggedin. Try to login.");
+                await LoginAsync();
+            }
 
             await EnqueueBackupTaskAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
@@ -173,14 +194,21 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
+            logger.Info("Enqueue Backup upload.");
+
             await semaphoreSlim.WaitAsync(ServiceConstants.BACKUP_OPERATION_TIMEOUT,
                                           cancellationTokenSource.Token);
             try
             {
                 if (await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabasePathHelper.GetDbPath())))
+                {
+                    logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();
+                }
                 else
+                {
                     cancellationTokenSource.Cancel();
+                }
             }
             catch (FileNotFoundException ex)
             {
