@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml;
 using Autofac;
+using Microsoft.Toolkit.Helpers;
 using MoneyFox.Application.Common;
 using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
@@ -71,7 +74,7 @@ namespace MoneyFox.Uwp.Services
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
 #if !DEBUG
-            AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
+            //AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
             LoggerService.Initialize();
@@ -81,9 +84,10 @@ namespace MoneyFox.Uwp.Services
 
             Forms.Init(activationArgs as LaunchActivatedEventArgs);
             new Presentation.App();
-            BackgroundTaskService.RegisterBackgroundTasks();
-            ThemeSelectorService.Initialize(app.RequestedTheme);
+
+            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await JumpListService.InitializeAsync();
+            ThemeSelectorService.Initialize(app.RequestedTheme);
         }
 
         private static void RegisterServices(NavigationService nav)
@@ -124,11 +128,23 @@ namespace MoneyFox.Uwp.Services
 
         private async Task HandleActivationAsync(object activationArgs)
         {
+            var activationHandler = GetActivationHandlers().FirstOrDefault(h => h.CanHandle(activationArgs));
+
+            if (activationHandler != null)
+            {
+                await activationHandler.HandleAsync(activationArgs);
+            }
+
             if (IsInteractive(activationArgs))
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
                 if (defaultHandler.CanHandle(activationArgs)) await defaultHandler.HandleAsync(activationArgs);
             }
+        }
+
+        private IEnumerable<ActivationHandler> GetActivationHandlers()
+        {
+            yield return Singleton<BackgroundTaskService>.Instance;
         }
 
         private static async Task StartupAsync()

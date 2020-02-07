@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -71,7 +70,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                                                 .Take(6)
                                                 .Select(x => new StatisticEntry(x.Value)
                                                  {
-                                                     ValueLabel = x.Value.ToString("C", CultureInfo.CurrentCulture), Label = x.Label
+                                                     ValueLabel = x.Value.ToString("C", CultureHelper.CurrentCulture), Label = x.Label
                                                  })
                                                 .ToList();
 
@@ -93,7 +92,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
             var othersItem = new StatisticEntry(otherValue)
             {
                 Label = Strings.OthersLabel,
-                ValueLabel = otherValue.ToString("C", CultureInfo.InvariantCulture)
+                ValueLabel = otherValue.ToString("C", CultureHelper.CurrentCulture)
             };
 
             if (othersItem.Value > 0)

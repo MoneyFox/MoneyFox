@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using MediatR;
-using MoneyFox.Application.Common.ConverterLogic;
+using MoneyFox.Application;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
+using MoneyFox.Presentation.ConverterLogic;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
@@ -26,6 +28,7 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
         [Fact]
         public void Converter_Payment_NegativeAmountSign()
         {
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
             PaymentAmountConverterLogic
                .GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) {Amount = 80, Type = PaymentType.Expense},
                                          string.Empty)
@@ -35,6 +38,7 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
         [Fact]
         public void Converter_Payment_PositiveAmountSign()
         {
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
             PaymentAmountConverterLogic
                .GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) {Amount = 80, Type = PaymentType.Income},
                                          string.Empty)
@@ -44,6 +48,7 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
         [Fact]
         public void Converter_TransferSameAccount_Minus()
         {
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
             var account = new AccountViewModel
             {
                 Id = 4,
@@ -64,6 +69,7 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
         [Fact]
         public void Converter_TransferSameAccount_Plus()
         {
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
             var account = new AccountViewModel
             {
                 Id = 4,

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
-using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
@@ -12,15 +10,15 @@ using Moq;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceSummary
 {
     [ExcludeFromCodeCoverage]
-    public class GetExcludedAccountQueryTests : IDisposable
+    public class GetIncludedAccountBalanceSummaryQueryTests
     {
         private readonly EfCoreContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        public GetExcludedAccountQueryTests()
+        public GetIncludedAccountBalanceSummaryQueryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
 
@@ -40,7 +38,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
         }
 
         [Fact]
-        public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
+        public async Task GetSummary()
         {
             // Arrange
             var accountExcluded = new Account("test", 80, isExcluded: true);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using CommonServiceLocator;
@@ -9,13 +10,58 @@ using NLog;
 
 namespace MoneyFox.Uwp.BackgroundTasks
 {
-    public class SyncBackupTask
+    public class SyncBackupTask : BackgroundTask
     {
+        private const int TASK_RECURRENCE_COUNT = 15;
+
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        public async Task RunAsync(IBackgroundTaskInstance taskInstance)
+        private IBackgroundTaskInstance taskInstance;
+        private BackgroundTaskDeferral deferral;
+
+
+        public override void Register()
         {
-            BackgroundTaskDeferral deferral = taskInstance.GetDeferral();
+            var taskName = GetType().Name;
+            var taskRegistration = BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == taskName).Value;
+
+            if (taskRegistration == null)
+            {
+                var builder = new BackgroundTaskBuilder
+                {
+                    Name = taskName
+                };
+
+                builder.SetTrigger(new TimeTrigger(TASK_RECURRENCE_COUNT, false));
+                builder.AddCondition(new SystemCondition(SystemConditionType.InternetAvailable));
+
+                builder.Register();
+            }
+        }
+
+        public override Task RunAsyncInternal(IBackgroundTaskInstance taskInstance)
+        {
+            if (taskInstance == null)
+            {
+                return Task.FromResult<Task>(null);
+            }
+
+            deferral = taskInstance.GetDeferral();
+
+            return Task.Run(async () =>
+                            {
+                                this.taskInstance = taskInstance;
+                                await SynBackupAsync();
+                            });
+        }
+
+        public override void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
+        {
+            logManager.Debug("Sync Backup canceled.");
+        }
+
+        private async Task SynBackupAsync()
+        {
             logManager.Debug("Sync Backup started.");
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
@@ -24,8 +70,12 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
             try
             {
+                taskInstance.Progress = 10;
+
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
+
+                taskInstance.Progress = 100;
             }
             catch (Exception ex)
             {
@@ -35,8 +85,8 @@ namespace MoneyFox.Uwp.BackgroundTasks
             {
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 logManager.Debug("Sync Backup finished.");
-                deferral.Complete();
             }
+            deferral?.Complete();
         }
     }
 }

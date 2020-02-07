@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using MoneyFox.Application;
 using MoneyFox.Presentation.Converter;
 using Should;
 using Xunit;
@@ -7,6 +8,7 @@ using Xunit;
 namespace MoneyFox.Presentation.Tests.Converter
 {
     [ExcludeFromCodeCoverage]
+    [Collection("CultureCollection")]
     public class AmountFormatConverterTests
     {
         [Theory] // Currencies: 

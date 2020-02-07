@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using System.Threading;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
@@ -20,6 +19,7 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
     [ExcludeFromCodeCoverage]
+    [Collection("CultureCollection")]
     public class GetCashFlowQueryHandlerTests : IDisposable
     {
         private readonly EfCoreContext context;
@@ -112,8 +112,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             var cultureInfo = new CultureInfo(culture);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            CultureHelper.CurrentCulture = cultureInfo;
 
             context.AddRange(new List<Payment>
             {
@@ -130,21 +129,22 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Assert
             result[2].ValueLabel[indexNegativeSign].ShouldEqual(expectedNegativeSign);
+
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Fact]
         public async Task GetValues_USVersion_CorrectNegativeSign()
         {
             // Arrange
-            var cultureInfo = new CultureInfo("en-US");
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
-
             context.AddRange(new List<Payment>
             {
                 new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
             });
             context.SaveChanges();
+
+            var cultureInfo = new CultureInfo("en-US");
+            CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
@@ -156,6 +156,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Assert
             // We have to test here for Mac since they have a different standard sign than Windows.
             result[2].ValueLabel[0].ShouldEqual(RuntimeInformation.IsOSPlatform(OSPlatform.OSX) ? '-' : '(');
+
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Theory]
@@ -165,8 +167,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             var cultureInfo = new CultureInfo(culture);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery

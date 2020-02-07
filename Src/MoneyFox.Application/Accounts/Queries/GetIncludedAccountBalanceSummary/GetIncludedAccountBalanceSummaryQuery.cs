@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,12 @@ namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary
 
             public async Task<decimal> Handle(GetIncludedAccountBalanceSummaryQuery request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Accounts.AreNotExcluded().SumAsync(x => x.CurrentBalance, cancellationToken);
+                var accountsList = await contextAdapter.Context
+                                           .Accounts
+                                           .AreNotExcluded()
+                                           .ToListAsync(cancellationToken);
+
+                return accountsList.Sum(x => x.CurrentBalance);
             }
         }
     }

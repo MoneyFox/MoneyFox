@@ -40,31 +40,32 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
             var incomeAmount = (float) payments.Where(x => x.Type == PaymentType.Income)
                                                .Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)
-            {
-                Label = Strings.RevenueLabel,
-                ValueLabel = Math.Round(incomeAmount, 2, MidpointRounding.AwayFromZero)
-                                 .ToString("C", CultureInfo.CurrentCulture),
-                Color = GREEN_HEX_CODE
-            };
+                         {
+                             Label = Strings.RevenueLabel,
+                             ValueLabel = Math.Round(incomeAmount, 2, MidpointRounding.AwayFromZero)
+                                              .ToString("C", CultureHelper.CurrentCulture),
+                             Color = GREEN_HEX_CODE
+                         };
 
             var expenseAmount = (float) payments.Where(x => x.Type == PaymentType.Expense)
                                                 .Sum(x => x.Amount);
             var spent = new StatisticEntry(expenseAmount)
-            {
-                Label = Strings.ExpenseLabel,
-                ValueLabel = Math.Round(expenseAmount, 2, MidpointRounding.AwayFromZero)
-                                 .ToString("C", CultureInfo.CurrentCulture),
-                Color = RED_HEX_CODE
-            };
+                        {
+                            Label = Strings.ExpenseLabel,
+                            ValueLabel = Math.Round(expenseAmount, 2, MidpointRounding.AwayFromZero)
+                                             .ToString("C", CultureHelper.CurrentCulture),
+                            Color = RED_HEX_CODE
+                        };
 
             float valueIncreased = incomeAmount - expenseAmount;
             var increased = new StatisticEntry(valueIncreased)
-            {
-                Label = Strings.IncreaseLabel,
-                ValueLabel = Math.Round(valueIncreased, 2, MidpointRounding.AwayFromZero)
-                                 .ToString("C", CultureInfo.CurrentCulture),
-                Color = BLUE_HEX_CODE
-            };
+                            {
+                                Label = Strings.IncreaseLabel,
+                                ValueLabel = Math.Round(valueIncreased, 2, MidpointRounding.AwayFromZero)
+                                                 .ToString("C", CultureHelper.CurrentCulture),
+                                Color = BLUE_HEX_CODE
+                            };
+
 
             return new List<StatisticEntry> {income, spent, increased};
         }
