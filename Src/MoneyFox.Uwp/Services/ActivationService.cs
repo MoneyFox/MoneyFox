@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
@@ -126,11 +128,23 @@ namespace MoneyFox.Uwp.Services
 
         private async Task HandleActivationAsync(object activationArgs)
         {
+            var activationHandler = GetActivationHandlers().FirstOrDefault(h => h.CanHandle(activationArgs));
+
+            if (activationHandler != null)
+            {
+                await activationHandler.HandleAsync(activationArgs);
+            }
+
             if (IsInteractive(activationArgs))
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
                 if (defaultHandler.CanHandle(activationArgs)) await defaultHandler.HandleAsync(activationArgs);
             }
+        }
+
+        private IEnumerable<ActivationHandler> GetActivationHandlers()
+        {
+            yield return Singleton<BackgroundTaskService>.Instance;
         }
 
         private static async Task StartupAsync()
