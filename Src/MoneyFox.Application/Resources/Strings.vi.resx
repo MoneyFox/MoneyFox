@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>About</value>
+    <value>Thông tin</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an Account.</value>
+    <value>Vui lòng lựa chọn một tài khoản.</value>
   </data>
   <data name="AccountsLabel" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Tài khoản</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Add Account</value>
