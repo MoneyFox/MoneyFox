@@ -59,8 +59,6 @@ namespace MoneyFox.Application.Common.CloudBackup
 
     public class BackupService : IBackupService, IDisposable
     {
-        private const string CODE_TIMEOUT = "timeout";
-
         private readonly ICloudBackupService cloudBackupService;
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
