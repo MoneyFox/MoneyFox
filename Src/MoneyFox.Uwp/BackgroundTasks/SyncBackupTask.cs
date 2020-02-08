@@ -43,11 +43,13 @@ namespace MoneyFox.Uwp.BackgroundTasks
         {
             if (taskInstance == null)
             {
+                logManager.Info("Taskinstance was null.");
                 return Task.FromResult<Task>(null);
             }
 
             deferral = taskInstance.GetDeferral();
 
+            logManager.Info("Sync Backup started.");
             return Task.Run(async () =>
                             {
                                 this.taskInstance = taskInstance;
@@ -57,12 +59,11 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
         public override void OnCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason)
         {
-            logManager.Debug("Sync Backup canceled.");
+            logManager.Info("Sync Backup canceled.");
         }
 
         private async Task SynBackupAsync()
         {
-            logManager.Debug("Sync Backup started.");
 
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 

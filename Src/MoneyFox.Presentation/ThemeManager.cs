@@ -60,7 +60,7 @@ namespace MoneyFox.Presentation
                 ((NavigationPage) Xamarin.Forms.Application.Current.MainPage).BarBackgroundColor =
                     (Color) Xamarin.Forms.Application.Current.Resources["AppBarColor"];
                 ((NavigationPage) Xamarin.Forms.Application.Current.MainPage).BarTextColor =
-                    (Color) Xamarin.Forms.Application.Current.Resources["PrimaryFontColor"];
+                    (Color) Xamarin.Forms.Application.Current.Resources["AppBarFontColorColor"];
             }
         }
 
