@@ -91,6 +91,8 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             try
             {
+                logManager.Info("Logout.");
+
                 List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
 
                 while (accounts.Any())
@@ -122,6 +124,8 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             try
             {
+                logManager.Info("Upload Backup.");
+
                 if (GraphServiceClient == null)
                 {
                     await LoginAsync();
@@ -174,6 +178,8 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             try
             {
+                logManager.Info("Restore Backup.");
+
                 if (GraphServiceClient == null)
                 {
                     await LoginAsync();
@@ -218,6 +224,8 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             try
             {
+                logManager.Info("Get Backupdate.");
+
                 if (GraphServiceClient == null)
                 {
                     await LoginAsync();
@@ -252,6 +260,8 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             try
             {
+                logManager.Info("Get Filenames.");
+
                 if (GraphServiceClient == null)
                 {
                     await LoginAsync();
@@ -279,6 +289,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         private async Task DeleteCleanupOldBackupsAsync()
         {
+            logManager.Info("Cleanup old backups.");
+
             IDriveItemChildrenCollectionPage archiveBackups = await GraphServiceClient.Drive
                                                                                       .Items[ArchiveFolder?.Id]
                                                                                       .Children
@@ -297,6 +309,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         private async Task ArchiveCurrentBackupAsync()
         {
+            logManager.Info("Archive Backup.");
             DriveItem currentBackup = (await GraphServiceClient
                                             .Me
                                             .Drive
