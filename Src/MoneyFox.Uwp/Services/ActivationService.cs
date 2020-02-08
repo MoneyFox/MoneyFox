@@ -84,7 +84,6 @@ namespace MoneyFox.Uwp.Services
             RegisterServices(navService);
 
             Forms.Init(activationArgs as LaunchActivatedEventArgs);
-            new Presentation.App();
 
             await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await JumpListService.InitializeAsync();
