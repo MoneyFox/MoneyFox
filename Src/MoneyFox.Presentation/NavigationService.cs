@@ -65,8 +65,7 @@ namespace MoneyFox.Presentation
                 }
                 else
                 {
-                    throw new ArgumentException(
-                                                $"No such page: {pageKey}. Did you forget to call NavigationService.Configure?",
+                    throw new ArgumentException($"No such page: {pageKey}. Did you forget to call NavigationService.Configure?",
                                                 nameof(pageKey));
                 }
             }

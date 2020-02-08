@@ -13,7 +13,6 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Settings;
-using MoneyFox.Presentation.Views;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
 using NLog;
@@ -125,11 +124,6 @@ namespace MoneyFox.Uwp
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             IsBackEnabled = NavigationService.CanGoBack;
-            if (e.SourcePageType == typeof(SettingsPage))
-            {
-                Selected = navigationView.SettingsItem as WinUI.NavigationViewItem;
-                return;
-            }
 
             Selected = navigationView.MenuItems
                                      .OfType<WinUI.NavigationViewItem>()

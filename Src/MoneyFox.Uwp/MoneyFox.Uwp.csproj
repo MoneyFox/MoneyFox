@@ -174,6 +174,7 @@
     <Compile Include="Services\RateDisplayService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Src\AsyncExtensions.cs" />
+    <Compile Include="Src\BalanceCalculationService.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
@@ -181,6 +182,7 @@
     <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Src\WindowsFileStore.cs" />
+    <Compile Include="ViewModelLocator.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />
@@ -215,7 +217,6 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\EditAccountViewModel.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />
     <Compile Include="ViewModels\EditPaymentViewModel.cs" />
@@ -253,15 +254,12 @@
     <Compile Include="ViewModels\Settings\SettingsBackgroundJobViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsPersonalizationViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\IStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticViewModel.cs" />
     <Compile Include="Views\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
@@ -655,9 +653,9 @@
       <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
       <Name>MoneyFox.Persistence</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
-      <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
-      <Name>MoneyFox.Presentation</Name>
+    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj">
+      <Project>{c1217fb5-7a43-4dda-a98f-72eca57a1ade}</Project>
+      <Name>MoneyFox.Ui.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

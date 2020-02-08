@@ -9,7 +9,7 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.ViewModels;
 
-namespace MoneyFox.Presentation.Services
+namespace MoneyFox.Uwp
 {
     /// <summary>
     ///     Provides different calculations for the balance at the end of month.

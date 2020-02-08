@@ -2,7 +2,7 @@
 using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Presentation.Services;
+using MoneyFox.Uwp;
 
 namespace MoneyFox.Presentation.ViewModels
 {
