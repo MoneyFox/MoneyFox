@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Presentation.ViewModels
+﻿namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
     ///     Represents the SelectCategoryListView

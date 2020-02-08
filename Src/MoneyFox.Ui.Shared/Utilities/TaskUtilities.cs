@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using NLog;
 
-namespace MoneyFox.Presentation.Utilities
+namespace MoneyFox.Ui.Shared.Utilities
 {
     public static class TaskUtilities
     {

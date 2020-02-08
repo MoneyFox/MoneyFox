@@ -1,8 +1,8 @@
 using System.Collections.ObjectModel;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Groups;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
 
-namespace MoneyFox.Presentation.ViewModels.Interfaces
+namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
     public interface IPaymentListViewModel
     {

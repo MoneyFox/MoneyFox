@@ -4,7 +4,7 @@ using System.Linq;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Domain.Exceptions;
 
-namespace MoneyFox.Presentation.Groups
+namespace MoneyFox.Ui.Shared.Groups
 {
     /// <summary>
     ///     Can be used for a alphanumeric grouping. It will show the whole key as title.

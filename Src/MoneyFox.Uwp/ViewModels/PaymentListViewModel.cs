@@ -12,12 +12,11 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.Uwp;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Uwp.ViewModels.Interfaces;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
     ///     Representation of the payment list view.

@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Uwp.ViewModels.Interfaces;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
-namespace MoneyFox.Presentation.ViewModels.DesignTime
+namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeAccountListViewModel : IAccountListViewModel
     {

@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Groups;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
-namespace MoneyFox.Presentation.ViewModels.Interfaces
+namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
     /// <summary>
     ///     Representation of the AccountListView.

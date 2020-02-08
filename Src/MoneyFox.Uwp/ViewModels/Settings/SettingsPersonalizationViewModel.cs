@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Interfaces;
 
-namespace MoneyFox.Presentation.ViewModels.Settings
+namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public class SettingsPersonalizationViewModel : ViewModelBase, ISettingsPersonalizationViewModel
     {

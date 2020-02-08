@@ -11,7 +11,7 @@ using SkiaSharp;
 using Xamarin.Forms;
 using Entry = Microcharts.Entry;
 
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the category Spreading View

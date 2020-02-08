@@ -4,7 +4,7 @@ using System.Linq;
 using MoneyFox.Domain.Exceptions;
 using Xamarin.Forms;
 
-namespace MoneyFox.Presentation.Groups
+namespace MoneyFox.Ui.Shared.Groups
 {
     public class DateListGroupCollection<T> : List<T>
     {

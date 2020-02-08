@@ -12,10 +12,10 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
 
 namespace MoneyFox.Presentation.ViewModels
 {

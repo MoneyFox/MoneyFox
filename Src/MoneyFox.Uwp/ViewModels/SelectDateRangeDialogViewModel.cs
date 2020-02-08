@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Messages;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class SelectDateRangeDialogViewModel : ViewModelBase
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Microcharts;
 using MoneyFox.Application.Statistics;
-using MoneyFox.Presentation.Commands;
+using MoneyFox.Ui.Shared.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {

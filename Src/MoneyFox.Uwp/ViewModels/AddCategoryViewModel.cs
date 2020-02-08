@@ -8,7 +8,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class AddCategoryViewModel : ModifyCategoryViewModel
     {

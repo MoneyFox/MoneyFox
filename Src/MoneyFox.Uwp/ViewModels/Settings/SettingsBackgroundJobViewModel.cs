@@ -1,12 +1,8 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Utilities;
 
-namespace MoneyFox.Presentation.ViewModels.Settings
+namespace MoneyFox.Uwp.ViewModels.Settings
 {
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel" />
     public class SettingsBackgroundJobViewModel : ViewModelBase, ISettingsBackgroundJobViewModel

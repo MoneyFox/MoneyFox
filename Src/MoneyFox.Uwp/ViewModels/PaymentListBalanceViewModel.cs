@@ -2,9 +2,8 @@
 using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Uwp;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
     ///     This ViewModel is for the usage in the payment list when a concrete account is selected

@@ -9,7 +9,6 @@ using Windows.UI.Xaml;
 using Autofac;
 using Microsoft.Toolkit.Helpers;
 using MoneyFox.Application.Common;
-using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Views;
 using MoneyFox.Uwp.Views.Settings;

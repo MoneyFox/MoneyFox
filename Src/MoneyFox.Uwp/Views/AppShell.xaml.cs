@@ -3,7 +3,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight.Views;
-using MoneyFox.Presentation;
 using NavigationService = GalaSoft.MvvmLight.Views.NavigationService;
 using NavigationView = Microsoft.UI.Xaml.Controls.NavigationView;
 using NavigationViewItemInvokedEventArgs = Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs;

@@ -1,7 +1,7 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Command;
 
-namespace MoneyFox.Presentation.ViewModels.DesignTime
+namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeSelectDateRangeDialogViewModel : ISelectDateRangeDialogViewModel
     {

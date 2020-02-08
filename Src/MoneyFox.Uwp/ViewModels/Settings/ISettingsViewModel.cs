@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Presentation.ViewModels.Settings
+﻿namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public interface ISettingsViewModel
     {

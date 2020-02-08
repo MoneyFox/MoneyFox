@@ -1,10 +1,9 @@
 ﻿using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.Uwp;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Uwp.ViewModels.Interfaces;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
     ///     Representation of the BalanceView

@@ -1,9 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Groups;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
     ///     Defines the interface for a category list.

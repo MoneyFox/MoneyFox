@@ -5,9 +5,9 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
-using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Uwp.ViewModels.Interfaces;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class AccountListViewActionViewModel : ViewModelBase, IAccountListViewActionViewModel
     {

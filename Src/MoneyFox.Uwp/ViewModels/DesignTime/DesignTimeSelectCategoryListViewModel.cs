@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Presentation.ViewModels.DesignTime
+﻿namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeSelectCategoryListViewModel : ISelectCategoryListViewModel
     {

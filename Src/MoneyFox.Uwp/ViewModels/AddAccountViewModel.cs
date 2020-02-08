@@ -8,9 +8,9 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Presentation.Utilities;
+using MoneyFox.Ui.Shared.Utilities;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class AddAccountViewModel : ModifyAccountViewModel
     {

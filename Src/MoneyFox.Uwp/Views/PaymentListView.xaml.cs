@@ -1,8 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
-using MoneyFox.Presentation;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views
 {

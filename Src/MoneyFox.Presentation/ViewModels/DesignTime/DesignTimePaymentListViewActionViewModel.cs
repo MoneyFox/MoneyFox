@@ -1,7 +1,7 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Ui.Shared.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

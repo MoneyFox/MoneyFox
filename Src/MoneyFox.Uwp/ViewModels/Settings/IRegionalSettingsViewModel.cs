@@ -1,8 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using MoneyFox.Presentation.Commands;
+using MoneyFox.Ui.Shared.Commands;
 
-namespace MoneyFox.Presentation.ViewModels.Settings
+namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public interface IRegionalSettingsViewModel
     {

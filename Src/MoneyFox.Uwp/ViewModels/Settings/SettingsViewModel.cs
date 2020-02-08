@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces;
 
-namespace MoneyFox.Presentation.ViewModels.Settings
+namespace MoneyFox.Uwp.ViewModels.Settings
 {
     /// <summary>
     ///     ViewModel for the settings view.

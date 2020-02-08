@@ -1,7 +1,7 @@
 ﻿using System;
-using MoneyFox.Presentation.ViewModels.Settings;
+using MoneyFox.Uwp.ViewModels.Settings;
 
-namespace MoneyFox.Presentation.ViewModels.DesignTime
+namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeSettingsBackgroundJobViewModel : ISettingsBackgroundJobViewModel
     {

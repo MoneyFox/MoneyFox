@@ -7,7 +7,7 @@ using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp
 {

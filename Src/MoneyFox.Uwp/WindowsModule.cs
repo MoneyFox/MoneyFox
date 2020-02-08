@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using MoneyFox.Application.Common;
 using MoneyFox.Infrastructure;
-using MoneyFox.Uwp.Src;
 using PCLAppConfig;
 
 namespace MoneyFox.Uwp

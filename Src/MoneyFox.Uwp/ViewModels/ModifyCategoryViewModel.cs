@@ -6,9 +6,9 @@ using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Commands;
+using MoneyFox.Ui.Shared.Commands;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
     ///     View Model for creating and editing Categories without dialog

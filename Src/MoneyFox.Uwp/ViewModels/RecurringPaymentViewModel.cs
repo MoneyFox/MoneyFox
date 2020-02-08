@@ -4,7 +4,7 @@ using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>
     {

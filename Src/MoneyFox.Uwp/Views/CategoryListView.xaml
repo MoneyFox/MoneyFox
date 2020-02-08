@@ -4,11 +4,11 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:resources="using:MoneyFox.Application.Resources"
-                xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
                 xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
                 mc:Ignorable="d"
                 DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}">
 

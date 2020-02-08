@@ -1,6 +1,4 @@
-﻿using MoneyFox.Presentation;
-
-namespace MoneyFox.Uwp.Views
+﻿namespace MoneyFox.Uwp.Views
 {
     public sealed partial class AddAccountView
     {

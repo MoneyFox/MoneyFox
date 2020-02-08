@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
-namespace MoneyFox.Presentation.Utilities
+namespace MoneyFox.Ui.Shared.Utilities
 {
     /// <summary>
     ///     Utility methods

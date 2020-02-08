@@ -4,7 +4,7 @@ using MoneyFox.Application.Resources;
 using NotificationsExtensions;
 using NotificationsExtensions.Tiles;
 
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     public sealed class TileUpdateService : ITileUpdateService
     {

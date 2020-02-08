@@ -1,7 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 using MoneyFox.Domain;
-using MoneyFox.Presentation.Converter;
+using MoneyFox.Ui.Shared;
 
 namespace MoneyFox.Uwp.Converter
 {

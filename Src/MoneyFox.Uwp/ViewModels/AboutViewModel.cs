@@ -8,10 +8,10 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Commands;
+using MoneyFox.Ui.Shared.Commands;
 using Xamarin.Essentials;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class AboutViewModel : ViewModelBase, IAboutViewModel
     {

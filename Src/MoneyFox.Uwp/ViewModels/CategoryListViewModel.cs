@@ -2,7 +2,7 @@
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class CategoryListViewModel : AbstractCategoryListViewModel, ICategoryListViewModel
     {

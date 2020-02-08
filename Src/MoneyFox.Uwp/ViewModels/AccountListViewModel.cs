@@ -14,15 +14,14 @@ using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.Uwp;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Uwp.ViewModels.Interfaces;
 using NLog;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class AccountListViewModel : ViewModelBase, IAccountListViewModel
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
-using MoneyFox.Presentation.Utilities;
+using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.BackgroundTasks;
 

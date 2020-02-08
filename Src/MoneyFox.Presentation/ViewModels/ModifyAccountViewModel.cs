@@ -7,8 +7,8 @@ using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Utilities;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Utilities;
 using NLog;
 
 namespace MoneyFox.Presentation.ViewModels

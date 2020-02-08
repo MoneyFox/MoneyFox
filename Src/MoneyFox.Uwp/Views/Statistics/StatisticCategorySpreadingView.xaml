@@ -5,11 +5,11 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                 xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-                xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                 xmlns:i="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
                 mc:Ignorable="d"
                 DataContext="{Binding StatisticCategorySpreadingVm, Source={StaticResource Locator}}">
 

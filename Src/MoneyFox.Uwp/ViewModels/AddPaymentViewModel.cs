@@ -12,11 +12,11 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Utilities;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Utilities;
 using NLog;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class AddPaymentViewModel : ModifyPaymentViewModel
     {

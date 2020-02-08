@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
     ///     Representation of an account view.

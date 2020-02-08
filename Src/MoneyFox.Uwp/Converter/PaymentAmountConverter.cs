@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Data;
 using MoneyFox.Application;
 using MoneyFox.Domain;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Converter
 {

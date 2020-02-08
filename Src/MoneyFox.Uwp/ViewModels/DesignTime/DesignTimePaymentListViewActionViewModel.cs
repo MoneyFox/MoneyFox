@@ -1,9 +1,9 @@
 ﻿using System;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Uwp.ViewModels.Interfaces;
 
-namespace MoneyFox.Presentation.ViewModels.DesignTime
+namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewActionViewModel : IPaymentListViewActionViewModel
     {

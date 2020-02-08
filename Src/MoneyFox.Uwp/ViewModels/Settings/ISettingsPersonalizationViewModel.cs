@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 
-namespace MoneyFox.Presentation.ViewModels.Settings
+namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public interface ISettingsPersonalizationViewModel
     {

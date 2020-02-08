@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
-using MoneyFox.Presentation.Utilities;
+using MoneyFox.Ui.Shared.Utilities;
 using Should;
 using Xunit;
 

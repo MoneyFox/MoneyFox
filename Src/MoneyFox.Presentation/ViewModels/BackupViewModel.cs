@@ -9,7 +9,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.Commands;
+using MoneyFox.Ui.Shared.Commands;
 using NLog;
 
 namespace MoneyFox.Presentation.ViewModels

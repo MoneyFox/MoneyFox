@@ -1,7 +1,7 @@
 ﻿using System;
-using MoneyFox.Presentation.Commands;
+using MoneyFox.Ui.Shared.Commands;
 
-namespace MoneyFox.Presentation.ViewModels.Interfaces
+namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
     /// <summary>
     ///     Represents the Actions for a view.

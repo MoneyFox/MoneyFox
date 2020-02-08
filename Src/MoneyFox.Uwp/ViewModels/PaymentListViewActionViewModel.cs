@@ -10,10 +10,10 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Uwp.ViewModels.Interfaces;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <inheritdoc cref="IPaymentListViewActionViewModel" />
     /// />

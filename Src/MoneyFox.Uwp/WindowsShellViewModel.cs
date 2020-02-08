@@ -11,10 +11,10 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels.Settings;
+using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.ViewModels.Settings;
 using NLog;
 using WinUI = Microsoft.UI.Xaml.Controls;
 

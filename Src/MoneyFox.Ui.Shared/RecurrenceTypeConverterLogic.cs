@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 
-namespace MoneyFox.Presentation.Converter
+namespace MoneyFox.Ui.Shared
 {
     public static class RecurrenceTypeConverterLogic
     {

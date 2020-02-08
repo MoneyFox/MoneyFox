@@ -1,6 +1,5 @@
 ﻿using System;
 using Windows.UI.Xaml;
-using MoneyFox.Presentation;
 using MoneyFox.Uwp.Views.Dialogs;
 using MoneyFox.Application.Resources;
 

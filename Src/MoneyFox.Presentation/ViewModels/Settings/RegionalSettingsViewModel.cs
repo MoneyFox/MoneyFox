@@ -6,7 +6,7 @@ using MoneyFox.Application;
 using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Presentation.Commands;
+using MoneyFox.Ui.Shared.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {

@@ -2,10 +2,10 @@
 using System.Collections.ObjectModel;
 using Microcharts;
 using MoneyFox.Application.Statistics;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels.Statistic;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Uwp.ViewModels.Statistic;
 
-namespace MoneyFox.Presentation.ViewModels.DesignTime
+namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeStatisticCashFlowViewModel : IStatisticCashFlowViewModel
     {

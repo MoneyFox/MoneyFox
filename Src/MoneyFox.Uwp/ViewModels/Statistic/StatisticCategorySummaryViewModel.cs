@@ -5,7 +5,7 @@ using MediatR;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel

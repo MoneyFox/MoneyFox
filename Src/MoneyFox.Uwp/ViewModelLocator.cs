@@ -2,12 +2,12 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
-using MoneyFox.Presentation.ViewModels;
-using MoneyFox.Presentation.ViewModels.Interfaces;
-using MoneyFox.Presentation.ViewModels.Settings;
-using MoneyFox.Presentation.ViewModels.Statistic;
+using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.Interfaces;
+using MoneyFox.Uwp.ViewModels.Settings;
+using MoneyFox.Uwp.ViewModels.Statistic;
 
-namespace MoneyFox.Presentation
+namespace MoneyFox.Uwp
 {
     public class ViewModelLocator
     {

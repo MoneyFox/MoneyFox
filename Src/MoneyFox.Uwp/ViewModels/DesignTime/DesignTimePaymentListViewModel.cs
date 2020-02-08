@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.ViewModels.Interfaces;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Uwp.ViewModels.Interfaces;
 using Xamarin.Forms;
 
-namespace MoneyFox.Presentation.ViewModels.DesignTime
+namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {

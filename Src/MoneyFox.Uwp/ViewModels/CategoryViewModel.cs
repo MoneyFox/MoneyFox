@@ -2,7 +2,7 @@ using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class CategoryViewModel : ViewModelBase, IMapFrom<Category>
     {

@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 
-namespace MoneyFox.Presentation.ViewModels.Interfaces
+namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
     /// <summary>
     ///     Represents the Actions for a view.

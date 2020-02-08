@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Messages;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public class SelectFilterDialogViewModel : ViewModelBase, ISelectFilterDialogViewModel
     {

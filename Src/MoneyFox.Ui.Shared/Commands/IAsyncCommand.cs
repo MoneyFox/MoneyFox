@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace MoneyFox.Presentation.Commands
+namespace MoneyFox.Ui.Shared.Commands
 {
     public interface IAsyncCommand : ICommand
     {

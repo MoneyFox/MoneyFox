@@ -14,7 +14,7 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using Xamarin.Forms;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
     ///     Handles the view representation of a payment.

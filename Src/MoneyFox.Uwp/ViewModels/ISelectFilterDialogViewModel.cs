@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     public interface ISelectFilterDialogViewModel
     {

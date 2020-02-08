@@ -5,11 +5,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
       xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
       xmlns:resources="using:MoneyFox.Application.Resources"
       xmlns:helpers="using:MoneyFox.Uwp.Helpers"
       xmlns:userControls="using:MoneyFox.Uwp.Views.Settings"
       xmlns:views="using:MoneyFox.Uwp.Views"
+      xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
       mc:Ignorable="d"
       DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
 

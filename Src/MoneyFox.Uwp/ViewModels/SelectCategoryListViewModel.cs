@@ -3,7 +3,7 @@ using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 
-namespace MoneyFox.Presentation.ViewModels
+namespace MoneyFox.Uwp.ViewModels
 {
     /// <inheritdoc cref="ISelectCategoryListViewModel" />
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel

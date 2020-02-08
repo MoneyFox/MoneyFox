@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels.Settings;
+using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Uwp.ViewModels.Settings;
 
-namespace MoneyFox.Presentation.ViewModels.DesignTime
+namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeRegionalSettingsViewModel : IRegionalSettingsViewModel
     {
