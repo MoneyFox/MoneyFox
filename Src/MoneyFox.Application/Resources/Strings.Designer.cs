@@ -1791,6 +1791,24 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To use the automatic backup job please login first to your backup service..
+        /// </summary>
+        public static string PleaseLoginToBackupFirstMessage {
+            get {
+                return ResourceManager.GetString("PleaseLoginToBackupFirstMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login Required.
+        /// </summary>
+        public static string PleaseLoginToBackupFirstTitle {
+            get {
+                return ResourceManager.GetString("PleaseLoginToBackupFirstTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quarterly.
         /// </summary>
         public static string QuarterlyLabel {

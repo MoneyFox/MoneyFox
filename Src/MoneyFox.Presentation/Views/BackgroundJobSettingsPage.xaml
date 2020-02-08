@@ -35,6 +35,8 @@
                     <Switch Grid.Column="1"
                             HorizontalOptions="End"
                             Style="{StaticResource SwitchStyle}"
+                            x:Name="BackgroundJobToggle"
+                            Toggled="Switch_OnToggled"
                             IsToggled="{Binding IsAutoBackupEnabled}" />
                 </Grid>
 
