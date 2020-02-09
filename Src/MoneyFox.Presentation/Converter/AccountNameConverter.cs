@@ -10,7 +10,9 @@ namespace MoneyFox.Presentation.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return !(value is AccountViewModel account) ? "" : $"{account.Name} ({account.CurrentBalance.ToString("C", CultureHelper.CurrentCulture)})";
+            return !(value is AccountViewModel account)
+                ? ""
+                : $"{account.Name} ({account.CurrentBalance.ToString("C", CultureHelper.CurrentCulture)})";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -27,14 +27,14 @@ namespace MoneyFox.Uwp.Views
         {
             if (args.InvokedItemContainer == openStatisticMenu)
             {
-                var flyout = FlyoutBase.GetAttachedFlyout(openStatisticMenu);
+                FlyoutBase flyout = FlyoutBase.GetAttachedFlyout(openStatisticMenu);
                 flyout.ShowAt(openStatisticMenu);
             }
         }
 
         private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
         {
-            var flyout = FlyoutBase.GetAttachedFlyout(SettingsButton);
+            FlyoutBase flyout = FlyoutBase.GetAttachedFlyout(SettingsButton);
             flyout.ShowAt(SettingsButton);
         }
 

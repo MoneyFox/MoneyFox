@@ -31,11 +31,11 @@ namespace MoneyFox.Uwp.ViewModels
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
                                     NavigationService navigationService) : base(mediator,
-                                                                                 mapper,
-                                                                                 dialogService,
-                                                                                 settingsFacade,
-                                                                                 backupService,
-                                                                                 navigationService)
+                                                                                mapper,
+                                                                                dialogService,
+                                                                                settingsFacade,
+                                                                                backupService,
+                                                                                navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
         public void SubscribeToEvents(IBackgroundTaskInstance taskInstance)
         {
-            taskInstance.Canceled += new BackgroundTaskCanceledEventHandler(OnCanceled);
+            taskInstance.Canceled += OnCanceled;
         }
     }
 }

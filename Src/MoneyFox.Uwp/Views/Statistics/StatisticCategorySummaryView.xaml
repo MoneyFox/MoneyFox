@@ -74,7 +74,7 @@
 
         <StackPanel Grid.Row="1">
             <userControls:IncomeExpenseBalanceUserControl DataContext="{Binding IncomeExpenseBalance}"
-                                                      Margin="{StaticResource MediumLeftRightMargin}" />
+                                                          Margin="{StaticResource MediumLeftRightMargin}" />
 
             <ListView IsItemClickEnabled="True"
                       IsSynchronizedWithCurrentItem="False"

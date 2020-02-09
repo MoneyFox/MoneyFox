@@ -204,9 +204,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                     semaphoreSlim.Release();
                 }
                 else
-                {
                     cancellationTokenSource.Cancel();
-                }
             }
             catch (FileNotFoundException ex)
             {

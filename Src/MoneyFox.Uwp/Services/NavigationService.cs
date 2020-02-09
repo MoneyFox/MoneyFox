@@ -55,7 +55,10 @@ namespace MoneyFox.Uwp.Services
             return false;
         }
 
-        public void GoForward() => Frame.GoForward();
+        public void GoForward()
+        {
+            Frame.GoForward();
+        }
 
         public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null)
         {
@@ -63,25 +66,20 @@ namespace MoneyFox.Uwp.Services
             lock (_pages)
             {
                 if (!_pages.TryGetValue(pageKey, out page))
-                {
-                    throw new ArgumentException(string.Format("Page not found: {0}. Did you forget to call NavigationService.Configure?", pageKey), nameof(pageKey));
-                }
+                    throw new
+                        ArgumentException(string.Format("Page not found: {0}. Did you forget to call NavigationService.Configure?", pageKey),
+                                          nameof(pageKey));
             }
 
-            if (Frame.Content?.GetType() != page || (parameter != null && !parameter.Equals(_lastParamUsed)))
+            if (Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(_lastParamUsed))
             {
-                var navigationResult = Frame.Navigate(page, parameter, infoOverride);
-                if (navigationResult)
-                {
-                    _lastParamUsed = parameter;
-                }
+                bool navigationResult = Frame.Navigate(page, parameter, infoOverride);
+                if (navigationResult) _lastParamUsed = parameter;
 
                 return navigationResult;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public void Configure(string key, Type pageType)
@@ -89,14 +87,11 @@ namespace MoneyFox.Uwp.Services
             lock (_pages)
             {
                 if (_pages.ContainsKey(key))
-                {
                     throw new ArgumentException(string.Format("The key {{0}} is already configured in NavigationService", key));
-                }
 
                 if (_pages.Any(p => p.Value == pageType))
-                {
-                    throw new ArgumentException(string.Format("This type is already configured with key {0}", _pages.First(p => p.Value == pageType).Key));
-                }
+                    throw new ArgumentException(string.Format("This type is already configured with key {0}",
+                                                              _pages.First(p => p.Value == pageType).Key));
 
                 _pages.Add(key, pageType);
             }
@@ -107,13 +102,8 @@ namespace MoneyFox.Uwp.Services
             lock (_pages)
             {
                 if (_pages.ContainsValue(page))
-                {
                     return _pages.FirstOrDefault(p => p.Value == page).Key;
-                }
-                else
-                {
-                    throw new ArgumentException(string.Format("The page '{0}' is unknown by the NavigationService", page.Name));
-                }
+                throw new ArgumentException(string.Format("The page '{0}' is unknown by the NavigationService", page.Name));
             }
         }
 
@@ -135,8 +125,14 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e) => NavigationFailed?.Invoke(sender, e);
+        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
+        {
+            NavigationFailed?.Invoke(sender, e);
+        }
 
-        private void Frame_Navigated(object sender, NavigationEventArgs e) => Navigated?.Invoke(sender, e);
+        private void Frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            Navigated?.Invoke(sender, e);
+        }
     }
 }

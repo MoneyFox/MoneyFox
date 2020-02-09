@@ -127,12 +127,9 @@ namespace MoneyFox.Uwp.Services
 
         private async Task HandleActivationAsync(object activationArgs)
         {
-            var activationHandler = GetActivationHandlers().FirstOrDefault(h => h.CanHandle(activationArgs));
+            ActivationHandler activationHandler = GetActivationHandlers().FirstOrDefault(h => h.CanHandle(activationArgs));
 
-            if (activationHandler != null)
-            {
-                await activationHandler.HandleAsync(activationArgs);
-            }
+            if (activationHandler != null) await activationHandler.HandleAsync(activationArgs);
 
             if (IsInteractive(activationArgs))
             {

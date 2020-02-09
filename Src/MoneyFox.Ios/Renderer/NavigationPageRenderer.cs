@@ -6,6 +6,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(NavigationPage), typeof(NavigationPageRenderer))]
+
 namespace MoneyFox.iOS.Renderer
 {
     public class NavigationPageRenderer : NavigationRenderer
@@ -16,10 +17,7 @@ namespace MoneyFox.iOS.Renderer
         {
             try
             {
-                if (parent != null)
-                {
-                    parent.ModalPresentationStyle = UIModalPresentationStyle.Automatic;
-                }
+                if (parent != null) parent.ModalPresentationStyle = UIModalPresentationStyle.Automatic;
 
                 base.WillMoveToParentViewController(parent);
             }

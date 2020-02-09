@@ -88,16 +88,13 @@ namespace MoneyFox.Uwp
             }
 
 
-
             WinUI.NavigationViewItem item = navigationView.MenuItems
                                                           .OfType<WinUI.NavigationViewItem>()
                                                           .FirstOrDefault(menuItem =>
                                                                           {
                                                                               if (menuItem.Content is string content
                                                                                   && args.InvokedItem is string invokedItem)
-                                                                              {
                                                                                   return content == invokedItem;
-                                                                              }
 
                                                                               return false;
                                                                           });

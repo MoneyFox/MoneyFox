@@ -1,9 +1,6 @@
 ﻿using System;
 using GalaSoft.MvvmLight;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {

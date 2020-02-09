@@ -25,8 +25,9 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
         public override void Register()
         {
-            var taskName = GetType().Name;
-            var taskRegistration = BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == taskName).Value;
+            string taskName = GetType().Name;
+            IBackgroundTaskRegistration taskRegistration =
+                BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == taskName).Value;
 
             if (taskRegistration == null)
             {

@@ -1,17 +1,17 @@
 ﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.Settings.SettingsView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:resources="using:MoneyFox.Application.Resources"
-      xmlns:helpers="using:MoneyFox.Uwp.Helpers"
-      xmlns:userControls="using:MoneyFox.Uwp.Views.Settings"
-      xmlns:views="using:MoneyFox.Uwp.Views"
-      xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
-      mc:Ignorable="d"
-      DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                xmlns:resources="using:MoneyFox.Application.Resources"
+                xmlns:helpers="using:MoneyFox.Uwp.Helpers"
+                xmlns:userControls="using:MoneyFox.Uwp.Views.Settings"
+                xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                mc:Ignorable="d"
+                DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
 
     <d:Page.DataContext>
         <designTime:DesignTimeSettingsViewModel />
@@ -36,42 +36,42 @@
                 <!-- Background Job -->
                 <StackPanel DataContext="{Binding BackgroundJobViewModel}">
                     <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                       Text="{x:Bind resources:Strings.BackupTitle}"
-                                       TextWrapping="WrapWholeWords" />
+                               Text="{x:Bind resources:Strings.BackupTitle}"
+                               TextWrapping="WrapWholeWords" />
 
                     <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                       Text="{x:Bind resources:Strings.AutobackupInformationLabel}"
-                                       TextWrapping="WrapWholeWords" />
+                               Text="{x:Bind resources:Strings.AutobackupInformationLabel}"
+                               TextWrapping="WrapWholeWords" />
 
                     <ToggleSwitch VerticalAlignment="Center"
-                                          Margin="0,6,0,0"
-                                          Header="{x:Bind resources:Strings.AutobackupLabel}"
-                                          IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
+                                  Margin="0,6,0,0"
+                                  Header="{x:Bind resources:Strings.AutobackupLabel}"
+                                  IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
 
                     <StackPanel Margin="0,12,0,0">
                         <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                           Text="{x:Bind resources:Strings.LastExecutionBackgroundOperationsLabel}" />
+                                   Text="{x:Bind resources:Strings.LastExecutionBackgroundOperationsLabel}" />
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{x:Bind resources:Strings.LastExecutionSyncBackupLabel}" />
+                                       Text="{x:Bind resources:Strings.LastExecutionSyncBackupLabel}" />
 
                             <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{Binding LastExecutionSynBackup}" />
+                                       Text="{Binding LastExecutionSynBackup}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{x:Bind resources:Strings.LastExecutionClearPaymentLabel}" />
+                                       Text="{x:Bind resources:Strings.LastExecutionClearPaymentLabel}" />
                             <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{Binding LastExecutionClearPayments}" />
+                                       Text="{Binding LastExecutionClearPayments}" />
                         </StackPanel>
 
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{x:Bind resources:Strings.LastExecutionRecurringPaymentLabel}" />
+                                       Text="{x:Bind resources:Strings.LastExecutionRecurringPaymentLabel}" />
                             <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                               Text="{Binding LastExecutionCreateRecurringPayments}" />
+                                       Text="{Binding LastExecutionCreateRecurringPayments}" />
                         </StackPanel>
                     </StackPanel>
 
@@ -79,38 +79,38 @@
 
                 <!-- Regional Settings -->
                 <userControls:RegionalSettingsUserControl Margin="{StaticResource LargeTopMargin}"
-                                                                  DataContext="{Binding RegionalSettingsViewModel}" />
+                                                          DataContext="{Binding RegionalSettingsViewModel}" />
 
                 <!-- Personalizations -->
                 <StackPanel DataContext="{Binding PersonalizationViewModel}"
-                                    Margin="{StaticResource LargeTopMargin}">
+                            Margin="{StaticResource LargeTopMargin}">
                     <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                       Text="{x:Bind resources:Strings.PersonalizationTitle}"
-                                       TextWrapping="WrapWholeWords" />
+                               Text="{x:Bind resources:Strings.PersonalizationTitle}"
+                               TextWrapping="WrapWholeWords" />
 
                     <StackPanel>
                         <RadioButton
-                                    Content="{x:Bind resources:Strings.LightLabel}"
-                                    GroupName="AppTheme"
-                                    IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
-                                    Command="{Binding SwitchThemeCommand}"
-                                    FontSize="15">
+                            Content="{x:Bind resources:Strings.LightLabel}"
+                            GroupName="AppTheme"
+                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
+                            Command="{Binding SwitchThemeCommand}"
+                            FontSize="15">
                             <RadioButton.CommandParameter>Light</RadioButton.CommandParameter>
                         </RadioButton>
                         <RadioButton
-                                    Content="{x:Bind resources:Strings.DarkLabel}"
-                                    GroupName="AppTheme"
-                                    IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
-                                    Command="{Binding SwitchThemeCommand}"
-                                    FontSize="15">
+                            Content="{x:Bind resources:Strings.DarkLabel}"
+                            GroupName="AppTheme"
+                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
+                            Command="{Binding SwitchThemeCommand}"
+                            FontSize="15">
                             <RadioButton.CommandParameter>Dark</RadioButton.CommandParameter>
                         </RadioButton>
                         <RadioButton
-                                    Content="{x:Bind resources:Strings.WindowsDefaultLabel}"
-                                    GroupName="AppTheme"
-                                    IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
-                                    Command="{Binding SwitchThemeCommand}"
-                                    FontSize="15">
+                            Content="{x:Bind resources:Strings.WindowsDefaultLabel}"
+                            GroupName="AppTheme"
+                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
+                            Command="{Binding SwitchThemeCommand}"
+                            FontSize="15">
                             <RadioButton.CommandParameter>Default</RadioButton.CommandParameter>
                         </RadioButton>
                     </StackPanel>

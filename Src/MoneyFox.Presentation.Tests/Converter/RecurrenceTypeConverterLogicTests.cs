@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Presentation.Converter;
 using MoneyFox.Ui.Shared;
 using Should;
 using Xunit;

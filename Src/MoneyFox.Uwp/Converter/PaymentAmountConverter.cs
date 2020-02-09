@@ -16,7 +16,7 @@ namespace MoneyFox.Uwp.Converter
 
             if (payment == null) return string.Empty;
 
-            string param = parameter.ToString();
+            var param = parameter.ToString();
             string sign;
 
             if (payment.Type == PaymentType.Transfer)
@@ -27,9 +27,9 @@ namespace MoneyFox.Uwp.Converter
             }
             else
             {
-                sign = payment.Type == (int)PaymentType.Expense
-                           ? "-"
-                           : "+";
+                sign = payment.Type == (int) PaymentType.Expense
+                    ? "-"
+                    : "+";
             }
 
             return sign + " " + $"{payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";
