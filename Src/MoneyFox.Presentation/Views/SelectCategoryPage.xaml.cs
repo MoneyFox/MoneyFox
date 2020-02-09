@@ -46,6 +46,16 @@ namespace MoneyFox.Presentation.Views
             ViewModel.AppearingCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
 
+        protected override async void OnDisappearing()
+        {
+            base.OnDisappearing();
+
+            if (Navigation.ModalStack.Count > 0)
+            {
+                await Navigation.PopModalAsync();
+            }
+        }
+
         private void AddCategoryClick(object sender, EventArgs e)
         {
             ViewModel.CreateNewCategoryCommand.Execute(null);

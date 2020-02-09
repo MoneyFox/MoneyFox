@@ -44,11 +44,13 @@ namespace MoneyFox.Uwp.BackgroundTasks
         {
             if (taskInstance == null)
             {
+                logManager.Info("Taskinstance was null.");
                 return Task.FromResult<Task>(null);
             }
 
             deferral = taskInstance.GetDeferral();
 
+            logManager.Debug("RecurringPaymentTask started.");
             return Task.Run(async () =>
                             {
                                 this.taskInstance = taskInstance;
@@ -63,8 +65,6 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
         private async Task CreateRecurringPaymentsAsync()
         {
-            logManager.Debug("RecurringPaymentTask started.");
-
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try

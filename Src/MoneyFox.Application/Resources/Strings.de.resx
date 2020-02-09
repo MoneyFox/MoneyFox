@@ -858,4 +858,10 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="InvalidNumberTitle" xml:space="preserve">
     <value>Ungültige Zahl</value>
   </data>
+  <data name="PleaseLoginToBackupFirstMessage" xml:space="preserve">
+    <value>To use the automatic backup job please login first to your backup service.</value>
+  </data>
+  <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
+    <value>Login Required</value>
+  </data>
 </root>

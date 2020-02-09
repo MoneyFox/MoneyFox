@@ -44,11 +44,12 @@ namespace MoneyFox.Uwp.BackgroundTasks
         {
             if(taskInstance == null)
             {
+                logManager.Info("Taskinstance was null.");
                 return Task.FromResult<Task>(null);
             }
-
             deferral = taskInstance.GetDeferral();
 
+            logManager.Debug("ClearPayment started");
             return Task.Run(async () =>
                             {
                                 this.taskInstance = taskInstance;
@@ -63,8 +64,6 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
         private async Task ClearPaymentsAsync()
         {
-            logManager.Debug("ClearPayment started");
-
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             try

@@ -59,8 +59,6 @@ namespace MoneyFox.Application.Common.CloudBackup
 
     public class BackupService : IBackupService, IDisposable
     {
-        private const string CODE_TIMEOUT = "timeout";
-
         private readonly ICloudBackupService cloudBackupService;
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
@@ -69,8 +67,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-        
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public BackupService(ICloudBackupService cloudBackupService,
                              IFileStore fileStore,
                              ISettingsFacade settingsFacade,
@@ -93,7 +91,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
 
-            logManager.Info("Successfully logged in.");
+            logger.Info("Successfully logged in.");
         }
 
         public async Task LogoutAsync()
@@ -105,7 +103,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             settingsFacade.IsLoggedInToBackupService = false;
             settingsFacade.IsBackupAutouploadEnabled = false;
 
-            logManager.Info("Successfully logged out.");
+            logger.Info("Successfully logged out.");
         }
 
         public async Task<bool> IsBackupExistingAsync()
@@ -126,7 +124,11 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled) return;
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            {
+                logger.Info("Backup is in Automatic Mode but Auto Backup isn't enabled.");
+                return;
+            }
 
             if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
@@ -138,32 +140,49 @@ namespace MoneyFox.Application.Common.CloudBackup
         private async Task DownloadBackupAsync()
         {
             DateTime backupDate = await GetBackupDateAsync();
-            if (settingsFacade.LastDatabaseUpdate > backupDate) return;
+            if (settingsFacade.LastDatabaseUpdate > backupDate)
+            {
+                logger.Info("Last local change is after the last adjustment on the remote backup.");
+                return;
+            }
 
             List<string> backups = await cloudBackupService.GetFileNamesAsync();
 
             if (backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
+                logger.Info("New backup found. Starting download.");
                 using (Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
                                                                                    DatabaseConstants.BACKUP_NAME))
                 {
                     fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
                 }
 
+                logger.Info("Backup downloaded. Replace current file.");
+
                 bool moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME,
                                                      DatabasePathHelper.GetDbPath(),
                                                      true);
 
                 if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
+
+                logger.Info("Recreate database context.");
                 contextAdapter.RecreateContext();
             }
         }
 
         public async Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled) return;
+            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            {
+                logger.Info("Backup is in Automatic Mode but Auto Backup isn't enabled.");
+                return;
+            }
 
-            if (!settingsFacade.IsLoggedInToBackupService) await LoginAsync();
+            if (!settingsFacade.IsLoggedInToBackupService)
+            {
+                logger.Info("Upload started, but not loggedin. Try to login.");
+                await LoginAsync();
+            }
 
             await EnqueueBackupTaskAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
@@ -173,37 +192,44 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             if (!connectivity.IsConnected) throw new NetworkConnectionException();
 
+            logger.Info("Enqueue Backup upload.");
+
             await semaphoreSlim.WaitAsync(ServiceConstants.BACKUP_OPERATION_TIMEOUT,
                                           cancellationTokenSource.Token);
             try
             {
                 if (await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabasePathHelper.GetDbPath())))
+                {
+                    logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();
+                }
                 else
+                {
                     cancellationTokenSource.Cancel();
+                }
             }
             catch (FileNotFoundException ex)
             {
-                logManager.Error(ex, "Backup failed because database was not found.");
+                logger.Error(ex, "Backup failed because database was not found.");
             }
             catch (OperationCanceledException ex)
             {
-                logManager.Error(ex, "Enqueue Backup failed.");
+                logger.Error(ex, "Enqueue Backup failed.");
                 await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync(attempts + 1);
             }
             catch (ServiceException ex)
             {
-                logManager.Error(ex, "ServiceException when tried to enqueue Backup.");
+                logger.Error(ex, "ServiceException when tried to enqueue Backup.");
                 throw;
             }
             catch (BackupAuthenticationFailedException ex)
             {
-                logManager.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
+                logger.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
                 throw;
             }
 
-            logManager.Warn("Enqueue Backup failed.");
+            logger.Warn("Enqueue Backup failed.");
         }
 
         public void Dispose()
