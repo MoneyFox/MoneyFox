@@ -23,7 +23,7 @@ namespace MoneyFox.Uwp.ViewModels
                                    ISettingsFacade settingsFacade,
                                    IBackupService backupService,
                                    IDialogService dialogService,
-                                   INavigationService navigationService)
+                                   NavigationService navigationService)
             : base(settingsFacade, backupService, dialogService, navigationService)
         {
             this.mediator = mediator;

@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.ViewModels
         public SelectCategoryListViewModel(IMediator mediator,
                                            IMapper mapper,
                                            IDialogService dialogService,
-                                           INavigationService navigationService)
+                                           NavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
         { }
 
@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp.ViewModels
         protected override void ItemClick(CategoryViewModel category)
         {
             MessengerInstance.Send(new CategorySelectedMessage(this, category.Id));
-            NavigationService.GoBackModal();
+            NavigationService.GoBack();
         }
     }
 }

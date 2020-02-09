@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp.ViewModels
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
-        private readonly INavigationService navigationService;
+        private readonly NavigationService navigationService;
         private readonly IDialogService dialogService;
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Intended")]
@@ -30,7 +30,7 @@ namespace MoneyFox.Uwp.ViewModels
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
-                                    INavigationService navigationService) : base(mediator,
+                                    NavigationService navigationService) : base(mediator,
                                                                                  mapper,
                                                                                  dialogService,
                                                                                  settingsFacade,

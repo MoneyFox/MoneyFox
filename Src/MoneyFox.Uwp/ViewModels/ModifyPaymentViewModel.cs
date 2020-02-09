@@ -32,7 +32,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IMediator mediator;
         private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
-        private readonly INavigationService navigationService;
+        private readonly NavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
 
@@ -49,7 +49,7 @@ namespace MoneyFox.Uwp.ViewModels
                                          IDialogService dialogService,
                                          ISettingsFacade settingsFacade,
                                          IBackupService backupService,
-                                         INavigationService navigationService)
+                                         NavigationService navigationService)
         {
             this.dialogService = dialogService;
             this.settingsFacade = settingsFacade;
@@ -255,7 +255,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void OpenSelectCategoryList()
         {
-            navigationService.NavigateToModal(ViewModelLocator.SelectCategoryList);
+            navigationService.Navigate(ViewModelLocator.SelectCategoryList);
         }
 
         private void ResetSelection()

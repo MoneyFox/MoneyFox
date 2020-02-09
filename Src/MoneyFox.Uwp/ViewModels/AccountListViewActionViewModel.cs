@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -15,10 +14,10 @@ namespace MoneyFox.Uwp.ViewModels
         private const int TRANSFER_MINIMUM_ACCOUNT_COUNT = 2;
 
         private readonly IMediator mediator;
-        private readonly INavigationService navigationService;
+        private readonly NavigationService navigationService;
 
         public AccountListViewActionViewModel(IMediator mediator,
-                                              INavigationService navigationService)
+                                              NavigationService navigationService)
         {
             this.mediator = mediator;
             this.navigationService = navigationService;
@@ -26,19 +25,19 @@ namespace MoneyFox.Uwp.ViewModels
 
         /// <inheritdoc />
         public RelayCommand GoToAddAccountCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddAccount));
+            new RelayCommand(() => navigationService.Navigate(ViewModelLocator.AddAccount));
 
         /// <inheritdoc />
         public RelayCommand GoToAddIncomeCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
+            new RelayCommand(() => navigationService.Navigate(ViewModelLocator.AddPayment, PaymentType.Income));
 
         /// <inheritdoc />
         public RelayCommand GoToAddExpenseCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Expense));
+            new RelayCommand(() => navigationService.Navigate(ViewModelLocator.AddPayment, PaymentType.Expense));
 
         /// <inheritdoc />
         public RelayCommand GoToAddTransferCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Transfer));
+            new RelayCommand(() => navigationService.Navigate(ViewModelLocator.AddPayment, PaymentType.Transfer));
 
 
         /// <summary>

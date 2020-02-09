@@ -10,7 +10,6 @@ using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
@@ -42,7 +41,7 @@ namespace MoneyFox.Uwp
             set => Set(ref isBackEnabled, value);
         }
 
-        public static NavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>() as NavigationService;
+        public static NavigationService NavigationService => ServiceLocator.Current.GetInstance<NavigationService>();
 
         public WinUI.NavigationViewItem Selected
         {
@@ -83,7 +82,7 @@ namespace MoneyFox.Uwp
             if (args.IsSettingsInvoked)
             {
                 logger.Info("Navigate to settings");
-                NavigationService.NavigateTo(nameof(SettingsViewModel));
+                NavigationService.Navigate(nameof(SettingsViewModel));
 
                 return;
             }
@@ -108,7 +107,7 @@ namespace MoneyFox.Uwp
             var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
 
             logger.Info("Navigate to page key {key}", pageKey);
-            NavigationService.NavigateTo(pageKey);
+            NavigationService.Navigate(pageKey);
         }
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)

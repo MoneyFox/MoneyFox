@@ -29,7 +29,7 @@ namespace MoneyFox.Uwp.ViewModels
         protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
                                          IBackupService backupService,
                                          IDialogService dialogService,
-                                         INavigationService navigationService)
+                                         NavigationService navigationService)
         {
             this.settingsFacade = settingsFacade;
             this.backupService = backupService;
@@ -43,7 +43,7 @@ namespace MoneyFox.Uwp.ViewModels
         protected abstract Task Initialize();
 
         protected IDialogService DialogService { get; }
-        protected INavigationService NavigationService { get; }
+        protected NavigationService NavigationService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 

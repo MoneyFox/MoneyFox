@@ -20,7 +20,7 @@ namespace MoneyFox.Uwp.ViewModels
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBackupService backupService,
-                                    INavigationService navigationService,
+                                    NavigationService navigationService,
                                     IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
 
         {
@@ -39,7 +39,7 @@ namespace MoneyFox.Uwp.ViewModels
         protected override async Task SaveCategoryAsync()
         {
             await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
-            NavigationService.GoBackModal();
+            NavigationService.GoBack();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace MoneyFox.Uwp.ViewModels
         private RecurringPaymentViewModel recurringPaymentViewModel;
 
         private IMediator mediator;
-        private INavigationService navigationService;
+        private NavigationService navigationService;
         private IDialogService dialogService;
 
         public PaymentViewModel()
@@ -46,7 +46,7 @@ namespace MoneyFox.Uwp.ViewModels
             Date = DateTime.Today;
         }
 
-        public PaymentViewModel(IMediator mediator, INavigationService navigationService) : this()
+        public PaymentViewModel(IMediator mediator, NavigationService navigationService) : this()
         {
             this.mediator = mediator;
             this.navigationService = navigationService;
@@ -289,9 +289,9 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void EditPayment()
         {
-            if (navigationService == null) navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            if (navigationService == null) navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
 
-            navigationService.NavigateTo(ViewModelLocator.EditPayment, Id);
+            navigationService.Navigate(ViewModelLocator.EditPayment, Id);
         }
 
         [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]

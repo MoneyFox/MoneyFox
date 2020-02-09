@@ -26,7 +26,7 @@ namespace MoneyFox.Uwp.ViewModels
         ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(IMediator mediator,
-                                          INavigationService navigationService,
+                                          NavigationService navigationService,
                                           IMapper mapper,
                                           IDialogService dialogService)
         {
@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         protected abstract Task SaveCategoryAsync();
 
-        protected INavigationService NavigationService { get; }
+        protected NavigationService NavigationService { get; }
 
         protected IDialogService DialogService { get; }
 
@@ -103,7 +103,7 @@ namespace MoneyFox.Uwp.ViewModels
         private async Task CancelAsync()
         {
             SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
-            NavigationService.GoBackModal();
+            NavigationService.GoBack();
         }
     }
 }

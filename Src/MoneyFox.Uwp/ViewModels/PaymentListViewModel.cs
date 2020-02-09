@@ -28,7 +28,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
         private readonly IDialogService dialogService;
-        private readonly INavigationService navigationService;
+        private readonly NavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
         private int accountId;
@@ -47,7 +47,7 @@ namespace MoneyFox.Uwp.ViewModels
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
                                     IBalanceCalculationService balanceCalculationService,
-                                    INavigationService navigationService)
+                                    NavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

@@ -24,7 +24,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
-        private readonly INavigationService navigationService;
+        private readonly NavigationService navigationService;
 
         private readonly int accountId;
         private bool isClearedFilterActive;
@@ -43,7 +43,7 @@ namespace MoneyFox.Uwp.ViewModels
                                               ISettingsFacade settingsFacade,
                                               IDialogService dialogService,
                                               IBalanceViewModel balanceViewModel,
-                                              INavigationService navigationService)
+                                              NavigationService navigationService)
         {
             this.accountId = accountId;
 
@@ -64,15 +64,15 @@ namespace MoneyFox.Uwp.ViewModels
 
         /// <inheritdoc />
         public RelayCommand GoToAddIncomeCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
+            new RelayCommand(() => navigationService.Navigate(ViewModelLocator.AddPayment, PaymentType.Income));
 
         /// <inheritdoc />
         public RelayCommand GoToAddExpenseCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Expense));
+            new RelayCommand(() => navigationService.Navigate(ViewModelLocator.AddPayment, PaymentType.Expense));
 
         /// <inheritdoc />
         public RelayCommand GoToAddTransferCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Transfer));
+            new RelayCommand(() => navigationService.Navigate(ViewModelLocator.AddPayment, PaymentType.Transfer));
 
         /// <inheritdoc />
         public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccount);

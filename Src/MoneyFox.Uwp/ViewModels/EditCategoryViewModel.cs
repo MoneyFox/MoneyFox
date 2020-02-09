@@ -31,7 +31,7 @@ namespace MoneyFox.Uwp.ViewModels
                                      IDialogService dialogService,
                                      ISettingsFacade settingsFacade,
                                      IBackupService backupService,
-                                     INavigationService navigationService,
+                                     NavigationService navigationService,
                                      IMapper mapper)
             : base(mediator, navigationService, mapper, dialogService)
         {
@@ -56,7 +56,7 @@ namespace MoneyFox.Uwp.ViewModels
         {
             await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
 
-            NavigationService.GoBackModal();
+            NavigationService.GoBack();
         }
 
         private async Task DeleteCategory()

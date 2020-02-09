@@ -36,7 +36,7 @@ namespace MoneyFox.Uwp.ViewModels
         protected AbstractCategoryListViewModel(IMediator mediator,
                                                 IMapper mapper,
                                                 IDialogService dialogService,
-                                                INavigationService navigationService)
+                                                NavigationService navigationService)
         {
             Mediator = mediator;
             Mapper = mapper;
@@ -44,7 +44,7 @@ namespace MoneyFox.Uwp.ViewModels
             NavigationService = navigationService;
         }
 
-        protected INavigationService NavigationService { get; }
+        protected NavigationService NavigationService { get; }
 
         protected IMediator Mediator { get; }
         protected IMapper Mapper { get; }
@@ -142,12 +142,12 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void EditCategory(CategoryViewModel category)
         {
-            NavigationService.NavigateToModal(ViewModelLocator.EditCategory, category.Id);
+            NavigationService.Navigate(ViewModelLocator.EditCategory, category.Id);
         }
 
         private void CreateNewCategory(CategoryViewModel category)
         {
-            NavigationService.NavigateToModal(ViewModelLocator.AddCategory);
+            NavigationService.Navigate(ViewModelLocator.AddCategory);
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(

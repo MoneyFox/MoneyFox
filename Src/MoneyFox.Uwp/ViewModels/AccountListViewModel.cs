@@ -35,7 +35,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IMapper mapper;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-        private readonly INavigationService navigationService;
+        private readonly NavigationService navigationService;
 
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
 
@@ -47,7 +47,7 @@ namespace MoneyFox.Uwp.ViewModels
                                     IBalanceCalculationService balanceCalculationService,
                                     IDialogService dialogService,
                                     ISettingsFacade settingsFacade,
-                                    INavigationService navigationService)
+                                    NavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -100,7 +100,7 @@ namespace MoneyFox.Uwp.ViewModels
             switch (menuResult.Index)
             {
                 case MENU_RESULT_EDIT_INDEX:
-                    navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
+                    navigationService.Navigate(ViewModelLocator.EditAccount, accountViewModel.Id);
                     break;
 
                 case MENU_RESULT_DELETE_INDEX:
@@ -115,7 +115,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void EditAccount(AccountViewModel accountViewModel)
         {
-            navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
+            navigationService.Navigate(ViewModelLocator.EditAccount, accountViewModel.Id);
         }
 
         private async Task LoadAsync()
@@ -148,7 +148,7 @@ namespace MoneyFox.Uwp.ViewModels
         {
             if (accountViewModel == null) return;
 
-            navigationService.NavigateTo(ViewModelLocator.PaymentList, accountViewModel.Id);
+            navigationService.Navigate(ViewModelLocator.PaymentList, accountViewModel.Id);
         }
 
         private async Task DeleteAsync(AccountViewModel accountToDelete)
@@ -169,7 +169,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void GoToAddAccount()
         {
-            navigationService.NavigateTo(ViewModelLocator.AddAccount);
+            navigationService.Navigate(ViewModelLocator.AddAccount);
         }
     }
 }
