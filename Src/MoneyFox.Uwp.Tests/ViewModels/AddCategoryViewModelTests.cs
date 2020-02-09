@@ -1,8 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MediatR;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.ViewModels;
@@ -10,7 +8,7 @@ using Moq;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Presentation.Tests.ViewModels
+namespace MoneyFox.Uwp.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class AddCategoryViewModelTests

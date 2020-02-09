@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace MoneyFox.Application.Collections
+namespace MoneyFox.Ui.Shared.Tests.Collections
 {
     [CollectionDefinition("CultureCollection")]
     public class CultureCollection

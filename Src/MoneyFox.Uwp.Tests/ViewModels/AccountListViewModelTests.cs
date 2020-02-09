@@ -4,14 +4,13 @@ using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Uwp;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels;
 using Moq;
 using Xunit;
 using IDialogService = MoneyFox.Application.Common.Interfaces.IDialogService;
 
-namespace MoneyFox.Presentation.Tests.ViewModels
+namespace MoneyFox.Uwp.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class AccountListViewModelTests

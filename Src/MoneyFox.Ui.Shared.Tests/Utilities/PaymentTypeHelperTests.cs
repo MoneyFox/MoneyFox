@@ -5,7 +5,7 @@ using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.Utilities;
 using Xunit;
 
-namespace MoneyFox.Presentation.Tests.Utilities
+namespace MoneyFox.Ui.Shared.Tests.Utilities
 {
     [ExcludeFromCodeCoverage]
     public class PaymentTypeHelperTests

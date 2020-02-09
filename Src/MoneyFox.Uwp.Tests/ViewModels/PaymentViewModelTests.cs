@@ -7,7 +7,7 @@ using Moq;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Presentation.Tests.ViewModels
+namespace MoneyFox.Uwp.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class PaymentViewModelTests
