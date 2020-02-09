@@ -1,6 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.ViewModels.Settings
 {
@@ -9,16 +7,11 @@ namespace MoneyFox.Uwp.ViewModels.Settings
     /// </summary>
     public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {
-        private readonly INavigationService navigationService;
-
-        public SettingsViewModel(INavigationService navigationService,
-                                 IAboutViewModel aboutViewModel,
+        public SettingsViewModel(IAboutViewModel aboutViewModel,
                                  ISettingsBackgroundJobViewModel settingsBackgroundJobViewModel,
                                  IRegionalSettingsViewModel regionalSettingsViewModel,
                                  ISettingsPersonalizationViewModel settingsPersonalizationViewModel)
         {
-            this.navigationService = navigationService;
-
             AboutViewModel = aboutViewModel;
             BackgroundJobViewModel = settingsBackgroundJobViewModel;
             RegionalSettingsViewModel = regionalSettingsViewModel;

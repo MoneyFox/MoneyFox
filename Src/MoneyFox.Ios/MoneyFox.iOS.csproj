@@ -355,6 +355,10 @@
       <Project>{7B5B021F-8C4A-4024-9CC0-04018829FD66}</Project>
       <Name>MoneyFox.Presentation</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj">
+      <Project>{C1217FB5-7A43-4DDA-A98F-72ECA57A1ADE}</Project>
+      <Name>MoneyFox.Ui.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
