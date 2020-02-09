@@ -74,7 +74,7 @@ namespace MoneyFox.Uwp.Services
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
 #if !DEBUG
-            //AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
             LoggerService.Initialize();

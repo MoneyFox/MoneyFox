@@ -16,7 +16,7 @@ namespace MoneyFox.Uwp.BackgroundTasks
     /// </summary>
     public sealed class RecurringPaymentTask : BackgroundTask
     {
-        private const int TASK_RECURRENCE_COUNT = 15;
+        private const int TASK_RECURRENCE_COUNT = 240;
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
