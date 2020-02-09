@@ -18,8 +18,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         public AddCategoryViewModel(IMediator mediator,
                                     IDialogService dialogService,
-                                    ISettingsFacade settingsFacade,
-                                    IBackupService backupService,
                                     NavigationService navigationService,
                                     IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
 
