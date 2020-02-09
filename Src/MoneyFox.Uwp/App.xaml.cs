@@ -7,7 +7,6 @@ using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using MoneyFox.Presentation.ViewModels;
-using MoneyFox.Uwp.BackgroundTasks;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
 using NLog;
