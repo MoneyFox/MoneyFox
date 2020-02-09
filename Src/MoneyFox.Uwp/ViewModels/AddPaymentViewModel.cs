@@ -14,6 +14,7 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Uwp.Services;
 using NLog;
 
 namespace MoneyFox.Uwp.ViewModels

@@ -3,6 +3,7 @@ using Autofac;
 using MoneyFox.Application.Common;
 using MoneyFox.Infrastructure;
 using MoneyFox.Presentation;
+using MoneyFox.Presentation.Services;
 using PCLAppConfig;
 
 namespace MoneyFox.iOS

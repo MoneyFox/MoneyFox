@@ -13,6 +13,7 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.ViewModels
 {

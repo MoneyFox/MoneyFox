@@ -12,6 +12,7 @@ using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Uwp.Services;
 using Xamarin.Forms;
 
 namespace MoneyFox.Uwp.ViewModels

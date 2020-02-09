@@ -3,6 +3,7 @@ using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 

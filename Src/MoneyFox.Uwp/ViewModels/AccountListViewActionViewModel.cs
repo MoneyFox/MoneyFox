@@ -5,6 +5,7 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
+using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels

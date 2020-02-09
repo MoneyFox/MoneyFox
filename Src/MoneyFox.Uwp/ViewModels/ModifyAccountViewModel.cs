@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Uwp.Services;
 using NLog;
 
 namespace MoneyFox.Uwp.ViewModels

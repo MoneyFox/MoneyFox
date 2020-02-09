@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Presentation.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {

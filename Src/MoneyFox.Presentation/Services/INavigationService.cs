@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Application.Common.Interfaces
+﻿namespace MoneyFox.Presentation.Services
 {
     public interface INavigationService
     {

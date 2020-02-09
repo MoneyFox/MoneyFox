@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MoneyFox.Application.Common.Interfaces;
 using Xamarin.Forms;
 
-namespace MoneyFox.Presentation
+namespace MoneyFox.Presentation.Services
 {
     public class NavigationService : INavigationService
     {
