@@ -12,7 +12,7 @@ namespace MoneyFox.Uwp.BackgroundTasks
 {
     public class SyncBackupTask : BackgroundTask
     {
-        private const int TASK_RECURRENCE_COUNT = 15;
+        private const int TASK_RECURRENCE_COUNT = 30;
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
