@@ -187,7 +187,7 @@
     <value>Gastos</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Comentarios Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>Editar ingresos</value>
@@ -813,10 +813,10 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Inicio de sesión cancelado.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Hubo un problema durante la operación. Mensaje de error {0}</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>Se ha cancelado el cierre de sesión.</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>La restauración de copia de seguridad fue cancelada.</value>
