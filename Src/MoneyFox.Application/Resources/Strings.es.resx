@@ -187,7 +187,7 @@
     <value>Gastos</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Comentarios Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>Editar ingresos</value>
@@ -473,7 +473,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Buscar</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+    <value>Si activa esta configuración, haremos una copia de seguridad de sus datos automáticamente a OneDrive. También comprobamos periódicamente si algo ha cambiado desde otro dispositivo.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
     <value>Subir y descargar copias de seguridad automáticamente</value>
@@ -485,7 +485,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Confirmación de la contraseña</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>Ha eliminado un pago recurrente. ¿Desea eliminar también la frecuencia?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>¿Eliminar la serie?</value>
@@ -515,7 +515,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Hora(s)</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>Semestral</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
     <value>Cuatrimestral</value>
@@ -563,23 +563,23 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Acceso denegado</value>
   </data>
   <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft Passport is not enabled on this device. 
-    Please go to settings and enable it!</value>
+    <value>Microsoft Passport no está habilitado en este dispositivo. 
+    ¡Ve a ajustes y activalo!</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
-    <value>We couldn't log you in. Please contact us if this issue persists.</value>
+    <value>No fue posible iniciar sesión. Por favor, contáctenos si el problema persiste.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>¡Error al iniciar sesión!</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Recurring</value>
+    <value>Recurrente</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
-    <value>Others</value>
+    <value>Otros</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>Cuentas</value>
@@ -597,7 +597,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>No hay categorías para mostrar. Pulse el botón más para añadir a uno.</value>
   </data>
   <data name="NoStatisticItemsMessage" xml:space="preserve">
-    <value>There are no statistic items in the selected time range.</value>
+    <value>No hay estadísticas para el rango de tiempo seleccionado.</value>
   </data>
   <data name="BackupSettingsDescription" xml:space="preserve">
     <value>Crear y restaurar copias de seguridad.</value>
@@ -627,7 +627,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Guardar el pago</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
+    <value>No hay pagos. Añada uno tocando el botón más en la parte inferior.</value>
   </data>
   <data name="SaveCategoryLabel" xml:space="preserve">
     <value>Guardar categoría</value>
@@ -654,7 +654,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Flujo de caja</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Separación de categorías</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
     <value>Nombre de la categoría</value>
@@ -681,22 +681,22 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Procesos en segundo plano</value>
   </data>
   <data name="BackgroundJobSettingDescription" xml:space="preserve">
-    <value>Configure execution interval for background task.</value>
+    <value>Configurar el intervalo de ejecución para la tarea en segundo plano.</value>
   </data>
   <data name="BackgroundJobTitle" xml:space="preserve">
     <value>Procesos en segundo plano</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Personalización</value>
   </data>
   <data name="ShortcutsTitle" xml:space="preserve">
-    <value>Shortcuts</value>
+    <value>Atajos</value>
   </data>
   <data name="LiveTileAccountBalance" xml:space="preserve">
     <value>Bal. : {0}</value>
   </data>
   <data name="LiveTileAccountName" xml:space="preserve">
-    <value>Account: {0}</value>
+    <value>Cuenta: {0}</value>
   </data>
   <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
     <value>{0}: {1}</value>
@@ -705,162 +705,162 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>{0}: {1}</value>
   </data>
   <data name="LiveTilePastPayments" xml:space="preserve">
-    <value>Past Payments</value>
+    <value>Pagos pasados</value>
   </data>
   <data name="LiveTileUpcommingPayments" xml:space="preserve">
-    <value>Upcoming Payments</value>
+    <value>Próximos pagos</value>
   </data>
   <data name="BalanceLabel" xml:space="preserve">
-    <value>Balance</value>
+    <value>Saldo</value>
   </data>
   <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Last Executions:</value>
+    <value>Últimas Ejecuciones:</value>
   </data>
   <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
     <value>Paymentclearing:</value>
   </data>
   <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
-    <value>Create Recurring Payments:</value>
+    <value>Crear pagos recurrentes:</value>
   </data>
   <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
-    <value>Backup Sync:</value>
+    <value>Sincronización de copia de seguridad:</value>
   </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
-    <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
+    <value>Elija entre un tema oscuro o claro. Por favor, reinicie la aplicación mediante el administrador de tareas para aplicar su selección.</value>
   </data>
   <data name="ThemeDarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Oscuro</value>
   </data>
   <data name="ThemeLightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Claro</value>
   </data>
   <data name="SettingsPersonalizationDescription" xml:space="preserve">
-    <value>Choose your prefered Theme.</value>
+    <value>Elige tu tema preferido.</value>
   </data>
   <data name="SettingsPersonalizationLabel" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Personalización</value>
   </data>
   <data name="LiveTileWideandLargeIncomeFutureText" xml:space="preserve">
-    <value>{0} will receive {1}</value>
+    <value>{0} recibirás {1}</value>
   </data>
   <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
-    <value>{0} to {1}</value>
+    <value>{0} a {1}</value>
   </data>
   <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
-    <value>{0} to be taken from {1}</value>
+    <value>{0} para ser tomado de {1}</value>
   </data>
   <data name="LiveTileWideandLargePaymentPastText" xml:space="preserve">
-    <value>{0} taken from {1}</value>
+    <value>{0} tomado de {1}</value>
   </data>
   <data name="PintAccountLabel" xml:space="preserve">
-    <value>Pin account to start menu</value>
+    <value>Anclar cuenta en el menú de inicio</value>
   </data>
   <data name="CategorySummaryPlaceHolderLabel" xml:space="preserve">
-    <value>No statistic items to display. Try to adjust the time range.</value>
+    <value>No hay elementos estadísticos para mostrar. Intenta ajustar el intervalo de tiempo.</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
-    <value>Last year monthly average: </value>
+    <value>Promedio mensual del año pasado: </value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>Contribuciones</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
     <value>Info</value>
   </data>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Leave a feedback!</value>
+    <value>¡Deja un comentario!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+    <value>Ha modificado un pago recurrente. ¿Desea actualizar la frecuencia?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modify Recurrence</value>
+    <value>Modificar frecuencia</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+    <value>Su base de datos local tiene una fecha de modificación más reciente que la de OneDrive. ¿Desea reemplazar sus datos locales?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Override Local Data</value>
+    <value>Sobrescribir datos locales</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>Tus datos se guardarán en tu cuenta de OneDrive. Los encontrarás en la carpeta de aplicaciones en una nueva carpeta llamada "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Oscuro</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Claro</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
+    <value>Ventanas por defecto</value>
   </data>
   <data name="TagsLabel" xml:space="preserve">
-    <value>Tags</value>
+    <value>Etiquetas</value>
   </data>
   <data name="TodayLabel" xml:space="preserve">
-    <value>Today</value>
+    <value>Hoy</value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[No Category]</value>
+    <value>[Sin categoría]</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Income / Expenses:</value>
+    <value>Ingresos / Gastos:</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Cancelado</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>Login was canceled.</value>
+    <value>Inicio de sesión cancelado.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Hubo un problema durante la operación. Mensaje de error {0}</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>Se ha cancelado el cierre de sesión.</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Restoring backup was canceled.</value>
+    <value>La restauración de copia de seguridad fue cancelada.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Upload backup was canceled.</value>
+    <value>Se ha cancelado la copia de seguridad.</value>
   </data>
   <data name="DeleteAccountLabel" xml:space="preserve">
-    <value>Delete Account</value>
+    <value>Eliminar Cuenta</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>Región por defecto</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>Esta región se utilizará por defecto para su aplicación.</value>
   </data>
   <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
+    <value>Configuración regional</value>
   </data>
   <data name="RegionalSettingsDescriptionText" xml:space="preserve">
-    <value>Set region settings for your application.</value>
+    <value>Establezca la configuración de región para su aplicación.</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>Cantidad negativa</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>Guardar</value>
   </data>
   <data name="InvalidNumberAmountMessage" xml:space="preserve">
-    <value>Your payment amount seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+    <value>Su cantidad de pago parece no ser válida. Por favor, compruebe que no ha introducido ningún carácter especial y ha utilizado el separador correcto.</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+    <value>Su saldo actual parece no ser un número válido. Por favor, compruebe que no ha introducido ningún carácter especial y ha utilizado el separador correcto.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Número inválido</value>
   </data>
   <data name="PleaseLoginToBackupFirstMessage" xml:space="preserve">
-    <value>To use the automatic backup job please login first to your backup service.</value>
+    <value>Para utilizar el trabajo de copia de seguridad automática, por favor inicie sesión primero en su servicio de copia de seguridad.</value>
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
-    <value>Login Required</value>
+    <value>Es necesario iniciar sesión</value>
   </data>
 </root>
