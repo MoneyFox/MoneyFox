@@ -1,15 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using MediatR;
-using Microcharts;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
-using SkiaSharp;
-using Xamarin.Forms;
-using Entry = Microcharts.Entry;
 
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
@@ -18,29 +12,11 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private static readonly string fontFamily = Device.RuntimePlatform == Device.iOS ? "Lobster-Regular" : null;
-        private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
-
-        private DonutChart chart;
         private ObservableCollection<StatisticEntry> statisticItems;
 
         public StatisticCategorySpreadingViewModel(IMediator mediator,
                                                    ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
         { }
-
-        /// <summary>
-        ///     Chart to render.
-        /// </summary>
-        public DonutChart Chart
-        {
-            get => chart;
-            set
-            {
-                if (chart == value) return;
-                chart = value;
-                RaisePropertyChanged();
-            }
-        }
 
         /// <summary>
         ///     Statistic items to display.
@@ -61,26 +37,11 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// </summary>
         protected override async Task Load()
         {
-            StatisticItems =
-                new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery
-                                                                                 {StartDate = StartDate, EndDate = EndDate}));
-
-            List<Entry> microChartItems = StatisticItems
-                                         .Select(x => new Entry(x.Value)
-                                          {
-                                              Label = x.Label,
-                                              ValueLabel = x.ValueLabel,
-                                              Color = SKColor.Parse(x.Color)
-                                          })
-                                         .ToList();
-
-            Chart = new DonutChart
-            {
-                Entries = microChartItems,
-                BackgroundColor = BackgroundColor,
-                LabelTextSize = 26f,
-                Typeface = typeFaceForIOS12
-            };
+            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery
+                                                                                          {
+                                                                                              StartDate = StartDate,
+                                                                                              EndDate = EndDate
+                                                                                          }));
         }
     }
 }

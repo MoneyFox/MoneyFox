@@ -9,7 +9,6 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
-using SkiaSharp;
 
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
@@ -22,8 +21,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         private DateTime endDate;
 
         protected readonly IMediator Mediator;
-
-        protected SKColor BackgroundColor { get; }
 
         /// <summary>
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month
@@ -44,10 +41,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             StartDate = startDate;
             EndDate = endDate;
             Mediator = mediator;
-
-            BackgroundColor = settingsFacade.Theme == AppTheme.Dark
-                ? new SKColor(0, 0, 0)
-                : SKColor.Parse("#EFF2F5");
 
             MessengerInstance.Register<DateSelectedMessage>(this, async message =>
                                                                   {

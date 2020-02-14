@@ -22,10 +22,10 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
         private DonutChart chart;
-        private ObservableCollection<StatisticEntry> statisticItems;
 
         public StatisticCategorySpreadingViewModel(IMediator mediator,
-                                                   ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
+                                                   ISettingsFacade settingsFacade)
+            : base(mediator, settingsFacade)
         { }
 
         /// <summary>
@@ -43,35 +43,23 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         }
 
         /// <summary>
-        ///     Statistic items to display.
-        /// </summary>
-        public ObservableCollection<StatisticEntry> StatisticItems
-        {
-            get => statisticItems;
-            private set
-            {
-                if (statisticItems == value) return;
-                statisticItems = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
         ///     Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task Load()
         {
-            StatisticItems =
-                new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery
-                                                                                 {StartDate = StartDate, EndDate = EndDate}));
+            var statisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery
+                                                                                              {
+                                                                                                  StartDate = StartDate,
+                                                                                                  EndDate = EndDate
+                                                                                              }));
 
-            List<Entry> microChartItems = StatisticItems
+            List<Entry> microChartItems = statisticItems
                                          .Select(x => new Entry(x.Value)
-                                          {
-                                              Label = x.Label,
-                                              ValueLabel = x.ValueLabel,
-                                              Color = SKColor.Parse(x.Color)
-                                          })
+                                                      {
+                                                          Label = x.Label,
+                                                          ValueLabel = x.ValueLabel,
+                                                          Color = SKColor.Parse(x.Color)
+                                                      })
                                          .ToList();
 
             Chart = new DonutChart

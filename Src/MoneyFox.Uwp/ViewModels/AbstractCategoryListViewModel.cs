@@ -16,8 +16,6 @@ using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.Services;
 using NLog;
-using Xamarin.Forms;
-using XF.Material.Forms.Models;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -72,10 +70,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
 
-        public List<string> MenuActions => new List<string> {Strings.EditLabel, Strings.DeleteLabel};
-
-        public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
-
         public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearingAsync);
 
         /// <summary>
@@ -116,28 +110,6 @@ namespace MoneyFox.Uwp.ViewModels
             var categoriesVms =
                 Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
             CategoryList = CreateGroup(categoriesVms);
-        }
-
-
-        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as event handler.>")]
-        private async void MenuSelected(MaterialMenuResult menuResult)
-        {
-            var categoryViewModel = menuResult.Parameter as CategoryViewModel;
-
-            switch (menuResult.Index)
-            {
-                case MENU_RESULT_EDIT_INDEX:
-                    EditCategory(categoryViewModel);
-                    break;
-
-                case MENU_RESULT_DELETE_INDEX:
-                    await DeleteCategoryAsync(categoryViewModel);
-                    break;
-
-                default:
-                    logManager.Warn("Invalid Index for Menu Selected in Account List. Index: {0}", menuResult.Index);
-                    break;
-            }
         }
 
         private void EditCategory(CategoryViewModel category)

@@ -2,8 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
-using Xamarin.Forms;
-using XF.Material.Forms.Models;
 
 namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
@@ -41,11 +39,6 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
         ///     Open the payment overview for this Account.
         /// </summary>
         RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
-
-        /// <summary>
-        ///     Handles the selected menu item on Android and iOS
-        /// </summary>
-        Command<MaterialMenuResult> MenuSelectedCommand { get; }
 
         /// <summary>
         ///     Edit the selected Account

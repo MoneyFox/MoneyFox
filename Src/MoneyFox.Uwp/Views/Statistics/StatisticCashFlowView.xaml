@@ -6,7 +6,6 @@
                 xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
                 mc:Ignorable="d"

@@ -1,10 +1,8 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using SkiaSharp;
 using Xamarin.Forms;
@@ -22,7 +20,6 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
         private BarChart chart;
-        private ObservableCollection<StatisticEntry> statisticItems;
 
         public StatisticCashFlowViewModel(IMediator mediator,
                                           ISettingsFacade settingsFacade)
@@ -45,42 +42,28 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             }
         }
 
-        /// <summary>
-        ///     Statistic items to display.
-        /// </summary>
-        public ObservableCollection<StatisticEntry> StatisticItems
-        {
-            get => statisticItems;
-            private set
-            {
-                if (statisticItems == value) return;
-                statisticItems = value;
-                RaisePropertyChanged();
-            }
-        }
-
         protected override async Task Load()
         {
-            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCashFlowQuery
-            {
-                EndDate = EndDate,
-                StartDate = StartDate
-            }));
+            var statisticItems = await Mediator.Send(new GetCashFlowQuery
+                                                     {
+                                                         EndDate = EndDate,
+                                                         StartDate = StartDate
+                                                     });
 
             Chart = new BarChart
-            {
-                Entries = StatisticItems.Select(x => new Entry(x.Value)
-                                         {
-                                             Label = x.Label,
-                                             ValueLabel = x.ValueLabel,
-                                             Color = SKColor.Parse(x.Color)
-                                         })
-                                        .ToList(),
-                BackgroundColor = BackgroundColor,
-                Margin = 20,
-                LabelTextSize = 26f,
-                Typeface = typeFaceForIOS12
-            };
+                    {
+                        Entries = statisticItems.Select(x => new Entry(x.Value)
+                                                             {
+                                                                 Label = x.Label,
+                                                                 ValueLabel = x.ValueLabel,
+                                                                 Color = SKColor.Parse(x.Color)
+                                                             })
+                                                .ToList(),
+                        BackgroundColor = BackgroundColor,
+                        Margin = 20,
+                        LabelTextSize = 26f,
+                        Typeface = typeFaceForIOS12
+                    };
         }
     }
 }

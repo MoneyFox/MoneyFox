@@ -19,16 +19,11 @@ using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using NLog;
-using Xamarin.Forms;
-using XF.Material.Forms.Models;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     public class AccountListViewModel : ViewModelBase, IAccountListViewModel
     {
-        private const int MENU_RESULT_EDIT_INDEX = 0;
-        private const int MENU_RESULT_DELETE_INDEX = 1;
-
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private readonly IMediator mediator;
@@ -84,34 +79,11 @@ namespace MoneyFox.Uwp.ViewModels
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
-        public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
-
         public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
 
         public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(DeleteAsync);
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
-
-        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as event handler.>")]
-        private async void MenuSelected(MaterialMenuResult menuResult)
-        {
-            var accountViewModel = menuResult.Parameter as AccountViewModel;
-
-            switch (menuResult.Index)
-            {
-                case MENU_RESULT_EDIT_INDEX:
-                    navigationService.Navigate(ViewModelLocator.EditAccount, accountViewModel.Id);
-                    break;
-
-                case MENU_RESULT_DELETE_INDEX:
-                    await DeleteAsync(accountViewModel);
-                    break;
-
-                default:
-                    logManager.Warn("Invalid Index for Menu Selected in Account List. Index: {0}", menuResult.Index);
-                    break;
-            }
-        }
 
         private void EditAccount(AccountViewModel accountViewModel)
         {
