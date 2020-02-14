@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using AutoMapper;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Infrastructure.Tests.Collections;
+using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Should;
 using Xunit;
 
-namespace MoneyFox.Infrastructure.Tests.Mappings
+namespace MoneyFox.Presentation.Tests.Mappings
 {
     [ExcludeFromCodeCoverage]
     [Collection("AutoMapperCollection")]

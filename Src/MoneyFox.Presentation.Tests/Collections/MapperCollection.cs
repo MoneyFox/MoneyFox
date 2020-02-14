@@ -4,7 +4,7 @@ using AutoMapper;
 using MoneyFox.Presentation.AutoMapper;
 using Xunit;
 
-namespace MoneyFox.Infrastructure.Tests.Collections
+namespace MoneyFox.Presentation.Tests.Collections
 {
     [ExcludeFromCodeCoverage]
     [CollectionDefinition("AutoMapperCollection")]
