@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using AutoMapper;
 using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
 
-namespace MoneyFox.Infrastructure
+namespace MoneyFox.Uwp.AutoMapper
 {
     public class AutoMapperProfile : Profile
     {
