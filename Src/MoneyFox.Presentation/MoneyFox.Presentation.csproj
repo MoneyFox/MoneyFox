@@ -26,9 +26,6 @@
 
   <ItemGroup>
     <Compile Remove="Converter\AmountValueConverter.cs" />
-    <Compile Remove="Utilities\AsyncCommand.cs" />
-    <Compile Remove="Utilities\GenericAsyncCommand.cs" />
-    <Compile Remove="Utilities\IAsyncCommand.cs" />
     <Compile Remove="Views\ModifyAccountPage.xaml.cs" />
     <Compile Remove="Views\ModifyCategoryPage.xaml.cs" />
     <Compile Remove="Views\ModifyPaymentPage.xaml.cs" />
@@ -72,6 +69,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
+    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

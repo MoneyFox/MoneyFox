@@ -7,7 +7,7 @@ using MoneyFox.Domain.Entities;
 using Should;
 using Xunit;
 
-namespace MoneyFox.BusinessLogic.Tests.PaymentActions
+namespace MoneyFox.Application.Tests.Common
 {
     [ExcludeFromCodeCoverage]
     public class RecurringPaymentHelperTests

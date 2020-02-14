@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Microsoft.Toolkit.Uwp.UI.Animations;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
 using NLog;
 
 namespace MoneyFox.Uwp.Views.UserControls

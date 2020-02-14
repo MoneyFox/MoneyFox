@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
+using MoneyFox.Presentation.AutoMapper;
 
 namespace MoneyFox.Presentation
 {
@@ -18,6 +19,8 @@ namespace MoneyFox.Presentation
         {
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();
+
+            builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
 

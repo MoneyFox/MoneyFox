@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Background;
-using MoneyFox.Presentation.Utilities;
+using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.BackgroundTasks;
 
@@ -20,15 +20,13 @@ namespace MoneyFox.Uwp.Services
         public async Task RegisterBackgroundTasksAsync()
         {
             BackgroundExecutionManager.RemoveAccess();
-            var result = await BackgroundExecutionManager.RequestAccessAsync();
+            BackgroundAccessStatus result = await BackgroundExecutionManager.RequestAccessAsync();
 
             if (result == BackgroundAccessStatus.DeniedBySystemPolicy
                 || result == BackgroundAccessStatus.DeniedByUser)
-            {
                 return;
-            }
 
-            foreach (var task in BackgroundTasks)
+            foreach (BackgroundTask task in BackgroundTasks)
             {
                 task.Register();
             }
@@ -44,12 +42,14 @@ namespace MoneyFox.Uwp.Services
                 return null;
             }
 
-            return (BackgroundTaskRegistration)BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == typeof(T).Name).Value;
+            return (BackgroundTaskRegistration) BackgroundTaskRegistration
+                                               .AllTasks.FirstOrDefault(t => t.Value.Name == typeof(T).Name)
+                                               .Value;
         }
 
         public void Start(IBackgroundTaskInstance taskInstance)
         {
-            var task = BackgroundTasks.FirstOrDefault(b => b.Match(taskInstance?.Task?.Name));
+            BackgroundTask task = BackgroundTasks.FirstOrDefault(b => b.Match(taskInstance?.Task?.Name));
 
             if (task == null)
             {

@@ -4,11 +4,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
-             xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
              x:Name="PaymentControl"
              xmlns:resources="using:MoneyFox.Application.Resources"
              xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
-             xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+             xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+             xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"

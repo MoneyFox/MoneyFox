@@ -1,7 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Statistic;
+using MoneyFox.Ui.Shared.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

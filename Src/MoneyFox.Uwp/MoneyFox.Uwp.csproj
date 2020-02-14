@@ -144,6 +144,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AutoMapper\AutoMapperFactory.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile.cs" />
     <Compile Include="BackgroundTasks\BackgroundTask.cs" />
     <Compile Include="BackgroundTasks\ClearPaymentsTask.cs" />
     <Compile Include="BackgroundTasks\RecurringPaymentTask.cs" />
@@ -165,6 +167,7 @@
     <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
+    <Compile Include="AutoMapper\MapperProfileHelper.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ActivationService.cs" />
@@ -174,13 +177,92 @@
     <Compile Include="Services\RateDisplayService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Src\AsyncExtensions.cs" />
+    <Compile Include="Src\BalanceCalculationService.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
-    <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Src\WindowsFileStore.cs" />
+    <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\AccountListViewModel.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\AddAccountViewModel.cs" />
+    <Compile Include="ViewModels\AddCategoryViewModel.cs" />
+    <Compile Include="ViewModels\AddPaymentViewModel.cs" />
+    <Compile Include="ViewModels\BackupViewModel.cs" />
+    <Compile Include="ViewModels\BalanceViewModel.cs" />
+    <Compile Include="ViewModels\CategoryListViewModel.cs" />
+    <Compile Include="ViewModels\CategoryOverviewViewModel.cs" />
+    <Compile Include="ViewModels\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeAboutViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeBackupViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyAccountViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeRegionalSettingsViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsBackgroundJobViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsPersonalizationViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\EditAccountViewModel.cs" />
+    <Compile Include="ViewModels\EditCategoryViewModel.cs" />
+    <Compile Include="ViewModels\EditPaymentViewModel.cs" />
+    <Compile Include="ViewModels\IAboutViewModel.cs" />
+    <Compile Include="ViewModels\IBackupViewModel.cs" />
+    <Compile Include="ViewModels\ICategoryListViewModel.cs" />
+    <Compile Include="ViewModels\IModifyCategoryViewModel.cs" />
+    <Compile Include="ViewModels\IModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\IncomeExpenseBalanceViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IAccountListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IAccountListViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IBalanceViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IPaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IViewActionViewModel.cs" />
+    <Compile Include="ViewModels\ISelectCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\ISelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\ISelectFilterDialogViewModel.cs" />
+    <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
+    <Compile Include="ViewModels\ModifyCategoryViewModel.cs" />
+    <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\PaymentListViewModel.cs" />
+    <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
+    <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
+    <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
+    <Compile Include="ViewModels\SelectFilterDialogViewModel.cs" />
+    <Compile Include="ViewModels\Settings\IRegionalSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ISettingsBackgroundJobViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ISettingsPersonalizationViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ISettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\RegionalSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsBackgroundJobViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsPersonalizationViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\IStatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\IStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticViewModel.cs" />
     <Compile Include="Views\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
@@ -555,6 +637,14 @@
     <PackageReference Include="Xamarin.Forms.Visual.Material">
       <Version>4.4.0.991640</Version>
     </PackageReference>
+    <PackageReference Include="xunit">
+      <Version>2.4.1</Version>
+    </PackageReference>
+    <PackageReference Include="xunit.runner.visualstudio">
+      <Version>2.4.1</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
@@ -565,17 +655,13 @@
       <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
       <Name>MoneyFox.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
-      <Project>{E9810ECA-4DA3-4E3A-BD8D-5E6117B1BD70}</Project>
-      <Name>MoneyFox.Infrastructure</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
       <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
       <Name>MoneyFox.Persistence</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
-      <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
-      <Name>MoneyFox.Presentation</Name>
+    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj">
+      <Project>{c1217fb5-7a43-4dda-a98f-72eca57a1ade}</Project>
+      <Name>MoneyFox.Ui.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

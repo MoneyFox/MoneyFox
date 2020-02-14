@@ -783,70 +783,70 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Nadpisz dane lokalne</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>Twoje dane zostaną zapisane na koncie OneDrive. Znajdziesz je w folderze aplikacji w nowym folderze o nazwie "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Ciemny</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Jasny</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
+    <value>Ustawienia Domyślne Windows</value>
   </data>
   <data name="TagsLabel" xml:space="preserve">
-    <value>Tags</value>
+    <value>Tagi</value>
   </data>
   <data name="TodayLabel" xml:space="preserve">
-    <value>Today</value>
+    <value>Dzisiaj</value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[No Category]</value>
+    <value>[Bez kategorii]</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Income / Expenses:</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Anulowane</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>Login was canceled.</value>
+    <value>Logowanie zostało anulowane.</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Wystąpił problem podczas operacji. Komunikat o błędzie {0}</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>Wylogowanie zostało anulowane.</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Restoring backup was canceled.</value>
+    <value>Przywracanie kopii zapasowej zostało anulowane.</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Upload backup was canceled.</value>
+    <value>Wgrywanie kopii zapasowej zostało anulowane.</value>
   </data>
   <data name="DeleteAccountLabel" xml:space="preserve">
-    <value>Delete Account</value>
+    <value>Usuń konto</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>Domyślny region</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>Ten region będzie używany jako domyślny dla Twojej aplikacji.</value>
   </data>
   <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
+    <value>Ustawienia regionalne</value>
   </data>
   <data name="RegionalSettingsDescriptionText" xml:space="preserve">
-    <value>Set region settings for your application.</value>
+    <value>Ustaw ustawienia regionu dla swojej aplikacji.</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+    <value>Kwota nie może być ujemna. Dodawanie lub odejmowanie kwoty wynika z rodzaju płatności, którą tworzysz.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>Kwota ujemna</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>Zapisz</value>
   </data>
   <data name="InvalidNumberAmountMessage" xml:space="preserve">
     <value>Your payment amount seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
@@ -858,9 +858,9 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Invalid Number</value>
   </data>
   <data name="PleaseLoginToBackupFirstMessage" xml:space="preserve">
-    <value>To use the automatic backup job please login first to your backup service.</value>
+    <value>Aby skorzystać z automatycznego zadania tworzenia kopii zapasowej, zaloguj się najpierw do usługi tworzenia kopii zapasowej.</value>
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
-    <value>Login Required</value>
+    <value>Wymagane logowanie</value>
   </data>
 </root>

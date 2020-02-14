@@ -2,6 +2,7 @@
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
+using MoneyFox.Presentation.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {

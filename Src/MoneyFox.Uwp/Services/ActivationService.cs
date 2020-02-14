@@ -9,7 +9,6 @@ using Windows.UI.Xaml;
 using Autofac;
 using Microsoft.Toolkit.Helpers;
 using MoneyFox.Application.Common;
-using MoneyFox.Presentation;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Views;
 using MoneyFox.Uwp.Views.Settings;
@@ -87,7 +86,7 @@ namespace MoneyFox.Uwp.Services
 
             await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await JumpListService.InitializeAsync();
-            ThemeSelectorService.Initialize(app.RequestedTheme);
+            await ThemeSelectorService.InitializeAsync();
         }
 
         private static void RegisterServices(NavigationService nav)
@@ -128,12 +127,9 @@ namespace MoneyFox.Uwp.Services
 
         private async Task HandleActivationAsync(object activationArgs)
         {
-            var activationHandler = GetActivationHandlers().FirstOrDefault(h => h.CanHandle(activationArgs));
+            ActivationHandler activationHandler = GetActivationHandlers().FirstOrDefault(h => h.CanHandle(activationArgs));
 
-            if (activationHandler != null)
-            {
-                await activationHandler.HandleAsync(activationArgs);
-            }
+            if (activationHandler != null) await activationHandler.HandleAsync(activationArgs);
 
             if (IsInteractive(activationArgs))
             {

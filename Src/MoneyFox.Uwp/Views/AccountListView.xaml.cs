@@ -1,9 +1,9 @@
 ﻿using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Utilities;
-using MoneyFox.Presentation.ViewModels;
-using MoneyFox.Presentation.ViewModels.DesignTime;
+using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.DesignTime;
 
 namespace MoneyFox.Uwp.Views
 {

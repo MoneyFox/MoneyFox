@@ -3,8 +3,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 
 namespace MoneyFox.Presentation.ViewModels

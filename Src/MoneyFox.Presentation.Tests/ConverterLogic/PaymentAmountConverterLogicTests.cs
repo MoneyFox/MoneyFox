@@ -2,9 +2,9 @@
 using System.Globalization;
 using MediatR;
 using MoneyFox.Application;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.ConverterLogic;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;

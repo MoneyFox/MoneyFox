@@ -10,12 +10,10 @@ using Windows.UI.Xaml.Navigation;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Presentation.Commands;
-using MoneyFox.Presentation.ViewModels.Settings;
-using MoneyFox.Presentation.Views;
+using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.ViewModels.Settings;
 using NLog;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
@@ -23,7 +21,7 @@ namespace MoneyFox.Uwp
 {
     public class WindowsShellViewModel : ViewModelBase
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly KeyboardAccelerator altLeftKeyboardAccelerator =
             BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
@@ -43,7 +41,7 @@ namespace MoneyFox.Uwp
             set => Set(ref isBackEnabled, value);
         }
 
-        public static NavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>() as NavigationService;
+        public static NavigationService NavigationService => ServiceLocator.Current.GetInstance<NavigationService>();
 
         public WinUI.NavigationViewItem Selected
         {
@@ -58,7 +56,7 @@ namespace MoneyFox.Uwp
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
         {
-            logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
+            Logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
 
             this.navigationView = navigationView;
             this.keyboardAccelerators = keyboardAccelerators;
@@ -79,16 +77,15 @@ namespace MoneyFox.Uwp
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            logger.Debug("Item invoked");
+            Logger.Debug("Item invoked");
 
             if (args.IsSettingsInvoked)
             {
-                logger.Info("Navigate to settings");
-                NavigationService.NavigateTo(nameof(SettingsViewModel));
+                Logger.Info("Navigate to settings");
+                NavigationService.Navigate(nameof(SettingsViewModel));
 
                 return;
             }
-
 
 
             WinUI.NavigationViewItem item = navigationView.MenuItems
@@ -97,9 +94,7 @@ namespace MoneyFox.Uwp
                                                                           {
                                                                               if (menuItem.Content is string content
                                                                                   && args.InvokedItem is string invokedItem)
-                                                                              {
                                                                                   return content == invokedItem;
-                                                                              }
 
                                                                               return false;
                                                                           });
@@ -108,8 +103,8 @@ namespace MoneyFox.Uwp
 
             var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
 
-            logger.Info("Navigate to page key {key}", pageKey);
-            NavigationService.NavigateTo(pageKey);
+            Logger.Info("Navigate to page key {key}", pageKey);
+            NavigationService.Navigate(pageKey);
         }
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
@@ -125,11 +120,6 @@ namespace MoneyFox.Uwp
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             IsBackEnabled = NavigationService.CanGoBack;
-            if (e.SourcePageType == typeof(SettingsPage))
-            {
-                Selected = navigationView.SettingsItem as WinUI.NavigationViewItem;
-                return;
-            }
 
             Selected = navigationView.MenuItems
                                      .OfType<WinUI.NavigationViewItem>()

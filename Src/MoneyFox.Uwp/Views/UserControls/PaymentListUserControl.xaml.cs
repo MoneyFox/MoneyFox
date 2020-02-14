@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using MoneyFox.Presentation.Groups;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {

@@ -3,14 +3,14 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                 xmlns:i="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
                 xmlns:resources="using:MoneyFox.Application.Resources"
-                xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
-                xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
                 xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
+                xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
                 d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                                        IsDesignTimeCreatable=True}"
                 mc:Ignorable="d"
@@ -73,8 +73,8 @@
         </Grid>
 
         <StackPanel Grid.Row="1">
-            <controls:IncomeExpenseBalanceUserControl DataContext="{Binding IncomeExpenseBalance}"
-                                                      Margin="{StaticResource MediumLeftRightMargin}" />
+            <userControls:IncomeExpenseBalanceUserControl DataContext="{Binding IncomeExpenseBalance}"
+                                                          Margin="{StaticResource MediumLeftRightMargin}" />
 
             <ListView IsItemClickEnabled="True"
                       IsSynchronizedWithCurrentItem="False"

@@ -1,16 +1,15 @@
 ﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.Statistics.StatisticCashFlowView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
-      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:resources="using:MoneyFox.Application.Resources"
-      xmlns:views="using:MoneyFox.Uwp.Views"
-      mc:Ignorable="d"
-      DataContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
+                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                mc:Ignorable="d"
+                DataContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeStatisticCashFlowViewModel />
