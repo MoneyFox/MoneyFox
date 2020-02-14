@@ -12,6 +12,7 @@ using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
 using MoneyFox.Uwp.AutoMapper;
+using MoneyFox.Uwp.ViewModels;
 using PCLAppConfig;
 
 namespace MoneyFox.Uwp
@@ -28,7 +29,7 @@ namespace MoneyFox.Uwp
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
-            builder.RegisterType<WindowsFileStore>().AsImplementedInterfaces();
+            builder.RegisterType<WindowsFileStore>().As<IFileStore>();
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
@@ -65,8 +66,6 @@ namespace MoneyFox.Uwp
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsSelf();
-
-            var foo = builder.Build().Resolve<IFileStore>();
 
             CultureHelper.CurrentCulture = CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
         }
