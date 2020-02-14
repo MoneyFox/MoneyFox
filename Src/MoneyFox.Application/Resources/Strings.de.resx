@@ -859,9 +859,9 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Ungültige Zahl</value>
   </data>
   <data name="PleaseLoginToBackupFirstMessage" xml:space="preserve">
-    <value>To use the automatic backup job please login first to your backup service.</value>
+    <value>Um backups automatisch zu synchronisieren melde dich bitte bei deinem Backupdienst an.</value>
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
-    <value>Login Required</value>
+    <value>Login erforderlich</value>
   </data>
 </root>
