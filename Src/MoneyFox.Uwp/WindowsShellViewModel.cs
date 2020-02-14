@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp
 {
     public class WindowsShellViewModel : ViewModelBase
     {
-        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         private readonly KeyboardAccelerator altLeftKeyboardAccelerator =
             BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
@@ -56,7 +56,7 @@ namespace MoneyFox.Uwp
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
         {
-            logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
+            Logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
 
             this.navigationView = navigationView;
             this.keyboardAccelerators = keyboardAccelerators;
@@ -77,11 +77,11 @@ namespace MoneyFox.Uwp
 
         private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
         {
-            logger.Debug("Item invoked");
+            Logger.Debug("Item invoked");
 
             if (args.IsSettingsInvoked)
             {
-                logger.Info("Navigate to settings");
+                Logger.Info("Navigate to settings");
                 NavigationService.Navigate(nameof(SettingsViewModel));
 
                 return;
@@ -103,7 +103,7 @@ namespace MoneyFox.Uwp
 
             var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
 
-            logger.Info("Navigate to page key {key}", pageKey);
+            Logger.Info("Navigate to page key {key}", pageKey);
             NavigationService.Navigate(pageKey);
         }
 

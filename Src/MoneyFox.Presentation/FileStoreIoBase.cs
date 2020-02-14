@@ -1,8 +1,9 @@
 ﻿using System;
 using System.IO;
+using MoneyFox.Application.Common.FileStore;
 using NLog;
 
-namespace MoneyFox.Application.Common.FileStore
+namespace MoneyFox.Presentation
 {
     public class FileStoreIoBase : FileStoreBase
     {

@@ -2,10 +2,13 @@
 using System.Globalization;
 using Autofac;
 using MediatR;
+using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
 using MoneyFox.Uwp.AutoMapper;
@@ -32,6 +35,12 @@ namespace MoneyFox.Uwp
 
             builder.RegisterInstance(AutoMapperFactory.Create());
 
+            builder.Register(c => PublicClientApplicationBuilder
+                                 .Create(ServiceConstants.MSAL_APPLICATION_ID)
+                                 .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                                 .Build())
+                   .AsImplementedInterfaces();
+
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>
             {
@@ -56,6 +65,8 @@ namespace MoneyFox.Uwp
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsSelf();
+
+            var foo = builder.Build().Resolve<IFileStore>();
 
             CultureHelper.CurrentCulture = CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
         }

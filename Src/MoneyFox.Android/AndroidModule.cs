@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Presentation;
 using MoneyFox.Presentation.Services;
 using PCLAppConfig;
