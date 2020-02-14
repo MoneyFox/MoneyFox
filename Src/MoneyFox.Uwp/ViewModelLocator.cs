@@ -46,10 +46,7 @@ namespace MoneyFox.Uwp
         //  Settings
         //*****************
         public static string About => nameof(AboutViewModel);
-        public static string SettingsRegional => nameof(RegionalSettingsViewModel);
         public static string Settings => nameof(SettingsViewModel);
-        public static string SettingsBackgroundJob => nameof(SettingsBackgroundJobViewModel);
-        public static string SettingsPersonalization => nameof(SettingsPersonalizationViewModel);
         public static IAccountListViewModel AccountListVm => ServiceLocator.Current.GetInstance<IAccountListViewModel>();
         public static CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
         public static PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
@@ -65,10 +62,7 @@ namespace MoneyFox.Uwp
         //*****************
         //  Common
         //*****************
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm =>
-            ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
-
-        public static SelectFilterDialogViewModel SelectFilterDialogVm => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
 
         //*****************
         //  Statistics
@@ -85,14 +79,6 @@ namespace MoneyFox.Uwp
         //  Settings
         //*****************
         public static SettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-
-        public static SettingsBackgroundJobViewModel SettingsBackgroundVm =>
-            ServiceLocator.Current.GetInstance<SettingsBackgroundJobViewModel>();
-
-        public static SettingsPersonalizationViewModel SettingsPersonalizationVm =>
-            ServiceLocator.Current.GetInstance<SettingsPersonalizationViewModel>();
-
-        public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
         public static RegionalSettingsViewModel RegionalSettingsVm => ServiceLocator.Current.GetInstance<RegionalSettingsViewModel>();
     }
 }
