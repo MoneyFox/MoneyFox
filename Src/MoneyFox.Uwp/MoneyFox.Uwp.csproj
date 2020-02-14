@@ -179,7 +179,6 @@
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
-    <Compile Include="Src\TileUpdateService.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Src\WindowsFileStore.cs" />
     <Compile Include="ViewModelLocator.cs" />
