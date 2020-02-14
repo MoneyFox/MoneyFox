@@ -52,7 +52,6 @@ namespace MoneyFox.Presentation.Tests.Services
         public async Task GetTotalEndOfMonthBalance_TwoAccounts_CorrectSum()
         {
             // Arrange
-
             // Act
             decimal result = await new BalanceCalculationService(mediatorMock.Object).GetTotalEndOfMonthBalance();
 
