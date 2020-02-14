@@ -15,8 +15,6 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
 
         ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source { get; }
 
-        ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; }
-
         string Title { get; }
 
         int AccountId { get; }

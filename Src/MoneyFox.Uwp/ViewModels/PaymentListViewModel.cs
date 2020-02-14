@@ -33,7 +33,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         private int accountId;
         private IBalanceViewModel balanceViewModel;
-        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> dailyList;
 
         private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
         private string title;
@@ -127,21 +126,6 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        ///     Returns daily grouped related payments
-        /// </summary>
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
-        {
-            get => dailyList;
-            private set
-            {
-                dailyList = value;
-                RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmpty));
-            }
-        }
-
-        /// <summary>
         ///     Returns the name of the account title for the current page
         /// </summary>
         public string Title
@@ -198,10 +182,12 @@ namespace MoneyFox.Uwp.ViewModels
                                                                                                                             .TimeRangeStart,
                                                                                                                          filterMessage
                                                                                                                             .TimeRangeEnd)
-            {
-                IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-            }));
+                                                                                        {
+                                                                                            IsClearedFilterActive =
+                                                                                                filterMessage.IsClearedFilterActive,
+                                                                                            IsRecurringFilterActive =
+                                                                                                filterMessage.IsRecurringFilterActive
+                                                                                        }));
 
             foreach (PaymentViewModel payment in loadedPayments)
             {
@@ -213,30 +199,28 @@ namespace MoneyFox.Uwp.ViewModels
                              s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                              s => s.Date);
 
-            DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+            Source =
+                new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(DateListGroupCollection<
+                                                                                                                     DateListGroupCollection
+                                                                                                                     <PaymentViewModel>>
+                                                                                                                .CreateGroups(dailyItems,
+                                                                                                                              s
+                                                                                                                                  =>
+                                                                                                                              {
+                                                                                                                                  var date =
+                                                                                                                                      Convert
+                                                                                                                                         .ToDateTime(s.Key,
+                                                                                                                                                     CultureInfo
+                                                                                                                                                        .CurrentCulture);
 
-            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(DateListGroupCollection<
-                                                                                                                          DateListGroupCollection
-                                                                                                                          <PaymentViewModel>
-                                                                                                                      >
-                                                                                                                     .CreateGroups(dailyItems,
-                                                                                                                                   s =>
-                                                                                                                                   {
-                                                                                                                                       var
-                                                                                                                                           date
-                                                                                                                                               = Convert
-                                                                                                                                                  .ToDateTime(s.Key,
-                                                                                                                                                              CultureInfo
-                                                                                                                                                                 .CurrentCulture);
-
-                                                                                                                                       return
-                                                                                                                                           $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                                                                                                                                   },
-                                                                                                                                   s =>
-                                                                                                                                       Convert
-                                                                                                                                          .ToDateTime(s.Key,
-                                                                                                                                                      CultureInfo
-                                                                                                                                                         .CurrentCulture)));
+                                                                                                                                  return
+                                                                                                                                      $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
+                                                                                                                              },
+                                                                                                                              s =>
+                                                                                                                                  Convert
+                                                                                                                                     .ToDateTime(s.Key,
+                                                                                                                                                 CultureInfo
+                                                                                                                                                    .CurrentCulture)));
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -35,7 +34,6 @@ namespace MoneyFox.Presentation.ViewModels
         private IBalanceViewModel balanceViewModel;
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> dailyList;
 
-        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
         private string title;
         private IPaymentListViewActionViewModel viewActionViewModel;
 
@@ -56,19 +54,19 @@ namespace MoneyFox.Presentation.ViewModels
             this.balanceCalculationService = balanceCalculationService;
             this.navigationService = navigationService;
 
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPayments(message));
-            MessengerInstance.Register<RemovePaymentMessage>(this, async message => await LoadData());
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPaymentsAsync(message));
+            MessengerInstance.Register<RemovePaymentMessage>(this, async message => await LoadDataAsync());
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
-        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadData);
+        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadDataAsync);
 
 
         /// <summary>
         ///     Indicator if there are payments or not.
         /// </summary>
-        public bool IsPaymentsEmpty => Source != null && !Source.Any();
+        public bool IsPaymentsEmpty => DailyList != null && !DailyList.Any();
 
         /// <summary>
         ///     Id for the current account.
@@ -108,21 +106,6 @@ namespace MoneyFox.Presentation.ViewModels
                     return;
                 viewActionViewModel = value;
                 RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        ///     Returns grouped related payments
-        /// </summary>
-        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
-        {
-            get => source;
-            private set
-            {
-                source = value;
-                RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmpty));
             }
         }
 
@@ -172,36 +155,37 @@ namespace MoneyFox.Presentation.ViewModels
                                                                      BalanceViewModel,
                                                                      navigationService);
 
-            await LoadPaymentList();
+            await LoadPaymentListAsync();
         }
 
-        private async Task LoadPaymentList()
+        private async Task LoadPaymentListAsync()
         {
             await dialogService.ShowLoadingDialogAsync();
 
-            await LoadData();
+            await LoadDataAsync();
 
             await dialogService.HideLoadingDialogAsync();
         }
 
-        private async Task LoadData()
+        private async Task LoadDataAsync()
         {
-            await LoadPayments(new PaymentListFilterChangedMessage());
+            await LoadPaymentsAsync(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
-        private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
+        private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
-                                                                                                                         filterMessage
-                                                                                                                            .TimeRangeStart,
+                                                                                                                         filterMessage.TimeRangeStart,
                                                                                                                          filterMessage
                                                                                                                             .TimeRangeEnd)
-            {
-                IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-            }));
+                                                                                        {
+                                                                                            IsClearedFilterActive =
+                                                                                                filterMessage.IsClearedFilterActive,
+                                                                                            IsRecurringFilterActive =
+                                                                                                filterMessage.IsRecurringFilterActive
+                                                                                        }));
 
             foreach (PaymentViewModel payment in loadedPayments)
             {
@@ -214,29 +198,6 @@ namespace MoneyFox.Presentation.ViewModels
                              s => s.Date);
 
             DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
-
-            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(DateListGroupCollection<
-                                                                                                                          DateListGroupCollection
-                                                                                                                          <PaymentViewModel>
-                                                                                                                      >
-                                                                                                                     .CreateGroups(dailyItems,
-                                                                                                                                   s =>
-                                                                                                                                   {
-                                                                                                                                       var
-                                                                                                                                           date
-                                                                                                                                               = Convert
-                                                                                                                                                  .ToDateTime(s.Key,
-                                                                                                                                                              CultureInfo
-                                                                                                                                                                 .CurrentCulture);
-
-                                                                                                                                       return
-                                                                                                                                           $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                                                                                                                                   },
-                                                                                                                                   s =>
-                                                                                                                                       Convert
-                                                                                                                                          .ToDateTime(s.Key,
-                                                                                                                                                      CultureInfo
-                                                                                                                                                         .CurrentCulture)));
         }
     }
 }
