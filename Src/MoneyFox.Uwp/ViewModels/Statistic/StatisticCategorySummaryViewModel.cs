@@ -59,19 +59,19 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                                                                                   categorySummaryModel
                                                                                      .CategoryOverviewItems
                                                                                      .Select(x => new CategoryOverviewViewModel
-                                                                                      {
-                                                                                          Value = x.Value,
-                                                                                          Average = x.Average,
-                                                                                          Label = x.Label,
-                                                                                          Percentage = x.Percentage
-                                                                                      }));
+                                                                                                  {
+                                                                                                      Value = x.Value,
+                                                                                                      Average = x.Average,
+                                                                                                      Label = x.Label,
+                                                                                                      Percentage = x.Percentage
+                                                                                                  }));
 
 
             IncomeExpenseBalance = new IncomeExpenseBalanceViewModel
-            {
-                TotalEarned = categorySummaryModel.TotalEarned,
-                TotalSpent = categorySummaryModel.TotalSpent
-            };
+                                   {
+                                       TotalEarned = categorySummaryModel.TotalEarned,
+                                       TotalSpent = categorySummaryModel.TotalSpent
+                                   };
         }
     }
 }

@@ -70,31 +70,31 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             private void CreateOverviewItem(IEnumerable<Payment> payments, Category category)
             {
                 var categoryOverViewItem = new CategoryOverviewItem
-                {
-                    Label = category.Name,
-                    Value = payments.Where(x => x.Category != null)
-                                    .Where(x => x.Category!.Id == category.Id)
-                                    .Where(x => x.Type != PaymentType.Transfer)
-                                    .Sum(x => x.Type == PaymentType.Expense
-                                             ? -x.Amount
-                                             : x.Amount),
-                    Average = CalculateAverageForCategory(category.Id)
-                };
+                                           {
+                                               Label = category.Name,
+                                               Value = payments.Where(x => x.Category != null)
+                                                               .Where(x => x.Category!.Id == category.Id)
+                                                               .Where(x => x.Type != PaymentType.Transfer)
+                                                               .Sum(x => x.Type == PaymentType.Expense
+                                                                             ? -x.Amount
+                                                                             : x.Amount),
+                                               Average = CalculateAverageForCategory(category.Id)
+                                           };
                 categoryOverviewItems.Add(categoryOverViewItem);
             }
 
             private void AddEntryForPaymentsWithoutCategory(List<Payment> payments)
             {
                 categoryOverviewItems.Add(new CategoryOverviewItem
-                {
-                    Label = Strings.NoCategoryLabel,
-                    Value = payments.Where(x => x.Category == null)
-                                    .Where(x => x.Type != PaymentType.Transfer)
-                                    .Sum(x => x.Type == PaymentType.Expense
-                                             ? -x.Amount
-                                             : x.Amount),
-                    Average = CalculateAverageForPaymentsWithoutCategory()
-                });
+                                          {
+                                              Label = Strings.NoCategoryLabel,
+                                              Value = payments.Where(x => x.Category == null)
+                                                              .Where(x => x.Type != PaymentType.Transfer)
+                                                              .Sum(x => x.Type == PaymentType.Expense
+                                                                            ? -x.Amount
+                                                                            : x.Amount),
+                                              Average = CalculateAverageForPaymentsWithoutCategory()
+                                          });
             }
 
             private static void CalculatePercentage(List<CategoryOverviewItem> categories)

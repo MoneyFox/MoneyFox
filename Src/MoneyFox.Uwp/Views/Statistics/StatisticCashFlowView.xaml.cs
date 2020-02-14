@@ -17,9 +17,9 @@ namespace MoneyFox.Uwp.Views.Statistics
         private async void SetDate(object sender, RoutedEventArgs e)
         {
             await new SelectDateRangeDialog
-            {
-                DataContext = ViewModelLocator.SelectDateRangeDialogVm
-            }.ShowAsync();
+                  {
+                      DataContext = ViewModelLocator.SelectDateRangeDialogVm
+                  }.ShowAsync();
         }
     }
 }

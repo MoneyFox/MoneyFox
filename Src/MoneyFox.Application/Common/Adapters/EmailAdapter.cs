@@ -20,11 +20,11 @@ namespace MoneyFox.Application.Common.Adapters
             try
             {
                 var message = new EmailMessage
-                {
-                    Subject = subject,
-                    Body = body,
-                    To = recipients
-                };
+                              {
+                                  Subject = subject,
+                                  Body = body,
+                                  To = recipients
+                              };
 
                 await Email.ComposeAsync(message);
             }
@@ -39,11 +39,11 @@ namespace MoneyFox.Application.Common.Adapters
             try
             {
                 var message = new EmailMessage
-                {
-                    Subject = subject,
-                    Body = body,
-                    To = recipients
-                };
+                              {
+                                  Subject = subject,
+                                  Body = body,
+                                  To = recipients
+                              };
 
                 foreach (string path in filePaths)
                 {

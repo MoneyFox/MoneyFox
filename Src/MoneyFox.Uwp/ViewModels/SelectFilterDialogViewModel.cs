@@ -74,12 +74,12 @@ namespace MoneyFox.Uwp.ViewModels
         private void UpdateList()
         {
             MessengerInstance.Send(new PaymentListFilterChangedMessage
-            {
-                IsClearedFilterActive = IsClearedFilterActive,
-                IsRecurringFilterActive = IsRecurringFilterActive,
-                TimeRangeStart = TimeRangeStart,
-                TimeRangeEnd = TimeRangeEnd
-            });
+                                   {
+                                       IsClearedFilterActive = IsClearedFilterActive,
+                                       IsRecurringFilterActive = IsRecurringFilterActive,
+                                       TimeRangeStart = TimeRangeStart,
+                                       TimeRangeEnd = TimeRangeEnd
+                                   });
         }
     }
 }

@@ -9,10 +9,10 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
     public class DesignTimeRegionalSettingsViewModel : IRegionalSettingsViewModel
     {
         public ObservableCollection<CultureInfo> AvailableCultures => new ObservableCollection<CultureInfo>
-        {
-            new CultureInfo("de-CH"),
-            new CultureInfo("en-US")
-        };
+                                                                      {
+                                                                          new CultureInfo("de-CH"),
+                                                                          new CultureInfo("en-US")
+                                                                      };
 
         public AsyncCommand LoadAvailableCulturesCommand => throw new NotImplementedException();
 

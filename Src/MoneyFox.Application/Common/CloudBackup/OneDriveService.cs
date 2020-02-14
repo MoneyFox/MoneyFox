@@ -323,12 +323,12 @@ namespace MoneyFox.Application.Common.CloudBackup
                 return;
 
             var updateItem = new DriveItem
-            {
-                ParentReference = new ItemReference {Id = ArchiveFolder.Id},
-                Name = string.Format(CultureInfo.InvariantCulture,
-                                     DatabaseConstants.BACKUP_ARCHIVE_NAME,
-                                     DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss", CultureInfo.InvariantCulture))
-            };
+                             {
+                                 ParentReference = new ItemReference {Id = ArchiveFolder.Id},
+                                 Name = string.Format(CultureInfo.InvariantCulture,
+                                                      DatabaseConstants.BACKUP_ARCHIVE_NAME,
+                                                      DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss", CultureInfo.InvariantCulture))
+                             };
 
             await GraphServiceClient
                  .Drive
@@ -376,9 +376,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                 DriveItem archive = childItems.FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
 
                 var updateItem = new DriveItem
-                {
-                    ParentReference = new ItemReference {Id = appFolder.Id}
-                };
+                                 {
+                                     ParentReference = new ItemReference {Id = appFolder.Id}
+                                 };
 
                 if (archive != null)
                 {
@@ -427,10 +427,10 @@ namespace MoneyFox.Application.Common.CloudBackup
         private async Task CreateArchiveFolderAsync()
         {
             var folderToCreate = new DriveItem
-            {
-                Name = DatabaseConstants.ARCHIVE_FOLDER_NAME,
-                Folder = new Folder()
-            };
+                                 {
+                                     Name = DatabaseConstants.ARCHIVE_FOLDER_NAME,
+                                     Folder = new Folder()
+                                 };
 
             ArchiveFolder = await GraphServiceClient
                                  .Me

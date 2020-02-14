@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.Services
                 await view.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
                                                                               {
                                                                                   if (Window.Current.Content is FrameworkElement
-                                                                                      frameworkElement)
+                                                                                          frameworkElement)
                                                                                       frameworkElement.RequestedTheme = Theme;
                                                                               });
             }

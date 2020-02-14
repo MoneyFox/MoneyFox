@@ -66,9 +66,11 @@ namespace MoneyFox.Uwp.Services
             lock (_pages)
             {
                 if (!_pages.TryGetValue(pageKey, out page))
+                {
                     throw new
                         ArgumentException(string.Format("Page not found: {0}. Did you forget to call NavigationService.Configure?", pageKey),
                                           nameof(pageKey));
+                }
             }
 
             if (Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(_lastParamUsed))
@@ -90,8 +92,10 @@ namespace MoneyFox.Uwp.Services
                     throw new ArgumentException(string.Format("The key {{0}} is already configured in NavigationService", key));
 
                 if (_pages.Any(p => p.Value == pageType))
+                {
                     throw new ArgumentException(string.Format("This type is already configured with key {0}",
                                                               _pages.First(p => p.Value == pageType).Key));
+                }
 
                 _pages.Add(key, pageType);
             }

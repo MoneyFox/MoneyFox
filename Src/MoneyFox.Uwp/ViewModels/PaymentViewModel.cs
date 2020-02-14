@@ -186,8 +186,8 @@ namespace MoneyFox.Uwp.ViewModels
                 isRecurring = value;
 
                 RecurringPayment = isRecurring
-                    ? new RecurringPaymentViewModel()
-                    : null;
+                                       ? new RecurringPaymentViewModel()
+                                       : null;
 
                 RaisePropertyChanged();
             }

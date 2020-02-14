@@ -3,7 +3,6 @@ using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using MediatR;
-using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Messages;

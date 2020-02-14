@@ -29,9 +29,9 @@ namespace MoneyFox.Uwp.BackgroundTasks
             if (taskRegistration == null)
             {
                 var builder = new BackgroundTaskBuilder
-                {
-                    Name = taskName
-                };
+                              {
+                                  Name = taskName
+                              };
 
                 builder.SetTrigger(new TimeTrigger(TASK_RECURRENCE_COUNT, false));
                 builder.AddCondition(new SystemCondition(SystemConditionType.InternetAvailable));

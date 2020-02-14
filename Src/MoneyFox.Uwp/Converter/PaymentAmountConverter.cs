@@ -28,8 +28,8 @@ namespace MoneyFox.Uwp.Converter
             else
             {
                 sign = payment.Type == (int) PaymentType.Expense
-                    ? "-"
-                    : "+";
+                           ? "-"
+                           : "+";
             }
 
             return sign + " " + $"{payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";

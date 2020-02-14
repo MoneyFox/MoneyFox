@@ -11,11 +11,14 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public string Title => "I AM A MIGHTY TITLE";
 
         public ObservableCollection<StatisticEntry> StatisticItems => new ObservableCollection<StatisticEntry>(new List<StatisticEntry>
-        {
-            new StatisticEntry(1234) {Label = "Expense"},
-            new StatisticEntry(1465) {Label = "Income"},
-            new StatisticEntry(543) {Label = "Revenue"}
-        });
+                                                                                                               {
+                                                                                                                   new StatisticEntry(1234)
+                                                                                                                   {Label = "Expense"},
+                                                                                                                   new StatisticEntry(1465)
+                                                                                                                   {Label = "Income"},
+                                                                                                                   new StatisticEntry(543)
+                                                                                                                   {Label = "Revenue"}
+                                                                                                               });
 
         public AsyncCommand LoadedCommand { get; }
     }

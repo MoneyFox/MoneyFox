@@ -17,8 +17,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         public StatisticCashFlowViewModel(IMediator mediator,
                                           ISettingsFacade settingsFacade)
             : base(mediator, settingsFacade)
-        {
-        }
+        { }
 
         /// <summary>
         ///     Statistic items to display.
@@ -37,10 +36,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         protected override async Task Load()
         {
             StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCashFlowQuery
-            {
-                EndDate = EndDate,
-                StartDate = StartDate
-            }));
+                                                                                          {
+                                                                                              EndDate = EndDate,
+                                                                                              StartDate = StartDate
+                                                                                          }));
         }
     }
 }

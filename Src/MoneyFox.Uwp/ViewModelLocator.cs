@@ -62,7 +62,8 @@ namespace MoneyFox.Uwp
         //*****************
         //  Common
         //*****************
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm =>
+            ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
 
         //*****************
         //  Statistics

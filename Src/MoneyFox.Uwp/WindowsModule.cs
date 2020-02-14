@@ -12,7 +12,6 @@ using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
 using MoneyFox.Uwp.AutoMapper;
-using MoneyFox.Uwp.ViewModels;
 using PCLAppConfig;
 
 namespace MoneyFox.Uwp
@@ -44,11 +43,11 @@ namespace MoneyFox.Uwp
 
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>
-            {
-                var c = context.Resolve<IComponentContext>();
+                                             {
+                                                 var c = context.Resolve<IComponentContext>();
 
-                return t => c.Resolve(t);
-            });
+                                                 return t => c.Resolve(t);
+                                             });
 
             builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly).AsImplementedInterfaces(); // via assembly scan
 

@@ -113,17 +113,17 @@ namespace MoneyFox.Uwp.ViewModels
         ///     This has to have the same order as the enum
         /// </summary>
         public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
-        {
-            PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
-            PaymentRecurrence.Weekly,
-            PaymentRecurrence.Biweekly,
-            PaymentRecurrence.Monthly,
-            PaymentRecurrence.Bimonthly,
-            PaymentRecurrence.Quarterly,
-            PaymentRecurrence.Biannually,
-            PaymentRecurrence.Yearly
-        };
+                                                         {
+                                                             PaymentRecurrence.Daily,
+                                                             PaymentRecurrence.DailyWithoutWeekend,
+                                                             PaymentRecurrence.Weekly,
+                                                             PaymentRecurrence.Biweekly,
+                                                             PaymentRecurrence.Monthly,
+                                                             PaymentRecurrence.Bimonthly,
+                                                             PaymentRecurrence.Quarterly,
+                                                             PaymentRecurrence.Biannually,
+                                                             PaymentRecurrence.Yearly
+                                                         };
 
         /// <summary>
         ///     The selected PaymentViewModel
@@ -197,8 +197,8 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         public string AccountHeader
             => SelectedPayment?.Type == PaymentType.Income
-                ? Strings.TargetAccountLabel
-                : Strings.ChargedAccountLabel;
+                   ? Strings.TargetAccountLabel
+                   : Strings.ChargedAccountLabel;
 
         protected abstract Task SavePayment();
 

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.ViewModels.Interfaces;
-using Xamarin.Forms;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
