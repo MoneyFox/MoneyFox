@@ -131,8 +131,6 @@ namespace MoneyFox.iOS
             try
             {
                 await SyncBackupAsync();
-                await ClearPaymentsAsync();
-                await CreateRecurringPaymentsAsync();
 
                 successful = true;
                 logManager.Debug("Background fetch finished successfully");
@@ -153,8 +151,6 @@ namespace MoneyFox.iOS
             base.WillEnterForeground(uiApplication);
 
             await SyncBackupAsync();
-            await ClearPaymentsAsync();
-            await CreateRecurringPaymentsAsync();
         }
 
         private async Task SyncBackupAsync()
@@ -168,6 +164,10 @@ namespace MoneyFox.iOS
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
+
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                await mediator.Send(new ClearPaymentsCommand());
+                await mediator.Send(new CreateRecurringPaymentsCommand());
             }
             catch (Exception ex)
             {
@@ -177,51 +177,6 @@ namespace MoneyFox.iOS
             finally
             {
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            }
-        }
-
-        private async Task ClearPaymentsAsync()
-        {
-            var settingsFacade = new SettingsFacade(new SettingsAdapter());
-            try
-            {
-                logManager.Debug("ClearPayment started.");
-
-                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
-                await mediator.Send(new ClearPaymentsCommand());
-
-                logManager.Debug("ClearPayments Job Finished.");
-            }
-            catch (Exception ex)
-            {
-                logManager.Error(ex, "Clear Payments Failed!");
-            }
-            finally
-            {
-                settingsFacade.LastExecutionTimeStampClearPayments = DateTime.Now;
-            }
-        }
-
-        private async Task CreateRecurringPaymentsAsync()
-        {
-            var settingsFacade = new SettingsFacade(new SettingsAdapter());
-
-            try
-            {
-                logManager.Debug("RecurringPayment Job started.");
-
-                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
-                await mediator.Send(new CreateRecurringPaymentsCommand());
-
-                logManager.Debug("RecurringPayment Job finished.");
-            }
-            catch (Exception ex)
-            {
-                logManager.Error(ex, "RecurringPayment Job Failed!");
-            }
-            finally
-            {
-                settingsFacade.LastExecutionTimeStampRecurringPayments = DateTime.Now;
             }
         }
     }
