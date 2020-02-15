@@ -70,7 +70,7 @@ namespace MoneyFox.Uwp.Services
 
         private static IEnumerable<BackgroundTask> CreateInstances()
         {
-            var backgroundTasks = new List<BackgroundTask> {new ClearPaymentsTask(), new RecurringPaymentTask(), new SyncBackupTask()};
+            var backgroundTasks = new List<BackgroundTask> {new SyncBackupTask()};
 
             return backgroundTasks;
         }

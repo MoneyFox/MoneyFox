@@ -6,9 +6,12 @@ using Android.Content;
 using Android.OS;
 using CommonServiceLocator;
 using Java.Lang;
+using MediatR;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Payments.Commands.ClearPayments;
+using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using NLog;
 using Exception = System.Exception;
 using JobSchedulerType = Android.App.Job.JobScheduler;
@@ -25,7 +28,7 @@ namespace MoneyFox.Droid.Jobs
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         private const int SYNC_BACK_JOB_ID = 30;
-        private const int JOB_INTERVAL = 60 * 60 * 1000;
+        private const int JOB_INTERVAL = 30 * 60 * 1000;
 
         /// <inheritdoc />
         public override bool OnStartJob(JobParameters args)
@@ -71,6 +74,10 @@ namespace MoneyFox.Droid.Jobs
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                await mediator.Send(new ClearPaymentsCommand());
+                await mediator.Send(new CreateRecurringPaymentsCommand());
+
                 logger.Info("Backup synced.");
                 JobFinished(args, false);
             }
@@ -88,7 +95,7 @@ namespace MoneyFox.Droid.Jobs
         /// <summary>
         ///     Schedules the task for execution.
         /// </summary>
-        public void ScheduleTask(int interval)
+        public void ScheduleTask()
         {
             if (!ServiceLocator.Current.GetInstance<ISettingsFacade>().IsBackupAutouploadEnabled) return;
 
@@ -97,7 +104,7 @@ namespace MoneyFox.Droid.Jobs
                                                                 this, Class.FromType(typeof(SyncBackupJob))));
 
             // convert hours into millisecond
-            builder.SetPeriodic(JOB_INTERVAL * interval);
+            builder.SetPeriodic(JOB_INTERVAL);
             builder.SetPersisted(true);
             builder.SetRequiredNetworkType(NetworkType.NotRoaming);
             builder.SetRequiresDeviceIdle(false);

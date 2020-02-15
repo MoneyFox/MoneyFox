@@ -3,9 +3,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Background;
 using CommonServiceLocator;
+using MediatR;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Payments.Commands.ClearPayments;
+using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using NLog;
 
 namespace MoneyFox.Uwp.BackgroundTasks
@@ -75,6 +78,10 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
+
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                await mediator.Send(new ClearPaymentsCommand());
+                await mediator.Send(new CreateRecurringPaymentsCommand());
 
                 taskInstance.Progress = 100;
             }
