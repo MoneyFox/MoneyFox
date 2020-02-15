@@ -145,8 +145,6 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="BackgroundTasks\BackgroundTask.cs" />
-    <Compile Include="BackgroundTasks\ClearPaymentsTask.cs" />
-    <Compile Include="BackgroundTasks\RecurringPaymentTask.cs" />
     <Compile Include="BackgroundTasks\SyncBackupTask.cs" />
     <Compile Include="Converter\AmountFormatDecimalConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
