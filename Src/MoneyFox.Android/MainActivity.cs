@@ -25,19 +25,7 @@ namespace MoneyFox.Droid
     [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
-        private const int MESSAGE_SERVICE_CLEAR_PAYMENT_JOB_HANDLE = 1;
-        private const int MESSAGE_SERVICE_RECURRING_PAYMENT_JOB_HANDLE = 2;
         private const int MESSAGE_SERVICE_SYNC_BACKUP_JOB_HANDLE = 3;
-
-        /// <summary>
-        ///     Constant for the ClearPayment Service.
-        /// </summary>
-        public static int MessageServiceClearPayments => MESSAGE_SERVICE_CLEAR_PAYMENT_JOB_HANDLE;
-
-        /// <summary>
-        ///     Constant for the recurring payment Service.
-        /// </summary>
-        public static int MessageServiceRecurringPayments => MESSAGE_SERVICE_RECURRING_PAYMENT_JOB_HANDLE;
 
         /// <summary>
         ///     Constant for the sync backup Service.
@@ -74,27 +62,14 @@ namespace MoneyFox.Droid
             // Handler to create jobs.
             var handler = new Handler(msg =>
                                       {
-                                          if (msg.What == MESSAGE_SERVICE_CLEAR_PAYMENT_JOB_HANDLE)
+                                          if (msg.What == MESSAGE_SERVICE_SYNC_BACKUP_JOB_HANDLE)
                                           {
-                                              var clearPaymentsJob = (ClearPaymentsJob) msg.Obj;
+                                              var clearPaymentsJob = (SyncBackupJob) msg.Obj;
                                               clearPaymentsJob.ScheduleTask();
-                                          }
-                                          else if (msg.What == MESSAGE_SERVICE_RECURRING_PAYMENT_JOB_HANDLE)
-                                          {
-                                              var recurringPaymentJob = (RecurringPaymentJob) msg.Obj;
-                                              recurringPaymentJob.ScheduleTask();
                                           }
                                       });
 
             // Start services and provide it a way to communicate with us.
-            var startServiceIntentClearPayment = new Intent(this, typeof(ClearPaymentsJob));
-            startServiceIntentClearPayment.PutExtra("messenger", new Messenger(handler));
-            StartService(startServiceIntentClearPayment);
-
-            var startServiceIntentRecurringPayment = new Intent(this, typeof(RecurringPaymentJob));
-            startServiceIntentRecurringPayment.PutExtra("messenger", new Messenger(handler));
-            StartService(startServiceIntentRecurringPayment);
-
             var startServiceIntentSyncBackup = new Intent(this, typeof(SyncBackupJob));
             startServiceIntentSyncBackup.PutExtra("messenger", new Messenger(handler));
             StartService(startServiceIntentSyncBackup);
