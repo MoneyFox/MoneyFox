@@ -84,8 +84,6 @@ namespace MoneyFox.iOS
         protected async Task RunAppStartAsync()
         {
             await SyncBackupAsync();
-            await ClearPaymentsAsync();
-            await CreateRecurringPaymentsAsync();
         }
 
         private void InitLogger()
