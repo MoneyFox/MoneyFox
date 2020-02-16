@@ -82,7 +82,7 @@ namespace MoneyFox.Uwp.Services
 
             await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await JumpListService.InitializeAsync();
-            await ThemeSelectorService.InitializeAsync();
+            ThemeSelectorService.Initialize();
         }
 
         private static void RegisterServices(NavigationService nav)

@@ -162,7 +162,6 @@
     <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Helpers\StringMatchConverter.cs" />
-    <Compile Include="Helpers\Json.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
     <Compile Include="AutoMapper\MapperProfileHelper.cs" />
