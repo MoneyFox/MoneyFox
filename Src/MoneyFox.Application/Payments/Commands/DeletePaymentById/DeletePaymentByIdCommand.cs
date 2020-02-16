@@ -33,8 +33,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 this.backupService = backupService;
             }
 
-            public async Task<Unit> Handle(DeletePaymentByIdCommand request,
-                                           CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
             {
                 await backupService.RestoreBackupAsync();
 
@@ -45,9 +44,12 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
                 entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
 
-                if (request.DeleteRecurringPayment) await DeleteRecurringPaymentAsync(entityToDelete.RecurringPayment.Id);
+                if (request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
+                {
+                    await DeleteRecurringPaymentAsync(entityToDelete.RecurringPayment.Id);
+                }
 
-                await contextAdapter.Context.SaveChangesAsync();
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 contextAdapter.Context.Payments.Remove(entityToDelete);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
@@ -64,7 +66,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 List<Payment> payments = await contextAdapter.Context
                                                              .Payments
                                                              .Where(x => x.IsRecurring)
-                                                             .Where(x => x.RecurringPayment.Id == recurringPaymentId)
+                                                             .Where(x => x.RecurringPayment!.Id == recurringPaymentId)
                                                              .ToListAsync();
 
                 payments.ForEach(x => x.RemoveRecurringPayment());
