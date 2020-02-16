@@ -48,11 +48,7 @@ namespace MoneyFox.Uwp.Services
 
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
-                if (Window.Current.Content == null)
-                {
-                    // Create a Frame to act as the navigation context and navigate to the first page
-                    Window.Current.Content = shell?.Value ?? new Frame();
-                }
+                Window.Current.Content ??= shell?.Value ?? new Frame();
             }
 
             await HandleActivationAsync(activationArgs);

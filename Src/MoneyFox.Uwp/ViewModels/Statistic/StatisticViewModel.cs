@@ -45,11 +45,11 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                                                                   {
                                                                       StartDate = message.StartDate;
                                                                       EndDate = message.EndDate;
-                                                                      await Load();
+                                                                      await LoadAsync();
                                                                   });
         }
 
-        public AsyncCommand LoadedCommand => new AsyncCommand(Load);
+        public AsyncCommand LoadedCommand => new AsyncCommand(LoadAsync);
 
         /// <summary>
         ///     Start date for a custom statistic
@@ -88,6 +88,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                                " - " +
                                EndDate.ToString("d", CultureInfo.InvariantCulture);
 
-        protected abstract Task Load();
+        protected abstract Task LoadAsync();
     }
 }

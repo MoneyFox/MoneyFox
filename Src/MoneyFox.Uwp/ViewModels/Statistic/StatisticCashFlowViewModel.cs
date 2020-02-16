@@ -33,7 +33,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             }
         }
 
-        protected override async Task Load()
+        protected override async Task LoadAsync()
         {
             StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCashFlowQuery
                                                                                           {

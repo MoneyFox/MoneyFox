@@ -75,7 +75,7 @@ namespace MoneyFox.Uwp.ViewModels
             new RelayCommand(() => navigationService.Navigate(ViewModelLocator.AddPayment, PaymentType.Transfer));
 
         /// <inheritdoc />
-        public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccount);
+        public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccountAsync);
 
         /// <summary>
         ///     Indicates if the transfer option is available or if it shall be hidden.
@@ -171,7 +171,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        private async Task DeleteAccount()
+        private async Task DeleteAccountAsync()
         {
             if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {

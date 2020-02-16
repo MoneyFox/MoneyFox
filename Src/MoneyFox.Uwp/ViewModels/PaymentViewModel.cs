@@ -289,7 +289,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void EditPayment()
         {
-            if (navigationService == null) navigationService = ServiceLocator.Current.GetInstance<NavigationService>();
+            navigationService ??= ServiceLocator.Current.GetInstance<NavigationService>();
 
             navigationService.Navigate(ViewModelLocator.EditPayment, Id);
         }
@@ -299,7 +299,7 @@ namespace MoneyFox.Uwp.ViewModels
         {
             if (navigationService == null) mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
-            if (dialogService == null) dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
+            dialogService ??= ServiceLocator.Current.GetInstance<IDialogService>();
 
             if (!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
                                                              Strings.DeletePaymentConfirmationMessage,
