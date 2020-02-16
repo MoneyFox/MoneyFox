@@ -44,15 +44,15 @@ namespace MoneyFox.Uwp.ViewModels
 
         public PaymentType PaymentType { get; set; }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
-        protected override async Task Initialize()
+        protected override async Task InitializeAsync()
         {
             Title = PaymentTypeHelper.GetViewTitleForType(PaymentType, false);
             AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
             SelectedPayment.Type = PaymentType;
 
-            await base.Initialize();
+            await base.InitializeAsync();
 
             SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
 
@@ -63,7 +63,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        protected override async Task SavePayment()
+        protected override async Task SavePaymentAsync()
         {
             try
             {

@@ -55,13 +55,13 @@ namespace MoneyFox.Uwp.ViewModels
             this.balanceCalculationService = balanceCalculationService;
             this.navigationService = navigationService;
 
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPayments(message));
-            MessengerInstance.Register<RemovePaymentMessage>(this, async message => await LoadData());
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPaymentsAsync(message));
+            MessengerInstance.Register<RemovePaymentMessage>(this, async message => await LoadDataAsync());
         }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
-        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadData);
+        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadDataAsync);
 
 
         /// <summary>
@@ -141,7 +141,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
 
-        private async Task Initialize()
+        private async Task InitializeAsync()
         {
             Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
 
@@ -156,26 +156,26 @@ namespace MoneyFox.Uwp.ViewModels
                                                                      BalanceViewModel,
                                                                      navigationService);
 
-            await LoadPaymentList();
+            await LoadPaymentListAsync();
         }
 
-        private async Task LoadPaymentList()
+        private async Task LoadPaymentListAsync()
         {
             await dialogService.ShowLoadingDialogAsync();
 
-            await LoadData();
+            await LoadDataAsync();
 
             await dialogService.HideLoadingDialogAsync();
         }
 
-        private async Task LoadData()
+        private async Task LoadDataAsync()
         {
-            await LoadPayments(new PaymentListFilterChangedMessage());
+            await LoadPaymentsAsync(new PaymentListFilterChangedMessage());
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
-        private async Task LoadPayments(PaymentListFilterChangedMessage filterMessage)
+        private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                                                                          filterMessage

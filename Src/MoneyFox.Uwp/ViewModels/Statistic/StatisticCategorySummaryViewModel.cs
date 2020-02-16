@@ -50,7 +50,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// <summary>
         ///     Overrides the load method to load the category summary data.
         /// </summary>
-        protected override async Task Load()
+        protected override async Task LoadAsync()
         {
             CategorySummaryModel categorySummaryModel =
                 await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});

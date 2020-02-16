@@ -50,11 +50,11 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         public AsyncCommand DeleteCommand => new AsyncCommand(DeletePaymentAsync);
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
-        protected override async Task Initialize()
+        protected override async Task InitializeAsync()
         {
-            await base.Initialize();
+            await base.InitializeAsync();
 
             SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(PaymentId)));
             AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
@@ -67,7 +67,7 @@ namespace MoneyFox.Uwp.ViewModels
             Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, true);
         }
 
-        protected override async Task SavePayment()
+        protected override async Task SavePaymentAsync()
         {
             try
             {

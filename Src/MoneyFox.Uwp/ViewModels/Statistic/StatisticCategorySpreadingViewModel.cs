@@ -35,7 +35,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// <summary>
         ///     Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
-        protected override async Task Load()
+        protected override async Task LoadAsync()
         {
             StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery
                                                                                           {

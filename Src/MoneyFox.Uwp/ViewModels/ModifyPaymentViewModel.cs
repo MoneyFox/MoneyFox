@@ -60,7 +60,7 @@ namespace MoneyFox.Uwp.ViewModels
 
             selectedPayment = new PaymentViewModel();
 
-            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessage(message));
+            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public AsyncCommand SaveCommand => new AsyncCommand(SavePaymentBase);
+        public AsyncCommand SaveCommand => new AsyncCommand(SavePaymentBaseAsync);
 
         /// <summary>
         ///     Opens to the SelectCategoryView
@@ -200,9 +200,9 @@ namespace MoneyFox.Uwp.ViewModels
                    ? Strings.TargetAccountLabel
                    : Strings.ChargedAccountLabel;
 
-        protected abstract Task SavePayment();
+        protected abstract Task SavePaymentAsync();
 
-        protected virtual async Task Initialize()
+        protected virtual async Task InitializeAsync()
         {
             var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
 
@@ -210,7 +210,7 @@ namespace MoneyFox.Uwp.ViewModels
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
 
-        private async Task SavePaymentBase()
+        private async Task SavePaymentBaseAsync()
         {
             if (SelectedPayment.ChargedAccount == null)
             {
@@ -233,7 +233,7 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
-            await SavePayment();
+            await SavePaymentAsync();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
 
@@ -246,7 +246,7 @@ namespace MoneyFox.Uwp.ViewModels
         ///     Moved to own method for debugg reasons
         /// </summary>
         /// <param name="message">Message stent.</param>
-        private async Task ReceiveMessage(CategorySelectedMessage message)
+        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
             SelectedPayment.Category =
