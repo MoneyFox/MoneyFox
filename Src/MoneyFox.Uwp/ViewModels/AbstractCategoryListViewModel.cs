@@ -20,11 +20,6 @@ namespace MoneyFox.Uwp.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : ViewModelBase
     {
-        private const int MENU_RESULT_EDIT_INDEX = 0;
-        private const int MENU_RESULT_DELETE_INDEX = 1;
-
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source;
 
         /// <summary>
