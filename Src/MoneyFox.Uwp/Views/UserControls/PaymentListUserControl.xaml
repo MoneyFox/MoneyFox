@@ -90,6 +90,10 @@
                                            Style="{ThemeResource HeaderStyle}"
                                            Text="{Binding Key}" />
 
+                                <TextBlock Margin="3,0,0,7"
+                                           Style="{ThemeResource DeemphasizedLabelStyle}"
+                                           Text="{Binding Title}" />
+
                                 <ListView HorizontalAlignment="Stretch"
                                           Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                           Background="Transparent"
