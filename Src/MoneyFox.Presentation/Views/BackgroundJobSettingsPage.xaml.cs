@@ -10,7 +10,7 @@ namespace MoneyFox.Presentation.Views
 {
     public partial class BackgroundJobSettingsPage
     {
-        private Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public BackgroundJobSettingsPage()
         {

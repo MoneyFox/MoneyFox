@@ -16,6 +16,7 @@ using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Moq;

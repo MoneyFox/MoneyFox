@@ -1,7 +1,7 @@
-﻿using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
-using System;
+﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
@@ -48,8 +48,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceS
             await context.SaveChangesAsync();
 
             // Act
-            var result =
-                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object).Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+            decimal result =
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
+                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
             result.ShouldEqual(80);

@@ -1,13 +1,15 @@
 ﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using MoneyFox.Domain;
-using MoneyFox.Presentation.Utilities;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class AddPaymentView
     {
+        public override string Header => ViewModelLocator.AddPaymentVm.Title;
+
         private AddPaymentViewModel ViewModel => DataContext as AddPaymentViewModel;
 
         public AddPaymentView()

@@ -2,7 +2,7 @@
 using Windows.ApplicationModel;
 using MoneyFox.Application.Common.Interfaces;
 
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     public class WindowsAppInformation : IAppInformation
     {

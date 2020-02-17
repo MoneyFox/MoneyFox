@@ -25,15 +25,16 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
         public override void Register()
         {
-            var taskName = GetType().Name;
-            var taskRegistration = BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == taskName).Value;
+            string taskName = GetType().Name;
+            IBackgroundTaskRegistration taskRegistration =
+                BackgroundTaskRegistration.AllTasks.FirstOrDefault(t => t.Value.Name == taskName).Value;
 
             if (taskRegistration == null)
             {
                 var builder = new BackgroundTaskBuilder
-                {
-                    Name = taskName
-                };
+                              {
+                                  Name = taskName
+                              };
 
                 builder.SetTrigger(new TimeTrigger(TASK_RECURRENCE_COUNT, false));
                 builder.AddCondition(new SystemCondition(SystemConditionType.InternetAvailable));
@@ -67,7 +68,6 @@ namespace MoneyFox.Uwp.BackgroundTasks
 
         private async Task SynBackupAsync()
         {
-
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
@@ -94,6 +94,7 @@ namespace MoneyFox.Uwp.BackgroundTasks
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
                 logManager.Debug("Sync Backup finished.");
             }
+
             deferral?.Complete();
         }
     }

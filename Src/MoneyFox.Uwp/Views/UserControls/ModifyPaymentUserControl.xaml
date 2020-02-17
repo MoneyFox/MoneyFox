@@ -7,10 +7,10 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
-    xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:controls="using:MoneyFox.Uwp.Views.Controls"
-    xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
+    xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     mc:Ignorable="d"
     d:DesignHeight="300"
     d:DesignWidth="400">
@@ -88,7 +88,7 @@
                                         UpdateSourceTrigger=PropertyChanged}"
                          TextAlignment="Right" />
 
-                <controls:CategorySelectionControl />
+                <userControls:CategorySelectionControl />
 
                 <DatePicker Margin="{StaticResource SmallTitleContentMargin}"
                             HorizontalAlignment="Left"
@@ -110,7 +110,7 @@
                               IsOn="{Binding SelectedPayment.IsRecurring,
                                                  Mode=TwoWay}"
                               Toggled="ToggleRecurringVisibility" />
-                <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibilityInitialy">
+                <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibilityInitially">
                     <ComboBox HorizontalAlignment="Stretch"
                               Margin="{StaticResource SmallTitleContentMargin}"
                               Header="{x:Bind resources:Strings.RecurrenceLabel}"

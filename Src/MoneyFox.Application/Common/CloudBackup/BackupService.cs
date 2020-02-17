@@ -142,7 +142,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             DateTime backupDate = await GetBackupDateAsync();
             if (settingsFacade.LastDatabaseUpdate > backupDate)
             {
-                logger.Info("Last local change is after the last adjustment on the remote backup.");
+                logger.Info("Local backup is newer than remote. Don't download backup");
                 return;
             }
 
@@ -204,9 +204,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                     semaphoreSlim.Release();
                 }
                 else
-                {
                     cancellationTokenSource.Cancel();
-                }
             }
             catch (FileNotFoundException ex)
             {

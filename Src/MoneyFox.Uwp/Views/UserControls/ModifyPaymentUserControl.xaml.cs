@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Microsoft.Toolkit.Uwp.UI.Animations;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
 using NLog;
 
 namespace MoneyFox.Uwp.Views.UserControls
@@ -20,12 +20,18 @@ namespace MoneyFox.Uwp.Views.UserControls
 
             if (viewModel.SelectedPayment == null) return;
             if (viewModel.SelectedPayment.IsRecurring)
+            {
                 await RecurringStackPanel.Fade(1).StartAsync();
+                RecurringStackPanel.Visibility = Visibility.Collapsed;
+            }
             else
+            {
+                RecurringStackPanel.Visibility = Visibility.Visible;
                 await RecurringStackPanel.Fade().StartAsync();
+            }
         }
 
-        private void SetVisibilityInitialy(object sender, RoutedEventArgs e)
+        private void SetVisibilityInitially(object sender, RoutedEventArgs e)
         {
             var viewModel = (ModifyPaymentViewModel) DataContext;
 

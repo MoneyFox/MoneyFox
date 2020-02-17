@@ -15,7 +15,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using MoneyFox.Presentation;
-using MoneyFox.Presentation.Utilities;
+using MoneyFox.Ui.Shared.Utilities;
 using NLog;
 using NLog.Config;
 using NLog.Targets;

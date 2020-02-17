@@ -8,7 +8,7 @@ using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Commands;
+using MoneyFox.Ui.Shared.Commands;
 using SkiaSharp;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic

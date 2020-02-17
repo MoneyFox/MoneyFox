@@ -1,6 +1,6 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views
 {

@@ -4,11 +4,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="using:MoneyFox.Uwp.Converter"
-             xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
              x:Name="PaymentControl"
              xmlns:resources="using:MoneyFox.Application.Resources"
              xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
-             xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
+             xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+             xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
              d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                               IsDesignTimeCreatable=True}"
              d:DesignHeight="300"
@@ -50,7 +50,7 @@
                               Source="{Binding Source}" />
     </UserControl.Resources>
 
-    <Grid Margin="{StaticResource NegativeMediumLeftRightMargin}">
+    <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -61,7 +61,7 @@
                                  DataContext="{Binding BalanceViewModel}"
                                  Margin="{StaticResource MediumLeftRightMargin}" />
 
-        <SemanticZoom Grid.Row="1">
+        <SemanticZoom Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <SemanticZoom.ZoomedInView>
                 <ListView IsItemClickEnabled="False"
                           ItemsSource="{Binding Source={StaticResource Groups}}"
@@ -90,6 +90,10 @@
                                            Style="{ThemeResource HeaderStyle}"
                                            Text="{Binding Key}" />
 
+                                <TextBlock Margin="3,0,0,7"
+                                           Style="{ThemeResource DeemphasizedLabelStyle}"
+                                           Text="{Binding Title}" />
+
                                 <ListView HorizontalAlignment="Stretch"
                                           Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                           Background="Transparent"
@@ -113,10 +117,9 @@
                                                   Margin="{StaticResource NegativeMediumLeftRighWithSmallToptMargin}"
                                                   Padding="{StaticResource SmallListItemPadding}"
                                                   Background="{ThemeResource ListItemBrush}"
-                                                  HorizontalAlignment="Stretch"
-                                                  RightTapped="PaymentViewModelList_RightTapped">
+                                                  HorizontalAlignment="Stretch">
 
-                                                <FlyoutBase.AttachedFlyout>
+                                                <Grid.ContextFlyout>
                                                     <MenuFlyout>
                                                         <MenuFlyoutItem Icon="Edit"
                                                                         Command="{x:Bind EditPaymentCommand}"
@@ -128,7 +131,7 @@
                                                                         CommandParameter="{x:Bind}"
                                                                         Text="{x:Bind resources:Strings.DeleteLabel}" />
                                                     </MenuFlyout>
-                                                </FlyoutBase.AttachedFlyout>
+                                                </Grid.ContextFlyout>
 
                                                 <Grid Margin="{StaticResource MediumLeftRightMargin}">
                                                     <StackPanel VerticalAlignment="Center"

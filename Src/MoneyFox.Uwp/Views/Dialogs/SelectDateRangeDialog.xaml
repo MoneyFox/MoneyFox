@@ -10,6 +10,7 @@
                PrimaryButtonText="done"
                SecondaryButtonText="cancel"
                PrimaryButtonCommand="{Binding DoneCommand}"
+               Style="{StaticResource DefaultContentDialog}"
                DataContext="{Binding SelectDateRangeDialogVm, Source={StaticResource Locator}}">
 
     <ContentDialog.Resources>

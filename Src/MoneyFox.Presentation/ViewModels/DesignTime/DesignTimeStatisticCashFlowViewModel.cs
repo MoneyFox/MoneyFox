@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using Microcharts;
 using MoneyFox.Application.Statistics;
-using MoneyFox.Presentation.Commands;
 using MoneyFox.Presentation.ViewModels.Statistic;
+using MoneyFox.Ui.Shared.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

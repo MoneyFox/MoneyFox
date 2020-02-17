@@ -18,4 +18,8 @@
         <Setter Property="Background" Value="{StaticResource CommandBarBackgroundColor}" />
     </Style>
 
+    <Style x:Key="DefaultContentDialog" TargetType="ContentDialog">
+        <Setter Property="Background" Value="{StaticResource ContentDialogBackgroundColor}" />
+    </Style>
+
 </ResourceDictionary>

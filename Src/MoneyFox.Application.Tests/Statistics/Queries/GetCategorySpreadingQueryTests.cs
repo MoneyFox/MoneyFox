@@ -54,12 +54,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             var account = new Account("test");
 
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2)
-            };
+                              {
+                                  new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2)
+                              };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -67,10 +67,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                }, default))
+                                                                                              {
+                                                                                                  StartDate = DateTime.Today.AddDays(-3),
+                                                                                                  EndDate = DateTime.Today.AddDays(3)
+                                                                                              }, default))
                .ToList();
 
             // Assert
@@ -90,11 +90,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             var account = new Account("test");
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3)
-            };
+                              {
+                                  new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3)
+                              };
 
 
             context.Payments.AddRange(paymentList);
@@ -103,10 +103,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                }, default))
+                                                                                              {
+                                                                                                  StartDate = DateTime.Today.AddDays(-3),
+                                                                                                  EndDate = DateTime.Today.AddDays(3)
+                                                                                              }, default))
                .ToList();
 
             // Assert
@@ -122,10 +122,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             var account = new Account("test");
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2)
-            };
+                              {
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2)
+                              };
 
 
             context.Payments.AddRange(paymentList);
@@ -134,10 +134,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                }, default))
+                                                                                              {
+                                                                                                  StartDate = DateTime.Today.AddDays(-3),
+                                                                                                  EndDate = DateTime.Today.AddDays(3)
+                                                                                              }, default))
                .ToList();
 
             // Assert
@@ -151,15 +151,15 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
             var account = new Account("test");
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("d")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("e")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("f")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("g"))
-            };
+                              {
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c")),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("d")),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("e")),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("f")),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("g"))
+                              };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -167,10 +167,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                }, default))
+                                                                                              {
+                                                                                                  StartDate = DateTime.Today.AddDays(-3),
+                                                                                                  EndDate = DateTime.Today.AddDays(3)
+                                                                                              }, default))
                .ToList();
 
             // Assert
@@ -194,11 +194,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             var account = new Account("test");
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c"))
-            };
+                              {
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c"))
+                              };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -206,10 +206,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                }, default))
+                                                                                              {
+                                                                                                  StartDate = DateTime.Today.AddDays(-3),
+                                                                                                  EndDate = DateTime.Today.AddDays(3)
+                                                                                              }, default))
                .ToList();
 
             // Assert

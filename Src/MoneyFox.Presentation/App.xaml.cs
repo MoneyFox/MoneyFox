@@ -1,4 +1,5 @@
 ﻿using System;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Views;
 using NLog;
 using Xamarin.Forms;

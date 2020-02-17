@@ -16,6 +16,7 @@ using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
@@ -56,7 +57,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         [Fact]
         public async Task AmountStringSetOnInit()
         {
-            // Arrange            
+            // Arrange
             mediatorMock.Setup(x => x.Send(It.IsAny<GetPaymentByIdQuery>(), default))
                         .ReturnsAsync(new Payment(DateTime.Now, 12.10M, PaymentType.Expense, new Account("sad")));
 

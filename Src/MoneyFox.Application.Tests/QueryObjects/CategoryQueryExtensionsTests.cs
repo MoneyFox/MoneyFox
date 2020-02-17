@@ -15,11 +15,11 @@ namespace MoneyFox.Application.Tests.QueryObjects
         {
             // Arrange
             IQueryable<Category> categoryQueryList = new List<Category>
-                {
-                    new Category("Foo1"),
-                    new Category("Foo2"),
-                    new Category("absd")
-                }
+                                                     {
+                                                         new Category("Foo1"),
+                                                         new Category("Foo2"),
+                                                         new Category("absd")
+                                                     }
                .AsQueryable();
 
             // Act
@@ -36,11 +36,11 @@ namespace MoneyFox.Application.Tests.QueryObjects
         {
             // Arrange
             IQueryable<Category> categoryQueryList = new List<Category>
-                {
-                    new Category("Foo2"),
-                    new Category("Foo3"),
-                    new Category("Foo1")
-                }
+                                                     {
+                                                         new Category("Foo2"),
+                                                         new Category("Foo3"),
+                                                         new Category("Foo1")
+                                                     }
                .AsQueryable();
 
             // Act

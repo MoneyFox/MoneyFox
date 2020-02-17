@@ -19,11 +19,11 @@ namespace MoneyFox.Uwp.Services
 
             // Configure file
             var logfile = new FileTarget("logfile")
-            {
-                FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
-                AutoFlush = true,
-                ArchiveEvery = FileArchivePeriod.Month
-            };
+                          {
+                              FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
+                              AutoFlush = true,
+                              ArchiveEvery = FileArchivePeriod.Month
+                          };
 
             // Configure console
             var debugTarget = new DebugTarget("console");

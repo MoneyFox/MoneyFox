@@ -45,11 +45,11 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
         {
             // Arrange
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Now.AddDays(1), 100, PaymentType.Expense, new Account("Foo")),
-                new Payment(DateTime.Now, 100, PaymentType.Expense, new Account("Foo")),
-                new Payment(DateTime.Now.AddDays(-1), 100, PaymentType.Expense, new Account("Foo"))
-            };
+                              {
+                                  new Payment(DateTime.Now.AddDays(1), 100, PaymentType.Expense, new Account("Foo")),
+                                  new Payment(DateTime.Now, 100, PaymentType.Expense, new Account("Foo")),
+                                  new Payment(DateTime.Now.AddDays(-1), 100, PaymentType.Expense, new Account("Foo"))
+                              };
 
             context.AddRange(paymentList);
             await context.SaveChangesAsync();
@@ -68,11 +68,11 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
         {
             // Arrange
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Now.AddDays(1), 100, PaymentType.Expense, new Account("Foo")),
-                new Payment(DateTime.Now, 100, PaymentType.Expense, new Account("Foo")),
-                new Payment(DateTime.Now.AddDays(-1), 100, PaymentType.Expense, new Account("Foo"))
-            };
+                              {
+                                  new Payment(DateTime.Now.AddDays(1), 100, PaymentType.Expense, new Account("Foo")),
+                                  new Payment(DateTime.Now, 100, PaymentType.Expense, new Account("Foo")),
+                                  new Payment(DateTime.Now.AddDays(-1), 100, PaymentType.Expense, new Account("Foo"))
+                              };
 
             context.AddRange(paymentList);
             await context.SaveChangesAsync();

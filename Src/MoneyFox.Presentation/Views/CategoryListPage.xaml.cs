@@ -1,7 +1,7 @@
 ﻿using System;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Ui.Shared.Utilities;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
