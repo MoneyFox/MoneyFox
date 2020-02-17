@@ -275,7 +275,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
-      <Version>5.1.1</Version>
+      <Version>5.1.2</Version>
     </PackageReference>
     <PackageReference Include="Autofac.Extras.CommonServiceLocator">
       <Version>6.0.0</Version>
@@ -290,7 +290,7 @@
       <Version>1.21.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.8.1</Version>
+      <Version>4.8.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmLightLibsStd10">
       <Version>5.4.1.1</Version>
