@@ -16,7 +16,7 @@ namespace MoneyFox.Uwp.Converter
 
             if (payment == null) return string.Empty;
 
-            var param = parameter.ToString();
+            var param = parameter?.ToString();
             string sign;
 
             if (payment.Type == PaymentType.Transfer)
