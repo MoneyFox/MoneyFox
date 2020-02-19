@@ -55,9 +55,14 @@ namespace MoneyFox.Uwp.Services
             return false;
         }
 
-        public void GoForward()
+        public bool GoForward()
         {
-            Frame.GoForward();
+            if (CanGoForward)
+            {
+                Frame.GoForward();
+                return true;
+            }
+            return false;
         }
 
         public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null)
