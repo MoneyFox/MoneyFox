@@ -16,6 +16,8 @@ using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Settings;
 using NLog;
 using WinUI = Microsoft.UI.Xaml.Controls;
+using Windows.UI.Core;
+using Windows.UI.Input;
 
 namespace MoneyFox.Uwp
 {
@@ -64,6 +66,24 @@ namespace MoneyFox.Uwp
             NavigationService.NavigationFailed += Frame_NavigationFailed;
             NavigationService.Navigated += Frame_Navigated;
             this.navigationView.BackRequested += OnBackRequested;
+
+            Windows.UI.Core.CoreWindow.GetForCurrentThread().PointerPressed += On_PointerPressed;
+        }
+        private void On_PointerPressed(CoreWindow sender, PointerEventArgs e)
+        {
+            bool isXButton1Pressed = e.CurrentPoint.Properties.PointerUpdateKind == PointerUpdateKind.XButton1Pressed;
+
+            if (isXButton1Pressed)
+            {
+                e.Handled = WindowsShellViewModel.NavigationService.GoBack();
+            }
+
+            bool isXButton2Pressed = e.CurrentPoint.Properties.PointerUpdateKind == PointerUpdateKind.XButton2Pressed;
+
+            if (isXButton2Pressed)
+            {
+                e.Handled = WindowsShellViewModel.NavigationService.GoForward();
+            }
         }
 
         private async Task OnLoadedAsync()
