@@ -12,7 +12,7 @@ namespace MoneyFox.Application.Common.Interfaces
         DbSet<Payment> Payments { get; }
         DbSet<RecurringPayment> RecurringPayments { get; }
         DbSet<Category> Categories { get; }
-        Task<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
+        ValueTask<EntityEntry> AddAsync(object entity, CancellationToken cancellationToken = default);
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
         EntityEntry<TEntity> Add<TEntity>(TEntity entity) where TEntity : class;
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
