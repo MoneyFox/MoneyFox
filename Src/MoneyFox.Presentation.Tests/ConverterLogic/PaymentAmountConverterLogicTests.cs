@@ -43,7 +43,6 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
                .GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) {Amount = 80, Type = PaymentType.Income},
                                          string.Empty)
                .ShouldEqual($"+ $80.00");
-            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Fact]
