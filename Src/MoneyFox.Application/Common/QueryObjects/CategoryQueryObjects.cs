@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Graph;
 using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Common.QueryObjects
@@ -26,7 +28,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="searchterm">Search term to look for.</param>
         /// <returns>Query with the added filter.</returns>
-        public static IQueryable<Category> WhereNameContains(this IQueryable<Category> query, string searchterm)
+        public static IEnumerable<Category> WhereNameContains(this List<Category> query, string searchterm)
         {
             return query.Where(category => category.Name.IndexOf(searchterm, StringComparison.InvariantCultureIgnoreCase) >= 0);
         }

@@ -22,11 +22,9 @@ namespace MoneyFox.Uwp.Views.UserControls
             if (viewModel.SelectedPayment.IsRecurring)
             {
                 await RecurringStackPanel.Fade(1).StartAsync();
-                RecurringStackPanel.Visibility = Visibility.Collapsed;
             }
             else
             {
-                RecurringStackPanel.Visibility = Visibility.Visible;
                 await RecurringStackPanel.Fade().StartAsync();
             }
         }
