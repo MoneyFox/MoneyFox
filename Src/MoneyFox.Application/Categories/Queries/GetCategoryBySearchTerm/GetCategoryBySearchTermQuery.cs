@@ -34,10 +34,15 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
                                                                             .Categories
                                                                             .OrderBy(x => x.Name);
 
-                if (!string.IsNullOrEmpty(request.SearchTerm))
-                    return await categoriesQuery.WhereNameContains(request.SearchTerm).ToListAsync(cancellationToken);
+                var categories = await categoriesQuery.ToListAsync(cancellationToken);
 
-                return await categoriesQuery.ToListAsync(cancellationToken);
+                if (!string.IsNullOrEmpty(request.SearchTerm))
+                {
+                    categories = categories.WhereNameContains(request.SearchTerm)
+                                           .ToList();
+                }
+
+                return categories;
             }
         }
     }
