@@ -32,10 +32,11 @@ namespace MoneyFox.Domain.Tests.Entities
                                                         "note");
 
             // Assert
+            recurringPayment.LastRecurrenceCreated.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
             recurringPayment.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
             recurringPayment.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
-
+        
         [Fact]
         public void Ctor_Params_ValuesAssigned()
         {
@@ -196,6 +197,31 @@ namespace MoneyFox.Domain.Tests.Entities
 
             // Assert
             recurringPayment.IsEndless.ShouldBeFalse();
+        }
+
+        [Fact]
+        public void SetLastRecurrenceCreatedDateUpdated()
+        {
+            // Arrange
+            DateTime startDate = DateTime.Now;
+            const int amount = 123;
+            const PaymentType type = PaymentType.Expense;
+            const PaymentRecurrence recurrence = PaymentRecurrence.Daily;
+            var account = new Account("foo");
+            const string note = "asdf";
+
+            var recurringPayment = new RecurringPayment(startDate,
+                                                        amount,
+                                                        type,
+                                                        recurrence,
+                                                        account,
+                                                        note);
+            // Act
+            recurringPayment.SetLastRecurrenceCreatedDate();
+
+            // Assert
+            recurringPayment.LastRecurrenceCreated.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            recurringPayment.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
     }
 }

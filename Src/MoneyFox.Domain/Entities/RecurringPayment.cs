@@ -24,7 +24,8 @@ namespace MoneyFox.Domain.Entities
                                 string note = "",
                                 DateTime? endDate = null,
                                 Account? targetAccount = null,
-                                Category? category = null)
+                                Category? category = null,
+                                DateTime? lastRecurrenceCreated = null)
         {
             if (!IsEndless && endDate != null && endDate < DateTime.Today)
                 throw new InvalidEndDateException();
@@ -42,6 +43,7 @@ namespace MoneyFox.Domain.Entities
 
             RelatedPayments = new List<Payment>();
 
+            LastRecurrenceCreated = lastRecurrenceCreated ?? DateTime.Now;
             ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
         }
@@ -64,6 +66,8 @@ namespace MoneyFox.Domain.Entities
             private set => note = value;
             get => note ?? string.Empty;
         }
+
+        public DateTime LastRecurrenceCreated { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
         public DateTime CreationTime { get; private set; }
@@ -95,6 +99,19 @@ namespace MoneyFox.Domain.Entities
             Category = category;
             TargetAccount = targetAccount;
             IsEndless = endDate == null;
+            ModificationDate = DateTime.Now;
+        }
+
+        public void SetLastRecurrenceCreatedDate()
+        {
+            LastRecurrenceCreated = DateTime.Now;
+            ModificationDate = DateTime.Now;
+        }
+
+        [Obsolete("This Method is only for migration purposes and will be removed later")]
+        public void SetLastRecurrenceCreatedDate(DateTime dateTime)
+        {
+            LastRecurrenceCreated = dateTime;
             ModificationDate = DateTime.Now;
         }
     }

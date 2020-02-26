@@ -15,7 +15,6 @@ using MoneyFox.Uwp.Views.Settings;
 using MoneyFox.Uwp.Views.Statistics;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
-using Xamarin.Forms;
 using Frame = Windows.UI.Xaml.Controls.Frame;
 
 #if !DEBUG
@@ -28,13 +27,11 @@ namespace MoneyFox.Uwp.Services
 {
     internal class ActivationService
     {
-        private readonly App app;
         private readonly Type defaultNavItem;
         private readonly Lazy<UIElement> shell;
 
-        public ActivationService(App app, Type defaultNavItem, Lazy<UIElement> shell)
+        public ActivationService(Type defaultNavItem, Lazy<UIElement> shell)
         {
-            this.app = app;
             this.shell = shell;
             this.defaultNavItem = defaultNavItem;
         }
@@ -77,8 +74,6 @@ namespace MoneyFox.Uwp.Services
 
             NavigationService navService = ConfigureNavigation();
             RegisterServices(navService);
-
-            Forms.Init(activationArgs as LaunchActivatedEventArgs);
 
             await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await JumpListService.InitializeAsync();

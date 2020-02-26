@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,10 +36,20 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                                                .IsNotExpired()
                                                                                .ToListAsync();
 
+                foreach(var recurringPayment in recurringPayments.Where(x => x.LastRecurrenceCreated == DateTime.MinValue))
+                {
+                    var lastPayment = recurringPayment.RelatedPayments.OrderByDescending(d => d.Date).FirstOrDefault();
+                    if(lastPayment == null)
+                    {
+                        continue;
+                    }
+
+                    recurringPayment.SetLastRecurrenceCreatedDate(lastPayment.Date);
+                }
+
                 List<Payment> recPaymentsToCreate = recurringPayments
                                                    .Where(x => x.RelatedPayments.Any())
-                                                   .Where(x => RecurringPaymentHelper
-                                                             .CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
+                                                   .Where(x => RecurringPaymentHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
                                                    .Select(x => new Payment(RecurringPaymentHelper.GetPaymentDateFromRecurring(x),
                                                                             x.Amount,
                                                                             x.Type,
@@ -48,6 +59,8 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                                             x.Note,
                                                                             x))
                                                    .ToList();
+
+                recPaymentsToCreate.ForEach(x => x.RecurringPayment.SetLastRecurrenceCreatedDate());
 
                 contextAdapter.Context.Payments.AddRange(recPaymentsToCreate);
                 await contextAdapter.Context.SaveChangesAsync();

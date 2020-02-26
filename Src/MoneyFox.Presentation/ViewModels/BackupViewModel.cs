@@ -185,7 +185,10 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task LoginAsync()
         {
             if (!connectivity.IsConnected)
+            {
+                logger.Info("Tried to log in, but device isn't connected to the internet.");
                 await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            }
 
             try
             {
@@ -259,13 +262,17 @@ namespace MoneyFox.Presentation.ViewModels
 
             await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();
-            if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync()) return;
+            if(settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync())
+            {
+                logger.Info("Restore Backup canceled by the user due to newer local data.");
+                return;
+            }
 
             await dialogService.ShowLoadingDialogAsync();
 
             try
             {
-                await backupService.RestoreBackupAsync();
+                await backupService.RestoreBackupAsync(BackupMode.Manual);
                 await ShowCompletionNoteAsync();
             }
             catch (BackupOperationCanceledException)
