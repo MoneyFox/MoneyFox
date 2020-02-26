@@ -259,7 +259,11 @@ namespace MoneyFox.Presentation.ViewModels
 
             await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();
-            if (settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync()) return;
+            if(settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync())
+            {
+                logger.Info("Restore Backup canceled by the user due to newer local data.");
+                return;
+            }
 
             await dialogService.ShowLoadingDialogAsync();
 
