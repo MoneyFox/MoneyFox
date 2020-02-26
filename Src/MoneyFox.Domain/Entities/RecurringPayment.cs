@@ -100,5 +100,18 @@ namespace MoneyFox.Domain.Entities
             IsEndless = endDate == null;
             ModificationDate = DateTime.Now;
         }
+
+        public void SetLastRecurrenceCreatedDate()
+        {
+            LastRecurrenceCreated = DateTime.Now;
+            ModificationDate = DateTime.Now;
+        }
+
+        [Obsolete("This Method is only for migration purposes and will be removed later")]
+        public void SetLastRecurrenceCreatedDate(DateTime dateTime)
+        {
+            LastRecurrenceCreated = dateTime;
+            ModificationDate = DateTime.Now;
+        }
     }
 }
