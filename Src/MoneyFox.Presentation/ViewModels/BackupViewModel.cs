@@ -185,7 +185,10 @@ namespace MoneyFox.Presentation.ViewModels
         private async Task LoginAsync()
         {
             if (!connectivity.IsConnected)
+            {
+                logger.Info("Tried to log in, but device isn't connected to the internet.");
                 await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            }
 
             try
             {
@@ -269,7 +272,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             try
             {
-                await backupService.RestoreBackupAsync();
+                await backupService.RestoreBackupAsync(BackupMode.Manual);
                 await ShowCompletionNoteAsync();
             }
             catch (BackupOperationCanceledException)
