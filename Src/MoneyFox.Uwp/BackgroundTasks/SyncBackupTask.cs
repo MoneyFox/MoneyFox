@@ -70,7 +70,15 @@ namespace MoneyFox.Uwp.BackgroundTasks
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
-            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
+            var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+
+            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
+            {
+                // if auto backup not enabled or not logged in, just execute the other tasks.
+                await mediator.Send(new ClearPaymentsCommand());
+                await mediator.Send(new CreateRecurringPaymentsCommand());
+                return;
+            }
 
             try
             {
@@ -79,7 +87,6 @@ namespace MoneyFox.Uwp.BackgroundTasks
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
-                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
 
