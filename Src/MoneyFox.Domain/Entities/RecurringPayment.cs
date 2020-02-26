@@ -42,6 +42,7 @@ namespace MoneyFox.Domain.Entities
 
             RelatedPayments = new List<Payment>();
 
+            LastRecurrenceCreated = DateTime.Now;
             ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
         }
@@ -64,6 +65,8 @@ namespace MoneyFox.Domain.Entities
             private set => note = value;
             get => note ?? string.Empty;
         }
+
+        public DateTime LastRecurrenceCreated { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
         public DateTime CreationTime { get; private set; }
