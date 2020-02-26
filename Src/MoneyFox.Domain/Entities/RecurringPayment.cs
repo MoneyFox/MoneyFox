@@ -24,7 +24,8 @@ namespace MoneyFox.Domain.Entities
                                 string note = "",
                                 DateTime? endDate = null,
                                 Account? targetAccount = null,
-                                Category? category = null)
+                                Category? category = null,
+                                DateTime? lastRecurrenceCreated = null)
         {
             if (!IsEndless && endDate != null && endDate < DateTime.Today)
                 throw new InvalidEndDateException();
@@ -42,7 +43,7 @@ namespace MoneyFox.Domain.Entities
 
             RelatedPayments = new List<Payment>();
 
-            LastRecurrenceCreated = DateTime.Now;
+            LastRecurrenceCreated = lastRecurrenceCreated ?? DateTime.Now;
             ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
         }
