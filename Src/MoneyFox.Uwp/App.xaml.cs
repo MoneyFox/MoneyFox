@@ -43,7 +43,7 @@ namespace MoneyFox.Uwp
 
         private ActivationService CreateActivationService()
         {
-            return new ActivationService(this, typeof(AccountListViewModel), new Lazy<UIElement>(CreateShell));
+            return new ActivationService(typeof(AccountListViewModel), new Lazy<UIElement>(CreateShell));
         }
 
         private UIElement CreateShell()
