@@ -1,7 +1,6 @@
-﻿using System;
+﻿using MoneyFox.Domain.Entities;
 using System.Collections.Generic;
 using System.Linq;
-using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Common.QueryObjects
 {
