@@ -154,16 +154,19 @@ namespace MoneyFox.iOS
         private async Task SyncBackupAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
+            var mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
             if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
-                return;
+            {
+                await mediator.Send(new ClearPaymentsCommand());
+                await mediator.Send(new CreateRecurringPaymentsCommand());
+            }
 
             try
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
-                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
             }

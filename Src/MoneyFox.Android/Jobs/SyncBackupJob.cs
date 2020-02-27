@@ -67,14 +67,19 @@ namespace MoneyFox.Droid.Jobs
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
-            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService) return;
+            var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
+            {                
+                await mediator.Send(new ClearPaymentsCommand());
+                await mediator.Send(new CreateRecurringPaymentsCommand());
+                return;
+            }
 
             try
             {
                 var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
-                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
 
