@@ -58,6 +58,7 @@ namespace MoneyFox.Uwp.Services
                 // Tasks after activation
                 await StartupAsync();
             }
+            await StartupTasksService.StartupAsync();
         }
 
         private async Task InitializeAsync(object activationArgs)
@@ -75,7 +76,6 @@ namespace MoneyFox.Uwp.Services
             NavigationService navService = ConfigureNavigation();
             RegisterServices(navService);
 
-            await Singleton<BackgroundTaskService>.Instance.RegisterBackgroundTasksAsync();
             await JumpListService.InitializeAsync();
             ThemeSelectorService.Initialize();
         }
@@ -118,20 +118,11 @@ namespace MoneyFox.Uwp.Services
 
         private async Task HandleActivationAsync(object activationArgs)
         {
-            ActivationHandler activationHandler = GetActivationHandlers().FirstOrDefault(h => h.CanHandle(activationArgs));
-
-            if (activationHandler != null) await activationHandler.HandleAsync(activationArgs);
-
             if (IsInteractive(activationArgs))
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
                 if (defaultHandler.CanHandle(activationArgs)) await defaultHandler.HandleAsync(activationArgs);
             }
-        }
-
-        private IEnumerable<ActivationHandler> GetActivationHandlers()
-        {
-            yield return Singleton<BackgroundTaskService>.Instance;
         }
 
         private static async Task StartupAsync()
