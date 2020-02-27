@@ -7,11 +7,8 @@ namespace MoneyFox.Persistence.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "PaymentTag");
-
-            migrationBuilder.DropTable(
-                name: "Tags");
+            migrationBuilder.Sql("DROP TABLE IF EXISTS PaymentTag;");
+            migrationBuilder.Sql("DROP TABLE IF EXISTS Tags;");            
 
             migrationBuilder.AddColumn<DateTime>(
                 name: "LastRecurrenceCreated",
