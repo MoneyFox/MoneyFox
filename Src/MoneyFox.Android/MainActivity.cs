@@ -5,7 +5,6 @@ using Android.OS;
 using Android.Runtime;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
-using MoneyFox.Droid.Jobs;
 using MoneyFox.Presentation;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
@@ -25,13 +24,6 @@ namespace MoneyFox.Droid
     [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
-        private const int MESSAGE_SERVICE_SYNC_BACKUP_JOB_HANDLE = 3;
-
-        /// <summary>
-        ///     Constant for the sync backup Service.
-        /// </summary>
-        public static int MessageServiceSyncBackup => MESSAGE_SERVICE_SYNC_BACKUP_JOB_HANDLE;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             ParentActivityWrapper.ParentActivity = this;
@@ -53,26 +45,6 @@ namespace MoneyFox.Droid
 
             LoadApplication(new App());
             Platform.Init(this, savedInstanceState);
-
-            StartBackgroundServices();
-        }
-
-        private void StartBackgroundServices()
-        {
-            // Handler to create jobs.
-            var handler = new Handler(msg =>
-                                      {
-                                          if (msg.What == MESSAGE_SERVICE_SYNC_BACKUP_JOB_HANDLE)
-                                          {
-                                              var clearPaymentsJob = (SyncBackupJob) msg.Obj;
-                                              clearPaymentsJob.ScheduleTask();
-                                          }
-                                      });
-
-            // Start services and provide it a way to communicate with us.
-            var startServiceIntentSyncBackup = new Intent(this, typeof(SyncBackupJob));
-            startServiceIntentSyncBackup.PutExtra("messenger", new Messenger(handler));
-            StartService(startServiceIntentSyncBackup);
         }
 
         public override void OnBackPressed()

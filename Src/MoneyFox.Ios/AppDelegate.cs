@@ -1,33 +1,22 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
-using Autofac;
-using CommonServiceLocator;
+﻿using Autofac;
 using Foundation;
-using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Payments.Commands.ClearPayments;
-using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using MoneyFox.Presentation;
-using MoneyFox.Ui.Shared.Utilities;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
+using System;
+using System.IO;
 using UIKit;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 using XF.Material.iOS;
-using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
 
 #if !DEBUG
@@ -45,8 +34,6 @@ namespace MoneyFox.iOS
         // 15 minutes = 60 * 60 = 3600 seconds
         private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 3600;
 
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         /// <inheritdoc />
         public override bool FinishedLaunching(UIApplication uiApplication,
                                                NSDictionary launchOptions)
@@ -59,7 +46,6 @@ namespace MoneyFox.iOS
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
             RegisterServices();
-            RunAppStartAsync().FireAndForgetSafeAsync();
 
             Forms.Init();
             FormsMaterial.Init();
@@ -79,11 +65,6 @@ namespace MoneyFox.iOS
             var builder = new ContainerBuilder();
             builder.RegisterModule<IosModule>();
             ViewModelLocator.RegisterServices(builder);
-        }
-
-        protected async Task RunAppStartAsync()
-        {
-            await SyncBackupAsync();
         }
 
         private void InitLogger()
@@ -119,66 +100,6 @@ namespace MoneyFox.iOS
         {
             AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
             return true;
-        }
-
-        public override async void PerformFetch(UIApplication application,
-                                                Action<UIBackgroundFetchResult> completionHandler)
-        {
-            logManager.Debug("Background fetch started.");
-            var successful = false;
-            try
-            {
-                await SyncBackupAsync();
-
-                successful = true;
-                logManager.Debug("Background fetch finished successfully");
-            }
-            catch (Exception ex)
-            {
-                successful = false;
-                logManager.Warn(ex, "Background fetch finished unsuccessfully!");
-            }
-
-            completionHandler(successful
-                                  ? UIBackgroundFetchResult.NewData
-                                  : UIBackgroundFetchResult.Failed);
-        }
-
-        public override async void WillEnterForeground(UIApplication uiApplication)
-        {
-            base.WillEnterForeground(uiApplication);
-
-            await SyncBackupAsync();
-        }
-
-        private async Task SyncBackupAsync()
-        {
-            var settingsFacade = new SettingsFacade(new SettingsAdapter());
-            var mediator = ServiceLocator.Current.GetInstance<IMediator>();
-
-            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
-            {
-                await mediator.Send(new ClearPaymentsCommand());
-                await mediator.Send(new CreateRecurringPaymentsCommand());
-            }
-
-            try
-            {
-                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-                await backupService.RestoreBackupAsync();
-
-                await mediator.Send(new ClearPaymentsCommand());
-                await mediator.Send(new CreateRecurringPaymentsCommand());
-            }
-            catch (Exception ex)
-            {
-                logManager.Error(ex, "Sync Backup Failed.");
-                Debug.Write(ex);
-            }
-            finally
-            {
-                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            }
         }
     }
 }

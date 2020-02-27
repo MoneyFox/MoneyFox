@@ -168,7 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidModule.cs" />
-    <Compile Include="Jobs\SyncBackupJob.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Renderer\CustomEntryRenderer.cs" />
