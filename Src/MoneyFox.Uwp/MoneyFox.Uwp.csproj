@@ -172,6 +172,7 @@
     <Compile Include="Services\JumpListService.cs" />
     <Compile Include="Services\LoggerService.cs" />
     <Compile Include="Services\RateDisplayService.cs" />
+    <Compile Include="Services\StartupTasksService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Src\AsyncExtensions.cs" />
     <Compile Include="Src\BalanceCalculationService.cs" />

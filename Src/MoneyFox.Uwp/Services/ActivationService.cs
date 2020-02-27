@@ -58,6 +58,7 @@ namespace MoneyFox.Uwp.Services
                 // Tasks after activation
                 await StartupAsync();
             }
+            await StartupTasksService.StartupAsync();
         }
 
         private async Task InitializeAsync(object activationArgs)
