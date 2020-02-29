@@ -20,7 +20,7 @@ namespace MoneyFox.Application.Tests.Common
         [InlineData(PaymentRecurrence.Bimonthly, 62, true)]
         [InlineData(PaymentRecurrence.Quarterly, 94, true)]
         [InlineData(PaymentRecurrence.Biannually, 184, true)]
-        [InlineData(PaymentRecurrence.Yearly, 365, true)]
+        [InlineData(PaymentRecurrence.Yearly, 366, true)]
         [InlineData(PaymentRecurrence.Daily, 0, false)]
         [InlineData(PaymentRecurrence.Weekly, 5, false)]
         [InlineData(PaymentRecurrence.Biweekly, 10, false)]
