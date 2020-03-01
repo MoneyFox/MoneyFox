@@ -17,7 +17,6 @@ namespace MoneyFox.Application.Tests.Common
         [InlineData(PaymentRecurrence.Weekly, 8, true)]
         [InlineData(PaymentRecurrence.Biweekly, 14, true)]
         [InlineData(PaymentRecurrence.Monthly, 31, true)]
-        [InlineData(PaymentRecurrence.Bimonthly, 62, true)]
         [InlineData(PaymentRecurrence.Quarterly, 94, true)]
         [InlineData(PaymentRecurrence.Biannually, 184, true)]
         [InlineData(PaymentRecurrence.Yearly, 366, true)]
@@ -39,6 +38,18 @@ namespace MoneyFox.Application.Tests.Common
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
                                   .ShouldEqual(expectedResult);
+        }
+
+        [Fact]
+        public void CheckIfRepeatable_ValidatedRecurrence_Bimonthly()
+        {
+            var account = new Account("foo");
+
+            var payment = new Payment(DateTime.Today.AddMonths(-2), 105, PaymentType.Expense, account);
+            payment.AddRecurringPayment(PaymentRecurrence.Bimonthly, DateTime.Today);
+
+            RecurringPaymentHelper.CheckIfRepeatable(payment)
+                                  .ShouldEqual(true);
         }
 
         [Theory]
