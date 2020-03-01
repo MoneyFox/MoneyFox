@@ -61,7 +61,7 @@
     <PackageReference Include="NLog" Version="4.6.8" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991757" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.4.0.991757" />
     <PackageReference Include="XF.Material" Version="1.5.8" />
   </ItemGroup>
