@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
@@ -76,10 +77,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var mediatorMock = new Mock<IMediator>();
             var mapperMock = new Mock<IMapper>();
             var navigationServiceMock = new Mock<INavigationService>();
+            var dialogServiceMock = new Mock<IDialogService>();
 
             var addAccountVm = new AddAccountViewModel(mediatorMock.Object,
                                                        mapperMock.Object,
-                                                       null,
+                                                       dialogServiceMock.Object,
                                                        navigationServiceMock.Object);
             addAccountVm.SelectedAccount.Name = "Foo";
 
