@@ -106,10 +106,8 @@ namespace MoneyFox.Presentation.ViewModels
 
         private readonly IMapper mapper;
         private readonly IMediator mediator;
-        private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
-        private readonly ISettingsFacade settingsFacade;
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
 
         private PaymentRecurrence recurrence;
@@ -123,13 +121,9 @@ namespace MoneyFox.Presentation.ViewModels
         protected ModifyPaymentViewModel(IMediator mediator,
                                          IMapper mapper,
                                          IDialogService dialogService,
-                                         ISettingsFacade settingsFacade,
-                                         IBackupService backupService,
                                          INavigationService navigationService)
         {
             this.dialogService = dialogService;
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
             this.navigationService = navigationService;
             this.mediator = mediator;
             this.mapper = mapper;

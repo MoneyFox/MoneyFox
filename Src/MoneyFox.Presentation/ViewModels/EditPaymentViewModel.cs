@@ -33,8 +33,6 @@ namespace MoneyFox.Presentation.ViewModels
                                     INavigationService navigationService) : base(mediator,
                                                                                  mapper,
                                                                                  dialogService,
-                                                                                 settingsFacade,
-                                                                                 backupService,
                                                                                  navigationService)
         {
             this.mediator = mediator;
