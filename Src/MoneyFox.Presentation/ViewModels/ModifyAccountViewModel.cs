@@ -47,7 +47,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBase);
+        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBaseAsync);
 
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
@@ -86,7 +86,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task SaveAccountBase()
+        private async Task SaveAccountBaseAsync()
         {
             if (string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
@@ -94,8 +94,10 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
                 SelectedAccount.CurrentBalance = convertedValue;
+            }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
@@ -103,10 +105,9 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
+            await DialogService.ShowLoadingDialogAsync();
             await SaveAccount();
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.UploadBackupAsync();
+            await DialogService.HideLoadingDialogAsync();
         }
 
         private void Cancel()
