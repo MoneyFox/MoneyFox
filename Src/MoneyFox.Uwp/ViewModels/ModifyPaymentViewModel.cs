@@ -233,10 +233,9 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
+            await dialogService.ShowLoadingDialogAsync();
             await SavePaymentAsync();
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            await backupService.UploadBackupAsync();
+            await dialogService.HideLoadingDialogAsync();
         }
 
         /// <summary>
