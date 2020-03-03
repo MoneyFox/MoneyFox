@@ -6,8 +6,6 @@ using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
@@ -19,23 +17,17 @@ namespace MoneyFox.Uwp.ViewModels
 {
     public class EditAccountViewModel : ModifyAccountViewModel
     {
-        private readonly IBackupService backupService;
         private readonly IMapper mapper;
         private readonly IMediator mediator;
-        private readonly ISettingsFacade settingsFacade;
-
+     
         public EditAccountViewModel(IMediator mediator,
                                     IMapper mapper,
-                                    ISettingsFacade settingsFacade,
-                                    IBackupService backupService,
                                     IDialogService dialogService,
                                     NavigationService navigationService)
-            : base(settingsFacade, backupService, dialogService, navigationService)
+            : base(dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
         }
 
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccount);
@@ -58,10 +50,7 @@ namespace MoneyFox.Uwp.ViewModels
             if (await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
-
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 NavigationService.GoBack();
-                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
             }
         }
     }
