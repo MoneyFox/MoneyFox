@@ -47,34 +47,7 @@
                                   Margin="0,6,0,0"
                                   Header="{x:Bind resources:Strings.AutobackupLabel}"
                                   IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
-
-                    <StackPanel Margin="0,12,0,0">
-                        <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                   Text="{x:Bind resources:Strings.LastExecutionBackgroundOperationsLabel}" />
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                       Text="{x:Bind resources:Strings.LastExecutionSyncBackupLabel}" />
-
-                            <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                       Text="{Binding LastExecutionSynBackup}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                       Text="{x:Bind resources:Strings.LastExecutionClearPaymentLabel}" />
-                            <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                       Text="{Binding LastExecutionClearPayments}" />
-                        </StackPanel>
-
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                       Text="{x:Bind resources:Strings.LastExecutionRecurringPaymentLabel}" />
-                            <TextBlock Style="{ThemeResource DeemphasizedLabelStyle}"
-                                       Text="{Binding LastExecutionCreateRecurringPayments}" />
-                        </StackPanel>
-                    </StackPanel>
-
+                    
                 </StackPanel>
 
                 <!-- Regional Settings -->

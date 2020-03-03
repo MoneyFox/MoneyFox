@@ -29,9 +29,5 @@ namespace MoneyFox.Uwp.ViewModels.Settings
                 RaisePropertyChanged();
             }
         }
-
-        public DateTime LastExecutionSynBackup => settingsFacade.LastExecutionTimeStampSyncBackup;
-        public DateTime LastExecutionClearPayments => settingsFacade.LastExecutionTimeStampClearPayments;
-        public DateTime LastExecutionCreateRecurringPayments => settingsFacade.LastExecutionTimeStampRecurringPayments;
     }
 }

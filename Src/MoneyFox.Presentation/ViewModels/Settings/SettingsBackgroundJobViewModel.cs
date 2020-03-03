@@ -1,5 +1,4 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Facades;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
@@ -10,10 +9,6 @@ namespace MoneyFox.Presentation.ViewModels.Settings
         ///     Indicates if the autobackup is enabled or disabled.
         /// </summary>
         bool IsAutoBackupEnabled { get; }
-
-        DateTime LastExecutionSynBackup { get; }
-        DateTime LastExecutionClearPayments { get; }
-        DateTime LastExecutionCreateRecurringPayments { get; }
     }
 
     /// <inheritdoc cref="ISettingsBackgroundJobViewModel" />
@@ -41,9 +36,5 @@ namespace MoneyFox.Presentation.ViewModels.Settings
                 RaisePropertyChanged();
             }
         }
-
-        public DateTime LastExecutionSynBackup => settingsFacade.LastExecutionTimeStampSyncBackup;
-        public DateTime LastExecutionClearPayments => settingsFacade.LastExecutionTimeStampClearPayments;
-        public DateTime LastExecutionCreateRecurringPayments => settingsFacade.LastExecutionTimeStampRecurringPayments;
     }
 }

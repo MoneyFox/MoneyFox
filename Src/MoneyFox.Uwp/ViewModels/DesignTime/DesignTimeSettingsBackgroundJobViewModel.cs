@@ -1,5 +1,4 @@
-﻿using System;
-using MoneyFox.Uwp.ViewModels.Settings;
+﻿using MoneyFox.Uwp.ViewModels.Settings;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
@@ -7,9 +6,5 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
     {
         public bool IsAutoBackupEnabled { get; } = true;
         public int BackupSyncRecurrence { get; } = 3;
-
-        public DateTime LastExecutionSynBackup { get; }
-        public DateTime LastExecutionClearPayments { get; }
-        public DateTime LastExecutionCreateRecurringPayments { get; }
     }
 }
