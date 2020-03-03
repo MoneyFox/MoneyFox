@@ -36,7 +36,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
                              .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
-            settingsFacadeMock.Setup(x => x.LastExecutionTimeStampSyncBackup);
+            settingsFacadeMock.Setup(x => x.LastDatabaseUpdate);
         }
 
         public void Dispose()
@@ -88,6 +88,47 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
 
             // Assert
             (await context.Payments.FindAsync(payment1.Id)).Amount.ShouldEqual(payment1.Amount);
+        }
+
+        [Fact]
+        public async Task UploadBackupOnUpdatePayment()
+        {
+            // Arrange
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
+            await context.AddAsync(payment1);
+            await context.SaveChangesAsync();
+
+            payment1.UpdatePayment(payment1.Date, 100, payment1.Type, payment1.ChargedAccount);
+
+            // Act
+            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object)
+               .Handle(new UpdatePaymentCommand(payment1.Id,
+                                                payment1.Date,
+                                                payment1.Amount,
+                                                payment1.IsCleared,
+                                                payment1.Type,
+                                                payment1.Note,
+                                                payment1.IsRecurring,
+                                                payment1.Category != null
+                                                ? payment1.Category.Id
+                                                : 0,
+                                                payment1.ChargedAccount != null
+                                                ? payment1.ChargedAccount.Id
+                                                : 0,
+                                                payment1.TargetAccount != null
+                                                ? payment1.TargetAccount.Id
+                                                : 0,
+                                                false,
+                                                null,
+                                                null,
+                                                null),
+                       default);
+
+            // Assert
+            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
         }
     }
 }

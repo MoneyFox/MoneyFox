@@ -59,7 +59,7 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
-                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 await backupService.UploadBackupAsync();
 
                 return Unit.Value;

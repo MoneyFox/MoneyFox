@@ -34,7 +34,7 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
                 await contextAdapter.Context.Accounts.AddAsync(request.AccountToSave, cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
-                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 await backupService.UploadBackupAsync();
 
                 return Unit.Value;
