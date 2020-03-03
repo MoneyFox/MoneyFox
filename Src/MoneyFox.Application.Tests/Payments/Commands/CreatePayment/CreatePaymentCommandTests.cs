@@ -36,7 +36,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
                              .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
-            settingsFacadeMock.Setup(x => x.LastExecutionTimeStampSyncBackup);
+            settingsFacadeMock.SetupSet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>());
         }
 
         public void Dispose()
@@ -85,7 +85,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
-            settingsFacadeMock.Verify(x => x.LastExecutionTimeStampSyncBackup, Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
         }
 
         [Theory]
