@@ -22,8 +22,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     {
         private readonly Mock<IMediator> mediatorMock;
         private readonly Mock<IMapper> mapperMock;
-        private readonly Mock<ISettingsFacade> settingsFacadeMock;
-        private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
         private readonly Mock<INavigationService> navigationServiceMock;
 
@@ -31,8 +29,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             mediatorMock = new Mock<IMediator>();
             mapperMock = new Mock<IMapper>();
-            settingsFacadeMock = new Mock<ISettingsFacade>();
-            backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
 
@@ -51,8 +47,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var editAccountVm = new EditAccountViewModel(mediatorMock.Object,
                                                          mapperMock.Object,
-                                                         settingsFacadeMock.Object,
-                                                         backupServiceMock.Object,
                                                          dialogServiceMock.Object,
                                                          navigationServiceMock.Object);
 
@@ -75,8 +69,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var editAccountVm = new EditAccountViewModel(mediatorMock.Object,
                                                          mapperMock.Object,
-                                                         settingsFacadeMock.Object,
-                                                         backupServiceMock.Object,
                                                          dialogServiceMock.Object,
                                                          navigationServiceMock.Object);
 
@@ -107,8 +99,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var editAccountVm = new EditAccountViewModel(mediatorMock.Object,
                                                          mapperMock.Object,
-                                                         settingsFacadeMock.Object,
-                                                         backupServiceMock.Object,
                                                          dialogServiceMock.Object,
                                                          navigationServiceMock.Object);
             editAccountVm.SelectedAccount.Name = "Foo";
