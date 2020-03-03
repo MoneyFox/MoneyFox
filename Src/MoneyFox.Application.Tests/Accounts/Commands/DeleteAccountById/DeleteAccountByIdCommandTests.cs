@@ -36,7 +36,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
                              .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
-            settingsFacadeMock.SetupSet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>());
+            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
         }
 
         public void Dispose()

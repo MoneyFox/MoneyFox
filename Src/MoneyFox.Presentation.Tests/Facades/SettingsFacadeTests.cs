@@ -74,41 +74,5 @@ namespace MoneyFox.Presentation.Tests.Facades
             // Assert
             settingsfacade.IsLoggedInToBackupService.ShouldBeFalse();
         }
-
-        [Fact]
-        public void Ctor_DefaultValues_LastExecutionTimeStampSyncBackupMinDate()
-        {
-            // Arrange
-
-            // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
-
-            // Assert
-            settingsfacade.LastExecutionTimeStampSyncBackup.ShouldEqual(DateTime.MinValue);
-        }
-
-        [Fact]
-        public void Ctor_DefaultValues_LastExecutionTimeStampClearPaymentsMinDate()
-        {
-            // Arrange
-
-            // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
-
-            // Assert
-            settingsfacade.LastExecutionTimeStampClearPayments.ShouldEqual(DateTime.MinValue);
-        }
-
-        [Fact]
-        public void Ctor_DefaultValues_LastExecutionTimeStampRecurringPaymentsMinDate()
-        {
-            // Arrange
-
-            // Act
-            var settingsfacade = new SettingsFacade(settingsAdapter);
-
-            // Assert
-            settingsfacade.LastExecutionTimeStampRecurringPayments.ShouldEqual(DateTime.MinValue);
-        }
     }
 }

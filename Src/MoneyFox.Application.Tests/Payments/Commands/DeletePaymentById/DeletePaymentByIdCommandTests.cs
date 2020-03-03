@@ -33,7 +33,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
-            settingsFacadeMock.SetupSet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>());
+            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
         }
 
         public void Dispose()
@@ -82,7 +82,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);
-            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
         }
     }
 }

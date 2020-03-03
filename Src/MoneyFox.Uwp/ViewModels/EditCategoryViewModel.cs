@@ -66,7 +66,7 @@ namespace MoneyFox.Uwp.ViewModels
                 await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
 
-                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 backupService.UploadBackupAsync().FireAndForgetSafeAsync();
                 await CancelCommand.ExecuteAsync();
             }

@@ -59,7 +59,7 @@ namespace MoneyFox.Uwp.ViewModels
             {
                 await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
 
-                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 NavigationService.GoBack();
                 backupService.UploadBackupAsync().FireAndForgetSafeAsync();
             }

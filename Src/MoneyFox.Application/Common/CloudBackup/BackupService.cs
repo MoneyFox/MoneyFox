@@ -134,7 +134,6 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             await DownloadBackupAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
         }
 
         private async Task DownloadBackupAsync()
