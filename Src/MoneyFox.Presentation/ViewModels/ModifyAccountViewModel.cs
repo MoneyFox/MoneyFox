@@ -106,7 +106,7 @@ namespace MoneyFox.Presentation.ViewModels
             await SaveAccount();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.UploadBackupAsync().FireAndForgetSafeAsync();
+            await backupService.UploadBackupAsync();
         }
 
         private void Cancel()

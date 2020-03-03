@@ -236,10 +236,7 @@ namespace MoneyFox.Uwp.ViewModels
             await SavePaymentAsync();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-
-#pragma warning disable 4014
-            backupService.UploadBackupAsync();
-#pragma warning restore 4014
+            await backupService.UploadBackupAsync();
         }
 
         /// <summary>

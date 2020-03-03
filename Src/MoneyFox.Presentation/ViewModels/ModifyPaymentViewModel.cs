@@ -136,7 +136,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             selectedPayment = new PaymentViewModel();
 
-            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessage(message));
+            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
         }
 
         /// <summary>
@@ -312,17 +312,14 @@ namespace MoneyFox.Presentation.ViewModels
             await SavePayment();
 
             settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-
-#pragma warning disable 4014
-            backupService.UploadBackupAsync();
-#pragma warning restore 4014
+            await backupService.UploadBackupAsync();
         }
 
         /// <summary>
         ///     Moved to own method for debugg reasons
         /// </summary>
-        /// <param name="message">Message stent.</param>
-        private async Task ReceiveMessage(CategorySelectedMessage message)
+        /// <param name="message">Message sent.</param>
+        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if (SelectedPayment == null || message == null) return;
             SelectedPayment.Category =
