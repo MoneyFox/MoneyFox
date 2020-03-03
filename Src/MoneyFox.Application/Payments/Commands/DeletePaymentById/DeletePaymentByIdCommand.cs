@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 
@@ -26,11 +28,13 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
         {
             private readonly IContextAdapter contextAdapter;
             private readonly IBackupService backupService;
+            private readonly ISettingsFacade settingsFacade;
 
-            public Handler(IContextAdapter contextAdapter, IBackupService backupService)
+            public Handler(IContextAdapter contextAdapter, IBackupService backupService, ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
+                this.settingsFacade = settingsFacade;
             }
 
             public async Task<Unit> Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
@@ -54,9 +58,8 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 contextAdapter.Context.Payments.Remove(entityToDelete);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
-#pragma warning disable 4014
-                backupService.UploadBackupAsync();
-#pragma warning restore 4014
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+                await backupService.UploadBackupAsync();
 
                 return Unit.Value;
             }
