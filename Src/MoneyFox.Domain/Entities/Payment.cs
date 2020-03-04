@@ -51,13 +51,7 @@ namespace MoneyFox.Domain.Entities
 
         public PaymentType Type { get; private set; }
 
-        private string note;
-
-        public string Note
-        {
-            private set => note = value;
-            get => note ?? string.Empty;
-        }
+        public string? Note { get; set; }
 
         public bool IsRecurring { get; private set; }
 
@@ -67,7 +61,14 @@ namespace MoneyFox.Domain.Entities
 
         public virtual Category? Category { get; private set; }
 
-        [Required] public virtual Account ChargedAccount { get; private set; }
+        private Account? chargedAccount;
+
+        [Required]
+        public virtual Account? ChargedAccount
+        {
+            get => chargedAccount;
+            private set => chargedAccount = value;
+        }
 
         public virtual Account? TargetAccount { get; private set; }
 
@@ -81,6 +82,8 @@ namespace MoneyFox.Domain.Entities
                                   Category? category = null,
                                   string note = "")
         {
+            if(ChargedAccount == null) throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
+
             ChargedAccount.RemovePaymentAmount(this);
             TargetAccount?.RemovePaymentAmount(this);
 
@@ -122,6 +125,8 @@ namespace MoneyFox.Domain.Entities
         public void ClearPayment()
         {
             IsCleared = Date.Date <= DateTime.Today.Date;
+
+            if (ChargedAccount == null) throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
             ChargedAccount.AddPaymentAmount(this);
 
             if(Type == PaymentType.Transfer)

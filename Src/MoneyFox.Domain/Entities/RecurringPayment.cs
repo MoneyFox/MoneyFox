@@ -65,13 +65,7 @@ namespace MoneyFox.Domain.Entities
 
         public PaymentRecurrence Recurrence { get; private set; }
 
-        private string note;
-
-        public string Note
-        {
-            private set => note = value;
-            get => note ?? string.Empty;
-        }
+        public string? Note { get; set; }
 
         public DateTime LastRecurrenceCreated { get; private set; }
 
@@ -81,6 +75,7 @@ namespace MoneyFox.Domain.Entities
 
         public virtual Category? Category { get; private set; }
 
+        [Required]
         public virtual Account ChargedAccount { get; private set; }
 
         public virtual Account? TargetAccount { get; private set; }
