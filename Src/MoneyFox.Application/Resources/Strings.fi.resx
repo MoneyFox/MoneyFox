@@ -713,18 +713,6 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   <data name="BalanceLabel" xml:space="preserve">
     <value>Saldo</value>
   </data>
-  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Viimeksi suoritettu:</value>
-  </data>
-  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
-    <value>Maksunpuhdistus:</value>
-  </data>
-  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
-    <value>Luo toistuvia maksuja:</value>
-  </data>
-  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
-    <value>Varmuuskopion synkronointi:</value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Valitse tumma tai kirkas teema. Ole hyvä, ja käynnistä applikaatio uudelleen tehtävienhallinnasta.</value>
   </data>
@@ -862,5 +850,14 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
     <value>Login Required</value>
+  </data>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Saving Account...</value>
+  </data>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Saving Category...</value>
+  </data>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Saving Payment...</value>
   </data>
 </root>
