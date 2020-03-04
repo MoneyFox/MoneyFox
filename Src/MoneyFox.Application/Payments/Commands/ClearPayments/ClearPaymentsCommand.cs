@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Commands.ClearPayments
 {
@@ -31,7 +31,7 @@ namespace MoneyFox.Application.Payments.Commands.ClearPayments
                                                                       .AreNotCleared()
                                                                       .ToListAsync();
 
-                foreach (Payment payment in unclearedPayments)
+                foreach(Payment payment in unclearedPayments)
                 {
                     payment.ClearPayment();
                 }

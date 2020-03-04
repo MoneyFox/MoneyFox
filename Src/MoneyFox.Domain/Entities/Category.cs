@@ -11,7 +11,8 @@ namespace MoneyFox.Domain.Entities
 #pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         private Category()
 #pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-        { }
+        {
+        }
 
         public Category(string name, string note = "")
         {
@@ -43,7 +44,7 @@ namespace MoneyFox.Domain.Entities
 
         public void UpdateData(string name, string note = "")
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if(string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(nameof(name));
 
             Name = name;

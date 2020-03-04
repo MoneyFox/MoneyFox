@@ -6,7 +6,7 @@ namespace MoneyFox.Application.Common.Extensions
     public static class StreamExtension
     {
         /// <summary>
-        ///     Reads the bytes of a stream and returns them in an array.
+        /// Reads the bytes of a stream and returns them in an array.
         /// </summary>
         /// <param name="stream">Stream to read.</param>
         /// <returns></returns>
@@ -14,7 +14,7 @@ namespace MoneyFox.Application.Common.Extensions
         {
             long originalPosition = 0;
 
-            if (stream.CanSeek)
+            if(stream.CanSeek)
             {
                 originalPosition = stream.Position;
                 stream.Position = 0;
@@ -27,14 +27,14 @@ namespace MoneyFox.Application.Common.Extensions
                 var totalBytesRead = 0;
                 int bytesRead;
 
-                while ((bytesRead = stream.Read(readBuffer, totalBytesRead, readBuffer.Length - totalBytesRead)) > 0)
+                while((bytesRead = stream.Read(readBuffer, totalBytesRead, readBuffer.Length - totalBytesRead)) > 0)
                 {
                     totalBytesRead += bytesRead;
 
-                    if (totalBytesRead == readBuffer.Length)
+                    if(totalBytesRead == readBuffer.Length)
                     {
                         int nextByte = stream.ReadByte();
-                        if (nextByte != -1)
+                        if(nextByte != -1)
                         {
                             var temp = new byte[readBuffer.Length * 2];
                             Buffer.BlockCopy(readBuffer, 0, temp, 0, readBuffer.Length);
@@ -46,7 +46,7 @@ namespace MoneyFox.Application.Common.Extensions
                 }
 
                 byte[] buffer = readBuffer;
-                if (readBuffer.Length != totalBytesRead)
+                if(readBuffer.Length != totalBytesRead)
                 {
                     buffer = new byte[totalBytesRead];
                     Buffer.BlockCopy(readBuffer, 0, buffer, 0, totalBytesRead);
@@ -56,7 +56,8 @@ namespace MoneyFox.Application.Common.Extensions
             }
             finally
             {
-                if (stream.CanSeek) stream.Position = originalPosition;
+                if(stream.CanSeek)
+                    stream.Position = originalPosition;
             }
         }
     }

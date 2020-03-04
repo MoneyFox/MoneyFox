@@ -1,34 +1,34 @@
-﻿using System;
+﻿using Microsoft.Graph;
+using Microsoft.Identity.Client;
+using MoneyFox.Application.Common.Constants;
+using MoneyFox.Domain.Exceptions;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.Graph;
-using Microsoft.Identity.Client;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Domain.Exceptions;
-using NLog;
 using Logger = NLog.Logger;
 
 namespace MoneyFox.Application.Common.CloudBackup
 {
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public class OneDriveService : ICloudBackupService
     {
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string BACKUP_NAME_TEMP = "moneyfox.db_upload";
 
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
-        private readonly string[] scopes = {"Files.ReadWrite"};
+        private readonly string[] scopes = { "Files.ReadWrite" };
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private readonly IPublicClientApplication publicClientApplication;
 
         /// <summary>
-        ///     Constructor
+        /// Constructor
         /// </summary>
         public OneDriveService(IPublicClientApplication publicClientApplication)
         {
@@ -40,7 +40,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private DriveItem ArchiveFolder { get; set; }
 
         /// <summary>
-        ///     Login User to OneDrive.
+        /// Login User to OneDrive.
         /// </summary>
         public async Task LoginAsync()
         {
@@ -64,7 +64,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                                                                    return Task.CompletedTask;
                                                                                                }));
             }
-            catch (MsalUiRequiredException ex)
+            catch(MsalUiRequiredException ex)
             {
                 logManager.Debug(ex);
                 // pop the browser for the interactive experience
@@ -73,9 +73,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                                                          .ParentActivity) // this is required for Android
                                                           .ExecuteAsync();
             }
-            catch (MsalClientException ex)
+            catch(MsalClientException ex)
             {
-                if (ex.ErrorCode == ERROR_CODE_CANCELED)
+                if(ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     logManager.Info(ex);
                     throw new BackupOperationCanceledException();
@@ -87,7 +87,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         }
 
         /// <summary>
-        ///     Logout User from OneDrive.
+        /// Logout User from OneDrive.
         /// </summary>
         public async Task LogoutAsync()
         {
@@ -97,15 +97,15 @@ namespace MoneyFox.Application.Common.CloudBackup
 
                 List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
 
-                while (accounts.Any())
+                while(accounts.Any())
                 {
                     await publicClientApplication.RemoveAsync(accounts.FirstOrDefault());
                     accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
                 }
             }
-            catch (MsalClientException ex)
+            catch(MsalClientException ex)
             {
-                if (ex.ErrorCode == ERROR_CODE_CANCELED)
+                if(ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     logManager.Info(ex);
                     throw new BackupOperationCanceledException();
@@ -114,24 +114,25 @@ namespace MoneyFox.Application.Common.CloudBackup
                 logManager.Error(ex);
                 throw;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logManager.Error(ex);
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<bool> UploadAsync(Stream dataToUpload)
         {
             try
             {
                 logManager.Info("Upload Backup.");
 
-                if (GraphServiceClient == null)
+                if(GraphServiceClient == null)
                 {
                     await LoginAsync();
-                    if (GraphServiceClient == null) throw new BackupAuthenticationFailedException("Was not able to automatically login.");
+                    if(GraphServiceClient == null)
+                        throw new BackupAuthenticationFailedException("Was not able to automatically login.");
                 }
 
                 var uploadedItem = await GraphServiceClient
@@ -151,9 +152,9 @@ namespace MoneyFox.Application.Common.CloudBackup
 
                 return uploadedItem != null;
             }
-            catch (MsalClientException ex)
+            catch(MsalClientException ex)
             {
-                if (ex.ErrorCode == ERROR_CODE_CANCELED)
+                if(ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     logManager.Info(ex);
                     await RestoreArchivedBackupInCaseOfError();
@@ -164,13 +165,13 @@ namespace MoneyFox.Application.Common.CloudBackup
                 await RestoreArchivedBackupInCaseOfError();
                 throw;
             }
-            catch (OperationCanceledException ex)
+            catch(OperationCanceledException ex)
             {
                 logManager.Info(ex);
                 await RestoreArchivedBackupInCaseOfError();
                 throw new BackupOperationCanceledException(ex);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logManager.Error(ex);
                 await RestoreArchivedBackupInCaseOfError();
@@ -203,7 +204,6 @@ namespace MoneyFox.Application.Common.CloudBackup
                                         .Request()
                                         .GetAsync();
 
-
             var updateItem = new DriveItem
             {
                 ParentReference = new ItemReference { Id = appRoot.Id },
@@ -217,17 +217,18 @@ namespace MoneyFox.Application.Common.CloudBackup
                 .UpdateAsync(updateItem);
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<Stream> RestoreAsync(string backupName, string dbName)
         {
             try
             {
                 logManager.Info("Restore Backup.");
 
-                if (GraphServiceClient == null)
+                if(GraphServiceClient == null)
                 {
                     await LoginAsync();
-                    if (GraphServiceClient == null) throw new BackupAuthenticationFailedException("Was not able to automatically login.");
+                    if(GraphServiceClient == null)
+                        throw new BackupAuthenticationFailedException("Was not able to automatically login.");
                 }
 
                 DriveItem existingBackup = (await GraphServiceClient
@@ -235,18 +236,18 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                  .Drive
                                                  .Special
                                                  .AppRoot.Children
-                                                 .Request()
-                                                 .GetAsync())
+                                                         .Request()
+                                                         .GetAsync())
                    .FirstOrDefault(x => x.Name == backupName);
 
-                if (existingBackup == null)
+                if(existingBackup == null)
                     throw new NoBackupFoundException($"No backup with the name {backupName} was found.");
 
                 return await GraphServiceClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
             }
-            catch (MsalClientException ex)
+            catch(MsalClientException ex)
             {
-                if (ex.ErrorCode == ERROR_CODE_CANCELED)
+                if(ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     logManager.Info(ex);
                     throw new BackupOperationCanceledException();
@@ -255,24 +256,25 @@ namespace MoneyFox.Application.Common.CloudBackup
                 logManager.Error(ex);
                 throw;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logManager.Error(ex);
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<DateTime> GetBackupDateAsync()
         {
             try
             {
                 logManager.Info("Get Backupdate.");
 
-                if (GraphServiceClient == null)
+                if(GraphServiceClient == null)
                 {
                     await LoginAsync();
-                    if (GraphServiceClient == null) return DateTime.MinValue;
+                    if(GraphServiceClient == null)
+                        return DateTime.MinValue;
                 }
 
                 DriveItem existingBackup = (await GraphServiceClient
@@ -280,33 +282,34 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                  .Drive
                                                  .Special
                                                  .AppRoot.Children
-                                                 .Request()
-                                                 .GetAsync())
+                                                         .Request()
+                                                         .GetAsync())
                    .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
-                if (existingBackup != null)
+                if(existingBackup != null)
                     return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
 
                 return DateTime.MinValue;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logManager.Error(ex);
                 return DateTime.MinValue;
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public async Task<List<string>> GetFileNamesAsync()
         {
             try
             {
                 logManager.Info("Get Filenames.");
 
-                if (GraphServiceClient == null)
+                if(GraphServiceClient == null)
                 {
                     await LoginAsync();
-                    if (GraphServiceClient == null) throw new BackupAuthenticationFailedException("Was not able to automatically login.");
+                    if(GraphServiceClient == null)
+                        throw new BackupAuthenticationFailedException("Was not able to automatically login.");
                 }
 
                 return (await GraphServiceClient
@@ -314,12 +317,12 @@ namespace MoneyFox.Application.Common.CloudBackup
                              .Drive
                              .Special
                              .AppRoot.Children
-                             .Request()
-                             .GetAsync())
+                                     .Request()
+                                     .GetAsync())
                       .Select(x => x.Name)
                       .ToList();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logManager.Error(ex);
                 throw new BackupAuthenticationFailedException(ex);
@@ -336,7 +339,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                                                       .Request()
                                                                                       .GetAsync();
 
-            if (archiveBackups.Count < BACKUP_ARCHIVE_COUNT)
+            if(archiveBackups.Count < BACKUP_ARCHIVE_COUNT)
                 return;
             DriveItem oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
 
@@ -354,16 +357,16 @@ namespace MoneyFox.Application.Common.CloudBackup
                                             .Drive
                                             .Special
                                             .AppRoot.Children
-                                            .Request()
-                                            .GetAsync())
+                                                    .Request()
+                                                    .GetAsync())
                .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
-            if (currentBackup == null)
+            if(currentBackup == null)
                 return;
 
             var updateItem = new DriveItem
                              {
-                                 ParentReference = new ItemReference {Id = ArchiveFolder.Id},
+                                 ParentReference = new ItemReference { Id = ArchiveFolder.Id },
                                  Name = string.Format(CultureInfo.InvariantCulture,
                                                       DatabaseConstants.BACKUP_ARCHIVE_NAME,
                                                       DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss", CultureInfo.InvariantCulture))
@@ -384,11 +387,11 @@ namespace MoneyFox.Application.Common.CloudBackup
                                             .Drive
                                             .Special
                                             .AppRoot.Children
-                                            .Request()
-                                            .GetAsync())
+                                                    .Request()
+                                                    .GetAsync())
                .FirstOrDefault(x => x.Name == BACKUP_NAME_TEMP);
 
-            if (backup_upload == null)
+            if(backup_upload == null)
             {
                 return;
             }
@@ -436,8 +439,8 @@ namespace MoneyFox.Application.Common.CloudBackup
                                  .Drive
                                  .Special
                                  .AppRoot.Children
-                                 .Request()
-                                 .AddAsync(folderToCreate);
+                                         .Request()
+                                         .AddAsync(folderToCreate);
         }
     }
 }

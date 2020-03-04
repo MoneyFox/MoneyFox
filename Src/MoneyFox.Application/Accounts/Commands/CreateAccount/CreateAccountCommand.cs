@@ -1,11 +1,11 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Accounts.Commands.CreateAccount
 {
@@ -28,7 +28,7 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
                 this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
                 await contextAdapter.Context.Accounts.AddAsync(request.AccountToSave, cancellationToken);

@@ -5,12 +5,12 @@ using System.Linq;
 namespace MoneyFox.Application.Common.QueryObjects
 {
     /// <summary>
-    ///     Provides Extensions for categories queries.
+    /// Provides Extensions for categories queries.
     /// </summary>
     public static class CategoryQueryObjects
     {
         /// <summary>
-        ///     Adds a filter to a query to find all category with the passed name.
+        /// Adds a filter to a query to find all category with the passed name.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <param name="name">Name to filter for</param>
@@ -21,7 +21,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter for Categories who have a certain string in the name.
+        /// Adds a filter for Categories who have a certain string in the name.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <param name="searchterm">Search term to look for.</param>
@@ -32,7 +32,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Orders a category query by name.
+        /// Orders a category query by name.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Ordered Query</returns>
