@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists
 {

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Common.Interfaces;
@@ -18,6 +12,12 @@ using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -88,7 +88,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                                          navigationServiceMock.Object);
 
             await editPaymentVm.InitializeCommand.ExecuteAsync();
-            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel {Name = "asdf"};
+            editPaymentVm.SelectedPayment.ChargedAccount = new AccountViewModel { Name = "asdf" };
 
             // Act
             editPaymentVm.AmountString = amountString;

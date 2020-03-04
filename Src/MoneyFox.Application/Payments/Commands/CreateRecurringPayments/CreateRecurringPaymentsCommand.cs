@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
 {
@@ -49,7 +49,9 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
 
                 List<Payment> recPaymentsToCreate = recurringPayments
                                                    .Where(x => x.RelatedPayments.Any())
-                                                   .Where(x => RecurringPaymentHelper.CheckIfRepeatable(x.RelatedPayments.OrderByDescending(d => d.Date).First()))
+                                                   .Where(x => RecurringPaymentHelper.CheckIfRepeatable(x.RelatedPayments
+                                                                                                         .OrderByDescending(d => d.Date)
+                                                                                                         .First()))
                                                    .Select(x => new Payment(RecurringPaymentHelper.GetPaymentDateFromRecurring(x),
                                                                             x.Amount,
                                                                             x.Type,
@@ -60,7 +62,7 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                                             x))
                                                    .ToList();
 
-                recPaymentsToCreate.ForEach(x => x.RecurringPayment.SetLastRecurrenceCreatedDate());
+                recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
 
                 contextAdapter.Context.Payments.AddRange(recPaymentsToCreate);
                 await contextAdapter.Context.SaveChangesAsync();

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Windows.ApplicationModel.Activation;
-using Windows.Globalization;
-using Windows.System.UserProfile;
-using Windows.UI.Xaml;
-using Autofac;
-using Microsoft.Toolkit.Helpers;
+﻿using Autofac;
 using MoneyFox.Application.Common;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.Views;
@@ -15,6 +6,13 @@ using MoneyFox.Uwp.Views.Settings;
 using MoneyFox.Uwp.Views.Statistics;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Activation;
+using Windows.Globalization;
+using Windows.System.UserProfile;
+using Windows.UI.Xaml;
 using Frame = Windows.UI.Xaml.Controls.Frame;
 
 #if !DEBUG
@@ -38,7 +36,7 @@ namespace MoneyFox.Uwp.Services
 
         public async Task ActivateAsync(object activationArgs)
         {
-            if (IsInteractive(activationArgs))
+            if(IsInteractive(activationArgs))
             {
                 // Initialize things like registering background task before the app is loaded
                 await InitializeAsync(activationArgs);
@@ -50,7 +48,7 @@ namespace MoneyFox.Uwp.Services
 
             await HandleActivationAsync(activationArgs);
 
-            if (IsInteractive(activationArgs))
+            if(IsInteractive(activationArgs))
             {
                 // Ensure the current window is active
                 Window.Current.Activate();
@@ -118,10 +116,11 @@ namespace MoneyFox.Uwp.Services
 
         private async Task HandleActivationAsync(object activationArgs)
         {
-            if (IsInteractive(activationArgs))
+            if(IsInteractive(activationArgs))
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
-                if (defaultHandler.CanHandle(activationArgs)) await defaultHandler.HandleAsync(activationArgs);
+                if(defaultHandler.CanHandle(activationArgs))
+                    await defaultHandler.HandleAsync(activationArgs);
             }
         }
 

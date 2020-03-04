@@ -12,7 +12,8 @@ namespace MoneyFox.Presentation.ViewModels
             get => totalEarned;
             set
             {
-                if (totalEarned == value) return;
+                if(totalEarned == value)
+                    return;
                 totalEarned = value;
                 RaisePropertyChanged();
             }
@@ -23,7 +24,8 @@ namespace MoneyFox.Presentation.ViewModels
             get => totalSpent;
             set
             {
-                if (totalSpent == value) return;
+                if(totalSpent == value)
+                    return;
                 totalSpent = value;
                 RaisePropertyChanged();
             }

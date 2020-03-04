@@ -1,33 +1,33 @@
-﻿using System;
-using MoneyFox.Ui.Shared.Commands;
+﻿using MoneyFox.Ui.Shared.Commands;
+using System;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     public interface IBackupViewModel
     {
         /// <summary>
-        ///     Initialize View Model.
+        /// Initialize View Model.
         /// </summary>
         AsyncCommand InitializeCommand { get; }
 
         /// <summary>
-        ///     Makes the first login and sets the setting for the future navigation to this page.
+        /// Makes the first login and sets the setting for the future navigation to this page.
         /// </summary>
         AsyncCommand LoginCommand { get; }
 
         /// <summary>
-        ///     Logs the user out from the backup service.
+        /// Logs the user out from the backup service.
         /// </summary>
         AsyncCommand LogoutCommand { get; }
 
         /// <summary>
-        ///     Will create a backup of the database and upload it to OneDrive
+        /// Will create a backup of the database and upload it to OneDrive
         /// </summary>
         AsyncCommand BackupCommand { get; }
 
         /// <summary>
-        ///     Will download the database backup from OneDrive and overwrite the     local database with the downloaded.     All
-        ///     data models are then reloaded.
+        /// Will download the database backup from OneDrive and overwrite the     local database with the downloaded.     All   
+        ///  data models are then reloaded.
         /// </summary>
         AsyncCommand RestoreCommand { get; }
 

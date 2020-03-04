@@ -1,20 +1,19 @@
-﻿using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
-    /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
+    /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
         private ObservableCollection<CategoryOverviewViewModel> categorySummary;
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 ISettingsFacade settingsFacade)
-            : base(mediator, settingsFacade)
+                                                 ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
         {
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>();
             IncomeExpenseBalance = new IncomeExpenseBalanceViewModel();
@@ -27,7 +26,8 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             get => incomeExpenseBalance;
             set
             {
-                if (incomeExpenseBalance == value) return;
+                if(incomeExpenseBalance == value)
+                    return;
                 incomeExpenseBalance = value;
                 RaisePropertyChanged();
             }
@@ -44,28 +44,27 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public bool HasData => CategorySummary.Any();
 
         /// <summary>
-        ///     Overrides the load method to load the category summary data.
+        /// Overrides the load method to load the category summary data.
         /// </summary>
         protected override async Task Load()
         {
             CategorySummaryModel categorySummaryModel =
-                await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
+                await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
 
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
                                                                                   categorySummaryModel
                                                                                      .CategoryOverviewItems
                                                                                      .Select(x => new CategoryOverviewViewModel
-                                                                                      {
-                                                                                          Value = x.Value,
-                                                                                          Average = x.Average,
-                                                                                          Label = x.Label,
-                                                                                          Percentage = x.Percentage
-                                                                                      }));
-
+                                                                                                  {
+                                                                                                      Value = x.Value,
+                                                                                                      Average = x.Average,
+                                                                                                      Label = x.Label,
+                                                                                                      Percentage = x.Percentage
+                                                                                                  }));
 
             IncomeExpenseBalance = new IncomeExpenseBalanceViewModel
             {

@@ -1,10 +1,10 @@
-﻿using System;
-using Windows.UI.Xaml;
-using MoneyFox.Application.Common.Interfaces;
+﻿using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Uwp.Services;
+using System;
+using Windows.UI.Xaml;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Uwp.Src
 {
     public class ThemeSelectorAdapter : IThemeSelectorAdapter
     {
@@ -12,7 +12,8 @@ namespace MoneyFox.Uwp
 
         public void SetTheme(string theme)
         {
-            if (Enum.TryParse(theme, out ElementTheme cacheTheme)) ThemeSelectorService.SetThemeAsync(cacheTheme).FireAndForgetSafeAsync();
+            if(Enum.TryParse(theme, out ElementTheme cacheTheme))
+                ThemeSelectorService.SetThemeAsync(cacheTheme).FireAndForgetSafeAsync();
         }
     }
 }

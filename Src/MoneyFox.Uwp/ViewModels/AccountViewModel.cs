@@ -1,12 +1,12 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
+using System;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
-    ///     Representation of an account view.
+    /// Representation of an account view.
     /// </summary>
     public class AccountViewModel : ViewModelBase, IMapFrom<Account>
     {
@@ -18,84 +18,90 @@ namespace MoneyFox.Uwp.ViewModels
         private bool isExcluded;
 
         /// <summary>
-        ///     Account Id
+        /// Account Id
         /// </summary>
         public int Id
         {
             get => id;
             set
             {
-                if (id == value) return;
+                if(id == value)
+                    return;
                 id = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Account Name
+        /// Account Name
         /// </summary>
         public string Name
         {
             get => name;
             set
             {
-                if (name == value) return;
+                if(name == value)
+                    return;
                 name = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Current Balance
+        /// Current Balance
         /// </summary>
         public decimal CurrentBalance
         {
             get => currentBalance;
             set
             {
-                if (Math.Abs(currentBalance - value) < 0.01m) return;
+                if(Math.Abs(currentBalance - value) < 0.01m)
+                    return;
                 currentBalance = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Note
+        /// Note
         /// </summary>
         public string Note
         {
             get => note;
             set
             {
-                if (note == value) return;
+                if(note == value)
+                    return;
                 note = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Indicator if the account currently is overdrawn.
+        /// Indicator if the account currently is overdrawn.
         /// </summary>
         public bool IsOverdrawn
         {
             get => isOverdrawn;
             set
             {
-                if (isOverdrawn == value) return;
+                if(isOverdrawn == value)
+                    return;
                 isOverdrawn = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Indicator if the account is excluded from the balance calculation.
+        /// Indicator if the account is excluded from the balance calculation.
         /// </summary>
         public bool IsExcluded
         {
             get => isExcluded;
             set
             {
-                if (isExcluded == value) return;
+                if(isExcluded == value)
+                    return;
                 isExcluded = value;
                 RaisePropertyChanged();
             }

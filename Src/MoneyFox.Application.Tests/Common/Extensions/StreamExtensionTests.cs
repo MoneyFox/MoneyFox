@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using MoneyFox.Application.Common.Extensions;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
-using MoneyFox.Application.Common.Extensions;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Common.Extensions
@@ -12,7 +12,7 @@ namespace MoneyFox.Application.Tests.Common.Extensions
         public void ReadToEnd()
         {
             // Arrange
-            var bytes = new byte[] {12, 22, 25, 23};
+            var bytes = new byte[] { 12, 22, 25, 23 };
             var stream = new MemoryStream(bytes);
 
             // Act

@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Input;
-using Windows.System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Navigation;
-using CommonServiceLocator;
+﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.Commands;
@@ -15,9 +6,18 @@ using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Settings;
 using NLog;
-using WinUI = Microsoft.UI.Xaml.Controls;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Windows.System;
 using Windows.UI.Core;
 using Windows.UI.Input;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Navigation;
+using WinUI = Microsoft.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp
 {
@@ -53,8 +53,8 @@ namespace MoneyFox.Uwp
 
         public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new AsyncCommand(OnLoadedAsync));
 
-        public ICommand ItemInvokedCommand =>
-            itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+        public ICommand ItemInvokedCommand
+                        => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
         {
@@ -67,20 +67,21 @@ namespace MoneyFox.Uwp
             NavigationService.Navigated += Frame_Navigated;
             this.navigationView.BackRequested += OnBackRequested;
 
-            Windows.UI.Core.CoreWindow.GetForCurrentThread().PointerPressed += On_PointerPressed;
+            CoreWindow.GetForCurrentThread().PointerPressed += On_PointerPressed;
         }
+
         private void On_PointerPressed(CoreWindow sender, PointerEventArgs e)
         {
             bool isXButton1Pressed = e.CurrentPoint.Properties.PointerUpdateKind == PointerUpdateKind.XButton1Pressed;
 
-            if (isXButton1Pressed)
+            if(isXButton1Pressed)
             {
                 e.Handled = WindowsShellViewModel.NavigationService.GoBack();
             }
 
             bool isXButton2Pressed = e.CurrentPoint.Properties.PointerUpdateKind == PointerUpdateKind.XButton2Pressed;
 
-            if (isXButton2Pressed)
+            if(isXButton2Pressed)
             {
                 e.Handled = WindowsShellViewModel.NavigationService.GoForward();
             }
@@ -99,7 +100,7 @@ namespace MoneyFox.Uwp
         {
             Logger.Debug("Item invoked");
 
-            if (args.IsSettingsInvoked)
+            if(args.IsSettingsInvoked)
             {
                 Logger.Info("Navigate to settings");
                 NavigationService.Navigate(nameof(SettingsViewModel));
@@ -107,19 +108,19 @@ namespace MoneyFox.Uwp
                 return;
             }
 
-
             WinUI.NavigationViewItem item = navigationView.MenuItems
                                                           .OfType<WinUI.NavigationViewItem>()
                                                           .FirstOrDefault(menuItem =>
                                                                           {
-                                                                              if (menuItem.Content is string content
-                                                                                  && args.InvokedItem is string invokedItem)
+                                                                              if(menuItem.Content is string content
+                                                                                 && args.InvokedItem is string invokedItem)
                                                                                   return content == invokedItem;
 
                                                                               return false;
                                                                           });
 
-            if (item == null) return;
+            if(item == null)
+                return;
 
             var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
 
@@ -156,8 +157,9 @@ namespace MoneyFox.Uwp
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
         {
-            var keyboardAccelerator = new KeyboardAccelerator {Key = key};
-            if (modifiers.HasValue) keyboardAccelerator.Modifiers = modifiers.Value;
+            var keyboardAccelerator = new KeyboardAccelerator { Key = key };
+            if(modifiers.HasValue)
+                keyboardAccelerator.Modifiers = modifiers.Value;
 
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
 

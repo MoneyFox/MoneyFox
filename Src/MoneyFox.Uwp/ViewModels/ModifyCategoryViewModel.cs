@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
@@ -8,11 +7,12 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Services;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
-    ///     View Model for creating and editing Categories without dialog
+    /// View Model for creating and editing Categories without dialog
     /// </summary>
     public abstract class ModifyCategoryViewModel : ViewModelBase, IModifyCategoryViewModel
     {
@@ -23,7 +23,7 @@ namespace MoneyFox.Uwp.ViewModels
         private string title;
 
         /// <summary>
-        ///     Constructor
+        /// Constructor
         /// </summary>
         protected ModifyCategoryViewModel(IMediator mediator,
                                           NavigationService navigationService,
@@ -50,12 +50,12 @@ namespace MoneyFox.Uwp.ViewModels
         public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBaseAsync);
 
         /// <summary>
-        ///     Cancel the current operation
+        /// Cancel the current operation
         /// </summary>
         public AsyncCommand CancelCommand => new AsyncCommand(CancelAsync);
 
         /// <summary>
-        ///     The currently selected CategoryViewModel
+        /// The currently selected CategoryViewModel
         /// </summary>
         public CategoryViewModel SelectedCategory
         {
@@ -68,14 +68,15 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        ///     Returns the Title based on whether a CategoryViewModel is being created or edited
+        /// Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
         public string Title
         {
             get => title;
             set
             {
-                if (title == value) return;
+                if(title == value)
+                    return;
                 title = value;
                 RaisePropertyChanged();
             }
@@ -85,13 +86,13 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task SaveCategoryBaseAsync()
         {
-            if (string.IsNullOrEmpty(SelectedCategory.Name))
+            if(string.IsNullOrEmpty(SelectedCategory.Name))
             {
                 await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
 
-            if (await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
+            if(await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
             {
                 await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
                 return;

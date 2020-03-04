@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using CommonServiceLocator;
+﻿using CommonServiceLocator;
 using MediatR;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
@@ -11,6 +9,8 @@ using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Views;
 using MoneyFox.Ui.Shared.Utilities;
 using NLog;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XF.Material.Forms;
@@ -29,7 +29,10 @@ namespace MoneyFox.Presentation
 
             Material.Init(this, "Material.Configuration");
 
-            AppDomain.CurrentDomain.UnhandledException += (s, e) => { LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject); };
+            AppDomain.CurrentDomain.UnhandledException += (s, e) =>
+                                                          {
+                                                              LogManager.GetCurrentClassLogger().Fatal(e.ExceptionObject);
+                                                          };
 
             ConfigureNavigation();
 
@@ -75,7 +78,7 @@ namespace MoneyFox.Presentation
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             var mediator = ServiceLocator.Current.GetInstance<IMediator>();
-            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
+            if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
             {
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
@@ -92,7 +95,7 @@ namespace MoneyFox.Presentation
 
                 logger.Info("Backup synced.");
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Fatal(ex);
                 throw;

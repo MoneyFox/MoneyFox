@@ -1,18 +1,16 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -65,7 +63,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             const int accountId = 99;
 
             mapperMock.Setup(x => x.Map<AccountViewModel>(It.IsAny<Account>()))
-                      .Returns(new AccountViewModel {CurrentBalance = 99});
+                      .Returns(new AccountViewModel { CurrentBalance = 99 });
 
             var editAccountVm = new EditAccountViewModel(mediatorMock.Object,
                                                          mapperMock.Object,

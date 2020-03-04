@@ -8,7 +8,7 @@ namespace MoneyFox.Presentation.Views
     {
         public AppShell()
         {
-            NavigationPage.SetBackButtonTitle(this, "");
+            NavigationPage.SetBackButtonTitle(this, string.Empty);
             InitializeComponent();
             BindingContext = ViewModelLocator.ShellVm;
 

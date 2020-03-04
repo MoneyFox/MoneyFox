@@ -1,6 +1,6 @@
-﻿using System;
-using MoneyFox.Presentation.ViewModels;
+﻿using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Ui.Shared.Utilities;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -21,7 +21,8 @@ namespace MoneyFox.Presentation.UserControls
         private void EditCategory(object sender, EventArgs e)
         {
             var menuItem = sender as MenuItem;
-            if (menuItem == null) return;
+            if(menuItem == null)
+                return;
 
             ViewModel.EditCategoryCommand.Execute(menuItem.CommandParameter);
         }
@@ -29,7 +30,8 @@ namespace MoneyFox.Presentation.UserControls
         private void DeleteCategory(object sender, EventArgs e)
         {
             var menuItem = sender as MenuItem;
-            if (menuItem == null) return;
+            if(menuItem == null)
+                return;
 
             ViewModel.DeleteCategoryCommand.ExecuteAsync((CategoryViewModel) menuItem.CommandParameter).FireAndForgetSafeAsync();
         }

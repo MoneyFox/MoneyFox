@@ -1,6 +1,6 @@
-﻿using Windows.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 using NLog;
+using Windows.UI.Xaml;
 
 namespace MoneyFox.Uwp.Helpers
 {

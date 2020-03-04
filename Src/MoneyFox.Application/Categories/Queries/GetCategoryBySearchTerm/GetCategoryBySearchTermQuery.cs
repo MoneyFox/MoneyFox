@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
 {
@@ -36,7 +36,7 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
 
                 var categories = await categoriesQuery.ToListAsync(cancellationToken);
 
-                if (!string.IsNullOrEmpty(request.SearchTerm))
+                if(!string.IsNullOrEmpty(request.SearchTerm))
                 {
                     categories = categories.WhereNameContains(request.SearchTerm)
                                            .ToList();

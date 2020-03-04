@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels.Settings;
+using System;
+using System.Collections.Generic;
 
 namespace MoneyFox.Presentation.Views
 {
@@ -14,13 +14,16 @@ namespace MoneyFox.Presentation.Views
             InitializeComponent();
             BindingContext = ViewModelLocator.SettingsPersonalizationVm;
 
-            ThemePicker.ItemsSource = new List<string> {Strings.LightLabel, Strings.DarkLabel};
-            ThemePicker.SelectedIndex = ViewModel.ElementTheme == "Light" ? 0 : 1;
+            ThemePicker.ItemsSource = new List<string> { Strings.LightLabel, Strings.DarkLabel };
+            ThemePicker.SelectedIndex = ViewModel.ElementTheme == "Light"
+                                        ? 0 : 1;
         }
 
         private void ThemePicker_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            ViewModel.SwitchThemeCommand.Execute(ThemePicker.SelectedItem.ToString() == Strings.LightLabel ? "Light" : "Dark");
+            ViewModel.SwitchThemeCommand
+                     .Execute(ThemePicker.SelectedItem.ToString() == Strings.LightLabel
+                              ? "Light" : "Dark");
         }
     }
 }

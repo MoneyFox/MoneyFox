@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Interfaces.Mapping;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using MoneyFox.Application.Common.Interfaces.Mapping;
 
 namespace MoneyFox.Uwp.AutoMapper
 {
@@ -15,6 +15,7 @@ namespace MoneyFox.Uwp.AutoMapper
         }
 
         public Type Source { get; }
+
         public Type Destination { get; }
     }
 
@@ -24,14 +25,13 @@ namespace MoneyFox.Uwp.AutoMapper
         {
             Type[] types = rootAssembly.GetExportedTypes();
 
-            List<Map> mapsFrom = (
-                                     from type in types
+            List<Map> mapsFrom = (from type in types
                                      from instance in type.GetInterfaces()
-                                     where
-                                         instance.IsGenericType && instance.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
-                                         !type.IsAbstract &&
-                                         !type.IsInterface
-                                     select new
+                                  where instance.IsGenericType
+                                        && instance.GetGenericTypeDefinition() == typeof(IMapFrom<>)
+                                        && !type.IsAbstract
+                                        && !type.IsInterface
+                                  select new
                                          Map(type.GetInterfaces().First(x => x.Name.Contains("MapFrom")).GetGenericArguments().First(),
                                              type)).ToList();
 
@@ -42,14 +42,12 @@ namespace MoneyFox.Uwp.AutoMapper
         {
             Type[] types = rootAssembly.GetExportedTypes();
 
-            List<IHaveCustomMapping> mapsFrom = (
-                                                    from type in types
+            List<IHaveCustomMapping> mapsFrom = (from type in types
                                                     from instance in type.GetInterfaces()
-                                                    where
-                                                        typeof(IHaveCustomMapping).IsAssignableFrom(type) &&
-                                                        !type.IsAbstract &&
-                                                        !type.IsInterface
-                                                    select (IHaveCustomMapping) Activator.CreateInstance(type)).ToList();
+                                                 where typeof(IHaveCustomMapping).IsAssignableFrom(type)
+                                                       && !type.IsAbstract
+                                                       && !type.IsInterface
+                                                 select (IHaveCustomMapping) Activator.CreateInstance(type)).ToList();
 
             return mapsFrom;
         }

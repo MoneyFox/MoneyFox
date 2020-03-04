@@ -4,25 +4,25 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeModifyAccountViewModel
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public bool IsEdit { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string Title { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public string AmountString { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public AccountViewModel SelectedAccount { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public RelayCommand SaveCommand { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public RelayCommand DeleteCommand { get; }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public RelayCommand CancelCommand { get; }
     }
 }

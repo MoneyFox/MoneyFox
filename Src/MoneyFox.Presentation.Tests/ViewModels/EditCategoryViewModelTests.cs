@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Resources;
@@ -8,6 +6,8 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels

@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Presentation.ViewModels;
+﻿using MoneyFox.Presentation.ViewModels;
 using Should;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels

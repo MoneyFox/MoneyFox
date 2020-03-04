@@ -15,24 +15,25 @@ namespace MoneyFox.Presentation.Services
         {
             get
             {
-                lock (PagesByKey)
+                lock(PagesByKey)
                 {
-                    if (!Navigation.NavigationStack.Any()) return null;
+                    if(!Navigation.NavigationStack.Any())
+                        return null;
 
                     Type pageType = Navigation.NavigationStack.First().GetType();
 
                     return PagesByKey.ContainsValue(pageType)
-                        ? PagesByKey.First(p => p.Value == pageType).Key
-                        : null;
+                           ? PagesByKey.First(p => p.Value == pageType).Key
+                           : null;
                 }
             }
         }
 
         public static void Configure(string pageKey, Type pageType)
         {
-            lock (PagesByKey)
+            lock(PagesByKey)
             {
-                if (PagesByKey.ContainsKey(pageKey))
+                if(PagesByKey.ContainsKey(pageKey))
                     PagesByKey[pageKey] = pageType;
                 else
                     PagesByKey.Add(pageKey, pageType);
@@ -51,9 +52,9 @@ namespace MoneyFox.Presentation.Services
 
         public void NavigateTo(string pageKey, object parameter)
         {
-            lock (PagesByKey)
+            lock(PagesByKey)
             {
-                if (PagesByKey.ContainsKey(pageKey))
+                if(PagesByKey.ContainsKey(pageKey))
                 {
                     ConstructorInfo constructor;
                     object[] parameters;
@@ -77,9 +78,9 @@ namespace MoneyFox.Presentation.Services
 
         public void NavigateToModal(string pageKey, object parameter)
         {
-            lock (PagesByKey)
+            lock(PagesByKey)
             {
-                if (PagesByKey.ContainsKey(pageKey))
+                if(PagesByKey.ContainsKey(pageKey))
                 {
                     ConstructorInfo constructor;
                     object[] parameters;
@@ -93,8 +94,7 @@ namespace MoneyFox.Presentation.Services
                 }
                 else
                 {
-                    throw new ArgumentException(
-                                                $"No such page: {pageKey}. Did you forget to call NavigationService.Configure?",
+                    throw new ArgumentException($"No such page: {pageKey}. Did you forget to call NavigationService.Configure?",
                                                 nameof(pageKey));
                 }
             }
@@ -104,14 +104,13 @@ namespace MoneyFox.Presentation.Services
         {
             Type type = PagesByKey[pageKey];
 
-            if (parameter == null)
+            if(parameter == null)
             {
                 constructor = type.GetTypeInfo()
                                   .DeclaredConstructors
                                   .FirstOrDefault(c => !c.GetParameters().Any());
 
-                parameters = new object[]
-                    { };
+                parameters = new object[] { };
             }
             else
             {
@@ -132,10 +131,10 @@ namespace MoneyFox.Presentation.Services
                 };
             }
 
-            if (constructor == null)
+            if(constructor == null)
             {
                 throw new InvalidOperationException(
-                                                    "No suitable constructor found for page " + pageKey);
+                                                    $"No suitable constructor found for page {pageKey}");
             }
         }
 

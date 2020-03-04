@@ -4,11 +4,11 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using Android.Views;
+using Android.Widget;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Input;
-using Android.Views;
-using Android.Widget;
 
 #pragma warning disable S1481 // Unused local variable
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
@@ -16,14 +16,13 @@ using Android.Widget;
 namespace MoneyFox.Droid
 {
     /// <summary>
-    ///     Defines the LinkerPleaseInclude type.
-    ///     This class is never actually executed, but when Xamarin linking is enabled it does how to
-    ///     ensure types and properties are preserved in the deployed app.
+    /// Defines the LinkerPleaseInclude type.     This class is never actually executed, but when Xamarin linking is
+    /// enabled it does how to     ensure types and properties are preserved in the deployed app.
     /// </summary>
     public class LinkerPleaseInclude
     {
         /// <summary>
-        ///     Includes the INotifyPropertyChanged.
+        /// Includes the INotifyPropertyChanged.
         /// </summary>
         /// <param name="changed">INotifyPropertyChanged.</param>
         public void Include(INotifyPropertyChanged changed)
@@ -35,7 +34,7 @@ namespace MoneyFox.Droid
         }
 
         /// <summary>
-        ///     Includes the specified button.
+        /// Includes the specified button.
         /// </summary>
         /// <param name="button">The button.</param>
         public void Include(Button button)
@@ -44,7 +43,7 @@ namespace MoneyFox.Droid
         }
 
         /// <summary>
-        ///     Includes the specified check box.
+        /// Includes the specified check box.
         /// </summary>
         /// <param name="checkBox">The check box.</param>
         public void Include(CheckBox checkBox)
@@ -53,7 +52,7 @@ namespace MoneyFox.Droid
         }
 
         /// <summary>
-        ///     Includes the specified view.
+        /// Includes the specified view.
         /// </summary>
         /// <param name="view">The view.</param>
         public void Include(View view)
@@ -62,18 +61,18 @@ namespace MoneyFox.Droid
         }
 
         /// <summary>
-        ///     Includes the specified textView.
+        /// Includes the specified textView.
         /// </summary>
         /// <param name="textView">The textView.</param>
         public void Include(TextView textView)
         {
             textView.TextChanged += (sender, args) => textView.Text = string.Empty + textView.Text;
             textView.Hint = string.Empty + textView.Hint;
-            textView.AfterTextChanged += (sender, args) => textView.Text = "" + textView.Text;
+            textView.AfterTextChanged += (sender, args) => textView.Text = $"{textView.Text}";
         }
 
         /// <summary>
-        ///     Includes the specified compoundButton.
+        /// Includes the specified compoundButton.
         /// </summary>
         /// <param name="compoundButton">The compoundButton.</param>
         public void Include(CompoundButton compoundButton)
@@ -82,7 +81,7 @@ namespace MoneyFox.Droid
         }
 
         /// <summary>
-        ///     Includes the specified seekBar.
+        /// Includes the specified seekBar.
         /// </summary>
         /// <param name="seekBar">The seekBar.</param>
         public void Include(SeekBar seekBar)
@@ -91,7 +90,7 @@ namespace MoneyFox.Droid
         }
 
         /// <summary>
-        ///     Includes the specified changed.
+        /// Includes the specified changed.
         /// </summary>
         /// <param name="changed">The changed.</param>
         public void Include(INotifyCollectionChanged changed)
@@ -109,14 +108,15 @@ namespace MoneyFox.Droid
         }
 
         /// <summary>
-        ///     Includes the specified command.
+        /// Includes the specified command.
         /// </summary>
         /// <param name="command">The command.</param>
         public void Include(ICommand command)
         {
             command.CanExecuteChanged += (s, e) =>
                                          {
-                                             if (command.CanExecute(null)) command.Execute(null);
+                                             if(command.CanExecute(null))
+                                                 command.Execute(null);
                                          };
         }
     }

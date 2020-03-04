@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MoneyFox.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using MoneyFox.Domain.Exceptions;
 using Xamarin.Forms;
 
 namespace MoneyFox.Ui.Shared.Groups
@@ -9,7 +9,7 @@ namespace MoneyFox.Ui.Shared.Groups
     public class DateListGroupCollection<T> : List<T>
     {
         /// <summary>
-        ///     The delegate that is used to get the key information.
+        /// The delegate that is used to get the key information.
         /// </summary>
         /// <param name="item">An object of type T</param>
         /// <returns>The key value to use for this object</returns>
@@ -18,7 +18,7 @@ namespace MoneyFox.Ui.Shared.Groups
         public delegate DateTime GetSortKeyDelegate(T item);
 
         /// <summary>
-        ///     Public constructor.
+        /// Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
@@ -30,7 +30,7 @@ namespace MoneyFox.Ui.Shared.Groups
         }
 
         /// <summary>
-        ///     Public constructor.
+        /// Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="title">The title for this group.</param>
@@ -43,22 +43,22 @@ namespace MoneyFox.Ui.Shared.Groups
         }
 
         /// <summary>
-        ///     The Key of this group.
+        /// The Key of this group.
         /// </summary>
         public string Key { get; }
 
         /// <summary>
-        ///     The Title of this group.
+        /// The Title of this group.
         /// </summary>
         public string Title { get; set; }
 
         /// <summary>
-        ///     The command to execute on a click.
+        /// The command to execute on a click.
         /// </summary>
         public Command<T> ItemClickCommand { get; }
 
         /// <summary>
-        ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
+        /// Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
         /// <param name="getKey">A delegate to get the key from an item.</param>
@@ -76,18 +76,20 @@ namespace MoneyFox.Ui.Shared.Groups
 
             var list = new List<DateListGroupCollection<T>>();
 
-            foreach (T item in items)
+            foreach(T item in items)
             {
                 string index = getKey(item);
 
-                if (list.All(a => a.Key != index)) list.Add(new DateListGroupCollection<T>(index, itemClickCommand));
+                if(list.All(a => a.Key != index))
+                    list.Add(new DateListGroupCollection<T>(index, itemClickCommand));
 
-                if (!string.IsNullOrEmpty(index)) list.Find(a => a.Key == index).Add(item);
+                if(!string.IsNullOrEmpty(index))
+                    list.Find(a => a.Key == index).Add(item);
             }
 
-            if (sort)
+            if(sort)
             {
-                foreach (DateListGroupCollection<T> group in list)
+                foreach(DateListGroupCollection<T> group in list)
                 {
                     group.Sort((c0, c1) => getSortKey(c1).Date.Day.CompareTo(getSortKey(c0).Date.Day));
                 }
@@ -98,7 +100,8 @@ namespace MoneyFox.Ui.Shared.Groups
 
         private static void ThrowIfNull(object parameter)
         {
-            if (parameter == null) throw new GroupListParameterNullException();
+            if(parameter == null)
+                throw new GroupListParameterNullException();
         }
     }
 }

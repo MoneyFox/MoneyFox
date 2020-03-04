@@ -1,7 +1,7 @@
-﻿using System;
-using System.IO;
-using MoneyFox.Application.Common.FileStore;
+﻿using MoneyFox.Application.Common.FileStore;
 using NLog;
+using System;
+using System.IO;
 
 namespace MoneyFox.Presentation
 {
@@ -20,7 +20,8 @@ namespace MoneyFox.Presentation
         {
             string fullPath = AppendPath(path);
 
-            if (!File.Exists(fullPath)) throw new FileNotFoundException("File could not be opened.", path);
+            if(!File.Exists(fullPath))
+                throw new FileNotFoundException("File could not be opened.", path);
 
             return File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         }
@@ -32,16 +33,16 @@ namespace MoneyFox.Presentation
                 string fullFrom = AppendPath(from);
                 string fullTo = AppendPath(destination);
 
-                if (!File.Exists(fullFrom))
+                if(!File.Exists(fullFrom))
                 {
                     logger.Error("Error during file move {0} : {1}. File does not exist!", from, destination);
 
                     return false;
                 }
 
-                if (File.Exists(fullTo))
+                if(File.Exists(fullTo))
                 {
-                    if (overwrite)
+                    if(overwrite)
                         File.Delete(fullTo);
                     else
                         return false;
@@ -51,7 +52,7 @@ namespace MoneyFox.Presentation
 
                 return true;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Error(ex.ToString);
                 return false;
@@ -61,9 +62,10 @@ namespace MoneyFox.Presentation
         protected override void WriteFileCommon(string path, Action<Stream> streamAction)
         {
             string fullPath = AppendPath(path);
-            if (File.Exists(fullPath)) File.Delete(fullPath);
+            if(File.Exists(fullPath))
+                File.Delete(fullPath);
 
-            using (FileStream fileStream = File.OpenWrite(fullPath))
+            using(FileStream fileStream = File.OpenWrite(fullPath))
             {
                 streamAction?.Invoke(fileStream);
             }

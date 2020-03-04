@@ -1,8 +1,8 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists
 {
@@ -24,7 +24,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists
                 this.contextAdapter = contextAdapter;
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public async Task<bool> Handle(GetIfAccountWithNameExistsQuery request, CancellationToken cancellationToken)
             {
                 return await contextAdapter.Context.Accounts.AnyWithNameAsync(request.AccountName);

@@ -1,8 +1,8 @@
-﻿using System.Linq;
+﻿using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Uwp.ViewModels;
+using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using MoneyFox.Ui.Shared.Groups;
-using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {
@@ -15,7 +15,8 @@ namespace MoneyFox.Uwp.Views.UserControls
 
         private void PaymentListView_OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (PaymentListView.Items == null || !PaymentListView.Items.Any()) return;
+            if(PaymentListView.Items == null || !PaymentListView.Items.Any())
+                return;
 
             // Select first group with a cleared payment in it
             DateListGroupCollection<PaymentViewModel> selectedGroupCollection = PaymentListView
@@ -23,7 +24,8 @@ namespace MoneyFox.Uwp.Views.UserControls
                                                                                .Select(x => (DateListGroupCollection<PaymentViewModel>) x)
                                                                                .FirstOrDefault(group => group.Any(x => x.IsCleared));
 
-            if (selectedGroupCollection == null) return;
+            if(selectedGroupCollection == null)
+                return;
 
             PaymentListView.ScrollIntoView(selectedGroupCollection, ScrollIntoViewAlignment.Leading);
         }

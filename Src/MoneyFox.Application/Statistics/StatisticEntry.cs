@@ -8,8 +8,11 @@
         }
 
         public float Value { get; }
-        public string Label { get; set; } = "";
-        public string ValueLabel { get; set; } = "";
-        public string Color { get; set; } = "";
+
+        public string Label { get; set; } = string.Empty;
+
+        public string ValueLabel { get; set; } = string.Empty;
+
+        public string Color { get; set; } = string.Empty;
     }
 }

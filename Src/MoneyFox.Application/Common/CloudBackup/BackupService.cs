@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Graph;
+﻿using Microsoft.Graph;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Extensions;
@@ -13,45 +7,51 @@ using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Exceptions;
 using NLog;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Common.CloudBackup
 {
     public interface IBackupService
     {
         /// <summary>
-        ///     Login user.
+        /// Login user.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task LoginAsync();
 
         /// <summary>
-        ///     Logout user.
+        /// Logout user.
         /// </summary>
         Task LogoutAsync();
 
         /// <summary>
-        ///     Checks if there are backups to restore.
+        /// Checks if there are backups to restore.
         /// </summary>
         /// <returns>Backups available or not.</returns>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task<bool> IsBackupExistingAsync();
 
         /// <summary>
-        ///     Returns the date when the last backup was created.
+        /// Returns the date when the last backup was created.
         /// </summary>
         /// <returns>Creation date of the last backup.</returns>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task<DateTime> GetBackupDateAsync();
 
         /// <summary>
-        ///     Restores an existing backup.
+        /// Restores an existing backup.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
         Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic);
 
         /// <summary>
-        ///     Enqueues a new backup task.
+        /// Enqueues a new backup task.
         /// </summary>
         /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
         Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic);
@@ -84,7 +84,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task LoginAsync()
         {
-            if (!connectivity.IsConnected) throw new NetworkConnectionException();
+            if(!connectivity.IsConnected)
+                throw new NetworkConnectionException();
 
             await cloudBackupService.LoginAsync();
 
@@ -96,7 +97,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task LogoutAsync()
         {
-            if (!connectivity.IsConnected) throw new NetworkConnectionException();
+            if(!connectivity.IsConnected)
+                throw new NetworkConnectionException();
 
             await cloudBackupService.LogoutAsync();
 
@@ -108,7 +110,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task<bool> IsBackupExistingAsync()
         {
-            if (!connectivity.IsConnected) return false;
+            if(!connectivity.IsConnected)
+                return false;
 
             List<string> files = await cloudBackupService.GetFileNamesAsync();
             return files != null && files.Any();
@@ -116,7 +119,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task<DateTime> GetBackupDateAsync()
         {
-            if (!connectivity.IsConnected) return DateTime.MinValue;
+            if(!connectivity.IsConnected)
+                return DateTime.MinValue;
 
             DateTime date = await cloudBackupService.GetBackupDateAsync();
             return date.ToLocalTime();
@@ -124,13 +128,14 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            if(backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
             {
                 logger.Info("Backup is in Automatic Mode but Auto Backup isn't enabled.");
                 return;
             }
 
-            if (!connectivity.IsConnected) throw new NetworkConnectionException();
+            if(!connectivity.IsConnected)
+                throw new NetworkConnectionException();
 
             await DownloadBackupAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
@@ -139,7 +144,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private async Task DownloadBackupAsync()
         {
             DateTime backupDate = await GetBackupDateAsync();
-            if (settingsFacade.LastDatabaseUpdate > backupDate)
+            if(settingsFacade.LastDatabaseUpdate > backupDate)
             {
                 logger.Info("Local backup is newer than remote. Don't download backup");
                 return;
@@ -147,11 +152,11 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             List<string> backups = await cloudBackupService.GetFileNamesAsync();
 
-            if (backups.Contains(DatabaseConstants.BACKUP_NAME))
+            if(backups.Contains(DatabaseConstants.BACKUP_NAME))
             {
                 logger.Info("New backup found. Starting download.");
-                using (Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
-                                                                                   DatabaseConstants.BACKUP_NAME))
+                using(Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
+                                                                                  DatabaseConstants.BACKUP_NAME))
                 {
                     fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
                 }
@@ -162,7 +167,8 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                      DatabasePathHelper.GetDbPath(),
                                                      true);
 
-                if (!moveSucceed) throw new BackupException("Error Moving downloaded backup file");
+                if(!moveSucceed)
+                    throw new BackupException("Error Moving downloaded backup file");
 
                 logger.Info("Recreate database context.");
                 contextAdapter.RecreateContext();
@@ -171,13 +177,13 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         public async Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic)
         {
-            if (backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
+            if(backupMode == BackupMode.Automatic && !settingsFacade.IsBackupAutouploadEnabled)
             {
                 logger.Info("Backup is in Automatic Mode but Auto Backup isn't enabled.");
                 return;
             }
 
-            if (!settingsFacade.IsLoggedInToBackupService)
+            if(!settingsFacade.IsLoggedInToBackupService)
             {
                 logger.Info("Upload started, but not loggedin. Try to login.");
                 await LoginAsync();
@@ -189,7 +195,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         private async Task EnqueueBackupTaskAsync(int attempts = 0)
         {
-            if (!connectivity.IsConnected) throw new NetworkConnectionException();
+            if(!connectivity.IsConnected)
+                throw new NetworkConnectionException();
 
             logger.Info("Enqueue Backup upload.");
 
@@ -197,7 +204,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                                           cancellationTokenSource.Token);
             try
             {
-                if (await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabasePathHelper.GetDbPath())))
+                if(await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabasePathHelper.GetDbPath())))
                 {
                     logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();
@@ -205,22 +212,22 @@ namespace MoneyFox.Application.Common.CloudBackup
                 else
                     cancellationTokenSource.Cancel();
             }
-            catch (FileNotFoundException ex)
+            catch(FileNotFoundException ex)
             {
                 logger.Error(ex, "Backup failed because database was not found.");
             }
-            catch (OperationCanceledException ex)
+            catch(OperationCanceledException ex)
             {
                 logger.Error(ex, "Enqueue Backup failed.");
                 await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync(attempts + 1);
             }
-            catch (ServiceException ex)
+            catch(ServiceException ex)
             {
                 logger.Error(ex, "ServiceException when tried to enqueue Backup.");
                 throw;
             }
-            catch (BackupAuthenticationFailedException ex)
+            catch(BackupAuthenticationFailedException ex)
             {
                 logger.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
                 throw;

@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using MoneyFox.Application.Common;
+using MoneyFox.Droid.Src;
 using MoneyFox.Presentation;
 using MoneyFox.Presentation.Services;
 using PCLAppConfig;
@@ -10,7 +11,7 @@ namespace MoneyFox.Droid
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new TokenObject {CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]});
+            builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
 
             builder.RegisterModule<PresentationModule>();
 

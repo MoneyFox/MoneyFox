@@ -1,12 +1,12 @@
-﻿using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.Commands;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.ViewModels.Settings
 {
@@ -31,7 +31,8 @@ namespace MoneyFox.Uwp.ViewModels.Settings
             get => selectedCulture;
             set
             {
-                if (selectedCulture == value) return;
+                if(selectedCulture == value)
+                    return;
                 selectedCulture = value;
                 settingsFacade.DefaultCulture = selectedCulture.Name;
                 CultureHelper.CurrentCulture = selectedCulture;

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
@@ -13,10 +11,12 @@ using MoneyFox.Domain;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Ui.Shared.Commands;
+using System;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
-    /// <inheritdoc cref="IPaymentListViewActionViewModel" />
+    /// <inheritdoc cref="IPaymentListViewActionViewModel"/>
     /// />
     public class PaymentListViewActionViewModel : ViewModelBase, IPaymentListViewActionViewModel
     {
@@ -36,7 +36,7 @@ namespace MoneyFox.Presentation.ViewModels
         private bool isAddExpenseAvailable;
 
         /// <summary>
-        ///     Constructor
+        /// Constructor
         /// </summary>
         public PaymentListViewActionViewModel(int accountId,
                                               IMediator mediator,
@@ -62,109 +62,116 @@ namespace MoneyFox.Presentation.ViewModels
             IsAddExpenseAvailable = accountCount >= 1;
         }
 
-        /// <inheritdoc />
-        public RelayCommand GoToAddIncomeCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
+        /// <inheritdoc/>
+        public RelayCommand GoToAddIncomeCommand
+                            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
 
-        /// <inheritdoc />
-        public RelayCommand GoToAddExpenseCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Expense));
+        /// <inheritdoc/>
+        public RelayCommand GoToAddExpenseCommand
+                            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Expense));
 
-        /// <inheritdoc />
-        public RelayCommand GoToAddTransferCommand =>
-            new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Transfer));
+        /// <inheritdoc/>
+        public RelayCommand GoToAddTransferCommand
+                            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Transfer));
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccount);
 
         /// <summary>
-        ///     Indicates if the transfer option is available or if it shall be hidden.
+        /// Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
         public bool IsTransferAvailable
         {
             get => isTransferAvailable;
             set
             {
-                if (isTransferAvailable == value) return;
+                if(isTransferAvailable == value)
+                    return;
                 isTransferAvailable = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Indicates if the button to add new income should be enabled.
+        /// Indicates if the button to add new income should be enabled.
         /// </summary>
         public bool IsAddIncomeAvailable
         {
             get => isAddIncomeAvailable;
             set
             {
-                if (isAddIncomeAvailable == value) return;
+                if(isAddIncomeAvailable == value)
+                    return;
                 isAddIncomeAvailable = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Indicates if the button to add a new expense should be enabled.
+        /// Indicates if the button to add a new expense should be enabled.
         /// </summary>
         public bool IsAddExpenseAvailable
         {
             get => isAddExpenseAvailable;
             set
             {
-                if (IsAddExpenseAvailable == value) return;
+                if(IsAddExpenseAvailable == value)
+                    return;
                 isAddExpenseAvailable = value;
                 RaisePropertyChanged();
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public bool IsClearedFilterActive
         {
             get => isClearedFilterActive;
             set
             {
-                if (isClearedFilterActive == value) return;
+                if(isClearedFilterActive == value)
+                    return;
                 isClearedFilterActive = value;
                 RaisePropertyChanged();
                 UpdateList();
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public bool IsRecurringFilterActive
         {
             get => isRecurringFilterActive;
             set
             {
-                if (isRecurringFilterActive == value) return;
+                if(isRecurringFilterActive == value)
+                    return;
                 isRecurringFilterActive = value;
                 RaisePropertyChanged();
                 UpdateList();
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public DateTime TimeRangeStart
         {
             get => timeRangeStart;
             set
             {
-                if (timeRangeStart == value) return;
+                if(timeRangeStart == value)
+                    return;
                 timeRangeStart = value;
                 RaisePropertyChanged();
                 UpdateList();
             }
         }
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public DateTime TimeRangeEnd
         {
             get => timeRangeEnd;
             set
             {
-                if (timeRangeEnd == value) return;
+                if(timeRangeEnd == value)
+                    return;
                 timeRangeEnd = value;
                 RaisePropertyChanged();
                 UpdateList();
@@ -173,7 +180,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeleteAccount()
         {
-            if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(accountId));
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
@@ -186,12 +193,12 @@ namespace MoneyFox.Presentation.ViewModels
         private void UpdateList()
         {
             MessengerInstance.Send(new PaymentListFilterChangedMessage
-            {
-                IsClearedFilterActive = IsClearedFilterActive,
-                IsRecurringFilterActive = IsRecurringFilterActive,
-                TimeRangeStart = TimeRangeStart,
-                TimeRangeEnd = TimeRangeEnd
-            });
+                                   {
+                                       IsClearedFilterActive = IsClearedFilterActive,
+                                       IsRecurringFilterActive = IsRecurringFilterActive,
+                                       TimeRangeStart = TimeRangeStart,
+                                       TimeRangeEnd = TimeRangeEnd
+                                   });
         }
     }
 }

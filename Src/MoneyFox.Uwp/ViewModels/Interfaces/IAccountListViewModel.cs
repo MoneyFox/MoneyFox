@@ -1,57 +1,57 @@
-﻿using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using System.Collections.ObjectModel;
 
 namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
     /// <summary>
-    ///     Representation of the AccountListView.
+    /// Representation of the AccountListView.
     /// </summary>
     public interface IAccountListViewModel
     {
         /// <summary>
-        ///     All existing accounts
+        /// All existing accounts
         /// </summary>
         ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts { get; }
 
         /// <summary>
-        ///     Indicates if there are accounts to display.
+        /// Indicates if there are accounts to display.
         /// </summary>
         bool HasNoAccounts { get; }
 
         /// <summary>
-        ///     View Model for the balance view integrated in the account list view
+        /// View Model for the balance view integrated in the account list view
         /// </summary>
         IBalanceViewModel BalanceViewModel { get; }
 
         /// <summary>
-        ///     View Mdoel for the actions associated with the account list.
+        /// View Mdoel for the actions associated with the account list.
         /// </summary>
         IAccountListViewActionViewModel ViewActionViewModel { get; }
 
         /// <summary>
-        ///     Loads the data
+        /// Loads the data
         /// </summary>
         AsyncCommand LoadDataCommand { get; }
 
         /// <summary>
-        ///     Open the payment overview for this Account.
+        /// Open the payment overview for this Account.
         /// </summary>
         RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
 
         /// <summary>
-        ///     Edit the selected Account
+        /// Edit the selected Account
         /// </summary>
         RelayCommand<AccountViewModel> EditAccountCommand { get; }
 
         /// <summary>
-        ///     Deletes the selected Account
+        /// Deletes the selected Account
         /// </summary>
         AsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
 
         /// <summary>
-        ///     Prepare everything and navigate to AddAccount view
+        /// Prepare everything and navigate to AddAccount view
         /// </summary>
         RelayCommand GoToAddAccountCommand { get; }
     }

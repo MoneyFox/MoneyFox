@@ -3,7 +3,7 @@
 namespace MoneyFox.Uwp.ViewModels.Settings
 {
     /// <summary>
-    ///     ViewModel for the settings view.
+    /// ViewModel for the settings view.
     /// </summary>
     public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {

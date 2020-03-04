@@ -10,7 +10,8 @@ namespace MoneyFox.Domain.Entities
 #pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
         private Account()
 #pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-        { }
+        {
+        }
 
         public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
@@ -36,13 +37,16 @@ namespace MoneyFox.Domain.Entities
         }
 
         public bool IsOverdrawn { get; private set; }
+
         public bool IsExcluded { get; private set; }
+
         public DateTime ModificationDate { get; private set; }
+
         public DateTime CreationTime { get; private set; }
 
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
-            if (string.IsNullOrWhiteSpace(name))
+            if(string.IsNullOrWhiteSpace(name))
                 throw new ArgumentNullException(nameof(name));
 
             Name = name;
@@ -67,14 +71,16 @@ namespace MoneyFox.Domain.Entities
 
         private void ApplyPaymentAmount(Payment payment, bool invert = false)
         {
-            if (!payment.IsCleared) return;
+            if(!payment.IsCleared)
+                return;
 
             decimal amount = invert
-                                 ? -payment.Amount
-                                 : payment.Amount;
+                             ? -payment.Amount
+                             : payment.Amount;
 
-            if (payment.Type == PaymentType.Expense
-                || payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == Id)
+            if(payment.Type == PaymentType.Expense
+               || payment.Type == PaymentType.Transfer
+               && payment.ChargedAccount.Id == Id)
                 CurrentBalance -= amount;
             else
                 CurrentBalance += amount;
@@ -83,7 +89,8 @@ namespace MoneyFox.Domain.Entities
 
         private static void ThrowIfPaymentNull(Payment payment)
         {
-            if (payment == null) throw new ArgumentNullException(nameof(payment));
+            if(payment == null)
+                throw new ArgumentNullException(nameof(payment));
         }
     }
 }
