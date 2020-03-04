@@ -10,6 +10,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Globalization;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -69,13 +70,13 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountCorrectlyFormattedOnSave(string cultureString, string amountString, decimal expectedAmount)
         {
             // Arrange
-            var cultureInfo = new CultureInfo(cultureString);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            ApplicationLanguages.PrimaryLanguageOverride = cultureString;
 
             var mediatorMock = new Mock<IMediator>();
             var mapperMock = new Mock<IMapper>();
-            var navigationServiceMock = new Mock<NavigationService>();
+            var navigationServiceMock = new Mock<INavigationService>();
+            navigationServiceMock.Setup(x => x.GoBack()).Returns(true);
+
             var dialogServiceMock = new Mock<IDialogService>();
 
             var addAccountVm = new AddAccountViewModel(mediatorMock.Object,

@@ -8,9 +8,8 @@ using MoneyFox.Uwp.ViewModels;
 using Moq;
 using Should;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Threading;
 using System.Threading.Tasks;
+using Windows.Globalization;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -21,14 +20,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly Mock<IMediator> mediatorMock;
         private readonly Mock<IMapper> mapperMock;
         private readonly Mock<IDialogService> dialogServiceMock;
-        private readonly Mock<NavigationService> navigationServiceMock;
+        private readonly Mock<INavigationService> navigationServiceMock;
 
         public EditAccountViewModelTests()
         {
             mediatorMock = new Mock<IMediator>();
             mapperMock = new Mock<IMapper>();
             dialogServiceMock = new Mock<IDialogService>();
-            navigationServiceMock = new Mock<NavigationService>();
+            navigationServiceMock = new Mock<INavigationService>();
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountByIdQuery>(), default))
                         .ReturnsAsync(new Account("asdf"));
@@ -91,9 +90,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountCorrectlyFormattedOnSave(string cultureString, string amountString, decimal expectedAmount)
         {
             // Arrange
-            var cultureInfo = new CultureInfo(cultureString);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            ApplicationLanguages.PrimaryLanguageOverride = cultureString;
 
             var editAccountVm = new EditAccountViewModel(mediatorMock.Object,
                                                          mapperMock.Object,

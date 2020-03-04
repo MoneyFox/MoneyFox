@@ -15,9 +15,8 @@ using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Threading;
 using System.Threading.Tasks;
+using Windows.Globalization;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -29,7 +28,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly IMapper mapper;
         private readonly Mock<IMediator> mediatorMock;
         private readonly Mock<IDialogService> dialogServiceMock;
-        private readonly Mock<NavigationService> navigationServiceMock;
+        private readonly Mock<INavigationService> navigationServiceMock;
 
         public EditPaymentViewModelTests(MapperCollectionFixture fixture)
         {
@@ -37,7 +36,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             mapper = fixture.Mapper!;
 
             dialogServiceMock = new Mock<IDialogService>();
-            navigationServiceMock = new Mock<NavigationService>();
+            navigationServiceMock = new Mock<INavigationService>();
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account>());
@@ -51,6 +50,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountStringSetOnInit()
         {
             // Arrange
+            ApplicationLanguages.PrimaryLanguageOverride = "en-GB";
+
             mediatorMock.Setup(x => x.Send(It.IsAny<GetPaymentByIdQuery>(), default))
                         .ReturnsAsync(new Payment(DateTime.Now, 12.10M, PaymentType.Expense, new Account("sad")));
 
@@ -78,9 +79,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountCorrectlyFormattedOnSave(string cultureString, string amountString, decimal expectedAmount)
         {
             // Arrange
-            var cultureInfo = new CultureInfo(cultureString);
-            Thread.CurrentThread.CurrentCulture = cultureInfo;
-            Thread.CurrentThread.CurrentUICulture = cultureInfo;
+            ApplicationLanguages.PrimaryLanguageOverride = cultureString;
 
             var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
                                                          mapper,

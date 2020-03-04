@@ -23,13 +23,13 @@ namespace MoneyFox.Uwp.ViewModels
 
         private readonly IMediator mediator;
         private readonly IMapper mapper;
-        private readonly NavigationService navigationService;
+        private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
 
         public AddPaymentViewModel(IMediator mediator,
                                    IMapper mapper,
                                    IDialogService dialogService,
-                                   NavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
+                                   INavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

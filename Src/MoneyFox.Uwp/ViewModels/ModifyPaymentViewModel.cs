@@ -28,7 +28,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IMapper mapper;
         private readonly IMediator mediator;
         private readonly IDialogService dialogService;
-        private readonly NavigationService navigationService;
+        private readonly INavigationService navigationService;
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
 
         private PaymentRecurrence recurrence;
@@ -42,7 +42,7 @@ namespace MoneyFox.Uwp.ViewModels
         protected ModifyPaymentViewModel(IMediator mediator,
                                          IMapper mapper,
                                          IDialogService dialogService,
-                                         NavigationService navigationService)
+                                         INavigationService navigationService)
         {
             this.dialogService = dialogService;
             this.navigationService = navigationService;
