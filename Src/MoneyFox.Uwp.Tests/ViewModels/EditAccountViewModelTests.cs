@@ -8,6 +8,8 @@ using MoneyFox.Uwp.ViewModels;
 using Moq;
 using Should;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Globalization;
 using Xunit;
@@ -58,7 +60,12 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         [Fact]
         public async Task AmountStringSetOnInitialize()
         {
-            // Arrange
+            // Arrange            
+            var cultureString = "en-Gb";
+            CultureInfo ci = new CultureInfo(cultureString);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            ApplicationLanguages.PrimaryLanguageOverride = cultureString;
             const int accountId = 99;
 
             mapperMock.Setup(x => x.Map<AccountViewModel>(It.IsAny<Account>()))
@@ -90,6 +97,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountCorrectlyFormattedOnSave(string cultureString, string amountString, decimal expectedAmount)
         {
             // Arrange
+            CultureInfo ci = new CultureInfo(cultureString);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             ApplicationLanguages.PrimaryLanguageOverride = cultureString;
 
             var editAccountVm = new EditAccountViewModel(mediatorMock.Object,

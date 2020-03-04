@@ -47,7 +47,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         [Fact]
         public async Task AmountStringSetOnInit()
         {
-            // Arrange            
+            // Arrange
+            CultureInfo ci = new CultureInfo("en-GB");
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+
             var mediator = new Mock<IMediator>();
             var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null);
 
@@ -70,6 +74,9 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountCorrectlyFormattedOnSave(string cultureString, string amountString, decimal expectedAmount)
         {
             // Arrange
+            CultureInfo ci = new CultureInfo(cultureString);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
             ApplicationLanguages.PrimaryLanguageOverride = cultureString;
 
             var mediatorMock = new Mock<IMediator>();

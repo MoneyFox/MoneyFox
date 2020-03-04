@@ -18,6 +18,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Globalization;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -29,14 +30,14 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         private readonly IMapper mapper;
         private readonly Mock<IMediator> mediatorMock;
         private readonly Mock<IDialogService> dialogServiceMock;
-        private readonly Mock<NavigationService> navigationServiceMock;
+        private readonly Mock<INavigationService> navigationServiceMock;
 
         public AddPaymentViewModelTests(MapperCollectionFixture fixture)
         {
             mediatorMock = new Mock<IMediator>();
             mapper = fixture.Mapper;
             dialogServiceMock = new Mock<IDialogService>();
-            navigationServiceMock = new Mock<NavigationService>();
+            navigationServiceMock = new Mock<INavigationService>();
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetAccountsQuery>(), default))
                         .ReturnsAsync(new List<Account>());
@@ -116,6 +117,12 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountStringSetOnInit()
         {
             // Arrange
+            var cultureString = "en-Gb";
+            CultureInfo ci = new CultureInfo(cultureString);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            ApplicationLanguages.PrimaryLanguageOverride = cultureString;
+
             var addPaymentVm = new AddPaymentViewModel(mediatorMock.Object,
                                                        mapper,
                                                        dialogServiceMock.Object,

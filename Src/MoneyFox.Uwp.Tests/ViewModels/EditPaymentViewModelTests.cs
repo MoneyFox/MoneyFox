@@ -15,6 +15,8 @@ using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Globalization;
 using Xunit;
@@ -50,7 +52,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountStringSetOnInit()
         {
             // Arrange
-            ApplicationLanguages.PrimaryLanguageOverride = "en-GB";
+            var cultureString = "en-Gb";
+            CultureInfo ci = new CultureInfo(cultureString);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            ApplicationLanguages.PrimaryLanguageOverride = cultureString;
 
             mediatorMock.Setup(x => x.Send(It.IsAny<GetPaymentByIdQuery>(), default))
                         .ReturnsAsync(new Payment(DateTime.Now, 12.10M, PaymentType.Expense, new Account("sad")));
@@ -79,6 +85,10 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task AmountCorrectlyFormattedOnSave(string cultureString, string amountString, decimal expectedAmount)
         {
             // Arrange
+            CultureInfo ci = new CultureInfo(cultureString);
+            Thread.CurrentThread.CurrentCulture = ci;
+            Thread.CurrentThread.CurrentUICulture = ci;
+            ApplicationLanguages.PrimaryLanguageOverride = cultureString;
             ApplicationLanguages.PrimaryLanguageOverride = cultureString;
 
             var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
