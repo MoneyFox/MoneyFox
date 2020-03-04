@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -9,8 +8,6 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -30,10 +27,8 @@ namespace MoneyFox.Uwp.ViewModels
 
         private readonly IMapper mapper;
         private readonly IMediator mediator;
-        private readonly IBackupService backupService;
         private readonly IDialogService dialogService;
         private readonly NavigationService navigationService;
-        private readonly ISettingsFacade settingsFacade;
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
 
         private PaymentRecurrence recurrence;
@@ -47,13 +42,9 @@ namespace MoneyFox.Uwp.ViewModels
         protected ModifyPaymentViewModel(IMediator mediator,
                                          IMapper mapper,
                                          IDialogService dialogService,
-                                         ISettingsFacade settingsFacade,
-                                         IBackupService backupService,
                                          NavigationService navigationService)
         {
             this.dialogService = dialogService;
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
             this.navigationService = navigationService;
             this.mediator = mediator;
             this.mapper = mapper;
@@ -233,13 +224,9 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
+            await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
             await SavePaymentAsync();
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-
-#pragma warning disable 4014
-            backupService.UploadBackupAsync();
-#pragma warning restore 4014
+            await dialogService.HideLoadingDialogAsync();
         }
 
         /// <summary>

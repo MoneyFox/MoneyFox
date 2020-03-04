@@ -3,8 +3,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
@@ -28,13 +26,9 @@ namespace MoneyFox.Presentation.ViewModels
         public EditPaymentViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IDialogService dialogService,
-                                    ISettingsFacade settingsFacade,
-                                    IBackupService backupService,
                                     INavigationService navigationService) : base(mediator,
                                                                                  mapper,
                                                                                  dialogService,
-                                                                                 settingsFacade,
-                                                                                 backupService,
                                                                                  navigationService)
         {
             this.mediator = mediator;

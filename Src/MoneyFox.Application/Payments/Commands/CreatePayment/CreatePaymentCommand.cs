@@ -1,11 +1,14 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using NLog;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Commands.CreatePayment
 {
@@ -23,20 +26,26 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
             private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
             private readonly IContextAdapter contextAdapter;
+            private readonly IBackupService backupService;
+            private readonly ISettingsFacade settingsFacade;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IContextAdapter contextAdapter,
+                           IBackupService backupService,
+                           ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
+                this.backupService = backupService;
+                this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
             {
                 contextAdapter.Context.Entry(request.PaymentToSave).State = EntityState.Added;
 
-                if (request.PaymentToSave.IsRecurring)
+                if(request.PaymentToSave.IsRecurring)
                 {
-                    if (request.PaymentToSave.RecurringPayment == null)
+                    if(request.PaymentToSave.RecurringPayment == null)
                     {
                         var exception =
                             new
@@ -49,6 +58,10 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
                 }
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+                await backupService.UploadBackupAsync();
+
                 return Unit.Value;
             }
         }

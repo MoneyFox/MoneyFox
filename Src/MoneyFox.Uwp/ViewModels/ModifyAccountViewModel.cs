@@ -1,14 +1,10 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Uwp.Services;
 using NLog;
 
@@ -18,22 +14,14 @@ namespace MoneyFox.Uwp.ViewModels
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        private readonly IBackupService backupService;
-        private readonly ISettingsFacade settingsFacade;
-
         public int AccountId { get; set; }
 
         private string title;
         private AccountViewModel selectedAccount = new AccountViewModel();
 
-        protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
-                                         IBackupService backupService,
-                                         IDialogService dialogService,
+        protected ModifyAccountViewModel(IDialogService dialogService,
                                          NavigationService navigationService)
         {
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
-
             DialogService = dialogService;
             NavigationService = navigationService;
         }
@@ -103,10 +91,9 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
+            await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
             await SaveAccount();
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.UploadBackupAsync().FireAndForgetSafeAsync();
+            await DialogService.HideLoadingDialogAsync();
         }
 
         private void Cancel()

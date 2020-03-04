@@ -1,15 +1,11 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.Utilities;
 using NLog;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -17,23 +13,14 @@ namespace MoneyFox.Presentation.ViewModels
     public abstract class ModifyAccountViewModel : ViewModelBase
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
-        private readonly IBackupService backupService;
-        private readonly ISettingsFacade settingsFacade;
-
         public int AccountId { get; set; }
 
         private string title;
         private AccountViewModel selectedAccount = new AccountViewModel();
 
-        protected ModifyAccountViewModel(ISettingsFacade settingsFacade,
-                                         IBackupService backupService,
-                                         IDialogService dialogService,
+        protected ModifyAccountViewModel(IDialogService dialogService,
                                          INavigationService navigationService)
         {
-            this.settingsFacade = settingsFacade;
-            this.backupService = backupService;
-
             DialogService = dialogService;
             NavigationService = navigationService;
         }
@@ -47,7 +34,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBase);
+        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBaseAsync);
 
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
@@ -86,7 +73,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
-        private async Task SaveAccountBase()
+        private async Task SaveAccountBaseAsync()
         {
             if (string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
@@ -94,8 +81,10 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
                 SelectedAccount.CurrentBalance = convertedValue;
+            }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
@@ -103,10 +92,9 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
+            await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
             await SaveAccount();
-
-            settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
-            if (settingsFacade.IsBackupAutouploadEnabled) backupService.UploadBackupAsync().FireAndForgetSafeAsync();
+            await DialogService.HideLoadingDialogAsync();
         }
 
         private void Cancel()

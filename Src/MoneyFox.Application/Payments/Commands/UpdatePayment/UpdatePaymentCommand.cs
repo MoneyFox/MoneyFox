@@ -5,6 +5,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using MediatR;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -76,10 +78,15 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
         public class Handler : IRequestHandler<UpdatePaymentCommand>
         {
             private readonly IContextAdapter contextAdapter;
-
-            public Handler(IContextAdapter contextAdapter)
+            private readonly IBackupService backupService;
+            private readonly ISettingsFacade settingsFacade;
+            public Handler(IContextAdapter contextAdapter,
+                IBackupService backupService,
+                ISettingsFacade settingsFacade)
             {
-                this.contextAdapter = contextAdapter;
+                this.contextAdapter = contextAdapter; 
+                this.backupService = backupService;
+                this.settingsFacade = settingsFacade;
             }
 
             public async Task<Unit> Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
@@ -132,6 +139,9 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                 }
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+                await backupService.UploadBackupAsync();
 
                 return Unit.Value;
             }

@@ -1259,42 +1259,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Last Executions:.
-        /// </summary>
-        public static string LastExecutionBackgroundOperationsLabel {
-            get {
-                return ResourceManager.GetString("LastExecutionBackgroundOperationsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Paymentclearing:.
-        /// </summary>
-        public static string LastExecutionClearPaymentLabel {
-            get {
-                return ResourceManager.GetString("LastExecutionClearPaymentLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Create Recurring Payments:.
-        /// </summary>
-        public static string LastExecutionRecurringPaymentLabel {
-            get {
-                return ResourceManager.GetString("LastExecutionRecurringPaymentLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Backup Sync:.
-        /// </summary>
-        public static string LastExecutionSyncBackupLabel {
-            get {
-                return ResourceManager.GetString("LastExecutionSyncBackupLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Leave a feedback!.
         /// </summary>
         public static string LeaveFeedbackLabel {
@@ -1942,6 +1906,33 @@ namespace MoneyFox.Application.Resources {
         public static string SavePaymentLabel {
             get {
                 return ResourceManager.GetString("SavePaymentLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Account....
+        /// </summary>
+        public static string SavingAccountMessage {
+            get {
+                return ResourceManager.GetString("SavingAccountMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Category....
+        /// </summary>
+        public static string SavingCategoryMessage {
+            get {
+                return ResourceManager.GetString("SavingCategoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Payment....
+        /// </summary>
+        public static string SavingPaymentMessage {
+            get {
+                return ResourceManager.GetString("SavingPaymentMessage", resourceCulture);
             }
         }
         
