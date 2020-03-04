@@ -714,18 +714,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="BalanceLabel" xml:space="preserve">
     <value>Kontostand</value>
   </data>
-  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Letzte Ausführung: </value>
-  </data>
-  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
-    <value>Zahlungen verbuchen: </value>
-  </data>
-  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
-    <value>Wiederkehrende Zahlungen erstellen: </value>
-  </data>
-  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
-    <value>Sicherung synchronisieren: </value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Wähle zwischen einem dunkle und hellen Theme. Damit eine Änderung in Kraft tritt, musst du die Anwendung neustarten.</value>
   </data>
@@ -863,5 +851,14 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
     <value>Login erforderlich</value>
+  </data>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Konto speichern...</value>
+  </data>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Kategorie speichern...</value>
+  </data>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Zahlung speichern...</value>
   </data>
 </root>

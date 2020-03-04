@@ -712,18 +712,6 @@
   <data name="BalanceLabel" xml:space="preserve">
     <value>Solde</value>
   </data>
-  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Dernières opérations:</value>
-  </data>
-  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
-    <value>Paymentclearing:</value>
-  </data>
-  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
-    <value>Créer des paiements récurrents :</value>
-  </data>
-  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
-    <value>Sauvegarde &amp; Synchronisation:</value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Choisissez entre un thème sombre ou clair. Veuillez redémarrer l'application via le gestionnaire de tâches pour appliquer votre choix.</value>
   </data>
@@ -861,5 +849,14 @@
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
     <value>Login Required</value>
+  </data>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Saving Account...</value>
+  </data>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Saving Category...</value>
+  </data>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Saving Payment...</value>
   </data>
 </root>

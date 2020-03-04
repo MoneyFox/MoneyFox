@@ -715,18 +715,6 @@ Do you want to go the the store to rate?</value>
   <data name="BalanceLabel" xml:space="preserve">
     <value>Balance</value>
   </data>
-  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Last Executions:</value>
-  </data>
-  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
-    <value>Paymentclearing:</value>
-  </data>
-  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
-    <value>Create Recurring Payments:</value>
-  </data>
-  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
-    <value>Backup Sync:</value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
   </data>
@@ -864,5 +852,14 @@ Do you want to go the the store to rate?</value>
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
     <value>Login Required</value>
+  </data>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Saving Account...</value>
+  </data>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Saving Category...</value>
+  </data>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Saving Payment...</value>
   </data>
 </root>

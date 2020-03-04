@@ -713,18 +713,6 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   <data name="BalanceLabel" xml:space="preserve">
     <value>Saldo</value>
   </data>
-  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Últimas Ejecuciones:</value>
-  </data>
-  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
-    <value>Paymentclearing:</value>
-  </data>
-  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
-    <value>Crear pagos recurrentes:</value>
-  </data>
-  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
-    <value>Sincronización de copia de seguridad:</value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Elija entre un tema oscuro o claro. Por favor, reinicie la aplicación mediante el administrador de tareas para aplicar su selección.</value>
   </data>
@@ -862,5 +850,14 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
     <value>Es necesario iniciar sesión</value>
+  </data>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Saving Account...</value>
+  </data>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Saving Category...</value>
+  </data>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Saving Payment...</value>
   </data>
 </root>
