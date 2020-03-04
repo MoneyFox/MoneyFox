@@ -51,12 +51,12 @@ namespace MoneyFox.Domain.Entities
 
         public PaymentType Type { get; private set; }
 
-        private string note;
+        private string? note;
 
         public string Note
         {
-            private set => note = value;
             get => note ?? string.Empty;
+            private set => note = value;
         }
 
         public bool IsRecurring { get; private set; }
@@ -67,7 +67,14 @@ namespace MoneyFox.Domain.Entities
 
         public virtual Category? Category { get; private set; }
 
-        [Required] public virtual Account ChargedAccount { get; private set; }
+        private Account? chargedAccount;
+
+        [Required]
+        public virtual Account ChargedAccount
+        {
+            get => chargedAccount ?? throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
+            private set => chargedAccount = value;
+        }
 
         public virtual Account? TargetAccount { get; private set; }
 

@@ -32,8 +32,8 @@ namespace MoneyFox.Domain.Entities
 
         public string Note
         {
-            private set => note = value;
             get => note ?? string.Empty;
+            private set => note = value;
         }
 
         public bool IsOverdrawn { get; private set; }
