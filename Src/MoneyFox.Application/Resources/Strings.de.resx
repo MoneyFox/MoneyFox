@@ -853,12 +853,12 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Login erforderlich</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Saving Account...</value>
+    <value>Konto speichern...</value>
   </data>
   <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Saving Category...</value>
+    <value>Kategorie speichern...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Saving Payment...</value>
+    <value>Zahlung speichern...</value>
   </data>
 </root>
