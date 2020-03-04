@@ -1,4 +1,5 @@
-﻿using MoneyFox.Domain;
+﻿using MoneyFox.Application;
+using MoneyFox.Domain;
 using MoneyFox.Presentation.ViewModels;
 
 namespace MoneyFox.Presentation.ConverterLogic
@@ -30,7 +31,7 @@ namespace MoneyFox.Presentation.ConverterLogic
                        : "+";
             }
 
-            return $"{sign} {payment.Amount.ToString(string.Empty)}";
+            return $"{sign} {payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using MoneyFox.Domain;
+﻿using MoneyFox.Application;
+using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels;
 using System;
 using Windows.UI.Xaml.Data;
@@ -34,7 +35,7 @@ namespace MoneyFox.Uwp.Converter
                        : "+";
             }
 
-            return $"{sign} {payment.Amount.ToString(string.Empty)}";
+            return $"{sign} {payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
