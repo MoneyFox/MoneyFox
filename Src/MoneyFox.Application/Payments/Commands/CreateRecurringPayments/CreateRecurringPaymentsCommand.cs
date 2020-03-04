@@ -60,7 +60,7 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                                             x))
                                                    .ToList();
 
-                recPaymentsToCreate.ForEach(x => x.RecurringPayment.SetLastRecurrenceCreatedDate());
+                recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
 
                 contextAdapter.Context.Payments.AddRange(recPaymentsToCreate);
                 await contextAdapter.Context.SaveChangesAsync();
