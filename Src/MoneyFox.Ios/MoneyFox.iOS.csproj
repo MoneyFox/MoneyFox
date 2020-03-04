@@ -4,6 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <LangVersion>8.0</LangVersion>
+    <nullable>enable</nullable>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F68BCA5A-D029-4981-99A7-14BC968D12CA}</ProjectGuid>
