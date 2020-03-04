@@ -39,7 +39,7 @@ namespace MoneyFox.Ui.Shared.Groups
         /// <summary>
         /// The command to execute on a click.
         /// </summary>
-        public RelayCommand<T> ItemClickCommand { get; }
+        public RelayCommand<T>? ItemClickCommand { get; }
 
         /// <summary>
         /// Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
