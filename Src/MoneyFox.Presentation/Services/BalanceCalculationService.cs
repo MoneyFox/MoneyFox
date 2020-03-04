@@ -6,8 +6,10 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace MoneyFox.Presentation.Services
 {
@@ -63,6 +65,8 @@ namespace MoneyFox.Presentation.Services
 
             foreach(Payment payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
             {
+                if(payment.ChargedAccount == null) throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
+
                 switch(payment.Type)
                 {
                     case PaymentType.Expense:
@@ -82,7 +86,9 @@ namespace MoneyFox.Presentation.Services
                                 balance += payment.Amount;
                             }
 
-                            if(Equals(account.Id, payment.TargetAccount.Id))
+                            if (payment.TargetAccount == null) throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.TargetAccount)}");
+
+                            if (Equals(account.Id, payment.TargetAccount.Id))
                             {
                                 //Transfer to excluded account
                                 balance -= payment.Amount;
