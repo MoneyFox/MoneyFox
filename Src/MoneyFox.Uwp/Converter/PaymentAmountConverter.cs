@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.Converter
                        : "+";
             }
 
-            return $"{sign} {payment.Amount.ToString(string.Empty;
+            return $"{sign} {payment.Amount.ToString(string.Empty)}";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
