@@ -7,15 +7,15 @@ namespace MoneyFox.Ui.Shared.Commands
 {
     public class AsyncCommand : IAsyncCommand
     {
-        public event EventHandler CanExecuteChanged;
+        public event EventHandler? CanExecuteChanged;
 
         private bool isExecuting;
         private readonly Func<Task> execute;
-        private readonly Func<bool> canExecute;
+        private readonly Func<bool>? canExecute;
 
         public AsyncCommand(
             Func<Task> execute,
-            Func<bool> canExecute = null)
+            Func<bool>? canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;
