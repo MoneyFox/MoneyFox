@@ -714,18 +714,6 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   <data name="BalanceLabel" xml:space="preserve">
     <value>Balanço</value>
   </data>
-  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Últimas Execuções:</value>
-  </data>
-  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
-    <value>Compensação de pagamento:</value>
-  </data>
-  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
-    <value>Criar Pagamentos Recorrentes:</value>
-  </data>
-  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
-    <value>Sincronização de backup:</value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Escolha entre um escuro ou um tema de luz. Por favor, reinicie o aplicativo através do Gerenciador de Tarefas para aplicar sua seleção.</value>
   </data>
@@ -863,5 +851,14 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
     <value>Login Required</value>
+  </data>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Saving Account...</value>
+  </data>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Saving Category...</value>
+  </data>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Saving Payment...</value>
   </data>
 </root>
