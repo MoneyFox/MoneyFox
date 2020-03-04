@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Domain.Exceptions;
+﻿using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Ui.Shared.Groups;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Groups
@@ -15,9 +15,9 @@ namespace MoneyFox.Presentation.Tests.Groups
         {
             // Arrange
             // Act / Assert
-            Assert.Throws<GroupListParameterNullException>(() =>
-                                                               DateListGroupCollection<PaymentViewModel>.CreateGroups(null, s => "",
-                                                                                                                      s => DateTime.Now));
+            Assert.Throws<GroupListParameterNullException>(() => DateListGroupCollection<PaymentViewModel>.CreateGroups(null,
+                                                                                                                        s => string.Empty,
+                                                                                                                        s => DateTime.Now));
         }
     }
 }

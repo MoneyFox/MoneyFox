@@ -1,7 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Domain.Entities;
+﻿using MoneyFox.Domain.Entities;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Domain.Tests.Entities
@@ -70,7 +70,6 @@ namespace MoneyFox.Domain.Tests.Entities
             const string testName = "test";
 
             var testCategory = new Category("Foo");
-
 
             // Act / Assert
             testCategory.UpdateData(testName);

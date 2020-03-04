@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Threading.Tasks;
-using MoneyFox.Application.Common.Adapters;
+﻿using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
@@ -12,6 +7,11 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Exceptions;
 using Moq;
 using Should;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.IO;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.CloudBackup
@@ -47,7 +47,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   contextAdapterMock.Object);
 
             // Act / Assert
-            await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LoginAsync());
+            await Assert.ThrowsAsync<NetworkConnectionException>(async() => await backupService.LoginAsync());
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   contextAdapterMock.Object);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async () => await backupService.LoginAsync());
+            await Assert.ThrowsAsync<BackupException>(async() => await backupService.LoginAsync());
 
             // Assert
             settingsFacadeMock.Object.IsBackupAutouploadEnabled.ShouldBeFalse();
@@ -112,7 +112,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   contextAdapterMock.Object);
 
             // Act / Assert
-            await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LogoutAsync());
+            await Assert.ThrowsAsync<NetworkConnectionException>(async() => await backupService.LogoutAsync());
         }
 
         [Fact]
@@ -135,7 +135,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   contextAdapterMock.Object);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async () => await backupService.LogoutAsync());
+            await Assert.ThrowsAsync<BackupException>(async() => await backupService.LogoutAsync());
 
             // Assert
             settingsFacadeMock.Object.IsBackupAutouploadEnabled.ShouldBeTrue();
@@ -214,7 +214,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                                  .ReturnsAsync(new List<string> {"asd"});
+                                  .ReturnsAsync(new List<string> { "asd" });
 
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
@@ -287,7 +287,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   contextAdapterMock.Object);
 
             // Act / Assert
-            await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.RestoreBackupAsync());
+            await Assert.ThrowsAsync<NetworkConnectionException>(async() => await backupService.RestoreBackupAsync());
         }
 
         [Fact]
@@ -307,8 +307,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                   .ReturnsAsync(new Mock<Stream>().Object);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                                  .ReturnsAsync(new List<string> {"asd"});
-
+                                  .ReturnsAsync(new List<string> { "asd" });
 
             var backupService = new BackupService(cloudBackupServiceMock.Object,
                                                   fileStoreMock.Object,
@@ -321,7 +320,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
 
             // Assert
             settingsFacadeMock.Object.LastDatabaseUpdate
-                              .ShouldBeInRange(DateTime.Now.AddMinutes(-2), DateTime.Now);
+                                     .ShouldBeInRange(DateTime.Now.AddMinutes(-2), DateTime.Now);
         }
 
         [Fact]
@@ -337,7 +336,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                                  .ReturnsAsync(new List<string> {DatabaseConstants.BACKUP_NAME});
+                                  .ReturnsAsync(new List<string> { DatabaseConstants.BACKUP_NAME });
 
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
                                   .Callback(() => throw new BackupException());
@@ -351,7 +350,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   contextAdapterMock.Object);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async () => await backupService.RestoreBackupAsync());
+            await Assert.ThrowsAsync<BackupException>(async() => await backupService.RestoreBackupAsync());
 
             // Assert
             settingsFacadeMock.Object.LastDatabaseUpdate.ShouldEqual(expectedPassedDate);
@@ -403,7 +402,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   contextAdapterMock.Object);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async () => await backupService.UploadBackupAsync());
+            await Assert.ThrowsAsync<BackupException>(async() => await backupService.UploadBackupAsync());
 
             // Assert
             cloudBackupServiceMock.Verify(x => x.LoginAsync(), Times.Once);

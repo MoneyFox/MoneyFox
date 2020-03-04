@@ -1,10 +1,10 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using MediatR;
+﻿using MediatR;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -52,7 +52,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public void IsRecurring_SetFalse_RecurringViewModelSetNull()
         {
             // Arrange
-            var vm = new PaymentViewModel(mediatorMock.Object, navigationService.Object) {IsRecurring = true};
+            var vm = new PaymentViewModel(mediatorMock.Object, navigationService.Object) { IsRecurring = true };
             vm.RecurringPayment.ShouldNotBeNull();
 
             // Act

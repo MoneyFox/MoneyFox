@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Presentation.Converter;
+﻿using MoneyFox.Presentation.Converter;
 using Should;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Converter

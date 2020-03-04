@@ -1,7 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using AutoMapper;
+﻿using AutoMapper;
 using MoneyFox.Presentation.AutoMapper;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Collections
@@ -9,7 +9,8 @@ namespace MoneyFox.Presentation.Tests.Collections
     [ExcludeFromCodeCoverage]
     [CollectionDefinition("AutoMapperCollection")]
     public class MapperCollection : ICollectionFixture<MapperCollectionFixture>
-    { }
+    {
+    }
 
     [ExcludeFromCodeCoverage]
     public class MapperCollectionFixture : IDisposable

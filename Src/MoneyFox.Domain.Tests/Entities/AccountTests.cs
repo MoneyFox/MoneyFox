@@ -1,8 +1,8 @@
-﻿using System;
+﻿using MoneyFox.Domain.Entities;
+using Should;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
-using MoneyFox.Domain.Entities;
-using Should;
 using Xunit;
 
 namespace MoneyFox.Domain.Tests.Entities
@@ -273,7 +273,6 @@ namespace MoneyFox.Domain.Tests.Entities
 
             FieldInfo targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             targetAccountId.SetValue(targetAccount, 4);
-
 
             var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
 

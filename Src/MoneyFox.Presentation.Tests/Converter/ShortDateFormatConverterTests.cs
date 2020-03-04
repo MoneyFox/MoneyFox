@@ -1,9 +1,9 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using MoneyFox.Application;
+﻿using MoneyFox.Application;
 using MoneyFox.Presentation.Converter;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Converter
