@@ -713,18 +713,6 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   <data name="BalanceLabel" xml:space="preserve">
     <value>Saldo</value>
   </data>
-  <data name="LastExecutionBackgroundOperationsLabel" xml:space="preserve">
-    <value>Ostatnie operacje:</value>
-  </data>
-  <data name="LastExecutionClearPaymentLabel" xml:space="preserve">
-    <value>Wyczyść płatność:</value>
-  </data>
-  <data name="LastExecutionRecurringPaymentLabel" xml:space="preserve">
-    <value>Utwórz płatności cykliczne:</value>
-  </data>
-  <data name="LastExecutionSyncBackupLabel" xml:space="preserve">
-    <value>Synchronizacja kopii zapasowej:</value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Wybierz między jasnym a ciemnym motywem. Zrestartuj aplikację przez Menedżer zadań w celu zastosowania zmian.</value>
   </data>
@@ -862,5 +850,14 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   </data>
   <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
     <value>Wymagane logowanie</value>
+  </data>
+  <data name="SavingAccountMessage" xml:space="preserve">
+    <value>Saving Account...</value>
+  </data>
+  <data name="SavingCategoryMessage" xml:space="preserve">
+    <value>Saving Category...</value>
+  </data>
+  <data name="SavingPaymentMessage" xml:space="preserve">
+    <value>Saving Payment...</value>
   </data>
 </root>
