@@ -15,9 +15,18 @@ namespace MoneyFox.Domain.Entities
 
         public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
+            if (string.IsNullOrWhiteSpace(name))
+                throw new ArgumentNullException(nameof(name));
+
             ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
-            UpdateAccount(name, currentBalance, note, isExcluded);
+
+            Name = name;
+            CurrentBalance = currentBalance;
+            Note = note;
+            IsExcluded = isExcluded;
+            IsOverdrawn = currentBalance < 0;
+            ModificationDate = DateTime.Now;
         }
 
         [Key]
@@ -28,13 +37,7 @@ namespace MoneyFox.Domain.Entities
 
         public decimal CurrentBalance { get; private set; }
 
-        private string note;
-
-        public string Note
-        {
-            private set => note = value;
-            get => note ?? string.Empty;
-        }
+        public string? Note { get; set; }
 
         public bool IsOverdrawn { get; private set; }
 
@@ -54,6 +57,7 @@ namespace MoneyFox.Domain.Entities
             Note = note;
             IsExcluded = isExcluded;
             IsOverdrawn = currentBalance < 0;
+
             ModificationDate = DateTime.Now;
         }
 
@@ -71,8 +75,8 @@ namespace MoneyFox.Domain.Entities
 
         private void ApplyPaymentAmount(Payment payment, bool invert = false)
         {
-            if(!payment.IsCleared)
-                return;
+            if (payment.ChargedAccount == null) throw new InvalidOperationException("Uninitialized property: " + nameof(payment.ChargedAccount));
+            if (!payment.IsCleared) return;
 
             decimal amount = invert
                              ? -payment.Amount
@@ -81,9 +85,13 @@ namespace MoneyFox.Domain.Entities
             if(payment.Type == PaymentType.Expense
                || payment.Type == PaymentType.Transfer
                && payment.ChargedAccount.Id == Id)
+            {
                 CurrentBalance -= amount;
+            }
             else
+            {
                 CurrentBalance += amount;
+            }
             ModificationDate = DateTime.Now;
         }
 

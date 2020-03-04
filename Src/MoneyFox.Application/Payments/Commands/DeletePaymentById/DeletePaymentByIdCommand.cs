@@ -45,7 +45,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                                                              .Payments
                                                              .FindAsync(request.PaymentId);
 
-                entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
+                entityToDelete.ChargedAccount!.RemovePaymentAmount(entityToDelete);
                 entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
 
                 if(request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
