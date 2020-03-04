@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using Windows.Storage;
+﻿using Windows.Storage;
 
 namespace MoneyFox.Uwp.Helpers
 {
@@ -14,7 +13,8 @@ namespace MoneyFox.Uwp.Helpers
         {
             object obj = null;
 
-            if(settings.Values.TryGetValue(key, out obj)) return (T) obj;
+            if(settings.Values.TryGetValue(key, out obj))
+                return (T) obj;
 
             return default;
         }

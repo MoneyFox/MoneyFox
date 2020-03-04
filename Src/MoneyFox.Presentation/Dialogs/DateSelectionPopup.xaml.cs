@@ -1,6 +1,6 @@
-﻿using System;
-using MoneyFox.Presentation.ViewModels;
+﻿using MoneyFox.Presentation.ViewModels;
 using Rg.Plugins.Popup.Extensions;
+using System;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Presentation.Dialogs

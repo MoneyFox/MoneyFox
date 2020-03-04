@@ -5,13 +5,13 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeBalanceViewViewModel : IBalanceViewModel
     {
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public decimal TotalBalance => 1784;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public decimal EndOfMonthBalance => 9784;
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public AsyncCommand UpdateBalanceCommand { get; }
     }
 }

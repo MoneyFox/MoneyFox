@@ -1,19 +1,20 @@
-﻿using System;
+﻿using MoneyFox.Domain.Exceptions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Domain.Exceptions;
 
 namespace MoneyFox.Domain.Entities
 {
     public class RecurringPayment
     {
         /// <summary>
-        ///     EF Core constructor
+        /// EF Core constructor
         /// </summary>
         private RecurringPayment()
-        { }
+        {
+        }
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "<Pending>")]
         public RecurringPayment(DateTime startDate,
@@ -27,7 +28,7 @@ namespace MoneyFox.Domain.Entities
                                 Category? category = null,
                                 DateTime? lastRecurrenceCreated = null)
         {
-            if (!IsEndless && endDate != null && endDate < DateTime.Today)
+            if(!IsEndless && endDate != null && endDate < DateTime.Today)
                 throw new InvalidEndDateException();
 
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
@@ -53,10 +54,15 @@ namespace MoneyFox.Domain.Entities
         public int Id { get; set; }
 
         public DateTime StartDate { get; private set; }
+
         public DateTime? EndDate { get; private set; }
+
         public bool IsEndless { get; private set; }
+
         public decimal Amount { get; private set; }
+
         public PaymentType Type { get; private set; }
+
         public PaymentRecurrence Recurrence { get; private set; }
 
         private string note;
@@ -70,6 +76,7 @@ namespace MoneyFox.Domain.Entities
         public DateTime LastRecurrenceCreated { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
+
         public DateTime CreationTime { get; private set; }
 
         public virtual Category? Category { get; private set; }
@@ -88,7 +95,7 @@ namespace MoneyFox.Domain.Entities
                                            Account? targetAccount = null,
                                            Category? category = null)
         {
-            if (!IsEndless && endDate != null && endDate < DateTime.Today)
+            if(!IsEndless && endDate != null && endDate < DateTime.Today)
                 throw new InvalidEndDateException();
 
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));

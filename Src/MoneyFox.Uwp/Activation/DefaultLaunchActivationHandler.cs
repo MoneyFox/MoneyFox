@@ -1,8 +1,8 @@
-﻿using System;
+﻿using CommonServiceLocator;
+using MoneyFox.Uwp.Services;
+using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
-using CommonServiceLocator;
-using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.Activation
 {

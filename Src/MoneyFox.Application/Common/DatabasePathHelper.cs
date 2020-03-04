@@ -1,8 +1,8 @@
-﻿using System;
+﻿using NLog;
+using SQLitePCL;
+using System;
 using System.Globalization;
 using System.IO;
-using NLog;
-using SQLitePCL;
 
 namespace MoneyFox.Application.Common
 {
@@ -14,12 +14,14 @@ namespace MoneyFox.Application.Common
 
         public static string GetDbPath()
         {
-            var databasePath = "";
-            switch (ExecutingPlatform.Current)
+            var databasePath = string.Empty;
+            switch(ExecutingPlatform.Current)
             {
                 case AppPlatform.iOS:
                     Batteries_V2.Init();
-                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "..", "Library",
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                                                "..",
+                                                "Library",
                                                 DATABASE_NAME);
                     break;
 

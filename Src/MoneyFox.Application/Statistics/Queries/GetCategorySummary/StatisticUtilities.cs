@@ -6,7 +6,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
     public static class StatisticUtilities
     {
         /// <summary>
-        ///     Will round all values of the passed statistic item list
+        /// Will round all values of the passed statistic item list
         /// </summary>
         /// <param name="items">List of statistic items.</param>
         public static void RoundStatisticItems(List<CategoryOverviewItem> items)

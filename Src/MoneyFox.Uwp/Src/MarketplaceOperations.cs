@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Interfaces;
+using System;
 using Windows.ApplicationModel.Store;
 using Windows.System;
-using MoneyFox.Application.Common.Interfaces;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Uwp.Src
 {
     public class MarketplaceOperations : IStoreOperations
     {
@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp
 
         public async void RateApp()
         {
-            await Launcher.LaunchUriAsync(new Uri(STORE_URL + CurrentApp.AppId));
+            await Launcher.LaunchUriAsync(new Uri($"{STORE_URL}{CurrentApp.AppId}"));
         }
     }
 }

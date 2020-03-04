@@ -1,7 +1,7 @@
-﻿using System;
-using Windows.UI.Xaml;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.Views.Dialogs;
+using System;
+using Windows.UI.Xaml;
 
 namespace MoneyFox.Uwp.Views.Statistics
 {

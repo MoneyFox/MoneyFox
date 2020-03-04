@@ -1,6 +1,6 @@
-﻿using System;
-using Microsoft.AppCenter.Crashes;
+﻿using Microsoft.AppCenter.Crashes;
 using NLog;
+using System;
 using UIKit;
 
 namespace MoneyFox.iOS
@@ -16,7 +16,7 @@ namespace MoneyFox.iOS
                 // you can specify it here.
                 UIApplication.Main(args, null, "AppDelegate");
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 LogManager.GetCurrentClassLogger().Fatal(ex);
                 Crashes.TrackError(ex);

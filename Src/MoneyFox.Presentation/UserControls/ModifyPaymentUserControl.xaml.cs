@@ -1,5 +1,5 @@
-﻿using System;
-using MoneyFox.Presentation.ViewModels;
+﻿using MoneyFox.Presentation.ViewModels;
+using System;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.UserControls

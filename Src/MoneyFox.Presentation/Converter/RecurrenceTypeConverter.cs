@@ -1,18 +1,18 @@
-﻿using System;
-using System.Globalization;
-using MoneyFox.Domain;
+﻿using MoneyFox.Domain;
 using MoneyFox.Ui.Shared;
+using System;
+using System.Globalization;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
-    ///     Converts the RecurrenceType to a string.
+    /// Converts the RecurrenceType to a string.
     /// </summary>
     public class RecurrenceTypeConverter : IValueConverter
     {
         /// <summary>
-        ///     Converts the passed recurrence type to a string.
+        /// Converts the passed recurrence type to a string.
         /// </summary>
         /// <param name="value">Recurrence type to convert.</param>
         /// <param name="targetType">Is not used.</param>
@@ -25,7 +25,7 @@ namespace MoneyFox.Presentation.Converter
         }
 
         /// <summary>
-        ///     Not implemented.
+        /// Not implemented.
         /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {

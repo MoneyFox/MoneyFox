@@ -1,9 +1,10 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using MoneyFox.Application.Common;
+using MoneyFox.iOS.Src;
 using MoneyFox.Presentation;
 using MoneyFox.Presentation.Services;
 using PCLAppConfig;
+using System;
 
 namespace MoneyFox.iOS
 {
@@ -11,7 +12,7 @@ namespace MoneyFox.iOS
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new TokenObject {CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]});
+            builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
 
             builder.RegisterModule<PresentationModule>();
 

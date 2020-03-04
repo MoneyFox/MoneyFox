@@ -1,8 +1,8 @@
-﻿using System.IO;
-using MoneyFox.Application.Common.Constants;
+﻿using MoneyFox.Application.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using System.IO;
 using Xamarin.Essentials;
 
 #if !DEBUG
@@ -37,7 +37,6 @@ namespace MoneyFox.Uwp.Services
 
             //config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
 #endif
-
 
             config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);

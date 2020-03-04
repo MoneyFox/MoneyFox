@@ -7,15 +7,19 @@ namespace MoneyFox.Domain.Exceptions
     public class InvalidPaymentTypeException : Exception
     {
         public InvalidPaymentTypeException()
-        { }
+        {
+        }
 
         public InvalidPaymentTypeException(string message) : base(message)
-        { }
+        {
+        }
 
         public InvalidPaymentTypeException(string message, Exception innerException) : base(message, innerException)
-        { }
+        {
+        }
 
         protected InvalidPaymentTypeException(SerializationInfo info, StreamingContext context) : base(info, context)
-        { }
+        {
+        }
     }
 }

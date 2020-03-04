@@ -1,7 +1,7 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.Persistence;
+using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Application.Tests.Infrastructure
 {

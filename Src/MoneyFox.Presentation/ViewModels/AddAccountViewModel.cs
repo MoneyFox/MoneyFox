@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
@@ -8,6 +7,7 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Utilities;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -19,8 +19,7 @@ namespace MoneyFox.Presentation.ViewModels
         public AddAccountViewModel(IMediator mediator,
                                    IMapper mapper,
                                    IDialogService dialogService,
-                                   INavigationService navigationService)
-            : base (dialogService, navigationService)
+                                   INavigationService navigationService) : base(dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -38,13 +37,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SaveAccount()
         {
-            if (await mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name)))
+            if(await mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name)))
             {
                 await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
                 return;
             }
 
-            await mediator.Send(new CreateAccountCommand {AccountToSave = mapper.Map<Account>(SelectedAccount)});
+            await mediator.Send(new CreateAccountCommand { AccountToSave = mapper.Map<Account>(SelectedAccount) });
             NavigationService.GoBack();
         }
     }

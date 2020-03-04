@@ -11,12 +11,12 @@ namespace MoneyFox.Application.Common.Messages
         }
 
         /// <summary>
-        ///     The selected start date
+        /// The selected start date
         /// </summary>
         public DateTime StartDate { get; }
 
         /// <summary>
-        ///     The selected end date
+        /// The selected end date
         /// </summary>
         public DateTime EndDate { get; }
     }

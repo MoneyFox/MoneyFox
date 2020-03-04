@@ -7,7 +7,7 @@ using NavigationViewItemInvokedEventArgs = Microsoft.UI.Xaml.Controls.Navigation
 namespace MoneyFox.Uwp.Views
 {
     /// <summary>
-    ///     An empty page that can be used on its own or navigated to within a Frame.
+    /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AppShell
     {
@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp.Views
 
         private void NavView_OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            if (args.InvokedItemContainer == openStatisticMenu)
+            if(args.InvokedItemContainer == openStatisticMenu)
             {
                 FlyoutBase flyout = FlyoutBase.GetAttachedFlyout(openStatisticMenu);
                 flyout.ShowAt(openStatisticMenu);

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.EntityFrameworkCore.Migrations;
 
 #pragma warning disable S3254 // Default parameter values should not be passed as arguments
 #pragma warning disable S3900 // Arguments of public methods should be validated against null
@@ -12,26 +12,22 @@ namespace MoneyFox.Persistence.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<DateTime>(
-                                                 "ModificationDate",
+            migrationBuilder.AddColumn<DateTime>("ModificationDate",
                                                  "RecurringPayments",
                                                  nullable: false,
                                                  defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
-            migrationBuilder.AddColumn<DateTime>(
-                                                 "ModificationDate",
+            migrationBuilder.AddColumn<DateTime>("ModificationDate",
                                                  "Payments",
                                                  nullable: false,
                                                  defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
-            migrationBuilder.AddColumn<DateTime>(
-                                                 "ModificationDate",
+            migrationBuilder.AddColumn<DateTime>("ModificationDate",
                                                  "Categories",
                                                  nullable: false,
                                                  defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
 
-            migrationBuilder.AddColumn<DateTime>(
-                                                 "ModificationDate",
+            migrationBuilder.AddColumn<DateTime>("ModificationDate",
                                                  "Accounts",
                                                  nullable: false,
                                                  defaultValue: new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified));
@@ -39,20 +35,16 @@ namespace MoneyFox.Persistence.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                                        "ModificationDate",
+            migrationBuilder.DropColumn("ModificationDate",
                                         "RecurringPayments");
 
-            migrationBuilder.DropColumn(
-                                        "ModificationDate",
+            migrationBuilder.DropColumn("ModificationDate",
                                         "Payments");
 
-            migrationBuilder.DropColumn(
-                                        "ModificationDate",
+            migrationBuilder.DropColumn("ModificationDate",
                                         "Categories");
 
-            migrationBuilder.DropColumn(
-                                        "ModificationDate",
+            migrationBuilder.DropColumn("ModificationDate",
                                         "Accounts");
         }
     }

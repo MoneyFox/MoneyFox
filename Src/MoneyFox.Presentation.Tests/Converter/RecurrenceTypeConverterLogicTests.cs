@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Ui.Shared;
 using Should;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Converter
@@ -15,13 +15,13 @@ namespace MoneyFox.Presentation.Tests.Converter
         {
             get
             {
-                yield return new object[] {PaymentRecurrence.Daily, Strings.DailyLabel};
-                yield return new object[] {PaymentRecurrence.DailyWithoutWeekend, Strings.DailyWithoutWeekendLabel};
-                yield return new object[] {PaymentRecurrence.Weekly, Strings.WeeklyLabel};
-                yield return new object[] {PaymentRecurrence.Biweekly, Strings.BiweeklyLabel};
-                yield return new object[] {PaymentRecurrence.Monthly, Strings.MonthlyLabel};
-                yield return new object[] {PaymentRecurrence.Bimonthly, Strings.BimonthlyLabel};
-                yield return new object[] {PaymentRecurrence.Yearly, Strings.YearlyLabel};
+                yield return new object[] { PaymentRecurrence.Daily, Strings.DailyLabel };
+                yield return new object[] { PaymentRecurrence.DailyWithoutWeekend, Strings.DailyWithoutWeekendLabel };
+                yield return new object[] { PaymentRecurrence.Weekly, Strings.WeeklyLabel };
+                yield return new object[] { PaymentRecurrence.Biweekly, Strings.BiweeklyLabel };
+                yield return new object[] { PaymentRecurrence.Monthly, Strings.MonthlyLabel };
+                yield return new object[] { PaymentRecurrence.Bimonthly, Strings.BimonthlyLabel };
+                yield return new object[] { PaymentRecurrence.Yearly, Strings.YearlyLabel };
             }
         }
 

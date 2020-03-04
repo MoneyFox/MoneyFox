@@ -1,7 +1,7 @@
-﻿using System.Collections.Specialized;
+﻿using Foundation;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Input;
-using Foundation;
 using UIKit;
 
 // ReSharper disable UnusedVariable
@@ -16,32 +16,36 @@ namespace MoneyFox.iOS
     {
         public void Include(UIButton uiButton)
         {
-            uiButton.TouchUpInside += (s, e) =>
-                                          uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
+            uiButton.TouchUpInside += (s, e) => uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
         }
 
         public void Include(UIBarButtonItem barButton)
         {
-            barButton.Clicked += (s, e) =>
-                                     barButton.Title = barButton.Title + "";
+            barButton.Clicked += (s, e) => barButton.Title = $"{barButton.Title}";
         }
 
         public void Include(UITextField textField)
         {
-            textField.Text = textField.Text + "";
-            textField.EditingChanged += (sender, args) => { textField.Text = ""; };
+            textField.Text = $"{textField.Text}";
+            textField.EditingChanged += (sender, args) =>
+                                        {
+                                            textField.Text = string.Empty;
+                                        };
         }
 
         public void Include(UITextView textView)
         {
-            textView.Text = textView.Text + "";
-            textView.Changed += (sender, args) => { textView.Text = ""; };
+            textView.Text = $"{textView.Text}";
+            textView.Changed += (sender, args) =>
+                                {
+                                    textView.Text = string.Empty;
+                                };
         }
 
         public void Include(UILabel label)
         {
-            label.Text = label.Text + "";
-            label.AttributedText = new NSAttributedString(label.AttributedText + "");
+            label.Text = $"{label.Text}";
+            label.AttributedText = new NSAttributedString($"{label.AttributedText}");
         }
 
         public void Include(UIImageView imageView)
@@ -52,13 +56,19 @@ namespace MoneyFox.iOS
         public void Include(UIDatePicker date)
         {
             date.Date = date.Date.AddSeconds(1);
-            date.ValueChanged += (sender, args) => { date.Date = NSDate.DistantFuture; };
+            date.ValueChanged += (sender, args) =>
+                                 {
+                                     date.Date = NSDate.DistantFuture;
+                                 };
         }
 
         public void Include(UISlider slider)
         {
             slider.Value = slider.Value + 1;
-            slider.ValueChanged += (sender, args) => { slider.Value = 1; };
+            slider.ValueChanged += (sender, args) =>
+                                   {
+                                       slider.Value = 1;
+                                   };
         }
 
         public void Include(UIProgressView progress)
@@ -69,19 +79,28 @@ namespace MoneyFox.iOS
         public void Include(UISwitch sw)
         {
             sw.On = !sw.On;
-            sw.ValueChanged += (sender, args) => { sw.On = false; };
+            sw.ValueChanged += (sender, args) =>
+                               {
+                                   sw.On = false;
+                               };
         }
 
         public void Include(UIStepper s)
         {
             s.Value = s.Value + 1;
-            s.ValueChanged += (sender, args) => { s.Value = 0; };
+            s.ValueChanged += (sender, args) =>
+                              {
+                                  s.Value = 0;
+                              };
         }
 
         public void Include(UIPageControl s)
         {
             s.Pages = s.Pages + 1;
-            s.ValueChanged += (sender, args) => { s.Pages = 0; };
+            s.ValueChanged += (sender, args) =>
+                              {
+                                  s.Pages = 0;
+                              };
         }
 
         public void Include(INotifyCollectionChanged changed)
@@ -96,7 +115,8 @@ namespace MoneyFox.iOS
         {
             command.CanExecuteChanged += (s, e) =>
                                          {
-                                             if (command.CanExecute(null)) command.Execute(null);
+                                             if(command.CanExecute(null))
+                                                 command.Execute(null);
                                          };
         }
 

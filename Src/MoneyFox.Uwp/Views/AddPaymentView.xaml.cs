@@ -1,8 +1,8 @@
-﻿using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
-using MoneyFox.Domain;
+﻿using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Uwp.ViewModels;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null && e.NavigationMode != NavigationMode.Back)
+            if(e.Parameter != null && e.NavigationMode != NavigationMode.Back)
             {
                 ViewModel.PaymentType = (PaymentType) e.Parameter;
                 ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
@@ -29,7 +29,8 @@ namespace MoneyFox.Uwp.Views
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
-            if (e.NavigationMode == NavigationMode.Back) ResetPageCache();
+            if(e.NavigationMode == NavigationMode.Back)
+                ResetPageCache();
         }
 
         private void ResetPageCache()

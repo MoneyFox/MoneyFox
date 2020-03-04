@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using NLog;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using NLog;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Application.Common.Adapters
@@ -8,6 +8,7 @@ namespace MoneyFox.Application.Common.Adapters
     public interface IEmailAdapter
     {
         Task SendEmailAsync(string subject, string body, List<string> recipients);
+
         Task SendEmailAsync(string subject, string body, List<string> recipients, List<string> filePaths);
     }
 
@@ -28,7 +29,7 @@ namespace MoneyFox.Application.Common.Adapters
 
                 await Email.ComposeAsync(message);
             }
-            catch (FeatureNotSupportedException ex)
+            catch(FeatureNotSupportedException ex)
             {
                 logManager.Warn(ex);
             }
@@ -45,14 +46,14 @@ namespace MoneyFox.Application.Common.Adapters
                                   To = recipients
                               };
 
-                foreach (string path in filePaths)
+                foreach(string path in filePaths)
                 {
                     message.Attachments.Add(new EmailAttachment(path, "txt"));
                 }
 
                 await Email.ComposeAsync(message);
             }
-            catch (FeatureNotSupportedException ex)
+            catch(FeatureNotSupportedException ex)
             {
                 logManager.Warn(ex);
             }

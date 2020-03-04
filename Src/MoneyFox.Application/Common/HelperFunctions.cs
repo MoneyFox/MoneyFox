@@ -3,12 +3,12 @@
 namespace MoneyFox.Application.Common
 {
     /// <summary>
-    ///     Utility methods
+    /// Utility methods
     /// </summary>
     public static class HelperFunctions
     {
         /// <summary>
-        ///     Returns the last day of the month
+        /// Returns the last day of the month
         /// </summary>
         /// <returns>Last day of the month</returns>
         public static DateTime GetEndOfMonth()

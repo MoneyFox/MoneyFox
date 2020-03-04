@@ -1,7 +1,7 @@
-﻿using Windows.ApplicationModel;
-using Windows.UI.Xaml;
-using MoneyFox.Uwp.ViewModels.DesignTime;
+﻿using MoneyFox.Uwp.ViewModels.DesignTime;
 using MoneyFox.Uwp.ViewModels.Settings;
+using Windows.ApplicationModel;
+using Windows.UI.Xaml;
 
 namespace MoneyFox.Uwp.Views.Settings
 {
@@ -13,7 +13,8 @@ namespace MoneyFox.Uwp.Views.Settings
         {
             InitializeComponent();
 
-            if (DesignMode.DesignModeEnabled) DataContext = new DesignTimeRegionalSettingsViewModel();
+            if(DesignMode.DesignModeEnabled)
+                DataContext = new DesignTimeRegionalSettingsViewModel();
         }
 
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)

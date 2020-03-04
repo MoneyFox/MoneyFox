@@ -1,15 +1,16 @@
-﻿using System;
-using System.IO;
-using Android.App;
+﻿using Android.App;
 using Android.Runtime;
 using Autofac;
 using MoneyFox.Application.Common.Constants;
+using MoneyFox.Droid.Src;
 using MoneyFox.Presentation;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
+using System;
+using System.IO;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Droid
@@ -19,13 +20,14 @@ namespace MoneyFox.Droid
     {
         private Logger logManager;
 
-        public MainApplication(IntPtr handle, JniHandleOwnership transer)
-            : base(handle, transer)
-        { }
+        public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
+        {
+        }
 
         public override void OnCreate()
         {
-            if (ConfigurationManager.AppSettings == null) ConfigurationManager.Initialise(PortableStream.Current);
+            if(ConfigurationManager.AppSettings == null)
+                ConfigurationManager.Initialise(PortableStream.Current);
 
             InitLogger();
 
@@ -68,13 +70,12 @@ namespace MoneyFox.Droid
             var config = new LoggingConfiguration();
 
             var logfile = new FileTarget("logfile")
-            {
-                FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
-                AutoFlush = true,
-                ArchiveEvery = FileArchivePeriod.Month
-            };
+                          {
+                              FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
+                              AutoFlush = true,
+                              ArchiveEvery = FileArchivePeriod.Month
+                          };
             var debugTarget = new DebugTarget("console");
-
 
 #if !DEBUG
             // Configure AppCenter

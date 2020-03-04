@@ -1,6 +1,6 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Application.Common;
+﻿using MoneyFox.Application.Common;
 using Should;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Persistence.Tests.Helper

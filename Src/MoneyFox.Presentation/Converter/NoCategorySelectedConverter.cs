@@ -1,7 +1,7 @@
-﻿using System;
-using System.Globalization;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels;
+using System;
+using System.Globalization;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter
@@ -12,7 +12,8 @@ namespace MoneyFox.Presentation.Converter
         {
             var category = (CategoryViewModel) value;
 
-            return string.IsNullOrEmpty(category?.Name) ? Strings.SelectCategoryTitle : category.Name;
+            return string.IsNullOrEmpty(category?.Name)
+                   ? Strings.SelectCategoryTitle : category.Name;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

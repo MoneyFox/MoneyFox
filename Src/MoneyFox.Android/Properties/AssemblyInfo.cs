@@ -1,8 +1,8 @@
-﻿using System.Reflection;
+﻿using Android;
+using Android.App;
+using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
-using Android;
-using Android.App;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information

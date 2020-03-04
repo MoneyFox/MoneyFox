@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using Autofac;
+﻿using Autofac;
 using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
@@ -12,7 +10,10 @@ using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
 using MoneyFox.Uwp.AutoMapper;
+using MoneyFox.Uwp.Src;
 using PCLAppConfig;
+using System;
+using System.Globalization;
 
 namespace MoneyFox.Uwp
 {
@@ -20,7 +21,7 @@ namespace MoneyFox.Uwp
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new TokenObject {CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]});
+            builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
 
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();

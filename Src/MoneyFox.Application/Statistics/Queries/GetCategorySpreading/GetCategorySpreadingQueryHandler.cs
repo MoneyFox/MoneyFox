@@ -1,14 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 {
@@ -17,7 +17,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
         private const int NUMBER_OF_STATISTIC_ITEMS = 6;
 
         public static readonly string[] Colors =
-            {"#266489", "#68B9C0", "#90D585", "#F3C151", "#F37F64", "#424856", "#8F97A4"};
+        { "#266489", "#68B9C0", "#90D585", "#F3C151", "#F37F64", "#424856", "#8F97A4" };
 
         private readonly IContextAdapter contextAdapter;
 
@@ -50,14 +50,14 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                     group payment by new
                                      {
                                          category = payment.Category != null
-                                                        ? payment.Category.Name
-                                                        : string.Empty
+                                                    ? payment.Category.Name
+                                                    : string.Empty
                                      }
                     into temp
                     select (
                                (float) temp.Sum(x => x.Type == PaymentType.Income
-                                                         ? -x.Amount
-                                                         : x.Amount),
+                                                     ? -x.Amount
+                                                     : x.Amount),
                                temp.Key.category))
                   .Where(x => x.Item1 > 0)
                   .OrderByDescending(x => x.Item1)
@@ -83,7 +83,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 
         private static void AddOtherItem(IEnumerable<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
-            if (statisticList.Count < NUMBER_OF_STATISTIC_ITEMS)
+            if(statisticList.Count < NUMBER_OF_STATISTIC_ITEMS)
                 return;
 
             float otherValue = statisticData
@@ -96,13 +96,13 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                                  ValueLabel = otherValue.ToString("C", CultureHelper.CurrentCulture)
                              };
 
-            if (othersItem.Value > 0)
+            if(othersItem.Value > 0)
                 statisticList.Add(othersItem);
         }
 
         private static void SetColors(List<StatisticEntry> statisticItems)
         {
-            for (var i = 0; i < statisticItems.Count; i++)
+            for(var i = 0; i < statisticItems.Count; i++)
             {
                 statisticItems[i].Color = Colors[i];
             }

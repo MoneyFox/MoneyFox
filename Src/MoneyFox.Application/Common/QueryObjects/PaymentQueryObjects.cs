@@ -1,17 +1,17 @@
-﻿using System;
-using System.Linq;
-using MoneyFox.Domain;
+﻿using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using System;
+using System.Linq;
 
 namespace MoneyFox.Application.Common.QueryObjects
 {
     /// <summary>
-    ///     Provides Extensions for payments queries.
+    /// Provides Extensions for payments queries.
     /// </summary>
     public static class PaymentQueryObjects
     {
         /// <summary>
-        ///     Adds a filter to a query for cleared payments
+        /// Adds a filter to a query for cleared payments
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for cleared payments.</returns>
@@ -21,7 +21,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter to a query for payments who are not cleared
+        /// Adds a filter to a query for payments who are not cleared
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for not cleared payments.</returns>
@@ -31,7 +31,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter to a query for recurring payments
+        /// Adds a filter to a query for recurring payments
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for recurring payments.</returns>
@@ -41,7 +41,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter to a query for payments who has a date larger or equals to the passed date.
+        /// Adds a filter to a query for payments who has a date larger or equals to the passed date.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <param name="date">Date to filter for.</param>
@@ -52,7 +52,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter to a query for payments who has a date smaller or equals to the passed date.
+        /// Adds a filter to a query for payments who has a date smaller or equals to the passed date.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <param name="date">Date to filter for.</param>
@@ -63,7 +63,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter to a query for payments who are not Transfers
+        /// Adds a filter to a query for payments who are not Transfers
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for payments who are not transfers.</returns>
@@ -73,19 +73,20 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter to a query for payments who has a certain id as charged or target account.
+        /// Adds a filter to a query for payments who has a certain id as charged or target account.
         /// </summary>
         /// <param name="query">Existing query.</param>
-        /// <param name="accountId">AccountId to filter for </param>
+        /// <param name="accountId">AccountId to filter for</param>
         /// <returns>Query filtered for the account id.</returns>
         public static IQueryable<Payment> HasAccountId(this IQueryable<Payment> query, int accountId)
         {
-            return query.Where(payment => payment.ChargedAccount.Id == accountId ||
-                                          payment.TargetAccount != null && payment.TargetAccount.Id == accountId);
+            return query.Where(payment => payment.ChargedAccount.Id == accountId
+                                          || payment.TargetAccount != null
+                                          && payment.TargetAccount.Id == accountId);
         }
 
         /// <summary>
-        ///     Orders a query descending by the date.
+        /// Orders a query descending by the date.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Ordered Query.</returns>

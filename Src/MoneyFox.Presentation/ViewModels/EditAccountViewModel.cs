@@ -1,17 +1,16 @@
-﻿using System.Globalization;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
+using System.Globalization;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -23,8 +22,7 @@ namespace MoneyFox.Presentation.ViewModels
         public EditAccountViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IDialogService dialogService,
-                                    INavigationService navigationService)
-            : base(dialogService, navigationService)
+                                    INavigationService navigationService) : base(dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -41,13 +39,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         protected override async Task SaveAccount()
         {
-            await mediator.Send(new UpdateAccountCommand {Account = mapper.Map<Account>(SelectedAccount)});
+            await mediator.Send(new UpdateAccountCommand { Account = mapper.Map<Account>(SelectedAccount) });
             CancelCommand.Execute(null);
         }
 
         protected async Task DeleteAccount()
         {
-            if (await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
                 NavigationService.GoBack();

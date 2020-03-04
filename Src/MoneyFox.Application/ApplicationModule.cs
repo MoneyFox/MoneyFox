@@ -1,8 +1,8 @@
-﻿using System;
-using System.Reflection;
-using Autofac;
+﻿using Autofac;
 using MediatR;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
+using System;
+using System.Reflection;
 using Module = Autofac.Module;
 
 namespace MoneyFox.Application

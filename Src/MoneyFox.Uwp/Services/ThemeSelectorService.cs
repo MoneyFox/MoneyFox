@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MoneyFox.Uwp.Helpers;
+using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
-using MoneyFox.Uwp.Helpers;
 
 namespace MoneyFox.Uwp.Services
 {
@@ -29,14 +29,16 @@ namespace MoneyFox.Uwp.Services
 
         public static async Task SetRequestedThemeAsync()
         {
-            foreach (CoreApplicationView view in CoreApplication.Views)
+            foreach(CoreApplicationView view in CoreApplication.Views)
             {
-                await view.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-                                                                              {
-                                                                                  if (Window.Current.Content is FrameworkElement
+                await view.Dispatcher
+                          .RunAsync(CoreDispatcherPriority.Normal,
+                                    () =>
+                                    {
+                                        if(Window.Current.Content is FrameworkElement
                                                                                           frameworkElement)
-                                                                                      frameworkElement.RequestedTheme = Theme;
-                                                                              });
+                                            frameworkElement.RequestedTheme = Theme;
+                                    });
             }
         }
 
@@ -45,7 +47,8 @@ namespace MoneyFox.Uwp.Services
             var cacheTheme = ElementTheme.Default;
             var themeName = ApplicationData.Current.LocalSettings.ReadAsync<string>(SettingsKey);
 
-            if (!string.IsNullOrEmpty(themeName)) Enum.TryParse(themeName, out cacheTheme);
+            if(!string.IsNullOrEmpty(themeName))
+                Enum.TryParse(themeName, out cacheTheme);
 
             return cacheTheme;
         }

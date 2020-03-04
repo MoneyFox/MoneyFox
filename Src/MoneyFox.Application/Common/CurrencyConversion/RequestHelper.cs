@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using MoneyFox.Application.Common.CurrencyConversion.Models;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
-using MoneyFox.Application.Common.CurrencyConversion.Models;
-using Newtonsoft.Json.Linq;
 
 namespace MoneyFox.Application.Common.CurrencyConversion
 {
@@ -13,7 +13,7 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         public static List<Currency> GetAllCurrencies(string apiKey)
         {
-            string url = BASE_URL + $"currencies?apiKey={apiKey}";
+            string url = $"{BASE_URL}currencies?apiKey={apiKey}";
 
             string jsonString = GetResponse(url);
 
@@ -23,7 +23,7 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         public static double ExchangeRate(string from, string to, string apiKey)
         {
-            string url = BASE_URL + $"convert?q={from}_{to}&compact=ultra&apiKey={apiKey}";
+            string url = $"{BASE_URL}convert?q={from}_{to}&compact=ultra&apiKey={apiKey}";
 
             string jsonString = GetResponse(url);
             return JObject.Parse(jsonString).First.First["val"].ToObject<double>();
@@ -36,12 +36,12 @@ namespace MoneyFox.Application.Common.CurrencyConversion
             var request = (HttpWebRequest) WebRequest.Create(url);
             request.AutomaticDecompression = DecompressionMethods.GZip;
 
-            using (var response = (HttpWebResponse) request.GetResponse())
-            using (Stream stream = response.GetResponseStream())
-            using (var reader = new StreamReader(stream))
-            {
-                jsonString = reader.ReadToEnd();
-            }
+            using(var response = (HttpWebResponse) request.GetResponse())
+                using(Stream stream = response.GetResponseStream())
+                    using(var reader = new StreamReader(stream))
+                    {
+                        jsonString = reader.ReadToEnd();
+                    }
 
             return jsonString;
         }

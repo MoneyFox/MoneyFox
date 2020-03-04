@@ -4,6 +4,6 @@ namespace MoneyFox.Uwp.Views
 {
     public class BaseView : Page
     {
-        public virtual string Header => "";
+        public virtual string Header => string.Empty;
     }
 }

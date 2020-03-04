@@ -1,18 +1,18 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using MoneyFox.Domain.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Common.QueryObjects
 {
     /// <summary>
-    ///     Query Objects for account queries.
+    /// Query Objects for account queries.
     /// </summary>
     public static class AccountQueries
     {
         /// <summary>
-        ///     Adds a filter to a query for excluded accounts
+        /// Adds a filter to a query for excluded accounts
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query with a filter for excluded accounts.</returns>
@@ -22,7 +22,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Adds a filter to a query for not excluded accounts
+        /// Adds a filter to a query for not excluded accounts
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query with a filter for not excluded accounts.</returns>
@@ -32,7 +32,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Order a query by a name.
+        /// Order a query by a name.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query ordered by name.</returns>
@@ -42,7 +42,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        ///     Checks if there is an account with the passed name.
+        /// Checks if there is an account with the passed name.
         /// </summary>
         public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name)
         {

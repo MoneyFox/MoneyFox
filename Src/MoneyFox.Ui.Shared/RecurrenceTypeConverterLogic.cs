@@ -7,7 +7,7 @@ namespace MoneyFox.Ui.Shared
     {
         public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum)
         {
-            switch (passedEnum)
+            switch(passedEnum)
             {
                 case PaymentRecurrence.Daily:
                     return Strings.DailyLabel;

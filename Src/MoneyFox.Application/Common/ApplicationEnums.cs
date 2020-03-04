@@ -14,7 +14,7 @@
     }
 
     /// <summary>
-    ///     Indicates if a backup was started by an automatic task or by the user.
+    /// Indicates if a backup was started by an automatic task or by the user.
     /// </summary>
     public enum BackupMode
     {

@@ -3,12 +3,12 @@
 namespace MoneyFox.Application.Common.Extensions
 {
     /// <summary>
-    ///     Extension method for DateTime.
+    /// Extension method for DateTime.
     /// </summary>
     public static class DateTimeExtension
     {
         /// <summary>
-        ///     Returns the first day of the current month.
+        /// Returns the first day of the current month.
         /// </summary>
         public static DateTime GetFirstDayOfMonth(this DateTime self)
         {
@@ -16,7 +16,7 @@ namespace MoneyFox.Application.Common.Extensions
         }
 
         /// <summary>
-        ///     Returns the last day of the current month.
+        /// Returns the last day of the current month.
         /// </summary>
         public static DateTime GetLastDayOfMonth(this DateTime self)
         {
