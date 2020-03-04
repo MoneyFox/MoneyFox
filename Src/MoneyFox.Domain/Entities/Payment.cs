@@ -51,13 +51,7 @@ namespace MoneyFox.Domain.Entities
 
         public PaymentType Type { get; private set; }
 
-        private string? note;
-
-        public string Note
-        {
-            get => note ?? string.Empty;
-            private set => note = value;
-        }
+        public string? Note { get; set; }
 
         public bool IsRecurring { get; private set; }
 
