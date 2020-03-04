@@ -3,7 +3,7 @@ using Should;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
-namespace MoneyFox.Presentation.Tests.ViewModels
+namespace MoneyFox.Uwp.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class AccountViewModelTests

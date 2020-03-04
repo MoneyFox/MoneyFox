@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Presentation.Tests.ViewModels
+namespace MoneyFox.Uwp.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class AddCategoryViewModelTests

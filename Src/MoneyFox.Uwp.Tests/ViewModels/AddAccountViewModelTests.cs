@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using Windows.Globalization;
 using Xunit;
 
-namespace MoneyFox.Presentation.Tests.ViewModels
+namespace MoneyFox.Uwp.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class AddAccountViewModelTests

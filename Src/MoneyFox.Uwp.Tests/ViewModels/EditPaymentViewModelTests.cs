@@ -7,8 +7,8 @@ using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.Tests.Collections;
 using MoneyFox.Uwp.ViewModels;
 using Moq;
 using Should;
@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 using Windows.Globalization;
 using Xunit;
 
-namespace MoneyFox.Presentation.Tests.ViewModels
+namespace MoneyFox.Uwp.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     [Collection("AutoMapperCollection")]
