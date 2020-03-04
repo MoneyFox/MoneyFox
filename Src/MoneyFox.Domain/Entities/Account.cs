@@ -28,7 +28,7 @@ namespace MoneyFox.Domain.Entities
 
         public decimal CurrentBalance { get; private set; }
 
-        private string note;
+        private string? note;
 
         public string Note
         {

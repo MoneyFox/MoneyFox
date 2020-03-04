@@ -28,7 +28,7 @@ namespace MoneyFox.Domain.Entities
 
         [Required] public string Name { get; private set; }
 
-        private string note;
+        private string? note;
 
         public string Note
         {
