@@ -91,7 +91,7 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
-            await DialogService.ShowLoadingDialogAsync();
+            await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
             await SaveAccount();
             await DialogService.HideLoadingDialogAsync();
         }

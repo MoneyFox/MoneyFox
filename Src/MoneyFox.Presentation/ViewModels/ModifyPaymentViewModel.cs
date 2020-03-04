@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -9,8 +8,6 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -303,7 +300,7 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            await dialogService.ShowLoadingDialogAsync();
+            await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
             await SavePayment();
             await dialogService.HideLoadingDialogAsync();
         }

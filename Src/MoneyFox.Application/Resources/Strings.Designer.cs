@@ -1910,6 +1910,33 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Saving Account....
+        /// </summary>
+        public static string SavingAccountMessage {
+            get {
+                return ResourceManager.GetString("SavingAccountMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Category....
+        /// </summary>
+        public static string SavingCategoryMessage {
+            get {
+                return ResourceManager.GetString("SavingCategoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving Payment....
+        /// </summary>
+        public static string SavingPaymentMessage {
+            get {
+                return ResourceManager.GetString("SavingPaymentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string SearchLabel {
