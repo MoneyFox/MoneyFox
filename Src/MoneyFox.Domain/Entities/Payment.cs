@@ -64,9 +64,9 @@ namespace MoneyFox.Domain.Entities
         private Account? chargedAccount;
 
         [Required]
-        public virtual Account ChargedAccount
+        public virtual Account? ChargedAccount
         {
-            get => chargedAccount ?? throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
+            get => chargedAccount;
             private set => chargedAccount = value;
         }
 
@@ -82,6 +82,8 @@ namespace MoneyFox.Domain.Entities
                                   Category? category = null,
                                   string note = "")
         {
+            if(ChargedAccount == null) throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
+
             ChargedAccount.RemovePaymentAmount(this);
             TargetAccount?.RemovePaymentAmount(this);
 
@@ -123,6 +125,8 @@ namespace MoneyFox.Domain.Entities
         public void ClearPayment()
         {
             IsCleared = Date.Date <= DateTime.Today.Date;
+
+            if (ChargedAccount == null) throw new InvalidOperationException("Uninitialized property: " + nameof(ChargedAccount));
             ChargedAccount.AddPaymentAmount(this);
 
             if(Type == PaymentType.Transfer)

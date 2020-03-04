@@ -75,8 +75,8 @@ namespace MoneyFox.Domain.Entities
 
         private void ApplyPaymentAmount(Payment payment, bool invert = false)
         {
-            if(!payment.IsCleared)
-                return;
+            if (payment.ChargedAccount == null) throw new InvalidOperationException("Uninitialized property: " + nameof(payment.ChargedAccount));
+            if (!payment.IsCleared) return;
 
             decimal amount = invert
                              ? -payment.Amount
@@ -85,9 +85,13 @@ namespace MoneyFox.Domain.Entities
             if(payment.Type == PaymentType.Expense
                || payment.Type == PaymentType.Transfer
                && payment.ChargedAccount.Id == Id)
+            {
                 CurrentBalance -= amount;
+            }
             else
+            {
                 CurrentBalance += amount;
+            }
             ModificationDate = DateTime.Now;
         }
 
