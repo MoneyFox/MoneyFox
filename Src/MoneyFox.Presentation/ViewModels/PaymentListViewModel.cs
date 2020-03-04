@@ -1,9 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
@@ -15,11 +10,16 @@ using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
-    ///     Representation of the payment list view.
+    /// Representation of the payment list view.
     /// </summary>
     public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
     {
@@ -38,7 +38,7 @@ namespace MoneyFox.Presentation.ViewModels
         private IPaymentListViewActionViewModel viewActionViewModel;
 
         /// <summary>
-        ///     Default constructor
+        /// Default constructor
         /// </summary>
         public PaymentListViewModel(IMediator mediator,
                                     IMapper mapper,
@@ -64,12 +64,12 @@ namespace MoneyFox.Presentation.ViewModels
 
 
         /// <summary>
-        ///     Indicator if there are payments or not.
+        /// Indicator if there are payments or not.
         /// </summary>
         public bool IsPaymentsEmpty => DailyList != null && !DailyList.Any();
 
         /// <summary>
-        ///     Id for the current account.
+        /// Id for the current account.
         /// </summary>
         public int AccountId
         {
@@ -82,7 +82,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     View Model for the balance subview.
+        /// View Model for the balance subview.
         /// </summary>
         public IBalanceViewModel BalanceViewModel
         {
@@ -95,14 +95,14 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     View Model for the global actions on the view.
+        /// View Model for the global actions on the view.
         /// </summary>
         public IPaymentListViewActionViewModel ViewActionViewModel
         {
             get => viewActionViewModel;
             private set
             {
-                if (viewActionViewModel == value)
+                if(viewActionViewModel == value)
                     return;
                 viewActionViewModel = value;
                 RaisePropertyChanged();
@@ -110,7 +110,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Returns daily grouped related payments
+        /// Returns daily grouped related payments
         /// </summary>
         public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
         {
@@ -125,14 +125,14 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Returns the name of the account title for the current page
+        /// Returns the name of the account title for the current page
         /// </summary>
         public string Title
         {
             get => title;
             private set
             {
-                if (title == value)
+                if(title == value)
                     return;
                 title = value;
                 RaisePropertyChanged();
@@ -181,13 +181,11 @@ namespace MoneyFox.Presentation.ViewModels
                                                                                                                          filterMessage
                                                                                                                             .TimeRangeEnd)
                                                                                         {
-                                                                                            IsClearedFilterActive =
-                                                                                                filterMessage.IsClearedFilterActive,
-                                                                                            IsRecurringFilterActive =
-                                                                                                filterMessage.IsRecurringFilterActive
+                                                                                            IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                                                                                            IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
                                                                                         }));
 
-            foreach (PaymentViewModel payment in loadedPayments)
+            foreach(PaymentViewModel payment in loadedPayments)
             {
                 payment.CurrentAccountId = AccountId;
             }

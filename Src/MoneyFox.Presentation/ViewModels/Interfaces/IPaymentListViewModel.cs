@@ -1,6 +1,6 @@
-using System.Collections.ObjectModel;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using System.Collections.ObjectModel;
 
 namespace MoneyFox.Presentation.ViewModels.Interfaces
 {
@@ -11,6 +11,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         IPaymentListViewActionViewModel ViewActionViewModel { get; }
 
         AsyncCommand InitializeCommand { get; }
+
         AsyncCommand LoadDataCommand { get; }
 
         ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; }

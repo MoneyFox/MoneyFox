@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using MoneyFox.Application.Categories.Command.UpdateCategory;
+﻿using MoneyFox.Application.Categories.Command.UpdateCategory;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
@@ -11,6 +8,9 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory

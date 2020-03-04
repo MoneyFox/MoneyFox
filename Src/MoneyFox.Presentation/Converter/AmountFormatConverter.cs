@@ -1,17 +1,17 @@
-﻿using System;
+﻿using MoneyFox.Application;
+using System;
 using System.Globalization;
-using MoneyFox.Application;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
-    ///     Displays the amount as currency of the current culture.
+    /// Displays the amount as currency of the current culture.
     /// </summary>
     public class AmountFormatConverter : IValueConverter
     {
         /// <summary>
-        ///     Converts the passed value to a currency string.
+        /// Converts the passed value to a currency string.
         /// </summary>
         /// <param name="value">value to convert</param>
         /// <param name="targetType">Is not used.</param>
@@ -25,7 +25,7 @@ namespace MoneyFox.Presentation.Converter
         }
 
         /// <summary>
-        ///     Returns the value.
+        /// Returns the value.
         /// </summary>
         /// <returns>Passed value.</returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

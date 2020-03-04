@@ -1,6 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using AutoMapper;
+﻿using AutoMapper;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
@@ -13,12 +11,14 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
-    ///     Handles the view representation of a payment.
+    /// Handles the view representation of a payment.
     /// </summary>
     public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
     {
@@ -57,7 +57,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => id;
             set
             {
-                if (id == value)
+                if(id == value)
                     return;
                 id = value;
                 RaisePropertyChanged();
@@ -65,16 +65,16 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel" /> who will be
-        ///     charged.     In case it's an income the  foreign key to the <see cref="AccountViewModel" /> who will be
-        ///     credited.
+        /// In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel"/> who will be    
+        /// charged.     In case it's an income the  foreign key to the <see cref="AccountViewModel"/> who will be    
+        /// credited.
         /// </summary>
         public int ChargedAccountId
         {
             get => chargedAccountId;
             set
             {
-                if (chargedAccountId == value)
+                if(chargedAccountId == value)
                     return;
                 chargedAccountId = value;
                 RaisePropertyChanged();
@@ -82,14 +82,14 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Foreign key to the account who will be credited by a transfer.     Not used for the other payment types.
+        /// Foreign key to the account who will be credited by a transfer.     Not used for the other payment types.
         /// </summary>
         public int? TargetAccountId
         {
             get => targetAccountId;
             set
             {
-                if (targetAccountId == value)
+                if(targetAccountId == value)
                     return;
                 targetAccountId = value;
                 RaisePropertyChanged();
@@ -97,14 +97,14 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Date when this payment will be executed.
+        /// Date when this payment will be executed.
         /// </summary>
         public DateTime Date
         {
             get => date;
             set
             {
-                if (date == value)
+                if(date == value)
                     return;
                 date = value;
                 RaisePropertyChanged();
@@ -112,14 +112,14 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
+        /// Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
         /// </summary>
         public decimal Amount
         {
             get => amount;
             set
             {
-                if (Math.Abs(amount - value) < 0.01m)
+                if(Math.Abs(amount - value) < 0.01m)
                     return;
                 amount = value;
                 RaisePropertyChanged();
@@ -127,15 +127,15 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Indicates if this payment was already executed and the amount already credited or charged to the respective
-        ///     account.
+        /// Indicates if this payment was already executed and the amount already credited or charged to the respective 
+        ///    account.
         /// </summary>
         public bool IsCleared
         {
             get => isCleared;
             set
             {
-                if (isCleared == value)
+                if(isCleared == value)
                     return;
                 isCleared = value;
                 RaisePropertyChanged();
@@ -143,14 +143,14 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Type of the payment <see cref="PaymentType" />.
+        /// Type of the payment <see cref="PaymentType"/>.
         /// </summary>
         public PaymentType Type
         {
             get => type;
             set
             {
-                if (type == value)
+                if(type == value)
                     return;
                 type = value;
                 RaisePropertyChanged();
@@ -159,14 +159,14 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Additional notes to the payment.
+        /// Additional notes to the payment.
         /// </summary>
         public string Note
         {
             get => note;
             set
             {
-                if (note == value)
+                if(note == value)
                     return;
                 note = value;
                 RaisePropertyChanged();
@@ -174,99 +174,104 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Indicates if the payment will be repeated or if it's a uniquie payment.
+        /// Indicates if the payment will be repeated or if it's a uniquie payment.
         /// </summary>
         public bool IsRecurring
         {
             get => isRecurring;
             set
             {
-                if (isRecurring == value)
+                if(isRecurring == value)
                     return;
                 isRecurring = value;
 
                 RecurringPayment = isRecurring
-                    ? new RecurringPaymentViewModel()
-                    : null;
+                                   ? new RecurringPaymentViewModel()
+                                   : null;
 
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     In case it's a expense or transfer the account who will be charged.     In case it's an income the account
-        ///     who will be credited.
+        /// In case it's a expense or transfer the account who will be charged.     In case it's an income the account  
+        ///   who will be credited.
         /// </summary>
         public AccountViewModel ChargedAccount
         {
             get => chargedAccount;
             set
             {
-                if (chargedAccount == value) return;
+                if(chargedAccount == value)
+                    return;
                 chargedAccount = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     The <see cref="AccountViewModel" /> who will be credited by a transfer.     Not used for the other payment
-        ///     types.
+        /// The <see cref="AccountViewModel"/> who will be credited by a transfer.     Not used for the other payment   
+        ///  types.
         /// </summary>
         public AccountViewModel TargetAccount
         {
             get => targetAccount;
             set
             {
-                if (targetAccount == value) return;
+                if(targetAccount == value)
+                    return;
                 targetAccount = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     The <see cref="Category" /> for this payment
+        /// The <see cref="Category"/> for this payment
         /// </summary>
         public CategoryViewModel Category
         {
             get => categoryViewModel;
             set
             {
-                if (categoryViewModel == value) return;
+                if(categoryViewModel == value)
+                    return;
                 categoryViewModel = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     The <see cref="RecurringPayment" /> if it's recurring.
+        /// The <see cref="RecurringPayment"/> if it's recurring.
         /// </summary>
         public RecurringPaymentViewModel RecurringPayment
         {
             get => recurringPaymentViewModel;
             set
             {
-                if (recurringPaymentViewModel == value) return;
+                if(recurringPaymentViewModel == value)
+                    return;
                 recurringPaymentViewModel = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     This is a shortcut to access if the payment is a transfer or not.
+        /// This is a shortcut to access if the payment is a transfer or not.
         /// </summary>
         public bool IsTransfer => Type == PaymentType.Transfer;
 
         private int currentAccountId;
 
         /// <summary>
-        ///     Id of the account who currently is used for that view.
+        /// Id of the account who currently is used for that view.
         /// </summary>
         public int CurrentAccountId
         {
             get => currentAccountId;
             set
             {
-                if (currentAccountId == value) return;
+                if(currentAccountId == value)
+                    return;
                 currentAccountId = value;
                 RaisePropertyChanged();
             }
@@ -278,18 +283,19 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Opens the Edit Dialog for the passed Payment
+        /// Opens the Edit Dialog for the passed Payment
         /// </summary>
         public Command EditPaymentCommand => new Command(EditPayment);
 
         /// <summary>
-        ///     Deletes the passed PaymentViewModel.
+        /// Deletes the passed PaymentViewModel.
         /// </summary>
         public Command<PaymentViewModel> DeletePaymentCommand => new Command<PaymentViewModel>(DeletePayment);
 
         private void EditPayment()
         {
-            if (navigationService == null) navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            if(navigationService == null)
+                navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
 
             navigationService.NavigateTo(ViewModelLocator.EditPayment, Id);
         }
@@ -297,18 +303,21 @@ namespace MoneyFox.Presentation.ViewModels
         [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]
         private async void DeletePayment(PaymentViewModel payment)
         {
-            if (navigationService == null) mediator = ServiceLocator.Current.GetInstance<IMediator>();
+            if(navigationService == null)
+                mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
-            if (dialogService == null) dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
+            if(dialogService == null)
+                dialogService = ServiceLocator.Current.GetInstance<IDialogService>();
 
-            if (!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
-                                                             Strings.DeletePaymentConfirmationMessage,
-                                                             Strings.YesLabel,
-                                                             Strings.NoLabel)) return;
+            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                                                            Strings.DeletePaymentConfirmationMessage,
+                                                            Strings.YesLabel,
+                                                            Strings.NoLabel))
+                return;
 
             var command = new DeletePaymentByIdCommand(payment.Id);
 
-            if (payment.IsRecurring)
+            if(payment.IsRecurring)
             {
                 command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
                                                                                              Strings.DeleteRecurringPaymentMessage);

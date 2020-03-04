@@ -10,25 +10,28 @@ namespace MoneyFox.Presentation.ConverterLogic
 
         public static string GetFormattedAmountString(PaymentViewModel payment, string parameter)
         {
-            if (payment == null) return string.Empty;
+            if(payment == null)
+                return string.Empty;
 
             string param = parameter;
             string sign;
 
-            if (payment.Type == PaymentType.Transfer)
+            if(payment.Type == PaymentType.Transfer)
             {
                 string condition;
-                condition = payment.ChargedAccountId == payment.CurrentAccountId ? "-" : "+";
-                sign = param == IGNORE_TRANSFER ? "-" : condition;
+                condition = payment.ChargedAccountId == payment.CurrentAccountId
+                            ? "-" : "+";
+                sign = param == IGNORE_TRANSFER
+                       ? "-" : condition;
             }
             else
             {
                 sign = payment.Type == (int) PaymentType.Expense
-                    ? "-"
-                    : "+";
+                       ? "-"
+                       : "+";
             }
 
-            return sign + " " + $"{payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";
+            return $"{sign} {payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";
         }
     }
 }

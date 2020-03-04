@@ -20,7 +20,7 @@ namespace MoneyFox.Uwp.Services
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
             var mediator = ServiceLocator.Current.GetInstance<IMediator>();
-            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
+            if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
             {
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
@@ -37,7 +37,7 @@ namespace MoneyFox.Uwp.Services
 
                 logger.Info("Backup synced.");
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Fatal(ex);
                 throw;

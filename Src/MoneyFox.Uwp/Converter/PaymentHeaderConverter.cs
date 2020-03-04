@@ -1,7 +1,7 @@
-﻿using System;
-using Windows.UI.Xaml.Data;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using System;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.Converter
 {
@@ -10,7 +10,7 @@ namespace MoneyFox.Uwp.Converter
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var pType = (PaymentType) value;
-            switch (pType)
+            switch(pType)
             {
                 default:
                 case PaymentType.Income:

@@ -1,12 +1,12 @@
-﻿using System.Globalization;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Services;
 using NLog;
+using System.Globalization;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -31,6 +31,7 @@ namespace MoneyFox.Uwp.ViewModels
         protected abstract Task Initialize();
 
         protected IDialogService DialogService { get; }
+
         protected NavigationService NavigationService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -44,7 +45,8 @@ namespace MoneyFox.Uwp.ViewModels
             get => title;
             set
             {
-                if (title == value) return;
+                if(title == value)
+                    return;
                 title = value;
                 RaisePropertyChanged();
             }
@@ -68,7 +70,8 @@ namespace MoneyFox.Uwp.ViewModels
             get => amountString;
             set
             {
-                if (amountString == value) return;
+                if(amountString == value)
+                    return;
                 amountString = value;
                 RaisePropertyChanged();
             }
@@ -76,13 +79,13 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task SaveAccountBase()
         {
-            if (string.IsNullOrWhiteSpace(SelectedAccount.Name))
+            if(string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
                 await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
 
-            if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
                 SelectedAccount.CurrentBalance = convertedValue;
             else
             {

@@ -1,16 +1,16 @@
-﻿using System;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using System;
 
 namespace MoneyFox.Ui.Shared.Utilities
 {
     /// <summary>
-    ///     A collection of helper methods for handling PaymentTypes
+    /// A collection of helper methods for handling PaymentTypes
     /// </summary>
     public static class PaymentTypeHelper
     {
         /// <summary>
-        ///     Parse a string to PaymentType
+        /// Parse a string to PaymentType
         /// </summary>
         /// <param name="input">String to parse.</param>
         /// <returns>Parsed PaymentType.</returns>
@@ -20,7 +20,7 @@ namespace MoneyFox.Ui.Shared.Utilities
         }
 
         /// <summary>
-        ///     Returns based on an enum int the title for the PaymentType.
+        /// Returns based on an enum int the title for the PaymentType.
         /// </summary>
         /// <param name="type">Int of the enum.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
@@ -31,23 +31,26 @@ namespace MoneyFox.Ui.Shared.Utilities
         }
 
         /// <summary>
-        ///     Returns based on an PaymentType the title.
+        /// Returns based on an PaymentType the title.
         /// </summary>
         /// <param name="type">PaymentType for which the title is searched.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
         /// <returns>Title for the enum.</returns>
         public static string GetViewTitleForType(PaymentType type, bool isEditMode)
         {
-            switch (type)
+            switch(type)
             {
                 case PaymentType.Expense:
-                    return isEditMode ? Strings.EditSpendingTitle : Strings.AddExpenseTitle;
+                    return isEditMode
+                           ? Strings.EditSpendingTitle : Strings.AddExpenseTitle;
 
                 case PaymentType.Income:
-                    return isEditMode ? Strings.EditIncomeTitle : Strings.AddIncomeTitle;
+                    return isEditMode
+                           ? Strings.EditIncomeTitle : Strings.AddIncomeTitle;
 
                 case PaymentType.Transfer:
-                    return isEditMode ? Strings.EditTransferTitle : Strings.AddTransferTitle;
+                    return isEditMode
+                           ? Strings.EditTransferTitle : Strings.AddTransferTitle;
 
                 default:
                     return string.Empty;
@@ -55,13 +58,13 @@ namespace MoneyFox.Ui.Shared.Utilities
         }
 
         /// <summary>
-        ///     Determines the string for PaymentType based on the passed int.
+        /// Determines the string for PaymentType based on the passed int.
         /// </summary>
         /// <param name="type">The PaymentViewModel type as int.</param>
         /// <returns>The string for the determined type.</returns>
         public static string GetTypeString(int type)
         {
-            switch (type)
+            switch(type)
             {
                 case (int) PaymentType.Income:
                     return PaymentType.Income.ToString();

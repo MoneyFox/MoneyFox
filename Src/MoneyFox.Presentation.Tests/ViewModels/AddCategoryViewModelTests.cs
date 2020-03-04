@@ -1,13 +1,11 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using MediatR;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
+﻿using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -39,7 +37,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task Initialize_CategoryCreated()
         {
             // Arrange
-            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null,  null, null);
+            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null);
 
             // Act
             await addCategoryVm.InitializeCommand.ExecuteAsync();
@@ -57,7 +55,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object,
                                                          dialogServiceMock.Object,
-                                                         null, null);
+                                                         null,
+                                                         null);
 
             await addCategoryVm.InitializeCommand.ExecuteAsync();
 

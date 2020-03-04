@@ -1,18 +1,22 @@
-﻿using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Presentation.ViewModels.Statistic;
+﻿using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.Commands;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Design Time")]
     public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
     {
-        /// <inheritdoc />
-        public IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; } =
-            new IncomeExpenseBalanceViewModel {TotalEarned = 400, TotalSpent = 600};
+        /// <inheritdoc/>
+        public IncomeExpenseBalanceViewModel IncomeExpenseBalance
+        {
+            get;
+        } =
+            new IncomeExpenseBalanceViewModel { TotalEarned = 400, TotalSpent = 600 };
 
-        public ObservableCollection<CategoryOverviewViewModel> CategorySummary => new ObservableCollection<CategoryOverviewViewModel>
+        public ObservableCollection<CategoryOverviewViewModel> CategorySummary
+                                                               => new ObservableCollection<CategoryOverviewViewModel>
         {
             new CategoryOverviewViewModel
             {
@@ -29,6 +33,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
         };
 
         public bool HasData { get; } = true;
+
         public AsyncCommand LoadedCommand { get; }
     }
 }

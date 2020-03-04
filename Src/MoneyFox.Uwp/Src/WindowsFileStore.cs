@@ -1,12 +1,12 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.FileStore;
+using NLog;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using MoneyFox.Application.Common.FileStore;
-using NLog;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Uwp.Src
 {
     public class WindowsFileStore : FileStoreBase
     {
@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp
 
                 return streamWithContentType.AsStreamForRead();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Error(ex);
                 return null;
@@ -34,7 +34,8 @@ namespace MoneyFox.Uwp
             {
                 StorageFile fromFile = StorageFileFromRelativePath(from);
 
-                if (overwrite && !SafeDeleteFile(destination)) return false;
+                if(overwrite && !SafeDeleteFile(destination))
+                    return false;
 
                 string fullToPath = ToFullPath(destination);
                 string toDirectory = Path.GetDirectoryName(fullToPath);
@@ -44,7 +45,7 @@ namespace MoneyFox.Uwp
 
                 return true;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Error(ex);
                 return false;
@@ -58,15 +59,15 @@ namespace MoneyFox.Uwp
             try
             {
                 StorageFile storageFile = CreateStorageFileFromRelativePathAsync(path).GetAwaiter().GetResult();
-                using (IRandomAccessStream streamWithContentType = storageFile.OpenAsync(FileAccessMode.ReadWrite).Await())
+                using(IRandomAccessStream streamWithContentType = storageFile.OpenAsync(FileAccessMode.ReadWrite).Await())
                 {
-                    using (Stream stream = streamWithContentType.AsStreamForWrite())
+                    using(Stream stream = streamWithContentType.AsStreamForWrite())
                     {
                         streamAction(stream);
                     }
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Error(ex);
                 throw;
@@ -90,11 +91,11 @@ namespace MoneyFox.Uwp
 
                 return true;
             }
-            catch (FileNotFoundException)
+            catch(FileNotFoundException)
             {
                 return true;
             }
-            catch (Exception)
+            catch(Exception)
             {
                 return false;
             }

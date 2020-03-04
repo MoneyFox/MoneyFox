@@ -1,10 +1,10 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Constants;
+using MoneyFox.Application.Resources;
+using NLog;
+using System;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
 using Windows.UI.StartScreen;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.Resources;
-using NLog;
 
 namespace MoneyFox.Uwp.Services
 {
@@ -18,7 +18,8 @@ namespace MoneyFox.Uwp.Services
 
         public static async Task InitializeAsync()
         {
-            if (!ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList")) return;
+            if(!ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
+                return;
 
             try
             {
@@ -43,7 +44,7 @@ namespace MoneyFox.Uwp.Services
 
                 await jumpList.SaveAsync();
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Warn(ex);
             }

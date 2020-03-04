@@ -1,11 +1,11 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using AutoMapper;
+﻿using AutoMapper;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Mapper
@@ -39,9 +39,15 @@ namespace MoneyFox.Presentation.Tests.Mapper
         public void RecurringPaymentFieldsCorrectlyMapped()
         {
             // Arrange
-            var recurringPayment = new RecurringPayment(DateTime.Now, 123, PaymentType.Expense, PaymentRecurrence.Daily,
-                                                        new Account("asdf"), "asdf",
-                                                        DateTime.Today, new Account("fasdf"), new Category("gfds"));
+            var recurringPayment = new RecurringPayment(DateTime.Now,
+                                                        123,
+                                                        PaymentType.Expense,
+                                                        PaymentRecurrence.Daily,
+                                                        new Account("asdf"),
+                                                        "asdf",
+                                                        DateTime.Today,
+                                                        new Account("fasdf"),
+                                                        new Category("gfds"));
 
             // Act
             var result = mapper.Map<RecurringPaymentViewModel>(recurringPayment);

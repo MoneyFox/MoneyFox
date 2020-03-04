@@ -1,12 +1,12 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using MoneyFox.Application.Common.Adapters;
+﻿using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -21,7 +21,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
                                new Mock<IStoreOperations>().Object)
-               .SupportMail.ShouldEqual(AppConstants.SupportMail);
+               .SupportMail
+               .ShouldEqual(AppConstants.SupportMail);
         }
 
         [Fact]
@@ -31,7 +32,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
                                new Mock<IStoreOperations>().Object)
-               .Website.ShouldEqual(AppConstants.WebsiteUrl);
+               .Website
+               .ShouldEqual(AppConstants.WebsiteUrl);
         }
 
         [Fact]
@@ -44,7 +46,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
                                new Mock<IStoreOperations>().Object)
-               .Version.ShouldEqual("42");
+               .Version
+               .ShouldEqual("42");
         }
 
         [Fact]
@@ -58,7 +61,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                      new Mock<IEmailAdapter>().Object,
                                      webbrowserTaskSetup.Object,
                                      new Mock<IStoreOperations>().Object)
-                 .GoToWebsiteCommand.ExecuteAsync();
+                 .GoToWebsiteCommand
+                 .ExecuteAsync();
 
             webbrowserTaskSetup.Verify(x => x.OpenWebsiteAsync(It.IsAny<Uri>()), Times.Once);
         }
@@ -75,7 +79,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                      new Mock<IEmailAdapter>().Object,
                                      webbrowserTaskSetup.Object,
                                      new Mock<IStoreOperations>().Object)
-                 .GoToRepositoryCommand.ExecuteAsync();
+                 .GoToRepositoryCommand
+                 .ExecuteAsync();
 
             webbrowserTaskSetup.Verify(x => x.OpenWebsiteAsync(It.IsAny<Uri>()), Times.Once());
         }
@@ -90,7 +95,8 @@ namespace MoneyFox.Presentation.Tests.ViewModels
                                new Mock<IEmailAdapter>().Object,
                                new Mock<IBrowserAdapter>().Object,
                                storeFeaturesSetup.Object)
-               .RateAppCommand.Execute(null);
+               .RateAppCommand
+               .Execute(null);
 
             storeFeaturesSetup.Verify(x => x.RateApp(), Times.Once());
         }

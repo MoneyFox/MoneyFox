@@ -1,7 +1,7 @@
-﻿using Windows.System;
-using Windows.UI.Xaml.Input;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.ViewModels;
-using MoneyFox.Application.Resources;
+using Windows.System;
+using Windows.UI.Xaml.Input;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -18,7 +18,7 @@ namespace MoneyFox.Uwp.Views
 
         protected override void OnKeyDown(KeyRoutedEventArgs e)
         {
-            if (e.Key == VirtualKey.Enter)
+            if(e.Key == VirtualKey.Enter)
             {
                 SelectCategoryListViewModel viewModel = ViewModel;
                 viewModel.ItemClickCommand.Execute(viewModel.SelectedCategory);

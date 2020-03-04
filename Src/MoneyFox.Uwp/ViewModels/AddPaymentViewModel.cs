@@ -1,11 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;
@@ -16,6 +11,9 @@ using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Uwp.Services;
 using NLog;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -31,8 +29,7 @@ namespace MoneyFox.Uwp.ViewModels
         public AddPaymentViewModel(IMediator mediator,
                                    IMapper mapper,
                                    IDialogService dialogService,
-                                   NavigationService navigationService)
-            : base(mediator, mapper, dialogService, navigationService)
+                                   NavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -54,7 +51,7 @@ namespace MoneyFox.Uwp.ViewModels
 
             SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
 
-            if (SelectedPayment.IsTransfer)
+            if(SelectedPayment.IsTransfer)
             {
                 SelectedItemChangedCommand.Execute(null);
                 SelectedPayment.TargetAccount = TargetAccounts.FirstOrDefault();
@@ -70,22 +67,22 @@ namespace MoneyFox.Uwp.ViewModels
                                           SelectedPayment.Type,
                                           await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
                                           SelectedPayment.TargetAccount != null
-                                              ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
-                                              : null,
+                                          ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
+                                          : null,
                                           mapper.Map<Category>(SelectedPayment.Category),
                                           SelectedPayment.Note);
 
-                if (SelectedPayment.IsRecurring)
+                if(SelectedPayment.IsRecurring)
                     payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.EndDate);
 
                 await mediator.Send(new CreatePaymentCommand(payment));
                 navigationService.GoBack();
             }
-            catch (InvalidEndDateException)
+            catch(InvalidEndDateException)
             {
                 await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Error(ex);
                 throw;

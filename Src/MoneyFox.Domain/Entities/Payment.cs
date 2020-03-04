@@ -1,19 +1,20 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using MoneyFox.Domain.Exceptions;
+﻿using MoneyFox.Domain.Exceptions;
 using NLog;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoneyFox.Domain.Entities
 {
     /// <summary>
-    ///     Database model for payments. Includes expenses, income and transfers.     Database table: Payments
+    /// Database model for payments. Includes expenses, income and transfers.     Database table: Payments
     /// </summary>
     public class Payment
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         private Payment()
-        { }
+        {
+        }
 
 #pragma warning disable S107 // Methods should not have too many parameters
         public Payment(DateTime date,
@@ -31,7 +32,7 @@ namespace MoneyFox.Domain.Entities
 
             ClearPayment();
 
-            if (recurringPayment != null)
+            if(recurringPayment != null)
             {
                 RecurringPayment = recurringPayment;
                 IsRecurring = true;
@@ -123,9 +124,9 @@ namespace MoneyFox.Domain.Entities
             IsCleared = Date.Date <= DateTime.Today.Date;
             ChargedAccount.AddPaymentAmount(this);
 
-            if (Type == PaymentType.Transfer)
+            if(Type == PaymentType.Transfer)
             {
-                if (TargetAccount == null)
+                if(TargetAccount == null)
                 {
                     logManager.Warn($"Target Account on clearing was null for payment {Id}");
                     return;

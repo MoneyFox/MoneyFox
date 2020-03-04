@@ -1,17 +1,17 @@
-﻿using System;
+﻿using MoneyFox.Application;
+using System;
 using System.Globalization;
-using MoneyFox.Application;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
-    ///     Converts DateTime values to a nicer representation.
+    /// Converts DateTime values to a nicer representation.
     /// </summary>
     public class DateTimeFormatConverter : IValueConverter
     {
         /// <summary>
-        ///     Converts the passed DateTime to a nice string.
+        /// Converts the passed DateTime to a nice string.
         /// </summary>
         /// <param name="value">Object to convert.</param>
         /// <param name="targetType">Not used.</param>
@@ -24,7 +24,7 @@ namespace MoneyFox.Presentation.Converter
         }
 
         /// <summary>
-        ///     Converts the passed string back.
+        /// Converts the passed string back.
         /// </summary>
         /// <param name="value">Value.</param>
         /// <param name="targetType">Not used.</param>

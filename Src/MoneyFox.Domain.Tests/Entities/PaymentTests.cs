@@ -1,8 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Domain.Entities;
+﻿using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Domain.Tests.Entities

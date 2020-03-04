@@ -1,7 +1,7 @@
-﻿using Windows.UI.Xaml;
+﻿using MoneyFox.Uwp.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Navigation;
-using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -18,7 +18,8 @@ namespace MoneyFox.Uwp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null) ViewModel.AccountId = (int) e.Parameter;
+            if(e.Parameter != null)
+                ViewModel.AccountId = (int) e.Parameter;
         }
 
         private void AppBarToggleButton_Click(object sender, RoutedEventArgs e)

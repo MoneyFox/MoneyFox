@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
 
 namespace MoneyFox.Uwp.ViewModels
@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IStoreOperations storeFeatures;
 
         /// <summary>
-        ///     Creates an AboutViewModel Object
+        /// Creates an AboutViewModel Object
         /// </summary>
         public AboutViewModel(IAppInformation appInformation,
                               IEmailAdapter emailAdapter,
@@ -35,57 +35,52 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        ///     Opens the webbrowser and loads to the apply solutions
-        ///     website
+        /// Opens the webbrowser and loads to the apply solutions     website
         /// </summary>
         public AsyncCommand GoToWebsiteCommand => new AsyncCommand(GoToWebsite);
 
         /// <summary>
-        ///     Sends a feedback mail to the apply solutions support
-        ///     mail address
+        /// Sends a feedback mail to the apply solutions support     mail address
         /// </summary>
         public AsyncCommand SendMailCommand => new AsyncCommand(SendMail);
 
         /// <summary>
-        ///     Opens the store to rate the app.
+        /// Opens the store to rate the app.
         /// </summary>
         public RelayCommand RateAppCommand => new RelayCommand(RateApp);
 
         /// <summary>
-        ///     Opens the webbrowser and loads repository page
-        ///     on GitHub
+        /// Opens the webbrowser and loads repository page     on GitHub
         /// </summary>
         public AsyncCommand GoToRepositoryCommand => new AsyncCommand(GoToRepository);
 
         /// <summary>
-        ///     Opens the webbrowser and loads the project on crowdin.
+        /// Opens the webbrowser and loads the project on crowdin.
         /// </summary>
         public AsyncCommand GoToTranslationProjectCommand => new AsyncCommand(GoToTranslationProject);
 
         /// <summary>
-        ///     Opens the webbrowser and loads the project on crowdin.
+        /// Opens the webbrowser and loads the project on crowdin.
         /// </summary>
         public AsyncCommand GoToDesignerTwitterAccountCommand => new AsyncCommand(GoToDesignerTwitterAccount);
 
         /// <summary>
-        ///     Opens the webbrowser loads the contribution page on Github.
+        /// Opens the webbrowser loads the contribution page on Github.
         /// </summary>
         public AsyncCommand GoToContributionPageCommand => new AsyncCommand(GoToContributionPage);
 
         /// <summary>
-        ///     Returns the Version of App
+        /// Returns the Version of App
         /// </summary>
         public string Version => appInformation.GetVersion();
 
         /// <summary>
-        ///     Returns the apply solutions webite url from the
-        ///     resource file
+        /// Returns the apply solutions webite url from the     resource file
         /// </summary>
         public string Website => AppConstants.WebsiteUrl;
 
         /// <summary>
-        ///     Returns the mailaddress for support cases from the
-        ///     resource file
+        /// Returns the mailaddress for support cases from the     resource file
         /// </summary>
         public string SupportMail => AppConstants.SupportMail;
 
@@ -96,9 +91,12 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task SendMail()
         {
-            await emailAdapter.SendEmailAsync(Strings.FeedbackSubject, string.Empty,
-                                              new List<string> {AppConstants.SupportMail},
-                                              new List<string> {Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName)});
+            await emailAdapter.SendEmailAsync(Strings.FeedbackSubject,
+                                              string.Empty,
+                                              new List<string>
+                { AppConstants.SupportMail },
+                                              new List<string>
+                { Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName) });
         }
 
         private void RateApp()

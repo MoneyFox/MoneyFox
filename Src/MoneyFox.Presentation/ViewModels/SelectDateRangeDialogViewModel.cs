@@ -1,14 +1,15 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Messages;
+using System;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public interface ISelectDateRangeDialogViewModel
     {
         DateTime StartDate { get; set; }
+
         DateTime EndDate { get; set; }
 
         RelayCommand DoneCommand { get; set; }
@@ -26,7 +27,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Start Date for the custom date range
+        /// Start Date for the custom date range
         /// </summary>
         public DateTime StartDate
         {
@@ -39,7 +40,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     End Date for the custom date range
+        /// End Date for the custom date range
         /// </summary>
         public DateTime EndDate
         {
@@ -52,7 +53,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Selects the dates and notifies observer via the MessageHub
+        /// Selects the dates and notifies observer via the MessageHub
         /// </summary>
         public RelayCommand DoneCommand => new RelayCommand(Done);
 

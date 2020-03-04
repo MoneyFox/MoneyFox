@@ -1,7 +1,7 @@
-﻿using System;
+﻿using NLog;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using NLog;
 
 namespace MoneyFox.Ui.Shared.Utilities
 {
@@ -19,7 +19,7 @@ namespace MoneyFox.Ui.Shared.Utilities
             {
                 await task;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Logger.Error(ex);
             }

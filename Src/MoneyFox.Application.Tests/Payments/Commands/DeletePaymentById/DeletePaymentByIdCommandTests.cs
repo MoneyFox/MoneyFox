@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using MoneyFox.Application.Common;
+﻿using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
@@ -11,6 +8,9 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
@@ -20,7 +20,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
     {
         private readonly EfCoreContext context;
         private readonly Mock<IBackupService> backupServiceMock;
-        private readonly Mock<IContextAdapter> contextAdapterMock; 
+        private readonly Mock<IContextAdapter> contextAdapterMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
 
         public DeletePaymentByIdCommandTests()

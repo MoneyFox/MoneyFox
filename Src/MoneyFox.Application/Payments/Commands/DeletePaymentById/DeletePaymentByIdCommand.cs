@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
 {
@@ -48,7 +48,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
                 entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
 
-                if (request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
+                if(request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
                 {
                     await DeleteRecurringPaymentAsync(entityToDelete.RecurringPayment.Id);
                 }
@@ -74,8 +74,8 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
 
                 payments.ForEach(x => x.RemoveRecurringPayment());
                 contextAdapter.Context.RecurringPayments
-                              .Remove(await contextAdapter.Context.RecurringPayments
-                                                          .FindAsync(recurringPaymentId));
+                                      .Remove(await contextAdapter.Context.RecurringPayments
+                                                                          .FindAsync(recurringPaymentId));
             }
         }
     }

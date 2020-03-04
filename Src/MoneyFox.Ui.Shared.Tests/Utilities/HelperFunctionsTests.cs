@@ -1,9 +1,9 @@
-﻿using System;
+﻿using MoneyFox.Ui.Shared.Utilities;
+using Should;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Threading;
-using MoneyFox.Ui.Shared.Utilities;
-using Should;
 using Xunit;
 
 namespace MoneyFox.Ui.Shared.Tests.Utilities

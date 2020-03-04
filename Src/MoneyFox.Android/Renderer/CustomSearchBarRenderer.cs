@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using Android.Content;
+﻿using Android.Content;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using Android.OS;
@@ -9,10 +7,12 @@ using Android.Widget;
 using Java.Lang.Reflect;
 using MoneyFox.Droid.Renderer;
 using NLog;
+using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Color = Xamarin.Forms.Color;
 using Object = Java.Lang.Object;
+using Color = Xamarin.Forms.Color;
 
 [assembly: ExportRenderer(typeof(SearchBar), typeof(CustomSearchBarRenderer))]
 
@@ -23,12 +23,13 @@ namespace MoneyFox.Droid.Renderer
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public CustomSearchBarRenderer(Context context) : base(context)
-        { }
+        {
+        }
 
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
-            if (Control != null)
+            if(Control != null)
             {
                 SearchView searchView = Control;
                 searchView.Iconified = false;
@@ -38,7 +39,7 @@ namespace MoneyFox.Droid.Renderer
 
                 editText.SetHighlightColor(Color.Accent.ToAndroid());
 
-                if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     TrySetCursorPointerColorNew(editText);
                 else
                     TrySetCursorPointerColor(editText);
@@ -66,7 +67,7 @@ namespace MoneyFox.Droid.Renderer
                 textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
                 editText.TextSelectHandle = textSelectHandleRightDrawable;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Error(ex, "Issue in rendering custom search bar.");
             }
@@ -83,10 +84,10 @@ namespace MoneyFox.Droid.Renderer
                 Object editor = field.Get(editText);
 
                 string[] fieldsNames =
-                    {"mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"};
-                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
+                { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
+                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
-                for (var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
+                for(var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {
                     string fieldName = fieldsNames[index];
                     string drawableName = drawableNames[index];
@@ -97,7 +98,7 @@ namespace MoneyFox.Droid.Renderer
 
                     Drawable handleDrawable = Resources.GetDrawable(handle, null);
 
-                    if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                    if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                         handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
                     else
                         handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
@@ -112,7 +113,7 @@ namespace MoneyFox.Droid.Renderer
 
                 JNIEnv.SetField(editText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Error(ex, "Issue on setting the cursor color for custom search bar.");
             }
@@ -121,18 +122,20 @@ namespace MoneyFox.Droid.Renderer
         private void UpdateSearchButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
-            if (searchViewCloseButtonId != 0) SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
+            if(searchViewCloseButtonId != 0)
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
         }
 
         private void UpdateCancelButtonColor()
         {
             int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
-            if (searchViewCloseButtonId != 0) SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
+            if(searchViewCloseButtonId != 0)
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
         }
 
         private static void SetColorGray(ImageView image)
         {
-            if (Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+            if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                 image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
             else
                 image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);

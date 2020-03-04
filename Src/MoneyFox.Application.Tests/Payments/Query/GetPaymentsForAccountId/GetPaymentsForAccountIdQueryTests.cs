@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
+﻿using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -11,6 +6,11 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
 using Should;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
@@ -53,8 +53,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
             await context.SaveChangesAsync();
 
             // Act
-            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                                                                                                                    new
+            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(new
                                                                                                                         GetPaymentsForAccountIdQuery(account.Id,
                                                                                                                                                      DateTime
                                                                                                                                                         .Now
@@ -81,8 +80,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
             await context.SaveChangesAsync();
 
             // Act
-            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                                                                                                                    new
+            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(new
                                                                                                                         GetPaymentsForAccountIdQuery(account.Id,
                                                                                                                                                      DateTime
                                                                                                                                                         .Now

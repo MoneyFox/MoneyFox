@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Extensions;
+using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Application.Common.Extensions;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Common.Extensions

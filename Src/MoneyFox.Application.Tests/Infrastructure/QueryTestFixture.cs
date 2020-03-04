@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MoneyFox.Persistence;
+using System;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Persistence;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Infrastructure
@@ -29,5 +29,6 @@ namespace MoneyFox.Application.Tests.Infrastructure
 
     [CollectionDefinition("QueryCollection")]
     public class QueryCollection : ICollectionFixture<QueryTestFixture>
-    { }
+    {
+    }
 }

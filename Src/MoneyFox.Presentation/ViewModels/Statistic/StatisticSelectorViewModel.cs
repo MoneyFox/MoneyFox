@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Models;
 using MoneyFox.Presentation.Services;
+using System.Collections.Generic;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -13,7 +13,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         private readonly INavigationService navigationService;
 
         /// <summary>
-        ///     Constructor
+        /// Constructor
         /// </summary>
         public StatisticSelectorViewModel(INavigationService navigationService)
         {
@@ -21,9 +21,10 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         }
 
         /// <summary>
-        ///     All possible statistic to choose from
+        /// All possible statistic to choose from
         /// </summary>
-        public List<StatisticSelectorType> StatisticItems => new List<StatisticSelectorType>
+        public List<StatisticSelectorType> StatisticItems
+                                           => new List<StatisticSelectorType>
         {
             new StatisticSelectorType
             {
@@ -46,17 +47,18 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         };
 
         /// <summary>
-        ///     Navigates to the statistic view and shows the selected statistic
+        /// Navigates to the statistic view and shows the selected statistic
         /// </summary>
         public RelayCommand<StatisticSelectorType> GoToStatisticCommand => new RelayCommand<StatisticSelectorType>(GoToStatistic);
 
         private void GoToStatistic(StatisticSelectorType item)
         {
-            if (item.Type == StatisticType.Cashflow)
+            if(item.Type == StatisticType.Cashflow)
                 navigationService.NavigateTo(ViewModelLocator.StatisticCashFlow);
-            else if (item.Type == StatisticType.CategorySpreading)
+            else if(item.Type == StatisticType.CategorySpreading)
                 navigationService.NavigateTo(ViewModelLocator.StatisticCategorySpreading);
-            else if (item.Type == StatisticType.CategorySummary) navigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
+            else if(item.Type == StatisticType.CategorySummary)
+                navigationService.NavigateTo(ViewModelLocator.StatisticCategorySummary);
         }
     }
 }

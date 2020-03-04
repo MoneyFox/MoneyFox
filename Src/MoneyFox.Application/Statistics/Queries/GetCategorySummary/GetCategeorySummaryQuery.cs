@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 {
@@ -52,7 +52,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                                                         .Where(x => x.Type != PaymentType.Transfer)
                                                                         .ToListAsync(cancellationToken);
 
-                foreach (Category category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category!).Distinct())
+                foreach(Category category in paymentsInTimeRange.Where(x => x.Category != null).Select(x => x.Category!).Distinct())
                 {
                     CreateOverviewItem(paymentsInTimeRange, category);
                 }
@@ -76,8 +76,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                                                .Where(x => x.Category!.Id == category.Id)
                                                                .Where(x => x.Type != PaymentType.Transfer)
                                                                .Sum(x => x.Type == PaymentType.Expense
-                                                                             ? -x.Amount
-                                                                             : x.Amount),
+                                                                         ? -x.Amount
+                                                                         : x.Amount),
                                                Average = CalculateAverageForCategory(category.Id)
                                            };
                 categoryOverviewItems.Add(categoryOverViewItem);
@@ -91,8 +91,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                               Value = payments.Where(x => x.Category == null)
                                                               .Where(x => x.Type != PaymentType.Transfer)
                                                               .Sum(x => x.Type == PaymentType.Expense
-                                                                            ? -x.Amount
-                                                                            : x.Amount),
+                                                                        ? -x.Amount
+                                                                        : x.Amount),
                                               Average = CalculateAverageForPaymentsWithoutCategory()
                                           });
             }
@@ -102,12 +102,12 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 decimal sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
                 decimal sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);
 
-                foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value < 0))
+                foreach(CategoryOverviewItem statisticItem in categories.Where(x => x.Value < 0))
                 {
                     statisticItem.Percentage = statisticItem.Value / sumNegative * PERCENTAGE_DIVIDER;
                 }
 
-                foreach (CategoryOverviewItem statisticItem in categories.Where(x => x.Value > 0))
+                foreach(CategoryOverviewItem statisticItem in categories.Where(x => x.Value > 0))
                 {
                     statisticItem.Percentage = statisticItem.Value / sumPositive * PERCENTAGE_DIVIDER;
                 }
@@ -121,7 +121,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                         .OrderByDescending(x => x.Date)
                                         .ToList();
 
-                if (payments.Count == 0)
+                if(payments.Count == 0)
                     return 0;
 
                 return SumForCategory(payments);
@@ -134,7 +134,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                         .OrderByDescending(x => x.Date)
                                         .ToList();
 
-                if (payments.Count == 0)
+                if(payments.Count == 0)
                     return 0;
 
                 return SumForCategory(payments);
@@ -145,7 +145,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 decimal sumForCategory = payments.Sum(x => x.Amount);
                 TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
-                if (timeDiff.Days < DAY_DIVIDER)
+                if(timeDiff.Days < DAY_DIVIDER)
                     return sumForCategory;
 
                 return Math.Round(sumForCategory / (timeDiff.Days / DAY_DIVIDER), 2, MidpointRounding.ToEven);

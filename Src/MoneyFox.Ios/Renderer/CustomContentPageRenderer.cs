@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using MoneyFox.iOS.Renderer;
+﻿using MoneyFox.iOS.Renderer;
+using System.Collections.Generic;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -22,17 +22,21 @@ namespace MoneyFox.iOS.Renderer
             UINavigationItem navigationItem = NavigationController.TopViewController.NavigationItem;
 
             // Add to new list for sorting
-            foreach (ToolbarItem itm in Element.ToolbarItems)
+            foreach(ToolbarItem itm in Element.ToolbarItems)
             {
                 ToolbarList.Add(itm);
             }
 
             // Sort the list
-            ToolbarList.Sort((i1, i2) => { return i1.Priority > i2.Priority ? -1 : 1; });
+            ToolbarList.Sort((i1, i2) =>
+                             {
+                                 return i1.Priority > i2.Priority
+                                        ? -1 : 1;
+                             });
 
-            foreach (ToolbarItem itm in ToolbarList)
+            foreach(ToolbarItem itm in ToolbarList)
             {
-                if (itm.Priority < 0)
+                if(itm.Priority < 0)
                     LeftNavList.Add(itm.ToUIBarButtonItem());
                 else
                     RightNavList.Add(itm.ToUIBarButtonItem());

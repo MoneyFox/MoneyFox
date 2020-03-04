@@ -1,14 +1,14 @@
-﻿using System;
+﻿using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.Views;
+using NLog;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.ViewModels;
-using MoneyFox.Uwp.Views;
-using NLog;
 using UnhandledExceptionEventArgs = Windows.UI.Xaml.UnhandledExceptionEventArgs;
 
 namespace MoneyFox.Uwp
@@ -31,7 +31,8 @@ namespace MoneyFox.Uwp
 
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
-            if (!args.PrelaunchActivated) await ActivationService.ActivateAsync(args);
+            if(!args.PrelaunchActivated)
+                await ActivationService.ActivateAsync(args);
 
             OverrideTitleBarColor();
         }
@@ -72,9 +73,8 @@ namespace MoneyFox.Uwp
         }
 
         /// <summary>
-        ///     Invoked when application execution is being suspended.  Application state is saved
-        ///     without knowing whether the application will be terminated or resumed with the contents
-        ///     of memory still intact.
+        /// Invoked when application execution is being suspended.  Application state is saved     without knowing
+        /// whether the application will be terminated or resumed with the contents     of memory still intact.
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>

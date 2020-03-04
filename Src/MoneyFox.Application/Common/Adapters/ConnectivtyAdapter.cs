@@ -4,22 +4,22 @@ using Xamarin.Essentials;
 namespace MoneyFox.Application.Common.Adapters
 {
     /// <summary>
-    ///     Provides access to the connectivity state.
+    /// Provides access to the connectivity state.
     /// </summary>
     public interface IConnectivityAdapter
     {
         /// <summary>
-        ///     returns if the device is connected to the internet.
+        /// returns if the device is connected to the internet.
         /// </summary>
         bool IsConnected { get; }
     }
 
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public class ConnectivityAdapter : IConnectivityAdapter
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public bool IsConnected
         {
             get
@@ -28,7 +28,7 @@ namespace MoneyFox.Application.Common.Adapters
                 {
                     return Connectivity.NetworkAccess == NetworkAccess.Internet;
                 }
-                catch (PermissionException ex)
+                catch(PermissionException ex)
                 {
                     logger.Error(ex, "Permission denied on check for connection");
                     return false;

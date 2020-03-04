@@ -1,7 +1,4 @@
-﻿using System;
-using System.Globalization;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Command.UpdateCategory;
@@ -15,6 +12,9 @@ using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
 using NLog;
+using System;
+using System.Globalization;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -32,8 +32,7 @@ namespace MoneyFox.Presentation.ViewModels
                                      ISettingsFacade settingsFacade,
                                      IBackupService backupService,
                                      INavigationService navigationService,
-                                     IMapper mapper)
-            : base(mediator, navigationService, mapper, dialogService)
+                                     IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
         {
             this.mediator = mediator;
             this.settingsFacade = settingsFacade;
@@ -42,7 +41,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Delete the selected CategoryViewModel from the database
+        /// Delete the selected CategoryViewModel from the database
         /// </summary>
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteCategory);
 
@@ -61,7 +60,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeleteCategory()
         {
-            if (await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);

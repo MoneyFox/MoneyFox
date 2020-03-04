@@ -1,11 +1,11 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using AutoMapper;
+﻿using AutoMapper;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Mappings
@@ -25,8 +25,13 @@ namespace MoneyFox.Presentation.Tests.Mappings
         public void MapToViewModel()
         {
             // Arrange
-            var payment = new Payment(DateTime.Today, 124, PaymentType.Income, new Account("addd"), new Account("fasdf"),
-                                      new Category("asdf"), "note");
+            var payment = new Payment(DateTime.Today,
+                                      124,
+                                      PaymentType.Income,
+                                      new Account("addd"),
+                                      new Account("fasdf"),
+                                      new Category("asdf"),
+                                      "note");
 
             // Act
             var result = mapper.Map<PaymentViewModel>(payment);
