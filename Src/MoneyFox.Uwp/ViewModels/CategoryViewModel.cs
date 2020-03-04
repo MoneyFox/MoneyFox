@@ -15,7 +15,8 @@ namespace MoneyFox.Uwp.ViewModels
             get => id;
             set
             {
-                if (id == value) return;
+                if(id == value)
+                    return;
                 id = value;
                 RaisePropertyChanged();
             }
@@ -26,21 +27,23 @@ namespace MoneyFox.Uwp.ViewModels
             get => name;
             set
             {
-                if (name == value) return;
+                if(name == value)
+                    return;
                 name = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Additional details about the CategoryViewModel
+        /// Additional details about the CategoryViewModel
         /// </summary>
         public string Note
         {
             get => note;
             set
             {
-                if (note == value) return;
+                if(note == value)
+                    return;
                 note = value;
                 RaisePropertyChanged();
             }

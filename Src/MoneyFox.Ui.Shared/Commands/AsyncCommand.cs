@@ -1,7 +1,7 @@
-﻿using System;
+﻿using MoneyFox.Ui.Shared.Utilities;
+using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using MoneyFox.Ui.Shared.Utilities;
 
 namespace MoneyFox.Ui.Shared.Commands
 {
@@ -28,7 +28,7 @@ namespace MoneyFox.Ui.Shared.Commands
 
         public async Task ExecuteAsync()
         {
-            if (CanExecute())
+            if(CanExecute())
             {
                 try
                 {
@@ -49,7 +49,6 @@ namespace MoneyFox.Ui.Shared.Commands
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        #region Explicit implementations
 
         bool ICommand.CanExecute(object parameter)
         {
@@ -60,8 +59,6 @@ namespace MoneyFox.Ui.Shared.Commands
         {
             ExecuteAsync().FireAndForgetSafeAsync();
         }
-
-        #endregion
     }
 
     public class AsyncCommand<T> : IAsyncCommand<T>
@@ -85,7 +82,7 @@ namespace MoneyFox.Ui.Shared.Commands
 
         public async Task ExecuteAsync(T parameter)
         {
-            if (CanExecute(parameter))
+            if(CanExecute(parameter))
             {
                 try
                 {
@@ -106,7 +103,6 @@ namespace MoneyFox.Ui.Shared.Commands
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
 
-        #region Explicit implementations
 
         bool ICommand.CanExecute(object parameter)
         {
@@ -117,7 +113,5 @@ namespace MoneyFox.Ui.Shared.Commands
         {
             ExecuteAsync((T) parameter).FireAndForgetSafeAsync();
         }
-
-        #endregion
     }
 }

@@ -14,12 +14,12 @@ namespace MoneyFox.Presentation.Views
             InitializeComponent();
 
             var saveItem = new ToolbarItem
-            {
-                Command = new Command(async () => await ViewModel.SaveCommand.ExecuteAsync()),
-                Text = Strings.SaveLabel,
-                Priority = 0,
-                Order = ToolbarItemOrder.Primary
-            };
+                           {
+                               Command = new Command(async() => await ViewModel.SaveCommand.ExecuteAsync()),
+                               Text = Strings.SaveLabel,
+                               Priority = 0,
+                               Order = ToolbarItemOrder.Primary
+                           };
 
             ToolbarItems.Add(saveItem);
 

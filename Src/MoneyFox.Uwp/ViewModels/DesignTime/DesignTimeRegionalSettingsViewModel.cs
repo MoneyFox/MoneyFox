@@ -1,18 +1,19 @@
-﻿using System;
+﻿using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Uwp.ViewModels.Settings;
+using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Uwp.ViewModels.Settings;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeRegionalSettingsViewModel : IRegionalSettingsViewModel
     {
-        public ObservableCollection<CultureInfo> AvailableCultures => new ObservableCollection<CultureInfo>
-                                                                      {
-                                                                          new CultureInfo("de-CH"),
-                                                                          new CultureInfo("en-US")
-                                                                      };
+        public ObservableCollection<CultureInfo> AvailableCultures
+                                                 => new ObservableCollection<CultureInfo>
+        {
+            new CultureInfo("de-CH"),
+            new CultureInfo("en-US")
+        };
 
         public AsyncCommand LoadAvailableCulturesCommand => throw new NotImplementedException();
 

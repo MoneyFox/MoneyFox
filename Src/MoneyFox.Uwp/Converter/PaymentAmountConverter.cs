@@ -1,8 +1,7 @@
-﻿using System;
-using Windows.UI.Xaml.Data;
-using MoneyFox.Application;
-using MoneyFox.Domain;
+﻿using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels;
+using System;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.Converter
 {
@@ -14,25 +13,28 @@ namespace MoneyFox.Uwp.Converter
         {
             var payment = value as PaymentViewModel;
 
-            if (payment == null) return string.Empty;
+            if(payment == null)
+                return string.Empty;
 
             var param = parameter?.ToString();
             string sign;
 
-            if (payment.Type == PaymentType.Transfer)
+            if(payment.Type == PaymentType.Transfer)
             {
                 string condition;
-                condition = payment.ChargedAccountId == payment.CurrentAccountId ? "-" : "+";
-                sign = param == IGNORE_TRANSFER ? "-" : condition;
+                condition = payment.ChargedAccountId == payment.CurrentAccountId
+                            ? "-" : "+";
+                sign = param == IGNORE_TRANSFER
+                       ? "-" : condition;
             }
             else
             {
                 sign = payment.Type == (int) PaymentType.Expense
-                           ? "-"
-                           : "+";
+                       ? "-"
+                       : "+";
             }
 
-            return sign + " " + $"{payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";
+            return $"{sign} {payment.Amount.ToString(string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

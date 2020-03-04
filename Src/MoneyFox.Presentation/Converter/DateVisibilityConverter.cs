@@ -5,7 +5,7 @@ using Xamarin.Forms;
 namespace MoneyFox.Presentation.Converter
 {
     /// <summary>
-    ///     Hides the date if it is equal to the default DateTime Value.
+    /// Hides the date if it is equal to the default DateTime Value.
     /// </summary>
     public class DateVisibilityConverter : IValueConverter
     {

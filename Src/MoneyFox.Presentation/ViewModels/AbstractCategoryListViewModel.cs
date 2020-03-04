@@ -1,10 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
@@ -16,6 +10,12 @@ using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using NLog;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
@@ -31,7 +31,7 @@ namespace MoneyFox.Presentation.ViewModels
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source;
 
         /// <summary>
-        ///     Base class for the category list user control
+        /// Base class for the category list user control
         /// </summary>
         protected AbstractCategoryListViewModel(IMediator mediator,
                                                 IMapper mapper,
@@ -47,23 +47,26 @@ namespace MoneyFox.Presentation.ViewModels
         protected INavigationService NavigationService { get; }
 
         protected IMediator Mediator { get; }
+
         protected IMapper Mapper { get; }
+
         protected IDialogService DialogService { get; }
 
         /// <summary>
-        ///     Handle the selection of a CategoryViewModel in the list
+        /// Handle the selection of a CategoryViewModel in the list
         /// </summary>
         protected abstract void ItemClick(CategoryViewModel category);
 
         /// <summary>
-        ///     Collection with categories alphanumeric grouped by
+        /// Collection with categories alphanumeric grouped by
         /// </summary>
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
         {
             get => source;
             private set
             {
-                if (source == value) return;
+                if(source == value)
+                    return;
                 source = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(IsCategoriesEmpty));
@@ -72,34 +75,34 @@ namespace MoneyFox.Presentation.ViewModels
 
         public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
 
-        public List<string> MenuActions => new List<string> {Strings.EditLabel, Strings.DeleteLabel};
+        public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
 
         public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
 
         public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearingAsync);
 
         /// <summary>
-        ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
+        /// Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
         public AsyncCommand<CategoryViewModel> DeleteCategoryCommand => new AsyncCommand<CategoryViewModel>(DeleteCategoryAsync);
 
         /// <summary>
-        ///     Edit the currently selected CategoryViewModel
+        /// Edit the currently selected CategoryViewModel
         /// </summary>
         public RelayCommand<CategoryViewModel> EditCategoryCommand => new RelayCommand<CategoryViewModel>(EditCategory);
 
         /// <summary>
-        ///     Selects the clicked CategoryViewModel and sends it to the message hub.
+        /// Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
         public RelayCommand<CategoryViewModel> ItemClickCommand => new RelayCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
-        ///     Executes a search for the passed term and updates the displayed list.
+        /// Executes a search for the passed term and updates the displayed list.
         /// </summary>
         public AsyncCommand<string> SearchCommand => new AsyncCommand<string>(SearchAsync);
 
         /// <summary>
-        ///     Create and save a new CategoryViewModel group
+        /// Create and save a new CategoryViewModel group
         /// </summary>
         public RelayCommand<CategoryViewModel> CreateNewCategoryCommand => new RelayCommand<CategoryViewModel>(CreateNewCategory);
 
@@ -109,7 +112,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Performs a search with the text in the search text property
+        /// Performs a search with the text in the search text property
         /// </summary>
         public async Task SearchAsync(string searchText = "")
         {
@@ -124,7 +127,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             var categoryViewModel = menuResult.Parameter as CategoryViewModel;
 
-            switch (menuResult.Index)
+            switch(menuResult.Index)
             {
                 case MENU_RESULT_EDIT_INDEX:
                     EditCategory(categoryViewModel);
@@ -154,15 +157,13 @@ namespace MoneyFox.Presentation.ViewModels
             IEnumerable<CategoryViewModel> categories)
         {
             return new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
-                                                                                              AlphaGroupListGroupCollection<
-                                                                                                      CategoryViewModel>
+                                                                                              AlphaGroupListGroupCollection<CategoryViewModel>
                                                                                                  .CreateGroups(categories,
                                                                                                                CultureInfo.CurrentUICulture,
-                                                                                                               s =>
-                                                                                                                   string
+                                                                                                               s => string
                                                                                                                       .IsNullOrEmpty(s.Name)
-                                                                                                                       ? "-"
-                                                                                                                       : s.Name[0]
+                                                                                                                    ? "-"
+                                                                                                                    : s.Name[0]
                                                                                                                           .ToString(CultureInfo
                                                                                                                                        .InvariantCulture)
                                                                                                                           .ToUpper(CultureInfo
@@ -173,7 +174,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task DeleteCategoryAsync(CategoryViewModel categoryToDelete)
         {
-            if (await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 await Mediator.Send(new DeleteCategoryByIdCommand(categoryToDelete.Id));
                 await SearchAsync();

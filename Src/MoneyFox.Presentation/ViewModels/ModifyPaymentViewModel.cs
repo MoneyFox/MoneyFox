@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
@@ -15,87 +11,89 @@ using MoneyFox.Domain;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Commands;
 using NLog;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public interface IModifyPaymentViewModel
     {
         /// <summary>
-        ///     Indicates if the PaymentViewModel is a transfer.
+        /// Indicates if the PaymentViewModel is a transfer.
         /// </summary>
         bool IsTransfer { get; }
 
         /// <summary>
-        ///     The selected recurrence
+        /// The selected recurrence
         /// </summary>
         PaymentRecurrence Recurrence { get; }
 
         /// <summary>
-        ///     List with the different recurrence types.
-        ///     This has to have the same order as the enum
+        /// List with the different recurrence types.     This has to have the same order as the enum
         /// </summary>
         List<PaymentRecurrence> RecurrenceList { get; }
 
         /// <summary>
-        ///     The selected PaymentViewModel
+        /// The selected PaymentViewModel
         /// </summary>
         PaymentViewModel SelectedPayment { get; }
 
         /// <summary>
-        ///     Property to format amount string to double with the proper culture.
-        ///     This is used to prevent issues when converting the amount string to double
-        ///     without the correct culture.
+        /// Property to format amount string to double with the proper culture.     This is used to prevent issues when
+        /// converting the amount string to double     without the correct culture.
         /// </summary>
         string AmountString { get; }
 
         /// <summary>
-        ///     Gives access to all accounts for Charged Drop down list
+        /// Gives access to all accounts for Charged Drop down list
         /// </summary>
         ObservableCollection<AccountViewModel> ChargedAccounts { get; }
 
         /// <summary>
-        ///     Gives access to all accounts for Target Drop down list
+        /// Gives access to all accounts for Target Drop down list
         /// </summary>
         ObservableCollection<AccountViewModel> TargetAccounts { get; }
 
         /// <summary>
-        ///     Returns the Title for the page
+        /// Returns the Title for the page
         /// </summary>
         string Title { get; }
 
         /// <summary>
-        ///     Returns the Header for the AccountViewModel field
+        /// Returns the Header for the AccountViewModel field
         /// </summary>
         string AccountHeader { get; }
 
         /// <summary>
-        ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
+        /// Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
         /// </summary>
         RelayCommand SelectedItemChangedCommand { get; }
 
         /// <summary>
-        ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
+        /// Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
         AsyncCommand SaveCommand { get; }
 
         /// <summary>
-        ///     Opens to the SelectCategoryView
+        /// Opens to the SelectCategoryView
         /// </summary>
         RelayCommand GoToSelectCategoryDialogCommand { get; }
 
         /// <summary>
-        ///     Cancels the operations.
+        /// Cancels the operations.
         /// </summary>
         RelayCommand CancelCommand { get; }
 
         /// <summary>
-        ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
+        /// Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
         RelayCommand ResetCategoryCommand { get; }
     }
 
     /// <summary>
-    ///     Handles the logic of the ModifyPayment view
+    /// Handles the logic of the ModifyPayment view
     /// </summary>
     public abstract class ModifyPaymentViewModel : ViewModelBase, IModifyPaymentViewModel
     {
@@ -113,7 +111,7 @@ namespace MoneyFox.Presentation.ViewModels
         private string title;
 
         /// <summary>
-        ///     Default constructor
+        /// Default constructor
         /// </summary>
         protected ModifyPaymentViewModel(IMediator mediator,
                                          IMapper mapper,
@@ -131,44 +129,45 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
+        /// Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
         /// </summary>
         public RelayCommand SelectedItemChangedCommand => new RelayCommand(UpdateOtherComboBox);
 
         /// <summary>
-        ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
+        /// Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
         public AsyncCommand SaveCommand => new AsyncCommand(SavePaymentBase);
 
         /// <summary>
-        ///     Opens to the SelectCategoryView
+        /// Opens to the SelectCategoryView
         /// </summary>
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(OpenSelectCategoryList);
 
         /// <summary>
-        ///     Cancels the operations.
+        /// Cancels the operations.
         /// </summary>
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <summary>
-        ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
+        /// Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
         public RelayCommand ResetCategoryCommand => new RelayCommand(ResetSelection);
 
         /// <summary>
-        ///     Indicates if the PaymentViewModel is a transfer.
+        /// Indicates if the PaymentViewModel is a transfer.
         /// </summary>
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
         /// <summary>
-        ///     The selected recurrence
+        /// The selected recurrence
         /// </summary>
         public PaymentRecurrence Recurrence
         {
             get => recurrence;
             set
             {
-                if (recurrence == value) return;
+                if(recurrence == value)
+                    return;
 
                 recurrence = value;
                 RaisePropertyChanged();
@@ -176,10 +175,10 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     List with the different recurrence types.
-        ///     This has to have the same order as the enum
+        /// List with the different recurrence types.     This has to have the same order as the enum
         /// </summary>
-        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
+        public List<PaymentRecurrence> RecurrenceList
+                                       => new List<PaymentRecurrence>
         {
             PaymentRecurrence.Daily,
             PaymentRecurrence.DailyWithoutWeekend,
@@ -193,14 +192,15 @@ namespace MoneyFox.Presentation.ViewModels
         };
 
         /// <summary>
-        ///     The selected PaymentViewModel
+        /// The selected PaymentViewModel
         /// </summary>
         public PaymentViewModel SelectedPayment
         {
             get => selectedPayment;
             set
             {
-                if (selectedPayment == value) return;
+                if(selectedPayment == value)
+                    return;
                 selectedPayment = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(AccountHeader));
@@ -216,14 +216,15 @@ namespace MoneyFox.Presentation.ViewModels
             get => amountString;
             set
             {
-                if (amountString == value) return;
+                if(amountString == value)
+                    return;
                 amountString = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Gives access to all accounts for Charged Dropdown list
+        /// Gives access to all accounts for Charged Dropdown list
         /// </summary>
         public ObservableCollection<AccountViewModel> ChargedAccounts
         {
@@ -236,7 +237,7 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Gives access to all accounts for Target Dropdown list
+        /// Gives access to all accounts for Target Dropdown list
         /// </summary>
         public ObservableCollection<AccountViewModel> TargetAccounts
         {
@@ -253,19 +254,20 @@ namespace MoneyFox.Presentation.ViewModels
             get => title;
             set
             {
-                if (title == value) return;
+                if(title == value)
+                    return;
                 title = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Returns the Header for the AccountViewModel field
+        /// Returns the Header for the AccountViewModel field
         /// </summary>
         public string AccountHeader
-            => SelectedPayment?.Type == PaymentType.Income
-                ? Strings.TargetAccountLabel
-                : Strings.ChargedAccountLabel;
+                      => SelectedPayment?.Type == PaymentType.Income
+                         ? Strings.TargetAccountLabel
+                         : Strings.ChargedAccountLabel;
 
         protected abstract Task SavePayment();
 
@@ -279,13 +281,13 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task SavePaymentBase()
         {
-            if (SelectedPayment.ChargedAccount == null)
+            if(SelectedPayment.ChargedAccount == null)
             {
                 await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.AccountRequiredMessage);
                 return;
             }
 
-            if (decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
                 SelectedPayment.Amount = convertedValue;
             else
             {
@@ -294,7 +296,7 @@ namespace MoneyFox.Presentation.ViewModels
                 return;
             }
 
-            if (SelectedPayment.Amount < 0)
+            if(SelectedPayment.Amount < 0)
             {
                 await dialogService.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage);
                 return;
@@ -306,12 +308,13 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <summary>
-        ///     Moved to own method for debugg reasons
+        /// Moved to own method for debugg reasons
         /// </summary>
         /// <param name="message">Message sent.</param>
         private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
-            if (SelectedPayment == null || message == null) return;
+            if(SelectedPayment == null || message == null)
+                return;
             SelectedPayment.Category =
                 mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.SelectedCategoryId)));
         }
@@ -334,18 +337,21 @@ namespace MoneyFox.Presentation.ViewModels
         private void UpdateOtherComboBox()
         {
             var tempCollection = new ObservableCollection<AccountViewModel>(ChargedAccounts);
-            foreach (AccountViewModel account in TargetAccounts)
+            foreach(AccountViewModel account in TargetAccounts)
             {
-                if (!tempCollection.Contains(account)) tempCollection.Add(account);
+                if(!tempCollection.Contains(account))
+                    tempCollection.Add(account);
             }
 
-            foreach (AccountViewModel account in tempCollection)
+            foreach(AccountViewModel account in tempCollection)
             {
                 //fills targetaccounts
-                if (!TargetAccounts.Contains(account)) TargetAccounts.Add(account);
+                if(!TargetAccounts.Contains(account))
+                    TargetAccounts.Add(account);
 
                 //fills chargedaccounts
-                if (!ChargedAccounts.Contains(account)) ChargedAccounts.Add(account);
+                if(!ChargedAccounts.Contains(account))
+                    ChargedAccounts.Add(account);
             }
 
             TargetAccounts.Remove(selectedPayment.ChargedAccount);

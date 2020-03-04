@@ -1,6 +1,6 @@
-﻿using System;
-using MoneyFox.iOS.Renderer;
+﻿using MoneyFox.iOS.Renderer;
 using NLog;
+using System;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -17,11 +17,12 @@ namespace MoneyFox.iOS.Renderer
         {
             try
             {
-                if (parent != null) parent.ModalPresentationStyle = UIModalPresentationStyle.Automatic;
+                if(parent != null)
+                    parent.ModalPresentationStyle = UIModalPresentationStyle.Automatic;
 
                 base.WillMoveToParentViewController(parent);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logManager.Warn(ex);
             }

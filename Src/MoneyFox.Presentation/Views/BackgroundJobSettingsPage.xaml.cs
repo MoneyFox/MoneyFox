@@ -1,9 +1,9 @@
-﻿using System;
-using CommonServiceLocator;
+﻿using CommonServiceLocator;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Resources;
 using NLog;
+using System;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
@@ -29,13 +29,13 @@ namespace MoneyFox.Presentation.Views
             var settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
             var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
 
-            if (e.Value && !settingsFacade.IsLoggedInToBackupService)
+            if(e.Value && !settingsFacade.IsLoggedInToBackupService)
             {
                 try
                 {
                     await backupService.LoginAsync();
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     BackgroundJobToggle.IsToggled = false;
                     logger.Error(ex);

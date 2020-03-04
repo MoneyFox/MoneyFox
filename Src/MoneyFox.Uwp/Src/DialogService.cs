@@ -1,20 +1,20 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Resources;
+using MoneyFox.Uwp.Views.Dialogs;
+using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Popups;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.Views.Dialogs;
 
-namespace MoneyFox.Uwp
+namespace MoneyFox.Uwp.Src
 {
     public class DialogService : IDialogService
     {
         private LoadingDialog loadingDialog;
 
         /// <summary>
-        ///     Show a dialog with two buttons with customizable Texts. Returns the answer.
+        /// Show a dialog with two buttons with customizable Texts. Returns the answer.
         /// </summary>
         /// <param name="title">Title for the dialog.</param>
         /// <param name="message">Text for the dialog.</param>
@@ -37,7 +37,7 @@ namespace MoneyFox.Uwp
         }
 
         /// <summary>
-        ///     Shows a dialog with title and message. Contains only an OK button.
+        /// Shows a dialog with title and message. Contains only an OK button.
         /// </summary>
         /// <param name="title">Title to display.</param>
         /// <param name="message">Text to display.</param>
@@ -52,14 +52,14 @@ namespace MoneyFox.Uwp
         }
 
         /// <summary>
-        ///     Shows a loading Dialog.
+        /// Shows a loading Dialog.
         /// </summary>
         public async Task ShowLoadingDialogAsync(string message = null)
         {
             // Be sure no other dialog is open.
             await HideLoadingDialogAsync();
 
-            loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
+            loadingDialog = new LoadingDialog { Text = message ?? Strings.LoadingLabel };
 
             CoreApplicationView coreWindow = CoreApplication.MainView;
 
@@ -67,11 +67,15 @@ namespace MoneyFox.Uwp
             CoreDispatcher dispatcher = coreWindow.CoreWindow.Dispatcher;
 
             // RunAsync all of the UI info.
-            await dispatcher.RunAsync(CoreDispatcherPriority.High, async () => { await loadingDialog.ShowAsync(); });
+            await dispatcher.RunAsync(CoreDispatcherPriority.High,
+                                      async() =>
+                                      {
+                                          await loadingDialog.ShowAsync();
+                                      });
         }
 
         /// <summary>
-        ///     Hides the previously opened Loading Dialog.
+        /// Hides the previously opened Loading Dialog.
         /// </summary>
         public Task HideLoadingDialogAsync()
         {

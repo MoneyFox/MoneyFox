@@ -1,18 +1,19 @@
-﻿using System.Globalization;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Commands;
 using NLog;
+using System.Globalization;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     public abstract class ModifyAccountViewModel : ViewModelBase
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         public int AccountId { get; set; }
 
         private string title;
@@ -30,6 +31,7 @@ namespace MoneyFox.Presentation.ViewModels
         protected abstract Task Initialize();
 
         protected IDialogService DialogService { get; }
+
         protected INavigationService NavigationService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
@@ -43,7 +45,8 @@ namespace MoneyFox.Presentation.ViewModels
             get => title;
             set
             {
-                if (title == value) return;
+                if(title == value)
+                    return;
                 title = value;
                 RaisePropertyChanged();
             }
@@ -67,7 +70,8 @@ namespace MoneyFox.Presentation.ViewModels
             get => amountString;
             set
             {
-                if (amountString == value) return;
+                if(amountString == value)
+                    return;
                 amountString = value;
                 RaisePropertyChanged();
             }
@@ -75,7 +79,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task SaveAccountBaseAsync()
         {
-            if (string.IsNullOrWhiteSpace(SelectedAccount.Name))
+            if(string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
                 await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;

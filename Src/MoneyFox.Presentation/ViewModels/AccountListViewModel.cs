@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
@@ -19,6 +13,12 @@ using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using NLog;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms.Models;
 
@@ -40,7 +40,7 @@ namespace MoneyFox.Presentation.ViewModels
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
 
         /// <summary>
-        ///     Constructor
+        /// Constructor
         /// </summary>
         public AccountListViewModel(IMediator mediator,
                                     IMapper mapper,
@@ -70,7 +70,8 @@ namespace MoneyFox.Presentation.ViewModels
             get => accounts;
             private set
             {
-                if (accounts == value) return;
+                if(accounts == value)
+                    return;
                 accounts = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(HasNoAccounts));
@@ -78,7 +79,8 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public bool HasNoAccounts => !Accounts.Any();
-        public List<string> MenuActions => new List<string> {Strings.EditLabel, Strings.DeleteLabel};
+
+        public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
 
         public AsyncCommand LoadDataCommand => new AsyncCommand(LoadAsync);
 
@@ -97,7 +99,7 @@ namespace MoneyFox.Presentation.ViewModels
         {
             var accountViewModel = menuResult.Parameter as AccountViewModel;
 
-            switch (menuResult.Index)
+            switch(menuResult.Index)
             {
                 case MENU_RESULT_EDIT_INDEX:
                     navigationService.NavigateTo(ViewModelLocator.EditAccount, accountViewModel.Id);
@@ -132,12 +134,14 @@ namespace MoneyFox.Presentation.ViewModels
 
                 Accounts.Clear();
 
-                if (includedAlphaGroup.Any()) Accounts.Add(includedAlphaGroup);
-                if (excludedAlphaGroup.Any()) Accounts.Add(excludedAlphaGroup);
+                if(includedAlphaGroup.Any())
+                    Accounts.Add(includedAlphaGroup);
+                if(excludedAlphaGroup.Any())
+                    Accounts.Add(excludedAlphaGroup);
 
                 RaisePropertyChanged(nameof(HasNoAccounts));
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logManager.Error(ex);
                 await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.ToString());
@@ -146,16 +150,18 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if (accountViewModel == null) return;
+            if(accountViewModel == null)
+                return;
 
             navigationService.NavigateTo(ViewModelLocator.PaymentList, accountViewModel.Id);
         }
 
         private async Task DeleteAsync(AccountViewModel accountToDelete)
         {
-            if (accountToDelete == null) return;
+            if(accountToDelete == null)
+                return;
 
-            if (await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(accountToDelete.Id));
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);

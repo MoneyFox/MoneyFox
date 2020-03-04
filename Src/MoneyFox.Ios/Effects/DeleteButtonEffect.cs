@@ -1,7 +1,7 @@
-﻿using System;
-using CoreGraphics;
+﻿using CoreGraphics;
 using MoneyFox.iOS.Effects;
 using NLog;
+using System;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -11,7 +11,7 @@ using Xamarin.Forms.Platform.iOS;
 namespace MoneyFox.iOS.Effects
 {
     /// <summary>
-    ///     Applies a custom button effect for delete buttons on IOS.
+    /// Applies a custom button effect for delete buttons on IOS.
     /// </summary>
     public class DeleteButtonEffect : PlatformEffect
     {
@@ -30,13 +30,14 @@ namespace MoneyFox.iOS.Effects
                 button.ClipsToBounds = true;
                 button.Frame = new CGRect(button.Frame.X, button.Frame.Y, button.Frame.Width, 37);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logManager.Error(ex, "Failed to attach delete button effect.");
             }
         }
 
         protected override void OnDetached()
-        { }
+        {
+        }
     }
 }

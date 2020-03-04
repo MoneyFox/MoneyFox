@@ -2,7 +2,7 @@
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Presentation;
 
-namespace MoneyFox.iOS
+namespace MoneyFox.iOS.Src
 {
     public class ThemeSelectorAdapter : IThemeSelectorAdapter
     {
@@ -10,7 +10,8 @@ namespace MoneyFox.iOS
 
         public void SetTheme(string theme)
         {
-            ThemeManager.ChangeTheme(theme == "Light" ? AppTheme.Light : AppTheme.Dark);
+            ThemeManager.ChangeTheme(theme == "Light"
+                                     ? AppTheme.Light : AppTheme.Dark);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using System;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Ui.Shared.Utilities;
 using Rg.Plugins.Popup.Extensions;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
@@ -23,26 +23,26 @@ namespace MoneyFox.Presentation.Views
 
             PaymentList.On<Android>().SetIsFastScrollEnabled(true);
 
-            if (Device.RuntimePlatform == Device.iOS)
+            if(Device.RuntimePlatform == Device.iOS)
             {
                 var addItem = new ToolbarItem
-                {
-                    Text = Strings.AddTitle,
-                    Priority = 0,
-                    Order = ToolbarItemOrder.Primary
-                };
+                              {
+                                  Text = Strings.AddTitle,
+                                  Priority = 0,
+                                  Order = ToolbarItemOrder.Primary
+                              };
                 addItem.Clicked += AddItem_Clicked;
 
                 ToolbarItems.Add(addItem);
             }
 
             var filterItem = new ToolbarItem
-            {
-                Command = new Command(OpenDialog),
-                Text = Strings.FilterLabel,
-                Priority = 1,
-                Order = ToolbarItemOrder.Primary
-            };
+                             {
+                                 Command = new Command(OpenDialog),
+                                 Text = Strings.FilterLabel,
+                                 Priority = 1,
+                                 Order = ToolbarItemOrder.Primary
+                             };
 
             ToolbarItems.Add(filterItem);
 
@@ -65,7 +65,7 @@ namespace MoneyFox.Presentation.Views
 
         private void AddItem_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushPopupAsync(new AddPaymentPopup {BindingContext = ViewModel.ViewActionViewModel}).FireAndForgetSafeAsync();
+            Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel }).FireAndForgetSafeAsync();
         }
     }
 }

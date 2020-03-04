@@ -1,5 +1,5 @@
-﻿using Windows.UI.Xaml.Navigation;
-using MoneyFox.Uwp.ViewModels;
+﻿using MoneyFox.Uwp.ViewModels;
+using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -16,7 +16,8 @@ namespace MoneyFox.Uwp.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (e.Parameter != null) ViewModel.CategoryId = (int) e.Parameter;
+            if(e.Parameter != null)
+                ViewModel.CategoryId = (int) e.Parameter;
         }
     }
 }

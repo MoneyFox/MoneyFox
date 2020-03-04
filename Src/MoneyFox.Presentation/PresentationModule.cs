@@ -1,6 +1,4 @@
-﻿using System;
-using System.Globalization;
-using Autofac;
+﻿using Autofac;
 using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
@@ -10,6 +8,8 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
 using MoneyFox.Presentation.AutoMapper;
+using System;
+using System.Globalization;
 
 namespace MoneyFox.Presentation
 {

@@ -1,49 +1,51 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using MediatR;
+﻿using MediatR;
 using Microcharts;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using SkiaSharp;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Entry = Microcharts.Entry;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     /// <summary>
-    ///     Representation of the category Spreading View
+    /// Representation of the category Spreading View
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private static readonly string fontFamily = Device.RuntimePlatform == Device.iOS ? "Lobster-Regular" : null;
+        private static readonly string fontFamily = Device.RuntimePlatform == Device.iOS
+                                                    ? "Lobster-Regular" : null;
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
         private DonutChart chart;
 
         public StatisticCategorySpreadingViewModel(IMediator mediator,
-                                                   ISettingsFacade settingsFacade)
-            : base(mediator, settingsFacade)
-        { }
+                                                   ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
+        {
+        }
 
         /// <summary>
-        ///     Chart to render.
+        /// Chart to render.
         /// </summary>
         public DonutChart Chart
         {
             get => chart;
             set
             {
-                if (chart == value) return;
+                if(chart == value)
+                    return;
                 chart = value;
                 RaisePropertyChanged();
             }
         }
 
         /// <summary>
-        ///     Set a custom CategorySpreadingModel with the set Start and End date
+        /// Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task Load()
         {
@@ -63,12 +65,12 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                                          .ToList();
 
             Chart = new DonutChart
-            {
-                Entries = microChartItems,
-                BackgroundColor = BackgroundColor,
-                LabelTextSize = 26f,
-                Typeface = typeFaceForIOS12
-            };
+                    {
+                        Entries = microChartItems,
+                        BackgroundColor = BackgroundColor,
+                        LabelTextSize = 26f,
+                        Typeface = typeFaceForIOS12
+                    };
         }
     }
 }

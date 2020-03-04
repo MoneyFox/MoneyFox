@@ -6,12 +6,12 @@ using System.Text;
 namespace MoneyFox.Ui.Shared.Utilities
 {
     /// <summary>
-    ///     Utility methods
+    /// Utility methods
     /// </summary>
     public static class HelperFunctions
     {
         /// <summary>
-        ///     Returns the last day of the month
+        /// Returns the last day of the month
         /// </summary>
         /// <returns>Last day of the month</returns>
         public static DateTime GetEndOfMonth()
@@ -22,7 +22,7 @@ namespace MoneyFox.Ui.Shared.Utilities
         }
 
         /// <summary>
-        ///     Returns the decimal converted to a string in a proper format for this culture.
+        /// Returns the decimal converted to a string in a proper format for this culture.
         /// </summary>
         /// <param name="value">decimal who shall be converted</param>
         /// <returns>Formated string.</returns>
@@ -32,27 +32,27 @@ namespace MoneyFox.Ui.Shared.Utilities
         }
 
         /// <summary>
-        ///     Returns the number string with just his culture's decimal separator.
-        ///     If it is an Int it will return the same string as entered.
+        /// Returns the number string with just his culture's decimal separator.     If it is an Int it will return the
+        /// same string as entered.
         /// </summary>
         /// <param name="amount">Amount to be converted.</param>
         /// <returns>Formatted string.</returns>
         public static string RemoveGroupingSeparators(string amount)
         {
-            if (amount.Any(char.IsPunctuation))
+            if(amount.Any(char.IsPunctuation))
             {
                 var decimalSeparatorIndex = 0;
                 var punctuationCount = 0;
                 var stringBuilder = new StringBuilder();
 
-                foreach (char c in amount)
+                foreach(char c in amount)
                 {
-                    if (!char.IsPunctuation(c))
+                    if(!char.IsPunctuation(c))
                         stringBuilder.Append(c);
                     else
                     {
                         punctuationCount++;
-                        if (amount.IndexOf(c) >= amount.Length - 3)
+                        if(amount.IndexOf(c) >= amount.Length - 3)
                         {
                             decimalSeparatorIndex = amount.IndexOf(c);
                             punctuationCount--;
@@ -60,12 +60,11 @@ namespace MoneyFox.Ui.Shared.Utilities
                     }
                 }
 
-                if (punctuationCount > decimalSeparatorIndex) return amount;
+                if(punctuationCount > decimalSeparatorIndex)
+                    return amount;
 
                 var decimalsString = stringBuilder.ToString();
-                amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) +
-                         CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator +
-                         decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
+                amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) + CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator + decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
             }
 
             return amount;

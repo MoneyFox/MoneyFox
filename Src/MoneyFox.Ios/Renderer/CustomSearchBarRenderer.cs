@@ -15,9 +15,10 @@ namespace MoneyFox.iOS.Renderer
         {
             base.OnElementChanged(e);
 
-            if (Control == null) return;
+            if(Control == null)
+                return;
 
-            if (ThemeManager.CurrentTheme() == AppTheme.Dark)
+            if(ThemeManager.CurrentTheme() == AppTheme.Dark)
             {
                 UISearchBar searchBar = Control;
 

@@ -1,9 +1,9 @@
-﻿using Windows.UI.Xaml;
+﻿using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Uwp.ViewModels;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
-using MoneyFox.Ui.Shared.Utilities;
-using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {
@@ -27,7 +27,8 @@ namespace MoneyFox.Uwp.Views.UserControls
             var element = (FrameworkElement) sender;
             var category = element.DataContext as CategoryViewModel;
 
-            if (category == null) return;
+            if(category == null)
+                return;
 
             ((AbstractCategoryListViewModel) DataContext).EditCategoryCommand.Execute(category);
         }
@@ -37,7 +38,8 @@ namespace MoneyFox.Uwp.Views.UserControls
             var element = (FrameworkElement) sender;
             var category = element.DataContext as CategoryViewModel;
 
-            if (category == null) return;
+            if(category == null)
+                return;
 
             ((AbstractCategoryListViewModel) DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
         }

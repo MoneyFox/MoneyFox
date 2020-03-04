@@ -1,6 +1,6 @@
-﻿using System.Threading.Tasks;
-using MoneyFox.Presentation.ViewModels.Interfaces;
+﻿using MoneyFox.Presentation.ViewModels.Interfaces;
 using Rg.Plugins.Popup.Extensions;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,12 +13,15 @@ namespace MoneyFox.Presentation.Dialogs
         {
             InitializeComponent();
 
-            AddExpenseGrid.GestureRecognizers.Add(new TapGestureRecognizer
-                                                      {Command = new Command(async () => await AddExpenseGridClicked())});
-            AddIncomeGrid.GestureRecognizers.Add(new TapGestureRecognizer
-                                                     {Command = new Command(async () => await AddIncomeGridClicked())});
-            AddTransferGrid.GestureRecognizers.Add(new TapGestureRecognizer
-                                                       {Command = new Command(async () => await AddTransferGridClicked())});
+            AddExpenseGrid.GestureRecognizers
+                          .Add(new TapGestureRecognizer
+                                                      { Command = new Command(async() => await AddExpenseGridClicked()) });
+            AddIncomeGrid.GestureRecognizers
+                         .Add(new TapGestureRecognizer
+                                                     { Command = new Command(async() => await AddIncomeGridClicked()) });
+            AddTransferGrid.GestureRecognizers
+                           .Add(new TapGestureRecognizer
+                                                       { Command = new Command(async() => await AddTransferGridClicked()) });
         }
 
         private async Task AddExpenseGridClicked()

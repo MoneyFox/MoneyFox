@@ -1,12 +1,12 @@
-﻿using System.Windows.Input;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Presentation.Services;
+using System.Windows.Input;
 
 namespace MoneyFox.Presentation.ViewModels
 {
     /// <summary>
-    ///     Representation of the MainView
+    /// Representation of the MainView
     /// </summary>
     public class ShellViewModel : ViewModelBase
     {
@@ -18,21 +18,21 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         public ICommand ShowAccountListCommand
-            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AccountList));
+                        => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AccountList));
 
         public ICommand ShowStatisticSelectorCommand
-            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.StatisticSelector));
+                        => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.StatisticSelector));
 
         public ICommand ShowCategoryListCommand
-            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.CategoryList));
+                        => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.CategoryList));
 
         public ICommand ShowBackupViewCommand
-            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.Backup));
+                        => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.Backup));
 
         public ICommand ShowSettingsCommand
-            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.Settings));
+                        => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.Settings));
 
         public ICommand ShowAboutCommand
-            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.About));
+                        => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.About));
     }
 }

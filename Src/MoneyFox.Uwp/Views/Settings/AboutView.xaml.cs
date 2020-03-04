@@ -1,7 +1,7 @@
-﻿using System;
-using Windows.UI.Xaml;
-using Microsoft.Services.Store.Engagement;
+﻿using Microsoft.Services.Store.Engagement;
 using MoneyFox.Application.Resources;
+using System;
+using Windows.UI.Xaml;
 
 namespace MoneyFox.Uwp.Views.Settings
 {
@@ -13,7 +13,8 @@ namespace MoneyFox.Uwp.Views.Settings
         {
             InitializeComponent();
 
-            if (StoreServicesFeedbackLauncher.IsSupported()) FeedbackButton.Visibility = Visibility.Visible;
+            if(StoreServicesFeedbackLauncher.IsSupported())
+                FeedbackButton.Visibility = Visibility.Visible;
         }
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)

@@ -1,7 +1,7 @@
-﻿using System;
-using Windows.UI.Xaml.Data;
-using MoneyFox.Domain;
+﻿using MoneyFox.Domain;
 using MoneyFox.Ui.Shared;
+using System;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.Converter
 {

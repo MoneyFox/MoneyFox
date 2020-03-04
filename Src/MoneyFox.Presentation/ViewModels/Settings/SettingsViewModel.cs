@@ -1,28 +1,27 @@
-﻿using System.Collections.ObjectModel;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Models;
 using MoneyFox.Presentation.Services;
+using System.Collections.ObjectModel;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {
     public interface ISettingsViewModel
     {
         /// <summary>
-        ///     Contains all available Settings items.
+        /// Contains all available Settings items.
         /// </summary>
         ObservableCollection<SettingsSelectorType> SettingsList { get; }
 
         /// <summary>
-        ///     Navigate to a concrete settings page.
-        ///     Used in Xamarin Forms.
+        /// Navigate to a concrete settings page.     Used in Xamarin Forms.
         /// </summary>
         RelayCommand<SettingsSelectorType> GoToSettingCommand { get; }
 
         /// <summary>
-        ///     View Model for the Background job part.
+        /// View Model for the Background job part.
         /// </summary>
         ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
 
@@ -32,7 +31,7 @@ namespace MoneyFox.Presentation.ViewModels.Settings
     }
 
     /// <summary>
-    ///     ViewModel for the settings view.
+    /// ViewModel for the settings view.
     /// </summary>
     public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {
@@ -60,8 +59,9 @@ namespace MoneyFox.Presentation.ViewModels.Settings
 
         public IRegionalSettingsViewModel RegionalSettingsViewModel { get; private set; }
 
-        /// <inheritdoc />
-        public ObservableCollection<SettingsSelectorType> SettingsList => new ObservableCollection<SettingsSelectorType>
+        /// <inheritdoc/>
+        public ObservableCollection<SettingsSelectorType> SettingsList
+                                                          => new ObservableCollection<SettingsSelectorType>
         {
             new SettingsSelectorType
             {
@@ -107,12 +107,12 @@ namespace MoneyFox.Presentation.ViewModels.Settings
             }
         };
 
-        /// <inheritdoc />
+        /// <inheritdoc/>
         public RelayCommand<SettingsSelectorType> GoToSettingCommand => new RelayCommand<SettingsSelectorType>(GoToSettings);
 
         private void GoToSettings(SettingsSelectorType item)
         {
-            switch (item.Type)
+            switch(item.Type)
             {
                 case SettingsType.Personalization:
                     navigationService.NavigateTo(ViewModelLocator.SettingsPersonalization);
