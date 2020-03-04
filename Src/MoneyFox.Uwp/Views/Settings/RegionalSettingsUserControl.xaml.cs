@@ -1,7 +1,7 @@
 ﻿using Windows.ApplicationModel;
 using Windows.UI.Xaml;
-using MoneyFox.Presentation.ViewModels.DesignTime;
-using MoneyFox.Presentation.ViewModels.Settings;
+using MoneyFox.Uwp.ViewModels.DesignTime;
+using MoneyFox.Uwp.ViewModels.Settings;
 
 namespace MoneyFox.Uwp.Views.Settings
 {

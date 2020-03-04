@@ -17,15 +17,11 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     {
         private readonly Mock<IMediator> mediatorMock;
         private readonly Mock<IDialogService> dialogServiceMock;
-        private readonly Mock<ISettingsFacade> settingsFacadeMock;
-        private readonly Mock<IBackupService> backupServiceMock;
 
         public AddCategoryViewModelTests()
         {
             mediatorMock = new Mock<IMediator>();
             dialogServiceMock = new Mock<IDialogService>();
-            settingsFacadeMock = new Mock<ISettingsFacade>();
-            backupServiceMock = new Mock<IBackupService>();
         }
 
         [Fact]
@@ -33,7 +29,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange
             // // Act
-            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null, null, null);
+            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null);
 
             // Assert
             addCategoryVm.Title.ShouldEqual(Strings.AddCategoryTitle);
@@ -43,7 +39,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         public async Task Initialize_CategoryCreated()
         {
             // Arrange
-            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null, null, null, null, null);
+            var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object, null,  null, null);
 
             // Act
             await addCategoryVm.InitializeCommand.ExecuteAsync();
@@ -61,8 +57,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var addCategoryVm = new AddCategoryViewModel(mediatorMock.Object,
                                                          dialogServiceMock.Object,
-                                                         settingsFacadeMock.Object,
-                                                         backupServiceMock.Object,
                                                          null, null);
 
             await addCategoryVm.InitializeCommand.ExecuteAsync();

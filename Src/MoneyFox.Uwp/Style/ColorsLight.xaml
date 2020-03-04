@@ -8,6 +8,7 @@
 
     <!--<Color x:Key="ColorCustomBackground">#c2c2c2</Color>-->
     <Color x:Key="ColorCustomBackground">#FFEFF2F5</Color>
+    <Color x:Key="ContentDialogBackgroundColor">#FFEFF2F5</Color>
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 

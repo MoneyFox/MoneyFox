@@ -1,11 +1,14 @@
 ﻿using Windows.System;
 using Windows.UI.Xaml.Input;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Application.Resources;
 
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class SelectCategoryListView
     {
+        public override string Header => Strings.SelectCategoryTitle;
+
         private SelectCategoryListViewModel ViewModel => (SelectCategoryListViewModel) DataContext;
 
         public SelectCategoryListView()

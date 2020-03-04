@@ -108,7 +108,7 @@ namespace MoneyFox.Domain.Entities
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
         {
-            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note, endDate, TargetAccount, Category);
+            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note, endDate, TargetAccount, Category, Date);
             IsRecurring = true;
         }
 

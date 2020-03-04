@@ -1,10 +1,12 @@
 ﻿using Windows.UI.Xaml.Navigation;
-using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class EditCategoryView
     {
+        public override string Header => ViewModelLocator.EditCategoryVm.Title;
+
         private EditCategoryViewModel ViewModel => DataContext as EditCategoryViewModel;
 
         public EditCategoryView()

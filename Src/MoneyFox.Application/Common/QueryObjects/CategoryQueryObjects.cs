@@ -1,6 +1,6 @@
-﻿using System;
+﻿using MoneyFox.Domain.Entities;
+using System.Collections.Generic;
 using System.Linq;
-using MoneyFox.Domain.Entities;
 
 namespace MoneyFox.Application.Common.QueryObjects
 {
@@ -17,7 +17,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <returns>Query with the added filter.</returns>
         public static IQueryable<Category> NameEquals(this IQueryable<Category> query, string name)
         {
-            return query.Where(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            return query.Where(x => x.Name.ToUpper().Equals(name.ToUpper()));
         }
 
         /// <summary>
@@ -26,9 +26,9 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="searchterm">Search term to look for.</param>
         /// <returns>Query with the added filter.</returns>
-        public static IQueryable<Category> WhereNameContains(this IQueryable<Category> query, string searchterm)
+        public static IEnumerable<Category> WhereNameContains(this List<Category> query, string searchterm)
         {
-            return query.Where(category => category.Name.IndexOf(searchterm, StringComparison.InvariantCultureIgnoreCase) >= 0);
+            return query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
         }
 
         /// <summary>

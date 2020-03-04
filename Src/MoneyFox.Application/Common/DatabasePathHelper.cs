@@ -28,7 +28,7 @@ namespace MoneyFox.Application.Common
                     break;
 
                 case AppPlatform.UWP:
-                    databasePath = DATABASE_NAME;
+                    databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_NAME);
                     break;
 
                 default:

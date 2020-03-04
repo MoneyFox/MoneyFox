@@ -1,17 +1,18 @@
-﻿<Page x:Class="MoneyFox.Uwp.Views.AccountListView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:i="using:Microsoft.Xaml.Interactivity"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:converter="using:MoneyFox.Uwp.Converter"
-      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-      xmlns:resources="using:MoneyFox.Application.Resources"
-      xmlns:viewModels="using:MoneyFox.Presentation.ViewModels"
-      xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
-      DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
-      mc:Ignorable="d">
+﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.AccountListView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:i="using:Microsoft.Xaml.Interactivity"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:converter="using:MoneyFox.Uwp.Converter"
+                xmlns:resources="using:MoneyFox.Application.Resources"
+                xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
+                xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
+                DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
+                mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeAccountListViewModel />
@@ -31,11 +32,9 @@
         <DataTemplate x:Key="AccountItemTemplate"
                       x:DataType="viewModels:AccountViewModel">
 
-            <StackPanel HorizontalAlignment="Stretch"
-                        Margin="{StaticResource NegativeMediumLeftRightMargin}"
-                        RightTapped="AccountList_RightTapped">
+            <StackPanel HorizontalAlignment="Stretch">
 
-                <FlyoutBase.AttachedFlyout>
+                <StackPanel.ContextFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem Icon="Edit"
                                         Click="Edit_OnClick"
@@ -44,10 +43,9 @@
                                         Click="Delete_OnClick"
                                         Text="{x:Bind resources:Strings.DeleteLabel}" />
                     </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
+                </StackPanel.ContextFlyout>
 
-                <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
-                            Padding="{StaticResource SmallListItemPadding}"
+                <StackPanel Padding="{StaticResource SmallListItemPadding}"
                             Background="{ThemeResource ListItemBrush}">
                     <Grid HorizontalAlignment="Stretch">
                         <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
@@ -99,11 +97,6 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-
-        <TextBlock x:Name="TitlePage"
-                   x:Uid="AccountTitle"
-                   Text="Accounts"
-                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <controls:BalanceControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
 
@@ -187,4 +180,4 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
-</Page>
+</views:BaseView>

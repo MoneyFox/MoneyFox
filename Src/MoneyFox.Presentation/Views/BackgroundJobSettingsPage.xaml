@@ -41,35 +41,6 @@
                 </Grid>
 
             </StackLayout>
-
-            <StackLayout Spacing="0"
-                         VerticalOptions="End"
-                         IsVisible="{Binding IsLoggedIn}">
-                <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                       Text="{x:Static resources:Strings.LastExecutionBackgroundOperationsLabel}" />
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{x:Static resources:Strings.LastExecutionSyncBackupLabel}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{Binding LastExecutionSynBackup}"
-                           Margin="4,0,0,0" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{x:Static resources:Strings.LastExecutionClearPaymentLabel}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding LastExecutionClearPayments}"
-                           Margin="4,0,0,0" />
-                </StackLayout>
-
-                <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{x:Static resources:Strings.LastExecutionRecurringPaymentLabel}" />
-                    <Label Style="{StaticResource DeemphasizedLabelStyle}"
-                           Text="{Binding LastExecutionCreateRecurringPayments}" Margin="4,0,0,0" />
-                </StackLayout>
-            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

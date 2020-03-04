@@ -2,9 +2,9 @@
 using System.Globalization;
 using MediatR;
 using MoneyFox.Application;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.ConverterLogic;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
@@ -28,32 +28,32 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
         [Fact]
         public void Converter_Payment_NegativeAmountSign()
         {
-            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
+            CultureHelper.CurrentCulture = new CultureInfo("en-US");
             PaymentAmountConverterLogic
-               .GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) {Amount = 80, Type = PaymentType.Expense},
-                                         string.Empty)
-               .ShouldEqual($"- {80:C}");
+               .GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) {Amount = 80, Type = PaymentType.Expense}, string.Empty)
+               .ShouldEqual($"- $80.00");
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Fact]
         public void Converter_Payment_PositiveAmountSign()
         {
-            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
+            CultureHelper.CurrentCulture = new CultureInfo("en-US");
             PaymentAmountConverterLogic
                .GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object) {Amount = 80, Type = PaymentType.Income},
                                          string.Empty)
-               .ShouldEqual($"+ {80:C}");
+               .ShouldEqual($"+ $80.00");
         }
 
         [Fact]
         public void Converter_TransferSameAccount_Minus()
         {
-            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
+            CultureHelper.CurrentCulture = new CultureInfo("en-US");
             var account = new AccountViewModel
-            {
-                Id = 4,
-                CurrentBalance = 400
-            };
+                          {
+                              Id = 4,
+                              CurrentBalance = 400
+                          };
 
             PaymentAmountConverterLogic.GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object)
                                         {
@@ -63,18 +63,19 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
                                             ChargedAccount = account,
                                             CurrentAccountId = account.Id
                                         }, string.Empty)
-                                       .ShouldEqual($"- {80:C}");
+                                       .ShouldEqual("- $80.00");
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
 
         [Fact]
         public void Converter_TransferSameAccount_Plus()
         {
-            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
+            CultureHelper.CurrentCulture = new CultureInfo("en-US");
             var account = new AccountViewModel
-            {
-                Id = 4,
-                CurrentBalance = 400
-            };
+                          {
+                              Id = 4,
+                              CurrentBalance = 400
+                          };
 
             PaymentAmountConverterLogic.GetFormattedAmountString(new PaymentViewModel(mediatorMock.Object, navigationService.Object)
                                         {
@@ -83,7 +84,8 @@ namespace MoneyFox.Presentation.Tests.ConverterLogic
                                             ChargedAccount = new AccountViewModel(),
                                             CurrentAccountId = account.Id
                                         }, string.Empty)
-                                       .ShouldEqual($"+ {80:C}");
+                                       .ShouldEqual("+ $80.00");
+            CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
     }
 }

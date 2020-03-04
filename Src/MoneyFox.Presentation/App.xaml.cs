@@ -1,5 +1,15 @@
 ﻿using System;
+using System.Threading.Tasks;
+using CommonServiceLocator;
+using MediatR;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Payments.Commands.ClearPayments;
+using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Views;
+using MoneyFox.Ui.Shared.Utilities;
 using NLog;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -11,6 +21,8 @@ namespace MoneyFox.Presentation
 {
     public partial class App
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         public App()
         {
             InitializeComponent();
@@ -52,6 +64,43 @@ namespace MoneyFox.Presentation
             NavigationService.Configure(ViewModelLocator.SettingsBackgroundJob, typeof(BackgroundJobSettingsPage));
             NavigationService.Configure(ViewModelLocator.SettingsPersonalization, typeof(SettingsPersonalizationPage));
             NavigationService.Configure(ViewModelLocator.About, typeof(AboutPage));
+        }
+
+        protected override void OnStart() => StartupTasks().FireAndForgetSafeAsync();
+
+        protected override void OnResume() => StartupTasks().FireAndForgetSafeAsync();
+
+        private async Task StartupTasks()
+        {
+            var settingsFacade = new SettingsFacade(new SettingsAdapter());
+
+            var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+            if (!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
+            {
+                await mediator.Send(new ClearPaymentsCommand());
+                await mediator.Send(new CreateRecurringPaymentsCommand());
+                return;
+            }
+
+            try
+            {
+                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                await backupService.RestoreBackupAsync();
+
+                await mediator.Send(new ClearPaymentsCommand());
+                await mediator.Send(new CreateRecurringPaymentsCommand());
+
+                logger.Info("Backup synced.");
+            }
+            catch (Exception ex)
+            {
+                logger.Fatal(ex);
+                throw;
+            }
+            finally
+            {
+                settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+            }
         }
     }
 }

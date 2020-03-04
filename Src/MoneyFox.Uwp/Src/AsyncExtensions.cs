@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Windows.Foundation;
 
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     [SuppressMessage("Blocker Code Smell", "S4462:Calls to \"async\" methods should not be blocking", Justification = "<Pending>")]
     public static class AsyncExtensions

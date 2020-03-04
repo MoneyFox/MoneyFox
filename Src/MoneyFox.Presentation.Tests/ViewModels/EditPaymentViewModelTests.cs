@@ -7,15 +7,13 @@ using System.Threading.Tasks;
 using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
@@ -30,8 +28,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
     {
         private readonly IMapper mapper;
         private readonly Mock<IMediator> mediatorMock;
-        private readonly Mock<ISettingsFacade> settingsFacadeMock;
-        private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<IDialogService> dialogServiceMock;
         private readonly Mock<INavigationService> navigationServiceMock;
 
@@ -40,8 +36,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             mediatorMock = new Mock<IMediator>();
             mapper = fixture.Mapper!;
 
-            settingsFacadeMock = new Mock<ISettingsFacade>();
-            backupServiceMock = new Mock<IBackupService>();
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
 
@@ -56,15 +50,13 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         [Fact]
         public async Task AmountStringSetOnInit()
         {
-            // Arrange            
+            // Arrange
             mediatorMock.Setup(x => x.Send(It.IsAny<GetPaymentByIdQuery>(), default))
                         .ReturnsAsync(new Payment(DateTime.Now, 12.10M, PaymentType.Expense, new Account("sad")));
 
             var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
                                                          mapper,
                                                          dialogServiceMock.Object,
-                                                         settingsFacadeMock.Object,
-                                                         backupServiceMock.Object,
                                                          navigationServiceMock.Object);
 
             // Act
@@ -93,8 +85,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
                                                          mapper,
                                                          dialogServiceMock.Object,
-                                                         settingsFacadeMock.Object,
-                                                         backupServiceMock.Object,
                                                          navigationServiceMock.Object);
 
             await editPaymentVm.InitializeCommand.ExecuteAsync();
@@ -115,8 +105,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
                                                          mapper,
                                                          dialogServiceMock.Object,
-                                                         settingsFacadeMock.Object,
-                                                         backupServiceMock.Object,
                                                          navigationServiceMock.Object);
 
             await editPaymentVm.InitializeCommand.ExecuteAsync();
@@ -129,8 +117,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             dialogServiceMock.Verify(x => x.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage),
                                      Times.Once);
             navigationServiceMock.Verify(x => x.GoBack(), Times.Never);
-            settingsFacadeMock.VerifySet(x => x.LastExecutionTimeStampSyncBackup = It.IsAny<DateTime>(), Times.Never);
-            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Manual), Times.Never);
         }
 
         [Theory]
@@ -142,8 +128,6 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             var editPaymentVm = new EditPaymentViewModel(mediatorMock.Object,
                                                          mapper,
                                                          dialogServiceMock.Object,
-                                                         settingsFacadeMock.Object,
-                                                         backupServiceMock.Object,
                                                          navigationServiceMock.Object);
 
             await editPaymentVm.InitializeCommand.ExecuteAsync();

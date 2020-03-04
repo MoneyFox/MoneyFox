@@ -30,21 +30,6 @@ namespace MoneyFox.Application.Common.Facades
         /// </summary>
         bool IsLoggedInToBackupService { get; set; }
 
-        /// <summary>
-        ///     Returns the timestamp when the last sync backup job was executed.
-        /// </summary>
-        DateTime LastExecutionTimeStampSyncBackup { get; set; }
-
-        /// <summary>
-        ///     Returns the timestamp when the last clear payment job was executed.
-        /// </summary>
-        DateTime LastExecutionTimeStampClearPayments { get; set; }
-
-        /// <summary>
-        ///     Returns the time stamp when the last job to create recurring payments was executed.
-        /// </summary>
-        DateTime LastExecutionTimeStampRecurringPayments { get; set; }
-
         string DefaultCulture { get; set; }
     }
 

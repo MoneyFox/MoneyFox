@@ -3,12 +3,11 @@ using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
-using MoneyFox.Application.Common.CloudBackup;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Presentation.Utilities;
+using MoneyFox.Presentation.Services;
+using MoneyFox.Ui.Shared.Utilities;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -19,11 +18,9 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AddAccountViewModel(IMediator mediator,
                                    IMapper mapper,
-                                   ISettingsFacade settingsFacade,
-                                   IBackupService backupService,
                                    IDialogService dialogService,
                                    INavigationService navigationService)
-            : base(settingsFacade, backupService, dialogService, navigationService)
+            : base (dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

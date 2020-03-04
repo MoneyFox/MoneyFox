@@ -17,11 +17,11 @@ namespace MoneyFox.Application.Tests.QueryObjects
         {
             // Arrange
             IQueryable<Payment> paymentListQuery = new List<Payment>
-                {
-                    new Payment(DateTime.Now.AddDays(1), 12, PaymentType.Expense, new Account("d")),
-                    new Payment(DateTime.Now, 13, PaymentType.Expense, new Account("d")),
-                    new Payment(DateTime.Now.AddDays(-1), 14, PaymentType.Expense, new Account("d"))
-                }
+                                                   {
+                                                       new Payment(DateTime.Now.AddDays(1), 12, PaymentType.Expense, new Account("d")),
+                                                       new Payment(DateTime.Now, 13, PaymentType.Expense, new Account("d")),
+                                                       new Payment(DateTime.Now.AddDays(-1), 14, PaymentType.Expense, new Account("d"))
+                                                   }
                .AsQueryable();
 
             // Act
@@ -38,11 +38,11 @@ namespace MoneyFox.Application.Tests.QueryObjects
         {
             // Arrange
             IQueryable<Payment> paymentListQuery = new List<Payment>
-                {
-                    new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d")),
-                    new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
-                    new Payment(DateTime.Now.AddDays(1), 14, PaymentType.Expense, new Account("d"))
-                }
+                                                   {
+                                                       new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d")),
+                                                       new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
+                                                       new Payment(DateTime.Now.AddDays(1), 14, PaymentType.Expense, new Account("d"))
+                                                   }
                .AsQueryable();
 
             // Act
@@ -58,11 +58,11 @@ namespace MoneyFox.Application.Tests.QueryObjects
         {
             // Arrange
             IQueryable<Payment> paymentListQuery = new List<Payment>
-                {
-                    new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d")),
-                    new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
-                    new Payment(DateTime.Now.AddDays(1), 14, PaymentType.Expense, new Account("d"))
-                }
+                                                   {
+                                                       new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d")),
+                                                       new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
+                                                       new Payment(DateTime.Now.AddDays(1), 14, PaymentType.Expense, new Account("d"))
+                                                   }
                .AsQueryable();
 
             // Act
@@ -79,13 +79,18 @@ namespace MoneyFox.Application.Tests.QueryObjects
         {
             // Arrange
             IQueryable<Payment> paymentListQuery = new List<Payment>
-                {
-                    new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d"), new Account("t")),
-                    new Payment(DateTime.Now, 13, PaymentType.Income, new Account("d"), new Account("t")),
-                    new Payment(DateTime.Now, 14, PaymentType.Transfer, new Account("d"), new Account("t")),
-                    new Payment(DateTime.Now, 15, PaymentType.Income, new Account("d"), new Account("t")),
-                    new Payment(DateTime.Now, 16, PaymentType.Transfer, new Account("d"), new Account("t"))
-                }
+                                                   {
+                                                       new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d"),
+                                                                   new Account("t")),
+                                                       new Payment(DateTime.Now, 13, PaymentType.Income, new Account("d"),
+                                                                   new Account("t")),
+                                                       new Payment(DateTime.Now, 14, PaymentType.Transfer, new Account("d"),
+                                                                   new Account("t")),
+                                                       new Payment(DateTime.Now, 15, PaymentType.Income, new Account("d"),
+                                                                   new Account("t")),
+                                                       new Payment(DateTime.Now, 16, PaymentType.Transfer, new Account("d"),
+                                                                   new Account("t"))
+                                                   }
                .AsQueryable();
 
             // Act

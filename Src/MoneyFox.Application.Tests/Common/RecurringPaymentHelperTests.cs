@@ -7,7 +7,7 @@ using MoneyFox.Domain.Entities;
 using Should;
 using Xunit;
 
-namespace MoneyFox.BusinessLogic.Tests.PaymentActions
+namespace MoneyFox.Application.Tests.Common
 {
     [ExcludeFromCodeCoverage]
     public class RecurringPaymentHelperTests
@@ -17,10 +17,9 @@ namespace MoneyFox.BusinessLogic.Tests.PaymentActions
         [InlineData(PaymentRecurrence.Weekly, 8, true)]
         [InlineData(PaymentRecurrence.Biweekly, 14, true)]
         [InlineData(PaymentRecurrence.Monthly, 31, true)]
-        [InlineData(PaymentRecurrence.Bimonthly, 62, true)]
         [InlineData(PaymentRecurrence.Quarterly, 94, true)]
         [InlineData(PaymentRecurrence.Biannually, 184, true)]
-        [InlineData(PaymentRecurrence.Yearly, 365, true)]
+        [InlineData(PaymentRecurrence.Yearly, 366, true)]
         [InlineData(PaymentRecurrence.Daily, 0, false)]
         [InlineData(PaymentRecurrence.Weekly, 5, false)]
         [InlineData(PaymentRecurrence.Biweekly, 10, false)]
@@ -39,6 +38,18 @@ namespace MoneyFox.BusinessLogic.Tests.PaymentActions
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
                                   .ShouldEqual(expectedResult);
+        }
+
+        [Fact]
+        public void CheckIfRepeatable_ValidatedRecurrence_Bimonthly()
+        {
+            var account = new Account("foo");
+
+            var payment = new Payment(DateTime.Today.AddMonths(-2), 105, PaymentType.Expense, account);
+            payment.AddRecurringPayment(PaymentRecurrence.Bimonthly, DateTime.Today);
+
+            RecurringPaymentHelper.CheckIfRepeatable(payment)
+                                  .ShouldEqual(true);
         }
 
         [Theory]

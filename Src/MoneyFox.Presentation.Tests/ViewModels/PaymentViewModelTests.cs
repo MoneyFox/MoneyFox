@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;

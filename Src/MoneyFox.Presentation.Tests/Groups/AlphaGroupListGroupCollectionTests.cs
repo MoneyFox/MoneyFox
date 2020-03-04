@@ -1,8 +1,8 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.Groups;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Ui.Shared.Groups;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.Groups

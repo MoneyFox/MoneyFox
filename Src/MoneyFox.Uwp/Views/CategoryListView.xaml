@@ -1,15 +1,16 @@
-﻿<Page x:Class="MoneyFox.Uwp.Views.CategoryListView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:resources="using:MoneyFox.Application.Resources"
-      xmlns:designTime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
-      mc:Ignorable="d"
-      DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}">
+﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.CategoryListView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:resources="using:MoneyFox.Application.Resources"
+                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+                xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
+                xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                mc:Ignorable="d"
+                DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}">
 
     <d:Page.DataContext>
         <designTime:DesignTimeCategoryListViewModel />
@@ -24,18 +25,13 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock x:Uid="CategoriesTitle"
-                   Text="{x:Bind resources:Strings.CategoriesTitle}"
-                   Style="{StaticResource UwpPageTitleStyle}" />
+        <controls:CategoryListControl Grid.Row="0" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
 
-        <controls:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
-
-        <CommandBar Grid.Row="2"
+        <CommandBar Grid.Row="1"
                     Style="{ThemeResource DefaultCommandBar}"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
@@ -46,4 +42,4 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Grid>
-</Page>
+</views:BaseView>

@@ -7,6 +7,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Presentation.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -17,8 +18,6 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AddCategoryViewModel(IMediator mediator,
                                     IDialogService dialogService,
-                                    ISettingsFacade settingsFacade,
-                                    IBackupService backupService,
                                     INavigationService navigationService,
                                     IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
 

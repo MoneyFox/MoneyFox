@@ -52,13 +52,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             var account = new Account("test");
 
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-                new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat4)
-            };
+                              {
+                                  new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
+                                  new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat4)
+                              };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -67,10 +67,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             CategorySummaryModel result =
                 await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3),
-                        EndDate = DateTime.Today.AddDays(3)
-                    }, default);
+                           {
+                               StartDate = DateTime.Today.AddDays(-3),
+                               EndDate = DateTime.Today.AddDays(3)
+                           }, default);
 
             // Assert
             result.CategoryOverviewItems.Count.ShouldEqual(4);
@@ -91,12 +91,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             var account = new Account("test");
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
-                new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat4)
-            };
+                              {
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
+                                  new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
+                                  new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat4)
+                              };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -105,10 +105,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             CategorySummaryModel result =
                 await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3),
-                        EndDate = DateTime.Today.AddDays(3)
-                    }, default);
+                           {
+                               StartDate = DateTime.Today.AddDays(-3),
+                               EndDate = DateTime.Today.AddDays(3)
+                           }, default);
 
             // Assert
             result.CategoryOverviewItems[0].Label.ShouldEqual(testCat1.Name);
@@ -128,11 +128,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             var account = new Account("test");
 
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-                new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat3)
-            };
+                              {
+                                  new Payment(DateTime.Today, 60, PaymentType.Expense, account, category: testCat1),
+                                  new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
+                                  new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat3)
+                              };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -141,10 +141,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             CategorySummaryModel result =
                 await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3),
-                        EndDate = DateTime.Today.AddDays(3)
-                    }, default);
+                           {
+                               StartDate = DateTime.Today.AddDays(-3),
+                               EndDate = DateTime.Today.AddDays(3)
+                           }, default);
 
             // Assert
             result.CategoryOverviewItems[0].Percentage.ShouldEqual(60);
@@ -159,9 +159,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             var account = new Account("test");
 
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Expense, account)
-            };
+                              {
+                                  new Payment(DateTime.Today, 60, PaymentType.Expense, account)
+                              };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -170,10 +170,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             CategorySummaryModel result =
                 await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3),
-                        EndDate = DateTime.Today.AddDays(3)
-                    }, default);
+                           {
+                               StartDate = DateTime.Today.AddDays(-3),
+                               EndDate = DateTime.Today.AddDays(3)
+                           }, default);
 
             // Assert
             result.CategoryOverviewItems[0].Value.ShouldEqual(-60);
@@ -186,9 +186,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             var account = new Account("test");
 
             var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Expense, account)
-            };
+                              {
+                                  new Payment(DateTime.Today, 60, PaymentType.Expense, account)
+                              };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -197,10 +197,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             CategorySummaryModel result =
                 await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3),
-                        EndDate = DateTime.Today.AddDays(3)
-                    }, default);
+                           {
+                               StartDate = DateTime.Today.AddDays(-3),
+                               EndDate = DateTime.Today.AddDays(3)
+                           }, default);
 
             // Assert
             result.CategoryOverviewItems[0].Label.ShouldEqual(Strings.NoCategoryLabel);

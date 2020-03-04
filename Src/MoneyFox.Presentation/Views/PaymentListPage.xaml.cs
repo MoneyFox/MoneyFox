@@ -1,8 +1,8 @@
 ﻿using System;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Ui.Shared.Utilities;
 using Rg.Plugins.Popup.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration;

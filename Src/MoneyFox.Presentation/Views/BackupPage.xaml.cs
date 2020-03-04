@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Ui.Shared.Utilities;
 
 namespace MoneyFox.Presentation.Views
 {

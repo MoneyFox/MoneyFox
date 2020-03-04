@@ -1,7 +1,5 @@
-﻿using System.Collections.ObjectModel;
-using Microcharts;
-using MoneyFox.Application.Statistics;
-using MoneyFox.Presentation.Commands;
+﻿using Microcharts;
+using MoneyFox.Ui.Shared.Commands;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -9,8 +7,6 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     {
         string Title { get; }
         DonutChart Chart { get; }
-        ObservableCollection<StatisticEntry> StatisticItems { get; }
-
         AsyncCommand LoadedCommand { get; }
     }
 }

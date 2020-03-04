@@ -76,28 +76,28 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac">
-      <Version>4.9.4</Version>
+      <Version>5.1.2</Version>
     </PackageReference>
     <PackageReference Include="Autofac.Extras.CommonServiceLocator">
-      <Version>5.0.0</Version>
+      <Version>6.0.0</Version>
     </PackageReference>
     <PackageReference Include="AutoMapper">
       <Version>9.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
-      <Version>2.6.4</Version>
+      <Version>3.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Crashes">
-      <Version>2.6.4</Version>
+      <Version>3.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
-      <Version>2.2.4</Version>
+      <Version>3.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
       <Version>1.21.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.7.1</Version>
+      <Version>4.8.2</Version>
     </PackageReference>
     <PackageReference Include="MvvmLightLibsStd10">
       <Version>5.4.1.1</Version>
@@ -148,17 +148,16 @@
       <Version>28.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.3.1</Version>
+      <Version>1.4.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3" />
-    <PackageReference Include="Xamarin.Android.Support.v7.MediaRouter" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.4.0.991537</Version>
+      <Version>4.4.0.991757</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.4.0.991537</Version>
+      <Version>4.4.0.991757</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
       <Version>1.5.8</Version>
@@ -166,9 +165,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidModule.cs" />
-    <Compile Include="Jobs\ClearPaymentsJob.cs" />
-    <Compile Include="Jobs\RecurringPaymentJob.cs" />
-    <Compile Include="Jobs\SyncBackupJob.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="MainApplication.cs" />
     <Compile Include="Renderer\CustomEntryRenderer.cs" />
@@ -223,10 +219,6 @@
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
       <Project>{3BBF9997-7AF3-411F-B6E3-88E9EC97C073}</Project>
       <Name>MoneyFox.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
-      <Project>{E9810ECA-4DA3-4E3A-BD8D-5E6117B1BD70}</Project>
-      <Name>MoneyFox.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
       <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>

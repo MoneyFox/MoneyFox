@@ -70,8 +70,8 @@ namespace MoneyFox.Domain.Entities
             if (!payment.IsCleared) return;
 
             decimal amount = invert
-                ? -payment.Amount
-                : payment.Amount;
+                                 ? -payment.Amount
+                                 : payment.Amount;
 
             if (payment.Type == PaymentType.Expense
                 || payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == Id)

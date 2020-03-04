@@ -1,6 +1,6 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
+﻿using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.CloudBackup;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
@@ -9,6 +9,9 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
 using Should;
+using System;
+using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
@@ -18,6 +21,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
     {
         private readonly EfCoreContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly Mock<IBackupService> backupServiceMock;
+        private readonly Mock<ISettingsFacade> settingsFacadeMock;
 
         public CreatePaymentCommandTests()
         {
@@ -25,6 +30,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+
+            backupServiceMock = new Mock<IBackupService>();
+            backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
+                             .Returns(Task.CompletedTask);
+
+            settingsFacadeMock = new Mock<ISettingsFacade>();
+            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
         }
 
         public void Dispose()
@@ -48,11 +60,32 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
             // Act
-            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);
             (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
+        }
+
+        [Fact]
+        public async Task BackupUploaded()
+        {
+            // Arrange
+            var account = new Account("test", 80);
+            context.Add(account);
+
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+
+            // Act
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+
+            // Assert
+            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
         }
 
         [Theory]
@@ -68,7 +101,9 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             var payment1 = new Payment(DateTime.Now, 20, paymentType, account);
 
             // Act
-            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Account loadedAccount = await context.Accounts.FindAsync(account.Id);
@@ -88,7 +123,9 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             // Act
-            await new CreatePaymentCommand.Handler(contextAdapterMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);

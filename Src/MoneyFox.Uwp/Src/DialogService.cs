@@ -7,7 +7,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.Views.Dialogs;
 
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     public class DialogService : IDialogService
     {

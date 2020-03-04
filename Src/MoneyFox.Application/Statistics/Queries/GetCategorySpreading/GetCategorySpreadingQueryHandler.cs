@@ -48,17 +48,17 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
         {
             return (from payment in payments
                     group payment by new
-                    {
-                        category = payment.Category != null
-                            ? payment.Category.Name
-                            : string.Empty
-                    }
+                                     {
+                                         category = payment.Category != null
+                                                        ? payment.Category.Name
+                                                        : string.Empty
+                                     }
                     into temp
                     select (
-                        (float) temp.Sum(x => x.Type == PaymentType.Income
-                                             ? -x.Amount
-                                             : x.Amount),
-                        temp.Key.category))
+                               (float) temp.Sum(x => x.Type == PaymentType.Income
+                                                         ? -x.Amount
+                                                         : x.Amount),
+                               temp.Key.category))
                   .Where(x => x.Item1 > 0)
                   .OrderByDescending(x => x.Item1)
                   .ToList();
@@ -69,9 +69,10 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
             List<StatisticEntry> statisticList = statisticData
                                                 .Take(6)
                                                 .Select(x => new StatisticEntry(x.Value)
-                                                 {
-                                                     ValueLabel = x.Value.ToString("C", CultureHelper.CurrentCulture), Label = x.Label
-                                                 })
+                                                             {
+                                                                 ValueLabel = x.Value.ToString("C", CultureHelper.CurrentCulture),
+                                                                 Label = x.Label
+                                                             })
                                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
@@ -90,10 +91,10 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                               .Sum(x => x.Value);
 
             var othersItem = new StatisticEntry(otherValue)
-            {
-                Label = Strings.OthersLabel,
-                ValueLabel = otherValue.ToString("C", CultureHelper.CurrentCulture)
-            };
+                             {
+                                 Label = Strings.OthersLabel,
+                                 ValueLabel = otherValue.ToString("C", CultureHelper.CurrentCulture)
+                             };
 
             if (othersItem.Value > 0)
                 statisticList.Add(othersItem);

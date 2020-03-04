@@ -1,11 +1,9 @@
 ﻿using Windows.ApplicationModel;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Input;
-using MoneyFox.Presentation.Utilities;
-using MoneyFox.Presentation.ViewModels;
-using MoneyFox.Presentation.ViewModels.DesignTime;
+using MoneyFox.Application.Resources;
+using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.DesignTime;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -14,6 +12,8 @@ namespace MoneyFox.Uwp.Views
     /// </summary>
     public sealed partial class AccountListView
     {
+        public override string Header => Strings.AccountsTitle;
+
         /// <summary>
         ///     Initialize View.
         /// </summary>
@@ -22,14 +22,6 @@ namespace MoneyFox.Uwp.Views
             InitializeComponent();
 
             if (DesignMode.DesignModeEnabled) DataContext = new DesignTimeAccountListViewModel();
-        }
-
-        private void AccountList_RightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
-
-            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)

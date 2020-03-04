@@ -14,13 +14,12 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void NameContains()
         {
             // Arrange
-            IQueryable<Category> categoryQueryList = new List<Category>
-                {
-                    new Category("Foo1"),
-                    new Category("Foo2"),
-                    new Category("absd")
-                }
-               .AsQueryable();
+            List<Category> categoryQueryList = new List<Category>
+                                                     {
+                                                         new Category("Foo1"),
+                                                         new Category("Foo2"),
+                                                         new Category("absd")
+                                                     };
 
             // Act
             List<Category> resultList = categoryQueryList.WhereNameContains("Foo").ToList();
@@ -36,11 +35,11 @@ namespace MoneyFox.Application.Tests.QueryObjects
         {
             // Arrange
             IQueryable<Category> categoryQueryList = new List<Category>
-                {
-                    new Category("Foo2"),
-                    new Category("Foo3"),
-                    new Category("Foo1")
-                }
+                                                     {
+                                                         new Category("Foo2"),
+                                                         new Category("Foo3"),
+                                                         new Category("Foo1")
+                                                     }
                .AsQueryable();
 
             // Act

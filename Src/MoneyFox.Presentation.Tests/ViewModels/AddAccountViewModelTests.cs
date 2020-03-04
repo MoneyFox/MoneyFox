@@ -1,15 +1,16 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Threading;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
+using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
 using Moq;
 using Should;
+using System.Diagnostics.CodeAnalysis;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace MoneyFox.Presentation.Tests.ViewModels
@@ -24,8 +25,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Act
             var mediator = new Mock<IMediator>();
 
-            var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null, null, null);
-
+            var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null);
 
             // Assert
             addAccountVm.SelectedAccount.ShouldNotBeNull();
@@ -38,7 +38,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
             // Act
             var mediator = new Mock<IMediator>();
 
-            var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null, null, null);
+            var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null);
 
             // Assert
             addAccountVm.Title.ShouldEqual(Strings.AddAccountTitle);
@@ -49,7 +49,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         {
             // Arrange            
             var mediator = new Mock<IMediator>();
-            var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null, null, null);
+            var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null);
 
             // Act
             await addAccountVm.InitializeCommand.ExecuteAsync();
@@ -76,10 +76,12 @@ namespace MoneyFox.Presentation.Tests.ViewModels
 
             var mediatorMock = new Mock<IMediator>();
             var mapperMock = new Mock<IMapper>();
-            var settingsFacadeMock = new Mock<ISettingsFacade>();
             var navigationServiceMock = new Mock<INavigationService>();
+            var dialogServiceMock = new Mock<IDialogService>();
 
-            var addAccountVm = new AddAccountViewModel(mediatorMock.Object, mapperMock.Object, settingsFacadeMock.Object, null, null,
+            var addAccountVm = new AddAccountViewModel(mediatorMock.Object,
+                                                       mapperMock.Object,
+                                                       dialogServiceMock.Object,
                                                        navigationServiceMock.Object);
             addAccountVm.SelectedAccount.Name = "Foo";
 

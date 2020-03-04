@@ -46,7 +46,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// </summary>
         public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name)
         {
-            return await query.AnyAsync(x => x.Name.Equals(name, StringComparison.InvariantCultureIgnoreCase));
+            return await query.AnyAsync(x => x.Name.ToUpper().Equals(name.ToUpper()));
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Utilities;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Ui.Shared.Utilities;
 using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.Views
@@ -50,10 +50,7 @@ namespace MoneyFox.Presentation.Views
         {
             base.OnDisappearing();
 
-            if (Navigation.ModalStack.Count > 0)
-            {
-                await Navigation.PopModalAsync();
-            }
+            if (Navigation.ModalStack.Count > 0) await Navigation.PopModalAsync();
         }
 
         private void AddCategoryClick(object sender, EventArgs e)

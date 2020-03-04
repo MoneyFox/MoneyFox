@@ -80,14 +80,12 @@ namespace MoneyFox.Presentation.Services
                             {
                                 //Transfer from excluded account
                                 balance += payment.Amount;
-                                break;
                             }
 
                             if (Equals(account.Id, payment.TargetAccount.Id))
                             {
                                 //Transfer to excluded account
                                 balance -= payment.Amount;
-                                break;
                             }
                         }
 
@@ -115,12 +113,10 @@ namespace MoneyFox.Presentation.Services
                 {
                     case PaymentType.Expense:
                         balance -= payment.Amount;
-
                         break;
 
                     case PaymentType.Income:
                         balance += payment.Amount;
-
                         break;
 
                     case PaymentType.Transfer:

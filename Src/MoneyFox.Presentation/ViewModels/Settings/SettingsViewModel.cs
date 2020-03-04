@@ -1,10 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.Models;
+using MoneyFox.Presentation.Services;
 
 namespace MoneyFox.Presentation.ViewModels.Settings
 {
