@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Services
 {
-    public class NavigationService
+    public class NavigationService : INavigationService
     {
         public event NavigatedEventHandler Navigated;
 
@@ -16,26 +16,26 @@ namespace MoneyFox.Uwp.Services
 
         private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
 
-        private Frame _frame;
-        private object _lastParamUsed;
+        private Frame frame;
+        private object lastParamUsed;
 
         public Frame Frame
         {
             get
             {
-                if(_frame == null)
+                if (frame == null)
                 {
-                    _frame = Window.Current.Content as Frame;
+                    frame = Window.Current.Content as Frame;
                     RegisterFrameEvents();
                 }
 
-                return _frame;
+                return frame;
             }
 
             set
             {
                 UnregisterFrameEvents();
-                _frame = value;
+                frame = value;
                 RegisterFrameEvents();
             }
         }
@@ -46,7 +46,7 @@ namespace MoneyFox.Uwp.Services
 
         public bool GoBack()
         {
-            if(CanGoBack)
+            if (CanGoBack)
             {
                 Frame.GoBack();
                 return true;
@@ -57,7 +57,7 @@ namespace MoneyFox.Uwp.Services
 
         public bool GoForward()
         {
-            if(CanGoForward)
+            if (CanGoForward)
             {
                 Frame.GoForward();
                 return true;
@@ -68,9 +68,9 @@ namespace MoneyFox.Uwp.Services
         public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null)
         {
             Type page;
-            lock(_pages)
+            lock (_pages)
             {
-                if(!_pages.TryGetValue(pageKey, out page))
+                if (!_pages.TryGetValue(pageKey, out page))
                 {
                     throw new
                         ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?",
@@ -78,11 +78,11 @@ namespace MoneyFox.Uwp.Services
                 }
             }
 
-            if(Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(_lastParamUsed))
+            if (Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(lastParamUsed))
             {
                 bool navigationResult = Frame.Navigate(page, parameter, infoOverride);
-                if(navigationResult)
-                    _lastParamUsed = parameter;
+                if (navigationResult)
+                    lastParamUsed = parameter;
 
                 return navigationResult;
             }
@@ -92,12 +92,12 @@ namespace MoneyFox.Uwp.Services
 
         public void Configure(string key, Type pageType)
         {
-            lock(_pages)
+            lock (_pages)
             {
-                if(_pages.ContainsKey(key))
+                if (_pages.ContainsKey(key))
                     throw new ArgumentException(string.Format("The key {{0}} is already configured in NavigationService", key));
 
-                if(_pages.Any(p => p.Value == pageType))
+                if (_pages.Any(p => p.Value == pageType))
                 {
                     throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == pageType).Key}");
                 }
@@ -108,9 +108,9 @@ namespace MoneyFox.Uwp.Services
 
         public string GetNameOfRegisteredPage(Type page)
         {
-            lock(_pages)
+            lock (_pages)
             {
-                if(_pages.ContainsValue(page))
+                if (_pages.ContainsValue(page))
                     return _pages.FirstOrDefault(p => p.Value == page).Key;
                 throw new ArgumentException($"The page '{page.Name}' is unknown by the NavigationService");
             }
@@ -118,19 +118,19 @@ namespace MoneyFox.Uwp.Services
 
         private void RegisterFrameEvents()
         {
-            if(_frame != null)
+            if (frame != null)
             {
-                _frame.Navigated += Frame_Navigated;
-                _frame.NavigationFailed += Frame_NavigationFailed;
+                frame.Navigated += Frame_Navigated;
+                frame.NavigationFailed += Frame_NavigationFailed;
             }
         }
 
         private void UnregisterFrameEvents()
         {
-            if(_frame != null)
+            if (frame != null)
             {
-                _frame.Navigated -= Frame_Navigated;
-                _frame.NavigationFailed -= Frame_NavigationFailed;
+                frame.Navigated -= Frame_Navigated;
+                frame.NavigationFailed -= Frame_NavigationFailed;
             }
         }
 

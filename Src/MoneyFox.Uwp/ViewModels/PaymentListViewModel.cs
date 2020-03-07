@@ -202,15 +202,15 @@ namespace MoneyFox.Uwp.ViewModels
             {
                 var monthlyIncome = dailyGroup.Where(payment => payment.Type == PaymentType.Income
                                                                 || (payment.Type == PaymentType.Transfer
-                                                                    && payment.ChargedAccount.Id == AccountId))
+                                                                    && payment.TargetAccount.Id == AccountId))
                                               .Sum(x => x.Amount);
 
                 var monthlyExpenses = dailyGroup.Where(payment => payment.Type == PaymentType.Expense
                                                                   || (payment.Type == PaymentType.Transfer
-                                                                      && payment.TargetAccount.Id == AccountId))
+                                                                      && payment.ChargedAccount.Id == AccountId))
                                                 .Sum(x => x.Amount);
 
-                dailyGroup.Title = $"{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
+                dailyGroup.Title = $"+{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
             }
 
             Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
