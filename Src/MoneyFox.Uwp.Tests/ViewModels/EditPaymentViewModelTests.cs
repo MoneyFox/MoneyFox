@@ -35,7 +35,7 @@ namespace MoneyFox.Uwp.Tests.ViewModels
         public EditPaymentViewModelTests(MapperCollectionFixture fixture)
         {
             mediatorMock = new Mock<IMediator>();
-            mapper = fixture.Mapper!;
+            mapper = fixture.Mapper;
 
             dialogServiceMock = new Mock<IDialogService>();
             navigationServiceMock = new Mock<INavigationService>();
