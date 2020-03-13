@@ -56,15 +56,15 @@
     <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.0" />
     <PackageReference Include="AutoMapper" Version="9.0.0" />
     <PackageReference Include="MediatR" Version="8.0.1" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.9.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.8.2" />
     <PackageReference Include="MoneyFox.Microcharts.Forms" Version="1.1.0.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="NLog" Version="4.6.8" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.5.0.356" />
-    <PackageReference Include="XF.Material" Version="1.6.0" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991757" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.4.0.991757" />
+    <PackageReference Include="XF.Material" Version="1.5.8" />
   </ItemGroup>
 
   <ItemGroup>
