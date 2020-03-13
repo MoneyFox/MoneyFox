@@ -32,7 +32,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.2" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="NLog" Version="4.6.8" />
-    <PackageReference Include="Xamarin.Forms" Version="4.5.0.356" />
+    <PackageReference Include="Xamarin.Forms" Version="4.4.0.991757" />
   </ItemGroup>
 
 </Project>

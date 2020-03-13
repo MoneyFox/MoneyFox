@@ -6,6 +6,14 @@
     <nullable>enable</nullable>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>MoneyFox.Ui.Shared.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>MoneyFox.Ui.Shared.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
   </ItemGroup>
