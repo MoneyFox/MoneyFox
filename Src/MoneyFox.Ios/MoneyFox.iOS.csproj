@@ -192,6 +192,7 @@
     <BundleResource Include="Resources\ic_transfer_black.png" />
     <BundleResource Include="Resources\ic_transfer_black%402x.png" />
     <BundleResource Include="Resources\ic_transfer_black%403x.png" />
+    <LinkDescription Include="LinkerDescription.xml" />
     <ImageAsset Include="Assets.xcassets\icon_more.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
