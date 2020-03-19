@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using NLog;
 using System;
@@ -14,11 +15,14 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     {
         private ILogger logger = LogManager.GetCurrentClassLogger();
 
+        private readonly IDialogService dialogService;
+
         private ObservableCollection<CategoryOverviewViewModel> categorySummary;
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
+                                                 ISettingsFacade settingsFacade, IDialogService dialogService) : base(mediator, settingsFacade)
         {
+            this.dialogService = dialogService;
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>();
             IncomeExpenseBalance = new IncomeExpenseBalanceViewModel();
         }
@@ -80,7 +84,8 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             }
             catch (Exception ex)
             {
-                logger.Warn(ex, "Error during loading.");
+                logger.Warn(ex, "Error during loading. {1}", ex);
+                await dialogService.ShowMessageAsync("Error", ex.ToString());
             }
         }
     }
