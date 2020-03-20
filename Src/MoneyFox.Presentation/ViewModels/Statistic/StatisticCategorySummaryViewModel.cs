@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using NLog;
 using System;
@@ -12,12 +13,16 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
-        private Logger logger = LogManager.GetCurrentClassLogger();
+        private ILogger logger = LogManager.GetCurrentClassLogger();
+
+        private readonly IDialogService dialogService;
+
         private ObservableCollection<CategoryOverviewViewModel> categorySummary;
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
+                                                 ISettingsFacade settingsFacade, IDialogService dialogService) : base(mediator, settingsFacade)
         {
+            this.dialogService = dialogService;
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>();
             IncomeExpenseBalance = new IncomeExpenseBalanceViewModel();
         }
@@ -29,7 +34,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             get => incomeExpenseBalance;
             set
             {
-                if (incomeExpenseBalance == value)
+                if(incomeExpenseBalance == value)
                     return;
                 incomeExpenseBalance = value;
                 RaisePropertyChanged();
@@ -57,15 +62,19 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         {
             try
             {
-                CategorySummaryModel categorySummaryModel = await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
+                CategorySummaryModel categorySummaryModel =
+                await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
 
-                CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(categorySummaryModel.CategoryOverviewItems.Select(x => new CategoryOverviewViewModel
-                {
-                    Value = x.Value,
-                    Average = x.Average,
-                    Label = x.Label,
-                    Percentage = x.Percentage
-                }));
+                CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
+                                                                                      categorySummaryModel
+                                                                                         .CategoryOverviewItems
+                                                                                         .Select(x => new CategoryOverviewViewModel
+                                                                                         {
+                                                                                             Value = x.Value,
+                                                                                             Average = x.Average,
+                                                                                             Label = x.Label,
+                                                                                             Percentage = x.Percentage
+                                                                                         }));
 
                 IncomeExpenseBalance = new IncomeExpenseBalanceViewModel
                 {
@@ -73,10 +82,10 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                     TotalSpent = categorySummaryModel.TotalSpent
                 };
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                logger.Error(ex);
-                throw;
+                logger.Warn(ex, "Error during loading. {1}", ex);
+                await dialogService.ShowMessageAsync("Error", ex.ToString());
             }
         }
     }
