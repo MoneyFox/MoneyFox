@@ -72,8 +72,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         public bool HasNoAccounts => !Accounts.Any();
 
-        public List<string> MenuActions => new List<string> { Strings.EditLabel, Strings.DeleteLabel };
-
         public AsyncCommand LoadDataCommand => new AsyncCommand(LoadAsync);
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
@@ -103,11 +101,11 @@ namespace MoneyFox.Uwp.ViewModels
 
                 Accounts.Clear();
 
-                if (includedAlphaGroup.Any())
+                if(includedAlphaGroup.Any())
                 {
                     Accounts.Add(includedAlphaGroup);
                 }
-                if (excludedAlphaGroup.Any())
+                if(excludedAlphaGroup.Any())
                 {
                     Accounts.Add(excludedAlphaGroup);
                 }
@@ -123,16 +121,14 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if(accountViewModel == null)
-                return;
+            if(accountViewModel == null) return;
 
             navigationService.Navigate(ViewModelLocator.PaymentList, accountViewModel.Id);
         }
 
         private async Task DeleteAsync(AccountViewModel accountToDelete)
         {
-            if(accountToDelete == null)
-                return;
+            if(accountToDelete == null) return;
 
             if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {

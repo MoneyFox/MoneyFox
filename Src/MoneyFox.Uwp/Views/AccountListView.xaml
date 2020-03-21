@@ -91,51 +91,44 @@
             Source="{Binding Accounts}" />
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <controls:BalanceControl Grid.Row="1" DataContext="{Binding BalanceViewModel}" />
+        <controls:BalanceControl
+            Grid.Row="0"
+            Margin="{StaticResource MediumLeftRightMargin}"
+            DataContext="{Binding BalanceViewModel}" />
 
-        <SemanticZoom Grid.Row="1" Margin="{StaticResource MediumTopMargin}">
-            <SemanticZoom.ZoomedInView>
+        <ListView Grid.Row="1" ItemsSource="{Binding Accounts}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Style="{ThemeResource HeaderStyle}" Text="{Binding Key}" />
 
-                <GridView
-                    IsItemClickEnabled="True"
-                    IsSynchronizedWithCurrentItem="False"
-                    ItemTemplate="{StaticResource AccountItemTemplate}"
-                    ItemsSource="{Binding Source={StaticResource Groups}}">
+                        <GridView
+                            IsItemClickEnabled="True"
+                            IsSynchronizedWithCurrentItem="False"
+                            ItemTemplate="{StaticResource AccountItemTemplate}"
+                            ItemsSource="{Binding}">
 
-                    <i:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
-                        </core:EventTriggerBehavior>
-                    </i:Interaction.Behaviors>
+                            <i:Interaction.Behaviors>
+                                <core:EventTriggerBehavior EventName="ItemClick">
+                                    <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
+                                </core:EventTriggerBehavior>
+                            </i:Interaction.Behaviors>
 
-                    <GridView.GroupStyle>
-                        <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
-                    </GridView.GroupStyle>
-                </GridView>
-
-            </SemanticZoom.ZoomedInView>
-            <SemanticZoom.ZoomedOutView>
-                <GridView
-                    Margin="{StaticResource MediumTopMargin}"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    ItemTemplate="{StaticResource JumpTemplate}"
-                    ItemsSource="{Binding Source={StaticResource Groups}, Path=CollectionGroups}">
-                    <GridView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <VariableSizedWrapGrid MaximumRowsOrColumns="4" Orientation="Horizontal" />
-                        </ItemsPanelTemplate>
-                    </GridView.ItemsPanel>
-                </GridView>
-            </SemanticZoom.ZoomedOutView>
-        </SemanticZoom>
+                            <GridView.GroupStyle>
+                                <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
+                            </GridView.GroupStyle>
+                        </GridView>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <TextBlock
             Grid.Row="1"

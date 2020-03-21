@@ -22,7 +22,9 @@ namespace MoneyFox.Uwp.Views
             InitializeComponent();
 
             if(DesignMode.DesignModeEnabled)
+            {
                 DataContext = new DesignTimeAccountListViewModel();
+            }
         }
 
         private void Edit_OnClick(object sender, RoutedEventArgs e)
