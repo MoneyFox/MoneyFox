@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     d:DesignHeight="50"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -17,35 +16,30 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+            <StackPanel
+                Width="130"
+                Height="50"
+                Padding="7"
+                Background="{ThemeResource ListItemBrush}">
+                <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.CurrentBalanceLabel}" />
+                <TextBlock
+                    Margin="0,0,5,0"
+                    Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                    Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
 
-            <uwpToolkit:DropShadowPanel OffsetY="5.0" ShadowOpacity="0.10">
-                <StackPanel
-                    Width="130"
-                    Height="50"
-                    Padding="7"
-                    Background="{ThemeResource ListItemBrush}">
-                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.CurrentBalanceLabel}" />
-                    <TextBlock
-                        Margin="0,0,5,0"
-                        Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                        Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}" />
-                </StackPanel>
-            </uwpToolkit:DropShadowPanel>
-
-            <uwpToolkit:DropShadowPanel OffsetY="5.0" ShadowOpacity="0.10">
-                <StackPanel
-                    Width="130"
-                    Height="50"
-                    Margin="4"
-                    Padding="7"
-                    Background="{ThemeResource ListItemBrush}">
-                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.EndOfMonthBalanceLabel}" />
-                    <TextBlock
-                        Margin="0,0,5,0"
-                        Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                        Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}" />
-                </StackPanel>
-            </uwpToolkit:DropShadowPanel>
+            <StackPanel
+                Width="130"
+                Height="50"
+                Margin="4"
+                Padding="7"
+                Background="{ThemeResource ListItemBrush}">
+                <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.EndOfMonthBalanceLabel}" />
+                <TextBlock
+                    Margin="0,0,5,0"
+                    Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                    Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
