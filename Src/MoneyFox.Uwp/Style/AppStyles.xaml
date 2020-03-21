@@ -1,8 +1,9 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                    mc:Ignorable="d">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
 
     <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}" />
 
@@ -18,13 +19,12 @@
 
     <SolidColorBrush x:Key="AppBarBrush" Color="{StaticResource ColorAppBar}" />
 
-    <SolidColorBrush x:Key="SplitViewToggleButtonForeground"
-                     Color="{StaticResource ColorHamburgerButton}" />
+    <SolidColorBrush x:Key="SplitViewToggleButtonForeground" Color="{StaticResource ColorHamburgerButton}" />
 
-    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush"
-                     Color="{StaticResource ColorCustomBackground}" />
+    <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="{StaticResource ColorCustomBackground}" />
 
     <SolidColorBrush x:Key="ListItemBrush" Color="{StaticResource ListItemColor}" />
+    <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
 
     <!--  Accent Color  -->
     <SolidColorBrush x:Key="AccentColorBrush" Color="{ThemeResource SystemAccentColor}" />
@@ -33,24 +33,30 @@
     <SolidColorBrush x:Key="SystemControlForegroundAccentBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="SystemControlHighlightAccentBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="SystemControlHighlightAltAccentBrush" Color="{ThemeResource SystemAccentColor}" />
-    <SolidColorBrush x:Key="SystemControlHighlightAltListAccentHighBrush"
-                     Opacity="0.9"
-                     Color="{ThemeResource SystemAccentColor}" />
-    <SolidColorBrush x:Key="SystemControlHighlightAltListAccentLowBrush"
-                     Opacity="0.6"
-                     Color="{ThemeResource SystemAccentColor}" />
-    <SolidColorBrush x:Key="SystemControlHighlightAltListAccentMediumBrush"
-                     Opacity="0.8"
-                     Color="{ThemeResource SystemAccentColor}" />
-    <SolidColorBrush x:Key="SystemControlHighlightListAccentHighBrush"
-                     Opacity="0.9"
-                     Color="{ThemeResource SystemAccentColor}" />
-    <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush"
-                     Opacity="0.6"
-                     Color="{ThemeResource SystemAccentColor}" />
-    <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush"
-                     Opacity="0.8"
-                     Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush
+        x:Key="SystemControlHighlightAltListAccentHighBrush"
+        Opacity="0.9"
+        Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush
+        x:Key="SystemControlHighlightAltListAccentLowBrush"
+        Opacity="0.6"
+        Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush
+        x:Key="SystemControlHighlightAltListAccentMediumBrush"
+        Opacity="0.8"
+        Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush
+        x:Key="SystemControlHighlightListAccentHighBrush"
+        Opacity="0.9"
+        Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush
+        x:Key="SystemControlHighlightListAccentLowBrush"
+        Opacity="0.6"
+        Color="{ThemeResource SystemAccentColor}" />
+    <SolidColorBrush
+        x:Key="SystemControlHighlightListAccentMediumBrush"
+        Opacity="0.8"
+        Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="SystemControlHyperlinkTextBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="ContentDialogBorderThemeBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground" Color="{ThemeResource SystemAccentColor}" />
