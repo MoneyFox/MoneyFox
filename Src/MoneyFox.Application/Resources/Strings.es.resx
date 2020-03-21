@@ -860,4 +860,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   <data name="SavingPaymentMessage" xml:space="preserve">
     <value>Saving Payment...</value>
   </data>
+  <data name="EndOfMonthBalanceLabel" xml:space="preserve">
+    <value>End of Month</value>
+  </data>
 </root>
