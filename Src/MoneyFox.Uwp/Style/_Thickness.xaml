@@ -5,6 +5,7 @@
 
     <!--  Small size Margin  -->
     <Thickness x:Key="SmallListItemMargin">0,2,0,0</Thickness>
+    <Thickness x:Key="SmallTopMargin">0,6,0,0</Thickness>
     <Thickness x:Key="SmallTitleContentMargin">0,7,0,0</Thickness>
     <Thickness x:Key="SmallListItemPadding">12,5,12,5</Thickness>
 

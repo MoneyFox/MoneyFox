@@ -34,9 +34,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
 
-        /// <summary>
-        /// Constructor
-        /// </summary>
         public AccountListViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IBalanceCalculationService balanceCalculationService,
@@ -106,10 +103,14 @@ namespace MoneyFox.Uwp.ViewModels
 
                 Accounts.Clear();
 
-                if(includedAlphaGroup.Any())
+                if (includedAlphaGroup.Any())
+                {
                     Accounts.Add(includedAlphaGroup);
-                if(excludedAlphaGroup.Any())
+                }
+                if (excludedAlphaGroup.Any())
+                {
                     Accounts.Add(excludedAlphaGroup);
+                }
 
                 RaisePropertyChanged(nameof(HasNoAccounts));
             }
