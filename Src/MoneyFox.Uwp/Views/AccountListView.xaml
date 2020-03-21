@@ -34,7 +34,7 @@
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="viewModels:AccountViewModel">
 
             <uwpToolkit:DropShadowPanel ShadowOpacity="0.40">
-                <StackPanel Width="400">
+                <StackPanel Width="250">
                     <StackPanel.ContextFlyout>
                         <MenuFlyout>
                             <MenuFlyoutItem
@@ -48,17 +48,21 @@
                         </MenuFlyout>
                     </StackPanel.ContextFlyout>
 
-                    <StackPanel Padding="{StaticResource SmallListItemPadding}" Background="{ThemeResource ListItemBrush}">
+                    <Grid
+                        Height="100"
+                        Padding="{StaticResource SmallListItemPadding}"
+                        Background="{ThemeResource ListItemBrush}">
                         <TextBlock
                             Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                             Text="{x:Bind Name}"
                             TextTrimming="CharacterEllipsis" />
 
-                        <Grid>
-                            <TextBlock Text="{x:Bind resources:Strings.CurrentBalanceLabel}" />
-                            <TextBlock Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}" TextAlignment="Right" />
-                        </Grid>
-                    </StackPanel>
+                        <TextBlock
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                            TextAlignment="Right" />
+                    </Grid>
                 </StackPanel>
             </uwpToolkit:DropShadowPanel>
         </DataTemplate>
