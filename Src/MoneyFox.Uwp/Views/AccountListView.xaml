@@ -33,8 +33,8 @@
 
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="viewModels:AccountViewModel">
 
-            <uwpToolkit:DropShadowPanel>
-                <StackPanel Width="350">
+            <uwpToolkit:DropShadowPanel ShadowOpacity="0.40">
+                <StackPanel Width="450">
                     <StackPanel.ContextFlyout>
                         <MenuFlyout>
                             <MenuFlyoutItem
@@ -55,7 +55,7 @@
                             TextTrimming="CharacterEllipsis" />
 
                         <Grid>
-                            <TextBlock Text="Current Balance" />
+                            <TextBlock Text="{x:Bind resources:Strings.CurrentBalanceLabel}" />
                             <TextBlock Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}" TextAlignment="Right" />
                         </Grid>
                     </StackPanel>

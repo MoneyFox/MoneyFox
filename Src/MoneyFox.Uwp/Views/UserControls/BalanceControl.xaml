@@ -1,36 +1,51 @@
-﻿<UserControl x:Class="MoneyFox.Uwp.Views.UserControls.BalanceControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter="using:MoneyFox.Uwp.Converter"
-             d:DesignHeight="50"
-             d:DesignWidth="400"
-             mc:Ignorable="d">
+﻿<UserControl
+    x:Class="MoneyFox.Uwp.Views.UserControls.BalanceControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:MoneyFox.Uwp.Converter"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    d:DesignHeight="50"
+    d:DesignWidth="400"
+    mc:Ignorable="d">
 
     <UserControl.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </UserControl.Resources>
 
-    <StackPanel Orientation="Horizontal">
-        <TextBlock x:Uid="TotalLabel"
-                   Margin="0,0,5,10"
-                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                   Text="Total: " />
-        <TextBlock Margin="0,0,5,0"
-                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                   Text="{Binding TotalBalance,
-                                  Mode=TwoWay,
-                                  Converter={StaticResource AmountFormatConverter},
-                                  UpdateSourceTrigger=PropertyChanged}" />
-        <TextBlock Margin="0,0,5,0"
-                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                   Text=" / " />
-        <TextBlock Margin="0,0,5,0"
-                   Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                   Text="{Binding EndOfMonthBalance,
-                                  Mode=TwoWay,
-                                  Converter={StaticResource AmountFormatConverter},
-                                  UpdateSourceTrigger=PropertyChanged}" />
-    </StackPanel>
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+
+            <uwpToolkit:DropShadowPanel OffsetY="5.0" ShadowOpacity="0.10">
+                <StackPanel
+                    Width="120"
+                    Height="40"
+                    Padding="3"
+                    Background="White">
+                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.CurrentBalanceLabel}" />
+                    <TextBlock
+                        Margin="0,0,5,0"
+                        Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                        Text="{Binding TotalBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </uwpToolkit:DropShadowPanel>
+
+            <uwpToolkit:DropShadowPanel OffsetY="5.0" ShadowOpacity="0.10">
+                <StackPanel
+                    Width="120"
+                    Height="40"
+                    Margin="4"
+                    Padding="3"
+                    Background="White">
+                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.EndOfMonthBalanceLabel}" />
+                    <TextBlock
+                        Margin="0,0,5,0"
+                        Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                        Text="{Binding EndOfMonthBalance, Mode=TwoWay, Converter={StaticResource AmountFormatConverter}, UpdateSourceTrigger=PropertyChanged}" />
+                </StackPanel>
+            </uwpToolkit:DropShadowPanel>
+        </StackPanel>
+    </Grid>
 </UserControl>
