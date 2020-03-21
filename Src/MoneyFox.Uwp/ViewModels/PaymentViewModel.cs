@@ -37,7 +37,7 @@ namespace MoneyFox.Uwp.ViewModels
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
 
-        private readonly IMediator mediator;
+        private IMediator mediator;
         private NavigationService navigationService;
         private IDialogService dialogService;
 
