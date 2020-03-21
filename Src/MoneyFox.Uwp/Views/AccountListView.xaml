@@ -10,6 +10,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
     xmlns:views="using:MoneyFox.Uwp.Views"
     DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
@@ -32,63 +33,36 @@
 
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="viewModels:AccountViewModel">
 
-            <StackPanel Width="350">
-                <StackPanel.ContextFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem
-                            Click="Edit_OnClick"
-                            Icon="Edit"
-                            Text="{x:Bind resources:Strings.EditLabel}" />
-                        <MenuFlyoutItem
-                            Click="Delete_OnClick"
-                            Icon="Delete"
-                            Text="{x:Bind resources:Strings.DeleteLabel}" />
-                    </MenuFlyout>
-                </StackPanel.ContextFlyout>
+            <uwpToolkit:DropShadowPanel>
+                <StackPanel Width="350">
+                    <StackPanel.ContextFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem
+                                Click="Edit_OnClick"
+                                Icon="Edit"
+                                Text="{x:Bind resources:Strings.EditLabel}" />
+                            <MenuFlyoutItem
+                                Click="Delete_OnClick"
+                                Icon="Delete"
+                                Text="{x:Bind resources:Strings.DeleteLabel}" />
+                        </MenuFlyout>
+                    </StackPanel.ContextFlyout>
 
-                <StackPanel Padding="{StaticResource SmallListItemPadding}" Background="{ThemeResource ListItemBrush}">
-                    <TextBlock
-                        Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                        Text="{x:Bind Name}"
-                        TextTrimming="CharacterEllipsis" />
+                    <StackPanel Padding="{StaticResource SmallListItemPadding}" Background="{ThemeResource ListItemBrush}">
+                        <TextBlock
+                            Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                            Text="{x:Bind Name}"
+                            TextTrimming="CharacterEllipsis" />
 
-                    <Grid Margin="{StaticResource SmallTopMargin}">
-                        <TextBlock Text="Current Balance" />
-                        <TextBlock Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}" TextAlignment="Right" />
-                    </Grid>
+                        <Grid>
+                            <TextBlock Text="Current Balance" />
+                            <TextBlock Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}" TextAlignment="Right" />
+                        </Grid>
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </uwpToolkit:DropShadowPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="GroupHeaderTemplate">
-            <Border Padding="3" Background="Transparent">
-                <TextBlock
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    FontFamily="{StaticResource PhoneFontFamilySemiLight}"
-                    FontSize="{StaticResource MediumFontSize}"
-                    Foreground="{ThemeResource SystemControlHighlightAccentBrush}"
-                    Text="{Binding Key}" />
-            </Border>
-        </DataTemplate>
-
-        <DataTemplate x:Key="JumpTemplate">
-            <Border>
-                <Border Margin="5" HorizontalAlignment="Left">
-                    <TextBlock
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        FontSize="{StaticResource MediumFontSize}"
-                        Foreground="{ThemeResource SystemControlHighlightAccentBrush}"
-                        Text="{Binding Group.Key}" />
-                </Border>
-            </Border>
-        </DataTemplate>
-
-        <CollectionViewSource
-            x:Key="Groups"
-            IsSourceGrouped="True"
-            Source="{Binding Accounts}" />
     </Page.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -103,31 +77,39 @@
             Margin="{StaticResource MediumLeftRightMargin}"
             DataContext="{Binding BalanceViewModel}" />
 
-        <ListView Grid.Row="1" ItemsSource="{Binding Accounts}">
+        <ListView
+            Grid.Row="1"
+            Margin="{StaticResource MediumLeftRightMargin}"
+            IsEnabled="True"
+            IsTapEnabled="False"
+            ItemsSource="{Binding Accounts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
                         <TextBlock Style="{ThemeResource HeaderStyle}" Text="{Binding Key}" />
 
                         <GridView
+                            x:Name="AccountGrid"
                             IsItemClickEnabled="True"
                             IsSynchronizedWithCurrentItem="False"
+                            ItemClick="AccountClicked"
                             ItemTemplate="{StaticResource AccountItemTemplate}"
-                            ItemsSource="{Binding}">
-
-                            <i:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="ItemClick">
-                                    <core:InvokeCommandAction Command="{Binding OpenOverviewCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
-                                </core:EventTriggerBehavior>
-                            </i:Interaction.Behaviors>
-
-                            <GridView.GroupStyle>
-                                <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
-                            </GridView.GroupStyle>
-                        </GridView>
+                            ItemsSource="{Binding}" />
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
 
         <TextBlock
@@ -142,7 +124,6 @@
 
         <CommandBar
             Grid.Row="2"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
             DataContext="{Binding ViewActionViewModel}"
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>

@@ -4,6 +4,8 @@ using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.DesignTime;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -39,13 +41,18 @@ namespace MoneyFox.Uwp.Views
 
         private void Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            //this has to be called before the dialog service since otherwise the data context is reseted and the account will be null
             var element = (FrameworkElement) sender;
 
             if(!(element.DataContext is AccountViewModel account))
                 return;
 
             (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
+        }
+
+        private void AccountClicked(object sender, ItemClickEventArgs parameter)
+        {
+            var account = parameter.ClickedItem as AccountViewModel;
+            (DataContext as AccountListViewModel)?.OpenOverviewCommand.Execute(account);
         }
     }
 }
