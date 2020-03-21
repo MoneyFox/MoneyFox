@@ -862,4 +862,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SavingPaymentMessage" xml:space="preserve">
     <value>Saving Payment...</value>
   </data>
+  <data name="EndOfMonthBalanceLabel" xml:space="preserve">
+    <value>End of Month</value>
+  </data>
 </root>
