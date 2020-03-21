@@ -66,7 +66,7 @@
             Margin="{StaticResource MediumLeftRightMargin}"
             DataContext="{Binding BalanceViewModel}" />
 
-        <SemanticZoom Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
                 <ListView
                     x:Name="PaymentListView"
@@ -92,12 +92,12 @@
                             <StackPanel Margin="0,0,0,30" Padding="{StaticResource SmallListItemPadding}">
 
                                 <TextBlock
-                                    Margin="3,0,0,7"
+                                    Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                     Style="{ThemeResource HeaderStyle}"
                                     Text="{Binding Key}" />
 
                                 <TextBlock
-                                    Margin="3,0,0,7"
+                                    Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                     Style="{ThemeResource DeemphasizedLabelStyle}"
                                     Text="{Binding Title}" />
 
