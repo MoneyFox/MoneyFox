@@ -123,7 +123,7 @@
                                         <DataTemplate x:DataType="viewModels:PaymentViewModel">
                                             <Grid
                                                 MinWidth="100"
-                                                Margin="{StaticResource NegativeMediumLeftRighWithSmallToptMargin}"
+                                                Margin="{StaticResource NegativeMediumLeftRighWithSmallTopMargin}"
                                                 Padding="{StaticResource SmallListItemPadding}"
                                                 HorizontalAlignment="Stretch"
                                                 Background="{ThemeResource ListItemBrush}">

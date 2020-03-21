@@ -23,7 +23,7 @@
                     Width="120"
                     Height="40"
                     Padding="3"
-                    Background="White">
+                    Background="{StaticResource ListItemBrush}">
                     <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.CurrentBalanceLabel}" />
                     <TextBlock
                         Margin="0,0,5,0"
@@ -38,7 +38,7 @@
                     Height="40"
                     Margin="4"
                     Padding="3"
-                    Background="White">
+                    Background="{StaticResource ListItemBrush}">
                     <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.EndOfMonthBalanceLabel}" />
                     <TextBlock
                         Margin="0,0,5,0"

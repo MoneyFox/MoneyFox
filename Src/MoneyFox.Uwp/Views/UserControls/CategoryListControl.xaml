@@ -8,7 +8,6 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -20,7 +19,6 @@
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
             <StackPanel Margin="{StaticResource NegativeMediumLeftRightMargin}" RightTapped="CategoryListRightTapped">
-
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem
@@ -33,11 +31,8 @@
                             Text="{x:Bind resources:Strings.DeleteLabel}" />
                     </MenuFlyout>
                 </FlyoutBase.AttachedFlyout>
-                <StackPanel
-                    Margin="{StaticResource MediumLeftRightMargin}"
-                    Padding="{StaticResource SmallListItemPadding}"
-                    Background="{ThemeResource ListItemBrush}">
 
+                <StackPanel Padding="{StaticResource SmallListItemPadding}" Background="{ThemeResource ListItemBrush}">
                     <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
                 </StackPanel>
             </StackPanel>
@@ -46,7 +41,7 @@
         <DataTemplate x:Key="GroupHeaderTemplate">
             <Border Padding="3" Background="Transparent">
                 <TextBlock
-                    Margin="{StaticResource MediumLeftRightMargin}"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontFamily="{StaticResource PhoneFontFamilySemiLight}"
@@ -91,6 +86,7 @@
             <SemanticZoom.ZoomedInView>
 
                 <ListView
+                    Padding="{StaticResource SmallListItemPadding}"
                     IsItemClickEnabled="True"
                     IsSynchronizedWithCurrentItem="False"
                     ItemTemplate="{StaticResource CategoryTemplate}"
