@@ -37,7 +37,7 @@ namespace MoneyFox.Uwp.ViewModels
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
 
-        private IMediator mediator;
+        private readonly IMediator mediator;
         private NavigationService navigationService;
         private IDialogService dialogService;
 
@@ -65,8 +65,8 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel"/> who will be    
-        /// charged.     In case it's an income the  foreign key to the <see cref="AccountViewModel"/> who will be    
+        /// In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel"/> who will be
+        /// charged.     In case it's an income the  foreign key to the <see cref="AccountViewModel"/> who will be
         /// credited.
         /// </summary>
         public int ChargedAccountId
@@ -127,7 +127,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// Indicates if this payment was already executed and the amount already credited or charged to the respective 
+        /// Indicates if this payment was already executed and the amount already credited or charged to the respective
         ///    account.
         /// </summary>
         public bool IsCleared
@@ -194,7 +194,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// In case it's a expense or transfer the account who will be charged.     In case it's an income the account  
+        /// In case it's a expense or transfer the account who will be charged.     In case it's an income the account
         ///   who will be credited.
         /// </summary>
         public AccountViewModel ChargedAccount
@@ -210,7 +210,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// The <see cref="AccountViewModel"/> who will be credited by a transfer.     Not used for the other payment   
+        /// The <see cref="AccountViewModel"/> who will be credited by a transfer.     Not used for the other payment
         ///  types.
         /// </summary>
         public AccountViewModel TargetAccount
