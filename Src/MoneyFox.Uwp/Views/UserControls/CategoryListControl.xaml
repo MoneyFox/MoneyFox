@@ -18,7 +18,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
-            <StackPanel Margin="{StaticResource NegativeMediumLeftRightMargin}" RightTapped="CategoryListRightTapped">
+            <StackPanel RightTapped="CategoryListRightTapped">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem
@@ -41,7 +41,6 @@
         <DataTemplate x:Key="GroupHeaderTemplate">
             <Border Padding="3" Background="Transparent">
                 <TextBlock
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontFamily="{StaticResource PhoneFontFamilySemiLight}"
@@ -86,7 +85,6 @@
             <SemanticZoom.ZoomedInView>
 
                 <ListView
-                    Padding="{StaticResource SmallListItemPadding}"
                     IsItemClickEnabled="True"
                     IsSynchronizedWithCurrentItem="False"
                     ItemTemplate="{StaticResource CategoryTemplate}"
