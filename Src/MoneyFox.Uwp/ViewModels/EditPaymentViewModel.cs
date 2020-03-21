@@ -19,14 +19,14 @@ namespace MoneyFox.Uwp.ViewModels
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
-        private readonly NavigationService navigationService;
+        private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Intended")]
         public EditPaymentViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IDialogService dialogService,
-                                    NavigationService navigationService) : base(mediator,
+                                    INavigationService navigationService) : base(mediator,
                                                                                 mapper,
                                                                                 dialogService,
                                                                                 navigationService)

@@ -952,6 +952,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End of Month.
+        /// </summary>
+        public static string EndOfMonthBalanceLabel {
+            get {
+                return ResourceManager.GetString("EndOfMonthBalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error during the authentication. Please try again later..
         /// </summary>
         public static string ErrorMessageAuthenticationFailed {

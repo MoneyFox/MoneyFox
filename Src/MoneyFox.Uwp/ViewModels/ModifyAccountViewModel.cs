@@ -20,7 +20,7 @@ namespace MoneyFox.Uwp.ViewModels
         private AccountViewModel selectedAccount = new AccountViewModel();
 
         protected ModifyAccountViewModel(IDialogService dialogService,
-                                         NavigationService navigationService)
+                                         INavigationService navigationService)
         {
             DialogService = dialogService;
             NavigationService = navigationService;
@@ -32,7 +32,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         protected IDialogService DialogService { get; }
 
-        protected NavigationService NavigationService { get; }
+        protected INavigationService NavigationService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 

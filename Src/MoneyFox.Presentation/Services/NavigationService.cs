@@ -133,8 +133,7 @@ namespace MoneyFox.Presentation.Services
 
             if(constructor == null)
             {
-                throw new InvalidOperationException(
-                                                    $"No suitable constructor found for page {pageKey}");
+                throw new InvalidOperationException($"No suitable constructor found for page {pageKey}");
             }
         }
 

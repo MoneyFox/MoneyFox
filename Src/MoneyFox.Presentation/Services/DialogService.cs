@@ -21,8 +21,8 @@ namespace MoneyFox.Presentation.Services
 
         public async Task<bool> ShowConfirmMessageAsync(string title,
                                                         string message,
-                                                        string positiveButtonText = null,
-                                                        string negativeButtonText = null)
+                                                        string? positiveButtonText = null,
+                                                        string? negativeButtonText = null)
         {
             if(loadingDialog != null)
                 await HideLoadingDialogAsync();
@@ -30,20 +30,22 @@ namespace MoneyFox.Presentation.Services
             bool? wasConfirmed = await MaterialDialog.Instance
                                                      .ConfirmAsync(message,
                                                                    title,
-                                                                   Strings.YesLabel,
-                                                                   Strings.NoLabel,
+                                                                   positiveButtonText ?? Strings.YesLabel,
+                                                                   negativeButtonText ?? Strings.NoLabel,
                                                                    GetAlertDialogConfiguration());
 
             return wasConfirmed ?? false;
         }
 
-        private IMaterialModalPage loadingDialog;
+        private IMaterialModalPage? loadingDialog;
 
         /// <inheritdoc/>
-        public async Task ShowLoadingDialogAsync(string message = null)
+        public async Task ShowLoadingDialogAsync(string? message = null)
         {
             if(loadingDialog != null)
+            {
                 await HideLoadingDialogAsync();
+            }
 
             loadingDialog = await MaterialDialog.Instance
                                                 .LoadingDialogAsync(message ?? Strings.LoadingLabel, GetLoadingDialogConfiguration());
@@ -52,6 +54,8 @@ namespace MoneyFox.Presentation.Services
         /// <inheritdoc/>
         public async Task HideLoadingDialogAsync()
         {
+            if(loadingDialog == null) return;
+
             await loadingDialog.DismissAsync();
         }
 

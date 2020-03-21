@@ -48,6 +48,9 @@
     <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,6 +69,7 @@
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchLink>None</MtouchLink>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -83,6 +87,7 @@
     <MtouchUseLlvm>true</MtouchUseLlvm>
     <OptimizePNGs>true</OptimizePNGs>
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
+    <MtouchFloat32>true</MtouchFloat32>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
     <DebugType>none</DebugType>
@@ -187,6 +192,7 @@
     <BundleResource Include="Resources\ic_transfer_black.png" />
     <BundleResource Include="Resources\ic_transfer_black%402x.png" />
     <BundleResource Include="Resources\ic_transfer_black%403x.png" />
+    <LinkDescription Include="LinkerDescription.xml" />
     <ImageAsset Include="Assets.xcassets\icon_more.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -288,16 +294,16 @@
       <Version>3.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
-      <Version>1.21.0</Version>
+      <Version>3.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.8.2</Version>
+      <Version>4.10.0</Version>
     </PackageReference>
     <PackageReference Include="MvvmLightLibsStd10">
       <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.6.8</Version>
+      <Version>4.7.0</Version>
     </PackageReference>
     <PackageReference Include="NLog.Targets.AppCenter">
       <Version>1.1.0</Version>
@@ -315,16 +321,16 @@
       <Version>4.7.0</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials">
-      <Version>1.4.0</Version>
+      <Version>1.5.1</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.4.0.991757</Version>
+      <Version>4.5.0.396</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.4.0.991757</Version>
+      <Version>4.5.0.396</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
-      <Version>1.5.8</Version>
+      <Version>1.6.1</Version>
     </PackageReference>
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0">
       <ExcludeAssets>all</ExcludeAssets>
@@ -337,15 +343,15 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
-      <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
+      <Project>{9777F861-F072-4FB3-A23E-09F37DF90CC1}</Project>
       <Name>MoneyFox.Application</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
-      <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
+      <Project>{3BBF9997-7AF3-411F-B6E3-88E9EC97C073}</Project>
       <Name>MoneyFox.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
-      <Project>{20A511B0-4372-4AA9-B27D-C36E49A022FB}</Project>
+      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
       <Name>MoneyFox.Persistence</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
