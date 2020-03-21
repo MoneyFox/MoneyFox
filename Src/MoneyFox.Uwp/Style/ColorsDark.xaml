@@ -16,4 +16,6 @@
     <Color x:Key="ListItemColor">#2d2d30</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
 
+    <Color x:Key="BorderColor">Black</Color>
+
 </ResourceDictionary>

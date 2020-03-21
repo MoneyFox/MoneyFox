@@ -18,4 +18,6 @@
     <Color x:Key="CommandBarBackgroundColor">#e6e6e6</Color>
     <Color x:Key="ListItemColor">White</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
+
+    <Color x:Key="BorderColor">#b3b2b0</Color>
 </ResourceDictionary>

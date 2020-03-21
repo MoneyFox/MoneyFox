@@ -34,7 +34,7 @@
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="viewModels:AccountViewModel">
 
             <uwpToolkit:DropShadowPanel ShadowOpacity="0.40">
-                <StackPanel Width="450">
+                <StackPanel Width="400">
                     <StackPanel.ContextFlyout>
                         <MenuFlyout>
                             <MenuFlyoutItem
