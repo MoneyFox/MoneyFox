@@ -7,7 +7,6 @@ using MoneyFox.Uwp.Views.Statistics;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 using Windows.Globalization;

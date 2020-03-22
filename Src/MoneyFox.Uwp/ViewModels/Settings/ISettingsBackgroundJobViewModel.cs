@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MoneyFox.Uwp.ViewModels.Settings
+﻿namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public interface ISettingsBackgroundJobViewModel
     {
