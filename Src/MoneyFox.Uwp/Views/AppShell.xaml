@@ -104,6 +104,17 @@
 
             </winui:NavigationView.MenuItems>
 
+            <winui:NavigationView.PaneCustomContent>
+                <winui:NavigationViewItem
+                    HorizontalAlignment="Right"
+                    helpers:NavHelper.NavigateTo="AddPaymentViewModel"
+                    Content="{x:Bind resources:Strings.AddPaymentLabel}">
+                    <winui:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE710;" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
+            </winui:NavigationView.PaneCustomContent>
+
             <winui:NavigationView.PaneFooter>
                 <CommandBar Background="{StaticResource NavigationViewTopPaneBackground}">
                     <AppBarButton
@@ -150,7 +161,6 @@
                     </AppBarButton>
                 </CommandBar>
             </winui:NavigationView.PaneFooter>
-
 
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemInvoked">
