@@ -196,6 +196,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Payment.
+        /// </summary>
+        public static string AddPaymentLabel {
+            get {
+                return ResourceManager.GetString("AddPaymentLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AddTitle {
