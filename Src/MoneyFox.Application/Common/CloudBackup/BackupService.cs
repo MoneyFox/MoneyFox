@@ -137,14 +137,14 @@ namespace MoneyFox.Application.Common.CloudBackup
             if(!connectivity.IsConnected)
                 throw new NetworkConnectionException();
 
-            await DownloadBackupAsync();
+            await DownloadBackupAsync(backupMode);
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
         }
 
-        private async Task DownloadBackupAsync()
+        private async Task DownloadBackupAsync(BackupMode backupMode)
         {
             DateTime backupDate = await GetBackupDateAsync();
-            if(settingsFacade.LastDatabaseUpdate > backupDate)
+            if(settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
             {
                 logger.Info("Local backup is newer than remote. Don't download backup");
                 return;
