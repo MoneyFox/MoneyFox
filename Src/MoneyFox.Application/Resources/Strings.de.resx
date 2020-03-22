@@ -862,6 +862,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Zahlung speichern...</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>End of Month</value>
+    <value>Ende des Monats</value>
   </data>
 </root>
