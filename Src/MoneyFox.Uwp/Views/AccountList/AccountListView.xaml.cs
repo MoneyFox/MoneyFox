@@ -12,6 +12,7 @@ namespace MoneyFox.Uwp.Views
     /// </summary>
     public sealed partial class AccountListView
     {
+        public override bool ShowHeader => false;
 
         /// <summary>
         /// Initialize View.
