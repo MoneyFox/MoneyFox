@@ -260,7 +260,10 @@
     <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticViewModel.cs" />
-    <Compile Include="Views\AccountListView.xaml.cs">
+    <Compile Include="Views\AccountList\AccountListToolbar.xaml.cs">
+      <DependentUpon>AccountListToolbar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AccountList\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddAccountView.xaml.cs">
@@ -457,7 +460,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AccountListView.xaml">
+    <Page Include="Views\AccountList\AccountListToolbar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AccountList\AccountListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -666,9 +673,7 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
