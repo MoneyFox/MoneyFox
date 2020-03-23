@@ -1,4 +1,4 @@
-﻿using MoneyFox.Ui.Shared.Utilities;
+﻿using MoneyFox.Application.Common;
 using MoneyFox.Uwp.ViewModels;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
