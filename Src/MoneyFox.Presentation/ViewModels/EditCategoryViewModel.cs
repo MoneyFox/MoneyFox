@@ -3,6 +3,7 @@ using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Command.UpdateCategory;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
