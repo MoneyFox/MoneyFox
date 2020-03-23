@@ -24,7 +24,6 @@
         <DataTemplate x:Key="GroupHeaderTemplate">
             <Border Padding="3" Background="Transparent">
                 <TextBlock
-                    Margin="{StaticResource MediumLeftRightMargin}"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center"
                     FontFamily="{StaticResource PhoneFontFamilySemiLight}"
