@@ -2,6 +2,7 @@
     x:Class="MoneyFox.Uwp.Views.UserControls.CategoryListControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -18,24 +19,29 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
-            <StackPanel RightTapped="CategoryListRightTapped">
-                <FlyoutBase.AttachedFlyout>
-                    <MenuFlyout>
-                        <MenuFlyoutItem
-                            Click="EditCategory"
-                            Icon="Edit"
-                            Text="{x:Bind resources:Strings.EditLabel}" />
-                        <MenuFlyoutItem
-                            Click="DeleteCategory"
-                            Icon="Delete"
-                            Text="{x:Bind resources:Strings.DeleteLabel}" />
-                    </MenuFlyout>
-                </FlyoutBase.AttachedFlyout>
+            <controls:DropShadowPanel
+                HorizontalContentAlignment="Stretch"
+                BlurRadius="4.0"
+                ShadowOpacity="0.40">
+                <StackPanel RightTapped="CategoryListRightTapped">
+                    <FlyoutBase.AttachedFlyout>
+                        <MenuFlyout>
+                            <MenuFlyoutItem
+                                Click="EditCategory"
+                                Icon="Edit"
+                                Text="{x:Bind resources:Strings.EditLabel}" />
+                            <MenuFlyoutItem
+                                Click="DeleteCategory"
+                                Icon="Delete"
+                                Text="{x:Bind resources:Strings.DeleteLabel}" />
+                        </MenuFlyout>
+                    </FlyoutBase.AttachedFlyout>
 
-                <StackPanel Padding="{StaticResource SmallListItemPadding}" Background="{ThemeResource ListItemBrush}">
-                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
+                    <StackPanel Padding="{StaticResource SmallListItemPadding}" Background="{ThemeResource ListItemBrush}">
+                        <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </controls:DropShadowPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="GroupHeaderTemplate">
