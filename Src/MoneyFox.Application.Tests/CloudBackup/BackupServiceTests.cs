@@ -276,8 +276,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   fileStoreMock.Object,
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
-                                                  contextAdapterMock.Object),
-                                                  longRunningTaskRequesterMock.Object;
+                                                  contextAdapterMock.Object,
+                                                  longRunningTaskRequesterMock.Object);
 
             // Act
             DateTime result = await backupService.GetBackupDateAsync();

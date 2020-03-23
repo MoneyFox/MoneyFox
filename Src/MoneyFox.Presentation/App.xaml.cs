@@ -1,5 +1,6 @@
 ﻿using CommonServiceLocator;
 using MediatR;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
@@ -7,7 +8,6 @@ using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Views;
-using MoneyFox.Ui.Shared.Utilities;
 using NLog;
 using System;
 using System.Threading.Tasks;
