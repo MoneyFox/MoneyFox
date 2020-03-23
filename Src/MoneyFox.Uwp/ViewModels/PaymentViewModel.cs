@@ -302,10 +302,7 @@ namespace MoneyFox.Uwp.ViewModels
         [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]
         private async void DeletePayment(PaymentViewModel payment)
         {
-            if(mediator == null)
-            {
-                mediator = ServiceLocator.Current.GetInstance<IMediator>();
-            }
+            mediator ??= ServiceLocator.Current.GetInstance<IMediator>();
 
             dialogService ??= ServiceLocator.Current.GetInstance<IDialogService>();
 
