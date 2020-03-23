@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
@@ -39,7 +40,7 @@ namespace MoneyFox.Application.Accounts.Commands.DeleteAccountById
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                await backupService.UploadBackupAsync();
+                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
 
                 return Unit.Value;
             }
