@@ -1,19 +1,20 @@
-﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.PaymentListView"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:converter="using:MoneyFox.Uwp.Converter"
-                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                xmlns:resources="using:MoneyFox.Application.Resources"
-                xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-                xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
-                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                NavigationCacheMode="Disabled"
-                mc:Ignorable="d"
-                DataContext="{Binding PaymentListVm, Source={StaticResource Locator}}">
+﻿<views:BaseView
+    x:Class="MoneyFox.Uwp.Views.PaymentListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:MoneyFox.Uwp.Converter"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:views="using:MoneyFox.Uwp.Views"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding PaymentListVm, Source={StaticResource Locator}}"
+    NavigationCacheMode="Disabled"
+    mc:Ignorable="d">
 
     <d:Page.DataContext>
         <designTime:DesignTimePaymentListViewModel />
@@ -27,68 +28,46 @@
 
     <Page.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-        <Flyout x:Key="FilterFlyout"
-                Placement="Top">
+        <Flyout x:Key="FilterFlyout" Placement="Top">
             <ListBox SelectionMode="Multiple">
                 <ListBoxItem>
-                    <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}"
-                              IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}"
-                              IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}" IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <DatePicker Header="{x:Bind resources:Strings.TimeRangeStartLabel}"
-                                Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                    <DatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <DatePicker Header="{x:Bind resources:Strings.TimeRangeEndLabel}"
-                                Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay }" />
+                    <DatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
                 </ListBoxItem>
             </ListBox>
         </Flyout>
     </Page.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
-            <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0"
-              Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}">
-            <userControls:PaymentListUserControl />
-        </Grid>
-
-        <CommandBar Grid.Row="1"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    DataContext="{Binding ViewActionViewModel}"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        <CommandBar
+            Grid.Row="0"
+            Margin="{StaticResource NegativeMediumLeftRightMargin}"
+            DataContext="{Binding ViewActionViewModel}"
+            OverflowButtonVisibility="Collapsed"
+            Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Filter"
-                              Label="{x:Bind resources:Strings.FilterLabel}"
-                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-                              Click="AppBarToggleButton_Click" />
-                <AppBarButton Command="{Binding GoToAddIncomeCommand}"
-                              IsEnabled="{Binding IsAddIncomeAvailable}"
-                              Icon="Add"
-                              Label="{x:Bind resources:Strings.AddIncomeLabel}" />
-                <AppBarButton Command="{Binding GoToAddExpenseCommand}"
-                              IsEnabled="{Binding IsAddExpenseAvailable}"
-                              Icon="Remove"
-                              Label="{x:Bind resources:Strings.AddExpenseLabel}" />
-                <AppBarButton Command="{Binding GoToAddTransferCommand}"
-                              IsEnabled="{Binding IsTransferAvailable}"
-                              Icon="Switch"
-                              Label="{x:Bind resources:Strings.AddTransferLabel}" />
+                <AppBarButton
+                    Click="AppBarToggleButton_Click"
+                    FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                    Icon="Filter"
+                    Label="{x:Bind resources:Strings.FilterLabel}" />
             </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Command="{Binding DeleteAccountCommand}"
-                              Icon="Delete"
-                              Label="{x:Bind resources:Strings.DeleteAccountLabel}" />
-            </CommandBar.SecondaryCommands>
         </CommandBar>
+
+        <userControls:PaymentListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+
     </Grid>
 </views:BaseView>

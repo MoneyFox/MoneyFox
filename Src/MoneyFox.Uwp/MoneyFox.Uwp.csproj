@@ -231,7 +231,6 @@
     <Compile Include="ViewModels\Interfaces\IBalanceViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IPaymentListViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IViewActionViewModel.cs" />
     <Compile Include="ViewModels\ISelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\ISelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\ISelectFilterDialogViewModel.cs" />

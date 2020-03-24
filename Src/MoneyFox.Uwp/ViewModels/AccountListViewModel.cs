@@ -48,7 +48,7 @@ namespace MoneyFox.Uwp.ViewModels
             this.settingsFacade = settingsFacade;
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationService);
-            ViewActionViewModel = new AccountListViewActionViewModel(mediator, this.navigationService);
+            ViewActionViewModel = new AccountListViewActionViewModel(this.navigationService);
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
         }

@@ -2,18 +2,18 @@
     x:Class="MoneyFox.Uwp.Views.UserControls.ModifyPaymentUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
-    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
-    xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
-    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-    mc:Ignorable="d"
+    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
     d:DesignHeight="300"
-    d:DesignWidth="400">
+    d:DesignWidth="400"
+    mc:Ignorable="d">
 
     <d:Page.DataContext>
         <designTime:DesignTimeModifyPaymentViewModel />
@@ -44,16 +44,23 @@
     <Grid>
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <ComboBox Margin="{StaticResource SmallTitleContentMargin}"
-                          HorizontalAlignment="Stretch"
-                          Header="{Binding AccountHeader}"
-                          ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
-                          ItemsSource="{Binding ChargedAccounts,
-                                                    Mode=TwoWay,
-                                                    UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding SelectedPayment.ChargedAccount,
-                                                     Mode=TwoWay,
-                                                     UpdateSourceTrigger=PropertyChanged}">
+                <ComboBox
+                    HorizontalAlignment="Stretch"
+                    Header="{x:Bind resources:Strings.PaymentTypeLabel}"
+                    SelectedIndex="0"
+                    SelectionChanged="ComboBox_SelectionChanged">
+                    <ComboBoxItem Content="{x:Bind resources:Strings.ExpenseLabel}" />
+                    <ComboBoxItem Content="{x:Bind resources:Strings.IncomeLabel}" />
+                    <ComboBoxItem Content="{x:Bind resources:Strings.TransferLabel}" />
+                </ComboBox>
+
+                <ComboBox
+                    Margin="{StaticResource SmallTitleContentMargin}"
+                    HorizontalAlignment="Stretch"
+                    Header="{Binding AccountHeader}"
+                    ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
+                    ItemsSource="{Binding ChargedAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelectedPayment.ChargedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
                             <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
@@ -61,18 +68,14 @@
                     </i:Interaction.Behaviors>
                 </ComboBox>
 
-                <ComboBox Margin="{StaticResource SmallTitleContentMargin}"
-                          HorizontalAlignment="Stretch"
-                          Header="{x:Bind resources:Strings.TargetAccountLabel}"
-                          ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
-                          ItemsSource="{Binding TargetAccounts,
-                                                    Mode=TwoWay,
-                                                    UpdateSourceTrigger=PropertyChanged}"
-                          SelectedItem="{Binding SelectedPayment.TargetAccount,
-                                                     Mode=TwoWay,
-                                                     UpdateSourceTrigger=PropertyChanged}"
-                          Visibility="{Binding SelectedPayment.IsTransfer,
-                                                   Converter={StaticResource BooleanVisibilityConverter}}">
+                <ComboBox
+                    Margin="{StaticResource SmallTitleContentMargin}"
+                    HorizontalAlignment="Stretch"
+                    Header="{x:Bind resources:Strings.TargetAccountLabel}"
+                    ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
+                    ItemsSource="{Binding TargetAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    SelectedItem="{Binding SelectedPayment.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Visibility="{Binding SelectedPayment.IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}">
                     <i:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="SelectionChanged">
                             <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
@@ -80,59 +83,49 @@
                     </i:Interaction.Behaviors>
 
                 </ComboBox>
-                <TextBox Margin="{StaticResource SmallTitleContentMargin}"
-                         Header="{x:Bind resources:Strings.AmountLabel}"
-                         InputScope="Number"
-                         Text="{Binding AmountString,
-                                        Mode=TwoWay,
-                                        UpdateSourceTrigger=PropertyChanged}"
-                         TextAlignment="Right" />
+                <TextBox
+                    Margin="{StaticResource SmallTitleContentMargin}"
+                    Header="{x:Bind resources:Strings.AmountLabel}"
+                    InputScope="Number"
+                    Text="{Binding AmountString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextAlignment="Right" />
 
                 <userControls:CategorySelectionControl />
 
-                <DatePicker Margin="{StaticResource SmallTitleContentMargin}"
-                            HorizontalAlignment="Left"
-                            Date="{Binding SelectedPayment.Date,
-                                               Converter={StaticResource DateTimeToDateTimeOffsetConverter},
-                                               Mode=TwoWay,
-                                               UpdateSourceTrigger=PropertyChanged}"
-                            Header="{x:Bind resources:Strings.DateLabel}" />
-                <TextBox Margin="{StaticResource SmallTitleContentMargin}"
-                         Header="{x:Bind resources:Strings.NoteLabel}"
-                         Text="{Binding SelectedPayment.Note,
-                                            Mode=TwoWay,
-                                            UpdateSourceTrigger=PropertyChanged}"
-                         TextWrapping="Wrap" />
+                <DatePicker
+                    Margin="{StaticResource SmallTitleContentMargin}"
+                    HorizontalAlignment="Left"
+                    Date="{Binding SelectedPayment.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    Header="{x:Bind resources:Strings.DateLabel}" />
+                <TextBox
+                    Margin="{StaticResource SmallTitleContentMargin}"
+                    Header="{x:Bind resources:Strings.NoteLabel}"
+                    Text="{Binding SelectedPayment.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    TextWrapping="Wrap" />
                 <!--  We set the binding as OneTime and update the value in the code behind to ensure that it is visible when the animation plays  -->
-                <ToggleSwitch Margin="{StaticResource SmallTitleContentMargin}"
-                              VerticalAlignment="Stretch"
-                              Header="{x:Bind resources:Strings.RecurringLabel}"
-                              IsOn="{Binding SelectedPayment.IsRecurring,
-                                                 Mode=TwoWay}"
-                              Toggled="ToggleRecurringVisibility" />
+                <ToggleSwitch
+                    Margin="{StaticResource SmallTitleContentMargin}"
+                    VerticalAlignment="Stretch"
+                    Header="{x:Bind resources:Strings.RecurringLabel}"
+                    IsOn="{Binding SelectedPayment.IsRecurring, Mode=TwoWay}"
+                    Toggled="ToggleRecurringVisibility" />
                 <StackPanel x:Name="RecurringStackPanel" Loaded="SetVisibilityInitially">
-                    <ComboBox HorizontalAlignment="Stretch"
-                              Margin="{StaticResource SmallTitleContentMargin}"
-                              Header="{x:Bind resources:Strings.RecurrenceLabel}"
-                              ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}"
-                              ItemsSource="{Binding RecurrenceList}"
-                              SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence,
-                                                         Mode=TwoWay,
-                                                         UpdateSourceTrigger=PropertyChanged}" />
-                    <CheckBox Content="{x:Bind resources:Strings.EndlessLabel}"
-                              Margin="{StaticResource SmallTitleContentMargin}"
-                              IsChecked="{Binding SelectedPayment.RecurringPayment.IsEndless,
-                                                      Mode=TwoWay,
-                                                      UpdateSourceTrigger=PropertyChanged}" />
-                    <DatePicker Margin="{StaticResource SmallTitleContentMargin}"
-                                Date="{Binding SelectedPayment.RecurringPayment.EndDate,
-                                                   Converter={StaticResource DateTimeToDateTimeOffsetConverter},
-                                                   Mode=TwoWay,
-                                                   UpdateSourceTrigger=PropertyChanged}"
-                                Header="{x:Bind resources:Strings.EnddateLabel}"
-                                Visibility="{Binding SelectedPayment.RecurringPayment.IsEndless,
-                                                         Converter={StaticResource BooleanVisibilityConverter},
-                                                         ConverterParameter=revert}" />
+                    <ComboBox
+                        Margin="{StaticResource SmallTitleContentMargin}"
+                        HorizontalAlignment="Stretch"
+                        Header="{x:Bind resources:Strings.RecurrenceLabel}"
+                        ItemTemplate="{StaticResource ComboBoxRecurrenceTemplate}"
+                        ItemsSource="{Binding RecurrenceList}"
+                        SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <CheckBox
+                        Margin="{StaticResource SmallTitleContentMargin}"
+                        Content="{x:Bind resources:Strings.EndlessLabel}"
+                        IsChecked="{Binding SelectedPayment.RecurringPayment.IsEndless, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <DatePicker
+                        Margin="{StaticResource SmallTitleContentMargin}"
+                        Date="{Binding SelectedPayment.RecurringPayment.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                        Header="{x:Bind resources:Strings.EnddateLabel}"
+                        Visibility="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

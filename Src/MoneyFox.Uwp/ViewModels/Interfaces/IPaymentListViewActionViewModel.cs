@@ -7,7 +7,7 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
     /// Represents the Actions for a view.     On Windows this is a normaly in the app bar.     On Android for example
     /// in a floating action button.
     /// </summary>
-    public interface IPaymentListViewActionViewModel : IViewActionViewModel
+    public interface IPaymentListViewActionViewModel
     {
         /// <summary>
         /// Deletes the currently selected account.
