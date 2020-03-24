@@ -106,6 +106,7 @@
 
             <winui:NavigationView.PaneCustomContent>
                 <winui:NavigationViewItem
+                    Padding="0,0,10,0"
                     HorizontalAlignment="Right"
                     Content="{x:Bind resources:Strings.AddPaymentLabel}"
                     Tapped="AddPaymentItemTapped">

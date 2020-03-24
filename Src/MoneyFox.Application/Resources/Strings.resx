@@ -868,4 +868,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Add Payment</value>
   </data>
+  <data name="PaymentTypeLabel" xml:space="preserve">
+    <value>Payment type</value>
+  </data>
+  <data name="IncomeLabel" xml:space="preserve">
+    <value>Income</value>
+  </data>
+  <data name="TransferLabel" xml:space="preserve">
+    <value>Transfer</value>
+  </data>
 </root>

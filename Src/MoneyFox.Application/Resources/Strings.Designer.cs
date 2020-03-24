@@ -1141,6 +1141,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Income.
+        /// </summary>
+        public static string IncomeLabel {
+            get {
+                return ResourceManager.GetString("IncomeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Income / Expenses:.
         /// </summary>
         public static string IncomeSpendingLabel {
@@ -1746,6 +1755,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment type.
+        /// </summary>
+        public static string PaymentTypeLabel {
+            get {
+                return ResourceManager.GetString("PaymentTypeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection..
         /// </summary>
         public static string PersonalizationInfoLabel {
@@ -2203,6 +2221,15 @@ namespace MoneyFox.Application.Resources {
         public static string TransferHeader {
             get {
                 return ResourceManager.GetString("TransferHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transfer.
+        /// </summary>
+        public static string TransferLabel {
+            get {
+                return ResourceManager.GetString("TransferLabel", resourceCulture);
             }
         }
         

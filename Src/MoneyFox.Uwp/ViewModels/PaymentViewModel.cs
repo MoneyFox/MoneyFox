@@ -44,6 +44,7 @@ namespace MoneyFox.Uwp.ViewModels
         public PaymentViewModel()
         {
             Date = DateTime.Today;
+            Type = PaymentType.Expense;
         }
 
         public PaymentViewModel(IMediator mediator, NavigationService navigationService) : this()

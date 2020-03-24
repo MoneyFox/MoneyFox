@@ -7,13 +7,12 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views"
-    mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding AddPaymentVm, Source={StaticResource Locator}}"
-    NavigationCacheMode="Enabled">
+    NavigationCacheMode="Enabled"
+    mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
@@ -21,17 +20,20 @@
 
         <userControls:ModifyPaymentUserControl Grid.Row="0" />
 
-        <CommandBar x:Name="BottomCommandBar"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    Grid.Row="1"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        <CommandBar
+            x:Name="BottomCommandBar"
+            Grid.Row="1"
+            Margin="{StaticResource NegativeMediumLeftRightMargin}"
+            Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Command="{Binding SaveCommand}"
-                              Icon="Save"
-                              Label="{x:Bind resources:Strings.DoneLabel}" />
-                <AppBarButton Command="{Binding CancelCommand}"
-                              Icon="Cancel"
-                              Label="{x:Bind resources:Strings.CancelLabel}" />
+                <AppBarButton
+                    Command="{Binding SaveCommand}"
+                    Icon="Save"
+                    Label="{x:Bind resources:Strings.DoneLabel}" />
+                <AppBarButton
+                    Command="{Binding CancelCommand}"
+                    Icon="Cancel"
+                    Label="{x:Bind resources:Strings.CancelLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Grid>
