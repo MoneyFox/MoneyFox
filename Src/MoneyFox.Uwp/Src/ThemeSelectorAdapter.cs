@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.Utilities;
+﻿using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Uwp.Services;
 using System;
 using Windows.UI.Xaml;

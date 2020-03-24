@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Common;
+using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.Utilities;

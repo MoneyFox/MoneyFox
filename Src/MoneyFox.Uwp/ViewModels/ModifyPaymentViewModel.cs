@@ -214,7 +214,9 @@ namespace MoneyFox.Uwp.ViewModels
             }
 
             if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
                 SelectedPayment.Amount = convertedValue;
+            }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");

@@ -1,4 +1,5 @@
-﻿using MoneyFox.Presentation.ViewModels;
+﻿using MoneyFox.Application.Common;
+using MoneyFox.Presentation.ViewModels;
 using MoneyFox.Ui.Shared.Utilities;
 using System;
 using Xamarin.Forms;

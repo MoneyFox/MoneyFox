@@ -64,6 +64,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
         private readonly IContextAdapter contextAdapter;
+        private readonly ILongRunningTaskRequester longRunningTaskRequester;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -73,13 +74,15 @@ namespace MoneyFox.Application.Common.CloudBackup
                              IFileStore fileStore,
                              ISettingsFacade settingsFacade,
                              IConnectivityAdapter connectivity,
-                             IContextAdapter contextAdapter)
+                             IContextAdapter contextAdapter,
+                             ILongRunningTaskRequester longRunningTaskRequester)
         {
             this.cloudBackupService = cloudBackupService;
             this.fileStore = fileStore;
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
             this.contextAdapter = contextAdapter;
+            this.longRunningTaskRequester = longRunningTaskRequester;
         }
 
         public async Task LoginAsync()
@@ -137,8 +140,12 @@ namespace MoneyFox.Application.Common.CloudBackup
             if(!connectivity.IsConnected)
                 throw new NetworkConnectionException();
 
+            var taskId = longRunningTaskRequester.RequestLongRunning();
+
             await DownloadBackupAsync(backupMode);
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
+
+            longRunningTaskRequester.EndLongRunning(taskId);
         }
 
         private async Task DownloadBackupAsync(BackupMode backupMode)
@@ -183,6 +190,8 @@ namespace MoneyFox.Application.Common.CloudBackup
                 return;
             }
 
+            var taskId = longRunningTaskRequester.RequestLongRunning();
+
             if(!settingsFacade.IsLoggedInToBackupService)
             {
                 logger.Info("Upload started, but not loggedin. Try to login.");
@@ -191,6 +200,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             await EnqueueBackupTaskAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
+            longRunningTaskRequester.EndLongRunning(taskId);
         }
 
         private async Task EnqueueBackupTaskAsync(int attempts = 0)

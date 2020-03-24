@@ -1,4 +1,4 @@
-﻿using MoneyFox.Ui.Shared.Utilities;
+﻿using MoneyFox.Application.Common;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;

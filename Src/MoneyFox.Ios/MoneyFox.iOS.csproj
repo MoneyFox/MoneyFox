@@ -152,6 +152,7 @@
     <Compile Include="Renderer\NavigationPageRenderer.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\IosFileStore.cs" />
+    <Compile Include="Src\LongRunningTaskRequester.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
     <Compile Include="Src\StoreOperations.cs" />
     <Content Include="..\MoneyFox.Presentation\App.config">
