@@ -72,5 +72,10 @@ namespace MoneyFox.Uwp.Views
         {
             WindowsShellViewModel.NavigationService.Navigate(ViewModelLocator.StatisticCategorySummary);
         }
+
+        private void AddPaymentItemTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        {
+            WindowsShellViewModel.NavigationService.Navigate(ViewModelLocator.AddPayment);
+        }
     }
 }

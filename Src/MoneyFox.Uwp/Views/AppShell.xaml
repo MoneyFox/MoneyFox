@@ -107,8 +107,8 @@
             <winui:NavigationView.PaneCustomContent>
                 <winui:NavigationViewItem
                     HorizontalAlignment="Right"
-                    helpers:NavHelper.NavigateTo="AddPaymentViewModel"
-                    Content="{x:Bind resources:Strings.AddPaymentLabel}">
+                    Content="{x:Bind resources:Strings.AddPaymentLabel}"
+                    Tapped="AddPaymentItemTapped">
                     <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE710;" />
                     </winui:NavigationViewItem.Icon>
