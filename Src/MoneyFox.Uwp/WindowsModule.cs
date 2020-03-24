@@ -26,6 +26,7 @@ namespace MoneyFox.Uwp
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();
 
+            builder.RegisterType<LongRunningTaskRequester>().AsImplementedInterfaces();
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
