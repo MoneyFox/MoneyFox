@@ -610,7 +610,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Hinzufügen</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Konto hinzufügen</value>
   </data>
   <data name="SaveAccountLabel" xml:space="preserve">
     <value>Konto Speichern</value>
@@ -865,15 +865,15 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Ende des Monats</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Zahlung hinzufügen</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Payment type</value>
+    <value>Zahlungstyp</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Einnahme</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>Übertrag</value>
   </data>
 </root>
