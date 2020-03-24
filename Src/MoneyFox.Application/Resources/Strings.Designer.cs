@@ -124,7 +124,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Account.
+        ///   Looks up a localized string similar to Add Account.
         /// </summary>
         public static string AddAccountLabel {
             get {

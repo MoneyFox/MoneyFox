@@ -611,7 +611,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Add</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Account</value>
+    <value>Add Account</value>
   </data>
   <data name="SaveAccountLabel" xml:space="preserve">
     <value>Save Account</value>
