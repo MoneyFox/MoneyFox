@@ -73,17 +73,19 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <accountlist:AccountListToolbar Grid.Row="0" DataContext="{Binding ViewActionViewModel}" />
+
         <controls:BalanceControl
-            Grid.Row="0"
+            Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             DataContext="{Binding BalanceViewModel}" />
 
         <ListView
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="{StaticResource MediumLeftRightMargin}"
             IsEnabled="True"
             IsTapEnabled="False"
@@ -117,10 +119,8 @@
             </ListView.ItemContainerStyle>
         </ListView>
 
-        <accountlist:AccountListToolbar Grid.Row="2" />
-
         <TextBlock
-            Grid.Row="1"
+            Grid.Row="2"
             Margin="6"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"

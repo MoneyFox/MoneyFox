@@ -5,32 +5,20 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <CommandBar DataContext="{Binding ViewActionViewModel}" Style="{ThemeResource DefaultCommandBar}">
-        <AppBarButton
-            HorizontalAlignment="Left"
-            Command="{Binding GoToAddIncomeCommand}"
-            Icon="Add"
-            IsEnabled="{Binding IsAddIncomeAvailable}"
-            Label="{x:Bind resources:Strings.AddIncomeLabel}" />
-
-        <AppBarButton
-            Command="{Binding GoToAddExpenseCommand}"
-            Icon="Remove"
-            IsEnabled="{Binding IsAddExpenseAvailable}"
-            Label="{x:Bind resources:Strings.AddExpenseLabel}" />
-        <AppBarButton
-            Command="{Binding GoToAddTransferCommand}"
-            Icon="Switch"
-            IsEnabled="{Binding IsTransferAvailable}"
-            Label="{x:Bind resources:Strings.AddTransferLabel}" />
-
-        <AppBarButton
-            Command="{Binding GoToAddAccountCommand}"
-            Icon="Account"
-            Label="{x:Bind resources:Strings.AddAccountLabel}" />
-    </CommandBar>
+    <Grid>
+        <winui:NavigationViewItem
+            Padding="0,0,10,0"
+            HorizontalAlignment="Right"
+            Content="{x:Bind resources:Strings.AddAccountLabel}"
+            Tapped="AddAccountTapped">
+            <winui:NavigationViewItem.Icon>
+                <FontIcon Glyph="&#xE710;" />
+            </winui:NavigationViewItem.Icon>
+        </winui:NavigationViewItem>
+    </Grid>
 </UserControl>
