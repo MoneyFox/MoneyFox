@@ -10,7 +10,6 @@ using NLog.Targets;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using Rg.Plugins.Popup;
-using System;
 using System.IO;
 using UIKit;
 using Xamarin.Essentials;
