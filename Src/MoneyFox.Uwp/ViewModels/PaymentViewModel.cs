@@ -1,18 +1,12 @@
 ﻿using AutoMapper;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Payments.Commands.DeletePaymentById;
-using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Uwp.Services;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 
 namespace MoneyFox.Uwp.ViewModels
@@ -37,9 +31,7 @@ namespace MoneyFox.Uwp.ViewModels
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
 
-        private IMediator mediator;
         private NavigationService navigationService;
-        private IDialogService dialogService;
 
         public PaymentViewModel()
         {
@@ -288,41 +280,10 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         public Command EditPaymentCommand => new Command(EditPayment);
 
-        /// <summary>
-        /// Deletes the passed PaymentViewModel.
-        /// </summary>
-        public Command<PaymentViewModel> DeletePaymentCommand => new Command<PaymentViewModel>(DeletePayment);
-
         private void EditPayment()
         {
             navigationService ??= ServiceLocator.Current.GetInstance<NavigationService>();
-
             navigationService.Navigate(ViewModelLocator.EditPayment, Id);
-        }
-
-        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]
-        private async void DeletePayment(PaymentViewModel payment)
-        {
-            mediator ??= ServiceLocator.Current.GetInstance<IMediator>();
-
-            dialogService ??= ServiceLocator.Current.GetInstance<IDialogService>();
-
-            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
-                                                            Strings.DeletePaymentConfirmationMessage,
-                                                            Strings.YesLabel,
-                                                            Strings.NoLabel))
-                return;
-
-            var command = new DeletePaymentByIdCommand(payment.Id);
-
-            if(payment.IsRecurring)
-            {
-                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
-                                                                                             Strings.DeleteRecurringPaymentMessage);
-            }
-
-            await mediator.Send(command);
-            Messenger.Default.Send(new RemovePaymentMessage(payment.Id));
         }
     }
 }
