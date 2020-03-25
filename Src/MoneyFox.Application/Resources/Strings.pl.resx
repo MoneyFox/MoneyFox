@@ -609,7 +609,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Dodaj</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Konto</value>
+    <value>Add Account</value>
   </data>
   <data name="SaveAccountLabel" xml:space="preserve">
     <value>Zapisz konto</value>
@@ -862,5 +862,17 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
     <value>End of Month</value>
+  </data>
+  <data name="AddPaymentLabel" xml:space="preserve">
+    <value>Add Payment</value>
+  </data>
+  <data name="PaymentTypeLabel" xml:space="preserve">
+    <value>Payment type</value>
+  </data>
+  <data name="IncomeLabel" xml:space="preserve">
+    <value>Income</value>
+  </data>
+  <data name="TransferLabel" xml:space="preserve">
+    <value>Transfer</value>
   </data>
 </root>
