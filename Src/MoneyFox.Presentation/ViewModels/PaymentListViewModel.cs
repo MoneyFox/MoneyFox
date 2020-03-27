@@ -10,6 +10,8 @@ using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -23,6 +25,8 @@ namespace MoneyFox.Presentation.ViewModels
     /// </summary>
     public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
     {
+        private static ILogger logger = LogManager.GetCurrentClassLogger();
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
@@ -160,11 +164,19 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task LoadPaymentListAsync()
         {
-            await dialogService.ShowLoadingDialogAsync();
-
-            await LoadDataAsync();
-
-            await dialogService.HideLoadingDialogAsync();
+            try
+            {
+                await dialogService.ShowLoadingDialogAsync();
+                await LoadDataAsync();
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex, "Error on loading payment list.");
+            }
+            finally
+            {
+                await dialogService.HideLoadingDialogAsync();
+            }
         }
 
         private async Task LoadDataAsync()
@@ -176,14 +188,12 @@ namespace MoneyFox.Presentation.ViewModels
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
-            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
-                                                                                                                         filterMessage.TimeRangeStart,
-                                                                                                                         filterMessage
-                                                                                                                            .TimeRangeEnd)
-                                                                                        {
-                                                                                            IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                                                                                            IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-                                                                                        }));
+            var loadedPayments = mapper.Map<List<PaymentViewModel>>(
+                await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId, filterMessage.TimeRangeStart, filterMessage.TimeRangeEnd)
+                {
+                    IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                    IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+                }));
 
             foreach(PaymentViewModel payment in loadedPayments)
             {
