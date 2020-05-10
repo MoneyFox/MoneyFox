@@ -16,6 +16,7 @@ namespace MoneyFox.iOS
 
             builder.RegisterModule<PresentationModule>();
 
+            builder.RegisterType<GraphServiceClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<LongRunningTaskRequester>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
