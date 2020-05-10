@@ -53,24 +53,19 @@ namespace MoneyFox.Application.Common.CloudBackup
                 IAccount firstAccount = accounts.FirstOrDefault();
                 authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
-                GraphServiceClient = new GraphServiceClient(
-                                                            new DelegateAuthenticationProvider(requestMessage =>
-                                                                                               {
-                                                                                                   requestMessage.Headers.Authorization =
-                                                                                                       new
-                                                                                                           AuthenticationHeaderValue("bearer",
-                                                                                                                                     authResult
-                                                                                                                                        .AccessToken);
-                                                                                                   return Task.CompletedTask;
-                                                                                               }));
+                GraphServiceClient = new GraphServiceClient(new DelegateAuthenticationProvider(requestMessage =>
+                                                            {
+                                                                requestMessage.Headers.Authorization =
+                                                                    new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+                                                                return Task.CompletedTask;
+                                                            }));
             }
             catch(MsalUiRequiredException ex)
             {
                 logManager.Debug(ex);
                 // pop the browser for the interactive experience
                 authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
-                                                          .WithParentActivityOrWindow(ParentActivityWrapper
-                                                                                         .ParentActivity) // this is required for Android
+                                                          .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                                                           .ExecuteAsync();
             }
             catch(MsalClientException ex)
