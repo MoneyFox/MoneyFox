@@ -30,7 +30,7 @@
     <PackageReference Include="NLog" Version="4.7.0" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.12.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.13.0" />
     <PackageReference Include="Microsoft.Graph" Version="3.4.0" />
   </ItemGroup>
 
