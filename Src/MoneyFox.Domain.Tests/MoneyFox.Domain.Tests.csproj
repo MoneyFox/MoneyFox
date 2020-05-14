@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.0" />
     <PackageReference Include="NLog" Version="4.7.0" />
     <PackageReference Include="Should-DotNetStandard" Version="1.0.0" />
