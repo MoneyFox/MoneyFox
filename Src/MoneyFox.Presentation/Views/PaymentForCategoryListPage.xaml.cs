@@ -14,6 +14,7 @@ namespace MoneyFox.Presentation.Views
         public PaymentForCategoryListPage(PaymentForCategoryParameter parameter)
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.PaymentForCategoryListVm;
 
             ViewModel.CategoryId = parameter.CategoryId;
             ViewModel.TimeRangeFrom = parameter.TimeRangeFrom;

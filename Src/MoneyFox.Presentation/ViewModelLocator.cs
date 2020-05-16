@@ -114,11 +114,11 @@ namespace MoneyFox.Presentation
 
         public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
 
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm
-                                                          => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public static PaymentForCategoryListViewModel PaymentForCategoryListVm => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
 
-        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm
-                                                        => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
 
         //*****************
         //  Settings

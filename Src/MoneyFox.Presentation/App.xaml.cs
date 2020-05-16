@@ -61,6 +61,7 @@ namespace MoneyFox.Presentation
             NavigationService.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowPage));
             NavigationService.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingPage));
             NavigationService.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryPage));
+            NavigationService.Configure(ViewModelLocator.PaymentForCategoryList, typeof(PaymentForCategoryListPage));
 
             // Settings
             NavigationService.Configure(ViewModelLocator.SettingsRegional, typeof(SettingsRegionalPage));

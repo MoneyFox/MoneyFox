@@ -61,6 +61,7 @@
                                 <material:MaterialCard
                                     Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                     ClickCommand="{Binding BindingContext.ShowCategoryPaymentsCommand, Source={x:Reference StatisticCategorySummary}}"
+                                    ClickCommandParameter="{Binding .}"
                                     Style="{StaticResource ListCardStyle}">
 
                                     <StackLayout
