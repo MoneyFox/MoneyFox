@@ -1755,6 +1755,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payments for Category.
+        /// </summary>
+        public static string PaymentsForCategoryTitle {
+            get {
+                return ResourceManager.GetString("PaymentsForCategoryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment type.
         /// </summary>
         public static string PaymentTypeLabel {

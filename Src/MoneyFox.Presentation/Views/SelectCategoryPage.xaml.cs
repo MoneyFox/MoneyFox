@@ -52,7 +52,9 @@ namespace MoneyFox.Presentation.Views
             base.OnDisappearing();
 
             if(Navigation.ModalStack.Count > 0)
+            {
                 await Navigation.PopModalAsync();
+            }
         }
 
         private void AddCategoryClick(object sender, EventArgs e)
