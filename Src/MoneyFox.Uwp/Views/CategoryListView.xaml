@@ -39,7 +39,7 @@
             <CommandBar.PrimaryCommands>
                 <AppBarButton
                     x:Uid="AddCategoryViewModelLabel"
-                    Command="{Binding CreateNewCategoryCommand}"
+                    Click="AddNewCategoryClick"
                     Icon="Add"
                     Label="{x:Bind resources:Strings.AddCategoryLabel}" />
             </CommandBar.PrimaryCommands>
