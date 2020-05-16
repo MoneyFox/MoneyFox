@@ -29,8 +29,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => selectedCategory;
             set
             {
-                if(selectedCategory == value)
-                    return;
+                if(selectedCategory == value) return;
                 selectedCategory = value;
                 RaisePropertyChanged();
             }
