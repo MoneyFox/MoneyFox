@@ -40,8 +40,7 @@ namespace MoneyFox.Uwp.Views
             var element = (FrameworkElement)sender;
             var category = element.DataContext as CategoryViewModel;
 
-            if(category == null)
-                return;
+            if(category == null) return;
 
             ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
         }

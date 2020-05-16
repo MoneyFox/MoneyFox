@@ -1,16 +1,17 @@
-﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.CategoryListView"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:resources="using:MoneyFox.Application.Resources"
-                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
-                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
-                xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
-                mc:Ignorable="d"
-                DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}">
+﻿<views:BaseView
+    x:Class="MoneyFox.Uwp.Views.CategoryListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:views="using:MoneyFox.Uwp.Views"
+    DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
 
     <d:Page.DataContext>
         <designTime:DesignTimeCategoryListViewModel />
@@ -22,8 +23,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -31,14 +31,17 @@
 
         <controls:CategoryListControl Grid.Row="0" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
 
-        <CommandBar Grid.Row="1"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        <CommandBar
+            Grid.Row="1"
+            Margin="{StaticResource NegativeMediumLeftRightMargin}"
+            OverflowButtonVisibility="Collapsed"
+            Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton x:Uid="AddCategoryViewModelLabel"
-                              Command="{Binding CreateNewCategoryCommand}"
-                              Icon="Add"
-                              Label="{x:Bind resources:Strings.AddCategoryLabel}" />
+                <AppBarButton
+                    x:Uid="AddCategoryViewModelLabel"
+                    Command="{Binding CreateNewCategoryCommand}"
+                    Icon="Add"
+                    Label="{x:Bind resources:Strings.AddCategoryLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Grid>
