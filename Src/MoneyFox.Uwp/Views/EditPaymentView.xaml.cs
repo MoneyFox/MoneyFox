@@ -15,5 +15,10 @@ namespace MoneyFox.Uwp.Views
             ViewModel.PaymentId = paymentId;
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
+
+        private void Dismiss(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            Hide();
+        }
     }
 }

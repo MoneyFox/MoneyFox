@@ -71,11 +71,6 @@ namespace MoneyFox.Uwp.ViewModels
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(OpenSelectCategoryList);
 
         /// <summary>
-        /// Cancels the operations.
-        /// </summary>
-        public RelayCommand CancelCommand => new RelayCommand(Cancel);
-
-        /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
         public RelayCommand ResetCategoryCommand => new RelayCommand(ResetSelection);
@@ -268,11 +263,6 @@ namespace MoneyFox.Uwp.ViewModels
         private void ResetSelection()
         {
             SelectedPayment.Category = null;
-        }
-
-        private void Cancel()
-        {
-            navigationService.GoBack();
         }
 
         private void UpdateOtherComboBox()

@@ -9,38 +9,14 @@
     Title="{Binding Title}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding EditPaymentVm, Source={StaticResource Locator}}"
+    PrimaryButtonCommand="{Binding SaveCommand}"
+    PrimaryButtonText="{x:Bind resources:Strings.DoneLabel}"
+    SecondaryButtonCommand="{Binding CancelCommand}"
+    SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
     mc:Ignorable="d">
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
         <userControls:ModifyPaymentUserControl Grid.Row="0" />
-
-        <CommandBar
-            x:Name="BottomCommandBar"
-            Grid.Row="1"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton
-                    Command="{Binding SaveCommand}"
-                    Icon="Save"
-                    Label="{x:Bind resources:Strings.DoneLabel}" />
-                <AppBarButton
-                    Command="{Binding CancelCommand}"
-                    Icon="Cancel"
-                    Label="{x:Bind resources:Strings.CancelLabel}" />
-            </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton
-                    Command="{Binding DeleteCommand}"
-                    Icon="Delete"
-                    Label="{x:Bind resources:Strings.DeleteLabel}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 
 </ContentDialog>
