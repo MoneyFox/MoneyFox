@@ -302,6 +302,9 @@
     <Compile Include="Views\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PaymentForCategoryListDialog.xaml.cs">
+      <DependentUpon>PaymentForCategoryListDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PaymentListView.xaml.cs">
       <DependentUpon>PaymentListView.xaml</DependentUpon>
     </Compile>
@@ -513,6 +516,10 @@
     <Page Include="Views\AppShell.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PaymentForCategoryListDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PaymentListView.xaml">
       <Generator>MSBuild:Compile</Generator>

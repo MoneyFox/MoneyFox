@@ -56,6 +56,8 @@ namespace MoneyFox.Uwp
 
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
 
+        public static string PaymentForCategoryList => nameof(PaymentForCategoryListViewModel);
+
         //*****************
         //  Settings
         //*****************
@@ -88,19 +90,18 @@ namespace MoneyFox.Uwp
         //*****************
         //  Common
         //*****************
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm
-                                                     => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
 
         //*****************
         //  Statistics
         //*****************
         public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
 
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm
-                                                          => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
 
-        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm
-                                                        => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+
+        public static PaymentForCategoryListViewModel PaymentForCategoryListVm => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
 
         //*****************
         //  Settings
