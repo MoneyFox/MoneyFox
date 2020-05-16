@@ -79,6 +79,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                                                                                          .CategoryOverviewItems
                                                                                          .Select(x => new CategoryOverviewViewModel
                                                                                          {
+                                                                                             CategoryId = x.CategoryId,
                                                                                              Value = x.Value,
                                                                                              Average = x.Average,
                                                                                              Label = x.Label,

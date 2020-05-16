@@ -1,15 +1,16 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             mc:Ignorable="d"
-             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
-             Visual="Material"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage">
+﻿<ContentPage
+    x:Class="MoneyFox.Presentation.Views.StatisticCashFlowPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Visual="Material"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeStatisticCashFlowViewModel />
@@ -17,9 +18,10 @@
 
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="{x:Static resources:Strings.CashFlowStatisticTitle}"
-                   LineBreakMode="TailTruncation"
-                   Style="{StaticResource SmallPageTitle}" />
+            <Label
+                LineBreakMode="TailTruncation"
+                Style="{StaticResource SmallPageTitle}"
+                Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
             <userControls:StatisticDateRangeUserControl />
         </StackLayout>
     </NavigationPage.TitleView>

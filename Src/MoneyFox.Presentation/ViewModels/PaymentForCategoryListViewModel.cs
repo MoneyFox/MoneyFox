@@ -1,12 +1,15 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Internal;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.Groups;
 using NLog;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Presentation.ViewModels
@@ -23,7 +26,7 @@ namespace MoneyFox.Presentation.ViewModels
             this.mediator = mediator;
             this.mapper = mapper;
 
-            PaymentList = new ObservableCollection<PaymentViewModel>();
+            PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
         }
 
         public int CategoryId { get; set; }
@@ -37,8 +40,8 @@ namespace MoneyFox.Presentation.ViewModels
 
         public bool IsPaymentsEmpty => PaymentList != null && !PaymentList.Any();
 
-        private ObservableCollection<PaymentViewModel> paymentList;
-        public ObservableCollection<PaymentViewModel> PaymentList
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList;
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList
         {
             get => paymentList;
             private set
@@ -54,8 +57,11 @@ namespace MoneyFox.Presentation.ViewModels
         {
             logger.Info($"Loading payments for category with id {CategoryId}");
 
-            var loadedPayments = await mediator.Send(new GetPaymentsForCategoryQuery(CategoryId, TimeRangeFrom, TimeRangeTo));
-            loadedPayments.ForEach(x => PaymentList.Add(mapper.Map<PaymentViewModel>(x)));
+            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForCategoryQuery(CategoryId, TimeRangeFrom, TimeRangeTo)));
+
+            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(loadedPayments, s => s.Date.ToString("D", CultureInfo.CurrentCulture), s => s.Date);
+
+            PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
         }
     }
 }
