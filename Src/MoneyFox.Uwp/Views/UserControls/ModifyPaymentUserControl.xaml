@@ -41,7 +41,7 @@
         </DataTemplate>
     </UserControl.Resources>
 
-    <ScrollViewer Margin="{StaticResource NegativeMediumLeftRightMargin}" VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
             <ComboBox
                 HorizontalAlignment="Stretch"

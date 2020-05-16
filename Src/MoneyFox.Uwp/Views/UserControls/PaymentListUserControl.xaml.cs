@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.ViewModels;
+using System;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -24,16 +25,21 @@ namespace MoneyFox.Uwp.Views.UserControls
                                                                                .Select(x => (DateListGroupCollection<PaymentViewModel>) x)
                                                                                .FirstOrDefault(group => group.Any(x => x.IsCleared));
 
-            if(selectedGroupCollection == null)
-                return;
+            if(selectedGroupCollection == null) return;
 
             PaymentListView.ScrollIntoView(selectedGroupCollection, ScrollIntoViewAlignment.Leading);
         }
 
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+        private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
             var viewModel = e.ClickedItem as PaymentViewModel;
-            viewModel.EditPaymentCommand.Execute(null);
+            await new EditPaymentView(viewModel.Id).ShowAsync();
+        }
+
+        private async void EditPaymentClick(object sender, RoutedEventArgs e)
+        {
+            var viewModel = (sender as MenuFlyoutItem).CommandParameter as PaymentViewModel;
+            await new EditPaymentView(viewModel.Id).ShowAsync();
         }
     }
 }

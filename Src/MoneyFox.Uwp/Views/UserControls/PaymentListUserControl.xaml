@@ -60,6 +60,7 @@
                 x:Name="PaymentListView"
                 Background="Transparent"
                 IsItemClickEnabled="False"
+                ItemClick="ListView_ItemClick"
                 ItemsSource="{Binding Source={StaticResource Groups}}"
                 Loaded="PaymentListView_OnLoaded"
                 SelectionMode="None">
@@ -124,7 +125,7 @@
                                                 <Grid.ContextFlyout>
                                                     <MenuFlyout>
                                                         <MenuFlyoutItem
-                                                            Command="{x:Bind EditPaymentCommand}"
+                                                            Click="EditPaymentClick"
                                                             CommandParameter="{x:Bind}"
                                                             Icon="Edit"
                                                             Text="{x:Bind resources:Strings.EditLabel}" />
