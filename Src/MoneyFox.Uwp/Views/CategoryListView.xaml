@@ -25,14 +25,14 @@
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:CategoryListControl Grid.Row="0" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+        <controls:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
 
         <CommandBar
-            Grid.Row="1"
+            Grid.Row="0"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
             OverflowButtonVisibility="Collapsed"
             Style="{ThemeResource DefaultCommandBar}">
