@@ -11,18 +11,25 @@ namespace MoneyFox.Presentation.Views
     {
         private PaymentForCategoryListViewModel ViewModel => BindingContext as PaymentForCategoryListViewModel;
 
-        public PaymentForCategoryListPage(int categoryId, DateTime timeRangeFrom, DateTime timeRangeTo)
+        public PaymentForCategoryListPage(PaymentForCategoryParameter parameter)
         {
             InitializeComponent();
 
-            ViewModel.CategoryId = categoryId;
-            ViewModel.TimeRangeFrom = timeRangeFrom;
-            ViewModel.TimeRangeTo = timeRangeTo;
+            ViewModel.CategoryId = parameter.CategoryId;
+            ViewModel.TimeRangeFrom = parameter.TimeRangeFrom;
+            ViewModel.TimeRangeTo = parameter.TimeRangeTo;
         }
 
         protected override void OnAppearing()
         {
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+        }
+
+        public class PaymentForCategoryParameter
+        {
+            public int CategoryId { get; set; }
+            public DateTime TimeRangeFrom { get; set; }
+            public DateTime TimeRangeTo { get; set; }
         }
     }
 }

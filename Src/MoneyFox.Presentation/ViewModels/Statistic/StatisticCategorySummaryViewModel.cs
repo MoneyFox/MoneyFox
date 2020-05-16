@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using static MoneyFox.Presentation.Views.PaymentForCategoryListPage;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
@@ -62,7 +63,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         /// <inheritdoc/>
         public bool HasData => CategorySummary.Any();
 
-        public Command ShowCategoryPaymentsCommand = new Command(ShowCategoryPayments);
+        public Command<CategoryOverviewViewModel> ShowCategoryPaymentsCommand => new Command<CategoryOverviewViewModel>(ShowCategoryPayments);
 
         /// <summary>
         /// Overrides the load method to load the category summary data.
@@ -99,7 +100,12 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
         private void ShowCategoryPayments(CategoryOverviewViewModel categoryOverviewModel)
         {
-            navigationService.NavigateToModal(ViewModelLocator.PaymentForCategoryList, categoryOverviewModel.CategoryId, StartDate, EndDate);
+            navigationService.NavigateToModal(ViewModelLocator.PaymentForCategoryList, new PaymentForCategoryParameter
+            {
+                CategoryId = categoryOverviewModel.CategoryId,
+                TimeRangeFrom = StartDate,
+                TimeRangeTo = EndDate
+            });
         }
     }
 }
