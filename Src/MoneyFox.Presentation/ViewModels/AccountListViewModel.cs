@@ -88,8 +88,6 @@ namespace MoneyFox.Presentation.ViewModels
 
         public Command<MaterialMenuResult> MenuSelectedCommand => new Command<MaterialMenuResult>(MenuSelected);
 
-        public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
-
         public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(DeleteAsync);
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
@@ -113,11 +111,6 @@ namespace MoneyFox.Presentation.ViewModels
                     logManager.Warn("Invalid Index for Menu Selected in Account List. Index: {0}", menuResult.Index);
                     break;
             }
-        }
-
-        private void EditAccount(AccountViewModel accountViewModel)
-        {
-            navigationService.NavigateToModal(ViewModelLocator.EditAccount, accountViewModel.Id);
         }
 
         private async Task LoadAsync()

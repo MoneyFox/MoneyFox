@@ -42,21 +42,5 @@ namespace MoneyFox.Presentation.Views
             Navigation.PushPopupAsync(new AddAccountAndPaymentPopup { BindingContext = ViewModel?.ViewActionViewModel })
                       .FireAndForgetSafeAsync();
         }
-
-        private void EditAccount(object sender, EventArgs e)
-        {
-            if(!(sender is MenuItem menuItem))
-                return;
-
-            ViewModel?.EditAccountCommand.Execute(menuItem.CommandParameter as AccountViewModel);
-        }
-
-        private void DeleteAccount(object sender, EventArgs e)
-        {
-            if(!(sender is MenuItem menuItem))
-                return;
-
-            ViewModel?.DeleteAccountCommand.ExecuteAsync(menuItem.CommandParameter as AccountViewModel).FireAndForgetSafeAsync();
-        }
     }
 }

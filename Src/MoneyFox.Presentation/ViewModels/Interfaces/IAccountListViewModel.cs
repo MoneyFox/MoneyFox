@@ -48,11 +48,6 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
         Command<MaterialMenuResult> MenuSelectedCommand { get; }
 
         /// <summary>
-        /// Edit the selected Account
-        /// </summary>
-        RelayCommand<AccountViewModel> EditAccountCommand { get; }
-
-        /// <summary>
         /// Deletes the selected Account
         /// </summary>
         AsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
