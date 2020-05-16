@@ -1,15 +1,16 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             mc:Ignorable="d"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
-             x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
-             Visual="Material"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             Title="{x:Static resources:Strings.CategorySummaryTitle}">
+﻿<ContentPage
+    x:Class="MoneyFox.Presentation.Views.StatisticCategorySummaryPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+    Title="{x:Static resources:Strings.CategorySummaryTitle}"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Visual="Material"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeStatisticCategorySummaryViewModel />
@@ -17,9 +18,10 @@
 
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="{x:Static resources:Strings.CategorySummaryTitle}"
-                   LineBreakMode="TailTruncation"
-                   Style="{StaticResource SmallPageTitle}" />
+            <Label
+                LineBreakMode="TailTruncation"
+                Style="{StaticResource SmallPageTitle}"
+                Text="{x:Static resources:Strings.CategorySummaryTitle}" />
             <userControls:StatisticDateRangeUserControl />
         </StackLayout>
     </NavigationPage.TitleView>
@@ -32,8 +34,8 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
 
-            <userControls:IncomeExpenseBalanceUserControl BindingContext="{Binding IncomeExpenseBalance}"
-                                                          HorizontalOptions="CenterAndExpand" />
+            <userControls:IncomeExpenseBalanceUserControl BindingContext="{Binding IncomeExpenseBalance}" HorizontalOptions="CenterAndExpand" />
+
             <userControls:CategoryOverviewSummaryUserControl Grid.Row="1" />
         </Grid>
     </ContentPage.Content>

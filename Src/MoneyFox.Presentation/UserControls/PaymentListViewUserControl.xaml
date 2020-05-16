@@ -41,7 +41,7 @@
             BackgroundColor="Transparent"
             CachingStrategy="RetainElement"
             IsGroupingEnabled="True"
-            ItemsSource="{Binding DailyList}"
+            ItemsSource="{Binding PaymentList}"
             RowHeight="50"
             SeparatorVisibility="None">
 

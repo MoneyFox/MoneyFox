@@ -101,6 +101,9 @@
     <Compile Update="UserControls\PaymentListViewUserControl.xaml.cs">
       <DependentUpon>PaymentListViewUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\PaymentForCategoryListPage.xaml.cs">
+      <DependentUpon>PaymentForCategoryListPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -144,6 +147,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\EditPaymentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\PaymentForCategoryListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsRegionalPage.xaml">

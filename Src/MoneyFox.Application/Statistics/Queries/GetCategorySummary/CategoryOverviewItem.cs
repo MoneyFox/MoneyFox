@@ -2,6 +2,8 @@
 {
     public class CategoryOverviewItem
     {
+        public int CategoryId { get; set; }
+
         public string Label { get; set; }
 
         public decimal Value { get; set; }

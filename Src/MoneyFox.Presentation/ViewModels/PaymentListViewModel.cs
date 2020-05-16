@@ -36,7 +36,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private int accountId;
         private IBalanceViewModel balanceViewModel;
-        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> dailyList;
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList;
 
         private string title;
         private IPaymentListViewActionViewModel viewActionViewModel;
@@ -70,7 +70,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         /// Indicator if there are payments or not.
         /// </summary>
-        public bool IsPaymentsEmpty => DailyList != null && !DailyList.Any();
+        public bool IsPaymentsEmpty => PaymentList != null && !PaymentList.Any();
 
         /// <summary>
         /// Id for the current account.
@@ -116,12 +116,12 @@ namespace MoneyFox.Presentation.ViewModels
         /// <summary>
         /// Returns daily grouped related payments
         /// </summary>
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList
         {
-            get => dailyList;
+            get => paymentList;
             private set
             {
-                dailyList = value;
+                paymentList = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(IsPaymentsEmpty));
@@ -205,7 +205,7 @@ namespace MoneyFox.Presentation.ViewModels
                              s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                              s => s.Date);
 
-            DailyList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+            PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
         }
     }
 }

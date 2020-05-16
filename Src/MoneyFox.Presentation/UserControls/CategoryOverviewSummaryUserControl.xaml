@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             mc:Ignorable="d"
-             x:Class="MoneyFox.Presentation.UserControls.CategoryOverviewSummaryUserControl">
+﻿<ContentView
+    x:Class="MoneyFox.Presentation.UserControls.CategoryOverviewSummaryUserControl"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels"
+    mc:Ignorable="d">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -19,56 +19,56 @@
 
     <ContentView.Content>
         <Grid x:Name="MainLayout">
-            <ListView x:Name="CategorySummaryList"
-                      ItemsSource="{Binding CategorySummary}"
-                      BackgroundColor="Transparent"
-                      RowHeight="70"
-                      SeparatorVisibility="None"
-                      CachingStrategy="RetainElement">
+            <ListView
+                x:Name="CategorySummaryList"
+                BackgroundColor="Transparent"
+                CachingStrategy="RetainElement"
+                ItemsSource="{Binding CategorySummary}"
+                RowHeight="70"
+                SeparatorVisibility="None">
 
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="viewModels:CategoryOverviewViewModel">
                         <ViewCell>
-                            <material:MaterialCard Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                                   Style="{StaticResource ListCardStyle}">
+                            <material:MaterialCard
+                                Margin="{StaticResource SmallLeftRightTopBottomMargin}"
+                                ClickCommand="{Binding ShowPaymentsCommand}"
+                                Style="{StaticResource ListCardStyle}">
 
-                                <StackLayout Padding="3"
-                                             Spacing="3"
-                                             HorizontalOptions="FillAndExpand"
-                                             Margin="{DynamicResource DefaultListItemsMargin}">
+                                <StackLayout
+                                    Margin="{DynamicResource DefaultListItemsMargin}"
+                                    Padding="3"
+                                    HorizontalOptions="FillAndExpand"
+                                    Spacing="3">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Grid.Column="0"
-                                               Text="{Binding Label}"
-                                               LineBreakMode="TailTruncation"
-                                               HorizontalOptions="StartAndExpand"
-                                               Style="{StaticResource ListItemHeaderStyle}" />
+                                        <Label
+                                            Grid.Column="0"
+                                            HorizontalOptions="StartAndExpand"
+                                            LineBreakMode="TailTruncation"
+                                            Style="{StaticResource ListItemHeaderStyle}"
+                                            Text="{Binding Label}" />
 
-                                        <StackLayout Grid.Column="1"
-                                                     HorizontalOptions="End"
-                                                     Orientation="Horizontal"
-                                                     Spacing="0"
-                                                     VerticalOptions="Center">
-                                            <Label
-                                                Text="{Binding Value, Converter={StaticResource AmountValueConverter}}"
-                                                Style="{DynamicResource DefaultTextStyle}" />
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            Orientation="Horizontal"
+                                            Spacing="0"
+                                            VerticalOptions="Center">
+                                            <Label Style="{DynamicResource DefaultTextStyle}" Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" />
 
-                                            <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}"
-                                                   Style="{DynamicResource DefaultTextStyle}" />
+                                            <Label Style="{DynamicResource DefaultTextStyle}" Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
 
                                         </StackLayout>
                                     </Grid>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{x:Static resources:Strings.MonthlyAverageLabel}"
-                                               Style="{DynamicResource DeemphasizedLabelStyle}" />
-                                        <Label
-                                            Text="{Binding Average, Converter={StaticResource AmountValueConverter}}"
-                                            Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                        <Label Style="{DynamicResource DeemphasizedLabelStyle}" Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
+                                        <Label Style="{DynamicResource DeemphasizedLabelStyle}" Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
                                     </StackLayout>
 
                                 </StackLayout>
@@ -78,13 +78,14 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Label Margin="6"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   Style="{DynamicResource DeemphasizedLabelStyle}"
-                   LineBreakMode="WordWrap"
-                   IsVisible="{Binding HasData, Converter={StaticResource InverseBoolConverter}}"
-                   Text="{x:Static resources:Strings.NoStatisticItemsMessage}" />
+            <Label
+                Margin="6"
+                HorizontalOptions="Center"
+                IsVisible="{Binding HasData, Converter={StaticResource InverseBoolConverter}}"
+                LineBreakMode="WordWrap"
+                Style="{DynamicResource DeemphasizedLabelStyle}"
+                Text="{x:Static resources:Strings.NoStatisticItemsMessage}"
+                VerticalOptions="Center" />
         </Grid>
 
     </ContentView.Content>

@@ -59,6 +59,8 @@ namespace MoneyFox.Presentation
         public static string StatisticCategorySpreading => nameof(StatisticCategorySpreadingViewModel);
 
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
+        public static string PaymentForCategoryList => nameof(PaymentForCategoryListViewModel);
+
 
         //*****************
         //  Settings
