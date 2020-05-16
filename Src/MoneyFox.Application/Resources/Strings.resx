@@ -880,4 +880,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Payments for Category</value>
   </data>
+  <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
+    <value>There are no Payments for this category in this time frame.</value>
+  </data>
 </root>

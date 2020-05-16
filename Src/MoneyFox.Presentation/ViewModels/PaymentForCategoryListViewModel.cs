@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using MediatR;
+using Microsoft.EntityFrameworkCore.Internal;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Ui.Shared.Commands;
 using NLog;
 using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -35,7 +35,20 @@ namespace MoneyFox.Presentation.ViewModels
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
-        public ObservableCollection<PaymentViewModel> PaymentList { get; set; }
+        public bool IsPaymentsEmpty => PaymentList != null && !PaymentList.Any();
+
+        private ObservableCollection<PaymentViewModel> paymentList;
+        public ObservableCollection<PaymentViewModel> PaymentList
+        {
+            get => paymentList;
+            private set
+            {
+                paymentList = value;
+                RaisePropertyChanged();
+                // ReSharper disable once ExplicitCallerInfoArgument
+                RaisePropertyChanged(nameof(IsPaymentsEmpty));
+            }
+        }
 
         private async Task Initialize()
         {
