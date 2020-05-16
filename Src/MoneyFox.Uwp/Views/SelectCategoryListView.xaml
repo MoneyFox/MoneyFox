@@ -1,17 +1,18 @@
-﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.SelectCategoryListView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-      xmlns:i="using:Microsoft.Xaml.Interactivity"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:resources="using:MoneyFox.Application.Resources"
-      xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
-      xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
-      xmlns:views="using:MoneyFox.Uwp.Views"
-      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-      mc:Ignorable="d"
-      DataContext="{Binding SelectCategoryListVm, Source={StaticResource Locator}}">
+﻿<ContentDialog
+    x:Class="MoneyFox.Uwp.Views.SelectCategoryListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    Title="{x:Bind resources:Strings.SelectCategoryTitle}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding SelectCategoryListVm, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
 
     <d:Page.DataContext>
         <designTime:DesignTimeCategoryListViewModel />
@@ -23,18 +24,7 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <Page.Transitions>
-        <TransitionCollection>
-            <NavigationThemeTransition>
-                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
-                    <SlideNavigationTransitionInfo />
-                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
-            </NavigationThemeTransition>
-        </TransitionCollection>
-    </Page.Transitions>
-
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
@@ -42,14 +32,13 @@
 
         <controls:CategoryListControl Grid.Row="0" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
 
-        <CommandBar Grid.Row="1"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        <CommandBar Grid.Row="1" Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Command="{Binding CreateNewCategoryCommand}"
-                              Icon="Add"
-                              Label="{x:Bind resources:Strings.AddCategoryLabel}" />
+                <AppBarButton
+                    Command="{Binding CreateNewCategoryCommand}"
+                    Icon="Add"
+                    Label="{x:Bind resources:Strings.AddCategoryLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Grid>
-</views:BaseView>
+</ContentDialog>

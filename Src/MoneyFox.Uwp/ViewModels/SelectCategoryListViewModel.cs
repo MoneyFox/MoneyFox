@@ -42,7 +42,6 @@ namespace MoneyFox.Uwp.ViewModels
         protected override void ItemClick(CategoryViewModel category)
         {
             MessengerInstance.Send(new CategorySelectedMessage(this, category.Id));
-            NavigationService.GoBack();
         }
     }
 }

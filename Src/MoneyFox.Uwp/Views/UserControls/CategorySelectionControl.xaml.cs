@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using System;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views.UserControls
 {
@@ -7,6 +8,11 @@ namespace MoneyFox.Uwp.Views.UserControls
         public CategorySelectionControl()
         {
             InitializeComponent();
+        }
+
+        private async void SelectCategory_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            await new SelectCategoryListView().ShowAsync();
         }
     }
 }
