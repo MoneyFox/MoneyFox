@@ -238,6 +238,7 @@
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\PaymentForCategoryListViewModel.cs" />
     <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewActionViewModel.cs" />
     <Compile Include="ViewModels\PaymentListViewModel.cs" />

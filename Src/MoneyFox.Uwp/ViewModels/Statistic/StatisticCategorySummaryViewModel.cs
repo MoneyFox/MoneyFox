@@ -55,22 +55,22 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             CategorySummaryModel categorySummaryModel =
                 await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
 
-            CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
-                                                                                  categorySummaryModel
+            CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(categorySummaryModel
                                                                                      .CategoryOverviewItems
                                                                                      .Select(x => new CategoryOverviewViewModel
-                                                                                                  {
-                                                                                                      Value = x.Value,
-                                                                                                      Average = x.Average,
-                                                                                                      Label = x.Label,
-                                                                                                      Percentage = x.Percentage
-                                                                                                  }));
+                                                                                     {
+                                                                                         CategoryId = x.CategoryId,
+                                                                                         Value = x.Value,
+                                                                                         Average = x.Average,
+                                                                                         Label = x.Label,
+                                                                                         Percentage = x.Percentage
+                                                                                     }));
 
             IncomeExpenseBalance = new IncomeExpenseBalanceViewModel
-                                   {
-                                       TotalEarned = categorySummaryModel.TotalEarned,
-                                       TotalSpent = categorySummaryModel.TotalSpent
-                                   };
+            {
+                TotalEarned = categorySummaryModel.TotalEarned,
+                TotalSpent = categorySummaryModel.TotalSpent
+            };
         }
     }
 }
