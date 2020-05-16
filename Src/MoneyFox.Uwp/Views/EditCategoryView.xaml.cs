@@ -1,23 +1,17 @@
 ﻿using MoneyFox.Uwp.ViewModels;
-using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class EditCategoryView
+    public sealed partial class EditCategoryView : ContentDialog
     {
-        public override string Header => ViewModelLocator.EditCategoryVm.Title;
-
         private EditCategoryViewModel ViewModel => DataContext as EditCategoryViewModel;
 
-        public EditCategoryView()
+        public EditCategoryView(int categoryId)
         {
             InitializeComponent();
-        }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if(e.Parameter != null)
-                ViewModel.CategoryId = (int) e.Parameter;
+            ViewModel.CategoryId = categoryId;
         }
     }
 }

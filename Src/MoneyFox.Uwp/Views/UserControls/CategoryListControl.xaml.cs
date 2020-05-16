@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Application.Common;
 using MoneyFox.Uwp.ViewModels;
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -22,13 +23,14 @@ namespace MoneyFox.Uwp.Views.UserControls
             flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
         }
 
-        private void EditCategory(object sender, RoutedEventArgs e)
+        private async void EditCategory(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
             var category = element.DataContext as CategoryViewModel;
 
-            if(category == null)
-                return;
+            if(category == null) return;
+
+            await new EditCategoryView(category.Id).ShowAsync();
 
             ((AbstractCategoryListViewModel) DataContext).EditCategoryCommand.Execute(category);
         }
