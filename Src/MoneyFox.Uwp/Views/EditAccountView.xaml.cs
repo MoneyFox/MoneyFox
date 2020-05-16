@@ -1,23 +1,16 @@
 ﻿using MoneyFox.Uwp.ViewModels;
-using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class EditAccountView
+    public sealed partial class EditAccountView : ContentDialog
     {
-        public override string Header => ViewModelLocator.EditPaymentVm.Title;
-
         private EditAccountViewModel ViewModel => DataContext as EditAccountViewModel;
 
-        public EditAccountView()
+        public EditAccountView(int accountId)
         {
             InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            if(e.Parameter != null)
-                ViewModel.AccountId = (int) e.Parameter;
+            ViewModel.AccountId = accountId;
         }
     }
 }
