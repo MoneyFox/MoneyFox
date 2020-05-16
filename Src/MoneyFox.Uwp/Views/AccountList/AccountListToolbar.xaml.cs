@@ -16,7 +16,7 @@ namespace MoneyFox.Uwp.Views.AccountList
 
         private async void AddAccountTapped(object sender, TappedRoutedEventArgs e)
         {
-            await new AddAccountView().ShowAsync();
+            await new AddAccountDialog().ShowAsync();
         }
     }
 }

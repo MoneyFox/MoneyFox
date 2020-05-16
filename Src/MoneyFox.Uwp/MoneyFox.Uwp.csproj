@@ -268,8 +268,8 @@
     <Compile Include="Views\AccountList\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddAccountView.xaml.cs">
-      <DependentUpon>AddAccountView.xaml</DependentUpon>
+    <Compile Include="Views\AddAccountDialog.xaml.cs">
+      <DependentUpon>AddAccountDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddCategoryDialog.xaml.cs">
       <DependentUpon>AddCategoryDialog.xaml</DependentUpon>
@@ -473,7 +473,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddAccountView.xaml">
+    <Page Include="Views\AddAccountDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
