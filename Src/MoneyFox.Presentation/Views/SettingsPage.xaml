@@ -1,58 +1,58 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             x:Class="MoneyFox.Presentation.Views.SettingsPage"
-             Visual="Material"
-             x:Name="root"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+﻿<ContentPage
+    x:Class="MoneyFox.Presentation.Views.SettingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="root"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Visual="Material"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeSettingsViewModel />
     </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <ListView x:Name="SettingsList"
-                  ItemsSource="{Binding SettingsList}"
-                  HasUnevenRows="True"
-                  BackgroundColor="Transparent"
-                  CachingStrategy="RecycleElementAndDataTemplate"
-                  SeparatorVisibility="None">
+        <ListView
+            x:Name="SettingsList"
+            BackgroundColor="Transparent"
+            CachingStrategy="RecycleElementAndDataTemplate"
+            HasUnevenRows="True"
+            ItemsSource="{Binding SettingsList}"
+            SeparatorVisibility="None">
 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <material:MaterialCard
+                            Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                             ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.GoToSettingCommand}"
                             ClickCommandParameter="{Binding .}"
-                            Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                             Style="{StaticResource ListCardStyle}">
 
-                            <StackLayout Orientation="Vertical"
-                                         Padding="3"
-                                         Spacing="{DynamicResource DefaultSpacing}">
+                            <StackLayout
+                                Padding="3"
+                                Orientation="Vertical"
+                                Spacing="{DynamicResource DefaultSpacing}">
 
-                                <StackLayout Orientation="Horizontal"
-                                             Spacing="{DynamicResource DefaultSpacing}">
+                                <StackLayout Orientation="Horizontal" Spacing="{DynamicResource DefaultSpacing}">
 
-                                    <Image HeightRequest="15"
-                                           WidthRequest="15">
+                                    <Image HeightRequest="15" WidthRequest="15">
                                         <Image.Source>
                                             <FontImageSource
-                                                Glyph="{Binding Icon}"
                                                 FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
+                                                Glyph="{Binding Icon}"
                                                 Color="{DynamicResource PrimaryFontColor}" />
                                         </Image.Source>
                                     </Image>
 
-                                    <Label Text="{Binding Name}"
-                                           Style="{DynamicResource ListItemHeaderStyle}" />
+                                    <Label Style="{DynamicResource ListItemHeaderStyle}" Text="{Binding Name}" />
 
                                 </StackLayout>
-                                <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                <Label Style="{DynamicResource DeemphasizedLabelStyle}" Text="{Binding Description}" />
                             </StackLayout>
 
                         </material:MaterialCard>
