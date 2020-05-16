@@ -201,13 +201,11 @@ namespace MoneyFox.Uwp.ViewModels
             foreach(var dailyGroup in dailyItems)
             {
                 var monthlyIncome = dailyGroup.Where(payment => payment.Type == PaymentType.Income
-                                                                || (payment.Type == PaymentType.Transfer
-                                                                    && payment.TargetAccount.Id == AccountId))
+                                                                || (payment.Type == PaymentType.Transfer && payment.TargetAccount.Id == AccountId))
                                               .Sum(x => x.Amount);
 
                 var monthlyExpenses = dailyGroup.Where(payment => payment.Type == PaymentType.Expense
-                                                                  || (payment.Type == PaymentType.Transfer
-                                                                      && payment.ChargedAccount.Id == AccountId))
+                                                                  || (payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == AccountId))
                                                 .Sum(x => x.Amount);
 
                 dailyGroup.Title = $"+{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
@@ -217,12 +215,9 @@ namespace MoneyFox.Uwp.ViewModels
                 DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(dailyItems,
                                                                                                 s =>
                                                                                                 {
-                                                                                                    var date = Convert.ToDateTime(s.Key,
-                                                                                                                                  CultureInfo.CurrentCulture);
+                                                                                                    var date = Convert.ToDateTime(s.Key,CultureInfo.CurrentCulture);
                                                                                                     return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                                                                                                },
-                                                                                                s => Convert.ToDateTime(s.Key,
-                                                                                                                        CultureInfo.CurrentCulture)));
+                                                                                                },s => Convert.ToDateTime(s.Key,CultureInfo.CurrentCulture)));
         }
     }
 }

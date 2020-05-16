@@ -13,6 +13,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             CategoryOverviewItems = categoryOverviewItems;
         }
 
+        public int CategoryId { get; set; }
+
         public decimal TotalEarned { get; set; }
 
         public decimal TotalSpent { get; set; }

@@ -1,19 +1,20 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
-             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             Visual="Material"
-             x:Name="root"
-             x:Class="MoneyFox.Presentation.Views.AccountListPage"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}"
-             Title="{x:Static resources:Strings.AccountsTitle}">
+﻿<ContentPage
+    x:Class="MoneyFox.Presentation.Views.AccountListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
+    xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
+    x:Name="root"
+    Title="{x:Static resources:Strings.AccountsTitle}"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Visual="Material"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeAccountListViewModel />
@@ -30,24 +31,27 @@
             <userControls:BalanceUserControl BindingContext="{Binding BalanceViewModel}" />
 
             <Grid VerticalOptions="FillAndExpand">
-                <ListView x:Name="AccountsList"
-                          ItemsSource="{Binding Accounts}"
-                          HasUnevenRows="true"
-                          CachingStrategy="RecycleElementAndDataTemplate"
-                          BackgroundColor="Transparent"
-                          IsGroupingEnabled="True"
-                          SeparatorVisibility="None">
+                <ListView
+                    x:Name="AccountsList"
+                    BackgroundColor="Transparent"
+                    CachingStrategy="RecycleElementAndDataTemplate"
+                    HasUnevenRows="true"
+                    IsGroupingEnabled="True"
+                    ItemsSource="{Binding Accounts}"
+                    SeparatorVisibility="None">
 
                     <ListView.GroupHeaderTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}"
-                                             Margin="0,0,0,-1"
-                                             Padding="0,18,0,6">
-                                    <Label Text="{Binding Key}"
-                                           VerticalOptions="CenterAndExpand"
-                                           VerticalTextAlignment="Center"
-                                           Style="{StaticResource ListGroupHeaderStyle}" />
+                                <StackLayout
+                                    Margin="0,0,0,-1"
+                                    Padding="0,18,0,6"
+                                    BackgroundColor="{DynamicResource WindowBackgroundColor}">
+                                    <Label
+                                        Style="{StaticResource ListGroupHeaderStyle}"
+                                        Text="{Binding Key}"
+                                        VerticalOptions="CenterAndExpand"
+                                        VerticalTextAlignment="Center" />
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
@@ -57,14 +61,15 @@
                         <DataTemplate x:DataType="viewModels:AccountViewModel">
                             <ViewCell>
                                 <material:MaterialCard
+                                    Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                     ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.OpenOverviewCommand}"
                                     ClickCommandParameter="{Binding .}"
-                                    Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                     Style="{StaticResource ListCardStyle}">
 
-                                    <StackLayout Orientation="Vertical"
-                                                 Padding="3"
-                                                 Spacing="{StaticResource DefaultSpacing}">
+                                    <StackLayout
+                                        Padding="3"
+                                        Orientation="Vertical"
+                                        Spacing="{StaticResource DefaultSpacing}">
 
                                         <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
@@ -74,22 +79,25 @@
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
 
-                                            <Label Grid.Column="0"
-                                                   Text="{Binding Name}"
-                                                   Style="{StaticResource ListItemHeaderStyle}" />
+                                            <Label
+                                                Grid.Column="0"
+                                                Style="{StaticResource ListItemHeaderStyle}"
+                                                Text="{Binding Name}" />
 
-                                            <Label Grid.Column="1"
-                                                   HorizontalTextAlignment="End"
-                                                   Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                                                   Style="{StaticResource ListItemHeaderStyle}" />
+                                            <Label
+                                                Grid.Column="1"
+                                                HorizontalTextAlignment="End"
+                                                Style="{StaticResource ListItemHeaderStyle}"
+                                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}" />
 
-                                            <material:MaterialMenuButton Grid.Column="2"
-                                                                         ButtonType="Text"
-                                                                         Image="icon_more.png"
-                                                                         Style="{StaticResource MenuButtonStyle}"
-                                                                         Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
-                                                                         Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
-                                                                         CommandParameter="{Binding .}" />
+                                            <material:MaterialMenuButton
+                                                Grid.Column="2"
+                                                ButtonType="Text"
+                                                Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
+                                                Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Image="icon_more.png"
+                                                Style="{StaticResource MenuButtonStyle}" />
 
                                         </Grid>
                                     </StackLayout>
@@ -99,13 +107,11 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-                <ImageButton
-                    Clicked="AddItem_Clicked"
-                    Style="{StaticResource FabPrimary}">
+                <ImageButton Clicked="AddItem_Clicked" Style="{StaticResource FabPrimary}">
                     <ImageButton.Source>
                         <FontImageSource
-                            Glyph="{StaticResource Add}"
                             FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
+                            Glyph="{StaticResource Add}"
                             Size="33"
                             Color="White" />
                     </ImageButton.Source>
@@ -118,14 +124,15 @@
                     </ImageButton.IsVisible>
                 </ImageButton>
 
-                <Label Margin="6"
-                       x:Name="PlaceHolderLabel"
-                       HorizontalOptions="CenterAndExpand"
-                       VerticalOptions="CenterAndExpand"
-                       Style="{StaticResource DeemphasizedLabelStyle}"
-                       LineBreakMode="WordWrap"
-                       IsVisible="{Binding HasNoAccounts}"
-                       Text="{x:Static resources:Strings.NoAccountsMessage}" />
+                <Label
+                    x:Name="PlaceHolderLabel"
+                    Margin="6"
+                    HorizontalOptions="CenterAndExpand"
+                    IsVisible="{Binding HasNoAccounts}"
+                    LineBreakMode="WordWrap"
+                    Style="{StaticResource DeemphasizedLabelStyle}"
+                    Text="{x:Static resources:Strings.NoAccountsMessage}"
+                    VerticalOptions="CenterAndExpand" />
             </Grid>
         </StackLayout>
     </ContentPage.Content>

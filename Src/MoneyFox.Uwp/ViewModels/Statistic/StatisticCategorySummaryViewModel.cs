@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using GalaSoft.MvvmLight.Command;
+using MediatR;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using System.Collections.ObjectModel;
@@ -52,8 +53,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// </summary>
         protected override async Task LoadAsync()
         {
-            CategorySummaryModel categorySummaryModel =
-                await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
+            CategorySummaryModel categorySummaryModel = await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
 
             CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(categorySummaryModel
                                                                                      .CategoryOverviewItems

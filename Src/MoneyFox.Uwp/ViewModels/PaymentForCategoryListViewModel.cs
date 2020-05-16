@@ -26,7 +26,7 @@ namespace MoneyFox.Uwp.ViewModels
             this.mediator = mediator;
             this.mapper = mapper;
 
-            PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
+            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
         }
 
         public int CategoryId { get; set; }
@@ -38,15 +38,15 @@ namespace MoneyFox.Uwp.ViewModels
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
-        public bool IsPaymentsEmpty => PaymentList != null && !PaymentList.Any();
+        public bool IsPaymentsEmpty => Source != null && !Source.Any();
 
-        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList;
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList
+        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
+        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
         {
-            get => paymentList;
+            get => source;
             private set
             {
-                paymentList = value;
+                source = value;
                 RaisePropertyChanged();
                 // ReSharper disable once ExplicitCallerInfoArgument
                 RaisePropertyChanged(nameof(IsPaymentsEmpty));
@@ -59,9 +59,18 @@ namespace MoneyFox.Uwp.ViewModels
 
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForCategoryQuery(CategoryId, TimeRangeFrom, TimeRangeTo)));
 
-            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(loadedPayments, s => s.Date.ToString("D", CultureInfo.CurrentCulture), s => s.Date);
+            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
+               .CreateGroups(loadedPayments,
+                             s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                             s => s.Date);
 
-            PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
+                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(dailyItems,
+                                                                                                s =>
+                                                                                                {
+                                                                                                    var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
+                                                                                                    return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
+                                                                                                }, s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
         }
     }
 }

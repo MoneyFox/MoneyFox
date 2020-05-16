@@ -1,16 +1,27 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using MoneyFox.Uwp.ViewModels;
+using System;
+using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class PaymentForCategoryListDialog : ContentDialog
     {
-        public PaymentForCategoryListDialog()
+        private PaymentForCategoryListViewModel ViewModel => DataContext as PaymentForCategoryListViewModel;
+
+        public PaymentForCategoryListDialog(PaymentForCategoryParameter parameter)
         {
             InitializeComponent();
+
+            ViewModel.CategoryId = parameter.CategoryId;
+            ViewModel.TimeRangeFrom = parameter.TimeRangeFrom;
+            ViewModel.TimeRangeTo = parameter.TimeRangeTo;
         }
 
-        private void ContentDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+        public class PaymentForCategoryParameter
         {
+            public int CategoryId { get; set; }
+            public DateTime TimeRangeFrom { get; set; }
+            public DateTime TimeRangeTo { get; set; }
         }
     }
 }
