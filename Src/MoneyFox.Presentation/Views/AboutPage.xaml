@@ -1,15 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             mc:Ignorable="d"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             Visual="Material"
-             x:Class="MoneyFox.Presentation.Views.AboutPage"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+﻿<ContentPage
+    x:Class="MoneyFox.Presentation.Views.AboutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Visual="Material"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeAboutViewModel />
@@ -19,63 +18,65 @@
         <ScrollView>
             <StackLayout Padding="6">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{x:Static resources:Strings.VersionLabel}"
-                           Style="{StaticResource DefaultTextStyle}" />
-                    <Label Text="{Binding Version}"
-                           Style="{StaticResource DefaultTextStyle}" />
+                    <Label Style="{StaticResource DefaultTextStyle}" Text="{x:Static resources:Strings.VersionLabel}" />
+                    <Label Style="{StaticResource DefaultTextStyle}" Text="{Binding Version}" />
                 </StackLayout>
 
-                <Label Text="{x:Static resources:Strings.ContactLabel}"
-                       Style="{StaticResource DefaultTextStyle}"
-                       HorizontalOptions="Start" />
+                <Label
+                    HorizontalOptions="Start"
+                    Style="{StaticResource DefaultTextStyle}"
+                    Text="{x:Static resources:Strings.ContactLabel}" />
 
-                <Button Text="{x:Static resources:Strings.WebsiteLabel}"
-                        Style="{StaticResource DefaultButtonStyle}"
-                        Command="{Binding GoToWebsiteCommand}" />
+                <Button
+                    Command="{Binding GoToWebsiteCommand}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    Text="{x:Static resources:Strings.WebsiteLabel}" />
 
-                <Button Text="{x:Static resources:Strings.EmailLabel}"
-                        Style="{StaticResource DefaultButtonStyle}"
-                        Command="{Binding SendMailCommand}" />
+                <Button
+                    Command="{Binding SendMailCommand}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    Text="{x:Static resources:Strings.EmailLabel}" />
 
-                <Button Text="{x:Static resources:Strings.RateLabel}"
-                        Style="{StaticResource DefaultButtonStyle}"
-                        Command="{Binding RateAppCommand}" />
+                <Button
+                    Command="{Binding RateAppCommand}"
+                    Style="{StaticResource DefaultButtonStyle}"
+                    Text="{x:Static resources:Strings.RateLabel}" />
 
-                <Label Text="{x:Static resources:Strings.TranslationLabel}"
-                       Style="{StaticResource DefaultTextStyle}" />
-                <Label Text="www.crowdin.com"
-                       Style="{StaticResource DeemphasizedLabelStyle}"
-                       HorizontalOptions="CenterAndExpand">
+                <Label Style="{StaticResource DefaultTextStyle}" Text="{x:Static resources:Strings.TranslationLabel}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource DeemphasizedLabelStyle}"
+                    Text="www.crowdin.com">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToTranslationProjectCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{x:Static resources:Strings.InfoOpenSource}"
-                       Style="{StaticResource DefaultTextStyle}" />
-                <Label Text="www.github.com"
-                       Style="{StaticResource DeemphasizedLabelStyle}"
-                       HorizontalOptions="CenterAndExpand">
+                <Label Style="{StaticResource DefaultTextStyle}" Text="{x:Static resources:Strings.InfoOpenSource}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource DeemphasizedLabelStyle}"
+                    Text="www.github.com">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToRepositoryCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{x:Static resources:Strings.ContributerLabel}"
-                       Style="{StaticResource DefaultTextStyle}" />
-                <Label Text="GitHub Contribution"
-                       HorizontalOptions="CenterAndExpand"
-                       Style="{StaticResource DeemphasizedLabelStyle}">
+                <Label Style="{StaticResource DefaultTextStyle}" Text="{x:Static resources:Strings.ContributerLabel}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource DeemphasizedLabelStyle}"
+                    Text="GitHub Contribution">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToContributionPageCommand}" />
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Label Text="{x:Static resources:Strings.IconDesignerLabel}"
-                       Style="{StaticResource DefaultTextStyle}" />
-                <Label Text="@Toledo Vanderson"
-                       HorizontalOptions="CenterAndExpand"
-                       Style="{StaticResource DeemphasizedLabelStyle}">
+                <Label Style="{StaticResource DefaultTextStyle}" Text="{x:Static resources:Strings.IconDesignerLabel}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Style="{StaticResource DeemphasizedLabelStyle}"
+                    Text="@Toledo Vanderson">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding GoToDesignerTwitterAccountCommand}" />
                     </Label.GestureRecognizers>
