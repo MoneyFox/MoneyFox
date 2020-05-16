@@ -77,7 +77,7 @@ namespace MoneyFox.Uwp.Views
 
         private async void AddPaymentItemTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            await new AddPaymentView(PaymentType.Expense).ShowAsync();
+            await new AddPaymentDialog(PaymentType.Expense).ShowAsync();
         }
     }
 }

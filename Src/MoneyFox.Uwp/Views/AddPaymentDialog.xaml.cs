@@ -5,11 +5,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class AddPaymentView : ContentDialog
+    public sealed partial class AddPaymentDialog : ContentDialog
     {
         private AddPaymentViewModel ViewModel => DataContext as AddPaymentViewModel;
 
-        public AddPaymentView(PaymentType paymentType)
+        public AddPaymentDialog(PaymentType paymentType)
         {
             InitializeComponent();
 
