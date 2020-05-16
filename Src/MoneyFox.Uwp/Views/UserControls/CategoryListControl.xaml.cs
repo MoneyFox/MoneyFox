@@ -30,7 +30,7 @@ namespace MoneyFox.Uwp.Views.UserControls
 
             if(category == null) return;
 
-            await new EditCategoryView(category.Id).ShowAsync();
+            await new EditCategoryDialog(category.Id).ShowAsync();
 
             ((AbstractCategoryListViewModel) DataContext).EditCategoryCommand.Execute(category);
         }

@@ -2,9 +2,9 @@
 
 namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class AddCategoryView : ContentDialog
+    public sealed partial class AddCategoryDialog : ContentDialog
     {
-        public AddCategoryView()
+        public AddCategoryDialog()
         {
             InitializeComponent();
         }

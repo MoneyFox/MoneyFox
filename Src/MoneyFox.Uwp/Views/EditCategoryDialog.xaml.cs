@@ -3,11 +3,11 @@ using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class EditCategoryView : ContentDialog
+    public sealed partial class EditCategoryDialog : ContentDialog
     {
         private EditCategoryViewModel ViewModel => DataContext as EditCategoryViewModel;
 
-        public EditCategoryView(int categoryId)
+        public EditCategoryDialog(int categoryId)
         {
             InitializeComponent();
 

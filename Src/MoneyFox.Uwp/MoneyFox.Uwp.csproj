@@ -271,8 +271,8 @@
     <Compile Include="Views\AddAccountView.xaml.cs">
       <DependentUpon>AddAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddCategoryView.xaml.cs">
-      <DependentUpon>AddCategoryView.xaml</DependentUpon>
+    <Compile Include="Views\AddCategoryDialog.xaml.cs">
+      <DependentUpon>AddCategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddPaymentView.xaml.cs">
       <DependentUpon>AddPaymentView.xaml</DependentUpon>
@@ -293,8 +293,8 @@
     <Compile Include="Views\EditAccountView.xaml.cs">
       <DependentUpon>EditAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditCategoryView.xaml.cs">
-      <DependentUpon>EditCategoryView.xaml</DependentUpon>
+    <Compile Include="Views\EditCategoryDialog.xaml.cs">
+      <DependentUpon>EditCategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditPaymentView.xaml.cs">
       <DependentUpon>EditPaymentView.xaml</DependentUpon>
@@ -477,7 +477,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddCategoryView.xaml">
+    <Page Include="Views\AddCategoryDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -505,7 +505,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditCategoryView.xaml">
+    <Page Include="Views\EditCategoryDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
