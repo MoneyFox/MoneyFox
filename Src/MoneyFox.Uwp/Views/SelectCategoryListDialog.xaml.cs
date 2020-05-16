@@ -8,9 +8,9 @@ using Windows.UI.Xaml.Input;
 
 namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class SelectCategoryListView : ContentDialog
+    public sealed partial class SelectCategoryListDialog : ContentDialog
     {
-        public SelectCategoryListView()
+        public SelectCategoryListDialog()
         {
             InitializeComponent();
         }

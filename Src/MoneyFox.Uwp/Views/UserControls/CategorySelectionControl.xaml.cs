@@ -12,7 +12,7 @@ namespace MoneyFox.Uwp.Views.UserControls
 
         private async void SelectCategory_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            await new SelectCategoryListView().ShowAsync();
+            await new SelectCategoryListDialog().ShowAsync();
         }
     }
 }

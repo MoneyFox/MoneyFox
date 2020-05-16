@@ -1,5 +1,5 @@
 ﻿<ContentDialog
-    x:Class="MoneyFox.Uwp.Views.SelectCategoryListView"
+    x:Class="MoneyFox.Uwp.Views.SelectCategoryListDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls1="using:Microsoft.Toolkit.Uwp.UI.Controls"

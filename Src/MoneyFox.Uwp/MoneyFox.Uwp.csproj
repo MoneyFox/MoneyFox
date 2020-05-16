@@ -308,8 +308,8 @@
     <Compile Include="Views\PaymentListView.xaml.cs">
       <DependentUpon>PaymentListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SelectCategoryListView.xaml.cs">
-      <DependentUpon>SelectCategoryListView.xaml</DependentUpon>
+    <Compile Include="Views\SelectCategoryListDialog.xaml.cs">
+      <DependentUpon>SelectCategoryListDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -525,7 +525,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SelectCategoryListView.xaml">
+    <Page Include="Views\SelectCategoryListDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

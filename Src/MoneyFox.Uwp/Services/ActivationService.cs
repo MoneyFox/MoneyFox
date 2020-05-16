@@ -96,7 +96,7 @@ namespace MoneyFox.Uwp.Services
             nav.Configure(ViewModelLocator.AccountList, typeof(AccountListView));
             nav.Configure(ViewModelLocator.PaymentList, typeof(PaymentListView));
             nav.Configure(ViewModelLocator.CategoryList, typeof(CategoryListView));
-            nav.Configure(ViewModelLocator.SelectCategoryList, typeof(SelectCategoryListView));
+            nav.Configure(ViewModelLocator.SelectCategoryList, typeof(SelectCategoryListDialog));
             nav.Configure(ViewModelLocator.AddAccount, typeof(AddAccountView));
             nav.Configure(ViewModelLocator.AddCategory, typeof(AddCategoryDialog));
             nav.Configure(ViewModelLocator.AddPayment, typeof(AddPaymentView));
