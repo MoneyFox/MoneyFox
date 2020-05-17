@@ -88,11 +88,6 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         public AsyncCommand<string> SearchCommand => new AsyncCommand<string>(SearchAsync);
 
-        /// <summary>
-        /// Create and save a new CategoryViewModel group
-        /// </summary>
-        public RelayCommand<CategoryViewModel> CreateNewCategoryCommand => new RelayCommand<CategoryViewModel>(CreateNewCategory);
-
         public async Task ViewAppearingAsync()
         {
             await SearchAsync();
@@ -111,11 +106,6 @@ namespace MoneyFox.Uwp.ViewModels
         private void EditCategory(CategoryViewModel category)
         {
             NavigationService.Navigate(ViewModelLocator.EditCategory, category.Id);
-        }
-
-        private void CreateNewCategory(CategoryViewModel category)
-        {
-            NavigationService.Navigate(ViewModelLocator.AddCategory);
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(

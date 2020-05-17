@@ -14,7 +14,7 @@ namespace MoneyFox.Presentation.ViewModels.Interfaces
 
         AsyncCommand LoadDataCommand { get; }
 
-        ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; }
+        ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList { get; }
 
         string Title { get; }
 

@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -68,11 +69,6 @@ namespace MoneyFox.Uwp.ViewModels
         /// Opens to the SelectCategoryView
         /// </summary>
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(OpenSelectCategoryList);
-
-        /// <summary>
-        /// Cancels the operations.
-        /// </summary>
-        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
@@ -175,6 +171,17 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
+        private ObservableCollection<CategoryViewModel> categories;
+        public ObservableCollection<CategoryViewModel> Categories
+        {
+            get => categories;
+            private set
+            {
+                categories = value;
+                RaisePropertyChanged();
+            }
+        }
+
         public virtual string Title
         {
             get => title;
@@ -203,6 +210,7 @@ namespace MoneyFox.Uwp.ViewModels
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            Categories = new ObservableCollection<CategoryViewModel>(mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery())));
         }
 
         private async Task SavePaymentBaseAsync()
@@ -255,11 +263,6 @@ namespace MoneyFox.Uwp.ViewModels
         private void ResetSelection()
         {
             SelectedPayment.Category = null;
-        }
-
-        private void Cancel()
-        {
-            navigationService.GoBack();
         }
 
         private void UpdateOtherComboBox()

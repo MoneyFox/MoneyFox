@@ -1,15 +1,18 @@
-﻿<views:BaseView
-    x:Class="MoneyFox.Uwp.Views.AddPaymentView"
+﻿<ContentDialog
+    x:Class="MoneyFox.Uwp.Views.AddPaymentDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-    xmlns:views="using:MoneyFox.Uwp.Views"
+    Title="{x:Bind resources:Strings.AddPaymentLabel}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding AddPaymentVm, Source={StaticResource Locator}}"
-    NavigationCacheMode="Enabled"
+    PrimaryButtonCommand="{Binding SaveCommand}"
+    PrimaryButtonText="{x:Bind resources:Strings.DoneLabel}"
+    SecondaryButtonCommand="{Binding CancelCommand}"
+    SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
     mc:Ignorable="d">
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -19,22 +22,5 @@
         </Grid.RowDefinitions>
 
         <userControls:ModifyPaymentUserControl Grid.Row="0" />
-
-        <CommandBar
-            x:Name="BottomCommandBar"
-            Grid.Row="1"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton
-                    Command="{Binding SaveCommand}"
-                    Icon="Save"
-                    Label="{x:Bind resources:Strings.DoneLabel}" />
-                <AppBarButton
-                    Command="{Binding CancelCommand}"
-                    Icon="Cancel"
-                    Label="{x:Bind resources:Strings.CancelLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
     </Grid>
-</views:BaseView>
+</ContentDialog>

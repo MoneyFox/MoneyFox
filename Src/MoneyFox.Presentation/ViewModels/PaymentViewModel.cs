@@ -297,7 +297,7 @@ namespace MoneyFox.Presentation.ViewModels
             if(navigationService == null)
                 navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
 
-            navigationService.NavigateTo(ViewModelLocator.EditPayment, Id);
+            navigationService.NavigateToModal(ViewModelLocator.EditPayment, Id);
         }
 
         [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]

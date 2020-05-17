@@ -29,8 +29,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => selectedCategory;
             set
             {
-                if(selectedCategory == value)
-                    return;
+                if(selectedCategory == value) return;
                 selectedCategory = value;
                 RaisePropertyChanged();
             }
@@ -42,7 +41,6 @@ namespace MoneyFox.Uwp.ViewModels
         protected override void ItemClick(CategoryViewModel category)
         {
             MessengerInstance.Send(new CategorySelectedMessage(this, category.Id));
-            NavigationService.GoBack();
         }
     }
 }

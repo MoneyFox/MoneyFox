@@ -5,10 +5,25 @@ namespace MoneyFox.Uwp.ViewModels
 {
     public class CategoryOverviewViewModel : ViewModelBase
     {
+        private int categoryId;
         private string label;
         private decimal value;
         private decimal average;
         private decimal percentage;
+
+        /// <summary>
+        /// Value of this item
+        /// </summary>
+        public int CategoryId
+        {
+            get => categoryId;
+            set
+            {
+                if(categoryId == value) return;
+                categoryId = value;
+                RaisePropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Value of this item

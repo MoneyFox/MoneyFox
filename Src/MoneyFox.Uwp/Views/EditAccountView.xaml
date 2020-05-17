@@ -1,5 +1,4 @@
-﻿<views:BaseView
-    xmlns:views="using:MoneyFox.Uwp.Views"
+﻿<ContentDialog
     x:Class="MoneyFox.Uwp.Views.EditAccountView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -7,12 +6,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-    mc:Ignorable="d"
+    Title="{Binding Title}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding EditAccountVm, Source={StaticResource Locator}}">
+    DataContext="{Binding EditAccountVm, Source={StaticResource Locator}}"
+    PrimaryButtonCommand="{Binding SaveCommand}"
+    PrimaryButtonText="{x:Bind resources:Strings.DoneLabel}"
+    SecondaryButtonCommand="{Binding CancelCommand}"
+    SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
+    mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -20,25 +23,6 @@
         </Grid.RowDefinitions>
 
         <userControls:ModifyAccountUserControl Grid.Row="0" />
-
-        <CommandBar x:Name="BottomCommandBar"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    Grid.Row="1"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Command="{Binding SaveCommand}"
-                              Icon="Save"
-                              Label="{x:Bind resources:Strings.DoneLabel}" />
-                <AppBarButton Command="{Binding CancelCommand}"
-                              Icon="Cancel"
-                              Label="{x:Bind resources:Strings.CancelLabel}" />
-            </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Command="{Binding DeleteCommand}"
-                              Icon="Delete"
-                              Label="{x:Bind resources:Strings.DeleteLabel}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 
-</views:BaseView>
+</ContentDialog>

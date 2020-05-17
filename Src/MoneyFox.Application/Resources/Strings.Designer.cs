@@ -1565,6 +1565,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no Payments for this category in this time frame..
+        /// </summary>
+        public static string NoPaymentsForCategoryMessage {
+            get {
+                return ResourceManager.GetString("NoPaymentsForCategoryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no Payments. Add one by tapping on the plus button at the bottom..
         /// </summary>
         public static string NoPaymentsMessage {
@@ -1751,6 +1760,15 @@ namespace MoneyFox.Application.Resources {
         public static string PasswordWrongTitle {
             get {
                 return ResourceManager.GetString("PasswordWrongTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payments for Category.
+        /// </summary>
+        public static string PaymentsForCategoryTitle {
+            get {
+                return ResourceManager.GetString("PaymentsForCategoryTitle", resourceCulture);
             }
         }
         

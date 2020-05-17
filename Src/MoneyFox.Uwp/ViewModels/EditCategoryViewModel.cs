@@ -9,7 +9,6 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Services;
 using NLog;
-using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -45,7 +44,6 @@ namespace MoneyFox.Uwp.ViewModels
         protected override async Task SaveCategoryAsync()
         {
             await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
-            NavigationService.GoBack();
         }
 
         private async Task DeleteCategoryAsync()

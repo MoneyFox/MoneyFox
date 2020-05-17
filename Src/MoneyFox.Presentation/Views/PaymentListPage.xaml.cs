@@ -5,8 +5,6 @@ using MoneyFox.Presentation.ViewModels;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
-using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 
 namespace MoneyFox.Presentation.Views
 {
@@ -20,8 +18,6 @@ namespace MoneyFox.Presentation.Views
             BindingContext = ViewModelLocator.PaymentListVm;
 
             ViewModel.AccountId = accountId;
-
-            PaymentList.On<Android>().SetIsFastScrollEnabled(true);
 
             if(Device.RuntimePlatform == Device.iOS)
             {
@@ -62,7 +58,6 @@ namespace MoneyFox.Presentation.Views
                        })
                       .FireAndForgetSafeAsync();
         }
-
         private void AddItem_Clicked(object sender, EventArgs e)
         {
             Navigation.PushPopupAsync(new AddPaymentPopup { BindingContext = ViewModel.ViewActionViewModel }).FireAndForgetSafeAsync();

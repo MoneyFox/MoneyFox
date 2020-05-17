@@ -76,12 +76,14 @@
         </StackPanel>
 
         <ListView
+            x:Name="CategorySummaryList"
             Grid.Row="1"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
             IsItemClickEnabled="True"
             IsSynchronizedWithCurrentItem="False"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
-            ItemsSource="{Binding CategorySummary}">
+            ItemsSource="{Binding CategorySummary}"
+            ItemClick="CategorySummaryList_ItemClick">
 
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">

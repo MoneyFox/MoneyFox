@@ -25,8 +25,7 @@ namespace MoneyFox.Uwp
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly KeyboardAccelerator altLeftKeyboardAccelerator =
-            BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
+        private readonly KeyboardAccelerator altLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
 
         private readonly KeyboardAccelerator backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
@@ -53,8 +52,7 @@ namespace MoneyFox.Uwp
 
         public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new AsyncCommand(OnLoadedAsync));
 
-        public ICommand ItemInvokedCommand
-                        => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+        public ICommand ItemInvokedCommand => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
         {
@@ -76,14 +74,14 @@ namespace MoneyFox.Uwp
 
             if(isXButton1Pressed)
             {
-                e.Handled = WindowsShellViewModel.NavigationService.GoBack();
+                e.Handled = NavigationService.GoBack();
             }
 
             bool isXButton2Pressed = e.CurrentPoint.Properties.PointerUpdateKind == PointerUpdateKind.XButton2Pressed;
 
             if(isXButton2Pressed)
             {
-                e.Handled = WindowsShellViewModel.NavigationService.GoForward();
+                e.Handled = NavigationService.GoForward();
             }
         }
 

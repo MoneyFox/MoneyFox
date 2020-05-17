@@ -1,16 +1,17 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             mc:Ignorable="d"
-             x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl"
-             x:Name="root">
+<ContentView
+    x:Class="MoneyFox.Presentation.UserControls.CategoryListUserControl"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels;assembly=MoneyFox.Presentation"
+    x:Name="root"
+    mc:Ignorable="d">
 
     <d:ContentView.BindingContext>
         <designTime:DesignTimeCategoryListViewModel />
@@ -30,33 +31,37 @@
                 <RowDefinition Height="240*" />
             </Grid.RowDefinitions>
 
-            <SearchBar x:Name="SearchBar"
-                       Style="{StaticResource DefaultSearchBarStyle}"
-                       BackgroundColor="{DynamicResource FrameHighlightColor}"
-                       VerticalOptions="Start"
-                       Placeholder="{x:Static resources:Strings.SearchLabel}"
-                       TextChanged="SearchTermChanged" />
+            <SearchBar
+                x:Name="SearchBar"
+                BackgroundColor="{DynamicResource FrameHighlightColor}"
+                Placeholder="{x:Static resources:Strings.SearchLabel}"
+                Style="{StaticResource DefaultSearchBarStyle}"
+                TextChanged="SearchTermChanged"
+                VerticalOptions="Start" />
 
-            <ListView x:Name="CategoryList"
-                      Grid.Row="1"
-                      BackgroundColor="Transparent"
-                      ItemsSource="{Binding CategoryList}"
-                      HasUnevenRows="True"
-                      CachingStrategy="RecycleElementAndDataTemplate"
-                      IsGroupingEnabled="True"
-                      SeparatorVisibility="None"
-                      GroupShortNameBinding="{Binding Key}">
+            <ListView
+                x:Name="CategoryList"
+                Grid.Row="1"
+                BackgroundColor="Transparent"
+                CachingStrategy="RecycleElementAndDataTemplate"
+                GroupShortNameBinding="{Binding Key}"
+                HasUnevenRows="True"
+                IsGroupingEnabled="True"
+                ItemsSource="{Binding CategoryList}"
+                SeparatorVisibility="None">
 
                 <ListView.GroupHeaderTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}"
-                                         HorizontalOptions="FillAndExpand"
-                                         Margin="0,0,-30,-1"
-                                         Padding="0,18,0,6">
-                                <Label Text="{Binding Key}"
-                                       VerticalOptions="CenterAndExpand"
-                                       Style="{StaticResource ListGroupHeaderStyle}" />
+                            <StackLayout
+                                Margin="0,0,-30,-1"
+                                Padding="0,18,0,6"
+                                BackgroundColor="{DynamicResource WindowBackgroundColor}"
+                                HorizontalOptions="FillAndExpand">
+                                <Label
+                                    Style="{StaticResource ListGroupHeaderStyle}"
+                                    Text="{Binding Key}"
+                                    VerticalOptions="CenterAndExpand" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
@@ -67,14 +72,15 @@
                         <ViewCell>
 
                             <material:MaterialCard
+                                Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                 ClickCommand="{Binding Source={x:Reference root}, Path=BindingContext.ItemClickCommand}"
                                 ClickCommandParameter="{Binding .}"
-                                Margin="{StaticResource SmallLeftRightTopBottomMargin}"
                                 Style="{StaticResource ListCardStyle}">
-                                <StackLayout Orientation="Vertical"
-                                             Padding="3"
-                                             Spacing="{StaticResource DefaultSpacing}"
-                                             Margin="{StaticResource DefaultListItemsMargin}">
+                                <StackLayout
+                                    Margin="{StaticResource DefaultListItemsMargin}"
+                                    Padding="3"
+                                    Orientation="Vertical"
+                                    Spacing="{StaticResource DefaultSpacing}">
 
                                     <Grid Margin="{StaticResource DefaultListItemsMargin}">
 
@@ -84,15 +90,16 @@
                                             <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
-                                        <Label Text="{Binding Name}" Style="{StaticResource ListItemHeaderStyle}" />
+                                        <Label Style="{StaticResource ListItemHeaderStyle}" Text="{Binding Name}" />
 
-                                        <material:MaterialMenuButton Grid.Column="2"
-                                                                     ButtonType="Text"
-                                                                     Image="icon_more.png"
-                                                                     Style="{StaticResource MenuButtonStyle}"
-                                                                     Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
-                                                                     Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
-                                                                     CommandParameter="{Binding .}" />
+                                        <material:MaterialMenuButton
+                                            Grid.Column="2"
+                                            ButtonType="Text"
+                                            Choices="{Binding Source={x:Reference root}, Path=BindingContext.MenuActions}"
+                                            Command="{Binding Source={x:Reference root}, Path=BindingContext.MenuSelectedCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Image="icon_more.png"
+                                            Style="{StaticResource MenuButtonStyle}" />
 
                                     </Grid>
 
@@ -105,14 +112,15 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <Label Grid.Row="1"
-                   Margin="6"
-                   HorizontalOptions="Center"
-                   VerticalOptions="Center"
-                   Style="{StaticResource DeemphasizedLabelStyle}"
-                   LineBreakMode="WordWrap"
-                   IsVisible="{Binding IsCategoriesEmpty}"
-                   Text="{x:Static resources:Strings.NoCategoriesMessage}" />
+            <Label
+                Grid.Row="1"
+                Margin="6"
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsCategoriesEmpty}"
+                LineBreakMode="WordWrap"
+                Style="{StaticResource DeemphasizedLabelStyle}"
+                Text="{x:Static resources:Strings.NoCategoriesMessage}"
+                VerticalOptions="Center" />
 
             <ImageButton
                 Grid.Row="1"
@@ -120,8 +128,8 @@
                 Style="{StaticResource FabPrimary}">
                 <ImageButton.Source>
                     <FontImageSource
-                        Glyph="{StaticResource Add}"
                         FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
+                        Glyph="{StaticResource Add}"
                         Size="33"
                         Color="White" />
                 </ImageButton.Source>

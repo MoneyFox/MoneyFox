@@ -88,8 +88,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// <summary>
         /// Returns the title for the CategoryViewModel view
         /// </summary>
-        public string Title
-                      => $"{Strings.StatisticsTimeRangeTitle} {(StartDate.ToString("d", CultureInfo.InvariantCulture))} - {(EndDate.ToString("d", CultureInfo.InvariantCulture))}";
+        public string Title => $"{Strings.StatisticsTimeRangeTitle} {(StartDate.ToString("d", CultureInfo.InvariantCulture))} - {(EndDate.ToString("d", CultureInfo.InvariantCulture))}";
 
         protected abstract Task LoadAsync();
     }

@@ -1,170 +1,39 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter"
-             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:viewModels="clr-namespace:MoneyFox.Presentation.ViewModels"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             x:Class="MoneyFox.Presentation.Views.PaymentListPage"
-             Visual="Material"
-             x:Name="root"
-             Title="{Binding Title}"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+﻿<ContentPage
+    x:Class="MoneyFox.Presentation.Views.PaymentListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+    x:Name="root"
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Visual="Material"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimePaymentListViewModel />
     </d:ContentPage.BindingContext>
 
-    <ContentPage.Resources>
-        <x:Double x:Key="SmallTextSize">12</x:Double>
-
-        <Thickness x:Key="SmallLeftRightBottomMargin">6,0,6,6</Thickness>
-
-        <Style x:Key="SmallTextStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
-            <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
-        </Style>
-
-        <Style x:Key="ListItemHeaderSmallStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}" />
-            <Setter Property="TextColor" Value="{DynamicResource PrimaryFontColor}" />
-        </Style>
-
-        <Style x:Key="DeemphasizedSmallLabelStyle" TargetType="Label">
-            <Setter Property="FontSize" Value="{DynamicResource SmallTextSize}" />
-            <Setter Property="TextColor" Value="{DynamicResource DeemphasizedColor}" />
-        </Style>
-
-        <ResourceDictionary>
-            <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <NavigationPage.TitleView>
         <StackLayout>
-            <Label Text="{Binding Title}"
-                   Style="{StaticResource SmallPageTitle}" />
+            <Label Style="{StaticResource SmallPageTitle}" Text="{Binding Title}" />
             <userControls:PaymentListBalanceUserControl BindingContext="{Binding BalanceViewModel}" />
         </StackLayout>
     </NavigationPage.TitleView>
 
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand">
-            <ListView x:Name="PaymentList"
-                      ItemsSource="{Binding DailyList}"
-                      RowHeight="50"
-                      BackgroundColor="Transparent"
-                      CachingStrategy="RetainElement"
-                      IsGroupingEnabled="True"
-                      SeparatorVisibility="None">
 
-                <ListView.GroupHeaderTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout BackgroundColor="{DynamicResource WindowBackgroundColor}"
-                                         Margin="0,0,0,-1">
-                                <Label Text="{Binding Key}"
-                                       VerticalOptions="EndAndExpand"
-                                       Style="{StaticResource ListGroupHeaderStyle}" />
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.GroupHeaderTemplate>
+            <userControls:PaymentListViewUserControl />
 
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="viewModels:PaymentViewModel">
-                        <ViewCell>
-                            <material:MaterialCard HeightRequest="50"
-                                                   Margin="{StaticResource SmallLeftRightTopBottomMargin}"
-                                                   ClickCommand="{Binding EditPaymentCommand}"
-                                                   ClickCommandParameter="{Binding .}"
-                                                   Style="{StaticResource ListCardStyle}"
-                                                   VerticalOptions="FillAndExpand">
-
-                                <RelativeLayout Margin="{StaticResource DefaultListItemsMargin}"
-                                                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant = 0}">
-
-                                    <AbsoluteLayout x:Name="TopGrid"
-                                                    RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant = 0}">
-
-                                        <Label Text="{Binding Category.Name}"
-                                               LineBreakMode="TailTruncation"
-                                               Style="{StaticResource ListItemHeaderSmallStyle}" />
-
-                                        <Label HorizontalTextAlignment="End"
-                                               VerticalOptions="CenterAndExpand"
-                                               Style="{StaticResource SmallTextStyle}"
-                                               AbsoluteLayout.LayoutBounds="1, .5, AutoSize, AutoSize"
-                                               AbsoluteLayout.LayoutFlags="XProportional"
-                                               Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
-                                    </AbsoluteLayout>
-
-                                    <AbsoluteLayout
-                                        RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToView, ElementName=TopGrid , Property=Y, Constant = 19}"
-                                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant = 0}">
-
-                                        <Label Text="{Binding Note}"
-                                               LineBreakMode="TailTruncation"
-                                               Style="{StaticResource DeemphasizedSmallLabelStyle}"
-                                               AbsoluteLayout.LayoutBounds="0, 1, AutoSize, AutoSize" />
-
-                                        <StackLayout Orientation="Horizontal"
-                                                     AbsoluteLayout.LayoutBounds="1, .5, AutoSize, AutoSize"
-                                                     AbsoluteLayout.LayoutFlags="XProportional">
-
-                                            <Image HeightRequest="15"
-                                                   WidthRequest="15"
-                                                   IsVisible="{Binding IsTransfer}">
-                                                <Image.Source>
-                                                    <FontImageSource
-                                                        Glyph="{StaticResource Transfer}"
-                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
-                                                        Color="{DynamicResource PrimaryFontColor}" />
-                                                </Image.Source>
-                                            </Image>
-
-                                            <Image HeightRequest="15"
-                                                   WidthRequest="15"
-                                                   IsVisible="{Binding IsRecurring}">
-                                                <Image.Source>
-                                                    <FontImageSource
-                                                        Glyph="{StaticResource Recurring}"
-                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
-                                                        Color="{DynamicResource PrimaryFontColor}" />
-                                                </Image.Source>
-                                            </Image>
-
-                                            <Image HeightRequest="15"
-                                                   WidthRequest="15"
-                                                   IsVisible="{Binding IsCleared}">
-                                                <Image.Source>
-                                                    <FontImageSource
-                                                        Glyph="{StaticResource Cleared}"
-                                                        FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
-                                                        Color="{DynamicResource PrimaryFontColor}" />
-                                                </Image.Source>
-                                            </Image>
-
-                                        </StackLayout>
-                                    </AbsoluteLayout>
-                                </RelativeLayout>
-                            </material:MaterialCard>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-
-            <ImageButton
-                Clicked="AddItem_Clicked"
-                Style="{StaticResource FabPrimary}">
+            <ImageButton Clicked="AddItem_Clicked" Style="{StaticResource FabPrimary}">
                 <ImageButton.Source>
                     <FontImageSource
-                        Glyph="{StaticResource Add}"
                         FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
+                        Glyph="{StaticResource Add}"
                         Size="33"
                         Color="White" />
                 </ImageButton.Source>
@@ -177,14 +46,15 @@
                 </ImageButton.IsVisible>
             </ImageButton>
 
-            <Label Margin="6"
-                   x:Name="PlaceHolderLabel"
-                   HorizontalOptions="CenterAndExpand"
-                   VerticalOptions="CenterAndExpand"
-                   Style="{StaticResource DeemphasizedLabelStyle}"
-                   LineBreakMode="WordWrap"
-                   IsVisible="{Binding IsPaymentsEmpty}"
-                   Text="{x:Static resources:Strings.NoPaymentsMessage}" />
+            <Label
+                x:Name="PlaceHolderLabel"
+                Margin="6"
+                HorizontalOptions="CenterAndExpand"
+                IsVisible="{Binding IsPaymentsEmpty}"
+                LineBreakMode="WordWrap"
+                Style="{StaticResource DeemphasizedLabelStyle}"
+                Text="{x:Static resources:Strings.NoPaymentsMessage}"
+                VerticalOptions="CenterAndExpand" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

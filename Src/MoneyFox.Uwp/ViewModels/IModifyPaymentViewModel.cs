@@ -70,11 +70,6 @@ namespace MoneyFox.Uwp.ViewModels
         RelayCommand GoToSelectCategoryDialogCommand { get; }
 
         /// <summary>
-        /// Cancels the operations.
-        /// </summary>
-        RelayCommand CancelCommand { get; }
-
-        /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
         RelayCommand ResetCategoryCommand { get; }

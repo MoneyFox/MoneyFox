@@ -27,6 +27,7 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
+        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <Flyout x:Key="FilterFlyout" Placement="Top">
             <ListBox SelectionMode="Multiple">
@@ -49,6 +50,7 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
@@ -67,7 +69,23 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
-        <userControls:PaymentListUserControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+        <userControls:BalanceControl
+            Grid.Row="1"
+            Margin="{StaticResource MediumLeftRightMargin}"
+            DataContext="{Binding BalanceViewModel}" />
+
+        <userControls:PaymentListUserControl Grid.Row="2" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+
+        <TextBlock
+            Grid.Row="1"
+            Margin="6"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Foreground="{ThemeResource SystemBaseMediumLowColor}"
+            Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+            Text="{x:Bind resources:Strings.NoPaymentsMessage}"
+            TextWrapping="Wrap"
+            Visibility="{Binding IsPaymentsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
     </Grid>
 </views:BaseView>

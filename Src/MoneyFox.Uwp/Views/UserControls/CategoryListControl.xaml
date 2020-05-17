@@ -20,6 +20,7 @@
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
             <controls:DropShadowPanel
+                Margin="-12,0,-12,0"
                 HorizontalContentAlignment="Stretch"
                 BlurRadius="4.0"
                 ShadowOpacity="0.40">
@@ -75,7 +76,7 @@
             Source="{Binding CategoryList}" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="240*" />
@@ -83,7 +84,6 @@
         <TextBox
             x:Name="SearchTextBox"
             Grid.Row="0"
-            Margin="{StaticResource MediumLeftRightMargin}"
             Header="{x:Bind resources:Strings.SearchLabel}"
             TextChanged="SearchTextBox_OnTextChanged" />
 

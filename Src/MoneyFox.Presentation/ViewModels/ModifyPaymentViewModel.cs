@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -254,8 +255,7 @@ namespace MoneyFox.Presentation.ViewModels
             get => title;
             set
             {
-                if(title == value)
-                    return;
+                if(title == value) return;
                 title = value;
                 RaisePropertyChanged();
             }
