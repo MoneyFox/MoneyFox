@@ -876,4 +876,10 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="TransferLabel" xml:space="preserve">
     <value>Übertrag</value>
   </data>
+  <data name="PaymentsForCategoryTitle" xml:space="preserve">
+    <value>Zahlungen für Kategorie</value>
+  </data>
+  <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
+    <value>In diesem Zeitrahmen gibt es keine Zahlungen für diese Kategorie.</value>
+  </data>
 </root>
