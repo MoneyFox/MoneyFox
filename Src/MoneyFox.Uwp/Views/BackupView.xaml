@@ -1,17 +1,19 @@
-﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.BackupView"
-                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:converter="using:MoneyFox.Uwp.Converter"
-                xmlns:i="using:Microsoft.Xaml.Interactivity"
-                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                xmlns:resources="using:MoneyFox.Application.Resources"
-                xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
-                Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                mc:Ignorable="d"
-                DataContext="{Binding BackupVm, Source={StaticResource Locator}}">
+﻿<views:BaseView
+    x:Class="MoneyFox.Uwp.Views.BackupView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converter="using:MoneyFox.Uwp.Converter"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+    xmlns:i="using:Microsoft.Xaml.Interactivity"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:views="using:MoneyFox.Uwp.Views"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding BackupVm, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
 
     <d:Page.DataContext>
         <designTime:DesignTimeBackupViewModel />
@@ -28,68 +30,70 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}"
-          EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
 
         <StackPanel EntranceNavigationTransitionInfo.IsTargetElement="True">
 
-            <Button Content="{x:Bind resources:Strings.LoginLabel}"
+            <Button
+                HorizontalAlignment="Stretch"
+                Command="{Binding LoginCommand}"
+                Content="{x:Bind resources:Strings.LoginLabel}"
+                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}" />
+
+            <Button
+                HorizontalAlignment="Stretch"
+                Command="{Binding LogoutCommand}"
+                Content="{x:Bind resources:Strings.LogoutLabel}"
+                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}" />
+
+            <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}">
+
+                <TextBlock
+                    Margin="{StaticResource MediumTopMargin}"
+                    Text="{x:Bind resources:Strings.BackupInformationLabel}"
+                    TextWrapping="WrapWholeWords" />
+
+                <Button
                     HorizontalAlignment="Stretch"
-                    Command="{Binding LoginCommand}"
-                    Visibility="{Binding IsLoggedIn,
-                                         Converter={StaticResource BooleanVisibilityConverter},
-                                         ConverterParameter=revert}" />
+                    Command="{Binding BackupCommand}"
+                    Content="{x:Bind resources:Strings.CreateBackupLabel}" />
 
-            <Button Content="{x:Bind resources:Strings.LogoutLabel}"
-                    HorizontalAlignment="Stretch"
-                    Command="{Binding LogoutCommand}"
-                    Visibility="{Binding IsLoggedIn,
-                                         Converter={StaticResource BooleanVisibilityConverter}}" />
-
-            <StackPanel
-                Visibility="{Binding IsLoggedIn,
-                                         Converter={StaticResource BooleanVisibilityConverter}}">
-
-                <TextBlock Margin="{StaticResource MediumTopMargin}"
-                           Text="{x:Bind resources:Strings.BackupInformationLabel}"
-                           TextWrapping="WrapWholeWords" />
-
-                <Button HorizontalAlignment="Stretch"
-                        Command="{Binding BackupCommand}"
-                        Content="{x:Bind resources:Strings.CreateBackupLabel}" />
-
-                <TextBlock Margin="{StaticResource MediumTopMargin}"
-                           Text="{x:Bind resources:Strings.RestoreBackupInformationLabel}"
-                           TextWrapping="WrapWholeWords" />
+                <TextBlock
+                    Margin="{StaticResource MediumTopMargin}"
+                    Text="{x:Bind resources:Strings.RestoreBackupInformationLabel}"
+                    TextWrapping="WrapWholeWords" />
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="41*" />
-                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.ColumnSpan="2"
-                            HorizontalAlignment="Stretch"
-                            Command="{Binding RestoreCommand}"
-                            Content="{x:Bind resources:Strings.RestoreBackupLabel}"
-                            IsEnabled="{Binding BackupAvailable}" />
+                    <Button
+                        Grid.ColumnSpan="2"
+                        HorizontalAlignment="Stretch"
+                        Command="{Binding RestoreCommand}"
+                        Content="{x:Bind resources:Strings.RestoreBackupLabel}"
+                        IsEnabled="{Binding BackupAvailable}" />
 
-                    <ProgressRing Grid.Column="1"
-                                  Margin="0,3,0,3"
-                                  HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch"
-                                  Background="Transparent"
-                                  IsActive="{Binding IsLoadingBackupAvailability}" />
+                    <muxc:ProgressRing
+                        Grid.Column="1"
+                        Margin="0,3,0,3"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Background="Transparent"
+                        IsActive="{Binding IsLoadingBackupAvailability}" />
                 </Grid>
 
-                <StackPanel Margin="0,15,0,7"
-                            Orientation="Horizontal"
-                            Visibility="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                    <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.LastBackupDateLabel}" />
-                    <TextBlock Margin="5,0,0,0"
-                               Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                               Text="{Binding BackupLastModified}"
-                               TextWrapping="WrapWholeWords" />
+                <StackPanel
+                    Margin="0,15,0,7"
+                    Orientation="Horizontal"
+                    Visibility="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
+                    <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.LastBackupDateLabel}" />
+                    <TextBlock
+                        Margin="5,0,0,0"
+                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                        Text="{Binding BackupLastModified}"
+                        TextWrapping="WrapWholeWords" />
                 </StackPanel>
 
             </StackPanel>
