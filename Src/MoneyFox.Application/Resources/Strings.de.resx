@@ -877,9 +877,9 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Übertrag</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Payments for Category</value>
+    <value>Zahlungen für Kategorie</value>
   </data>
   <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
-    <value>There are no Payments for this category in this time frame.</value>
+    <value>In diesem Zeitrahmen gibt es keine Zahlungen für diese Kategorie.</value>
   </data>
 </root>
