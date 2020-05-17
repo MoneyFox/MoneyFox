@@ -377,7 +377,7 @@
     <value>Няма връзка с интернет</value>
   </data>
   <data name="GeneralTitle" xml:space="preserve">
-    <value>General</value>
+    <value>Общи</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
     <value>An Account with that name already exists.</value>
@@ -755,7 +755,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Contributions</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>Инфо</value>
   </data>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
     <value>Leave a feedback!</value>
@@ -797,7 +797,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Income / Expenses:</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Отменено</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
     <value>Login was canceled.</value>
@@ -836,7 +836,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Negative amount</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>Запазване</value>
   </data>
   <data name="InvalidNumberAmountMessage" xml:space="preserve">
     <value>Your payment amount seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
@@ -845,7 +845,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Невалиден номер</value>
   </data>
   <data name="PleaseLoginToBackupFirstMessage" xml:space="preserve">
     <value>To use the automatic backup job please login first to your backup service.</value>
