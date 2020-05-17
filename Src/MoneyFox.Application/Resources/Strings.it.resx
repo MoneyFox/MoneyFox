@@ -877,4 +877,10 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="TransferLabel" xml:space="preserve">
     <value>Transfer</value>
   </data>
+  <data name="PaymentsForCategoryTitle" xml:space="preserve">
+    <value>Payments for Category</value>
+  </data>
+  <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
+    <value>There are no Payments for this category in this time frame.</value>
+  </data>
 </root>
