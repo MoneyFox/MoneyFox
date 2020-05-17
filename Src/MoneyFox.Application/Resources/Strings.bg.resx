@@ -368,7 +368,7 @@
     <value>Грешка при изтриване</value>
   </data>
   <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>Изберете категория</value>
+    <value>Категоризирайте</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
     <value>You are not connected to the internet. Please check your connection and try again.</value>
@@ -752,7 +752,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Last year monthly average: </value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>Приноси</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
     <value>Инфо</value>
@@ -791,7 +791,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Today</value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[No Category]</value>
+    <value>[Няма категория]</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
     <value>Income / Expenses:</value>
@@ -815,7 +815,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Upload backup was canceled.</value>
   </data>
   <data name="DeleteAccountLabel" xml:space="preserve">
-    <value>Delete Account</value>
+    <value>Изтриване на акаунт</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Default Region</value>
@@ -824,7 +824,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>This region will be used as a default for your application.</value>
   </data>
   <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
+    <value>Регионални настройки</value>
   </data>
   <data name="RegionalSettingsDescriptionText" xml:space="preserve">
     <value>Set region settings for your application.</value>
