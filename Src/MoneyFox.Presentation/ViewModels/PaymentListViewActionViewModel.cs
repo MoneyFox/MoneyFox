@@ -63,16 +63,13 @@ namespace MoneyFox.Presentation.ViewModels
         }
 
         /// <inheritdoc/>
-        public RelayCommand GoToAddIncomeCommand
-                            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Income));
+        public RelayCommand GoToAddIncomeCommand => new RelayCommand(() => navigationService.NavigateToModal(ViewModelLocator.AddPayment, PaymentType.Income));
 
         /// <inheritdoc/>
-        public RelayCommand GoToAddExpenseCommand
-                            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Expense));
+        public RelayCommand GoToAddExpenseCommand => new RelayCommand(() => navigationService.NavigateToModal(ViewModelLocator.AddPayment, PaymentType.Expense));
 
         /// <inheritdoc/>
-        public RelayCommand GoToAddTransferCommand
-                            => new RelayCommand(() => navigationService.NavigateTo(ViewModelLocator.AddPayment, PaymentType.Transfer));
+        public RelayCommand GoToAddTransferCommand => new RelayCommand(() => navigationService.NavigateToModal(ViewModelLocator.AddPayment, PaymentType.Transfer));
 
         /// <inheritdoc/>
         public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccount);

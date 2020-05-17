@@ -13,15 +13,9 @@ namespace MoneyFox.Presentation.Dialogs
         {
             InitializeComponent();
 
-            AddExpenseGrid.GestureRecognizers
-                          .Add(new TapGestureRecognizer
-                                                      { Command = new Command(async() => await AddExpenseGridClicked()) });
-            AddIncomeGrid.GestureRecognizers
-                         .Add(new TapGestureRecognizer
-                                                     { Command = new Command(async() => await AddIncomeGridClicked()) });
-            AddTransferGrid.GestureRecognizers
-                           .Add(new TapGestureRecognizer
-                                                       { Command = new Command(async() => await AddTransferGridClicked()) });
+            AddExpenseGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async() => await AddExpenseGridClicked()) });
+            AddIncomeGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async() => await AddIncomeGridClicked()) });
+            AddTransferGrid.GestureRecognizers.Add(new TapGestureRecognizer { Command = new Command(async() => await AddTransferGridClicked()) });
         }
 
         private async Task AddExpenseGridClicked()

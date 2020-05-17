@@ -32,7 +32,7 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             }
         };
 
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; }
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList { get; }
 
         public string Title => "Sparkonto";
 

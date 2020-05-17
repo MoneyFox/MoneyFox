@@ -59,6 +59,8 @@ namespace MoneyFox.Presentation
         public static string StatisticCategorySpreading => nameof(StatisticCategorySpreadingViewModel);
 
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
+        public static string PaymentForCategoryList => nameof(PaymentForCategoryListViewModel);
+
 
         //*****************
         //  Settings
@@ -112,11 +114,11 @@ namespace MoneyFox.Presentation
 
         public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
 
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm
-                                                          => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public static PaymentForCategoryListViewModel PaymentForCategoryListVm => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
 
-        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm
-                                                        => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
 
         //*****************
         //  Settings

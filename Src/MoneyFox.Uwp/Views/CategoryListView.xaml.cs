@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Application.Resources;
+using System;
 
 namespace MoneyFox.Uwp.Views
 {
@@ -9,6 +10,11 @@ namespace MoneyFox.Uwp.Views
         public CategoryListView()
         {
             InitializeComponent();
+        }
+
+        private async void AddNewCategoryClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            await new AddCategoryDialog().ShowAsync();
         }
     }
 }

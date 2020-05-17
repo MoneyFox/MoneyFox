@@ -116,8 +116,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         public async Task SearchAsync(string searchText = "")
         {
-            var categoriesVms =
-                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
+            var categoriesVms = Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
             CategoryList = CreateGroup(categoriesVms);
         }
 

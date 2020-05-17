@@ -1,4 +1,6 @@
-﻿using Windows.UI.Xaml;
+﻿using MoneyFox.Domain;
+using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using NavigationView = Microsoft.UI.Xaml.Controls.NavigationView;
@@ -73,9 +75,9 @@ namespace MoneyFox.Uwp.Views
             WindowsShellViewModel.NavigationService.Navigate(ViewModelLocator.StatisticCategorySummary);
         }
 
-        private void AddPaymentItemTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        private async void AddPaymentItemTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
         {
-            WindowsShellViewModel.NavigationService.Navigate(ViewModelLocator.AddPayment);
+            await new AddPaymentDialog(PaymentType.Expense).ShowAsync();
         }
     }
 }

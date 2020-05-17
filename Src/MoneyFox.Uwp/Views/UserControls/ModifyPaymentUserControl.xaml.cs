@@ -3,7 +3,6 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels;
 using NLog;
-using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

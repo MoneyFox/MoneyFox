@@ -1,0 +1,26 @@
+﻿<ContentDialog
+    x:Class="MoneyFox.Uwp.Views.EditCategoryDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
+    Title="{Binding Title}"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    DataContext="{Binding EditCategoryVm, Source={StaticResource Locator}}"
+    PrimaryButtonCommand="{Binding SaveCommand}"
+    PrimaryButtonText="{x:Bind resources:Strings.SaveLabel}"
+    SecondaryButtonCommand="{Binding CancelCommand}"
+    SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
+    mc:Ignorable="d">
+
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <userControls:ModifyCategoryUserControl Grid.Row="0" />
+    </Grid>
+</ContentDialog>

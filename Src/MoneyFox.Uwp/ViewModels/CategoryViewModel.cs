@@ -48,5 +48,21 @@ namespace MoneyFox.Uwp.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            return (obj as CategoryViewModel)?.Id == Id;
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = 7;
+                hashCode = (hashCode * 397) ^ id.GetHashCode();
+
+                return hashCode;
+            }
+        }
     }
 }
