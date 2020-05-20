@@ -130,19 +130,19 @@
     <value>Добавить счёт</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Доход</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Expense</value>
+    <value>Расходы</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>Перевод</value>
   </data>
   <data name="ApplicationTitle" xml:space="preserve">
     <value>Money Fox</value>
   </data>
   <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>There where an error while create your backup. Please try again later.</value>
+    <value>Произошла ошибка при создании резервной копии. Пожалуйста, повторите попытку позже.</value>
   </data>
   <data name="BackupLabel" xml:space="preserve">
     <value>Резервная копия</value>
@@ -241,7 +241,7 @@
     <value>Статистика</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Статистика</value>
   </data>
   <data name="SuccessTitle" xml:space="preserve">
     <value>Выполнено!</value>
@@ -391,13 +391,13 @@
     <value>Загрузка...</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>Произошла ошибка при аутентификации. Пожалуйста, повторите попытку позже.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Версия</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>Обратная связь</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
     <value>To see all contributions head over to GitHub:</value>
@@ -409,25 +409,25 @@
     <value>Это проект с открытым исходным кодом. Мы будем рады поработать с вами! Нажмите, чтобы перейти в репозиторий:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>Оцените это приложение!</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>Что-то неправильно переведено или вообще не переведено? Помогите нам! Перейдите на crowdin и помогите улучшить Money Fox:</value>
   </data>
   <data name="PasswordLabel" xml:space="preserve">
     <value>Пароль</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Добро пожаловать!</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
+    <value>У вас нет аккаунтов. Добавьте аккаунт нажав на кнопку «плюс» в нижней части.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Создать резервную копию</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Последняя резервная копия:</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
     <value>Войти</value>
@@ -461,7 +461,7 @@
     <value>Дата</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
-    <value>Is Endless</value>
+    <value>Бесконечный</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
     <value>Повторяется</value>
@@ -473,16 +473,16 @@
     <value>Поиск</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+    <value>Если вы активируете эту настройку, мы автоматически создадим резервную копию ваших данных на OneDrive. Также периодически проверяем, если что-то изменилось на другом устройстве.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Автоматически загружать и скачивать резервные копии</value>
   </data>
   <data name="PasswordActivatedLabel" xml:space="preserve">
-    <value>Password protection</value>
+    <value>Защита паролем</value>
   </data>
   <data name="PasswordConfirmationLabel" xml:space="preserve">
-    <value>Password Confirmation</value>
+    <value>Подтверждение пароля</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
@@ -494,22 +494,22 @@
     <value>Два раза в месяц</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>Исключить аккаунт из баланса</value>
   </data>
   <data name="PasswordEmptyMessage" xml:space="preserve">
-    <value>The password you've entered is empty. Please enter a password first and try again.</value>
+    <value>Введенный пароль пуст. Пожалуйста, введите пароль и повторите попытку.</value>
   </data>
   <data name="PasswordEmptyTitle" xml:space="preserve">
-    <value>Password is empty</value>
+    <value>Пароль не задан</value>
   </data>
   <data name="ErrorMessageRestore" xml:space="preserve">
-    <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
+    <value>При восстановлении резервной копии возникла проблема. Пожалуйста, свяжитесь с нами, если эта ошибка повторяется.</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>Исключенные аккаунты</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>Включенные аккаунты</value>
   </data>
   <data name="HourLabel" xml:space="preserve">
     <value>Hour(s)</value>
@@ -521,19 +521,19 @@
     <value>Quarterly</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>Сбой авторизации</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup failed!</value>
+    <value>Ошибка резервного копирования!</value>
   </data>
   <data name="BackupRestoreFailedTitle" xml:space="preserve">
-    <value>Restore backup failed!</value>
+    <value>Ошибка восстановления резервной копии!</value>
   </data>
   <data name="AboutLabel" xml:space="preserve">
     <value>О приложении</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
-    <value>An error occured</value>
+    <value>Произошла ошибка</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
     <value>Cleared</value>
@@ -545,32 +545,32 @@
     <value>Is Recurring</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Select Filter</value>
+    <value>Фильтр</value>
   </data>
   <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
-    <value>You backup was synced successfully.</value>
+    <value>Резервная копия была успешно синхронизирована.</value>
   </data>
   <data name="BackupSyncFailedMessage" xml:space="preserve">
-    <value>Failed to sync the backup</value>
+    <value>Не удалось синхронизировать резервную копию</value>
   </data>
   <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
-    <value>A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected.</value>
+    <value>Системная политика запретила MoneyFox работать в фоновом режиме. Некоторые функции могут не работать, как ожидалось.</value>
   </data>
   <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
-    <value>You denied the permissions for the MoneyFox to run in the background. Several functions may not work as expected.</value>
+    <value>Вы запретили доступ MoneyFox работать в фоновом режиме. Некоторые функции могут не работать, как ожидалось.</value>
   </data>
   <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
-    <value>Access denied</value>
+    <value>Доступ запрещён</value>
   </data>
   <data name="PassportErrorMessage" xml:space="preserve">
     <value>Microsoft Passport is not enabled on this device. 
     Please go to settings and enable it!</value>
   </data>
   <data name="LoginFailedMessage" xml:space="preserve">
-    <value>We couldn't log you in. Please contact us if this issue persists.</value>
+    <value>Мы не смогли войти в систему. Пожалуйста, свяжитесь с нами, если эта проблема повторяется.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Ошибка входа</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>
