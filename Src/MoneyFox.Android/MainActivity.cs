@@ -30,8 +30,7 @@ namespace MoneyFox.Droid
             ExecutingPlatform.Current = AppPlatform.Android;
 
 #if !DEBUG
-            AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"],
-                   typeof(Analytics), typeof(Crashes));
+            AppCenter.Start(ConfigurationManager.AppSettings["AndroidAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
 
             TabLayoutResource = Resource.Layout.Tabbar;

@@ -34,17 +34,17 @@ namespace MoneyFox.iOS
         private const double MINIMUM_BACKGROUND_FETCH_INTERVAL = 3600;
 
         /// <inheritdoc/>
-        public override bool FinishedLaunching(UIApplication uiApplication,
-                                               NSDictionary launchOptions)
+        public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
             ExecutingPlatform.Current = AppPlatform.iOS;
             ConfigurationManager.Initialise(PortableStream.Current);
             InitLogger();
 
+            RegisterServices();
+
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["IosAppcenterSecret"], typeof(Analytics), typeof(Crashes));
 #endif
-            RegisterServices();
 
             Forms.Init();
             FormsMaterial.Init();
