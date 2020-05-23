@@ -326,13 +326,13 @@
       <Version>1.5.3.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.6.0.772</Version>
+      <Version>4.6.0.800</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.6.0.772</Version>
+      <Version>4.6.0.800</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
-      <Version>1.6.3</Version>
+      <Version>1.6.4</Version>
     </PackageReference>
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0">
       <ExcludeAssets>all</ExcludeAssets>
