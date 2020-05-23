@@ -104,7 +104,7 @@
       <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.7.1</Version>
+      <Version>4.7.2</Version>
     </PackageReference>
     <PackageReference Include="NLog.Targets.AppCenter">
       <Version>1.1.0</Version>
@@ -155,13 +155,13 @@
     <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Android.Support.v7.CardView" Version="28.0.0.3" />
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.6.0.772</Version>
+      <Version>4.6.0.800</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.6.0.772</Version>
+      <Version>4.6.0.800</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
-      <Version>1.6.3</Version>
+      <Version>1.6.4</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

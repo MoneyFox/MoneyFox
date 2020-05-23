@@ -17,22 +17,21 @@ namespace MoneyFox.Presentation
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule<ApplicationModule>();
-            builder.RegisterModule<PersistenceModule>();
-
-            builder.RegisterInstance(AutoMapperFactory.Create());
-
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
 
             // request & notification handlers
             builder.Register<ServiceFactory>(context =>
-                                             {
-                                                 var c = context.Resolve<IComponentContext>();
-
-                                                 return t => c.Resolve(t);
-                                             });
+            {
+                var c = context.Resolve<IComponentContext>();
+                return t => c.Resolve(t);
+            });
 
             builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly).AsImplementedInterfaces(); // via assembly scan
+
+            builder.RegisterModule<ApplicationModule>();
+            builder.RegisterModule<PersistenceModule>();
+
+            builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.Register(c => PublicClientApplicationBuilder
                                  .Create(ServiceConstants.MSAL_APPLICATION_ID)

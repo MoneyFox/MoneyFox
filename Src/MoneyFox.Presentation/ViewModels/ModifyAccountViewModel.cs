@@ -99,11 +99,12 @@ namespace MoneyFox.Presentation.ViewModels
             await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
             await SaveAccount();
             await DialogService.HideLoadingDialogAsync();
+            NavigationService.GoBackModal();
         }
 
         private void Cancel()
         {
-            NavigationService.GoBack();
+            NavigationService.GoBackModal();
         }
     }
 }
