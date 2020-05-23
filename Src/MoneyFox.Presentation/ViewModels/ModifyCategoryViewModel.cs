@@ -119,6 +119,7 @@ namespace MoneyFox.Presentation.ViewModels
             await DialogService.ShowLoadingDialogAsync(Strings.SavingCategoryMessage);
             await SaveCategoryAsync();
             await DialogService.HideLoadingDialogAsync();
+            NavigationService.GoBackModal();
         }
 
         private async Task CancelAsync()
