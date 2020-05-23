@@ -305,6 +305,7 @@ namespace MoneyFox.Presentation.ViewModels
             await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
             await SavePayment();
             await dialogService.HideLoadingDialogAsync();
+            navigationService.GoBackModal();
         }
 
         /// <summary>
@@ -331,7 +332,7 @@ namespace MoneyFox.Presentation.ViewModels
 
         private void Cancel()
         {
-            navigationService.GoBack();
+            navigationService.GoBackModal();
         }
 
         private void UpdateOtherComboBox()
