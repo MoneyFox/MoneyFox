@@ -15,7 +15,7 @@
     SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
     mc:Ignorable="d">
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition Height="Auto" />
