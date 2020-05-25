@@ -80,8 +80,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(DeleteAsync);
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(GoToAddAccount);
-
         private void EditAccount(AccountViewModel accountViewModel)
         {
             navigationService.Navigate(ViewModelLocator.EditAccount, accountViewModel.Id);
@@ -140,11 +138,6 @@ namespace MoneyFox.Uwp.ViewModels
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
             }
-        }
-
-        private void GoToAddAccount()
-        {
-            navigationService.Navigate(ViewModelLocator.AddAccount);
         }
     }
 }

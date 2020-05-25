@@ -26,7 +26,7 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
         IBalanceViewModel BalanceViewModel { get; }
 
         /// <summary>
-        /// View Mdoel for the actions associated with the account list.
+        /// View Model for the actions associated with the account list.
         /// </summary>
         IAccountListViewActionViewModel ViewActionViewModel { get; }
 
@@ -49,10 +49,5 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
         /// Deletes the selected Account
         /// </summary>
         AsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
-
-        /// <summary>
-        /// Prepare everything and navigate to AddAccount view
-        /// </summary>
-        RelayCommand GoToAddAccountCommand { get; }
     }
 }
