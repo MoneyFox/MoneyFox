@@ -20,7 +20,7 @@ We have a slack team to make communication a bit easier. Write me a mail to nino
 
 ### Contribution
 
-Head over [here](https://github.com/MoneyFox/MoneyFox/blob/master/CONTRIBUTING.md)
+Head over [here](https://github.com/MoneyFox/MoneyFox/blob/master/CONTRIBUTING.md).
 
 ### Translations
 
@@ -29,7 +29,7 @@ Help us translate the money fox to as many languages as possible. Head over [her
 [![Crowdin](https://d322cqt584bo4o.cloudfront.net/money-fox/localized.svg)](https://crowdin.com/project/money-fox)
 
 ### Code of conduct
-We act under the [Contributor Covenant](https://github.com/MoneyFox/MoneyFox/blob/master/CODE_OF_CONDUCT.md)
+We act under the [Contributor Covenant](https://github.com/MoneyFox/MoneyFox/blob/master/CODE_OF_CONDUCT.md).
 
 ### Tools
 We use Visual Studio 2019 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
