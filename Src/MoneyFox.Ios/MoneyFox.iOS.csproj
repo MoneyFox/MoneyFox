@@ -34,6 +34,7 @@
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <CodesignProvision>MoneyFox Development 2020</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
