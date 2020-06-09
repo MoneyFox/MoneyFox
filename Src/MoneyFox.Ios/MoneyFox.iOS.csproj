@@ -29,12 +29,12 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
+    <CodesignKey>Apple Distribution: Apply Solutions GmbH (HTWW78XH49)</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <CodesignProvision>MoneyFox Distribution 2020</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
