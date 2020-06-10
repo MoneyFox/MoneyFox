@@ -1141,8 +1141,8 @@ Global
 		{2BC350E9-F3C7-4F05-8F10-55DF0BC165E2} = {C34715EF-4059-44BC-A162-5599ACA83C82}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B224E843-3B6E-4B4E-86D7-B3A0A635A284}
 		RESX_ShowErrorsInErrorList = False
+		SolutionGuid = {B224E843-3B6E-4B4E-86D7-B3A0A635A284}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		version = 0.12.0.0
