@@ -116,7 +116,7 @@
       <Version>2.0.147</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>2.0.0.2</Version>
+      <Version>2.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>
@@ -161,7 +161,7 @@
       <Version>4.6.0.847</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
-      <Version>1.6.4</Version>
+      <Version>1.6.5</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

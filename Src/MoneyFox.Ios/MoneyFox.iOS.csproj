@@ -314,7 +314,7 @@
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
-      <Version>2.0.0.2</Version>
+      <Version>2.0.0.3</Version>
     </PackageReference>
     <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
       <Version>2.5.0</Version>
@@ -332,7 +332,7 @@
       <Version>4.6.0.847</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
-      <Version>1.6.4</Version>
+      <Version>1.6.5</Version>
     </PackageReference>
     <PackageReference Include="System.Reflection.Emit" Version="4.7.0">
       <ExcludeAssets>all</ExcludeAssets>
