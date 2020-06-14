@@ -16,11 +16,26 @@
     mc:Ignorable="d">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <userControls:ModifyCategoryUserControl />
 
-        <userControls:ModifyCategoryUserControl Grid.Row="0" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,3,0"
+                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Text="{x:Bind resources:Strings.CreationDateLabel}" />
+                    <TextBlock Text="{Binding SelectedCategory.CreationTime}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,3,0"
+                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Text="{x:Bind resources:Strings.ModificationDateLabel}" />
+                    <TextBlock Text="{Binding SelectedCategory.ModificationDate}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </ContentDialog>

@@ -16,7 +16,7 @@ namespace MoneyFox.Uwp.ViewModels
         private string note;
         private bool isOverdrawn;
         private bool isExcluded;
-        private DateTime creationDate;
+        private DateTime creationTime;
         private DateTime modificationDate;
 
         /// <summary>
@@ -109,13 +109,13 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        public DateTime CreationDate
+        public DateTime CreationTime
         {
-            get => creationDate;
+            get => creationTime;
             set
             {
-                if(creationDate == value) return;
-                creationDate = value;
+                if(creationTime == value) return;
+                creationTime = value;
                 RaisePropertyChanged();
             }
         }
