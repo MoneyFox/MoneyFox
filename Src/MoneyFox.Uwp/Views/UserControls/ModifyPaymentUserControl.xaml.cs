@@ -8,8 +8,6 @@ namespace MoneyFox.Uwp.Views.UserControls
 {
     public sealed partial class ModifyPaymentUserControl
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         private ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
 
         public ModifyPaymentUserControl()
