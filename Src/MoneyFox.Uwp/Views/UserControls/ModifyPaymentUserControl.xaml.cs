@@ -1,9 +1,7 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Animations;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels;
 using NLog;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views.UserControls
@@ -17,40 +15,6 @@ namespace MoneyFox.Uwp.Views.UserControls
         public ModifyPaymentUserControl()
         {
             InitializeComponent();
-        }
-
-        private async void ToggleRecurringVisibility(object sender, RoutedEventArgs e)
-        {
-            if(ViewModel.SelectedPayment == null)
-                return;
-            if(ViewModel.SelectedPayment.IsRecurring)
-            {
-                await RecurringStackPanel.Fade(1).StartAsync();
-            }
-            else
-            {
-                await RecurringStackPanel.Fade().StartAsync();
-            }
-        }
-
-        private void SetVisibilityInitially(object sender, RoutedEventArgs e)
-        {
-            if(ViewModel == null)
-            {
-                logManager.Warn("ViewModel is null on SetVisibilityInitially");
-                return;
-            }
-
-            if(ViewModel.SelectedPayment == null)
-            {
-                logManager.Warn("SelectedPayment is null on SetVisibilityInitially");
-                return;
-            }
-
-            if(!ViewModel.SelectedPayment.IsRecurring)
-            {
-                ToggleRecurringVisibility(this, null);
-            }
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
