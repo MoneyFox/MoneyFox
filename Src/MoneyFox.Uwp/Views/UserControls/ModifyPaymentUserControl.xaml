@@ -9,7 +9,6 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
     d:DesignHeight="300"
     d:DesignWidth="400"

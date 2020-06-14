@@ -16,13 +16,27 @@
     mc:Ignorable="d">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+        <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <userControls:ModifyAccountUserControl Grid.Row="0" />
 
-        <userControls:ModifyAccountUserControl Grid.Row="0" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,3,0"
+                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Text="{x:Bind resources:Strings.CreationDateLabel}" />
+                    <TextBlock Text="{Binding SelectedAccount.CreationDate}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,3,0"
+                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Text="{x:Bind resources:Strings.ModificationDateLabel}" />
+                    <TextBlock Text="{Binding SelectedAccount.ModificationDate}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </ContentDialog>

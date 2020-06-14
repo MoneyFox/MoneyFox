@@ -16,11 +16,10 @@
     mc:Ignorable="d">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <userControls:ModifyAccountUserControl Grid.Row="0" />
+        <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <userControls:ModifyAccountUserControl />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </ContentDialog>

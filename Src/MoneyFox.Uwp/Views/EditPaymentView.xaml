@@ -16,7 +16,7 @@
     mc:Ignorable="d">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <userControls:ModifyPaymentUserControl Grid.Row="0" />
+        <userControls:ModifyPaymentUserControl />
     </Grid>
 
 </ContentDialog>
