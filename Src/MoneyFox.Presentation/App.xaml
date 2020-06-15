@@ -1,10 +1,11 @@
-﻿<Application xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
-             xmlns:resources="clr-namespace:XF.Material.Forms.Resources;assembly=XF.Material"
-             xmlns:typography="clr-namespace:XF.Material.Forms.Resources.Typography;assembly=XF.Material"
-             x:Class="MoneyFox.Presentation.App">
+﻿<Application
+    x:Class="MoneyFox.Presentation.App"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+    xmlns:presentation="clr-namespace:MoneyFox.Presentation;assembly=MoneyFox.Presentation"
+    xmlns:resources="clr-namespace:XF.Material.Forms.Resources;assembly=XF.Material"
+    xmlns:typography="clr-namespace:XF.Material.Forms.Resources.Typography;assembly=XF.Material">
 
     <Application.Resources>
         <ResourceDictionary>
@@ -12,38 +13,41 @@
 
             <ResourceDictionary Source="Style/LightTheme.xaml" />
 
-            <OnPlatform x:Key="FontFamily.RobotoRegular"
-                        x:TypeArguments="x:String"
-                        Android="Fonts/Roboto-Regular.ttf#Roboto-Regular"
-                        iOS="Roboto-Regular" />
-            <OnPlatform x:Key="FontFamily.RobotoBold"
-                        x:TypeArguments="x:String"
-                        Android="Fonts/Roboto-Bold.ttf#Roboto-Bold"
-                        iOS="Roboto-Bold" />
-            <OnPlatform x:Key="FontFamily.RobotoMedium"
-                        x:TypeArguments="x:String"
-                        Android="Fonts/Roboto-Medium.ttf#Roboto-Medium"
-                        iOS="Roboto-Medium" />
+            <OnPlatform
+                x:Key="FontFamily.RobotoRegular"
+                x:TypeArguments="x:String"
+                Android="Fonts/Roboto-Regular.ttf#Roboto-Regular"
+                iOS="Roboto-Regular" />
+            <OnPlatform
+                x:Key="FontFamily.RobotoBold"
+                x:TypeArguments="x:String"
+                Android="Fonts/Roboto-Bold.ttf#Roboto-Bold"
+                iOS="Roboto-Bold" />
+            <OnPlatform
+                x:Key="FontFamily.RobotoMedium"
+                x:TypeArguments="x:String"
+                Android="Fonts/Roboto-Medium.ttf#Roboto-Medium"
+                iOS="Roboto-Medium" />
 
-            <typography:MaterialFontConfiguration x:Key="Material.Font"
-                                                  Body1="{StaticResource FontFamily.RobotoRegular}"
-                                                  Body2="{StaticResource FontFamily.RobotoRegular}"
-                                                  Button="{StaticResource FontFamily.RobotoMedium}"
-                                                  Caption="{StaticResource FontFamily.RobotoRegular}"
-                                                  H1="{StaticResource FontFamily.RobotoRegular}"
-                                                  H2="{StaticResource FontFamily.RobotoRegular}"
-                                                  H3="{StaticResource FontFamily.RobotoRegular}"
-                                                  H4="{StaticResource FontFamily.RobotoRegular}"
-                                                  H5="{StaticResource FontFamily.RobotoRegular}"
-                                                  H6="{StaticResource FontFamily.RobotoMedium}"
-                                                  Overline="{StaticResource FontFamily.RobotoRegular}"
-                                                  Subtitle1="{StaticResource FontFamily.RobotoRegular}"
-                                                  Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
+            <typography:MaterialFontConfiguration
+                x:Key="Material.Font"
+                Body1="{StaticResource FontFamily.RobotoRegular}"
+                Body2="{StaticResource FontFamily.RobotoRegular}"
+                Button="{StaticResource FontFamily.RobotoMedium}"
+                Caption="{StaticResource FontFamily.RobotoRegular}"
+                H1="{StaticResource FontFamily.RobotoRegular}"
+                H2="{StaticResource FontFamily.RobotoRegular}"
+                H3="{StaticResource FontFamily.RobotoRegular}"
+                H4="{StaticResource FontFamily.RobotoRegular}"
+                H5="{StaticResource FontFamily.RobotoRegular}"
+                H6="{StaticResource FontFamily.RobotoMedium}"
+                Overline="{StaticResource FontFamily.RobotoRegular}"
+                Subtitle1="{StaticResource FontFamily.RobotoRegular}"
+                Subtitle2="{StaticResource FontFamily.RobotoMedium}" />
 
-            <resources:MaterialConfiguration x:Key="Material.Configuration"
-                                             FontConfiguration="{StaticResource Material.Font}" />
+            <resources:MaterialConfiguration x:Key="Material.Configuration" FontConfiguration="{StaticResource Material.Font}" />
 
-            <!-- Control Styles -->
+            <!--  Control Styles  -->
             <Style x:Key="MenuButtonStyle" TargetType="material:MaterialMenuButton">
                 <Setter Property="MenuBackgroundColor" Value="{DynamicResource DialogBackgroundColor}" />
                 <Setter Property="Margin" Value="-10" />
@@ -125,7 +129,7 @@
                 <Setter Property="Margin" Value="0,0,15,15" />
             </Style>
 
-            <!-- Text Styles -->
+            <!--  Text Styles  -->
 
             <Style x:Key="DefaultTextStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{DynamicResource DefaultTextSize}" />
@@ -147,20 +151,20 @@
                 <Setter Property="TextColor" Value="White" />
             </Style>
 
-            <!-- Font Sizes -->
+            <!--  Font Sizes  -->
             <x:Double x:Key="DefaultTextSize">14</x:Double>
             <x:Double x:Key="MediumTextSize">20</x:Double>
 
-            <!-- Spacing -->
+            <!--  Spacing  -->
             <x:Double x:Key="DefaultSpacing">3</x:Double>
 
-            <!--Custom size margins-->
+            <!--  Custom size margins  -->
             <Thickness x:Key="PageTitleMargin">0,7,12,7</Thickness>
 
-            <!-- Small size Margin -->
+            <!--  Small size Margin  -->
             <Thickness x:Key="DefaultMargin">3,0,3,0</Thickness>
 
-            <!--Medium size margins-->
+            <!--  Medium size margins  -->
             <Thickness x:Key="DefaultListItemsMargin">6,3,6,3</Thickness>
             <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,4</Thickness>
             <Thickness x:Key="MediumBottomMargin">0,0,0,12</Thickness>
@@ -171,15 +175,13 @@
                 <On Platform="UWP" Value="0,0,0,2" />
             </OnPlatform>
 
-            <!-- Images -->
-            <OnPlatform x:Key="ImageSave"
-                        x:TypeArguments="ImageSource">
+            <!--  Images  -->
+            <OnPlatform x:Key="ImageSave" x:TypeArguments="ImageSource">
                 <On Platform="Android" Value="ic_save_white" />
                 <On Platform="iOS" Value="ic_save_white" />
             </OnPlatform>
 
-            <OnPlatform x:Key="ImageResetField"
-                        x:TypeArguments="ImageSource">
+            <OnPlatform x:Key="ImageResetField" x:TypeArguments="ImageSource">
                 <On Platform="Android" Value="ic_cancel_black" />
                 <On Platform="iOS" Value="ic_cancel_black" />
                 <On Platform="UWP" Value="IconCancel" />

@@ -1,53 +1,56 @@
-﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             mc:Ignorable="d"
-             x:Class="MoneyFox.Presentation.UserControls.ModifyAccountUserControl">
+﻿<ContentView
+    x:Class="MoneyFox.Presentation.UserControls.ModifyAccountUserControl"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    mc:Ignorable="d">
 
     <d:ContentView.BindingContext>
         <designTime:DesignTimeModifyAccountViewModel />
     </d:ContentView.BindingContext>
 
     <ContentView.Content>
-        <ScrollView>
-            <StackLayout Spacing="{StaticResource DefaultSpacing}">
+        <StackLayout Spacing="{StaticResource DefaultSpacing}">
 
-                <Entry Style="{StaticResource DefaultEntry}"
-                       Placeholder="{x:Static resources:Strings.AccountNameLabel}"
-                       Text="{Binding SelectedAccount.Name}" />
+            <Entry
+                Placeholder="{x:Static resources:Strings.AccountNameLabel}"
+                Style="{StaticResource DefaultEntry}"
+                Text="{Binding SelectedAccount.Name}" />
 
-                <Entry x:Name="AmountEntry"
-                       Style="{StaticResource DefaultEntry}"
-                       Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
-                       Text="{Binding AmountString}"
-                       Keyboard="Numeric"
-                       HorizontalTextAlignment="End"
-                       Focused="AmountFieldGotFocused" />
+            <Entry
+                x:Name="AmountEntry"
+                Focused="AmountFieldGotFocused"
+                HorizontalTextAlignment="End"
+                Keyboard="Numeric"
+                Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
+                Style="{StaticResource DefaultEntry}"
+                Text="{Binding AmountString}" />
 
-                <Entry Style="{StaticResource DefaultEntry}"
-                       Placeholder="{x:Static resources:Strings.NoteLabel}"
-                       Text="{Binding SelectedAccount.Note}" />
+            <Entry
+                Placeholder="{x:Static resources:Strings.NoteLabel}"
+                Style="{StaticResource DefaultEntry}"
+                Text="{Binding SelectedAccount.Note}" />
 
-                <Grid HorizontalOptions="FillAndExpand"
-                      Margin="0,5,0,0">
+            <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="70*" />
-                        <ColumnDefinition Width="20*" />
-                    </Grid.ColumnDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
 
-                    <Label Grid.Column="0"
-                           Text="{x:Static resources:Strings.IsExcludedLabel}"
-                           Style="{StaticResource DefaultTextStyle}" />
-                    <Switch Grid.Column="1"
-                            HorizontalOptions="End"
-                            Style="{StaticResource SwitchStyle}"
-                            IsToggled="{Binding SelectedAccount.IsExcluded}" />
-                </Grid>
-            </StackLayout>
-        </ScrollView>
+                <Label
+                    Grid.Column="0"
+                    Style="{StaticResource DefaultTextStyle}"
+                    Text="{x:Static resources:Strings.IsExcludedLabel}" />
+                <Switch
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    IsToggled="{Binding SelectedAccount.IsExcluded}"
+                    Style="{StaticResource SwitchStyle}" />
+            </Grid>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

@@ -700,6 +700,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation Date:.
+        /// </summary>
+        public static string CreationDateLabel {
+            get {
+                return ResourceManager.GetString("CreationDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Balance.
         /// </summary>
         public static string CurrentBalanceLabel {
@@ -1462,6 +1471,15 @@ namespace MoneyFox.Application.Resources {
         public static string MandatoryFieldEmptyTitle {
             get {
                 return ResourceManager.GetString("MandatoryFieldEmptyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modification Date:.
+        /// </summary>
+        public static string ModificationDateLabel {
+            get {
+                return ResourceManager.GetString("ModificationDateLabel", resourceCulture);
             }
         }
         

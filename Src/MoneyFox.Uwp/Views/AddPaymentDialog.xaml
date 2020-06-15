@@ -15,12 +15,11 @@
     SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
     mc:Ignorable="d">
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <userControls:ModifyPaymentUserControl Grid.Row="0" />
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <userControls:ModifyPaymentUserControl Grid.Row="0" />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </ContentDialog>

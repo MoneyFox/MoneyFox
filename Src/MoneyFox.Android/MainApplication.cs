@@ -27,7 +27,9 @@ namespace MoneyFox.Droid
         public override void OnCreate()
         {
             if(ConfigurationManager.AppSettings == null)
+            {
                 ConfigurationManager.Initialise(PortableStream.Current);
+            }
 
             InitLogger();
 

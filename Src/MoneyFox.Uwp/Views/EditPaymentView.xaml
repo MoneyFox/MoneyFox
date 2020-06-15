@@ -15,8 +15,28 @@
     SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
     mc:Ignorable="d">
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <userControls:ModifyPaymentUserControl Grid.Row="0" />
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <userControls:ModifyPaymentUserControl />
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,3,0"
+                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Text="{x:Bind resources:Strings.CreationDateLabel}" />
+                    <TextBlock Text="{Binding SelectedPayment.CreationTime}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,3,0"
+                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Text="{x:Bind resources:Strings.ModificationDateLabel}" />
+                    <TextBlock Text="{Binding SelectedPayment.ModificationDate}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </ContentDialog>
