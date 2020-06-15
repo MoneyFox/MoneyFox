@@ -16,6 +16,8 @@ namespace MoneyFox.Uwp.ViewModels
         private string note;
         private bool isOverdrawn;
         private bool isExcluded;
+        private DateTime creationTime;
+        private DateTime modificationDate;
 
         /// <summary>
         /// Account Id
@@ -103,6 +105,28 @@ namespace MoneyFox.Uwp.ViewModels
                 if(isExcluded == value)
                     return;
                 isExcluded = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public DateTime CreationTime
+        {
+            get => creationTime;
+            set
+            {
+                if(creationTime == value) return;
+                creationTime = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public DateTime ModificationDate
+        {
+            get => modificationDate;
+            set
+            {
+                if(modificationDate == value) return;
+                modificationDate = value;
                 RaisePropertyChanged();
             }
         }

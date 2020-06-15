@@ -16,7 +16,27 @@
     mc:Ignorable="d">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <userControls:ModifyPaymentUserControl Grid.Row="0" />
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <userControls:ModifyPaymentUserControl />
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,3,0"
+                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Text="{x:Bind resources:Strings.CreationDateLabel}" />
+                    <TextBlock Text="{Binding SelectedPayment.CreationTime}" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock
+                        Margin="0,0,3,0"
+                        Style="{StaticResource DeemphasizedLabelStyle}"
+                        Text="{x:Bind resources:Strings.ModificationDateLabel}" />
+                    <TextBlock Text="{Binding SelectedPayment.ModificationDate}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 
 </ContentDialog>

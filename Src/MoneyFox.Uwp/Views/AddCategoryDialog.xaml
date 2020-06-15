@@ -16,13 +16,10 @@
     mc:Ignorable="d">
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <userControls:ModifyCategoryUserControl Grid.Row="0" />
-
+        <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <userControls:ModifyCategoryUserControl />
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
-
 </ContentDialog>

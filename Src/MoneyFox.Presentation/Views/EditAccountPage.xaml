@@ -1,29 +1,47 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             x:Class="MoneyFox.Presentation.Views.EditAccountPage"
-             Visual="Material"
-             Title="{Binding Title}"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+﻿<ContentPage
+    x:Class="MoneyFox.Presentation.Views.EditAccountPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls;assembly=MoneyFox.Presentation"
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Visual="Material"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyAccountViewModel />
     </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
-        <StackLayout Margin="{StaticResource DefaultMargin}">
-            <userControls:ModifyAccountUserControl />
+        <ScrollView>
+            <StackLayout Margin="{StaticResource DefaultMargin}">
+                <userControls:ModifyAccountUserControl />
 
-            <Button x:Name="DeleteAccountButton"
-                    Text="{x:Static resources:Strings.DeleteLabel}"
-                    Style="{StaticResource DeleteButtonStyle}"
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{x:Static resources:Strings.CreationDateLabel}" />
+                        <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding SelectedAccount.CreationTime}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{x:Static resources:Strings.ModificationDateLabel}" />
+                        <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding SelectedAccount.ModificationDate}" />
+                    </StackLayout>
+                </StackLayout>
+
+                <Button
+                    x:Name="DeleteAccountButton"
+                    Margin="0,12,0,0"
                     Command="{Binding DeleteCommand}"
-                    Margin="0,12,0,0" />
-        </StackLayout>
+                    Style="{StaticResource DeleteButtonStyle}"
+                    Text="{x:Static resources:Strings.DeleteLabel}" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -22,24 +22,22 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
-        <StackPanel>
-            <TextBox
-                x:Uid="Name"
-                Margin="{StaticResource SmallTitleContentMargin}"
-                VerticalAlignment="Top"
-                Header="{x:Bind resources:Strings.CategoryNameLabel}"
-                Text="{Binding SelectedCategory.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    <StackPanel>
+        <TextBox
+            x:Uid="Name"
+            Margin="{StaticResource SmallTitleContentMargin}"
+            VerticalAlignment="Top"
+            Header="{x:Bind resources:Strings.CategoryNameLabel}"
+            Text="{Binding SelectedCategory.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-            <TextBox
-                x:Uid="NoteTextBox"
-                Margin="{StaticResource SmallTitleContentMargin}"
-                VerticalAlignment="Top"
-                Header="{x:Bind resources:Strings.NoteLabel}"
-                Text="{Binding SelectedCategory.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                TextWrapping="Wrap" />
+        <TextBox
+            x:Uid="NoteTextBox"
+            Margin="{StaticResource SmallTitleContentMargin}"
+            VerticalAlignment="Top"
+            Header="{x:Bind resources:Strings.NoteLabel}"
+            Text="{Binding SelectedCategory.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            TextWrapping="Wrap" />
 
-        </StackPanel>
-    </ScrollViewer>
+    </StackPanel>
 
 </UserControl>

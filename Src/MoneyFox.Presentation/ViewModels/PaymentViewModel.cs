@@ -31,6 +31,8 @@ namespace MoneyFox.Presentation.ViewModels
         private PaymentType type;
         private string note;
         private bool isRecurring;
+        private DateTime creationTime;
+        private DateTime modificationDate;
 
         private AccountViewModel chargedAccount;
         private AccountViewModel targetAccount;
@@ -189,6 +191,30 @@ namespace MoneyFox.Presentation.ViewModels
                                    ? new RecurringPaymentViewModel()
                                    : null;
 
+                RaisePropertyChanged();
+            }
+        }
+
+        public DateTime CreationTime
+        {
+            get => creationTime;
+            set
+            {
+                if(creationTime == value)
+                    return;
+                creationTime = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public DateTime ModificationDate
+        {
+            get => modificationDate;
+            set
+            {
+                if(modificationDate == value)
+                    return;
+                modificationDate = value;
                 RaisePropertyChanged();
             }
         }

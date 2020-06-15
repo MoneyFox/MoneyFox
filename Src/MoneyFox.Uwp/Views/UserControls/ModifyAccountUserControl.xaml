@@ -22,34 +22,32 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
-        <StackPanel>
-            <TextBox
-                Margin="{StaticResource SmallTitleContentMargin}"
-                VerticalAlignment="Top"
-                Header="{x:Bind resources:Strings.AccountNameLabel}"
-                Text="{Binding SelectedAccount.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <TextBox
-                x:Name="TextBoxCurrentBalance"
-                Margin="{StaticResource SmallTitleContentMargin}"
-                GotFocus="TextBoxOnFocus"
-                Header="{x:Bind resources:Strings.CurrentBalanceLabel}"
-                InputScope="Number"
-                Text="{Binding AmountString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                TextAlignment="Right" />
-            <TextBox
-                Margin="{StaticResource SmallTitleContentMargin}"
-                VerticalAlignment="Top"
-                Header="{x:Bind resources:Strings.NoteLabel}"
-                Text="{Binding SelectedAccount.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                TextWrapping="Wrap" />
+    <StackPanel>
+        <TextBox
+            Margin="{StaticResource SmallTitleContentMargin}"
+            VerticalAlignment="Top"
+            Header="{x:Bind resources:Strings.AccountNameLabel}"
+            Text="{Binding SelectedAccount.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <TextBox
+            x:Name="TextBoxCurrentBalance"
+            Margin="{StaticResource SmallTitleContentMargin}"
+            GotFocus="TextBoxOnFocus"
+            Header="{x:Bind resources:Strings.CurrentBalanceLabel}"
+            InputScope="Number"
+            Text="{Binding AmountString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            TextAlignment="Right" />
+        <TextBox
+            Margin="{StaticResource SmallTitleContentMargin}"
+            VerticalAlignment="Top"
+            Header="{x:Bind resources:Strings.NoteLabel}"
+            Text="{Binding SelectedAccount.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            TextWrapping="Wrap" />
 
-            <CheckBox
-                Margin="{StaticResource SmallTitleContentMargin}"
-                VerticalAlignment="Top"
-                Content="{x:Bind resources:Strings.IsExcludedLabel}"
-                IsChecked="{Binding SelectedAccount.IsExcluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </StackPanel>
-    </ScrollViewer>
+        <CheckBox
+            Margin="{StaticResource SmallTitleContentMargin}"
+            VerticalAlignment="Top"
+            Content="{x:Bind resources:Strings.IsExcludedLabel}"
+            IsChecked="{Binding SelectedAccount.IsExcluded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </StackPanel>
 
 </UserControl>

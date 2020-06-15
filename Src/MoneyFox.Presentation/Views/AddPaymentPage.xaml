@@ -1,14 +1,15 @@
-﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
-             xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
-             x:Class="MoneyFox.Presentation.Views.AddPaymentPage"
-             Visual="Material"
-             Title="{Binding Title}"
-             BackgroundColor="{DynamicResource WindowBackgroundColor}">
+﻿<ContentPage
+    x:Class="MoneyFox.Presentation.Views.AddPaymentPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:designTime="clr-namespace:MoneyFox.Presentation.ViewModels.DesignTime;assembly=MoneyFox.Presentation"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
+    Title="{Binding Title}"
+    BackgroundColor="{DynamicResource WindowBackgroundColor}"
+    Visual="Material"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <designTime:DesignTimeModifyPaymentViewModel />
@@ -16,7 +17,9 @@
 
     <ContentPage.Content>
         <StackLayout>
-            <userControls:ModifyPaymentUserControl Margin="{StaticResource DefaultMargin}" />
+            <ScrollView>
+                <userControls:ModifyPaymentUserControl Margin="{StaticResource DefaultMargin}" />
+            </ScrollView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
