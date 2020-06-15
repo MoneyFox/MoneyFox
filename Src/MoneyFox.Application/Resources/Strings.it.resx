@@ -883,4 +883,10 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
     <value>There are no Payments for this category in this time frame.</value>
   </data>
+  <data name="CreationDateLabel" xml:space="preserve">
+    <value>Creation Date:</value>
+  </data>
+  <data name="ModificationDateLabel" xml:space="preserve">
+    <value>Modification Date:</value>
+  </data>
 </root>

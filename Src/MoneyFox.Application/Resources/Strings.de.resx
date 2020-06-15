@@ -882,4 +882,10 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
     <value>In diesem Zeitrahmen gibt es keine Zahlungen für diese Kategorie.</value>
   </data>
+  <data name="CreationDateLabel" xml:space="preserve">
+    <value>Creation Date:</value>
+  </data>
+  <data name="ModificationDateLabel" xml:space="preserve">
+    <value>Modification Date:</value>
+  </data>
 </root>
