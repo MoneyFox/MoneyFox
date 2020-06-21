@@ -512,13 +512,13 @@
     <value>Включенные аккаунты</value>
   </data>
   <data name="HourLabel" xml:space="preserve">
-    <value>Hour(s)</value>
+    <value>Час(ы)</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Biannually</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Quarterly</value>
+    <value>Ежеквартально</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Сбой авторизации</value>
