@@ -515,7 +515,7 @@
     <value>Час(ы)</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>Раз в полгода</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
     <value>Ежеквартально</value>
@@ -660,7 +660,7 @@
     <value>Category Name</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
-    <value>Filter</value>
+    <value>Фильтр</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
     <value>Time Range End</value>
@@ -678,16 +678,16 @@
     <value>Select Statistic</value>
   </data>
   <data name="BackgroundJobLabel" xml:space="preserve">
-    <value>Background Job</value>
+    <value>Фоновые задания</value>
   </data>
   <data name="BackgroundJobSettingDescription" xml:space="preserve">
     <value>Configure execution interval for background task.</value>
   </data>
   <data name="BackgroundJobTitle" xml:space="preserve">
-    <value>Background Job</value>
+    <value>Фоновые задания</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Персонализация</value>
   </data>
   <data name="ShortcutsTitle" xml:space="preserve">
     <value>Shortcuts</value>
