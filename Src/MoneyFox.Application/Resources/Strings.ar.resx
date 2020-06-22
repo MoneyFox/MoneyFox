@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -232,16 +232,16 @@
     <value>إضافة الدخل</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>إضافة نفقات</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>إضافة حوالة</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Edit {0}</value>
+    <value>تعديل {0}</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>ملخص الفئة</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
     <value>Category Spreading</value>
@@ -253,86 +253,86 @@
     <value>Target Account</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
+    <value>يجب أن يكون تاريخ نهاية الدفعة المكررة في المستقبل. الرجاء التحقق من التاربخ المدخل.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Invalid End Date</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Not Now</value>
+    <value>ليس الآن</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>We hope you like our app. Support us with a rating in the store.
-Do you want to go the the store to rate?</value>
+    <value>نأمل أن تحب تطبيقنا. قم بدعمنا عبر تقييمنا في المتجر.
+هل تريد الذهاب إلى المتجر للتقيم؟</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>تقييم هذا التطبيق</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>كل أسبوعين</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category</value>
+    <value>إضافة فئة</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit Category</value>
+    <value>تعديل فئة</value>
   </data>
   <data name="CategoriesLabel" xml:space="preserve">
-    <value>Categories</value>
+    <value>الفئات</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>الإيرادات والنفقات والمكاسب للفترة الزمنية المحددة.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
     <value>Spreading of the expenses to the categories.</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>ملخص الفئات مع الدفع.</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>إلغاء</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Add expense</value>
+    <value>إضافة نفقات</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Add income</value>
+    <value>إضافة دخل</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Add transfer</value>
+    <value>إضافة حوالة</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>أنت غير متصل بالإنترنت، الرجاء التحقق من الاتصال والمحاولة مرة أخرى.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>No Internet Connection</value>
+    <value>لا يوجد إتصال بالإنترنت</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An Account with that name already exists.</value>
+    <value>يوجد حساب بهذا الاسم مسبقاً.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A Category with that name already exists.</value>
+    <value>توجد فئة بهذا الاسم مسبقاً</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Name already used</value>
+    <value>هذا الاسم مستخدم مسبقاً</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Loading...</value>
+    <value>جاري التحميل...</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>حدث خطأ أثناء محاولة التسجيل. الرجاء المحاولة في وقت لاجق.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>الإصدار</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>التواصل</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>لرؤية جميع المساهمات قم بزيارة GitHub:</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>تم إنشاء أيقونة التطبيق بواسطة:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
     <value>هذا مشروع مفتوح المصدر - ونحن نود أن نعمل معك! لا تتردد في المساهمة.
@@ -388,22 +388,22 @@ Do you want to go the the store to rate?</value>
     <value>لا نهائي</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>متكرر</value>
+    <value>دفع متكرر</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+    <value>إذا قمت بتنشيط هذا الخيار فإننا سنقوم بنسخ بياناتك تلقائياً إلى OneDrive. كما أننا سنتحقق بشكل دوري في حال حدوث تغيير على جهاز آخر.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>مزامنة النسخ الاحتياطية تلقائياً</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>لقد قمت بحذف دفعة متكررة. هل تريد حذف التكرار أيضا؟</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Delete Recurrence?</value>
+    <value>حذف التكرار؟</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Bimonthly</value>
+    <value>كل شهرين</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
     <value>Exclude account from balance</value>
@@ -412,22 +412,22 @@ Do you want to go the the store to rate?</value>
     <value>Excluded Accounts</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>الحسابات المدخلة</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>كل 6 أشهر</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Quarterly</value>
+    <value>كل 4 أشهر</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>فشل التسجيل</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>Backup failed!</value>
   </data>
   <data name="AboutLabel" xml:space="preserve">
-    <value>About</value>
+    <value>عن التطبيق</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
     <value>An error occured</value>
@@ -436,10 +436,10 @@ Do you want to go the the store to rate?</value>
     <value>Cleared</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Done</value>
+    <value>تم</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>دفع متكرر</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Select Filter</value>
@@ -451,7 +451,7 @@ Do you want to go the the store to rate?</value>
     <value>Cleared</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Recurring</value>
+    <value>دفع متكرر</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
     <value>Others</value>
@@ -460,7 +460,7 @@ Do you want to go the the store to rate?</value>
     <value>Accounts</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>الإعدادات</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
     <value>Time Range:</value>
@@ -469,16 +469,16 @@ Do you want to go the the store to rate?</value>
     <value>Category Summary</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>There are no categories to display. Tap the plus button to add one.</value>
+    <value>لا توجد فئات لعرضها. انقر فوق الزر "زائد" لإضافة واحدة.</value>
   </data>
   <data name="NoStatisticItemsMessage" xml:space="preserve">
     <value>There are no statistic items in the selected time range.</value>
   </data>
   <data name="BackupSettingsDescription" xml:space="preserve">
-    <value>Create and restore backups.</value>
+    <value>إنشاء أو استعادة النسخ الاحتياطية.</value>
   </data>
   <data name="CategoriesSettingsDescription" xml:space="preserve">
-    <value>Add and modify categories.</value>
+    <value>إضافة وتعديل الفئات.</value>
   </data>
   <data name="AddTitle" xml:space="preserve">
     <value>Add</value>
@@ -493,13 +493,13 @@ Do you want to go the the store to rate?</value>
     <value>Enddate</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>التكرار</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="AboutSettingsDescription" xml:space="preserve">
-    <value>Support information about this app.</value>
+    <value>معلومات الدعم حول هذا التطبيق.</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
@@ -508,10 +508,10 @@ Do you want to go the the store to rate?</value>
     <value>Website</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Backup</value>
+    <value>النسخ الاحتياطي</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>الفئات</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
     <value>Select Category</value>
@@ -553,31 +553,31 @@ Do you want to go the the store to rate?</value>
     <value>Personalization</value>
   </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
-    <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
+    <value>اختر بين سمة مظلمة أو فاتجة. الرجاء إعادة تشغيل التطبيق عبر مدير المهام لتطبيق التفييرات.</value>
   </data>
   <data name="SettingsPersonalizationDescription" xml:space="preserve">
-    <value>Choose your prefered Theme.</value>
+    <value>إختر المظهر المفضل لديك</value>
   </data>
   <data name="SettingsPersonalizationLabel" xml:space="preserve">
-    <value>Personalization</value>
+    <value>تخصيص</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Last year monthly average: </value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>المساهمات</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>معلومات</value>
   </data>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Leave a feedback!</value>
+    <value>أرسل دعمك!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+    <value>لقد قمت بتعديل دفعة متكررة. هل تريد تحديث التكرار؟</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modify Recurrence</value>
+    <value>تعديل التكرار</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
     <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
@@ -586,7 +586,7 @@ Do you want to go the the store to rate?</value>
     <value>Override Local Data</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>سيتم حفظ بياناتك في حساب OneDrive الخاص بك. سوف تجد البيانات في مجلد جديد للتطبيق يسمى "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
     <value>Dark</value>
@@ -622,16 +622,16 @@ Do you want to go the the store to rate?</value>
     <value>Upload backup was canceled.</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>المنطقة الافتراضية</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>المنطقة المدخلة ستكون المنطقة الافتراضية للتطبيق</value>
   </data>
   <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
+    <value>الإعدادات المحلية</value>
   </data>
   <data name="RegionalSettingsDescriptionText" xml:space="preserve">
-    <value>Set region settings for your application.</value>
+    <value>تعيين الإعدادات المحلية للتطبيق الخاص بك.</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
@@ -643,7 +643,7 @@ Do you want to go the the store to rate?</value>
     <value>Save</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+    <value>يبدو أن رصيدك المدخل غير صالح. الرجاء التأكد من إدخال رفم صالح دون أي أحرف وتحقق من اسنخدام الفاصل العشري الصحيح.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
     <value>Invalid Number</value>
@@ -683,5 +683,8 @@ Do you want to go the the store to rate?</value>
   </data>
   <data name="ModificationDateLabel" xml:space="preserve">
     <value>Modification Date:</value>
+  </data>
+  <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
+    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
   </data>
 </root>
