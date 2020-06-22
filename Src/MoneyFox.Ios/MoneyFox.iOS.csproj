@@ -326,10 +326,10 @@
       <Version>1.5.3.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
-      <Version>4.6.0.847</Version>
+      <Version>4.7.0.968</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.6.0.847</Version>
+      <Version>4.7.0.968</Version>
     </PackageReference>
     <PackageReference Include="XF.Material">
       <Version>1.6.5</Version>
