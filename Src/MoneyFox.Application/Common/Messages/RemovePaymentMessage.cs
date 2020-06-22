@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Application.Common.Messages
 {
     /// <summary>
-    /// Message to remove the passed message.
+    ///     Message to remove the passed message.
     /// </summary>
     public class RemovePaymentMessage
     {

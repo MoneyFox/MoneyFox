@@ -4,6 +4,7 @@ using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Services;
@@ -100,6 +101,7 @@ namespace MoneyFox.Uwp.ViewModels
 
             await DialogService.ShowLoadingDialogAsync(Strings.SavingCategoryMessage);
             await SaveCategoryAsync();
+            MessengerInstance.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
         }
 
