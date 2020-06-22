@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Application.Common;
 using MoneyFox.iOS.Src;
 using MoneyFox.Presentation;
@@ -24,6 +25,8 @@ namespace MoneyFox.iOS
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
                    .AsImplementedInterfaces();
+
+            builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
         }
     }
 }

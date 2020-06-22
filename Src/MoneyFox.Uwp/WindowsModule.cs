@@ -34,10 +34,10 @@ namespace MoneyFox.Uwp
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
             builder.RegisterType<WindowsFileStore>().As<IFileStore>();
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
-            builder.Register((c) => Messenger.Default).AsImplementedInterfaces();
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
 
+            builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.Register(c => PublicClientApplicationBuilder

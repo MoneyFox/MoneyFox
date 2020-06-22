@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Ui.Shared.Commands;
@@ -98,6 +99,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
             await SaveAccount();
+            MessengerInstance.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
             NavigationService.GoBackModal();
         }
