@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -123,9 +123,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Bitte Konto auswählen.</value>
   </data>
-  <data name="AccountsLabel" xml:space="preserve">
-    <value>Konten</value>
-  </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Konto hinzufügen</value>
   </data>
@@ -138,23 +135,11 @@
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Umbuchung</value>
   </data>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>Money Fox</value>
-  </data>
-  <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>Beim erstellen der Sicherung trat ein Fehler auf. Bitte versuch es später nochmals.</value>
-  </data>
   <data name="BackupLabel" xml:space="preserve">
     <value>Sicherung</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Kapitalfluss</value>
-  </data>
-  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>Du hast eine wiederkehrende Zahlung bearbeitet. Möchtest du künftige Zahlungen ebenfalls entsprechend anpassen?</value>
-  </data>
-  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
-    <value>Wiederholungen aktualisieren?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Täglich</value>
@@ -170,9 +155,6 @@
   </data>
   <data name="DeleteLabel" xml:space="preserve">
     <value>Löschen</value>
-  </data>
-  <data name="SecurityTitle" xml:space="preserve">
-    <value>Sicherheit</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>Löschen?</value>
@@ -195,9 +177,6 @@
   <data name="IncreaseLabel" xml:space="preserve">
     <value>Gewinn</value>
   </data>
-  <data name="JustThisLabel" xml:space="preserve">
-    <value>Nein, nur diese</value>
-  </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Pflichtfeld</value>
   </data>
@@ -219,26 +198,11 @@
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Überschreiben?</value>
   </data>
-  <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Ja, alle aktualisieren</value>
-  </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Einkommen</value>
   </data>
-  <data name="SelectDateTitle" xml:space="preserve">
-    <value>Datum wählen</value>
-  </data>
-  <data name="SelectOperationLabel" xml:space="preserve">
-    <value>Operation auswählen</value>
-  </data>
-  <data name="SettingsLabel" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
   <data name="EditSpendingTitle" xml:space="preserve">
     <value>Ausgabe bearbeiten</value>
-  </data>
-  <data name="StatisticsLabel" xml:space="preserve">
-    <value>Statistik</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Auswertungen</value>
@@ -275,24 +239,6 @@
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
     <value>{0} Bearbeiten</value>
-  </data>
-  <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
-    <value>Das Passwort und die Passwortbestätigung waren nicht übereinstimmend. Bitte überprüfe deine Eingabe.</value>
-  </data>
-  <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
-    <value>Passwortbestätigung</value>
-  </data>
-  <data name="PasswordSavedMessage" xml:space="preserve">
-    <value>Passwort wurde erfolgreich gespeichert.</value>
-  </data>
-  <data name="PasswordSavedTitle" xml:space="preserve">
-    <value>Passwort gespeichert</value>
-  </data>
-  <data name="PasswordWrongMessage" xml:space="preserve">
-    <value>Das eingegebene Passwort war falsch. Bitte prüfe deine Eingabe nochmals.</value>
-  </data>
-  <data name="PasswordWrongTitle" xml:space="preserve">
-    <value>Passwort falsch</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Zusammenfassung Kategorien</value>
@@ -346,9 +292,6 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="CancelLabel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
-  <data name="ChooseLabel" xml:space="preserve">
-    <value>Wähle</value>
-  </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
   </data>
@@ -358,26 +301,11 @@ Möchtest du jetzt in den store gehen um eine Bewertung abzugeben?</value>
   <data name="TransferHeader" xml:space="preserve">
     <value>Übertrag hinzufügen</value>
   </data>
-  <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>Es ist ein Fehler beim Löschen des Eintrags aufgetreten.</value>
-  </data>
-  <data name="ErrorMessageSave" xml:space="preserve">
-    <value>Beim Speichern des Eintrags ist ein Fehler aufgetreten.</value>
-  </data>
-  <data name="ErrorTitleDelete" xml:space="preserve">
-    <value>Fehler beim Löschen</value>
-  </data>
-  <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>Kategorie wählen</value>
-  </data>
   <data name="NoNetworkMessage" xml:space="preserve">
     <value>Du musst mit dem Internet verbunden sein, um dich anzumelden. Bitte überprüfe deine Internetverbindung und versuche es erneut.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
     <value>Keine Internetverbindung</value>
-  </data>
-  <data name="GeneralTitle" xml:space="preserve">
-    <value>Allgemein</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
     <value>Ein Konto mit diesem Namen existiert bereits.</value>
@@ -415,12 +343,6 @@ Klicke auf den Link um das Repository zu besuchen:</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Ist etwas nicht richtig oder gar nicht übersetzt? Hilf uns! Gehen auf crowdin und Hilf uns den Money Fox zu verbessern:</value>
-  </data>
-  <data name="PasswordLabel" xml:space="preserve">
-    <value>Passwort</value>
-  </data>
-  <data name="WelcomeLabel" xml:space="preserve">
-    <value>Willkommen!</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>Du hast noch kein Konto erfasst. Erfasse eines über den Plus Knopf unten.</value>
@@ -468,23 +390,11 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="RecurringLabel" xml:space="preserve">
     <value>Wiederkehrend</value>
   </data>
-  <data name="EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Du hast noch keine Kategorien erfasst. Erfasse eine über den Plus Knopf unten.</value>
-  </data>
-  <data name="SearchStringLabel" xml:space="preserve">
-    <value>Suche</value>
-  </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>Wenn diese Einstellung aktiv ist, werden ihre Daten automatisch auf OneDrive gesichert. Ausserdem prüfen wir regelmässig ob Änderungen von anderen Geräten verfügbar sind.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
     <value>Sicherungen automatisch hoch- und runterladen</value>
-  </data>
-  <data name="PasswordActivatedLabel" xml:space="preserve">
-    <value>Passwortschutz</value>
-  </data>
-  <data name="PasswordConfirmationLabel" xml:space="preserve">
-    <value>Passwortbestätigung</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>Du hast eine wiederkehrende Zahlung gelöscht. Möchtest du die Wiederholung löschen?</value>
@@ -498,23 +408,11 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="IsExcludedLabel" xml:space="preserve">
     <value>Konto von Monatsbilanz ausschliessen</value>
   </data>
-  <data name="PasswordEmptyMessage" xml:space="preserve">
-    <value>Das eingegebene Passwort ist leer. Bitte gib ein Passwort ein und versuche es nochmals.</value>
-  </data>
-  <data name="PasswordEmptyTitle" xml:space="preserve">
-    <value>Das Passwort ist leer</value>
-  </data>
-  <data name="ErrorMessageRestore" xml:space="preserve">
-    <value>Es gab ein Problem beim Wiederherstellen der Sicherung. Wenn dieser Fehler weiterhin auftritt, kontaktiere uns bitte.</value>
-  </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
     <value>Ausgeschlossene Konten</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Einbezogene Konten</value>
-  </data>
-  <data name="HourLabel" xml:space="preserve">
-    <value>Stunde(n)</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Halbjährlich</value>
@@ -527,9 +425,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>Sicherung fehlgeschlagen!</value>
-  </data>
-  <data name="BackupRestoreFailedTitle" xml:space="preserve">
-    <value>Fehler beim Wiederherstellen der Sicherung!</value>
   </data>
   <data name="AboutLabel" xml:space="preserve">
     <value>Info</value>
@@ -548,27 +443,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Filter auswählen</value>
-  </data>
-  <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
-    <value>Deine Sicherung wurde erfolgreich synchronisiert.</value>
-  </data>
-  <data name="BackupSyncFailedMessage" xml:space="preserve">
-    <value>Fehler beim synchronisieren deiner Sicherung.</value>
-  </data>
-  <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
-    <value>Eine Systemrichtlinie verweigert die Erlaubnis für den MoneyFox im Hintergrund zu laufen. Einige Funktionen können dadurch beeinträchtigt sein.</value>
-  </data>
-  <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
-    <value>Du hast die Erlaubnis verweigert, dass der MoneyFox im Hintergrund ausgeführt wird. Einige Funktionen können dadurch beeinträchtigt sein.</value>
-  </data>
-  <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
-    <value>Zugriff verweigert</value>
-  </data>
-  <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft Passport ist auf diesem Gerät nicht aktiviert. \n Bitte gehe zu den Einstellungen und aktiviere es!</value>
-  </data>
-  <data name="LoginFailedMessage" xml:space="preserve">
-    <value>Wir konnten dich nicht einloggen. Bitte kontaktiere uns, falls das Problem bestehen bleibt.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
     <value>Login fehlgeschlagen!</value>
@@ -612,9 +486,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Konto hinzufügen</value>
   </data>
-  <data name="SaveAccountLabel" xml:space="preserve">
-    <value>Konto Speichern</value>
-  </data>
   <data name="SearchLabel" xml:space="preserve">
     <value>Suche</value>
   </data>
@@ -624,14 +495,8 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="RecurrenceLabel" xml:space="preserve">
     <value>Wiederholung</value>
   </data>
-  <data name="SavePaymentLabel" xml:space="preserve">
-    <value>Zahlung Speichern</value>
-  </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>Du hast noch keine Zahlung erfasst. Erstelle eine über den Plus Knopf unten.</value>
-  </data>
-  <data name="SaveCategoryLabel" xml:space="preserve">
-    <value>Kategorie speichern</value>
   </data>
   <data name="AboutSettingsDescription" xml:space="preserve">
     <value>Supportinformationen über dieses App.</value>
@@ -675,9 +540,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="AddCategoryLabel" xml:space="preserve">
     <value>Kategorie hinzufügen</value>
   </data>
-  <data name="SelectStatisticTitel" xml:space="preserve">
-    <value>Statistik auswählen</value>
-  </data>
   <data name="BackgroundJobLabel" xml:space="preserve">
     <value>Hintergrundprozess</value>
   </data>
@@ -690,62 +552,14 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="PersonalizationTitle" xml:space="preserve">
     <value>Personalisierung</value>
   </data>
-  <data name="ShortcutsTitle" xml:space="preserve">
-    <value>Verknüpfungen</value>
-  </data>
-  <data name="LiveTileAccountBalance" xml:space="preserve">
-    <value>Bal.: {0}</value>
-  </data>
-  <data name="LiveTileAccountName" xml:space="preserve">
-    <value>Konto: {0}</value>
-  </data>
-  <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
-    <value>{0}: {1}</value>
-  </data>
-  <data name="LiveTileLastMonthsExpenses" xml:space="preserve">
-    <value>{0}: {1}</value>
-  </data>
-  <data name="LiveTilePastPayments" xml:space="preserve">
-    <value>Letzte Zahlungen:</value>
-  </data>
-  <data name="LiveTileUpcommingPayments" xml:space="preserve">
-    <value>Geplante Zahlungen</value>
-  </data>
-  <data name="BalanceLabel" xml:space="preserve">
-    <value>Kontostand</value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Wähle zwischen einem dunkle und hellen Theme. Damit eine Änderung in Kraft tritt, musst du die Anwendung neustarten.</value>
-  </data>
-  <data name="ThemeDarkLabel" xml:space="preserve">
-    <value>Dunkel</value>
-  </data>
-  <data name="ThemeLightLabel" xml:space="preserve">
-    <value>Hell</value>
   </data>
   <data name="SettingsPersonalizationDescription" xml:space="preserve">
     <value>Wähle dein bevorzugtes Theme.</value>
   </data>
   <data name="SettingsPersonalizationLabel" xml:space="preserve">
     <value>Personalisierung</value>
-  </data>
-  <data name="LiveTileWideandLargeIncomeFutureText" xml:space="preserve">
-    <value>{0} wird {1} erhalten</value>
-  </data>
-  <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
-    <value>{0} nach {1}</value>
-  </data>
-  <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
-    <value>{0} wird von {1} abgehoben werden</value>
-  </data>
-  <data name="LiveTileWideandLargePaymentPastText" xml:space="preserve">
-    <value>{0} abgehoben von {1}</value>
-  </data>
-  <data name="PintAccountLabel" xml:space="preserve">
-    <value>Konto an Start anpinnen</value>
-  </data>
-  <data name="CategorySummaryPlaceHolderLabel" xml:space="preserve">
-    <value>Keine Statistikeinträge zum anzeigen. Versuche es mit einem angepassten Zeitraum.</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Durchschnitt im letzten Jahr:</value>
@@ -783,12 +597,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Windows-Standard</value>
   </data>
-  <data name="TagsLabel" xml:space="preserve">
-    <value>Tags</value>
-  </data>
-  <data name="TodayLabel" xml:space="preserve">
-    <value>Heute</value>
-  </data>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>Keine Kategorie</value>
   </data>
@@ -813,9 +621,6 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Upload der Sicherung wurde abgebrochen.</value>
   </data>
-  <data name="DeleteAccountLabel" xml:space="preserve">
-    <value>Konto löschen</value>
-  </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Standard Region</value>
   </data>
@@ -837,20 +642,11 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="SaveLabel" xml:space="preserve">
     <value>Speichern</value>
   </data>
-  <data name="InvalidNumberAmountMessage" xml:space="preserve">
-    <value>Ihr Zahlungsbetrag scheint eine ungültige Zahl zu sein. Bitte überprüfen Sie, dass Sie keine Sonderzeichen eingegeben und das richtige Trennzeichen verwendet haben.</value>
-  </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
     <value>Ihr aktueller Kontostand scheint eine ungültige Zahl zu sein. Bitte überprüfen Sie, dass Sie keine Sonderzeichen eingegeben und das richtige Trennzeichen verwendet haben.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
     <value>Ungültige Zahl</value>
-  </data>
-  <data name="PleaseLoginToBackupFirstMessage" xml:space="preserve">
-    <value>Um backups automatisch zu synchronisieren melde dich bitte bei deinem Backupdienst an.</value>
-  </data>
-  <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
-    <value>Login erforderlich</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
     <value>Konto speichern...</value>
