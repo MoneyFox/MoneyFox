@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Common.Adapters;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
@@ -24,6 +25,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
         private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly Mock<IMessenger> messengerMock;
         private readonly Mock<ILongRunningTaskRequester> longRunningTaskRequesterMock;
 
         public BackupServiceTests()
@@ -33,6 +35,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock = new Mock<ISettingsFacade>();
             connectivityAdapterMock = new Mock<IConnectivityAdapter>();
             contextAdapterMock = new Mock<IContextAdapter>();
+            messengerMock = new Mock<IMessenger>();
             longRunningTaskRequesterMock = new Mock<ILongRunningTaskRequester>();
 
             longRunningTaskRequesterMock.Setup(x => x.RequestLongRunning()).Returns(2);
@@ -49,6 +52,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act / Assert
@@ -71,6 +75,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -96,6 +101,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -117,6 +123,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act / Assert
@@ -141,6 +148,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -166,6 +174,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -187,6 +196,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -210,6 +220,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -233,6 +244,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -253,6 +265,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -277,6 +290,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -300,6 +314,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act / Assert
@@ -330,6 +345,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -365,6 +381,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -391,6 +408,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -419,6 +437,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
@@ -445,6 +464,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   settingsFacadeMock.Object,
                                                   connectivityAdapterMock.Object,
                                                   contextAdapterMock.Object,
+                                                  messengerMock.Object,
                                                   longRunningTaskRequesterMock.Object);
 
             // Act
