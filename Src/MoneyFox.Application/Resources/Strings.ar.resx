@@ -281,7 +281,7 @@
     <value>الفئات</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>الإيرادات والنفقات والمكاسب للفترة الزمنية المحددة.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
     <value>Spreading of the expenses to the categories.</value>
@@ -290,49 +290,49 @@
     <value>Summary of the categories with a Payment.</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>إلغاء</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Add expense</value>
+    <value>إضافة نفقات</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Add income</value>
+    <value>إضافة دخل</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Add transfer</value>
+    <value>إضافة حوالة</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>أنت غير متصل بالإنترنت، الرجاء التحقق من الاتصال والمحاولة مرة أخرى.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>No Internet Connection</value>
+    <value>لا يوجد إتصال بالإنترنت</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An Account with that name already exists.</value>
+    <value>يوجد حساب بهذا الاسم مسبقاً.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A Category with that name already exists.</value>
+    <value>توجد فئة بهذا الاسم مسبقاً</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Name already used</value>
+    <value>هذا الاسم مستخدم مسبقاً</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Loading...</value>
+    <value>جاري التحميل...</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>حدث خطأ أثناء محاولة التسجيل. الرجاء المحاولة في وقت لاجق.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>الإصدار</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>التواصل</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>لرؤية جميع المساهمات قم بزيارة GitHub:</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>تم إنشاء أيقونة التطبيق بواسطة:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
     <value>هذا مشروع مفتوح المصدر - ونحن نود أن نعمل معك! لا تتردد في المساهمة.
@@ -391,7 +391,7 @@
     <value>متكرر</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+    <value>إذا قمت بتنشيط هذا الخيار فإننا سنقوم بنسخ بياناتك تلقائياً إلى OneDrive. كما أننا سنتحقق بشكل دوري في حال حدوث تغيير على جهاز آخر.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
     <value>Automatically upload and download backups</value>
