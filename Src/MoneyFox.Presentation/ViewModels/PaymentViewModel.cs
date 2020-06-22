@@ -349,7 +349,7 @@ namespace MoneyFox.Presentation.ViewModels
             }
 
             await mediator.Send(command);
-            Messenger.Default.Send(new RemovePaymentMessage(payment.Id));
+            Messenger.Default.Send(new ReloadMessage());
         }
     }
 }
