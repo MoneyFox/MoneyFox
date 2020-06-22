@@ -1,10 +1,12 @@
-﻿using Microsoft.Graph;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Graph;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Domain.Exceptions;
 using NLog;
 using System;
@@ -64,6 +66,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
         private readonly IContextAdapter contextAdapter;
+        private readonly IMessenger messenger;
         private readonly ILongRunningTaskRequester longRunningTaskRequester;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -75,6 +78,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                              ISettingsFacade settingsFacade,
                              IConnectivityAdapter connectivity,
                              IContextAdapter contextAdapter,
+                             IMessenger messenger,
                              ILongRunningTaskRequester longRunningTaskRequester)
         {
             this.cloudBackupService = cloudBackupService;
@@ -82,6 +86,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
             this.contextAdapter = contextAdapter;
+            this.messenger = messenger;
             this.longRunningTaskRequester = longRunningTaskRequester;
         }
 
@@ -145,6 +150,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             await DownloadBackupAsync(backupMode);
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
 
+            messenger.Send(new ReloadMessage());
             longRunningTaskRequester.EndLongRunning(taskId);
         }
 
