@@ -17,7 +17,6 @@ namespace MoneyFox.Droid
             builder.RegisterModule<PresentationModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
-            builder.RegisterType<LongRunningTaskRequester>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<NavigationService>().AsImplementedInterfaces();

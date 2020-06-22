@@ -177,7 +177,6 @@
     <Compile Include="Src\BalanceCalculationService.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\GraphClientFactory.cs" />
-    <Compile Include="Src\LongRunningTaskRequester.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
