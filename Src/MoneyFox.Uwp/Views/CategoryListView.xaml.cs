@@ -1,11 +1,10 @@
-﻿using MoneyFox.Application.Resources;
-using System;
+﻿using System;
 
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class CategoryListView
     {
-        public override string Header => Strings.CategoriesTitle;
+        public override bool ShowHeader => false;
 
         public CategoryListView()
         {
