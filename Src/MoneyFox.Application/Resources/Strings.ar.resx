@@ -253,7 +253,7 @@
     <value>Target Account</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
+    <value>يجب أن يكون تاريخ نهاية الدفعة المكررة في المستقبل. الرجاء التحقق من التاربخ المدخل.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Invalid End Date</value>
@@ -439,7 +439,7 @@
     <value>Done</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
-    <value>Is Recurring</value>
+    <value>دفع متكرر</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Select Filter</value>
@@ -451,7 +451,7 @@
     <value>Cleared</value>
   </data>
   <data name="IsRecurringLabel" xml:space="preserve">
-    <value>Recurring</value>
+    <value>دفع متكرر</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
     <value>Others</value>
@@ -493,7 +493,7 @@
     <value>Enddate</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>التكرار</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
@@ -574,10 +574,10 @@
     <value>Leave a feedback!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+    <value>لقد قمت بتعديل دفعة متكررة. هل تريد تحديث التكرار؟</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modify Recurrence</value>
+    <value>تعديل التكرار</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
     <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
