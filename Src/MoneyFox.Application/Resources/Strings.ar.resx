@@ -412,7 +412,7 @@
     <value>Excluded Accounts</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Included Accounts</value>
+    <value>الحسابات المدخلة</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>كل 6 أشهر</value>
@@ -571,7 +571,7 @@
     <value>معلومات</value>
   </data>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Leave a feedback!</value>
+    <value>أرسل دعمك!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
     <value>لقد قمت بتعديل دفعة متكررة. هل تريد تحديث التكرار؟</value>
