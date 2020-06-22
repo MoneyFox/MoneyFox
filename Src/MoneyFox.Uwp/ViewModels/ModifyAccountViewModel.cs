@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -38,8 +37,6 @@ namespace MoneyFox.Uwp.ViewModels
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
         public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBase);
-
-        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         public string Title
         {
@@ -99,11 +96,6 @@ namespace MoneyFox.Uwp.ViewModels
             await SaveAccount();
             MessengerInstance.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
-        }
-
-        private void Cancel()
-        {
-            NavigationService.GoBack();
         }
     }
 }
