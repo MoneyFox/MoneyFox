@@ -421,7 +421,7 @@
     <value>كل 4 أشهر</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>فشل التسجيل</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>Backup failed!</value>
@@ -436,7 +436,7 @@
     <value>Cleared</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Done</value>
+    <value>تم</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>دفع متكرر</value>
@@ -460,7 +460,7 @@
     <value>Accounts</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>الإعدادات</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
     <value>Time Range:</value>
@@ -475,7 +475,7 @@
     <value>There are no statistic items in the selected time range.</value>
   </data>
   <data name="BackupSettingsDescription" xml:space="preserve">
-    <value>Create and restore backups.</value>
+    <value>إنشاء أو استعادة النسخ الاحتياطية.</value>
   </data>
   <data name="CategoriesSettingsDescription" xml:space="preserve">
     <value>إضافة وتعديل الفئات.</value>
@@ -499,7 +499,7 @@
     <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
   </data>
   <data name="AboutSettingsDescription" xml:space="preserve">
-    <value>Support information about this app.</value>
+    <value>معلومات الدعم حول هذا التطبيق.</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
@@ -508,7 +508,7 @@
     <value>Website</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Backup</value>
+    <value>النسخ الاحتياطي</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
     <value>الفئات</value>
@@ -553,22 +553,22 @@
     <value>Personalization</value>
   </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
-    <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
+    <value>اختر بين سمة مظلمة أو فاتجة. الرجاء إعادة تشغيل التطبيق عبر مدير المهام لتطبيق التفييرات.</value>
   </data>
   <data name="SettingsPersonalizationDescription" xml:space="preserve">
-    <value>Choose your prefered Theme.</value>
+    <value>إختر المظهر المفضل لديك</value>
   </data>
   <data name="SettingsPersonalizationLabel" xml:space="preserve">
-    <value>Personalization</value>
+    <value>تخصيص</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Last year monthly average: </value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>المساهمات</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>معلومات</value>
   </data>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
     <value>Leave a feedback!</value>
@@ -586,7 +586,7 @@
     <value>Override Local Data</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>سيتم حفظ بياناتك في حساب OneDrive الخاص بك. سوف تجد البيانات في مجلد جديد للتطبيق يسمى "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
     <value>Dark</value>
@@ -622,16 +622,16 @@
     <value>Upload backup was canceled.</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>المنطقة الافتراضية</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>المنطقة المدخلة ستكون المنطقة الافتراضية للتطبيق</value>
   </data>
   <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
+    <value>الإعدادات المحلية</value>
   </data>
   <data name="RegionalSettingsDescriptionText" xml:space="preserve">
-    <value>Set region settings for your application.</value>
+    <value>تعيين الإعدادات المحلية للتطبيق الخاص بك.</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
@@ -643,7 +643,7 @@
     <value>Save</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+    <value>يبدو أن رصيدك المدخل غير صالح. الرجاء التأكد من إدخال رفم صالح دون أي أحرف وتحقق من اسنخدام الفاصل العشري الصحيح.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
     <value>Invalid Number</value>
