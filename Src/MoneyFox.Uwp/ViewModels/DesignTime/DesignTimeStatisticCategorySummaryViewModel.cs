@@ -12,8 +12,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public IncomeExpenseBalanceViewModel IncomeExpenseBalance
         {
             get;
-        } =
-            new IncomeExpenseBalanceViewModel { TotalEarned = 400, TotalSpent = 600 };
+        } = new IncomeExpenseBalanceViewModel { TotalEarned = 400, TotalSpent = 600 };
 
         public ObservableCollection<CategoryOverviewViewModel> CategorySummary
                                                                => new ObservableCollection<CategoryOverviewViewModel>
@@ -32,8 +31,11 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             }
         };
 
+
+
         public bool HasData { get; } = true;
 
         public AsyncCommand LoadedCommand { get; }
+        public AsyncCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand { get; }
     }
 }

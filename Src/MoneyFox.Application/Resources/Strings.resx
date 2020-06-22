@@ -889,4 +889,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ModificationDateLabel" xml:space="preserve">
     <value>Modification Date:</value>
   </data>
+  <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
+    <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
+  </data>
 </root>

@@ -21,5 +21,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         bool HasData { get; }
 
         AsyncCommand LoadedCommand { get; }
+
+        AsyncCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand { get; }
     }
 }

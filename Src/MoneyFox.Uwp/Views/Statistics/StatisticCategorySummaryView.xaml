@@ -2,6 +2,7 @@
     x:Class="MoneyFox.Uwp.Views.Statistics.StatisticCategorySummaryView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -52,6 +53,16 @@
                 </StackPanel>
             </StackPanel>
         </DataTemplate>
+
+        <DataTemplate x:Key="DetailsTemplate">
+            <userControls:PaymentListUserControl />
+        </DataTemplate>
+
+        <DataTemplate x:Key="NoSelectionContentTemplate">
+            <Grid>
+                <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.NoCategorySummaryEntrySelectedMessage}" />
+            </Grid>
+        </DataTemplate>
     </Page.Resources>
 
     <i:Interaction.Behaviors>
@@ -75,24 +86,25 @@
             <userControls:IncomeExpenseBalanceUserControl DataContext="{Binding IncomeExpenseBalance}" />
         </StackPanel>
 
-        <ListView
+        <controls:MasterDetailsView
             x:Name="CategorySummaryList"
             Grid.Row="1"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
-            IsItemClickEnabled="True"
-            IsSynchronizedWithCurrentItem="False"
+            DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
             ItemsSource="{Binding CategorySummary}"
-            ItemClick="CategorySummaryList_ItemClick">
+            MasterPaneWidth="550"
+            NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
+            SelectionChanged="CategorySummaryList_SelectionChanged">
 
-            <ListView.ItemContainerStyle>
+            <controls:MasterDetailsView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     <Setter Property="VerticalContentAlignment" Value="Stretch" />
                 </Style>
-            </ListView.ItemContainerStyle>
+            </controls:MasterDetailsView.ItemContainerStyle>
 
-        </ListView>
+        </controls:MasterDetailsView>
 
         <CommandBar
             Grid.Row="2"
