@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -123,9 +123,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Моля изберете акаунт.</value>
   </data>
-  <data name="AccountsLabel" xml:space="preserve">
-    <value>Акаунти</value>
-  </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Добави акаунт</value>
   </data>
@@ -138,23 +135,11 @@
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Transfer</value>
   </data>
-  <data name="ApplicationTitle" xml:space="preserve">
-    <value>Money Fox</value>
-  </data>
-  <data name="ErrorMessageBackupFailed" xml:space="preserve">
-    <value>Възникна грешка, създавайки архива ви. Опитайте пак по-късно.</value>
-  </data>
   <data name="BackupLabel" xml:space="preserve">
     <value>Backup</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Cashflow</value>
-  </data>
-  <data name="ChangeSubsequentPaymentMessage" xml:space="preserve">
-    <value>You updated a recurring payment. Do you want to update the future Payments aswell?</value>
-  </data>
-  <data name="ChangeSubsequentPaymentTitle" xml:space="preserve">
-    <value>Update Recurrence?</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Daily</value>
@@ -170,9 +155,6 @@
   </data>
   <data name="DeleteLabel" xml:space="preserve">
     <value>Изтриване</value>
-  </data>
-  <data name="SecurityTitle" xml:space="preserve">
-    <value>Сигурност</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>Изтривате ли?</value>
@@ -195,9 +177,6 @@
   <data name="IncreaseLabel" xml:space="preserve">
     <value>Gains</value>
   </data>
-  <data name="JustThisLabel" xml:space="preserve">
-    <value>No, just this</value>
-  </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Mandatory field</value>
   </data>
@@ -219,26 +198,11 @@
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Презаписвате ли?</value>
   </data>
-  <data name="UpdateAllLabel" xml:space="preserve">
-    <value>Yes, update All</value>
-  </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Revenue</value>
   </data>
-  <data name="SelectDateTitle" xml:space="preserve">
-    <value>Select Date</value>
-  </data>
-  <data name="SelectOperationLabel" xml:space="preserve">
-    <value>select operation</value>
-  </data>
-  <data name="SettingsLabel" xml:space="preserve">
-    <value>Настройки</value>
-  </data>
   <data name="EditSpendingTitle" xml:space="preserve">
     <value>Edit Expense</value>
-  </data>
-  <data name="StatisticsLabel" xml:space="preserve">
-    <value>Статистика</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Статистика</value>
@@ -275,24 +239,6 @@
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
     <value>Edit {0}</value>
-  </data>
-  <data name="PasswordConfirmationWrongMessage" xml:space="preserve">
-    <value>The passwod and the password confirmation didn't match. Please check your input.</value>
-  </data>
-  <data name="PasswordConfirmationWrongTitle" xml:space="preserve">
-    <value>Потвърждаване на паролата</value>
-  </data>
-  <data name="PasswordSavedMessage" xml:space="preserve">
-    <value>Паролата е запазена успешно.</value>
-  </data>
-  <data name="PasswordSavedTitle" xml:space="preserve">
-    <value>Password saved</value>
-  </data>
-  <data name="PasswordWrongMessage" xml:space="preserve">
-    <value>The password you entered was not correct. Please try again.</value>
-  </data>
-  <data name="PasswordWrongTitle" xml:space="preserve">
-    <value>Грешна парола</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Category Summary</value>
@@ -346,9 +292,6 @@
   <data name="CancelLabel" xml:space="preserve">
     <value>Отказ</value>
   </data>
-  <data name="ChooseLabel" xml:space="preserve">
-    <value>Choose</value>
-  </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Add expense</value>
   </data>
@@ -358,26 +301,11 @@
   <data name="TransferHeader" xml:space="preserve">
     <value>Add transfer</value>
   </data>
-  <data name="ErrorMessageDelete" xml:space="preserve">
-    <value>An error occured while deleting the item.</value>
-  </data>
-  <data name="ErrorMessageSave" xml:space="preserve">
-    <value>An error occured while saving the item.</value>
-  </data>
-  <data name="ErrorTitleDelete" xml:space="preserve">
-    <value>Грешка при изтриване</value>
-  </data>
-  <data name="ChooseCategorieTitle" xml:space="preserve">
-    <value>Категоризирайте</value>
-  </data>
   <data name="NoNetworkMessage" xml:space="preserve">
     <value>You are not connected to the internet. Please check your connection and try again.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
     <value>Няма връзка с интернет</value>
-  </data>
-  <data name="GeneralTitle" xml:space="preserve">
-    <value>Общи</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
     <value>An Account with that name already exists.</value>
@@ -415,12 +343,6 @@ Tap to visit the Repository:</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
-  </data>
-  <data name="PasswordLabel" xml:space="preserve">
-    <value>Парола</value>
-  </data>
-  <data name="WelcomeLabel" xml:space="preserve">
-    <value>Добре дошли!</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
     <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
@@ -468,23 +390,11 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="RecurringLabel" xml:space="preserve">
     <value>Is Recurring</value>
   </data>
-  <data name="EmptyListPlaceholderLabel" xml:space="preserve">
-    <value>Няма категории. Добавете една, почуквайки върху копчето плюс на дъното.</value>
-  </data>
-  <data name="SearchStringLabel" xml:space="preserve">
-    <value>Търсене</value>
-  </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
     <value>Automatically upload and download backups</value>
-  </data>
-  <data name="PasswordActivatedLabel" xml:space="preserve">
-    <value>Защита с парола</value>
-  </data>
-  <data name="PasswordConfirmationLabel" xml:space="preserve">
-    <value>Потвърждаване на паролата</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
     <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
@@ -498,23 +408,11 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="IsExcludedLabel" xml:space="preserve">
     <value>Exclude account from balance</value>
   </data>
-  <data name="PasswordEmptyMessage" xml:space="preserve">
-    <value>The password you've entered is empty. Please enter a password first and try again.</value>
-  </data>
-  <data name="PasswordEmptyTitle" xml:space="preserve">
-    <value>Паролата е празна</value>
-  </data>
-  <data name="ErrorMessageRestore" xml:space="preserve">
-    <value>There was an issue during restoring your backup. Please contact us if this error persist.</value>
-  </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
     <value>Excluded Accounts</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>Included Accounts</value>
-  </data>
-  <data name="HourLabel" xml:space="preserve">
-    <value>Hour(s)</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
     <value>Biannually</value>
@@ -527,9 +425,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>Backup failed!</value>
-  </data>
-  <data name="BackupRestoreFailedTitle" xml:space="preserve">
-    <value>Restore backup failed!</value>
   </data>
   <data name="AboutLabel" xml:space="preserve">
     <value>За приложението</value>
@@ -548,28 +443,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Изберете филтър</value>
-  </data>
-  <data name="BackupSyncedSuccessfullyMessage" xml:space="preserve">
-    <value>You backup was synced successfully.</value>
-  </data>
-  <data name="BackupSyncFailedMessage" xml:space="preserve">
-    <value>Failed to sync the backup</value>
-  </data>
-  <data name="BackgroundAccessDeniedByPolicyMessage" xml:space="preserve">
-    <value>A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected.</value>
-  </data>
-  <data name="BackgroundAccessDeniedByUserMessage" xml:space="preserve">
-    <value>You denied the permissions for the MoneyFox to run in the background. Several functions may not work as expected.</value>
-  </data>
-  <data name="BackgroundAccessDeniedTitle" xml:space="preserve">
-    <value>Достъп отказан</value>
-  </data>
-  <data name="PassportErrorMessage" xml:space="preserve">
-    <value>Microsoft Passport is not enabled on this device. 
-    Please go to settings and enable it!</value>
-  </data>
-  <data name="LoginFailedMessage" xml:space="preserve">
-    <value>We couldn't log you in. Please contact us if this issue persists.</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
     <value>Провали се влизането!</value>
@@ -613,9 +486,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Add Account</value>
   </data>
-  <data name="SaveAccountLabel" xml:space="preserve">
-    <value>Save Account</value>
-  </data>
   <data name="SearchLabel" xml:space="preserve">
     <value>Търсене</value>
   </data>
@@ -625,14 +495,8 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="RecurrenceLabel" xml:space="preserve">
     <value>Recurrence</value>
   </data>
-  <data name="SavePaymentLabel" xml:space="preserve">
-    <value>Запис на плащането</value>
-  </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>Няма плащания. Добавете едно като чукнете върху копчето плюс на дъното.</value>
-  </data>
-  <data name="SaveCategoryLabel" xml:space="preserve">
-    <value>Запис на категорията</value>
   </data>
   <data name="AboutSettingsDescription" xml:space="preserve">
     <value>Информация за поддръжката относно приложението.</value>
@@ -676,9 +540,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="AddCategoryLabel" xml:space="preserve">
     <value>Добавяне на категория</value>
   </data>
-  <data name="SelectStatisticTitel" xml:space="preserve">
-    <value>Изберете статистика</value>
-  </data>
   <data name="BackgroundJobLabel" xml:space="preserve">
     <value>Background Job</value>
   </data>
@@ -691,62 +552,14 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="PersonalizationTitle" xml:space="preserve">
     <value>Персонализиране</value>
   </data>
-  <data name="ShortcutsTitle" xml:space="preserve">
-    <value>Преки пътища</value>
-  </data>
-  <data name="LiveTileAccountBalance" xml:space="preserve">
-    <value>Бал.: {0}</value>
-  </data>
-  <data name="LiveTileAccountName" xml:space="preserve">
-    <value>Акаунт: {0}</value>
-  </data>
-  <data name="LiveTileCurrentMonthsExpenses" xml:space="preserve">
-    <value>{0}: {1}</value>
-  </data>
-  <data name="LiveTileLastMonthsExpenses" xml:space="preserve">
-    <value>{0}: {1}</value>
-  </data>
-  <data name="LiveTilePastPayments" xml:space="preserve">
-    <value>Минали плащания</value>
-  </data>
-  <data name="LiveTileUpcommingPayments" xml:space="preserve">
-    <value>Предстоящи плащания</value>
-  </data>
-  <data name="BalanceLabel" xml:space="preserve">
-    <value>Баланс</value>
-  </data>
   <data name="PersonalizationInfoLabel" xml:space="preserve">
     <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
-  </data>
-  <data name="ThemeDarkLabel" xml:space="preserve">
-    <value>Dark</value>
-  </data>
-  <data name="ThemeLightLabel" xml:space="preserve">
-    <value>Light</value>
   </data>
   <data name="SettingsPersonalizationDescription" xml:space="preserve">
     <value>Choose your prefered Theme.</value>
   </data>
   <data name="SettingsPersonalizationLabel" xml:space="preserve">
     <value>Персонализиране</value>
-  </data>
-  <data name="LiveTileWideandLargeIncomeFutureText" xml:space="preserve">
-    <value>{0} will receive {1}</value>
-  </data>
-  <data name="LiveTileWideandLargeIncomePastText" xml:space="preserve">
-    <value>{0} до {1}</value>
-  </data>
-  <data name="LiveTileWideandLargePaymentFutureText" xml:space="preserve">
-    <value>{0} to be taken from {1}</value>
-  </data>
-  <data name="LiveTileWideandLargePaymentPastText" xml:space="preserve">
-    <value>{0} взето от {1}</value>
-  </data>
-  <data name="PintAccountLabel" xml:space="preserve">
-    <value>Pin account to start menu</value>
-  </data>
-  <data name="CategorySummaryPlaceHolderLabel" xml:space="preserve">
-    <value>No statistic items to display. Try to adjust the time range.</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Last year monthly average: </value>
@@ -784,12 +597,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="WindowsDefaultLabel" xml:space="preserve">
     <value>Windows Default</value>
   </data>
-  <data name="TagsLabel" xml:space="preserve">
-    <value>Tags</value>
-  </data>
-  <data name="TodayLabel" xml:space="preserve">
-    <value>Today</value>
-  </data>
   <data name="NoCategoryLabel" xml:space="preserve">
     <value>[Няма категория]</value>
   </data>
@@ -814,9 +621,6 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
     <value>Upload backup was canceled.</value>
   </data>
-  <data name="DeleteAccountLabel" xml:space="preserve">
-    <value>Изтриване на акаунт</value>
-  </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Default Region</value>
   </data>
@@ -838,20 +642,11 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SaveLabel" xml:space="preserve">
     <value>Запазване</value>
   </data>
-  <data name="InvalidNumberAmountMessage" xml:space="preserve">
-    <value>Your payment amount seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
-  </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
     <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
     <value>Невалиден номер</value>
-  </data>
-  <data name="PleaseLoginToBackupFirstMessage" xml:space="preserve">
-    <value>To use the automatic backup job please login first to your backup service.</value>
-  </data>
-  <data name="PleaseLoginToBackupFirstTitle" xml:space="preserve">
-    <value>Login Required</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
     <value>Saving Account...</value>

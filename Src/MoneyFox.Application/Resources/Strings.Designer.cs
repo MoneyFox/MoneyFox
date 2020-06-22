@@ -108,15 +108,6 @@ namespace MoneyFox.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Accounts.
         /// </summary>
-        public static string AccountsLabel {
-            get {
-                return ResourceManager.GetString("AccountsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accounts.
-        /// </summary>
         public static string AccountsTitle {
             get {
                 return ResourceManager.GetString("AccountsTitle", resourceCulture);
@@ -259,15 +250,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Money Fox.
-        /// </summary>
-        public static string ApplicationTitle {
-            get {
-                return ResourceManager.GetString("ApplicationTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Authentication failed.
         /// </summary>
         public static string AuthenticationFailedTitle {
@@ -291,33 +273,6 @@ namespace MoneyFox.Application.Resources {
         public static string AutobackupLabel {
             get {
                 return ResourceManager.GetString("AutobackupLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to A system policy denied the permission for the MoneyFox to run in background. Several functions may not work as expected..
-        /// </summary>
-        public static string BackgroundAccessDeniedByPolicyMessage {
-            get {
-                return ResourceManager.GetString("BackgroundAccessDeniedByPolicyMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You denied the permissions for the MoneyFox to run in the background. Several functions may not work as expected..
-        /// </summary>
-        public static string BackgroundAccessDeniedByUserMessage {
-            get {
-                return ResourceManager.GetString("BackgroundAccessDeniedByUserMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Access denied.
-        /// </summary>
-        public static string BackgroundAccessDeniedTitle {
-            get {
-                return ResourceManager.GetString("BackgroundAccessDeniedTitle", resourceCulture);
             }
         }
         
@@ -376,15 +331,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Restore backup failed!.
-        /// </summary>
-        public static string BackupRestoreFailedTitle {
-            get {
-                return ResourceManager.GetString("BackupRestoreFailedTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create and restore backups..
         /// </summary>
         public static string BackupSettingsDescription {
@@ -394,38 +340,11 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You backup was synced successfully..
-        /// </summary>
-        public static string BackupSyncedSuccessfullyMessage {
-            get {
-                return ResourceManager.GetString("BackupSyncedSuccessfullyMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Failed to sync the backup.
-        /// </summary>
-        public static string BackupSyncFailedMessage {
-            get {
-                return ResourceManager.GetString("BackupSyncFailedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Backup.
         /// </summary>
         public static string BackupTitle {
             get {
                 return ResourceManager.GetString("BackupTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Balance.
-        /// </summary>
-        public static string BalanceLabel {
-            get {
-                return ResourceManager.GetString("BalanceLabel", resourceCulture);
             }
         }
         
@@ -592,15 +511,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No statistic items to display. Try to adjust the time range..
-        /// </summary>
-        public static string CategorySummaryPlaceHolderLabel {
-            get {
-                return ResourceManager.GetString("CategorySummaryPlaceHolderLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Category Summary.
         /// </summary>
         public static string CategorySummaryTitle {
@@ -610,47 +520,11 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You updated a recurring payment. Do you want to update the future Payments aswell?.
-        /// </summary>
-        public static string ChangeSubsequentPaymentMessage {
-            get {
-                return ResourceManager.GetString("ChangeSubsequentPaymentMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Update Recurrence?.
-        /// </summary>
-        public static string ChangeSubsequentPaymentTitle {
-            get {
-                return ResourceManager.GetString("ChangeSubsequentPaymentTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Charged Account.
         /// </summary>
         public static string ChargedAccountLabel {
             get {
                 return ResourceManager.GetString("ChargedAccountLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose Categorie.
-        /// </summary>
-        public static string ChooseCategorieTitle {
-            get {
-                return ResourceManager.GetString("ChooseCategorieTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose.
-        /// </summary>
-        public static string ChooseLabel {
-            get {
-                return ResourceManager.GetString("ChooseLabel", resourceCulture);
             }
         }
         
@@ -777,15 +651,6 @@ namespace MoneyFox.Application.Resources {
         public static string DeleteAccountConfirmationMessage {
             get {
                 return ResourceManager.GetString("DeleteAccountConfirmationMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Delete Account.
-        /// </summary>
-        public static string DeleteAccountLabel {
-            get {
-                return ResourceManager.GetString("DeleteAccountLabel", resourceCulture);
             }
         }
         
@@ -943,15 +808,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no categories. Add one by tapping on the plus button at bottom..
-        /// </summary>
-        public static string EmptyListPlaceholderLabel {
-            get {
-                return ResourceManager.GetString("EmptyListPlaceholderLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Enddate.
         /// </summary>
         public static string EnddateLabel {
@@ -984,51 +840,6 @@ namespace MoneyFox.Application.Resources {
         public static string ErrorMessageAuthenticationFailed {
             get {
                 return ResourceManager.GetString("ErrorMessageAuthenticationFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There where an error while create your backup. Please try again later..
-        /// </summary>
-        public static string ErrorMessageBackupFailed {
-            get {
-                return ResourceManager.GetString("ErrorMessageBackupFailed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occured while deleting the item..
-        /// </summary>
-        public static string ErrorMessageDelete {
-            get {
-                return ResourceManager.GetString("ErrorMessageDelete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There was an issue during restoring your backup. Please contact us if this error persist..
-        /// </summary>
-        public static string ErrorMessageRestore {
-            get {
-                return ResourceManager.GetString("ErrorMessageRestore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to An error occured while saving the item..
-        /// </summary>
-        public static string ErrorMessageSave {
-            get {
-                return ResourceManager.GetString("ErrorMessageSave", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Error on delete.
-        /// </summary>
-        public static string ErrorTitleDelete {
-            get {
-                return ResourceManager.GetString("ErrorTitleDelete", resourceCulture);
             }
         }
         
@@ -1101,24 +912,6 @@ namespace MoneyFox.Application.Resources {
         public static string GeneralErrorTitle {
             get {
                 return ResourceManager.GetString("GeneralErrorTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to General.
-        /// </summary>
-        public static string GeneralTitle {
-            get {
-                return ResourceManager.GetString("GeneralTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hour(s).
-        /// </summary>
-        public static string HourLabel {
-            get {
-                return ResourceManager.GetString("HourLabel", resourceCulture);
             }
         }
         
@@ -1214,15 +1007,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your payment amount seems to be an invalid number. Please check that you haven&apos;t entered any special characters and used the correct separator..
-        /// </summary>
-        public static string InvalidNumberAmountMessage {
-            get {
-                return ResourceManager.GetString("InvalidNumberAmountMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Your current balance seems to be an invalid number. Please check that you haven&apos;t entered any special characters and used the correct separator..
         /// </summary>
         public static string InvalidNumberCurrentBalanceMessage {
@@ -1277,15 +1061,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No, just this.
-        /// </summary>
-        public static string JustThisLabel {
-            get {
-                return ResourceManager.GetString("JustThisLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Last Backup created at:.
         /// </summary>
         public static string LastBackupDateLabel {
@@ -1313,96 +1088,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bal. : {0}.
-        /// </summary>
-        public static string LiveTileAccountBalance {
-            get {
-                return ResourceManager.GetString("LiveTileAccountBalance", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Account: {0}.
-        /// </summary>
-        public static string LiveTileAccountName {
-            get {
-                return ResourceManager.GetString("LiveTileAccountName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}: {1}.
-        /// </summary>
-        public static string LiveTileCurrentMonthsExpenses {
-            get {
-                return ResourceManager.GetString("LiveTileCurrentMonthsExpenses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}: {1}.
-        /// </summary>
-        public static string LiveTileLastMonthsExpenses {
-            get {
-                return ResourceManager.GetString("LiveTileLastMonthsExpenses", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Past Payments.
-        /// </summary>
-        public static string LiveTilePastPayments {
-            get {
-                return ResourceManager.GetString("LiveTilePastPayments", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Upcoming Payments.
-        /// </summary>
-        public static string LiveTileUpcommingPayments {
-            get {
-                return ResourceManager.GetString("LiveTileUpcommingPayments", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} will receive {1}.
-        /// </summary>
-        public static string LiveTileWideandLargeIncomeFutureText {
-            get {
-                return ResourceManager.GetString("LiveTileWideandLargeIncomeFutureText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} to {1}.
-        /// </summary>
-        public static string LiveTileWideandLargeIncomePastText {
-            get {
-                return ResourceManager.GetString("LiveTileWideandLargeIncomePastText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} to be taken from {1}.
-        /// </summary>
-        public static string LiveTileWideandLargePaymentFutureText {
-            get {
-                return ResourceManager.GetString("LiveTileWideandLargePaymentFutureText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} taken from {1}.
-        /// </summary>
-        public static string LiveTileWideandLargePaymentPastText {
-            get {
-                return ResourceManager.GetString("LiveTileWideandLargePaymentPastText", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Loading....
         /// </summary>
         public static string LoadingLabel {
@@ -1417,15 +1102,6 @@ namespace MoneyFox.Application.Resources {
         public static string LoginCanceledMessage {
             get {
                 return ResourceManager.GetString("LoginCanceledMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We couldn&apos;t log you in. Please contact us if this issue persists..
-        /// </summary>
-        public static string LoginFailedMessage {
-            get {
-                return ResourceManager.GetString("LoginFailedMessage", resourceCulture);
             }
         }
         
@@ -1682,115 +1358,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Microsoft Passport is not enabled on this device. 
-        ///    Please go to settings and enable it!.
-        /// </summary>
-        public static string PassportErrorMessage {
-            get {
-                return ResourceManager.GetString("PassportErrorMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password protection.
-        /// </summary>
-        public static string PasswordActivatedLabel {
-            get {
-                return ResourceManager.GetString("PasswordActivatedLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password Confirmation.
-        /// </summary>
-        public static string PasswordConfirmationLabel {
-            get {
-                return ResourceManager.GetString("PasswordConfirmationLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The passwod and the password confirmation didn&apos;t match. Please check your input..
-        /// </summary>
-        public static string PasswordConfirmationWrongMessage {
-            get {
-                return ResourceManager.GetString("PasswordConfirmationWrongMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password confirmation.
-        /// </summary>
-        public static string PasswordConfirmationWrongTitle {
-            get {
-                return ResourceManager.GetString("PasswordConfirmationWrongTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The password you&apos;ve entered is empty. Please enter a password first and try again..
-        /// </summary>
-        public static string PasswordEmptyMessage {
-            get {
-                return ResourceManager.GetString("PasswordEmptyMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password is empty.
-        /// </summary>
-        public static string PasswordEmptyTitle {
-            get {
-                return ResourceManager.GetString("PasswordEmptyTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password.
-        /// </summary>
-        public static string PasswordLabel {
-            get {
-                return ResourceManager.GetString("PasswordLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password was saved succesfully..
-        /// </summary>
-        public static string PasswordSavedMessage {
-            get {
-                return ResourceManager.GetString("PasswordSavedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password saved.
-        /// </summary>
-        public static string PasswordSavedTitle {
-            get {
-                return ResourceManager.GetString("PasswordSavedTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The password you entered was not correct. Please try again..
-        /// </summary>
-        public static string PasswordWrongMessage {
-            get {
-                return ResourceManager.GetString("PasswordWrongMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Password wrong.
-        /// </summary>
-        public static string PasswordWrongTitle {
-            get {
-                return ResourceManager.GetString("PasswordWrongTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Payments for Category.
         /// </summary>
         public static string PaymentsForCategoryTitle {
@@ -1823,33 +1390,6 @@ namespace MoneyFox.Application.Resources {
         public static string PersonalizationTitle {
             get {
                 return ResourceManager.GetString("PersonalizationTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pin account to start menu.
-        /// </summary>
-        public static string PintAccountLabel {
-            get {
-                return ResourceManager.GetString("PintAccountLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to To use the automatic backup job please login first to your backup service..
-        /// </summary>
-        public static string PleaseLoginToBackupFirstMessage {
-            get {
-                return ResourceManager.GetString("PleaseLoginToBackupFirstMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Login Required.
-        /// </summary>
-        public static string PleaseLoginToBackupFirstTitle {
-            get {
-                return ResourceManager.GetString("PleaseLoginToBackupFirstTitle", resourceCulture);
             }
         }
         
@@ -1955,38 +1495,11 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save Account.
-        /// </summary>
-        public static string SaveAccountLabel {
-            get {
-                return ResourceManager.GetString("SaveAccountLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save Category.
-        /// </summary>
-        public static string SaveCategoryLabel {
-            get {
-                return ResourceManager.GetString("SaveCategoryLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string SaveLabel {
             get {
                 return ResourceManager.GetString("SaveLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save Payment.
-        /// </summary>
-        public static string SavePaymentLabel {
-            get {
-                return ResourceManager.GetString("SavePaymentLabel", resourceCulture);
             }
         }
         
@@ -2027,24 +1540,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Search.
-        /// </summary>
-        public static string SearchStringLabel {
-            get {
-                return ResourceManager.GetString("SearchStringLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Security.
-        /// </summary>
-        public static string SecurityTitle {
-            get {
-                return ResourceManager.GetString("SecurityTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select Category.
         /// </summary>
         public static string SelectCategoryTitle {
@@ -2063,47 +1558,11 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select Date.
-        /// </summary>
-        public static string SelectDateTitle {
-            get {
-                return ResourceManager.GetString("SelectDateTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Select Filter.
         /// </summary>
         public static string SelectFilterTitle {
             get {
                 return ResourceManager.GetString("SelectFilterTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to select operation.
-        /// </summary>
-        public static string SelectOperationLabel {
-            get {
-                return ResourceManager.GetString("SelectOperationLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select Statistic.
-        /// </summary>
-        public static string SelectStatisticTitel {
-            get {
-                return ResourceManager.GetString("SelectStatisticTitel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Settings.
-        /// </summary>
-        public static string SettingsLabel {
-            get {
-                return ResourceManager.GetString("SettingsLabel", resourceCulture);
             }
         }
         
@@ -2144,24 +1603,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shortcuts.
-        /// </summary>
-        public static string ShortcutsTitle {
-            get {
-                return ResourceManager.GetString("ShortcutsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Statistics.
-        /// </summary>
-        public static string StatisticsLabel {
-            get {
-                return ResourceManager.GetString("StatisticsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Time Range:.
         /// </summary>
         public static string StatisticsTimeRangeTitle {
@@ -2189,15 +1630,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tags.
-        /// </summary>
-        public static string TagsLabel {
-            get {
-                return ResourceManager.GetString("TagsLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Target Account.
         /// </summary>
         public static string TargetAccountLabel {
@@ -2216,24 +1648,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dark.
-        /// </summary>
-        public static string ThemeDarkLabel {
-            get {
-                return ResourceManager.GetString("ThemeDarkLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Light.
-        /// </summary>
-        public static string ThemeLightLabel {
-            get {
-                return ResourceManager.GetString("ThemeLightLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Time Range End.
         /// </summary>
         public static string TimeRangeEndLabel {
@@ -2248,15 +1662,6 @@ namespace MoneyFox.Application.Resources {
         public static string TimeRangeStartLabel {
             get {
                 return ResourceManager.GetString("TimeRangeStartLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Today.
-        /// </summary>
-        public static string TodayLabel {
-            get {
-                return ResourceManager.GetString("TodayLabel", resourceCulture);
             }
         }
         
@@ -2297,15 +1702,6 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Yes, update All.
-        /// </summary>
-        public static string UpdateAllLabel {
-            get {
-                return ResourceManager.GetString("UpdateAllLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Upload backup was canceled..
         /// </summary>
         public static string UploadBackupCanceledMessage {
@@ -2338,15 +1734,6 @@ namespace MoneyFox.Application.Resources {
         public static string WeeklyLabel {
             get {
                 return ResourceManager.GetString("WeeklyLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Welcome!.
-        /// </summary>
-        public static string WelcomeLabel {
-            get {
-                return ResourceManager.GetString("WelcomeLabel", resourceCulture);
             }
         }
         
