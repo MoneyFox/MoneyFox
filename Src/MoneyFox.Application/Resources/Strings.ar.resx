@@ -287,7 +287,7 @@
     <value>Spreading of the expenses to the categories.</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>ملخص الفئات مع الدفع.</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>إلغاء</value>
@@ -388,22 +388,22 @@
     <value>لا نهائي</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>متكرر</value>
+    <value>دفع متكرر</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>إذا قمت بتنشيط هذا الخيار فإننا سنقوم بنسخ بياناتك تلقائياً إلى OneDrive. كما أننا سنتحقق بشكل دوري في حال حدوث تغيير على جهاز آخر.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>مزامنة النسخ الاحتياطية تلقائياً</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>You've deleted a recurring payment. Do you want to delete the recurrence as well?</value>
+    <value>لقد قمت بحذف دفعة متكررة. هل تريد حذف التكرار أيضا؟</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Delete Recurrence?</value>
+    <value>حذف التكرار؟</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
-    <value>Bimonthly</value>
+    <value>كل شهرين</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
     <value>Exclude account from balance</value>
@@ -415,10 +415,10 @@
     <value>Included Accounts</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>كل 6 أشهر</value>
   </data>
   <data name="QuarterlyLabel" xml:space="preserve">
-    <value>Quarterly</value>
+    <value>كل 4 أشهر</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
     <value>Authentication failed</value>
@@ -427,7 +427,7 @@
     <value>Backup failed!</value>
   </data>
   <data name="AboutLabel" xml:space="preserve">
-    <value>About</value>
+    <value>عن التطبيق</value>
   </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
     <value>An error occured</value>
@@ -469,7 +469,7 @@
     <value>Category Summary</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>There are no categories to display. Tap the plus button to add one.</value>
+    <value>لا توجد فئات لعرضها. انقر فوق الزر "زائد" لإضافة واحدة.</value>
   </data>
   <data name="NoStatisticItemsMessage" xml:space="preserve">
     <value>There are no statistic items in the selected time range.</value>
@@ -478,7 +478,7 @@
     <value>Create and restore backups.</value>
   </data>
   <data name="CategoriesSettingsDescription" xml:space="preserve">
-    <value>Add and modify categories.</value>
+    <value>إضافة وتعديل الفئات.</value>
   </data>
   <data name="AddTitle" xml:space="preserve">
     <value>Add</value>
@@ -511,7 +511,7 @@
     <value>Backup</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>الفئات</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
     <value>Select Category</value>
