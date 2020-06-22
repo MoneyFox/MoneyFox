@@ -1,10 +1,16 @@
 ﻿using GalaSoft.MvvmLight;
+using MoneyFox.Ui.Shared.Groups;
+using NLog;
 using System;
+using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     public class CategoryOverviewViewModel : ViewModelBase
     {
+        private static ILogger logger = LogManager.GetCurrentClassLogger();
+
         private int categoryId;
         private string label;
         private decimal value;
@@ -81,6 +87,24 @@ namespace MoneyFox.Uwp.ViewModels
                 if(label == value)
                     return;
                 label = value;
+                RaisePropertyChanged();
+            }
+        }
+
+
+        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
+
+        /// <summary>
+        ///     Source for the payment list
+        /// </summary>
+        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
+        {
+            get => source;
+            set
+            {
+                if(source == value)
+                    return;
+                source = value;
                 RaisePropertyChanged();
             }
         }

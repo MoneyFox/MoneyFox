@@ -1556,6 +1556,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No entry selected. Choose a entry in the list to see the payments for it..
+        /// </summary>
+        public static string NoCategorySummaryEntrySelectedMessage {
+            get {
+                return ResourceManager.GetString("NoCategorySummaryEntrySelectedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         public static string NoLabel {
