@@ -34,10 +34,13 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForCategory
 
             public async Task<List<Payment>> Handle(GetPaymentsForCategoryQuery request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context.Payments.Where(x => x.Category!.Id == request.CategoryId)
-                                                            .Where(x => x.Date >= request.DateRangeFrom)
-                                                            .Where(x => x.Date <= request.DateRangeTo)
-                                                            .ToListAsync();
+                IQueryable<Payment> query = request.CategoryId == 0
+                    ? contextAdapter.Context.Payments.Where(x => x.Category == null)
+                    : contextAdapter.Context.Payments.Where(x => x.Category!.Id == request.CategoryId);
+
+                return await query.Where(x => x.Date >= request.DateRangeFrom)
+                                  .Where(x => x.Date <= request.DateRangeTo)
+                                  .ToListAsync();
             }
         }
     }

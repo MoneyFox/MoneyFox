@@ -93,7 +93,7 @@
             DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
             ItemsSource="{Binding CategorySummary}"
-            MasterPaneWidth="600"
+            MasterPaneWidth="550"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectionChanged="CategorySummaryList_SelectionChanged">
 
