@@ -29,8 +29,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <controls:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
-
         <CommandBar
             Grid.Row="0"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
@@ -44,5 +42,10 @@
                     Label="{x:Bind resources:Strings.AddCategoryLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
+
+        <TextBlock Style="{StaticResource UwpPageTitleStyle}" Text="{x:Bind resources:Strings.CategoriesTitle}" />
+
+        <controls:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+
     </Grid>
 </views:BaseView>

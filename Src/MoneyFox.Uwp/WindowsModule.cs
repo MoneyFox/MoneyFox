@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using GalaSoft.MvvmLight.Messaging;
 using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
@@ -27,7 +28,6 @@ namespace MoneyFox.Uwp
             builder.RegisterModule<PersistenceModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
-            builder.RegisterType<LongRunningTaskRequester>().AsImplementedInterfaces();
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
@@ -36,6 +36,7 @@ namespace MoneyFox.Uwp
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
 
+            builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.Register(c => PublicClientApplicationBuilder

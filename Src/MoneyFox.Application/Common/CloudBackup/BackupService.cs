@@ -1,10 +1,12 @@
-﻿using Microsoft.Graph;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Microsoft.Graph;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Domain.Exceptions;
 using NLog;
 using System;
@@ -64,7 +66,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
         private readonly IContextAdapter contextAdapter;
-        private readonly ILongRunningTaskRequester longRunningTaskRequester;
+        private readonly IMessenger messenger;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -75,14 +77,14 @@ namespace MoneyFox.Application.Common.CloudBackup
                              ISettingsFacade settingsFacade,
                              IConnectivityAdapter connectivity,
                              IContextAdapter contextAdapter,
-                             ILongRunningTaskRequester longRunningTaskRequester)
+                             IMessenger messenger)
         {
             this.cloudBackupService = cloudBackupService;
             this.fileStore = fileStore;
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
             this.contextAdapter = contextAdapter;
-            this.longRunningTaskRequester = longRunningTaskRequester;
+            this.messenger = messenger;
         }
 
         public async Task LoginAsync()
@@ -140,12 +142,10 @@ namespace MoneyFox.Application.Common.CloudBackup
             if(!connectivity.IsConnected)
                 throw new NetworkConnectionException();
 
-            var taskId = longRunningTaskRequester.RequestLongRunning();
-
             await DownloadBackupAsync(backupMode);
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
 
-            longRunningTaskRequester.EndLongRunning(taskId);
+            messenger.Send(new ReloadMessage());
         }
 
         private async Task DownloadBackupAsync(BackupMode backupMode)
@@ -190,8 +190,6 @@ namespace MoneyFox.Application.Common.CloudBackup
                 return;
             }
 
-            var taskId = longRunningTaskRequester.RequestLongRunning();
-
             if(!settingsFacade.IsLoggedInToBackupService)
             {
                 logger.Info("Upload started, but not loggedin. Try to login.");
@@ -200,7 +198,6 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             await EnqueueBackupTaskAsync();
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
-            longRunningTaskRequester.EndLongRunning(taskId);
         }
 
         private async Task EnqueueBackupTaskAsync(int attempts = 0)

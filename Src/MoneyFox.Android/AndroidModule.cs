@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Application.Common;
 using MoneyFox.Droid.Src;
 using MoneyFox.Presentation;
@@ -16,12 +17,13 @@ namespace MoneyFox.Droid
             builder.RegisterModule<PresentationModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
-            builder.RegisterType<LongRunningTaskRequester>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<NavigationService>().AsImplementedInterfaces();
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
             builder.Register(c => new FileStoreIoBase(Android.App.Application.Context.FilesDir.Path)).AsImplementedInterfaces();
+
+            builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
         }
     }
 }

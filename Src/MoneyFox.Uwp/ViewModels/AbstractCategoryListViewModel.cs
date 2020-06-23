@@ -5,6 +5,7 @@ using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
@@ -33,6 +34,8 @@ namespace MoneyFox.Uwp.ViewModels
             Mapper = mapper;
             DialogService = dialogService;
             NavigationService = navigationService;
+
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await SearchAsync());
         }
 
         protected NavigationService NavigationService { get; }

@@ -4,7 +4,6 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -304,6 +303,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
             await SavePayment();
+            MessengerInstance.Send(new ReloadMessage());
             await dialogService.HideLoadingDialogAsync();
             navigationService.GoBackModal();
         }

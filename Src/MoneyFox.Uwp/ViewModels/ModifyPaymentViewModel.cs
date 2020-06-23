@@ -240,6 +240,7 @@ namespace MoneyFox.Uwp.ViewModels
 
             await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
             await SavePaymentAsync();
+            MessengerInstance.Send(new ReloadMessage());
             await dialogService.HideLoadingDialogAsync();
         }
 

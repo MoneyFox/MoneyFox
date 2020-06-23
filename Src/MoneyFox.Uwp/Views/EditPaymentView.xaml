@@ -11,7 +11,6 @@
     DataContext="{Binding EditPaymentVm, Source={StaticResource Locator}}"
     PrimaryButtonCommand="{Binding SaveCommand}"
     PrimaryButtonText="{x:Bind resources:Strings.DoneLabel}"
-    SecondaryButtonCommand="{Binding CancelCommand}"
     SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
     mc:Ignorable="d">
 

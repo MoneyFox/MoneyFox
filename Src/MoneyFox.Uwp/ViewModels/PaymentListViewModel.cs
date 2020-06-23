@@ -59,7 +59,7 @@ namespace MoneyFox.Uwp.ViewModels
             this.navigationService = navigationService;
 
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPaymentsAsync(message));
-            MessengerInstance.Register<RemovePaymentMessage>(this, async message => await LoadDataAsync());
+            MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
         }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
