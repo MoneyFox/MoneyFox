@@ -2,12 +2,12 @@
 {
     public class StatisticEntry
     {
-        public StatisticEntry(float value)
+        public StatisticEntry(decimal value)
         {
             Value = value;
         }
 
-        public float Value { get; }
+        public decimal Value { get; }
 
         public string Label { get; set; } = string.Empty;
 
