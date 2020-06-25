@@ -44,7 +44,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                                        .ToListAsync(cancellationToken);
         }
 
-        private List<(float Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
+        private List<(decimal Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
         {
             return (from payment in payments
                     group payment by new
@@ -55,16 +55,16 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                                      }
                     into temp
                     select (
-                               (float) temp.Sum(x => x.Type == PaymentType.Income
-                                                     ? -x.Amount
-                                                     : x.Amount),
+                               temp.Sum(x => x.Type == PaymentType.Income
+                                                ? -x.Amount
+                                                : x.Amount),
                                temp.Key.category))
                   .Where(x => x.Item1 > 0)
                   .OrderByDescending(x => x.Item1)
                   .ToList();
         }
 
-        private IEnumerable<StatisticEntry> AggregateData(List<(float Value, string Label)> statisticData)
+        private IEnumerable<StatisticEntry> AggregateData(List<(decimal Value, string Label)> statisticData)
         {
             List<StatisticEntry> statisticList = statisticData
                                                 .Take(6)
@@ -81,14 +81,14 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
             return statisticList;
         }
 
-        private static void AddOtherItem(IEnumerable<(float Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
+        private static void AddOtherItem(IEnumerable<(decimal Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
             if(statisticList.Count < NUMBER_OF_STATISTIC_ITEMS)
                 return;
 
-            float otherValue = statisticData
-                              .Where(x => statisticList.All(y => x.Label != y.Label))
-                              .Sum(x => x.Value);
+            decimal otherValue = statisticData
+                                  .Where(x => statisticList.All(y => x.Label != y.Label))
+                                  .Sum(x => x.Value);
 
             var othersItem = new StatisticEntry(otherValue)
                              {

@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -41,14 +42,14 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                                               .Payments
                                                               .Include(x => x.Category)
                                                               .Where(x => x.Date.Date >= DateTime.Today.AddMonths(-12))
-                                                              .Where(x => x.Type != PaymentType.Transfer)
+                                                              .WithoutTransfers()
                                                               .ToListAsync(cancellationToken);
 
                 List<Payment> paymentsInTimeRange = await contextAdapter.Context
                                                                         .Payments
                                                                         .Include(x => x.Category)
-                                                                        .Where(x => x.Date.Date >= request.StartDate.Date
-                                                                                    && x.Date.Date <= request.EndDate.Date)
+                                                                        .HasDateLargerEqualsThan(request.StartDate.Date)
+                                                                        .HasDateSmallerEqualsThan(request.EndDate.Date)
                                                                         .Where(x => x.Type != PaymentType.Transfer)
                                                                         .ToListAsync(cancellationToken);
 
@@ -62,8 +63,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 CalculatePercentage(categoryOverviewItems);
                 StatisticUtilities.RoundStatisticItems(categoryOverviewItems);
 
-                return new CategorySummaryModel(Convert.ToDecimal(categoryOverviewItems.Where(x => x.Value > 0).Sum(x => x.Value)),
-                                                Convert.ToDecimal(categoryOverviewItems.Where(x => x.Value < 0).Sum(x => x.Value)),
+                return new CategorySummaryModel(Convert.ToDecimal(paymentsInTimeRange.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount)),
+                                                Convert.ToDecimal(paymentsInTimeRange.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount)),
                                                 categoryOverviewItems.Where(x => Math.Abs(x.Value) > 0.1m).OrderBy(x => x.Value).ToList());
             }
 

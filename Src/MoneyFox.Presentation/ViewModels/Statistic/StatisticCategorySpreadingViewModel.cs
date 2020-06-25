@@ -56,7 +56,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                                                                                               }));
 
             List<Entry> microChartItems = statisticItems
-                                         .Select(x => new Entry(x.Value)
+                                         .Select(x => new Entry((float)x.Value)
                                                       {
                                                           Label = x.Label,
                                                           ValueLabel = x.ValueLabel,

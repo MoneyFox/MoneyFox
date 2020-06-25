@@ -3,6 +3,7 @@ using Microcharts;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using SkiaSharp;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -53,7 +54,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
             Chart = new BarChart
                     {
-                        Entries = statisticItems.Select(x => new Entry(x.Value)
+                        Entries = statisticItems.Select(x => new Entry((float)x.Value)
                                                              {
                                                                  Label = x.Label,
                                                                  ValueLabel = x.ValueLabel,
