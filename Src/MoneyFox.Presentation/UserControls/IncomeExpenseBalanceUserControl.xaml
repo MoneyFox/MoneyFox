@@ -1,10 +1,11 @@
-﻿<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
-             mc:Ignorable="d"
-             x:Class="MoneyFox.Presentation.UserControls.IncomeExpenseBalanceUserControl">
+﻿<ContentView
+    x:Class="MoneyFox.Presentation.UserControls.IncomeExpenseBalanceUserControl"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:MoneyFox.Presentation.Converter;assembly=MoneyFox.Presentation"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
 
     <ContentView.Resources>
         <ResourceDictionary>
@@ -15,12 +16,9 @@
     <ContentView.Content>
 
         <StackLayout HorizontalOptions="StartAndExpand" Orientation="Horizontal">
-            <Label Text="{Binding TotalEarned, Converter={StaticResource AmountFormatConverter} }"
-                   Style="{StaticResource DeemphasizedLabelStyle}" />
-            <Label Text=" / "
-                   Style="{StaticResource DeemphasizedLabelStyle}" />
-            <Label Text="{Binding TotalSpent, Converter={StaticResource AmountFormatConverter}}"
-                   Style="{StaticResource DeemphasizedLabelStyle}" />
+            <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding TotalEarned, Converter={StaticResource AmountFormatConverter}}" />
+            <Label Style="{StaticResource DeemphasizedLabelStyle}" Text=" / -" />
+            <Label Style="{StaticResource DeemphasizedLabelStyle}" Text="{Binding TotalSpent, Converter={StaticResource AmountFormatConverter}}" />
         </StackLayout>
     </ContentView.Content>
 </ContentView>
