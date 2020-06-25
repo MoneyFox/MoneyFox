@@ -38,7 +38,7 @@
         <ListView
             x:Name="PaymentList"
             BackgroundColor="Transparent"
-            CachingStrategy="RetainElement"
+            CachingStrategy="RecycleElementAndDataTemplate"
             IsGroupingEnabled="True"
             ItemsSource="{Binding PaymentList}"
             RowHeight="50"
