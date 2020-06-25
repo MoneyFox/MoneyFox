@@ -50,7 +50,7 @@
                 <ListView
                     x:Name="CategorySummaryList"
                     BackgroundColor="Transparent"
-                    CachingStrategy="RetainElement"
+                    CachingStrategy="RecycleElementAndDataTemplate"
                     ItemsSource="{Binding CategorySummary}"
                     RowHeight="70"
                     SeparatorVisibility="None">

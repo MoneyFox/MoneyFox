@@ -36,7 +36,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                                                          .HasDateSmallerEqualsThan(request.EndDate.Date)
                                                          .ToListAsync(cancellationToken);
 
-            var incomeAmount = (float) payments.Where(x => x.Type == PaymentType.Income)
+            var incomeAmount = payments.Where(x => x.Type == PaymentType.Income)
                                                .Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)
                          {
@@ -46,7 +46,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                              Color = GREEN_HEX_CODE
                          };
 
-            var expenseAmount = (float) payments.Where(x => x.Type == PaymentType.Expense)
+            var expenseAmount = payments.Where(x => x.Type == PaymentType.Expense)
                                                 .Sum(x => x.Amount);
             var spent = new StatisticEntry(expenseAmount)
                         {
@@ -56,7 +56,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                             Color = RED_HEX_CODE
                         };
 
-            float valueIncreased = incomeAmount - expenseAmount;
+            decimal valueIncreased = incomeAmount - expenseAmount;
             var increased = new StatisticEntry(valueIncreased)
                             {
                                 Label = Strings.IncreaseLabel,
