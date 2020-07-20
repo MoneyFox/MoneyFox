@@ -14,7 +14,6 @@ using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using NLog;
-using NLog.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -127,8 +126,10 @@ namespace MoneyFox.Presentation.ViewModels
         {
             try
             {
+                logManager.Info("Update balance ViewModel");
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
+                logManager.Info("Load Account list");
                 var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
                 includedAlphaGroup.AddRange(mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetIncludedAccountQuery())));
 

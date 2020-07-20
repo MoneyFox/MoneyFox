@@ -9,7 +9,6 @@ using MoneyFox.Presentation.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 
 namespace MoneyFox.Presentation.Services
 {
@@ -51,10 +50,7 @@ namespace MoneyFox.Presentation.Services
         }
 
         /// <inheritdoc/>
-        public async Task<decimal> GetTotalBalance()
-        {
-            return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
-        }
+        public async Task<decimal> GetTotalBalance() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
 
         /// <inheritdoc/>
         public async Task<decimal> GetTotalEndOfMonthBalance()
