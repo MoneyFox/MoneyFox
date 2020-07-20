@@ -6,6 +6,7 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.ViewModels;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -39,6 +40,8 @@ namespace MoneyFox.Presentation.Services
     /// <inheritdoc/>
     public class BalanceCalculationService : IBalanceCalculationService
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private readonly IMediator mediator;
 
         /// <summary>
@@ -50,11 +53,16 @@ namespace MoneyFox.Presentation.Services
         }
 
         /// <inheritdoc/>
-        public async Task<decimal> GetTotalBalance() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+        public async Task<decimal> GetTotalBalance()
+        {
+            logManager.Info("Calculate Total Balance.");
+            await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+        }
 
         /// <inheritdoc/>
         public async Task<decimal> GetTotalEndOfMonthBalance()
         {
+            logManager.Info("Calculate EndOfMonth Balance.");
             List<Account> excluded = await mediator.Send(new GetExcludedAccountQuery());
 
             decimal balance = await GetTotalBalance();
@@ -104,6 +112,8 @@ namespace MoneyFox.Presentation.Services
         /// <inheritdoc/>
         public async Task<decimal> GetEndOfMonthBalanceForAccount(AccountViewModel account)
         {
+            logManager.Info($"Calculate EndOfMonth for Account {account.Id} Balance.");
+
             decimal balance = account.CurrentBalance;
 
             List<Payment> paymentList = await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery { AccountId = account.Id });
@@ -135,7 +145,7 @@ namespace MoneyFox.Presentation.Services
 
         private static decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
         {
-            if(accountId == payment.ChargedAccount.Id)
+            if(accountId == payment.ChargedAccount?.Id)
                 balance -= payment.Amount;
             else
                 balance += payment.Amount;
