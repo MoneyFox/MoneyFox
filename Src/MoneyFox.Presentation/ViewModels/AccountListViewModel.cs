@@ -14,6 +14,7 @@ using MoneyFox.Presentation.ViewModels.Interfaces;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using NLog;
+using NLog.Fluent;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -61,7 +62,7 @@ namespace MoneyFox.Presentation.ViewModels
 
             Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
 
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await LoadAsync());
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await MessageReceived());
         }
 
         public IBalanceViewModel BalanceViewModel { get; }
@@ -116,6 +117,12 @@ namespace MoneyFox.Presentation.ViewModels
             }
         }
 
+        private async Task MessageReceived()
+        {
+            logManager.Info("Reload Message received");
+            await LoadAsync();
+        }
+
         private async Task LoadAsync()
         {
             try
@@ -140,7 +147,6 @@ namespace MoneyFox.Presentation.ViewModels
             catch(Exception ex)
             {
                 logManager.Error(ex);
-                await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.ToString());
             }
         }
 
