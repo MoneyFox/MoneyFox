@@ -56,7 +56,7 @@ namespace MoneyFox.Presentation.Services
         public async Task<decimal> GetTotalBalance()
         {
             logManager.Info("Calculate Total Balance.");
-            await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+            return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
         }
 
         /// <inheritdoc/>
