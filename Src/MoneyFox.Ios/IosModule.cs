@@ -13,9 +13,9 @@ namespace MoneyFox.iOS
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
-
             builder.RegisterModule<PresentationModule>();
+
+            builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
 
             builder.RegisterType<GraphServiceClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
