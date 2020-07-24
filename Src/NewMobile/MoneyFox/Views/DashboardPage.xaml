@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MoneyFox.Views.DashboardPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:theme="clr-namespace:MoneyFox"
+    mc:Ignorable="d">
+
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="*,Auto,15,44,0">
+            <Image
+                Grid.Column="3"
+                Source="https://devblogs.microsoft.com/xamarin/wp-content/uploads/sites/44/2019/03/Screen-Shot-2017-01-03-at-3.35.53-PM.png"
+                VerticalOptions="Center">
+                <Image.Clip>
+                    <EllipseGeometry
+                        Center="22,22"
+                        RadiusX="22"
+                        RadiusY="22" />
+                </Image.Clip>
+            </Image>
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid
+                Padding="15"
+                IsClippedToBounds="False"
+                RowDefinitions="80,44,240,120,140,300,*">
+                <Label
+                    FontAttributes="Bold"
+                    FontFamily="Product"
+                    FontSize="32"
+                    Text="Welcome" />
+
+                <Label
+                    Grid.Row="1"
+                    FontAttributes="Bold"
+                    FontFamily="Product"
+                    FontSize="22"
+                    Text="Assets"
+                    VerticalOptions="Center" />
+                <!--<Button
+                    Grid.Row="1"
+                    Padding="0"
+                    BorderWidth="0"
+                    FontFamily="FontAwesome"
+                    FontSize="24"
+                    HeightRequest="44"
+                    HorizontalOptions="End"
+                    Text="{x:Static theme:IconFont.Plus}"
+                    TextColor="White"
+                    VerticalOptions="Center"
+                    WidthRequest="44" />-->
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

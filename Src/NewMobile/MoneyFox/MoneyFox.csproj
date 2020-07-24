@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Common\Fonts\fa-solid-900.ttf" />
+    <None Remove="Common\Fonts\norwester.otf" />
+    <None Remove="Common\Fonts\ProductSans-Regular.ttf" />
+    <None Remove="Common\Fonts\RobotoMono-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Common\Fonts\fa-solid-900.ttf" />
+    <EmbeddedResource Include="Common\Fonts\norwester.otf" />
+    <EmbeddedResource Include="Common\Fonts\ProductSans-Regular.ttf" />
+    <EmbeddedResource Include="Common\Fonts\RobotoMono-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Sharpnado.MaterialFrame" Version="1.1.1" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1179" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.7.0.1179" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Common\Styles\DefaultTheme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\DashboardPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>
