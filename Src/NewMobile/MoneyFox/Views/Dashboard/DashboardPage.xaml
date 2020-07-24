@@ -19,14 +19,14 @@
     <Shell.TitleView>
         <Grid>
             <Button
+                Style="{StaticResource PrimaryButton}"
                 Margin="0,0,5,0"
                 Padding="0"
-                BackgroundColor="OrangeRed"
                 BorderWidth="0"
                 FontFamily="FontAwesome"
                 FontSize="24"
                 HeightRequest="44"
-                MinimumWidthRequest="44"
+                WidthRequest="44"
                 HorizontalOptions="End"
                 Text="{x:Static theme:IconFont.Plus}"
                 TextColor="White"
@@ -178,7 +178,7 @@
                                         <ProgressBar BackgroundColor="#F7F7F7"
                                                      HeightRequest="4"
                                                      Progress="{Binding Progress}"
-                                                     ProgressColor="OrangeRed" />
+                                                     ProgressColor="{StaticResource ThemePrimary}" />
                                     </StackLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>

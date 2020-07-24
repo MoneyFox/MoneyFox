@@ -6,6 +6,7 @@ using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Budget;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.Views.Accounts;
+using MoneyFox.Views.Dashboard;
 
 namespace MoneyFox
 {
@@ -30,13 +31,16 @@ namespace MoneyFox
         }
 
         // Routes
+        public static string DashboardRoute => $"Dashboard/{nameof(DashboardPage)}";
         public static string AccountListRoute => $"Account/{nameof(AccountListPage)}";
+        public static string AddAccountRoute => $"Account/{nameof(AddAccountPage)}";
         public static string BudgetListRoute => $"Budget/{nameof(BudgetListPage)}";
 
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
         public static AccountListViewModel AccountListViewModel => ServiceLocator.Current.GetInstance<AccountListViewModel>();
+        public static AddAccountViewModel AddAccountViewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
 
     }
 }

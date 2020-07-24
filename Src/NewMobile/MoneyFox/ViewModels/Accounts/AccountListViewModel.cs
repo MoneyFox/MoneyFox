@@ -1,5 +1,7 @@
-﻿using MoneyFox.Groups;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Groups;
 using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Accounts
 {
@@ -18,5 +20,7 @@ namespace MoneyFox.ViewModels.Accounts
                 new AccountViewModel{ Name = "Safety", CurrentBalance = 4455, IsExcluded = true, EndOfMonthBalance = 5522 }
             }
         };
+
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AddAccountRoute));
     }
 }

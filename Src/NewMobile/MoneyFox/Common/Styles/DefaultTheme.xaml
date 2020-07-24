@@ -93,14 +93,12 @@
         TargetType="Label"
         Class="FlyoutItemLabelStyle">
         <Setter
-            Property="FontSize"
-            Value="16" />
+            Property="FontSize" Value="16" />
         <Setter
             Property="TextColor"
             Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
         <Setter
-            Property="FontFamily"
-            Value="Roboto"/>
+            Property="FontFamily" Value="Product"/>
         <Setter
             Property="HeightRequest"
             Value="44" />
@@ -290,11 +288,7 @@
     <Style TargetType="Entry">
         <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
         <Setter Property="PlaceholderColor" Value="{StaticResource NeutralSecondary}"/>
-        <Setter Property="TextColor" Value="{StaticResource NeutralPrimary}"/>
-        <!--<Setter Property="">
-            <effects:EntryRemoveLine/>
-        </Setter>-->
-
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
     </Style>
 
     <!-- Picker -->
