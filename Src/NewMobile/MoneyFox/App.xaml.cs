@@ -1,5 +1,4 @@
 ﻿using Xamarin.Forms;
-using MoneyFox.Services;
 
 
 namespace MoneyFox
@@ -16,8 +15,6 @@ namespace MoneyFox
             App.Current.UserAppTheme = OSAppTheme.Light;
 
             InitializeComponent();
-
-            DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
