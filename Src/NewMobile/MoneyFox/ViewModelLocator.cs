@@ -2,6 +2,7 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.Views.Dashboard;
 
@@ -33,6 +34,7 @@ namespace MoneyFox
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
+        public static AccountListViewModel AccountListViewModel => ServiceLocator.Current.GetInstance<AccountListViewModel>();
 
     }
 }

@@ -162,35 +162,24 @@
                                                           Light={StaticResource CardBackgroundLight}}"
                         CornerRadius="15"
                         HasShadow="true"
+                        VerticalOptions="Fill"
                         HorizontalOptions="FillAndExpand">
                         <yummy:PancakeView.Shadow>
                             <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
                         </yummy:PancakeView.Shadow>
-                        <StackLayout>
-                            <Label Text="Food" />
-                            <ProgressBar
-                                BackgroundColor="#F7F7F7"
-                                HeightRequest="4"
-                                Progress="0.7"
-                                ProgressColor="DarkBlue"
-                                Visual="Material" />
 
-                            <Label Text="Drinks" />
-                            <ProgressBar
-                                BackgroundColor="#F7F7F7"
-                                HeightRequest="4"
-                                Progress="0.5"
-                                ProgressColor="DarkBlue"
-                                Visual="Material" />
-
-                            <Label Text="Books" />
-                            <ProgressBar
-                                BackgroundColor="#F7F7F7"
-                                HeightRequest="4"
-                                Progress="0.35"
-                                ProgressColor="DarkBlue"
-                                Visual="Material" />
-
+                        <StackLayout  BindableLayout.ItemsSource="{Binding BudgetEntries}" >
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="viewmodels:DashboardBudgetEntryViewModel">
+                                    <StackLayout Margin="0,0,0,6">
+                                        <Label Text="{Binding BudgetName}"/>
+                                        <ProgressBar BackgroundColor="#F7F7F7"
+                                                     HeightRequest="4"
+                                                     Progress="{Binding Progress}"
+                                                     ProgressColor="DarkBlue" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
                         </StackLayout>
                     </yummy:PancakeView>
 

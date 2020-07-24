@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:views="clr-namespace:MoneyFox.Views"
+    xmlns:dashboard="clr-namespace:MoneyFox.Views.Dashboard"
     Title="MoneyFox"
     Visual="Material"
     mc:Ignorable="d">
@@ -43,7 +43,7 @@
     <FlyoutItem Title="Dashboard">
         <Tab>
             <ShellContent>
-                <views:DashboardPage />
+                <dashboard:DashboardPage />
             </ShellContent>
         </Tab>
     </FlyoutItem>

@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.ViewModels.Dashboard
+﻿using System.Collections.ObjectModel;
+
+namespace MoneyFox.ViewModels.Dashboard
 {
     public class DashboardViewModel : BaseViewModel
     {
@@ -47,5 +49,12 @@
                 RaisePropertyChanged();
             }
         }
+
+        public ObservableCollection<DashboardBudgetEntryViewModel> BudgetEntries { get; set; } = new ObservableCollection<DashboardBudgetEntryViewModel>
+        {
+            new DashboardBudgetEntryViewModel{ BudgetName = "Food", Progress = 0.7},
+            new DashboardBudgetEntryViewModel{ BudgetName = "Drinks", Progress = 0.5},
+            new DashboardBudgetEntryViewModel{ BudgetName = "Books", Progress = 0.2}
+        };
     }
 }
