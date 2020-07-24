@@ -6,6 +6,8 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:theme="clr-namespace:MoneyFox"
+    xmlns:extensions="clr-namespace:MoneyFox.Extensions"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
 
@@ -37,7 +39,7 @@
                     FontAttributes="Bold"
                     FontFamily="Product"
                     FontSize="32"
-                    Text="Welcome!" />
+                    Text="{x:Static resources:Strings.WebsiteLabel}" />
 
                 <!--  Assets card  -->
                 <StackLayout Grid.Row="1" VerticalOptions="Start">
@@ -45,7 +47,7 @@
                         FontAttributes="Bold"
                         FontFamily="Product"
                         FontSize="22"
-                        Text="Assets"
+                        Text="{x:Static resources:Strings.AssetsLabel}"
                         VerticalOptions="Center" />
 
                     <yummy:PancakeView
@@ -71,7 +73,8 @@
                                 FontFamily="Product"
                                 FontSize="15"
                                 HorizontalTextAlignment="End"
-                                Text="End of month: 13000 CHF"
+                                Text="{Binding EndOfMonthBalance,
+                                               StringFormat={extensions:Translate EndOfMonthLabel}}"
                                 VerticalTextAlignment="End" />
                         </Grid>
                     </yummy:PancakeView>
@@ -80,7 +83,7 @@
                             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
                             HorizontalOptions="End"
                             Margin="0,12,0,0"
-                            Text="Go to Accounts" />
+                            Text="{x:Static resources:Strings.GoToAccountsLabel}" />
                 </StackLayout>
 
                 <!--  Income / Expenses  -->
@@ -89,7 +92,7 @@
                         FontAttributes="Bold"
                         FontFamily="Product"
                         FontSize="22"
-                        Text="Income and Expenses"
+                        Text="{x:Static resources:Strings.IncomeAndExpensesLabel}"
                         VerticalOptions="Center" />
 
                     <Grid ColumnDefinitions="*,*">
@@ -147,7 +150,7 @@
                         FontAttributes="Bold"
                         FontFamily="Product"
                         FontSize="22"
-                        Text="Budgets"
+                        Text="{x:Static resources:Strings.BudgetsLabel}"
                         VerticalOptions="Center" />
 
                     <yummy:PancakeView
@@ -192,10 +195,8 @@
                             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
                             Margin="0,12,0,0"
                             HorizontalOptions="End"
-                            Text="Go to Budgets" />
+                            Text="{x:Static resources:Strings.GoToBudgetsLabel}" />
                 </StackLayout>
-
-
             </Grid>
         </ScrollView>
     </ContentPage.Content>

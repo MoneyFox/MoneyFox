@@ -32,6 +32,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Application.Tests"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Persistence.Tests", "MoneyFox.Persistence.Tests\MoneyFox.Persistence.Tests.csproj", "{66A79F57-C69F-48CE-99CD-1890DBE18FEF}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Migrations.Startup", "MoneyFox.Migrations.Startup\MoneyFox.Migrations.Startup.csproj", "{9E322F9E-C967-4E52-A3A3-867F38AC8187}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helper", "Helper", "{6F084A49-E414-4304-B76F-CE3FD9A1B2C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -168,6 +172,18 @@ Global
 		{66A79F57-C69F-48CE-99CD-1890DBE18FEF}.Release|iPhone.Build.0 = Release|Any CPU
 		{66A79F57-C69F-48CE-99CD-1890DBE18FEF}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{66A79F57-C69F-48CE-99CD-1890DBE18FEF}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Release|iPhone.Build.0 = Release|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -182,6 +198,7 @@ Global
 		{5E95161B-EE69-4880-98E9-FFAD1FD5E12B} = {4CEB1C79-990C-4F53-A88F-FC5B30A69F6D}
 		{D6C266EC-2759-4BB1-8098-48F383945333} = {4CEB1C79-990C-4F53-A88F-FC5B30A69F6D}
 		{66A79F57-C69F-48CE-99CD-1890DBE18FEF} = {4CEB1C79-990C-4F53-A88F-FC5B30A69F6D}
+		{9E322F9E-C967-4E52-A3A3-867F38AC8187} = {6F084A49-E414-4304-B76F-CE3FD9A1B2C1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C94DCBF4-5DE5-4CC7-BACC-7ADF66719727}
