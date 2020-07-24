@@ -6,55 +6,167 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:theme="clr-namespace:MoneyFox"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
 
-    <NavigationPage.TitleView>
-        <Grid ColumnDefinitions="*,Auto,15,44,0">
-            <Image
-                Grid.Column="3"
-                Source="https://devblogs.microsoft.com/xamarin/wp-content/uploads/sites/44/2019/03/Screen-Shot-2017-01-03-at-3.35.53-PM.png"
-                VerticalOptions="Center">
-                <Image.Clip>
-                    <EllipseGeometry
-                        Center="22,22"
-                        RadiusX="22"
-                        RadiusY="22" />
-                </Image.Clip>
-            </Image>
+    <Shell.TitleView>
+        <Grid>
+            <Button HorizontalOptions="End"
+                    VerticalOptions="Center"
+                    HeightRequest="44"
+                    WidthRequest="44"
+                    BorderWidth="0"
+                    Margin="0,0,5,0"
+                    BackgroundColor="DarkBlue"
+                    TextColor="White" FontSize="24" Padding="0"
+                    Text="{x:Static theme:IconFont.Plus}"
+                    FontFamily="FontAwesome"/>
         </Grid>
-    </NavigationPage.TitleView>
+    </Shell.TitleView>
 
     <ContentPage.Content>
         <ScrollView>
             <Grid
                 Padding="15"
                 IsClippedToBounds="False"
-                RowDefinitions="80,44,240,120,140,300,*">
+                RowDefinitions="35,160,140,*">
                 <Label
                     FontAttributes="Bold"
                     FontFamily="Product"
                     FontSize="32"
-                    Text="Welcome" />
+                    Text="Welcome!" />
 
-                <Label
-                    Grid.Row="1"
-                    FontAttributes="Bold"
-                    FontFamily="Product"
-                    FontSize="22"
-                    Text="Assets"
-                    VerticalOptions="Center" />
-                <!--<Button
-                    Grid.Row="1"
-                    Padding="0"
-                    BorderWidth="0"
-                    FontFamily="FontAwesome"
-                    FontSize="24"
-                    HeightRequest="44"
-                    HorizontalOptions="End"
-                    Text="{x:Static theme:IconFont.Plus}"
-                    TextColor="White"
-                    VerticalOptions="Center"
-                    WidthRequest="44" />-->
+                <!-- Assets card -->
+                <StackLayout Grid.Row="1" VerticalOptions="Start" >
+                    <Label FontAttributes="Bold"
+                           FontFamily="Product"
+                           FontSize="22"
+                           Text="Assets"
+                           VerticalOptions="Center" />
+
+                    <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                       CornerRadius="15"
+                                       HasShadow="true"
+                                       HorizontalOptions="FillAndExpand"
+                                       HeightRequest="100">
+                        <yummy:PancakeView.Shadow>
+                            <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
+                        </yummy:PancakeView.Shadow>
+                        <Grid>
+                            <Label Text="12000 CHF"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontAttributes="Bold"
+                                   FontFamily="Product"
+                                   FontSize="22"/>
+                            <Label Text="End of month: 13000 CHF"
+                                   HorizontalTextAlignment="End"
+                                   VerticalTextAlignment="End"
+                                   Margin="0,0,6,2"
+                                   FontFamily="Product"
+                                   FontSize="15"/>
+                        </Grid>
+                    </yummy:PancakeView>
+                </StackLayout>
+
+                <!-- Income / Expenses -->
+                <StackLayout Grid.Row="2" VerticalOptions="Start" >
+                    <Label FontAttributes="Bold"
+                           FontFamily="Product"
+                           FontSize="22"
+                           Text="Income and Expenses"
+                           VerticalOptions="Center" />
+
+                    <Grid ColumnDefinitions="*,*">
+
+                        <yummy:PancakeView Grid.Column="0"
+                                           BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                           CornerRadius="15"
+                                           HasShadow="true"
+                                           HorizontalOptions="FillAndExpand"
+                                           HeightRequest="80">
+                            <yummy:PancakeView.Shadow>
+                                <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
+                            </yummy:PancakeView.Shadow>
+                            <Grid>
+                                <Label Text="+6000 CHF"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontAttributes="Bold"
+                                   FontFamily="Product"
+                                   FontSize="18"/>
+                            </Grid>
+                        </yummy:PancakeView>
+
+                        <yummy:PancakeView Grid.Column="1"
+                                           BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                           CornerRadius="15"
+                                           HasShadow="true"
+                                           HorizontalOptions="FillAndExpand"
+                                           HeightRequest="80">
+                            <yummy:PancakeView.Shadow>
+                                <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
+                            </yummy:PancakeView.Shadow>
+                            <Grid>
+                                <Label Text="-5000 CHF"
+                                   HorizontalTextAlignment="Center"
+                                   VerticalTextAlignment="Center"
+                                   FontAttributes="Bold"
+                                   FontFamily="Product"
+                                   FontSize="18"/>
+                            </Grid>
+                        </yummy:PancakeView>
+                    </Grid>
+                </StackLayout>
+
+
+                <!-- Budgets -->
+                <StackLayout Grid.Row="3" VerticalOptions="Start" >
+                    <Label FontAttributes="Bold"
+                           FontFamily="Product"
+                           FontSize="22"
+                           Text="Budgets"
+                           VerticalOptions="Center" />
+
+                    <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"
+                                       CornerRadius="15"
+                                       HasShadow="true"
+                                       Padding="20"
+                                       HorizontalOptions="FillAndExpand"
+                                       HeightRequest="100">
+                        <yummy:PancakeView.Shadow>
+                            <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
+                        </yummy:PancakeView.Shadow>
+                        <StackLayout>
+                            <Label Text="Food" />
+                            <ProgressBar Visual="Material"
+                                 HeightRequest="14"
+                                 Progress="0.7"
+                                 BackgroundColor="#F7F7F7"
+                                 ProgressColor="DarkBlue">
+                            </ProgressBar>
+
+                            <Label Text="Drinks" />
+                            <ProgressBar Visual="Material"
+                                 HeightRequest="14"
+                                 Progress="0.5"
+                                 BackgroundColor="#F7F7F7"
+                                 ProgressColor="DarkBlue">
+                            </ProgressBar>
+
+                            <Label Text="Books" />
+                            <ProgressBar Visual="Material"
+                                 HeightRequest="14"
+                                 Progress="0.35"
+                                 BackgroundColor="#F7F7F7"
+                                 ProgressColor="DarkBlue">
+                            </ProgressBar>
+
+                        </StackLayout>
+                    </yummy:PancakeView>
+                </StackLayout>
+
+
             </Grid>
         </ScrollView>
     </ContentPage.Content>

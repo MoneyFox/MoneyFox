@@ -29,23 +29,25 @@
     <Color x:Key="White">#ffffff</Color>
 
     <!-- Theme Colors -->
-    <Color x:Key="BackgroundColorDark">#000000</Color>
-    <Color x:Key="BackgroundColorLight">#ffffff</Color>
+    <Color x:Key="BackgroundColorDark">#121212</Color>
+    <Color x:Key="BackgroundColorLight">#EFF2F5</Color>
+
     <Color x:Key="TextPrimaryColor_Dark">#FFFFFF</Color>
     <Color x:Key="TextPrimaryColor_Light">#323130</Color>
+
     <Color x:Key="TextSecondaryColor_Dark">#FFFFFF</Color>
     <Color x:Key="TextSecondaryColor_Light">#a3a2a0</Color>
 
+    <Color x:Key="CardBackgroundDark">#2d2d30</Color>
+    <Color x:Key="CardBackgroundLight">#ffffff</Color>
 
+    <Color x:Key="ShadowColorDark">#FFFFFF</Color>
+    <Color x:Key="ShadowColorLight">#000000</Color>
 
     <!-- Semantic Colors -->
     <Color x:Key="Success">#FF3300</Color>
     <Color x:Key="Info">#ffded6</Color>
     <Color x:Key="Warning">#ff4b1f</Color>
-
-    <Color x:Key="FlyoutGradientStart">#FF017ED8</Color>
-    <Color x:Key="FlyoutGradientEnd">#FF14D9D9</Color>
-    <Color x:Key="NavBarTitleColor">#FFFFFF</Color>
 
     <Color x:Key="TitleColor">#FFFFFF</Color>
 
@@ -73,11 +75,9 @@
     <Style x:Key="BaseStyle"
            TargetType="Element">
         <Setter Property="Shell.BackgroundColor"
-                Value="{DynamicResource ThemePrimary}" />
+                Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
         <Setter Property="Shell.ForegroundColor"
-                Value="{StaticResource White}" />
-        <Setter Property="Shell.TitleColor"
-                Value="{DynamicResource TitleColor}" />
+                Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
         <Setter Property="Shell.DisabledColor"
                 Value="#B4000000" />
         <Setter Property="Shell.UnselectedColor"
