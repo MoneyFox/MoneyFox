@@ -1,11 +1,11 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MoneyFox.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : ViewModelBase
     {
         bool isBusy = false;
         public bool IsBusy
@@ -30,20 +30,8 @@ namespace MoneyFox.ViewModels
 
             backingStore = value;
             onChanged?.Invoke();
-            OnPropertyChanged(propertyName);
+            RaisePropertyChanged(propertyName);
             return true;
         }
-
-        #region INotifyPropertyChanged
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            var changed = PropertyChanged;
-            if (changed == null)
-                return;
-
-            changed.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }
