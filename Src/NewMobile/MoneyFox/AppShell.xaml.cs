@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
+﻿using MoneyFox.ViewModels.Budget;
+using MoneyFox.Views.Accounts;
+using MoneyFox.Views.Dashboard;
 using Xamarin.Forms;
 
 namespace MoneyFox
@@ -10,6 +10,14 @@ namespace MoneyFox
         public AppShell()
         {
             InitializeComponent();
+            RegisterRoutes();
+        }
+
+        private void RegisterRoutes()
+        {
+            Routing.RegisterRoute(nameof(DashboardPage), typeof(DashboardPage));
+            Routing.RegisterRoute(nameof(AccountListPage), typeof(AccountListPage));
+            Routing.RegisterRoute(nameof(BudgetListPage), typeof(BudgetListPage));
         }
     }
 }

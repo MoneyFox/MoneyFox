@@ -4,7 +4,6 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Dashboard;
-using MoneyFox.Views.Dashboard;
 
 namespace MoneyFox
 {
@@ -27,10 +26,6 @@ namespace MoneyFox
                 ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
             }
         }
-
-        // Page Constants
-        public static string Dashboard => nameof(DashboardPage);
-
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();

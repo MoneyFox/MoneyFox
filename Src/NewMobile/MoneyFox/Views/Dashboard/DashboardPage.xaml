@@ -63,7 +63,7 @@
                         HeightRequest="100"
                         HorizontalOptions="FillAndExpand">
                         <yummy:PancakeView.Shadow>
-                            <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
+                            <yummy:DropShadow />
                         </yummy:PancakeView.Shadow>
                         <Grid>
                             <Label
@@ -87,7 +87,8 @@
                             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
                             HorizontalOptions="End"
                             Margin="0,12,0,0"
-                            Text="{x:Static resources:Strings.GoToAccountsLabel}" />
+                            Text="{x:Static resources:Strings.GoToAccountsLabel}"
+                            Command="{Binding GoToAccountsCommand}" />
                 </StackLayout>
 
                 <!--  Income / Expenses  -->
@@ -110,7 +111,7 @@
                             HeightRequest="80"
                             HorizontalOptions="FillAndExpand">
                             <yummy:PancakeView.Shadow>
-                                <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
+                                <yummy:DropShadow />
                             </yummy:PancakeView.Shadow>
                             <Grid>
                                 <Label
@@ -118,7 +119,7 @@
                                     FontFamily="Product"
                                     FontSize="18"
                                     HorizontalTextAlignment="Center"
-                                    Text="{Binding MonthlyIncomes, StringFormat='{0:c'}"
+                                    Text="{Binding MonthlyIncomes, StringFormat='{0:c}'}"
                                     VerticalTextAlignment="Center" />
                             </Grid>
                         </yummy:PancakeView>
@@ -140,7 +141,7 @@
                                     FontFamily="Product"
                                     FontSize="18"
                                     HorizontalTextAlignment="Center"
-                                    Text="{Binding MonthlyExpenses, StringFormat='{0:c'}"
+                                    Text="{Binding MonthlyExpenses, StringFormat='{0:c}'}"
                                     VerticalTextAlignment="Center" />
                             </Grid>
                         </yummy:PancakeView>
@@ -165,7 +166,7 @@
                         VerticalOptions="Fill"
                         HorizontalOptions="FillAndExpand">
                         <yummy:PancakeView.Shadow>
-                            <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
+                            <yummy:DropShadow />
                         </yummy:PancakeView.Shadow>
 
                         <StackLayout  BindableLayout.ItemsSource="{Binding BudgetEntries}" >
@@ -187,7 +188,8 @@
                             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
                             Margin="0,12,0,0"
                             HorizontalOptions="End"
-                            Text="{x:Static resources:Strings.GoToBudgetsLabel}" />
+                            Text="{x:Static resources:Strings.GoToBudgetsLabel}"
+                            Command="{Binding GoToBudgetsCommand}" />
                 </StackLayout>
             </Grid>
         </ScrollView>

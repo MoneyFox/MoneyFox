@@ -1,4 +1,8 @@
-﻿using System.Collections.ObjectModel;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.ViewModels.Budget;
+using MoneyFox.Views.Accounts;
+using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Dashboard
 {
@@ -56,5 +60,8 @@ namespace MoneyFox.ViewModels.Dashboard
             new DashboardBudgetEntryViewModel{ BudgetName = "Drinks", Progress = 0.5},
             new DashboardBudgetEntryViewModel{ BudgetName = "Books", Progress = 0.2}
         };
+
+        public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync($"//{nameof(AccountListPage)}"));
+        public RelayCommand GoToBudgetsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync($"//{nameof(BudgetListPage)}"));
     }
 }

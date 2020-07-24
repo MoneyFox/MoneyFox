@@ -4,13 +4,50 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
              x:Class="MoneyFox.Views.Accounts.AccountListPage">
 
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand" />
+            <Label FontAttributes="Bold"
+                   FontFamily="Product"
+                   FontSize="22"
+                   Text="{x:Static resources:Strings.AssetsLabel}"
+                   VerticalOptions="Center" />
+
+            <CollectionView ItemsSource="{Binding Accounts}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="accounts:AccountViewModel">
+                        <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                             Light={StaticResource CardBackgroundLight}}"
+                        CornerRadius="15"
+                        HasShadow="true"
+                        HeightRequest="100"
+                        HorizontalOptions="FillAndExpand">
+                            <yummy:PancakeView.Shadow>
+                                <yummy:DropShadow />
+                            </yummy:PancakeView.Shadow>
+                            <Grid>
+                                <Label FontAttributes="Bold"
+                                       FontFamily="Product"
+                                       FontSize="22"
+                                       HorizontalTextAlignment="Center"
+                                       Text="{Binding Name, StringFormat='{0:c}'}"
+                                       VerticalTextAlignment="Center" />
+
+                                <Label Margin="0,0,6,2"
+                                       FontFamily="Product"
+                                       FontSize="15"
+                                       HorizontalTextAlignment="End"
+                                       Text="{Binding CurrentBalance, StringFormat='{0:c}'}"
+                                       VerticalTextAlignment="End" />
+                            </Grid>
+                        </yummy:PancakeView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
