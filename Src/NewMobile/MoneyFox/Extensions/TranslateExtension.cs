@@ -11,27 +11,17 @@ namespace MoneyFox.Extensions
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension
     {
-        private readonly CultureInfo ci;
-
         static readonly Lazy<ResourceManager> ResMgr = new Lazy<ResourceManager>(
-            () => new ResourceManager(typeof(Strings).FullName, typeof(TranslateExtension).GetTypeInfo().Assembly));
+            () => new ResourceManager(typeof(Strings).FullName, typeof(Strings).GetTypeInfo().Assembly));
 
         public string Text { get; set; }
-
-        public TranslateExtension()
-        {
-            if(Device.RuntimePlatform == Device.iOS || Device.RuntimePlatform == Device.Android)
-            {
-                ci = CultureInfo.CurrentCulture;
-            }
-        }
 
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             if(Text == null)
                 return string.Empty;
 
-            return ResMgr.Value.GetString(Text, ci) ?? Text;
+            return ResMgr.Value.GetString(Text, CultureInfo.CurrentCulture) ?? Text;
         }
     }
 }
