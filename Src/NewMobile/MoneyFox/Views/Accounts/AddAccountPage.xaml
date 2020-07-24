@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application" xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
              mc:Ignorable="d"
+             Visual="Material"
              x:Class="MoneyFox.Views.Accounts.AddAccountPage">
 
     <ContentPage.Content>
