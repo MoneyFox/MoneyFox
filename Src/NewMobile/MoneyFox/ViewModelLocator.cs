@@ -3,7 +3,7 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.ViewModels.Dashboard;
-using MoneyFox.Views;
+using MoneyFox.Views.Dashboard;
 
 namespace MoneyFox
 {
