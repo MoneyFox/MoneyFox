@@ -21,12 +21,12 @@
             <Button
                 Margin="0,0,5,0"
                 Padding="0"
-                BackgroundColor="DarkBlue"
+                BackgroundColor="OrangeRed"
                 BorderWidth="0"
                 FontFamily="FontAwesome"
                 FontSize="24"
                 HeightRequest="44"
-                WidthRequest="44"
+                MinimumWidthRequest="44"
                 HorizontalOptions="End"
                 Text="{x:Static theme:IconFont.Plus}"
                 TextColor="White"
@@ -43,7 +43,7 @@
                 <Label FontAttributes="Bold"
                        FontFamily="Product"
                        FontSize="32"
-                       Text="{x:Static resources:Strings.WebsiteLabel}" />
+                       Text="{x:Static resources:Strings.WelcomeLabel}" />
 
                 <!--  Assets card  -->
                 <StackLayout Grid.Row="1" VerticalOptions="Start">
@@ -178,7 +178,7 @@
                                         <ProgressBar BackgroundColor="#F7F7F7"
                                                      HeightRequest="4"
                                                      Progress="{Binding Progress}"
-                                                     ProgressColor="DarkBlue" />
+                                                     ProgressColor="OrangeRed" />
                                     </StackLayout>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>

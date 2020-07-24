@@ -4,11 +4,34 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:theme="clr-namespace:MoneyFox"
              xmlns:extensions="clr-namespace:MoneyFox.Extensions"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
              x:Class="MoneyFox.Views.Accounts.AccountListPage">
+
+    <d:ContentPage.BindingContext>
+        <accounts:AccountListViewModel />
+    </d:ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Grid>
+            <Button
+                Margin="0,0,5,0"
+                Padding="0"
+                BackgroundColor="DarkBlue"
+                BorderWidth="0"
+                FontFamily="FontAwesome"
+                FontSize="24"
+                HeightRequest="44"
+                MinimumWidthRequest="44"
+                HorizontalOptions="End"
+                Text="{x:Static theme:IconFont.Plus}"
+                TextColor="White"
+                VerticalOptions="Center" />
+        </Grid>
+    </Shell.TitleView>
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"

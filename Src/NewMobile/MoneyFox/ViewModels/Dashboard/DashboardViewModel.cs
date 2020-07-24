@@ -1,6 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.ViewModels.Budget;
-using MoneyFox.Views.Accounts;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
