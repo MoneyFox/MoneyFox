@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8.0</LangVersion>
+    <nullable>enable</nullable>
+    <WarningsAsErrors>CS8600;CS8602;CS8603</WarningsAsErrors>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>MoneyFox.Persistence.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>MoneyFox.Persistence.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="5.2.0" />
+    <PackageReference Include="AutoMapper" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
+    <PackageReference Include="NLog" Version="4.7.2" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1179" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
+    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Windows.Foundation.UniversalApiContract">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Windows Kits\10\References\10.0.18362.0\Windows.Foundation.UniversalApiContract\8.0.0.0\Windows.Foundation.UniversalApiContract.winmd</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
