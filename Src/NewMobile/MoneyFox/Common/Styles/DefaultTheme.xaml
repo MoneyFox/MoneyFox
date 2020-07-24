@@ -266,6 +266,13 @@
         </Setter>
     </Style>
 
+    <Style x:Key="LinkButton" TargetType="Button">
+        <Setter Property="Visual" Value="Default" />
+        <Setter Property="BorderWidth" Value="0" />
+        <Setter Property="HeightRequest" Value="35" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
+    </Style>
+
     <!-- Checkbox -->
     <Style TargetType="CheckBox">
         <Setter Property="Color" Value="{StaticResource ThemePrimary}"/>

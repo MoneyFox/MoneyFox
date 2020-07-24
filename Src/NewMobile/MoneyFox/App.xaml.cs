@@ -13,7 +13,7 @@ namespace MoneyFox
                 "AppTheme_Experimental"
             });
 
-            App.Current.UserAppTheme = OSAppTheme.Dark;
+            App.Current.UserAppTheme = OSAppTheme.Light;
 
             InitializeComponent();
 
