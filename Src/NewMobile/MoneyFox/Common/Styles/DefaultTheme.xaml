@@ -41,13 +41,16 @@
     <Color x:Key="CardBackgroundDark">#2d2d30</Color>
     <Color x:Key="CardBackgroundLight">#ffffff</Color>
 
-    <Color x:Key="ShadowColorDark">#FFFFFF</Color>
+    <Color x:Key="ShadowColorDark">#000000</Color>
     <Color x:Key="ShadowColorLight">#000000</Color>
 
     <!-- Semantic Colors -->
     <Color x:Key="Success">#FF3300</Color>
     <Color x:Key="Info">#ffded6</Color>
     <Color x:Key="Warning">#ff4b1f</Color>
+
+    <Color x:Key="IncomeGreen">#1FFF39</Color>
+    <Color x:Key="ExpenseRed">#ED7A7A</Color>
 
     <Color x:Key="TitleColor">#FFFFFF</Color>
 

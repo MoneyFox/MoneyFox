@@ -132,15 +132,14 @@
                                        CornerRadius="15"
                                        HasShadow="true"
                                        Padding="20"
-                                       HorizontalOptions="FillAndExpand"
-                                       HeightRequest="100">
+                                       HorizontalOptions="FillAndExpand">
                         <yummy:PancakeView.Shadow>
                             <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
                         </yummy:PancakeView.Shadow>
                         <StackLayout>
                             <Label Text="Food" />
                             <ProgressBar Visual="Material"
-                                 HeightRequest="14"
+                                 HeightRequest="4"
                                  Progress="0.7"
                                  BackgroundColor="#F7F7F7"
                                  ProgressColor="DarkBlue">
@@ -148,7 +147,7 @@
 
                             <Label Text="Drinks" />
                             <ProgressBar Visual="Material"
-                                 HeightRequest="14"
+                                 HeightRequest="4"
                                  Progress="0.5"
                                  BackgroundColor="#F7F7F7"
                                  ProgressColor="DarkBlue">
@@ -156,7 +155,7 @@
 
                             <Label Text="Books" />
                             <ProgressBar Visual="Material"
-                                 HeightRequest="14"
+                                 HeightRequest="4"
                                  Progress="0.35"
                                  BackgroundColor="#F7F7F7"
                                  ProgressColor="DarkBlue">
