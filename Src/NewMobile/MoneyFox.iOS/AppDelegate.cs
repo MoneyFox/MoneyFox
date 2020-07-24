@@ -1,5 +1,4 @@
 ﻿using Foundation;
-using Sharpnado.MaterialFrame.iOS;
 using UIKit;
 
 namespace MoneyFox.iOS
@@ -21,7 +20,6 @@ namespace MoneyFox.iOS
         {
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
-            iOSMaterialFrameRenderer.Init();
 
             LoadApplication(new App());
 

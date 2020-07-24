@@ -9,6 +9,7 @@ namespace MoneyFox.Views
         public DashboardPage()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.DashboardViewModel;
         }
     }
 }
