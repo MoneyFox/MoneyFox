@@ -9,5 +9,10 @@ namespace MoneyFox.Views.Accounts
             InitializeComponent();
             BindingContext = ViewModelLocator.AccountListViewModel;
         }
+
+        private async void AddAccountClicked(object sender, System.EventArgs e)
+        {
+            await Navigation.PushModalAsync(new AddAccountPage());
+        }
     }
 }

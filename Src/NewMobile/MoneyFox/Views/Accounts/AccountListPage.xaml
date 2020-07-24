@@ -25,7 +25,7 @@
                 FontFamily="FontAwesome"
                 FontSize="24"
                 HeightRequest="44"
-                WidthRequest="44"
+                WidthRequest="66"
                 HorizontalOptions="End"
                 Text="{x:Static theme:IconFont.Plus}"
                 TextColor="White"

@@ -5,7 +5,6 @@ namespace MoneyFox
 {
     public partial class App : Xamarin.Forms.Application
     {
-
         public App()
         {
             Device.SetFlags(new string[] {

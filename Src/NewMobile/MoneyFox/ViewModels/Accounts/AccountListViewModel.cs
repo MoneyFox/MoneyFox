@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -21,6 +22,6 @@ namespace MoneyFox.ViewModels.Accounts
             }
         };
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AddAccountRoute));
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
     }
 }
