@@ -51,6 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Groups\" />
     <Folder Include="UserControls\" />
   </ItemGroup>
 </Project>

@@ -7,6 +7,7 @@ namespace MoneyFox.ViewModels.Accounts
         private int id;
         private string name;
         private decimal currentBalance;
+        private decimal endOfMonthBalance;
         private string note;
         private bool isOverdrawn;
         private bool isExcluded;
@@ -51,9 +52,20 @@ namespace MoneyFox.ViewModels.Accounts
             get => currentBalance;
             set
             {
-                if(Math.Abs(currentBalance - value) < 0.01m)
-                    return;
                 currentBalance = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Balance End of Month
+        /// </summary>
+        public decimal EndOfMonthBalance
+        {
+            get => endOfMonthBalance;
+            set
+            {
+                endOfMonthBalance = value;
                 RaisePropertyChanged();
             }
         }

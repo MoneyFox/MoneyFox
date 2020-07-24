@@ -16,7 +16,7 @@ namespace MoneyFox
         private void RegisterRoutes()
         {
             Routing.RegisterRoute(nameof(DashboardPage), typeof(DashboardPage));
-            Routing.RegisterRoute(nameof(AccountListPage), typeof(AccountListPage));
+            Routing.RegisterRoute(ViewModelLocator.AccountListRoute, typeof(AccountListPage));
             Routing.RegisterRoute(nameof(BudgetListPage), typeof(BudgetListPage));
         }
     }

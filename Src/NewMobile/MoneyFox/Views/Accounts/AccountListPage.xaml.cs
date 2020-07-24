@@ -7,6 +7,7 @@ namespace MoneyFox.Views.Accounts
         public AccountListPage()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.AccountListViewModel;
         }
     }
 }

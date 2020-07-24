@@ -12,8 +12,6 @@ namespace MoneyFox
                 "AppTheme_Experimental"
             });
 
-            App.Current.UserAppTheme = OSAppTheme.Light;
-
             InitializeComponent();
             MainPage = new AppShell();
         }

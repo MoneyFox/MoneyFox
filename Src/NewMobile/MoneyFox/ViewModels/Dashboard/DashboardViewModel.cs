@@ -61,7 +61,7 @@ namespace MoneyFox.ViewModels.Dashboard
             new DashboardBudgetEntryViewModel{ BudgetName = "Books", Progress = 0.2}
         };
 
-        public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync($"//{nameof(AccountListPage)}"));
-        public RelayCommand GoToBudgetsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync($"//{nameof(BudgetListPage)}"));
+        public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
+        public RelayCommand GoToBudgetsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
     }
 }

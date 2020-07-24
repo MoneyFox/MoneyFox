@@ -36,15 +36,14 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <Grid
-                Padding="15"
-                IsClippedToBounds="False"
-                RowDefinitions="35,180,140,*">
-                <Label
-                    FontAttributes="Bold"
-                    FontFamily="Product"
-                    FontSize="32"
-                    Text="{x:Static resources:Strings.WebsiteLabel}" />
+            <Grid Padding="15"
+                  IsClippedToBounds="False"
+                  RowDefinitions="35,180,140,*">
+
+                <Label FontAttributes="Bold"
+                       FontFamily="Product"
+                       FontSize="32"
+                       Text="{x:Static resources:Strings.WebsiteLabel}" />
 
                 <!--  Assets card  -->
                 <StackLayout Grid.Row="1" VerticalOptions="Start">
@@ -58,13 +57,15 @@
                     <yummy:PancakeView
                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                           Light={StaticResource CardBackgroundLight}}"
-                        CornerRadius="15"
+                        CornerRadius="10"
                         HasShadow="true"
-                        HeightRequest="100"
+                        HeightRequest="120"
                         HorizontalOptions="FillAndExpand">
+
                         <yummy:PancakeView.Shadow>
                             <yummy:DropShadow />
                         </yummy:PancakeView.Shadow>
+
                         <Grid>
                             <Label
                                 FontAttributes="Bold"
@@ -106,7 +107,7 @@
                             Grid.Column="0"
                             BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                               Light={StaticResource CardBackgroundLight}}"
-                            CornerRadius="15"
+                            CornerRadius="10"
                             HasShadow="true"
                             HeightRequest="80"
                             HorizontalOptions="FillAndExpand">
@@ -128,12 +129,12 @@
                             Grid.Column="1"
                             BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                               Light={StaticResource CardBackgroundLight}}"
-                            CornerRadius="15"
+                            CornerRadius="10"
                             HasShadow="true"
                             HeightRequest="80"
                             HorizontalOptions="FillAndExpand">
                             <yummy:PancakeView.Shadow>
-                                <yummy:DropShadow Color="{AppThemeBinding Dark={StaticResource ShadowColorDark}, Light={StaticResource ShadowColorLight}}" />
+                                <yummy:DropShadow />
                             </yummy:PancakeView.Shadow>
                             <Grid>
                                 <Label
@@ -157,19 +158,19 @@
                         Text="{x:Static resources:Strings.BudgetsLabel}"
                         VerticalOptions="Center" />
 
-                    <yummy:PancakeView
-                        Padding="20"
-                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                          Light={StaticResource CardBackgroundLight}}"
-                        CornerRadius="15"
-                        HasShadow="true"
-                        VerticalOptions="Fill"
-                        HorizontalOptions="FillAndExpand">
+                    <yummy:PancakeView Padding="20"
+                                       BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                         Light={StaticResource CardBackgroundLight}}"
+                                       CornerRadius="15"
+                                       HasShadow="true"
+                                       VerticalOptions="Fill"
+                                       HorizontalOptions="FillAndExpand">
+
                         <yummy:PancakeView.Shadow>
                             <yummy:DropShadow />
                         </yummy:PancakeView.Shadow>
 
-                        <StackLayout  BindableLayout.ItemsSource="{Binding BudgetEntries}" >
+                        <StackLayout BindableLayout.ItemsSource="{Binding BudgetEntries}">
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate x:DataType="viewmodels:DashboardBudgetEntryViewModel">
                                     <StackLayout Margin="0,0,0,6">
