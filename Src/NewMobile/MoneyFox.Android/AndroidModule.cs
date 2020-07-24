@@ -1,8 +1,8 @@
 ﻿using Autofac;
 
-namespace MoneyFox.iOS
+namespace MoneyFox.Droid
 {
-    public class IosModule : Module
+    public class AndroidModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
