@@ -16,9 +16,9 @@ namespace MoneyFox
                 ? App.Current.RequestedTheme
                 : OSAppTheme.Dark;
 
-            App.Current.RequestedThemeChanged += += (s, a) =>
+            App.Current.RequestedThemeChanged += (s, a) =>
             {
-                App.Current.UserAppTheme = e.RequestedTheme;
+                App.Current.UserAppTheme = a.RequestedTheme;
             };
 
             InitializeComponent();
