@@ -265,7 +265,13 @@
         <Setter Property="Visual" Value="Default" />
         <Setter Property="BorderWidth" Value="0" />
         <Setter Property="HeightRequest" Value="35" />
+        <Setter Property="TextColor" Value="{DynamicResource ThemePrimary}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
+    </Style>
+
+    <Style x:Key="WarningButton" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource Warning}" />
+        <Setter Property="TextColor" Value="White" />
     </Style>
 
     <!-- Checkbox -->
@@ -286,7 +292,6 @@
 
     <!-- Entry -->
     <Style TargetType="Entry">
-        <Setter Property="BackgroundColor" Value="{StaticResource White}"/>
         <Setter Property="PlaceholderColor" Value="{StaticResource NeutralSecondary}"/>
         <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
     </Style>

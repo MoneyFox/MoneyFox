@@ -11,6 +11,10 @@ namespace MoneyFox
                 "AppTheme_Experimental"
             });
 
+            App.Current.UserAppTheme = App.Current.RequestedTheme != OSAppTheme.Unspecified
+                ? App.Current.RequestedTheme
+                : OSAppTheme.Dark;
+
             InitializeComponent();
             MainPage = new AppShell();
         }
