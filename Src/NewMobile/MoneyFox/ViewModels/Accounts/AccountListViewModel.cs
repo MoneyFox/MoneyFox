@@ -23,5 +23,13 @@ namespace MoneyFox.ViewModels.Accounts
         };
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+
+        public RelayCommand<AccountViewModel> GoToEditAccountCommand
+            => new RelayCommand<AccountViewModel>(async (accountViewModel)
+                => await Shell.Current.GoToModalAsync($"{ViewModelLocator.EditAccountRoute}/accountId={accountViewModel?.Id ?? 666}"));
+
+        public RelayCommand<AccountViewModel> GoToTransactionListCommand
+            => new RelayCommand<AccountViewModel>(async (accountViewModel)
+                => await Shell.Current.GoToModalAsync($"{ViewModelLocator.PaymentListRoute}/accountId={accountViewModel.Id}"));
     }
 }

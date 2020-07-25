@@ -1,20 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using MoneyFox.ViewModels.Accounts;
+using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views.Accounts
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    [QueryProperty("AccountId", "accountid")]
+
     public partial class EditAccountPage : ContentPage
     {
+        public string AccountId
+        {
+            set
+            {
+                ViewModel.Init(Uri.UnescapeDataString(value));
+            }
+        }
+        private EditAccountViewModel ViewModel => BindingContext as EditAccountViewModel;
+
+
         public EditAccountPage()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.EditAccountViewModel;
+
         }
     }
 }

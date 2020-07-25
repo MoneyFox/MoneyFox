@@ -373,8 +373,12 @@
     </Style>
 
     <!-- SwipeItem -->
-    <Style TargetType="SwipeItemView" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor" Value="{StaticResource NeutralLight}"/>
+    <Style TargetType="SwipeView" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+    </Style>
+
+    <Style TargetType="SwipeItem" ApplyToDerivedTypes="True">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"/>
     </Style>
 
     <!-- Misc -->

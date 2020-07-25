@@ -8,7 +8,8 @@ namespace MoneyFox
         public App()
         {
             Device.SetFlags(new string[] {
-                "AppTheme_Experimental"
+                "AppTheme_Experimental",
+                "SwipeView_Experimental"
             });
 
             App.Current.UserAppTheme = App.Current.RequestedTheme != OSAppTheme.Unspecified

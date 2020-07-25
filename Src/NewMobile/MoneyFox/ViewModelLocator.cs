@@ -5,8 +5,10 @@ using GalaSoft.MvvmLight;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Budget;
 using MoneyFox.ViewModels.Dashboard;
+using MoneyFox.ViewModels.Payments;
 using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Dashboard;
+using MoneyFox.Views.Payments;
 
 namespace MoneyFox
 {
@@ -34,13 +36,17 @@ namespace MoneyFox
         public static string DashboardRoute => $"Dashboard/{nameof(DashboardPage)}";
         public static string AccountListRoute => $"Account/{nameof(AccountListPage)}";
         public static string AddAccountRoute => $"Account/{nameof(AddAccountPage)}";
+        public static string EditAccountRoute => $"Account/{nameof(EditAccountPage)}";
         public static string BudgetListRoute => $"Budget/{nameof(BudgetListPage)}";
+        public static string PaymentListRoute => $"Payment/{nameof(PaymentListPage)}";
 
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
         public static AccountListViewModel AccountListViewModel => ServiceLocator.Current.GetInstance<AccountListViewModel>();
         public static AddAccountViewModel AddAccountViewModel => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
+        public static EditAccountViewModel EditAccountViewModel => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
+        public static PaymentListViewModel PaymentListViewModel => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
 
     }
 }
