@@ -9,7 +9,6 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
-             x:Name="AccountList"
              x:Class="MoneyFox.Views.Accounts.AccountListPage">
 
     <d:ContentPage.BindingContext>
@@ -46,10 +45,9 @@
                    VerticalOptions="Center" />
 
             <CollectionView Grid.Row="1"
+                            x:Name="AccountCollectionView"
                             IsGrouped="true"
-                            SelectionChangedCommand="{Binding GoToTransactionListCommand}"
                             ItemsSource="{Binding Accounts}" >
-
                 <CollectionView.EmptyViewTemplate>
                     <DataTemplate>
                         <Grid>
@@ -79,10 +77,16 @@
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15, 12, 15, 0">
                             <SwipeView>
+                                <SwipeView.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
+                                        CommandParameter="{Binding .}" />
+                                </SwipeView.GestureRecognizers>
+
                                 <SwipeView.RightItems>
                                     <SwipeItems>
                                         <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
-                                                   Command="{Binding Source={x:Reference AccountList}, Path=BindingContext.GoToEditAccountCommand}"
+                                                   Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
                                                    CommandParameter="{Binding .}"/>
                                     </SwipeItems>
                                 </SwipeView.RightItems>

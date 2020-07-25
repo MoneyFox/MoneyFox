@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Views.Payments
 {
-    [QueryProperty("AccountId", "accountid")]
+    [QueryProperty("AccountId", "accountId")]
     public partial class PaymentListPage : ContentPage
-    {        
+    {
         public string AccountId
         {
             set

@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
+using MoneyFox.Views.Accounts;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
@@ -26,10 +27,10 @@ namespace MoneyFox.ViewModels.Accounts
 
         public RelayCommand<AccountViewModel> GoToEditAccountCommand
             => new RelayCommand<AccountViewModel>(async (accountViewModel)
-                => await Shell.Current.GoToModalAsync($"{ViewModelLocator.EditAccountRoute}/accountId={accountViewModel?.Id ?? 666}"));
+                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
             => new RelayCommand<AccountViewModel>(async (accountViewModel)
-                => await Shell.Current.GoToModalAsync($"{ViewModelLocator.PaymentListRoute}/accountId={accountViewModel.Id}"));
+                => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
     }
 }
