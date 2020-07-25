@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
+             xmlns:extensions="clr-namespace:MoneyFox.Extensions"
              xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
              Visual="Material"
              x:Class="MoneyFox.Views.Accounts.EditAccountPage">
@@ -13,19 +14,11 @@
 
             <accounts:ModifyAccountContentView />
 
-            <StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Strings.CreationDateLabel}" />
-                    <Label Style="{StaticResource TextBodySecondary}" Text="{Binding SelectedAccount.CreationTime}" />
-                </StackLayout>
-            </StackLayout>
+            <Label Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
-            <StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <Label Style="{StaticResource TextBodySecondary}" Text="{x:Static resources:Strings.ModificationDateLabel}" />
-                    <Label Style="{StaticResource TextBodySecondary}" Text="{Binding SelectedAccount.ModificationDate}" />
-                </StackLayout>
-            </StackLayout>
+            <Label Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
             <Button x:Name="DeleteAccountButton"
                     Style="{StaticResource WarningButton}"

@@ -12,7 +12,10 @@ namespace MoneyFox.Extensions
             if(page is null)
                 return Task.CompletedTask;
 
-            return shell.Navigation.PushModalAsync(new NavigationPage(page));
+            return shell.Navigation.PushModalAsync(new NavigationPage(page)
+            {
+                BarBackgroundColor = Color.Transparent
+            });
         }
     }
 }

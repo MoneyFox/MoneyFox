@@ -708,4 +708,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="WelcomeLabel" xml:space="preserve">
     <value>Welcome!</value>
   </data>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0:d}</value>
+  </data>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0:d}</value>
+  </data>
 </root>
