@@ -35,7 +35,7 @@
     <Color x:Key="TextPrimaryColor_Dark">#FFFFFF</Color>
     <Color x:Key="TextPrimaryColor_Light">#323130</Color>
 
-    <Color x:Key="TextSecondaryColor_Dark">#FFFFFF</Color>
+    <Color x:Key="TextSecondaryColor_Dark">#878786</Color>
     <Color x:Key="TextSecondaryColor_Light">#a3a2a0</Color>
 
     <Color x:Key="CardBackgroundDark">#2d2d30</Color>
@@ -152,6 +152,7 @@
     <Style TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"/>
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
+        <Setter Property="FontFamily" Value="Product" />
     </Style>
     <Style x:Key="BaseLabel" TargetType="Label">
         <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"/>
@@ -179,6 +180,7 @@
     </Style>
 
     <Style x:Key="TextBodySecondary" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextSecondaryColor_Dark}, Light={StaticResource TextSecondaryColor_Light}}" />
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
     </Style>
 
@@ -382,11 +384,10 @@
     </Style>
 
     <!-- Misc -->
-    <Style x:Key="HRule"
-           TargetType="BoxView">
+    <Style x:Key="HRule" TargetType="BoxView">
         <Setter Property="HeightRequest" Value="1"/>
         <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-        <Setter Property="BackgroundColor" Value="{StaticResource NeutralLighter}"/>
+        <Setter Property="BackgroundColor" Value="{StaticResource NeutralDark}"/>
     </Style>
 
     <x:String x:Key="LineBreak">&#x0a;</x:String>

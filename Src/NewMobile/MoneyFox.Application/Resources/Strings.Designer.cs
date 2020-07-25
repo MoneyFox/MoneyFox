@@ -772,6 +772,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Earned: {0:c} - Spent: {1:c}.
+        /// </summary>
+        public static string EarnedSpentTemplateLabel {
+            get {
+                return ResourceManager.GetString("EarnedSpentTemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit {0}.
         /// </summary>
         public static string EditAccountTitle {

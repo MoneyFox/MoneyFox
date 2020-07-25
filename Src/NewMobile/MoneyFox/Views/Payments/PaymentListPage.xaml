@@ -4,12 +4,101 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:theme="clr-namespace:MoneyFox"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments"
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
+
+    <Shell.TitleView>
+        <Grid>
+            <Button
+                Style="{StaticResource PrimaryButton}"
+                Margin="0,0,5,0"
+                Padding="0"
+                BorderWidth="0"
+                FontFamily="FontAwesome"
+                FontSize="24"
+                HeightRequest="44"
+                WidthRequest="66"
+                HorizontalOptions="End"
+                Text="{x:Static theme:IconFont.Plus}"
+                TextColor="White"
+                VerticalOptions="Center"
+                Command="{Binding GoToAddPaymentCommand}"/>
+        </Grid>
+    </Shell.TitleView>
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid IsClippedToBounds="False"
+              RowDefinitions="40, Auto">
+            <Label FontAttributes="Bold"
+                   FontFamily="Product"
+                   Margin="15,0,15,0"
+                   Style="{StaticResource TextTitle}"
+                   Text="{Binding SelectedAccount.Name}"
+                   VerticalOptions="Center" />
+
+                <CollectionView Grid.Row="1"
+                                ItemsSource="{Binding Payments}"
+                                x:Name="PaymentCollectionView">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowDefinitions="20, 15,  Auto" IsClippedToBounds="False" Padding="15">
+
+                                <Label FontAttributes="Bold"
+                                       Style="{StaticResource TextSubheadSecondary}"
+                                       Text="{Binding Key}" />
+
+                                <Label Grid.Row="1"
+                                       Style="{StaticResource TextBodySecondary}"
+                                       Text="{Binding Subtitle}" />
+
+                                <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                                     Light={StaticResource CardBackgroundLight}}"
+                                                   CornerRadius="10"
+                                                   HasShadow="true"
+                                                   Grid.Row="2"
+                                                   HorizontalOptions="FillAndExpand">
+
+                                    <StackLayout BindableLayout.ItemsSource="{Binding .}">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate x:DataType="payments:PaymentViewModel">
+                                                <StackLayout Padding="3">
+
+                                                    <StackLayout.GestureRecognizers>
+                                                        <TapGestureRecognizer
+                                                            Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference Name=PaymentCollectionView}}"
+                                                            CommandParameter="{Binding .}" />
+                                                    </StackLayout.GestureRecognizers>
+
+                                                    <Grid>
+                                                        <Label Style="{StaticResource TextBody}"
+                                                                HorizontalTextAlignment="Start"
+                                                                VerticalTextAlignment="Start"
+                                                                Margin="6,0,0,0"
+                                                                Text="{Binding Date, StringFormat='{0:d}'}" />
+
+                                                        <Label Style="{StaticResource TextBody}"
+                                                                HorizontalTextAlignment="End"
+                                                                VerticalTextAlignment="Start"
+                                                                Margin="0,0,6,0"
+                                                                Text="{Binding Amount, StringFormat='{0:c}'}" />
+                                                    </Grid>
+                                                    <Label Style="{StaticResource TextBodySecondary}"
+                                                                HorizontalTextAlignment="Start"
+                                                                Margin="6,0,6,0"
+                                                                Text="{Binding Category.Name}" />
+                                                    <BoxView Style="{StaticResource HRule}"/>
+                                                </StackLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+
+                                </yummy:PancakeView>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+        </Grid>
     </ContentPage.Content>
+
 </ContentPage>

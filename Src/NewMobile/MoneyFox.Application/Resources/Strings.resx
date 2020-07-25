@@ -714,4 +714,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
     <value>Modification Date: {0:d}</value>
   </data>
+  <data name="EarnedSpentTemplateLabel" xml:space="preserve">
+    <value>Earned: {0:c} - Spent: {1:c}</value>
+  </data>
 </root>

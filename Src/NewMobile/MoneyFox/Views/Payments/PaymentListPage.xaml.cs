@@ -11,7 +11,7 @@ namespace MoneyFox.Views.Payments
         {
             set
             {
-                ViewModel.Init(Uri.UnescapeDataString(value));
+                ViewModel.Init(Convert.ToInt32(Uri.UnescapeDataString(value)));
             }
         }
 

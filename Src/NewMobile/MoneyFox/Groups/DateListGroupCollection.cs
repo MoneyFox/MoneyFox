@@ -25,7 +25,7 @@ namespace MoneyFox.Groups
         public DateListGroupCollection(string key, Command<T> itemClickCommand = null)
         {
             Key = key;
-            Title = key;
+            Subtitle = key;
             ItemClickCommand = itemClickCommand;
         }
 
@@ -33,12 +33,12 @@ namespace MoneyFox.Groups
         /// Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
-        /// <param name="title">The title for this group.</param>
+        /// <param name="Subtitle">The title for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        public DateListGroupCollection(string key, string title, Command<T> itemClickCommand = null)
+        public DateListGroupCollection(string key, string subtitle, Command<T> itemClickCommand = null)
         {
             Key = key;
-            Title = title;
+            Subtitle = subtitle;
             ItemClickCommand = itemClickCommand;
         }
 
@@ -50,7 +50,7 @@ namespace MoneyFox.Groups
         /// <summary>
         /// The Title of this group.
         /// </summary>
-        public string Title { get; set; }
+        public string Subtitle { get; set; }
 
         /// <summary>
         /// The command to execute on a click.
