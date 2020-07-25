@@ -36,14 +36,14 @@ namespace MoneyFox.ViewModels.Payments
         {
             new DateListGroupCollection<PaymentViewModel>("25.07.2020", string.Format(Strings.EarnedSpentTemplateLabel, 1234, 523))
             {
-                new PaymentViewModel{ Date = DateTime.Now, Amount = 154, Type = PaymentType.Expense, Category = new CategoryViewModel { Name = "Food" } },
+                new PaymentViewModel{ Date = DateTime.Now, Amount = 154, Type = PaymentType.Expense, Category = new CategoryViewModel { Name = "Food" }},
                 new PaymentViewModel{ Date = DateTime.Now, Amount = 286, Type = PaymentType.Income },
                 new PaymentViewModel{ Date = DateTime.Now, Amount = 286, Type = PaymentType.Transfer, TargetAccount = new AccountViewModel{ Name = "asdf" } },
             },
             new DateListGroupCollection<PaymentViewModel>("24.07.2020", string.Format(Strings.EarnedSpentTemplateLabel, 221, 2314))
             {
-                new PaymentViewModel{ Date = DateTime.Now, Amount = 154, Type = PaymentType.Expense, IsRecurring = true },
-                new PaymentViewModel{ Date = DateTime.Now, Amount = 286, Type = PaymentType.Income }
+                new PaymentViewModel{ Date = DateTime.Now, Amount = 154, Type = PaymentType.Expense, IsRecurring = true, IsCleared = true },
+                new PaymentViewModel{ Date = DateTime.Now, Amount = 286, Type = PaymentType.Income, Category = new CategoryViewModel { Name = "Food" }, IsCleared = true, Note="this is an example text"}
             }
         };
 

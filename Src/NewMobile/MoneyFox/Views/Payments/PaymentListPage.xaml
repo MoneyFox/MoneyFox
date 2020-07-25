@@ -9,17 +9,29 @@
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
 
     <Shell.TitleView>
-        <Grid>
+        <Grid ColumnDefinitions="*,Auto,66,66,0">
             <Button
-                Style="{StaticResource PrimaryButton}"
                 Margin="0,0,5,0"
                 Padding="0"
+                Grid.Column="2"
                 BorderWidth="0"
                 FontFamily="FontAwesome"
                 FontSize="24"
                 HeightRequest="44"
                 WidthRequest="66"
-                HorizontalOptions="End"
+                Text="{x:Static theme:IconFont.Filter}"
+                VerticalOptions="Center"/>
+
+            <Button
+                Style="{StaticResource PrimaryButton}"
+                Margin="0,0,5,0"
+                Padding="0"
+                Grid.Column="3"
+                BorderWidth="0"
+                FontFamily="FontAwesome"
+                FontSize="24"
+                HeightRequest="44"
+                WidthRequest="66"
                 Text="{x:Static theme:IconFont.Plus}"
                 TextColor="White"
                 VerticalOptions="Center"
@@ -42,7 +54,7 @@
                                 x:Name="PaymentCollectionView">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid RowDefinitions="20, 15,  Auto" IsClippedToBounds="False" Padding="15">
+                            <Grid RowDefinitions="20, 15, Auto" IsClippedToBounds="False" Padding="15">
 
                                 <Label FontAttributes="Bold"
                                        Style="{StaticResource TextSubheadSecondary}"
@@ -55,14 +67,17 @@
                                 <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                      Light={StaticResource CardBackgroundLight}}"
                                                    CornerRadius="10"
-                                                   HasShadow="true"
                                                    Grid.Row="2"
                                                    HorizontalOptions="FillAndExpand">
+
+                                    <yummy:PancakeView.Shadow>
+                                        <yummy:DropShadow />
+                                    </yummy:PancakeView.Shadow>
 
                                     <StackLayout BindableLayout.ItemsSource="{Binding .}">
                                         <BindableLayout.ItemTemplate>
                                             <DataTemplate x:DataType="payments:PaymentViewModel">
-                                                <StackLayout Padding="3">
+                                            <StackLayout Padding="9,6,9,3" >
 
                                                     <StackLayout.GestureRecognizers>
                                                         <TapGestureRecognizer
@@ -74,25 +89,62 @@
                                                         <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="Start"
                                                                 VerticalTextAlignment="Start"
-                                                                Margin="6,0,0,0"
                                                                 Text="{Binding Date, StringFormat='{0:d}'}" />
 
                                                         <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="End"
                                                                 VerticalTextAlignment="Start"
-                                                                Margin="0,0,6,0"
                                                                 Text="{Binding Amount, StringFormat='{0:c}'}" />
                                                     </Grid>
+
+                                                    <Grid>
+                                                        <Label LineBreakMode="TailTruncation"
+                                                               Style="{StaticResource TextBodySecondary}"
+                                                               Text="{Binding Category.Name}" />
+
+                                                        <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                                                            <Image HeightRequest="15"
+                                                                   IsVisible="{Binding IsTransfer}"
+                                                                   WidthRequest="15">
+                                                                <Image.Source>
+                                                                    <FontImageSource FontFamily="FontAwesome"
+                                                                                     Glyph="{x:Static theme:IconFont.ExchangeAlt}"
+                                                                                     Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                </Image.Source>
+                                                            </Image>
+
+                                                            <Image HeightRequest="15"
+                                                                   IsVisible="{Binding IsRecurring}"
+                                                                   WidthRequest="15">
+                                                                <Image.Source>
+                                                                    <FontImageSource FontFamily="FontAwesome"
+                                                                                 Glyph="{x:Static theme:IconFont.ExchangeAlt}"
+                                                                                 Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                </Image.Source>
+                                                            </Image>
+
+                                                            <Image HeightRequest="15"
+                                                                   IsVisible="{Binding IsCleared}"
+                                                                   WidthRequest="15">
+                                                                <Image.Source>
+                                                                    <FontImageSource FontFamily="FontAwesome"
+                                                                                 Glyph="{x:Static theme:IconFont.Check}"
+                                                                                 Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+                                                                </Image.Source>
+                                                            </Image>
+                                                        </StackLayout>
+                                                    </Grid>
+
                                                     <Label Style="{StaticResource TextBodySecondary}"
-                                                                HorizontalTextAlignment="Start"
-                                                                Margin="6,0,6,0"
-                                                                Text="{Binding Category.Name}" />
+                                                           HorizontalTextAlignment="Start"
+                                                           LineBreakMode="TailTruncation"
+                                                           Text="{Binding Note}" />
+
                                                     <BoxView Style="{StaticResource HRule}"/>
                                                 </StackLayout>
                                             </DataTemplate>
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
-
                                 </yummy:PancakeView>
                             </Grid>
                         </DataTemplate>
