@@ -25,7 +25,6 @@ steps:
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
-  name: 'signingCert'
   inputs:
     restoreSolution: Src/MoneyFox.sln
 
