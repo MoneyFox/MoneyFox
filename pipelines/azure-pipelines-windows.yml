@@ -129,16 +129,3 @@ steps:
 
 - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
   displayName: 'Publish Quality Gate Result'
-
-- task: MS-RDX-MRO.windows-store-publish.flight-task.store-flight@0
-  displayName: 'Flight to Beta'
-  inputs:
-    serviceEndpoint: 'MoneyFox Store Connection'
-    appId: 9NBLGGH6CK9D
-    flightName: Beta
-    packagePath: '$(Build.ArtifactStagingDirectory)\AppxPackages\*.appxupload'
-    force: true
-    skipPolling: true
-    deletePackages: true
-  enabled: false
-
