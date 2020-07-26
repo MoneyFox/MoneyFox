@@ -7,46 +7,6 @@ pr:
 - master
 
 jobs:
-- job: RunTests
-  displayName: "Run Tests Windows"
-  pool:
-    vmImage: windows-latest
-  steps:
-  - task: DotNetCoreCLI@2
-    displayName: 'Restore nugets'
-    inputs:
-      command: restore
-      projects: '**/*Tests*.csproj'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Run Tests'
-    inputs:
-      command: test
-      projects: '**/*Tests*.csproj'
-      arguments: '--configuration $(BuildConfiguration)'
-      publishTestResults: false    
-
-- job: RunTestsMac
-  displayName: "Run Tests MacOS"
-  pool:
-    vmImage: 'macos-latest'
-  steps:
-    - task: UseDotNet@2
-      displayName: 'Use .Net Core sdk 3.1.101'
-      inputs:
-        version: 3.1.101
-
-    - task: DotNetCoreCLI@2
-      displayName: 'Run Tests'
-      inputs:
-        command: 'test'
-        projects: |
-          MoneyFox.Application.Tests
-          MoneyFox.Domain.Tests
-          MoneyFox.Persistence.Tests
-          MoneyFox.Presentation.Tests
-          MoneyFox.Ui.Shared.Tests
-        arguments: '--configuration $(BuildConfiguration)'
 
 - job: BuildiOS
   displayName: "Build iOS"
@@ -69,7 +29,6 @@ jobs:
     inputs:
       provProfileSecureFile: 'MoneyFox_Distribution_2020.mobileprovision'
 
-
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
     inputs:
@@ -79,6 +38,18 @@ jobs:
     displayName: 'NuGet restore'
     inputs:
         restoreSolution: '**/MoneyFox.Mobile.sln'
+  
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: 'test'
+      projects: |
+        MoneyFox.Application.Tests
+        MoneyFox.Domain.Tests
+        MoneyFox.Persistence.Tests
+        MoneyFox.Presentation.Tests
+        MoneyFox.Ui.Shared.Tests
+      arguments: '--configuration $(BuildConfiguration)'
 
   - task: XamariniOS@2
     displayName: 'Build Xamarin.iOS '
@@ -122,8 +93,8 @@ jobs:
       msbuildArchitectureOption: x64
       msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/"'
 
-- job: Test 
-  displayName: "Build Android"
+- job: WindowsTestsAndBuild 
+  displayName: "Run Tests and Build Windows"
   pool:
     vmImage: windows-latest
 
