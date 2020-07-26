@@ -31,6 +31,7 @@ steps:
 
 - task: DownloadSecureFile@1
   displayName: 'Download secure file'
+  name: 'signingCert'
   inputs:
     secureFile: 'e9f92c76-438d-4991-a834-a84e34df9f20'
 
