@@ -32,7 +32,7 @@ steps:
 
 - powershell: |
    $pfxpath = '$(signingCert.secureFilePath)'
-   $certPassword = '$env:UWP_Cerificare_Password'
+   $certPassword = '$(CertPassword)'
    
    Add-Type -AssemblyName System.Security
    $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
@@ -41,8 +41,6 @@ steps:
    $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
    $store.Add($cert)
    $store.Close()
-  env:
-    UWP_CERTIFICATE_PASSWORD: $(UWP_Certificate_Password)
   displayName: 'Install Cert'
 
 - task: NuGetToolInstaller@1
