@@ -1,0 +1,77 @@
+# Xamarin.Android
+# Build a Xamarin.Android project.
+# Add steps that test, sign, and distribute an app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  BuildConfiguration: 'Release'
+
+steps:
+
+- task: NuGetToolInstaller@1
+  displayName: 'Use NuGet '
+  inputs:
+    versionSpec: 4.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: Src/MoneyFox.Android/MoneyFox.Android.csproj
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run Tests'
+  inputs:
+    command: test
+    projects: |
+     MoneyFox.Application.Tests
+     MoneyFox.Domain.Tests
+     MoneyFox.Persistence.Tests
+     MoneyFox.Presentation.Tests
+     MoneyFox.Ui.Shared.Tests
+    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+
+- task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+  displayName: 'Replace tokens in Src/MoneyFox.Presentation/'
+  inputs:
+    sourcePath: Src/MoneyFox.Presentation
+    filePattern: App.config
+
+- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-AndroidManifest-Task.VersionAndroidManifest@2
+  displayName: 'Version Android Manifest'
+  inputs:
+    VersionNumber: '$(Major).$(Minor).$(Build.BuildNumber)'
+    VersionNameFormat: '{1}.{2}.{3}.{4}'
+    VersionCodeFormat: '{3}{4}'
+    VersionRegex: '\d+.\d+.\d+.\d+'
+
+- task: DownloadSecureFile@1
+  displayName: 'Download secure file'
+  name: KeyStore
+  inputs:
+    secureFile: MoneyFoxKeyStore.keystore
+
+- task: MSBuild@1
+  displayName: 'Build Android Project'
+  inputs:
+    solution: Src/MoneyFox.Android/MoneyFox.Android.csproj
+    msbuildArchitecture: x64
+    msbuildArguments: '-restore -t:SignAndroidPackage -p:Configuration=$(BuildConfiguration) -p:AndroidKeyStore=True -p:AndroidSigningKeyStore=$(KeyStore.secureFilePath) -p:AndroidSigningStorePass=$(KeyStorePass) -p:AndroidSigningKeyAlias=$(KeyStoreAlias) -p:AndroidSigningKeyPass=$(KeyStorePass)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '**/*.aab'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
