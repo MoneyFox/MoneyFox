@@ -1,0 +1,109 @@
+# Xamarin.iOS
+# Build a Xamarin.iOS project.
+# Add steps that install certificates, test, sign, and distribute an app, save build artifacts, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
+
+trigger:
+- master
+
+pool:
+  name: Azure Pipelines
+  demands:
+  - xcode
+  - Xamarin.iOS
+
+#Your build pipeline references a secret variable named ‘P12password’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it secret. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references an undefined variable named ‘Parameters.solution’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+#Your build pipeline references the ‘BuildConfiguration’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
+
+steps:
+- task: UseDotNet@2
+  displayName: 'Use .Net Core sdk 3.1.101'
+  inputs:
+    version: 3.1.101
+
+- bash: |
+   # Write your commands here
+   
+   echo "Build Script started.."
+   
+   echo 'Updating fastlane...'
+   sudo gem install fastlane
+   
+   echo $Major
+   echo $Minor
+   echo $BUILD_BUILDNUMBER
+   
+   VERSION=$Major.$Minor.$BUILD_BUILDNUMBER
+   echo $VERSION
+   
+   INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
+   echo $INFO_PLIST_FILE
+   
+   echo "Updating version name to $VERSION_NAME in Info.plist"
+   plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
+   plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
+  displayName: 'Bash Script'
+  env:
+    Major: $(Major)
+    Minor: $(Minor)
+
+- task: InstallAppleCertificate@2
+  displayName: 'Install an Apple certificate'
+  inputs:
+    certSecureFile: 'c09ce6ed-dfe2-411a-ba84-dcb6e7cacdbd'
+    certPwd: '$(P12password)'
+
+- task: InstallAppleProvisioningProfile@1
+  displayName: 'Install an Apple provisioning profile'
+  inputs:
+    provProfileSecureFile: '5e404145-50d4-444c-90b8-33273986e604'
+
+- task: NuGetToolInstaller@1
+  displayName: 'Use NuGet'
+  inputs:
+    versionSpec: 4.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    restoreSolution: '$(Parameters.solution)'
+
+- task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+  displayName: 'Replace tokens in Src/MoneyFox.Presentation'
+  inputs:
+    sourcePath: Src/MoneyFox.Presentation
+    filePattern: App.config
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run Tests'
+  inputs:
+    command: test
+    projects: |
+     MoneyFox.Application.Tests
+     MoneyFox.Domain.Tests
+     MoneyFox.Persistence.Tests
+     MoneyFox.Presentation.Tests
+     MoneyFox.Ui.Shared.Tests
+    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+
+- task: XamariniOS@2
+  displayName: 'Build Xamarin.iOS '
+  inputs:
+    solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
+    configuration: '$(BuildConfiguration)'
+    signingIdentity: 'Apple Distribution: Apply Solutions GmbH (HTWW78XH49)'
+    signingProvisioningProfileID: 'MoneyFox Distribution 2020'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/*.ipa'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  inputs:
+    PathtoPublish: '$(build.artifactstagingdirectory)'
