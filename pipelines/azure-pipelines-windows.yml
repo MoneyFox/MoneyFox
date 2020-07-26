@@ -107,7 +107,7 @@ steps:
 - task: VersionAPPX@2
   inputs:
     Path: '$(Build.SourcesDirectory)'
-    VersionNumber: '$(Major).$(Minor).$(BuildID)'
+    VersionNumber: '$(Major).$(Minor).$(Build.BuildId)'
     InjectVersion: false
     VersionRegex: '\d+.\d+.\d+'
     OutputVersion: 'OutputedVersion'
