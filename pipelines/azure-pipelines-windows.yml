@@ -24,6 +24,12 @@ variables:
 
 steps:
 
+- task: DownloadSecureFile@1
+  displayName: 'Download secure file'
+  name: 'signingCert'
+  inputs:
+    secureFile: 'MoneyFoxCert_2019.pfx'
+
 - powershell: |
    $pfxpath = '$(signingCert.secureFilePath)'
    
@@ -48,11 +54,6 @@ steps:
   inputs:
     restoreSolution: Src/MoneyFox.sln
 
-- task: DownloadSecureFile@1
-  displayName: 'Download secure file'
-  name: 'signingCert'
-  inputs:
-    secureFile: 'e9f92c76-438d-4991-a834-a84e34df9f20'
 
 - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
   displayName: 'Prepare analysis on SonarCloud'
