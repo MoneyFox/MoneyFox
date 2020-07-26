@@ -1,0 +1,129 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+jobs:
+- job: RunTests
+  displayName: "Run Tests"
+  pool:
+    vmImage: windows-latest
+
+  steps:
+  - task: DotNetCoreCLI@2
+    displayName: 'Restore nugets'
+    inputs:
+      command: restore
+      projects: '**/*Tests*.csproj'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: test
+      projects: '**/*Tests*.csproj'
+      arguments: '--configuration $(BuildConfiguration)'
+      publishTestResults: false
+      
+- job: RunTestsMac
+  displayName: "Run Tests MacOS"
+  pool:
+    vmImage: 'macos-latest'
+
+  steps:
+    - task: UseDotNet@2
+      displayName: 'Use .Net Core sdk 3.1.101'
+      inputs:
+        version: 3.1.101
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Run Tests'
+      inputs:
+        command: test
+        projects: |
+        MoneyFox.Application.Tests
+        MoneyFox.Domain.Tests
+        MoneyFox.Persistence.Tests
+        MoneyFox.Presentation.Tests
+        MoneyFox.Ui.Shared.Tests
+        arguments: '--configuration $(BuildConfiguration)'
+        publishTestResults: false
+
+- job: BuildiOS
+  displayName: 'Build iOS'
+  pool:
+    vmImage: 'macos-latest'
+
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Use .Net Core sdk 3.1.101'
+    inputs:
+      version: 3.1.101
+
+  - task: InstallAppleCertificate@2
+    displayName: 'Install an Apple certificate'
+    inputs:
+      certSecureFile: 'Apple Distribution MoneyFox 2020.p12'
+      certPwd: '$(P12password)'
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install an Apple provisioning profile'
+    inputs:
+      provProfileSecureFile: 'MoneyFox_Distribution_2020.mobileprovision'
+
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 4.x
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '$(Parameters.solution)'
+
+  - task: XamariniOS@2
+    displayName: 'Build Xamarin.iOS '
+    inputs:
+      solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
+      configuration: '$(BuildConfiguration)'
+
+
+-job: BuildAndroid
+  displayName: 'Build Android'
+  pool:
+    vmImage: windows-latest
+
+  steps:
+  - task: pjcollins.azp-utilities-boots.boots.Boots@1
+    displayName: 'Install https://aka.ms/xamarin-android-commercial-d16-2-windows '
+    inputs:
+      uri: 'https://aka.ms/xamarin-android-commercial-d16-2-windows '
+    enabled: false
+
+  - script: ' C:\"Program Files (x86)"\Android\android-sdk\tools\bin\sdkmanager "ndk-bundle"'
+    displayName: 'Install NDK'
+    enabled: false
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 4.x
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '$(Parameters.solution)'
+
+  - task: XamarinAndroid@1
+    displayName: 'Build Android Project'
+    inputs:
+      projectFile: Src/MoneyFox.Android/MoneyFox.Android.csproj
+      outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
+      configuration: '$(BuildConfiguration)'
+      msbuildVersionOption: latest
+      msbuildArchitectureOption: x64
+      msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/"'
+
