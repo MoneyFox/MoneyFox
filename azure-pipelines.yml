@@ -172,32 +172,31 @@ jobs:
       SonarCloud: 'Money Fox Sonar Cloud'
       organization: moneyfox
       projectKey: 'moneyfox-project'
-      projectVersion: '$(Major).$(Minor).$(Build.BuildNumber)'
       extraProperties: |
-      # Additional properties that will be passed to the scanner, 
-      # Put one key=value per line, example:
-      # sonar.exclusions=**/*.bin
-      sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
+        # Additional properties that will be passed to the scanner, 
+        # Put one key=value per line, example:
+        # sonar.exclusions=**/*.bin
+        sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
       command: test
       projects: |
-      MoneyFox.Application.Tests
-      MoneyFox.Domain.Tests
-      MoneyFox.Persistence.Tests
-      MoneyFox.Presentation.Tests
-      MoneyFox.Ui.Shared.Tests
+        MoneyFox.Application.Tests
+        MoneyFox.Domain.Tests
+        MoneyFox.Persistence.Tests
+        MoneyFox.Presentation.Tests
+        MoneyFox.Ui.Shared.Tests
       arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
   - powershell: |
-    Get-ChildItem -Path $(Agent.TempDirectory) -Include "*.coverage" -File -Recurse | % {
-    $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
-    $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
-    "Analyse '$($_.Name)' with output '$outfile'..."
-    .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
-    }
+      Get-ChildItem -Path $(Agent.TempDirectory) -Include "*.coverage" -File -Recurse | % {
+      $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
+      $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
+      "Analyse '$($_.Name)' with output '$outfile'..."
+      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+      }
     
     displayName: 'Convert Converage to Coveragexml'
 
