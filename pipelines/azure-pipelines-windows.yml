@@ -32,10 +32,11 @@ steps:
 
 - powershell: |
    $pfxpath = '$(signingCert.secureFilePath)'
+   $certPassword = $(CertPassword)
    
    Add-Type -AssemblyName System.Security
    $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
-   $cert.Import($pfxpath, $env:UWP_CERTIFICATE_PASSWORD, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
+   $cert.Import($pfxpath, $certPassword, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
    $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
    $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
    $store.Add($cert)
