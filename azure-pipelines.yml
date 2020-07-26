@@ -1,0 +1,135 @@
+# Universal Windows Platform
+# Build a Universal Windows Platform project using Visual Studio.
+# Add steps that test and distribute an app, save build artifacts, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'x86|x64|ARM'
+  buildConfiguration: 'Release'
+  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+  Major: '7'
+  Minor: '0'
+
+steps:
+- task: NuGetToolInstaller@1
+  displayName: 'Use NuGet'
+  inputs:
+    versionSpec: 4.x
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  name: 'signingCert'
+  inputs:
+    restoreSolution: Src/MoneyFox.sln
+
+- task: DownloadSecureFile@1
+  displayName: 'Download secure file'
+  inputs:
+    secureFile: 'e9f92c76-438d-4991-a834-a84e34df9f20'
+
+- powershell: |
+   $pfxpath = '$(signingCert.secureFilePath)'
+   $password = $env:UWP_CERTIFICATE_PASSWORD
+   
+   Add-Type -AssemblyName System.Security
+   $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+   $cert.Import($pfxpath, $password, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
+   $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+   $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+   $store.Add($cert)
+   $store.Close()
+  displayName: 'Install Cert'
+
+- task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+  displayName: 'Prepare analysis on SonarCloud'
+  inputs:
+    SonarCloud: 'Money Fox Sonar Cloud'
+    organization: moneyfox
+    projectKey: 'moneyfox-project'
+    projectVersion: '$(Major).$(Minor).$(Build.BuildNumber)'
+    extraProperties: |
+     # Additional properties that will be passed to the scanner, 
+     # Put one key=value per line, example:
+     # sonar.exclusions=**/*.bin
+     sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
+
+- task: DotNetCoreCLI@2
+  displayName: 'Run Tests'
+  inputs:
+    command: test
+    projects: |
+     MoneyFox.Application.Tests
+     MoneyFox.Domain.Tests
+     MoneyFox.Persistence.Tests
+     MoneyFox.Presentation.Tests
+     MoneyFox.Ui.Shared.Tests
+    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+
+- powershell: |
+   Get-ChildItem -Path $(Agent.TempDirectory) -Include "*.coverage" -File -Recurse | % {
+   $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
+   $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
+   "Analyse '$($_.Name)' with output '$outfile'..."
+   .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+   }
+   
+  displayName: 'Convert Converage to Coveragexml'
+
+- task: CopyFiles@2
+  displayName: 'Copy coveragexml to staging'
+  inputs:
+    SourceFolder: '$(Agent.TempDirectory)'
+    Contents: '**\*.coveragexml'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+  displayName: 'Replace tokens in Src/MoneyFox.Presentation'
+  inputs:
+    sourcePath: Src/MoneyFox.Presentation
+    filePattern: App.config
+
+- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-APPX-Task.VersionAPPX@2
+  displayName: 'Version APPX'
+  inputs:
+    VersionNumber: '$(Major).$(Minor).$(Build.BuildNumber)'
+    VersionRegex: '\d+.\d+.\d+'
+
+- task: VSBuild@1
+  displayName: 'Build Windows Project'
+  inputs:
+    solution: Src/MoneyFox.Desktop.sln
+    msbuildArgs: '/p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\"   /p:UapAppxPackageBuildMode=StoreUpload   /p:AppxBundlePlatforms="$(BuildPlatform)"  /p:AppxBundle=Always  /p:AppxPackageSigningEnabled=true /p:JavaSdkDirectory="$(JAVA_HOME)/"'
+    platform: x64
+    configuration: '$(BuildConfiguration)'
+    clean: true
+    msbuildArchitecture: x64
+
+- task: PublishBuildArtifacts@1
+  displayName: 'Publish Artifact: drop'
+  condition: succeededOrFailed()
+
+- task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+  displayName: 'Run Code Analysis'
+
+- task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+  displayName: 'Publish Quality Gate Result'
+
+- task: MS-RDX-MRO.windows-store-publish.flight-task.store-flight@0
+  displayName: 'Flight to Beta'
+  inputs:
+    serviceEndpoint: 'MoneyFox Store Connection'
+    appId: 9NBLGGH6CK9D
+    flightName: Beta
+    packagePath: '$(Build.ArtifactStagingDirectory)\AppxPackages\*.appxupload'
+    force: true
+    skipPolling: true
+    deletePackages: true
+  enabled: false
+
