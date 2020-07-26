@@ -78,7 +78,7 @@ jobs:
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
     inputs:
-        restoreSolution: '**/MoneyFox.sln'
+        restoreSolution: '**/MoneyFox.iOS.csproj'
 
   - task: XamariniOS@2
     displayName: 'Build Xamarin.iOS '
@@ -110,7 +110,7 @@ jobs:
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
     inputs:
-      restoreSolution: '$(Parameters.solution)'
+      restoreSolution: '**/MoneyFox.Android.csproj'
 
   - task: XamarinAndroid@1
     displayName: 'Build Android Project'
