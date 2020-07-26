@@ -8,6 +8,7 @@ pr:
 
 jobs:
 - job: RunTests
+  displayName: "Run Tests Windows"
   pool:
     vmImage: windows-latest
   steps:
@@ -26,6 +27,7 @@ jobs:
       publishTestResults: false    
 
 - job: RunTestsMac
+  displayName: "Run Tests MacOS"
   pool:
     vmImage: 'macos-latest'
   steps:
@@ -47,6 +49,7 @@ jobs:
         arguments: '--configuration $(BuildConfiguration)'
 
 - job: BuildiOS
+  displayName: "Build iOS"
   pool:
     vmImage: 'macos-latest'
   steps:
@@ -84,6 +87,7 @@ jobs:
       configuration: '$(BuildConfiguration)'
 
 - job: BuildAndroid
+  displayName: "Build Android"
   pool:
     vmImage: windows-latest
 
