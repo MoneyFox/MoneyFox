@@ -8,10 +8,8 @@ trigger:
 
 jobs:
 - job: RunTests
-  displayName: "Run Tests"
   pool:
     vmImage: windows-latest
-
   steps:
   - task: DotNetCoreCLI@2
     displayName: 'Restore nugets'
@@ -25,13 +23,11 @@ jobs:
       command: test
       projects: '**/*Tests*.csproj'
       arguments: '--configuration $(BuildConfiguration)'
-      publishTestResults: false
-      
+      publishTestResults: false    
+
 - job: RunTestsMac
-  displayName: "Run Tests MacOS"
   pool:
     vmImage: 'macos-latest'
-
   steps:
     - task: UseDotNet@2
       displayName: 'Use .Net Core sdk 3.1.101'
@@ -41,21 +37,18 @@ jobs:
     - task: DotNetCoreCLI@2
       displayName: 'Run Tests'
       inputs:
-        command: test
+        command: 'test'
         projects: |
-        MoneyFox.Application.Tests
-        MoneyFox.Domain.Tests
-        MoneyFox.Persistence.Tests
-        MoneyFox.Presentation.Tests
-        MoneyFox.Ui.Shared.Tests
+          MoneyFox.Application.Tests
+          MoneyFox.Domain.Tests
+          MoneyFox.Persistence.Tests
+          MoneyFox.Presentation.Tests
+          MoneyFox.Ui.Shared.Tests
         arguments: '--configuration $(BuildConfiguration)'
-        publishTestResults: false
 
 - job: BuildiOS
-  displayName: 'Build iOS'
   pool:
     vmImage: 'macos-latest'
-
   steps:
   - task: UseDotNet@2
     displayName: 'Use .Net Core sdk 3.1.101'
@@ -90,9 +83,7 @@ jobs:
       solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
       configuration: '$(BuildConfiguration)'
 
-
--job: BuildAndroid
-  displayName: 'Build Android'
+- job: BuildAndroid
   pool:
     vmImage: windows-latest
 
@@ -126,4 +117,3 @@ jobs:
       msbuildVersionOption: latest
       msbuildArchitectureOption: x64
       msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/"'
-
