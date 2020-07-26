@@ -32,7 +32,7 @@ steps:
 
 - powershell: |
    $pfxpath = '$(signingCert.secureFilePath)'
-   $certPassword = $(CertPassword)
+   $certPassword = '$(CertPassword)'
    
    Add-Type -AssemblyName System.Security
    $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
