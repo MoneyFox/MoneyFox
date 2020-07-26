@@ -104,11 +104,13 @@ steps:
     sourcePath: Src/MoneyFox.Presentation
     filePattern: App.config
 
-- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-APPX-Task.VersionAPPX@2
-  displayName: 'Version APPX'
+- task: VersionAPPX@2
   inputs:
+    Path: '$(Build.SourcesDirectory)'
     VersionNumber: '$(Major).$(Minor).$(BuildID)'
+    InjectVersion: false
     VersionRegex: '\d+.\d+.\d+'
+    OutputVersion: 'OutputedVersion'
 
 - task: VSBuild@1
   displayName: 'Build Windows Project'
