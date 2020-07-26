@@ -46,6 +46,17 @@ steps:
     Major: $(Major)
     Minor: $(Minor)
 
+- task: InstallAppleCertificate@2
+  displayName: 'Install an Apple certificate'
+  inputs:
+    certSecureFile: 'Apple Distribution MoneyFox 2020.p12'
+    certPwd: '$(P12password)'
+
+- task: InstallAppleProvisioningProfile@1
+  displayName: 'Install an Apple provisioning profile'
+  inputs:
+    provProfileSecureFile: 'MoneyFox_Distribution_2020.mobileprovision'
+
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
   inputs:
