@@ -85,8 +85,6 @@ steps:
   inputs:
     solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
     configuration: '$(BuildConfiguration)'
-    signingIdentity: 'Apple Distribution: Apply Solutions GmbH (HTWW78XH49)'
-    signingProvisioningProfileID: 'MoneyFox Distribution 2020'
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
