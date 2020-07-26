@@ -4,7 +4,12 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/xamarin
 
 trigger:
-- master
+  batch: true
+  branches:
+    include:
+    - master
+
+pr: none
 
 pool:
   vmImage: macOS-latest
