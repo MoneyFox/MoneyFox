@@ -107,7 +107,7 @@ steps:
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-APPX-Task.VersionAPPX@2
   displayName: 'Version APPX'
   inputs:
-    VersionNumber: '$(Major).$(Minor).$(Build.BuildNumber)'
+    VersionNumber: '$(Major).$(Minor).$(BuildID)'
     VersionRegex: '\d+.\d+.\d+'
 
 - task: VSBuild@1
