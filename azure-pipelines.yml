@@ -9,9 +9,6 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
-#Your build pipeline references an undefined variable named ‘KeyStore.secureFilePath’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references a secret variable named ‘KeyStorePass’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it secret. See https://go.microsoft.com/fwlink/?linkid=865972
-#Your build pipeline references a secret variable named ‘KeyStorePass’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it secret. See https://go.microsoft.com/fwlink/?linkid=865972
 variables:
   BuildConfiguration: 'Release'
 
