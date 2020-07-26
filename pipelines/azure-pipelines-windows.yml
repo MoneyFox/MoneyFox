@@ -18,6 +18,24 @@ variables:
   Minor: '0'
 
 steps:
+
+- powershell: |
+   $pfxpath = '$(signingCert.secureFilePath)'
+   $password = $env:UWP_CERTIFICATE_PASSWORD
+   
+   echo $env:UWP_CERTIFICATE_PASSWORD
+   
+   Add-Type -AssemblyName System.Security
+   $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+   $cert.Import($pfxpath, $password, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
+   $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+   $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+   $store.Add($cert)
+   $store.Close()
+   env:
+    UWP_CERTIFICATE_PASSWORD: $(UWP_Certificate_Password)
+  displayName: 'Install Cert'
+
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
   inputs:
@@ -33,22 +51,6 @@ steps:
   name: 'signingCert'
   inputs:
     secureFile: 'e9f92c76-438d-4991-a834-a84e34df9f20'
-
-- powershell: |
-   $pfxpath = '$(signingCert.secureFilePath)'
-   $password = $env:UWP_CERTIFICATE_PASSWORD
-   Write-Host $env:UWP_CERTIFICATE_PASSWORD
-   
-   Add-Type -AssemblyName System.Security
-   $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
-   $cert.Import($pfxpath, $password, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
-   $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
-   $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
-   $store.Add($cert)
-   $store.Close()
-   env:
-    UWP_CERTIFICATE_PASSWORD: $(UWP_Certificate_Password)
-  displayName: 'Install Cert'
 
 - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
   displayName: 'Prepare analysis on SonarCloud'
