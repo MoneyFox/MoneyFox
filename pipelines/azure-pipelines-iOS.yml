@@ -60,7 +60,7 @@ steps:
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
   inputs:
-    restoreSolution: '$(Parameters.solution)'
+    restoreSolution: '**/*.sln'
 
 - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
   displayName: 'Replace tokens in Src/MoneyFox.Presentation'
