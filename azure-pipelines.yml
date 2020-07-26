@@ -16,7 +16,14 @@ jobs:
   - task: UseDotNet@2
     displayName: 'Use .Net Core sdk 3.1.101'
     inputs:
-      version: 3.1.101
+      packageType: 'sdk'
+      version: '2.x'
+
+  - task: UseDotNet@2
+    displayName: 'Use .Net Core sdk 3.1.101'
+    inputs:
+      packageType: 'sdk'
+      version: '3.x'
 
   - task: InstallAppleCertificate@2
     displayName: 'Install an Apple certificate'
