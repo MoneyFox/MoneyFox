@@ -344,25 +344,9 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
-      <Project>{9777F861-F072-4FB3-A23E-09F37DF90CC1}</Project>
-      <Name>MoneyFox.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
-      <Project>{3BBF9997-7AF3-411F-B6E3-88E9EC97C073}</Project>
-      <Name>MoneyFox.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
-      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
-      <Name>MoneyFox.Persistence</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7B5B021F-8C4A-4024-9CC0-04018829FD66}</Project>
       <Name>MoneyFox.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj">
-      <Project>{C1217FB5-7A43-4DDA-A98F-72ECA57A1ADE}</Project>
-      <Name>MoneyFox.Ui.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

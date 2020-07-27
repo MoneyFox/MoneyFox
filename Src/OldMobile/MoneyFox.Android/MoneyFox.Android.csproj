@@ -217,18 +217,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
-      <Project>{9777F861-F072-4FB3-A23E-09F37DF90CC1}</Project>
-      <Name>MoneyFox.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
-      <Project>{3BBF9997-7AF3-411F-B6E3-88E9EC97C073}</Project>
-      <Name>MoneyFox.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
-      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
-      <Name>MoneyFox.Persistence</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
       <Name>MoneyFox.Presentation</Name>
