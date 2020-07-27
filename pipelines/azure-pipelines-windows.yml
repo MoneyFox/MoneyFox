@@ -24,7 +24,7 @@ variables:
 
 jobs:
 - job: Build Windows
-  displayName: "Build Windows Release"
+  displayName: 'Build Windows Release'
   timeoutInMinutes: 90
 
   steps:
