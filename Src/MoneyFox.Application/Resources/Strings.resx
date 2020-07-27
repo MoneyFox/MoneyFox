@@ -717,4 +717,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="EarnedSpentTemplateLabel" xml:space="preserve">
     <value>Earned: {0:c} - Spent: {1:c}</value>
   </data>
+  <data name="DashboardTitle" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
 </root>

@@ -43,6 +43,7 @@ namespace MoneyFox
         public static string PaymentListRoute => $"Payment/{nameof(PaymentListPage)}";
         public static string AddPaymentRoute => $"Payment/{nameof(AddPaymentPage)}";
         public static string CategoryListRoute => $"Category/{nameof(CategoryListPage)}";
+        public static string AddCategoryRoute => $"Category/{nameof(AddCategoryRoute)}";
 
 
         // ViewModels

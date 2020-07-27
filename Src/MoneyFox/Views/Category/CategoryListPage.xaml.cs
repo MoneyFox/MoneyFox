@@ -7,6 +7,7 @@ namespace MoneyFox.Views.Category
         public CategoryListPage()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.CategoryListViewModel;
         }
     }
 }

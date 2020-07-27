@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="MoneyFox.AppShell"
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:dashboard="clr-namespace:MoneyFox.Views.Dashboard"
-    Title="MoneyFox"
-    Visual="Material"
-    mc:Ignorable="d">
+<Shell x:Class="MoneyFox.AppShell"
+       xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:dashboard="clr-namespace:MoneyFox.Views.Dashboard"
+       xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application" xmlns:category="clr-namespace:MoneyFox.Views.Category" xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
+       Title="MoneyFox"
+       Visual="Material"
+       mc:Ignorable="d">
 
     <Shell.ItemTemplate>
         <DataTemplate>
@@ -26,7 +26,6 @@
             </Grid>
         </DataTemplate>
     </Shell.ItemTemplate>
-
 
     <!--  This header appears at the top of the Flyout.  -->
     <Shell.FlyoutHeaderTemplate>
@@ -46,10 +45,26 @@
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
 
-    <FlyoutItem Title="Dashboard" FlyoutIcon="ic_dashboard_black">
+    <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}" FlyoutIcon="ic_dashboard_black">
         <Tab>
             <ShellContent>
                 <dashboard:DashboardPage />
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.AccountsTitle}" FlyoutIcon="ic_dashboard_black">
+        <Tab>
+            <ShellContent>
+                <accounts:AccountListPage />
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}" FlyoutIcon="ic_dashboard_black">
+        <Tab>
+            <ShellContent>
+                <category:CategoryListPage />
             </ShellContent>
         </Tab>
     </FlyoutItem>

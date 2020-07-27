@@ -63,8 +63,9 @@
 
     <x:Double x:Key="NavigationBar">15</x:Double>
 
-    <x:Double x:Key="TextSizeHeadline">28</x:Double>
-    <x:Double x:Key="TextSizeTitle">20</x:Double>
+    <x:Double x:Key="TextSizeHeadline">32</x:Double>
+    <x:Double x:Key="TextSizeSubHeadline">28</x:Double>
+    <x:Double x:Key="TextSizeTitle">22</x:Double>
     <x:Double x:Key="TextSizeHeading">18</x:Double>
     <x:Double x:Key="TextSizeSubHeading">16</x:Double>
     <x:Double x:Key="TextSizeBody">14</x:Double>
@@ -156,16 +157,29 @@
         <Setter Property="FontSize" Value="{StaticResource TextSizeBody}" />
         <Setter Property="FontFamily" Value="Product" />
     </Style>
-    <Style x:Key="BaseLabel" TargetType="Label">
+
+    <Style x:Key="BaseLabel" TargetType="Label" >
         <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"/>
+        <Setter Property="FontFamily" Value="Product" />
     </Style>
+
     <Style x:Key="TextHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
         <Setter Property="FontSize" Value="{StaticResource TextSizeHeadline}" />
-        <Setter Property="FontFamily" Value="Roboto"/>
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="TextSubHeadline" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeHeadline}" />
     </Style>
 
     <Style x:Key="TextTitle" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
         <Setter Property="FontSize" Value="{StaticResource TextSizeTitle}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style x:Key="TextHead" TargetType="Label" BasedOn="{StaticResource BaseLabel}">
+        <Setter Property="FontSize" Value="{StaticResource TextSizeHeading}" />
+        <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
     <Style x:Key="TextSubHead" TargetType="Label" BasedOn="{StaticResource BaseLabel}">

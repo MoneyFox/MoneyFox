@@ -103,12 +103,11 @@
                                     </yummy:PancakeView.Shadow>
 
                                     <Grid>
-                                        <Label FontFamily="Product"
-                                           FontSize="18"
-                                           Margin="10,2,0,0"
-                                           VerticalTextAlignment="Start"
-                                           HorizontalTextAlignment="Start"
-                                           Text="{Binding Name}" />
+                                        <Label Style="{StaticResource TextHead}"
+                                               Margin="10,2,0,0"
+                                               VerticalTextAlignment="Start"
+                                               HorizontalTextAlignment="Start"
+                                               Text="{Binding Name}" />
 
                                         <Label Margin="0,0,6,2"
                                        FontFamily="Product"

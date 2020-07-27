@@ -24,6 +24,7 @@ namespace MoneyFox
             Routing.RegisterRoute(ViewModelLocator.BudgetListRoute, typeof(BudgetListPage));
             Routing.RegisterRoute(ViewModelLocator.PaymentListRoute, typeof(PaymentListPage));
             Routing.RegisterRoute(ViewModelLocator.CategoryListRoute, typeof(CategoryListPage));
+            Routing.RegisterRoute(ViewModelLocator.AddCategoryRoute, typeof(AddCategoryPage));
         }
     }
 }

@@ -41,19 +41,14 @@
                   IsClippedToBounds="False"
                   RowDefinitions="35,180,140,*">
 
-                <Label FontAttributes="Bold"
-                       FontFamily="Product"
-                       FontSize="32"
+                <Label Style="{StaticResource TextHeadline}"
                        Text="{x:Static resources:Strings.WelcomeLabel}" />
 
                 <!--  Assets card  -->
                 <StackLayout Grid.Row="1" VerticalOptions="Start">
-                    <Label
-                        FontAttributes="Bold"
-                        FontFamily="Product"
-                        FontSize="22"
-                        Text="{x:Static resources:Strings.AssetsLabel}"
-                        VerticalOptions="Center" />
+                    <Label Style="{StaticResource TextTitle}"
+                           Text="{x:Static resources:Strings.AssetsLabel}"
+                           VerticalOptions="Center" />
 
                     <yummy:PancakeView
                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
@@ -94,12 +89,9 @@
 
                 <!--  Income / Expenses  -->
                 <StackLayout Grid.Row="2" VerticalOptions="Start">
-                    <Label
-                        FontAttributes="Bold"
-                        FontFamily="Product"
-                        FontSize="22"
-                        Text="{x:Static resources:Strings.IncomeAndExpensesLabel}"
-                        VerticalOptions="Center" />
+                    <Label Style="{StaticResource TextTitle}"
+                           Text="{x:Static resources:Strings.IncomeAndExpensesLabel}"
+                           VerticalOptions="Center" />
 
                     <Grid ColumnDefinitions="*,*">
 
@@ -151,12 +143,9 @@
 
                 <!--  Budgets  -->
                 <StackLayout Grid.Row="3" VerticalOptions="Start">
-                    <Label
-                        FontAttributes="Bold"
-                        FontFamily="Product"
-                        FontSize="22"
-                        Text="{x:Static resources:Strings.BudgetsLabel}"
-                        VerticalOptions="Center" />
+                    <Label Style="{StaticResource TextTitle}"
+                           Text="{x:Static resources:Strings.BudgetsLabel}"
+                           VerticalOptions="Center" />
 
                     <yummy:PancakeView Padding="20"
                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
