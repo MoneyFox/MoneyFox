@@ -250,6 +250,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assets.
+        /// </summary>
+        public static string AssetsLabel {
+            get {
+                return ResourceManager.GetString("AssetsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Authentication failed.
         /// </summary>
         public static string AuthenticationFailedTitle {
@@ -372,6 +381,15 @@ namespace MoneyFox.Application.Resources {
         public static string BiweeklyLabel {
             get {
                 return ResourceManager.GetString("BiweeklyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Budgets.
+        /// </summary>
+        public static string BudgetsLabel {
+            get {
+                return ResourceManager.GetString("BudgetsLabel", resourceCulture);
             }
         }
         
@@ -583,6 +601,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation Date: {0:d}.
+        /// </summary>
+        public static string CreationDateTemplateLabel {
+            get {
+                return ResourceManager.GetString("CreationDateTemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Balance.
         /// </summary>
         public static string CurrentBalanceLabel {
@@ -745,6 +772,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Earned: {0:c} - Spent: {1:c}.
+        /// </summary>
+        public static string EarnedSpentTemplateLabel {
+            get {
+                return ResourceManager.GetString("EarnedSpentTemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit {0}.
         /// </summary>
         public static string EditAccountTitle {
@@ -835,6 +871,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to End Of Month: {0:c}.
+        /// </summary>
+        public static string EndOfMonthLabel {
+            get {
+                return ResourceManager.GetString("EndOfMonthLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There was an error during the authentication. Please try again later..
         /// </summary>
         public static string ErrorMessageAuthenticationFailed {
@@ -916,6 +961,24 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to Accounts.
+        /// </summary>
+        public static string GoToAccountsLabel {
+            get {
+                return ResourceManager.GetString("GoToAccountsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to Budgets.
+        /// </summary>
+        public static string GoToBudgetsLabel {
+            get {
+                return ResourceManager.GetString("GoToBudgetsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The app icon was created by:.
         /// </summary>
         public static string IconDesignerLabel {
@@ -930,6 +993,15 @@ namespace MoneyFox.Application.Resources {
         public static string IncludedAccountsHeader {
             get {
                 return ResourceManager.GetString("IncludedAccountsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Income and Expenses.
+        /// </summary>
+        public static string IncomeAndExpensesLabel {
+            get {
+                return ResourceManager.GetString("IncomeAndExpensesLabel", resourceCulture);
             }
         }
         
@@ -1156,6 +1228,15 @@ namespace MoneyFox.Application.Resources {
         public static string ModificationDateLabel {
             get {
                 return ResourceManager.GetString("ModificationDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modification Date: {0:d}.
+        /// </summary>
+        public static string ModificationDateTemplateLabel {
+            get {
+                return ResourceManager.GetString("ModificationDateTemplateLabel", resourceCulture);
             }
         }
         
@@ -1734,6 +1815,15 @@ namespace MoneyFox.Application.Resources {
         public static string WeeklyLabel {
             get {
                 return ResourceManager.GetString("WeeklyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Welcome!.
+        /// </summary>
+        public static string WelcomeLabel {
+            get {
+                return ResourceManager.GetString("WelcomeLabel", resourceCulture);
             }
         }
         

@@ -687,4 +687,34 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>No entry selected. Choose a entry in the list to see the payments for it.</value>
   </data>
+  <data name="AssetsLabel" xml:space="preserve">
+    <value>Assets</value>
+  </data>
+  <data name="BudgetsLabel" xml:space="preserve">
+    <value>Budgets</value>
+  </data>
+  <data name="EndOfMonthLabel" xml:space="preserve">
+    <value>End Of Month: {0:c}</value>
+  </data>
+  <data name="GoToAccountsLabel" xml:space="preserve">
+    <value>Go to Accounts</value>
+  </data>
+  <data name="GoToBudgetsLabel" xml:space="preserve">
+    <value>Go to Budgets</value>
+  </data>
+  <data name="IncomeAndExpensesLabel" xml:space="preserve">
+    <value>Income and Expenses</value>
+  </data>
+  <data name="WelcomeLabel" xml:space="preserve">
+    <value>Welcome!</value>
+  </data>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0:d}</value>
+  </data>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0:d}</value>
+  </data>
+  <data name="EarnedSpentTemplateLabel" xml:space="preserve">
+    <value>Earned: {0:c} - Spent: {1:c}</value>
+  </data>
 </root>
