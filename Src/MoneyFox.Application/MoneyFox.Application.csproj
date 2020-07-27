@@ -20,6 +20,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\moneyfox-project\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="10.0.0" />
     <PackageReference Include="MediatR" Version="8.0.2" />
     <PackageReference Include="Autofac" Version="5.2.0" />

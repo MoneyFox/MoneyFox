@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <CodeAnalysisRuleSet>..\.sonarlint\moneyfox-projectcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -10,6 +11,10 @@
     <None Remove="Common\Fonts\norwester.otf" />
     <None Remove="Common\Fonts\ProductSans-Regular.ttf" />
     <None Remove="Common\Fonts\RobotoMono-Regular.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\moneyfox-project\CSharp\SonarLint.xml" Link="SonarLint.xml" />
   </ItemGroup>
 
   <ItemGroup>
