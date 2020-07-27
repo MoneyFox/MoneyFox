@@ -17,6 +17,7 @@ pool:
 variables:
   BuildConfiguration: 'Release'
 
+name: $(date:yyyy)$(DayOfYear)$(rev:.rrr)
 steps:
 
 - task: NuGetToolInstaller@1
