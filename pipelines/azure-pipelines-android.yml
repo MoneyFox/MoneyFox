@@ -51,7 +51,7 @@ steps:
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-AndroidManifest-Task.VersionAndroidManifest@2
   displayName: 'Version Android Manifest'
   inputs:
-    VersionNumber: '$(Major).$(Minor).$(date:yyyy)$(DayOfYear)$(rev:.rrr)'
+    VersionNumber: '$(Major).$(Minor).$(Build.BuildNumber)'
     VersionNameFormat: '{1}.{2}.{3}.{4}'
     VersionCodeFormat: '{3}{4}'
     VersionRegex: '\d+.\d+.\d+.\d+'
