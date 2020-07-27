@@ -4,9 +4,11 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Budget;
+using MoneyFox.ViewModels.Category;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.ViewModels.Payments;
 using MoneyFox.Views.Accounts;
+using MoneyFox.Views.Category;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
 
@@ -40,6 +42,7 @@ namespace MoneyFox
         public static string BudgetListRoute => $"Budget/{nameof(BudgetListPage)}";
         public static string PaymentListRoute => $"Payment/{nameof(PaymentListPage)}";
         public static string AddPaymentRoute => $"Payment/{nameof(AddPaymentPage)}";
+        public static string CategoryListRoute => $"Category/{nameof(CategoryListPage)}";
 
 
         // ViewModels
@@ -50,5 +53,8 @@ namespace MoneyFox
         public static PaymentListViewModel PaymentListViewModel => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         public static AddPaymentViewModel AddPaymentViewModel => ServiceLocator.Current.GetInstance<AddPaymentViewModel>();
         public static EditPaymentViewModel EditPaymentViewModel => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
+        public static CategoryListViewModel CategoryListViewModel => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        public static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
+        public static EditCategoryViewModel EditCategoryViewModel => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
     }
 }
