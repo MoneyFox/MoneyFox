@@ -30,7 +30,8 @@
                 HorizontalOptions="End"
                 Text="{x:Static theme:IconFont.Plus}"
                 TextColor="White"
-                VerticalOptions="Center" />
+                VerticalOptions="Center"
+                Command="{Binding GoToAddPaymentCommand}"/>
         </Grid>
     </Shell.TitleView>
 

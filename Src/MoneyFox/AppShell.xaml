@@ -10,37 +10,43 @@
     Visual="Material"
     mc:Ignorable="d">
 
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding FlyoutIcon}"
+                    Margin="5"
+                    HeightRequest="20" />
+                <Label Grid.Column="1"
+                    Text="{Binding Title}"
+                    VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+
     <!--  This header appears at the top of the Flyout.  -->
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid>
-                <Label>MoneyFox</Label>
+            <Grid BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1"
+                       Text="MoneyFox"
+                       FontFamily="Product"
+                       FontAttributes="Bold"
+                       FontSize="30"
+                       VerticalTextAlignment="Center" />
             </Grid>
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
 
-    <!--  ItemTemplate is for ShellItems as displayed in a Flyout  -->
-    <!--
-    <Shell.ItemTemplate>
-        <DataTemplate>
-            <ContentView>
-                Bindable Properties: Title, Icon
-            </ContentView>
-        </DataTemplate>
-    </Shell.ItemTemplate>
-
-    -->
-    <!--  MenuItemTemplate is for MenuItems as displayed in a Flyout  -->
-    <!--
-    <Shell.MenuItemTemplate>
-        <DataTemplate>
-            <ContentView>
-                Bindable Properties: Text, Icon
-            </ContentView>
-        </DataTemplate>
-    </Shell.MenuItemTemplate>-->
-
-    <FlyoutItem Title="Dashboard">
+    <FlyoutItem Title="Dashboard" FlyoutIcon="ic_dashboard_black">
         <Tab>
             <ShellContent>
                 <dashboard:DashboardPage />

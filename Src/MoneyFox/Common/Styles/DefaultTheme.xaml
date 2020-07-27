@@ -73,7 +73,8 @@
 
     <!-- Shell -->
     <Style x:Key="BaseStyle"
-           TargetType="Element">
+           TargetType="Element"
+           ApplyToDerivedTypes="True">
         <Setter Property="Shell.BackgroundColor"
                 Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
         <Setter Property="Shell.ForegroundColor"
@@ -83,15 +84,16 @@
         <Setter Property="Shell.UnselectedColor"
                 Value="#CC0000" />
         <Setter Property="Shell.NavBarHasShadow"
-                Value="False"/>
+                Value="true"/>
     </Style>
     <Style BasedOn="{StaticResource BaseStyle}"
            ApplyToDerivedTypes="True"
            TargetType="FlyoutItem" />
 
-    <Style
-        TargetType="Label"
-        Class="FlyoutItemLabelStyle">
+    <Style TargetType="Label"
+           Class="FlyoutItemLabelStyle">
+        <Setter
+            Property="BackgroundColor" Value="Transparent" />
         <Setter
             Property="FontSize" Value="16" />
         <Setter
@@ -104,16 +106,16 @@
             Value="44" />
     </Style>
 
-    <Style
-            TargetType="Layout"
-            ApplyToDerivedTypes="True"
-            Class="FlyoutItemGridStyle">
+    <Style TargetType="Shell" ApplyToDerivedTypes="True">
+        <Setter Property="FlyoutBackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"/>
+    </Style>
 
-        <Setter
-                Property="HeightRequest"
+    <Style TargetType="Layout"
+           ApplyToDerivedTypes="True"
+           Class="FlyoutItemGridStyle">
+        <Setter Property="HeightRequest"
                 Value="44" />
-        <Setter
-                Property="VisualStateManager.VisualStateGroups">
+        <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup
                         x:Name="CommonStates">
