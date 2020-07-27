@@ -23,7 +23,7 @@ variables:
   Minor: '0'
 
 jobs:
-- job: Build Windows
+- job: BuildWindows
   displayName: 'Build Windows Release'
   timeoutInMinutes: 90
 
