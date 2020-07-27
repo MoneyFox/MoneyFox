@@ -141,9 +141,6 @@ jobs:
     vmImage: windows-latest
 
   variables:
-    solution: '**/*.sln'
-    buildPlatform: 'x86'
-    buildConfiguration: 'Release'
     appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
   steps:
@@ -223,8 +220,8 @@ jobs:
     displayName: 'Build Windows Project'
     inputs:
       solution: Src/MoneyFox.Desktop.sln
-      msbuildArgs: '/p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\"   /p:UapAppxPackageBuildMode=StoreUpload   /p:AppxBundlePlatforms="$(BuildPlatform)"  /p:AppxBundle=Always  /p:AppxPackageSigningEnabled=true /p:JavaSdkDirectory="$(JAVA_HOME)/"'
-      platform: x64
+      msbuildArgs: '/p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\"   /p:UapAppxPackageBuildMode=StoreUpload  /p:AppxBundlePlatforms="$(BuildPlatform)" /p:AppxBundle=Always /p:JavaSdkDirectory="$(JAVA_HOME)/"'
+      platform: $(BuildPlatform)
       configuration: '$(BuildConfiguration)'
       clean: true
       msbuildArchitecture: x64
