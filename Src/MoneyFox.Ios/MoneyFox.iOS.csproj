@@ -3,19 +3,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <LangVersion>8.0</LangVersion>
-    <nullable>enable</nullable>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{F68BCA5A-D029-4981-99A7-14BC968D12CA}</ProjectGuid>
+    <ProjectGuid>{543F0752-1B4A-40FF-83EF-D80A26576910}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TemplateGuid>{89a4fe7c-635d-49c9-8d8c-5cd363c0d68d}</TemplateGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>MoneyFox.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>MoneyFox.iOS</AssemblyName>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <ReleaseVersion>0.12.0.0</ReleaseVersion>
+    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
+    <ProvisioningType>automatic</ProvisioningType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,16 +24,9 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodesignKey>Apple Development: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
-    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <CodesignProvision>MoneyFox Development 2020</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -42,15 +34,8 @@
     <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
-    <ConsolePause>false</ConsolePause>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-    <MtouchDebug>true</MtouchDebug>
-    <MtouchFloat32>true</MtouchFloat32>
-    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,16 +45,12 @@
     <DefineConstants>DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
     <MtouchArch>ARM64</MtouchArch>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <MtouchDebug>true</MtouchDebug>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-    <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchLink>None</MtouchLink>
-    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
+    <MtouchInterpreter>-all</MtouchInterpreter>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -78,292 +59,21 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>ARM64</MtouchArch>
-    <ConsolePause>false</ConsolePause>
-    <CodesignKey>Apple Distribution: Apply Solutions GmbH (HTWW78XH49)</CodesignKey>
+    <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodesignProvision>MoneyFox Distribution 2020</CodesignProvision>
-    <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
-    <MtouchUseLlvm>true</MtouchUseLlvm>
-    <OptimizePNGs>true</OptimizePNGs>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-    <MtouchFloat32>true</MtouchFloat32>
-    <MtouchExtraArgs>--optimize=experimental-xforms-product-type</MtouchExtraArgs>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\iPhone\Ad-Hoc</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <MtouchArch>ARM64</MtouchArch>
-    <BuildIpa>True</BuildIpa>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'AppStore|iPhone' ">
-    <DebugType>none</DebugType>
-    <Optimize>True</Optimize>
-    <OutputPath>bin\iPhone\AppStore</OutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>False</ConsolePause>
-    <MtouchArch>ARM64</MtouchArch>
-    <CodesignProvision>VS: WildCard Development</CodesignProvision>
-    <CodesignKey>iPhone Developer: Nino Padrutt (RHCXB7MFH3)</CodesignKey>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'Default' ">
-    <AppExtensionDebugBundleId />
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Ad-Hoc|iPhoneSimulator'">
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'AppStore|iPhoneSimulator'">
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|iPhoneSimulator'">
-    <OutputPath>bin\iPhoneSimulator\ReleaseUWP\</OutputPath>
-    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;</DefineConstants>
-    <Optimize>true</Optimize>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'ReleaseUWP|iPhone'">
-    <OutputPath>bin\iPhone\ReleaseUWP\</OutputPath>
-    <DefineConstants>__IOS__;__MOBILE__;__UNIFIED__;</DefineConstants>
-    <Optimize>true</Optimize>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Effects\DeleteButtonEffect.cs" />
     <Compile Include="IosModule.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Renderer\CustomContentPageRenderer.cs" />
+    <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderer\NavigationPageRenderer.cs" />
-    <Compile Include="Src\AppInformation.cs" />
-    <Compile Include="Src\GraphServiceClientFactory.cs" />
-    <Compile Include="Src\IosFileStore.cs" />
-    <Compile Include="Src\ThemeSelectorAdapter.cs" />
-    <Compile Include="Src\StoreOperations.cs" />
-    <Content Include="..\MoneyFox.Presentation\App.config">
-      <Link>App.config</Link>
-    </Content>
-    <BundleResource Include="Resources\ic_accounts_black.png" />
-    <BundleResource Include="Resources\ic_accounts_black%402x.png" />
-    <BundleResource Include="Resources\ic_accounts_black%403x.png" />
-    <BundleResource Include="Resources\ic_add%402x.png" />
-    <BundleResource Include="Resources\ic_add%403x.png" />
-    <BundleResource Include="Resources\ic_add_black.png" />
-    <BundleResource Include="Resources\ic_add_black%402x.png" />
-    <BundleResource Include="Resources\ic_add_black%403x.png" />
-    <BundleResource Include="Resources\ic_cancel_black.png" />
-    <BundleResource Include="Resources\ic_cancel_black%402x.png" />
-    <BundleResource Include="Resources\ic_cancel_black%403x.png" />
-    <BundleResource Include="Resources\ic_cleared_black.png" />
-    <BundleResource Include="Resources\ic_cleared_black%402x.png" />
-    <BundleResource Include="Resources\ic_cleared_black%403x.png" />
-    <BundleResource Include="Resources\ic_done.png" />
-    <BundleResource Include="Resources\ic_done%402x.png" />
-    <BundleResource Include="Resources\ic_done%403x.png" />
-    <BundleResource Include="Resources\ic_recurring_black.png" />
-    <BundleResource Include="Resources\ic_recurring_black%402x.png" />
-    <BundleResource Include="Resources\ic_recurring_black%403x.png" />
-    <BundleResource Include="Resources\ic_remove_black.png" />
-    <BundleResource Include="Resources\ic_remove_black%402x.png" />
-    <BundleResource Include="Resources\ic_remove_black%403x.png" />
-    <BundleResource Include="Resources\ic_save_white.png" />
-    <BundleResource Include="Resources\ic_save_white%402x.png" />
-    <BundleResource Include="Resources\ic_save_white%403x.png" />
-    <BundleResource Include="Resources\ic_settings_black.png" />
-    <BundleResource Include="Resources\ic_settings_black%402x.png" />
-    <BundleResource Include="Resources\ic_settings_black%403x.png" />
-    <BundleResource Include="Resources\ic_statistics_black.png" />
-    <BundleResource Include="Resources\ic_statistics_black%402x.png" />
-    <BundleResource Include="Resources\ic_statistics_black%403x.png" />
-    <BundleResource Include="Resources\ic_transfer_black.png" />
-    <BundleResource Include="Resources\ic_transfer_black%402x.png" />
-    <BundleResource Include="Resources\ic_transfer_black%403x.png" />
-    <LinkDescription Include="LinkerDescription.xml" />
-    <ImageAsset Include="Assets.xcassets\icon_more.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\icon_more.imageset\icon_more.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\icon_more.imageset\icon_more@2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\icon_more.imageset\icon_more@3x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Default%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Default-Portrait%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Default-Portrait.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Default-568h%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60%402x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-167.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-1024.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="MoneyFox.iOS.ruleset" />
-    <BundleResource Include="Resources\materialdesignicons.ttf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </BundleResource>
-    <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
-    <BundleResource Include="Resources\Fonts\Roboto-Bold.ttf" />
-    <BundleResource Include="Resources\Fonts\Roboto-Medium.ttf" />
-    <BundleResource Include="Resources\Fonts\Roboto-Regular.ttf" />
-    <Compile Include="Renderer\CustomContentPageRenderer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Default-568h%402x.png" />
-    <BundleResource Include="Resources\Default-Portrait.png" />
-    <BundleResource Include="Resources\Default-Portrait%402x.png" />
-    <BundleResource Include="Resources\Default.png" />
-    <BundleResource Include="Resources\Default%402x.png" />
-    <BundleResource Include="Resources\Icon-60%403x.png" />
-    <BundleResource Include="Resources\Icon-Small-40%403x.png" />
-    <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="Xamarin.iOS" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Autofac">
-      <Version>5.2.0</Version>
-    </PackageReference>
-    <PackageReference Include="Autofac.Extras.CommonServiceLocator">
-      <Version>6.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="AutoMapper">
-      <Version>10.0.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite">
-      <Version>3.1.6</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Graph">
-      <Version>3.8.0</Version>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.16.1</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmLightLibsStd10">
-      <Version>5.4.1.1</Version>
-    </PackageReference>
-    <PackageReference Include="NLog">
-      <Version>4.7.2</Version>
-    </PackageReference>
-    <PackageReference Include="NLog.Targets.AppCenter">
-      <Version>1.1.0</Version>
-    </PackageReference>
-    <PackageReference Include="PCLAppConfig">
-      <Version>1.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="Rg.Plugins.Popup">
-      <Version>2.0.0.3</Version>
-    </PackageReference>
-    <PackageReference Include="sameerIOTApps.Plugin.SecureStorage">
-      <Version>2.5.0</Version>
-    </PackageReference>
-    <PackageReference Include="System.Drawing.Common">
-      <Version>4.7.0</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Essentials">
-      <Version>1.5.3.2</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>4.7.0.1179</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>4.7.0.1179</Version>
-    </PackageReference>
-    <PackageReference Include="XF.Material">
-      <Version>1.6.5</Version>
-    </PackageReference>
-    <PackageReference Include="System.Reflection.Emit" Version="4.7.0">
-      <ExcludeAssets>all</ExcludeAssets>
-      <IncludeAssets>none</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="System.Reflection.Emit" Version="4.6.0">
-      <ExcludeAssets>all</ExcludeAssets>
-      <IncludeAssets>none</IncludeAssets>
-    </PackageReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
-      <Project>{9777F861-F072-4FB3-A23E-09F37DF90CC1}</Project>
-      <Name>MoneyFox.Application</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
-      <Project>{3BBF9997-7AF3-411F-B6E3-88E9EC97C073}</Project>
-      <Name>MoneyFox.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
-      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
-      <Name>MoneyFox.Persistence</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
-      <Project>{7B5B021F-8C4A-4024-9CC0-04018829FD66}</Project>
-      <Name>MoneyFox.Presentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj">
-      <Project>{C1217FB5-7A43-4DDA-A98F-72ECA57A1ADE}</Project>
-      <Name>MoneyFox.Ui.Shared</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -375,25 +85,16 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-167.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60@2x.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-60@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-76@2x.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40@3x1.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small-40@2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small@2x.png">
+    <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-Small@3x.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
@@ -413,11 +114,63 @@
     </ImageAsset>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="Xamarin.iOS" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac">
+      <Version>5.2.0</Version>
+    </PackageReference>
+    <PackageReference Include="NLog">
+      <Version>4.7.2</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1179" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
+      <Project>{9d569165-5277-4b92-a621-6710c487f51b}</Project>
+      <Name>MoneyFox.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
+      <Project>{BB497370-580A-4972-A29C-DC05ABAE9A0C}</Project>
+      <Name>MoneyFox</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
     <BundleResource Include="Resources\Icon-1024.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Icon-167.png" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon-60%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon-Small-40%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Icon-Small%403x.png" />
+  </ItemGroup>
 </Project>

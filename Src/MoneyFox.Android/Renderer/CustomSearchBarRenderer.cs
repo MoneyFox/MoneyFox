@@ -40,9 +40,13 @@ namespace MoneyFox.Droid.Renderer
                 editText.SetHighlightColor(Color.Accent.ToAndroid());
 
                 if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                {
                     TrySetCursorPointerColorNew(editText);
+                }
                 else
+                {
                     TrySetCursorPointerColor(editText);
+                }
 
                 UpdateSearchButtonColor();
                 UpdateCancelButtonColor();

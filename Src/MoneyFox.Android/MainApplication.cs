@@ -1,14 +1,10 @@
 ﻿using Android.App;
 using Android.Runtime;
 using Autofac;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Droid.Src;
-using MoneyFox.Presentation;
+using MoneyFox.Common;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using PCLAppConfig;
-using PCLAppConfig.FileSystemStream;
 using System;
 using System.IO;
 using Xamarin.Essentials;
@@ -26,15 +22,10 @@ namespace MoneyFox.Droid
 
         public override void OnCreate()
         {
-            if(ConfigurationManager.AppSettings == null)
-            {
-                ConfigurationManager.Initialise(PortableStream.Current);
-            }
-
             InitLogger();
 
             logManager.Info("Application Started.");
-            logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion());
+            //logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion());
 
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
@@ -72,19 +63,19 @@ namespace MoneyFox.Droid
             var config = new LoggingConfiguration();
 
             var logfile = new FileTarget("logfile")
-                          {
-                              FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
-                              AutoFlush = true,
-                              ArchiveEvery = FileArchivePeriod.Month
-                          };
+            {
+                FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
+                AutoFlush = true,
+                ArchiveEvery = FileArchivePeriod.Month
+            };
             var debugTarget = new DebugTarget("console");
 
 #if !DEBUG
             // Configure AppCenter
-            var appCenterTarget = new AppCenterTarget("appcenter")
-            {
-                AppSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"]
-            };
+            //var appCenterTarget = new AppCenterTarget("appcenter")
+            //{
+            //    AppSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"]
+            //};
 
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
 #endif
