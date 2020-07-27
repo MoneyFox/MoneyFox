@@ -10,21 +10,29 @@
              Visual="Material"
              x:Class="MoneyFox.Views.Accounts.EditAccountPage">
     <ContentPage.Content>
-        <StackLayout Padding="15">
+        <ScrollView>
+            <StackLayout Padding="15">
 
-            <accounts:ModifyAccountContentView />
+                <Label FontAttributes="Bold"
+                       FontFamily="Product"
+                       FontSize="22"
+                       Text="{Binding Title}"
+                       VerticalOptions="Center" />
 
-            <Label Style="{StaticResource TextBodySecondary}"
-                   Text="{Binding CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+                <accounts:ModifyAccountContentView />
 
-            <Label Style="{StaticResource TextBodySecondary}"
-                   Text="{Binding ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+                <Label Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding SelectedAccount.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
-            <Button x:Name="DeleteAccountButton"
+                <Label Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding SelectedAccount.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+
+                <Button x:Name="DeleteAccountButton"
                     Style="{StaticResource WarningButton}"
                     Margin="0,12,0,0"
                     Command="{Binding DeleteCommand}"
                     Text="{x:Static resources:Strings.DeleteLabel}" />
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

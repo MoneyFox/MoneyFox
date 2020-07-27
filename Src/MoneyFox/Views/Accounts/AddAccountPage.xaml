@@ -10,15 +10,16 @@
              x:Class="MoneyFox.Views.Accounts.AddAccountPage">
 
     <ContentPage.Content>
-        <StackLayout Padding="15">
-            <Label FontAttributes="Bold"
-                   FontFamily="Product"
-                   FontSize="22"
-                   Text="{x:Static resources:Strings.AddAccountLabel}"
-                   VerticalOptions="Center" />
+        <ScrollView Padding="15">
+            <StackLayout>
+                <Label FontAttributes="Bold"
+                       FontFamily="Product"
+                       FontSize="22"
+                       Text="{x:Static resources:Strings.AddAccountLabel}"
+                       VerticalOptions="Center" />
 
-            <accounts:ModifyAccountContentView />
-
-        </StackLayout>
+                <accounts:ModifyAccountContentView />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

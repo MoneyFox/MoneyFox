@@ -3,13 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:extensions="clr-namespace:MoneyFox.Extensions"
+             xmlns:category="clr-namespace:MoneyFox.Views.Category"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Category.EditCategoryPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+
+                <Label FontAttributes="Bold"
+                       FontFamily="Product"
+                       FontSize="22"
+                       Text="{Binding Title}"
+                       VerticalOptions="Center" />
+
+                <category:ModifyCategoryContentView />
+
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{Binding SelectedCategory.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{Binding SelectedCategory.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+
+                <Button x:Name="DeleteAccountButton"
+                        Style="{StaticResource WarningButton}"
+                        Margin="0,12,0,0"
+                        Command="{Binding DeleteCommand}"
+                        Text="{x:Static resources:Strings.DeleteLabel}" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
