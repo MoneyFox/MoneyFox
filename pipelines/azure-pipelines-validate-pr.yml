@@ -1,0 +1,233 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+pr:
+- master
+
+jobs:
+
+- job: BuildiOS
+  displayName: "Run Tests MacOS and Build iOS"
+  pool:
+    vmImage: 'macos-latest'
+  steps:
+  - task: UseDotNet@2
+    displayName: 'Use .Net Core sdk 3.1.101'
+    inputs:
+      packageType: 'sdk'
+      version: '2.x'
+
+  - task: UseDotNet@2
+    displayName: 'Use .Net Core sdk 3.1.101'
+    inputs:
+      packageType: 'sdk'
+      version: '3.x'
+
+  - task: InstallAppleCertificate@2
+    displayName: 'Install an Apple certificate'
+    inputs:
+      certSecureFile: 'Apple Distribution MoneyFox 2020.p12'
+      certPwd: '$(P12password)'
+
+  - task: InstallAppleProvisioningProfile@1
+    displayName: 'Install an Apple provisioning profile'
+    inputs:
+      provProfileSecureFile: 'MoneyFox_Distribution_2020.mobileprovision'
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 4.x
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+        restoreSolution: '**/MoneyFox.Mobile.sln'
+
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: 'Money Fox Sonar Cloud'
+      organization: moneyfox
+      projectKey: 'moneyfox-project'
+      extraProperties: |
+        # Additional properties that will be passed to the scanner, 
+        # Put one key=value per line, example:
+        # sonar.exclusions=**/*.bin
+        sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: 'test'
+      projects: |
+        MoneyFox.Application.Tests
+        MoneyFox.Domain.Tests
+        MoneyFox.Persistence.Tests
+        MoneyFox.Presentation.Tests
+        MoneyFox.Ui.Shared.Tests
+      arguments: '--configuration $(BuildConfiguration)'
+
+  - powershell: |
+      Get-ChildItem -Path $(Agent.TempDirectory) -Include "*.coverage" -File -Recurse | % {
+      $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
+      $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
+      "Analyse '$($_.Name)' with output '$outfile'..."
+      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+      }
+    
+    displayName: 'Convert Converage to Coveragexml'
+
+  - task: CopyFiles@2
+    displayName: 'Copy coveragexml to staging'
+    inputs:
+      SourceFolder: '$(Agent.TempDirectory)'
+      Contents: '**\*.coveragexml'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: XamariniOS@2
+    displayName: 'Build Xamarin.iOS '
+    inputs:
+      solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
+      configuration: '$(BuildConfiguration)'
+  
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
+
+  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+    displayName: 'Publish Quality Gate Result'
+
+- job: BuildAndroid
+  displayName: "Build Android"
+  pool:
+    vmImage: windows-latest
+
+  steps:
+  - task: pjcollins.azp-utilities-boots.boots.Boots@1
+    displayName: 'Install https://aka.ms/xamarin-android-commercial-d16-2-windows '
+    inputs:
+      uri: 'https://aka.ms/xamarin-android-commercial-d16-2-windows '
+    enabled: false
+
+  - script: ' C:\"Program Files (x86)"\Android\android-sdk\tools\bin\sdkmanager "ndk-bundle"'
+    displayName: 'Install NDK'
+    enabled: false
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 4.x
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '**/MoneyFox.Mobile.sln'
+
+  - task: XamarinAndroid@1
+    displayName: 'Build Android Project'
+    inputs:
+      projectFile: Src/MoneyFox.Android/MoneyFox.Android.csproj
+      outputDirectory: '$(build.binariesdirectory)/$(BuildConfiguration)'
+      configuration: '$(BuildConfiguration)'
+      msbuildVersionOption: latest
+      msbuildArchitectureOption: x64
+      msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/"'
+
+- job: WindowsTestsAndBuild 
+  displayName: "Run Tests and Build Windows"
+  pool:
+    vmImage: windows-latest
+
+  variables:
+    appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+
+  steps:
+  - task: DownloadSecureFile@1
+    displayName: 'Download secure file'
+    name: 'signingCert'
+    inputs:
+      secureFile: 'MoneyFoxCert_2019.pfx'
+
+  - powershell: |
+      $pfxpath = '$(signingCert.secureFilePath)'
+      $certPassword = $env:CERT_PASSWORD_ENV
+      
+      Add-Type -AssemblyName System.Security
+      $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+      $cert.Import($pfxpath, $certPassword, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
+      $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+      $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+      $store.Add($cert)
+      $store.Close()
+    displayName: 'Install Cert'
+    env:
+      CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 4.x
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '**/MoneyFox.Desktop.sln'
+
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: 'Money Fox Sonar Cloud'
+      organization: moneyfox
+      projectKey: 'moneyfox-project'
+      extraProperties: |
+        # Additional properties that will be passed to the scanner, 
+        # Put one key=value per line, example:
+        # sonar.exclusions=**/*.bin
+        sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: test
+      projects: |
+        MoneyFox.Application.Tests
+        MoneyFox.Domain.Tests
+        MoneyFox.Persistence.Tests
+        MoneyFox.Presentation.Tests
+        MoneyFox.Ui.Shared.Tests
+      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+
+  - powershell: |
+      Get-ChildItem -Path $(Agent.TempDirectory) -Include "*.coverage" -File -Recurse | % {
+      $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
+      $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
+      "Analyse '$($_.Name)' with output '$outfile'..."
+      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+      }
+    
+    displayName: 'Convert Converage to Coveragexml'
+
+  - task: CopyFiles@2
+    displayName: 'Copy coveragexml to staging'
+    inputs:
+      SourceFolder: '$(Agent.TempDirectory)'
+      Contents: '**\*.coveragexml'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: VSBuild@1
+    displayName: 'Build Windows Project'
+    inputs:
+      solution: Src/MoneyFox.Desktop.sln
+      msbuildArgs: '/p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\"   /p:UapAppxPackageBuildMode=StoreUpload   /p:AppxBundlePlatforms="$(BuildPlatform)"  /p:AppxBundle=Always  /p:AppxPackageSigningEnabled=true /p:JavaSdkDirectory="$(JAVA_HOME)/"'
+      platform: x64
+      configuration: '$(BuildConfiguration)'
+      clean: true
+      msbuildArchitecture: x64
+
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
+
+  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+    displayName: 'Publish Quality Gate Result'
