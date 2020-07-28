@@ -1,4 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
+using PCLAppConfig;
+using PCLAppConfig.FileSystemStream;
+using Xamarin.Forms;
 
 
 namespace MoneyFox
@@ -7,7 +12,7 @@ namespace MoneyFox
     {
         public App()
         {
-            Device.SetFlags(new string[] {
+            Xamarin.Forms.Device.SetFlags(new string[] {
                 "AppTheme_Experimental",
                 "SwipeView_Experimental"
             });
@@ -27,6 +32,13 @@ namespace MoneyFox
 
         protected override void OnStart()
         {
+            ConfigurationManager.Initialise(PortableStream.Current);
+            var iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
+            var androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
+
+            AppCenter.Start($"android={androidAppCenterSecret};" +
+                            $"ios={iosAppCenterSecret}",
+                            typeof(Analytics), typeof(Crashes));
         }
 
         protected override void OnSleep()

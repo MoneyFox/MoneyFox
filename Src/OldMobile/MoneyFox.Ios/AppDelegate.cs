@@ -18,7 +18,7 @@ using Xamarin.Forms.Platform.iOS;
 using XF.Material.iOS;
 using LogLevel = NLog.LogLevel;
 
-#if !DEBUG
+#if DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -78,12 +78,14 @@ namespace MoneyFox.iOS
                           };
             var debugTarget = new DebugTarget("console");
 
-#if !DEBUG
+#if DEBUG
             // Configure AppCenter
             var appCenterTarget = new AppCenterTarget("appcenter")
             {
                 AppSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"]
             };
+            AppCenter.Start("3893339f-4e2d-40a9-b415-46ce59c23a8f",
+                               typeof(Analytics), typeof(Crashes));
 
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
 #endif
