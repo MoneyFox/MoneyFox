@@ -9,7 +9,7 @@ pr:
 jobs:
 
 - job: BuildiOS
-  displayName: "Build iOS"
+  displayName: "Run Tests MacOS and Build iOS"
   pool:
     vmImage: 'macos-latest'
   steps:
