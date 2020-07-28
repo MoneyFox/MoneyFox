@@ -45,7 +45,7 @@
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
 
-    <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}" FlyoutIcon="ic_dashboard_black">
+    <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}" FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
         <Tab>
             <ShellContent>
                 <dashboard:DashboardPage />
