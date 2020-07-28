@@ -826,6 +826,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EditPayment.
+        /// </summary>
+        public static string EditPaymentTitle {
+            get {
+                return ResourceManager.GetString("EditPaymentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit Expense.
         /// </summary>
         public static string EditSpendingTitle {

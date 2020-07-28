@@ -3,11 +3,35 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:payments="clr-namespace:MoneyFox.Views.Payments"
+             xmlns:extensions="clr-namespace:MoneyFox.Extensions"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Payments.EditPaymentPage">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout Padding="15">
 
-        </StackLayout>
+                <Label FontAttributes="Bold"
+                       FontFamily="Product"
+                       FontSize="22"
+                       Text="{x:Static resources:Strings.EditPaymentTitle}"
+                       VerticalOptions="Center" />
+
+                <payments:ModifyPaymentContentView />
+
+                <Label Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding SelectedAccount.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+
+                <Label Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding SelectedAccount.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+
+                <Button x:Name="DeleteAccountButton"
+                    Style="{StaticResource WarningButton}"
+                    Margin="0,12,0,0"
+                    Command="{Binding DeleteCommand}"
+                    Text="{x:Static resources:Strings.DeleteLabel}" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
