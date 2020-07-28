@@ -315,6 +315,14 @@
     </Style>
 
     <!-- Picker -->
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+    </Style>
+
+    <!-- Picker -->
+    <Style TargetType="DatePicker">
+        <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
+    </Style>
 
     <!-- Switch -->
     <Style TargetType="Switch">
