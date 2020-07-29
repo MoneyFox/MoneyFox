@@ -78,7 +78,11 @@ steps:
   displayName: 'Run Tests'
   inputs:
     command: 'test'
-    projects: '**/*.Tests.csproj'
+    projects: |
+      **/MoneyFox.Application.Tests.csproj
+      **/MoneyFox.Domain.Tests.csproj
+      **/MoneyFox.Persistence.Tests.csproj
+      **/MoneyFox.Presentation.Tests.csproj
     arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
 - task: XamariniOS@2
