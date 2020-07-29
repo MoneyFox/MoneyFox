@@ -70,7 +70,7 @@ jobs:
       $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
       $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
       "Analyse '$($_.Name)' with output '$outfile'..."
-      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.1\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
       }
     
     displayName: 'Convert Converage to Coveragexml'
