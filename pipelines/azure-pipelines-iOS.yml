@@ -78,12 +78,7 @@ steps:
   displayName: 'Run Tests'
   inputs:
     command: 'test'
-    projects: |
-      **/MoneyFox.Application.Tests.csproj
-      **/MoneyFox.Domain.Tests.csproj
-      **/MoneyFox.Persistence.Tests.csproj
-      **/MoneyFox.Presentation.Tests.csproj
-    arguments: '--configuration $(BuildConfiguration)'
+    projects: '**/*.Tests.csproj'
   enabled: false
 
 - task: XamariniOS@2
