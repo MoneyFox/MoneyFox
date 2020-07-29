@@ -84,6 +84,7 @@ steps:
       **/MoneyFox.Persistence.Tests.csproj
       **/MoneyFox.Presentation.Tests.csproj
     arguments: '--configuration $(BuildConfiguration)'
+  enabled: false
 
 - task: XamariniOS@2
   displayName: 'Build Xamarin.iOS '
