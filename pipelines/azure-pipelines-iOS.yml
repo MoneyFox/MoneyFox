@@ -51,11 +51,10 @@ steps:
   inputs:
     certSecureFile: 'Apple Distribution MoneyFox 2020.p12'
     certPwd: '$(P12password)'
-    signingIdentity: ApplySigningIdentity
+    keychain: temp
 
 - task: InstallAppleProvisioningProfile@1
   displayName: 'Install an Apple provisioning profile'
-  name: 'ApplyDistributionProfile'
   inputs:
     provProfileSecureFile: 'MoneyFox_Distribution_2020.mobileprovision'
 
@@ -78,13 +77,8 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Run Tests'
   inputs:
-    command: test
-    projects: |
-     MoneyFox.Application.Tests
-     MoneyFox.Domain.Tests
-     MoneyFox.Persistence.Tests
-     MoneyFox.Presentation.Tests
-     MoneyFox.Ui.Shared.Tests
+    command: 'test'
+    projects: '**/*.Tests.csproj'
     arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
 - task: XamariniOS@2
@@ -92,8 +86,8 @@ steps:
   inputs:
     solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
     configuration: $(BuildConfiguration)
-    signingIdentity: '$(Parameters.iosSigningIdentity)'
-    signingProvisioningProfileID: $(ApplyDistributionProfile.provProfileUuid)
+    signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
+    signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
