@@ -87,6 +87,8 @@ jobs:
     inputs:
       solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
       configuration: '$(BuildConfiguration)'
+      signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
+      signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
   
   - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
