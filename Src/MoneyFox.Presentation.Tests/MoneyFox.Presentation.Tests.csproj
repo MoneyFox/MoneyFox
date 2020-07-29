@@ -4,18 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <LangVersion>preview</LangVersion>
     <IsPackable>false</IsPackable>
-    <Configurations>Debug;Release</Configurations>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="ViewModels\PaymentListViewActionViewModelTests.cs" />
-    <Compile Remove="ViewModels\PaymentListViewModelTests.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.3" />
     <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
-    <PackageReference Include="Microsoft.CodeCoverage" Version="16.6.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.6.1" />
     <PackageReference Include="Moq" Version="4.14.5" />
     <PackageReference Include="NLog" Version="4.7.2" />
