@@ -17,7 +17,7 @@ jobs:
     displayName: 'Use .Net Core sdk 3.1.101'
     inputs:
       packageType: 'sdk'
-      version: '2.x'
+      version: '2.1.x'
 
   - task: UseDotNet@2
     displayName: 'Use .Net Core sdk 3.1.101'
@@ -63,11 +63,8 @@ jobs:
     inputs:
       command: 'test'
       projects: |
-        MoneyFox.Application.Tests
-        MoneyFox.Domain.Tests
-        MoneyFox.Persistence.Tests
-        MoneyFox.Presentation.Tests
-        MoneyFox.Ui.Shared.Tests
+        **/*.Tests.csproj
+        !**/MoneyFox.Presentation.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
   - powershell: |
@@ -75,7 +72,7 @@ jobs:
       $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
       $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
       "Analyse '$($_.Name)' with output '$outfile'..."
-      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.1\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
       }
     
     displayName: 'Convert Converage to Coveragexml'
@@ -92,6 +89,8 @@ jobs:
     inputs:
       solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
       configuration: '$(BuildConfiguration)'
+      signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
+      signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
   
   - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
@@ -191,12 +190,7 @@ jobs:
     displayName: 'Run Tests'
     inputs:
       command: test
-      projects: |
-        MoneyFox.Application.Tests
-        MoneyFox.Domain.Tests
-        MoneyFox.Persistence.Tests
-        MoneyFox.Presentation.Tests
-        MoneyFox.Ui.Shared.Tests
+      projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
   - powershell: |
@@ -204,9 +198,8 @@ jobs:
       $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
       $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
       "Analyse '$($_.Name)' with output '$outfile'..."
-      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.1\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
       }
-    
     displayName: 'Convert Converage to Coveragexml'
 
   - task: CopyFiles@2

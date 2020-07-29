@@ -76,22 +76,16 @@ jobs:
     displayName: 'Run Tests'
     inputs:
       command: test
-      projects: |
-        MoneyFox.Application.Tests
-        MoneyFox.Domain.Tests
-        MoneyFox.Persistence.Tests
-        MoneyFox.Presentation.Tests
-        MoneyFox.Ui.Shared.Tests
-        arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+      projects: '**/*.Tests.csproj'
+      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
   - powershell: |
       Get-ChildItem -Path $(Agent.TempDirectory) -Include "*.coverage" -File -Recurse | % {
       $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
       $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
       "Analyse '$($_.Name)' with output '$outfile'..."
-      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
+      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.1\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
       }
-    
     displayName: 'Convert Converage to Coveragexml'
 
   - task: CopyFiles@2
@@ -127,7 +121,6 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
-    condition: succeededOrFailed()
 
   - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
