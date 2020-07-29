@@ -33,13 +33,8 @@ steps:
 - task: DotNetCoreCLI@2
   displayName: 'Run Tests'
   inputs:
-    command: test
-    projects: |
-     MoneyFox.Application.Tests
-     MoneyFox.Domain.Tests
-     MoneyFox.Persistence.Tests
-     MoneyFox.Presentation.Tests
-     MoneyFox.Ui.Shared.Tests
+    command: 'test'
+    projects: '**/*.Tests.csproj'
     arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
 - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
