@@ -78,7 +78,9 @@ steps:
   displayName: 'Run Tests'
   inputs:
     command: 'test'
-    projects: '**/*.Tests.csproj'
+    projects: |
+      **/*.Tests.csproj
+      !**/MoneyFox.Presentation.Tests.csproj
   enabled: false
 
 - task: XamariniOS@2
