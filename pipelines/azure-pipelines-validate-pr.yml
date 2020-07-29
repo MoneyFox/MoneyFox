@@ -62,12 +62,7 @@ jobs:
     displayName: 'Run Tests'
     inputs:
       command: 'test'
-      projects: |
-        MoneyFox.Application.Tests
-        MoneyFox.Domain.Tests
-        MoneyFox.Persistence.Tests
-        MoneyFox.Presentation.Tests
-        MoneyFox.Ui.Shared.Tests
+      projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration)'
 
   - powershell: |
@@ -191,12 +186,7 @@ jobs:
     displayName: 'Run Tests'
     inputs:
       command: test
-      projects: |
-        MoneyFox.Application.Tests
-        MoneyFox.Domain.Tests
-        MoneyFox.Persistence.Tests
-        MoneyFox.Presentation.Tests
-        MoneyFox.Ui.Shared.Tests
+      projects: '**/*.Tests.csproj'
       arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
   - powershell: |
