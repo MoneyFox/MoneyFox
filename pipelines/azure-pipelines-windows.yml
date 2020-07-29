@@ -86,7 +86,6 @@ jobs:
       "Analyse '$($_.Name)' with output '$outfile'..."
       .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.0\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
       }
-    
     displayName: 'Convert Converage to Coveragexml'
 
   - task: CopyFiles@2
