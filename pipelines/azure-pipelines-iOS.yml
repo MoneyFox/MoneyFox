@@ -83,7 +83,7 @@ steps:
       **/MoneyFox.Domain.Tests.csproj
       **/MoneyFox.Persistence.Tests.csproj
       **/MoneyFox.Presentation.Tests.csproj
-    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: XamariniOS@2
   displayName: 'Build Xamarin.iOS '
