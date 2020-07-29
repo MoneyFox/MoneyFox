@@ -62,7 +62,11 @@ jobs:
     displayName: 'Run Tests'
     inputs:
       command: 'test'
-      projects: '**/*.Tests.csproj'
+      projects: |
+        **/*MoneyFox.Application.Tests.csproj
+        **/*MoneyFox.Domain.Tests.csproj
+        **/*MoneyFox.Persistence.Tests.csproj
+        **/*MoneyFox.Ui.Shared.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
   - powershell: |
