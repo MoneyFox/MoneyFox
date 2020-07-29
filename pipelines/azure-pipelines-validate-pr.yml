@@ -63,7 +63,8 @@ jobs:
     inputs:
       command: 'test'
       projects: |
-        **/*MoneyFox.Application.Tests.csproj
+        **/*.Tests.csproj
+        !**/MoneyFox.Presentation.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
   - powershell: |
