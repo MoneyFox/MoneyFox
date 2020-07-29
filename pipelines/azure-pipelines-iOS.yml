@@ -91,9 +91,9 @@ steps:
   displayName: 'Build Xamarin.iOS '
   inputs:
     solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
-    configuration: '$(BuildConfiguration)'
-    signingIdentity: '$(Parameters.iosSigningIdentity)'
-    signingProvisioningProfileID: '$(Parameters.provProfileUuid)'
+    configuration: $(BuildConfiguration)
+    signingIdentity: $(ApplySigningIdentity)
+    signingProvisioningProfileID: $(ApplyDistributionProfile.provProfileUuid)
 
 - task: CopyFiles@2
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
