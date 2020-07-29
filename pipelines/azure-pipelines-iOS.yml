@@ -92,7 +92,7 @@ steps:
   inputs:
     solutionFile: Src/MoneyFox.Ios/MoneyFox.iOS.csproj
     configuration: $(BuildConfiguration)
-    signingIdentity: $(ApplySigningIdentity)
+    signingIdentity: '$(Parameters.iosSigningIdentity)'
     signingProvisioningProfileID: $(ApplyDistributionProfile.provProfileUuid)
 
 - task: CopyFiles@2
