@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
@@ -8,7 +9,6 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -65,7 +65,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
                 .Handle(new DeleteAccountByIdCommand(account.Id), default);
 
             // Assert
-            (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).ShouldBeNull();
+            (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().BeNull();
         }
 
         [Fact]

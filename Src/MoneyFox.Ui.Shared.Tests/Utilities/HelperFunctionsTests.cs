@@ -1,5 +1,5 @@
-﻿using MoneyFox.Ui.Shared.Utilities;
-using Should;
+﻿using FluentAssertions;
+using MoneyFox.Ui.Shared.Utilities;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
@@ -14,7 +14,7 @@ namespace MoneyFox.Ui.Shared.Tests.Utilities
         [Fact]
         public void GetEndOfMonth_NoneInput_LastDayOfMonth()
         {
-            HelperFunctions.GetEndOfMonth().ShouldBeType(typeof(DateTime));
+            HelperFunctions.GetEndOfMonth().GetType().Should().Be(typeof(DateTime));
         }
 
         [Theory]
@@ -23,7 +23,7 @@ namespace MoneyFox.Ui.Shared.Tests.Utilities
         [InlineData(6000000.4567)]
         public void FormatLargeNumbers_ValidString(decimal amount)
         {
-            HelperFunctions.FormatLargeNumbers(amount).ShouldEqual(amount.ToString("N2"));
+            HelperFunctions.FormatLargeNumbers(amount).Should().Be(amount.ToString("N2"));
         }
 
         [Theory]
@@ -45,7 +45,7 @@ namespace MoneyFox.Ui.Shared.Tests.Utilities
             Thread.CurrentThread.CurrentCulture = new CultureInfo(culture, false);
 
             // Act / Assert
-            HelperFunctions.RemoveGroupingSeparators(amount).ShouldEqual(expectedResult);
+            HelperFunctions.RemoveGroupingSeparators(amount).Should().Be(expectedResult);
         }
     }
 }
