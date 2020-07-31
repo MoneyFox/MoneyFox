@@ -1,8 +1,6 @@
 ﻿using Autofac;
 using Foundation;
 using Microsoft.Identity.Client;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Constants;
 using MoneyFox.Presentation;
 using NLog;
 using NLog.Config;
@@ -36,7 +34,7 @@ namespace MoneyFox.iOS
         /// <inheritdoc/>
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
         {
-            ExecutingPlatform.Current = AppPlatform.iOS;
+            //ExecutingPlatform.Current = AppPlatform.iOS;
             ConfigurationManager.Initialise(PortableStream.Current);
             InitLogger();
 
@@ -72,7 +70,7 @@ namespace MoneyFox.iOS
 
             var logfile = new FileTarget("logfile")
                           {
-                              FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
+                              //FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
                               AutoFlush = true,
                               ArchiveEvery = FileArchivePeriod.Month
                           };

@@ -67,12 +67,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
-    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
-    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <EmbeddedResource Include="Dialogs\FilterPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -94,6 +88,13 @@
     <EmbeddedResource Include="Dialogs\AddAccountAndPaymentPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MoneyFox.Application\MoneyFox.Application.csproj" />
+    <ProjectReference Include="..\..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
+    <ProjectReference Include="..\..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
+    <ProjectReference Include="..\..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
