@@ -46,18 +46,6 @@ jobs:
     inputs:
         restoreSolution: '**/MoneyFox.Mobile.sln'
 
-  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
-    displayName: 'Prepare analysis on SonarCloud'
-    inputs:
-      SonarCloud: 'Money Fox Sonar Cloud'
-      organization: moneyfox
-      projectKey: 'moneyfox-project'
-      extraProperties: |
-        # Additional properties that will be passed to the scanner, 
-        # Put one key=value per line, example:
-        # sonar.exclusions=**/*.bin
-        sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
-
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
@@ -67,23 +55,6 @@ jobs:
         !**/MoneyFox.Presentation.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
-  - powershell: |
-      Get-ChildItem -Path $(Agent.TempDirectory) -Include "*.coverage" -File -Recurse | % {
-      $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
-      $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
-      "Analyse '$($_.Name)' with output '$outfile'..."
-      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.1\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
-      }
-    
-    displayName: 'Convert Converage to Coveragexml'
-
-  - task: CopyFiles@2
-    displayName: 'Copy coveragexml to staging'
-    inputs:
-      SourceFolder: '$(Agent.TempDirectory)'
-      Contents: '**\*.coveragexml'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
   - task: XamariniOS@2
     displayName: 'Build Xamarin.iOS '
     inputs:
@@ -91,12 +62,7 @@ jobs:
       configuration: '$(BuildConfiguration)'
       signingIdentity: $(APPLE_CERTIFICATE_SIGNING_IDENTITY)
       signingProvisioningProfileID: $(APPLE_PROV_PROFILE_UUID)
-  
-  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
-    displayName: 'Run Code Analysis'
 
-  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
-    displayName: 'Publish Quality Gate Result'
 
 - job: BuildAndroid
   displayName: "Build Android"
