@@ -43,6 +43,7 @@ namespace MoneyFox
         public static string PaymentListRoute => $"Payment/{nameof(PaymentListPage)}";
         public static string AddPaymentRoute => $"Payment/{nameof(AddPaymentPage)}";
         public static string CategoryListRoute => $"Category/{nameof(CategoryListPage)}";
+        public static string SelectCategoryRoute => $"Category/{nameof(SelectedCategoryPage)}";
         public static string AddCategoryRoute => $"Category/{nameof(AddCategoryPage)}";
 
         // ViewModels
@@ -54,6 +55,7 @@ namespace MoneyFox
         public static AddPaymentViewModel AddPaymentViewModel => ServiceLocator.Current.GetInstance<AddPaymentViewModel>();
         public static EditPaymentViewModel EditPaymentViewModel => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
         public static CategoryListViewModel CategoryListViewModel => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        public static SelectCategoryViewModel SelectCategoryViewModel => ServiceLocator.Current.GetInstance<SelectCategoryViewModel>();
         public static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
         public static EditCategoryViewModel EditCategoryViewModel => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
     }

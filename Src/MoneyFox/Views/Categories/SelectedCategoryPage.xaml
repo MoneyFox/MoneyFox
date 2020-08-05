@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:category="clr-namespace:MoneyFox.ViewModels.Category"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             mc:Ignorable="d"
+             x:Class="MoneyFox.Views.Categories.SelectedCategoryPage">
+
+    <d:ContentPage.BindingContext>
+        <category:SelectCategoryViewModel />
+    </d:ContentPage.BindingContext>
+
+    <Shell.TitleView>
+        <Grid>
+            <Button
+                Style="{StaticResource PrimaryButton}"
+                Margin="0,0,5,0"
+                Padding="0"
+                BorderWidth="0"
+                FontFamily="FontAwesome"
+                FontSize="24"
+                HeightRequest="44"
+                WidthRequest="66"
+                HorizontalOptions="End"
+                Text="{x:Static theme:IconFont.Plus}"
+                TextColor="White"
+                VerticalOptions="Center"
+                Command="{Binding GoToAddCategoryCommand}"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <Grid IsClippedToBounds="False"
+              RowDefinitions="25, *">
+            <Label FontAttributes="Bold"
+                   FontFamily="Product"
+                   Margin="15,0,15,0"
+                   FontSize="22"
+                   Text="{x:Static resources:Strings.CategoriesTitle}"
+                   VerticalOptions="Center" />
+
+            <CollectionView Grid.Row="1"
+                            x:Name="CategoryCollectionView"
+                            IsGrouped="true"
+                            ItemsSource="{Binding Categories}" >
+                <CollectionView.EmptyViewTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Label Margin="0,0,6,2"
+                                   FontFamily="Product"
+                                   FontSize="15"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"
+                                   Text="{x:Static resources:Strings.NoCategoriesMessage}"
+                                   VerticalTextAlignment="End" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.EmptyViewTemplate>
+
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label FontFamily="Product"
+                               FontSize="18"
+                               Margin="15"
+                               Padding="15,0,0,0"
+                               Text="{Binding Key}"
+                               VerticalTextAlignment="End" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="category:CategoryViewModel">
+                        <Grid Padding="15, 12, 15, 0">
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                        CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
+                            <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                                 Light={StaticResource CardBackgroundLight}}"
+                                               CornerRadius="10"
+                                               HeightRequest="40"
+                                               HorizontalOptions="FillAndExpand">
+
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow />
+                                </yummy:PancakeView.Shadow>
+
+                                <Grid>
+                                    <Label Style="{StaticResource TextHead}"
+                                            Margin="10,0,10,0"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Start"
+                                            Text="{Binding Name}" />
+                                </Grid>
+                            </yummy:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
