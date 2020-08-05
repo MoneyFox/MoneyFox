@@ -33,6 +33,8 @@ namespace MoneyFox.iOS
             InitLogger();
             RegisterServices();
 
+            Rg.Plugins.Popup.Popup.Init();
+
             global::Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
             global::Xamarin.Forms.Forms.Init();
             global::Xamarin.Forms.FormsMaterial.Init();
