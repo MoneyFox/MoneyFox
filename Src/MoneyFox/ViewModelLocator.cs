@@ -8,7 +8,7 @@ using MoneyFox.ViewModels.Category;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.ViewModels.Payments;
 using MoneyFox.Views.Accounts;
-using MoneyFox.Views.Category;
+using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
 
@@ -44,7 +44,6 @@ namespace MoneyFox
         public static string AddPaymentRoute => $"Payment/{nameof(AddPaymentPage)}";
         public static string CategoryListRoute => $"Category/{nameof(CategoryListPage)}";
         public static string AddCategoryRoute => $"Category/{nameof(AddCategoryRoute)}";
-
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();

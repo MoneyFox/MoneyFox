@@ -5,7 +5,9 @@
        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
        xmlns:dashboard="clr-namespace:MoneyFox.Views.Dashboard"
-       xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application" xmlns:category="clr-namespace:MoneyFox.Views.Category" xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
+       xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+       xmlns:category="clr-namespace:MoneyFox.Views.Categories"
+       xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
        Title="MoneyFox"
        Visual="Material"
        mc:Ignorable="d">

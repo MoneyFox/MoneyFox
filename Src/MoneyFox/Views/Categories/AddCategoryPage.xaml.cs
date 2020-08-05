@@ -2,7 +2,7 @@
 using MoneyFox.ViewModels.Category;
 using Xamarin.Forms;
 
-namespace MoneyFox.Views.Category
+namespace MoneyFox.Views.Categories
 {
     public partial class AddCategoryPage : ContentPage
     {

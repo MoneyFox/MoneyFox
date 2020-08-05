@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
-using MoneyFox.Views.Category;
+using MoneyFox.Views.Categories;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 

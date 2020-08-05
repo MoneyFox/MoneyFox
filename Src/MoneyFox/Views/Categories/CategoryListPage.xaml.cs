@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace MoneyFox.Views.Category
+namespace MoneyFox.Views.Categories
 {
     public partial class CategoryListPage : ContentPage
     {

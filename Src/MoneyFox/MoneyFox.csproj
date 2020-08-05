@@ -68,16 +68,16 @@
     <EmbeddedResource Update="Views\Accounts\ModifyAccountContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Category\AddCategoryPage.xaml">
+    <EmbeddedResource Update="Views\Categories\AddCategoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Category\CategoryListPage.xaml">
+    <EmbeddedResource Update="Views\Categories\CategoryListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Category\EditCategoryPage.xaml">
+    <EmbeddedResource Update="Views\Categories\EditCategoryPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Category\ModifyCategoryContentView.xaml">
+    <EmbeddedResource Update="Views\Categories\ModifyCategoryContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Dashboard\DashboardPage.xaml">

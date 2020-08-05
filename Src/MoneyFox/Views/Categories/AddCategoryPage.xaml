@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:category="clr-namespace:MoneyFox.Views.Category"
+             xmlns:category="clr-namespace:MoneyFox.Views.Categories"
              mc:Ignorable="d"
-             x:Class="MoneyFox.Views.Category.AddCategoryPage">
+             x:Class="MoneyFox.Views.Categories.AddCategoryPage">
     <ContentPage.Content>
         <ScrollView>
             <category:ModifyCategoryContentView />

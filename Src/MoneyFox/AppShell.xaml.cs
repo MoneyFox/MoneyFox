@@ -1,6 +1,6 @@
 ﻿using MoneyFox.ViewModels.Budget;
 using MoneyFox.Views.Accounts;
-using MoneyFox.Views.Category;
+using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
 using Xamarin.Forms;
