@@ -75,30 +75,40 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="categories:CategoryViewModel">
                         <Grid Padding="15, 12, 15, 0">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
-                                        CommandParameter="{Binding .}" />
-                            </Grid.GestureRecognizers>
+                            <SwipeView>
+                                <SwipeView.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                            Command="{Binding BindingContext.SelectCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                            CommandParameter="{Binding .}" />
+                                </SwipeView.GestureRecognizers>
 
-                            <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
+                                                   Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.GoToEditCategoryCommand}"
+                                                   CommandParameter="{Binding .}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
                                                CornerRadius="10"
                                                HeightRequest="40"
                                                HorizontalOptions="FillAndExpand">
 
-                                <yummy:PancakeView.Shadow>
-                                    <yummy:DropShadow />
-                                </yummy:PancakeView.Shadow>
+                                    <yummy:PancakeView.Shadow>
+                                        <yummy:DropShadow />
+                                    </yummy:PancakeView.Shadow>
 
-                                <Grid>
-                                    <Label Style="{StaticResource TextHead}"
+                                    <Grid>
+                                        <Label Style="{StaticResource TextHead}"
                                             Margin="10,0,10,0"
                                             VerticalTextAlignment="Center"
                                             HorizontalTextAlignment="Start"
                                             Text="{Binding Name}" />
-                                </Grid>
-                            </yummy:PancakeView>
+                                    </Grid>
+                                </yummy:PancakeView>
+                            </SwipeView>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
