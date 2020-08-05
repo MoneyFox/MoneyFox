@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Foundation;
+using Microsoft.Identity.Client;
 using MoneyFox.Common;
 using NLog;
 using NLog.Config;
@@ -7,6 +8,8 @@ using NLog.Targets;
 using System.IO;
 using UIKit;
 using Xamarin.Essentials;
+using Logger = NLog.Logger;
+using LogLevel = NLog.LogLevel;
 
 namespace MoneyFox.iOS
 {
@@ -37,6 +40,13 @@ namespace MoneyFox.iOS
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
+        }
+
+        // Needed for auth
+        public override bool OpenUrl(UIApplication app, NSUrl url, NSDictionary options)
+        {
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(url);
+            return true;
         }
 
         private void RegisterServices()

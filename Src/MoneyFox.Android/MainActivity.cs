@@ -3,6 +3,8 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms.Platform.Android;
+using Microsoft.Identity.Client;
+using Android.Content;
 
 namespace MoneyFox.Droid
 {
@@ -23,6 +25,14 @@ namespace MoneyFox.Droid
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+
+        // Needed for auth, so that MSAL can intercept the response from the browser
+        protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
+        {
+            base.OnActivityResult(requestCode, resultCode, data);
+            AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
