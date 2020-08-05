@@ -9,7 +9,7 @@ namespace MoneyFox.ViewModels.Accounts
 
         private async Task SaveAccountBaseAsync()
         {
-
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

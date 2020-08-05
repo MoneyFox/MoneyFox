@@ -13,6 +13,7 @@ namespace MoneyFox.ViewModels.Payments
 
         private async Task SavePaymentBaseAsync()
         {
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

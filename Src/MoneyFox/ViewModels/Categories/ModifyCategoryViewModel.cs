@@ -9,7 +9,7 @@ namespace MoneyFox.ViewModels.Categories
 
         private async Task SaveCategoryBaseAsync()
         {
-
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }
