@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Domain;
 using MoneyFox.ViewModels.Accounts;
-using MoneyFox.ViewModels.Category;
+using MoneyFox.ViewModels.Categories;
 using System;
 
 namespace MoneyFox.ViewModels.Payments

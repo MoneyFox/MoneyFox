@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using System;
 
-namespace MoneyFox.ViewModels.Category
+namespace MoneyFox.ViewModels.Categories
 {
     public class CategoryViewModel : ViewModelBase
     {

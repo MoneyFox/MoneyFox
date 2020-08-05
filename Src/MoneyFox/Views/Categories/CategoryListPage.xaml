@@ -3,15 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:category="clr-namespace:MoneyFox.ViewModels.Category"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              xmlns:theme="clr-namespace:MoneyFox"
+             xmlns:Categories="clr-namespace:MoneyFox.ViewModels.Categories"
              x:Class="MoneyFox.Views.Categories.CategoryListPage">
 
     <d:ContentPage.BindingContext>
-        <category:CategoryListViewModel />
+        <Categories:CategoryListViewModel />
     </d:ContentPage.BindingContext>
 
     <Shell.TitleView>
@@ -73,7 +73,7 @@
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="category:CategoryViewModel">
+                    <DataTemplate x:DataType="Categories:CategoryViewModel">
                         <Grid Padding="15, 12, 15, 0">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer

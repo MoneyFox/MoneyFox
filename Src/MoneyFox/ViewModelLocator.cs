@@ -4,7 +4,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Budget;
-using MoneyFox.ViewModels.Category;
+using MoneyFox.ViewModels.Categories;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.ViewModels.Payments;
 using MoneyFox.Views.Accounts;

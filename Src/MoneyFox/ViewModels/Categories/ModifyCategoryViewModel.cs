@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System.Threading.Tasks;
 
-namespace MoneyFox.ViewModels.Category
+namespace MoneyFox.ViewModels.Categories
 {
     public class ModifyCategoryViewModel : BaseViewModel
     {

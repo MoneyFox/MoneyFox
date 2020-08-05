@@ -5,7 +5,7 @@ using MoneyFox.Views.Categories;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
-namespace MoneyFox.ViewModels.Category
+namespace MoneyFox.ViewModels.Categories
 {
     public class CategoryListViewModel : BaseViewModel
     {

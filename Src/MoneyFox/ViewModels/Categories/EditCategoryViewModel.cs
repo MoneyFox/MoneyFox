@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.ViewModels.Category
+﻿namespace MoneyFox.ViewModels.Categories
 {
     public class EditCategoryViewModel : ModifyCategoryViewModel
     {

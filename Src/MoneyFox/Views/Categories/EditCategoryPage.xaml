@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:extensions="clr-namespace:MoneyFox.Extensions"
-             xmlns:category="clr-namespace:MoneyFox.Views.Categories"
+             xmlns:Categories="clr-namespace:MoneyFox.Views.Categories"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Categories.EditCategoryPage">
     <ContentPage.Content>
@@ -18,7 +18,7 @@
                        Text="{Binding Title}"
                        VerticalOptions="Center" />
 
-                <category:ModifyCategoryContentView />
+                <Categories:ModifyCategoryContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
                        Text="{Binding SelectedCategory.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />

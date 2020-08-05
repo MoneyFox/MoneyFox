@@ -4,7 +4,7 @@ using MoneyFox.Domain;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.ViewModels.Accounts;
-using MoneyFox.ViewModels.Category;
+using MoneyFox.ViewModels.Categories;
 using MoneyFox.Views.Payments;
 using System;
 using System.Collections.ObjectModel;
