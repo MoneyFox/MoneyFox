@@ -118,7 +118,8 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                                                    request.IsEndless.HasValue && request.IsEndless.Value
                                                    ? null
                                                    : request.EndDate,
-                                                   existingPayment.TargetAccount);
+                                                   existingPayment.TargetAccount,
+                                                   existingPayment.Category);
                     }
                     else
                     {
