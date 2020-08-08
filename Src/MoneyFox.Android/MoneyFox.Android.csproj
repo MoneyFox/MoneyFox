@@ -9,6 +9,8 @@
     <OutputType>Library</OutputType>
     <RootNamespace>MoneyFox.Droid</RootNamespace>
     <AssemblyName>MoneyFox.Android</AssemblyName>
+    <LangVersion>8.0</LangVersion>
+    <nullable>enable</nullable>
     <Deterministic>True</Deterministic>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
