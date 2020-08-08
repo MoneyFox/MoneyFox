@@ -1,6 +1,7 @@
-﻿using AutoMapper;
+﻿
+using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Categories.Command.UpdateCategory;
+using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace MoneyFox.ViewModels.Categories
 
         protected override async Task SaveCategoryAsync()
         {
-            await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
+            await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
         }
     }
 }
