@@ -9,6 +9,7 @@ namespace MoneyFox.Droid
         {
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
+            builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
             builder.Register(c => new FileStoreIoBase(Android.App.Application.Context.FilesDir.Path)).AsImplementedInterfaces();
 
             builder.RegisterModule<MoneyFoxModule>();
