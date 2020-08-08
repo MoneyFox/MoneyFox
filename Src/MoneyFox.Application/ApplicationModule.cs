@@ -1,5 +1,8 @@
 ﻿using Autofac;
 using MediatR;
+using MediatR.Pipeline;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using System;
 using System.Reflection;
@@ -11,9 +14,7 @@ namespace MoneyFox.Application
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<Mediator>()
-                   .As<IMediator>()
-                   .InstancePerLifetimeScope();
+            RegisterMediatr(builder);
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Manager", StringComparison.CurrentCultureIgnoreCase))
@@ -26,15 +27,16 @@ namespace MoneyFox.Application
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Facade", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
+        }
 
-            // request & notification handlers
+        private void RegisterMediatr(ContainerBuilder builder)
+        {
+            builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
             builder.Register<ServiceFactory>(context =>
-                                             {
-                                                 var c = context.Resolve<IComponentContext>();
-                                                 return t => c.Resolve(t);
-                                             });
-
-            builder.RegisterAssemblyTypes(typeof(GetCashFlowQuery).GetTypeInfo().Assembly).AsImplementedInterfaces();
+            {
+                var c = context.Resolve<IComponentContext>();
+                return t => c.Resolve(t);
+            });
         }
     }
 }

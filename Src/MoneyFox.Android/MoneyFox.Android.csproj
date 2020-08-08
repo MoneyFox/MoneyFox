@@ -106,6 +106,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="SplashScreen.cs" />
+    <Compile Include="Src\GraphClientFactory.cs" />
+    <Compile Include="Src\PlayStoreOperations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.sonarlint\moneyfox-projectcsharp.ruleset">
@@ -126,6 +128,10 @@
     <AndroidResource Include="Resources\values\colors.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
+      <Project>{9D569165-5277-4B92-A621-6710C487F51B}</Project>
+      <Name>MoneyFox.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
       <Project>{BB497370-580A-4972-A29C-DC05ABAE9A0C}</Project>
       <Name>MoneyFox</Name>
