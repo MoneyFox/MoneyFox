@@ -3,6 +3,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Services;
 using NLog;
 using System;
 using System.Collections.ObjectModel;

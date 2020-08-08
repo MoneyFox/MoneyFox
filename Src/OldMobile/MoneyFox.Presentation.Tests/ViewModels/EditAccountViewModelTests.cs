@@ -5,6 +5,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Services;
 using Moq;
 using Should;
 using System.Diagnostics.CodeAnalysis;

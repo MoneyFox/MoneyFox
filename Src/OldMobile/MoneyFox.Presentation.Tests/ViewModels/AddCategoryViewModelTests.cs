@@ -2,6 +2,7 @@
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Services;
 using Moq;
 using Should;
 using System.Diagnostics.CodeAnalysis;

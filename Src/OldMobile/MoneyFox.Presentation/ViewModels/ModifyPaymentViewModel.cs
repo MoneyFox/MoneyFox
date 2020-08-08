@@ -8,7 +8,9 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Messages;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Services;
 using MoneyFox.Ui.Shared.Commands;
 using NLog;
 using System.Collections.Generic;
@@ -317,7 +319,7 @@ namespace MoneyFox.Presentation.ViewModels
             if(SelectedPayment == null || message == null)
                 return;
             SelectedPayment.Category =
-                mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.SelectedCategoryId)));
+                mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.SelectedCategory.Id)));
         }
 
         private void OpenSelectCategoryList()

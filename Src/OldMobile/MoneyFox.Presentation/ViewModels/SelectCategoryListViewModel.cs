@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
+using MoneyFox.Messages;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Services;
 
 namespace MoneyFox.Presentation.ViewModels
 {
@@ -49,7 +49,7 @@ namespace MoneyFox.Presentation.ViewModels
         /// </summary>
         protected override void ItemClick(CategoryViewModel category)
         {
-            MessengerInstance.Send(new CategorySelectedMessage(this, category.Id));
+            //MessengerInstance.Send(new CategorySelectedMessage(category));
             NavigationService.GoBackModal();
         }
     }

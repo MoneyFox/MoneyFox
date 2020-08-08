@@ -10,6 +10,7 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.Tests.Collections;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Services;
 using Moq;
 using Should;
 using System;

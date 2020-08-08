@@ -7,6 +7,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
+using MoneyFox.Services;
 using MoneyFox.Ui.Shared.Commands;
 using NLog;
 using System;

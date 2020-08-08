@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Services;
 using MoneyFox.Presentation.ViewModels;
+using MoneyFox.Services;
 using Moq;
 using Should;
 using System.Diagnostics.CodeAnalysis;
@@ -46,7 +47,7 @@ namespace MoneyFox.Presentation.Tests.ViewModels
         [Fact]
         public async Task AmountStringSetOnInit()
         {
-            // Arrange            
+            // Arrange
             var mediator = new Mock<IMediator>();
             var addAccountVm = new AddAccountViewModel(mediator.Object, null, null, null);
 
