@@ -4,11 +4,21 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Categories="clr-namespace:MoneyFox.Views.Categories"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Categories.AddCategoryPage">
     <ContentPage.Content>
         <ScrollView>
-            <Categories:ModifyCategoryContentView />
+            <StackLayout>
+
+                <Label FontAttributes="Bold"
+                       FontFamily="Product"
+                       FontSize="22"
+                       Text="{x:Static resources:Strings.AddCategoryTitle}"
+                       VerticalOptions="Center" />
+
+                <Categories:ModifyCategoryContentView />
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -5,6 +5,7 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Common.Constants;
+using MoneyFox.AutoMapper;
 using MoneyFox.Persistence;
 using System;
 using System.Reflection;

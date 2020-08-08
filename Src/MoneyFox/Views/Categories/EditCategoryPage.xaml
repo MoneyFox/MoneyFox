@@ -15,7 +15,7 @@
                 <Label FontAttributes="Bold"
                        FontFamily="Product"
                        FontSize="22"
-                       Text="{Binding Title}"
+                       Text="{x:Static resources:Strings.EditCategoryTitle}"
                        VerticalOptions="Center" />
 
                 <Categories:ModifyCategoryContentView />
