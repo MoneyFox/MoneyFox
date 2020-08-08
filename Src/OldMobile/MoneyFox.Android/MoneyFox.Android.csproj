@@ -217,6 +217,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\MoneyFox.Application\MoneyFox.Application.csproj">
+      <Project>{4B52C736-CBCB-4DC3-8947-6CB37989CCD4}</Project>
+      <Name>MoneyFox.Application</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Presentation\MoneyFox.Presentation.csproj">
       <Project>{7b5b021f-8c4a-4024-9cc0-04018829fd66}</Project>
       <Name>MoneyFox.Presentation</Name>

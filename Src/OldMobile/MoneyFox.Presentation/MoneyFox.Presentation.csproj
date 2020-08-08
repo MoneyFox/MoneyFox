@@ -95,6 +95,7 @@
     <ProjectReference Include="..\..\MoneyFox.Domain\MoneyFox.Domain.csproj" />
     <ProjectReference Include="..\..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
     <ProjectReference Include="..\..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj" />
+    <ProjectReference Include="..\..\MoneyFox\MoneyFox.csproj" />
   </ItemGroup>
 
   <ItemGroup>
