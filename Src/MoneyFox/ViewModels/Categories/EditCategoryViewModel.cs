@@ -15,7 +15,7 @@ namespace MoneyFox.ViewModels.Categories
 
         public EditCategoryViewModel(IMediator mediator,
                                     IMapper mapper,
-                                    IDialogService dialogService) : base(mediator, mapper, dialogService)
+                                    IDialogService dialogService) : base(mediator, dialogService)
 
         {
             this.mediator = mediator;

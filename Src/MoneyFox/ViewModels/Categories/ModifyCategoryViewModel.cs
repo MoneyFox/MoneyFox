@@ -12,15 +12,12 @@ namespace MoneyFox.ViewModels.Categories
     public abstract class ModifyCategoryViewModel : BaseViewModel
     {
         private readonly IMediator mediator;
-        private readonly IMapper mapper;
         private readonly IDialogService dialogService;
 
         protected ModifyCategoryViewModel(IMediator mediator,
-                                          IMapper mapper,
                                           IDialogService dialogService)
         {
             this.mediator = mediator;
-            this.mapper = mapper;
             this.dialogService = dialogService;
         }
 
