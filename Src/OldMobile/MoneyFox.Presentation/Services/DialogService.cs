@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
+using MoneyFox.Services;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using XF.Material.Forms;

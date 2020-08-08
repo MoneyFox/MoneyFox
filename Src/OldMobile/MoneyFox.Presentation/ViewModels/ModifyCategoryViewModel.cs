@@ -3,10 +3,10 @@ using GalaSoft.MvvmLight;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Services;
+using MoneyFox.Services;
 using MoneyFox.Ui.Shared.Commands;
 using System.Threading.Tasks;
 
