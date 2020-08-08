@@ -7,6 +7,7 @@
              xmlns:extensions="clr-namespace:MoneyFox.Extensions"
              xmlns:Categories="clr-namespace:MoneyFox.Views.Categories"
              mc:Ignorable="d"
+             Visual="Material"
              x:Class="MoneyFox.Views.Categories.EditCategoryPage">
     <ContentPage.Content>
         <ScrollView>
