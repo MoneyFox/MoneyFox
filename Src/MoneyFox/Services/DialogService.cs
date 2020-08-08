@@ -28,5 +28,13 @@ namespace MoneyFox.Services
 
             await loadingDialog.DismissAsync();
         }
+
+        public async Task ShowMessageAsync(string title, string message)
+        {
+            var messageDialog = new MessageDialog(title, message);
+            await messageDialog.ShowAsync();
+        }
+
+        public Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null) => throw new System.NotImplementedException();
     }
 }

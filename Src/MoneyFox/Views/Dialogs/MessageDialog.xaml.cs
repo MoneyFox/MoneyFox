@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.Views.Dialogs
+﻿using System.Threading.Tasks;
+
+namespace MoneyFox.Views.Dialogs
 {
     public partial class MessageDialog
     {
@@ -10,7 +12,8 @@
             Message = message;
         }
 
-        public string Title { get; set; }
+        public new string Title { get; set; }
+
         public string Message { get; set; }
 
         public async Task ShowAsync()
