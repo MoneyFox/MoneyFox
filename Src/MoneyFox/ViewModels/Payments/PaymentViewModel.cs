@@ -1,11 +1,14 @@
-﻿using MoneyFox.Domain;
+﻿using AutoMapper;
+using MoneyFox.Application.Common.Interfaces.Mapping;
+using MoneyFox.Domain;
+using MoneyFox.Domain.Entities;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using System;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public class PaymentViewModel : BaseViewModel
+    public class PaymentViewModel : BaseViewModel, IHaveCustomMapping
     {
         private int id;
         private int chargedAccountId;
@@ -278,5 +281,9 @@ namespace MoneyFox.ViewModels.Payments
             }
         }
 
+        public void CreateMappings(Profile configuration)
+        {
+            configuration.CreateMap<Payment, PaymentViewModel>().ForMember(x => x.CurrentAccountId, opt => opt.Ignore()).ReverseMap();
+        }
     }
 }

@@ -1,8 +1,10 @@
-﻿using System;
+﻿using MoneyFox.Application.Common.Interfaces.Mapping;
+using MoneyFox.Domain.Entities;
+using System;
 
 namespace MoneyFox.ViewModels.Accounts
 {
-    public class AccountViewModel : BaseViewModel
+    public class AccountViewModel : BaseViewModel, IMapFrom<Account>
     {
         private int id;
         private string name;

@@ -21,6 +21,8 @@ namespace MoneyFox
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();
 
+            builder.RegisterInstance(AutoMapperFactory.Create());
+
             builder.Register(c => PublicClientApplicationBuilder
                                  .Create(ServiceConstants.MSAL_APPLICATION_ID)
                                  .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
