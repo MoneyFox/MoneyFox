@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Common;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.Views.Categories;
@@ -26,6 +27,6 @@ namespace MoneyFox.ViewModels.Categories
 
         public RelayCommand<CategoryViewModel> GoToEditCategoryCommand
             => new RelayCommand<CategoryViewModel>(async (categoryViewModel)
-                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditCategoryPage(categoryViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditCategoryPage(categoryViewModel.Id)) { BarBackgroundColor = Color.Transparent, BarTextColor = ResourceHelper.GetCurrentTextColor() }));
     }
 }
