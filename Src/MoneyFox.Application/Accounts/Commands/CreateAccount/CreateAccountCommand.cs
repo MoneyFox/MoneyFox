@@ -12,7 +12,12 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
 {
     public class CreateAccountCommand : IRequest
     {
-        public Account AccountToSave { get; set; }
+        public CreateAccountCommand(Account accountToSave)
+        {
+            AccountToSave = accountToSave;
+        }
+
+        public Account AccountToSave { get; private set; }
 
         public class Handler : IRequestHandler<CreateAccountCommand>
         {

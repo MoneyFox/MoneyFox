@@ -58,7 +58,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
             await new CreateAccountCommand.Handler(contextAdapterMock.Object,
                                                    backupServiceMock.Object,
                                                    settingsFacadeMock.Object)
-                .Handle(new CreateAccountCommand { AccountToSave = account },
+                .Handle(new CreateAccountCommand(account),
                         default);
 
             // Assert
@@ -75,7 +75,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
             await new CreateAccountCommand.Handler(contextAdapterMock.Object,
                                                    backupServiceMock.Object,
                                                    settingsFacadeMock.Object)
-                .Handle(new CreateAccountCommand { AccountToSave = account },
+                .Handle(new CreateAccountCommand(account),
                         default);
 
             // Assert

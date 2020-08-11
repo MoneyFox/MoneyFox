@@ -1,10 +1,22 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediatR;
+using MoneyFox.Services;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts
 {
-    public class ModifyAccountViewModel : BaseViewModel
+    public abstract class ModifyAccountViewModel : BaseViewModel
     {
+        private readonly IMediator mediator;
+        private readonly IDialogService dialogService;
+
+        protected ModifyAccountViewModel(IMediator mediator,
+                                         IDialogService dialogService)
+        {
+            this.mediator = mediator;
+            this.dialogService = dialogService;
+        }
+
         private AccountViewModel selectedAccountVm = new AccountViewModel();
 
         /// <summary>
@@ -21,6 +33,8 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         public RelayCommand SaveCommand => new RelayCommand(async () => await SaveAccountBaseAsync());
+
+        protected abstract Task SaveAccountAsync();
 
         private async Task SaveAccountBaseAsync()
         {

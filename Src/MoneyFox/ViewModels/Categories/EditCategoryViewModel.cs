@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Categories.Command.CreateCategory;
+using MoneyFox.Application.Categories.Command.UpdateCategory;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Services;
@@ -15,8 +15,8 @@ namespace MoneyFox.ViewModels.Categories
 
         public EditCategoryViewModel(IMediator mediator,
                                      IMapper mapper,
-                                     IDialogService dialogService) : base(mediator, dialogService)
-
+                                     IDialogService dialogService)
+            : base(mediator, dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -29,7 +29,7 @@ namespace MoneyFox.ViewModels.Categories
 
         protected override async Task SaveCategoryAsync()
         {
-            await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
+            await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
         }
     }
 }
