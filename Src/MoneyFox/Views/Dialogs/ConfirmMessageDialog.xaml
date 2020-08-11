@@ -38,8 +38,8 @@
             </yummy:PancakeView.Shadow>
 
             <StackLayout Padding="20">
-                <Label BindingContext="{x:Reference Name=ConfirmDialog}" Text="{Binding Title}" />
-                <Label BindingContext="{x:Reference Name=ConfirmDialog}" Text="{Binding Message}" />
+                <Label BindingContext="{x:Reference Name=ConfirmDialog}" Text="{Binding Title}" Style="{DynamicResource TextHead}" />
+                <Label BindingContext="{x:Reference Name=ConfirmDialog}" Text="{Binding Message}" Style="{DynamicResource BaseLabel}" />
 
                 <Grid ColumnDefinitions="*, Auto, Auto">
                     <Button BindingContext="{x:Reference Name=ConfirmDialog}" Text="{Binding PositiveText}"

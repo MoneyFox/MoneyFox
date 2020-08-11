@@ -39,13 +39,13 @@
             </yummy:PancakeView.Shadow>
 
             <StackLayout Padding="20">
-                <Label BindingContext="{x:Reference Name=MessagePopup}" Text="{Binding Title}" />
-                <Label BindingContext="{x:Reference Name=MessagePopup}" Text="{Binding Message}" />
+                <Label BindingContext="{x:Reference Name=MessagePopup}" Text="{Binding Title}" Style="{DynamicResource TextHead}" />
+                <Label BindingContext="{x:Reference Name=MessagePopup}" Text="{Binding Message}" Style="{DynamicResource BaseLabel}" />
 
                 <Grid ColumnDefinitions="*, 60">
-                    <Button Text="{x:Static resources:Strings.OkLabel}" 
-                            Grid.Column="1" 
-                            VerticalOptions="End" 
+                    <Button Text="{x:Static resources:Strings.OkLabel}"
+                            Grid.Column="1"
+                            VerticalOptions="End"
                             Style="{StaticResource LinkButton}"
                             Clicked="OnOkClick"/>
                 </Grid>

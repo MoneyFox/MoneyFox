@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Rg.Plugins.Popup.Extensions;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Views.Dialogs
 {
@@ -26,7 +27,7 @@ namespace MoneyFox.Views.Dialogs
         public async Task<bool> ShowAsync()
         {
             confirmTaskCompletionSource = new TaskCompletionSource<bool>();
-            await App.Current.MainPage.Navigation.PushModalAsync(this);
+            await App.Current.MainPage.Navigation.PushPopupAsync(this);
             return await confirmTaskCompletionSource.Task;
         }
 
@@ -43,6 +44,6 @@ namespace MoneyFox.Views.Dialogs
         }
 
         public async Task DismissAsync()
-            => await App.Current.MainPage.Navigation.PopModalAsync();
+            => await App.Current.MainPage.Navigation.PopPopupAsync();
     }
 }
