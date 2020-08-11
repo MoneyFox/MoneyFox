@@ -4,8 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:converter="clr-namespace:MoneyFox.Converter"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Accounts.ModifyAccountContentView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
 
   <ContentView.Content>
         <StackLayout>
@@ -13,10 +20,11 @@
             <Entry Placeholder="{x:Static resources:Strings.AccountNameLabel}"
                    Text="{Binding SelectedAccount.Name}" />
 
-            <Entry HorizontalTextAlignment="End"
+            <Entry x:Name="AmountEntry"
                    Keyboard="Numeric"
+                   Focused="AmountFieldGotFocus"
                    Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
-                   Text="{Binding AmountString}" />
+                   Text="{Binding Amount, Converter={StaticResource DecimalConverter}}" />
 
             <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
                    Text="{Binding SelectedAccount.Note}" />

@@ -1,5 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediatR;
+using MoneyFox.Application.Common.Messages;
+using MoneyFox.Application.Resources;
 using MoneyFox.Services;
 using System.Threading.Tasks;
 
@@ -38,6 +40,18 @@ namespace MoneyFox.ViewModels.Accounts
 
         private async Task SaveAccountBaseAsync()
         {
+            if(string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
+            {
+                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
+            await dialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
+
+            await SaveAccountAsync();
+            MessengerInstance.Send(new ReloadMessage());
+
+            await dialogService.HideLoadingDialogAsync();
             await App.Current.MainPage.Navigation.PopModalAsync();
         }
     }
