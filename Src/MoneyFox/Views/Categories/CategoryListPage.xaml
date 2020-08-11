@@ -11,10 +11,6 @@
              xmlns:Categories="clr-namespace:MoneyFox.ViewModels.Categories"
              x:Class="MoneyFox.Views.Categories.CategoryListPage">
 
-    <d:ContentPage.BindingContext>
-        <Categories:CategoryListViewModel />
-    </d:ContentPage.BindingContext>
-
     <Shell.TitleView>
         <Grid>
             <Button
