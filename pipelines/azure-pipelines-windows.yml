@@ -52,7 +52,7 @@ jobs:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
     inputs:
-      versionSpec: 4.x
+      versionSpec: 5.x
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
