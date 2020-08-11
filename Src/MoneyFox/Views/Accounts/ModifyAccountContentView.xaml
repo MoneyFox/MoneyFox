@@ -18,16 +18,16 @@
         <StackLayout>
 
             <Entry Placeholder="{x:Static resources:Strings.AccountNameLabel}"
-                   Text="{Binding SelectedAccount.Name}" />
+                   Text="{Binding SelectedAccountVm.Name}" />
 
             <Entry x:Name="AmountEntry"
                    Keyboard="Numeric"
                    Focused="AmountFieldGotFocus"
                    Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
-                   Text="{Binding Amount, Converter={StaticResource DecimalConverter}}" />
+                   Text="{Binding SelectedAccountVm.Amount, Converter={StaticResource DecimalConverter}}" />
 
             <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
-                   Text="{Binding SelectedAccount.Note}" />
+                   Text="{Binding SelectedAccountVm.Note}" />
 
             <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
 
@@ -41,7 +41,7 @@
                 <Switch
                     Grid.Column="1"
                     HorizontalOptions="End"
-                    IsToggled="{Binding SelectedAccount.IsExcluded}"/>
+                    IsToggled="{Binding SelectedAccountVm.IsExcluded}"/>
             </Grid>
         </StackLayout>
     </ContentView.Content>

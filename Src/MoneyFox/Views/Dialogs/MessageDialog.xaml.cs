@@ -25,5 +25,10 @@ namespace MoneyFox.Views.Dialogs
         {
             await App.Current.MainPage.Navigation.PopModalAsync();
         }
+
+        private async void OnOkClick(object sender, System.EventArgs e)
+        {
+            await DismissAsync();
+        }
     }
 }

@@ -29,7 +29,7 @@
     <ContentPage.Content>
         <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                              Light={StaticResource CardBackgroundLight}}"
-                           CornerRadius="20"
+                           CornerRadius="10"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
                            WidthRequest="300">
@@ -43,7 +43,11 @@
                 <Label BindingContext="{x:Reference Name=MessagePopup}" Text="{Binding Message}" />
 
                 <Grid ColumnDefinitions="*, 60">
-                    <Button Text="{x:Static resources:Strings.OkLabel}" Grid.Column="1" VerticalOptions="End" Style="{StaticResource LinkButton}" />
+                    <Button Text="{x:Static resources:Strings.OkLabel}" 
+                            Grid.Column="1" 
+                            VerticalOptions="End" 
+                            Style="{StaticResource LinkButton}"
+                            Clicked="OnOkClick"/>
                 </Grid>
             </StackLayout>
         </yummy:PancakeView>
