@@ -45,16 +45,6 @@ namespace MoneyFox.Uwp
                                  .Build())
                    .AsImplementedInterfaces();
 
-            // request & notification handlers
-            builder.Register<ServiceFactory>(context =>
-                                             {
-                                                 var c = context.Resolve<IComponentContext>();
-
-                                                 return t => c.Resolve(t);
-                                             });
-
-            builder.RegisterAssemblyTypes(typeof(GetPaymentByIdQuery).Assembly).AsImplementedInterfaces(); // via assembly scan
-
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))

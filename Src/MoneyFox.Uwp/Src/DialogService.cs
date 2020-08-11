@@ -1,5 +1,4 @@
-﻿using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.Views.Dialogs;
 using System;
 using System.Threading.Tasks;
@@ -68,7 +67,7 @@ namespace MoneyFox.Uwp.Src
 
             // RunAsync all of the UI info.
             await dispatcher.RunAsync(CoreDispatcherPriority.High,
-                                      async() =>
+                                      async () =>
                                       {
                                           await loadingDialog.ShowAsync();
                                       });
