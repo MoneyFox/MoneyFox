@@ -40,7 +40,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         protected override async Task SaveAccount()
         {
-            await mediator.Send(new UpdateAccountCommand { Account = mapper.Map<Account>(SelectedAccount) });
+            await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
         }
 
         protected async Task DeleteAccount()

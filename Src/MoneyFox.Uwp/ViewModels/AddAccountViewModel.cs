@@ -43,7 +43,7 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
-            await mediator.Send(new CreateAccountCommand { AccountToSave = mapper.Map<Account>(SelectedAccount) });
+            await mediator.Send(new CreateAccountCommand(mapper.Map<Account>(SelectedAccount)));
             NavigationService.GoBack();
         }
     }
