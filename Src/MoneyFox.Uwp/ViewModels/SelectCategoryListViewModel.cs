@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
+using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Messages;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -40,7 +40,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         protected override void ItemClick(CategoryViewModel category)
         {
-            MessengerInstance.Send(new CategorySelectedMessage(this, category.Id));
+            MessengerInstance.Send(new CategorySelectedMessage(category.Id));
         }
     }
 }

@@ -4,7 +4,7 @@ using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;

@@ -3,7 +3,7 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
