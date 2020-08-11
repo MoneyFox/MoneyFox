@@ -1,15 +1,20 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
+using MediatR;
 using MoneyFox.Messages;
 
 namespace MoneyFox.ViewModels.Categories
 {
     public class SelectCategoryViewModel : CategoryListViewModel
     {
+        public SelectCategoryViewModel(IMediator mediator, IMapper mapper) : base(mediator, mapper)
+        {
+        }
+
         public RelayCommand<CategoryViewModel> SelectCategoryCommand => new RelayCommand<CategoryViewModel>(async (c) =>
         {
             MessengerInstance.Send(new CategorySelectedMessage(c));
             await App.Current.MainPage.Navigation.PopModalAsync();
         });
-
     }
 }

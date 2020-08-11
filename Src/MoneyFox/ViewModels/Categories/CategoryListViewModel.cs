@@ -1,27 +1,56 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
+using MediatR;
+using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Common;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.Views.Categories;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Categories
 {
     public class CategoryListViewModel : BaseViewModel
     {
-        public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> Categories { get; set; } = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
+
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
+
+        public CategoryListViewModel(IMediator mediator, IMapper mapper)
         {
-            new AlphaGroupListGroupCollection<CategoryViewModel>("F")
+            this.mediator = mediator;
+            this.mapper = mapper;
+
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync());
+        }
+
+        public async Task OnAppearingAsync()
+        {
+            var categorieVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery()));
+
+            var groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms, CultureInfo.CurrentUICulture,
+                s => string.IsNullOrEmpty(s.Name)
+                ? "-"
+                : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));
+
+            Categories = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(groups);
+        }
+
+        public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> Categories
+        {
+            get => categories;
+            set
             {
-                new CategoryViewModel{ Name = "Food" }
-            },
-            new AlphaGroupListGroupCollection<CategoryViewModel>("Included")
-            {
-                new CategoryViewModel{ Name = "Drinks"},
-                new CategoryViewModel{ Name = "Drugs"}
+                categories = value;
+                RaisePropertyChanged();
             }
-        };
+        }
 
         public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
 
