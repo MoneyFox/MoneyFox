@@ -8,12 +8,13 @@ namespace MoneyFox.Views.Accounts
     {
         private EditAccountViewModel ViewModel => BindingContext as EditAccountViewModel;
 
+        private int accountId;
 
         public EditAccountPage(int accountId)
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.EditAccountViewModel;
-            ViewModel.Init(accountId);
+            this.accountId = accountId;
 
             var cancelItem = new ToolbarItem
             {
@@ -34,5 +35,7 @@ namespace MoneyFox.Views.Accounts
             ToolbarItems.Add(cancelItem);
             ToolbarItems.Add(saveItem);
         }
+
+        protected override async void OnAppearing() => await ViewModel.Init(accountId);
     }
 }

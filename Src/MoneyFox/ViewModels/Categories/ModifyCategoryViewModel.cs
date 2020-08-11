@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Common.Messages;
