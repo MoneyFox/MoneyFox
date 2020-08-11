@@ -1,28 +1,58 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Common.Messages;
+using MoneyFox.Application.Resources;
 using MoneyFox.Common;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.Views.Accounts;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Accounts
 {
     public class AccountListViewModel : BaseViewModel
     {
-        public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts { get; set; } = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
+        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
+
+        public AccountListViewModel(IMediator mediator, IMapper mapper)
         {
-            new AlphaGroupListGroupCollection<AccountViewModel>("Included")
+            this.mediator = mediator;
+            this.mapper = mapper;
+
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync());
+        }
+
+        public async Task OnAppearingAsync()
+        {
+            var categorieVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+
+            var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
+            var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
+
+            includedAccountGroup.AddRange(categorieVms.Where(x => !x.IsExcluded));
+            excludedAccountGroup.AddRange(categorieVms.Where(x => x.IsExcluded));
+
+            Accounts.Add(includedAccountGroup);
+            Accounts.Add(excludedAccountGroup);
+        }
+
+        public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
+        {
+            get => accounts;
+            set
             {
-                new AccountViewModel{ Name = "Income", CurrentBalance = 78542, IsExcluded = false, EndOfMonthBalance = 1234 },
-                new AccountViewModel{ Name = "Expenses", CurrentBalance = 2451, IsExcluded = false, EndOfMonthBalance = 7854 },
-            },
-            new AlphaGroupListGroupCollection<AccountViewModel>("Included")
-            {
-                new AccountViewModel{ Name = "Investments", CurrentBalance = 1570, IsExcluded = true, EndOfMonthBalance = 2142 },
-                new AccountViewModel{ Name = "Safety", CurrentBalance = 4455, IsExcluded = true, EndOfMonthBalance = 5522 }
+                accounts = value;
+                RaisePropertyChanged();
             }
-        };
+        }
 
         public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
