@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Common;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.Views.Accounts;
@@ -27,7 +28,8 @@ namespace MoneyFox.ViewModels.Accounts
 
         public RelayCommand<AccountViewModel> GoToEditAccountCommand
             => new RelayCommand<AccountViewModel>(async (accountViewModel)
-                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Color.Transparent, BarTextColor = ResourceHelper.GetCurrentTextColor() }));
+                => await Shell.Current.Navigation.PushModalAsync(
+                    new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Color.Transparent, BarTextColor = ResourceHelper.GetCurrentTextColor() }));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
             => new RelayCommand<AccountViewModel>(async (accountViewModel)
