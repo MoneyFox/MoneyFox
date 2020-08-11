@@ -28,7 +28,7 @@
     <ContentPage.Content>
         <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                              Light={StaticResource CardBackgroundLight}}"
-                           CornerRadius="20"
+                           CornerRadius="10"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
                            WidthRequest="300">
