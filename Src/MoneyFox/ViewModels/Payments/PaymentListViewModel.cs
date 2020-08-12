@@ -4,8 +4,10 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
+using MoneyFox.Common;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
+using MoneyFox.Presentation.Dialogs;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using MoneyFox.Views.Payments;
@@ -78,12 +80,12 @@ namespace MoneyFox.ViewModels.Payments
             Payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
         }
 
-        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new FilterPopup().ShowAsync());
 
         public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new RelayCommand<PaymentViewModel>(async (paymentViewModel)
-                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent, BarTextColor = ResourceHelper.GetCurrentTextColor() }));
     }
 }
