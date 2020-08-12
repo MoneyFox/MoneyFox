@@ -16,10 +16,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02FD6D51-FEE2-4EFE-9DC6-D1D08BD3F478}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
-		..\pipelines\azure-pipelines-android.yml = ..\pipelines\azure-pipelines-android.yml
-		..\pipelines\azure-pipelines-iOS.yml = ..\pipelines\azure-pipelines-iOS.yml
-		..\pipelines\azure-pipelines-validate-pr.yml = ..\pipelines\azure-pipelines-validate-pr.yml
-		..\pipelines\azure-pipelines-windows.yml = ..\pipelines\azure-pipelines-windows.yml
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoneyFox.Application", "MoneyFox.Application\MoneyFox.Application.csproj", "{9D569165-5277-4B92-A621-6710C487F51B}"
