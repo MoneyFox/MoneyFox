@@ -9,8 +9,8 @@
              Visual="Material"
              x:Class="MoneyFox.Views.Categories.AddCategoryPage">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
+        <ScrollView Padding="15">
+            <StackLayout >
 
                 <Label FontAttributes="Bold"
                        FontFamily="Product"
