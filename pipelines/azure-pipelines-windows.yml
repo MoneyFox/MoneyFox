@@ -83,7 +83,7 @@ jobs:
     displayName: 'Copy coveragexml to staging'
     inputs:
       SourceFolder: '$(Agent.TempDirectory)'
-      Contents: '**\*.coveragexml'
+      Contents: '**\*.opencover.xml'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
   - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
