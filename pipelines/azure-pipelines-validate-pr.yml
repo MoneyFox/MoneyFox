@@ -146,14 +146,14 @@ jobs:
         # Additional properties that will be passed to the scanner,
         # Put one key=value per line, example:
         # sonar.exclusions=**/*.bin
-        sonar.cs.opencover.reportsPaths=$(TestOutputDirectory)/**/coverage.opencover.xml
+        sonar.cs.opencover.reportsPaths=$(Agent.TempDirectory)/**/coverage.opencover.xml
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
       command: test
       projects: '**/*.Tests.csproj'
-      arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" --results-directory $(TestOutputDirectory) -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+      arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
   - task: CopyFiles@2
     displayName: 'Copy coveragexml to staging'
