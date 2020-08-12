@@ -5,6 +5,7 @@ using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Common;
+using MoneyFox.Domain;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.Presentation.Dialogs;
@@ -61,6 +62,23 @@ namespace MoneyFox.ViewModels.Payments
                 RaisePropertyChanged();
             }
         }
+
+        /// <summary>
+        ///     List with the different recurrence types.
+        ///     This has to have the same order as the enum
+        /// </summary>
+        public List<PaymentRecurrence> RecurrenceList = new List<PaymentRecurrence>
+        {
+            PaymentRecurrence.Daily,
+            PaymentRecurrence.DailyWithoutWeekend,
+            PaymentRecurrence.Weekly,
+            PaymentRecurrence.Biweekly,
+            PaymentRecurrence.Monthly,
+            PaymentRecurrence.Bimonthly,
+            PaymentRecurrence.Quarterly,
+            PaymentRecurrence.Biannually,
+            PaymentRecurrence.Yearly
+        };
 
         public async Task OnAppearingAsync(int accountId)
         {

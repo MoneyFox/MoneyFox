@@ -17,15 +17,15 @@ namespace MoneyFox.ViewModels.Payments
         private decimal amount;
         private bool isCleared;
         private PaymentType type;
-        private string note;
+        private string note = "";
         private bool isRecurring;
         private DateTime creationTime;
         private DateTime modificationDate;
 
-        private AccountViewModel chargedAccount;
-        private AccountViewModel targetAccount;
-        private CategoryViewModel categoryViewModel;
-        private RecurringPaymentViewModel recurringPaymentViewModel;
+        private AccountViewModel? chargedAccount;
+        private AccountViewModel? targetAccount;
+        private CategoryViewModel? categoryViewModel;
+        private RecurringPaymentViewModel? recurringPaymentViewModel;
 
         public PaymentViewModel()
         {
@@ -232,7 +232,7 @@ namespace MoneyFox.ViewModels.Payments
         /// <summary>
         /// The <see cref="Category"/> for this payment
         /// </summary>
-        public CategoryViewModel Category
+        public CategoryViewModel? Category
         {
             get => categoryViewModel;
             set
