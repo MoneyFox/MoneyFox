@@ -14,6 +14,7 @@ using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
+using MoneyFox.Views.Settings;
 
 namespace MoneyFox
 {
@@ -49,6 +50,7 @@ namespace MoneyFox
         public static string SelectCategoryRoute => $"Category/{nameof(SelectedCategoryPage)}";
         public static string AddCategoryRoute => $"Category/{nameof(AddCategoryPage)}";
         public static string BackupRoute => $"Backup/Show{nameof(BackupPage)}";
+        public static string SettingsRoute => $"Settings/Show{nameof(SettingsPage)}";
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();

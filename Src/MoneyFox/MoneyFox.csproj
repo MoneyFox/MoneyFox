@@ -110,11 +110,12 @@
     <EmbeddedResource Update="Views\Payments\PaymentListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Groups\" />
-    <Folder Include="ViewModels\Settings\" />
-    <Folder Include="Views\Settings\" />
   </ItemGroup>
 </Project>

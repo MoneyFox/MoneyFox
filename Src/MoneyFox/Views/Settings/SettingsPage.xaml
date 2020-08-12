@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             x:Class="MoneyFox.Views.Settings.SettingsPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+
+                <Label Style="{StaticResource TextHeadline}"
+                       Text="{x:Static resources:Strings.SettingsTitle}" />
+
+                <Label Style="{StaticResource TextSubHead}"
+                       Text="{x:Static resources:Strings.DefaultRegionText}" />
+
+                <Label HorizontalOptions="StartAndExpand"
+                   Text="{x:Static resources:Strings.DefaultRegionHeader}" />
+
+                <Picker ItemsSource="{Binding AvailableCultures}"
+                        SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"
+                        ItemDisplayBinding="{Binding DisplayName}" />
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
