@@ -6,6 +6,7 @@ using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Budget;
 using MoneyFox.ViewModels.Categories;
 using MoneyFox.ViewModels.Dashboard;
+using MoneyFox.ViewModels.Dialogs;
 using MoneyFox.ViewModels.Payments;
 using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Categories;
@@ -58,5 +59,7 @@ namespace MoneyFox
         public static SelectCategoryViewModel SelectCategoryViewModel => ServiceLocator.Current.GetInstance<SelectCategoryViewModel>();
         public static AddCategoryViewModel AddCategoryViewModel => ServiceLocator.Current.GetInstance<AddCategoryViewModel>();
         public static EditCategoryViewModel EditCategoryViewModel => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogViewModel => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
+        public static SelectFilterDialogViewModel SelectFilterDialogViewModel => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
     }
 }

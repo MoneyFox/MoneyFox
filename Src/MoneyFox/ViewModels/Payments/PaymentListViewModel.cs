@@ -1,25 +1,43 @@
-﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Application.Resources;
-using MoneyFox.Domain;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccountById;
+using MoneyFox.Application.Common.Messages;
+using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using MoneyFox.Views.Payments;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
+using System.Globalization;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Payments
 {
     public class PaymentListViewModel : BaseViewModel
     {
-        private AccountViewModel selectedAccount = new AccountViewModel { Name = "Food" };
+        private AccountViewModel selectedAccount = new AccountViewModel();
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
+        private PaymentListFilterChangedMessage lastMessage = new PaymentListFilterChangedMessage();
 
-        public void Init(int accountId)
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
+
+        public PaymentListViewModel(IMediator mediator, IMapper mapper)
         {
-            Debug.Write($"Account Id passed {accountId}");
+            this.mediator = mediator;
+            this.mapper = mapper;
+
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync(SelectedAccount.Id));
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message =>
+            {
+                lastMessage = message;
+                await LoadPaymentsByMessageAsync();
+            });
         }
 
         public AccountViewModel SelectedAccount
@@ -32,20 +50,35 @@ namespace MoneyFox.ViewModels.Payments
             }
         }
 
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> Payments { get; set; } = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> Payments
         {
-            new DateListGroupCollection<PaymentViewModel>("25.07.2020", string.Format(Strings.EarnedSpentTemplateLabel, 1234, 523))
+            get => payments;
+            set
             {
-                new PaymentViewModel{ Date = DateTime.Now, Amount = 154, Type = PaymentType.Expense, Category = new CategoryViewModel { Name = "Food" }},
-                new PaymentViewModel{ Date = DateTime.Now, Amount = 286, Type = PaymentType.Income },
-                new PaymentViewModel{ Date = DateTime.Now, Amount = 286, Type = PaymentType.Transfer, TargetAccount = new AccountViewModel{ Name = "asdf" } },
-            },
-            new DateListGroupCollection<PaymentViewModel>("24.07.2020", string.Format(Strings.EarnedSpentTemplateLabel, 221, 2314))
-            {
-                new PaymentViewModel{ Date = DateTime.Now, Amount = 154, Type = PaymentType.Expense, IsRecurring = true, IsCleared = true },
-                new PaymentViewModel{ Date = DateTime.Now, Amount = 286, Type = PaymentType.Income, Category = new CategoryViewModel { Name = "Food" }, IsCleared = true, Note="this is an example text"}
+                payments = value;
+                RaisePropertyChanged();
             }
-        };
+        }
+
+        public async Task OnAppearingAsync(int accountId)
+        {
+            SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+            await LoadPaymentsByMessageAsync();
+        }
+
+        private async Task LoadPaymentsByMessageAsync()
+        {
+            var paymentVms = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id, lastMessage.TimeRangeStart, lastMessage.TimeRangeEnd)));
+
+            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
+               .CreateGroups(paymentVms,
+                             s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                             s => s.Date);
+
+            Payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+        }
+
+        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 

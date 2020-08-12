@@ -4,6 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Shell.NavBarHasShadow="False"
              xmlns:theme="clr-namespace:MoneyFox"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments"
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
@@ -35,7 +36,7 @@
                 Text="{x:Static theme:IconFont.Plus}"
                 TextColor="White"
                 VerticalOptions="Center"
-                Command="{Binding GoToAddPaymentCommand}"/>
+                Command="{Binding GoToAddPaymentCommand}" />
         </Grid>
     </Shell.TitleView>
 

@@ -7,12 +7,10 @@ namespace MoneyFox.Views.Payments
     [QueryProperty("AccountId", "accountId")]
     public partial class PaymentListPage : ContentPage
     {
+        private int accountId;
         public string AccountId
         {
-            set
-            {
-                ViewModel.Init(Convert.ToInt32(Uri.UnescapeDataString(value)));
-            }
+            set => accountId = Convert.ToInt32(Uri.UnescapeDataString(value));
         }
 
         private PaymentListViewModel ViewModel => BindingContext as PaymentListViewModel;
@@ -22,5 +20,7 @@ namespace MoneyFox.Views.Payments
             InitializeComponent();
             BindingContext = ViewModelLocator.PaymentListViewModel;
         }
+
+        protected override async void OnAppearing() => await ViewModel.OnAppearingAsync(accountId);
     }
 }
