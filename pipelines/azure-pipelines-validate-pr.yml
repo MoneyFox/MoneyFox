@@ -134,7 +134,7 @@ jobs:
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
     inputs:
-      restoreSolution: '**/MoneyFox.Desktop.sln'
+      restoreSolution: '**/MoneyFox.sln'
 
   - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
     displayName: 'Prepare analysis on SonarCloud'
@@ -165,7 +165,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Windows Project'
     inputs:
-      solution: Src/MoneyFox.Desktop.sln
+      solution: Src/MoneyFox.sln
       msbuildArgs: '/p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\"   /p:UapAppxPackageBuildMode=StoreUpload   /p:AppxBundlePlatforms="$(BuildPlatform)"  /p:AppxBundle=Always  /p:AppxPackageSigningEnabled=true /p:JavaSdkDirectory="$(JAVA_HOME)/"'
       platform: x64
       configuration: '$(BuildConfiguration)'
