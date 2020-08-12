@@ -78,7 +78,7 @@ jobs:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
     inputs:
-      versionSpec: 4.x
+      versionSpec: 5.x
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
@@ -94,6 +94,7 @@ jobs:
       msbuildVersionOption: latest
       msbuildArchitectureOption: x64
       msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/"'
+
 
 - job: WindowsTestsAndBuild 
   displayName: "Run Tests and Build Windows"
@@ -128,7 +129,7 @@ jobs:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
     inputs:
-      versionSpec: 4.x
+      versionSpec: 5.x
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
