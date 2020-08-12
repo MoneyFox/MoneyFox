@@ -8,9 +8,9 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
-using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Persistence;
 using MoneyFox.Uwp.AutoMapper;
+using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Src;
 using PCLAppConfig;
 using System;
@@ -28,6 +28,7 @@ namespace MoneyFox.Uwp
             builder.RegisterModule<PersistenceModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
+            builder.RegisterType<ToastService>().AsImplementedInterfaces();
             builder.RegisterType<DialogService>().AsImplementedInterfaces();
             builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
