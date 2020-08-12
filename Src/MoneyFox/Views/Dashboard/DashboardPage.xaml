@@ -10,6 +10,7 @@
     xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:viewmodels="clr-namespace:MoneyFox.ViewModels.Dashboard"
+    Shell.NavBarHasShadow="False"
     mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
