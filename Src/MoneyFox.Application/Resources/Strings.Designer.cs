@@ -322,6 +322,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup created successfully.
+        /// </summary>
+        public static string BackupCreatedMessage {
+            get {
+                return ResourceManager.GetString("BackupCreatedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup failed!.
         /// </summary>
         public static string BackupFailedTitle {
@@ -345,6 +354,15 @@ namespace MoneyFox.Application.Resources {
         public static string BackupLabel {
             get {
                 return ResourceManager.GetString("BackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup restored successfully..
+        /// </summary>
+        public static string BackupRestoredMessage {
+            get {
+                return ResourceManager.GetString("BackupRestoredMessage", resourceCulture);
             }
         }
         

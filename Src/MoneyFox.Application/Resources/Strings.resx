@@ -729,4 +729,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="BackupServiceTitle" xml:space="preserve">
     <value>Backup Service</value>
   </data>
+  <data name="BackupRestoredMessage" xml:space="preserve">
+    <value>Backup restored successfully.</value>
+  </data>
+  <data name="BackupCreatedMessage" xml:space="preserve">
+    <value>Backup created successfully</value>
+  </data>
 </root>
