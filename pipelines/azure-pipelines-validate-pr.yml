@@ -146,7 +146,7 @@ jobs:
         # Additional properties that will be passed to the scanner,
         # Put one key=value per line, example:
         # sonar.exclusions=**/*.bin
-        sonar.cs.opencover.reportsPaths=**/*.opencover.xml
+        sonar.cs.opencover.reportsPaths=$(Build.SourcesDirectory)/TestResults/Coverage/coverage.opencover.xml
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
