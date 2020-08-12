@@ -67,7 +67,7 @@ namespace MoneyFox.ViewModels.Payments
         ///     List with the different recurrence types.
         ///     This has to have the same order as the enum
         /// </summary>
-        public List<PaymentRecurrence> RecurrenceList = new List<PaymentRecurrence>
+        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
             PaymentRecurrence.Daily,
             PaymentRecurrence.DailyWithoutWeekend,

@@ -2,6 +2,7 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Backup;
 using MoneyFox.ViewModels.Budget;
@@ -9,6 +10,7 @@ using MoneyFox.ViewModels.Categories;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.ViewModels.Dialogs;
 using MoneyFox.ViewModels.Payments;
+using MoneyFox.ViewModels.Statistics;
 using MoneyFox.Views;
 using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Categories;
@@ -51,6 +53,11 @@ namespace MoneyFox
         public static string AddCategoryRoute => $"Category/{nameof(AddCategoryPage)}";
         public static string BackupRoute => $"Backup/Show{nameof(BackupPage)}";
         public static string SettingsRoute => $"Settings/Show{nameof(SettingsPage)}";
+        public static string StatisticCashFlowRoute => $"Settings/Show{nameof(StatisticCashFlowPage)}";
+        public static string StatisticCategorySpreadingRoute => $"Settings/Show{nameof(StatisticCategorySpreadingPage)}";
+        public static string StatisticCategorySummaryRoute => $"Settings/Show{nameof(StatisticCategorySummaryPage)}";
+        public static string StatisticSelectorRoute => $"Settings/Show{nameof(StatisticSelectorPage)}";
+        public static string PaymentForCategoryListRoute => $"Settings/Show{nameof(PaymentForCategoryListPage)}";
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
@@ -67,5 +74,10 @@ namespace MoneyFox
         public static SelectDateRangeDialogViewModel SelectDateRangeDialogViewModel => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
         public static SelectFilterDialogViewModel SelectFilterDialogViewModel => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
         public static BackupViewModel BackupViewModel => ServiceLocator.Current.GetInstance<BackupViewModel>();
+        public static StatisticCashFlowViewModel StatisticCashFlowViewModel => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingViewModel => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryViewModel => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+        public static StatisticSelectorViewModel StatisticSelectorViewModel => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
+        public static PaymentForCategoryListViewModel PaymentForCategoryListViewModel => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
     }
 }
