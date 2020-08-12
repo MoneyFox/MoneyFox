@@ -40,8 +40,15 @@ namespace MoneyFox.ViewModels.Accounts
             includedAccountGroup.AddRange(categorieVms.Where(x => !x.IsExcluded));
             excludedAccountGroup.AddRange(categorieVms.Where(x => x.IsExcluded));
 
-            Accounts.Add(includedAccountGroup);
-            Accounts.Add(excludedAccountGroup);
+            if(includedAccountGroup.Any())
+            {
+                Accounts.Add(includedAccountGroup);
+            }
+
+            if(excludedAccountGroup.Any())
+            {
+                Accounts.Add(excludedAccountGroup);
+            }
         }
 
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts

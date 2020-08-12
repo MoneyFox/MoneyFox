@@ -9,6 +9,7 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
+             Shell.NavBarHasShadow="False"
              x:Class="MoneyFox.Views.Accounts.AccountListPage">
 
     <d:ContentPage.BindingContext>

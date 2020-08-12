@@ -9,6 +9,7 @@
              Visual="Material"
              xmlns:theme="clr-namespace:MoneyFox"
              xmlns:Categories="clr-namespace:MoneyFox.ViewModels.Categories"
+             Shell.NavBarHasShadow="False"
              x:Class="MoneyFox.Views.Categories.CategoryListPage">
 
     <Shell.TitleView>
