@@ -13,7 +13,7 @@ jobs:
   pool:
     vmImage: 'macos-latest'
   steps:
-  
+
   - task: UseDotNet@2
     displayName: 'Use .Net Core sdk 3.1.101'
     inputs:
@@ -96,7 +96,7 @@ jobs:
       msbuildArguments: '/p:JavaSdkDirectory="$(JAVA_HOME)/"'
 
 
-- job: WindowsTestsAndBuild 
+- job: WindowsTestsAndBuild
   displayName: "Run Tests and Build Windows"
   pool:
     vmImage: windows-latest
@@ -114,7 +114,7 @@ jobs:
   - powershell: |
       $pfxpath = '$(signingCert.secureFilePath)'
       $certPassword = $env:CERT_PASSWORD_ENV
-      
+
       Add-Type -AssemblyName System.Security
       $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
       $cert.Import($pfxpath, $certPassword, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
@@ -143,26 +143,17 @@ jobs:
       organization: moneyfox
       projectKey: 'moneyfox-project'
       extraProperties: |
-        # Additional properties that will be passed to the scanner, 
+        # Additional properties that will be passed to the scanner,
         # Put one key=value per line, example:
         # sonar.exclusions=**/*.bin
-        sonar.cs.vscoveragexml.reportsPaths=**/*.coveragexml
+        sonar.cs.opencover.reportsPaths=**/*.opencover.xml
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
       command: test
       projects: '**/*.Tests.csproj'
-      arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
-
-  - powershell: |
-      Get-ChildItem -Path $(Agent.TempDirectory) -Include "*.coverage" -File -Recurse | % {
-      $outfile = "$([System.IO.Path]::GetFileNameWithoutExtension($_.FullName)).coveragexml"
-      $output = [System.IO.Path]::Combine([System.IO.Path]::GetDirectoryName($_.FullName), $outfile)
-      "Analyse '$($_.Name)' with output '$outfile'..."
-      .$env:USERPROFILE\.nuget\packages\microsoft.codecoverage\16.6.1\build\netstandard1.0\CodeCoverage\CodeCoverage.exe analyze /output:$output $_.FullName
-      }
-    displayName: 'Convert Converage to Coveragexml'
+      arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
   - task: CopyFiles@2
     displayName: 'Copy coveragexml to staging'
