@@ -27,7 +27,7 @@ namespace MoneyFox.Views
 
             ToolbarItems.Add(filterItem);
 
-            ViewModel.LoadedCommand.ExecuteAsync().FireAndForgetSafeAsync();
+            ViewModel.LoadedCommand.Execute(null);
         }
 
         private async Task OpenDialog()

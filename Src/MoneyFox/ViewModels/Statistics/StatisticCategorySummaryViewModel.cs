@@ -80,13 +80,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
         {
             await Shell.Current.GoToModalAsync(ViewModelLocator.PaymentForCategoryListRoute);
-
-            navigationService.NavigateToModal(ViewModelLocator.PaymentForCategoryList, new PaymentForCategoryParameter
-            {
-                CategoryId = categoryOverviewModel.CategoryId,
-                TimeRangeFrom = StartDate,
-                TimeRangeTo = EndDate
-            });
+            MessengerInstance.Send(new PaymentsForCategoryMessage(categoryOverviewModel.CategoryId, StartDate, EndDate));
         }
     }
 }

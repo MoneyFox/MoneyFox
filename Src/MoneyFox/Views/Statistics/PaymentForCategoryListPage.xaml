@@ -11,7 +11,8 @@
 
     <ContentPage.Content>
         <Grid VerticalOptions="FillAndExpand">
-            <userControls:PaymentListViewUserControl />
+
+            <!--<userControls:PaymentListViewUserControl />-->
 
             <Label
                 x:Name="PlaceHolderLabel"

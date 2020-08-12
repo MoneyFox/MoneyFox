@@ -1,5 +1,5 @@
-﻿using Microcharts;
-using MoneyFox.Ui.Shared.Commands;
+﻿using GalaSoft.MvvmLight.Command;
+using Microcharts;
 
 namespace MoneyFox.ViewModels.Statistics
 {

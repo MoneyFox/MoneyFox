@@ -2,11 +2,9 @@
 using GalaSoft.MvvmLight;
 using MediatR;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
-using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.ViewModels.Payments;
 using NLog;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -19,6 +17,8 @@ namespace MoneyFox.ViewModels.Statistics
     {
         private static ILogger logger = LogManager.GetCurrentClassLogger();
 
+        private PaymentsForCategoryMessage receivedMessage;
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
 
@@ -28,16 +28,12 @@ namespace MoneyFox.ViewModels.Statistics
             this.mapper = mapper;
 
             PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
+            MessengerInstance.Register<PaymentsForCategoryMessage>(this, async m =>
+            {
+                receivedMessage = m;
+                await InitializeAsync();
+            });
         }
-
-        public int CategoryId { get; set; }
-
-        public DateTime TimeRangeFrom { get; set; }
-
-        public DateTime TimeRangeTo { get; set; }
-
-
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
         public bool IsPaymentsEmpty => PaymentList != null && !PaymentList.Any();
 
@@ -54,11 +50,12 @@ namespace MoneyFox.ViewModels.Statistics
             }
         }
 
-        private async Task Initialize()
+        private async Task InitializeAsync()
         {
-            logger.Info($"Loading payments for category with id {CategoryId}");
+            logger.Info($"Loading payments for category with id {receivedMessage.CategoryId}");
 
-            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForCategoryQuery(CategoryId, TimeRangeFrom, TimeRangeTo)));
+            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(
+                new GetPaymentsForCategoryQuery(receivedMessage.CategoryId, receivedMessage.StartDate, receivedMessage.EndDate)));
 
             List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(loadedPayments, s => s.Date.ToString("D", CultureInfo.CurrentCulture), s => s.Date);
 
