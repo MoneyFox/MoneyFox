@@ -286,6 +286,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Autobackup.
+        /// </summary>
+        public static string AutobackupTitle {
+            get {
+                return ResourceManager.GetString("AutobackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Background Job.
         /// </summary>
         public static string BackgroundJobLabel {
@@ -336,6 +345,15 @@ namespace MoneyFox.Application.Resources {
         public static string BackupLabel {
             get {
                 return ResourceManager.GetString("BackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup Service.
+        /// </summary>
+        public static string BackupServiceTitle {
+            get {
+                return ResourceManager.GetString("BackupServiceTitle", resourceCulture);
             }
         }
         

@@ -114,5 +114,7 @@
 
   <ItemGroup>
     <Folder Include="Groups\" />
+    <Folder Include="ViewModels\Settings\" />
+    <Folder Include="Views\Settings\" />
   </ItemGroup>
 </Project>

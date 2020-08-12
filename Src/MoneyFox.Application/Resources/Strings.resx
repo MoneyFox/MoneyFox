@@ -723,4 +723,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="EditPaymentTitle" xml:space="preserve">
     <value>EditPayment</value>
   </data>
+  <data name="AutobackupTitle" xml:space="preserve">
+    <value>Autobackup</value>
+  </data>
+  <data name="BackupServiceTitle" xml:space="preserve">
+    <value>Backup Service</value>
+  </data>
 </root>

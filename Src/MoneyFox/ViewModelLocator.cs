@@ -3,11 +3,13 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.ViewModels.Accounts;
+using MoneyFox.ViewModels.Backup;
 using MoneyFox.ViewModels.Budget;
 using MoneyFox.ViewModels.Categories;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.ViewModels.Dialogs;
 using MoneyFox.ViewModels.Payments;
+using MoneyFox.Views;
 using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
@@ -46,6 +48,7 @@ namespace MoneyFox
         public static string CategoryListRoute => $"Category/{nameof(CategoryListPage)}";
         public static string SelectCategoryRoute => $"Category/{nameof(SelectedCategoryPage)}";
         public static string AddCategoryRoute => $"Category/{nameof(AddCategoryPage)}";
+        public static string BackupRoute => $"Backup/Show{nameof(BackupPage)}";
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
@@ -61,5 +64,6 @@ namespace MoneyFox
         public static EditCategoryViewModel EditCategoryViewModel => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
         public static SelectDateRangeDialogViewModel SelectDateRangeDialogViewModel => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
         public static SelectFilterDialogViewModel SelectFilterDialogViewModel => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
+        public static BackupViewModel BackupViewModel => ServiceLocator.Current.GetInstance<BackupViewModel>();
     }
 }
