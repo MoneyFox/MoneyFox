@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Extensions;
+using MoneyFox.ViewModels.Accounts;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
@@ -58,6 +59,13 @@ namespace MoneyFox.ViewModels.Dashboard
             new DashboardBudgetEntryViewModel{ BudgetName = "Food", Progress = 0.7},
             new DashboardBudgetEntryViewModel{ BudgetName = "Drinks", Progress = 0.5},
             new DashboardBudgetEntryViewModel{ BudgetName = "Books", Progress = 0.2}
+        };
+
+        public ObservableCollection<AccountViewModel> Accounts { get; set; } = new ObservableCollection<AccountViewModel>
+        {
+            new AccountViewModel{ Name = "Food", CurrentBalance = 700 },
+            new AccountViewModel{ Name = "Food", CurrentBalance = 2700},
+            new AccountViewModel{ Name = "Food", CurrentBalance = 1700}
         };
 
         public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
