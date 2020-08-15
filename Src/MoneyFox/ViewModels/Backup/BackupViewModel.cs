@@ -68,6 +68,7 @@ namespace MoneyFox.ViewModels.Backup
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
+        private readonly IToastService toastService;
         private bool backupAvailable;
 
         private DateTime backupLastModified;
@@ -76,12 +77,14 @@ namespace MoneyFox.ViewModels.Backup
         public BackupViewModel(IBackupService backupService,
                                IDialogService dialogService,
                                IConnectivityAdapter connectivity,
-                               ISettingsFacade settingsFacade)
+                               ISettingsFacade settingsFacade,
+                               IToastService toastService)
         {
             this.backupService = backupService;
             this.dialogService = dialogService;
             this.connectivity = connectivity;
             this.settingsFacade = settingsFacade;
+            this.toastService = toastService;
         }
 
         /// <inheritdoc/>
@@ -270,7 +273,7 @@ namespace MoneyFox.ViewModels.Backup
             }
 
             await dialogService.HideLoadingDialogAsync();
-            await ShowCompletionNoteAsync();
+            toastService.ShowToast(Strings.BackupCreatedMessage);
         }
 
         private async Task RestoreBackupAsync()
@@ -291,7 +294,7 @@ namespace MoneyFox.ViewModels.Backup
             try
             {
                 await backupService.RestoreBackupAsync(BackupMode.Manual);
-                await ShowCompletionNoteAsync();
+                toastService.ShowToast(Strings.BackupRestoredMessage);
             }
             catch(BackupOperationCanceledException)
             {
@@ -306,32 +309,22 @@ namespace MoneyFox.ViewModels.Backup
         }
 
         private async Task<bool> ShowOverwriteBackupInfoAsync()
-        {
-            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
-                                                               Strings.OverwriteBackupMessage,
-                                                               Strings.YesLabel,
-                                                               Strings.NoLabel);
-        }
+            => await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
+                                                           Strings.OverwriteBackupMessage,
+                                                           Strings.YesLabel,
+                                                           Strings.NoLabel);
 
         private async Task<bool> ShowOverwriteDataInfoAsync()
-        {
-            return await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
-                                                               Strings.OverwriteDataMessage,
-                                                               Strings.YesLabel,
-                                                               Strings.NoLabel);
-        }
+            => await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
+                                                           Strings.OverwriteDataMessage,
+                                                           Strings.YesLabel,
+                                                           Strings.NoLabel);
+
 
         private async Task<bool> ShowForceOverrideConfirmationAsync()
-        {
-            return await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle,
-                                                               Strings.ForceOverrideBackupMessage,
-                                                               Strings.YesLabel,
-                                                               Strings.NoLabel);
-        }
-
-        private async Task ShowCompletionNoteAsync()
-        {
-            await dialogService.ShowMessageAsync(Strings.SuccessTitle, Strings.TaskSuccessfulMessage);
-        }
+            =>  await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle,
+                                                            Strings.ForceOverrideBackupMessage,
+                                                            Strings.YesLabel,
+                                                            Strings.NoLabel);
     }
 }

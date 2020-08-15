@@ -7,7 +7,9 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
+using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
+using MoneyFox.Services;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -67,6 +69,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private readonly IConnectivityAdapter connectivity;
         private readonly IContextAdapter contextAdapter;
         private readonly IMessenger messenger;
+        private readonly IToastService toastService;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -77,7 +80,8 @@ namespace MoneyFox.Application.Common.CloudBackup
                              ISettingsFacade settingsFacade,
                              IConnectivityAdapter connectivity,
                              IContextAdapter contextAdapter,
-                             IMessenger messenger)
+                             IMessenger messenger,
+                             IToastService toastService)
         {
             this.cloudBackupService = cloudBackupService;
             this.fileStore = fileStore;
@@ -85,6 +89,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             this.connectivity = connectivity;
             this.contextAdapter = contextAdapter;
             this.messenger = messenger;
+            this.toastService = toastService;
         }
 
         public async Task LoginAsync()
@@ -140,11 +145,14 @@ namespace MoneyFox.Application.Common.CloudBackup
             }
 
             if(!connectivity.IsConnected)
+            {
                 throw new NetworkConnectionException();
+            }
 
             await DownloadBackupAsync(backupMode);
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
 
+            toastService.ShowToast(Strings.BackupRestoredMessage);
             messenger.Send(new ReloadMessage());
         }
 
@@ -175,7 +183,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                      true);
 
                 if(!moveSucceed)
+                {
                     throw new BackupException("Error Moving downloaded backup file");
+                }
 
                 logger.Info("Recreate database context.");
                 contextAdapter.RecreateContext();
