@@ -1340,7 +1340,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no Accounts. Add one by tapping on the plus button at the bottom..
+        ///   Looks up a localized string similar to There are no Accounts. Add one by tapping on the plus button..
         /// </summary>
         public static string NoAccountsMessage {
             get {
@@ -1412,7 +1412,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There are no Payments. Add one by tapping on the plus button at the bottom..
+        ///   Looks up a localized string similar to There are no Payments. Add one by tapping on the plus button..
         /// </summary>
         public static string NoPaymentsMessage {
             get {

@@ -48,20 +48,8 @@
             <CollectionView Grid.Row="1"
                             x:Name="AccountCollectionView"
                             IsGrouped="true"
+                            EmptyView="{x:Static resources:Strings.NoAccountsMessage}"
                             ItemsSource="{Binding Accounts}" >
-                <CollectionView.EmptyViewTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Label Margin="0,0,6,2"
-                                   FontFamily="Product"
-                                   FontSize="15"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"
-                                   Text="{x:Static resources:Strings.NoAccountsMessage}"
-                                   VerticalTextAlignment="End" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.EmptyViewTemplate>
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>

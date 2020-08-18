@@ -20,7 +20,8 @@
     <ContentPage.Content>
         <Grid>
             <CollectionView x:Name="CategorySummaryList"
-                        ItemsSource="{Binding CategorySummary}" >
+                            EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
+                            ItemsSource="{Binding CategorySummary}" >
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>

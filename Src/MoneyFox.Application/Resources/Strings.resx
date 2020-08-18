@@ -345,7 +345,7 @@ Tap to visit the Repository:</value>
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts. Add one by tapping on the plus button at the bottom.</value>
+    <value>There are no Accounts. Add one by tapping on the plus button.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Create Backup</value>
@@ -496,7 +496,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Recurrence</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button at the bottom.</value>
+    <value>There are no Payments. Add one by tapping on the plus button.</value>
   </data>
   <data name="AboutSettingsDescription" xml:space="preserve">
     <value>Support information about this app.</value>
