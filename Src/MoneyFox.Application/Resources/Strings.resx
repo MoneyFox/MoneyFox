@@ -735,4 +735,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="BackupCreatedMessage" xml:space="preserve">
     <value>Backup created successfully</value>
   </data>
+  <data name="SelectStatisticTitle" xml:space="preserve">
+    <value>Select Statistic</value>
+  </data>
 </root>

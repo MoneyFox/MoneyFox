@@ -32,13 +32,15 @@ namespace MoneyFox.ViewModels.Accounts
 
         public async Task OnAppearingAsync()
         {
-            var categorieVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+            Accounts.Clear();
+
+            var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
 
             var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
             var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
 
-            includedAccountGroup.AddRange(categorieVms.Where(x => !x.IsExcluded));
-            excludedAccountGroup.AddRange(categorieVms.Where(x => x.IsExcluded));
+            includedAccountGroup.AddRange(accountVms.Where(x => !x.IsExcluded));
+            excludedAccountGroup.AddRange(accountVms.Where(x => x.IsExcluded));
 
             if(includedAccountGroup.Any())
             {

@@ -1702,6 +1702,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Statistic.
+        /// </summary>
+        public static string SelectStatisticTitle {
+            get {
+                return ResourceManager.GetString("SelectStatisticTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose your prefered Theme..
         /// </summary>
         public static string SettingsPersonalizationDescription {

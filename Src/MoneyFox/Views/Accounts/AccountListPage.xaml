@@ -37,9 +37,10 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"
-              RowDefinitions="20, *">
+              RowDefinitions="30, *">
 
             <Label Style="{StaticResource TextHeadline}"
+                   Margin="15,0,15,0"
                    Text="{x:Static resources:Strings.AccountsTitle}" />
 
             <CollectionView Grid.Row="1"
