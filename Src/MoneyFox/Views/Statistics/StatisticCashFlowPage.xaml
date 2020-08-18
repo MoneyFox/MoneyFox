@@ -10,6 +10,11 @@
     mc:Ignorable="d">
 
     <ContentPage.Content>
-        <microcharts:ChartView Chart="{Binding Chart}" />
+        <StackLayout>
+            <Label Style="{StaticResource TextHeadline}"
+                   Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
+
+            <microcharts:ChartView Chart="{Binding Chart}" />
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

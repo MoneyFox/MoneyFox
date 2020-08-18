@@ -13,11 +13,8 @@
         <ScrollView>
             <StackLayout>
 
-                <Label FontAttributes="Bold"
-                       FontFamily="Product"
-                       FontSize="22"
-                       Text="{x:Static resources:Strings.EditCategoryTitle}"
-                       VerticalOptions="Center" />
+                <Label Style="{StaticResource TextHeadline}"
+                       Text="{x:Static resources:Strings.EditCategoryTitle}" />
 
                 <Categories:ModifyCategoryContentView />
 

@@ -12,11 +12,8 @@
         <ScrollView Padding="15">
             <StackLayout >
 
-                <Label FontAttributes="Bold"
-                       FontFamily="Product"
-                       FontSize="22"
-                       Text="{x:Static resources:Strings.AddCategoryTitle}"
-                       VerticalOptions="Center" />
+                <Label Style="{StaticResource TextHeadline}"
+                       Text="{x:Static resources:Strings.AddCategoryTitle}" />
 
                 <Categories:ModifyCategoryContentView />
             </StackLayout>

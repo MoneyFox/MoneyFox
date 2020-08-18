@@ -12,11 +12,8 @@
     <ContentPage.Content>
         <ScrollView Padding="15">
             <StackLayout>
-                <Label FontAttributes="Bold"
-                       FontFamily="Product"
-                       FontSize="22"
-                       Text="{x:Static resources:Strings.AddAccountLabel}"
-                       VerticalOptions="Center" />
+                <Label Style="{StaticResource TextHeadline}"
+                       Text="{x:Static resources:Strings.AddAccountLabel}" />
 
                 <accounts:ModifyAccountContentView />
             </StackLayout>

@@ -37,12 +37,9 @@
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"
               RowDefinitions="25, *">
-            <Label FontAttributes="Bold"
-                   FontFamily="Product"
-                   Margin="15,0,15,0"
-                   FontSize="22"
-                   Text="{x:Static resources:Strings.CategoriesTitle}"
-                   VerticalOptions="Center" />
+
+            <Label Style="{StaticResource TextHeadline}"
+                   Text="{x:Static resources:Strings.CategoriesTitle}" />
 
             <CollectionView Grid.Row="1"
                             x:Name="CategoryCollectionView"

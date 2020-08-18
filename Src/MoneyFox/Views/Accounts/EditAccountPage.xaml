@@ -13,11 +13,8 @@
         <ScrollView>
             <StackLayout Padding="15">
 
-                <Label FontAttributes="Bold"
-                       FontFamily="Product"
-                       FontSize="22"
-                       Text="{Binding Title}"
-                       VerticalOptions="Center" />
+                <Label Style="{StaticResource TextHeadline}"
+                       Text="{Binding Title}" />
 
                 <accounts:ModifyAccountContentView />
 
