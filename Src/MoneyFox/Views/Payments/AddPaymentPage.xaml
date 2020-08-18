@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Payments.AddPaymentPage">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView Padding="15">
             <StackLayout>
                 <payments:ModifyPaymentContentView />
             </StackLayout>

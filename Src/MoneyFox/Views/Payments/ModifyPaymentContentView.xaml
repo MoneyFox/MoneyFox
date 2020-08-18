@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:theme="clr-namespace:MoneyFox"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Payments.ModifyPaymentContentView">
 
@@ -18,8 +19,7 @@
     </ContentView.Resources>
 
     <ContentView.Content>
-        <ScrollView>
-            <StackLayout>
+        <StackLayout>
                 <Picker Title="{Binding AccountHeader}"
                         ItemsSource="{Binding ChargedAccounts}"
                         SelectedItem="{Binding SelectedPayment.ChargedAccount}"
@@ -53,29 +53,22 @@
                             Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
                             Command="{Binding GoToSelectCategoryDialogCommand}" />
 
-                    <ImageButton Grid.Column="1"
-                                 HeightRequest="30"
-                                 WidthRequest="30"
-                                 BackgroundColor="Transparent"
-                                 VerticalOptions="Center"
-                                 Command="{Binding ResetCategoryCommand}"
-                                 Margin="0,0,2,0">
-                        <ImageButton.Source>
-                            <FontImageSource
-                                Glyph="{StaticResource Reset}"
-                                FontFamily="{DynamicResource MaterialDesignIconsFontFamily}"
-                                Size="33"
-                                Color="{DynamicResource PrimaryFontColor}" />
-                        </ImageButton.Source>
-                    </ImageButton>
+                    <Label Grid.Column="1"
+                           VerticalOptions="Center"
+                           Text="{x:Static theme:IconFont.Bell}"
+                           FontSize="30"
+                           FontFamily="FontAwesome">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ResetCategoryCommand}" />
+                        </Label.GestureRecognizers>
+                    </Label>
                 </Grid>
 
                 <Label Text="{x:Static resources:Strings.DateLabel}"
                        Margin="0,5,0,0" />
 
                 <DatePicker Date="{Binding SelectedPayment.Date}"
-                            Format="D"
-                            Style="{StaticResource DefaultDatePickerStyle}" />
+                            Format="D" />
 
                 <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
                        Text="{Binding SelectedPayment.Note}" />
@@ -99,11 +92,9 @@
                     <Label Text="{x:Static resources:Strings.RecurrenceLabel}"
                            Margin="0,5,0,0" />
                     <Picker ItemsSource="{Binding RecurrenceList}"
-                            SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}"
-                            Margin="{StaticResource MediumBottomMargin}" />
+                            SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
 
-                    <Grid HorizontalOptions="FillAndExpand"
-                          Margin="{StaticResource MediumBottomMargin}">
+                    <Grid HorizontalOptions="FillAndExpand" >
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="70*" />
@@ -118,11 +109,8 @@
                                 IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
                     </Grid>
 
-                    <StackLayout
-                        IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}"
-                        Spacing="{StaticResource DefaultSpacing}">
-                        <Label Text="{x:Static resources:Strings.EnddateLabel}"
-                               Margin="{StaticResource MediumBottomMargin}" />
+                    <StackLayout IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" >
+                        <Label Text="{x:Static resources:Strings.EnddateLabel}" />
 
                         <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}"
                                     Format="D" />
@@ -137,6 +125,5 @@
 
                 </Button>
             </StackLayout>
-        </ScrollView>
     </ContentView.Content>
 </ContentView>
