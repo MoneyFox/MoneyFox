@@ -88,7 +88,8 @@ namespace MoneyFox.ViewModels.Payments
 
         private async Task LoadPaymentsByMessageAsync()
         {
-            var paymentVms = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id, lastMessage.TimeRangeStart, lastMessage.TimeRangeEnd)));
+            var paymentVms = mapper.Map<List<PaymentViewModel>>(
+                await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id, lastMessage.TimeRangeStart, lastMessage.TimeRangeEnd)));
 
             List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
                .CreateGroups(paymentVms,

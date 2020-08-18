@@ -52,109 +52,107 @@
                    Text="{Binding SelectedAccount.Name}"
                    VerticalOptions="Center" />
 
-                <CollectionView Grid.Row="1"
+            <CollectionView Grid.Row="1"
                                 ItemsSource="{Binding Payments}"
                                 EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
                                 x:Name="PaymentCollectionView">
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid RowDefinitions="20, 15, Auto" IsClippedToBounds="False" Padding="15">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="20, 15, Auto" IsClippedToBounds="False" Padding="15">
 
-                                <Label FontAttributes="Bold"
+                            <Label FontAttributes="Bold"
                                        Style="{StaticResource TextSubheadSecondary}"
                                        Text="{Binding Key}" />
 
-                                <Label Grid.Row="1"
+                            <Label Grid.Row="1"
                                        Style="{StaticResource TextBodySecondary}"
                                        Text="{Binding Subtitle}" />
 
-                                <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                            <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                      Light={StaticResource CardBackgroundLight}}"
                                                    CornerRadius="10"
                                                    Grid.Row="2"
                                                    HorizontalOptions="FillAndExpand">
 
-                                    <yummy:PancakeView.Shadow>
-                                        <yummy:DropShadow />
-                                    </yummy:PancakeView.Shadow>
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow />
+                                </yummy:PancakeView.Shadow>
 
-                                    <StackLayout BindableLayout.ItemsSource="{Binding .}">
-                                        <BindableLayout.ItemTemplate>
-                                            <DataTemplate x:DataType="payments:PaymentViewModel">
+                                <StackLayout BindableLayout.ItemsSource="{Binding .}">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate x:DataType="payments:PaymentViewModel">
                                             <StackLayout Padding="9,6,9,3" >
 
-                                                    <StackLayout.GestureRecognizers>
-                                                        <TapGestureRecognizer
+                                                <StackLayout.GestureRecognizers>
+                                                    <TapGestureRecognizer
                                                             Command="{Binding BindingContext.GoToEditPaymentCommand, Source={x:Reference Name=PaymentCollectionView}}"
                                                             CommandParameter="{Binding .}" />
-                                                    </StackLayout.GestureRecognizers>
+                                                </StackLayout.GestureRecognizers>
 
-                                                    <Grid>
-                                                        <Label Style="{StaticResource TextBody}"
+                                                <Grid>
+                                                    <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="Start"
                                                                 VerticalTextAlignment="Start"
                                                                 Text="{Binding Date, StringFormat='{0:d}'}" />
 
-                                                        <Label Style="{StaticResource TextBody}"
+                                                    <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="End"
                                                                 VerticalTextAlignment="Start"
                                                                 Text="{Binding Amount, StringFormat='{0:c}'}" />
-                                                    </Grid>
+                                                </Grid>
 
-                                                    <Grid>
-                                                        <Label LineBreakMode="TailTruncation"
+                                                <Grid>
+                                                    <Label LineBreakMode="TailTruncation"
                                                                Style="{StaticResource TextBodySecondary}"
                                                                Text="{Binding Category.Name}" />
 
-                                                        <StackLayout HorizontalOptions="End" Orientation="Horizontal">
-                                                            <Image HeightRequest="15"
+                                                    <StackLayout HorizontalOptions="End" Orientation="Horizontal">
+                                                        <Image HeightRequest="15"
                                                                    IsVisible="{Binding IsTransfer}"
                                                                    WidthRequest="15">
-                                                                <Image.Source>
-                                                                    <FontImageSource FontFamily="FontAwesome"
+                                                            <Image.Source>
+                                                                <FontImageSource FontFamily="FontAwesome"
                                                                                      Glyph="{x:Static theme:IconFont.ExchangeAlt}"
                                                                                      Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
-                                                                </Image.Source>
-                                                            </Image>
+                                                            </Image.Source>
+                                                        </Image>
 
-                                                            <Image HeightRequest="15"
+                                                        <Image HeightRequest="15"
                                                                    IsVisible="{Binding IsRecurring}"
                                                                    WidthRequest="15">
-                                                                <Image.Source>
-                                                                    <FontImageSource FontFamily="FontAwesome"
+                                                            <Image.Source>
+                                                                <FontImageSource FontFamily="FontAwesome"
                                                                                  Glyph="{x:Static theme:IconFont.ExchangeAlt}"
                                                                                  Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
-                                                                </Image.Source>
-                                                            </Image>
+                                                            </Image.Source>
+                                                        </Image>
 
-                                                            <Image HeightRequest="15"
+                                                        <Image HeightRequest="15"
                                                                    IsVisible="{Binding IsCleared}"
                                                                    WidthRequest="15">
-                                                                <Image.Source>
-                                                                    <FontImageSource FontFamily="FontAwesome"
+                                                            <Image.Source>
+                                                                <FontImageSource FontFamily="FontAwesome"
                                                                                  Glyph="{x:Static theme:IconFont.Check}"
                                                                                  Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
-                                                                </Image.Source>
-                                                            </Image>
-                                                        </StackLayout>
-                                                    </Grid>
+                                                            </Image.Source>
+                                                        </Image>
+                                                    </StackLayout>
+                                                </Grid>
 
-                                                    <Label Style="{StaticResource TextBodySecondary}"
+                                                <Label Style="{StaticResource TextBodySecondary}"
                                                            HorizontalTextAlignment="Start"
                                                            LineBreakMode="TailTruncation"
                                                            Text="{Binding Note}" />
-
-                                                    <BoxView Style="{StaticResource HRule}"/>
-                                                </StackLayout>
-                                            </DataTemplate>
-                                        </BindableLayout.ItemTemplate>
-                                    </StackLayout>
-                                </yummy:PancakeView>
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                                            </StackLayout>
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
+                            </yummy:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
     </ContentPage.Content>
 
