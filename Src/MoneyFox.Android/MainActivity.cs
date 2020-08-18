@@ -5,6 +5,7 @@ using Android.OS;
 using Xamarin.Forms.Platform.Android;
 using Microsoft.Identity.Client;
 using Android.Content;
+using MoneyFox.Application.Common;
 
 namespace MoneyFox.Droid
 {
@@ -13,6 +14,8 @@ namespace MoneyFox.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            ParentActivityWrapper.ParentActivity = this;
+
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
