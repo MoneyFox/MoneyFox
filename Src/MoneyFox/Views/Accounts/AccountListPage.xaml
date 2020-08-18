@@ -37,7 +37,7 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"
-              RowDefinitions="30, *">
+              RowDefinitions="40, *">
 
             <Label Style="{StaticResource TextHeadline}"
                    Margin="15,0,15,0"

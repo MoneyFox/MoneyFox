@@ -45,6 +45,7 @@
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"
               RowDefinitions="40, Auto">
+
             <Label FontAttributes="Bold"
                    FontFamily="Product"
                    Margin="15,0,15,0"
