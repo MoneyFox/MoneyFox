@@ -738,7 +738,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="SelectStatisticTitle" xml:space="preserve">
     <value>Select Statistic</value>
   </data>
-  <data name="IncomeAndExpenseTemplate" xml:space="preserve">
-    <value>Income: {0} / Expense {1}</value>
+  <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
+    <value>Expense {1} / Income: {0}</value>
   </data>
 </root>

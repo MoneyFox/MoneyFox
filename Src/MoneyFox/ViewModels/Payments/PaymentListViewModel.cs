@@ -105,9 +105,9 @@ namespace MoneyFox.ViewModels.Payments
 
         private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group)
         {
-            group.Subtitle = string.Format(Strings.IncomeAndExpenseTemplate,
-                group.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount),
-                group.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount));
+            group.Subtitle = string.Format(Strings.ExpenseAndIncomeTemplate,
+                group.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount),
+                group.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount));
         }
 
         public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new FilterPopup().ShowAsync());

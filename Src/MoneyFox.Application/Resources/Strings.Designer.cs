@@ -952,6 +952,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Expense {1} / Income: {0}.
+        /// </summary>
+        public static string ExpenseAndIncomeTemplate {
+            get {
+                return ResourceManager.GetString("ExpenseAndIncomeTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add expense.
         /// </summary>
         public static string ExpenseHeader {
@@ -1056,15 +1065,6 @@ namespace MoneyFox.Application.Resources {
         public static string IncomeAndExpensesLabel {
             get {
                 return ResourceManager.GetString("IncomeAndExpensesLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Income: {0} / Expense {1}.
-        /// </summary>
-        public static string IncomeAndExpenseTemplate {
-            get {
-                return ResourceManager.GetString("IncomeAndExpenseTemplate", resourceCulture);
             }
         }
         
