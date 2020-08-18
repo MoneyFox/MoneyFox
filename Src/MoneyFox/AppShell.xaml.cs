@@ -9,7 +9,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox
 {
-    public partial class AppShell : Xamarin.Forms.Shell
+    public partial class AppShell : Shell
     {
         public AppShell()
         {
@@ -28,6 +28,7 @@ namespace MoneyFox
             Routing.RegisterRoute(ViewModelLocator.CategoryListRoute, typeof(CategoryListPage));
             Routing.RegisterRoute(ViewModelLocator.SelectCategoryRoute, typeof(SelectedCategoryPage));
             Routing.RegisterRoute(ViewModelLocator.AddCategoryRoute, typeof(AddCategoryPage));
+            Routing.RegisterRoute(ViewModelLocator.AddPaymentRoute, typeof(AddPaymentPage));
             Routing.RegisterRoute(ViewModelLocator.BackupRoute, typeof(BackupPage));
             Routing.RegisterRoute(ViewModelLocator.SettingsRoute, typeof(SettingsPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCashFlowRoute, typeof(StatisticCashFlowPage));
