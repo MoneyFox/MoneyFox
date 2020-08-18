@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -12,6 +13,7 @@ using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using NLog;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -81,9 +83,12 @@ namespace MoneyFox.ViewModels.Payments
             }
         }
 
-        public virtual async Task InitializeAsync()
+        protected virtual async Task InitializeAsync()
         {
+            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
 
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
 
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));

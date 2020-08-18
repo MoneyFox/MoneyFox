@@ -22,6 +22,11 @@ namespace MoneyFox.ViewModels.Payments
             this.mapper = mapper;
         }
 
+        public async Task InitializeAsync()
+        {
+            await base.InitializeAsync();
+        }
+
         protected override async Task SavePaymentAsync()
         {
             var payment = new Payment(SelectedPayment.Date,

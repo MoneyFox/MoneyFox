@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
+using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Services;
 using System.Threading.Tasks;
@@ -23,8 +24,10 @@ namespace MoneyFox.ViewModels.Payments
             this.dialogService = dialogService;
         }
 
-        public void Init(int accountId)
+        public async Task InitializeAsync(int paymentId)
         {
+            SelectedPayment = mapper.Map<PaymentViewModel>(mediator.Send(new GetPaymentByIdQuery(paymentId)));
+            await base.InitializeAsync();
         }
 
         protected override async Task SavePaymentAsync()
@@ -46,14 +49,14 @@ namespace MoneyFox.ViewModels.Payments
                                                     SelectedPayment.Note,
                                                     SelectedPayment.IsRecurring,
                                                     SelectedPayment.Category != null
-                                                    ? SelectedPayment.Category.Id
-                                                    : 0,
+                                                        ? SelectedPayment.Category.Id
+                                                        : 0,
                                                     SelectedPayment.ChargedAccount != null
-                                                    ? SelectedPayment.ChargedAccount.Id
-                                                    : 0,
+                                                        ? SelectedPayment.ChargedAccount.Id
+                                                        : 0,
                                                     SelectedPayment.TargetAccount != null
-                                                    ? SelectedPayment.TargetAccount.Id
-                                                    : 0,
+                                                        ? SelectedPayment.TargetAccount.Id
+                                                        : 0,
                                                     updateRecurring,
                                                     SelectedPayment.RecurringPayment?.Recurrence,
                                                     SelectedPayment.RecurringPayment?.IsEndless,

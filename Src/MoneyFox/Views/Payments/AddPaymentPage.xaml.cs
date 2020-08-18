@@ -33,5 +33,7 @@ namespace MoneyFox.Views.Payments
             ToolbarItems.Add(cancelItem);
             ToolbarItems.Add(saveItem);
         }
+
+        protected override async void OnAppearing() => await ViewModel.InitializeAsync();
     }
 }
