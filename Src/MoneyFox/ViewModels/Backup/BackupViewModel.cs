@@ -259,6 +259,7 @@ namespace MoneyFox.ViewModels.Backup
             try
             {
                 await backupService.UploadBackupAsync(BackupMode.Manual);
+                toastService.ShowToast(Strings.BackupCreatedMessage);
 
                 BackupLastModified = DateTime.Now;
             }
@@ -273,7 +274,6 @@ namespace MoneyFox.ViewModels.Backup
             }
 
             await dialogService.HideLoadingDialogAsync();
-            toastService.ShowToast(Strings.BackupCreatedMessage);
         }
 
         private async Task RestoreBackupAsync()
@@ -306,6 +306,8 @@ namespace MoneyFox.ViewModels.Backup
                 logger.Error(ex, "Restore Backup failed.");
                 await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
             }
+
+            await dialogService.HideLoadingDialogAsync();
         }
 
         private async Task<bool> ShowOverwriteBackupInfoAsync()

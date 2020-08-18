@@ -34,6 +34,10 @@ namespace MoneyFox.Services
             await messageDialog.ShowAsync();
         }
 
-        public Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null) => throw new System.NotImplementedException();
+        public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
+        {
+            var confirmDialog = new ConfirmMessageDialog(title, message, positiveButtonText ?? "", negativeButtonText ?? "" );
+            return await confirmDialog.ShowAsync();
+        }
     }
 }

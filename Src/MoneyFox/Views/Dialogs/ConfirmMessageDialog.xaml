@@ -38,8 +38,8 @@
             </yummy:PancakeView.Shadow>
 
             <StackLayout Padding="20">
-                <Label Text="{Binding PopupTitle, Source={x:Reference MessagePopup}}" Style="{DynamicResource TextHead}" />
-                <Label Text="{Binding PopupMessage, Source={x:Reference MessagePopup}}" Style="{DynamicResource BaseLabel}" />
+                <Label Text="{Binding PopupTitle, Source={x:Reference ConfirmDialog}}" Style="{DynamicResource TextHead}" />
+                <Label Text="{Binding PopupMessage, Source={x:Reference ConfirmDialog}}" Style="{DynamicResource BaseLabel}" />
 
                 <Grid ColumnDefinitions="*, Auto, Auto">
                     <Button Text="{Binding PositiveText, Source={x:Reference ConfirmDialog}}"
