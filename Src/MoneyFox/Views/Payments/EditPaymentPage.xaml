@@ -14,7 +14,7 @@
             <StackLayout Padding="15">
 
                 <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.EditPaymentTitle}" />
+                       Text="{Binding Title}" />
 
                 <payments:ModifyPaymentContentView />
 

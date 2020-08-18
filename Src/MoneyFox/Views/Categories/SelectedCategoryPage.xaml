@@ -47,20 +47,8 @@
             <CollectionView Grid.Row="1"
                             x:Name="CategoryCollectionView"
                             IsGrouped="true"
+                            EmptyView="{x:Static resources:Strings.NoCategoriesMessage}"
                             ItemsSource="{Binding Categories}" >
-                <CollectionView.EmptyViewTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Label Margin="0,0,6,2"
-                                   FontFamily="Product"
-                                   FontSize="15"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"
-                                   Text="{x:Static resources:Strings.NoCategoriesMessage}"
-                                   VerticalTextAlignment="End" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.EmptyViewTemplate>
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
