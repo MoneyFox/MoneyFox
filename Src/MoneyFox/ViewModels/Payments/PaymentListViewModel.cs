@@ -4,6 +4,7 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
+using MoneyFox.Application.Resources;
 using MoneyFox.Common;
 using MoneyFox.Domain;
 using MoneyFox.Extensions;
@@ -16,6 +17,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -96,7 +98,16 @@ namespace MoneyFox.ViewModels.Payments
                              s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                              s => s.Date);
 
+            dailyItems.ForEach(CalculateSubBalances);
+
             Payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+        }
+
+        private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group)
+        {
+            group.Subtitle = string.Format(Strings.IncomeAndExpenseTemplate,
+                group.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount),
+                group.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount));
         }
 
         public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new FilterPopup().ShowAsync());
