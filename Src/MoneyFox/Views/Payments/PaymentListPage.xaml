@@ -7,7 +7,8 @@
              mc:Ignorable="d"
              Shell.NavBarHasShadow="False"
              xmlns:theme="clr-namespace:MoneyFox"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments"
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
 
     <Shell.TitleView>

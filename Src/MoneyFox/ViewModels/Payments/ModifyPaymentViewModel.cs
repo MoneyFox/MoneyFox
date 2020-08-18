@@ -5,6 +5,7 @@ using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Extensions;
 using MoneyFox.Messages;
@@ -90,6 +91,39 @@ namespace MoneyFox.ViewModels.Payments
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
         }
+
+        /// <summary>
+        /// Indicates if the PaymentViewModel is a transfer.
+        /// </summary>
+        public bool IsTransfer => SelectedPayment.IsTransfer;
+
+        public List<PaymentType> PaymentTypeList => new List<PaymentType>
+        {
+            PaymentType.Expense,
+            PaymentType.Income,
+            PaymentType.Transfer
+        };
+
+        /// <summary>
+        /// List with the different recurrence types.     This has to have the same order as the enum
+        /// </summary>
+        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
+        {
+            PaymentRecurrence.Daily,
+            PaymentRecurrence.DailyWithoutWeekend,
+            PaymentRecurrence.Weekly,
+            PaymentRecurrence.Biweekly,
+            PaymentRecurrence.Monthly,
+            PaymentRecurrence.Bimonthly,
+            PaymentRecurrence.Quarterly,
+            PaymentRecurrence.Biannually,
+            PaymentRecurrence.Yearly
+        };
+
+        public string AccountHeader
+              => SelectedPayment?.Type == PaymentType.Income
+                 ? Strings.TargetAccountLabel
+                 : Strings.ChargedAccountLabel;
 
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedPayment.Category = null);

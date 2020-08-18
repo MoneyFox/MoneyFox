@@ -14,7 +14,7 @@
             <StackLayout Padding="15">
 
                 <Label Style="{StaticResource TextHeadline}"
-                       Text="{Binding Title}" />
+                       Text="{x:Static resources:Strings.AddPaymentLabel}" />
 
                 <payments:ModifyPaymentContentView />
 
@@ -24,11 +24,11 @@
                 <Label Style="{StaticResource TextBodySecondary}"
                    Text="{Binding SelectedAccount.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
-                <Button x:Name="DeleteAccountButton"
-                    Style="{StaticResource WarningButton}"
-                    Margin="0,12,0,0"
-                    Command="{Binding DeleteCommand}"
-                    Text="{x:Static resources:Strings.DeleteLabel}" />
+                <Button x:Name="DeletePaymentButton"
+                        Style="{StaticResource WarningButton}"
+                        Margin="0,12,0,0"
+                        Command="{Binding DeleteCommand}"
+                        Text="{x:Static resources:Strings.DeleteLabel}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
