@@ -1,5 +1,6 @@
 ﻿using Rg.Plugins.Popup.Extensions;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MoneyFox.Views.Dialogs
 {
@@ -9,18 +10,59 @@ namespace MoneyFox.Views.Dialogs
         {
             InitializeComponent();
 
-            Title = title;
-            Message = message;
+            PopupTitle = title;
+            PopupMessage = message;
             PositiveText = positiveText;
             NegativeText = negativeText;
         }
 
-        public new string Title { get; set; }
+        public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
+            nameof(PopupTitle),
+            typeof(string),
+            typeof(ConfirmMessageDialog),
+            default(string));
 
-        public string Message { get; set; }
-        public string PositiveText { get; set; }
+        public static readonly BindableProperty PopupMessageProperty = BindableProperty.Create(
+            nameof(PopupMessage),
+            typeof(string),
+            typeof(ConfirmMessageDialog),
+            default(string));
 
-        public string NegativeText { get; set; }
+        public static readonly BindableProperty PositiveTextProperty = BindableProperty.Create(
+            nameof(PositiveText),
+            typeof(string),
+            typeof(ConfirmMessageDialog),
+            default(string));
+
+        public static readonly BindableProperty NegativeTextProperty = BindableProperty.Create(
+            nameof(NegativeText),
+            typeof(string),
+            typeof(ConfirmMessageDialog),
+            default(string));
+
+        public string PopupTitle
+        {
+            get => (string)GetValue(PopupTitleProperty);
+            set => SetValue(PopupTitleProperty, value);
+        }
+
+        public string PopupMessage
+        {
+            get => (string)GetValue(PopupMessageProperty);
+            set => SetValue(PopupMessageProperty, value);
+        }
+
+        public string PositiveText
+        {
+            get => (string)GetValue(PositiveTextProperty);
+            set => SetValue(PositiveTextProperty, value);
+        }
+
+        public string NegativeText
+        {
+            get => (string)GetValue(NegativeTextProperty);
+            set => SetValue(NegativeTextProperty, value);
+        }
 
         private TaskCompletionSource<bool>? confirmTaskCompletionSource;
 
