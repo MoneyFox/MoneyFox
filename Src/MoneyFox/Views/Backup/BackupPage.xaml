@@ -24,7 +24,7 @@
                     Text="{x:Static resources:Strings.BackupTitle}" />
 
             <Label Text="{x:Static resources:Strings.BackupServiceTitle}"
-                       Style="{StaticResource TextSubHead}" />
+                       Style="{StaticResource TextTitle}" />
 
             <Button Command="{Binding LoginCommand}"
                         IsVisible="{Binding IsLoggedIn, Converter={StaticResource Inverter}}"
@@ -77,7 +77,7 @@
 
                 <!-- Autobackup -->
                 <Label Text="{x:Static resources:Strings.AutobackupTitle}"
-                       Style="{StaticResource TextSubHead}" />
+                       Style="{StaticResource TextTitle}" />
 
                 <Label Text="{x:Static resources:Strings.AutobackupInformationLabel}" />
 

@@ -1,5 +1,6 @@
 ﻿using Rg.Plugins.Popup.Extensions;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MoneyFox.Views.Dialogs
 {
@@ -9,13 +10,33 @@ namespace MoneyFox.Views.Dialogs
         {
             InitializeComponent();
 
-            Title = title;
-            Message = message;
+            PopupTitle = title;
+            PopupMessage = message;
         }
 
-        public new string Title { get; set; }
+        public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
+            nameof(PopupTitle),
+            typeof(string),
+            typeof(MessageDialog),
+            default(string));
 
-        public string Message { get; set; }
+        public static readonly BindableProperty PopupMessageProperty = BindableProperty.Create(
+            nameof(PopupMessage),
+            typeof(string),
+            typeof(MessageDialog),
+            default(string));
+
+        public string PopupTitle
+        {
+            get => (string)GetValue(PopupTitleProperty);
+            set => SetValue(PopupTitleProperty, value);
+        }
+
+        public string PopupMessage
+        {
+            get => (string)GetValue(PopupMessageProperty);
+            set => SetValue(PopupMessageProperty, value);
+        }
 
         public async Task ShowAsync()
         {
