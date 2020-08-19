@@ -89,6 +89,10 @@
                                                 Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
                                                 CommandParameter="{Binding .}"
                                                 Text="{x:Static resources:Strings.EditLabel}" />
+                                            <SwipeItem
+                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Text="{x:Static resources:Strings.DeleteLabel}" />
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
