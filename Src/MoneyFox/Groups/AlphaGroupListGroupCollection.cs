@@ -35,7 +35,7 @@ namespace MoneyFox.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click.</param>
-        public AlphaGroupListGroupCollection(string key, RelayCommand<T> itemClickCommand = null)
+        public AlphaGroupListGroupCollection(string key, RelayCommand<T> itemClickCommand)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
@@ -49,7 +49,7 @@ namespace MoneyFox.Groups
         /// <summary>
         /// The command to execute on a click.
         /// </summary>
-        public RelayCommand<T> ItemClickCommand { get; }
+        public RelayCommand<T>? ItemClickCommand { get; }
 
         /// <summary>
         /// Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.

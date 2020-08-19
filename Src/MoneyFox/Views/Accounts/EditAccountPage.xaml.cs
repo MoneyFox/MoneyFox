@@ -6,7 +6,7 @@ namespace MoneyFox.Views.Accounts
 {
     public partial class EditAccountPage : ContentPage
     {
-        private EditAccountViewModel ViewModel => BindingContext as EditAccountViewModel;
+        private EditAccountViewModel ViewModel => (EditAccountViewModel) BindingContext;
 
         private int accountId;
 

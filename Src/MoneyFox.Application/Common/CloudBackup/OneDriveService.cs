@@ -36,9 +36,9 @@ namespace MoneyFox.Application.Common.CloudBackup
             this.graphClientFactory = graphClientFactory;
         }
 
-        private IGraphServiceClient GraphServiceClient { get; set; }
+        private IGraphServiceClient? GraphServiceClient { get; set; }
 
-        private DriveItem ArchiveFolder { get; set; }
+        private DriveItem? ArchiveFolder { get; set; }
 
         /// <summary>
         /// Login User to OneDrive.
@@ -63,6 +63,8 @@ namespace MoneyFox.Application.Common.CloudBackup
                 authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
                                                           .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                                                           .ExecuteAsync();
+
+                GraphServiceClient = graphClientFactory.CreateClient(authResult);
             }
             catch(MsalClientException ex)
             {
