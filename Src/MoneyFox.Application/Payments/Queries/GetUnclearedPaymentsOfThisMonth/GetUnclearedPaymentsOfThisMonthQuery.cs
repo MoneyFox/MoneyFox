@@ -34,7 +34,10 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
                                                           .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth());
 
                 if(request.AccountId != 0)
+                {
                     query = query.HasAccountId(request.AccountId);
+                }
+
                 return await query.ToListAsync(cancellationToken);
             }
         }

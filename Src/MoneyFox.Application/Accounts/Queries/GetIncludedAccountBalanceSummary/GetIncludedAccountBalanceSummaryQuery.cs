@@ -1,9 +1,6 @@
 ﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
-using MoneyFox.Domain.Entities;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,12 +20,12 @@ namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary
 
             public async Task<decimal> Handle(GetIncludedAccountBalanceSummaryQuery request, CancellationToken cancellationToken)
             {
-                List<Account> accountsList = await contextAdapter.Context
-                                                                 .Accounts
-                                                                 .AreNotExcluded()
-                                                                 .ToListAsync(cancellationToken);
+                var balance = contextAdapter.Context
+                                            .Accounts
+                                            .AreNotExcluded()
+                                            .Sum(x => x.CurrentBalance);
 
-                return accountsList.Sum(x => x.CurrentBalance);
+                return await Task.FromResult(balance);
             }
         }
     }
