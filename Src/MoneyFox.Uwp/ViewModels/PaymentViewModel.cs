@@ -255,7 +255,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The <see cref="Category"/> for this payment
         /// </summary>
-        public CategoryViewModel Category
+        public CategoryViewModel? Category
         {
             get => categoryViewModel;
             set
@@ -270,7 +270,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The <see cref="RecurringPayment"/> if it's recurring.
         /// </summary>
-        public RecurringPaymentViewModel RecurringPayment
+        public RecurringPaymentViewModel? RecurringPayment
         {
             get => recurringPaymentViewModel;
             set

@@ -5,7 +5,7 @@ namespace MoneyFox.Uwp.Views
 {
     public sealed partial class EditCategoryDialog : ContentDialog
     {
-        private EditCategoryViewModel ViewModel => DataContext as EditCategoryViewModel;
+        private EditCategoryViewModel ViewModel => (EditCategoryViewModel) DataContext;
 
         public EditCategoryDialog(int categoryId)
         {

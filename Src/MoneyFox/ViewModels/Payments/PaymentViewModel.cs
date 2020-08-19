@@ -23,7 +23,7 @@ namespace MoneyFox.ViewModels.Payments
         private DateTime creationTime;
         private DateTime modificationDate;
 
-        private AccountViewModel? chargedAccount;
+        private AccountViewModel chargedAccount;
         private AccountViewModel? targetAccount;
         private CategoryViewModel? categoryViewModel;
         private RecurringPaymentViewModel? recurringPaymentViewModel;
@@ -218,7 +218,7 @@ namespace MoneyFox.ViewModels.Payments
         /// The <see cref="AccountViewModel"/> who will be credited by a transfer.     Not used for the other payment
         ///  types.
         /// </summary>
-        public AccountViewModel TargetAccount
+        public AccountViewModel? TargetAccount
         {
             get => targetAccount;
             set

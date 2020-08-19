@@ -1,5 +1,4 @@
-﻿using MoneyFox.Application.Common;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using Rg.Plugins.Popup.Extensions;
@@ -10,7 +9,7 @@ namespace MoneyFox.Views
 {
     public partial class StatisticCashFlowPage
     {
-        private StatisticCashFlowViewModel ViewModel => BindingContext as StatisticCashFlowViewModel;
+        private StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel) BindingContext;
 
         public StatisticCashFlowPage()
         {
@@ -18,12 +17,12 @@ namespace MoneyFox.Views
             BindingContext = ViewModelLocator.StatisticCashFlowViewModel;
 
             var filterItem = new ToolbarItem
-                             {
-                                 Command = new Command(async() => await OpenDialog()),
-                                 Text = Strings.SelectDateLabel,
-                                 Priority = 0,
-                                 Order = ToolbarItemOrder.Primary
-                             };
+            {
+                Command = new Command(async() => await OpenDialog()),
+                Text = Strings.SelectDateLabel,
+                Priority = 0,
+                Order = ToolbarItemOrder.Primary
+            };
 
             ToolbarItems.Add(filterItem);
 

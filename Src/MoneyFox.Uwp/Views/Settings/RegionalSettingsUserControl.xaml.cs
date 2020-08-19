@@ -7,7 +7,7 @@ namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class RegionalSettingsUserControl
     {
-        private IRegionalSettingsViewModel ViewModel => DataContext as IRegionalSettingsViewModel;
+        private IRegionalSettingsViewModel ViewModel => (IRegionalSettingsViewModel) DataContext;
 
         public RegionalSettingsUserControl()
         {

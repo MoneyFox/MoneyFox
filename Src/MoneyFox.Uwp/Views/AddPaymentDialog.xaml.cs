@@ -7,7 +7,7 @@ namespace MoneyFox.Uwp.Views
 {
     public sealed partial class AddPaymentDialog : ContentDialog
     {
-        private AddPaymentViewModel ViewModel => DataContext as AddPaymentViewModel;
+        private AddPaymentViewModel ViewModel => (AddPaymentViewModel) DataContext;
 
         public AddPaymentDialog(PaymentType paymentType)
         {

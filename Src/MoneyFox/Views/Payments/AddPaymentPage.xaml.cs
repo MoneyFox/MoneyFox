@@ -6,7 +6,7 @@ namespace MoneyFox.Views.Payments
 {
     public partial class AddPaymentPage : ContentPage
     {
-        private AddPaymentViewModel ViewModel => BindingContext as AddPaymentViewModel;
+        private AddPaymentViewModel ViewModel => (AddPaymentViewModel) BindingContext;
 
         public AddPaymentPage()
         {
