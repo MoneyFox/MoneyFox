@@ -4,6 +4,7 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
+using MoneyFox.Application.Payments.Queries.GetMonthlyIncome;
 using MoneyFox.Extensions;
 using MoneyFox.ViewModels.Accounts;
 using System.Collections.ObjectModel;
@@ -15,6 +16,9 @@ namespace MoneyFox.ViewModels.Dashboard
     public class DashboardViewModel : BaseViewModel
     {
         private decimal assets;
+        private decimal endOfMonthBalance;
+        private decimal monthlyIncomes;
+        private decimal monthlyExpenses;
         private ObservableCollection<AccountViewModel> accounts = new ObservableCollection<AccountViewModel>();
 
         private readonly IMediator mediator;
@@ -31,12 +35,9 @@ namespace MoneyFox.ViewModels.Dashboard
             Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
             Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
             EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
+            MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
+            MonthlyIncomes = await mediator.Send(new GetMonthlyIncomeQuery());
         }
-
-        private decimal endOfMonthBalance = 13000;
-        private decimal monthlyIncomes = 7000;
-        private decimal monthlyExpenses = 5000;
-
 
         public decimal Assets
         {
@@ -47,7 +48,6 @@ namespace MoneyFox.ViewModels.Dashboard
                 RaisePropertyChanged();
             }
         }
-
 
         public decimal EndOfMonthBalance
         {
