@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
@@ -18,7 +19,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Accounts
 {
-    public class AccountListViewModel : BaseViewModel
+    public class AccountListViewModel : ViewModelBase
     {
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
 

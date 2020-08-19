@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Services;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Settings
 {
-    public class SettingsViewModel : BaseViewModel
+    public class SettingsViewModel : ViewModelBase
     {
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;

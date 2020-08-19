@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
@@ -13,7 +14,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Dashboard
 {
-    public class DashboardViewModel : BaseViewModel
+    public class DashboardViewModel : ViewModelBase
     {
         private decimal assets;
         private decimal endOfMonthBalance;

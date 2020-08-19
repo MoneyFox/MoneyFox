@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
@@ -15,7 +16,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Categories
 {
-    public class CategoryListViewModel : BaseViewModel
+    public class CategoryListViewModel : ViewModelBase
     {
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
 

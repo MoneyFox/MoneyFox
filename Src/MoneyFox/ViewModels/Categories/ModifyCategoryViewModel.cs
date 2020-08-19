@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Common.Messages;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Categories
 {
-    public abstract class ModifyCategoryViewModel : BaseViewModel
+    public abstract class ModifyCategoryViewModel : ViewModelBase
     {
         private readonly IMediator mediator;
         private readonly IDialogService dialogService;

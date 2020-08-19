@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts
 {
-    public abstract class ModifyAccountViewModel : BaseViewModel
+    public abstract class ModifyAccountViewModel : ViewModelBase
     {
         private readonly IMediator mediator;
         private readonly IDialogService dialogService;

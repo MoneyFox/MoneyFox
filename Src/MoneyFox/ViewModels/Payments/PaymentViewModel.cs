@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -8,7 +9,7 @@ using System;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public class PaymentViewModel : BaseViewModel, IHaveCustomMapping
+    public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
     {
         private int id;
         private int chargedAccountId;

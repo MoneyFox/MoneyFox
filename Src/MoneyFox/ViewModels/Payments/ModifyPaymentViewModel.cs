@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
@@ -21,7 +22,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public abstract class ModifyPaymentViewModel : BaseViewModel
+    public abstract class ModifyPaymentViewModel : ViewModelBase
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 

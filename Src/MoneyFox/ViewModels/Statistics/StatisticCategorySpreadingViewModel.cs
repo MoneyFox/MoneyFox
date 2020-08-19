@@ -18,11 +18,11 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private static readonly string fontFamily = Device.RuntimePlatform == Device.iOS
+        private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
                                                     ? "Lobster-Regular" : null;
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
-        private DonutChart chart;
+        private DonutChart chart = new DonutChart();
 
         public StatisticCategorySpreadingViewModel(IMediator mediator,
                                                    ISettingsFacade settingsFacade) : base(mediator, settingsFacade)

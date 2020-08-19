@@ -61,7 +61,7 @@
     <EmbeddedResource Update="Common\Styles\DefaultTheme.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ViewModels\Budget\BudgetListPage.xaml">
+    <EmbeddedResource Update="Views\Budget\BudgetListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Accounts\AccountListPage.xaml">

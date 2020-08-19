@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
@@ -21,7 +22,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public class PaymentListViewModel : BaseViewModel
+    public class PaymentListViewModel : ViewModelBase
     {
         private AccountViewModel selectedAccount = new AccountViewModel();
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
