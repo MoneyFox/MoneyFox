@@ -247,7 +247,7 @@ namespace MoneyFox.ViewModels.Payments
         /// <summary>
         /// The <see cref="RecurringPayment"/> if it's recurring.
         /// </summary>
-        public RecurringPaymentViewModel RecurringPayment
+        public RecurringPaymentViewModel? RecurringPayment
         {
             get => recurringPaymentViewModel;
             set

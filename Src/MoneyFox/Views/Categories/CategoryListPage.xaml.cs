@@ -5,7 +5,7 @@ namespace MoneyFox.Views.Categories
 {
     public partial class CategoryListPage : ContentPage
     {
-        private CategoryListViewModel ViewModel => BindingContext as CategoryListViewModel;
+        private CategoryListViewModel ViewModel => (CategoryListViewModel) BindingContext;
 
         public CategoryListPage()
         {

@@ -16,16 +16,17 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     public class
         StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
-        private static readonly string fontFamily = Device.RuntimePlatform == Device.iOS
-                                                    ? "Lobster-Regular" : null;
+        private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
+                                                        ? "Lobster-Regular"
+                                                        : null;
+
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
-        private BarChart chart;
+        private BarChart chart = new BarChart();
 
         public StatisticCashFlowViewModel(IMediator mediator,
                                           ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
         {
-            Chart = new BarChart();
         }
 
         /// <summary>
@@ -54,12 +55,11 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             Chart = new BarChart
                     {
                         Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                                                             {
-                                                                 Label = x.Label,
-                                                                 ValueLabel = x.ValueLabel,
-                                                                 Color = SKColor.Parse(x.Color)
-                                                             })
-                                                .ToList(),
+                        {
+                            Label = x.Label,
+                            ValueLabel = x.ValueLabel,
+                            Color = SKColor.Parse(x.Color)
+                        }).ToList(),
                         BackgroundColor = BackgroundColor,
                         Margin = 20,
                         LabelTextSize = 26f,
