@@ -1,17 +1,42 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
+using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
+using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
 using MoneyFox.Extensions;
 using MoneyFox.ViewModels.Accounts;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Dashboard
 {
     public class DashboardViewModel : BaseViewModel
     {
-        private decimal assets = 13000;
+        private decimal assets;
+        private ObservableCollection<AccountViewModel> accounts = new ObservableCollection<AccountViewModel>();
+
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
+
+        public DashboardViewModel(IMediator mediator, IMapper mapper)
+        {
+            this.mediator = mediator;
+            this.mapper = mapper;
+        }
+
+        public async Task InitializeAsync()
+        {
+            Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+            Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+            EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
+        }
+
         private decimal endOfMonthBalance = 13000;
         private decimal monthlyIncomes = 7000;
         private decimal monthlyExpenses = 5000;
+
 
         public decimal Assets
         {
@@ -61,12 +86,16 @@ namespace MoneyFox.ViewModels.Dashboard
             new DashboardBudgetEntryViewModel{ BudgetName = "Books", Progress = 0.2}
         };
 
-        public ObservableCollection<AccountViewModel> Accounts { get; set; } = new ObservableCollection<AccountViewModel>
+        public ObservableCollection<AccountViewModel> Accounts
         {
-            new AccountViewModel{ Name = "Food", CurrentBalance = 700 },
-            new AccountViewModel{ Name = "Food", CurrentBalance = 2700},
-            new AccountViewModel{ Name = "Food", CurrentBalance = 1700}
-        };
+            get => accounts;
+            set
+            {
+                if(accounts == value) return;
+                accounts = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
         public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
