@@ -36,6 +36,6 @@ namespace MoneyFox.Views.Accounts
             ToolbarItems.Add(saveItem);
         }
 
-        protected override async void OnAppearing() => await ViewModel.Init(accountId);
+        protected override async void OnAppearing() => await ViewModel.InitializeAsync(accountId);
     }
 }
