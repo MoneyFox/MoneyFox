@@ -65,61 +65,59 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
-                        <Grid>
-                            <SwipeView>
-                                <SwipeView.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
-                                </SwipeView.GestureRecognizers>
+                        <Grid Padding="15,6,15,12">
+                            <yummy:PancakeView
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                  Light={StaticResource CardBackgroundLight}}"
+                                CornerRadius="10"
+                                HasShadow="true"
+                                HeightRequest="80"
+                                HorizontalOptions="FillAndExpand">
 
-                                <SwipeView.RightItems>
-                                    <SwipeItems>
-                                        <SwipeItem
-                                            Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
-                                            CommandParameter="{Binding .}"
-                                            Text="{x:Static resources:Strings.EditLabel}" />
-                                    </SwipeItems>
-                                </SwipeView.RightItems>
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow />
+                                </yummy:PancakeView.Shadow>
 
-                                <Grid Padding="15,6,15,12">
-                                    <yummy:PancakeView
-                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                          Light={StaticResource CardBackgroundLight}}"
-                                        CornerRadius="10"
-                                        HasShadow="true"
-                                        HeightRequest="80"
-                                        HorizontalOptions="FillAndExpand">
+                                <SwipeView>
+                                    <SwipeView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
+                                    </SwipeView.GestureRecognizers>
 
-                                        <yummy:PancakeView.Shadow>
-                                            <yummy:DropShadow />
-                                        </yummy:PancakeView.Shadow>
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Text="{x:Static resources:Strings.EditLabel}" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
 
-                                        <Grid>
-                                            <Label
-                                                Margin="10,2,0,0"
-                                                HorizontalTextAlignment="Start"
-                                                Style="{StaticResource TextHead}"
-                                                Text="{Binding Name}"
-                                                VerticalTextAlignment="Start" />
+                                    <Grid>
+                                        <Label
+                                            Margin="10,2,0,0"
+                                            HorizontalTextAlignment="Start"
+                                            Style="{StaticResource TextHead}"
+                                            Text="{Binding Name}"
+                                            VerticalTextAlignment="Start" />
 
-                                            <Label
-                                                Margin="0,0,6,2"
-                                                FontFamily="Product"
-                                                FontSize="20"
-                                                HorizontalTextAlignment="Center"
-                                                Text="{Binding CurrentBalance, StringFormat='{0:c}'}"
-                                                VerticalTextAlignment="Center" />
+                                        <Label
+                                            Margin="0,0,6,2"
+                                            FontFamily="Product"
+                                            FontSize="20"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding CurrentBalance, StringFormat='{0:c}'}"
+                                            VerticalTextAlignment="Center" />
 
-                                            <Label
-                                                Margin="0,0,6,2"
-                                                FontFamily="Product"
-                                                FontSize="10"
-                                                HorizontalTextAlignment="End"
-                                                Text="{Binding EndOfMonthBalance, StringFormat={extensions:Translate EndOfMonthLabel}}"
-                                                VerticalTextAlignment="End" />
-                                        </Grid>
-                                    </yummy:PancakeView>
-                                </Grid>
-                            </SwipeView>
+                                        <Label
+                                            Margin="0,0,6,2"
+                                            FontFamily="Product"
+                                            FontSize="10"
+                                            HorizontalTextAlignment="End"
+                                            Text="{Binding EndOfMonthBalance, StringFormat={extensions:Translate EndOfMonthLabel}}"
+                                            VerticalTextAlignment="End" />
+                                    </Grid>
+                                </SwipeView>
+                            </yummy:PancakeView>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
