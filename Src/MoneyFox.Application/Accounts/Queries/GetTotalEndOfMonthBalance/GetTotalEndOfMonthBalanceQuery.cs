@@ -35,7 +35,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 List<Account> excluded = await contextAdapter.Context.Accounts.AreExcluded().ToListAsync();
                 decimal balance = await GetCurrentAccountBalanceAsync();
 
-                foreach(Payment payment in await GetUnclearedPaymentsForThisMonth())
+                foreach(Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
                 {
                     if(payment.ChargedAccount == null)
                         throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
@@ -70,7 +70,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                                  .ToListAsync())
                                  .Sum();
 
-            private async Task<List<Payment>> GetUnclearedPaymentsForThisMonth()
+            private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
                 => await contextAdapter.Context
                                        .Payments
                                        .Include(x => x.ChargedAccount)

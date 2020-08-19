@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.Domain.Entities;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,6 +36,6 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// Checks if there is an account with the passed name.
         /// </summary>
         public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name)
-            => await query.AnyAsync(x => x.Name.ToUpper().Equals(name.ToUpper()));
+            => await query.AnyAsync(x => x.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
     }
 }

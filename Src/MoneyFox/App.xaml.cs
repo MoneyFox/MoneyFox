@@ -12,7 +12,7 @@ namespace MoneyFox
     {
         public App()
         {
-            Xamarin.Forms.Device.SetFlags(new string[] {
+            Xamarin.Forms.Device.SetFlags(new [] {
                 "AppTheme_Experimental",
                 "SwipeView_Experimental"
             });
