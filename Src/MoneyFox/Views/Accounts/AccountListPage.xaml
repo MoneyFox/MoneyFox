@@ -1,16 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             xmlns:theme="clr-namespace:MoneyFox"
-             xmlns:extensions="clr-namespace:MoneyFox.Extensions"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
-             Shell.NavBarHasShadow="False"
-             x:Class="MoneyFox.Views.Accounts.AccountListPage">
+<ContentPage
+    x:Class="MoneyFox.Views.Accounts.AccountListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:extensions="clr-namespace:MoneyFox.Extensions"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:theme="clr-namespace:MoneyFox"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    Shell.NavBarHasShadow="False"
+    mc:Ignorable="d">
 
     <d:ContentPage.BindingContext>
         <accounts:AccountListViewModel />
@@ -19,98 +20,105 @@
     <Shell.TitleView>
         <Grid>
             <Button
-                Style="{StaticResource PrimaryButton}"
                 Margin="0,0,5,0"
                 Padding="0"
                 BorderWidth="0"
+                Command="{Binding GoToAddAccountCommand}"
                 FontFamily="FontAwesome"
                 FontSize="24"
                 HeightRequest="44"
-                WidthRequest="66"
                 HorizontalOptions="End"
+                Style="{StaticResource PrimaryButton}"
                 Text="{x:Static theme:IconFont.Plus}"
                 TextColor="White"
                 VerticalOptions="Center"
-                Command="{Binding GoToAddAccountCommand}"/>
+                WidthRequest="66" />
         </Grid>
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid IsClippedToBounds="False"
-              RowDefinitions="40, *">
+        <Grid IsClippedToBounds="False" RowDefinitions="40, *">
 
-            <Label Style="{StaticResource TextHeadline}"
-                   Margin="15,0,15,0"
-                   Text="{x:Static resources:Strings.AccountsTitle}" />
+            <Label
+                Margin="15,0,15,0"
+                Style="{StaticResource TextHeadline}"
+                Text="{x:Static resources:Strings.AccountsTitle}" />
 
-            <CollectionView Grid.Row="1"
-                            x:Name="AccountCollectionView"
-                            IsGrouped="true"
-                            EmptyView="{x:Static resources:Strings.NoAccountsMessage}"
-                            ItemsSource="{Binding Accounts}" >
+            <CollectionView
+                x:Name="AccountCollectionView"
+                Grid.Row="1"
+                EmptyView="{x:Static resources:Strings.NoAccountsMessage}"
+                IsGrouped="true"
+                ItemsSource="{Binding Accounts}">
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
-                        <Label FontFamily="Product"
-                               FontSize="18"
-                               Margin="15"
-                               Padding="15,0,0,0"
-                               Text="{Binding Key}"
-                               VerticalTextAlignment="End" />
+                        <Label
+                            Margin="15"
+                            Padding="15,0,0,0"
+                            FontFamily="Product"
+                            FontSize="18"
+                            Text="{Binding Key}"
+                            VerticalTextAlignment="End" />
                     </DataTemplate>
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
-                        <Grid Padding="15, 12, 15, 0">
+                        <Grid>
                             <SwipeView>
                                 <SwipeView.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
-                                        CommandParameter="{Binding .}" />
+                                    <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
                                 </SwipeView.GestureRecognizers>
 
                                 <SwipeView.RightItems>
                                     <SwipeItems>
-                                        <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
-                                                   Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
-                                                   CommandParameter="{Binding .}"/>
+                                        <SwipeItem
+                                            Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
+                                            CommandParameter="{Binding .}"
+                                            Text="{x:Static resources:Strings.EditLabel}" />
                                     </SwipeItems>
                                 </SwipeView.RightItems>
 
-                                <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                     Light={StaticResource CardBackgroundLight}}"
-                                           CornerRadius="10"
-                                           HasShadow="true"
-                                           HeightRequest="80"
-                                           HorizontalOptions="FillAndExpand">
+                                <Grid Padding="15,6,15,12">
+                                    <yummy:PancakeView
+                                        BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                          Light={StaticResource CardBackgroundLight}}"
+                                        CornerRadius="10"
+                                        HasShadow="true"
+                                        HeightRequest="80"
+                                        HorizontalOptions="FillAndExpand">
 
-                                    <yummy:PancakeView.Shadow>
-                                        <yummy:DropShadow />
-                                    </yummy:PancakeView.Shadow>
+                                        <yummy:PancakeView.Shadow>
+                                            <yummy:DropShadow />
+                                        </yummy:PancakeView.Shadow>
 
-                                    <Grid>
-                                        <Label Style="{StaticResource TextHead}"
-                                               Margin="10,2,0,0"
-                                               VerticalTextAlignment="Start"
-                                               HorizontalTextAlignment="Start"
-                                               Text="{Binding Name}" />
+                                        <Grid>
+                                            <Label
+                                                Margin="10,2,0,0"
+                                                HorizontalTextAlignment="Start"
+                                                Style="{StaticResource TextHead}"
+                                                Text="{Binding Name}"
+                                                VerticalTextAlignment="Start" />
 
-                                        <Label Margin="0,0,6,2"
-                                       FontFamily="Product"
-                                       FontSize="20"
-                                       HorizontalTextAlignment="Center"
-                                       VerticalTextAlignment="Center"
-                                       Text="{Binding CurrentBalance, StringFormat='{0:c}'}" />
+                                            <Label
+                                                Margin="0,0,6,2"
+                                                FontFamily="Product"
+                                                FontSize="20"
+                                                HorizontalTextAlignment="Center"
+                                                Text="{Binding CurrentBalance, StringFormat='{0:c}'}"
+                                                VerticalTextAlignment="Center" />
 
-                                        <Label Margin="0,0,6,2"
-                                           FontFamily="Product"
-                                           FontSize="10"
-                                           HorizontalTextAlignment="End"
-                                           Text="{Binding EndOfMonthBalance, StringFormat={extensions:Translate EndOfMonthLabel}}"
-                                           VerticalTextAlignment="End" />
-                                    </Grid>
-                                </yummy:PancakeView>
+                                            <Label
+                                                Margin="0,0,6,2"
+                                                FontFamily="Product"
+                                                FontSize="10"
+                                                HorizontalTextAlignment="End"
+                                                Text="{Binding EndOfMonthBalance, StringFormat={extensions:Translate EndOfMonthLabel}}"
+                                                VerticalTextAlignment="End" />
+                                        </Grid>
+                                    </yummy:PancakeView>
+                                </Grid>
                             </SwipeView>
                         </Grid>
                     </DataTemplate>
