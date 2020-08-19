@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
 {
-    public class GetMonthlyIncomeQuery : IRequest<decimal>
+    public class GetMonthlyExpenseQuery : IRequest<decimal>
     {
-        public class Handler : IRequestHandler<GetMonthlyIncomeQuery, decimal>
+        public class Handler : IRequestHandler<GetMonthlyExpenseQuery, decimal>
         {
             private readonly IContextAdapter contextAdapter;
 
@@ -19,13 +19,13 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<decimal> Handle(GetMonthlyIncomeQuery request, CancellationToken cancellationToken)
+            public async Task<decimal> Handle(GetMonthlyExpenseQuery request, CancellationToken cancellationToken)
             {
                 var sum = contextAdapter.Context
                                         .Payments
                                         .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth())
                                         .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
-                                        .IsIncome()
+                                        .IsExpense()
                                         .Sum(x => x.Amount);
 
                 return await Task.FromResult(sum);
