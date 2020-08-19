@@ -3,7 +3,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
-using Moq;
+using NSubstitute;
 using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -16,14 +16,14 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
     public class GetAccountCountQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly IContextAdapter contextAdapter;
 
         public GetAccountCountQueryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
 
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+            contextAdapter = Substitute.For<IContextAdapter>();
+            contextAdapter.Context.Returns(context);
         }
 
         public void Dispose()
@@ -48,7 +48,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
             await context.SaveChangesAsync();
 
             // Act
-            int result = await new GetAccountCountQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountCountQuery(), default);
+            int result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
 
             // Assert
             result.ShouldEqual(2);

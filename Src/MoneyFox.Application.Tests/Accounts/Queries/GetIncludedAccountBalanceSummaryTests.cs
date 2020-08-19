@@ -6,7 +6,6 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using NSubstitute;
 using NSubstitute.Extensions;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -18,14 +17,14 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
     public class GetIncludedAccountBalanceSummaryTests : IDisposable
     {
         private readonly EfCoreContext context;
-        private readonly IContextAdapter contextAdapterMock;
+        private readonly IContextAdapter contextAdapter;
 
         public GetIncludedAccountBalanceSummaryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
 
-            contextAdapterMock = Substitute.For<IContextAdapter>();
-            contextAdapterMock.Context.ReturnsForAll(context);
+            contextAdapter = Substitute.For<IContextAdapter>();
+            contextAdapter.Context.Returns(context);
         }
 
         public void Dispose()
@@ -54,7 +53,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
 
             // Act
             decimal result =
-                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock)
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter)
                    .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert

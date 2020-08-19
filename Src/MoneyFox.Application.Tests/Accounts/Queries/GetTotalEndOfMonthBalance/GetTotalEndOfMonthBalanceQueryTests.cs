@@ -6,7 +6,6 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using NSubstitute;
-using NSubstitute.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             context = InMemoryEfCoreContextFactory.Create();
 
             contextAdapterMock = Substitute.For<IContextAdapter>();
-            contextAdapterMock.Context.ReturnsForAll(context);
+            contextAdapterMock.Context.Returns(context);
         }
 
         public void Dispose()

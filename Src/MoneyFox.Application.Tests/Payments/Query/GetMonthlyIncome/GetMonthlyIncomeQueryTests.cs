@@ -6,7 +6,6 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using NSubstitute;
-using NSubstitute.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -25,7 +24,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
             context = InMemoryEfCoreContextFactory.Create();
 
             contextAdapterMock = Substitute.For<IContextAdapter>();
-            contextAdapterMock.Context.ReturnsForAll(context);
+            contextAdapterMock.Context.Returns(context);
         }
 
         public void Dispose()
@@ -45,8 +44,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
             // Arrange
             var account = new Account("test", 80);
 
-            var payment1 = new Payment(DateTime.Now.AddDays(-2), 50, PaymentType.Income, account);
-            var payment2 = new Payment(DateTime.Now, 20, PaymentType.Income, account);
+            var payment1 = new Payment(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10), 50, PaymentType.Income, account);
+            var payment2 = new Payment(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 18), 20, PaymentType.Income, account);
             var payment3 = new Payment(DateTime.Now, 30, PaymentType.Expense, account);
 
             await context.AddAsync(payment1);
@@ -55,7 +54,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
             await context.SaveChangesAsync();
 
             // Act
-            var sum = await new GetMonthlyExpenseQuery.Handler(contextAdapterMock).Handle(new GetMonthlyExpenseQuery(), default);
+            var sum = await new GetMonthlyIncomeQuery.Handler(contextAdapterMock).Handle(new GetMonthlyIncomeQuery(), default);
 
             // Assert
             sum.Should().Be(70);
