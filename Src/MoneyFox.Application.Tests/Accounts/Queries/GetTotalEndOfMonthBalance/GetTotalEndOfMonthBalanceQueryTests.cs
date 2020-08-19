@@ -1,26 +1,26 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
+using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using NSubstitute;
 using NSubstitute.Extensions;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
 {
     [ExcludeFromCodeCoverage]
-    public class GetIncludedAccountBalanceSummaryTests : IDisposable
+    public class GetTotalEndOfMonthBalanceQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
         private readonly IContextAdapter contextAdapterMock;
 
-        public GetIncludedAccountBalanceSummaryTests()
+        public GetTotalEndOfMonthBalanceQueryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
 
@@ -43,22 +43,19 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
         public async Task GetIncludedAccountBalanceSummary_CorrectSum()
         {
             // Arrange
-            var accountExcluded = new Account("test", 80, isExcluded: true);
-            var accountIncluded1 = new Account("test", 100);
-            var accountIncluded2 = new Account("test", 120);
+            var accountIncluded = new Account("test", 100);
+            var payment = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Expense, accountIncluded);
 
-            await context.AddAsync(accountExcluded);
-            await context.AddAsync(accountIncluded1);
-            await context.AddAsync(accountIncluded2);
+            await context.AddAsync(accountIncluded);
+            await context.AddAsync(payment);
             await context.SaveChangesAsync();
 
             // Act
-            decimal result =
-                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock)
-                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+            decimal result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock).Handle(
+                new GetTotalEndOfMonthBalanceQuery(), default);
 
             // Assert
-            result.Should().Be(220);
+            result.Should().Be(50);
         }
     }
 }
