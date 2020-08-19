@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
@@ -21,14 +22,14 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
 
             public async Task<decimal> Handle(GetMonthlyExpenseQuery request, CancellationToken cancellationToken)
             {
-                var sum = contextAdapter.Context
+                return (await contextAdapter.Context
                                         .Payments
                                         .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth())
                                         .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
                                         .IsExpense()
-                                        .Sum(x => x.Amount);
-
-                return await Task.FromResult(sum);
+                                        .Select(x => x.Amount)
+                                        .ToListAsync(cancellationToken))
+                                        .Sum();
             }
         }
     }

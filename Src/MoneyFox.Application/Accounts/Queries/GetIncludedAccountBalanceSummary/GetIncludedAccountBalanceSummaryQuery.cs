@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using System.Linq;
@@ -20,12 +21,12 @@ namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary
 
             public async Task<decimal> Handle(GetIncludedAccountBalanceSummaryQuery request, CancellationToken cancellationToken)
             {
-                var balance = contextAdapter.Context
+                return (await contextAdapter.Context
                                             .Accounts
                                             .AreNotExcluded()
-                                            .Sum(x => x.CurrentBalance);
-
-                return await Task.FromResult(balance);
+                                            .Select(x => x.CurrentBalance)
+                                            .ToListAsync(cancellationToken))
+                                            .Sum();
             }
         }
     }
