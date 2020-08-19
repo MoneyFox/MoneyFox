@@ -2,6 +2,7 @@
 using Android.Runtime;
 using Autofac;
 using MoneyFox.Common;
+using MoneyFox.Droid.Src;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -25,7 +26,7 @@ namespace MoneyFox.Droid
             InitLogger();
 
             logManager.Info("Application Started.");
-            //logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion());
+            logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion());
 
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
