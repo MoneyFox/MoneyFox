@@ -208,7 +208,7 @@
                 </StackLayout>
 
                 <!--  Budgets  -->
-                <StackLayout Grid.Row="5" VerticalOptions="Start">
+                <StackLayout Grid.Row="5" VerticalOptions="Start" IsVisible="false">
                     <Label
                         Style="{StaticResource TextTitle}"
                         Text="{x:Static resources:Strings.BudgetsLabel}"
