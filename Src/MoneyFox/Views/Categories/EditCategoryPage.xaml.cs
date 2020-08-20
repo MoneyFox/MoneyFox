@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Views.Categories
 {
-    public partial class EditCategoryPage : ContentPage
+    public partial class EditCategoryPage
     {
-        private EditCategoryViewModel ViewModel => BindingContext as EditCategoryViewModel;
+        private EditCategoryViewModel ViewModel => (EditCategoryViewModel) BindingContext;
 
         public EditCategoryPage(int categoryId)
         {

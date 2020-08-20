@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Views.Payments
 {
-    public partial class AddPaymentPage : ContentPage
+    public partial class AddPaymentPage
     {
         private AddPaymentViewModel ViewModel => (AddPaymentViewModel) BindingContext;
 

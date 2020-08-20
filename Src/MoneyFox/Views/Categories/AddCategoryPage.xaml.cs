@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Views.Categories
 {
-    public partial class AddCategoryPage : ContentPage
+    public partial class AddCategoryPage
     {
         private AddCategoryViewModel ViewModel => (AddCategoryViewModel) BindingContext;
 
