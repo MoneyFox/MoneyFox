@@ -73,6 +73,7 @@
                             HorizontalTextAlignment="Center"
                             Text="{Binding Assets, Converter={StaticResource AmountFormatConverter}}"
                             VerticalTextAlignment="Center" />
+
                         <StackLayout Orientation="Horizontal"
                                      VerticalOptions="End"
                                      HorizontalOptions="End">
@@ -92,7 +93,6 @@
                                 Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
                                 VerticalTextAlignment="End" />
                         </StackLayout>
-                        
                     </Grid>
                 </yummy:PancakeView>
 
