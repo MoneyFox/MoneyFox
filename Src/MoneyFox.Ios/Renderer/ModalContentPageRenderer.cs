@@ -30,17 +30,21 @@ namespace MoneyFox.iOS.Renderer
 
             // Sort the list
             ToolbarList.Sort((i1, i2) =>
-                             {
-                                 return i1.Priority > i2.Priority
-                                        ? -1 : 1;
-                             });
+            {
+                return i1.Priority > i2.Priority
+                    ? -1 : 1;
+            });
 
             foreach(ToolbarItem itm in ToolbarList)
             {
                 if(itm.Priority < 0)
+                {
                     LeftNavList.Add(itm.ToUIBarButtonItem());
+                }
                 else
+                {
                     RightNavList.Add(itm.ToUIBarButtonItem());
+                }
             }
 
             navigationItem.SetLeftBarButtonItems(LeftNavList.ToArray(), false);
