@@ -62,7 +62,7 @@
 
                 <Label Grid.Column="1"
                         VerticalOptions="Center"
-                        Text="{x:Static theme:IconFont.Bell}"
+                        Text="{x:Static theme:IconFont.Trash}"
                         FontSize="30"
                         FontFamily="FontAwesome">
                     <Label.GestureRecognizers>
