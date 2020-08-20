@@ -28,7 +28,9 @@
                 HeightRequest="44"
                 WidthRequest="66"
                 Text="{x:Static theme:IconFont.Filter}"
-                VerticalOptions="Center"/>
+                VerticalOptions="Center"
+                TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
+                Command="{Binding ShowFilterDialogCommand}"/>
 
             <Button
                 Style="{StaticResource PrimaryButton}"

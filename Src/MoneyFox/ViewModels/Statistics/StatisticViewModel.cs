@@ -48,7 +48,7 @@ namespace MoneyFox.ViewModels.Statistics
             EndDate = endDate;
             Mediator = mediator;
 
-            BackgroundColor = ResourceHelper.GetCurrentBackgroundColor();
+            BackgroundColor = SKColor.Parse(ResourceHelper.GetCurrentBackgroundColor().ToHex());
 
             MessengerInstance.Register<DateSelectedMessage>(this,
                                                             async message =>
