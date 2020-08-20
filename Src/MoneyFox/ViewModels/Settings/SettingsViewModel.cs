@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Services;
@@ -24,6 +23,11 @@ namespace MoneyFox.ViewModels.Settings
             AvailableCultures = new ObservableCollection<CultureInfo>();
         }
 
+        public async Task InitializeAsync()
+        {
+            await LoadAvailableCulturesAsync();
+        }
+
         private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 
         public CultureInfo SelectedCulture
@@ -31,6 +35,7 @@ namespace MoneyFox.ViewModels.Settings
             get => selectedCulture;
             set
             {
+                if(value == null) return;
                 if(selectedCulture == value) return;
                 selectedCulture = value;
                 settingsFacade.DefaultCulture = selectedCulture.Name;
@@ -39,9 +44,7 @@ namespace MoneyFox.ViewModels.Settings
             }
         }
 
-        public ObservableCollection<CultureInfo> AvailableCultures { get; }
-
-        public RelayCommand LoadAvailableCulturesCommand => new RelayCommand(async() => await LoadAvailableCulturesAsync());
+        public ObservableCollection<CultureInfo> AvailableCultures { get; } = new ObservableCollection<CultureInfo>();
 
         private async Task LoadAvailableCulturesAsync()
         {
