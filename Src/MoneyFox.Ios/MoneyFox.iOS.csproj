@@ -217,9 +217,6 @@
     <ImageAsset Include="Assets.xcassets\ic_insert_chart_white.imageset\ic_bar_chart_black1.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_label_black.imageset\ic_label_black.png">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ic_label_black.imageset\ic_label_black1.png">
       <Visible>false</Visible>
     </ImageAsset>
