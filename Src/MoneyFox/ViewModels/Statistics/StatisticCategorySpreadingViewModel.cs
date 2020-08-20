@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microcharts;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using MoneyFox.ViewModels.Statistics;
@@ -24,8 +23,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
         private DonutChart chart = new DonutChart();
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator,
-                                                   ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
+        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
         {
         }
 

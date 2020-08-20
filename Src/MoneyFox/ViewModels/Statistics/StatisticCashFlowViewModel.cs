@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using Microcharts;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.ViewModels.Statistics;
 using SkiaSharp;
@@ -24,8 +23,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
 
         private BarChart chart = new BarChart();
 
-        public StatisticCashFlowViewModel(IMediator mediator,
-                                          ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
+        public StatisticCashFlowViewModel(IMediator mediator) : base(mediator)
         {
         }
 

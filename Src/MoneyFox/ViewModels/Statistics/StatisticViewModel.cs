@@ -2,7 +2,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Common.Extensions;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Common;
@@ -29,10 +28,9 @@ namespace MoneyFox.ViewModels.Statistics
         /// Creates a StatisticViewModel Object and passes the first and last day of the current month     as a start
         /// and end date.
         /// </summary>
-        protected StatisticViewModel(IMediator mediator, ISettingsFacade settingsManager) : this(DateTime.Today.GetFirstDayOfMonth(),
+        protected StatisticViewModel(IMediator mediator) : this(DateTime.Today.GetFirstDayOfMonth(),
                                                                                                  DateTime.Today.GetLastDayOfMonth(),
-                                                                                                 mediator,
-                                                                                                 settingsManager)
+                                                                                                 mediator)
         {
         }
 
@@ -41,8 +39,7 @@ namespace MoneyFox.ViewModels.Statistics
         /// </summary>
         protected StatisticViewModel(DateTime startDate,
                                      DateTime endDate,
-                                     IMediator mediator,
-                                     ISettingsFacade settingsFacade)
+                                     IMediator mediator)
         {
             StartDate = startDate;
             EndDate = endDate;
