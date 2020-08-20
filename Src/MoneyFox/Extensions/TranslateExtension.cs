@@ -1,6 +1,6 @@
-﻿using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application;
+using MoneyFox.Application.Resources;
 using System;
-using System.Globalization;
 using System.Reflection;
 using System.Resources;
 using Xamarin.Forms;
@@ -21,7 +21,7 @@ namespace MoneyFox.Extensions
             if(Text == null)
                 return string.Empty;
 
-            return ResMgr.Value.GetString(Text, CultureInfo.CurrentCulture) ?? Text;
+            return ResMgr.Value.GetString(Text, CultureHelper.CurrentCulture) ?? Text;
         }
     }
 }

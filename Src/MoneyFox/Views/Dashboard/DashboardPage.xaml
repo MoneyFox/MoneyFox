@@ -73,13 +73,25 @@
                             HorizontalTextAlignment="Center"
                             Text="{Binding Assets, Converter={StaticResource AmountFormatConverter}}"
                             VerticalTextAlignment="Center" />
-                        <Label
-                            Margin="0,0,6,2"
-                            FontFamily="Product"
-                            FontSize="15"
-                            HorizontalTextAlignment="End"
-                            Text="{Binding EndOfMonthBalance, StringFormat={extensions:Translate EndOfMonthLabel}}"
-                            VerticalTextAlignment="End" />
+                        <StackLayout Orientation="Horizontal"
+                                     VerticalOptions="End"
+                                     HorizontalOptions="End">
+                            <Label
+                                FontFamily="Product"
+                                FontSize="15"
+                                HorizontalTextAlignment="End"
+                                Text="{x:Static resources:Strings.EndOfMonthLabel}"
+                                VerticalTextAlignment="End" />
+
+                            <Label
+                                Margin="0,0,6,2"
+                                FontFamily="Product"
+                                FontSize="15"
+                                HorizontalTextAlignment="End"
+                                Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
+                                VerticalTextAlignment="End" />
+                        </StackLayout>
+                        
                     </Grid>
                 </yummy:PancakeView>
 

@@ -694,7 +694,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Budgets</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>End Of Month: {0:c}</value>
+    <value>End Of Month:</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
     <value>Go to Accounts</value>
