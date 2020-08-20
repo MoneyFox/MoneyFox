@@ -18,7 +18,6 @@
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-    <AndroidUseLatestPlatformSdk>false</AndroidUseLatestPlatformSdk>
     <TargetFrameworkVersion>v10.0</TargetFrameworkVersion>
     <AndroidEnableSGenConcurrent>true</AndroidEnableSGenConcurrent>
     <AndroidUseAapt2>true</AndroidUseAapt2>
@@ -36,10 +35,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
-    <BundleAssemblies>false</BundleAssemblies>
     <CodeAnalysisRuleSet>..\.sonarlint\moneyfox-projectcsharp.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -51,13 +46,8 @@
     <WarningLevel>4</WarningLevel>
     <AndroidManagedSymbols>true</AndroidManagedSymbols>
     <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
-    <AotAssemblies>false</AotAssemblies>
-    <EnableLLVM>false</EnableLLVM>
-    <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
-    <BundleAssemblies>false</BundleAssemblies>
     <AndroidPackageFormat>aab</AndroidPackageFormat>
     <AndroidUseAapt2>true</AndroidUseAapt2>
-    <AndroidCreatePackagePerAbi>false</AndroidCreatePackagePerAbi>
     <AndroidDexTool>d8</AndroidDexTool>
     <AndroidLinkTool>r8</AndroidLinkTool>
     <EmbedAssembliesIntoApk>true</EmbedAssembliesIntoApk>
