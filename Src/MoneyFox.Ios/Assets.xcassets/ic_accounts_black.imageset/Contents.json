@@ -4,23 +4,24 @@
       "appearances": [],
       "scale": "1x",
       "idiom": "universal",
-      "filename": "ic_bar_chart_black.png"
+      "filename": "ic_accounts_black2.png"
     },
     {
       "appearances": [],
       "scale": "2x",
       "idiom": "universal",
-      "filename": "ic_bar_chart_black1.png"
+      "filename": "ic_accounts_black1.png"
     },
     {
       "appearances": [],
       "scale": "3x",
-      "idiom": "universal"
+      "idiom": "universal",
+      "filename": "ic_accounts_black.png"
     }
   ],
   "properties": {},
   "info": {
     "version": 1,
-    "author": "xcode"
+    "author": ""
   }
 }

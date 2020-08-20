@@ -24,7 +24,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.AccountsTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
+                FlyoutIcon="{AppThemeBinding Dark=ic_accounts_white, Light=ic_accounts_black}">
         <Tab>
             <ShellContent>
                 <accounts:AccountListPage />
@@ -33,7 +33,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.StatisticsTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
+                FlyoutIcon="{AppThemeBinding Dark=ic_bar_chart_white, Light=ic_bar_chart_black}" >
         <Tab>
             <ShellContent>
                 <statistic:StatisticSelectorPage />
@@ -42,7 +42,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
+                FlyoutIcon="{AppThemeBinding Dark=ic_label_white, Light=ic_label_black}" >
         <Tab>
             <ShellContent>
                 <category:CategoryListPage />
@@ -51,7 +51,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.BackupTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
+                FlyoutIcon="{AppThemeBinding Dark=ic_backup_white, Light=ic_backup_black}" >
         <Tab>
             <ShellContent>
                 <backup:BackupPage />
@@ -60,7 +60,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.SettingsTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
+                FlyoutIcon="{AppThemeBinding Dark=ic_settings_white, Light=ic_settings_black}">
         <Tab>
             <ShellContent>
                 <settings:SettingsPage />
@@ -69,7 +69,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.AboutTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
+                FlyoutIcon="{AppThemeBinding Dark=ic_info_white, Light=ic_info_black}">
         <Tab>
             <ShellContent>
                 <about:AboutPage />
