@@ -13,6 +13,10 @@
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
 
+    <ContentPage.Resources>
+        <AmountFormatConverter x:Key="AmountFormatConverter" />
+    </ContentPage.Resources>
+
     <Shell.TitleView>
         <Grid>
             <Button
@@ -67,7 +71,7 @@
                             FontFamily="Product"
                             FontSize="22"
                             HorizontalTextAlignment="Center"
-                            Text="{Binding Assets, StringFormat='{0:c}'}"
+                            Text="{Binding Assets, Converter={StaticResource AmountFormatConverter}}"
                             VerticalTextAlignment="Center" />
                         <Label
                             Margin="0,0,6,2"
@@ -120,7 +124,7 @@
                                                 FontFamily="Product"
                                                 FontSize="20"
                                                 HorizontalTextAlignment="Center"
-                                                Text="{Binding CurrentBalance, StringFormat='{0:c}'}"
+                                                Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
                                                 VerticalTextAlignment="Center" />
 
                                             <Label
@@ -174,7 +178,7 @@
                                     FontFamily="Product"
                                     FontSize="18"
                                     HorizontalTextAlignment="Center"
-                                    Text="{Binding MonthlyIncomes, StringFormat='{0:c}'}"
+                                    Text="{Binding MonthlyIncomes, Converter={StaticResource AmountFormatConverter}}"
                                     VerticalTextAlignment="Center" />
                             </Grid>
                         </yummy:PancakeView>
@@ -196,7 +200,7 @@
                                     FontFamily="Product"
                                     FontSize="18"
                                     HorizontalTextAlignment="Center"
-                                    Text="{Binding MonthlyExpenses, StringFormat='{0:c}'}"
+                                    Text="{Binding MonthlyExpenses, Converter={StaticResource AmountFormatConverter}}"
                                     VerticalTextAlignment="Center" />
                             </Grid>
                         </yummy:PancakeView>
