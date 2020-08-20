@@ -1,4 +1,4 @@
-﻿<ContentPage x:Class="MoneyFox.Views.Statistic.StatisticCategorySummaryPage"
+﻿<ContentPage x:Class="MoneyFox.Views.Statistics.StatisticCategorySummaryPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:converter="clr-namespace:MoneyFox.Converter"

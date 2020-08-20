@@ -1,4 +1,4 @@
-namespace MoneyFox.Views.Statistic
+namespace MoneyFox.Views.Statistics
 {
     public partial class StatisticSelectorPage
     {

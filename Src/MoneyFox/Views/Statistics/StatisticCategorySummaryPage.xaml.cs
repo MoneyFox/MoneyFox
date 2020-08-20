@@ -5,7 +5,7 @@ using Rg.Plugins.Popup.Extensions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace MoneyFox.Views.Statistic
+namespace MoneyFox.Views.Statistics
 {
     public partial class StatisticCategorySummaryPage
     {

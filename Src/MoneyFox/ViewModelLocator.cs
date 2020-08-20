@@ -19,6 +19,8 @@ using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
 using MoneyFox.Views.Settings;
+using MoneyFox.Views.Backup;
+using MoneyFox.Views.Statistics;
 
 namespace MoneyFox
 {

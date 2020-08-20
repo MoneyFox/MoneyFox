@@ -7,7 +7,7 @@
              xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              Visual="Material"
-             x:Class="MoneyFox.Views.Statistic.StatisticCategorySpreadingPage">
+             x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">
 
     <ContentPage.Content>
         <StackLayout>
