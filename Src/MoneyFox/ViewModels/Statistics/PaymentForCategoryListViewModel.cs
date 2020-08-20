@@ -37,7 +37,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         public bool IsPaymentsEmpty => PaymentList != null && !PaymentList.Any();
 
-        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList;
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
         public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList
         {
             get => paymentList;

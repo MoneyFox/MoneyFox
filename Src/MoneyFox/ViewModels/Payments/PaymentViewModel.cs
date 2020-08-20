@@ -23,7 +23,7 @@ namespace MoneyFox.ViewModels.Payments
         private DateTime creationTime;
         private DateTime modificationDate;
 
-        private AccountViewModel chargedAccount;
+        private AccountViewModel chargedAccount = null!;
         private AccountViewModel? targetAccount;
         private CategoryViewModel? categoryViewModel;
         private RecurringPaymentViewModel? recurringPaymentViewModel;

@@ -6,7 +6,7 @@ namespace MoneyFox.ViewModels.Statistics
     public class CategoryOverviewViewModel : ViewModelBase
     {
         private int categoryId;
-        private string label;
+        private string label = "";
         private decimal value;
         private decimal average;
         private decimal percentage;
