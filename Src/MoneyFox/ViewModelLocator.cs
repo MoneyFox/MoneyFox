@@ -11,6 +11,7 @@ using MoneyFox.ViewModels.Categories;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.ViewModels.Dialogs;
 using MoneyFox.ViewModels.Payments;
+using MoneyFox.ViewModels.Settings;
 using MoneyFox.ViewModels.Statistics;
 using MoneyFox.Views;
 using MoneyFox.Views.Accounts;
@@ -80,5 +81,6 @@ namespace MoneyFox
         public static StatisticCategorySummaryViewModel StatisticCategorySummaryViewModel => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
         public static StatisticSelectorViewModel StatisticSelectorViewModel => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
         public static PaymentForCategoryListViewModel PaymentForCategoryListViewModel => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
+        public static SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
     }
 }

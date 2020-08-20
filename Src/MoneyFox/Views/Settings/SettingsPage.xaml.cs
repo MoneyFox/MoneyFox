@@ -5,6 +5,8 @@
         public SettingsPage()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.SettingsViewModel;
+
         }
     }
 }

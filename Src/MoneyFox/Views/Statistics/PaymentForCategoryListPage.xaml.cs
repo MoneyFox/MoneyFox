@@ -11,8 +11,6 @@ namespace MoneyFox.Presentation.Views
             InitializeComponent();
             BindingContext = ViewModelLocator.PaymentForCategoryListViewModel;
 
-            Title = Strings.PaymentsForCategoryTitle;
-
             var doneItem = new ToolbarItem
             {
                 Command = new Command(async () => await Close()),

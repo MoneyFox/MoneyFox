@@ -249,43 +249,12 @@
         </Setter>
     </Style>
 
-    <Style TargetType="Button">
-        <Setter Property="BackgroundColor" Value="{StaticResource White}" />
-        <Setter Property="TextColor" Value="{StaticResource NeutralPrimary}" />
-        <Setter Property="BorderColor" Value="{StaticResource NeutralSecondaryAlt}"/>
-        <Setter Property="BorderWidth" Value="1"/>
-
-        <Setter Property="VisualStateManager.VisualStateGroups">
-            <VisualStateGroupList>
-                <VisualStateGroup x:Name="CommonStates">
-                    <VisualState x:Name="Normal">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource White}" />
-                        </VisualState.Setters>
-                    </VisualState>
-                    <VisualState x:Name="Focused">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource NeutralLight}" />
-                            <Setter Property="TextColor" Value="{StaticResource NeutralDark}"/>
-                        </VisualState.Setters>
-                    </VisualState>
-                    <VisualState x:Name="Disabled">
-                        <VisualState.Setters>
-                            <Setter Property="BackgroundColor" Value="{StaticResource NeutralLighter}" />
-                            <Setter Property="TextColor" Value="{StaticResource NeutralQuaternary}"/>
-                        </VisualState.Setters>
-                    </VisualState>
-                </VisualStateGroup>
-            </VisualStateGroupList>
-        </Setter>
-    </Style>
-
     <Style x:Key="LinkButton" TargetType="Button">
         <Setter Property="Visual" Value="Default" />
         <Setter Property="BorderWidth" Value="0" />
         <Setter Property="HeightRequest" Value="35" />
         <Setter Property="TextColor" Value="{DynamicResource ThemePrimary}" />
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}" />
+        <Setter Property="BackgroundColor" Value="Transparent" />
     </Style>
 
     <Style x:Key="WarningButton" TargetType="Button">
