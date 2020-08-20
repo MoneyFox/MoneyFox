@@ -48,7 +48,8 @@
         </DataTemplate>
     </Shell.FlyoutHeaderTemplate>
 
-    <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}" FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
+    <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}"
+                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
         <Tab>
             <ShellContent>
                 <dashboard:DashboardPage />
@@ -56,7 +57,8 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.AccountsTitle}" FlyoutIcon="ic_dashboard_black">
+    <FlyoutItem Title="{x:Static resources:Strings.AccountsTitle}"
+                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
         <Tab>
             <ShellContent>
                 <accounts:AccountListPage />
@@ -64,7 +66,8 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}" FlyoutIcon="ic_dashboard_black">
+    <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}"
+                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
         <Tab>
             <ShellContent>
                 <category:CategoryListPage />
@@ -72,7 +75,8 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.BackupTitle}" FlyoutIcon="ic_dashboard_black">
+    <FlyoutItem Title="{x:Static resources:Strings.BackupTitle}"
+                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
         <Tab>
             <ShellContent>
                 <backup:BackupPage />
@@ -80,7 +84,8 @@
         </Tab>
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.SettingsTitle}" FlyoutIcon="ic_dashboard_black">
+    <FlyoutItem Title="{x:Static resources:Strings.SettingsTitle}"
+                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
         <Tab>
             <ShellContent>
                 <settings:SettingsPage />
