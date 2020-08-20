@@ -17,7 +17,7 @@ namespace MoneyFox.ViewModels.Statistics
     {
         private static ILogger logger = LogManager.GetCurrentClassLogger();
 
-        private PaymentsForCategoryMessage receivedMessage;
+        private PaymentsForCategoryMessage? receivedMessage;
 
         private readonly IMediator mediator;
         private readonly IMapper mapper;
@@ -52,6 +52,12 @@ namespace MoneyFox.ViewModels.Statistics
 
         private async Task InitializeAsync()
         {
+            if(receivedMessage == null)
+            {
+                logger.Error("No message received");
+                return;
+            }
+
             logger.Info($"Loading payments for category with id {receivedMessage.CategoryId}");
 
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(
