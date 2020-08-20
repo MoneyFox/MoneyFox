@@ -8,7 +8,7 @@ namespace MoneyFox.Presentation.Dialogs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterPopup
     {
-        private SelectFilterDialogViewModel ViewModel => BindingContext as SelectFilterDialogViewModel;
+        private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel) BindingContext;
 
         public FilterPopup()
         {

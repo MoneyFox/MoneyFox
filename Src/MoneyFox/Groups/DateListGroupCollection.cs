@@ -54,7 +54,7 @@ namespace MoneyFox.Groups
         /// <summary>
         /// The command to execute on a click.
         /// </summary>
-        public Command<T> ItemClickCommand { get; }
+        public Command<T>? ItemClickCommand { get; }
 
         /// <summary>
         /// Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.

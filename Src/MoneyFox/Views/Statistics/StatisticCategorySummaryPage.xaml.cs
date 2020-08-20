@@ -1,5 +1,4 @@
-﻿using MoneyFox.Application.Common;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Application.Resources;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using Rg.Plugins.Popup.Extensions;
@@ -10,7 +9,7 @@ namespace MoneyFox.Views
 {
     public partial class StatisticCategorySummaryPage
     {
-        private StatisticCategorySummaryViewModel ViewModel => BindingContext as StatisticCategorySummaryViewModel;
+        private StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel) BindingContext;
 
         public StatisticCategorySummaryPage()
         {
