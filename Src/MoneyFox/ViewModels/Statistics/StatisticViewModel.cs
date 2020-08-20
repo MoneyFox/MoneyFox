@@ -56,6 +56,8 @@ namespace MoneyFox.ViewModels.Statistics
                                                             });
         }
 
+        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new DateSelectionPopup().ShowAsync());
+
         public RelayCommand LoadedCommand => new RelayCommand(async() => await LoadAsync());
 
         /// <summary>

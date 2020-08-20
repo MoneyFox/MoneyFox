@@ -10,6 +10,24 @@
              Visual="Material"
              mc:Ignorable="d">
 
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,Auto,66,66,0">
+            <Button
+                Margin="0,0,5,0"
+                Padding="0"
+                Grid.Column="2"
+                BorderWidth="0"
+                FontFamily="FontAwesome"
+                FontSize="24"
+                HeightRequest="44"
+                WidthRequest="66"
+                Text="{x:Static theme:IconFont.Filter}"
+                VerticalOptions="Center"
+                TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
+                Command="{Binding ShowFilterDialogCommand}"/>
+        </Grid>
+    </Shell.TitleView>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:AmountFormatConverter x:Key="AmountValueConverter" />
