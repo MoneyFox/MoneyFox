@@ -13,7 +13,7 @@
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
 
     <ContentPage.Resources>
-        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
     </ContentPage.Resources>
 
     <Shell.TitleView>
@@ -105,7 +105,7 @@
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="End"
                                                                 VerticalTextAlignment="Start"
-                                                                Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" />
+                                                                Text="{Binding ., Converter={StaticResource PaymentAmountConverter}}" />
                                                 </Grid>
 
                                                 <Grid>
