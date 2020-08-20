@@ -22,6 +22,7 @@
         <StackLayout>
 
             <Label Style="{StaticResource TextHeadline}"
+                   Margin="15,0,15,0"
                    Text="{x:Static resources:Strings.CategorySummaryTitle}" />
 
             <CollectionView x:Name="CategorySummaryList"
@@ -33,19 +34,22 @@
                         <Grid Padding="15, 6, 15, 8">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
-                                Command="{Binding BindingContext.ShowCategoryPaymentsCommand, Source={x:Reference Name=CategorySummaryList}}"
-                                CommandParameter="{Binding .}" />
+                                    Command="{Binding BindingContext.ShowCategoryPaymentsCommand, Source={x:Reference Name=CategorySummaryList}}"
+                                    CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
                             <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                            Light={StaticResource CardBackgroundLight}}"
+                                                                                 Light={StaticResource CardBackgroundLight}}"
                                                CornerRadius="10"
+                                               Padding="15"
                                                HeightRequest="45"
                                                HorizontalOptions="FillAndExpand">
 
-                                <StackLayout Padding="3"
-                                            HorizontalOptions="FillAndExpand"
-                                            Spacing="3">
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow />
+                                </yummy:PancakeView.Shadow>
+
+                                <StackLayout HorizontalOptions="FillAndExpand">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />
@@ -55,7 +59,7 @@
                                         <Label Grid.Column="0"
                                                HorizontalOptions="StartAndExpand"
                                                LineBreakMode="TailTruncation"
-                                               Style="{StaticResource ListItemHeaderStyle}"
+                                               Style="{StaticResource TextSubHead}"
                                                Text="{Binding Label}" />
 
                                         <StackLayout Grid.Column="1"
@@ -63,18 +67,16 @@
                                                      Orientation="Horizontal"
                                                      Spacing="0"
                                                      VerticalOptions="Center">
-                                            <Label Style="{DynamicResource DefaultTextStyle}" Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" />
-
-                                            <Label Style="{DynamicResource DefaultTextStyle}" Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
+                                            <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" />
+                                            <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
 
                                         </StackLayout>
                                     </Grid>
 
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Style="{DynamicResource DeemphasizedLabelStyle}" Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
-                                        <Label Style="{DynamicResource DeemphasizedLabelStyle}" Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
+                                        <Label Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
+                                        <Label Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
                                     </StackLayout>
-
                                 </StackLayout>
                             </yummy:PancakeView>
                         </Grid>
