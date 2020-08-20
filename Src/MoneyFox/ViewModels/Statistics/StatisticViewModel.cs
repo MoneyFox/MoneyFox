@@ -5,6 +5,7 @@ using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Common;
+using MoneyFox.Presentation.Dialogs;
 using SkiaSharp;
 using System;
 using System.Globalization;
