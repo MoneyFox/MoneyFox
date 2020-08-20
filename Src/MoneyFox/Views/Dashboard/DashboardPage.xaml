@@ -10,11 +10,11 @@
     xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
     xmlns:theme="clr-namespace:MoneyFox"
     xmlns:viewmodels="clr-namespace:MoneyFox.ViewModels.Dashboard"
-    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView" xmlns:converter="clr-namespace:MoneyFox.Converter"
     mc:Ignorable="d">
 
     <ContentPage.Resources>
-        <AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
     <Shell.TitleView>
