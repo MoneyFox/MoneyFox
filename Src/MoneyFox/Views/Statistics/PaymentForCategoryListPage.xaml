@@ -1,11 +1,10 @@
 ﻿<ContentPage
-    x:Class="MoneyFox.Presentation.Views.PaymentForCategoryListPage"
+    x:Class="MoneyFox.Views.Statistic.PaymentForCategoryListPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-    xmlns:userControls="clr-namespace:MoneyFox.Presentation.UserControls"
     BackgroundColor="{DynamicResource WindowBackgroundColor}"
     mc:Ignorable="d">
 

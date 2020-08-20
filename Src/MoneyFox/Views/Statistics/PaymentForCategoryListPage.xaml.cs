@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace MoneyFox.Presentation.Views
+namespace MoneyFox.Views.Statistic
 {
     public partial class PaymentForCategoryListPage : ContentPage
     {

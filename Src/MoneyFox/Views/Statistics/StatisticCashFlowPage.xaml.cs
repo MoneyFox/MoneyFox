@@ -5,7 +5,7 @@ using Rg.Plugins.Popup.Extensions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace MoneyFox.Views
+namespace MoneyFox.Views.Statistic
 {
     public partial class StatisticCashFlowPage
     {

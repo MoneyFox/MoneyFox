@@ -5,7 +5,7 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              mc:Ignorable="d"
-             x:Class="MoneyFox.Views.StatisticSelectorPage"
+             x:Class="MoneyFox.Views.Statistic.StatisticSelectorPage"
              Visual="Material"
              x:Name="root" >
 
