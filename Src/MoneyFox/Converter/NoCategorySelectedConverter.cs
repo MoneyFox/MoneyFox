@@ -12,8 +12,11 @@ namespace MoneyFox.Converter
         {
             var category = (CategoryViewModel)value;
 
-            return string.IsNullOrEmpty(category?.Name)
-                   ? Strings.SelectCategoryTitle : category.Name;
+            if(category == null) return string.Empty;
+
+            return string.IsNullOrEmpty(category.Name)
+                   ? Strings.SelectCategoryTitle
+                   : category.Name;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -17,11 +17,11 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
-        private ILogger logger = LogManager.GetCurrentClassLogger();
+        private readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         private readonly IDialogService dialogService;
 
-        private ObservableCollection<CategoryOverviewViewModel> categorySummary;
+        private ObservableCollection<CategoryOverviewViewModel> categorySummary = new ObservableCollection<CategoryOverviewViewModel>();
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
                                                  ISettingsFacade settingsFacade,

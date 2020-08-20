@@ -17,10 +17,10 @@ namespace MoneyFox.ViewModels.Payments
         private bool isEndless;
         private PaymentType type;
         private PaymentRecurrence recurrence;
-        private string note;
+        private string note = "";
 
-        private AccountViewModel chargedAccount;
-        private CategoryViewModel categoryViewModel;
+        private AccountViewModel chargedAccount = null!;
+        private CategoryViewModel? categoryViewModel;
 
         public RecurringPaymentViewModel()
         {
@@ -152,7 +152,7 @@ namespace MoneyFox.ViewModels.Payments
         /// <summary>
         /// The <see cref="Category"/> for this payment
         /// </summary>
-        public CategoryViewModel Category
+        public CategoryViewModel? Category
         {
             get => categoryViewModel;
             set

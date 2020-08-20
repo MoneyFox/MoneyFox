@@ -44,7 +44,7 @@ namespace MoneyFox.ViewModels.Settings
             }
         }
 
-        public ObservableCollection<CultureInfo> AvailableCultures { get; } = new ObservableCollection<CultureInfo>();
+        public ObservableCollection<CultureInfo> AvailableCultures { get; }
 
         private async Task LoadAvailableCulturesAsync()
         {
