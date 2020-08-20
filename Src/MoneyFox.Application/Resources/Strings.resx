@@ -345,7 +345,7 @@ Tap to visit the Repository:</value>
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts. Add one by tapping on the plus button.</value>
+    <value>There are no Accounts to display.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Create Backup</value>
@@ -469,7 +469,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Category Summary</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>There are no categories to display. Tap the plus button to add one.</value>
+    <value>There are no categories to display. </value>
   </data>
   <data name="NoStatisticItemsMessage" xml:space="preserve">
     <value>There are no statistic items in the selected time range.</value>

@@ -7,7 +7,6 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Name="StatisticCategorySummary"
-             Title="{x:Static resources:Strings.CategorySummaryTitle}"
              Visual="Material"
              mc:Ignorable="d">
 

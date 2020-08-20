@@ -36,6 +36,7 @@ namespace MoneyFox
             Routing.RegisterRoute(ViewModelLocator.StatisticCategorySpreadingRoute, typeof(StatisticCategorySpreadingPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCategorySummaryRoute, typeof(StatisticCategorySummaryPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticSelectorRoute, typeof(StatisticSelectorPage));
+            Routing.RegisterRoute(ViewModelLocator.PaymentForCategoryListRoute, typeof(PaymentForCategoryListPage));
         }
     }
 }
