@@ -1,8 +1,12 @@
 ﻿using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
+using MoneyFox.Application;
+using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Application.Common.Facades;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
+using System.Globalization;
 using Xamarin.Forms;
 
 
@@ -28,6 +32,8 @@ namespace MoneyFox
 
             InitializeComponent();
             MainPage = new AppShell();
+
+            CultureHelper.CurrentCulture = new CultureInfo(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
         }
 
         protected override void OnStart()
