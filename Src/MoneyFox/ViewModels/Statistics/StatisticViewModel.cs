@@ -1,11 +1,11 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
-using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
+using MoneyFox.Common;
 using SkiaSharp;
 using System;
 using System.Globalization;
@@ -48,9 +48,7 @@ namespace MoneyFox.ViewModels.Statistics
             EndDate = endDate;
             Mediator = mediator;
 
-            BackgroundColor = settingsFacade.Theme == AppTheme.Dark
-                              ? new SKColor(0, 0, 0)
-                              : SKColor.Parse("#EFF2F5");
+            BackgroundColor = ResourceHelper.GetCurrentBackgroundColor();
 
             MessengerInstance.Register<DateSelectedMessage>(this,
                                                             async message =>
