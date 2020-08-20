@@ -32,6 +32,15 @@
         </Tab>
     </FlyoutItem>
 
+    <FlyoutItem Title="{x:Static resources:Strings.StatisticsTitle}"
+                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
+        <Tab>
+            <ShellContent>
+                <statistic:StatisticSelectorPage />
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
     <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}"
                 FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
         <Tab>

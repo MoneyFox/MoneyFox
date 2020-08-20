@@ -12,14 +12,15 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Style="{StaticResource TextHeadline}"
-               Text="{x:Static resources:Strings.SelectStatisticTitle}" />
+                   Margin="15,0,15,0"
+                   Text="{x:Static resources:Strings.SelectStatisticTitle}" />
 
             <CollectionView x:Name="StatisticCollectionView"
-                        ItemsSource="{Binding StatisticItems}" >
+                            ItemsSource="{Binding StatisticItems}" >
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Padding="15, 6, 15, 8">
+                        <Grid Padding="15,6,15,8">
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -28,15 +29,18 @@
                             </Grid.GestureRecognizers>
 
                             <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                             Light={StaticResource CardBackgroundLight}}"
-                                       CornerRadius="10"
-                                       HeightRequest="45"
-                                       HorizontalOptions="FillAndExpand" >
+                                                                                 Light={StaticResource CardBackgroundLight}}"
+                                               Padding="15"
+                                               CornerRadius="10"
+                                               HeightRequest="45"
+                                               HorizontalOptions="FillAndExpand" >
 
-                                <StackLayout Orientation="Vertical"
-                                         Padding="3"
-                                         Spacing="{DynamicResource DefaultSpacing}">
-                                    <Label Text="{Binding Name}" Style="{DynamicResource ListItemHeaderStyle}" />
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow />
+                                </yummy:PancakeView.Shadow>
+
+                                <StackLayout Orientation="Vertical" >
+                                    <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
                                     <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
                                 </StackLayout>
                             </yummy:PancakeView>
