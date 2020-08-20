@@ -76,7 +76,7 @@
                                        Text="{Binding Subtitle}" />
 
                             <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                     Light={StaticResource CardBackgroundLight}}"
+                                                                                 Light={StaticResource CardBackgroundLight}}"
                                                    CornerRadius="10"
                                                    Grid.Row="2"
                                                    HorizontalOptions="FillAndExpand">
@@ -129,7 +129,7 @@
                                                                    WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="FontAwesome"
-                                                                                 Glyph="{x:Static theme:IconFont.ExchangeAlt}"
+                                                                                 Glyph="{x:Static theme:IconFont.Redo}"
                                                                                  Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
                                                             </Image.Source>
                                                         </Image>
