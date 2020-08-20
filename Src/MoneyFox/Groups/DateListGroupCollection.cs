@@ -22,7 +22,7 @@ namespace MoneyFox.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        public DateListGroupCollection(string key, Command<T> itemClickCommand = null)
+        public DateListGroupCollection(string key, Command<T>? itemClickCommand = null)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
@@ -34,7 +34,7 @@ namespace MoneyFox.Groups
         /// <param name="key">The key for this group.</param>
         /// <param name="Subtitle">The title for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        public DateListGroupCollection(string key, string subtitle, Command<T> itemClickCommand = null)
+        public DateListGroupCollection(string key, string subtitle, Command<T>? itemClickCommand = null)
         {
             Key = key;
             Subtitle = subtitle;
@@ -44,7 +44,7 @@ namespace MoneyFox.Groups
         /// <summary>
         /// The Key of this group.
         /// </summary>
-        public string Key { get; } = "";
+        public string Key { get; }
 
         /// <summary>
         /// The Title of this group.
@@ -69,7 +69,7 @@ namespace MoneyFox.Groups
                                                                     GetKeyDelegate getKey,
                                                                     GetSortKeyDelegate getSortKey,
                                                                     bool sort = true,
-                                                                    Command<T> itemClickCommand = null)
+                                                                    Command<T>? itemClickCommand = null)
         {
             ThrowIfNull(items);
 

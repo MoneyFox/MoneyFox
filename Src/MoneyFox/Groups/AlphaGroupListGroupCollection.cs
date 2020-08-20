@@ -35,7 +35,7 @@ namespace MoneyFox.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click.</param>
-        public AlphaGroupListGroupCollection(string key, RelayCommand<T> itemClickCommand)
+        public AlphaGroupListGroupCollection(string key, RelayCommand<T>? itemClickCommand)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;
@@ -64,7 +64,7 @@ namespace MoneyFox.Groups
                                                                           CultureInfo ci,
                                                                           GetKeyDelegate getKey,
                                                                           bool sort = true,
-                                                                          RelayCommand<T> itemClickCommand = null)
+                                                                          RelayCommand<T>? itemClickCommand = null)
         {
             ThrowIfNull(items);
 

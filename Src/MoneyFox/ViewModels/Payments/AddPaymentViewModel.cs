@@ -22,7 +22,7 @@ namespace MoneyFox.ViewModels.Payments
             this.mapper = mapper;
         }
 
-        public async Task InitializeAsync()
+        public new async Task InitializeAsync()
         {
             await base.InitializeAsync();
         }
@@ -39,8 +39,10 @@ namespace MoneyFox.ViewModels.Payments
                                         mapper.Map<Category>(SelectedPayment.Category),
                                         SelectedPayment.Note);
 
-            if(SelectedPayment.IsRecurring)
+            if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
+            {
                 payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.EndDate);
+            }
 
             await mediator.Send(new CreatePaymentCommand(payment));
         }
