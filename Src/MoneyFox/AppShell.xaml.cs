@@ -1,10 +1,11 @@
 ﻿using MoneyFox.ViewModels.Budget;
-using MoneyFox.Views;
 using MoneyFox.Views.Accounts;
+using MoneyFox.Views.Backup;
 using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
 using MoneyFox.Views.Settings;
+using MoneyFox.Views.Statistics;
 using Xamarin.Forms;
 
 namespace MoneyFox
