@@ -32,13 +32,25 @@ namespace MoneyFox
 
         protected override void OnStart()
         {
-            ConfigurationManager.Initialise(PortableStream.Current);
-            var iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
-            var androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
+            if(ConfigurationManager.AppSettings == null)
+            {
+                ConfigurationManager.Initialise(PortableStream.Current);
+            }
 
-            AppCenter.Start($"android={androidAppCenterSecret};" +
-                            $"ios={iosAppCenterSecret}",
-                            typeof(Analytics), typeof(Crashes));
+            InitializeAppCenter();
+        }
+
+        private static void InitializeAppCenter()
+        {
+            if(ConfigurationManager.AppSettings != null)
+            {
+                var iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
+                var androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
+
+                AppCenter.Start($"android={androidAppCenterSecret};" +
+                                $"ios={iosAppCenterSecret}",
+                                typeof(Analytics), typeof(Crashes));
+            }
         }
 
         protected override void OnSleep()
