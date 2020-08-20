@@ -214,10 +214,13 @@
     <ImageAsset Include="Assets.xcassets\ic_insert_chart_white.imageset\ic_bar_chart_black.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_insert_chart_white.imageset\ic_bar_chart_black1.png">
+    <ImageAsset Include="Assets.xcassets\ic_label_black.imageset\outline_label_black_24pt_1x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_label_black.imageset\ic_label_black1.png">
+    <ImageAsset Include="Assets.xcassets\ic_label_black.imageset\outline_label_black_24pt_2x.png">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_label_black.imageset\outline_label_black_24pt_3x.png">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ic_label_white.imageset\ic_label_white.png">
@@ -250,9 +253,6 @@
     <ImageAsset Include="Assets.xcassets\ic_settings_white.imageset\ic_settings_white_36pt_3x.png">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_label_white.imageset\Contents.json">
-      <Visible>false</Visible>
-    </ImageAsset>
     <ImageAsset Include="Assets.xcassets\ic_accounts_white.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
@@ -277,7 +277,10 @@
     <ImageAsset Include="Assets.xcassets\ic_info_black.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\Images.imageset\Contents.json">
+    <ImageAsset Include="Assets.xcassets\ic_label_black.imageset\Contents.json">
+      <Visible>false</Visible>
+    </ImageAsset>
+    <ImageAsset Include="Assets.xcassets\ic_label_white.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Contents.json">
@@ -293,9 +296,6 @@
       <Visible>false</Visible>
     </ImageAsset>
     <ImageAsset Include="Assets.xcassets\LaunchImages.launchimage\Default@2x.png">
-      <Visible>false</Visible>
-    </ImageAsset>
-    <ImageAsset Include="Assets.xcassets\ic_label_black.imageset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
