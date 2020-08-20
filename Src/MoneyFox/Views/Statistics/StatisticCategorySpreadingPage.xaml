@@ -4,17 +4,17 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              Visual="Material"
              x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">
 
     <ContentPage.Content>
-        <StackLayout>
+        <Grid RowDefinitions="38, *" Padding="15">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.CategorySpreadingTitle}" />
 
-            <forms:ChartView Chart="{Binding Chart}" />
-        </StackLayout>
+            <microcharts:ChartView Grid.Row="1" Chart="{Binding Chart}" />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
