@@ -67,6 +67,11 @@
                     </yummy:PancakeView.Shadow>
 
                     <Grid>
+
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding GoToAccountsCommand}" />
+                        </Grid.GestureRecognizers>
+
                         <Label
                             FontAttributes="Bold"
                             FontFamily="Product"
@@ -109,9 +114,11 @@
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="accounts:AccountViewModel">
                                 <Grid Padding="8" WidthRequest="180">
+                                    
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
                                     </Grid.GestureRecognizers>
+
 
                                     <yummy:PancakeView
                                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},

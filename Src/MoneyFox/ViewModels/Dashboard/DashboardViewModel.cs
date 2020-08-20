@@ -101,5 +101,9 @@ namespace MoneyFox.ViewModels.Dashboard
         public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
         public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
         public RelayCommand GoToBudgetsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
+
+        public RelayCommand<AccountViewModel> GoToTransactionListCommand
+            => new RelayCommand<AccountViewModel>(async (accountViewModel)
+                => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
     }
 }

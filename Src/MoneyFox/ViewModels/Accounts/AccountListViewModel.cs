@@ -75,6 +75,7 @@ namespace MoneyFox.ViewModels.Accounts
             => new RelayCommand<AccountViewModel>(async (accountViewModel)
                 => await Shell.Current.Navigation.PushModalAsync(
                     new NavigationPage(new EditAccountPage(accountViewModel.Id)) { BarBackgroundColor = Color.Transparent, BarTextColor = ResourceHelper.GetCurrentTextColor() }));
+
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
             => new RelayCommand<AccountViewModel>(async (accountViewModel)
                 => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
