@@ -4,9 +4,9 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Views.Accounts
 {
-    public partial class AddAccountPage : ContentPage
+    public partial class AddAccountPage
     {
-        private AddAccountViewModel ViewModel => BindingContext as AddAccountViewModel;
+        private AddAccountViewModel ViewModel => (AddAccountViewModel) BindingContext;
 
         public AddAccountPage()
         {

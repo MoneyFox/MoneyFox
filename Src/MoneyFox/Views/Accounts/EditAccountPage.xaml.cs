@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Views.Accounts
 {
-    public partial class EditAccountPage : ContentPage
+    public partial class EditAccountPage
     {
         private EditAccountViewModel ViewModel => (EditAccountViewModel) BindingContext;
 

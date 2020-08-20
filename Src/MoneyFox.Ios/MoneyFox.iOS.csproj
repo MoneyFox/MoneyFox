@@ -77,7 +77,7 @@
     <Compile Include="LinkerPleaseInclude.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
-    <Compile Include="Renderer\CustomContentPageRenderer.cs" />
+    <Compile Include="Renderer\ModalContentPageRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderer\NavigationPageRenderer.cs" />
     <Compile Include="Src\AppInformation.cs" />
