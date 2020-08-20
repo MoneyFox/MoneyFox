@@ -11,6 +11,10 @@
              xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments"
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
 
+    <ContentPage.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+    </ContentPage.Resources>
+
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,Auto,66,66,0">
             <Button
@@ -95,12 +99,12 @@
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="Start"
                                                                 VerticalTextAlignment="Start"
-                                                                Text="{Binding Date, StringFormat='{0:d}'}" />
+                                                                Text="{Binding Date, Converter={StaticResource AmountFormatConverter}}" />
 
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="End"
                                                                 VerticalTextAlignment="Start"
-                                                                Text="{Binding Amount, StringFormat='{0:c}'}" />
+                                                                Text="{Binding Amount, Converter={StaticResource AmountFormatConverter}}" />
                                                 </Grid>
 
                                                 <Grid>
