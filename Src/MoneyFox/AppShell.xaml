@@ -10,7 +10,7 @@
        xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
        xmlns:backup="clr-namespace:MoneyFox.Views.Backup"
        xmlns:statistic="clr-namespace:MoneyFox.Views.Statistics"
-       xmlns:settings="clr-namespace:MoneyFox.Views.Settings"
+       xmlns:settings="clr-namespace:MoneyFox.Views.Settings" xmlns:about="clr-namespace:MoneyFox.Views.About"
        Title="MoneyFox"
        mc:Ignorable="d">
 
@@ -64,6 +64,15 @@
         <Tab>
             <ShellContent>
                 <settings:SettingsPage />
+            </ShellContent>
+        </Tab>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static resources:Strings.AboutTitle}"
+                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
+        <Tab>
+            <ShellContent>
+                <about:AboutPage />
             </ShellContent>
         </Tab>
     </FlyoutItem>

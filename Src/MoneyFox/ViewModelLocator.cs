@@ -19,6 +19,7 @@ using MoneyFox.Views.Payments;
 using MoneyFox.Views.Settings;
 using MoneyFox.Views.Backup;
 using MoneyFox.Views.Statistics;
+using MoneyFox.ViewModels;
 
 namespace MoneyFox
 {
@@ -82,5 +83,6 @@ namespace MoneyFox
         public static StatisticSelectorViewModel StatisticSelectorViewModel => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
         public static PaymentForCategoryListViewModel PaymentForCategoryListViewModel => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
         public static SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
+        public static AboutViewModel AboutViewModel => ServiceLocator.Current.GetInstance<AboutViewModel>();
     }
 }
