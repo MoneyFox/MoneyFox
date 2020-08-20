@@ -85,8 +85,9 @@
         <Setter Property="Shell.UnselectedColor"
                 Value="#CC0000" />
         <Setter Property="Shell.NavBarHasShadow"
-                Value="true"/>
+                Value="false"/>
     </Style>
+
     <Style BasedOn="{StaticResource BaseStyle}"
            ApplyToDerivedTypes="True"
            TargetType="FlyoutItem" />
