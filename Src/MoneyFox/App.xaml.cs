@@ -30,10 +30,10 @@ namespace MoneyFox
                 App.Current.UserAppTheme = a.RequestedTheme;
             };
 
+            CultureHelper.CurrentCulture = new CultureInfo(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
+
             InitializeComponent();
             MainPage = new AppShell();
-
-            CultureHelper.CurrentCulture = new CultureInfo(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
         }
 
         protected override void OnStart()
