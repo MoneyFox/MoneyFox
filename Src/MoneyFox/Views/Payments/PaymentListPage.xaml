@@ -9,6 +9,7 @@
              xmlns:theme="clr-namespace:MoneyFox"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments"
+             xmlns:converter="clr-namespace:MoneyFox.Converter"
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
 
     <ContentPage.Resources>
@@ -48,7 +49,7 @@
 
     <ContentPage.Content>
         <Grid IsClippedToBounds="False"
-              RowDefinitions="40, Auto">
+              RowDefinitions="40, *">
 
             <Label FontAttributes="Bold"
                    FontFamily="Product"
@@ -58,9 +59,9 @@
                    VerticalOptions="Center" />
 
             <CollectionView Grid.Row="1"
-                                ItemsSource="{Binding Payments}"
-                                EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
-                                x:Name="PaymentCollectionView">
+                            ItemsSource="{Binding Payments}"
+                            EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
+                            x:Name="PaymentCollectionView">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -99,7 +100,7 @@
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="Start"
                                                                 VerticalTextAlignment="Start"
-                                                                Text="{Binding Date, Converter={StaticResource AmountFormatConverter}}" />
+                                                                Text="{Binding Date}" />
 
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="End"
