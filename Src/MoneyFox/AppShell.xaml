@@ -8,45 +8,10 @@
        xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
        xmlns:category="clr-namespace:MoneyFox.Views.Categories"
        xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
-       xmlns:backup="clr-namespace:MoneyFox.Views" xmlns:settings="clr-namespace:MoneyFox.Views.Settings"
+       xmlns:backup="clr-namespace:MoneyFox.Views"
+       xmlns:settings="clr-namespace:MoneyFox.Views.Settings"
        Title="MoneyFox"
-       Visual="Material"
        mc:Ignorable="d">
-
-    <Shell.ItemTemplate>
-        <DataTemplate>
-            <Grid BackgroundColor="Transparent">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="0.8*" />
-                </Grid.ColumnDefinitions>
-                <Image Source="{Binding FlyoutIcon}"
-                    Margin="5"
-                    HeightRequest="20" />
-                <Label Grid.Column="1"
-                    Text="{Binding Title}"
-                    VerticalTextAlignment="Center" />
-            </Grid>
-        </DataTemplate>
-    </Shell.ItemTemplate>
-
-    <!--  This header appears at the top of the Flyout.  -->
-    <Shell.FlyoutHeaderTemplate>
-        <DataTemplate>
-            <Grid BackgroundColor="Transparent">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.2*" />
-                    <ColumnDefinition Width="0.8*" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="1"
-                       Text="MoneyFox"
-                       FontFamily="Product"
-                       FontAttributes="Bold"
-                       FontSize="30"
-                       VerticalTextAlignment="Center" />
-            </Grid>
-        </DataTemplate>
-    </Shell.FlyoutHeaderTemplate>
 
     <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}"
                 FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >

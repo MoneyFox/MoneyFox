@@ -6,7 +6,6 @@
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.SettingsViewModel;
-
         }
     }
 }

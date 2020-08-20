@@ -7,9 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:moneyfox="clr-namespace:MoneyFox"
     mc:Ignorable="d">
+
     <Application.Resources>
         <moneyfox:ViewModelLocator x:Key="Locator" />
-
         <ResourceDictionary Source="/Common/Styles/DefaultTheme.xaml" />
     </Application.Resources>
 </Application>
