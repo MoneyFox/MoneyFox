@@ -15,11 +15,15 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
     {
         public GetPaymentsForAccountIdQuery(int accountId,
                                             DateTime timeRangeStart,
-                                            DateTime timeRangeEnd)
+                                            DateTime timeRangeEnd,
+                                            bool isClearedFilterActive = false,
+                                            bool isRecurringFilterActive = false)
         {
             AccountId = accountId;
             TimeRangeStart = timeRangeStart;
             TimeRangeEnd = timeRangeEnd;
+            IsClearedFilterActive = isClearedFilterActive;
+            IsRecurringFilterActive = isRecurringFilterActive;
         }
 
         public int AccountId { get; }

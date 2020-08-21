@@ -6,7 +6,6 @@ using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Application.Resources;
-using MoneyFox.Common;
 using MoneyFox.Domain;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
@@ -90,7 +89,11 @@ namespace MoneyFox.ViewModels.Payments
         private async Task LoadPaymentsByMessageAsync()
         {
             var paymentVms = mapper.Map<List<PaymentViewModel>>(
-                await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id, lastMessage.TimeRangeStart, lastMessage.TimeRangeEnd)));
+                await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id,
+                                                                     lastMessage.TimeRangeStart,
+                                                                     lastMessage.TimeRangeEnd,
+                                                                     lastMessage.IsClearedFilterActive,
+                                                                     lastMessage.IsRecurringFilterActive)));
 
             List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
                .CreateGroups(paymentVms,

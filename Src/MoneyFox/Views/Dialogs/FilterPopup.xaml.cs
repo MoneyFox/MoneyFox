@@ -26,9 +26,10 @@ namespace MoneyFox.Presentation.Dialogs
             await App.Current.MainPage.Navigation.PopPopupAsync();
         }
 
-        private void Button_OnClicked(object sender, System.EventArgs e)
+        private async void Button_OnClicked(object sender, System.EventArgs e)
         {
             ViewModel.FilterSelectedCommand.Execute(null);
+            await DismissAsync();
         }
     }
 }
