@@ -11,10 +11,6 @@
              Visual="Material"
              x:Class="MoneyFox.Views.Categories.SelectedCategoryPage">
 
-    <d:ContentPage.BindingContext>
-        <categories:SelectCategoryViewModel />
-    </d:ContentPage.BindingContext>
-
     <Shell.TitleView>
         <Grid>
             <Button

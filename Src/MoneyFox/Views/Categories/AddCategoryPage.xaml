@@ -11,7 +11,7 @@
                            x:Class="MoneyFox.Views.Categories.AddCategoryPage">
 
     <ContentPage.Content>
-        <ScrollView Padding="15">
+        <ScrollView Padding="15,0,15,0" >
             <StackLayout >
 
                 <Label Style="{StaticResource TextHeadline}"

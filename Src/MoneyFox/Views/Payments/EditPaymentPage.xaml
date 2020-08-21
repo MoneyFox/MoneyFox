@@ -13,7 +13,7 @@
 
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="15">
+            <StackLayout Padding="15,0,15,0" >
 
                 <Label Style="{StaticResource TextHeadline}"
                        Text="{x:Static resources:Strings.AddPaymentLabel}" />
