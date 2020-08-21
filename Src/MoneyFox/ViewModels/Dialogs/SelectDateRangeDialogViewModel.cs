@@ -27,6 +27,15 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
+        ///     Initalize the viewmodel with a previous sent message.
+        /// </summary>
+        public void Initialize(DateSelectedMessage message)
+        {
+            StartDate = message.StartDate;
+            EndDate = message.EndDate;
+        }
+
+        /// <summary>
         /// Start Date for the custom date range
         /// </summary>
         public DateTime StartDate

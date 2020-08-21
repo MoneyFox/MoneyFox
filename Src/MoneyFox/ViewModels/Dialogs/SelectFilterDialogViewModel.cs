@@ -24,6 +24,17 @@ namespace MoneyFox.ViewModels.Dialogs
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
 
         /// <summary>
+        ///     Initalize the viewmodel with a previous sent message.
+        /// </summary>
+        public void Initialize(PaymentListFilterChangedMessage message)
+        {
+            IsClearedFilterActive = message.IsClearedFilterActive;
+            IsRecurringFilterActive = message.IsRecurringFilterActive;
+            TimeRangeStart = message.TimeRangeStart;
+            TimeRangeEnd = message.TimeRangeEnd;
+        }
+
+        /// <summary>
         /// Indicates wether the filter for only cleared Payments is active or not.
         /// </summary>
         public bool IsClearedFilterActive

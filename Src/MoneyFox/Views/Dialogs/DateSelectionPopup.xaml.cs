@@ -1,4 +1,5 @@
-﻿using MoneyFox.ViewModels.Dialogs;
+﻿using MoneyFox.Application.Common.Messages;
+using MoneyFox.ViewModels.Dialogs;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Threading.Tasks;
@@ -9,10 +10,19 @@ namespace MoneyFox.Presentation.Dialogs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DateSelectionPopup
     {
+        private SelectDateRangeDialogViewModel ViewModel => (SelectDateRangeDialogViewModel)BindingContext;
         public DateSelectionPopup()
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.SelectDateRangeDialogViewModel;
+        }
+
+        public DateSelectionPopup(DateSelectedMessage message)
+        {
+            InitializeComponent();
+            BindingContext = ViewModelLocator.SelectDateRangeDialogViewModel;
+
+            ViewModel.Initialize(message);
         }
 
         public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
@@ -21,7 +31,7 @@ namespace MoneyFox.Presentation.Dialogs
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            (BindingContext as SelectDateRangeDialogViewModel)?.DoneCommand.Execute(null);
+            ViewModel.DoneCommand.Execute(null);
             await DismissAsync();
         }
     }
