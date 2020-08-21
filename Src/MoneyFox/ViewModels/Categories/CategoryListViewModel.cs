@@ -57,6 +57,6 @@ namespace MoneyFox.ViewModels.Categories
 
         public RelayCommand<CategoryViewModel> GoToEditCategoryCommand
             => new RelayCommand<CategoryViewModel>(async (categoryViewModel)
-                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditCategoryPage(categoryViewModel.Id)) { BarBackgroundColor = Color.Transparent, BarTextColor = ResourceHelper.GetCurrentTextColor() }));
+                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditCategoryPage(categoryViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
     }
 }

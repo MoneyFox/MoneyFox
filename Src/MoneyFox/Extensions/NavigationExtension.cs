@@ -1,5 +1,4 @@
-﻿using MoneyFox.Common;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MoneyFox.Extensions
@@ -15,8 +14,7 @@ namespace MoneyFox.Extensions
 
             return shell.Navigation.PushModalAsync(new NavigationPage(page)
             {
-                BarBackgroundColor = Color.Transparent,
-                BarTextColor = ResourceHelper.GetCurrentTextColor()
+                BarBackgroundColor = Color.Transparent
             });
         }
     }

@@ -115,6 +115,6 @@ namespace MoneyFox.ViewModels.Payments
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new RelayCommand<PaymentViewModel>(async (paymentViewModel)
-                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent, BarTextColor = ResourceHelper.GetCurrentTextColor() }));
+                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent}));
     }
 }
