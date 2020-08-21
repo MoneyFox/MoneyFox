@@ -13,6 +13,7 @@ namespace MoneyFox.Presentation.Dialogs
         public FilterPopup()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.SelectFilterDialogViewModel;
         }
 
         public async Task ShowAsync()

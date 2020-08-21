@@ -12,6 +12,7 @@ namespace MoneyFox.Presentation.Dialogs
         public DateSelectionPopup()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.SelectDateRangeDialogViewModel;
         }
 
         public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
@@ -20,8 +21,8 @@ namespace MoneyFox.Presentation.Dialogs
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {
-            await DismissAsync();
             (BindingContext as SelectDateRangeDialogViewModel)?.DoneCommand.Execute(null);
+            await DismissAsync();
         }
     }
 }

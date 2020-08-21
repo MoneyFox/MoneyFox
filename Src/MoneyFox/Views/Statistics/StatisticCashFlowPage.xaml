@@ -11,11 +11,11 @@
     mc:Ignorable="d">
 
     <Shell.TitleView>
-        <Grid ColumnDefinitions="*,Auto,66,66,0">
+        <Grid ColumnDefinitions="*,66">
             <Button
                 Margin="0,0,5,0"
                 Padding="0"
-                Grid.Column="2"
+                Grid.Column="1"
                 BorderWidth="0"
                 FontFamily="FontAwesome"
                 FontSize="24"

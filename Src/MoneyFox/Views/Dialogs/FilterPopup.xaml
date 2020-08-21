@@ -5,7 +5,6 @@
                  xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
                  xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                  Visual="Material"
-                 BindingContext="{Binding SelectFilterDialogViewModel, Source={StaticResource Locator}}"
                  x:Class="MoneyFox.Presentation.Dialogs.FilterPopup">
 
     <!--You can set an animation in the xaml file or in the csharp code behind-->
