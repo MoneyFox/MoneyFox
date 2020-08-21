@@ -41,6 +41,8 @@ namespace MoneyFox.iOS
 
             LoadApplication(new App());
 
+            UINavigationBar.Appearance.Translucent = false;
+
             return base.FinishedLaunching(app, options);
         }
 

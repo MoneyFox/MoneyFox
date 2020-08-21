@@ -5,7 +5,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-    xmlns:extensions="clr-namespace:MoneyFox.Extensions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
     xmlns:theme="clr-namespace:MoneyFox"
@@ -42,7 +41,7 @@
             <Grid
                 Padding="15"
                 IsClippedToBounds="False"
-                RowDefinitions="35, 40, 80, 160, 140,*">
+                RowDefinitions="35, 40, 90, 160, 140,*">
 
                 <Label Style="{StaticResource TextHeadline}" Text="{x:Static resources:Strings.WelcomeLabel}" />
 
@@ -113,7 +112,7 @@
 
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="accounts:AccountViewModel">
-                                <Grid Padding="8" WidthRequest="180">
+                                <Grid Padding="10,15,10,15" WidthRequest="180">
                                     
                                     <Grid.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
