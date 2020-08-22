@@ -32,7 +32,7 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodeAnalysisRuleSet>..\.sonarlint\moneyfox-projectcsharp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
@@ -46,7 +46,7 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
-    <CodeAnalysisRuleSet>..\.sonarlint\moneyfox-projectcsharp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -64,7 +64,7 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
-    <CodeAnalysisRuleSet>..\.sonarlint\moneyfox-projectcsharp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
     <MtouchFastDev>true</MtouchFastDev>
     <CodesignProvision>MoneyFox Development 2020</CodesignProvision>
   </PropertyGroup>
@@ -79,7 +79,7 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodeAnalysisRuleSet>..\.sonarlint\moneyfox-projectcsharp.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="IosModule.cs" />
@@ -103,6 +103,7 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
+    <None Include="MoneyFox.iOS.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
