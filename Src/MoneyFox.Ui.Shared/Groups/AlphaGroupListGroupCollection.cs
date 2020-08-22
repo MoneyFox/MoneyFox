@@ -25,7 +25,17 @@ namespace MoneyFox.Ui.Shared.Groups
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click.</param>
-        public AlphaGroupListGroupCollection(string key, RelayCommand<T>? itemClickCommand = null)
+        public AlphaGroupListGroupCollection(string key)
+        {
+            Key = key;
+        }
+
+        /// <summary>
+        /// Public constructor.
+        /// </summary>
+        /// <param name="key">The key for this group.</param>
+        /// <param name="itemClickCommand">The command to execute on click.</param>
+        public AlphaGroupListGroupCollection(string key, RelayCommand<T>? itemClickCommand)
         {
             Key = key;
             ItemClickCommand = itemClickCommand;

@@ -5,7 +5,7 @@ using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Extensions;
-using MoneyFox.Groups;
+using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Views.Categories;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
