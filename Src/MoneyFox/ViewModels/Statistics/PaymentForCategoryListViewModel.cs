@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
-using MoneyFox.Common;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.ViewModels.Payments;
 using MoneyFox.Views.Payments;
