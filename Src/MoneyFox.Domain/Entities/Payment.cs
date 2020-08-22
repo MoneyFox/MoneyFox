@@ -51,7 +51,7 @@ namespace MoneyFox.Domain.Entities
 
         public PaymentType Type { get; private set; }
 
-        public string? Note { get; set; }
+        public string Note { get; set; } = "";
 
         public bool IsRecurring { get; private set; }
 
@@ -61,10 +61,10 @@ namespace MoneyFox.Domain.Entities
 
         public virtual Category? Category { get; private set; }
 
-        private Account? chargedAccount;
+        private Account chargedAccount = null!;
 
         [Required]
-        public virtual Account? ChargedAccount
+        public virtual Account ChargedAccount
         {
             get => chargedAccount;
             private set => chargedAccount = value;

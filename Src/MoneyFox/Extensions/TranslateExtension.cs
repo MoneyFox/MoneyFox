@@ -14,7 +14,7 @@ namespace MoneyFox.Extensions
         static readonly Lazy<ResourceManager> ResMgr = new Lazy<ResourceManager>(
             () => new ResourceManager(typeof(Strings).FullName, typeof(Strings).GetTypeInfo().Assembly));
 
-        public string Text { get; set; }
+        public string? Text { get; set; }
 
         public object ProvideValue(IServiceProvider serviceProvider)
         {
