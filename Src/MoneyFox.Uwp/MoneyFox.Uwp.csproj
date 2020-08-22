@@ -178,7 +178,6 @@
     <Compile Include="Src\BalanceCalculationService.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\GraphClientFactory.cs" />
-    <Compile Include="Src\IDialogService.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
@@ -192,14 +191,12 @@
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddCategoryViewModel.cs" />
     <Compile Include="ViewModels\AddPaymentViewModel.cs" />
-    <Compile Include="ViewModels\BackupViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\CategoryOverviewViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeBackupViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyAccountViewModel.cs" />
@@ -220,7 +217,6 @@
     <Compile Include="ViewModels\EditAccountViewModel.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />
     <Compile Include="ViewModels\EditPaymentViewModel.cs" />
-    <Compile Include="ViewModels\IBackupViewModel.cs" />
     <Compile Include="ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="ViewModels\IModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\IModifyPaymentViewModel.cs" />
