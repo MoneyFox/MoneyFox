@@ -134,6 +134,7 @@
 
   <ItemGroup>
     <Folder Include="Groups\" />
+    <Folder Include="ViewModels\About\" />
     <Folder Include="Views\About\" />
   </ItemGroup>
 </Project>

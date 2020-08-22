@@ -185,7 +185,6 @@
     <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Src\WindowsFileStore.cs" />
     <Compile Include="ViewModelLocator.cs" />
-    <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
@@ -198,7 +197,6 @@
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\CategoryOverviewViewModel.cs" />
     <Compile Include="ViewModels\CategoryViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeAboutViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBackupViewModel.cs" />
@@ -222,7 +220,6 @@
     <Compile Include="ViewModels\EditAccountViewModel.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />
     <Compile Include="ViewModels\EditPaymentViewModel.cs" />
-    <Compile Include="ViewModels\IAboutViewModel.cs" />
     <Compile Include="ViewModels\IBackupViewModel.cs" />
     <Compile Include="ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="ViewModels\IModifyCategoryViewModel.cs" />

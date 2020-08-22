@@ -6,6 +6,7 @@ using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using MoneyFox.Uwp.ViewModels.Settings;
 using MoneyFox.Uwp.ViewModels.Statistic;
+using MoneyFox.ViewModels;
 
 namespace MoneyFox.Uwp
 {
