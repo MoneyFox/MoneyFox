@@ -1,10 +1,13 @@
 ﻿using MoneyFox.Application.Resources;
+using MoneyFox.ViewModels.Categories;
 using Xamarin.Forms;
 
 namespace MoneyFox.Views.Categories
 {
     public partial class SelectedCategoryPage : ContentPage
     {
+        private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
+
         public SelectedCategoryPage()
         {
             InitializeComponent();
@@ -20,5 +23,7 @@ namespace MoneyFox.Views.Categories
 
             ToolbarItems.Add(cancelItem);
         }
+
+        protected override async void OnAppearing() => await ViewModel.InitializeAsync();
     }
 }

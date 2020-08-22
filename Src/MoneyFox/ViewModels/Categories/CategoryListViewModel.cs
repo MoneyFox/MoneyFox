@@ -4,7 +4,6 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Messages;
-using MoneyFox.Common;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.Views.Categories;
@@ -28,10 +27,10 @@ namespace MoneyFox.ViewModels.Categories
             this.mediator = mediator;
             this.mapper = mapper;
 
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync());
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await InitializeAsync());
         }
 
-        public async Task OnAppearingAsync()
+        public async Task InitializeAsync()
         {
             var categorieVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery()));
 

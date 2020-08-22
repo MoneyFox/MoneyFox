@@ -13,6 +13,6 @@ namespace MoneyFox.Views.Categories
             BindingContext = ViewModelLocator.CategoryListViewModel;
         }
 
-        protected override async void OnAppearing() => await ViewModel.OnAppearingAsync();
+        protected override async void OnAppearing() => await ViewModel.InitializeAsync();
     }
 }
