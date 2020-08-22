@@ -107,12 +107,5 @@ namespace MoneyFox.Domain.Entities
             LastRecurrenceCreated = DateTime.Now;
             ModificationDate = DateTime.Now;
         }
-
-        [Obsolete("This Method is only for migration purposes and will be removed later")]
-        public void SetLastRecurrenceCreatedDate(DateTime dateTime)
-        {
-            LastRecurrenceCreated = dateTime;
-            ModificationDate = DateTime.Now;
-        }
     }
 }

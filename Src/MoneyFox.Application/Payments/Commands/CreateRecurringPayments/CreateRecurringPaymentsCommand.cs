@@ -4,7 +4,6 @@ using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -35,17 +34,6 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                                                .AsQueryable()
                                                                                .IsNotExpired()
                                                                                .ToListAsync();
-
-                foreach(var recurringPayment in recurringPayments.Where(x => x.LastRecurrenceCreated == DateTime.MinValue))
-                {
-                    var lastPayment = recurringPayment.RelatedPayments.OrderByDescending(d => d.Date).FirstOrDefault();
-                    if(lastPayment == null)
-                    {
-                        continue;
-                    }
-
-                    recurringPayment.SetLastRecurrenceCreatedDate(lastPayment.Date);
-                }
 
                 List<Payment> recPaymentsToCreate = recurringPayments
                                                    .Where(x => x.RelatedPayments.Any())
