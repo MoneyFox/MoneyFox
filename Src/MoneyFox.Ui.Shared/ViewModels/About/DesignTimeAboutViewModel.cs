@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Ui.Shared.ViewModels.About;
 
-namespace MoneyFox.Ui.Shared.ViewModels.DesignTime
+namespace MoneyFox.Ui.Shared.ViewModels.About
 {
     public class DesignTimeAboutViewModel : IAboutViewModel
     {
