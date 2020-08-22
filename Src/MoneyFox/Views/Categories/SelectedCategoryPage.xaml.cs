@@ -8,6 +8,7 @@ namespace MoneyFox.Views.Categories
         public SelectedCategoryPage()
         {
             InitializeComponent();
+            BindingContext = ViewModelLocator.SelectCategoryViewModel;
 
             var cancelItem = new ToolbarItem
             {
