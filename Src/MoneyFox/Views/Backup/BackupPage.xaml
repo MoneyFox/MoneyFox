@@ -6,10 +6,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
+             xmlns:designTime="clr-namespace:MoneyFox.Ui.Shared.ViewModels.About;assembly=MoneyFox.Ui.Shared"
              mc:Ignorable="d"
              Shell.NavBarHasShadow="False"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
              Visual="Material">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeAboutViewModel />
+    </d:ContentPage.BindingContext>
 
     <ContentPage.Resources>
         <ResourceDictionary>
