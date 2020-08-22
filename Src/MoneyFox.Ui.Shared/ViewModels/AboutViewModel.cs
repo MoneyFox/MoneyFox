@@ -4,7 +4,6 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.Commands;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,59 +12,6 @@ using Xamarin.Essentials;
 
 namespace MoneyFox.ViewModels
 {
-    public interface IAboutViewModel
-    {
-        /// <summary>
-        /// Opens the webbrowser and loads to the apply solutions     website
-        /// </summary>
-        AsyncCommand GoToWebsiteCommand { get; }
-
-        /// <summary>
-        /// Sends a feedback mail to the apply solutions support     mail address
-        /// </summary>
-        AsyncCommand SendMailCommand { get; }
-
-        /// <summary>
-        /// Opens the store to rate the app.
-        /// </summary>
-        RelayCommand RateAppCommand { get; }
-
-        /// <summary>
-        /// Opens the webbrowser and loads repository page     on GitHub
-        /// </summary>
-        AsyncCommand GoToRepositoryCommand { get; }
-
-        /// <summary>
-        /// Opens the webbrowser and loads the project on crowdin.
-        /// </summary>
-        AsyncCommand GoToTranslationProjectCommand { get; }
-
-        /// <summary>
-        /// Opens the webbrowser and loads the project on crowdin.
-        /// </summary>
-        AsyncCommand GoToDesignerTwitterAccountCommand { get; }
-
-        /// <summary>
-        /// Opens the webbrowser loads the contribution page on Github.
-        /// </summary>
-        AsyncCommand GoToContributionPageCommand { get; }
-
-        /// <summary>
-        /// Returns the Version of App
-        /// </summary>
-        string Version { get; }
-
-        /// <summary>
-        /// Returns the apply solutions webite url from the     resource file
-        /// </summary>
-        string Website { get; }
-
-        /// <summary>
-        /// Returns the mailaddress for support cases from the     resource file
-        /// </summary>
-        string SupportMail { get; }
-    }
-
     public class AboutViewModel : ViewModelBase, IAboutViewModel
     {
         private readonly IAppInformation appInformation;
@@ -90,12 +36,12 @@ namespace MoneyFox.ViewModels
         /// <summary>
         /// Opens the webbrowser and loads to the apply solutions     website
         /// </summary>
-        public AsyncCommand GoToWebsiteCommand => new AsyncCommand(GoToWebsite);
+        public RelayCommand GoToWebsiteCommand => new RelayCommand(async () => await GoToWebsite());
 
         /// <summary>
         /// Sends a feedback mail to the apply solutions support     mail address
         /// </summary>
-        public AsyncCommand SendMailCommand => new AsyncCommand(SendMail);
+        public RelayCommand SendMailCommand => new RelayCommand(async () => await SendMail());
 
         /// <summary>
         /// Opens the store to rate the app.
@@ -105,22 +51,22 @@ namespace MoneyFox.ViewModels
         /// <summary>
         /// Opens the webbrowser and loads repository page     on GitHub
         /// </summary>
-        public AsyncCommand GoToRepositoryCommand => new AsyncCommand(GoToRepository);
+        public RelayCommand GoToRepositoryCommand => new RelayCommand(async () => await GoToRepository());
 
         /// <summary>
         /// Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public AsyncCommand GoToTranslationProjectCommand => new AsyncCommand(GoToTranslationProject);
+        public RelayCommand GoToTranslationProjectCommand => new RelayCommand(async () => await GoToTranslationProject());
 
         /// <summary>
         /// Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public AsyncCommand GoToDesignerTwitterAccountCommand => new AsyncCommand(GoToDesignerTwitterAccount);
+        public RelayCommand GoToDesignerTwitterAccountCommand => new RelayCommand(async () => await GoToDesignerTwitterAccount());
 
         /// <summary>
         /// Opens the webbrowser loads the contribution page on Github.
         /// </summary>
-        public AsyncCommand GoToContributionPageCommand => new AsyncCommand(GoToContributionPage);
+        public RelayCommand GoToContributionPageCommand => new RelayCommand(async () => await GoToContributionPage());
 
         /// <summary>
         /// Returns the Version of App
@@ -138,9 +84,7 @@ namespace MoneyFox.ViewModels
         public string SupportMail => AppConstants.SupportMail;
 
         private async Task GoToWebsite()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.WebsiteUrl));
-        }
+            => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.WebsiteUrl));
 
         private async Task SendMail()
         {
@@ -153,28 +97,18 @@ namespace MoneyFox.ViewModels
         }
 
         private void RateApp()
-        {
-            storeFeatures.RateApp();
-        }
+            => storeFeatures.RateApp();
 
         private async Task GoToRepository()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GitHubRepositoryUrl));
-        }
+            => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GitHubRepositoryUrl));
 
         private async Task GoToTranslationProject()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.TranslationProjectUrl));
-        }
+            => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.TranslationProjectUrl));
 
         private async Task GoToDesignerTwitterAccount()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.IconDesignerTwitterUrl));
-        }
+            => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.IconDesignerTwitterUrl));
 
         private async Task GoToContributionPage()
-        {
-            await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GithubContributionUrl));
-        }
+            => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GithubContributionUrl));
     }
 }
