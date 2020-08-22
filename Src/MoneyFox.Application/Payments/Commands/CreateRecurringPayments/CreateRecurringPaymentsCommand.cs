@@ -46,7 +46,7 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                                             x.ChargedAccount,
                                                                             x.TargetAccount,
                                                                             x.Category,
-                                                                            x.Note,
+                                                                            x.Note ?? "",
                                                                             x))
                                                    .ToList();
 
