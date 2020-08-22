@@ -11,7 +11,6 @@ using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -208,7 +207,7 @@ namespace MoneyFox.Uwp.ViewModels
                                                                   || (payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == AccountId))
                                                 .Sum(x => x.Amount);
 
-                dailyGroup.Title = $"+{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
+                dailyGroup.Subtitle = $"+{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
             }
 
             Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
