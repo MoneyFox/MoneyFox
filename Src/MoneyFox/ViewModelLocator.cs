@@ -52,7 +52,7 @@ namespace MoneyFox
         public static string PaymentListRoute => $"Payment/{nameof(PaymentListPage)}";
         public static string AddPaymentRoute => $"Payment/{nameof(AddPaymentPage)}";
         public static string CategoryListRoute => $"Category/{nameof(CategoryListPage)}";
-        public static string SelectCategoryRoute => $"Category/{nameof(SelectedCategoryPage)}";
+        public static string SelectCategoryRoute => $"Category/{nameof(SelectCategoryPage)}";
         public static string AddCategoryRoute => $"Category/{nameof(AddCategoryPage)}";
         public static string BackupRoute => $"Backup/Show{nameof(BackupPage)}";
         public static string SettingsRoute => $"Settings/Show{nameof(SettingsPage)}";

@@ -4,11 +4,11 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Views.Categories
 {
-    public partial class SelectedCategoryPage : ContentPage
+    public partial class SelectCategoryPage : ContentPage
     {
         private SelectCategoryViewModel ViewModel => (SelectCategoryViewModel)BindingContext;
 
-        public SelectedCategoryPage()
+        public SelectCategoryPage()
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.SelectCategoryViewModel;
