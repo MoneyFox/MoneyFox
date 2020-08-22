@@ -88,9 +88,13 @@ namespace MoneyFox.Droid.Renderer
                     Drawable handleDrawable = Resources.GetDrawable(handle, null);
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                    {
                         handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                    }
                     else
+                    {
                         handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
+                    }
 
                     field = editor.Class.GetDeclaredField(drawableName);
                     field.Accessible = true;
