@@ -10,12 +10,12 @@ namespace MoneyFox.Presentation.Models
         /// <summary>
         /// Name of the statistic
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         /// <summary>
         /// Short description for the statistic
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
 
         /// <summary>
         /// Type of this item.
