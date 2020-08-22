@@ -19,7 +19,7 @@ namespace MoneyFox.Droid.Renderer
 
                 if(child is AViewGroup)
                 {
-                    IEnumerable<T> myChildren = (child as AViewGroup).GetChildrenOfType<T>();
+                    IEnumerable<T> myChildren = ((AViewGroup)child).GetChildrenOfType<T>();
                     foreach(T nextChild in myChildren)
                     {
                         yield return nextChild;
