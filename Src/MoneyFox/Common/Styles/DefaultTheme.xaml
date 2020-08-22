@@ -378,11 +378,13 @@
 
     <!-- SwipeItem -->
     <Style TargetType="SwipeView" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"/>
+        <Setter Property="BackgroundColor"
+                Value="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"/>
     </Style>
 
     <Style TargetType="SwipeItem" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"/>
+        <Setter Property="BackgroundColor"
+                Value="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"/>
     </Style>
 
     <!-- Misc -->
