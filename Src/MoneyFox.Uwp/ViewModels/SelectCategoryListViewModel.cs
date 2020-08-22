@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Messages;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -17,7 +17,8 @@ namespace MoneyFox.Uwp.ViewModels
         public SelectCategoryListViewModel(IMediator mediator,
                                            IMapper mapper,
                                            IDialogService dialogService,
-                                           NavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
+                                           NavigationService navigationService)
+            : base(mediator, mapper, dialogService, navigationService)
         {
         }
 

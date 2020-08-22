@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace MoneyFox.Services
+namespace MoneyFox.Application.Common.Interfaces
 {
     public interface IDialogService
     {

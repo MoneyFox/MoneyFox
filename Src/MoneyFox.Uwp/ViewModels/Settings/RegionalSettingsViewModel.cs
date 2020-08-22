@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Uwp.Src;
 using MoneyFox.Ui.Shared.Commands;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels.Settings
 {

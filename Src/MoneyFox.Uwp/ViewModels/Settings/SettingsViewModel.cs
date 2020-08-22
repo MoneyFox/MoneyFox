@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using MoneyFox.Ui.Shared.ViewModels.About;
 
 namespace MoneyFox.Uwp.ViewModels.Settings
 {

@@ -2,9 +2,9 @@
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Services;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Categories

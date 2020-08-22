@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Resources;
-using MoneyFox.Services;
+﻿using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.Views.Dialogs;
 using System;
 using System.Threading.Tasks;

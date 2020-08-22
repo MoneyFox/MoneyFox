@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Services;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Payments

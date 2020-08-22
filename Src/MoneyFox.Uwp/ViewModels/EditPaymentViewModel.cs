@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
@@ -12,6 +11,7 @@ using MoneyFox.Uwp.Services;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels
 {

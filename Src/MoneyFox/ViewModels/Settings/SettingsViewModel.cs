@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Services;
+using MoneyFox.Application.Common.Interfaces;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;

@@ -3,7 +3,6 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediatR;
-using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
@@ -14,6 +13,7 @@ using MoneyFox.Uwp.Services;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels
 {

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Services;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels
 {

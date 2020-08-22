@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
@@ -7,6 +6,7 @@ using MoneyFox.Uwp.Services;
 using NLog;
 using System.Globalization;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels
 {
