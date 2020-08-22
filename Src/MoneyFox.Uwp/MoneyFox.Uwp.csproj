@@ -356,7 +356,9 @@
     <Content Include="Assets\Fonts\materialdesignicons.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="App.config" />
+    <Content Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="MoneyFox.Uwp.ruleset" />
   </ItemGroup>
   <ItemGroup>
