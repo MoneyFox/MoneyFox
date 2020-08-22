@@ -85,7 +85,12 @@ namespace MoneyFox.Droid.Renderer
 
                 Field field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
-                Object editor = field.Get(editText);
+                Object? editor = field.Get(editText);
+
+                if(editor == null)
+                {
+                    return;
+                }
 
                 string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
                 string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };

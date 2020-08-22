@@ -85,7 +85,12 @@ namespace MoneyFox.Droid.Renderer
                     field.Accessible = true;
                     int handle = field.GetInt(Control.EditText);
 
-                    Drawable handleDrawable = Resources.GetDrawable(handle, null);
+                    Drawable? handleDrawable = Resources.GetDrawable(handle, null);
+
+                    if(handleDrawable == null)
+                    {
+                        return;
+                    }
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {

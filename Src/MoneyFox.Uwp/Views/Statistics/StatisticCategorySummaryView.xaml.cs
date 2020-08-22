@@ -10,7 +10,7 @@ namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCategorySummaryView
     {
-        private StatisticCategorySummaryViewModel ViewModel => DataContext as StatisticCategorySummaryViewModel;
+        private StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)DataContext;
 
         public override string Header => Strings.CategorySummaryTitle;
 

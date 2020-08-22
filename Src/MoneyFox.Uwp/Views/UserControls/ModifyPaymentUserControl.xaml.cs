@@ -1,7 +1,6 @@
 ﻿using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels;
-using NLog;
 using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views.UserControls
@@ -17,7 +16,7 @@ namespace MoneyFox.Uwp.Views.UserControls
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = (e.AddedItems[0] as ComboBoxItem).Content?.ToString() ?? "";
+            var selectedItem = ((ComboBoxItem)e.AddedItems[0]).Content?.ToString() ?? "";
 
             if(selectedItem == Strings.IncomeLabel)
             {
