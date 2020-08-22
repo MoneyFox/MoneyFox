@@ -58,13 +58,5 @@ namespace MoneyFox
                                 typeof(Analytics), typeof(Crashes));
             }
         }
-
-        protected override void OnSleep()
-        {
-        }
-
-        protected override void OnResume()
-        {
-        }
     }
 }
