@@ -370,7 +370,7 @@
 
     <!-- SwipeItem -->
     <Style TargetType="SwipeView" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource NeutralDark}, Light={StaticResource NeutralLight}}"/>
     </Style>
 
     <Style TargetType="SwipeItem" ApplyToDerivedTypes="True">
