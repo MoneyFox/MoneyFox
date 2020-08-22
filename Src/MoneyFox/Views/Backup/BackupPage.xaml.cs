@@ -1,5 +1,4 @@
-﻿using MoneyFox.Application.Common;
-using MoneyFox.ViewModels.Backup;
+﻿using MoneyFox.Ui.Shared.ViewModels.Backup;
 
 namespace MoneyFox.Views.Backup
 {
@@ -11,8 +10,8 @@ namespace MoneyFox.Views.Backup
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.BackupViewModel;
-
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
+
+        protected override void OnAppearing() => ViewModel.InitializeCommand.Execute(null);
     }
 }

@@ -1,19 +1,20 @@
-﻿using MoneyFox.Ui.Shared.Commands;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Ui.Shared.ViewModels.Backup;
 using System;
 
-namespace MoneyFox.Uwp.ViewModels.DesignTime
+namespace MoneyFox.Ui.Shared.ViewModels.DesignTime
 {
     public class DesignTimeBackupViewModel : IBackupViewModel
     {
-        public AsyncCommand InitializeCommand { get; }
+        public RelayCommand InitializeCommand { get; } = null!;
 
-        public AsyncCommand LoginCommand { get; }
+        public RelayCommand LoginCommand { get; } = null!;
 
-        public AsyncCommand LogoutCommand { get; }
+        public RelayCommand LogoutCommand { get; } = null!;
 
-        public AsyncCommand BackupCommand { get; }
+        public RelayCommand BackupCommand { get; } = null!;
 
-        public AsyncCommand RestoreCommand { get; }
+        public RelayCommand RestoreCommand { get; } = null!;
 
         public DateTime BackupLastModified { get; }
 
@@ -22,5 +23,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public bool IsLoggedIn { get; } = true;
 
         public bool BackupAvailable { get; }
+
+        public bool IsAutoBackupEnabled { get; } = false;
     }
 }

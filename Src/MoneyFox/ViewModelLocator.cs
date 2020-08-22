@@ -4,7 +4,6 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ViewModels.Accounts;
-using MoneyFox.ViewModels.Backup;
 using MoneyFox.ViewModels.Budget;
 using MoneyFox.ViewModels.Categories;
 using MoneyFox.ViewModels.Dashboard;
@@ -19,7 +18,8 @@ using MoneyFox.Views.Payments;
 using MoneyFox.Views.Settings;
 using MoneyFox.Views.Backup;
 using MoneyFox.Views.Statistics;
-using MoneyFox.ViewModels;
+using MoneyFox.Ui.Shared.ViewModels.About;
+using MoneyFox.Ui.Shared.ViewModels.Backup;
 
 namespace MoneyFox
 {

@@ -10,7 +10,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace MoneyFox.ViewModels
+namespace MoneyFox.Ui.Shared.ViewModels.About
 {
     public class AboutViewModel : ViewModelBase, IAboutViewModel
     {
