@@ -1,4 +1,5 @@
-﻿using MoneyFox.Ui.Shared.ViewModels.Settings;
+﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Ui.Shared.ViewModels.Settings;
 using System.Windows.Input;
 
 namespace MoneyFox.Uwp.ViewModels.Settings
@@ -7,5 +8,6 @@ namespace MoneyFox.Uwp.ViewModels.Settings
     {
         string ElementTheme { get; }
         ICommand SwitchThemeCommand { get; }
+        RelayCommand InitializeCommand { get; }
     }
 }

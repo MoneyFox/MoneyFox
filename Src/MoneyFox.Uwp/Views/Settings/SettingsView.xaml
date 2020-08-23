@@ -22,7 +22,7 @@
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding InitializeAsync, Mode=OneWay}" />
+            <core:InvokeCommandAction Command="{Binding InitializeCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
