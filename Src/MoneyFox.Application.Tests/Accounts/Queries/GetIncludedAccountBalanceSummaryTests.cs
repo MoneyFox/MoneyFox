@@ -1,10 +1,11 @@
-﻿using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
+﻿using FluentAssertions;
+using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
-using Moq;
-using Should;
+using NSubstitute;
+using NSubstitute.Extensions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -16,14 +17,14 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
     public class GetIncludedAccountBalanceSummaryTests : IDisposable
     {
         private readonly EfCoreContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly IContextAdapter contextAdapter;
 
         public GetIncludedAccountBalanceSummaryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
 
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+            contextAdapter = Substitute.For<IContextAdapter>();
+            contextAdapter.Context.Returns(context);
         }
 
         public void Dispose()
@@ -52,11 +53,11 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
 
             // Act
             decimal result =
-                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter)
                    .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
-            result.ShouldEqual(220);
+            result.Should().Be(220);
         }
     }
 }

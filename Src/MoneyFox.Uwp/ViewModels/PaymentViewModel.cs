@@ -3,7 +3,6 @@ using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Messaging;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
@@ -14,6 +13,9 @@ using MoneyFox.Uwp.Services;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -22,6 +24,8 @@ namespace MoneyFox.Uwp.ViewModels
     /// </summary>
     public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
     {
+        private const decimal DECIMAL_DELTA = 0.01m;
+
         private int id;
         private int chargedAccountId;
         private int? targetAccountId;
@@ -29,7 +33,7 @@ namespace MoneyFox.Uwp.ViewModels
         private decimal amount;
         private bool isCleared;
         private PaymentType type;
-        private string note;
+        private string note = "";
         private bool isRecurring;
         private DateTime creationTime;
         private DateTime modificationDate;
@@ -122,7 +126,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => amount;
             set
             {
-                if(Math.Abs(amount - value) < 0.01m)
+                if(Math.Abs(amount - value) < DECIMAL_DELTA)
                     return;
                 amount = value;
                 RaisePropertyChanged();
@@ -255,7 +259,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The <see cref="Category"/> for this payment
         /// </summary>
-        public CategoryViewModel Category
+        public CategoryViewModel? Category
         {
             get => categoryViewModel;
             set
@@ -270,7 +274,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The <see cref="RecurringPayment"/> if it's recurring.
         /// </summary>
-        public RecurringPaymentViewModel RecurringPayment
+        public RecurringPaymentViewModel? RecurringPayment
         {
             get => recurringPaymentViewModel;
             set

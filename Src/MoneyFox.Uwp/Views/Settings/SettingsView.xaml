@@ -7,14 +7,13 @@
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:helpers="using:MoneyFox.Uwp.Helpers"
-                xmlns:userControls="using:MoneyFox.Uwp.Views.Settings"
                 xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Settings"
                 mc:Ignorable="d"
                 DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
 
     <d:Page.DataContext>
-        <designTime:DesignTimeSettingsViewModel />
+        <designTime:DesignTimeWindowsSettingsViewModel />
     </d:Page.DataContext>
 
     <Page.Resources>
@@ -23,40 +22,31 @@
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding SettingsSecurityViewModel.LoadCommand, Mode=OneWay}" />
-        </core:EventTriggerBehavior>
-        <core:EventTriggerBehavior EventName="Unloaded">
-            <core:InvokeCommandAction Command="{Binding SettingsSecurityViewModel.UnloadCommand, Mode=OneWay}" />
+            <core:InvokeCommandAction Command="{Binding InitializeCommand, Mode=OneWay}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <ScrollViewer Margin="0,0,-10,0">
             <StackPanel Margin="0,0,20,0">
-                <!-- Background Job -->
-                <StackPanel DataContext="{Binding BackgroundJobViewModel}">
-                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.BackupTitle}"
-                               TextWrapping="WrapWholeWords" />
-
-                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.AutobackupInformationLabel}"
-                               TextWrapping="WrapWholeWords" />
-
-                    <ToggleSwitch VerticalAlignment="Center"
-                                  Margin="0,6,0,0"
-                                  Header="{x:Bind resources:Strings.AutobackupLabel}"
-                                  IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
-                    
-                </StackPanel>
 
                 <!-- Regional Settings -->
-                <userControls:RegionalSettingsUserControl Margin="{StaticResource LargeTopMargin}"
-                                                          DataContext="{Binding RegionalSettingsViewModel}" />
+                <StackPanel>
+                    <TextBlock
+                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                        Text="{x:Bind resources:Strings.DefaultRegionText}"
+                        TextWrapping="WrapWholeWords" />
+
+                     <ComboBox
+                        HorizontalAlignment="Stretch"
+                        DisplayMemberPath="DisplayName"
+                        Header="{x:Bind resources:Strings.DefaultRegionHeader}"
+                        ItemsSource="{x:Bind ViewModel.AvailableCultures}"
+                        SelectedItem="{Binding SelectedCulture, Mode=TwoWay}" />
+                </StackPanel>
 
                 <!-- Personalizations -->
-                <StackPanel DataContext="{Binding PersonalizationViewModel}"
-                            Margin="{StaticResource LargeTopMargin}">
+                <StackPanel Margin="{StaticResource LargeTopMargin}">
                     <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                Text="{x:Bind resources:Strings.PersonalizationTitle}"
                                TextWrapping="WrapWholeWords" />

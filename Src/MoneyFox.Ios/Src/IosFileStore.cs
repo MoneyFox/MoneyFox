@@ -1,6 +1,4 @@
-﻿using MoneyFox.Presentation;
-
-namespace MoneyFox.iOS.Src
+﻿namespace MoneyFox.iOS.Src
 {
     public class IosFileStore : FileStoreIoBase
     {

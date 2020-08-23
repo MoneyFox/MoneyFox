@@ -2,12 +2,13 @@
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -43,7 +44,7 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
-            await mediator.Send(new CreateAccountCommand { AccountToSave = mapper.Map<Account>(SelectedAccount) });
+            await mediator.Send(new CreateAccountCommand(mapper.Map<Account>(SelectedAccount)));
             NavigationService.GoBack();
         }
     }

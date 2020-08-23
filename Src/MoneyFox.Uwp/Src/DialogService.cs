@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp.Src
 {
     public class DialogService : IDialogService
     {
-        private LoadingDialog loadingDialog;
+        private LoadingDialog? loadingDialog;
 
         /// <summary>
         /// Show a dialog with two buttons with customizable Texts. Returns the answer.
@@ -22,8 +22,8 @@ namespace MoneyFox.Uwp.Src
         /// <param name="negativeButtonText">Text for the no button.</param>
         public async Task<bool> ShowConfirmMessageAsync(string title,
                                                         string message,
-                                                        string positiveButtonText = null,
-                                                        string negativeButtonText = null)
+                                                        string? positiveButtonText = null,
+                                                        string? negativeButtonText = null)
         {
             await HideLoadingDialogAsync();
 
@@ -68,7 +68,7 @@ namespace MoneyFox.Uwp.Src
 
             // RunAsync all of the UI info.
             await dispatcher.RunAsync(CoreDispatcherPriority.High,
-                                      async() =>
+                                      async () =>
                                       {
                                           await loadingDialog.ShowAsync();
                                       });

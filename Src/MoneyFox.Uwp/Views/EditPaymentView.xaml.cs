@@ -6,7 +6,7 @@ namespace MoneyFox.Uwp.Views
 {
     public sealed partial class EditPaymentView : ContentDialog
     {
-        private EditPaymentViewModel ViewModel => DataContext as EditPaymentViewModel;
+        private EditPaymentViewModel ViewModel => (EditPaymentViewModel) DataContext;
 
         public EditPaymentView(int paymentId)
         {

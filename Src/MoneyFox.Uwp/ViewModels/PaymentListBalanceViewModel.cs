@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Src;
 using System.Threading.Tasks;
 

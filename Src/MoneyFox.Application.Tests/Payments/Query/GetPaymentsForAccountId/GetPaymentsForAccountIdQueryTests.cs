@@ -35,10 +35,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetPaymentsForAccountId_CorrectAccountId_PaymentFound()
@@ -53,15 +50,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
             await context.SaveChangesAsync();
 
             // Act
-            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(new
-                                                                                                                        GetPaymentsForAccountIdQuery(account.Id,
-                                                                                                                                                     DateTime
-                                                                                                                                                        .Now
-                                                                                                                                                        .AddDays(-1),
-                                                                                                                                                     DateTime
-                                                                                                                                                        .Now
-                                                                                                                                                        .AddDays(1)),
-                                                                                                                    default);
+            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
 
             // Assert
             result.First().Id.ShouldEqual(payment1.Id);
@@ -80,15 +70,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
             await context.SaveChangesAsync();
 
             // Act
-            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(new
-                                                                                                                        GetPaymentsForAccountIdQuery(account.Id,
-                                                                                                                                                     DateTime
-                                                                                                                                                        .Now
-                                                                                                                                                        .AddDays(-1),
-                                                                                                                                                     DateTime
-                                                                                                                                                        .Now
-                                                                                                                                                        .AddDays(1)),
-                                                                                                                    default);
+            List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
+                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
 
             // Assert
             result.First().Id.ShouldEqual(payment2.Id);

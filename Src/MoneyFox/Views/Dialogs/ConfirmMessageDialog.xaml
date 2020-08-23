@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+                 mc:Ignorable="d"
+                 x:Name="ConfirmDialog"
+                 Visual="Material"
+                 CloseWhenBackgroundIsClicked="False"
+                 x:Class="MoneyFox.Views.Dialogs.ConfirmMessageDialog">
+
+    <pages:PopupPage.Animation>
+        <animations:ScaleAnimation
+            PositionIn="Center"
+            PositionOut="Center"
+            ScaleIn="1.2"
+            ScaleOut="0.8"
+            DurationIn="400"
+            DurationOut="300"
+            EasingIn="SinOut"
+            EasingOut="SinIn"
+            HasBackgroundAnimation="True" />
+    </pages:PopupPage.Animation>
+
+    <ContentPage.Content>
+        <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                             Light={StaticResource CardBackgroundLight}}"
+                           CornerRadius="20"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           WidthRequest="300">
+
+            <yummy:PancakeView.Shadow>
+                <yummy:DropShadow />
+            </yummy:PancakeView.Shadow>
+
+            <StackLayout Padding="20">
+                <Label Text="{Binding PopupTitle, Source={x:Reference ConfirmDialog}}" Style="{DynamicResource TextHead}" />
+                <Label Text="{Binding PopupMessage, Source={x:Reference ConfirmDialog}}" Style="{DynamicResource BaseLabel}" />
+
+                <Grid ColumnDefinitions="*, Auto, Auto">
+                    <Button Text="{Binding PositiveText, Source={x:Reference ConfirmDialog}}"
+                            Grid.Column="1"
+                            VerticalOptions="End"
+                            Clicked="PositiveHandlerClicked"
+                            Style="{StaticResource LinkButton}" />
+
+                    <Button Text="{Binding NegativeText,Source={x:Reference ConfirmDialog}}"
+                            Grid.Column="2"
+                            VerticalOptions="End"
+                            Clicked="NegativeHandlerClicked"
+                            Style="{StaticResource LinkButton}" />
+                </Grid>
+            </StackLayout>
+        </yummy:PancakeView>
+    </ContentPage.Content>
+</pages:PopupPage>

@@ -9,6 +9,6 @@
         /// <remarks>
         /// Since this is a shared project, there is no reference to the Activity type, so keep this as an object.
         /// </remarks>
-        public static object ParentActivity { get; set; }
+        public static object? ParentActivity { get; set; }
     }
 }

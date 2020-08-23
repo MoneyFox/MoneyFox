@@ -1,0 +1,43 @@
+﻿<ContentPage
+    x:Class="MoneyFox.Views.Statistics.StatisticCashFlowPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:theme="clr-namespace:MoneyFox"
+    Visual="Material"
+    mc:Ignorable="d">
+
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,66">
+            <Button
+                Margin="0,0,5,0"
+                Padding="0"
+                Grid.Column="1"
+                BorderWidth="0"
+                FontFamily="FontAwesome"
+                FontSize="24"
+                HeightRequest="44"
+                WidthRequest="66"
+                Text="{x:Static theme:IconFont.Filter}"
+                VerticalOptions="Center"
+                TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
+                Command="{Binding ShowFilterDialogCommand}"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <Grid RowDefinitions="38, 38, *" Padding="15,0,15,0">
+            <Label Style="{StaticResource TextHeadline}"
+                   Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
+
+            <Label Grid.Row="1"
+                   Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding Title}" />
+
+            <microcharts:ChartView Grid.Row="2" Chart="{Binding Chart}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

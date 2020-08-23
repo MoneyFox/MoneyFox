@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
@@ -14,6 +13,7 @@ using NLog;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -72,8 +72,10 @@ namespace MoneyFox.Uwp.ViewModels
                                           mapper.Map<Category>(SelectedPayment.Category),
                                           SelectedPayment.Note);
 
-                if(SelectedPayment.IsRecurring)
+                if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
+                {
                     payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.EndDate);
+                }
 
                 await mediator.Send(new CreatePaymentCommand(payment));
                 navigationService.GoBack();

@@ -16,7 +16,6 @@ namespace MoneyFox.Domain.Entities
         {
         }
 
-#pragma warning disable S107 // Methods should not have too many parameters
         public Payment(DateTime date,
                        decimal amount,
                        PaymentType type,
@@ -25,7 +24,6 @@ namespace MoneyFox.Domain.Entities
                        Category? category = null,
                        string note = "",
                        RecurringPayment? recurringPayment = null)
-#pragma warning restore S107 // Methods should not have too many parameters
         {
             CreationTime = DateTime.Now;
             AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
@@ -61,10 +59,10 @@ namespace MoneyFox.Domain.Entities
 
         public virtual Category? Category { get; private set; }
 
-        private Account? chargedAccount;
+        private Account chargedAccount = null!;
 
         [Required]
-        public virtual Account? ChargedAccount
+        public virtual Account ChargedAccount
         {
             get => chargedAccount;
             private set => chargedAccount = value;
@@ -112,7 +110,7 @@ namespace MoneyFox.Domain.Entities
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
         {
-            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note, endDate, TargetAccount, Category, Date);
+            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note ?? "", endDate, TargetAccount, Category, Date);
             IsRecurring = true;
         }
 

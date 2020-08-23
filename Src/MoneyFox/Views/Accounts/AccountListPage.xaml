@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="MoneyFox.Views.Accounts.AccountListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    xmlns:theme="clr-namespace:MoneyFox"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:converter="clr-namespace:MoneyFox.Converter"
+    xmlns:accounts="clr-namespace:MoneyFox.Ui.Shared.ViewModels.Accounts;assembly=MoneyFox.Ui.Shared"
+    Shell.NavBarHasShadow="False"
+    mc:Ignorable="d">
+
+    <ContentPage.Resources>
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+    </ContentPage.Resources>
+
+    <Shell.TitleView>
+        <Grid>
+            <Button
+                Margin="0,0,5,0"
+                Padding="0"
+                BorderWidth="0"
+                Command="{Binding GoToAddAccountCommand}"
+                FontFamily="FontAwesome"
+                FontSize="24"
+                HeightRequest="44"
+                HorizontalOptions="End"
+                Style="{StaticResource PrimaryButton}"
+                Text="{x:Static theme:IconFont.Plus}"
+                TextColor="White"
+                VerticalOptions="Center"
+                WidthRequest="66" />
+        </Grid>
+    </Shell.TitleView>
+
+    <ContentPage.Content>
+        <Grid IsClippedToBounds="False" RowDefinitions="40, *">
+
+            <Label
+                Margin="15,0,15,0"
+                Style="{StaticResource TextHeadline}"
+                Text="{x:Static resources:Strings.AccountsTitle}" />
+
+            <CollectionView
+                x:Name="AccountCollectionView"
+                Grid.Row="1"
+                EmptyView="{x:Static resources:Strings.NoAccountsMessage}"
+                IsGrouped="true"
+                ItemsSource="{Binding Accounts}">
+
+                <CollectionView.GroupHeaderTemplate>
+                    <DataTemplate>
+                        <Label
+                            Margin="15"
+                            Padding="15,0,0,0"
+                            FontFamily="Product"
+                            FontSize="18"
+                            Text="{Binding Key}"
+                            VerticalTextAlignment="End" />
+                    </DataTemplate>
+                </CollectionView.GroupHeaderTemplate>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="accounts:AccountViewModel">
+                        <Grid Padding="15,6,15,12">
+                            <yummy:PancakeView
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                  Light={StaticResource CardBackgroundLight}}"
+                                CornerRadius="10"
+                                HasShadow="true"
+                                HeightRequest="80"
+                                HorizontalOptions="FillAndExpand">
+
+                                <yummy:PancakeView.Shadow>
+                                    <yummy:DropShadow />
+                                </yummy:PancakeView.Shadow>
+
+                                <SwipeView>
+                                    <SwipeView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
+                                    </SwipeView.GestureRecognizers>
+
+                                    <SwipeView.RightItems>
+                                        <SwipeItems>
+                                            <SwipeItem
+                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.GoToEditAccountCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Text="{x:Static resources:Strings.EditLabel}" />
+                                            <SwipeItem
+                                                Command="{Binding Source={x:Reference AccountCollectionView}, Path=BindingContext.DeleteAccountCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Text="{x:Static resources:Strings.DeleteLabel}" />
+                                        </SwipeItems>
+                                    </SwipeView.RightItems>
+
+                                    <Grid>
+                                        <Label
+                                            Margin="10,2,0,0"
+                                            HorizontalTextAlignment="Start"
+                                            Style="{StaticResource TextHead}"
+                                            Text="{Binding Name}"
+                                            VerticalTextAlignment="Start" />
+
+                                        <Label
+                                            Margin="0,0,6,2"
+                                            FontFamily="Product"
+                                            FontSize="20"
+                                            HorizontalTextAlignment="Center"
+                                            Text="{Binding CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                                            VerticalTextAlignment="Center" />
+
+                                        <StackLayout Orientation="Horizontal"
+                                                     VerticalOptions="End"
+                                                     HorizontalOptions="End">
+                                            <Label
+                                                Margin="0,0,0,2"
+                                                FontFamily="Product"
+                                                FontSize="15"
+                                                HorizontalTextAlignment="End"
+                                                Text="{x:Static resources:Strings.EndOfMonthLabel}"
+                                                VerticalTextAlignment="End" />
+
+                                            <Label
+                                                Margin="0,0,6,2"
+                                                FontFamily="Product"
+                                                FontSize="15"
+                                                HorizontalTextAlignment="End"
+                                                Text="{Binding EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}"
+                                                VerticalTextAlignment="End" />
+                                        </StackLayout>
+                                    </Grid>
+                                </SwipeView>
+                            </yummy:PancakeView>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

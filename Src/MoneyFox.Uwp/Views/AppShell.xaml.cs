@@ -13,7 +13,7 @@ namespace MoneyFox.Uwp.Views
     /// </summary>
     public sealed partial class AppShell
     {
-        private WindowsShellViewModel ViewModel => DataContext as WindowsShellViewModel;
+        private WindowsShellViewModel ViewModel => (WindowsShellViewModel) DataContext;
 
         public AppShell()
         {

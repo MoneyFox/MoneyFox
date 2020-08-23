@@ -40,9 +40,13 @@ namespace MoneyFox.Droid.Renderer
                 editText.SetHighlightColor(Color.Accent.ToAndroid());
 
                 if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                {
                     TrySetCursorPointerColorNew(editText);
+                }
                 else
+                {
                     TrySetCursorPointerColor(editText);
+                }
 
                 UpdateSearchButtonColor();
                 UpdateCancelButtonColor();
@@ -81,10 +85,14 @@ namespace MoneyFox.Droid.Renderer
 
                 Field field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
-                Object editor = field.Get(editText);
+                Object? editor = field.Get(editText);
 
-                string[] fieldsNames =
-                { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
+                if(editor == null)
+                {
+                    return;
+                }
+
+                string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
                 string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
                 for(var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
@@ -99,9 +107,13 @@ namespace MoneyFox.Droid.Renderer
                     Drawable handleDrawable = Resources.GetDrawable(handle, null);
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                    {
                         handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                    }
                     else
+                    {
                         handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
+                    }
 
                     field = editor.Class.GetDeclaredField(drawableName);
                     field.Accessible = true;

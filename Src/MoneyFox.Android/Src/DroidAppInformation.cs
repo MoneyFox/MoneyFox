@@ -6,8 +6,11 @@ namespace MoneyFox.Droid.Src
     {
         public string GetVersion()
         {
-            return Android.App.Application.Context.PackageManager.GetPackageInfo(Android.App.Application.Context.PackageName, 0)
-                                                  .VersionName;
+            return Android.App.Application
+                              .Context
+                              .PackageManager
+                              .GetPackageInfo(Android.App.Application.Context.PackageName, 0)
+                              .VersionName;
         }
     }
 }

@@ -2,6 +2,8 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using MoneyFox.Ui.Shared.ViewModels.About;
+using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using MoneyFox.Uwp.ViewModels.Settings;
@@ -61,7 +63,11 @@ namespace MoneyFox.Uwp
         //*****************
         public static string About => nameof(AboutViewModel);
 
-        public static string Settings => nameof(SettingsViewModel);
+        public static string Settings => nameof(WindowsSettingsViewModel);
+
+        //*****************
+        //  Data Entry
+        //*****************
 
         public static IAccountListViewModel AccountListVm => ServiceLocator.Current.GetInstance<IAccountListViewModel>();
 
@@ -102,8 +108,6 @@ namespace MoneyFox.Uwp
         //*****************
         //  Settings
         //*****************
-        public static SettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<SettingsViewModel>();
-
-        public static RegionalSettingsViewModel RegionalSettingsVm => ServiceLocator.Current.GetInstance<RegionalSettingsViewModel>();
+        public static WindowsSettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<WindowsSettingsViewModel>();
     }
 }

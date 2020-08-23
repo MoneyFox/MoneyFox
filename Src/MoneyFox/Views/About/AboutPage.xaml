@@ -1,0 +1,80 @@
+﻿<ContentPage x:Class="MoneyFox.Views.About.AboutPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:designTime="clr-namespace:MoneyFox.Ui.Shared.ViewModels.About;assembly=MoneyFox.Ui.Shared"
+             Visual="Material"
+             mc:Ignorable="d">
+
+    <d:ContentPage.BindingContext>
+        <designTime:DesignTimeAboutViewModel/>
+    </d:ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="15">
+                <Label Style="{StaticResource TextHeadline}"
+                       Text="{x:Static resources:Strings.AboutTitle}" />
+
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="{x:Static resources:Strings.VersionLabel}" />
+                    <Label Text="{Binding Version}" />
+                </StackLayout>
+
+                <Label
+                    HorizontalOptions="Start"
+                    Text="{x:Static resources:Strings.ContactLabel}" />
+
+                <Button
+                    Command="{Binding GoToWebsiteCommand}"
+                    Text="{x:Static resources:Strings.WebsiteLabel}" />
+
+                <Button
+                    Command="{Binding SendMailCommand}"
+                    Text="{x:Static resources:Strings.EmailLabel}" />
+
+                <Button
+                    Command="{Binding RateAppCommand}"
+                    Text="{x:Static resources:Strings.RateLabel}" />
+
+                <Label Text="{x:Static resources:Strings.TranslationLabel}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="www.crowdin.com">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToTranslationProjectCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="{x:Static resources:Strings.InfoOpenSource}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="www.github.com">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToRepositoryCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="{x:Static resources:Strings.ContributerLabel}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="GitHub Contribution">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToContributionPageCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+
+                <Label Text="{x:Static resources:Strings.IconDesignerLabel}" />
+                <Label
+                    HorizontalOptions="CenterAndExpand"
+                    Text="@Toledo Vanderson">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToDesignerTwitterAccountCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

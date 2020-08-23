@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
 using MediatR;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
-using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -25,8 +25,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         private readonly IMapper mapper;
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 ISettingsFacade settingsFacade,
-                                                 IMapper mapper) : base(mediator, settingsFacade)
+                                                 IMapper mapper)
+            : base(mediator)
         {
             this.mapper = mapper;
 
@@ -53,7 +53,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             get => categorySummary;
             private set
             {
-                if(categorySummary == value) return;
+                if(categorySummary == value)
+                    return;
                 categorySummary = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(HasData));
@@ -63,7 +64,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// <inheritdoc/>
         public bool HasData => CategorySummary.Any();
 
-        public AsyncCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new AsyncCommand<CategoryOverviewViewModel>(SummaryEntrySelected);
+        public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new RelayCommand<CategoryOverviewViewModel>(async (c) => await SummaryEntrySelected(c));
 
         private async Task SummaryEntrySelected(CategoryOverviewViewModel summaryItem)
         {

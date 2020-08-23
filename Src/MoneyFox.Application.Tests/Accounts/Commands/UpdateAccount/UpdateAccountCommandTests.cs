@@ -62,7 +62,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
             await new UpdateAccountCommand.Handler(contextAdapterMock.Object,
                                                    backupServiceMock.Object,
                                                    settingsFacadeMock.Object)
-                .Handle(new UpdateAccountCommand { Account = account }, default);
+                .Handle(new UpdateAccountCommand(account), default);
 
             Account loadedAccount = await context.Accounts.FindAsync(account.Id);
 
@@ -83,7 +83,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
             await new UpdateAccountCommand.Handler(contextAdapterMock.Object,
                                                    backupServiceMock.Object,
                                                    settingsFacadeMock.Object)
-                .Handle(new UpdateAccountCommand { Account = account }, default);
+                .Handle(new UpdateAccountCommand(account), default);
 
             Account loadedAccount = await context.Accounts.FindAsync(account.Id);
 

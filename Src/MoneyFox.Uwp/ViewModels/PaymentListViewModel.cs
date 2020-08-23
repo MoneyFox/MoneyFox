@@ -4,14 +4,13 @@ using MediatR;
 using MoneyFox.Application;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,6 +18,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -27,6 +27,8 @@ namespace MoneyFox.Uwp.ViewModels
     /// </summary>
     public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
     {
+        private const int DEFAULT_MONTH_BACK = -2;
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
@@ -35,11 +37,12 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly ISettingsFacade settingsFacade;
 
         private int accountId;
-        private IBalanceViewModel balanceViewModel;
+        private IBalanceViewModel balanceViewModel = null!;
 
-        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
-        private string title;
+        private string title = "";
         private IPaymentListViewActionViewModel viewActionViewModel;
+        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source
+            = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
 
         /// <summary>
         /// Default constructor
@@ -173,7 +176,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task LoadDataAsync()
         {
-            await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(-2) });
+            await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) });
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
@@ -208,7 +211,7 @@ namespace MoneyFox.Uwp.ViewModels
                                                                   || (payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == AccountId))
                                                 .Sum(x => x.Amount);
 
-                dailyGroup.Title = $"+{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
+                dailyGroup.Subtitle = $"+{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
             }
 
             Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(

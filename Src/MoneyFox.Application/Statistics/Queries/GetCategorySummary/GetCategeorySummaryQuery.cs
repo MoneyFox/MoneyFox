@@ -31,8 +31,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 this.contextAdapter = contextAdapter;
             }
 
-            private List<Payment> paymentLastTwelveMonths;
-            private List<CategoryOverviewItem> categoryOverviewItems;
+            private List<Payment> paymentLastTwelveMonths = new List<Payment>();
+            private List<CategoryOverviewItem> categoryOverviewItems = new List<CategoryOverviewItem>();
 
             public async Task<CategorySummaryModel> Handle(GetCategorySummaryQuery request, CancellationToken cancellationToken)
             {

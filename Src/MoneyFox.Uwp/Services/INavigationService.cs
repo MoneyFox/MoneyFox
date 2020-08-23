@@ -16,6 +16,7 @@ namespace MoneyFox.Uwp.Services
         bool CanGoBack { get; }
         bool CanGoForward { get; }
         Frame Frame { get; set; }
+
         event NavigatedEventHandler Navigated;
         event NavigationFailedEventHandler NavigationFailed;
     }

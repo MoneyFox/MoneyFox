@@ -8,16 +8,11 @@ namespace MoneyFox.Domain.Entities
     public class Category
     {
         //used by EF Core
-#pragma warning disable CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-        private Category()
-#pragma warning restore CS8618 // Non-nullable field is uninitialized. Consider declaring as nullable.
-        {
-        }
+        private Category() { }
 
         public Category(string name, string note = "")
         {
             CreationTime = DateTime.Now;
-            Payments = new List<Payment>();
 
             UpdateData(name, note);
         }
@@ -26,7 +21,7 @@ namespace MoneyFox.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; private set; }
 
-        [Required] public string Name { get; private set; }
+        [Required] public string Name { get; private set; } = "";
 
         public string? Note { get;set; }
 
@@ -34,7 +29,7 @@ namespace MoneyFox.Domain.Entities
 
         public DateTime CreationTime { get; private set; }
 
-        public List<Payment> Payments { get; private set; }
+        public List<Payment> Payments { get; private set; } = new List<Payment>();
 
         public void UpdateData(string name, string note = "")
         {

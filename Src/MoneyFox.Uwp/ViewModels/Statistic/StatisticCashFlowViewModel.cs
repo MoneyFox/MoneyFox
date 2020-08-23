@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -12,10 +12,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     /// </summary>
     public class StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
-        private ObservableCollection<StatisticEntry> statisticItems;
+        private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
 
-        public StatisticCashFlowViewModel(IMediator mediator,
-                                          ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
+        public StatisticCashFlowViewModel(IMediator mediator)
+            : base(mediator)
         {
         }
 
@@ -28,7 +28,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             private set
             {
                 if(statisticItems == value)
+                {
                     return;
+                }
+
                 statisticItems = value;
                 RaisePropertyChanged();
             }
@@ -36,11 +39,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
 
         protected override async Task LoadAsync()
         {
-            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCashFlowQuery
-                                                                                          {
-                                                                                              EndDate = EndDate,
-                                                                                              StartDate = StartDate
-                                                                                          }));
+            StatisticItems = new ObservableCollection<StatisticEntry>(
+                await Mediator.Send(new GetCashFlowQuery
+                {
+                    EndDate = EndDate,
+                    StartDate = StartDate
+                }));
         }
     }
 }

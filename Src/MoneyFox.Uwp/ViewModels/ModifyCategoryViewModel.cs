@@ -3,12 +3,13 @@ using GalaSoft.MvvmLight;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -21,7 +22,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IMapper mapper;
 
         private CategoryViewModel selectedCategory;
-        private string title;
+        private string title = "";
 
         /// <summary>
         /// Constructor
@@ -58,7 +59,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The currently selected CategoryViewModel
         /// </summary>
-        public CategoryViewModel SelectedCategory
+        public CategoryViewModel? SelectedCategory
         {
             get => selectedCategory;
             set
