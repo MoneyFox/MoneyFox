@@ -72,8 +72,10 @@ namespace MoneyFox.Uwp.ViewModels
                                           mapper.Map<Category>(SelectedPayment.Category),
                                           SelectedPayment.Note);
 
-                if(SelectedPayment.IsRecurring)
+                if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
+                {
                     payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.EndDate);
+                }
 
                 await mediator.Send(new CreatePaymentCommand(payment));
                 navigationService.GoBack();
