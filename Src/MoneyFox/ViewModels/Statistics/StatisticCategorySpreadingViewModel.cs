@@ -2,7 +2,6 @@
 using Microcharts;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
-using MoneyFox.ViewModels.Statistics;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
     /// Representation of the category Spreading View
@@ -48,27 +47,27 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         protected override async Task LoadAsync()
         {
             var statisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery
-                                                                                              {
-                                                                                                  StartDate = StartDate,
-                                                                                                  EndDate = EndDate
-                                                                                              }));
+            {
+                StartDate = StartDate,
+                EndDate = EndDate
+            }));
 
-            List<ChartEntry> microChartItems = statisticItems
+            var microChartItems = statisticItems
                                          .Select(x => new ChartEntry((float)x.Value)
-                                                      {
-                                                          Label = x.Label,
-                                                          ValueLabel = x.ValueLabel,
-                                                          Color = SKColor.Parse(x.Color)
-                                                      })
+                                         {
+                                             Label = x.Label,
+                                             ValueLabel = x.ValueLabel,
+                                             Color = SKColor.Parse(x.Color)
+                                         })
                                          .ToList();
 
             Chart = new DonutChart
-                    {
-                        Entries = microChartItems,
-                        BackgroundColor = BackgroundColor,
-                        LabelTextSize = 26f,
-                        Typeface = typeFaceForIOS12
-                    };
+            {
+                Entries = microChartItems,
+                BackgroundColor = BackgroundColor,
+                LabelTextSize = 26f,
+                Typeface = typeFaceForIOS12
+            };
         }
     }
 }

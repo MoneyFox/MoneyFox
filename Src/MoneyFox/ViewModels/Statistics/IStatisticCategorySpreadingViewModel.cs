@@ -2,7 +2,7 @@
 using Microcharts;
 using MoneyFox.Ui.Shared.Commands;
 
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.ViewModels.Statistics
 {
     public interface IStatisticCategorySpreadingViewModel
     {

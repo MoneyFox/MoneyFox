@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Domain;
 
-namespace MoneyFox.Presentation.Models
+namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
     /// Represents a item for the selector to choose the statistic.

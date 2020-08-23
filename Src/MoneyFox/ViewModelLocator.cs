@@ -2,7 +2,6 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
-using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Budget;
 using MoneyFox.ViewModels.Categories;

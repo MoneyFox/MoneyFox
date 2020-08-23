@@ -1,8 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.ViewModels.Statistics;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
     /// Representation of the category summary statistic view

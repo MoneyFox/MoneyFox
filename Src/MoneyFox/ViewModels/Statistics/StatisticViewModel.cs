@@ -30,8 +30,8 @@ namespace MoneyFox.ViewModels.Statistics
         /// and end date.
         /// </summary>
         protected StatisticViewModel(IMediator mediator) : this(DateTime.Today.GetFirstDayOfMonth(),
-                                                                                                 DateTime.Today.GetLastDayOfMonth(),
-                                                                                                 mediator)
+                                                                DateTime.Today.GetLastDayOfMonth(),
+                                                                mediator)
         {
         }
 

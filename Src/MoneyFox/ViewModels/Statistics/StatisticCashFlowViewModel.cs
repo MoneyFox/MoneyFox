@@ -1,13 +1,12 @@
 ﻿using MediatR;
 using Microcharts;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
-using MoneyFox.ViewModels.Statistics;
 using SkiaSharp;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
     /// Representation of the cash flow view.
@@ -45,24 +44,24 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         protected override async Task LoadAsync()
         {
             var statisticItems = await Mediator.Send(new GetCashFlowQuery
-                                                     {
-                                                         EndDate = EndDate,
-                                                         StartDate = StartDate
-                                                     });
+            {
+                EndDate = EndDate,
+                StartDate = StartDate
+            });
 
             Chart = new BarChart
-                    {
-                        Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                        {
-                            Label = x.Label,
-                            ValueLabel = x.ValueLabel,
-                            Color = SKColor.Parse(x.Color)
-                        }).ToList(),
-                        BackgroundColor = BackgroundColor,
-                        Margin = 20,
-                        LabelTextSize = 26f,
-                        Typeface = typeFaceForIOS12
-                    };
+            {
+                Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
+                {
+                    Label = x.Label,
+                    ValueLabel = x.ValueLabel,
+                    Color = SKColor.Parse(x.Color)
+                }).ToList(),
+                BackgroundColor = BackgroundColor,
+                Margin = 20,
+                LabelTextSize = 26f,
+                Typeface = typeFaceForIOS12
+            };
         }
     }
 }

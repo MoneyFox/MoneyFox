@@ -4,7 +4,6 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Extensions;
-using MoneyFox.ViewModels.Statistics;
 using NLog;
 using System;
 using System.Collections.ObjectModel;
@@ -12,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.ViewModels.Statistics
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
@@ -46,7 +45,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         public bool HasData => CategorySummary.Any();
 
         public RelayCommand<CategoryOverviewViewModel> ShowCategoryPaymentsCommand
-            => new RelayCommand<CategoryOverviewViewModel>(async (vm)=> await ShowCategoryPaymentsAsync(vm));
+            => new RelayCommand<CategoryOverviewViewModel>(async (vm) => await ShowCategoryPaymentsAsync(vm));
 
         /// <summary>
         /// Overrides the load method to load the category summary data.
@@ -69,7 +68,7 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
                                                                                              Percentage = x.Percentage
                                                                                          }));
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 logger.Warn(ex, "Error during loading. {1}", ex);
                 await dialogService.ShowMessageAsync("Error", ex.ToString());
