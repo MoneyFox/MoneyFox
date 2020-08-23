@@ -21,6 +21,7 @@ namespace MoneyFox.ViewModels.Dashboard
         private decimal monthlyIncomes;
         private decimal monthlyExpenses;
         private ObservableCollection<AccountViewModel> accounts = new ObservableCollection<AccountViewModel>();
+        private ObservableCollection<DashboardBudgetEntryViewModel> budgetEntries = new ObservableCollection<DashboardBudgetEntryViewModel>();
 
         private readonly IMediator mediator;
         private readonly IMapper mapper;
@@ -80,17 +81,21 @@ namespace MoneyFox.ViewModels.Dashboard
             }
         }
 
-        public ObservableCollection<DashboardBudgetEntryViewModel> BudgetEntries { get; set; } = new ObservableCollection<DashboardBudgetEntryViewModel>
+        public ObservableCollection<DashboardBudgetEntryViewModel> BudgetEntries
         {
-            new DashboardBudgetEntryViewModel{ BudgetName = "Food", Progress = 0.7},
-            new DashboardBudgetEntryViewModel{ BudgetName = "Drinks", Progress = 0.5},
-            new DashboardBudgetEntryViewModel{ BudgetName = "Books", Progress = 0.2}
-        };
+            get => budgetEntries;
+            private set
+            {
+                if(budgetEntries == value) return;
+                budgetEntries = value;
+                RaisePropertyChanged();
+            }
+        }
 
         public ObservableCollection<AccountViewModel> Accounts
         {
             get => accounts;
-            set
+            private set
             {
                 if(accounts == value) return;
                 accounts = value;
