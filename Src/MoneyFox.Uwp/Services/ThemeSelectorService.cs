@@ -32,13 +32,13 @@ namespace MoneyFox.Uwp.Services
             foreach(CoreApplicationView view in CoreApplication.Views)
             {
                 await view.Dispatcher
-                          .RunAsync(CoreDispatcherPriority.Normal,
-                                    () =>
-                                    {
-                                        if(Window.Current.Content is FrameworkElement
-                                                                                          frameworkElement)
-                                            frameworkElement.RequestedTheme = Theme;
-                                    });
+                          .RunAsync(CoreDispatcherPriority.Normal, () =>
+                          {
+                              if(Window.Current.Content is FrameworkElement frameworkElement)
+                              {
+                                  frameworkElement.RequestedTheme = Theme;
+                              }
+                          });
             }
         }
 
@@ -48,7 +48,9 @@ namespace MoneyFox.Uwp.Services
             var themeName = ApplicationData.Current.LocalSettings.ReadAsync<string>(SettingsKey);
 
             if(!string.IsNullOrEmpty(themeName))
+            {
                 Enum.TryParse(themeName, out cacheTheme);
+            }
 
             return cacheTheme;
         }
