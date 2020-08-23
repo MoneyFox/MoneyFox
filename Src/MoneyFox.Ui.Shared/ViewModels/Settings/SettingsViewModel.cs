@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.ViewModels.Settings
+namespace MoneyFox.Ui.Shared.ViewModels.Settings
 {
     public class SettingsViewModel : ViewModelBase
     {
@@ -35,8 +35,10 @@ namespace MoneyFox.ViewModels.Settings
             get => selectedCulture;
             set
             {
-                if(value == null) return;
-                if(selectedCulture == value) return;
+                if(value == null)
+                    return;
+                if(selectedCulture == value)
+                    return;
                 selectedCulture = value;
                 settingsFacade.DefaultCulture = selectedCulture.Name;
                 CultureHelper.CurrentCulture = selectedCulture;

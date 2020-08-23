@@ -9,7 +9,6 @@ using MoneyFox.ViewModels.Categories;
 using MoneyFox.ViewModels.Dashboard;
 using MoneyFox.ViewModels.Dialogs;
 using MoneyFox.ViewModels.Payments;
-using MoneyFox.ViewModels.Settings;
 using MoneyFox.ViewModels.Statistics;
 using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Categories;
@@ -20,6 +19,7 @@ using MoneyFox.Views.Backup;
 using MoneyFox.Views.Statistics;
 using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
+using MoneyFox.Ui.Shared.ViewModels.Settings;
 
 namespace MoneyFox
 {
