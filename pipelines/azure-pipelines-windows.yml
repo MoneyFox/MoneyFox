@@ -87,9 +87,9 @@ jobs:
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
   - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
-    displayName: 'Replace tokens in Src/MoneyFox.Presentation'
+    displayName: 'Replace tokens in MoneyFox'
     inputs:
-      sourcePath: Src/MoneyFox.Presentation
+      sourcePath: Src/MoneyFox
       filePattern: App.config
 
   - task: VersionAPPX@2
