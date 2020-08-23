@@ -11,9 +11,9 @@ namespace MoneyFox.Uwp.ViewModels
     public class AccountViewModel : ViewModelBase, IMapFrom<Account>
     {
         private int id;
-        private string name;
+        private string name = "";
         private decimal currentBalance;
-        private string note;
+        private string note = "";
         private bool isOverdrawn;
         private bool isExcluded;
         private DateTime creationTime;

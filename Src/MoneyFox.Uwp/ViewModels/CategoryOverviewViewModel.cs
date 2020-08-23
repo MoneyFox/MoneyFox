@@ -3,16 +3,13 @@ using MoneyFox.Ui.Shared.Groups;
 using NLog;
 using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     public class CategoryOverviewViewModel : ViewModelBase
     {
-        private static ILogger logger = LogManager.GetCurrentClassLogger();
-
         private int categoryId;
-        private string label;
+        private string label = "";
         private decimal value;
         private decimal average;
         private decimal percentage;

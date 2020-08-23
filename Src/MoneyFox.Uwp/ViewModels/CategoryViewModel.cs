@@ -8,8 +8,8 @@ namespace MoneyFox.Uwp.ViewModels
     public class CategoryViewModel : ViewModelBase, IMapFrom<Category>
     {
         private int id;
-        private string name;
-        private string note;
+        private string name = "";
+        private string note = "";
         private DateTime creationTime;
         private DateTime modificationDate;
 
