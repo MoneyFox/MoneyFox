@@ -29,11 +29,15 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, *" Padding="15">
+        <Grid RowDefinitions="38, 38, *" Padding="15,0,15,0">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.CashFlowStatisticTitle}" />
 
-            <microcharts:ChartView Grid.Row="1" Chart="{Binding Chart}" />
+            <Label Grid.Row="1"
+                   Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding Title}" />
+
+            <microcharts:ChartView Grid.Row="2" Chart="{Binding Chart}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -43,6 +43,10 @@
                    Margin="15,0,15,0"
                    Text="{x:Static resources:Strings.CategorySummaryTitle}" />
 
+            <Label Margin="15,0,15,0"
+                   Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding Title}" />
+
             <CollectionView x:Name="CategorySummaryList"
                             EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
                             ItemsSource="{Binding CategorySummary}" >

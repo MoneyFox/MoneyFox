@@ -4,6 +4,7 @@ using MoneyFox.Application;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.AutoMapper;
 using MoneyFox.Persistence;
+using MoneyFox.Ui.Shared.ViewModels.Settings;
 using System;
 using Module = Autofac.Module;
 
@@ -29,6 +30,11 @@ namespace MoneyFox
                    .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .AsSelf();
+
+            builder.RegisterAssemblyTypes(typeof(SettingsViewModel).Assembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsSelf();
