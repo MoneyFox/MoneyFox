@@ -34,9 +34,9 @@ namespace MoneyFox.Uwp.ViewModels
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
 
         private PaymentRecurrence recurrence;
-        private PaymentViewModel selectedPayment;
+        private PaymentViewModel selectedPayment = new PaymentViewModel();
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
-        private string title;
+        private string title = "";
 
         /// <summary>
         /// Default constructor
@@ -50,8 +50,6 @@ namespace MoneyFox.Uwp.ViewModels
             this.navigationService = navigationService;
             this.mediator = mediator;
             this.mapper = mapper;
-
-            selectedPayment = new PaymentViewModel();
 
             MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
         }

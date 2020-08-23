@@ -16,7 +16,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         public int AccountId { get; set; }
 
-        private string title;
+        private string title = "";
         private AccountViewModel selectedAccount = new AccountViewModel();
 
         protected ModifyAccountViewModel(IDialogService dialogService,

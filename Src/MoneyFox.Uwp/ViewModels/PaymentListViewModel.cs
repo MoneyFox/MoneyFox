@@ -27,6 +27,8 @@ namespace MoneyFox.Uwp.ViewModels
     /// </summary>
     public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
     {
+        private const int DEFAULT_MONTH_BACK = -2;
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
@@ -37,9 +39,10 @@ namespace MoneyFox.Uwp.ViewModels
         private int accountId;
         private IBalanceViewModel balanceViewModel;
 
-        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
-        private string title;
+        private string title = "";
         private IPaymentListViewActionViewModel viewActionViewModel;
+        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source
+            = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
 
         /// <summary>
         /// Default constructor
@@ -173,7 +176,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task LoadDataAsync()
         {
-            await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(-2) });
+            await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) });
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }

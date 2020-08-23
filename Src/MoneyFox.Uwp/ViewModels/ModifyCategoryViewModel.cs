@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IMapper mapper;
 
         private CategoryViewModel selectedCategory;
-        private string title;
+        private string title = "";
 
         /// <summary>
         /// Constructor
