@@ -65,7 +65,8 @@ namespace MoneyFox.ViewModels.Statistics
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(
                 new GetPaymentsForCategoryQuery(receivedMessage.CategoryId, receivedMessage.StartDate, receivedMessage.EndDate)));
 
-            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>.CreateGroups(loadedPayments, s => s.Date.ToString("D", CultureInfo.CurrentCulture), s => s.Date);
+            List<DateListGroupCollection<PaymentViewModel>> dailyItems
+                = DateListGroupCollection<PaymentViewModel>.CreateGroups(loadedPayments, s => s.Date.ToString("D", CultureInfo.CurrentCulture), s => s.Date);
 
             PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
         }
