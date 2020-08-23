@@ -5,11 +5,11 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeModifyCategoryViewModel : IModifyCategoryViewModel
     {
-        public AsyncCommand SaveCommand { get; }
+        public AsyncCommand SaveCommand { get; } = null!;
 
-        public AsyncCommand CancelCommand { get; }
+        public AsyncCommand CancelCommand { get; } = null!;
 
-        public RelayCommand DeleteCommand { get; }
+        public RelayCommand DeleteCommand { get; } = null!;
 
         public CategoryViewModel SelectedCategory { get; }
 

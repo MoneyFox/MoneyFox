@@ -3,21 +3,23 @@ using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
+    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
         public IBalanceViewModel BalanceViewModel => new DesignTimeBalanceViewViewModel();
 
         public IPaymentListViewActionViewModel ViewActionViewModel { get; }
 
-        public AsyncCommand InitializeCommand { get; }
+        public AsyncCommand InitializeCommand { get; } = null!;
 
-        public Command<PaymentViewModel> EditPaymentCommand { get; }
+        public Command<PaymentViewModel> EditPaymentCommand { get; } = null!;
 
-        public Command<PaymentViewModel> DeletePaymentCommand { get; }
+        public Command<PaymentViewModel> DeletePaymentCommand { get; } = null!;
 
         public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
                                                                                                         => new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>

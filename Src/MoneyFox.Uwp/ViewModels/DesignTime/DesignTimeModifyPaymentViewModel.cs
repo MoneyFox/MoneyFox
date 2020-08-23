@@ -39,20 +39,20 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public string Title { get; } = "My Title";
 
-        public string AccountHeader { get; }
+        public string AccountHeader { get; } = "";
 
         public DateTime Date { get; }
 
-        public RelayCommand SelectedItemChangedCommand { get; }
+        public RelayCommand SelectedItemChangedCommand { get; } = null!;
 
-        public AsyncCommand SaveCommand { get; }
+        public AsyncCommand SaveCommand { get; } = null!;
 
-        public RelayCommand GoToSelectCategoryDialogCommand { get; }
+        public RelayCommand GoToSelectCategoryDialogCommand { get; } = null!;
 
-        public RelayCommand DeleteCommand { get; }
+        public RelayCommand DeleteCommand { get; } = null!;
 
-        public RelayCommand CancelCommand { get; }
+        public RelayCommand CancelCommand { get; } = null!;
 
-        public RelayCommand ResetCategoryCommand { get; }
+        public RelayCommand ResetCategoryCommand { get; } = null!;
     }
 }
