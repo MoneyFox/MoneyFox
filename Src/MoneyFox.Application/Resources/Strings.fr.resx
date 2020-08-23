@@ -715,27 +715,27 @@
     <value>Gagné: {0:c} - Dépensé: {1:c}</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
-    <value>Dashboard</value>
+    <value>Tableau de bord</value>
   </data>
   <data name="EditPaymentTitle" xml:space="preserve">
-    <value>EditPayment</value>
+    <value>EditerPaiment</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
-    <value>Autobackup</value>
+    <value>SauvegardeAutomatique</value>
   </data>
   <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Backup Service</value>
+    <value>Service de sauvegarde</value>
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Backup restored successfully.</value>
+    <value>Votre sauvegarde a été restaurée avec succès.</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup created successfully</value>
+    <value>Sauvegarde créée avec succès</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Sélectionnez une statistique</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense {1} / Income: {0}</value>
+    <value>Dépense {1} / Revenue: {0}</value>
   </data>
 </root>
