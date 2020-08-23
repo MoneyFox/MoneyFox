@@ -35,7 +35,7 @@ steps:
   inputs:
     command: 'test'
     projects: '**/*.Tests.csproj'
-    arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
+    arguments: '--configuration $(BuildConfiguration)'
 
 - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
   displayName: 'Replace tokens in Src/MoneyFox/'
