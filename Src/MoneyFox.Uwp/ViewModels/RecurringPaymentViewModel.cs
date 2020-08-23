@@ -8,6 +8,7 @@ namespace MoneyFox.Uwp.ViewModels
 {
     public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>
     {
+        private const decimal DECIMAL_DELTA = 0.01m;
         private int id;
         private DateTime startDate;
         private DateTime? endDate;
@@ -17,8 +18,8 @@ namespace MoneyFox.Uwp.ViewModels
         private PaymentRecurrence recurrence;
         private string note = "";
 
-        private AccountViewModel chargedAccount;
-        private CategoryViewModel categoryViewModel;
+        private AccountViewModel chargedAccount = null!;
+        private CategoryViewModel categoryViewModel = null!;
 
         public RecurringPaymentViewModel()
         {
@@ -82,7 +83,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => amount;
             set
             {
-                if(Math.Abs(amount - value) < 0.01m)
+                if(Math.Abs(amount - value) < DECIMAL_DELTA)
                     return;
                 amount = value;
                 RaisePropertyChanged();

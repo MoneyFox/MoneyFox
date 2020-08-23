@@ -29,7 +29,7 @@ namespace MoneyFox.Uwp.Views.Statistics
             var item = e.AddedItems.FirstOrDefault();
 
             if(item == null) return;
-            await ViewModel?.SummaryEntrySelectedCommand.ExecuteAsync(item as CategoryOverviewViewModel);
+            await ViewModel.SummaryEntrySelectedCommand.ExecuteAsync((CategoryOverviewViewModel)item);
         }
     }
 }

@@ -22,6 +22,7 @@ namespace MoneyFox.Uwp.ViewModels
     /// </summary>
     public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
     {
+        private const decimal DECIMAL_DELTA = 0.01m;
         private int id;
         private int chargedAccountId;
         private int? targetAccountId;
@@ -122,7 +123,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => amount;
             set
             {
-                if(Math.Abs(amount - value) < 0.01m)
+                if(Math.Abs(amount - value) < DECIMAL_DELTA)
                     return;
                 amount = value;
                 RaisePropertyChanged();

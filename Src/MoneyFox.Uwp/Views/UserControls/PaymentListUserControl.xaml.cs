@@ -32,13 +32,13 @@ namespace MoneyFox.Uwp.Views.UserControls
 
         private async void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {
-            var viewModel = e.ClickedItem as PaymentViewModel;
+            var viewModel = (PaymentViewModel)e.ClickedItem;
             await new EditPaymentView(viewModel.Id).ShowAsync();
         }
 
         private async void EditPaymentClick(object sender, RoutedEventArgs e)
         {
-            var viewModel = (sender as MenuFlyoutItem).CommandParameter as PaymentViewModel;
+            var viewModel = ((MenuFlyoutItem)sender).CommandParameter as PaymentViewModel;
             await new EditPaymentView(viewModel.Id).ShowAsync();
         }
     }

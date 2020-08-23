@@ -48,6 +48,11 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task DeleteCategoryAsync()
         {
+            if(SelectedCategory == null)
+            {
+                return;
+            }
+
             if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
             {
                 await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
