@@ -55,7 +55,7 @@ namespace MoneyFox.Uwp.ViewModels
 
             // We have to set this here since otherwise the end date is null. This causes a crash on android.
             // Also it's user unfriendly if you the default end date is the 1.1.0001.
-            if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment.IsEndless)
+            if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null && SelectedPayment.RecurringPayment.IsEndless)
             {
                 SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
             }

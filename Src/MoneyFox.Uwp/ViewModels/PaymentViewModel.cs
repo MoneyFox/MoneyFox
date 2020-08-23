@@ -23,6 +23,7 @@ namespace MoneyFox.Uwp.ViewModels
     public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
     {
         private const decimal DECIMAL_DELTA = 0.01m;
+
         private int id;
         private int chargedAccountId;
         private int? targetAccountId;
@@ -30,7 +31,7 @@ namespace MoneyFox.Uwp.ViewModels
         private decimal amount;
         private bool isCleared;
         private PaymentType type;
-        private string note;
+        private string note = "";
         private bool isRecurring;
         private DateTime creationTime;
         private DateTime modificationDate;
