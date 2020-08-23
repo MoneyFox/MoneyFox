@@ -80,7 +80,7 @@ steps:
     command: 'test'
     projects: |
       **/*.Tests.csproj
-      !**/MoneyFox.Presentation.Tests.csproj
+      !**/MoneyFox.Tests.csproj
   enabled: false
 
 - task: XamariniOS@2
