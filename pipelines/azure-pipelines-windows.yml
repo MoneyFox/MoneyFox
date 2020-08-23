@@ -1,0 +1,120 @@
+# Universal Windows Platform
+# Build a Universal Windows Platform project using Visual Studio.
+# Add steps that test and distribute an app, save build artifacts, and more:
+# https://aka.ms/yaml
+
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+
+pr: none
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'x86|x64|ARM'
+  buildConfiguration: 'Release'
+  appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+  Major: '7'
+  Minor: '0'
+
+jobs:
+- job: BuildWindows
+  displayName: 'Build Windows Release'
+  timeoutInMinutes: 140
+
+  steps:
+  - task: DownloadSecureFile@1
+    displayName: 'Download secure file'
+    name: 'signingCert'
+    inputs:
+      secureFile: 'MoneyFoxCert_2019.pfx'
+
+  - powershell: |
+      $pfxpath = '$(signingCert.secureFilePath)'
+      $certPassword = $env:CERT_PASSWORD_ENV
+
+      Add-Type -AssemblyName System.Security
+      $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+      $cert.Import($pfxpath, $certPassword, [System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]"PersistKeySet")
+      $store = new-object system.security.cryptography.X509Certificates.X509Store -argumentlist "MY", CurrentUser
+      $store.Open([System.Security.Cryptography.X509Certificates.OpenFlags]"ReadWrite")
+      $store.Add($cert)
+      $store.Close()
+    displayName: 'Install Cert'
+    env:
+      CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 5.x
+
+  - task: NuGetCommand@2
+    displayName: 'NuGet restore'
+    inputs:
+      restoreSolution: '**/MoneyFox.Desktop.sln'
+
+  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
+    displayName: 'Prepare analysis on SonarCloud'
+    inputs:
+      SonarCloud: 'Money Fox Sonar Cloud'
+      organization: moneyfox
+      projectKey: 'moneyfox-project'
+      projectVersion: '$(Major).$(Minor).$(Build.BuildNumber)'
+      extraProperties: |
+        # Additional properties that will be passed to the scanner,
+        # Put one key=value per line, example:
+        # sonar.exclusions=**/*.bin
+        sonar.cs.opencover.reportsPaths=**/*.opencover.xml
+
+  - task: DotNetCoreCLI@2
+    displayName: 'Run Tests'
+    inputs:
+      command: test
+      projects: '**/*.Tests.csproj'
+      arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+
+  - task: CopyFiles@2
+    displayName: 'Copy coveragexml to staging'
+    inputs:
+      SourceFolder: '$(Agent.TempDirectory)'
+      Contents: '**\*.opencover.xml'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+  - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+    displayName: 'Replace tokens in MoneyFox'
+    inputs:
+      sourcePath: Src/MoneyFox
+      filePattern: App.config
+
+  - task: VersionAPPX@2
+    inputs:
+      Path: '$(Build.SourcesDirectory)'
+      VersionNumber: '$(Major).$(Minor).$(Build.BuildId)'
+      InjectVersion: false
+      VersionRegex: '\d+.\d+.\d+'
+      OutputVersion: 'OutputedVersion'
+
+  - task: VSBuild@1
+    displayName: 'Build Windows Project'
+    inputs:
+      solution: Src/MoneyFox.Desktop.sln
+      msbuildArgs: '/p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\"   /p:UapAppxPackageBuildMode=StoreUpload   /p:AppxBundlePlatforms="$(BuildPlatform)"  /p:AppxBundle=Always  /p:AppxPackageSigningEnabled=true /p:JavaSdkDirectory="$(JAVA_HOME)/"'
+      platform: x64
+      configuration: '$(BuildConfiguration)'
+      clean: true
+      msbuildArchitecture: x64
+
+  - task: PublishBuildArtifacts@1
+    displayName: 'Publish Artifact: drop'
+
+  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
+    displayName: 'Run Code Analysis'
+
+  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
+    displayName: 'Publish Quality Gate Result'

@@ -10,7 +10,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
+    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Categories"
     Title="{x:Bind resources:Strings.SelectCategoryTitle}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding SelectCategoryListVm, Source={StaticResource Locator}}"

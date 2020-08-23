@@ -17,9 +17,12 @@ namespace MoneyFox.iOS.Renderer
         {
             try
             {
-                if(parent != null)
-                    parent.ModalPresentationStyle = UIModalPresentationStyle.Automatic;
+                if(parent == null)
+                {
+                    return;
+                }
 
+                parent.ModalPresentationStyle = UIModalPresentationStyle.Automatic;
                 base.WillMoveToParentViewController(parent);
             }
             catch(Exception ex)

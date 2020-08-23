@@ -3,9 +3,9 @@ A basic idea to make budgeting easy - for the community, made even better by the
 
 | Platform        | Build Status           |
 | ------------- |-------------|
-| Windows | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/6/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=6&_a=completed)|
-| Android | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/3/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=mine&path=%5C&definitionId=3&_a=completed)|
-| IOS | [![Build Status](https://applysolutions.visualstudio.com/_apis/public/build/definitions/c60b7e5c-4e3f-4700-bc8b-f553b789ae5b/8/badge)](https://applysolutions.visualstudio.com/MoneyFox/_build/index?context=allDefinitions&path=%5C&definitionId=8&_a=completed)|
+| Windows | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/Windows%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=40&branchName=master)|
+| Android | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/Android%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=38&branchName=master)|
+| IOS | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/iOS%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=39&branchName=master)|
 
 ### Talk with us
 We have a slack team to make communication a bit easier. Write me a mail to nino.padrutt@apply-solutions.ch to get your invitation.

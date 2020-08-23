@@ -7,11 +7,11 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewActionViewModel : IPaymentListViewActionViewModel
     {
-        public RelayCommand GoToAddIncomeCommand { get; }
+        public RelayCommand GoToAddIncomeCommand { get; } = null!;
 
-        public RelayCommand GoToAddExpenseCommand { get; }
+        public RelayCommand GoToAddExpenseCommand { get; } = null!;
 
-        public RelayCommand GoToAddTransferCommand { get; }
+        public RelayCommand GoToAddTransferCommand { get; } = null!;
 
         public bool IsAddIncomeAvailable { get; }
 
@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public bool IsTransferAvailable { get; }
 
-        public AsyncCommand DeleteAccountCommand { get; }
+        public AsyncCommand DeleteAccountCommand { get; } = null!;
 
         public bool IsClearedFilterActive { get; set; }
 

@@ -12,7 +12,12 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
 {
     public class UpdateAccountCommand : IRequest
     {
-        public Account Account { get; set; }
+        public UpdateAccountCommand(Account account)
+        {
+            Account = account;
+        }
+
+        public Account Account { get; private set; }
 
         public class Handler : IRequestHandler<UpdateAccountCommand>
         {

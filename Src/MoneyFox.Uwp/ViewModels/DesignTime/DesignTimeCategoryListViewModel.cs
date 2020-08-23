@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System.Collections.ObjectModel;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
@@ -8,7 +9,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
     public class DesignTimeCategoryListViewModel : ICategoryListViewModel
     {
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
-                                                                                      => new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>
+            => new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>
         {
             new AlphaGroupListGroupCollection<CategoryViewModel>("A")
             {
@@ -20,15 +21,15 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             }
         };
 
-        public AsyncCommand AppearingCommand { get; }
+        public AsyncCommand AppearingCommand { get; } = null!;
 
-        public RelayCommand<CategoryViewModel> ItemClickCommand { get; }
+        public RelayCommand<CategoryViewModel> ItemClickCommand { get; } = null!;
 
-        public AsyncCommand<string> SearchCommand { get; }
+        public AsyncCommand<string> SearchCommand { get; } = null!;
 
-        public CategoryViewModel SelectedCategory { get; set; }
+        public CategoryViewModel SelectedCategory { get; set; } = null!;
 
-        public string SearchText { get; set; }
+        public string SearchText { get; set; } = "";
 
         public bool IsCategoriesEmpty => false;
     }

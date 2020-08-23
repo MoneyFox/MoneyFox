@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             mc:Ignorable="d"
+             x:Class="MoneyFox.Views.Categories.ModifyCategoryContentView">
+
+  <ContentView.Content>
+      <StackLayout>
+            <Entry Placeholder="{x:Static resources:Strings.CategoryNameLabel}"
+                   Text="{Binding SelectedCategory.Name}" />
+
+            <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
+                   Text="{Binding SelectedCategory.Note}" />
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>

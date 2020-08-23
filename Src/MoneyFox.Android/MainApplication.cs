@@ -1,14 +1,11 @@
 ﻿using Android.App;
 using Android.Runtime;
 using Autofac;
-using MoneyFox.Application.Common.Constants;
+using MoneyFox.Common;
 using MoneyFox.Droid.Src;
-using MoneyFox.Presentation;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using PCLAppConfig;
-using PCLAppConfig.FileSystemStream;
 using System;
 using System.IO;
 using Xamarin.Essentials;
@@ -26,11 +23,6 @@ namespace MoneyFox.Droid
 
         public override void OnCreate()
         {
-            if(ConfigurationManager.AppSettings == null)
-            {
-                ConfigurationManager.Initialise(PortableStream.Current);
-            }
-
             InitLogger();
 
             logManager.Info("Application Started.");
@@ -72,22 +64,12 @@ namespace MoneyFox.Droid
             var config = new LoggingConfiguration();
 
             var logfile = new FileTarget("logfile")
-                          {
-                              FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
-                              AutoFlush = true,
-                              ArchiveEvery = FileArchivePeriod.Month
-                          };
-            var debugTarget = new DebugTarget("console");
-
-#if !DEBUG
-            // Configure AppCenter
-            var appCenterTarget = new AppCenterTarget("appcenter")
             {
-                AppSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"]
+                FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
+                AutoFlush = true,
+                ArchiveEvery = FileArchivePeriod.Month
             };
-
-            config.AddRule(LogLevel.Debug, LogLevel.Fatal, appCenterTarget);
-#endif
+            var debugTarget = new DebugTarget("console");
 
             config.AddRule(LogLevel.Info, LogLevel.Fatal, debugTarget);
             config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);

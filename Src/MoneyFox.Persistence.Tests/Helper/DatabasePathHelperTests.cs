@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Common;
-using Should;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
@@ -21,7 +21,7 @@ namespace MoneyFox.Persistence.Tests.Helper
             string result = DatabasePathHelper.GetDbPath();
 
             // Assert
-            result.ShouldContain(expectedPathSegment);
+            result.Should().Contain(expectedPathSegment);
         }
     }
 }

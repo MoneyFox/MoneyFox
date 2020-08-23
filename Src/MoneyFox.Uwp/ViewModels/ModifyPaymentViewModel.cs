@@ -5,7 +5,6 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
@@ -16,6 +15,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
+using MoneyFox.Messages;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -33,9 +36,9 @@ namespace MoneyFox.Uwp.ViewModels
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
 
         private PaymentRecurrence recurrence;
-        private PaymentViewModel selectedPayment;
+        private PaymentViewModel selectedPayment = new PaymentViewModel();
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
-        private string title;
+        private string title = "";
 
         /// <summary>
         /// Default constructor
@@ -49,8 +52,6 @@ namespace MoneyFox.Uwp.ViewModels
             this.navigationService = navigationService;
             this.mediator = mediator;
             this.mapper = mapper;
-
-            selectedPayment = new PaymentViewModel();
 
             MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
         }
@@ -131,7 +132,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        private string amountString;
+        private string amountString = "";
 
         public string AmountString
         {
@@ -253,7 +254,7 @@ namespace MoneyFox.Uwp.ViewModels
             if(SelectedPayment == null || message == null)
                 return;
             SelectedPayment.Category =
-                mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.SelectedCategoryId)));
+                mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
         }
 
         private void OpenSelectCategoryList()

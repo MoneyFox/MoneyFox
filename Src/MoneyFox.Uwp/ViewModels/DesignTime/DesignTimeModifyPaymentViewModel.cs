@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,30 +30,30 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             PaymentRecurrence.Yearly
         };
 
-        public PaymentViewModel SelectedPayment { get; }
+        public PaymentViewModel SelectedPayment { get; } = null!;
 
-        public string AmountString { get; }
+        public string AmountString { get; } = "";
 
-        public ObservableCollection<AccountViewModel> ChargedAccounts { get; }
+        public ObservableCollection<AccountViewModel> ChargedAccounts { get; } = null!;
 
-        public ObservableCollection<AccountViewModel> TargetAccounts { get; }
+        public ObservableCollection<AccountViewModel> TargetAccounts { get; } = null!;
 
         public string Title { get; } = "My Title";
 
-        public string AccountHeader { get; }
+        public string AccountHeader { get; } = "";
 
         public DateTime Date { get; }
 
-        public RelayCommand SelectedItemChangedCommand { get; }
+        public RelayCommand SelectedItemChangedCommand { get; } = null!;
 
-        public AsyncCommand SaveCommand { get; }
+        public AsyncCommand SaveCommand { get; } = null!;
 
-        public RelayCommand GoToSelectCategoryDialogCommand { get; }
+        public RelayCommand GoToSelectCategoryDialogCommand { get; } = null!;
 
-        public RelayCommand DeleteCommand { get; }
+        public RelayCommand DeleteCommand { get; } = null!;
 
-        public RelayCommand CancelCommand { get; }
+        public RelayCommand CancelCommand { get; } = null!;
 
-        public RelayCommand ResetCategoryCommand { get; }
+        public RelayCommand ResetCategoryCommand { get; } = null!;
     }
 }

@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converter="clr-namespace:MoneyFox.Converter"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:theme="clr-namespace:MoneyFox"
+             mc:Ignorable="d"
+             x:Class="MoneyFox.Views.Payments.ModifyPaymentContentView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:InverseBoolConverter x:Key="Inverter" />
+            <converter:AccountNameConverter x:Key="AccountNameConverter" />
+            <converter:PaymentTypeStringConverter x:Key="PaymentTypeStringConverter" />
+            <converter:NoCategorySelectedConverter x:Key="NoCategorySelectedConverter" />
+            <converter:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+        <StackLayout>
+            <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
+                    ItemsSource="{Binding PaymentTypeList}"
+                    SelectedItem="{Binding SelectedPayment.Type}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}">
+            </Picker>
+
+            <Picker Title="{Binding AccountHeader}"
+                    ItemsSource="{Binding ChargedAccounts}"
+                    SelectedItem="{Binding SelectedPayment.ChargedAccount}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}">
+            </Picker>
+
+            <Picker Title="{x:Static resources:Strings.TargetAccountLabel}"
+                    ItemsSource="{Binding TargetAccounts}"
+                    IsVisible="{Binding SelectedPayment.IsTransfer}"
+                    SelectedItem="{Binding SelectedPayment.TargetAccount}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
+
+            <Entry x:Name="AmountEntry"
+                    Text="{Binding SelectedPayment.Amount, Converter={StaticResource DecimalConverter}}"
+                    Placeholder="{x:Static resources:Strings.AmountLabel}"
+                    Keyboard="Numeric"
+                    HorizontalTextAlignment="End"
+                    Focused="AmountFieldGotFocus" />
+
+            <Label Text="{x:Static resources:Strings.CategoryLabel}"
+                    Margin="0,5,0,0" />
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="30" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Column="0"
+                        Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
+                        Command="{Binding GoToSelectCategoryDialogCommand}" />
+
+                <Label Grid.Column="1"
+                        VerticalOptions="Center"
+                        Text="{x:Static theme:IconFont.Trash}"
+                        FontSize="30"
+                        FontFamily="FontAwesome">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ResetCategoryCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+
+            <Label Text="{x:Static resources:Strings.DateLabel}"
+                    Margin="0,5,0,0" />
+
+            <DatePicker Date="{Binding SelectedPayment.Date}"
+                        Format="D" />
+
+            <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
+                    Text="{Binding SelectedPayment.Note}" />
+
+            <Grid HorizontalOptions="FillAndExpand">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                        Text="{x:Static resources:Strings.RecurringLabel}" />
+
+                <Switch Grid.Column="1"
+                        HorizontalOptions="End"
+                        IsToggled="{Binding SelectedPayment.IsRecurring}" />
+            </Grid>
+
+            <StackLayout IsVisible="{Binding SelectedPayment.IsRecurring}">
+                <Label Text="{x:Static resources:Strings.RecurrenceLabel}"
+                           Margin="0,5,0,0" />
+                <Picker ItemsSource="{Binding RecurrenceList}"
+                            SelectedItem="{Binding SelectedPayment.RecurringPayment.Recurrence}" />
+
+                <Grid HorizontalOptions="FillAndExpand" >
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*" />
+                        <ColumnDefinition Width="15*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Grid.Column="0"
+                               Text="{x:Static resources:Strings.EndlessLabel}" />
+
+                    <Switch Grid.Column="1"
+                                HorizontalOptions="End"
+                                IsToggled="{Binding SelectedPayment.RecurringPayment.IsEndless}" />
+                </Grid>
+
+                <StackLayout IsVisible="{Binding SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource Inverter}}" >
+                    <Label Text="{x:Static resources:Strings.EnddateLabel}" />
+
+                    <DatePicker Date="{Binding SelectedPayment.RecurringPayment.EndDate}"
+                                    Format="D" />
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

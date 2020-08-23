@@ -9,7 +9,7 @@ namespace MoneyFox.Uwp.Views
     {
         public override string Header => ViewModelLocator.PaymentListVm.Title;
 
-        private PaymentListViewModel ViewModel => DataContext as PaymentListViewModel;
+        private PaymentListViewModel ViewModel => (PaymentListViewModel) DataContext;
 
         public PaymentListView()
         {

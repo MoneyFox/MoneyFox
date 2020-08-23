@@ -42,8 +42,6 @@ namespace MoneyFox.Domain.Entities
             TargetAccount = targetAccount;
             IsEndless = endDate == null;
 
-            RelatedPayments = new List<Payment>();
-
             LastRecurrenceCreated = lastRecurrenceCreated ?? DateTime.Now;
             ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
@@ -76,11 +74,11 @@ namespace MoneyFox.Domain.Entities
         public virtual Category? Category { get; private set; }
 
         [Required]
-        public virtual Account ChargedAccount { get; private set; }
+        public virtual Account ChargedAccount { get; private set; } = null!;
 
         public virtual Account? TargetAccount { get; private set; }
 
-        public virtual List<Payment> RelatedPayments { get; private set; }
+        public virtual List<Payment> RelatedPayments { get; private set; } = new List<Payment>();
 
         public void UpdateRecurringPayment(decimal amount,
                                            PaymentRecurrence recurrence,
@@ -107,13 +105,6 @@ namespace MoneyFox.Domain.Entities
         public void SetLastRecurrenceCreatedDate()
         {
             LastRecurrenceCreated = DateTime.Now;
-            ModificationDate = DateTime.Now;
-        }
-
-        [Obsolete("This Method is only for migration purposes and will be removed later")]
-        public void SetLastRecurrenceCreatedDate(DateTime dateTime)
-        {
-            LastRecurrenceCreated = dateTime;
             ModificationDate = DateTime.Now;
         }
     }

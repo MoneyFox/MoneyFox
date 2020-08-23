@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:converter="clr-namespace:MoneyFox.Converter"
+             mc:Ignorable="d"
+             x:Class="MoneyFox.Views.Accounts.ModifyAccountContentView">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <converter:DecimalConverter x:Key="DecimalConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+  <ContentView.Content>
+        <StackLayout>
+
+            <Entry Placeholder="{x:Static resources:Strings.AccountNameLabel}"
+                   Text="{Binding SelectedAccountVm.Name}" />
+
+            <Entry x:Name="AmountEntry"
+                   Keyboard="Numeric"
+                   Focused="AmountFieldGotFocus"
+                   Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
+                   Text="{Binding SelectedAccountVm.Amount, Converter={StaticResource DecimalConverter}}" />
+
+            <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
+                   Text="{Binding SelectedAccountVm.Note}" />
+
+            <Grid Margin="0,5,0,0" HorizontalOptions="FillAndExpand">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70*" />
+                    <ColumnDefinition Width="20*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Text="{x:Static resources:Strings.IsExcludedLabel}" />
+                <Switch
+                    Grid.Column="1"
+                    HorizontalOptions="End"
+                    IsToggled="{Binding SelectedAccountVm.IsExcluded}"/>
+            </Grid>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

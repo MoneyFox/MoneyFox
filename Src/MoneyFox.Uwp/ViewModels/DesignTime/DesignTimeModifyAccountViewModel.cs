@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
@@ -8,21 +9,21 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public bool IsEdit { get; }
 
         /// <inheritdoc/>
-        public string Title { get; }
+        public string Title { get; } = "";
 
         /// <inheritdoc/>
-        public string AmountString { get; }
+        public string AmountString { get; } = "";
 
         /// <inheritdoc/>
-        public AccountViewModel SelectedAccount { get; }
+        public AccountViewModel SelectedAccount { get; } = null!;
 
         /// <inheritdoc/>
-        public RelayCommand SaveCommand { get; }
+        public RelayCommand SaveCommand { get; } = null!;
 
         /// <inheritdoc/>
-        public RelayCommand DeleteCommand { get; }
+        public RelayCommand DeleteCommand { get; } = null!;
 
         /// <inheritdoc/>
-        public RelayCommand CancelCommand { get; }
+        public RelayCommand CancelCommand { get; } = null!;
     }
 }

@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
@@ -7,6 +6,8 @@ using MoneyFox.Uwp.Services;
 using NLog;
 using System.Globalization;
 using System.Threading.Tasks;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -16,7 +17,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         public int AccountId { get; set; }
 
-        private string title;
+        private string title = "";
         private AccountViewModel selectedAccount = new AccountViewModel();
 
         protected ModifyAccountViewModel(IDialogService dialogService,
@@ -61,7 +62,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        private string amountString;
+        private string amountString = "";
 
         public string AmountString
         {

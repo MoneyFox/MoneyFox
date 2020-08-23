@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Messages;
+using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -17,7 +18,8 @@ namespace MoneyFox.Uwp.ViewModels
         public SelectCategoryListViewModel(IMediator mediator,
                                            IMapper mapper,
                                            IDialogService dialogService,
-                                           NavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
+                                           NavigationService navigationService)
+            : base(mediator, mapper, dialogService, navigationService)
         {
         }
 
@@ -29,7 +31,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => selectedCategory;
             set
             {
-                if(selectedCategory == value) return;
+                if(selectedCategory.Equals(value)) return;
                 selectedCategory = value;
                 RaisePropertyChanged();
             }
@@ -40,7 +42,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         protected override void ItemClick(CategoryViewModel category)
         {
-            MessengerInstance.Send(new CategorySelectedMessage(this, category.Id));
+            MessengerInstance.Send(new CategorySelectedMessage(category.Id));
         }
     }
 }

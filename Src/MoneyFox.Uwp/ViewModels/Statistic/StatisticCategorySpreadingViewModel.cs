@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
@@ -14,8 +14,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     {
         private ObservableCollection<StatisticEntry> statisticItems;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator,
-                                                   ISettingsFacade settingsFacade) : base(mediator, settingsFacade)
+        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
         {
         }
 
@@ -28,7 +27,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             private set
             {
                 if(statisticItems == value)
+                {
                     return;
+                }
                 statisticItems = value;
                 RaisePropertyChanged();
             }
@@ -39,11 +40,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// </summary>
         protected override async Task LoadAsync()
         {
-            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery
-                                                                                          {
-                                                                                              StartDate = StartDate,
-                                                                                              EndDate = EndDate
-                                                                                          }));
+            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(
+                new GetCategorySpreadingQuery
+                {
+                    StartDate = StartDate,
+                    EndDate = EndDate
+                }));
         }
     }
 }

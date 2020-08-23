@@ -50,7 +50,7 @@ namespace MoneyFox.iOS
 
         public void Include(UIImageView imageView)
         {
-            imageView.Image = new UIImage(imageView.Image.CGImage);
+            imageView.Image = new UIImage(imageView.Image?.CGImage);
         }
 
         public void Include(UIDatePicker date)

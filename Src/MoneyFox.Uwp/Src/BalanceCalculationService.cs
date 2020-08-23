@@ -5,7 +5,7 @@ using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

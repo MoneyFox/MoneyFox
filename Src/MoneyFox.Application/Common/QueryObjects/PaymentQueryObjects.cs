@@ -11,7 +11,23 @@ namespace MoneyFox.Application.Common.QueryObjects
     public static class PaymentQueryObjects
     {
         /// <summary>
-        /// Adds a filter to a query for cleared payments
+        ///     Adds a filter to a query for payments with type expense
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query filtered for expenses.</returns>
+        public static IQueryable<Payment> IsExpense(this IQueryable<Payment> query)
+            => query.Where(payment => payment.Type == PaymentType.Expense);
+
+        /// <summary>
+        ///     Adds a filter to a query for payments with type income
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query filtered for incomes.</returns>
+        public static IQueryable<Payment> IsIncome(this IQueryable<Payment> query)
+            => query.Where(payment => payment.Type == PaymentType.Income);
+
+        /// <summary>
+        ///     Adds a filter to a query for cleared payments
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for cleared payments.</returns>
@@ -21,7 +37,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        /// Adds a filter to a query for payments who are not cleared
+        ///     Adds a filter to a query for payments who are not cleared
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for not cleared payments.</returns>
@@ -31,7 +47,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        /// Adds a filter to a query for recurring payments
+        ///     Adds a filter to a query for recurring payments
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for recurring payments.</returns>
@@ -41,7 +57,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        /// Adds a filter to a query for payments who has a date larger or equals to the passed date.
+        ///     Adds a filter to a query for payments who has a date larger or equals to the passed date.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <param name="date">Date to filter for.</param>
@@ -52,7 +68,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        /// Adds a filter to a query for payments who has a date smaller or equals to the passed date.
+        ///     Adds a filter to a query for payments who has a date smaller or equals to the passed date.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <param name="date">Date to filter for.</param>
@@ -63,7 +79,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        /// Adds a filter to a query for payments who are not Transfers
+        ///     Adds a filter to a query for payments who are not Transfers
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query filtered for payments who are not transfers.</returns>
@@ -73,7 +89,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        /// Adds a filter to a query for payments who has a certain id as charged or target account.
+        ///     Adds a filter to a query for payments who has a certain id as charged or target account.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <param name="accountId">AccountId to filter for</param>
@@ -86,7 +102,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
-        /// Orders a query descending by the date.
+        ///     Orders a query descending by the date.
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Ordered Query.</returns>

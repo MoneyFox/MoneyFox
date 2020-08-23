@@ -87,7 +87,7 @@
                             <TextBlock
                                 Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                 Style="{ThemeResource DeemphasizedLabelStyle}"
-                                Text="{Binding Title}" />
+                                Text="{Binding Subtitle}" />
 
                             <ListView
                                 Margin="{StaticResource NegativeMediumLeftRightMargin}"

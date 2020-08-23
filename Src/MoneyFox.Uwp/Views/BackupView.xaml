@@ -5,18 +5,18 @@
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:backup="using:MoneyFox.Ui.Shared.ViewModels.Backup"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding BackupVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <d:Page.DataContext>
-        <designTime:DesignTimeBackupViewModel />
+        <backup:DesignTimeBackupViewModel />
     </d:Page.DataContext>
 
     <Page.Resources>
@@ -95,6 +95,21 @@
                         Text="{Binding BackupLastModified}"
                         TextWrapping="WrapWholeWords" />
                 </StackPanel>
+
+                <!-- Auto Backup Sync -->
+
+                <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                               Text="{x:Bind resources:Strings.BackupTitle}"
+                               TextWrapping="WrapWholeWords" />
+
+                <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                               Text="{x:Bind resources:Strings.AutobackupInformationLabel}"
+                               TextWrapping="WrapWholeWords" />
+
+                <ToggleSwitch VerticalAlignment="Center"
+                                  Margin="0,6,0,0"
+                                  Header="{x:Bind resources:Strings.AutobackupLabel}"
+                                  IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
 
             </StackPanel>
         </StackPanel>

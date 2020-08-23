@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -17,6 +18,6 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Selected category.
         /// </summary>
-        CategoryViewModel SelectedCategory { get; }
+        CategoryViewModel? SelectedCategory { get; }
     }
 }

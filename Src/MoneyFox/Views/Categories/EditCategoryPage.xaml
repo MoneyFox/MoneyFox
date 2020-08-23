@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<controls:ModalContentPage xmlns:controls="clr-namespace:MoneyFox.Controls"
+                           xmlns="http://xamarin.com/schemas/2014/forms"
+                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                           xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                           xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+                           xmlns:extensions="clr-namespace:MoneyFox.Extensions"
+                           xmlns:Categories="clr-namespace:MoneyFox.Views.Categories"
+                           mc:Ignorable="d"
+                           Visual="Material"
+                           x:Class="MoneyFox.Views.Categories.EditCategoryPage">
+
+    <ContentPage.Content>
+        <ScrollView Padding="15,0,15,0">
+            <StackLayout>
+
+                <Label Style="{StaticResource TextHeadline}"
+                       Text="{x:Static resources:Strings.EditCategoryTitle}" />
+
+                <Categories:ModifyCategoryContentView />
+
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{Binding SelectedCategory.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+
+                <Label Style="{StaticResource TextBodySecondary}"
+                       Text="{Binding SelectedCategory.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+
+                <Button x:Name="DeleteAccountButton"
+                        Style="{StaticResource WarningButton}"
+                        Margin="0,12,0,0"
+                        Command="{Binding DeleteCommand}"
+                        Text="{x:Static resources:Strings.DeleteLabel}" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</controls:ModalContentPage>

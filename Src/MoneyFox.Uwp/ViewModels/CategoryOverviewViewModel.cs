@@ -3,16 +3,14 @@ using MoneyFox.Ui.Shared.Groups;
 using NLog;
 using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     public class CategoryOverviewViewModel : ViewModelBase
     {
-        private static ILogger logger = LogManager.GetCurrentClassLogger();
-
+        private const decimal DECIMAL_DELTA = 0.01m;
         private int categoryId;
-        private string label;
+        private string label = "";
         private decimal value;
         private decimal average;
         private decimal percentage;
@@ -39,7 +37,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => value;
             set
             {
-                if(Math.Abs(this.value - value) < 0.01m)
+                if(Math.Abs(this.value - value) < DECIMAL_DELTA)
                     return;
                 this.value = value;
                 RaisePropertyChanged();
@@ -54,7 +52,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => average;
             set
             {
-                if(Math.Abs(average - value) < 0.01m)
+                if(Math.Abs(average - value) < DECIMAL_DELTA)
                     return;
                 average = value;
                 RaisePropertyChanged();
@@ -69,8 +67,10 @@ namespace MoneyFox.Uwp.ViewModels
             get => percentage;
             set
             {
-                if(Math.Abs(this.value - value) < 0.01m)
+                if(Math.Abs(this.value - value) < DECIMAL_DELTA)
+                {
                     return;
+                }
                 percentage = value;
                 RaisePropertyChanged();
             }
@@ -85,7 +85,9 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(label == value)
+                {
                     return;
+                }
                 label = value;
                 RaisePropertyChanged();
             }
@@ -103,7 +105,9 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(source == value)
+                {
                     return;
+                }
                 source = value;
                 RaisePropertyChanged();
             }

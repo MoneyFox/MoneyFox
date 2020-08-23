@@ -10,7 +10,7 @@ namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCategorySummaryView
     {
-        private StatisticCategorySummaryViewModel ViewModel => DataContext as StatisticCategorySummaryViewModel;
+        private StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)DataContext;
 
         public override string Header => Strings.CategorySummaryTitle;
 
@@ -24,12 +24,12 @@ namespace MoneyFox.Uwp.Views.Statistics
             await new SelectDateRangeDialog().ShowAsync();
         }
 
-        private async void CategorySummaryList_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
+        private void CategorySummaryList_SelectionChanged(object sender, Windows.UI.Xaml.Controls.SelectionChangedEventArgs e)
         {
             var item = e.AddedItems.FirstOrDefault();
 
             if(item == null) return;
-            await ViewModel?.SummaryEntrySelectedCommand.ExecuteAsync(item as CategoryOverviewViewModel);
+            ViewModel.SummaryEntrySelectedCommand.Execute((CategoryOverviewViewModel)item);
         }
     }
 }

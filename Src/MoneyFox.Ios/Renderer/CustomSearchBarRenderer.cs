@@ -1,6 +1,4 @@
-﻿using MoneyFox.Application.Common;
-using MoneyFox.iOS.Renderer;
-using MoneyFox.Presentation;
+﻿using MoneyFox.iOS.Renderer;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
@@ -18,7 +16,7 @@ namespace MoneyFox.iOS.Renderer
             if(Control == null)
                 return;
 
-            if(ThemeManager.CurrentTheme() == AppTheme.Dark)
+            if(App.Current.UserAppTheme == OSAppTheme.Dark)
             {
                 UISearchBar searchBar = Control;
 

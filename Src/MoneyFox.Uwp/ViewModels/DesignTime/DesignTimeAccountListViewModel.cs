@@ -1,11 +1,14 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
+    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]
     public class DesignTimeAccountListViewModel : IAccountListViewModel
     {
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
@@ -28,16 +31,16 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public IBalanceViewModel BalanceViewModel { get; } = new DesignTimeBalanceViewViewModel();
 
-        public IAccountListViewActionViewModel ViewActionViewModel { get; }
+        public IAccountListViewActionViewModel ViewActionViewModel { get; } = null!;
 
-        public AsyncCommand LoadDataCommand { get; }
+        public AsyncCommand LoadDataCommand { get; } = null!;
 
-        public RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
+        public RelayCommand<AccountViewModel> OpenOverviewCommand { get; } = null!;
 
-        public RelayCommand<AccountViewModel> EditAccountCommand { get; }
+        public RelayCommand<AccountViewModel> EditAccountCommand { get; } = null!;
 
-        public AsyncCommand<AccountViewModel> DeleteAccountCommand { get; }
+        public AsyncCommand<AccountViewModel> DeleteAccountCommand { get; } = null!;
 
-        public RelayCommand GoToAddAccountCommand { get; }
+        public RelayCommand GoToAddAccountCommand { get; } = null!;
     }
 }

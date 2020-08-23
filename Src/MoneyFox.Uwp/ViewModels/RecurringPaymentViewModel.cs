@@ -2,12 +2,15 @@
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>
     {
+        private const decimal DECIMAL_DELTA = 0.01m;
         private int id;
         private DateTime startDate;
         private DateTime? endDate;
@@ -15,10 +18,10 @@ namespace MoneyFox.Uwp.ViewModels
         private bool isEndless;
         private PaymentType type;
         private PaymentRecurrence recurrence;
-        private string note;
+        private string note = "";
 
-        private AccountViewModel chargedAccount;
-        private CategoryViewModel categoryViewModel;
+        private AccountViewModel chargedAccount = null!;
+        private CategoryViewModel categoryViewModel = null!;
 
         public RecurringPaymentViewModel()
         {
@@ -82,7 +85,7 @@ namespace MoneyFox.Uwp.ViewModels
             get => amount;
             set
             {
-                if(Math.Abs(amount - value) < 0.01m)
+                if(Math.Abs(amount - value) < DECIMAL_DELTA)
                     return;
                 amount = value;
                 RaisePropertyChanged();
