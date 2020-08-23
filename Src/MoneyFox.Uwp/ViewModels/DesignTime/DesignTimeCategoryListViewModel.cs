@@ -26,9 +26,9 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public AsyncCommand<string> SearchCommand { get; } = null!;
 
-        public CategoryViewModel SelectedCategory { get; set; }
+        public CategoryViewModel SelectedCategory { get; set; } = null!;
 
-        public string SearchText { get; set; }
+        public string SearchText { get; set; } = "";
 
         public bool IsCategoriesEmpty => false;
     }

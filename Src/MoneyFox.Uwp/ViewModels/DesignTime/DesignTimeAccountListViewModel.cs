@@ -30,7 +30,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public IBalanceViewModel BalanceViewModel { get; } = new DesignTimeBalanceViewViewModel();
 
-        public IAccountListViewActionViewModel ViewActionViewModel { get; }
+        public IAccountListViewActionViewModel ViewActionViewModel { get; } = null!;
 
         public AsyncCommand LoadDataCommand { get; } = null!;
 

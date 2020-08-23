@@ -14,7 +14,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public string AmountString { get; } = "";
 
         /// <inheritdoc/>
-        public AccountViewModel SelectedAccount { get; }
+        public AccountViewModel SelectedAccount { get; } = null!;
 
         /// <inheritdoc/>
         public RelayCommand SaveCommand { get; } = null!;

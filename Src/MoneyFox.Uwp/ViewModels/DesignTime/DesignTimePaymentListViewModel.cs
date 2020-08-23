@@ -13,7 +13,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
     {
         public IBalanceViewModel BalanceViewModel => new DesignTimeBalanceViewViewModel();
 
-        public IPaymentListViewActionViewModel ViewActionViewModel { get; }
+        public IPaymentListViewActionViewModel ViewActionViewModel { get; } = null!;
 
         public AsyncCommand InitializeCommand { get; } = null!;
 
@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             }
         };
 
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; }
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; } = null!;
 
         public string Title => "Sparkonto";
 

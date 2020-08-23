@@ -29,13 +29,13 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             PaymentRecurrence.Yearly
         };
 
-        public PaymentViewModel SelectedPayment { get; }
+        public PaymentViewModel SelectedPayment { get; } = null!;
 
-        public string AmountString { get; }
+        public string AmountString { get; } = "";
 
-        public ObservableCollection<AccountViewModel> ChargedAccounts { get; }
+        public ObservableCollection<AccountViewModel> ChargedAccounts { get; } = null!;
 
-        public ObservableCollection<AccountViewModel> TargetAccounts { get; }
+        public ObservableCollection<AccountViewModel> TargetAccounts { get; } = null!;
 
         public string Title { get; } = "My Title";
 

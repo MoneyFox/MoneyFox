@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public RelayCommand DeleteCommand { get; } = null!;
 
-        public CategoryViewModel SelectedCategory { get; }
+        public CategoryViewModel SelectedCategory { get; } = null!;
 
         public bool IsEdit { get; }
     }
