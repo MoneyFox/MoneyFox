@@ -11,6 +11,8 @@ using Xamarin.Essentials;
 using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
 
+#nullable enable
+
 namespace MoneyFox.iOS
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the
@@ -19,7 +21,7 @@ namespace MoneyFox.iOS
     [Register("AppDelegate")]
     public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
-        private Logger logManager;
+        private Logger? logManager;
 
         //
         // This method is invoked when the application has loaded and is ready to run. In this

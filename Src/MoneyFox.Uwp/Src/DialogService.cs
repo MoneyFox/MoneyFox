@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp.Src
 {
     public class DialogService : IDialogService
     {
-        private LoadingDialog loadingDialog;
+        private LoadingDialog? loadingDialog;
 
         /// <summary>
         /// Show a dialog with two buttons with customizable Texts. Returns the answer.
