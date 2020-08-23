@@ -150,6 +150,21 @@
         </Setter>
     </Style>
 
+    <Style x:Key="FloutItemStyle" TargetType="Grid">
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Selected">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="Accent"/>
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
     <!-- ContentPage -->
     <Style TargetType="Page" ApplyToDerivedTypes="True">
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"/>

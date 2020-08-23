@@ -14,6 +14,23 @@
        Title="MoneyFox"
        mc:Ignorable="d">
 
+    <Shell.ItemTemplate>
+        <DataTemplate >
+            <Grid Style="{StaticResource FloutItemStyle}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*" />
+                    <ColumnDefinition Width="0.8*" />
+                </Grid.ColumnDefinitions>
+                <Image Source="{Binding FlyoutIcon}"
+                       Margin="5"
+                       HeightRequest="25" />
+                <Label Grid.Column="1"
+                       Text="{Binding Title}"
+                       VerticalTextAlignment="Center" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
     <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}"
                 FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
         <Tab>
