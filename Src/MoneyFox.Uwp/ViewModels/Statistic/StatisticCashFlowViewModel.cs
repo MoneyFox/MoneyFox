@@ -12,7 +12,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     /// </summary>
     public class StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
     {
-        private ObservableCollection<StatisticEntry> statisticItems;
+        private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
 
         public StatisticCashFlowViewModel(IMediator mediator,
                                           ISettingsFacade settingsFacade) : base(mediator, settingsFacade)

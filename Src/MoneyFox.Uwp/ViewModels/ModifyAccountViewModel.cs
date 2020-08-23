@@ -61,7 +61,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        private string amountString;
+        private string amountString = "";
 
         public string AmountString
         {

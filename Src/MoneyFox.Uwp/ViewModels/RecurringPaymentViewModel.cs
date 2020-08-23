@@ -15,7 +15,7 @@ namespace MoneyFox.Uwp.ViewModels
         private bool isEndless;
         private PaymentType type;
         private PaymentRecurrence recurrence;
-        private string note;
+        private string note = "";
 
         private AccountViewModel chargedAccount;
         private CategoryViewModel categoryViewModel;

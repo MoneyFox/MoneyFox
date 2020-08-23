@@ -37,7 +37,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly ISettingsFacade settingsFacade;
 
         private int accountId;
-        private IBalanceViewModel balanceViewModel;
+        private IBalanceViewModel balanceViewModel = null!;
 
         private string title = "";
         private IPaymentListViewActionViewModel viewActionViewModel;

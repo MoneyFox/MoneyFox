@@ -17,6 +17,6 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Selected category.
         /// </summary>
-        CategoryViewModel SelectedCategory { get; }
+        CategoryViewModel? SelectedCategory { get; }
     }
 }
