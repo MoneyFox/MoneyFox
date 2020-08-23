@@ -9,7 +9,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
+    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Accounts"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">

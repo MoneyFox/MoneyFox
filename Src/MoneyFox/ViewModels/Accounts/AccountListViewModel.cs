@@ -10,6 +10,7 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Common;
 using MoneyFox.Extensions;
 using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Views.Accounts;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

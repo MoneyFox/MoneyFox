@@ -189,7 +189,6 @@
     <Compile Include="ViewModels\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\AccountListViewModel.cs" />
-    <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddCategoryViewModel.cs" />
     <Compile Include="ViewModels\AddPaymentViewModel.cs" />

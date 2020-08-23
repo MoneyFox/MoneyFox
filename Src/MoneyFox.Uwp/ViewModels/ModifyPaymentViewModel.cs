@@ -17,6 +17,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using MoneyFox.Messages;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 
 namespace MoneyFox.Uwp.ViewModels
 {

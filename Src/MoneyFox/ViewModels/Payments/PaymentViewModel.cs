@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using System;
 

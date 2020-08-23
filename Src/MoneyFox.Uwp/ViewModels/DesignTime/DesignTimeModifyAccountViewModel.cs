@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {

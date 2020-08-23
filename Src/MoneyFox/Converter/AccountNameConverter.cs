@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application;
-using MoneyFox.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System;
 using System.Globalization;
 using Xamarin.Forms;

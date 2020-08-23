@@ -12,8 +12,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
     xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Accounts"
     DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 

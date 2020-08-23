@@ -11,7 +11,7 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Extensions;
 using MoneyFox.Messages;
-using MoneyFox.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using NLog;
 using System;

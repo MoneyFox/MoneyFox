@@ -3,13 +3,13 @@
     x:Class="MoneyFox.Views.Accounts.AccountListPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
     xmlns:theme="clr-namespace:MoneyFox"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:converter="clr-namespace:MoneyFox.Converter"
+    xmlns:accounts="clr-namespace:MoneyFox.Ui.Shared.ViewModels.Accounts;assembly=MoneyFox.Ui.Shared"
     Shell.NavBarHasShadow="False"
     mc:Ignorable="d">
 

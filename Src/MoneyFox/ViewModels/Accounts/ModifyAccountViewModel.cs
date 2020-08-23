@@ -4,6 +4,7 @@ using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts

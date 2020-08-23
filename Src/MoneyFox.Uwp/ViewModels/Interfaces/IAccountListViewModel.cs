@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System.Collections.ObjectModel;
 
 namespace MoneyFox.Uwp.ViewModels.Interfaces

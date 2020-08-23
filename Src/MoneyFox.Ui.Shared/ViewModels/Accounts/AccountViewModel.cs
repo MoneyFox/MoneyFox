@@ -3,17 +3,14 @@ using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 using System;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Ui.Shared.ViewModels.Accounts
 {
-    /// <summary>
-    /// Representation of an account view.
-    /// </summary>
     public class AccountViewModel : ViewModelBase, IMapFrom<Account>
     {
-        private const decimal DECIMAL_DELTA = 0.01m;
         private int id;
         private string name = "";
         private decimal currentBalance;
+        private decimal endOfMonthBalance;
         private string note = "";
         private bool isOverdrawn;
         private bool isExcluded;
@@ -58,9 +55,20 @@ namespace MoneyFox.Uwp.ViewModels
             get => currentBalance;
             set
             {
-                if(Math.Abs(currentBalance - value) < DECIMAL_DELTA)
-                    return;
                 currentBalance = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Balance End of Month
+        /// </summary>
+        public decimal EndOfMonthBalance
+        {
+            get => endOfMonthBalance;
+            set
+            {
+                endOfMonthBalance = value;
                 RaisePropertyChanged();
             }
         }
@@ -115,7 +123,8 @@ namespace MoneyFox.Uwp.ViewModels
             get => creationTime;
             set
             {
-                if(creationTime == value) return;
+                if(creationTime == value)
+                    return;
                 creationTime = value;
                 RaisePropertyChanged();
             }
@@ -126,7 +135,8 @@ namespace MoneyFox.Uwp.ViewModels
             get => modificationDate;
             set
             {
-                if(modificationDate == value) return;
+                if(modificationDate == value)
+                    return;
                 modificationDate = value;
                 RaisePropertyChanged();
             }
@@ -142,7 +152,7 @@ namespace MoneyFox.Uwp.ViewModels
             unchecked
             {
                 var hashCode = 7;
-                hashCode = (hashCode * 397) ^ id.GetHashCode();
+                hashCode = hashCode * 397 ^ id.GetHashCode();
 
                 return hashCode;
             }
