@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Ui.Shared.ViewModels.Settings
 {
-    public class SettingsViewModel : ViewModelBase
+    public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;

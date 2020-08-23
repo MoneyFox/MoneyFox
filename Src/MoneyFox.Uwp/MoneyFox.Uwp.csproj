@@ -204,13 +204,9 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeRegionalSettingsViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsBackgroundJobViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsPersonalizationViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeSettingsViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
@@ -240,14 +236,9 @@
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\SelectFilterDialogViewModel.cs" />
-    <Compile Include="ViewModels\Settings\IRegionalSettingsViewModel.cs" />
-    <Compile Include="ViewModels\Settings\ISettingsBackgroundJobViewModel.cs" />
-    <Compile Include="ViewModels\Settings\ISettingsPersonalizationViewModel.cs" />
-    <Compile Include="ViewModels\Settings\ISettingsViewModel.cs" />
-    <Compile Include="ViewModels\Settings\RegionalSettingsViewModel.cs" />
-    <Compile Include="ViewModels\Settings\SettingsBackgroundJobViewModel.cs" />
-    <Compile Include="ViewModels\Settings\SettingsPersonalizationViewModel.cs" />
-    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\DesignTimeWindowsSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\IWindowsSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\WindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCategorySummaryViewModel.cs" />
@@ -303,9 +294,6 @@
     </Compile>
     <Compile Include="Views\Settings\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Settings\RegionalSettingsUserControl.xaml.cs">
-      <DependentUpon>RegionalSettingsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -518,10 +506,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Settings\AboutView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Settings\RegionalSettingsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

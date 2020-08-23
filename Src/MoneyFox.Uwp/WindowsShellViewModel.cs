@@ -101,7 +101,7 @@ namespace MoneyFox.Uwp
             if(args.IsSettingsInvoked)
             {
                 Logger.Info("Navigate to settings");
-                NavigationService.Navigate(nameof(SettingsViewModel));
+                NavigationService.Navigate(nameof(WindowsSettingsViewModel));
 
                 return;
             }
