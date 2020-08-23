@@ -91,9 +91,9 @@ namespace MoneyFox.Ui.Shared.ViewModels.About
             await emailAdapter.SendEmailAsync(Strings.FeedbackSubject,
                                               string.Empty,
                                               new List<string>
-                { AppConstants.SupportMail },
+                                              { AppConstants.SupportMail },
                                               new List<string>
-                { Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName) });
+                                              { Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName) });
         }
 
         private void RateApp()
