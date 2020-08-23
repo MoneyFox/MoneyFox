@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Messages;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.ViewModels.Categories
 {

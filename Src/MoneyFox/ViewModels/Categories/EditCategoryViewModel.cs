@@ -4,6 +4,7 @@ using MoneyFox.Application.Categories.Command.UpdateCategory;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Categories

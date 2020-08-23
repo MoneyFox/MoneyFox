@@ -3,6 +3,7 @@ using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System;
 
 namespace MoneyFox.Uwp.ViewModels

@@ -9,6 +9,7 @@ using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {

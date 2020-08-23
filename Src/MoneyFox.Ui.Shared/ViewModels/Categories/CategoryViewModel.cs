@@ -1,9 +1,9 @@
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 using System;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Ui.Shared.ViewModels.Categories
 {
     public class CategoryViewModel : ViewModelBase, IMapFrom<Category>
     {
@@ -37,21 +37,6 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        /// <summary>
-        /// Additional details about the CategoryViewModel
-        /// </summary>
-        public string Note
-        {
-            get => note;
-            set
-            {
-                if(note == value)
-                    return;
-                note = value;
-                RaisePropertyChanged();
-            }
-        }
-
         public DateTime CreationTime
         {
             get => creationTime;
@@ -76,19 +61,18 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        public override bool Equals(object obj)
+        /// <summary>
+        /// Additional details about the CategoryViewModel
+        /// </summary>
+        public string Note
         {
-            return (obj as CategoryViewModel)?.Id == Id;
-        }
-
-        public override int GetHashCode()
-        {
-            unchecked
+            get => note;
+            set
             {
-                var hashCode = 7;
-                hashCode = (hashCode * 397) ^ id.GetHashCode();
-
-                return hashCode;
+                if(note == value)
+                    return;
+                note = value;
+                RaisePropertyChanged();
             }
         }
     }

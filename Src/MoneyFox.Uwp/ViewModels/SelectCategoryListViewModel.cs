@@ -3,6 +3,7 @@ using MediatR;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Messages;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {

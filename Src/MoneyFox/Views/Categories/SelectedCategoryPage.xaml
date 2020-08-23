@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:categories="clr-namespace:MoneyFox.ViewModels.Categories"
              xmlns:theme="clr-namespace:MoneyFox"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:categories="clr-namespace:MoneyFox.Ui.Shared.ViewModels.Categories;assembly=MoneyFox.Ui.Shared"
              mc:Ignorable="d"
              Visual="Material"
              x:Class="MoneyFox.Views.Categories.SelectCategoryPage">

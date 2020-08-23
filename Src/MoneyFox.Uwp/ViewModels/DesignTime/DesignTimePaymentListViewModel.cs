@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.ObjectModel;

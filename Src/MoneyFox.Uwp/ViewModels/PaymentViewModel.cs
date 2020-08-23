@@ -15,6 +15,7 @@ using System.Diagnostics.CodeAnalysis;
 using Xamarin.Forms;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {
