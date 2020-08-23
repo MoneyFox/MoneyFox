@@ -343,7 +343,7 @@
     <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur crowdin et aider à améliorer Money Fox :</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>Il n’y a pas de comptes. Ajoutez en un en appuyant sur le bouton "+" en bas.</value>
+    <value>There are no Accounts to display.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Créer une sauvegarde</value>
@@ -466,7 +466,7 @@
     <value>Résumé des catégories</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>Il n'y a pas de catégories à afficher. Appuyez sur le bouton plus pour en ajouter une.</value>
+    <value>There are no categories to display. </value>
   </data>
   <data name="NoStatisticItemsMessage" xml:space="preserve">
     <value>Il n'y a pas d'éléments statistiques dans la période sélectionnée.</value>
@@ -493,7 +493,7 @@
     <value>Récurrence</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>Il n’y a aucun paiement. Ajoutez en un en appuyant sur le bouton "+" en bas.</value>
+    <value>There are no Payments. Add one by tapping on the plus button.</value>
   </data>
   <data name="AboutSettingsDescription" xml:space="preserve">
     <value>Informations de support sur cette application.</value>
@@ -683,5 +683,59 @@
   </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
     <value>Aucune entrée sélectionnée. Choisissez une entrée dans la liste pour voir les paiements pour celle-ci.</value>
+  </data>
+  <data name="AssetsLabel" xml:space="preserve">
+    <value>Assets</value>
+  </data>
+  <data name="BudgetsLabel" xml:space="preserve">
+    <value>Budgets</value>
+  </data>
+  <data name="EndOfMonthLabel" xml:space="preserve">
+    <value>End Of Month:</value>
+  </data>
+  <data name="GoToAccountsLabel" xml:space="preserve">
+    <value>Go to Accounts</value>
+  </data>
+  <data name="GoToBudgetsLabel" xml:space="preserve">
+    <value>Go to Budgets</value>
+  </data>
+  <data name="IncomeAndExpensesLabel" xml:space="preserve">
+    <value>Income and Expenses</value>
+  </data>
+  <data name="WelcomeLabel" xml:space="preserve">
+    <value>Welcome!</value>
+  </data>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0:d}</value>
+  </data>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0:d}</value>
+  </data>
+  <data name="EarnedSpentTemplateLabel" xml:space="preserve">
+    <value>Earned: {0:c} - Spent: {1:c}</value>
+  </data>
+  <data name="DashboardTitle" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="EditPaymentTitle" xml:space="preserve">
+    <value>EditPayment</value>
+  </data>
+  <data name="AutobackupTitle" xml:space="preserve">
+    <value>Autobackup</value>
+  </data>
+  <data name="BackupServiceTitle" xml:space="preserve">
+    <value>Backup Service</value>
+  </data>
+  <data name="BackupRestoredMessage" xml:space="preserve">
+    <value>Backup restored successfully.</value>
+  </data>
+  <data name="BackupCreatedMessage" xml:space="preserve">
+    <value>Backup created successfully</value>
+  </data>
+  <data name="SelectStatisticTitle" xml:space="preserve">
+    <value>Select Statistic</value>
+  </data>
+  <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
+    <value>Expense {1} / Income: {0}</value>
   </data>
 </root>
