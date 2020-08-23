@@ -4,10 +4,10 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeSettingsViewModel : ISettingsViewModel
     {
-        public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; }
+        public ISettingsBackgroundJobViewModel BackgroundJobViewModel { get; } = null!;
 
-        public ISettingsPersonalizationViewModel PersonalizationViewModel { get; }
+        public ISettingsPersonalizationViewModel PersonalizationViewModel { get; } = null!;
 
-        public IRegionalSettingsViewModel RegionalSettingsViewModel { get; }
+        public IRegionalSettingsViewModel RegionalSettingsViewModel { get; } = null!;
     }
 }

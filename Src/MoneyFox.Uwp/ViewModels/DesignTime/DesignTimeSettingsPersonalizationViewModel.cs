@@ -7,6 +7,6 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
     {
         public string ElementTheme { get; }
 
-        public ICommand SwitchThemeCommand { get; }
+        public ICommand SwitchThemeCommand { get; } = null!;
     }
 }

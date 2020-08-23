@@ -2,6 +2,6 @@
 {
     public class DesignTimeSelectCategoryListViewModel : ISelectCategoryListViewModel
     {
-        public CategoryViewModel SelectedCategory { get; }
+        public CategoryViewModel SelectedCategory { get; } = new CategoryViewModel();
     }
 }

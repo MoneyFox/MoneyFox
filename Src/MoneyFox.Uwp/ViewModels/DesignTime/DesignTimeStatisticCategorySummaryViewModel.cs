@@ -31,11 +31,9 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             }
         };
 
-
-
         public bool HasData { get; } = true;
 
-        public AsyncCommand LoadedCommand { get; }
-        public AsyncCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand { get; }
+        public AsyncCommand LoadedCommand { get; } = null!;
+        public AsyncCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand { get; } = null!;
     }
 }
