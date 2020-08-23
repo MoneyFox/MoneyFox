@@ -14,7 +14,7 @@ namespace MoneyFox.ViewModels.Statistics
     /// <summary>
     /// Representation of the category Spreading View
     /// </summary>
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
+    public class StatisticCategorySpreadingViewModel : MobileStatisticViewModel
     {
         private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
                                                     ? "Lobster-Regular" : null;

@@ -245,7 +245,6 @@
     <Compile Include="ViewModels\Statistic\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticViewModel.cs" />
     <Compile Include="Views\AccountList\AccountListToolbar.xaml.cs">
       <DependentUpon>AccountListToolbar.xaml</DependentUpon>
     </Compile>

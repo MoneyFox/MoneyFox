@@ -1,4 +1,4 @@
-﻿using MoneyFox.Ui.Shared.Commands;
+﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
@@ -9,10 +9,8 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
     public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
     {
         /// <inheritdoc/>
-        public IncomeExpenseBalanceViewModel IncomeExpenseBalance
-        {
-            get;
-        } = new IncomeExpenseBalanceViewModel { TotalEarned = 400, TotalSpent = 600 };
+        public IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; set; }
+            = new IncomeExpenseBalanceViewModel { TotalEarned = 400, TotalSpent = 600 };
 
         public ObservableCollection<CategoryOverviewViewModel> CategorySummary
                                                                => new ObservableCollection<CategoryOverviewViewModel>
@@ -33,7 +31,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public bool HasData { get; } = true;
 
-        public AsyncCommand LoadedCommand { get; } = null!;
-        public AsyncCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand { get; } = null!;
+        public RelayCommand LoadedCommand { get; } = null!;
+        public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand { get; } = null!;
     }
 }

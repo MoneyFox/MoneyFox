@@ -14,7 +14,7 @@ using Xamarin.Forms;
 namespace MoneyFox.ViewModels.Statistics
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
-    public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
+    public class StatisticCategorySummaryViewModel : MobileStatisticViewModel
     {
         private readonly ILogger logger = LogManager.GetCurrentClassLogger();
 

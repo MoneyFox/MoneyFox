@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using GalaSoft.MvvmLight.Command;
+using MediatR;
 using Microcharts;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using SkiaSharp;
@@ -11,8 +12,7 @@ namespace MoneyFox.ViewModels.Statistics
     /// <summary>
     /// Representation of the cash flow view.
     /// </summary>
-    public class
-        StatisticCashFlowViewModel : StatisticViewModel, IStatisticCashFlowViewModel
+    public class StatisticCashFlowViewModel : MobileStatisticViewModel
     {
         private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
                                                         ? "Lobster-Regular"
