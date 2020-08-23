@@ -343,7 +343,7 @@
     <value>Quelque chose n'est pas traduit correctement ou n'est pas traduit du tout ? Aidez-nous ! Rendez-vous sur crowdin et aider à améliorer Money Fox :</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts to display.</value>
+    <value>Il n'y a aucun compte à afficher.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>Créer une sauvegarde</value>
@@ -466,7 +466,7 @@
     <value>Résumé des catégories</value>
   </data>
   <data name="NoCategoriesMessage" xml:space="preserve">
-    <value>There are no categories to display. </value>
+    <value>Il n'y a aucune catégorie à afficher.</value>
   </data>
   <data name="NoStatisticItemsMessage" xml:space="preserve">
     <value>Il n'y a pas d'éléments statistiques dans la période sélectionnée.</value>
@@ -493,7 +493,7 @@
     <value>Récurrence</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button.</value>
+    <value>Il n’y a aucun paiement. Ajoutez en un en appuyant sur le bouton "+".</value>
   </data>
   <data name="AboutSettingsDescription" xml:space="preserve">
     <value>Informations de support sur cette application.</value>
@@ -685,34 +685,34 @@
     <value>Aucune entrée sélectionnée. Choisissez une entrée dans la liste pour voir les paiements pour celle-ci.</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
-    <value>Assets</value>
+    <value>Documents</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
     <value>Budgets</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>End Of Month:</value>
+    <value>Fin du mois</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Go to Accounts</value>
+    <value>Accéder aux comptes</value>
   </data>
   <data name="GoToBudgetsLabel" xml:space="preserve">
-    <value>Go to Budgets</value>
+    <value>Accéder aux budgets</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
-    <value>Income and Expenses</value>
+    <value>Revenus et Dépenses</value>
   </data>
   <data name="WelcomeLabel" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Bienvenue!</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0:d}</value>
+    <value>Date de création : {0:d}</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0:d}</value>
+    <value>Date de modification : {0:d}</value>
   </data>
   <data name="EarnedSpentTemplateLabel" xml:space="preserve">
-    <value>Earned: {0:c} - Spent: {1:c}</value>
+    <value>Gagné: {0:c} - Dépensé: {1:c}</value>
   </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Dashboard</value>
