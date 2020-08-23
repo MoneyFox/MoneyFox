@@ -38,9 +38,9 @@ steps:
     arguments: '--configuration $(BuildConfiguration) --collect "Code coverage"'
 
 - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
-  displayName: 'Replace tokens in Src/MoneyFox.Presentation/'
+  displayName: 'Replace tokens in Src/MoneyFox/'
   inputs:
-    sourcePath: Src/MoneyFox.Presentation
+    sourcePath: Src/MoneyFox
     filePattern: App.config
 
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-AndroidManifest-Task.VersionAndroidManifest@2
