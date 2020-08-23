@@ -20,11 +20,11 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             }
         };
 
-        public AsyncCommand AppearingCommand { get; }
+        public AsyncCommand AppearingCommand { get; } = null!;
 
-        public RelayCommand<CategoryViewModel> ItemClickCommand { get; }
+        public RelayCommand<CategoryViewModel> ItemClickCommand { get; } = null!;
 
-        public AsyncCommand<string> SearchCommand { get; }
+        public AsyncCommand<string> SearchCommand { get; } = null!;
 
         public CategoryViewModel SelectedCategory { get; set; }
 
