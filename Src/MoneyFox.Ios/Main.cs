@@ -1,5 +1,7 @@
-﻿using UIKit;
+﻿using Foundation;
+using UIKit;
 
+[assembly: Preserve(typeof(System.Linq.Queryable), AllMembers = true)]
 namespace MoneyFox.iOS
 {
     public class Application
