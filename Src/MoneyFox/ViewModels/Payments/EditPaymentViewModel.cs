@@ -27,8 +27,8 @@ namespace MoneyFox.ViewModels.Payments
 
         public async Task InitializeAsync(int paymentId)
         {
-            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
             await base.InitializeAsync();
+            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
         }
 
         protected override async Task SavePaymentAsync()
