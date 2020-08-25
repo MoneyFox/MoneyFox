@@ -12,10 +12,10 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Uwp.Services;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Xamarin.Forms;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
+using GalaSoft.MvvmLight.Command;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -316,12 +316,12 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Opens the Edit Dialog for the passed Payment
         /// </summary>
-        public Command EditPaymentCommand => new Command(EditPayment);
+        public RelayCommand EditPaymentCommand => new RelayCommand(EditPayment);
 
         /// <summary>
         /// Deletes the passed PaymentViewModel.
         /// </summary>
-        public Command<PaymentViewModel> DeletePaymentCommand => new Command<PaymentViewModel>(DeletePayment);
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(DeletePayment);
 
         private void EditPayment()
         {

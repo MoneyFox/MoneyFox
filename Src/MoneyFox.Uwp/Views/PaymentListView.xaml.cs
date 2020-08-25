@@ -5,6 +5,7 @@ using MoneyFox.Uwp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using Windows.UI.Xaml;
@@ -54,12 +55,14 @@ namespace MoneyFox.Uwp.Views
 
         private void DataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            var groups = from c in ViewModel.Payments
-                            group c by c.Date;
+            List<DateListGroupCollection<PaymentViewModel>> groupedPayments = DateListGroupCollection<PaymentViewModel>
+                .CreateGroups(ViewModel.Payments,
+                                s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                s => s.Date);
 
             var cvs = new CollectionViewSource();
             cvs.IsSourceGrouped = true;
-            cvs.Source = groups;
+            cvs.Source = groupedPayments;
 
             GroupView = cvs.View;
         }
