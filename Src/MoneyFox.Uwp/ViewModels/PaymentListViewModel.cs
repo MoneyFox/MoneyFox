@@ -6,18 +6,16 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
-using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using GalaSoft.MvvmLight.Command;
-using System.Collections.ObjectModel;
 using Windows.UI.Xaml.Data;
-using System.Linq;
+using MoneyFox.Ui.Shared.Groups;
+using System.Globalization;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -121,6 +119,21 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
+        private CollectionViewSource groupedPayments;
+
+        /// <summary>
+        /// Returns grouped related payments
+        /// </summary>
+        public CollectionViewSource GroupedPayments
+        {
+            get => groupedPayments;
+            private set
+            {
+                groupedPayments = value;
+                RaisePropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Returns the name of the account title for the current page
         /// </summary>
@@ -180,6 +193,17 @@ namespace MoneyFox.Uwp.ViewModels
                                                                                   IsClearedFilterActive = filterMessage.IsClearedFilterActive,
                                                                                   IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
                                                                               }));
+
+            List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
+                .CreateGroups(Payments,
+                                s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                s => s.Date);
+
+            var source = new CollectionViewSource();
+            source.IsSourceGrouped = true;
+            source.Source = group;
+
+            GroupedPayments = source;
         }
     }
 }
