@@ -135,9 +135,6 @@
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Transferências</value>
   </data>
-  <data name="BackupLabel" xml:space="preserve">
-    <value>Copia de segurança</value>
-  </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Fluxo de caixa</value>
   </data>
@@ -207,12 +204,6 @@
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Estatísticas</value>
   </data>
-  <data name="SuccessTitle" xml:space="preserve">
-    <value>Successo!</value>
-  </data>
-  <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Tarefa foi concluída com sucesso.</value>
-  </data>
   <data name="EditTransferTitle" xml:space="preserve">
     <value>Editar transferência</value>
   </data>
@@ -276,9 +267,6 @@ Você deseja ir à loja para avaliar?</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
     <value>Editar categoria</value>
-  </data>
-  <data name="CategoriesLabel" xml:space="preserve">
-    <value>Categorias</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
     <value>Receitas, despesas e ganho para o período de tempo selecionado.</value>
@@ -425,9 +413,6 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>O backup falhou!</value>
   </data>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>Sobre</value>
-  </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
     <value>Ocorreu um erro</value>
   </data>
@@ -470,18 +455,6 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   <data name="NoCategoriesMessage" xml:space="preserve">
     <value>There are no categories to display. </value>
   </data>
-  <data name="NoStatisticItemsMessage" xml:space="preserve">
-    <value>Não há itens estatísticos no intervalo de tempo selecionado.</value>
-  </data>
-  <data name="BackupSettingsDescription" xml:space="preserve">
-    <value>Criar e restaurar backups.</value>
-  </data>
-  <data name="CategoriesSettingsDescription" xml:space="preserve">
-    <value>Adicionar e modificar categorias.</value>
-  </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Adicionar</value>
-  </data>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Add Account</value>
   </data>
@@ -496,9 +469,6 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>There are no Payments. Add one by tapping on the plus button.</value>
-  </data>
-  <data name="AboutSettingsDescription" xml:space="preserve">
-    <value>Apoie informações sobre este app.</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>E-mail</value>
@@ -539,25 +509,7 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   <data name="AddCategoryLabel" xml:space="preserve">
     <value>Adicionar categoria</value>
   </data>
-  <data name="BackgroundJobLabel" xml:space="preserve">
-    <value>Trabalhos em Segundo Plano</value>
-  </data>
-  <data name="BackgroundJobSettingDescription" xml:space="preserve">
-    <value>Configurar o intervalo de execução para tarefa em segundo plano.</value>
-  </data>
-  <data name="BackgroundJobTitle" xml:space="preserve">
-    <value>Trabalhos em Segundo Plano</value>
-  </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalização</value>
-  </data>
-  <data name="PersonalizationInfoLabel" xml:space="preserve">
-    <value>Escolha entre um escuro ou um tema de luz. Por favor, reinicie o aplicativo através do Gerenciador de Tarefas para aplicar sua seleção.</value>
-  </data>
-  <data name="SettingsPersonalizationDescription" xml:space="preserve">
-    <value>Escolha a opção de sua preferência.</value>
-  </data>
-  <data name="SettingsPersonalizationLabel" xml:space="preserve">
     <value>Personalização</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
@@ -626,12 +578,6 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   <data name="DefaultRegionText" xml:space="preserve">
     <value>This region will be used as a default for your application.</value>
   </data>
-  <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
-  </data>
-  <data name="RegionalSettingsDescriptionText" xml:space="preserve">
-    <value>Set region settings for your application.</value>
-  </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>O montante não pode ser negativo. Se ele for subtraído ou adicionado será determinado pelo tipo de pagamento que você criar.</value>
   </data>
@@ -674,9 +620,6 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Payments for Category</value>
   </data>
-  <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
-    <value>There are no Payments for this category in this time frame.</value>
-  </data>
   <data name="CreationDateLabel" xml:space="preserve">
     <value>Creation Date:</value>
   </data>
@@ -707,20 +650,8 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   <data name="WelcomeLabel" xml:space="preserve">
     <value>Welcome!</value>
   </data>
-  <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0:d}</value>
-  </data>
-  <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0:d}</value>
-  </data>
-  <data name="EarnedSpentTemplateLabel" xml:space="preserve">
-    <value>Earned: {0:c} - Spent: {1:c}</value>
-  </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Dashboard</value>
-  </data>
-  <data name="EditPaymentTitle" xml:space="preserve">
-    <value>EditPayment</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
@@ -739,5 +670,11 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense {1} / Income: {0}</value>
+  </data>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0}</value>
+  </data>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0}</value>
   </data>
 </root>
