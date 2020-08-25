@@ -610,6 +610,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRangeHeader {
+            get {
+                return ResourceManager.GetString("DateRangeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default Region.
         /// </summary>
         public static string DefaultRegionHeader {

@@ -1,6 +1,8 @@
 ﻿using MoneyFox.Uwp.ViewModels;
+using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views
@@ -28,6 +30,13 @@ namespace MoneyFox.Uwp.Views
         private void AppBarToggleButton_Click(object sender, RoutedEventArgs e)
         {
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
+        }
+
+        private void dg_loadingRowGroup(object sender, Microsoft.Toolkit.Uwp.UI.Controls.DataGridRowGroupHeaderEventArgs e)
+        {
+            ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
+            var item = group.GroupItems[0] as PaymentViewModel;
+            e.RowGroupHeader.PropertyValue = item.Date.ToString("D", CultureInfo.CurrentCulture);
         }
     }
 }

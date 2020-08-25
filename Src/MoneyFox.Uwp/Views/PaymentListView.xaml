@@ -78,16 +78,15 @@
         <!--<userControls:PaymentListUserControl Grid.Row="2" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />-->
 
         <controls:DataGrid ItemsSource="{x:Bind ViewModel.GroupedPayments.View, Mode=OneWay}"
-                           AutoGenerateColumns="True"
                            Grid.Row="2"
-                           RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateLabel}">
+                           AutoGenerateColumns="False"
+                           LoadingRowGroup="dg_loadingRowGroup"
+                           RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
-            <controls:DataGrid.RowGroupHeaderStyles>
-                <!-- Override the default Style for groups headers -->
-                <Style TargetType="controls:DataGridRowGroupHeader">
-                    <Setter Property="Background" Value="DarkGray" />
-                </Style>
-            </controls:DataGrid.RowGroupHeaderStyles>
+            <controls:DataGrid.Columns>
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Amount}" />
+            </controls:DataGrid.Columns>
 
         </controls:DataGrid>
 
