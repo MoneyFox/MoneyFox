@@ -15,7 +15,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using GalaSoft.MvvmLight.Command;
-using Windows.UI.Xaml.Data;
+using System.Collections.ObjectModel;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -38,7 +38,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private string title = "";
         private IPaymentListViewActionViewModel viewActionViewModel;
-        private CollectionViewSource payments = new CollectionViewSource();
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
 
         /// <summary>
         /// Default constructor
@@ -109,7 +109,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Returns grouped related payments
         /// </summary>
-        public CollectionViewSource PaymentViewSource
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> GroupedPayments
         {
             get => payments;
             private set
@@ -185,8 +185,7 @@ namespace MoneyFox.Uwp.ViewModels
                                 s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                                 s => s.Date);
 
-            PaymentViewSource.IsSourceGrouped = true;
-            PaymentViewSource.Source = groupedPayments;
+            GroupedPayments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(groupedPayments);
         }
     }
 }

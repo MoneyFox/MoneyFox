@@ -19,7 +19,9 @@ namespace MoneyFox.Uwp.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if(e.Parameter != null)
-                ViewModel.AccountId = (int) e.Parameter;
+            {
+                ViewModel.AccountId = (int)e.Parameter;
+            }
         }
 
         private void AppBarToggleButton_Click(object sender, RoutedEventArgs e)

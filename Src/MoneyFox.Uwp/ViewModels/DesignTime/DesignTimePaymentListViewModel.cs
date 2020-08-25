@@ -5,7 +5,6 @@ using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
-using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
@@ -22,10 +21,9 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public RelayCommand<PaymentViewModel> DeletePaymentCommand { get; } = null!;
 
-        public CollectionViewSource PaymentViewSource => new CollectionViewSource
+        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> GroupedPayments => new ObservableCollection<DateListGroupCollection<PaymentViewModel>>
         {
-            IsSourceGrouped = true,
-            Source = new DateListGroupCollection<PaymentViewModel>("Januar 1992")
+            new DateListGroupCollection<PaymentViewModel>("Januar 1992")
             {
                 new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
                 new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },

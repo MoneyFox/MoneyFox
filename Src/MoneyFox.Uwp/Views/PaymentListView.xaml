@@ -45,6 +45,12 @@
                 </ListBoxItem>
             </ListBox>
         </Flyout>
+
+        <CollectionViewSource
+            x:Key="PaymentViewSource"
+            IsSourceGrouped="True"
+            Source="{Binding GroupedPayments}" />
+
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
@@ -76,13 +82,9 @@
 
         <!--<userControls:PaymentListUserControl Grid.Row="2" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />-->
 
-        <controls:DataGrid ItemsSource="{Binding PaymentViewSource.View}" Grid.Row="2">
-            <controls:DataGrid.RowGroupHeaderStyles>
-                <!-- Override the default Style for groups headers -->
-                <Style TargetType="controls:DataGridRowGroupHeader">
-                    <Setter Property="Background" Value="LightGray" />
-                </Style>
-            </controls:DataGrid.RowGroupHeaderStyles>
+        <controls:DataGrid ItemsSource="{Binding PaymentViewSource}"
+                           AutoGenerateColumns="True"
+                           Grid.Row="2">
 
         </controls:DataGrid>
     </Grid>
