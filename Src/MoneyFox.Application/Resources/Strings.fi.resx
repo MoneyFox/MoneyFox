@@ -135,9 +135,6 @@
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Siirto</value>
   </data>
-  <data name="BackupLabel" xml:space="preserve">
-    <value>Varmuuskopio</value>
-  </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Rahavirta</value>
   </data>
@@ -207,12 +204,6 @@
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Tilastot</value>
   </data>
-  <data name="SuccessTitle" xml:space="preserve">
-    <value>Onnistui!</value>
-  </data>
-  <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>Tehtävä suoritettiin onnistuneesti.</value>
-  </data>
   <data name="EditTransferTitle" xml:space="preserve">
     <value>Muokkaa tilisiirtoa</value>
   </data>
@@ -275,9 +266,6 @@
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
     <value>Muokkaa kategoriaa</value>
-  </data>
-  <data name="CategoriesLabel" xml:space="preserve">
-    <value>Kategoriat</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
     <value>Tulot, kulut ja saannit valitulle aikajaksolle.</value>
@@ -424,9 +412,6 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>Varmuuskopiointi epäonnistui!</value>
   </data>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>Tietoa</value>
-  </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
     <value>Tapahtui virhe</value>
   </data>
@@ -469,18 +454,6 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   <data name="NoCategoriesMessage" xml:space="preserve">
     <value>There are no categories to display. </value>
   </data>
-  <data name="NoStatisticItemsMessage" xml:space="preserve">
-    <value>Näytettäviä kohteita ei ole valitulle ajanjaksolle.</value>
-  </data>
-  <data name="BackupSettingsDescription" xml:space="preserve">
-    <value>Luo ja palauta varmuuskopioita.</value>
-  </data>
-  <data name="CategoriesSettingsDescription" xml:space="preserve">
-    <value>Lisätä ja muokkaa kategorioita.</value>
-  </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Lisää</value>
-  </data>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Add Account</value>
   </data>
@@ -495,9 +468,6 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>There are no Payments. Add one by tapping on the plus button.</value>
-  </data>
-  <data name="AboutSettingsDescription" xml:space="preserve">
-    <value>Tukitietoja tästä applikaatiosta.</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Sähköposti</value>
@@ -538,25 +508,7 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   <data name="AddCategoryLabel" xml:space="preserve">
     <value>Lisää kategoria</value>
   </data>
-  <data name="BackgroundJobLabel" xml:space="preserve">
-    <value>Taustatyö</value>
-  </data>
-  <data name="BackgroundJobSettingDescription" xml:space="preserve">
-    <value>Määritä aikaväli taustalla suoritettaville tehtäville.</value>
-  </data>
-  <data name="BackgroundJobTitle" xml:space="preserve">
-    <value>Taustatyö</value>
-  </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Mukauttaminen</value>
-  </data>
-  <data name="PersonalizationInfoLabel" xml:space="preserve">
-    <value>Valitse tumma tai kirkas teema. Ole hyvä, ja käynnistä applikaatio uudelleen tehtävienhallinnasta.</value>
-  </data>
-  <data name="SettingsPersonalizationDescription" xml:space="preserve">
-    <value>Valitse haluamasi teema.</value>
-  </data>
-  <data name="SettingsPersonalizationLabel" xml:space="preserve">
     <value>Mukauttaminen</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
@@ -625,12 +577,6 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   <data name="DefaultRegionText" xml:space="preserve">
     <value>This region will be used as a default for your application.</value>
   </data>
-  <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
-  </data>
-  <data name="RegionalSettingsDescriptionText" xml:space="preserve">
-    <value>Set region settings for your application.</value>
-  </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
   </data>
@@ -673,9 +619,6 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Payments for Category</value>
   </data>
-  <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
-    <value>There are no Payments for this category in this time frame.</value>
-  </data>
   <data name="CreationDateLabel" xml:space="preserve">
     <value>Creation Date:</value>
   </data>
@@ -706,20 +649,8 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   <data name="WelcomeLabel" xml:space="preserve">
     <value>Welcome!</value>
   </data>
-  <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0:d}</value>
-  </data>
-  <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0:d}</value>
-  </data>
-  <data name="EarnedSpentTemplateLabel" xml:space="preserve">
-    <value>Earned: {0:c} - Spent: {1:c}</value>
-  </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Dashboard</value>
-  </data>
-  <data name="EditPaymentTitle" xml:space="preserve">
-    <value>EditPayment</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>
@@ -738,5 +669,11 @@ VAROITUS: Paikalliset muutokset jotka teit varmuuskopion jälkeen häviävät!</
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense {1} / Income: {0}</value>
+  </data>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0}</value>
+  </data>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0}</value>
   </data>
 </root>
