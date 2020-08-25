@@ -8,9 +8,9 @@ namespace MoneyFox.AutoMapper
         {
             // Auto Mapper Configurations
             var mappingConfig = new MapperConfiguration(mc =>
-                                                        {
-                                                            mc.AddProfile(new AutoMapperProfile());
-                                                        });
+            {
+                mc.AddProfile(new AutoMapperProfile());
+            });
 
             return mappingConfig.CreateMapper();
         }
