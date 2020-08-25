@@ -210,7 +210,7 @@
                                     FontFamily="Product"
                                     FontSize="18"
                                     HorizontalTextAlignment="Center"
-                                    Text="{Binding MonthlyIncomes, Converter={StaticResource AmountFormatConverter}}"
+                                    Text="{Binding MonthlyIncomes, StringFormat='+ {0:C}', Converter={StaticResource AmountFormatConverter}}"
                                     VerticalTextAlignment="Center" />
                             </Grid>
                         </yummy:PancakeView>
@@ -232,7 +232,7 @@
                                     FontFamily="Product"
                                     FontSize="18"
                                     HorizontalTextAlignment="Center"
-                                    Text="{Binding MonthlyExpenses, Converter={StaticResource AmountFormatConverter}}"
+                                    Text="{Binding MonthlyExpenses, StringFormat='- {0:C}', Converter={StaticResource AmountFormatConverter}}"
                                     VerticalTextAlignment="Center" />
                             </Grid>
                         </yummy:PancakeView>

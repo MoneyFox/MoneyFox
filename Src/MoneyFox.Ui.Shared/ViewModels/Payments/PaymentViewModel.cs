@@ -7,7 +7,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System;
 
-namespace MoneyFox.ViewModels.Payments
+namespace MoneyFox.Ui.Shared.ViewModels.Payments
 {
     public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
     {

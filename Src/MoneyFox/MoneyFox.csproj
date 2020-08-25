@@ -133,7 +133,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Groups\" />
     <Folder Include="Views\About\" />
   </ItemGroup>
 </Project>

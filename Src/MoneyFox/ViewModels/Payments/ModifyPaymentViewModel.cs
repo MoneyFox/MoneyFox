@@ -13,6 +13,7 @@ using MoneyFox.Extensions;
 using MoneyFox.Messages;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using NLog;
 using System;
 using System.Collections.Generic;
