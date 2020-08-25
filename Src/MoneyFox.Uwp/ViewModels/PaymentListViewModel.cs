@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
+using Windows.UI.Xaml.Data;
+using System.Linq;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -38,7 +40,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private string title = "";
         private IPaymentListViewActionViewModel viewActionViewModel;
-        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
+        private List<PaymentViewModel> payments = new List<PaymentViewModel>();
 
         /// <summary>
         /// Default constructor
@@ -109,7 +111,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Returns grouped related payments
         /// </summary>
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> GroupedPayments
+        public List<PaymentViewModel> Payments
         {
             get => payments;
             private set
@@ -171,21 +173,13 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
-
-            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
-                                                                                                                         filterMessage.TimeRangeStart,
-                                                                                                                         filterMessage.TimeRangeEnd)
-                                                                                        {
-                                                                                            IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                                                                                            IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-                                                                                        }));
-
-            List<DateListGroupCollection<PaymentViewModel>> groupedPayments = DateListGroupCollection<PaymentViewModel>
-                .CreateGroups(loadedPayments,
-                                s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                                s => s.Date);
-
-            GroupedPayments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(groupedPayments);
+            Payments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
+                                                                                                               filterMessage.TimeRangeStart,
+                                                                                                               filterMessage.TimeRangeEnd)
+                                                                              {
+                                                                                  IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                                                                                  IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+                                                                              }));
         }
     }
 }

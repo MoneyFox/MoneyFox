@@ -1,9 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
@@ -21,17 +20,12 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public RelayCommand<PaymentViewModel> DeletePaymentCommand { get; } = null!;
 
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> GroupedPayments => new ObservableCollection<DateListGroupCollection<PaymentViewModel>>
+        public List<PaymentViewModel> Payments => new List<PaymentViewModel>
         {
-            new DateListGroupCollection<PaymentViewModel>("Januar 1992")
-            {
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
-            }
+            new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
+            new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
+            new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
         };
-
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; } = null!;
 
         public string Title => "Sparkonto";
 

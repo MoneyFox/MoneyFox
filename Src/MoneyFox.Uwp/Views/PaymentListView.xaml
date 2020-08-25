@@ -53,11 +53,11 @@
 
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="40" />
+            <RowDefinition Height="80" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <CommandBar
@@ -82,7 +82,8 @@
 
         <!--<userControls:PaymentListUserControl Grid.Row="2" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />-->
 
-        <controls:DataGrid ItemsSource="{Binding PaymentViewSource}"
+        <controls:DataGrid ItemsSource="{x:Bind GroupView, Mode=TwoWay}"
+                           Loaded="DataGrid_Loaded"
                            AutoGenerateColumns="True"
                            Grid.Row="2">
 

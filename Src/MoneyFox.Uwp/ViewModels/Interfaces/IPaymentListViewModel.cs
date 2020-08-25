@@ -1,6 +1,5 @@
 using GalaSoft.MvvmLight.Command;
-using MoneyFox.Ui.Shared.Groups;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
@@ -14,7 +13,7 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
 
         RelayCommand LoadDataCommand { get; }
 
-        ObservableCollection<DateListGroupCollection<PaymentViewModel>> GroupedPayments { get; }
+        List<PaymentViewModel> Payments { get; }
 
         string Title { get; }
 
