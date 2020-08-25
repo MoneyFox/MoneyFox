@@ -1,24 +1,21 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using MediatR;
-using MoneyFox.Application;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
-using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
+using GalaSoft.MvvmLight.Command;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -41,8 +38,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private string title = "";
         private IPaymentListViewActionViewModel viewActionViewModel;
-        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source
-            = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
+        private CollectionViewSource payments = new CollectionViewSource();
 
         /// <summary>
         /// Default constructor
@@ -65,15 +61,9 @@ namespace MoneyFox.Uwp.ViewModels
             MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
         }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
+        public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
-        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadDataAsync);
-
-
-        /// <summary>
-        /// Indicator if there are payments or not.
-        /// </summary>
-        public bool IsPaymentsEmpty => Source != null && !Source.Any();
+        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadDataAsync());
 
         /// <summary>
         /// Id for the current account.
@@ -119,15 +109,13 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Returns grouped related payments
         /// </summary>
-        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
+        public CollectionViewSource PaymentViewSource
         {
-            get => source;
+            get => payments;
             private set
             {
-                source = value;
+                payments = value;
                 RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmpty));
             }
         }
 
@@ -183,6 +171,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
+
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                                                                          filterMessage.TimeRangeStart,
                                                                                                                          filterMessage.TimeRangeEnd)
@@ -191,36 +180,13 @@ namespace MoneyFox.Uwp.ViewModels
                                                                                             IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
                                                                                         }));
 
-            foreach(PaymentViewModel payment in loadedPayments)
-            {
-                payment.CurrentAccountId = AccountId;
-            }
+            List<DateListGroupCollection<PaymentViewModel>> groupedPayments = DateListGroupCollection<PaymentViewModel>
+                .CreateGroups(loadedPayments,
+                                s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                s => s.Date);
 
-            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-               .CreateGroups(loadedPayments,
-                             s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                             s => s.Date);
-
-            foreach(var dailyGroup in dailyItems)
-            {
-                var monthlyIncome = dailyGroup.Where(payment => payment.Type == PaymentType.Income
-                                                                || (payment.Type == PaymentType.Transfer && payment.TargetAccount.Id == AccountId))
-                                              .Sum(x => x.Amount);
-
-                var monthlyExpenses = dailyGroup.Where(payment => payment.Type == PaymentType.Expense
-                                                                  || (payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == AccountId))
-                                                .Sum(x => x.Amount);
-
-                dailyGroup.Subtitle = $"+{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
-            }
-
-            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
-                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(dailyItems,
-                                                                                                s =>
-                                                                                                {
-                                                                                                    var date = Convert.ToDateTime(s.Key,CultureInfo.CurrentCulture);
-                                                                                                    return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                                                                                                },s => Convert.ToDateTime(s.Key,CultureInfo.CurrentCulture)));
+            PaymentViewSource.IsSourceGrouped = true;
+            PaymentViewSource.Source = groupedPayments;
         }
     }
 }
