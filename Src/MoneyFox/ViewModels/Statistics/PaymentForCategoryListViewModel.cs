@@ -4,7 +4,7 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Ui.Shared.Groups;
-using MoneyFox.ViewModels.Payments;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Views.Payments;
 using NLog;
 using System.Collections.Generic;

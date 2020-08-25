@@ -5,7 +5,7 @@ using Xamarin.Forms;
 using System;
 using MoneyFox.Application;
 using MoneyFox.Domain;
-using MoneyFox.ViewModels.Payments;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 
 namespace MoneyFox.Converter
 {
