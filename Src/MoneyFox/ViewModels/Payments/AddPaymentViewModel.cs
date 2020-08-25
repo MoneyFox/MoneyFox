@@ -4,6 +4,7 @@ using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Domain.Entities;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Payments
@@ -25,6 +26,7 @@ namespace MoneyFox.ViewModels.Payments
         public new async Task InitializeAsync()
         {
             await base.InitializeAsync();
+            SelectedPayment.ChargedAccount = ChargedAccounts.FirstOrDefault();
         }
 
         protected override async Task SavePaymentAsync()

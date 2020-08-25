@@ -24,14 +24,12 @@
             <Picker Title="{x:Static resources:Strings.PaymentTypeLabel}"
                     ItemsSource="{Binding PaymentTypeList}"
                     SelectedItem="{Binding SelectedPayment.Type}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}">
-            </Picker>
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
 
             <Picker Title="{Binding AccountHeader}"
                     ItemsSource="{Binding ChargedAccounts}"
                     SelectedItem="{Binding SelectedPayment.ChargedAccount}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}">
-            </Picker>
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}" />
 
             <Picker Title="{x:Static resources:Strings.TargetAccountLabel}"
                     ItemsSource="{Binding TargetAccounts}"

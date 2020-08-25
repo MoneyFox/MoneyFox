@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -134,9 +134,6 @@
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Transfer</value>
-  </data>
-  <data name="BackupLabel" xml:space="preserve">
-    <value>Backup</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Flusso di cassa</value>
@@ -207,12 +204,6 @@
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Statistics</value>
   </data>
-  <data name="SuccessTitle" xml:space="preserve">
-    <value>Operazione riuscita!</value>
-  </data>
-  <data name="TaskSuccessfulMessage" xml:space="preserve">
-    <value>L'operazione è andata a buon fine.</value>
-  </data>
   <data name="EditTransferTitle" xml:space="preserve">
     <value>Modifica un trasferimento</value>
   </data>
@@ -276,9 +267,6 @@ Do you want to go the the store to rate?</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
     <value>Edit Category</value>
-  </data>
-  <data name="CategoriesLabel" xml:space="preserve">
-    <value>Categories</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
     <value>Income, expenses and gains for the selected time period.</value>
@@ -426,9 +414,6 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="BackupFailedTitle" xml:space="preserve">
     <value>Backup failed!</value>
   </data>
-  <data name="AboutLabel" xml:space="preserve">
-    <value>About</value>
-  </data>
   <data name="GeneralErrorTitle" xml:space="preserve">
     <value>An error occured</value>
   </data>
@@ -471,18 +456,6 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="NoCategoriesMessage" xml:space="preserve">
     <value>There are no categories to display. </value>
   </data>
-  <data name="NoStatisticItemsMessage" xml:space="preserve">
-    <value>There are no statistic items in the selected time range.</value>
-  </data>
-  <data name="BackupSettingsDescription" xml:space="preserve">
-    <value>Create and restore backups.</value>
-  </data>
-  <data name="CategoriesSettingsDescription" xml:space="preserve">
-    <value>Add and modify categories.</value>
-  </data>
-  <data name="AddTitle" xml:space="preserve">
-    <value>Add</value>
-  </data>
   <data name="AddAccountLabel" xml:space="preserve">
     <value>Add Account</value>
   </data>
@@ -497,9 +470,6 @@ ATTENZIONE: i dati locali saranno persi!</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
     <value>There are no Payments. Add one by tapping on the plus button.</value>
-  </data>
-  <data name="AboutSettingsDescription" xml:space="preserve">
-    <value>Support information about this app.</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
@@ -540,25 +510,7 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="AddCategoryLabel" xml:space="preserve">
     <value>Add Category</value>
   </data>
-  <data name="BackgroundJobLabel" xml:space="preserve">
-    <value>Background Job</value>
-  </data>
-  <data name="BackgroundJobSettingDescription" xml:space="preserve">
-    <value>Configure execution interval for background task.</value>
-  </data>
-  <data name="BackgroundJobTitle" xml:space="preserve">
-    <value>Background Job</value>
-  </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
-  </data>
-  <data name="PersonalizationInfoLabel" xml:space="preserve">
-    <value>Choose between a dark or a light theme. Please restart the app via the task manager to apply your selection.</value>
-  </data>
-  <data name="SettingsPersonalizationDescription" xml:space="preserve">
-    <value>Choose your prefered Theme.</value>
-  </data>
-  <data name="SettingsPersonalizationLabel" xml:space="preserve">
     <value>Personalization</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
@@ -627,12 +579,6 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="DefaultRegionText" xml:space="preserve">
     <value>This region will be used as a default for your application.</value>
   </data>
-  <data name="SettingsRegionalLabel" xml:space="preserve">
-    <value>Regional Settings</value>
-  </data>
-  <data name="RegionalSettingsDescriptionText" xml:space="preserve">
-    <value>Set region settings for your application.</value>
-  </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
   </data>
@@ -675,9 +621,6 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
     <value>Payments for Category</value>
   </data>
-  <data name="NoPaymentsForCategoryMessage" xml:space="preserve">
-    <value>There are no Payments for this category in this time frame.</value>
-  </data>
   <data name="CreationDateLabel" xml:space="preserve">
     <value>Creation Date:</value>
   </data>
@@ -708,20 +651,8 @@ ATTENZIONE: i dati locali saranno persi!</value>
   <data name="WelcomeLabel" xml:space="preserve">
     <value>Welcome!</value>
   </data>
-  <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0:d}</value>
-  </data>
-  <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0:d}</value>
-  </data>
-  <data name="EarnedSpentTemplateLabel" xml:space="preserve">
-    <value>Earned: {0:c} - Spent: {1:c}</value>
-  </data>
   <data name="DashboardTitle" xml:space="preserve">
     <value>Dashboard</value>
-  </data>
-  <data name="EditPaymentTitle" xml:space="preserve">
-    <value>EditPayment</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
     <value>Autobackup</value>

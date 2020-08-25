@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Payments
@@ -26,8 +27,8 @@ namespace MoneyFox.ViewModels.Payments
 
         public async Task InitializeAsync(int paymentId)
         {
-            SelectedPayment = mapper.Map<PaymentViewModel>(mediator.Send(new GetPaymentByIdQuery(paymentId)));
             await base.InitializeAsync();
+            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
         }
 
         protected override async Task SavePaymentAsync()
