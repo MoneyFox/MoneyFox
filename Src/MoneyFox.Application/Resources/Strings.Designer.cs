@@ -547,6 +547,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation Date: {0}.
+        /// </summary>
+        public static string CreationDateTemplateLabel {
+            get {
+                return ResourceManager.GetString("CreationDateTemplateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Balance.
         /// </summary>
         public static string CurrentBalanceLabel {
@@ -1174,6 +1183,15 @@ namespace MoneyFox.Application.Resources {
         public static string ModificationDateLabel {
             get {
                 return ResourceManager.GetString("ModificationDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modification Date: {0}.
+        /// </summary>
+        public static string ModificationDateTemplateLabel {
+            get {
+                return ResourceManager.GetString("ModificationDateTemplateLabel", resourceCulture);
             }
         }
         

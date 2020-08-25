@@ -17,14 +17,13 @@
 
                 <Label Style="{StaticResource TextHeadline}"
                        Text="{x:Static resources:Strings.AddPaymentLabel}" />
-
                 <payments:ModifyPaymentContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                   Text="{Binding SelectedAccount.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+                       Text="{Binding SelectedPayment.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                   Text="{Binding SelectedAccount.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+                       Text="{Binding SelectedPayment.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button x:Name="DeletePaymentButton"
                         Style="{StaticResource WarningButton}"
