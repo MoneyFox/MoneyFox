@@ -28,7 +28,7 @@
 
                 <Button x:Name="DeletePaymentButton"
                         Style="{StaticResource WarningButton}"
-                        Margin="0,12,0,0"
+                        Margin="0,12,0,12"
                         Command="{Binding DeleteCommand}"
                         Text="{x:Static resources:Strings.DeleteLabel}" />
             </StackLayout>
