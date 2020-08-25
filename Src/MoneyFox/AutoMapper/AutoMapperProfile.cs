@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System.Collections.Generic;
 
@@ -16,16 +15,9 @@ namespace MoneyFox.AutoMapper
 
         private void LoadStandardMappings()
         {
-            IList<Map> mapsFromNotShared = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
+            IList<Map> maps = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
 
-            foreach(Map map in mapsFromNotShared)
-            {
-                CreateMap(map.Source, map.Destination).ReverseMap();
-            }
-
-            IList<Map> mapsFromShared = MapperProfileHelper.LoadStandardMappings(typeof(AccountViewModel).Assembly);
-
-            foreach(Map map in mapsFromShared)
+            foreach(Map map in maps)
             {
                 CreateMap(map.Source, map.Destination).ReverseMap();
             }
@@ -33,16 +25,9 @@ namespace MoneyFox.AutoMapper
 
         private void LoadCustomMappings()
         {
-            IList<IHaveCustomMapping> mapsFromNotShared = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
+            IList<IHaveCustomMapping> maps = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
 
-            foreach(IHaveCustomMapping map in mapsFromNotShared)
-            {
-                map.CreateMappings(this);
-            }
-
-            IList<IHaveCustomMapping> mapsFromShared = MapperProfileHelper.LoadCustomMappings(typeof(AccountViewModel).Assembly);
-
-            foreach(IHaveCustomMapping map in mapsFromShared)
+            foreach(IHaveCustomMapping map in maps)
             {
                 map.CreateMappings(this);
             }
