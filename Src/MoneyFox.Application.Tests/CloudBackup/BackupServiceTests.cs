@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using FluentAssertions;
+using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
@@ -355,7 +356,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
 
             // Assert
             settingsFacadeMock.Object.LastDatabaseUpdate
-                                     .ShouldBeInRange(DateTime.Now.AddMinutes(-2), DateTime.Now);
+                                     .Should()
+                                     .BeBefore(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
