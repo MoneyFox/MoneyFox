@@ -1,0 +1,73 @@
+﻿<Page x:Class="MoneyFox.Uwp.Views.Statistics.StatisticSelectorView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:converter="using:MoneyFox.Uwp.Converter"
+      xmlns:resources="using:MoneyFox.Application.Resources"
+      xmlns:models="using:MoneyFox.Uwp.ViewModels.Statistic"
+      xmlns:designtime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+      mc:Ignorable="d"
+      DataContext="{Binding StatisticSelectorVm, Source={StaticResource Locator}}">
+
+    <d:MvxWindowsPage.DataContext>
+        <designtime:DesignTimeStatisticSelectorViewModel />
+    </d:MvxWindowsPage.DataContext>
+
+    <Page.Resources>
+        <converter:SelectedConverter x:Key="SelectedConverter" />
+
+        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
+            <StackPanel Background="{ThemeResource ListItemBrush}"
+                        HorizontalAlignment="Stretch"
+                        Margin="{StaticResource SmallListItemMargin}"
+                        Padding="{StaticResource SmallListItemPadding}">
+                <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
+                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                               Text="{x:Bind Name}"
+                               TextTrimming="CharacterEllipsis" />
+                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                               Text="{x:Bind Description}"
+                               TextWrapping="WrapWholeWords" />
+                </StackPanel>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{x:Bind resources:Strings.SelectStatisticTitle}"
+                   Style="{ThemeResource UwpPageTitleStyle}" />
+
+        <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"
+                  ItemsSource="{Binding StatisticItems}"
+                  Grid.Row="1"
+                  Margin="{StaticResource NegativeLargeLeftRightMargin}"
+                  HorizontalAlignment="Stretch"
+                  Background="Transparent">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}"
+                                              InputConverter="{StaticResource SelectedConverter}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment"
+                            Value="Stretch" />
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+        </ListView>
+
+    </Grid>
+</Page>

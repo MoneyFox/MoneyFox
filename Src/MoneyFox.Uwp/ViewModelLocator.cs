@@ -2,6 +2,7 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.ViewModels;
@@ -57,6 +58,8 @@ namespace MoneyFox.Uwp
         public static string StatisticCategorySpreading => nameof(StatisticCategorySpreadingViewModel);
 
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
+
+        public static string StatisticSelector => nameof(StatisticSelectorViewModel);
 
         //*****************
         //  Settings
