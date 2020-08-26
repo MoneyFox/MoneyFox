@@ -4,6 +4,7 @@ using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
@@ -25,6 +26,17 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
             new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
             new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
+        };
+
+        public CollectionViewSource GroupedPayments => new CollectionViewSource
+        {
+            IsSourceGrouped = true,
+            Source = new List<PaymentViewModel>
+            {
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
+            }
         };
 
         public string Title => "Sparkonto";

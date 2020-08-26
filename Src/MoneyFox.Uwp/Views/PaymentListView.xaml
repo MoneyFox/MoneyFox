@@ -29,6 +29,9 @@
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+
         <Flyout x:Key="FilterFlyout" Placement="Top">
             <ListBox SelectionMode="Multiple">
                 <ListBoxItem>
@@ -75,8 +78,6 @@
             Margin="{StaticResource MediumLeftRightMargin}"
             DataContext="{Binding BalanceViewModel}" />
 
-        <!--<userControls:PaymentListUserControl Grid.Row="2" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />-->
-
         <controls:DataGrid ItemsSource="{x:Bind ViewModel.GroupedPayments.View, Mode=OneWay}"
                            Grid.Row="2"
                            AutoGenerateColumns="False"
@@ -84,8 +85,8 @@
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Amount}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Amount, Converter={StaticResource PaymentAmountConverter}}" />
             </controls:DataGrid.Columns>
 
         </controls:DataGrid>
