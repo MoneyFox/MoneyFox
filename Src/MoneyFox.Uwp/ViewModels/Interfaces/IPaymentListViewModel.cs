@@ -1,5 +1,4 @@
 using GalaSoft.MvvmLight.Command;
-using System.Collections.Generic;
 using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.ViewModels.Interfaces
@@ -13,8 +12,6 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
         RelayCommand InitializeCommand { get; }
 
         RelayCommand LoadDataCommand { get; }
-
-        List<PaymentViewModel> Payments { get; }
 
         CollectionViewSource GroupedPayments { get; }
 

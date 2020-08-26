@@ -41,7 +41,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         private string title = "";
         private IPaymentListViewActionViewModel viewActionViewModel;
-        private List<PaymentViewModel> payments = new List<PaymentViewModel>();
 
         /// <summary>
         /// Default constructor
@@ -114,19 +113,6 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        /// <summary>
-        /// Returns grouped related payments
-        /// </summary>
-        public List<PaymentViewModel> Payments
-        {
-            get => payments;
-            private set
-            {
-                payments = value;
-                RaisePropertyChanged();
-            }
-        }
-
         private CollectionViewSource groupedPayments;
 
         /// <summary>
@@ -194,7 +180,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
-            Payments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
+            var payments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                                                                filterMessage.TimeRangeStart,
                                                                                                                filterMessage.TimeRangeEnd)
                                                                               {
@@ -203,7 +189,7 @@ namespace MoneyFox.Uwp.ViewModels
                                                                               }));
 
             List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
-                .CreateGroups(Payments,
+                .CreateGroups(payments,
                                 s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                                 s => s.Date);
 

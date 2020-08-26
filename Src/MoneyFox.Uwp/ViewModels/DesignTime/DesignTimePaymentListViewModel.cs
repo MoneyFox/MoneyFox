@@ -21,13 +21,6 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public RelayCommand<PaymentViewModel> DeletePaymentCommand { get; } = null!;
 
-        public List<PaymentViewModel> Payments => new List<PaymentViewModel>
-        {
-            new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
-            new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
-            new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
-        };
-
         public CollectionViewSource GroupedPayments => new CollectionViewSource
         {
             IsSourceGrouped = true,
