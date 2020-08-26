@@ -87,7 +87,7 @@
         <controls:DataGrid ItemsSource="{x:Bind ViewModel.GroupedPayments.View, Mode=OneWay}"
                            Grid.Row="2"
                            AutoGenerateColumns="False"
-                           LoadingRowGroup="dg_loadingRowGroup"
+                           LoadingRowGroup="DataGrid_LoadingRowGroup"
                            DoubleTapped="DataGrid_DoubleTapped"
                            IsReadOnly="True"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">

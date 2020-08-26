@@ -34,30 +34,23 @@ namespace MoneyFox.Uwp.Views
             FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
         }
 
-        private void dg_loadingRowGroup(object sender, Microsoft.Toolkit.Uwp.UI.Controls.DataGridRowGroupHeaderEventArgs e)
+        private void DataGrid_LoadingRowGroup(object sender, Microsoft.Toolkit.Uwp.UI.Controls.DataGridRowGroupHeaderEventArgs e)
         {
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
-            var item = group.GroupItems[0] as PaymentViewModel;
+            var item = (PaymentViewModel)group.GroupItems[0];
             e.RowGroupHeader.PropertyValue = item.Date.ToString("D", CultureInfo.CurrentCulture);
         }
 
         private async void DataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             var vm = (PaymentViewModel)((FrameworkElement)e.OriginalSource).DataContext;
-
-            if(vm != null)
-            {
-                await new EditPaymentView(vm.Id).ShowAsync();
-            }
+            await new EditPaymentView(vm.Id).ShowAsync();
         }
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            var vm = (sender as FrameworkElement).DataContext as PaymentViewModel;
-            if(vm != null)
-            {
-                ViewModel.DeletePaymentCommand.Execute(vm);
-            }
+            var vm = (PaymentViewModel) (sender as FrameworkElement).DataContext;
+            ViewModel.DeletePaymentCommand.Execute(vm);
         }
     }
 }
