@@ -51,9 +51,13 @@ namespace MoneyFox.Uwp.Views
             }
         }
 
-        private void DataGrid_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            var vm = (sender as FrameworkElement).DataContext as PaymentViewModel;
+            if(vm != null)
+            {
+                ViewModel.DeletePaymentCommand.Execute(vm);
+            }
         }
     }
 }

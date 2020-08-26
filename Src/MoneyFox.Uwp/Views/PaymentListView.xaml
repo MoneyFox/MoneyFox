@@ -89,7 +89,6 @@
                            AutoGenerateColumns="False"
                            LoadingRowGroup="dg_loadingRowGroup"
                            DoubleTapped="DataGrid_DoubleTapped"
-                           RightTapped="DataGrid_RightTapped"
                            IsReadOnly="True"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
@@ -98,7 +97,7 @@
                     <Setter Property="controls:DataGridRow.ContextFlyout">
                         <Setter.Value>
                             <MenuFlyout>
-                                <MenuFlyoutItem Text="Delete" />
+                                <MenuFlyoutItem Text="Delete" Icon="Delete" Click="MenuFlyoutItem_Click" />
                             </MenuFlyout>
                         </Setter.Value>
                     </Setter>
