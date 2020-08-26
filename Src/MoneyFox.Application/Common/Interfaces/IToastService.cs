@@ -4,6 +4,6 @@ namespace MoneyFox.Services
 {
     public interface IToastService
     {
-        Task ShowToastAsync(string title, string text);
+        Task ShowToastAsync(string message, string title = "");
     }
 }

@@ -13,12 +13,12 @@ namespace MoneyFox.Services
             this.toastNotificator = toastNotificator;
         }
 
-        public async Task ShowToastAsync(string title, string text)
+        public async Task ShowToastAsync(string message, string title = "")
         {
             var options = new NotificationOptions()
             {
                 Title = title,
-                Description = text
+                Description = message
             };
 
             await toastNotificator.Notify(options);

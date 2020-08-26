@@ -152,7 +152,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             await DownloadBackupAsync(backupMode);
             settingsFacade.LastDatabaseUpdate = DateTime.Now;
 
-            toastService.ShowToast(Strings.BackupRestoredMessage);
+            await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
             messenger.Send(new ReloadMessage());
         }
 
