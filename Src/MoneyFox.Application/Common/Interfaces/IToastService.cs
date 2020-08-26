@@ -1,7 +1,9 @@
-﻿namespace MoneyFox.Services
+﻿using System.Threading.Tasks;
+
+namespace MoneyFox.Services
 {
     public interface IToastService
     {
-        void ShowToast(string text);
+        Task ShowToastAsync(string message, string title = "");
     }
 }

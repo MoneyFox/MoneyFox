@@ -5,8 +5,10 @@ using MoneyFox.Common;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using Plugin.Toasts;
 using System.IO;
 using UIKit;
+using UserNotifications;
 using Xamarin.Essentials;
 using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
@@ -45,6 +47,9 @@ namespace MoneyFox.iOS
 
             UINavigationBar.Appearance.Translucent = false;
 
+            ToastNotification.Init();
+            RequestToastPermissions(uiApplication);
+
             return base.FinishedLaunching(uiApplication, launchOptions);
         }
 
@@ -55,15 +60,35 @@ namespace MoneyFox.iOS
             return true;
         }
 
+        private void RequestToastPermissions(UIApplication app)
+        {
+            // Request Permissions
+            if(UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            {
+                // Request Permissions
+                UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
+                {
+                    // Do something if needed
+                });
+            }
+            else if(UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            {
+                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+                UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+
+                app.RegisterUserNotificationSettings(notificationSettings);
+            }
+        }
+
         private void RegisterServices()
         {
-            logManager.Debug("Register Services.");
+            logManager?.Debug("Register Services.");
 
             var builder = new ContainerBuilder();
             builder.RegisterModule<IosModule>();
             ViewModelLocator.RegisterServices(builder);
 
-            logManager.Debug("Register Services finished.");
+            logManager?.Debug("Register Services finished.");
         }
 
         private void InitLogger()
