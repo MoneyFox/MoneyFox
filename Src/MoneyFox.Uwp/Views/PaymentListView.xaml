@@ -31,6 +31,8 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
+        <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
 
         <Flyout x:Key="FilterFlyout" Placement="Top">
             <ListBox SelectionMode="Multiple">
@@ -53,8 +55,8 @@
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="80" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -73,6 +75,10 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
+        <TextBlock Text="{Binding Title}"
+                   Grid.Row="0"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
         <userControls:BalanceControl
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
@@ -82,11 +88,39 @@
                            Grid.Row="2"
                            AutoGenerateColumns="False"
                            LoadingRowGroup="dg_loadingRowGroup"
+                           DoubleTapped="DataGrid_DoubleTapped"
+                           RightTapped="DataGrid_RightTapped"
+                           IsReadOnly="True"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
+            <controls:DataGrid.RowStyle>
+                <Style TargetType="controls:DataGridRow">
+                    <Setter Property="controls:DataGridRow.ContextFlyout">
+                        <Setter.Value>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Delete" />
+                            </MenuFlyout>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </controls:DataGrid.RowStyle>
+
             <controls:DataGrid.Columns>
+
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ChargedAccountLabel}" Binding="{Binding ChargedAccount.Name}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.TargetAccountLabel}" Binding="{Binding TargetAccount.Name}" />
+
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.PaymentTypeLabel}" Binding="{Binding Type, Converter={StaticResource PaymentTypeToStringConverter}}" />
                 <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Amount, Converter={StaticResource PaymentAmountConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Converter={StaticResource PaymentAmountConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}" Binding="{Binding Categoy.Name}" />
+
+                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsClearedLabel}" Binding="{Binding IsCleared}" />
+                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}" Binding="{Binding IsRecurring}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}" Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
+
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ModificationDateLabel}" Binding="{Binding ModificationDate, Converter={StaticResource DateTimeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CreationDateLabel}" Binding="{Binding CreationTime, Converter={StaticResource DateTimeToStringConverter}}" />
             </controls:DataGrid.Columns>
 
         </controls:DataGrid>

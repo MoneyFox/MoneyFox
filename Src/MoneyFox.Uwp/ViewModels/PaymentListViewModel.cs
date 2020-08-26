@@ -16,6 +16,9 @@ using GalaSoft.MvvmLight.Command;
 using Windows.UI.Xaml.Data;
 using MoneyFox.Ui.Shared.Groups;
 using System.Globalization;
+using MoneyFox.Application.Payments.Commands.DeletePaymentById;
+using MoneyFox.Application.Resources;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -64,6 +67,11 @@ namespace MoneyFox.Uwp.ViewModels
         public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadDataAsync());
+
+        /// <summary>
+        /// Deletes the passed PaymentViewModel.
+        /// </summary>
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(async (vm) => await DeletePayment(vm));
 
         /// <summary>
         /// Id for the current account.
@@ -204,6 +212,26 @@ namespace MoneyFox.Uwp.ViewModels
             source.Source = group;
 
             GroupedPayments = source;
+        }
+
+        private async Task DeletePayment(PaymentViewModel payment)
+        {
+            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                                                            Strings.DeletePaymentConfirmationMessage,
+                                                            Strings.YesLabel,
+                                                            Strings.NoLabel))
+                return;
+
+            var command = new DeletePaymentByIdCommand(payment.Id);
+
+            if(payment.IsRecurring)
+            {
+                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
+                                                                                             Strings.DeleteRecurringPaymentMessage);
+            }
+
+            await mediator.Send(command);
+            Messenger.Default.Send(new ReloadMessage());
         }
     }
 }

@@ -158,6 +158,7 @@
     <Compile Include="Converter\DecimalConverter.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
+    <Compile Include="Converter\PaymentTypeToStringConverter.cs" />
     <Compile Include="Converter\RecurrenceTypeConverter.cs" />
     <Compile Include="Converter\PaymentHeaderConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />

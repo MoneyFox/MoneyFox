@@ -1,8 +1,10 @@
 ﻿using MoneyFox.Uwp.ViewModels;
+using System;
 using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views
@@ -37,6 +39,21 @@ namespace MoneyFox.Uwp.Views
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
             var item = group.GroupItems[0] as PaymentViewModel;
             e.RowGroupHeader.PropertyValue = item.Date.ToString("D", CultureInfo.CurrentCulture);
+        }
+
+        private async void DataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        {
+            var vm = (PaymentViewModel)((FrameworkElement)e.OriginalSource).DataContext;
+
+            if(vm != null)
+            {
+                await new EditPaymentView(vm.Id).ShowAsync();
+            }
+        }
+
+        private void DataGrid_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
         }
     }
 }
