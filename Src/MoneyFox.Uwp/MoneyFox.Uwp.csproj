@@ -153,10 +153,12 @@
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ClickConverter.cs" />
     <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
+    <Compile Include="Converter\DateTimeToStringConverter.cs" />
     <Compile Include="Converter\DateVisibilityConverter.cs" />
     <Compile Include="Converter\DecimalConverter.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
+    <Compile Include="Converter\PaymentTypeToStringConverter.cs" />
     <Compile Include="Converter\RecurrenceTypeConverter.cs" />
     <Compile Include="Converter\PaymentHeaderConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
@@ -600,6 +602,9 @@
       <Version>6.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>6.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls.DataGrid">
       <Version>6.1.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">

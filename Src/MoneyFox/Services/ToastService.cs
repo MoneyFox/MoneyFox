@@ -17,7 +17,8 @@ namespace MoneyFox.Services
             var options = new NotificationOptions
             {
                 Title = title,
-                Description = message
+                Description = message,
+                ClearFromHistory = true
             };
 
             await toastNotificator.Notify(options);

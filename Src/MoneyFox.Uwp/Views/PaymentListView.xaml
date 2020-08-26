@@ -10,7 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-    xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:views="using:MoneyFox.Uwp.Views" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding PaymentListVm, Source={StaticResource Locator}}"
     NavigationCacheMode="Disabled"
@@ -29,6 +29,11 @@
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+        <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
+        <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
+
         <Flyout x:Key="FilterFlyout" Placement="Top">
             <ListBox SelectionMode="Multiple">
                 <ListBoxItem>
@@ -45,13 +50,14 @@
                 </ListBoxItem>
             </ListBox>
         </Flyout>
+
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True" >
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <CommandBar
@@ -69,23 +75,54 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
+        <TextBlock Text="{Binding Title}"
+                   Grid.Row="0"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
         <userControls:BalanceControl
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             DataContext="{Binding BalanceViewModel}" />
 
-        <userControls:PaymentListUserControl Grid.Row="2" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+        <controls:DataGrid ItemsSource="{x:Bind ViewModel.GroupedPayments.View, Mode=OneWay}"
+                           Grid.Row="2"
+                           AutoGenerateColumns="False"
+                           LoadingRowGroup="DataGrid_LoadingRowGroup"
+                           DoubleTapped="DataGrid_DoubleTapped"
+                           IsReadOnly="True"
+                           RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
-        <TextBlock
-            Grid.Row="1"
-            Margin="6"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            Foreground="{ThemeResource SystemBaseMediumLowColor}"
-            Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-            Text="{x:Bind resources:Strings.NoPaymentsMessage}"
-            TextWrapping="Wrap"
-            Visibility="{Binding IsPaymentsEmpty, Converter={StaticResource BooleanToVisibilityConverter}}" />
+            <controls:DataGrid.RowStyle>
+                <Style TargetType="controls:DataGridRow">
+                    <Setter Property="controls:DataGridRow.ContextFlyout">
+                        <Setter.Value>
+                            <MenuFlyout>
+                                <MenuFlyoutItem Text="Delete" Icon="Delete" Click="MenuFlyoutItem_Click" />
+                            </MenuFlyout>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </controls:DataGrid.RowStyle>
+
+            <controls:DataGrid.Columns>
+
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ChargedAccountLabel}" Binding="{Binding ChargedAccount.Name}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.TargetAccountLabel}" Binding="{Binding TargetAccount.Name}" />
+
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.PaymentTypeLabel}" Binding="{Binding Type, Converter={StaticResource PaymentTypeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Converter={StaticResource PaymentAmountConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}" Binding="{Binding Categoy.Name}" />
+
+                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsClearedLabel}" Binding="{Binding IsCleared}" />
+                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}" Binding="{Binding IsRecurring}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}" Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
+
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ModificationDateLabel}" Binding="{Binding ModificationDate, Converter={StaticResource DateTimeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CreationDateLabel}" Binding="{Binding CreationTime, Converter={StaticResource DateTimeToStringConverter}}" />
+            </controls:DataGrid.Columns>
+
+        </controls:DataGrid>
 
     </Grid>
 </views:BaseView>
