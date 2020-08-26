@@ -11,6 +11,7 @@ using MoneyFox.Extensions;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Views.Payments;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

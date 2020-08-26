@@ -28,7 +28,7 @@
     <ContentPage.Content>
         <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                              Light={StaticResource CardBackgroundLight}}"
-                           CornerRadius="20"
+                           CornerRadius="10"
                            VerticalOptions="Center"
                            HorizontalOptions="Center"
                            WidthRequest="300">
@@ -41,7 +41,7 @@
                 <Label Text="{Binding PopupTitle, Source={x:Reference ConfirmDialog}}" Style="{DynamicResource TextHead}" />
                 <Label Text="{Binding PopupMessage, Source={x:Reference ConfirmDialog}}" Style="{DynamicResource BaseLabel}" />
 
-                <Grid ColumnDefinitions="*, Auto, Auto">
+                <Grid ColumnDefinitions="*, Auto, 6, Auto">
                     <Button Text="{Binding PositiveText, Source={x:Reference ConfirmDialog}}"
                             Grid.Column="1"
                             VerticalOptions="End"
@@ -49,7 +49,7 @@
                             Style="{StaticResource LinkButton}" />
 
                     <Button Text="{Binding NegativeText,Source={x:Reference ConfirmDialog}}"
-                            Grid.Column="2"
+                            Grid.Column="3"
                             VerticalOptions="End"
                             Clicked="NegativeHandlerClicked"
                             Style="{StaticResource LinkButton}" />

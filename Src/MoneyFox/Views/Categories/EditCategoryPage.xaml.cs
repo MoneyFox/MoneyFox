@@ -8,9 +8,13 @@ namespace MoneyFox.Views.Categories
     {
         private EditCategoryViewModel ViewModel => (EditCategoryViewModel) BindingContext;
 
+        private int categoryId;
+
         public EditCategoryPage(int categoryId)
         {
             InitializeComponent();
+
+            this.categoryId = categoryId;
 
             var cancelItem = new ToolbarItem
             {
@@ -31,5 +35,7 @@ namespace MoneyFox.Views.Categories
             ToolbarItems.Add(cancelItem);
             ToolbarItems.Add(saveItem);
         }
+
+        protected override async void OnAppearing() => await ViewModel.InitializeAsync(categoryId);
     }
 }
