@@ -672,4 +672,10 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Expense {1} / Income: {0}</value>
   </data>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0}</value>
+  </data>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0}</value>
+  </data>
 </root>

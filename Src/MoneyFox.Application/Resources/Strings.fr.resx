@@ -669,4 +669,10 @@
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
     <value>Dépense {1} / Revenue: {0}</value>
   </data>
+  <data name="CreationDateTemplateLabel" xml:space="preserve">
+    <value>Creation Date: {0}</value>
+  </data>
+  <data name="ModificationDateTemplateLabel" xml:space="preserve">
+    <value>Modification Date: {0}</value>
+  </data>
 </root>
