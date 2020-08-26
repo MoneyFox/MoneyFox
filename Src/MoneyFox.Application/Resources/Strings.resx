@@ -681,4 +681,10 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="DateRangeHeader" xml:space="preserve">
     <value>Date Range</value>
   </data>
+  <data name="LoggedOutMessage" xml:space="preserve">
+    <value>Logged out successfully.</value>
+  </data>
+  <data name="LoggedOutTitle" xml:space="preserve">
+    <value>Logged out</value>
+  </data>
 </root>
