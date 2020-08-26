@@ -218,7 +218,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             try
             {
                 await backupService.UploadBackupAsync(BackupMode.Manual);
-                toastService.ShowToast(Strings.BackupCreatedMessage);
+                await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
 
                 BackupLastModified = DateTime.Now;
             }
@@ -253,7 +253,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             try
             {
                 await backupService.RestoreBackupAsync(BackupMode.Manual);
-                toastService.ShowToast(Strings.BackupRestoredMessage);
+                await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
             }
             catch(BackupOperationCanceledException)
             {

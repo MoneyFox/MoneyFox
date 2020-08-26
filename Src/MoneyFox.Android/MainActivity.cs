@@ -6,6 +6,7 @@ using Xamarin.Forms.Platform.Android;
 using Microsoft.Identity.Client;
 using Android.Content;
 using MoneyFox.Application.Common;
+using Plugin.Toasts;
 
 namespace MoneyFox.Droid
 {
@@ -28,6 +29,8 @@ namespace MoneyFox.Droid
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
+            ToastNotification.Init(this);
+
             LoadApplication(new App());
         }
 
