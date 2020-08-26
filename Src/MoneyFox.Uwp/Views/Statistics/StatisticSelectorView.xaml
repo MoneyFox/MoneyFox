@@ -22,8 +22,11 @@
         <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
             <StackPanel Background="{ThemeResource ListItemBrush}"
                         HorizontalAlignment="Stretch"
+                        Width="400"
+                        Height="60"
                         Margin="{StaticResource SmallListItemMargin}"
                         Padding="{StaticResource SmallListItemPadding}">
+
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
                     <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                Text="{x:Bind Name}"
@@ -38,6 +41,7 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition />
@@ -46,12 +50,11 @@
         <TextBlock Text="{x:Bind resources:Strings.SelectStatisticTitle}"
                    Style="{ThemeResource UwpPageTitleStyle}" />
 
-        <ListView ItemTemplate="{StaticResource StatistcTypeTemplate}"
+        <GridView ItemTemplate="{StaticResource StatistcTypeTemplate}"
                   ItemsSource="{Binding StatisticItems}"
                   Grid.Row="1"
-                  Margin="{StaticResource NegativeLargeLeftRightMargin}"
-                  HorizontalAlignment="Stretch"
                   Background="Transparent">
+
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
                     <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}"
@@ -59,15 +62,6 @@
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
 
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="HorizontalContentAlignment"
-                            Value="Stretch" />
-                    <Setter Property="VerticalContentAlignment"
-                            Value="Stretch" />
-                </Style>
-            </ListView.ItemContainerStyle>
-        </ListView>
-
+        </GridView>
     </Grid>
 </Page>
