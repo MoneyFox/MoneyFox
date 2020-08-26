@@ -1,5 +1,4 @@
-﻿using Plugin.Toast;
-using Plugin.Toasts;
+﻿using Plugin.Toasts;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Services
@@ -15,7 +14,7 @@ namespace MoneyFox.Services
 
         public async Task ShowToastAsync(string message, string title = "")
         {
-            var options = new NotificationOptions()
+            var options = new NotificationOptions
             {
                 Title = title,
                 Description = message
