@@ -1,11 +1,10 @@
-﻿using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.Groups;
+﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Xamarin.Forms;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
@@ -16,33 +15,27 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public IPaymentListViewActionViewModel ViewActionViewModel { get; } = null!;
 
-        public AsyncCommand InitializeCommand { get; } = null!;
+        public RelayCommand InitializeCommand { get; } = null!;
 
-        public Command<PaymentViewModel> EditPaymentCommand { get; } = null!;
+        public RelayCommand<PaymentViewModel> EditPaymentCommand { get; } = null!;
 
-        public Command<PaymentViewModel> DeletePaymentCommand { get; } = null!;
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand { get; } = null!;
 
-        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
-                                                                                                        => new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>
+        public CollectionViewSource GroupedPayments => new CollectionViewSource
         {
-            new DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>("Januar 1992")
+            IsSourceGrouped = true,
+            Source = new List<PaymentViewModel>
             {
-                new DateListGroupCollection<PaymentViewModel>("31.1.1992")
-                {
-                    new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" } },
-                    new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" } }
-                }
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
             }
         };
-
-        public ObservableCollection<DateListGroupCollection<PaymentViewModel>> DailyList { get; } = null!;
 
         public string Title => "Sparkonto";
 
         public int AccountId { get; } = 13;
 
-        public bool IsPaymentsEmpty { get; }
-
-        public AsyncCommand LoadDataCommand => throw new NotImplementedException();
+        public RelayCommand LoadDataCommand => throw new NotImplementedException();
     }
 }

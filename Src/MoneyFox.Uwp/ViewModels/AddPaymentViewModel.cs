@@ -23,7 +23,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         private readonly IMediator mediator;
         private readonly IMapper mapper;
-        private readonly INavigationService navigationService;
         private readonly IDialogService dialogService;
 
         public AddPaymentViewModel(IMediator mediator,
@@ -33,7 +32,6 @@ namespace MoneyFox.Uwp.ViewModels
         {
             this.mediator = mediator;
             this.mapper = mapper;
-            this.navigationService = navigationService;
             this.dialogService = dialogService;
         }
 
@@ -78,7 +76,6 @@ namespace MoneyFox.Uwp.ViewModels
                 }
 
                 await mediator.Send(new CreatePaymentCommand(payment));
-                navigationService.GoBack();
             }
             catch(InvalidEndDateException)
             {

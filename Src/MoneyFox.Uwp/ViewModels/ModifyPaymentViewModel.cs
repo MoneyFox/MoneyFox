@@ -252,9 +252,10 @@ namespace MoneyFox.Uwp.ViewModels
         private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if(SelectedPayment == null || message == null)
+            {
                 return;
-            SelectedPayment.Category =
-                mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+            }
+            SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
         }
 
         private void OpenSelectCategoryList()

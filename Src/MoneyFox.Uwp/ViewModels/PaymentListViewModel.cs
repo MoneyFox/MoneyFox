@@ -1,24 +1,24 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
 using MediatR;
-using MoneyFox.Application;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Uwp.Src;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
-using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
+using GalaSoft.MvvmLight.Command;
+using Windows.UI.Xaml.Data;
+using MoneyFox.Ui.Shared.Groups;
+using System.Globalization;
+using MoneyFox.Application.Payments.Commands.DeletePaymentById;
+using MoneyFox.Application.Resources;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -41,8 +41,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         private string title = "";
         private IPaymentListViewActionViewModel viewActionViewModel;
-        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source
-            = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
 
         /// <summary>
         /// Default constructor
@@ -65,15 +63,14 @@ namespace MoneyFox.Uwp.ViewModels
             MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
         }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
+        public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
-        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadDataAsync);
-
+        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadDataAsync());
 
         /// <summary>
-        /// Indicator if there are payments or not.
+        /// Deletes the passed PaymentViewModel.
         /// </summary>
-        public bool IsPaymentsEmpty => Source != null && !Source.Any();
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(async (vm) => await DeletePayment(vm));
 
         /// <summary>
         /// Id for the current account.
@@ -116,18 +113,18 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
+        private CollectionViewSource groupedPayments;
+
         /// <summary>
         /// Returns grouped related payments
         /// </summary>
-        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
+        public CollectionViewSource GroupedPayments
         {
-            get => source;
+            get => groupedPayments;
             private set
             {
-                source = value;
+                groupedPayments = value;
                 RaisePropertyChanged();
-                // ReSharper disable once ExplicitCallerInfoArgument
-                RaisePropertyChanged(nameof(IsPaymentsEmpty));
             }
         }
 
@@ -183,44 +180,44 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
-            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
-                                                                                                                         filterMessage.TimeRangeStart,
-                                                                                                                         filterMessage.TimeRangeEnd)
-                                                                                        {
-                                                                                            IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                                                                                            IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-                                                                                        }));
+            var payments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
+                                                                                                               filterMessage.TimeRangeStart,
+                                                                                                               filterMessage.TimeRangeEnd)
+                                                                              {
+                                                                                  IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                                                                                  IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+                                                                              }));
 
-            foreach(PaymentViewModel payment in loadedPayments)
+            List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
+                .CreateGroups(payments,
+                                s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                s => s.Date);
+
+            var source = new CollectionViewSource();
+            source.IsSourceGrouped = true;
+            source.Source = group;
+
+            GroupedPayments = source;
+        }
+
+        private async Task DeletePayment(PaymentViewModel payment)
+        {
+            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                                                            Strings.DeletePaymentConfirmationMessage,
+                                                            Strings.YesLabel,
+                                                            Strings.NoLabel))
+                return;
+
+            var command = new DeletePaymentByIdCommand(payment.Id);
+
+            if(payment.IsRecurring)
             {
-                payment.CurrentAccountId = AccountId;
+                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
+                                                                                             Strings.DeleteRecurringPaymentMessage);
             }
 
-            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-               .CreateGroups(loadedPayments,
-                             s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                             s => s.Date);
-
-            foreach(var dailyGroup in dailyItems)
-            {
-                var monthlyIncome = dailyGroup.Where(payment => payment.Type == PaymentType.Income
-                                                                || (payment.Type == PaymentType.Transfer && payment.TargetAccount.Id == AccountId))
-                                              .Sum(x => x.Amount);
-
-                var monthlyExpenses = dailyGroup.Where(payment => payment.Type == PaymentType.Expense
-                                                                  || (payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == AccountId))
-                                                .Sum(x => x.Amount);
-
-                dailyGroup.Subtitle = $"+{monthlyIncome.ToString("C", CultureHelper.CurrentCulture)} / -{monthlyExpenses.ToString("C", CultureHelper.CurrentCulture)}";
-            }
-
-            Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
-                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(dailyItems,
-                                                                                                s =>
-                                                                                                {
-                                                                                                    var date = Convert.ToDateTime(s.Key,CultureInfo.CurrentCulture);
-                                                                                                    return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                                                                                                },s => Convert.ToDateTime(s.Key,CultureInfo.CurrentCulture)));
+            await mediator.Send(command);
+            Messenger.Default.Send(new ReloadMessage());
         }
     }
 }

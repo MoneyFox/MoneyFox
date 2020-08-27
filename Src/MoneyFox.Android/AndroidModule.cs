@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Droid.Src;
+using Plugin.Toasts;
 
 namespace MoneyFox.Droid
 {
@@ -11,6 +12,7 @@ namespace MoneyFox.Droid
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
+            builder.RegisterType<ToastNotification>().AsImplementedInterfaces();
             builder.Register(c => new FileStoreIoBase(Android.App.Application.Context.FilesDir.Path)).AsImplementedInterfaces();
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
 
