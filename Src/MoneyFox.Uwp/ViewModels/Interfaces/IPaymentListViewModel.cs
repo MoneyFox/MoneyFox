@@ -1,6 +1,5 @@
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.Groups;
-using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Command;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
@@ -10,16 +9,14 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
 
         IPaymentListViewActionViewModel ViewActionViewModel { get; }
 
-        AsyncCommand InitializeCommand { get; }
+        RelayCommand InitializeCommand { get; }
 
-        AsyncCommand LoadDataCommand { get; }
+        RelayCommand LoadDataCommand { get; }
 
-        ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source { get; }
+        CollectionViewSource GroupedPayments { get; }
 
         string Title { get; }
 
         int AccountId { get; }
-
-        bool IsPaymentsEmpty { get; }
     }
 }

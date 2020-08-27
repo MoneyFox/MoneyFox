@@ -610,6 +610,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date Range.
+        /// </summary>
+        public static string DateRangeHeader {
+            get {
+                return ResourceManager.GetString("DateRangeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Default Region.
         /// </summary>
         public static string DefaultRegionHeader {
@@ -1120,6 +1129,24 @@ namespace MoneyFox.Application.Resources {
         public static string LoadingLabel {
             get {
                 return ResourceManager.GetString("LoadingLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logged out successfully..
+        /// </summary>
+        public static string LoggedOutMessage {
+            get {
+                return ResourceManager.GetString("LoggedOutMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logged out.
+        /// </summary>
+        public static string LoggedOutTitle {
+            get {
+                return ResourceManager.GetString("LoggedOutTitle", resourceCulture);
             }
         }
         

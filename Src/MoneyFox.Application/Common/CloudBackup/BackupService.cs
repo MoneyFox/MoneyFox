@@ -102,6 +102,8 @@ namespace MoneyFox.Application.Common.CloudBackup
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
 
+            await toastService.ShowToastAsync(Strings.LoggedOutMessage, Strings.LoggedOutTitle);
+
             logger.Info("Successfully logged in.");
         }
 
@@ -149,20 +151,24 @@ namespace MoneyFox.Application.Common.CloudBackup
                 throw new NetworkConnectionException();
             }
 
-            await DownloadBackupAsync(backupMode);
-            settingsFacade.LastDatabaseUpdate = DateTime.Now;
+            var result = await DownloadBackupAsync(backupMode);
 
-            await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
-            messenger.Send(new ReloadMessage());
+            if(result == BackupRestoreResult.NewBackupRestored)
+            {
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+
+                await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
+                messenger.Send(new ReloadMessage());
+            }
         }
 
-        private async Task DownloadBackupAsync(BackupMode backupMode)
+        private async Task<BackupRestoreResult> DownloadBackupAsync(BackupMode backupMode)
         {
             DateTime backupDate = await GetBackupDateAsync();
             if(settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
             {
                 logger.Info("Local backup is newer than remote. Don't download backup");
-                return;
+                return BackupRestoreResult.Canceled;
             }
 
             List<string> backups = await cloudBackupService.GetFileNamesAsync();
@@ -189,7 +195,11 @@ namespace MoneyFox.Application.Common.CloudBackup
 
                 logger.Info("Recreate database context.");
                 contextAdapter.RecreateContext();
+
+                return BackupRestoreResult.NewBackupRestored;
             }
+
+            return BackupRestoreResult.BackupNotFound;
         }
 
         public async Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic)
