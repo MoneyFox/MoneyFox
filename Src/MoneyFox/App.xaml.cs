@@ -9,7 +9,6 @@ using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
-using MoneyFox.Services;
 using NLog;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
@@ -47,7 +46,7 @@ namespace MoneyFox
             MainPage = new AppShell();
         }
 
-        protected override async void OnStart()
+        protected override void OnStart()
         {
             if(ConfigurationManager.AppSettings == null)
             {
@@ -56,9 +55,6 @@ namespace MoneyFox
 
             InitializeAppCenter();
             ExecuteStartupTasks();
-
-            var toaster = ServiceLocator.Current.GetInstance<IToastService>();
-            await toaster.ShowToastAsync("Foo");
         }
 
         protected override void OnResume() => ExecuteStartupTasks();
