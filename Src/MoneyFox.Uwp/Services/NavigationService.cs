@@ -6,6 +6,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
+#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     public class NavigationService : INavigationService
@@ -25,7 +26,7 @@ namespace MoneyFox.Uwp.Services
             {
                 if (frame == null)
                 {
-                    frame = Window.Current.Content as Frame;
+                    frame = (Frame)Window.Current.Content;
                     RegisterFrameEvents();
                 }
 
