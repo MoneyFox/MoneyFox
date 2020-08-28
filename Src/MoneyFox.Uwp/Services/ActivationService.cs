@@ -109,6 +109,7 @@ namespace MoneyFox.Uwp.Services
             nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryView));
             nav.Configure(ViewModelLocator.Backup, typeof(BackupView));
             nav.Configure(ViewModelLocator.About, typeof(AboutView));
+            nav.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorView));
 
             return nav;
         }

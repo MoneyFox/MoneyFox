@@ -6,7 +6,7 @@
     <Color x:Key="ColorPrimaryDark">#FF00165A</Color>
 
     <!--<Color x:Key="ColorCustomBackground">#c2c2c2</Color>-->
-    <Color x:Key="ColorCustomBackground">#FFEFF2F5</Color>
+    <Color x:Key="ColorCustomBackground">#EFF2F5</Color>
     <Color x:Key="ContentDialogBackgroundColor">#FFEFF2F5</Color>
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
@@ -15,7 +15,6 @@
     <Color x:Key="AppForegroundColorSecondary">#908e8c</Color>
 
     <Color x:Key="AppMenuForeground">White</Color>
-    <Color x:Key="CommandBarBackgroundColor">#e6e6e6</Color>
     <Color x:Key="ListItemColor">White</Color>
     <Color x:Key="WarningColor">#FFFF4500</Color>
 

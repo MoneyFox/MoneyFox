@@ -2,6 +2,7 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.ViewModels;
@@ -16,7 +17,9 @@ namespace MoneyFox.Uwp
         static ViewModelLocator()
         {
             if(!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
+            {
                 RegisterServices(new ContainerBuilder());
+            }
         }
 
         public static void RegisterServices(ContainerBuilder registrations)
@@ -24,7 +27,9 @@ namespace MoneyFox.Uwp
             IContainer container = registrations.Build();
 
             if(container != null)
+            {
                 ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
+            }
         }
 
         public static string AccountList => nameof(AccountListViewModel);
@@ -57,6 +62,8 @@ namespace MoneyFox.Uwp
         public static string StatisticCategorySpreading => nameof(StatisticCategorySpreadingViewModel);
 
         public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
+
+        public static string StatisticSelector => nameof(StatisticSelectorViewModel);
 
         //*****************
         //  Settings
@@ -104,6 +111,8 @@ namespace MoneyFox.Uwp
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
 
         public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+
+        public static StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
 
         //*****************
         //  Settings
