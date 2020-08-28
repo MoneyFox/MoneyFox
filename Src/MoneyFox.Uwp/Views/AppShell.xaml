@@ -33,17 +33,17 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <winui:NavigationView
-            x:Name="NavView"
-            Foreground="White"
-            AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame}"
-            Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
-            IsBackButtonVisible="Visible"
-            IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-            IsSettingsVisible="true"
-            OpenPaneLength="280"
-            PaneDisplayMode="Left"
-            SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
+        <winui:NavigationView x:Name="NavView"
+                              Foreground="White"
+                              AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame}"
+                              Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
+                              IsBackButtonVisible="Visible"
+                              IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+                              IsSettingsVisible="true"
+                              OpenPaneLength="280"
+                              PaneDisplayMode="Left"
+                              CompactModeThresholdWidth="0"
+                              SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
 
             <winui:NavigationView.MenuItems>
 
