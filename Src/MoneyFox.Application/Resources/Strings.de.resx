@@ -661,25 +661,25 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Sicherungsdienst</value>
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Backup restored successfully.</value>
+    <value>Sicherung erfolgreich wiederhergestellt.</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup created successfully</value>
+    <value>Backup erfolgreich erstellt</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Statistik auswählen</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense {1} / Income: {0}</value>
+    <value>Ausgaben {1} / Einnahmen: {0}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0}</value>
+    <value>Erstellungsdatum: {0}</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0}</value>
+    <value>Änderungsdatum: {0}</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
-    <value>Date Range</value>
+    <value>Zeitraum</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
     <value>Erfolgreich ausgeloggt.</value>
