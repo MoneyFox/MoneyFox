@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Persistence;
+using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.AutoMapper;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Src;
@@ -57,6 +58,16 @@ namespace MoneyFox.Uwp
                    .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .AsSelf();
+
+            builder.RegisterAssemblyTypes(typeof(BackupViewModel).Assembly)
+                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(typeof(BackupViewModel).Assembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsSelf();

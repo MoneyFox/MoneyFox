@@ -17,26 +17,33 @@
 
     <Page.Resources>
         <winmedia:AcrylicBrush
-            x:Key="NavigationViewTopPaneBackground"
+            x:Key="NavigationViewDefaultPaneBackground"
             BackgroundSource="HostBackdrop"
-            FallbackColor="{ThemeResource CommandBarBackgroundColor}"
-            TintColor="{ThemeResource CommandBarBackgroundColor}"
-            TintOpacity=".8" />
+            FallbackColor="#40537F"
+            TintColor="#40537F"
+            TintOpacity=".7" />
+
+        <winmedia:AcrylicBrush
+            x:Key="NavigationViewExpandedPaneBackground"
+            BackgroundSource="HostBackdrop"
+            FallbackColor="#40537F"
+            TintColor="#40537F"
+            TintOpacity=".7" />
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <winui:NavigationView
-            x:Name="NavView"
-            AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame}"
-            Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
-            IsBackButtonVisible="Visible"
-            IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-            IsSettingsVisible="false"
-            ItemInvoked="NavView_OnItemInvoked"
-            OpenPaneLength="280"
-            PaneDisplayMode="Top"
-            SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
+        <winui:NavigationView x:Name="NavView"
+                              Foreground="White"
+                              AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame}"
+                              Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
+                              IsBackButtonVisible="Visible"
+                              IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+                              IsSettingsVisible="true"
+                              OpenPaneLength="280"
+                              PaneDisplayMode="Left"
+                              CompactModeThresholdWidth="0"
+                              SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
 
             <winui:NavigationView.MenuItems>
 
@@ -46,60 +53,31 @@
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-                <winui:NavigationViewItem x:Name="openStatisticMenu" SelectsOnInvoked="False">
+                <winui:NavigationViewItem helpers:NavHelper.NavigateTo="StatisticSelectorViewModel" Content="{x:Bind resources:Strings.StatisticsTitle}">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome
                             HorizontalAlignment="Center"
                             FontSize="90"
                             Icon="BarChart" />
                     </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
 
-                    <winui:NavigationViewItem.Content>
-                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                            <TextBlock
-                                Margin="0"
-                                VerticalAlignment="Center"
-                                Text="{x:Bind resources:Strings.StatisticsTitle}" />
-                            <TextBlock
-                                Margin="6,0,0,0"
-                                VerticalAlignment="Center"
-                                AutomationProperties.AccessibilityView="Raw"
-                                FontFamily="Segoe MDL2 Assets"
-                                FontSize="12"
-                                Text="&#xE70D;" />
-                        </StackPanel>
-                    </winui:NavigationViewItem.Content>
+                <winui:NavigationViewItem helpers:NavHelper.NavigateTo="CategoryListViewModel" Content="{x:Bind resources:Strings.CategoriesTitle}">
+                    <winui:NavigationViewItem.Icon>
+                        <uwp:FontAwesome
+                            HorizontalAlignment="Center"
+                            FontSize="90"
+                            Icon="Tags" />
+                    </winui:NavigationViewItem.Icon>
+                </winui:NavigationViewItem>
 
-                    <FlyoutBase.AttachedFlyout>
-                        <MenuFlyout Placement="Bottom">
-                            <MenuFlyoutItem Click="CashFlowStatisticMenuClick" Text="{x:Bind resources:Strings.CashFlowStatisticTitle}">
-                                <MenuFlyoutItem.Icon>
-                                    <uwp:FontAwesome
-                                        HorizontalAlignment="Center"
-                                        FontSize="90"
-                                        Icon="BarChart" />
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-
-                            <MenuFlyoutItem Click="CategorySpreadingMenuClick" Text="{x:Bind resources:Strings.CategorySpreadingTitle}">
-                                <MenuFlyoutItem.Icon>
-                                    <uwp:FontAwesome
-                                        HorizontalAlignment="Center"
-                                        FontSize="90"
-                                        Icon="PieChart" />
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-
-                            <MenuFlyoutItem Click="CategorySummaryMenuClick" Text="{x:Bind resources:Strings.CategorySummaryTitle}">
-                                <MenuFlyoutItem.Icon>
-                                    <uwp:FontAwesome
-                                        HorizontalAlignment="Center"
-                                        FontSize="90"
-                                        Icon="List" />
-                                </MenuFlyoutItem.Icon>
-                            </MenuFlyoutItem>
-                        </MenuFlyout>
-                    </FlyoutBase.AttachedFlyout>
+                <winui:NavigationViewItem helpers:NavHelper.NavigateTo="BackupViewModel" Content="{x:Bind resources:Strings.BackupTitle}">
+                    <winui:NavigationViewItem.Icon>
+                        <uwp:FontAwesome
+                            HorizontalAlignment="Center"
+                            FontSize="90"
+                            Icon="CloudUpload" />
+                    </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
             </winui:NavigationView.MenuItems>
@@ -107,7 +85,7 @@
             <winui:NavigationView.PaneCustomContent>
                 <winui:NavigationViewItem
                     Padding="0,0,10,0"
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Left"
                     Content="{x:Bind resources:Strings.AddPaymentLabel}"
                     Tapped="AddPaymentItemTapped">
                     <winui:NavigationViewItem.Icon>
@@ -115,53 +93,6 @@
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
             </winui:NavigationView.PaneCustomContent>
-
-            <winui:NavigationView.PaneFooter>
-                <CommandBar Background="{StaticResource NavigationViewTopPaneBackground}">
-                    <AppBarButton
-                        x:Name="SettingsButton"
-                        Click="SettingsButton_OnClick"
-                        Icon="Setting">
-                        <FlyoutBase.AttachedFlyout>
-                            <MenuFlyout Placement="BottomEdgeAlignedRight">
-                                <MenuFlyoutItem Click="CategoriesMenuClick" Text="{x:Bind resources:Strings.CategoriesTitle}">
-                                    <MenuFlyoutItem.Icon>
-                                        <uwp:FontAwesome
-                                            HorizontalAlignment="Center"
-                                            FontSize="90"
-                                            Icon="Tags" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-
-                                <MenuFlyoutItem Click="BackupMenuClick" Text="{x:Bind resources:Strings.BackupTitle}">
-                                    <MenuFlyoutItem.Icon>
-                                        <uwp:FontAwesome
-                                            HorizontalAlignment="Center"
-                                            FontSize="90"
-                                            Icon="CloudUpload" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-
-                                <MenuFlyoutItem Click="SettingsMenuClick" Text="{x:Bind resources:Strings.SettingsTitle}">
-                                    <MenuFlyoutItem.Icon>
-                                        <FontIcon Glyph="&#xE713;" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-
-                                <MenuFlyoutItem Click="AboutMenuClick" Text="{x:Bind resources:Strings.AboutTitle}">
-                                    <MenuFlyoutItem.Icon>
-                                        <uwp:FontAwesome
-                                            HorizontalAlignment="Center"
-                                            FontSize="90"
-                                            Icon="Info" />
-                                    </MenuFlyoutItem.Icon>
-                                </MenuFlyoutItem>
-                            </MenuFlyout>
-                        </FlyoutBase.AttachedFlyout>
-
-                    </AppBarButton>
-                </CommandBar>
-            </winui:NavigationView.PaneFooter>
 
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemInvoked">

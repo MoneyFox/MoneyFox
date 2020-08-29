@@ -1,21 +1,30 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Xamarin.Forms;
+using MoneyFox.Uwp;
+using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.ViewModels.Statistic;
 
-namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     public class StatisticSelectorViewModel : ViewModelBase, IStatisticSelectorViewModel
     {
+        private readonly INavigationService navigationService;
+
         /// <summary>
-        /// All possible statistic to choose from
+        ///     Constructor
         /// </summary>
-        public List<StatisticSelectorType> StatisticItems
-                                           => new List<StatisticSelectorType>
+        public StatisticSelectorViewModel(INavigationService navigationService)
+        {
+            this.navigationService = navigationService;
+        }
+
+        /// <summary>
+        ///     All possible statistic to choose from
+        /// </summary>
+        public List<StatisticSelectorType> StatisticItems => new List<StatisticSelectorType>
         {
             new StatisticSelectorType
             {
@@ -38,24 +47,23 @@ namespace MoneyFox.ViewModels.Statistics
         };
 
         /// <summary>
-        /// Navigates to the statistic view and shows the selected statistic
+        ///     Navigates to the statistic view and shows the selected statistic
         /// </summary>
-        public RelayCommand<StatisticSelectorType> GoToStatisticCommand
-            => new RelayCommand<StatisticSelectorType>(async(s) => await GoToStatistic(s));
+        public RelayCommand<StatisticSelectorType> GoToStatisticCommand => new RelayCommand<StatisticSelectorType>(GoToStatistic);
 
-        private async Task GoToStatistic(StatisticSelectorType item)
+        private void GoToStatistic(StatisticSelectorType item)
         {
             if(item.Type == StatisticType.Cashflow)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCashFlowRoute);
+                navigationService.Navigate(ViewModelLocator.StatisticCashFlow);
             }
             else if(item.Type == StatisticType.CategorySpreading)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySpreadingRoute);
+                navigationService.Navigate(ViewModelLocator.StatisticCategorySpreading);
             }
             else if(item.Type == StatisticType.CategorySummary)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySummaryRoute);
+                navigationService.Navigate(ViewModelLocator.StatisticCategorySummary);
             }
         }
     }
