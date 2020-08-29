@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -45,11 +46,17 @@ namespace MoneyFox.ViewModels.Statistics
         private async Task GoToStatistic(StatisticSelectorType item)
         {
             if(item.Type == StatisticType.Cashflow)
+            {
                 await Shell.Current.GoToAsync(ViewModelLocator.StatisticCashFlowRoute);
+            }
             else if(item.Type == StatisticType.CategorySpreading)
+            {
                 await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySpreadingRoute);
+            }
             else if(item.Type == StatisticType.CategorySummary)
+            {
                 await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySummaryRoute);
+            }
         }
     }
 }
