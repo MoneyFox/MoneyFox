@@ -110,7 +110,7 @@
                 <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Converter={StaticResource PaymentAmountConverter}}" />
                 <controls:DataGridTextColumn Header="{x:Bind resources:Strings.TargetAccountLabel}" Binding="{Binding TargetAccount.Name}" />
 
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}" Binding="{Binding Categoy.Name}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}" Binding="{Binding Category.Name}" />
 
                 <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsClearedLabel}" Binding="{Binding IsCleared}" />
                 <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}" Binding="{Binding IsRecurring}" />
