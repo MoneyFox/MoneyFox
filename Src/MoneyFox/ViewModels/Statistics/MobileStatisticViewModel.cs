@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using GalaSoft.MvvmLight.Command;
+using MediatR;
 using MoneyFox.Common;
+using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System;
@@ -19,6 +21,13 @@ namespace MoneyFox.ViewModels.Statistics
             BackgroundColor = SKColor.Parse(ResourceHelper.GetCurrentBackgroundColor().ToHex());
         }
 
+        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async() => await ShowFilterDialog());
+
         protected SKColor BackgroundColor { get; }
+
+        private async void ShowFilterDialog()
+        {
+            await new FilterPopup().ShowAsync();
+        }
     }
 }
