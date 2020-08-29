@@ -43,14 +43,18 @@ namespace MoneyFox.Uwp.Views
 
         private async void DataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
-            var vm = (PaymentViewModel)((FrameworkElement)e.OriginalSource).DataContext;
-            await new EditPaymentView(vm.Id).ShowAsync();
+            if(((FrameworkElement)e.OriginalSource).DataContext is PaymentViewModel vm)
+            {
+                await new EditPaymentView(vm.Id).ShowAsync();
+            }
         }
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            var vm = (PaymentViewModel) (sender as FrameworkElement).DataContext;
-            ViewModel.DeletePaymentCommand.Execute(vm);
+            if((sender as FrameworkElement).DataContext is PaymentViewModel vm)
+            {
+                ViewModel.DeletePaymentCommand.Execute(vm);
+            }
         }
     }
 }
