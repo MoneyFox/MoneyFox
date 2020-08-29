@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using MediatR;
+﻿using MediatR;
 using Microcharts;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using SkiaSharp;
