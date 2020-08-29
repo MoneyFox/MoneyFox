@@ -5,6 +5,7 @@ using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System;
+using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Statistics
 {
@@ -25,7 +26,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected SKColor BackgroundColor { get; }
 
-        private async void ShowFilterDialog()
+        private async Task ShowFilterDialog()
         {
             await new FilterPopup().ShowAsync();
         }
