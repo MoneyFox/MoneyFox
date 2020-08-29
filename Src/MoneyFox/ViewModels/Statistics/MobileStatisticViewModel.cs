@@ -28,7 +28,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         private async Task ShowFilterDialog()
         {
-            await new FilterPopup().ShowAsync();
+            await new DateSelectionPopup().ShowAsync();
         }
     }
 }
