@@ -7,7 +7,6 @@ using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Common;
 using MoneyFox.Extensions;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;

@@ -5,6 +5,7 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetMonthlyIncome;
 using MoneyFox.Extensions;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
@@ -30,6 +31,8 @@ namespace MoneyFox.ViewModels.Dashboard
         {
             this.mediator = mediator;
             this.mapper = mapper;
+
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await InitializeAsync());
         }
 
         public async Task InitializeAsync()
