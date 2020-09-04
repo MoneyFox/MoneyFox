@@ -23,7 +23,6 @@ namespace MoneyFox.ViewModels.Accounts
             this.mapper = mapper;
         }
 
-
         public async Task InitializeAsync(int accountId)
         {
             SelectedAccountVm = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
