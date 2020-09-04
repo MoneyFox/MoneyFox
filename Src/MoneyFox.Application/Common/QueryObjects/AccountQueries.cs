@@ -32,6 +32,13 @@ namespace MoneyFox.Application.Common.QueryObjects
         public static IQueryable<Account> OrderByName(this IQueryable<Account> query) => query.OrderBy(x => x.Name);
 
         /// <summary>
+        /// Order a query if included or excluded.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query ordered by inclusion.</returns>
+        public static IQueryable<Account> OrderByInclusion(this IQueryable<Account> query) => query.OrderBy(x => x.IsExcluded);
+
+        /// <summary>
         /// Checks if there is an account with the passed name.
         /// </summary>
         public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name)
