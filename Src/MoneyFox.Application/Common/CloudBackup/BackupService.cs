@@ -64,6 +64,9 @@ namespace MoneyFox.Application.Common.CloudBackup
 
     public class BackupService : IBackupService, IDisposable
     {
+        private const int BACKUP_OPERATION_TIMEOUT = 10000;
+        private const int BACKUP_REPEAT_DELAY = 2000;
+
         private readonly ICloudBackupService cloudBackupService;
         private readonly IFileStore fileStore;
         private readonly ISettingsFacade settingsFacade;
@@ -228,7 +231,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             logger.Info("Enqueue Backup upload.");
 
-            await semaphoreSlim.WaitAsync(ServiceConstants.BACKUP_OPERATION_TIMEOUT,
+            await semaphoreSlim.WaitAsync(BACKUP_OPERATION_TIMEOUT,
                                           cancellationTokenSource.Token);
             try
             {
@@ -247,7 +250,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             catch(OperationCanceledException ex)
             {
                 logger.Error(ex, "Enqueue Backup failed.");
-                await Task.Delay(ServiceConstants.BACKUP_REPEAT_DELAY);
+                await Task.Delay(BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync(attempts + 1);
             }
             catch(ServiceException ex)
