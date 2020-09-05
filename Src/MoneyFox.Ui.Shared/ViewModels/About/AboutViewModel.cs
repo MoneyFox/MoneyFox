@@ -71,7 +71,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.About
         /// <summary>
         /// Returns the Version of App
         /// </summary>
-        public string Version => appInformation.GetVersion();
+        public string Version => appInformation.GetVersion;
 
         /// <summary>
         /// Returns the apply solutions webite url from the     resource file
