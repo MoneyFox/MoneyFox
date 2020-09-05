@@ -102,8 +102,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         public async Task SearchAsync(string searchText = "")
         {
-            var categoriesVms =
-                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
+            var categoriesVms = Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
             CategoryList = CreateGroup(categoriesVms);
         }
 
@@ -112,23 +111,15 @@ namespace MoneyFox.Uwp.ViewModels
             NavigationService.Navigate(ViewModelLocator.EditCategory, category.Id);
         }
 
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(
-            IEnumerable<CategoryViewModel> categories)
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(IEnumerable<CategoryViewModel> categories)
         {
             return new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
-                                                                                              AlphaGroupListGroupCollection<CategoryViewModel>
-                                                                                                 .CreateGroups(categories,
-                                                                                                               CultureInfo.CurrentUICulture,
-                                                                                                               s => string
-                                                                                                                      .IsNullOrEmpty(s.Name)
-                                                                                                                    ? "-"
-                                                                                                                    : s.Name[0]
-                                                                                                                          .ToString(CultureInfo
-                                                                                                                                       .InvariantCulture)
-                                                                                                                          .ToUpper(CultureInfo
-                                                                                                                                      .InvariantCulture),
-                                                                                                               itemClickCommand:
-                                                                                                               ItemClickCommand));
+                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categories,
+                                                                              CultureInfo.CurrentUICulture,
+                                                                              s => string.IsNullOrEmpty(s.Name)
+                                                                                ? "-"
+                                                                                : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture),
+                                                                              itemClickCommand: ItemClickCommand));
         }
 
         private async Task DeleteCategoryAsync(CategoryViewModel categoryToDelete)

@@ -33,14 +33,7 @@ namespace MoneyFox.ViewModels.Categories
 
         public async Task InitializeAsync()
         {
-            var categorieVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery()));
-
-            var groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms, CultureInfo.CurrentUICulture,
-                s => string.IsNullOrEmpty(s.Name)
-                ? "-"
-                : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));
-
-            Categories = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(groups);
+            await SearchCategoryAsync();
         }
 
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> Categories
@@ -54,6 +47,31 @@ namespace MoneyFox.ViewModels.Categories
         }
 
         public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
+
+        public RelayCommand<string> SearchCategoryCommand => new RelayCommand<string>(async (searchTerm) => await SearchCategoryAsync(searchTerm));
+
+        private string searchTerm;
+        public string SearchTerm
+        {
+            get => searchTerm;
+            set
+            {
+                searchTerm = value;
+                SearchCategoryCommand.Execute(searchTerm);
+            }
+        }
+
+        private async Task SearchCategoryAsync(string searchTerm = "")
+        {
+            var categorieVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
+
+            var groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms, CultureInfo.CurrentUICulture,
+                s => string.IsNullOrEmpty(s.Name)
+                    ? "-"
+                    : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));
+
+            Categories = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(groups);
+        }
 
         public RelayCommand<CategoryViewModel> GoToEditCategoryCommand
             => new RelayCommand<CategoryViewModel>(async (categoryViewModel)
