@@ -23,6 +23,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
         {
             private const int PERCENTAGE_DIVIDER = 100;
             private const int DAY_DIVIDER = 30;
+            private const int NUMBERS_OF_MONTHS_TO_LOAD = -12;
+            private const int DECIMAL_DELTA = 0.1m;
 
             private readonly IContextAdapter contextAdapter;
 
@@ -41,7 +43,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 paymentLastTwelveMonths = await contextAdapter.Context
                                                               .Payments
                                                               .Include(x => x.Category)
-                                                              .Where(x => x.Date.Date >= DateTime.Today.AddMonths(-12))
+                                                              .Where(x => x.Date.Date >= DateTime.Today.AddMonths(NUMBERS_OF_MONTHS_TO_LOAD))
                                                               .WithoutTransfers()
                                                               .ToListAsync(cancellationToken);
 
@@ -65,7 +67,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 
                 return new CategorySummaryModel(Convert.ToDecimal(paymentsInTimeRange.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount)),
                                                 Convert.ToDecimal(paymentsInTimeRange.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount)),
-                                                categoryOverviewItems.Where(x => Math.Abs(x.Value) > 0.1m).OrderBy(x => x.Value).ToList());
+                                                categoryOverviewItems.Where(x => Math.Abs(x.Value) > DECIMAL_DELTA).OrderBy(x => x.Value).ToList());
             }
 
             private void CreateOverviewItem(IEnumerable<Payment> payments, Category category)
