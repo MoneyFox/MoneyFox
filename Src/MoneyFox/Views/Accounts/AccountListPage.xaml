@@ -70,7 +70,6 @@
                                 BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                   Light={StaticResource CardBackgroundLight}}"
                                 CornerRadius="10"
-                                HasShadow="true"
                                 HeightRequest="80"
                                 HorizontalOptions="FillAndExpand">
 
