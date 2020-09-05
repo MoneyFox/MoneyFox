@@ -38,7 +38,9 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 foreach(Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
                 {
                     if(payment.ChargedAccount == null)
+                    {
                         throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
+                    }
 
                     switch(payment.Type)
                     {

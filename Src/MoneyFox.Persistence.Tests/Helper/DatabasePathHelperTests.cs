@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Helpers;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 

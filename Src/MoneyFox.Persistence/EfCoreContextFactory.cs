@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Helpers;
 
 namespace MoneyFox.Persistence
 {

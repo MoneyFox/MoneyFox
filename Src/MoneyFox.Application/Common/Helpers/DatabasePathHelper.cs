@@ -4,7 +4,7 @@ using System;
 using System.Globalization;
 using System.IO;
 
-namespace MoneyFox.Application.Common
+namespace MoneyFox.Application.Common.Helpers
 {
     public static class DatabasePathHelper
     {
