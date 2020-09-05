@@ -98,9 +98,12 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
 
             private async Task<decimal> GetCurrentAccountBalanceAsync()
             {
-                return (await contextAdapter.Context.Accounts.Select(x => x.CurrentBalance)
-                                  .ToListAsync())
-                                  .Sum();
+                return (await contextAdapter.Context
+                                            .Accounts
+                                            .AreNotExcluded()
+                                            .Select(x => x.CurrentBalance)
+                                            .ToListAsync())
+                                            .Sum();
             }
 
             private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
