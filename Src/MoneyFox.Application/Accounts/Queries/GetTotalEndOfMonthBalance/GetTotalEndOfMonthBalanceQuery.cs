@@ -16,6 +16,13 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
 {
     public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
     {
+        public GetTotalEndOfMonthBalanceQuery(int accountId = 0)
+        {
+            AccountId = accountId;
+        }
+
+        public int AccountId { get; }
+
         public class Handler : IRequestHandler<GetTotalEndOfMonthBalanceQuery, decimal>
         {
             private readonly Logger logManager = LogManager.GetCurrentClassLogger();
@@ -27,9 +34,14 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 this.contextAdapter = contextAdapter;
             }
 
+            private int accountId = 0;
+
             public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
             {
                 logManager.Info("Calculate EndOfMonth Balance.");
+
+                logManager.Info($"Passed Account Id: {request.AccountId}");
+                accountId = request.AccountId;
 
                 List<Account> excluded = await contextAdapter.Context.Accounts.AreExcluded().ToListAsync();
                 decimal balance = await GetCurrentAccountBalanceAsync();
@@ -50,7 +62,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
             private async Task<decimal> GetCurrentAccountBalanceAsync()
                 => (await contextAdapter.Context
                                  .Accounts
-                                 .AreNotExcluded()
+                                 .WithId(accountId)
                                  .Select(x => x.CurrentBalance)
                                  .ToListAsync())
                                  .Sum();
@@ -58,6 +70,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
             private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
                 => await contextAdapter.Context
                                        .Payments
+                                       .HasAccountId(accountId)
                                        .Include(x => x.ChargedAccount)
                                        .Include(x => x.TargetAccount)
                                        .AreNotCleared()

@@ -12,6 +12,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace MoneyFox.ViewModels.Dashboard
 {
@@ -38,6 +39,8 @@ namespace MoneyFox.ViewModels.Dashboard
         public async Task InitializeAsync()
         {
             Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+            Accounts.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery(x.Id)));
+
             Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
             EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
             MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
