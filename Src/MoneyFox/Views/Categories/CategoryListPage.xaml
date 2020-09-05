@@ -42,7 +42,7 @@
 
             <SearchBar Grid.Row="1"
                        x:Name="categorySearchBar"
-                       Margin="0,0,15,0"
+                       Margin="0,0,0,0"
                        Text="{Binding SearchTerm}"
                        SearchCommand="{Binding SearchCategoryCommand}"
                        SearchCommandParameter="{Binding Text, Source={x:Reference categorySearchBar}}"/>

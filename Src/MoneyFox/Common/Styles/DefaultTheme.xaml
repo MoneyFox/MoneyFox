@@ -44,6 +44,10 @@
     <Color x:Key="ButtonBackgroundDark">#212121</Color>
     <Color x:Key="ButtonBackgroundLight">#ffffff</Color>
 
+    <Color x:Key="SearchBarFrameColor_Dark">#2d2d30</Color>
+    <Color x:Key="SearchBarFrameColor_Light">White</Color>
+
+
     <!-- Semantic Colors -->
     <Color x:Key="Success">#FF3300</Color>
     <Color x:Key="Info">#ffded6</Color>
