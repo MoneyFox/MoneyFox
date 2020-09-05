@@ -14,12 +14,12 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
 {
     [ExcludeFromCodeCoverage]
-    public class GetTotalEndOfMonthBalanceQueryTests : IDisposable
+    public class GetAccountEndOfMonthBalanceQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
         private readonly IContextAdapter contextAdapterMock;
 
-        public GetTotalEndOfMonthBalanceQueryTests()
+        public GetAccountEndOfMonthBalanceQueryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
 
@@ -39,22 +39,26 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
         }
 
         [Fact]
-        public async Task GetIncludedAccountBalanceSummary_CorrectSum()
+        public async Task GetCorrectSumForSingleAccount()
         {
             // Arrange
-            var accountIncluded = new Account("test", 100);
-            var payment = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Expense, accountIncluded);
+            var account1 = new Account("test", 100);
+            var account2 = new Account("test", 200);
+            var payment1 = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Income, account1);
+            var payment2 = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Expense, account2);
 
-            await context.AddAsync(accountIncluded);
-            await context.AddAsync(payment);
+            await context.AddAsync(account1);
+            await context.AddAsync(account2);
+            await context.AddAsync(payment1);
+            await context.AddAsync(payment2);
             await context.SaveChangesAsync();
 
             // Act
-            decimal result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock).Handle(
-                new GetTotalEndOfMonthBalanceQuery(), default);
+            decimal result = await new GetAccountEndOfMonthBalanceQuery.Handler(contextAdapterMock).Handle(
+                new GetAccountEndOfMonthBalanceQuery(account1.Id), default);
 
             // Assert
-            result.Should().Be(50);
+            result.Should().Be(150);
         }
     }
 }

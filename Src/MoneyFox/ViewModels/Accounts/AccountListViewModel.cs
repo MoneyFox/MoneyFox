@@ -42,7 +42,7 @@ namespace MoneyFox.ViewModels.Accounts
             Accounts.Clear();
 
             var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-            accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery(x.Id)));
+            accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
             var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
             var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
