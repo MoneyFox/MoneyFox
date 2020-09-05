@@ -21,17 +21,9 @@ namespace MoneyFox.iOS.Renderer
             UISearchBar searchBar = Control;
             Color color;
 
-            if(App.Current.UserAppTheme == OSAppTheme.Dark)
-            {
-                color = (Color)Xamarin.Forms.Application.Current.Resources["SearchBarFrameColor_Dark"];
-            }
-            else
-            {
-                color = (Color)Xamarin.Forms.Application.Current.Resources["SearchBarFrameColor_Light"];
-            }
-
-            searchBar.BackgroundColor = color.ToUIColor();
-                searchBar.BarTintColor = color.ToUIColor();
+            searchBar.BarStyle = App.Current.UserAppTheme == OSAppTheme.Dark
+                ? UIBarStyle.Black
+                : UIBarStyle.Default;
         }
     }
 }
