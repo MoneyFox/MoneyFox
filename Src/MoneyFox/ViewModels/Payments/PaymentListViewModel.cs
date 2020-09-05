@@ -96,6 +96,8 @@ namespace MoneyFox.ViewModels.Payments
                                                                      lastMessage.IsClearedFilterActive,
                                                                      lastMessage.IsRecurringFilterActive)));
 
+            paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
+
             List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
                .CreateGroups(paymentVms,
                              s => s.Date.ToString("D", CultureInfo.CurrentCulture),

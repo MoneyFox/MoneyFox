@@ -188,6 +188,8 @@ namespace MoneyFox.Uwp.ViewModels
                                                                                   IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
                                                                               }));
 
+            payments.ForEach(x => x.CurrentAccountId = AccountId);
+
             List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
                 .CreateGroups(payments,
                                 s => s.Date.ToString("D", CultureInfo.CurrentCulture),
