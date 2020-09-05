@@ -24,7 +24,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             private const int PERCENTAGE_DIVIDER = 100;
             private const int DAY_DIVIDER = 30;
             private const int NUMBERS_OF_MONTHS_TO_LOAD = -12;
-            private const int DECIMAL_DELTA = 0.1m;
+            private const decimal DECIMAL_DELTA = 0.1m;
 
             private readonly IContextAdapter contextAdapter;
 
