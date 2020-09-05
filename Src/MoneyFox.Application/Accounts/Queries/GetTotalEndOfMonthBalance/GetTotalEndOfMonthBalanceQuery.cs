@@ -1,10 +1,11 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Helpers;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Domain.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,55 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                         throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
                     }
 
-                    balance = PaymentAmountHelper.AddPaymentToBalance(payment, excluded, balance);
+                    balance = AddPaymentToBalance(payment, excluded, balance);
+                }
+
+                return balance;
+            }
+
+            public static decimal AddPaymentToBalance(Payment payment, List<Account> excluded, decimal currentBalance)
+            {
+                switch(payment.Type)
+                {
+                    case PaymentType.Expense:
+                        currentBalance -= payment.Amount;
+                        break;
+
+                    case PaymentType.Income:
+                        currentBalance += payment.Amount;
+                        break;
+
+                    case PaymentType.Transfer:
+                        currentBalance = CalculateBalanceForTransfer(excluded, currentBalance, payment);
+                        break;
+
+                    default:
+                        throw new InvalidPaymentTypeException();
+                }
+
+                return currentBalance;
+            }
+
+            private static decimal CalculateBalanceForTransfer(List<Account> excluded, decimal balance, Payment payment)
+            {
+                foreach(Account account in excluded)
+                {
+                    if(Equals(account.Id, payment.ChargedAccount!.Id))
+                    {
+                        //Transfer from excluded account
+                        balance += payment.Amount;
+                    }
+
+                    if(payment.TargetAccount == null)
+                    {
+                        throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.TargetAccount)}");
+                    }
+
+                    if(Equals(account.Id, payment.TargetAccount.Id))
+                    {
+                        //Transfer to excluded account
+                        balance -= payment.Amount;
+                    }
                 }
 
                 return balance;
