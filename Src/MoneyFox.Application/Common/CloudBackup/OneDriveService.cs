@@ -141,7 +141,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                 await LoadArchiveFolderAsync();
                 await DeleteCleanupOldBackupsAsync();
                 await ArchiveCurrentBackupAsync();
-                await RenameUploadedBackup();
+                await RenameUploadedBackupAsync();
 
                 return uploadedItem != null;
             }
@@ -150,29 +150,29 @@ namespace MoneyFox.Application.Common.CloudBackup
                 if(ex.ErrorCode == ERROR_CODE_CANCELED)
                 {
                     logManager.Info(ex);
-                    await RestoreArchivedBackupInCaseOfError();
+                    await RestoreArchivedBackupInCaseOfErrorAsync();
                     throw new BackupOperationCanceledException(ex);
                 }
 
                 logManager.Error(ex);
-                await RestoreArchivedBackupInCaseOfError();
+                await RestoreArchivedBackupInCaseOfErrorAsync();
                 throw;
             }
             catch(OperationCanceledException ex)
             {
                 logManager.Info(ex);
-                await RestoreArchivedBackupInCaseOfError();
+                await RestoreArchivedBackupInCaseOfErrorAsync();
                 throw new BackupOperationCanceledException(ex);
             }
             catch(Exception ex)
             {
                 logManager.Error(ex);
-                await RestoreArchivedBackupInCaseOfError();
+                await RestoreArchivedBackupInCaseOfErrorAsync();
                 throw new BackupAuthenticationFailedException(ex);
             }
         }
 
-        private async Task RestoreArchivedBackupInCaseOfError()
+        private async Task RestoreArchivedBackupInCaseOfErrorAsync()
         {
             logManager.Info("Restore archived Backup.");
 
@@ -391,7 +391,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                  .UpdateAsync(updateItem);
         }
 
-        private async Task RenameUploadedBackup()
+        private async Task RenameUploadedBackupAsync()
         {
             logManager.Info("Rename backup_upload.");
 
