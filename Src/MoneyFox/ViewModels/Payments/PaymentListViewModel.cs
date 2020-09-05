@@ -111,8 +111,14 @@ namespace MoneyFox.ViewModels.Payments
         private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group)
         {
             group.Subtitle = string.Format(Strings.ExpenseAndIncomeTemplate,
-                group.Where(x => x.Type == PaymentType.Expense).Sum(x => x.Amount),
-                group.Where(x => x.Type == PaymentType.Income).Sum(x => x.Amount));
+                group.Where(x => x.Type == PaymentType.Expense
+                    || (x.Type == PaymentType.Transfer
+                        && x.ChargedAccount.Id == SelectedAccount.Id))
+                .Sum(x => x.Amount),
+                group.Where(x => x.Type == PaymentType.Income
+                    || (x.Type == PaymentType.Transfer
+                        && x.TargetAccount.Id == SelectedAccount.Id))
+                .Sum(x => x.Amount));
         }
 
         public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new FilterPopup().ShowAsync());
