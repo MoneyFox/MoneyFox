@@ -16,10 +16,9 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="name">Name to filter for</param>
         /// <returns>Query with the added filter.</returns>
+        [SuppressMessage("Minor Code Smell", "S4058:Overloads with a \"StringComparison\" parameter should be used", Justification = "Since used on database can't set locale.")]
         public static IQueryable<Category> NameEquals(this IQueryable<Category> query, string name)
-        {
-            return query.Where(x => x.Name.ToUpper().Equals(name.ToUpper()));
-        }
+            => query.Where(x => x.Name.ToUpper().Equals(name.ToUpper()));
 
 
         /// <summary>
@@ -32,9 +31,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         [SuppressMessage("Minor Code Smell", "S4058:Overloads with a \"StringComparison\" parameter should be used", Justification = "Since used on database can't set locale.")]
         [SuppressMessage("Minor Code Smell", "S1449:Culture should be specified for \"string\" operations", Justification = "Since used on database can't set locale.")]
         public static IEnumerable<Category> WhereNameContains(this List<Category> query, string searchterm)
-        {
-            return query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
-        }
+            => query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
 
         /// <summary>
         /// Orders a category query by name.
@@ -42,8 +39,6 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <returns>Ordered Query</returns>
         public static IQueryable<Category> OrderByName(this IQueryable<Category> query)
-        {
-            return query.OrderBy(category => category.Name);
-        }
+            => query.OrderBy(category => category.Name);
     }
 }
