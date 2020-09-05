@@ -63,7 +63,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             // Arrange
             var account1 = new Account("test", 100);
             var account2 = new Account("test", 200);
-            var payment1 = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Expense, account1);
+            var payment1 = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Income, account1);
             var payment2 = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Expense, account2);
 
             await context.AddAsync(account1);
