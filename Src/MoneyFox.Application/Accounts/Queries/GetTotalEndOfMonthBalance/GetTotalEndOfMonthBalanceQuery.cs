@@ -60,22 +60,34 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
             }
 
             private async Task<decimal> GetCurrentAccountBalanceAsync()
-                => (await contextAdapter.Context
-                                 .Accounts
-                                 .WithId(accountId)
-                                 .Select(x => x.CurrentBalance)
-                                 .ToListAsync())
-                                 .Sum();
+            {
+                var query = contextAdapter.Context.Accounts.AsQueryable();
+
+                if(accountId != 0)
+                {
+                    query = query.WithId(accountId);
+                }
+
+                return (await query.Select(x => x.CurrentBalance)
+                                  .ToListAsync())
+                                  .Sum();
+            }
 
             private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
-                => await contextAdapter.Context
-                                       .Payments
-                                       .HasAccountId(accountId)
-                                       .Include(x => x.ChargedAccount)
-                                       .Include(x => x.TargetAccount)
-                                       .AreNotCleared()
-                                       .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
-                                       .ToListAsync();
+            {
+                var query = contextAdapter.Context.Payments.AsQueryable();
+
+                if(accountId != 0)
+                {
+                    query = query.HasAccountId(accountId);
+                }
+
+                return await query.Include(x => x.ChargedAccount)
+                                  .Include(x => x.TargetAccount)
+                                  .AreNotCleared()
+                                  .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
+                                  .ToListAsync();
+            }
         }
     }
 }
