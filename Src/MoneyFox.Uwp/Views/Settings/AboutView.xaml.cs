@@ -1,5 +1,4 @@
 ﻿using Microsoft.Services.Store.Engagement;
-using MoneyFox.Application.Resources;
 using System;
 using Windows.UI.Xaml;
 
@@ -7,8 +6,6 @@ namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class AboutView
     {
-        public override string Header => Strings.AboutTitle;
-
         public AboutView()
         {
             InitializeComponent();
