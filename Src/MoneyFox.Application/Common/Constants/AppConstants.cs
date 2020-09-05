@@ -51,5 +51,8 @@
         public static string AddTransferTileId => "AddTransferTile";
 
         public static string LogFileName => "moneyfox.log";
+
+        public static string MSAL_APPLICATION_ID => "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
+
     }
 }

@@ -1,11 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Helpers;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
-using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -17,6 +16,13 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
 {
     public class GetTotalEndOfMonthBalanceQuery : IRequest<decimal>
     {
+        public GetTotalEndOfMonthBalanceQuery(int accountId = 0)
+        {
+            AccountId = accountId;
+        }
+
+        public int AccountId { get; }
+
         public class Handler : IRequestHandler<GetTotalEndOfMonthBalanceQuery, decimal>
         {
             private readonly Logger logManager = LogManager.GetCurrentClassLogger();
@@ -28,9 +34,14 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 this.contextAdapter = contextAdapter;
             }
 
+            private int accountId = 0;
+
             public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
             {
                 logManager.Info("Calculate EndOfMonth Balance.");
+
+                logManager.Info($"Passed Account Id: {request.AccountId}");
+                accountId = request.AccountId;
 
                 List<Account> excluded = await contextAdapter.Context.Accounts.AreExcluded().ToListAsync();
                 decimal balance = await GetCurrentAccountBalanceAsync();
@@ -38,68 +49,44 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 foreach(Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
                 {
                     if(payment.ChargedAccount == null)
-                        throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
-
-                    switch(payment.Type)
                     {
-                        case PaymentType.Expense:
-                            balance -= payment.Amount;
-                            break;
-
-                        case PaymentType.Income:
-                            balance += payment.Amount;
-                            break;
-
-                        case PaymentType.Transfer:
-                            balance = CalculateBalanceForTransfer(excluded, balance, payment);
-                            break;
-
-                        default:
-                            throw new InvalidPaymentTypeException();
+                        throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
                     }
+
+                    balance = PaymentAmountHelper.AddPaymentToBalance(payment, excluded, balance);
                 }
 
                 return balance;
             }
 
             private async Task<decimal> GetCurrentAccountBalanceAsync()
-                => (await contextAdapter.Context
-                                 .Accounts
-                                 .AreNotExcluded()
-                                 .Select(x => x.CurrentBalance)
-                                 .ToListAsync())
-                                 .Sum();
-
-            private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
-                => await contextAdapter.Context
-                                       .Payments
-                                       .Include(x => x.ChargedAccount)
-                                       .Include(x => x.TargetAccount)
-                                       .AreNotCleared()
-                                       .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
-                                       .ToListAsync();
-
-            private static decimal CalculateBalanceForTransfer(List<Account> excluded, decimal balance, Payment payment)
             {
-                foreach(Account account in excluded)
+                var query = contextAdapter.Context.Accounts.AsQueryable();
+
+                if(accountId != 0)
                 {
-                    if(Equals(account.Id, payment.ChargedAccount!.Id))
-                    {
-                        //Transfer from excluded account
-                        balance += payment.Amount;
-                    }
-
-                    if(payment.TargetAccount == null)
-                        throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.TargetAccount)}");
-
-                    if(Equals(account.Id, payment.TargetAccount.Id))
-                    {
-                        //Transfer to excluded account
-                        balance -= payment.Amount;
-                    }
+                    query = query.WithId(accountId);
                 }
 
-                return balance;
+                return (await query.Select(x => x.CurrentBalance)
+                                  .ToListAsync())
+                                  .Sum();
+            }
+
+            private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
+            {
+                var query = contextAdapter.Context.Payments.AsQueryable();
+
+                if(accountId != 0)
+                {
+                    query = query.HasAccountId(accountId);
+                }
+
+                return await query.Include(x => x.ChargedAccount)
+                                  .Include(x => x.TargetAccount)
+                                  .AreNotCleared()
+                                  .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
+                                  .ToListAsync();
             }
         }
     }

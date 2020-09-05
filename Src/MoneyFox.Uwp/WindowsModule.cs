@@ -42,8 +42,8 @@ namespace MoneyFox.Uwp
             builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.Register(c => PublicClientApplicationBuilder
-                                 .Create(ServiceConstants.MSAL_APPLICATION_ID)
-                                 .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                                 .Create(AppConstants.MSAL_APPLICATION_ID)
+                                 .WithRedirectUri($"msal{AppConstants.MSAL_APPLICATION_ID}://auth")
                                  .Build())
                    .AsImplementedInterfaces();
 

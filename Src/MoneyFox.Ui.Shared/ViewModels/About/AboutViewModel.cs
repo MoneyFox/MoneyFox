@@ -51,27 +51,27 @@ namespace MoneyFox.Ui.Shared.ViewModels.About
         /// <summary>
         /// Opens the webbrowser and loads repository page     on GitHub
         /// </summary>
-        public RelayCommand GoToRepositoryCommand => new RelayCommand(async () => await GoToRepository());
+        public RelayCommand GoToRepositoryCommand => new RelayCommand(async () => await GoToRepositoryAsync());
 
         /// <summary>
         /// Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public RelayCommand GoToTranslationProjectCommand => new RelayCommand(async () => await GoToTranslationProject());
+        public RelayCommand GoToTranslationProjectCommand => new RelayCommand(async () => await GoToTranslationProjectAsync());
 
         /// <summary>
         /// Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public RelayCommand GoToDesignerTwitterAccountCommand => new RelayCommand(async () => await GoToDesignerTwitterAccount());
+        public RelayCommand GoToDesignerTwitterAccountCommand => new RelayCommand(async () => await GoToDesignerTwitterAccountAsync());
 
         /// <summary>
         /// Opens the webbrowser loads the contribution page on Github.
         /// </summary>
-        public RelayCommand GoToContributionPageCommand => new RelayCommand(async () => await GoToContributionPage());
+        public RelayCommand GoToContributionPageCommand => new RelayCommand(async () => await GoToContributionPageAsync());
 
         /// <summary>
         /// Returns the Version of App
         /// </summary>
-        public string Version => appInformation.GetVersion();
+        public string Version => appInformation.GetVersion;
 
         /// <summary>
         /// Returns the apply solutions webite url from the     resource file
@@ -99,16 +99,16 @@ namespace MoneyFox.Ui.Shared.ViewModels.About
         private void RateApp()
             => storeFeatures.RateApp();
 
-        private async Task GoToRepository()
+        private async Task GoToRepositoryAsync()
             => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GitHubRepositoryUrl));
 
-        private async Task GoToTranslationProject()
+        private async Task GoToTranslationProjectAsync()
             => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.TranslationProjectUrl));
 
-        private async Task GoToDesignerTwitterAccount()
+        private async Task GoToDesignerTwitterAccountAsync()
             => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.IconDesignerTwitterUrl));
 
-        private async Task GoToContributionPage()
+        private async Task GoToContributionPageAsync()
             => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.GithubContributionUrl));
     }
 }

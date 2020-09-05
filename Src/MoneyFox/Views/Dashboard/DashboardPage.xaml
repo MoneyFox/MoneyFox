@@ -123,7 +123,6 @@
                                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                           Light={StaticResource CardBackgroundLight}}"
                                         CornerRadius="10"
-                                        HasShadow="true"
                                         HeightRequest="80"
                                         HorizontalOptions="FillAndExpand">
 
@@ -198,7 +197,6 @@
                             BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                               Light={StaticResource CardBackgroundLight}}"
                             CornerRadius="10"
-                            HasShadow="true"
                             HeightRequest="80"
                             HorizontalOptions="FillAndExpand">
                             <yummy:PancakeView.Shadow>
@@ -220,7 +218,6 @@
                             BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                               Light={StaticResource CardBackgroundLight}}"
                             CornerRadius="10"
-                            HasShadow="true"
                             HeightRequest="80"
                             HorizontalOptions="FillAndExpand">
                             <yummy:PancakeView.Shadow>
@@ -251,7 +248,6 @@
                         BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                           Light={StaticResource CardBackgroundLight}}"
                         CornerRadius="15"
-                        HasShadow="true"
                         HorizontalOptions="FillAndExpand"
                         VerticalOptions="Fill">
 

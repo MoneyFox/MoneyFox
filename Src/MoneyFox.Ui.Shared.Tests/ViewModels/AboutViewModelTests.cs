@@ -40,7 +40,7 @@ namespace MoneyFox.Ui.Shared.Tests.ViewModels
         public void Version_NoParams_ReturnCorrectMail()
         {
             var appinfos = Substitute.For<IAppInformation>();
-            appinfos.GetVersion().Returns("42");
+            appinfos.GetVersion.Returns("42");
 
             new AboutViewModel(appinfos,
                                Substitute.For<IEmailAdapter>(),

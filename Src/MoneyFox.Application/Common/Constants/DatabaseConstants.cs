@@ -1,22 +1,10 @@
-﻿#pragma warning disable CA1707 // Identifiers should not contain underscores
-
-namespace MoneyFox.Application.Common.Constants
+﻿namespace MoneyFox.Application.Common.Constants
 {
     /// <summary>
     /// Contains constant values regarding the database
     /// </summary>
     public static class DatabaseConstants
     {
-        /// <summary>
-        /// Name of the SQLite database
-        /// </summary>
-        public static string DB_NAME => "moneyfox3.db";
-
-        /// <summary>
-        /// Name of the Backup Folder
-        /// </summary>
-        public static string BACKUP_FOLDER_NAME => "MoneyFoxBackup";
-
         /// <summary>
         /// Name of the Backup Folder
         /// </summary>

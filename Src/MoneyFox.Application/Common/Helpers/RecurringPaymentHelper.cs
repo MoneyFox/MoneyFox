@@ -3,7 +3,7 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using System;
 
-namespace MoneyFox.Application.Common
+namespace MoneyFox.Application.Common.Helpers
 {
     public static class RecurringPaymentHelper
     {
