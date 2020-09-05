@@ -14,16 +14,16 @@ namespace MoneyFox.iOS.Renderer
             base.OnElementChanged(e);
 
             if(Control == null)
-                return;
-
-            if(App.Current.UserAppTheme == OSAppTheme.Dark)
             {
-                UISearchBar searchBar = Control;
-
-                var color = (Color) Xamarin.Forms.Application.Current.Resources["FrameHighlightColor"];
-                searchBar.BackgroundColor = color.ToUIColor();
-                searchBar.BarTintColor = color.ToUIColor();
+                return;
             }
+
+            UISearchBar searchBar = Control;
+            Color color;
+
+            searchBar.BarStyle = App.Current.UserAppTheme == OSAppTheme.Dark
+                ? UIBarStyle.Black
+                : UIBarStyle.Default;
         }
     }
 }

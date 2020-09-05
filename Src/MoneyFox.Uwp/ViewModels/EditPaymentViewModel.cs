@@ -123,7 +123,6 @@ namespace MoneyFox.Uwp.ViewModels
             }
 
             await mediator.Send(command);
-            navigationService.GoBack();
         }
     }
 }
