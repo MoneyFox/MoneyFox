@@ -44,7 +44,7 @@
     <PackageReference Include="Toasts.Forms.Plugin" Version="3.3.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1364" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
-    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.1.0.714" />
+    <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.2.0.740" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.8.0.1364" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.18.0" />
     <PackageReference Include="NLog" Version="4.7.4" />
