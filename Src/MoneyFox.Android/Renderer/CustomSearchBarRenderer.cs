@@ -15,7 +15,6 @@ using Object = Java.Lang.Object;
 using Color = Xamarin.Forms.Color;
 
 [assembly: ExportRenderer(typeof(SearchBar), typeof(CustomSearchBarRenderer))]
-
 namespace MoneyFox.Droid.Renderer
 {
     public class CustomSearchBarRenderer : SearchBarRenderer
