@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
@@ -19,6 +23,13 @@ namespace MoneyFox.Uwp.Services
 
         private Frame frame;
         private object lastParamUsed;
+
+        static NavigationService()
+        {
+            MainViewId = ApplicationView.GetForCurrentView().Id;
+        }
+
+        static public int MainViewId { get; }
 
         public Frame Frame
         {
@@ -68,10 +79,26 @@ namespace MoneyFox.Uwp.Services
 
         public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null)
         {
-            Type page;
-            lock (_pages)
+            Type page = GetPageForPageKey(pageKey);
+
+            if(Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(lastParamUsed))
             {
-                if (!_pages.TryGetValue(pageKey, out page))
+                bool navigationResult = Frame.Navigate(page, parameter, infoOverride);
+                if(navigationResult)
+                    lastParamUsed = parameter;
+
+                return navigationResult;
+            }
+
+            return false;
+        }
+
+        private Type GetPageForPageKey(string pageKey)
+        {
+            Type page;
+            lock(_pages)
+            {
+                if(!_pages.TryGetValue(pageKey, out page))
                 {
                     throw new
                         ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?",
@@ -79,16 +106,7 @@ namespace MoneyFox.Uwp.Services
                 }
             }
 
-            if (Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(lastParamUsed))
-            {
-                bool navigationResult = Frame.Navigate(page, parameter, infoOverride);
-                if (navigationResult)
-                    lastParamUsed = parameter;
-
-                return navigationResult;
-            }
-
-            return false;
+            return page;
         }
 
         public void Configure(string key, Type pageType)
@@ -143,6 +161,37 @@ namespace MoneyFox.Uwp.Services
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
             Navigated?.Invoke(sender, e);
+        }
+
+        public async Task<int> CreateNewViewAsync(string pageKey, object? parameter = null)
+        {
+            int viewId = 0;
+
+            var newView = CoreApplication.CreateNewView();
+            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                viewId = ApplicationView.GetForCurrentView().Id;
+
+                Type page = GetPageForPageKey(pageKey);
+                var newFrame = new Frame();
+                newFrame.Navigate(page, parameter);
+
+                Window.Current.Content = newFrame;
+                Window.Current.Activate();
+            });
+
+            if(await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewId))
+            {
+                return viewId;
+            }
+
+            return 0;
+        }
+
+        public async Task CloseViewAsync()
+        {
+            int currentId = ApplicationView.GetForCurrentView().Id;
+            await ApplicationViewSwitcher.SwitchAsync(MainViewId, currentId, ApplicationViewSwitchingOptions.ConsolidateViews);
         }
     }
 }

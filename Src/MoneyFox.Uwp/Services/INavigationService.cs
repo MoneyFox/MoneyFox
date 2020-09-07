@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
@@ -12,6 +13,10 @@ namespace MoneyFox.Uwp.Services
         bool GoBack();
         bool GoForward();
         bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null);
+
+        Task CloseViewAsync();
+
+        Task<int> CreateNewViewAsync(string pageKey, object parameter = null);
 
         bool CanGoBack { get; }
         bool CanGoForward { get; }
