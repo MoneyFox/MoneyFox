@@ -4,7 +4,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(SearchBar), typeof(CustomSearchBarRenderer))]
-
 namespace MoneyFox.iOS.Renderer
 {
     public class CustomSearchBarRenderer : SearchBarRenderer
@@ -19,11 +18,26 @@ namespace MoneyFox.iOS.Renderer
             }
 
             UISearchBar searchBar = Control;
-            Color color;
 
-            searchBar.BarStyle = App.Current.UserAppTheme == OSAppTheme.Dark
-                ? UIBarStyle.Black
-                : UIBarStyle.Default;
+            if(App.Current.UserAppTheme == OSAppTheme.Dark)
+            {
+                searchBar.BarStyle = UIBarStyle.Black;
+
+                App.Current.Resources.TryGetValue("BackgroundColorDark", out var darkTintColor);
+                searchBar.BarTintColor = ((Color)darkTintColor).ToUIColor();
+            }
+            else
+            {
+                searchBar.BarStyle = UIBarStyle.Default;
+
+                App.Current.Resources.TryGetValue("BackgroundColorLight", out var lightTintColor);
+                searchBar.BarTintColor = ((Color)lightTintColor).ToUIColor();
+            }
+
+            App.Current.Resources.TryGetValue("ThemePrimary", out var primaryColor);
+            searchBar.TintColor = ((Color)primaryColor).ToUIColor();
+            searchBar.BackgroundImage = new UIImage();
+            searchBar.BackgroundColor = Color.Transparent.ToUIColor();
         }
     }
 }
