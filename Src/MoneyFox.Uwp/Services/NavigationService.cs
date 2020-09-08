@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Core;
 using Windows.Foundation;
 using Windows.UI.ViewManagement;
 using Windows.UI.WindowManagement;
@@ -173,6 +174,8 @@ namespace MoneyFox.Uwp.Services
 
             appWindow.Closed += delegate
             {
+                var bounds = Window.Current.Bounds;
+                appWindow.RequestSize(new Size(bounds.Width, bounds.Height));
                 appWindowContentFrame.Content = null;
                 appWindow = null;
             };
