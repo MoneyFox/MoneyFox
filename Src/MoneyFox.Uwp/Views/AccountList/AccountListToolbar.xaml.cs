@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Uwp.ViewModels.Interfaces;
-using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
@@ -14,9 +13,9 @@ namespace MoneyFox.Uwp.Views.AccountList
             InitializeComponent();
         }
 
-        private async void AddAccountTapped(object sender, TappedRoutedEventArgs e)
+        private void AddAccountTapped(object sender, TappedRoutedEventArgs e)
         {
-            await new AddAccountDialog().ShowAsync();
+            ViewModel.GoToAddAccountCommand.Execute(null);
         }
     }
 }

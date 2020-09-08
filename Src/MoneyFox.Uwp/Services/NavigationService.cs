@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
+using Windows.Foundation;
 using Windows.UI.ViewManagement;
+using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Hosting;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -163,35 +164,24 @@ namespace MoneyFox.Uwp.Services
             Navigated?.Invoke(sender, e);
         }
 
-        public async Task<int> CreateNewViewAsync(string pageKey, object? parameter = null)
+        public async Task<AppWindow> CreateNewViewAsync(string pageKey, object? parameter = null)
         {
-            int viewId = 0;
+            AppWindow appWindow = await AppWindow.TryCreateAsync();
+            Frame appWindowContentFrame = new Frame();
 
-            var newView = CoreApplication.CreateNewView();
-            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            appWindow.Closed += delegate
             {
-                viewId = ApplicationView.GetForCurrentView().Id;
+                appWindowContentFrame.Content = null;
+                appWindow = null;
+            };
 
-                Type page = GetPageForPageKey(pageKey);
-                var newFrame = new Frame();
-                newFrame.Navigate(page, parameter);
+            appWindow.RequestSize(new Size(300, 450));
 
-                Window.Current.Content = newFrame;
-                Window.Current.Activate();
-            });
+            appWindowContentFrame.Navigate(GetPageForPageKey(pageKey));
+            ElementCompositionPreview.SetAppWindowContent(appWindow, appWindowContentFrame);
+            await appWindow.TryShowAsync();
 
-            if(await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewId))
-            {
-                return viewId;
-            }
-
-            return 0;
-        }
-
-        public async Task CloseViewAsync()
-        {
-            int currentId = ApplicationView.GetForCurrentView().Id;
-            await ApplicationViewSwitcher.SwitchAsync(MainViewId, currentId, ApplicationViewSwitchingOptions.ConsolidateViews);
+            return appWindow;
         }
     }
 }
