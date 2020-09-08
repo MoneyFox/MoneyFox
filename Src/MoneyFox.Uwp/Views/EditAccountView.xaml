@@ -1,4 +1,4 @@
-﻿<ContentDialog
+﻿<Page
     x:Class="MoneyFox.Uwp.Views.EditAccountView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -6,17 +6,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-    Title="{Binding Title}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding EditAccountVm, Source={StaticResource Locator}}"
-    PrimaryButtonCommand="{Binding SaveCommand}"
-    PrimaryButtonText="{x:Bind resources:Strings.DoneLabel}"
-    SecondaryButtonCommand="{Binding CancelCommand}"
-    SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}"
     mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"  Padding="15">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="9*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="{Binding Title}" Style="{StaticResource UwpPageTitleStyle}" />
+
+        <ScrollViewer HorizontalScrollMode="Auto" Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <userControls:ModifyAccountUserControl Grid.Row="0" />
 
@@ -37,6 +41,11 @@
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,6,0">
+            <Button Content="{x:Bind resources:Strings.DoneLabel}" Command="{Binding SaveCommand}" Margin="0,0,6,0"/>
+            <Button Content="{x:Bind resources:Strings.CancelLabel}" Command="{Binding CancelCommand}"/>
+        </StackPanel>
     </Grid>
 
-</ContentDialog>
+</Page>

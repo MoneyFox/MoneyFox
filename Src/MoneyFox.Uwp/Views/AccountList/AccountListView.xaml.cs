@@ -2,7 +2,6 @@
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.DesignTime;
-using System;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -15,6 +14,8 @@ namespace MoneyFox.Uwp.Views
     public sealed partial class AccountListView
     {
         public override bool ShowHeader => false;
+
+        private AccountListViewModel ViewModel => (AccountListViewModel)(DataContext);
 
         /// <summary>
         /// Initialize View.
@@ -29,12 +30,12 @@ namespace MoneyFox.Uwp.Views
             }
         }
 
-        private async void Edit_OnClick(object sender, RoutedEventArgs e)
+        private void Edit_OnClick(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement) sender;
             if(!(element.DataContext is AccountViewModel account)) return;
 
-            await new EditAccountView(account.Id).ShowAsync();
+            ViewModel.EditAccountCommand.Execute(account);
         }
 
         private void Delete_OnClick(object sender, RoutedEventArgs e)
