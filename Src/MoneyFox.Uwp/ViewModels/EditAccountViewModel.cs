@@ -42,6 +42,7 @@ namespace MoneyFox.Uwp.ViewModels
         protected override async Task SaveAccount()
         {
             await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
+            await Window.CloseAsync();
         }
 
         protected async Task DeleteAccount()
@@ -49,7 +50,7 @@ namespace MoneyFox.Uwp.ViewModels
             if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
-                NavigationService.GoBack();
+                await Window.CloseAsync();
             }
         }
     }

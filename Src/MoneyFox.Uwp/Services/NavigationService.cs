@@ -179,7 +179,7 @@ namespace MoneyFox.Uwp.Services
 
             appWindow.RequestSize(new Size(300, 450));
 
-            appWindowContentFrame.Navigate(GetPageForPageKey(pageKey));
+            appWindowContentFrame.Navigate(GetPageForPageKey(pageKey), parameter);
             ElementCompositionPreview.SetAppWindowContent(appWindow, appWindowContentFrame);
             await appWindow.TryShowAsync();
 

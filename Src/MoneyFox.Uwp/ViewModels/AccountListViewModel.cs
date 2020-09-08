@@ -12,6 +12,7 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Uwp.Messages;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -80,13 +81,14 @@ namespace MoneyFox.Uwp.ViewModels
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
-        public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
+        public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(async (a) => await EditAccountAsync(a));
 
         public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(DeleteAsync);
 
-        private void EditAccount(AccountViewModel accountViewModel)
+        private async Task EditAccountAsync(AccountViewModel accountViewModel)
         {
-            navigationService.Navigate(ViewModelLocator.EditAccount, accountViewModel.Id);
+            var view = await navigationService.CreateNewViewAsync(ViewModelLocator.EditAccount, accountViewModel.Id);
+            MessengerInstance.Send(new AppWindowMessage(view));
         }
 
         private async Task LoadAsync()
@@ -124,7 +126,6 @@ namespace MoneyFox.Uwp.ViewModels
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
             if(accountViewModel == null) return;
-
             navigationService.Navigate(ViewModelLocator.PaymentList, accountViewModel.Id);
         }
 

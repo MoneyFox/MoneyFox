@@ -9,6 +9,7 @@ using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using System;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -32,7 +33,6 @@ namespace MoneyFox.Uwp.ViewModels
         {
             SelectedAccount = new AccountViewModel();
             AmountString = HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
-
             return Task.CompletedTask;
         }
 
@@ -45,7 +45,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
 
             await mediator.Send(new CreateAccountCommand(mapper.Map<Account>(SelectedAccount)));
-            NavigationService.GoBack();
+            await Window.CloseAsync();
         }
     }
 }

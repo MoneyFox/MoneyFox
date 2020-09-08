@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Uwp.Messages;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 
@@ -15,6 +16,10 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <inheritdoc/>
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () => await navigationService.CreateNewViewAsync(ViewModelLocator.AddAccount));
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () =>
+        {
+            var view = await navigationService.CreateNewViewAsync(ViewModelLocator.AddAccount);
+            MessengerInstance.Send(new AppWindowMessage(view));
+        });
     }
 }

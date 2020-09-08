@@ -8,7 +8,10 @@ using System.Globalization;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using Windows.UI.WindowManagement;
+using MoneyFox.Uwp.Messages;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public abstract class ModifyAccountViewModel : ViewModelBase
@@ -25,6 +28,8 @@ namespace MoneyFox.Uwp.ViewModels
         {
             DialogService = dialogService;
             NavigationService = navigationService;
+
+            MessengerInstance.Register<AppWindowMessage>(this, (m) => Window = m.AppWindow);
         }
 
         protected abstract Task SaveAccount();
@@ -34,6 +39,8 @@ namespace MoneyFox.Uwp.ViewModels
         protected IDialogService DialogService { get; }
 
         protected INavigationService NavigationService { get; }
+
+        public AppWindow? Window { get; set; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
