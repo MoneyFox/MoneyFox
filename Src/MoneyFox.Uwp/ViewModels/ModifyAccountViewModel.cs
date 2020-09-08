@@ -10,6 +10,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using Windows.UI.WindowManagement;
 using MoneyFox.Uwp.Messages;
+using System;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels
@@ -45,6 +46,8 @@ namespace MoneyFox.Uwp.ViewModels
         public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
 
         public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBase);
+
+        public AsyncCommand CancelCommand => new AsyncCommand(CancelAsync);
 
         public string Title
         {
@@ -104,6 +107,11 @@ namespace MoneyFox.Uwp.ViewModels
             await SaveAccount();
             MessengerInstance.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
+        }
+
+        private async Task CancelAsync()
+        {
+            await Window.CloseAsync();
         }
     }
 }
