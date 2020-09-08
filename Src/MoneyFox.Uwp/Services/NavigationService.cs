@@ -101,9 +101,7 @@ namespace MoneyFox.Uwp.Services
             {
                 if(!_pages.TryGetValue(pageKey, out page))
                 {
-                    throw new
-                        ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?",
-                                          nameof(pageKey));
+                    throw new ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?", nameof(pageKey));
                 }
             }
 
@@ -114,8 +112,10 @@ namespace MoneyFox.Uwp.Services
         {
             lock (_pages)
             {
-                if (_pages.ContainsKey(key))
+                if(_pages.ContainsKey(key))
+                {
                     throw new ArgumentException(string.Format("The key {{0}} is already configured in NavigationService", key));
+                }
 
                 if (_pages.Any(p => p.Value == pageType))
                 {
@@ -130,8 +130,10 @@ namespace MoneyFox.Uwp.Services
         {
             lock (_pages)
             {
-                if (_pages.ContainsValue(page))
+                if(_pages.ContainsValue(page))
+                {
                     return _pages.FirstOrDefault(p => p.Value == page).Key;
+                }
                 throw new ArgumentException($"The page '{page.Name}' is unknown by the NavigationService");
             }
         }
@@ -166,7 +168,7 @@ namespace MoneyFox.Uwp.Services
 
         public async Task<AppWindow> CreateNewViewAsync(string pageKey, object? parameter = null)
         {
-            AppWindow appWindow = await AppWindow.TryCreateAsync();
+            AppWindow? appWindow = await AppWindow.TryCreateAsync();
             Frame appWindowContentFrame = new Frame();
 
             appWindow.Closed += delegate
