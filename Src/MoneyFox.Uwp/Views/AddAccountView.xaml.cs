@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Uwp.Views
 {
-    public sealed partial class AddAccountDialog
+    public sealed partial class AddAccountView
     {
-        public AddAccountDialog()
+        public AddAccountView()
         {
             InitializeComponent();
         }
