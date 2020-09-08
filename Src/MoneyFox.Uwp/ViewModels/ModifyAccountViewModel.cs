@@ -109,9 +109,6 @@ namespace MoneyFox.Uwp.ViewModels
             await DialogService.HideLoadingDialogAsync();
         }
 
-        private async Task CancelAsync()
-        {
-            await Window.CloseAsync();
-        }
+        private async Task CancelAsync() => await Window?.CloseAsync();
     }
 }
