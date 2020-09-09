@@ -1,23 +1,28 @@
 ﻿using System;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.Services
 {
     public interface INavigationService
     {
-        void Configure(string key, Type pageType);
-        string GetNameOfRegisteredPage(Type page);
-        bool GoBack();
-        bool GoForward();
-        bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null);
+        public interface INavigationService
+        {
+            bool IsMainView { get; }
 
-        bool CanGoBack { get; }
-        bool CanGoForward { get; }
-        Frame Frame { get; set; }
+            bool CanGoBack { get; }
 
-        event NavigatedEventHandler Navigated;
-        event NavigationFailedEventHandler NavigationFailed;
+            void Initialize(object frame);
+
+            bool Navigate<TViewModel>(object parameter = null);
+            bool Navigate(Type viewModelType, object parameter = null);
+
+            Task<int> CreateNewViewAsync<TViewModel>(object parameter = null);
+            Task<int> CreateNewViewAsync(Type viewModelType, object parameter = null);
+
+            bool GoBack();
+            bool GoForward();
+
+            Task CloseViewAsync();
+        }
     }
 }

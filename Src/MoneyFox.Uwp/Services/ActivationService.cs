@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using MoneyFox.Application.Common;
 using MoneyFox.Uwp.Activation;
+using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.Views;
 using MoneyFox.Uwp.Views.Settings;
 using MoneyFox.Uwp.Views.Statistics;
@@ -91,6 +92,7 @@ namespace MoneyFox.Uwp.Services
 
         public NavigationService ConfigureNavigation()
         {
+            NavigationService.Register<AccountListViewModel, AccountListView>();
             var nav = new NavigationService();
 
             nav.Configure(ViewModelLocator.AccountList, typeof(AccountListView));
