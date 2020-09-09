@@ -123,7 +123,7 @@
                 Margin="{StaticResource SmallTitleContentMargin}"
                 Content="{x:Bind resources:Strings.EndlessLabel}"
                 IsChecked="{Binding SelectedPayment.RecurringPayment.IsEndless, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <DatePicker
+            <CalendarDatePicker
                 Margin="{StaticResource SmallTitleContentMargin}"
                 Date="{Binding SelectedPayment.RecurringPayment.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Header="{x:Bind resources:Strings.EnddateLabel}"

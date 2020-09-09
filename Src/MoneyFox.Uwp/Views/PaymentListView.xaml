@@ -43,10 +43,12 @@
                     <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}" IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <DatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+                    <CalendarDatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
                 </ListBoxItem>
                 <ListBoxItem>
-                    <DatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+                    <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
                 </ListBoxItem>
             </ListBox>
         </Flyout>
