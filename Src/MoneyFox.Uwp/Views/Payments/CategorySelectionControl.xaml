@@ -8,7 +8,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:resources="using:MoneyFox.Application.Resources"
     mc:Ignorable="d"
-    d:DesignHeight="40"
+    d:DesignHeight="60"
     d:DesignWidth="400">
 
     <Grid Margin="{StaticResource SmallTitleContentMargin}">
@@ -17,25 +17,27 @@
             <ColumnDefinition Width="30" />
         </Grid.ColumnDefinitions>
 
-        <TextBox Header="{x:Bind resources:Strings.CategoryLabel}"
-                 IsReadOnly="True"
-                 Grid.ColumnSpan="2"
-                 Text="{x:Bind ViewModel.SelectedPayment.Category.Name, Mode=OneWay}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="23" />
+            <RowDefinition Height="32" />
+        </Grid.RowDefinitions>
 
-            <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="GotFocus">
-                    <core:InvokeCommandAction
-                        Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}" />
-                </core:EventTriggerBehavior>
-            </interactivity:Interaction.Behaviors>
-        </TextBox>
+        <TextBlock Grid.Row="0" Text="{x:Bind resources:Strings.CategoryLabel}" />
+
+        <Button Grid.Row="1"
+                Grid.Column="0"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}"
+                Content="{x:Bind ViewModel.SelectedPayment.Category.Name, FallbackValue='Select Category', Mode=OneWay}">
+        </Button>
 
         <SymbolIcon Symbol="Cancel"
                     Grid.Column="1"
-                    Height="32"
-                    Margin="0,10,0,0"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom">
+                    Grid.Row="1"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Tapped">
                     <core:InvokeCommandAction Command="{x:Bind ViewModel.ResetCategoryCommand}" />

@@ -8,26 +8,9 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     mc:Ignorable="d"
     Title="{x:Bind resources:Strings.SelectCategoryTitle}"
-    PrimaryButtonText="Button1"
-    SecondaryButtonText="Button2" >
+    SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}" >
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-
-        <CommandBar Grid.Row="0"
-                    Style="{ThemeResource DefaultCommandBar}" >
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Command="{Binding CreateNewCategoryCommand}"
-                              Icon="Add"
-                              Label="{x:Bind resources:Strings.AddCategoryLabel}"
-                              LabelPosition="Default"/>
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-
-        <controls:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
-
+        <controls:CategoryListControl Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
     </Grid>
 </ContentDialog>

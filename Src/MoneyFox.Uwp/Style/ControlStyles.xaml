@@ -15,6 +15,7 @@
 
     <Style x:Key="DefaultCommandBar" TargetType="CommandBar">
         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="DefaultLabelPosition" Value="Right" />
     </Style>
 
     <Style x:Key="DefaultContentDialog" TargetType="ContentDialog">

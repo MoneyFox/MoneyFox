@@ -23,7 +23,7 @@
         <TextBlock Grid.Row="0" Text="Add Payment" Style="{StaticResource UwpPageTitleStyle}" />
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <CommandBar Background="Transparent" DefaultLabelPosition="Right" >
+            <CommandBar Style="{ThemeResource DefaultCommandBar}" >
                 <AppBarButton Command="{x:Bind ViewModel.SaveCommand}" Icon="Save" Label="{x:Bind resources:Strings.DoneLabel}" />
                 <AppBarButton Command="{x:Bind ViewModel.CancelCommand}" Icon="Cancel" Label="{x:Bind resources:Strings.CancelLabel}" />
             </CommandBar>
