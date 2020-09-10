@@ -90,13 +90,14 @@
         <ComboBox
             HorizontalAlignment="Stretch"
             DisplayMemberPath="Name"
+            Margin="{StaticResource SmallTitleContentMargin}"
             Header="{x:Bind resources:Strings.CategoryLabel}"
             ItemsSource="{Binding Categories}"
             SelectedItem="{Binding SelectedPayment.Category, Mode=TwoWay}" />
 
-        <DatePicker
+        <CalendarDatePicker
             Margin="{StaticResource SmallTitleContentMargin}"
-            HorizontalAlignment="Left"
+            HorizontalAlignment="Stretch"
             Date="{Binding SelectedPayment.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Header="{x:Bind resources:Strings.DateLabel}" />
         <TextBox
@@ -122,7 +123,7 @@
                 Margin="{StaticResource SmallTitleContentMargin}"
                 Content="{x:Bind resources:Strings.EndlessLabel}"
                 IsChecked="{Binding SelectedPayment.RecurringPayment.IsEndless, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-            <DatePicker
+            <CalendarDatePicker
                 Margin="{StaticResource SmallTitleContentMargin}"
                 Date="{Binding SelectedPayment.RecurringPayment.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Header="{x:Bind resources:Strings.EnddateLabel}"
