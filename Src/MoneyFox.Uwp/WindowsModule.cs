@@ -49,7 +49,14 @@ namespace MoneyFox.Uwp
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces()
+                   .AsSelf()
+                   .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
