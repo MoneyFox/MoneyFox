@@ -312,46 +312,5 @@ namespace MoneyFox.Uwp.ViewModels
         {
             configuration.CreateMap<Payment, PaymentViewModel>().ForMember(x => x.CurrentAccountId, opt => opt.Ignore()).ReverseMap();
         }
-
-        /// <summary>
-        /// Opens the Edit Dialog for the passed Payment
-        /// </summary>
-        public RelayCommand EditPaymentCommand => new RelayCommand(EditPayment);
-
-        /// <summary>
-        /// Deletes the passed PaymentViewModel.
-        /// </summary>
-        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(DeletePayment);
-
-        private void EditPayment()
-        {
-            navigationService ??= ServiceLocator.Current.GetInstance<NavigationService>();
-            navigationService.Navigate<EditPaymentViewModel>(Id);
-        }
-
-        [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]
-        private async void DeletePayment(PaymentViewModel payment)
-        {
-            mediator ??= ServiceLocator.Current.GetInstance<IMediator>();
-
-            dialogService ??= ServiceLocator.Current.GetInstance<IDialogService>();
-
-            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
-                                                            Strings.DeletePaymentConfirmationMessage,
-                                                            Strings.YesLabel,
-                                                            Strings.NoLabel))
-                return;
-
-            var command = new DeletePaymentByIdCommand(payment.Id);
-
-            if(payment.IsRecurring)
-            {
-                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
-                                                                                             Strings.DeleteRecurringPaymentMessage);
-            }
-
-            await mediator.Send(command);
-            Messenger.Default.Send(new ReloadMessage());
-        }
     }
 }
