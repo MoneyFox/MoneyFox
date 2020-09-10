@@ -71,6 +71,7 @@ namespace MoneyFox.Uwp.Services
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
+            Analytics.TrackEvent("AppStarted");
 #endif
 
             LoggerService.Initialize();
@@ -109,7 +110,9 @@ namespace MoneyFox.Uwp.Services
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
                 if(defaultHandler.CanHandle(activationArgs))
+                {
                     await defaultHandler.HandleAsync(activationArgs);
+                }
             }
         }
 

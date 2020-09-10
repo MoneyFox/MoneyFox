@@ -10,7 +10,7 @@ namespace MoneyFox.Uwp.Activation
     {
         private readonly Type startupViewModel;
 
-        public NavigationService NavigationService => ServiceLocator.Current.GetInstance<NavigationService>();
+        public INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
 
         public DefaultLaunchActivationHandler(Type startupViewModel)
         {
