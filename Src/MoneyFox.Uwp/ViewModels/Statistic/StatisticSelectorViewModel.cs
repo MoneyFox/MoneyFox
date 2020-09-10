@@ -5,6 +5,7 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Statistic;
+using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {

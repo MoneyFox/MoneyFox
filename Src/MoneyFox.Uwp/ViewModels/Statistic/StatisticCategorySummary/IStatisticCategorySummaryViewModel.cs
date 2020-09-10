@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Uwp.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
     public interface IStatisticCategorySummaryViewModel
     {

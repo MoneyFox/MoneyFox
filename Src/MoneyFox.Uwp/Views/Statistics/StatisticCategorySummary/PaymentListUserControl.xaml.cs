@@ -1,11 +1,12 @@
-﻿using MoneyFox.Ui.Shared.Groups;
-using MoneyFox.Uwp.ViewModels;
+﻿using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Ui.Shared.Groups;
 using System;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 
-namespace MoneyFox.Uwp.Views.UserControls
+namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
 {
     public partial class PaymentListUserControl
     {
@@ -13,6 +14,8 @@ namespace MoneyFox.Uwp.Views.UserControls
         {
             InitializeComponent();
         }
+
+        public CategoryOverviewViewModel ViewModel => (CategoryOverviewViewModel)DataContext;
 
         private void PaymentListView_OnLoaded(object sender, RoutedEventArgs e)
         {

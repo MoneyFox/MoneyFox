@@ -1,10 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
 using MoneyFox.Ui.Shared.Groups;
-using NLog;
 using System;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
     public class CategoryOverviewViewModel : ViewModelBase
     {
@@ -23,7 +22,8 @@ namespace MoneyFox.Uwp.ViewModels
             get => categoryId;
             set
             {
-                if(categoryId == value) return;
+                if(categoryId == value)
+                    return;
                 categoryId = value;
                 RaisePropertyChanged();
             }
@@ -68,9 +68,7 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(Math.Abs(this.value - value) < DECIMAL_DELTA)
-                {
                     return;
-                }
                 percentage = value;
                 RaisePropertyChanged();
             }
@@ -85,9 +83,7 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(label == value)
-                {
                     return;
-                }
                 label = value;
                 RaisePropertyChanged();
             }
@@ -105,9 +101,7 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(source == value)
-                {
                     return;
-                }
                 source = value;
                 RaisePropertyChanged();
             }

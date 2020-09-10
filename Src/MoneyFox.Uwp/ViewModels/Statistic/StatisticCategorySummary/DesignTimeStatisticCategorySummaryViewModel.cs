@@ -1,9 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Uwp.ViewModels.Statistic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 
-namespace MoneyFox.Uwp.ViewModels.DesignTime
+namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
     [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Design Time")]
     public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel

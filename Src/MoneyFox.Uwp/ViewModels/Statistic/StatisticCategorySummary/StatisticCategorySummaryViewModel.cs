@@ -13,7 +13,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Uwp.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel

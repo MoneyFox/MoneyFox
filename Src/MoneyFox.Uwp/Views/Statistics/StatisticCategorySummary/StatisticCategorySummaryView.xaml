@@ -1,5 +1,5 @@
 ﻿<views:BaseView
-    x:Class="MoneyFox.Uwp.Views.Statistics.StatisticCategorySummaryView"
+    x:Class="MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary.StatisticCategorySummaryView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
@@ -11,8 +11,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
-    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
     xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:statisticUc="using:MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary"
+    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
     d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                      IsDesignTimeCreatable=True}"
     DataContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}"
@@ -54,10 +55,6 @@
             </StackPanel>
         </DataTemplate>
 
-        <DataTemplate x:Key="DetailsTemplate">
-            <userControls:PaymentListUserControl />
-        </DataTemplate>
-
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid>
                 <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.NoCategorySummaryEntrySelectedMessage}" />
@@ -67,7 +64,7 @@
 
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
@@ -82,17 +79,16 @@
             <TextBlock
                 VerticalAlignment="Center"
                 Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                Text="{Binding Title}" />
-            <userControls:IncomeExpenseBalanceUserControl DataContext="{Binding IncomeExpenseBalance}" />
+                Text="{x:Bind ViewModel.Title}" />
+            <userControls:IncomeExpenseBalanceUserControl DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
         </StackPanel>
 
         <controls:MasterDetailsView
             x:Name="CategorySummaryList"
             Grid.Row="1"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
-            DetailsTemplate="{StaticResource DetailsTemplate}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
-            ItemsSource="{Binding CategorySummary}"
+            ItemsSource="{x:Bind ViewModel.CategorySummary}"
             MasterPaneWidth="550"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectionChanged="CategorySummaryList_SelectionChanged">
@@ -103,6 +99,12 @@
                     <Setter Property="VerticalContentAlignment" Value="Stretch" />
                 </Style>
             </controls:MasterDetailsView.ItemContainerStyle>
+
+            <controls:MasterDetailsView.DetailsTemplate>
+                <DataTemplate x:DataType="viewModels:CategoryOverviewViewModel">
+                    <statisticUc:PaymentListUserControl />
+                </DataTemplate>
+            </controls:MasterDetailsView.DetailsTemplate>
 
         </controls:MasterDetailsView>
 

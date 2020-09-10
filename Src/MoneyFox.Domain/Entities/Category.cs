@@ -34,7 +34,9 @@ namespace MoneyFox.Domain.Entities
         public void UpdateData(string name, string note = "")
         {
             if(string.IsNullOrWhiteSpace(name))
+            {
                 throw new ArgumentNullException(nameof(name));
+            }
 
             Name = name;
             Note = note;

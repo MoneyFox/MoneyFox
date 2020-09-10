@@ -1,16 +1,15 @@
 ﻿using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.ViewModels;
-using MoneyFox.Uwp.ViewModels.Statistic;
+using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 using MoneyFox.Uwp.Views.Dialogs;
 using System;
 using System.Linq;
 using Windows.UI.Xaml;
 
-namespace MoneyFox.Uwp.Views.Statistics
+namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
 {
     public sealed partial class StatisticCategorySummaryView
     {
-        private StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)DataContext;
+        public StatisticCategorySummaryViewModel ViewModel => (StatisticCategorySummaryViewModel)DataContext;
 
         public override string Header => Strings.CategorySummaryTitle;
 

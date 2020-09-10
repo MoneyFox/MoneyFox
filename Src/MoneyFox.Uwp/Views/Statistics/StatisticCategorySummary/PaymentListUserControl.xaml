@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="MoneyFox.Uwp.Views.UserControls.PaymentListUserControl"
+    x:Class="MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary.PaymentListUserControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
@@ -21,7 +21,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
-        <DataTemplate x:Key="GroupHeaderTemplate">
+        <DataTemplate x:Key="GroupHeaderTemplate" >
             <Border Padding="3" Background="Transparent">
                 <TextBlock
                     HorizontalAlignment="Left"
@@ -50,7 +50,7 @@
         <CollectionViewSource
             x:Key="Groups"
             IsSourceGrouped="True"
-            Source="{Binding Source}" />
+            Source="{x:Bind ViewModel.Source}" />
     </UserControl.Resources>
 
     <SemanticZoom Grid.Row="1">
@@ -130,7 +130,7 @@
                                                             Text="{x:Bind resources:Strings.EditLabel}" />
 
                                                         <MenuFlyoutItem
-                                                            Command="{x:Bind DeletePaymentCommand}"
+                                                            Command="{x:Bind ViewModel:DeletePaymentCommand }"
                                                             CommandParameter="{x:Bind}"
                                                             Icon="Delete"
                                                             Text="{x:Bind resources:Strings.DeleteLabel}" />
