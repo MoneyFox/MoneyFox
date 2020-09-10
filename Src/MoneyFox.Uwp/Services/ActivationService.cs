@@ -99,6 +99,7 @@ namespace MoneyFox.Uwp.Services
         {
             NavigationService.Register<AccountListViewModel, AccountListView>();
             NavigationService.Register<PaymentListViewModel, PaymentListView>();
+            NavigationService.Register<AddPaymentViewModel, AddPaymentPage>();
             NavigationService.Register<CategoryListViewModel, CategoryListView>();
             NavigationService.Register<SettingsViewModel, SettingsView>();
             NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();

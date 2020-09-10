@@ -8,7 +8,6 @@ using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Services;
 using NLog;
 using System.Collections.Generic;
@@ -64,7 +63,9 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        public AsyncCommand SaveCommand => new AsyncCommand(SavePaymentBaseAsync);
+        public RelayCommand SaveCommand => new RelayCommand(async () => await SavePaymentBaseAsync());
+
+        public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
@@ -237,7 +238,13 @@ namespace MoneyFox.Uwp.ViewModels
             await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
             await SavePaymentAsync();
             MessengerInstance.Send(new ReloadMessage());
+            navigationService.GoBack();
             await dialogService.HideLoadingDialogAsync();
+        }
+
+        public void Cancel()
+        {
+            navigationService.GoBack();
         }
 
         /// <summary>

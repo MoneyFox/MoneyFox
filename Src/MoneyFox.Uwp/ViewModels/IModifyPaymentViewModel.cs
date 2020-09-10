@@ -63,7 +63,12 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
-        AsyncCommand SaveCommand { get; }
+        RelayCommand SaveCommand { get; }
+
+        /// <summary>
+        ///     Cancels the Operation
+        /// </summary>
+        RelayCommand CancelCommand { get; }
 
         /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
