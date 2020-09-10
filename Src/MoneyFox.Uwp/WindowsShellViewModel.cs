@@ -1,9 +1,12 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Settings;
 using NLog;
 using System;
@@ -60,6 +63,10 @@ namespace MoneyFox.Uwp
 
             this.navigationView = navigationView;
             this.keyboardAccelerators = keyboardAccelerators;
+
+            frame.Navigated += Frame_Navigated;
+            frame.NavigationFailed += Frame_NavigationFailed;
+
             NavigationService.Initialize(frame);
             this.navigationView.BackRequested += OnBackRequested;
 
@@ -121,10 +128,29 @@ namespace MoneyFox.Uwp
                 return;
             }
 
-            var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
+            var pageString = item.GetValue(NavHelper.NavigateToProperty) as string;
+            NavigationService.Navigate(GetTypeByString(pageString));
+        }
 
-            Logger.Info("Navigate to page key {key}", pageKey);
-            NavigationService.Navigate(pageKey);
+        private Type GetTypeByString(string pageString)
+        {
+            switch(pageString)
+            {
+                case "AccountListViewModel":
+                    return typeof(AccountListViewModel);
+
+                case "StatisticSelectorViewModel":
+                    return typeof(StatisticSelectorViewModel);
+
+                case "CategoryListViewModel":
+                    return typeof(CategoryListViewModel);
+
+                case "BackupViewModel":
+                    return typeof(BackupViewModel);
+
+                default:
+                    return null;
+            }
         }
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
@@ -148,10 +174,8 @@ namespace MoneyFox.Uwp
 
         private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
         {
-            string navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType);
-            var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
-
-            return pageKey == navigatedPageKey;
+            var pageType = GetTypeByString(menuItem.GetValue(NavHelper.NavigateToProperty) as string);
+            return pageType == sourcePageType;
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
