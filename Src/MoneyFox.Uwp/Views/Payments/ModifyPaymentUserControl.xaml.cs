@@ -3,11 +3,11 @@ using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-namespace MoneyFox.Uwp.Views.UserControls
+namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class ModifyPaymentUserControl
     {
-        private ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
+        public ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
 
         public ModifyPaymentUserControl()
         {

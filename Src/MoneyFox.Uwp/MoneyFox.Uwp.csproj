@@ -285,6 +285,9 @@
     <Compile Include="Views\EditCategoryDialog.xaml.cs">
       <DependentUpon>EditCategoryDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Payments\CategorySelectionControl.xaml.cs">
+      <DependentUpon>CategorySelectionControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Payments\EditPaymentView.xaml.cs">
       <DependentUpon>EditPaymentView.xaml</DependentUpon>
     </Compile>
@@ -333,7 +336,7 @@
     <Compile Include="Views\UserControls\ModifyCategoryUserControl.xaml.cs">
       <DependentUpon>ModifyCategoryUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ModifyPaymentUserControl.xaml.cs">
+    <Compile Include="Views\Payments\ModifyPaymentUserControl.xaml.cs">
       <DependentUpon>ModifyPaymentUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Statistics\StatisticCategorySummary\PaymentListUserControl.xaml.cs">
@@ -497,6 +500,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Payments\CategorySelectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Payments\EditPaymentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -561,7 +568,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ModifyPaymentUserControl.xaml">
+    <Page Include="Views\Payments\ModifyPaymentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -661,7 +668,9 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Payments\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

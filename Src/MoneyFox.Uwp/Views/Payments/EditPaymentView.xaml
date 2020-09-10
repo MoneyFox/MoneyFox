@@ -5,7 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:userControls="using:MoneyFox.Uwp.Views.Payments"
     Title="{Binding Title}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     DataContext="{Binding EditPaymentVm, Source={StaticResource Locator}}"
