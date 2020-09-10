@@ -1,8 +1,7 @@
 ﻿<views:BaseView
-    x:Class="MoneyFox.Uwp.Views.AccountListView"
+    x:Class="MoneyFox.Uwp.Views.Accounts.AccountListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:accountlist="using:MoneyFox.Uwp.Views.AccountList"
     xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
@@ -14,6 +13,7 @@
     xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Accounts"
+    xmlns:accountlist="using:MoneyFox.Uwp.Views.Accounts"
     DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 

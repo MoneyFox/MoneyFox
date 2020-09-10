@@ -3,7 +3,7 @@ using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 
-namespace MoneyFox.Uwp.Views.AccountList
+namespace MoneyFox.Uwp.Views.Accounts
 {
     public sealed partial class AccountListToolbar : UserControl
     {

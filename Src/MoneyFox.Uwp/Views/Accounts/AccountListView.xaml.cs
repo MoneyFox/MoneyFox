@@ -7,7 +7,7 @@ using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Uwp.Views.Accounts
 {
     /// <summary>
     /// View to display an list of accounts.
