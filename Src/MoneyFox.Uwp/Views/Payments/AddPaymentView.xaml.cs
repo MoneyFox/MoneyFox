@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Domain;
-using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views.Payments

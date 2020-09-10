@@ -5,7 +5,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Src;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>
     /// This ViewModel is for the usage in the payment list when a concrete account is selected

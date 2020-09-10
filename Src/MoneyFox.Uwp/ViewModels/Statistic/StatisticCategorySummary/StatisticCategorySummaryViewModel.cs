@@ -5,6 +5,7 @@ using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Payments;
 using NLog;
 using System;
 using System.Collections.Generic;

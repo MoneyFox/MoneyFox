@@ -14,7 +14,7 @@ using System;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <inheritdoc cref="IPaymentListViewActionViewModel"/>
     /// />
@@ -193,12 +193,12 @@ namespace MoneyFox.Uwp.ViewModels
         private void UpdateList()
         {
             MessengerInstance.Send(new PaymentListFilterChangedMessage
-                                   {
-                                       IsClearedFilterActive = IsClearedFilterActive,
-                                       IsRecurringFilterActive = IsRecurringFilterActive,
-                                       TimeRangeStart = TimeRangeStart,
-                                       TimeRangeEnd = TimeRangeEnd
-                                   });
+            {
+                IsClearedFilterActive = IsClearedFilterActive,
+                IsRecurringFilterActive = IsRecurringFilterActive,
+                TimeRangeStart = TimeRangeStart,
+                TimeRangeEnd = TimeRangeEnd
+            });
         }
     }
 }

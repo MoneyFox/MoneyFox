@@ -20,7 +20,7 @@ using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Resources;
 using GalaSoft.MvvmLight.Messaging;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>
     /// Representation of the payment list view.
@@ -186,10 +186,10 @@ namespace MoneyFox.Uwp.ViewModels
             var payments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                                                                filterMessage.TimeRangeStart,
                                                                                                                filterMessage.TimeRangeEnd)
-                                                                              {
-                                                                                  IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                                                                                  IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-                                                                              }));
+            {
+                IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+            }));
 
             payments.ForEach(x => x.CurrentAccountId = AccountId);
 

@@ -6,7 +6,6 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Uwp.Services;
 using NLog;
@@ -16,7 +15,7 @@ using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using GalaSoft.MvvmLight.Command;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Payments
 {
     public class AddPaymentViewModel : ModifyPaymentViewModel
     {
@@ -72,9 +71,7 @@ namespace MoneyFox.Uwp.ViewModels
                                           SelectedPayment.Note);
 
                 if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
-                {
                     payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.EndDate);
-                }
 
                 await mediator.Send(new CreatePaymentCommand(payment));
             }

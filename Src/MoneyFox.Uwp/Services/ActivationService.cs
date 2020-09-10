@@ -5,6 +5,7 @@ using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Ui.Shared.ViewModels.Settings;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 using MoneyFox.Uwp.Views;

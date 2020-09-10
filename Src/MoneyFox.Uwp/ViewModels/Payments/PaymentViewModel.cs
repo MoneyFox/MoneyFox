@@ -1,23 +1,13 @@
 ﻿using AutoMapper;
-using CommonServiceLocator;
 using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Messaging;
-using MediatR;
 using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Payments.Commands.DeletePaymentById;
-using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Uwp.Services;
 using System;
-using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
-using GalaSoft.MvvmLight.Command;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>
     /// Handles the view representation of a payment.
@@ -43,20 +33,10 @@ namespace MoneyFox.Uwp.ViewModels
         private CategoryViewModel categoryViewModel;
         private RecurringPaymentViewModel recurringPaymentViewModel;
 
-        private IMediator mediator;
-        private NavigationService navigationService;
-        private IDialogService dialogService;
-
         public PaymentViewModel()
         {
             Date = DateTime.Today;
             Type = PaymentType.Expense;
-        }
-
-        public PaymentViewModel(IMediator mediator, NavigationService navigationService) : this()
-        {
-            this.mediator = mediator;
-            this.navigationService = navigationService;
         }
 
         public int Id
@@ -259,7 +239,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The <see cref="Category"/> for this payment
         /// </summary>
-        public CategoryViewModel? Category
+        public CategoryViewModel Category
         {
             get => categoryViewModel;
             set
@@ -274,7 +254,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The <see cref="RecurringPayment"/> if it's recurring.
         /// </summary>
-        public RecurringPaymentViewModel? RecurringPayment
+        public RecurringPaymentViewModel RecurringPayment
         {
             get => recurringPaymentViewModel;
             set

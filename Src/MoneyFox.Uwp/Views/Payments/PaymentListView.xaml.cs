@@ -1,5 +1,5 @@
 ﻿using CommonServiceLocator;
-using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.Payments;
 using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;

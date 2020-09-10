@@ -1,4 +1,4 @@
-﻿using MoneyFox.Uwp.ViewModels;
+﻿using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 

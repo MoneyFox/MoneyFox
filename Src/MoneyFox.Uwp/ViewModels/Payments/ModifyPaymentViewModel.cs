@@ -18,11 +18,10 @@ using MoneyFox.Messages;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
-using MoneyFox.Uwp.Views;
 using MoneyFox.Uwp.Views.Payments;
 using System;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>
     /// Handles the logic of the ModifyPayment view
@@ -227,9 +226,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
 
             if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
-            {
                 SelectedPayment.Amount = convertedValue;
-            }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
@@ -262,9 +259,7 @@ namespace MoneyFox.Uwp.ViewModels
         private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if(SelectedPayment == null || message == null)
-            {
                 return;
-            }
             SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
         }
 

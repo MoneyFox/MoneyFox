@@ -15,6 +15,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
+using MoneyFox.Uwp.ViewModels.Payments;
 using NLog;
 using System;
 using System.Collections.Generic;

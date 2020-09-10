@@ -2,6 +2,7 @@
 using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Uwp.ViewModels.Payments;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
