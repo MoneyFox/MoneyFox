@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Uwp;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Statistic;
 
@@ -55,15 +54,15 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
         {
             if(item.Type == StatisticType.Cashflow)
             {
-                navigationService.Navigate(ViewModelLocator.StatisticCashFlow);
+                navigationService.Navigate<StatisticCashFlowViewModel>();
             }
             else if(item.Type == StatisticType.CategorySpreading)
             {
-                navigationService.Navigate(ViewModelLocator.StatisticCategorySpreading);
+                navigationService.Navigate<StatisticCategorySpreadingViewModel>();
             }
             else if(item.Type == StatisticType.CategorySummary)
             {
-                navigationService.Navigate(ViewModelLocator.StatisticCategorySummary);
+                navigationService.Navigate<StatisticCategorySummaryViewModel>();
             }
         }
     }
