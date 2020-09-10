@@ -121,22 +121,6 @@
                                                 HorizontalAlignment="Stretch"
                                                 Background="{ThemeResource ListItemBrush}">
 
-                                                <Grid.ContextFlyout>
-                                                    <MenuFlyout>
-                                                        <MenuFlyoutItem
-                                                            Click="EditPaymentClick"
-                                                            CommandParameter="{x:Bind}"
-                                                            Icon="Edit"
-                                                            Text="{x:Bind resources:Strings.EditLabel}" />
-
-                                                        <MenuFlyoutItem
-                                                            Command="{x:Bind ViewModel:DeletePaymentCommand }"
-                                                            CommandParameter="{x:Bind}"
-                                                            Icon="Delete"
-                                                            Text="{x:Bind resources:Strings.DeleteLabel}" />
-                                                    </MenuFlyout>
-                                                </Grid.ContextFlyout>
-
                                                 <Grid Margin="{StaticResource MediumLeftRightMargin}">
                                                     <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                                                         <TextBlock HorizontalAlignment="Stretch" Text="{x:Bind Category.Name}" />
