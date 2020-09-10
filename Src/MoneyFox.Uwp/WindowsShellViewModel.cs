@@ -60,9 +60,7 @@ namespace MoneyFox.Uwp
 
             this.navigationView = navigationView;
             this.keyboardAccelerators = keyboardAccelerators;
-            NavigationService.Frame = frame;
-            NavigationService.NavigationFailed += Frame_NavigationFailed;
-            NavigationService.Navigated += Frame_Navigated;
+            NavigationService.Initialize(frame);
             this.navigationView.BackRequested += OnBackRequested;
 
             CoreWindow.GetForCurrentThread().PointerPressed += On_PointerPressed;
@@ -101,7 +99,7 @@ namespace MoneyFox.Uwp
             if(args.IsSettingsInvoked)
             {
                 Logger.Info("Navigate to settings");
-                NavigationService.Navigate(nameof(WindowsSettingsViewModel));
+                NavigationService.Navigate<WindowsSettingsViewModel>();
 
                 return;
             }

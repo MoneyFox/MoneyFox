@@ -8,20 +8,20 @@ namespace MoneyFox.Uwp.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>
     {
-        private readonly string navElement;
+        private readonly Type startupViewModel;
 
         public NavigationService NavigationService => ServiceLocator.Current.GetInstance<NavigationService>();
 
-        public DefaultLaunchActivationHandler(Type navElement)
+        public DefaultLaunchActivationHandler(Type startupViewModel)
         {
-            this.navElement = navElement.Name;
+            this.startupViewModel = startupViewModel;
         }
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {
             // When the navigation stack isn't restored, navigate to the first page and configure
             // the new page by passing required information in the navigation parameter
-            NavigationService.Navigate(navElement, args.Arguments);
+            NavigationService.Navigate(startupViewModel, args.Arguments);
 
             await Task.CompletedTask;
         }
@@ -29,7 +29,7 @@ namespace MoneyFox.Uwp.Activation
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
             // None of the ActivationHandlers has handled the app activation
-            return NavigationService.Frame.Content == null && navElement != null;
+            return NavigationService.Frame.Content == null && startupViewModel != null;
         }
     }
 }

@@ -326,7 +326,7 @@ namespace MoneyFox.Uwp.ViewModels
         private void EditPayment()
         {
             navigationService ??= ServiceLocator.Current.GetInstance<NavigationService>();
-            navigationService.Navigate(ViewModelLocator.EditPayment, Id);
+            navigationService.Navigate<EditPaymentViewModel>(Id);
         }
 
         [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Acts as EventHandler")]

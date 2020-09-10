@@ -93,6 +93,15 @@ namespace MoneyFox.Uwp.Services
         public NavigationService ConfigureNavigation()
         {
             NavigationService.Register<AccountListViewModel, AccountListView>();
+            NavigationService.Register<AccountListViewModel, AccountListView>();
+            NavigationService.Register<AccountListViewModel, AccountListView>();
+            NavigationService.Register<AccountListViewModel, AccountListView>();
+            NavigationService.Register<AccountListViewModel, AccountListView>();
+            NavigationService.Register<AccountListViewModel, AccountListView>();
+            NavigationService.Register<AccountListViewModel, AccountListView>();
+            NavigationService.Register<AccountListViewModel, AccountListView>();
+
+
             var nav = new NavigationService();
 
             nav.Configure(ViewModelLocator.AccountList, typeof(AccountListView));
