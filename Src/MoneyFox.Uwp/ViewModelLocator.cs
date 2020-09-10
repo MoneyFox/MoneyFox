@@ -3,7 +3,6 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels.Statistic;
-using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -31,46 +30,6 @@ namespace MoneyFox.Uwp
                 ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
             }
         }
-
-        public static string AccountList => nameof(AccountListViewModel);
-
-        public static string PaymentList => nameof(PaymentListViewModel);
-
-        public static string CategoryList => nameof(CategoryListViewModel);
-
-        public static string SelectCategoryList => nameof(SelectCategoryListViewModel);
-
-        public static string AddAccount => nameof(AddAccountViewModel);
-
-        public static string AddCategory => nameof(AddCategoryViewModel);
-
-        public static string AddPayment => nameof(AddPaymentViewModel);
-
-        public static string EditAccount => nameof(EditAccountViewModel);
-
-        public static string EditCategory => nameof(EditCategoryViewModel);
-
-        public static string EditPayment => nameof(EditPaymentViewModel);
-
-        public static string Backup => nameof(BackupViewModel);
-
-        //*****************
-        //  Statistics
-        //*****************
-        public static string StatisticCashFlow => nameof(StatisticCashFlowViewModel);
-
-        public static string StatisticCategorySpreading => nameof(StatisticCategorySpreadingViewModel);
-
-        public static string StatisticCategorySummary => nameof(StatisticCategorySummaryViewModel);
-
-        public static string StatisticSelector => nameof(StatisticSelectorViewModel);
-
-        //*****************
-        //  Settings
-        //*****************
-        public static string About => nameof(AboutViewModel);
-
-        public static string Settings => nameof(WindowsSettingsViewModel);
 
         //*****************
         //  Data Entry
