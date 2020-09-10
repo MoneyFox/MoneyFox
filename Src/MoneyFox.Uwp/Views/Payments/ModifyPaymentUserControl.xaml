@@ -57,7 +57,7 @@
             HorizontalAlignment="Stretch"
             Header="{x:Bind ViewModel.AccountHeader}"
             ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
-            ItemsSource="{x:Bind ViewModel.ChargedAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{x:Bind ViewModel.ChargedAccounts, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.SelectedPayment.ChargedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
@@ -71,7 +71,7 @@
             HorizontalAlignment="Stretch"
             Header="{x:Bind resources:Strings.TargetAccountLabel}"
             ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
-            ItemsSource="{x:Bind ViewModel.TargetAccounts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            ItemsSource="{x:Bind ViewModel.TargetAccounts, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.SelectedPayment.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Visibility="{x:Bind ViewModel.SelectedPayment.IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}">
             <i:Interaction.Behaviors>

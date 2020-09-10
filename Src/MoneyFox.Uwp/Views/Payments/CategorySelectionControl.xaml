@@ -14,12 +14,12 @@
     <Grid Margin="{StaticResource SmallTitleContentMargin}">
         <TextBox Header="{x:Bind resources:Strings.CategoryLabel}"
                  IsReadOnly="True"
-                 Text="{x:Bind ViewModel.SelectedPayment.Category.Name, UpdateSourceTrigger=PropertyChanged}">
+                 Text="{x:Bind ViewModel.SelectedPayment.Category.Name, Mode=OneWay}">
 
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="GotFocus">
                     <core:InvokeCommandAction
-                        Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand, Mode=OneWay}" />
+                        Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}" />
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </TextBox>
@@ -31,7 +31,7 @@
                     VerticalAlignment="Center">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Tapped">
-                    <core:InvokeCommandAction Command="{x:Bind ViewModel.ResetCategoryCommand, Mode=OneWay}" />
+                    <core:InvokeCommandAction Command="{x:Bind ViewModel.ResetCategoryCommand}" />
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </SymbolIcon>

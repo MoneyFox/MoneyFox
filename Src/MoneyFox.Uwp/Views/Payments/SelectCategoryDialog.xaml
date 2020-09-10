@@ -1,0 +1,33 @@
+﻿<ContentDialog
+    x:Class="MoneyFox.Uwp.Views.Payments.SelectCategoryDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    mc:Ignorable="d"
+    Title="{x:Bind resources:Strings.SelectCategoryTitle}"
+    PrimaryButtonText="Button1"
+    SecondaryButtonText="Button2" >
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <CommandBar Grid.Row="0"
+                    Style="{ThemeResource DefaultCommandBar}" >
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Command="{Binding CreateNewCategoryCommand}"
+                              Icon="Add"
+                              Label="{x:Bind resources:Strings.AddCategoryLabel}"
+                              LabelPosition="Default"/>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+
+        <controls:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+
+    </Grid>
+</ContentDialog>

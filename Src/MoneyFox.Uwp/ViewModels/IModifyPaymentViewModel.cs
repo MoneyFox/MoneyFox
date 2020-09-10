@@ -61,6 +61,11 @@ namespace MoneyFox.Uwp.ViewModels
         RelayCommand SelectedItemChangedCommand { get; }
 
         /// <summary>
+        ///     Opens to the SelectCategoryView
+        /// </summary>
+        RelayCommand GoToSelectCategoryDialogCommand { get; }
+
+        /// <summary>
         /// Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
         /// </summary>
         RelayCommand SaveCommand { get; }

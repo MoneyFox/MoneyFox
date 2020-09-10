@@ -18,6 +18,9 @@ using MoneyFox.Messages;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.Views;
+using MoneyFox.Uwp.Views.Payments;
+using System;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -65,7 +68,12 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         public RelayCommand SaveCommand => new RelayCommand(async () => await SavePaymentBaseAsync());
 
+        /// <inheritdoc />
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
+
+        /// <inheritdoc />
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await new SelectCategoryDialog().ShowAsync());
+
 
         /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
