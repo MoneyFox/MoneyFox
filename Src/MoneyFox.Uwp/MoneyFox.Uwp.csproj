@@ -193,7 +193,7 @@
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddCategoryViewModel.cs" />
-    <Compile Include="ViewModels\AddPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\AddPaymentViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
@@ -204,17 +204,18 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Payments\DesignTimePaymentListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\EditAccountViewModel.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />
-    <Compile Include="ViewModels\EditPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\EditPaymentViewModel.cs" />
     <Compile Include="ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="ViewModels\IModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\IModifyPaymentViewModel.cs" />
@@ -223,17 +224,16 @@
     <Compile Include="ViewModels\Interfaces\IAccountListViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IBalanceViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IPaymentListViewModel.cs" />
     <Compile Include="ViewModels\ISelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\ISelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\ISelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyCategoryViewModel.cs" />
-    <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListViewModel.cs" />
-    <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\ModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\PaymentListBalanceViewModel.cs" />
+    <Compile Include="ViewModels\Payments\PaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\Payments\PaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Payments\PaymentViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
@@ -675,9 +675,7 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Payments\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

@@ -12,6 +12,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
+using GalaSoft.MvvmLight.Command;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -44,9 +45,9 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         public AsyncCommand DeleteCommand => new AsyncCommand(DeletePaymentAsync);
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
+        public RelayCommand<int> InitializeCommand => new RelayCommand<int>(async (paymentId) => await InitializeAsync(paymentId));
 
-        protected override async Task InitializeAsync()
+        protected async Task InitializeAsync(int paymentId)
         {
             await base.InitializeAsync();
 

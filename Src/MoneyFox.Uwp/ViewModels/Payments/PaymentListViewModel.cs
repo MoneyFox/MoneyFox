@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp.ViewModels
     /// <summary>
     /// Representation of the payment list view.
     /// </summary>
-    public class PaymentListViewModel : ViewModelBase, IPaymentListViewModel
+    public class PaymentListViewModel : ViewModelBase
     {
         private const int DEFAULT_MONTH_BACK = -2;
 
@@ -66,6 +66,9 @@ namespace MoneyFox.Uwp.ViewModels
         public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadDataAsync());
+
+        public RelayCommand<PaymentViewModel> EditPaymentCommand
+            => new RelayCommand<PaymentViewModel>((vm) => navigationService.Navigate<EditPaymentViewModel>(vm));
 
         /// <summary>
         /// Deletes the passed PaymentViewModel.

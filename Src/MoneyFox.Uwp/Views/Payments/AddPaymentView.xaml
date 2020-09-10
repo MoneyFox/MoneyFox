@@ -20,7 +20,7 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Add Payment" Style="{StaticResource UwpPageTitleStyle}" />
+        <TextBlock Grid.Row="0" Text="{x:Bind ViewModel.Title}" Style="{StaticResource UwpPageTitleStyle}" />
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <CommandBar Style="{ThemeResource DefaultCommandBar}" >

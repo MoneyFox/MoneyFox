@@ -1,6 +1,5 @@
 ﻿using CommonServiceLocator;
 using MoneyFox.Uwp.ViewModels;
-using System;
 using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -47,7 +46,7 @@ namespace MoneyFox.Uwp.Views.Payments
         {
             if(((FrameworkElement)e.OriginalSource).DataContext is PaymentViewModel vm)
             {
-                await new EditPaymentView(vm.Id).ShowAsync();
+                ViewModel.EditPaymentCommand.Execute(vm);
             }
         }
 
