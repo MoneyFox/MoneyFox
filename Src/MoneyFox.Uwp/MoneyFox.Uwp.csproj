@@ -193,10 +193,9 @@
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddCategoryViewModel.cs" />
-    <Compile Include="ViewModels\AddPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\AddPaymentViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />
-    <Compile Include="ViewModels\CategoryOverviewViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
@@ -205,17 +204,18 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Payments\DesignTimePaymentListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\EditAccountViewModel.cs" />
     <Compile Include="ViewModels\EditCategoryViewModel.cs" />
-    <Compile Include="ViewModels\EditPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\EditPaymentViewModel.cs" />
     <Compile Include="ViewModels\ICategoryListViewModel.cs" />
     <Compile Include="ViewModels\IModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\IModifyPaymentViewModel.cs" />
@@ -224,17 +224,15 @@
     <Compile Include="ViewModels\Interfaces\IAccountListViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IBalanceViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\Interfaces\IPaymentListViewModel.cs" />
     <Compile Include="ViewModels\ISelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\ISelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\ISelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\ModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\ModifyCategoryViewModel.cs" />
-    <Compile Include="ViewModels\ModifyPaymentViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListBalanceViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListViewActionViewModel.cs" />
-    <Compile Include="ViewModels\PaymentListViewModel.cs" />
-    <Compile Include="ViewModels\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\ModifyPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\PaymentListBalanceViewModel.cs" />
+    <Compile Include="ViewModels\Payments\PaymentListViewActionViewModel.cs" />
+    <Compile Include="ViewModels\Payments\PaymentListViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
     <Compile Include="ViewModels\SelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
@@ -244,17 +242,18 @@
     <Compile Include="ViewModels\Settings\WindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\IStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticCategorySummary\CategoryOverviewViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticCategorySummary\StatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSelectorType.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSelectorViewModel.cs" />
-    <Compile Include="Views\AccountList\AccountListToolbar.xaml.cs">
+    <Compile Include="Views\Accounts\AccountListToolbar.xaml.cs">
       <DependentUpon>AccountListToolbar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AccountList\AccountListView.xaml.cs">
+    <Compile Include="Views\Accounts\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AddAccountDialog.xaml.cs">
@@ -263,8 +262,8 @@
     <Compile Include="Views\AddCategoryDialog.xaml.cs">
       <DependentUpon>AddCategoryDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddPaymentDialog.xaml.cs">
-      <DependentUpon>AddPaymentDialog.xaml</DependentUpon>
+    <Compile Include="Views\Payments\AddPaymentView.xaml.cs">
+      <DependentUpon>AddPaymentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BackupView.xaml.cs">
       <DependentUpon>BackupView.xaml</DependentUpon>
@@ -285,17 +284,20 @@
     <Compile Include="Views\EditCategoryDialog.xaml.cs">
       <DependentUpon>EditCategoryDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditPaymentView.xaml.cs">
+    <Compile Include="Views\Payments\CategorySelectionControl.xaml.cs">
+      <DependentUpon>CategorySelectionControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Payments\EditPaymentView.xaml.cs">
       <DependentUpon>EditPaymentView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AppShell.xaml.cs">
       <DependentUpon>AppShell.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PaymentListView.xaml.cs">
+    <Compile Include="Views\Payments\PaymentListView.xaml.cs">
       <DependentUpon>PaymentListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SelectCategoryListDialog.xaml.cs">
-      <DependentUpon>SelectCategoryListDialog.xaml</DependentUpon>
+    <Compile Include="Views\Payments\SelectCategoryDialog.xaml.cs">
+      <DependentUpon>SelectCategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Settings\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -309,7 +311,7 @@
     <Compile Include="Views\Statistics\StatisticCategorySpreadingView.xaml.cs">
       <DependentUpon>StatisticCategorySpreadingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Statistics\StatisticCategorySummaryView.xaml.cs">
+    <Compile Include="Views\Statistics\StatisticCategorySummary\StatisticCategorySummaryView.xaml.cs">
       <DependentUpon>StatisticCategorySummaryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Statistics\StatisticSelectorView.xaml.cs">
@@ -321,9 +323,6 @@
     <Compile Include="Views\UserControls\CategoryListControl.xaml.cs">
       <DependentUpon>CategoryListControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\CategorySelectionControl.xaml.cs">
-      <DependentUpon>CategorySelectionControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\UserControls\IncomeExpenseBalanceUserControl.xaml.cs">
       <DependentUpon>IncomeExpenseBalanceUserControl.xaml</DependentUpon>
     </Compile>
@@ -333,10 +332,10 @@
     <Compile Include="Views\UserControls\ModifyCategoryUserControl.xaml.cs">
       <DependentUpon>ModifyCategoryUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ModifyPaymentUserControl.xaml.cs">
+    <Compile Include="Views\Payments\ModifyPaymentUserControl.xaml.cs">
       <DependentUpon>ModifyPaymentUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\PaymentListUserControl.xaml.cs">
+    <Compile Include="Views\Statistics\StatisticCategorySummary\PaymentListUserControl.xaml.cs">
       <DependentUpon>PaymentListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsModule.cs" />
@@ -453,11 +452,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\AccountList\AccountListToolbar.xaml">
+    <Page Include="Views\Accounts\AccountListToolbar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AccountList\AccountListView.xaml">
+    <Page Include="Views\Accounts\AccountListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -469,7 +468,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddPaymentDialog.xaml">
+    <Page Include="Views\Payments\AddPaymentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -497,7 +496,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditPaymentView.xaml">
+    <Page Include="Views\Payments\CategorySelectionControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Payments\EditPaymentView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -505,13 +508,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\PaymentListView.xaml">
+    <Page Include="Views\Payments\PaymentListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SelectCategoryListDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Page Include="Views\Payments\SelectCategoryDialog.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Settings\AboutView.xaml">
       <SubType>Designer</SubType>
@@ -529,7 +532,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Statistics\StatisticCategorySummaryView.xaml">
+    <Page Include="Views\Statistics\StatisticCategorySummary\StatisticCategorySummaryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -545,10 +548,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\CategorySelectionControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\UserControls\IncomeExpenseBalanceUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -561,11 +560,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\ModifyPaymentUserControl.xaml">
+    <Page Include="Views\Payments\ModifyPaymentUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserControls\PaymentListUserControl.xaml">
+    <Page Include="Views\Statistics\StatisticCategorySummary\PaymentListUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

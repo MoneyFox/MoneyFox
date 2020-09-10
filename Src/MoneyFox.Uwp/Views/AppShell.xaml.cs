@@ -21,9 +21,7 @@ namespace MoneyFox.Uwp.Views
 
         public Frame MainFrame => ContentFrame;
 
-        private async void AddPaymentItemTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
-        {
-            await new AddPaymentDialog(PaymentType.Expense).ShowAsync();
-        }
+        private void AddPaymentItemTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+            => ViewModel.GoToPaymentCommand.Execute(PaymentType.Expense);
     }
 }

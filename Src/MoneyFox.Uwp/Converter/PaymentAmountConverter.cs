@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Application;
 using MoneyFox.Domain;
-using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System;
 using Windows.UI.Xaml.Data;
 

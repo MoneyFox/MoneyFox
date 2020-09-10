@@ -15,6 +15,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
+using MoneyFox.Uwp.ViewModels.Payments;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -86,7 +87,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void EditAccount(AccountViewModel accountViewModel)
         {
-            navigationService.Navigate(ViewModelLocator.EditAccount, accountViewModel.Id);
+            navigationService.Navigate<EditAccountViewModel>(accountViewModel.Id);
         }
 
         private async Task LoadAsync()
@@ -125,7 +126,7 @@ namespace MoneyFox.Uwp.ViewModels
         {
             if(accountViewModel == null) return;
 
-            navigationService.Navigate(ViewModelLocator.PaymentList, accountViewModel.Id);
+            navigationService.Navigate<PaymentListViewModel>(accountViewModel.Id);
         }
 
         private async Task DeleteAsync(AccountViewModel accountToDelete)

@@ -32,7 +32,9 @@ namespace MoneyFox.Uwp
         protected override async void OnLaunched(LaunchActivatedEventArgs args)
         {
             if(!args.PrelaunchActivated)
+            {
                 await ActivationService.ActivateAsync(args);
+            }
 
             OverrideTitleBarColor();
         }

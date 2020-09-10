@@ -1,9 +1,19 @@
 ﻿using Autofac;
 using MoneyFox.Application.Common;
+using MoneyFox.Presentation.ViewModels.Statistic;
+using MoneyFox.Ui.Shared.ViewModels.Backup;
+using MoneyFox.Ui.Shared.ViewModels.Settings;
 using MoneyFox.Uwp.Activation;
+using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.Payments;
+using MoneyFox.Uwp.ViewModels.Statistic;
+using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 using MoneyFox.Uwp.Views;
+using MoneyFox.Uwp.Views.Accounts;
+using MoneyFox.Uwp.Views.Payments;
 using MoneyFox.Uwp.Views.Settings;
 using MoneyFox.Uwp.Views.Statistics;
+using MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using System;
@@ -66,52 +76,39 @@ namespace MoneyFox.Uwp.Services
 
 #if !DEBUG
             AppCenter.Start(ConfigurationManager.AppSettings["WindowsAppcenterSecret"], typeof(Analytics), typeof(Crashes));
+            Analytics.TrackEvent("AppStarted");
 #endif
 
             LoggerService.Initialize();
 
-            NavigationService navService = ConfigureNavigation();
-            RegisterServices(navService);
+            ConfigureNavigation();
+            RegisterServices();
 
             await JumpListService.InitializeAsync();
             ThemeSelectorService.Initialize();
         }
 
-        private static void RegisterServices(NavigationService nav)
+        private static void RegisterServices()
         {
             var builder = new ContainerBuilder();
-
-            builder.RegisterInstance(nav)
-                   .AsImplementedInterfaces()
-                   .AsSelf();
 
             builder.RegisterModule<WindowsModule>();
             ViewModelLocator.RegisterServices(builder);
         }
 
-        public NavigationService ConfigureNavigation()
+        private void ConfigureNavigation()
         {
-            var nav = new NavigationService();
-
-            nav.Configure(ViewModelLocator.AccountList, typeof(AccountListView));
-            nav.Configure(ViewModelLocator.PaymentList, typeof(PaymentListView));
-            nav.Configure(ViewModelLocator.CategoryList, typeof(CategoryListView));
-            nav.Configure(ViewModelLocator.SelectCategoryList, typeof(SelectCategoryListDialog));
-            nav.Configure(ViewModelLocator.AddAccount, typeof(AddAccountDialog));
-            nav.Configure(ViewModelLocator.AddCategory, typeof(AddCategoryDialog));
-            nav.Configure(ViewModelLocator.AddPayment, typeof(AddPaymentDialog));
-            nav.Configure(ViewModelLocator.EditAccount, typeof(EditAccountView));
-            nav.Configure(ViewModelLocator.EditCategory, typeof(EditCategoryDialog));
-            nav.Configure(ViewModelLocator.EditPayment, typeof(EditPaymentView));
-            nav.Configure(ViewModelLocator.Settings, typeof(SettingsView));
-            nav.Configure(ViewModelLocator.StatisticCashFlow, typeof(StatisticCashFlowView));
-            nav.Configure(ViewModelLocator.StatisticCategorySpreading, typeof(StatisticCategorySpreadingView));
-            nav.Configure(ViewModelLocator.StatisticCategorySummary, typeof(StatisticCategorySummaryView));
-            nav.Configure(ViewModelLocator.Backup, typeof(BackupView));
-            nav.Configure(ViewModelLocator.About, typeof(AboutView));
-            nav.Configure(ViewModelLocator.StatisticSelector, typeof(StatisticSelectorView));
-
-            return nav;
+            NavigationService.Register<AccountListViewModel, AccountListView>();
+            NavigationService.Register<PaymentListViewModel, PaymentListView>();
+            NavigationService.Register<AddPaymentViewModel, AddPaymentView>();
+            NavigationService.Register<EditPaymentViewModel, EditPaymentView>();
+            NavigationService.Register<CategoryListViewModel, CategoryListView>();
+            NavigationService.Register<SettingsViewModel, SettingsView>();
+            NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
+            NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
+            NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
+            NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();
+            NavigationService.Register<BackupViewModel, BackupView>();
         }
 
         private async Task HandleActivationAsync(object activationArgs)
@@ -120,7 +117,9 @@ namespace MoneyFox.Uwp.Services
             {
                 var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
                 if(defaultHandler.CanHandle(activationArgs))
+                {
                     await defaultHandler.HandleAsync(activationArgs);
+                }
             }
         }
 

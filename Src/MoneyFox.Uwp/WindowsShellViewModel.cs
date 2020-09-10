@@ -1,9 +1,14 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Domain;
+using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Settings;
 using NLog;
 using System;
@@ -42,7 +47,7 @@ namespace MoneyFox.Uwp
             set => Set(ref isBackEnabled, value);
         }
 
-        public static NavigationService NavigationService => ServiceLocator.Current.GetInstance<NavigationService>();
+        public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
 
         public WinUI.NavigationViewItem Selected
         {
@@ -54,15 +59,19 @@ namespace MoneyFox.Uwp
 
         public ICommand ItemInvokedCommand => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
 
+        public RelayCommand<PaymentType> GoToPaymentCommand => new RelayCommand<PaymentType>(t => NavigationService.Navigate<AddPaymentViewModel>(t));
+
         public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
         {
             Logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
 
             this.navigationView = navigationView;
             this.keyboardAccelerators = keyboardAccelerators;
-            NavigationService.Frame = frame;
-            NavigationService.NavigationFailed += Frame_NavigationFailed;
-            NavigationService.Navigated += Frame_Navigated;
+
+            frame.Navigated += Frame_Navigated;
+            frame.NavigationFailed += Frame_NavigationFailed;
+
+            NavigationService.Initialize(frame);
             this.navigationView.BackRequested += OnBackRequested;
 
             CoreWindow.GetForCurrentThread().PointerPressed += On_PointerPressed;
@@ -101,7 +110,7 @@ namespace MoneyFox.Uwp
             if(args.IsSettingsInvoked)
             {
                 Logger.Info("Navigate to settings");
-                NavigationService.Navigate(nameof(WindowsSettingsViewModel));
+                NavigationService.Navigate<WindowsSettingsViewModel>();
 
                 return;
             }
@@ -123,10 +132,29 @@ namespace MoneyFox.Uwp
                 return;
             }
 
-            var pageKey = item.GetValue(NavHelper.NavigateToProperty) as string;
+            var pageString = item.GetValue(NavHelper.NavigateToProperty) as string;
+            NavigationService.Navigate(GetTypeByString(pageString));
+        }
 
-            Logger.Info("Navigate to page key {key}", pageKey);
-            NavigationService.Navigate(pageKey);
+        private Type GetTypeByString(string pageString)
+        {
+            switch(pageString)
+            {
+                case "AccountListViewModel":
+                    return typeof(AccountListViewModel);
+
+                case "StatisticSelectorViewModel":
+                    return typeof(StatisticSelectorViewModel);
+
+                case "CategoryListViewModel":
+                    return typeof(CategoryListViewModel);
+
+                case "BackupViewModel":
+                    return typeof(BackupViewModel);
+
+                default:
+                    return null;
+            }
         }
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
@@ -150,10 +178,8 @@ namespace MoneyFox.Uwp
 
         private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
         {
-            string navigatedPageKey = NavigationService.GetNameOfRegisteredPage(sourcePageType);
-            var pageKey = menuItem.GetValue(NavHelper.NavigateToProperty) as string;
-
-            return pageKey == navigatedPageKey;
+            var pageType = GetTypeByString(menuItem.GetValue(NavHelper.NavigateToProperty) as string);
+            return pageType == sourcePageType;
         }
 
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)

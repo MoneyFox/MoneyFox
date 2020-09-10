@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
@@ -61,14 +61,19 @@ namespace MoneyFox.Uwp.ViewModels
         RelayCommand SelectedItemChangedCommand { get; }
 
         /// <summary>
-        /// Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
-        /// </summary>
-        AsyncCommand SaveCommand { get; }
-
-        /// <summary>
-        /// Opens to the SelectCategoryView
+        ///     Opens to the SelectCategoryView
         /// </summary>
         RelayCommand GoToSelectCategoryDialogCommand { get; }
+
+        /// <summary>
+        /// Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
+        /// </summary>
+        RelayCommand SaveCommand { get; }
+
+        /// <summary>
+        ///     Cancels the Operation
+        /// </summary>
+        RelayCommand CancelCommand { get; }
 
         /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel

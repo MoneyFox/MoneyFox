@@ -108,7 +108,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void EditCategory(CategoryViewModel category)
         {
-            NavigationService.Navigate(ViewModelLocator.EditCategory, category.Id);
+            NavigationService.Navigate<EditCategoryViewModel>(category.Id);
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(IEnumerable<CategoryViewModel> categories)
