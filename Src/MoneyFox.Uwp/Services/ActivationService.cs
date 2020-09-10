@@ -90,14 +90,14 @@ namespace MoneyFox.Uwp.Services
             ViewModelLocator.RegisterServices(builder);
         }
 
-        public void ConfigureNavigation()
+        private void ConfigureNavigation()
         {
             NavigationService.Register<AccountListViewModel, AccountListView>();
             NavigationService.Register<PaymentListViewModel, PaymentListView>();
             NavigationService.Register<CategoryListViewModel, CategoryListView>();
             NavigationService.Register<SettingsViewModel, SettingsView>();
             NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
-            NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
+            NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
             NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
             NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();
             NavigationService.Register<BackupViewModel, BackupView>();

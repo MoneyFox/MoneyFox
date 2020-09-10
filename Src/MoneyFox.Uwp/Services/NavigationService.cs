@@ -102,6 +102,7 @@ namespace MoneyFox.Uwp.Services
         {
             return await CreateNewViewAsync(typeof(TViewModel), parameter);
         }
+
         public async Task<int> CreateNewViewAsync(Type viewModelType, object parameter = null)
         {
             int viewId = 0;
