@@ -12,7 +12,6 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding PaymentListVm, Source={StaticResource Locator}}"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
 

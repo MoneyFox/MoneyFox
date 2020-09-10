@@ -1,4 +1,5 @@
-﻿using MoneyFox.Uwp.ViewModels;
+﻿using CommonServiceLocator;
+using MoneyFox.Uwp.ViewModels;
 using System;
 using System.Globalization;
 using Windows.UI.Xaml;
@@ -18,6 +19,7 @@ namespace MoneyFox.Uwp.Views
         public PaymentListView()
         {
             InitializeComponent();
+            DataContext = ServiceLocator.Current.GetInstance<PaymentListViewModel>();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
