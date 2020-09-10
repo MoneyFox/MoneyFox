@@ -1,17 +1,20 @@
 ﻿using MoneyFox.Domain;
-using MoneyFox.Application.Common;
 using MoneyFox.Uwp.ViewModels;
+using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class AddPaymentView
     {
-        public AddPaymentView(PaymentType paymentType)
+        public AddPaymentView()
         {
             InitializeComponent();
+        }
 
-            ViewModel.PaymentType = paymentType;
-            ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            ViewModel.PaymentType = (PaymentType)e.Parameter;
+            ViewModel.InitializeCommand.Execute(null);
         }
 
         public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;

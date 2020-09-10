@@ -10,7 +10,7 @@
     DataContext="{Binding AddPaymentVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Padding="15,0,15,0">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
@@ -20,16 +20,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Add Payment" Style="{StaticResource UwpPageTitleStyle}" Margin="15,0,15,0"/>
+        <TextBlock Grid.Row="0" Text="Add Payment" Style="{StaticResource UwpPageTitleStyle}" />
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <CommandBar>
-                <AppBarButton Command="{x:Bind ViewModel.SaveCommand}" Icon="Save" Label="{x:Bind resources:Strings.DoneLabel}" LabelPosition="Default" />
-                <AppBarButton Command="{x:Bind ViewModel.CancelCommand}" Icon="Cancel" Label="{x:Bind resources:Strings.CancelLabel}"  LabelPosition="Default" />
+            <CommandBar Background="Transparent" DefaultLabelPosition="Right" >
+                <AppBarButton Command="{x:Bind ViewModel.SaveCommand}" Icon="Save" Label="{x:Bind resources:Strings.DoneLabel}" />
+                <AppBarButton Command="{x:Bind ViewModel.CancelCommand}" Icon="Cancel" Label="{x:Bind resources:Strings.CancelLabel}" />
             </CommandBar>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto" Padding="15,0,15,0">
+        <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto">
             <StackPanel>
                 <userControls:ModifyPaymentUserControl Grid.Row="0" />
             </StackPanel>

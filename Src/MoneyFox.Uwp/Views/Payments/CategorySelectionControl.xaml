@@ -12,8 +12,14 @@
     d:DesignWidth="400">
 
     <Grid Margin="{StaticResource SmallTitleContentMargin}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="30" />
+        </Grid.ColumnDefinitions>
+
         <TextBox Header="{x:Bind resources:Strings.CategoryLabel}"
                  IsReadOnly="True"
+                 Grid.ColumnSpan="2"
                  Text="{x:Bind ViewModel.SelectedPayment.Category.Name, Mode=OneWay}">
 
             <interactivity:Interaction.Behaviors>
@@ -25,10 +31,11 @@
         </TextBox>
 
         <SymbolIcon Symbol="Cancel"
+                    Grid.Column="1"
                     Height="32"
-                    Margin="378,0,0,0"
+                    Margin="0,10,0,0"
                     HorizontalAlignment="Left"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Bottom">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="Tapped">
                     <core:InvokeCommandAction Command="{x:Bind ViewModel.ResetCategoryCommand}" />

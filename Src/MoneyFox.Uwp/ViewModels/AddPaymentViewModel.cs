@@ -14,6 +14,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
+using GalaSoft.MvvmLight.Command;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -37,7 +38,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         public PaymentType PaymentType { get; set; }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
+        public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
         protected override async Task InitializeAsync()
         {
