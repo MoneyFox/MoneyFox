@@ -2,7 +2,7 @@
 using MoneyFox.Uwp.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class EditPaymentView : ContentDialog
     {

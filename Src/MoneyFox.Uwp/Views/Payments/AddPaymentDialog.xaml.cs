@@ -3,7 +3,7 @@ using MoneyFox.Application.Common;
 using MoneyFox.Uwp.ViewModels;
 using Windows.UI.Xaml.Controls;
 
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class AddPaymentDialog : ContentDialog
     {

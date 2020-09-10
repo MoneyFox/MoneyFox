@@ -9,6 +9,7 @@ using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 using MoneyFox.Uwp.Views;
 using MoneyFox.Uwp.Views.Accounts;
+using MoneyFox.Uwp.Views.Payments;
 using MoneyFox.Uwp.Views.Settings;
 using MoneyFox.Uwp.Views.Statistics;
 using MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary;
