@@ -38,7 +38,7 @@ namespace MoneyFox.Uwp.ViewModels
         private PaymentRecurrence recurrence;
         private PaymentViewModel selectedPayment = new PaymentViewModel();
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
-        private string title = "";
+        private string title = Strings.AddPaymentLabel;
 
         /// <summary>
         /// Default constructor

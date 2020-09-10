@@ -1,14 +1,11 @@
 ﻿using MoneyFox.Domain;
 using MoneyFox.Application.Common;
 using MoneyFox.Uwp.ViewModels;
-using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views.Payments
 {
-    public sealed partial class AddPaymentDialog : ContentDialog
+    public sealed partial class AddPaymentDialog
     {
-        private AddPaymentViewModel ViewModel => (AddPaymentViewModel) DataContext;
-
         public AddPaymentDialog(PaymentType paymentType)
         {
             InitializeComponent();
@@ -16,5 +13,7 @@ namespace MoneyFox.Uwp.Views.Payments
             ViewModel.PaymentType = paymentType;
             ViewModel.InitializeCommand.ExecuteAsync().FireAndForgetSafeAsync();
         }
+
+        public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
     }
 }
