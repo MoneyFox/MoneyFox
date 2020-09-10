@@ -76,7 +76,7 @@ namespace MoneyFox.Uwp.Services
             LoggerService.Initialize();
 
             ConfigureNavigation();
-            RegisterServices(navService);
+            RegisterServices();
 
             await JumpListService.InitializeAsync();
             ThemeSelectorService.Initialize();

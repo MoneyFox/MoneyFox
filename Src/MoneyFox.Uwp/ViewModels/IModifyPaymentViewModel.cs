@@ -66,11 +66,6 @@ namespace MoneyFox.Uwp.ViewModels
         AsyncCommand SaveCommand { get; }
 
         /// <summary>
-        /// Opens to the SelectCategoryView
-        /// </summary>
-        RelayCommand GoToSelectCategoryDialogCommand { get; }
-
-        /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
         RelayCommand ResetCategoryCommand { get; }

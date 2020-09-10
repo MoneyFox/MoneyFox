@@ -67,11 +67,6 @@ namespace MoneyFox.Uwp.ViewModels
         public AsyncCommand SaveCommand => new AsyncCommand(SavePaymentBaseAsync);
 
         /// <summary>
-        /// Opens to the SelectCategoryView
-        /// </summary>
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(OpenSelectCategoryList);
-
-        /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
         public RelayCommand ResetCategoryCommand => new RelayCommand(ResetSelection);
@@ -256,11 +251,6 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
             SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
-        }
-
-        private void OpenSelectCategoryList()
-        {
-            navigationService.Navigate(ViewModelLocator.SelectCategoryList);
         }
 
         private void ResetSelection()
