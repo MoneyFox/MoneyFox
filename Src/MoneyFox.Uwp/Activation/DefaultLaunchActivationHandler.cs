@@ -29,7 +29,7 @@ namespace MoneyFox.Uwp.Activation
         protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
         {
             // None of the ActivationHandlers has handled the app activation
-            return NavigationService.Frame.Content == null && startupViewModel != null;
+            return startupViewModel != null;
         }
     }
 }

@@ -34,6 +34,7 @@ namespace MoneyFox.Uwp.Services
         {
             return GetView(typeof(TViewModel));
         }
+
         static public Type GetView(Type viewModel)
         {
             if(viewModelMap.TryGetValue(viewModel, out Type view))
@@ -82,13 +83,14 @@ namespace MoneyFox.Uwp.Services
 
         public void Initialize(object frame)
         {
-            Frame = frame as Frame;
+            Frame = (Frame)frame;
         }
 
         public bool Navigate<TViewModel>(object parameter = null)
         {
             return Navigate(typeof(TViewModel), parameter);
         }
+
         public bool Navigate(Type viewModelType, object parameter = null)
         {
             if(Frame == null)
