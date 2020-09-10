@@ -99,45 +99,5 @@ namespace MoneyFox.Uwp.Services
             }
             return Frame.Navigate(GetView(viewModelType), parameter);
         }
-
-        public async Task<int> CreateNewViewAsync<TViewModel>(object parameter = null)
-        {
-            return await CreateNewViewAsync(typeof(TViewModel), parameter);
-        }
-
-        public async Task<int> CreateNewViewAsync(Type viewModelType, object parameter = null)
-        {
-            int viewId = 0;
-
-            var newView = CoreApplication.CreateNewView();
-            await newView.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
-            {
-                viewId = ApplicationView.GetForCurrentView().Id;
-
-                var frame = new Frame();
-                //var args = new ShellArgs
-                //{
-                //    ViewModel = viewModelType,
-                //    Parameter = parameter
-                //};
-                //frame.Navigate(typeof(ShellView), args);
-
-                Window.Current.Content = frame;
-                Window.Current.Activate();
-            });
-
-            if(await ApplicationViewSwitcher.TryShowAsStandaloneAsync(viewId))
-            {
-                return viewId;
-            }
-
-            return 0;
-        }
-
-        public async Task CloseViewAsync()
-        {
-            int currentId = ApplicationView.GetForCurrentView().Id;
-            await ApplicationViewSwitcher.SwitchAsync(MainViewId, currentId, ApplicationViewSwitchingOptions.ConsolidateViews);
-        }
     }
 }
