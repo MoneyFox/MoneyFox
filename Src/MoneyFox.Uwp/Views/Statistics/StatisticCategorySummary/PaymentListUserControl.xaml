@@ -6,7 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
     x:Name="PaymentControl"
@@ -19,7 +18,6 @@
     <UserControl.Resources>
         <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="GroupHeaderTemplate" >
             <Border Padding="3" Background="Transparent">
@@ -59,9 +57,7 @@
                 x:Name="PaymentListView"
                 Background="Transparent"
                 IsItemClickEnabled="False"
-                ItemClick="ListView_ItemClick"
                 ItemsSource="{Binding Source={StaticResource Groups}}"
-                Loaded="PaymentListView_OnLoaded"
                 SelectionMode="None">
 
                 <ListView.GroupStyle>
@@ -95,7 +91,6 @@
                                 Background="Transparent"
                                 IsItemClickEnabled="True"
                                 IsSynchronizedWithCurrentItem="False"
-                                ItemClick="ListView_ItemClick"
                                 ItemsSource="{Binding}"
                                 ScrollViewer.VerticalScrollMode="Disabled"
                                 ShowsScrollingPlaceholders="false">
@@ -109,7 +104,6 @@
 
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="viewModels:PaymentViewModel">
-
                                         <toolkit:DropShadowPanel
                                             HorizontalContentAlignment="Stretch"
                                             BlurRadius="4.0"
