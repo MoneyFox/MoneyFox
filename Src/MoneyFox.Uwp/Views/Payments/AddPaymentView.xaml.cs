@@ -4,9 +4,9 @@ using MoneyFox.Uwp.ViewModels;
 
 namespace MoneyFox.Uwp.Views.Payments
 {
-    public sealed partial class AddPaymentPage
+    public sealed partial class AddPaymentView
     {
-        public AddPaymentPage(PaymentType paymentType)
+        public AddPaymentView(PaymentType paymentType)
         {
             InitializeComponent();
 
