@@ -1,6 +1,4 @@
-﻿using MoneyFox.Ui.Shared.Groups;
-using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
-using Windows.UI.Xaml;
+﻿using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 
 namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
 {

@@ -20,6 +20,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Views.Payments;
 using System;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {

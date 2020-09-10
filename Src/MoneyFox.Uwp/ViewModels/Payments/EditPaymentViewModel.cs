@@ -13,6 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using GalaSoft.MvvmLight.Command;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {

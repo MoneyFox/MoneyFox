@@ -19,6 +19,7 @@ using System.Globalization;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Resources;
 using GalaSoft.MvvmLight.Messaging;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {

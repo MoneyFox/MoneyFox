@@ -7,7 +7,7 @@
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels"
+    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Payments"
     x:Name="PaymentControl"
     d:DataContext="{d:DesignInstance designTime:DesignTimePaymentListViewModel,
                                      IsDesignTimeCreatable=True}"

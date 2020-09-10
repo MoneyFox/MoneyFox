@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.DesignTime;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
