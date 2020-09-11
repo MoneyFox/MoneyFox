@@ -38,23 +38,13 @@ namespace MoneyFox.Ui.Shared.Utilities
         /// <returns>Title for the enum.</returns>
         public static string GetViewTitleForType(PaymentType type, bool isEditMode)
         {
-            switch(type)
+            return type switch
             {
-                case PaymentType.Expense:
-                    return isEditMode
-                           ? Strings.EditSpendingTitle : Strings.AddExpenseTitle;
-
-                case PaymentType.Income:
-                    return isEditMode
-                           ? Strings.EditIncomeTitle : Strings.AddIncomeTitle;
-
-                case PaymentType.Transfer:
-                    return isEditMode
-                           ? Strings.EditTransferTitle : Strings.AddTransferTitle;
-
-                default:
-                    return string.Empty;
-            }
+                PaymentType.Expense => isEditMode ? Strings.EditSpendingTitle : Strings.AddExpenseTitle,
+                PaymentType.Income => isEditMode ? Strings.EditIncomeTitle : Strings.AddIncomeTitle,
+                PaymentType.Transfer => isEditMode ? Strings.EditTransferTitle : Strings.AddTransferTitle,
+                _ => string.Empty,
+            };
         }
 
         /// <summary>
