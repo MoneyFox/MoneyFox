@@ -4,7 +4,6 @@ using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts
@@ -33,7 +32,10 @@ namespace MoneyFox.ViewModels.Accounts
                 return;
             }
 
-            await mediator.Send(new CreateAccountCommand(mapper.Map<Account>(SelectedAccountVm)));
+            await mediator.Send(new CreateAccountCommand(SelectedAccountVm.Name,
+                                                         SelectedAccountVm.CurrentBalance,
+                                                         SelectedAccountVm.Note,
+                                                         SelectedAccountVm.IsExcluded));
         }
     }
 }
