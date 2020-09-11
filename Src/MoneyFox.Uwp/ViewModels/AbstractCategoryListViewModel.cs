@@ -16,6 +16,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.Views;
+using System;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -75,12 +77,14 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
-        public AsyncCommand<CategoryViewModel> DeleteCategoryCommand => new AsyncCommand<CategoryViewModel>(DeleteCategoryAsync);
+        public AsyncCommand<CategoryViewModel> DeleteCategoryCommand
+            => new AsyncCommand<CategoryViewModel>(DeleteCategoryAsync);
 
         /// <summary>
         /// Edit the currently selected CategoryViewModel
         /// </summary>
-        public RelayCommand<CategoryViewModel> EditCategoryCommand => new RelayCommand<CategoryViewModel>(EditCategory);
+        public RelayCommand<CategoryViewModel> EditCategoryCommand
+            => new RelayCommand<CategoryViewModel>(async (vm) => await new EditCategoryDialog(vm.Id).ShowAsync());
 
         /// <summary>
         /// Selects the clicked CategoryViewModel and sends it to the message hub.
@@ -104,11 +108,6 @@ namespace MoneyFox.Uwp.ViewModels
         {
             var categoriesVms = Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
             CategoryList = CreateGroup(categoriesVms);
-        }
-
-        private void EditCategory(CategoryViewModel category)
-        {
-            NavigationService.Navigate<EditCategoryViewModel>(category.Id);
         }
 
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(IEnumerable<CategoryViewModel> categories)
