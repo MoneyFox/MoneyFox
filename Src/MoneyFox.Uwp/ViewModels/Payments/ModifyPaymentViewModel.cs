@@ -18,7 +18,6 @@ using MoneyFox.Messages;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
-using MoneyFox.Uwp.Views.Payments;
 using System;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 
@@ -54,8 +53,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.navigationService = navigationService;
             this.mediator = mediator;
             this.mapper = mapper;
-
-            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
         }
 
         /// <summary>
@@ -72,7 +69,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <inheritdoc />
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await new SelectCategoryDialog().ShowAsync());
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(() => navigationService.Navigate<SelectCategoryListViewModel>());
 
 
         /// <summary>
@@ -216,6 +213,16 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
             Categories = new ObservableCollection<CategoryViewModel>(mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery())));
+        }
+
+        public void Subscribe()
+        {
+            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
+        }
+
+        public void Unsubscribe()
+        {
+            MessengerInstance.Unregister<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
         }
 
         private async Task SavePaymentBaseAsync()
