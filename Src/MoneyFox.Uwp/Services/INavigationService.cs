@@ -18,7 +18,5 @@ namespace MoneyFox.Uwp.Services
         bool GoBack();
 
         bool GoForward();
-
-        Task CloseViewAsync();
     }
 }
