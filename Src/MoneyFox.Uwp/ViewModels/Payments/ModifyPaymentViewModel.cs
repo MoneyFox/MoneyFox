@@ -20,6 +20,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.Uwp.Views.Payments;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
@@ -69,7 +70,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <inheritdoc />
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(() => navigationService.Navigate<SelectCategoryListViewModel>());
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await new SelectCategoryDialog().ShowAsync());
 
 
         /// <summary>
