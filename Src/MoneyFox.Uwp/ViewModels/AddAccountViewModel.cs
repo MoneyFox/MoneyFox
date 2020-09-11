@@ -44,7 +44,10 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
-            await mediator.Send(new CreateAccountCommand(mapper.Map<Account>(SelectedAccount)));
+            await mediator.Send(new CreateAccountCommand(SelectedAccount.Name,
+                                                         SelectedAccount.CurrentBalance,
+                                                         SelectedAccount.Note,
+                                                         SelectedAccount.IsExcluded));
             NavigationService.GoBack();
         }
     }
