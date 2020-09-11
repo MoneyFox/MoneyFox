@@ -1,4 +1,5 @@
-﻿using MoneyFox.Uwp.ViewModels.Payments;
+﻿using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views.Payments
@@ -14,7 +15,8 @@ namespace MoneyFox.Uwp.Views.Payments
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.InitializeCommand.Execute((int)e.Parameter);
+            var vm = (PaymentViewModel)e.Parameter;
+            ViewModel.InitializeCommand.Execute(vm.Id);
         }
     }
 }

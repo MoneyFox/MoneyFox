@@ -39,8 +39,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.dialogService = dialogService;
         }
 
-        public int PaymentId { get; set; }
-
         /// <summary>
         /// Delete the selected CategoryViewModel from the database
         /// </summary>
@@ -52,7 +50,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         {
             await base.InitializeAsync();
 
-            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(PaymentId)));
+            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
             AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
 
             // We have to set this here since otherwise the end date is null. This causes a crash on android.
