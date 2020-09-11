@@ -20,7 +20,7 @@
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeStatisticCategorySummaryViewModel />
+        <viewModels:DesignTimeStatisticCategorySummaryViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <Page.Resources>
