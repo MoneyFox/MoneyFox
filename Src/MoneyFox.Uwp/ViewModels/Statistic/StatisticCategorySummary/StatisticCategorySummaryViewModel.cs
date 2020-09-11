@@ -6,7 +6,6 @@ using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
-using MoneyFox.Uwp.ViewModels.Payments;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -68,6 +67,17 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 
         public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new RelayCommand<CategoryOverviewViewModel>(async (c) => await SummaryEntrySelected(c));
 
+        private CategoryOverviewViewModel selectedOverviewItem;
+        public CategoryOverviewViewModel SelectedOverviewItem
+        {
+            get => selectedOverviewItem;
+            set
+            {
+                selectedOverviewItem = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private async Task SummaryEntrySelected(CategoryOverviewViewModel summaryItem)
         {
             logger.Info($"Loading payments for category with id {summaryItem.CategoryId}");
@@ -86,6 +96,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                                                                                                     var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
                                                                                                     return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
                                                                                                 }, s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
+
+            SelectedOverviewItem = summaryItem;
         }
 
         /// <summary>

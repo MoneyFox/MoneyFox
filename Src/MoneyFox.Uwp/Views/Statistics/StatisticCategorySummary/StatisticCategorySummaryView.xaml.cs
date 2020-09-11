@@ -4,6 +4,7 @@ using MoneyFox.Uwp.Views.Dialogs;
 using System;
 using System.Linq;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Navigation;
 
 namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
 {
@@ -17,6 +18,8 @@ namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
         {
             InitializeComponent();
         }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e) => ViewModel.LoadedCommand.Execute(null);
 
         private async void SetDate(object sender, RoutedEventArgs e)
         {

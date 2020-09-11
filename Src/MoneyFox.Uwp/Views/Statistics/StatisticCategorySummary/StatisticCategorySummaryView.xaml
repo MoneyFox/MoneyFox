@@ -88,6 +88,7 @@
             Grid.Row="1"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
+            SelectedItem=""
             ItemsSource="{x:Bind ViewModel.CategorySummary}"
             MasterPaneWidth="550"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
