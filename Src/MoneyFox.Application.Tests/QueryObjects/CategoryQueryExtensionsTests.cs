@@ -14,7 +14,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void NameContains()
         {
             // Arrange
-            List<Category> categoryQueryList = new List<Category>
+            var categoryQueryList = new List<Category>
             {
                 new Category("Foo1"),
                 new Category("Foo2"),

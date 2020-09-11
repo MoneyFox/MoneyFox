@@ -4,7 +4,6 @@ using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
 using System;
@@ -52,13 +51,11 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
         public async Task GetAccountQuery_CorrectNumberLoaded()
         {
             // Arrange
-            var account = new Account("test", 80);
-
             // Act
             await new CreateAccountCommand.Handler(contextAdapterMock.Object,
                                                    backupServiceMock.Object,
                                                    settingsFacadeMock.Object)
-                .Handle(new CreateAccountCommand(account),
+                .Handle(new CreateAccountCommand("test", 80),
                         default);
 
             // Assert
@@ -69,13 +66,11 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
         public async Task BackupUploadedOnCreate()
         {
             // Arrange
-            var account = new Account("test", 80);
-
             // Act
             await new CreateAccountCommand.Handler(contextAdapterMock.Object,
                                                    backupServiceMock.Object,
                                                    settingsFacadeMock.Object)
-                .Handle(new CreateAccountCommand(account),
+                .Handle(new CreateAccountCommand("Test", 80),
                         default);
 
             // Assert

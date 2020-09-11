@@ -138,23 +138,14 @@ namespace MoneyFox.Uwp
 
         private Type GetTypeByString(string pageString)
         {
-            switch(pageString)
+            return pageString switch
             {
-                case "AccountListViewModel":
-                    return typeof(AccountListViewModel);
-
-                case "StatisticSelectorViewModel":
-                    return typeof(StatisticSelectorViewModel);
-
-                case "CategoryListViewModel":
-                    return typeof(CategoryListViewModel);
-
-                case "BackupViewModel":
-                    return typeof(BackupViewModel);
-
-                default:
-                    return null;
-            }
+                "AccountListViewModel" => typeof(AccountListViewModel),
+                "StatisticSelectorViewModel" => typeof(StatisticSelectorViewModel),
+                "CategoryListViewModel" => typeof(CategoryListViewModel),
+                "BackupViewModel" => typeof(BackupViewModel),
+                _ => null,
+            };
         }
 
         private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)

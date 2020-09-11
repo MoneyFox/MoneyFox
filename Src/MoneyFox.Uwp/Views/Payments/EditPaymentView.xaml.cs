@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Common;
+﻿using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Navigation;
 
@@ -8,14 +8,15 @@ namespace MoneyFox.Uwp.Views.Payments
     {
         private EditPaymentViewModel ViewModel => (EditPaymentViewModel) DataContext;
 
-        public EditPaymentView(int paymentId)
+        public EditPaymentView()
         {
             InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.InitializeCommand.Execute((int)e.Parameter);
+            var vm = (PaymentViewModel)e.Parameter;
+            ViewModel.InitializeCommand.Execute(vm.Id);
         }
     }
 }

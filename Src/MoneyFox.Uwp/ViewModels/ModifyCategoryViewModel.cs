@@ -88,12 +88,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         private async Task SaveCategoryBaseAsync()
         {
-            if(string.IsNullOrEmpty(SelectedCategory.Name))
-            {
-                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
-                return;
-            }
-
             if(await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
             {
                 await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
