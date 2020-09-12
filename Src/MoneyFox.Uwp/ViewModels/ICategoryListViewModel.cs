@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Command to handle when the view is appearing
         /// </summary>
-        AsyncCommand AppearingCommand { get; }
+        RelayCommand AppearingCommand { get; }
 
         /// <summary>
         /// Command for the item click.

@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             }
         };
 
-        public AsyncCommand AppearingCommand { get; } = null!;
+        public RelayCommand AppearingCommand { get; } = null!;
 
         public RelayCommand<CategoryViewModel> ItemClickCommand { get; } = null!;
 

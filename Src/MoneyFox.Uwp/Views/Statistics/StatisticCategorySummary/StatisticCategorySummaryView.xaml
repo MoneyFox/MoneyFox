@@ -20,7 +20,7 @@
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeStatisticCategorySummaryViewModel />
+        <viewModels:DesignTimeStatisticCategorySummaryViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <Page.Resources>
@@ -88,6 +88,7 @@
             Grid.Row="1"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
+            SelectedItem=""
             ItemsSource="{x:Bind ViewModel.CategorySummary}"
             MasterPaneWidth="550"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"

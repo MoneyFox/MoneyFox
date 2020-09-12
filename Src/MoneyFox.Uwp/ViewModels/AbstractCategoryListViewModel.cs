@@ -72,7 +72,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
 
-        public AsyncCommand AppearingCommand => new AsyncCommand(ViewAppearingAsync);
+        public RelayCommand AppearingCommand => new RelayCommand(async() => await ViewAppearingAsync());
 
         /// <summary>
         /// Deletes the passed CategoryViewModel after show a confirmation dialog.
