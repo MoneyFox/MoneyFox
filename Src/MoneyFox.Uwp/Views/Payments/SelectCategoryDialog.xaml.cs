@@ -13,9 +13,8 @@ namespace MoneyFox.Uwp.Views.Payments
         {
             InitializeComponent();
             DataContext = ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
+            ViewModel.AppearingCommand.Execute(null);
         }
-
-        protected override void OnBringIntoViewRequested(BringIntoViewRequestedEventArgs e) => ViewModel.AppearingCommand.Execute(null);
 
         private async void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
