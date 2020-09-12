@@ -90,14 +90,6 @@
 
         <userControls:CategorySelectionControl ViewModel="{x:Bind ViewModel}" />
 
-        <ComboBox
-            HorizontalAlignment="Stretch"
-            DisplayMemberPath="Name"
-            Margin="{StaticResource SmallTitleContentMargin}"
-            Header="{x:Bind resources:Strings.CategoryLabel}"
-            ItemsSource="{x:Bind ViewModel.Categories}"
-            SelectedItem="{x:Bind ViewModel.SelectedPayment.Category, Mode=TwoWay}" />
-
         <CalendarDatePicker
             Margin="{StaticResource SmallTitleContentMargin}"
             HorizontalAlignment="Stretch"
