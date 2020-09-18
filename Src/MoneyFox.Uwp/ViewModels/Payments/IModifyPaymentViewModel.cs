@@ -5,7 +5,7 @@ using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Payments
 {
     public interface IModifyPaymentViewModel
     {
