@@ -10,20 +10,15 @@ namespace MoneyFox.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var paymentTypeEnum = (PaymentType) value;
+            var paymentType = (PaymentType)Enum.ToObject(typeof(PaymentType), value);
 
-            switch(paymentTypeEnum)
+            return paymentType switch
             {
-                case PaymentType.Expense:
-                    return Strings.ExpenseLabel;
-                case PaymentType.Income:
-                    return Strings.IncomeLabel;
-                case PaymentType.Transfer:
-                    return Strings.TransferLabel;
-
-                default:
-                    return string.Empty;
-            }
+                PaymentType.Expense => Strings.ExpenseLabel,
+                PaymentType.Income => Strings.IncomeLabel,
+                PaymentType.Transfer => Strings.TransferLabel,
+                _ => string.Empty,
+            };
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

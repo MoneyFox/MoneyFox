@@ -10,11 +10,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
     public interface IModifyPaymentViewModel
     {
         /// <summary>
-        /// Indicates if the PaymentViewModel is a transfer.
-        /// </summary>
-        bool IsTransfer { get; }
-
-        /// <summary>
         /// The selected recurrence
         /// </summary>
         PaymentRecurrence Recurrence { get; }
