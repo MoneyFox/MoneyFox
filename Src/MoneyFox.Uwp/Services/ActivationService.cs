@@ -6,6 +6,7 @@ using MoneyFox.Ui.Shared.ViewModels.Settings;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Payments;
+using MoneyFox.Uwp.ViewModels.Settings;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 using MoneyFox.Uwp.Views;
@@ -109,6 +110,7 @@ namespace MoneyFox.Uwp.Services
             NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
             NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();
             NavigationService.Register<BackupViewModel, BackupView>();
+            NavigationService.Register<WindowsSettingsViewModel, SettingsView>();
         }
 
         private async Task HandleActivationAsync(object activationArgs)

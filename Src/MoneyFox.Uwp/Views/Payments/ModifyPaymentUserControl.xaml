@@ -25,6 +25,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
         <converter:DecimalConverter x:Key="DecimalConverter" />
+        <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
 
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels:AccountViewModel">
             <StackPanel Orientation="Horizontal">
@@ -45,12 +46,9 @@
         <ComboBox
             HorizontalAlignment="Stretch"
             Header="{x:Bind resources:Strings.PaymentTypeLabel}"
-            SelectedIndex="0"
-            SelectionChanged="ComboBox_SelectionChanged">
-            <ComboBoxItem Content="{x:Bind resources:Strings.ExpenseLabel}" />
-            <ComboBoxItem Content="{x:Bind resources:Strings.IncomeLabel}" />
-            <ComboBoxItem Content="{x:Bind resources:Strings.TransferLabel}" />
-        </ComboBox>
+            ItemsSource="{x:Bind ViewModel.PaymentTypeList}"
+            DisplayMemberPath="{Binding ., Converter={StaticResource PaymentTypeToStringConverter}}"
+            SelectedItem="{x:Bind ViewModel.SelectedPayment.Type, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <ComboBox
             Margin="{StaticResource SmallTitleContentMargin}"
@@ -73,7 +71,7 @@
             ItemTemplate="{StaticResource ComboBoxAccountTemplate}"
             ItemsSource="{x:Bind ViewModel.TargetAccounts, Mode=OneWay}"
             SelectedItem="{x:Bind ViewModel.SelectedPayment.TargetAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Visibility="{x:Bind ViewModel.SelectedPayment.IsTransfer, Converter={StaticResource BooleanVisibilityConverter}}">
+            Visibility="{x:Bind ViewModel.SelectedPayment.IsTransfer, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
             <i:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
                     <core:InvokeCommandAction Command="{Binding SelectedItemChangedCommand}" />
