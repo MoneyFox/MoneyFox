@@ -9,11 +9,15 @@ namespace MoneyFox.Uwp.Converter
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             if(parameter != null && parameter.ToString() == "revert")
-                return (bool) value
-                       ? Visibility.Collapsed : Visibility.Visible;
+            {
+                return (bool)value
+                       ? Visibility.Collapsed
+                       : Visibility.Visible;
+            }
 
             return (bool) value
-                   ? Visibility.Visible : Visibility.Collapsed;
+                   ? Visibility.Visible
+                   : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
