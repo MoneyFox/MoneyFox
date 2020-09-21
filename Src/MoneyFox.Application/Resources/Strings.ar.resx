@@ -166,7 +166,7 @@
     <value>النفقات</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>تقييم مانى فوكس</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>تعديل الدخل</value>
@@ -247,7 +247,7 @@
     <value>يجب أن يكون تاريخ نهاية الدفعة المكررة في المستقبل. الرجاء التحقق من التاربخ المدخل.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Invalid End Date</value>
+    <value>تاريخ الانتهاء غير صالح</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
     <value>ليس الآن</value>
@@ -272,7 +272,7 @@
     <value>الإيرادات والنفقات والمكاسب للفترة الزمنية المحددة.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spreading of the expenses to the categories.</value>
+    <value> توزيع النفقات على الفئات.</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>ملخص الفئات مع الدفع.</value>
@@ -333,7 +333,7 @@
     <value>هل يوجد شيء غير مترجم بشكل صحيح أو غير مترجم على الإطلاق؟ ساعدنا! اذهب لـ Crowdin وساعدنا في ترجمة Money Fox:</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts to display.</value>
+    <value>لا توجد حسابات لعرضها.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
     <value>إنشاء نسخة احتياطية</value>
@@ -394,10 +394,10 @@
     <value>كل شهرين</value>
   </data>
   <data name="IsExcludedLabel" xml:space="preserve">
-    <value>Exclude account from balance</value>
+    <value>استبعاد الحساب من الرصيد</value>
   </data>
   <data name="ExcludedAccountsHeader" xml:space="preserve">
-    <value>Excluded Accounts</value>
+    <value>الحسابات المستبعدة</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
     <value>الحسابات المدخلة</value>
