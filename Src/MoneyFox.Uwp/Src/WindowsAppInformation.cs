@@ -9,16 +9,18 @@ namespace MoneyFox.Uwp.Src
         /// <summary>
         /// Returns the version of the package.
         /// </summary>
-        public string GetVersion()
+        public string GetVersion
         {
-            PackageVersion version = Package.Current.Id.Version;
-
-            return string.Format(CultureInfo.InvariantCulture,
-                                 "{0}.{1}.{2}.{3}",
-                                 version.Major,
-                                 version.Minor,
-                                 version.Build,
-                                 version.Revision);
+            get
+            {
+                PackageVersion version = Package.Current.Id.Version;
+                return string.Format(CultureInfo.InvariantCulture,
+                                     "{0}.{1}.{2}.{3}",
+                                     version.Major,
+                                     version.Minor,
+                                     version.Build,
+                                     version.Revision);
+            }
         }
     }
 }

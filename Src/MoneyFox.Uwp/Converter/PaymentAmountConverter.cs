@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Application;
 using MoneyFox.Domain;
-using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System;
 using Windows.UI.Xaml.Data;
 
@@ -8,25 +8,22 @@ namespace MoneyFox.Uwp.Converter
 {
     public class PaymentAmountConverter : IValueConverter
     {
-        private const string IGNORE_TRANSFER = "IgnoreTransfer";
-
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var payment = value as PaymentViewModel;
+            var payment = (PaymentViewModel)value;
 
             if(payment == null)
+            {
                 return string.Empty;
+            }
 
-            var param = parameter?.ToString();
             string sign;
 
             if(payment.Type == PaymentType.Transfer)
             {
-                string condition;
-                condition = payment.ChargedAccountId == payment.CurrentAccountId
-                            ? "-" : "+";
-                sign = param == IGNORE_TRANSFER
-                       ? "-" : condition;
+                sign = payment.ChargedAccountId == payment.CurrentAccountId
+                            ? "-"
+                            : "+";
             }
             else
             {

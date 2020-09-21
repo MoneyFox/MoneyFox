@@ -12,12 +12,14 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
 {
     public class CreateCategoryCommand : IRequest
     {
-        public CreateCategoryCommand(Category categoryToSave)
+        public CreateCategoryCommand(string name, string note = "")
         {
-            CategoryToSave = categoryToSave;
+            Name = name;
+            Note = note;
         }
 
-        public Category CategoryToSave { get; }
+        public string Name { get; }
+        public string Note { get; }
 
         public class Handler : IRequestHandler<CreateCategoryCommand>
         {
@@ -37,7 +39,7 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
             {
                 await backupService.RestoreBackupAsync();
 
-                await contextAdapter.Context.Categories.AddAsync(request.CategoryToSave, cancellationToken);
+                await contextAdapter.Context.Categories.AddAsync(new Category(request.Name, request.Note), cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

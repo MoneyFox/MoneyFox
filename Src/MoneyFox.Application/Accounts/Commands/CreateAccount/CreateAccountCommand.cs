@@ -12,12 +12,18 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
 {
     public class CreateAccountCommand : IRequest
     {
-        public CreateAccountCommand(Account accountToSave)
+        public CreateAccountCommand(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
-            AccountToSave = accountToSave;
+            Name = name;
+            CurrentBalance = currentBalance;
+            Note = note;
+            IsExcluded = isExcluded;
         }
 
-        public Account AccountToSave { get; private set; }
+        public string Name { get; private set; }
+        public decimal CurrentBalance { get; private set; }
+        public string Note { get; private set; }
+        public bool IsExcluded { get; private set; }
 
         public class Handler : IRequestHandler<CreateAccountCommand>
         {
@@ -37,7 +43,11 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
             /// <inheritdoc/>
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
-                await contextAdapter.Context.Accounts.AddAsync(request.AccountToSave, cancellationToken);
+                await contextAdapter.Context.Accounts.AddAsync(new Account(request.Name,
+                                                                           request.CurrentBalance,
+                                                                           request.Note,
+                                                                           request.IsExcluded),
+                                                               cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

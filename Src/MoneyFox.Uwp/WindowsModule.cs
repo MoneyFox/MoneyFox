@@ -42,8 +42,8 @@ namespace MoneyFox.Uwp
             builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.Register(c => PublicClientApplicationBuilder
-                                 .Create(ServiceConstants.MSAL_APPLICATION_ID)
-                                 .WithRedirectUri($"msal{ServiceConstants.MSAL_APPLICATION_ID}://auth")
+                                 .Create(AppConstants.MSAL_APPLICATION_ID)
+                                 .WithRedirectUri($"msal{AppConstants.MSAL_APPLICATION_ID}://auth")
                                  .Build())
                    .AsImplementedInterfaces();
 
@@ -51,6 +51,12 @@ namespace MoneyFox.Uwp
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces()
+                   .AsSelf()
+                   .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))

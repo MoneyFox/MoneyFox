@@ -103,7 +103,7 @@
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="Start"
                                                                 VerticalTextAlignment="Start"
-                                                                Text="{Binding Date, StringFormat='{0:d}'}}" />
+                                                                Text="{Binding Date, StringFormat='{0:d}'}" />
 
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="End"

@@ -20,13 +20,14 @@
 
 
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        <DatePicker
+        <CalendarDatePicker
             x:Uid="StartDateHeader"
             Margin="0,5,0,0"
             HorizontalAlignment="Stretch"
             Date="{Binding StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             Header="startdate" />
-        <DatePicker
+
+        <CalendarDatePicker
             x:Uid="EndDateHeader"
             Margin="0,5,0,0"
             HorizontalAlignment="Stretch"

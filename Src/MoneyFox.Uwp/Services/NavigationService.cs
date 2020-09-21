@@ -1,53 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
-using Windows.UI.Xaml;
+using Windows.ApplicationModel.Core;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Media.Animation;
-using Windows.UI.Xaml.Navigation;
 
 #nullable enable
 namespace MoneyFox.Uwp.Services
 {
-    public class NavigationService : INavigationService
+    public partial class NavigationService : INavigationService
     {
-        public event NavigatedEventHandler Navigated;
+        static private readonly ConcurrentDictionary<Type, Type> viewModelMap = new ConcurrentDictionary<Type, Type>();
 
-        public event NavigationFailedEventHandler NavigationFailed;
-
-        private readonly Dictionary<string, Type> _pages = new Dictionary<string, Type>();
-
-        private Frame frame;
-        private object lastParamUsed;
-
-        public Frame Frame
+        static NavigationService()
         {
-            get
-            {
-                if (frame == null)
-                {
-                    frame = (Frame)Window.Current.Content;
-                    RegisterFrameEvents();
-                }
+            MainViewId = ApplicationView.GetForCurrentView().Id;
+        }
 
-                return frame;
-            }
+        static public int MainViewId { get; }
 
-            set
+        static public void Register<TViewModel, TView>() where TView : Page
+        {
+            if(!viewModelMap.TryAdd(typeof(TViewModel), typeof(TView)))
             {
-                UnregisterFrameEvents();
-                frame = value;
-                RegisterFrameEvents();
+                throw new InvalidOperationException($"ViewModel already registered '{typeof(TViewModel).FullName}'");
             }
         }
 
-        public bool CanGoBack => Frame.CanGoBack;
+        static public Type GetView<TViewModel>()
+        {
+            return GetView(typeof(TViewModel));
+        }
 
-        public bool CanGoForward => Frame.CanGoForward;
+        static public Type GetView(Type viewModel)
+        {
+            if(viewModelMap.TryGetValue(viewModel, out Type view))
+            {
+                return view;
+            }
+            throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
+        }
+
+        static public Type GetViewModel(Type view)
+        {
+            var type = viewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
+            if(type == null)
+            {
+                throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
+            }
+            return type;
+        }
+
+        public bool IsMainView => CoreApplication.GetCurrentView().IsMain;
+
+        public Frame Frame { get; private set; }
+
+        public bool CanGoBack => Frame.CanGoBack;
 
         public bool GoBack()
         {
-            if (CanGoBack)
+            if(CanGoBack)
             {
                 Frame.GoBack();
                 return true;
@@ -58,7 +70,7 @@ namespace MoneyFox.Uwp.Services
 
         public bool GoForward()
         {
-            if (CanGoForward)
+            if(Frame.CanGoForward)
             {
                 Frame.GoForward();
                 return true;
@@ -66,83 +78,23 @@ namespace MoneyFox.Uwp.Services
             return false;
         }
 
-        public bool Navigate(string pageKey, object parameter = null, NavigationTransitionInfo infoOverride = null)
+        public void Initialize(object frame)
         {
-            Type page;
-            lock (_pages)
-            {
-                if (!_pages.TryGetValue(pageKey, out page))
-                {
-                    throw new
-                        ArgumentException($"Page not found: {pageKey}. Did you forget to call NavigationService.Configure?",
-                                          nameof(pageKey));
-                }
-            }
-
-            if (Frame.Content?.GetType() != page || parameter != null && !parameter.Equals(lastParamUsed))
-            {
-                bool navigationResult = Frame.Navigate(page, parameter, infoOverride);
-                if (navigationResult)
-                    lastParamUsed = parameter;
-
-                return navigationResult;
-            }
-
-            return false;
+            Frame = (Frame)frame;
         }
 
-        public void Configure(string key, Type pageType)
+        public bool Navigate<TViewModel>(object parameter = null)
         {
-            lock (_pages)
+            return Navigate(typeof(TViewModel), parameter);
+        }
+
+        public bool Navigate(Type viewModelType, object parameter = null)
+        {
+            if(Frame == null)
             {
-                if (_pages.ContainsKey(key))
-                    throw new ArgumentException(string.Format("The key {{0}} is already configured in NavigationService", key));
-
-                if (_pages.Any(p => p.Value == pageType))
-                {
-                    throw new ArgumentException($"This type is already configured with key {_pages.First(p => p.Value == pageType).Key}");
-                }
-
-                _pages.Add(key, pageType);
+                throw new InvalidOperationException("Navigation frame not initialized.");
             }
-        }
-
-        public string GetNameOfRegisteredPage(Type page)
-        {
-            lock (_pages)
-            {
-                if (_pages.ContainsValue(page))
-                    return _pages.FirstOrDefault(p => p.Value == page).Key;
-                throw new ArgumentException($"The page '{page.Name}' is unknown by the NavigationService");
-            }
-        }
-
-        private void RegisterFrameEvents()
-        {
-            if (frame != null)
-            {
-                frame.Navigated += Frame_Navigated;
-                frame.NavigationFailed += Frame_NavigationFailed;
-            }
-        }
-
-        private void UnregisterFrameEvents()
-        {
-            if (frame != null)
-            {
-                frame.Navigated -= Frame_Navigated;
-                frame.NavigationFailed -= Frame_NavigationFailed;
-            }
-        }
-
-        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            NavigationFailed?.Invoke(sender, e);
-        }
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            Navigated?.Invoke(sender, e);
+            return Frame.Navigate(GetView(viewModelType), parameter);
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using MoneyFox.Application.Resources;
-using MoneyFox.ViewModels.Categories;
-using System.Globalization;
+﻿using System.Globalization;
 using Xamarin.Forms;
 using System;
 using MoneyFox.Application;
@@ -11,28 +9,22 @@ namespace MoneyFox.Converter
 {
     public class PaymentAmountConverter : IValueConverter
     {
-        private const string IGNORE_TRANSFER = "IgnoreTransfer";
-
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var payment = value as PaymentViewModel;
+            var payment = (PaymentViewModel)value;
 
             if(payment == null)
+            {
                 return string.Empty;
+            }
 
-            string param = parameter == null
-                                ? ""
-                                : parameter.ToString();
             string sign;
 
             if(payment.Type == PaymentType.Transfer)
             {
-                string condition;
-                condition = payment.ChargedAccountId == payment.CurrentAccountId
-                            ? "-" : "+";
-                sign = param == IGNORE_TRANSFER
-                       ? "-"
-                       : condition;
+                sign = payment.ChargedAccountId == payment.CurrentAccountId
+                            ? "-"
+                            : "+";
             }
             else
             {

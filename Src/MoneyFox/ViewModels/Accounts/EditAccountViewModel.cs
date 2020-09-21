@@ -17,12 +17,11 @@ namespace MoneyFox.ViewModels.Accounts
         public EditAccountViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IDialogService dialogService)
-            : base(mediator, dialogService)
+            : base(dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
         }
-
 
         public async Task InitializeAsync(int accountId)
         {

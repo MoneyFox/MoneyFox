@@ -35,7 +35,13 @@ namespace MoneyFox.Uwp.ViewModels
 
         protected override async Task SaveCategoryAsync()
         {
-            await mediator.Send(new CreateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
+            if(string.IsNullOrEmpty(SelectedCategory.Name))
+            {
+                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                return;
+            }
+
+            await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note));
         }
     }
 }

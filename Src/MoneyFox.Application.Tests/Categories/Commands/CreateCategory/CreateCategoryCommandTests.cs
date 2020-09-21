@@ -4,7 +4,6 @@ using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
 using System;
@@ -49,11 +48,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
         public async Task CreateCategoryCommand_CorrectNumberLoaded()
         {
             // Arrange
-            var category = new Category("test");
-
             // Act
             await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new CreateCategoryCommand(category), default);
+               .Handle(new CreateCategoryCommand("Test"), default);
 
             // Assert
             Assert.Single(context.Categories);
@@ -66,11 +63,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
             backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
             backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
 
-            var category = new Category("test");
-
             // Act
             await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new CreateCategoryCommand(category), default);
+               .Handle(new CreateCategoryCommand("test"), default);
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);

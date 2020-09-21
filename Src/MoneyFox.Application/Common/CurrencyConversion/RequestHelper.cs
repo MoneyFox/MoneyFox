@@ -37,11 +37,11 @@ namespace MoneyFox.Application.Common.CurrencyConversion
             request.AutomaticDecompression = DecompressionMethods.GZip;
 
             using(var response = (HttpWebResponse) request.GetResponse())
-                using(Stream stream = response.GetResponseStream())
-                    using(var reader = new StreamReader(stream))
-                    {
-                        jsonString = reader.ReadToEnd();
-                    }
+            using(Stream stream = response.GetResponseStream())
+            using(var reader = new StreamReader(stream))
+            {
+                jsonString = reader.ReadToEnd();
+            }
 
             return jsonString;
         }

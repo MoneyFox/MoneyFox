@@ -1,11 +1,10 @@
-﻿using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.ViewModels.Settings;
+﻿using MoneyFox.Uwp.ViewModels.Settings;
 
 namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class SettingsView
     {
-        public override string Header => Strings.SettingsTitle;
+        public override bool ShowHeader => false;
 
         private WindowsSettingsViewModel ViewModel => (WindowsSettingsViewModel)DataContext;
 

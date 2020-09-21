@@ -5,12 +5,14 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetMonthlyIncome;
 using MoneyFox.Extensions;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.Internals;
 
 namespace MoneyFox.ViewModels.Dashboard
 {
@@ -30,11 +32,15 @@ namespace MoneyFox.ViewModels.Dashboard
         {
             this.mediator = mediator;
             this.mapper = mapper;
+
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await InitializeAsync());
         }
 
         public async Task InitializeAsync()
         {
             Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+            Accounts.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+
             Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
             EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
             MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
