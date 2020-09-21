@@ -8,12 +8,11 @@ namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class AboutView
     {
-        private AboutViewModel ViewModel => (AboutViewModel)DataContext;
+        private AboutViewModel ViewModel => ServiceLocator.Current.GetInstance<AboutViewModel>();
 
         public AboutView()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<AboutViewModel>();
 
             if(StoreServicesFeedbackLauncher.IsSupported())
             {
