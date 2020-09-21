@@ -403,6 +403,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categories can help order your payments. Also it makes it easier to analyze in the statistics..
+        /// </summary>
+        public static string CategorieIntroductionText {
+            get {
+                return ResourceManager.GetString("CategorieIntroductionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spreading of the expenses to the categories..
         /// </summary>
         public static string CategorieSpreadingDescription {
@@ -525,6 +534,15 @@ namespace MoneyFox.Application.Resources {
         public static string ContributionsLabel {
             get {
                 return ResourceManager.GetString("ContributionsLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Account Now.
+        /// </summary>
+        public static string CreateAccountNowLabel {
+            get {
+                return ResourceManager.GetString("CreateAccountNowLabel", resourceCulture);
             }
         }
         
@@ -1268,6 +1286,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string NextLabel {
+            get {
+                return ResourceManager.GetString("NextLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no Accounts to display..
         /// </summary>
         public static string NoAccountsMessage {
@@ -1734,6 +1761,25 @@ namespace MoneyFox.Application.Resources {
         public static string WelcomeLabel {
             get {
                 return ResourceManager.GetString("WelcomeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Glad to have you!.
+        /// </summary>
+        public static string WelcomePageSubtitle {
+            get {
+                return ResourceManager.GetString("WelcomePageSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The MoneyFox helps you to track your expenses and incomes in an easy way. 
+        ///To start create a new account. Accounts are used to organize payments and money in collections..
+        /// </summary>
+        public static string WelcomePageText {
+            get {
+                return ResourceManager.GetString("WelcomePageText", resourceCulture);
             }
         }
         

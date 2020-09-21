@@ -115,6 +115,12 @@
     <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\SetupAssistent\CategoryIntroductionPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SetupAssistent\WelcomePage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Statistics\PaymentForCategoryListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

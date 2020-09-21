@@ -687,4 +687,20 @@ WARNING: Local changes you made meanwhile will be lost!</value>
   <data name="LoggedOutTitle" xml:space="preserve">
     <value>Logged out</value>
   </data>
+  <data name="CreateAccountNowLabel" xml:space="preserve">
+    <value>Create Account Now</value>
+  </data>
+  <data name="WelcomePageSubtitle" xml:space="preserve">
+    <value>Glad to have you!</value>
+  </data>
+  <data name="WelcomePageText" xml:space="preserve">
+    <value>The MoneyFox helps you to track your expenses and incomes in an easy way. 
+To start create a new account. Accounts are used to organize payments and money in collections.</value>
+  </data>
+  <data name="NextLabel" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="CategorieIntroductionText" xml:space="preserve">
+    <value>Categories can help order your payments. Also it makes it easier to analyze in the statistics.</value>
+  </data>
 </root>
