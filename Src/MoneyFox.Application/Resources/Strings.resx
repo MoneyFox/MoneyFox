@@ -703,4 +703,22 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="CategorieIntroductionText" xml:space="preserve">
     <value>Categories can help order your payments. Also it makes it easier to analyze in the statistics.</value>
   </data>
+  <data name="BackLabel" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="SkipLabel" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="CreateCategoryNowLabel" xml:space="preserve">
+    <value>Create Category now</value>
+  </data>
+  <data name="CompletedText" xml:space="preserve">
+    <value>That's it! You're set for using the MoneyFox.</value>
+  </data>
+  <data name="CompletedTitle" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="CompleteLabel" xml:space="preserve">
+    <value>Complete</value>
+  </data>
 </root>

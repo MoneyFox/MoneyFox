@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MoneyFox.Views.SetupAssistent.CategoryIntroductionPage">
+             x:Class="MoneyFox.Views.SetupAssistent.CategoryIntroductionPage"
+             Visual="Material"
+             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application" >
     <ContentPage.Content>
         <ScrollView>
             <Grid
@@ -13,13 +15,15 @@
                        Text="{x:Static resources:Strings.CategoriesTitle}" />
 
                 <Label Grid.Row="2"
-                       Text="{x:Static resources:Strings.WelcomePageText}" />
+                       Text="{x:Static resources:Strings.CategorieIntroductionText}" />
 
                 <Button  Grid.Row="3"
-                         Text="{x:Static resources:Strings.CreateAccountNowLabel}" />
+                         Text="{x:Static resources:Strings.CreateCategoryNowLabel}" />
 
-                <Button  Grid.Row="5"
-                         Text="{x:Static resources:Strings.NextLabel}" />
+                <Grid Grid.Row="5" ColumnDefinitions="*, 2*">
+                    <Button Text="{x:Static resources:Strings.BackLabel}" Grid.Column="0" />
+                    <Button Text="{x:Static resources:Strings.NextLabel}" Grid.Column="1" />
+                </Grid>
             </Grid>
         </ScrollView>
     </ContentPage.Content>

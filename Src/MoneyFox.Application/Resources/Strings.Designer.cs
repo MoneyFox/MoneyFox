@@ -268,6 +268,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string BackLabel {
+            get {
+                return ResourceManager.GetString("BackLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup created successfully.
         /// </summary>
         public static string BackupCreatedMessage {
@@ -511,6 +520,33 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to That&apos;s it! You&apos;re set for using the MoneyFox..
+        /// </summary>
+        public static string CompletedText {
+            get {
+                return ResourceManager.GetString("CompletedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done!.
+        /// </summary>
+        public static string CompletedTitle {
+            get {
+                return ResourceManager.GetString("CompletedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string CompleteLabel {
+            get {
+                return ResourceManager.GetString("CompleteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string ContactLabel {
@@ -552,6 +588,15 @@ namespace MoneyFox.Application.Resources {
         public static string CreateBackupLabel {
             get {
                 return ResourceManager.GetString("CreateBackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Category now.
+        /// </summary>
+        public static string CreateCategoryNowLabel {
+            get {
+                return ResourceManager.GetString("CreateCategoryNowLabel", resourceCulture);
             }
         }
         
@@ -1635,6 +1680,15 @@ namespace MoneyFox.Application.Resources {
         public static string SettingsTitle {
             get {
                 return ResourceManager.GetString("SettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Skip.
+        /// </summary>
+        public static string SkipLabel {
+            get {
+                return ResourceManager.GetString("SkipLabel", resourceCulture);
             }
         }
         
