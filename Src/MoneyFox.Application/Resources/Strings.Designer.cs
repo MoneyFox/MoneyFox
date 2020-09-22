@@ -1475,6 +1475,16 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When you create a payment you can select the category for that payment along with the account and if it an expense, an income or a transfer.
+        ///Payments you created will show up under the account you chose. To get there go to the account list and select the respective account.
+        /// </summary>
+        public static string PaymentIntroductionText {
+            get {
+                return ResourceManager.GetString("PaymentIntroductionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payments for Category.
         /// </summary>
         public static string PaymentsForCategoryTitle {

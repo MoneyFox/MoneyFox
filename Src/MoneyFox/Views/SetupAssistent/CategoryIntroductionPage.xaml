@@ -9,7 +9,7 @@
             <Grid
                 Padding="15"
                 IsClippedToBounds="False"
-                RowDefinitions="35, 40, Auto, 40, *, 40">
+                RowDefinitions="35, 40, Auto, 40, Auto, *, 40">
 
                 <Label Style="{StaticResource TextSubHeadline}"
                        Text="{x:Static resources:Strings.CategoriesTitle}" />
@@ -20,7 +20,10 @@
                 <Button  Grid.Row="3"
                          Text="{x:Static resources:Strings.CreateCategoryNowLabel}" />
 
-                <Grid Grid.Row="5" ColumnDefinitions="*, 2*">
+                <Label Grid.Row="4"
+                       Text="{x:Static resources:Strings.PaymentIntroductionText}" />
+
+                <Grid Grid.Row="6" ColumnDefinitions="*, 2*">
                     <Button Text="{x:Static resources:Strings.BackLabel}" Grid.Column="0" />
                     <Button Text="{x:Static resources:Strings.NextLabel}" Grid.Column="1" />
                 </Grid>
