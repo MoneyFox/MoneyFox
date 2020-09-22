@@ -89,7 +89,7 @@ jobs:
   - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
     displayName: 'Replace tokens in MoneyFox'
     inputs:
-      sourcePath: Src/MoneyFox
+      sourcePath: Src/MoneyFox.Uwp
       filePattern: App.config
 
   - task: VersionAPPX@2
@@ -118,4 +118,3 @@ jobs:
 
   - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
     displayName: 'Publish Quality Gate Result'
-    enabled: false

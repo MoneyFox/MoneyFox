@@ -72,16 +72,17 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// <inheritdoc />
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await new SelectCategoryDialog().ShowAsync());
 
-
         /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel
         /// </summary>
         public RelayCommand ResetCategoryCommand => new RelayCommand(ResetSelection);
 
-        /// <summary>
-        /// Indicates if the PaymentViewModel is a transfer.
-        /// </summary>
-        public bool IsTransfer => SelectedPayment.IsTransfer;
+        public List<PaymentType> PaymentTypeList => new List<PaymentType>
+        {
+            PaymentType.Expense,
+            PaymentType.Income,
+            PaymentType.Transfer
+        };
 
         /// <summary>
         /// The selected recurrence
@@ -129,7 +130,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 selectedPayment = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(AccountHeader));
-                RaisePropertyChanged(nameof(IsTransfer));
                 RaisePropertyChanged(nameof(AmountString));
             }
         }
