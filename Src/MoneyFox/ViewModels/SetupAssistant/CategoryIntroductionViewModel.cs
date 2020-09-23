@@ -11,7 +11,7 @@ namespace MoneyFox.ViewModels.SetupAssistant
             => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
 
         public RelayCommand NextStepCommand
-            => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AddPaymentRoute));
+            => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.SetupCompletionRoute));
 
         public RelayCommand BackCommand
             => new RelayCommand(async () => await Shell.Current.GoToAsync(".."));

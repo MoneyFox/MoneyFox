@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MoneyFox.Views.SetupAssistant.SetupCompletionPage"
              Visual="Material"
+             Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible = "False"
+             BackgroundColor="{AppThemeBinding Dark={StaticResource BackgroundColorDark}, Light={StaticResource BackgroundColorLight}}"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application">
     <ContentPage.Content>
         <ScrollView>
