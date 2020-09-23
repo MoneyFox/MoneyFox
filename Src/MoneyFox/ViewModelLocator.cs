@@ -19,6 +19,7 @@ using MoneyFox.Views.Statistics;
 using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Ui.Shared.ViewModels.Settings;
+using MoneyFox.ViewModels.SetupAssistant;
 
 namespace MoneyFox
 {
@@ -83,5 +84,8 @@ namespace MoneyFox
         public static PaymentForCategoryListViewModel PaymentForCategoryListViewModel => ServiceLocator.Current.GetInstance<PaymentForCategoryListViewModel>();
         public static SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
         public static AboutViewModel AboutViewModel => ServiceLocator.Current.GetInstance<AboutViewModel>();
+        public static WelcomeViewModel WelcomeViewModel => ServiceLocator.Current.GetInstance<WelcomeViewModel>();
+        public static SetupCompletionViewModel SetupCompletionViewModel => ServiceLocator.Current.GetInstance<SetupCompletionViewModel>();
+        public static CategoryIntroductionViewModel CategoryIntroductionViewModel => ServiceLocator.Current.GetInstance<CategoryIntroductionViewModel>();
     }
 }

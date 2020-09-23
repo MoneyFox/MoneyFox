@@ -5,6 +5,7 @@ using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
 using MoneyFox.Views.Settings;
+using MoneyFox.Views.SetupAssistant;
 using MoneyFox.Views.Statistics;
 using Xamarin.Forms;
 
@@ -20,6 +21,10 @@ namespace MoneyFox
 
         private void RegisterRoutes()
         {
+            Routing.RegisterRoute(ViewModelLocator.WelcomeViewModel, typeof(WelcomePage));
+            Routing.RegisterRoute(ViewModelLocator.SetupCompletionViewModel, typeof(SetupCompletionPage));
+            Routing.RegisterRoute(ViewModelLocator.CategoryIntroductionViewModel, typeof(CategoryIntroductionPage));
+
             Routing.RegisterRoute(ViewModelLocator.DashboardRoute, typeof(DashboardPage));
             Routing.RegisterRoute(ViewModelLocator.AccountListRoute, typeof(AccountListPage));
             Routing.RegisterRoute(ViewModelLocator.AddAccountRoute, typeof(AddAccountPage));

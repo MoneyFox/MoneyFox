@@ -115,13 +115,13 @@
     <EmbeddedResource Update="Views\Settings\SettingsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SetupAssistent\CategoryIntroductionPage.xaml">
+    <EmbeddedResource Update="Views\SetupAssistant\CategoryIntroductionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SetupAssistent\SetupCompletionPage.xaml">
+    <EmbeddedResource Update="Views\SetupAssistant\SetupCompletionPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SetupAssistent\WelcomePage.xaml">
+    <EmbeddedResource Update="Views\SetupAssistant\WelcomePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Statistics\PaymentForCategoryListPage.xaml">
