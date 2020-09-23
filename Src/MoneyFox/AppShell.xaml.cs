@@ -1,4 +1,5 @@
 ﻿using MoneyFox.ViewModels.Budget;
+using MoneyFox.Views.About;
 using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Backup;
 using MoneyFox.Views.Categories;
@@ -21,6 +22,9 @@ namespace MoneyFox
 
         private void RegisterRoutes()
         {
+            Routing.RegisterRoute(nameof(AboutPage), typeof(AboutPage));
+            Routing.RegisterRoute(nameof(SettingsPage), typeof(SettingsPage));
+
             Routing.RegisterRoute(ViewModelLocator.WelcomeViewRoute, typeof(WelcomePage));
             Routing.RegisterRoute(ViewModelLocator.CategoryIntroductionRoute, typeof(CategoryIntroductionPage));
             Routing.RegisterRoute(ViewModelLocator.SetupCompletionRoute, typeof(SetupCompletionPage));

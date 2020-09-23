@@ -33,68 +33,44 @@
         </DataTemplate>
     </Shell.ItemTemplate>
 
-    <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
-        <Tab>
-            <ShellContent>
-                <dashboard:DashboardPage />
-            </ShellContent>
-        </Tab>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems">
+
+        <ShellContent Title="{x:Static resources:Strings.DashboardTitle}"
+                      Icon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}"
+                      Route="DashboardPage"
+                      ContentTemplate="{DataTemplate dashboard:DashboardPage}" />
+
+        <ShellContent Title="{x:Static resources:Strings.AccountsTitle}"
+                      Icon="{AppThemeBinding Dark=ic_accounts_white, Light=ic_accounts_black}"
+                      Route="AccountListPage"
+                      ContentTemplate="{DataTemplate accounts:AccountListPage}" />
+
+        <ShellContent Title="{x:Static resources:Strings.StatisticsTitle}"
+                      Icon="{AppThemeBinding Dark=ic_bar_chart_white, Light=ic_bar_chart_black}"
+                      Route="StatisticSelectorPage"
+                      ContentTemplate="{DataTemplate statistic:StatisticSelectorPage}" />
+
+        <ShellContent Title="{x:Static resources:Strings.BackupTitle}"
+                      Icon="{AppThemeBinding Dark=ic_label_white, Light=ic_label_black}"
+                      Route="CategoryListPage"
+                      ContentTemplate="{DataTemplate category:CategoryListPage}" />
+
+        <ShellContent Title="{x:Static resources:Strings.CategoriesTitle}"
+                      Icon="{AppThemeBinding Dark=ic_backup_white, Light=ic_backup_black}"
+                      Route="BackupPage"
+                      ContentTemplate="{DataTemplate backup:BackupPage}" />
+
+        <ShellContent Title="{x:Static resources:Strings.SettingsTitle}"
+                      Icon="{AppThemeBinding Dark=ic_settings_white, Light=ic_settings_black}"
+                      Route="SettingsPage"
+                      ContentTemplate="{DataTemplate settings:SettingsPage}" />
+
+        <ShellContent Title="{x:Static resources:Strings.AboutTitle}"
+                      Icon="{AppThemeBinding Dark=ic_info_white, Light=ic_info_black}"
+                      Route="AboutPage"
+                      ContentTemplate="{DataTemplate about:AboutPage}" />
     </FlyoutItem>
 
-    <FlyoutItem Title="{x:Static resources:Strings.AccountsTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_accounts_white, Light=ic_accounts_black}">
-        <Tab>
-            <ShellContent>
-                <accounts:AccountListPage />
-            </ShellContent>
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="{x:Static resources:Strings.StatisticsTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_bar_chart_white, Light=ic_bar_chart_black}" >
-        <Tab>
-            <ShellContent>
-                <statistic:StatisticSelectorPage />
-            </ShellContent>
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_label_white, Light=ic_label_black}" >
-        <Tab>
-            <ShellContent>
-                <category:CategoryListPage />
-            </ShellContent>
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="{x:Static resources:Strings.BackupTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_backup_white, Light=ic_backup_black}" >
-        <Tab>
-            <ShellContent>
-                <backup:BackupPage />
-            </ShellContent>
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="{x:Static resources:Strings.SettingsTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_settings_white, Light=ic_settings_black}">
-        <Tab>
-            <ShellContent>
-                <settings:SettingsPage />
-            </ShellContent>
-        </Tab>
-    </FlyoutItem>
-
-    <FlyoutItem Title="{x:Static resources:Strings.AboutTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_info_white, Light=ic_info_black}">
-        <Tab>
-            <ShellContent>
-                <about:AboutPage />
-            </ShellContent>
-        </Tab>
-    </FlyoutItem>
 
     <ShellContent Route="WelcomePage" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate setup:WelcomePage}" />
 
