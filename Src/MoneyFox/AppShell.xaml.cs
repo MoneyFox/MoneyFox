@@ -21,9 +21,9 @@ namespace MoneyFox
 
         private void RegisterRoutes()
         {
-            Routing.RegisterRoute(ViewModelLocator.WelcomeViewModel, typeof(WelcomePage));
-            Routing.RegisterRoute(ViewModelLocator.SetupCompletionViewModel, typeof(SetupCompletionPage));
-            Routing.RegisterRoute(ViewModelLocator.CategoryIntroductionViewModel, typeof(CategoryIntroductionPage));
+            Routing.RegisterRoute(ViewModelLocator.WelcomeViewRoute, typeof(WelcomePage));
+            Routing.RegisterRoute(ViewModelLocator.CategoryIntroductionRoute, typeof(CategoryIntroductionPage));
+            Routing.RegisterRoute(ViewModelLocator.SetupCompletionRoute, typeof(SetupCompletionPage));
 
             Routing.RegisterRoute(ViewModelLocator.DashboardRoute, typeof(DashboardPage));
             Routing.RegisterRoute(ViewModelLocator.AccountListRoute, typeof(AccountListPage));
