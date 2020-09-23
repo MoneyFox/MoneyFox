@@ -10,6 +10,11 @@ namespace MoneyFox.ViewModels.Payments
     {
         private readonly ISettingsFacade settingsFacade;
 
+        public SetupCompletionViewModel(ISettingsFacade settingsFacade)
+        {
+            this.settingsFacade = settingsFacade;
+        }
+
         public RelayCommand CompleteCommand
             => new RelayCommand(async () => await CompleteSetup());
 

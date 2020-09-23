@@ -29,11 +29,12 @@ namespace MoneyFox.ViewModels.SetupAssistant
 
         public RelayCommand NextStepCommand => new RelayCommand(async ()
             => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
-        public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
+        public RelayCommand SkipCommand => new RelayCommand(async() => await SkipSetup());
 
-        private void SkipSetup()
+        private async Task SkipSetup()
         {
             settingsFacade.IsSetupCompleted = true;
+            await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute));
         }
     }
 }
