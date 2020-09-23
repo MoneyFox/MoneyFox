@@ -23,14 +23,17 @@
                        Text="{x:Static resources:Strings.WelcomePageText}" />
 
                 <Button Grid.Row="3"
-                        Text="{x:Static resources:Strings.CreateAccountNowLabel}" />
+                        Text="{x:Static resources:Strings.CreateAccountNowLabel}"
+                        Command="{Binding GoToAddAccountCommand}" />
 
                 <Button Grid.Row="5"
-                        Text="{x:Static resources:Strings.NextLabel}" />
+                        Text="{x:Static resources:Strings.NextLabel}"
+                        Command="{Binding NextStepCommand}" />
 
                 <Button Grid.Row="6"
                         Style="{StaticResource LinkButton}"
-                        Text="{x:Static resources:Strings.SkipLabel}" />
+                        Text="{x:Static resources:Strings.SkipLabel}"
+                        Command="{Binding SkipCommand}" />
             </Grid>
         </ScrollView>
     </ContentPage.Content>

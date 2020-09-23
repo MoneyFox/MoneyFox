@@ -33,7 +33,7 @@ namespace MoneyFox.ViewModels.SetupAssistant
 
         private void SkipSetup()
         {
-
+            settingsFacade.IsSetupCompleted = true;
         }
     }
 }

@@ -7,7 +7,7 @@ namespace MoneyFox.ViewModels.SetupAssistant
 {
     public class CategoryIntroductionViewModel : ViewModelBase
     {
-        public RelayCommand GoToAddAccountCommand
+        public RelayCommand GoToAddCategoryCommand
             => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
 
         public RelayCommand NextStepCommand

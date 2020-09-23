@@ -17,8 +17,15 @@
                 <Label Grid.Row="2"
                        Text="{x:Static resources:Strings.CompletedText}" />
 
-                <Button Grid.Row="4"
-                        Text="{x:Static resources:Strings.CompleteLabel}" />
+                <Grid Grid.Row="4" ColumnDefinitions="*, 2*">
+                    <Button  Grid.Column="0"
+                             Text="{x:Static resources:Strings.BackLabel}"
+                             Command="{Binding BackCommand}" />
+
+                    <Button Grid.Column="1"
+                            Text="{x:Static resources:Strings.CompleteLabel}"
+                            Command="{Binding CompleteCommand}" />
+                </Grid>
             </Grid>
         </ScrollView>
     </ContentPage.Content>
