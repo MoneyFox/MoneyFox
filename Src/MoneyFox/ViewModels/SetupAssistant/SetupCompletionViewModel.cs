@@ -24,7 +24,7 @@ namespace MoneyFox.ViewModels.Payments
         private async Task CompleteSetup()
         {
             settingsFacade.IsSetupCompleted = true;
-            await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute);
+            await Shell.Current.GoToAsync($"//{ViewModelLocator.DashboardRoute}");
         }
     }
 }

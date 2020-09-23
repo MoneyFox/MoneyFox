@@ -34,7 +34,7 @@ namespace MoneyFox.ViewModels.SetupAssistant
         private async Task SkipSetup()
         {
             settingsFacade.IsSetupCompleted = true;
-            await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute);
+            await Shell.Current.GoToAsync($"//{ViewModelLocator.DashboardRoute}");
         }
     }
 }
