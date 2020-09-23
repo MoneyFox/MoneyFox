@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using CommonServiceLocator;
+using MoneyFox.ViewModels.SetupAssistant;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views.SetupAssistant
@@ -9,6 +11,7 @@ namespace MoneyFox.Views.SetupAssistant
         public WelcomePage()
         {
             InitializeComponent();
+            BindingContext = ServiceLocator.Current.GetInstance<WelcomeViewModel>();
         }
     }
 }

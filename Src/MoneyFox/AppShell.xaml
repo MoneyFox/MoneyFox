@@ -10,7 +10,9 @@
        xmlns:accounts="clr-namespace:MoneyFox.Views.Accounts"
        xmlns:backup="clr-namespace:MoneyFox.Views.Backup"
        xmlns:statistic="clr-namespace:MoneyFox.Views.Statistics"
-       xmlns:settings="clr-namespace:MoneyFox.Views.Settings" xmlns:about="clr-namespace:MoneyFox.Views.About"
+       xmlns:settings="clr-namespace:MoneyFox.Views.Settings"
+       xmlns:about="clr-namespace:MoneyFox.Views.About"
+       xmlns:setup="clr-namespace:MoneyFox.Views.SetupAssistant"
        Title="MoneyFox"
        mc:Ignorable="d">
 
@@ -94,6 +96,6 @@
         </Tab>
     </FlyoutItem>
 
-    <ShellContent Route="WelcomePage" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate local:WelcomePage}" />
+    <ShellContent Route="WelcomePage" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate setup:WelcomePage}" />
 
 </Shell>

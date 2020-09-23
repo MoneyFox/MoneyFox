@@ -1,7 +1,9 @@
-﻿using Xamarin.Forms;
+﻿using CommonServiceLocator;
+using MoneyFox.ViewModels.SetupAssistant;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Views.SetupAssistent
+namespace MoneyFox.Views.SetupAssistant
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoryIntroductionPage : ContentPage
@@ -9,6 +11,7 @@ namespace MoneyFox.Views.SetupAssistent
         public CategoryIntroductionPage()
         {
             InitializeComponent();
+            BindingContext = ServiceLocator.Current.GetInstance<CategoryIntroductionViewModel>();
         }
     }
 }
