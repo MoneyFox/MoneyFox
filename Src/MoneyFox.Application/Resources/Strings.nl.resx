@@ -567,7 +567,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Er is een probleem opgetreden tijdens de operatie. Foutbericht {0}</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
-    <value>Logout was canceled.</value>
+    <value>Afmelden is geanuleerd</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
     <value>Restoring backup was canceled.</value>
