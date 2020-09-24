@@ -513,58 +513,58 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Neem een categorie</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
+    <value>personaliseren</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Last year monthly average: </value>
   </data>
   <data name="ContributionsLabel" xml:space="preserve">
-    <value>Contributions</value>
+    <value>Bijdragen</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>informatie</value>
   </data>
   <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Leave a feedback!</value>
+    <value>Laat  een woordje achter.</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>You have modified a recurring payment. Do you want to update the recurrence?</value>
+    <value>U heeft een periodieke betaling gewijzigd. Wilt u de deze bijwerken?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
-    <value>Modify Recurrence</value>
+    <value>Wijzig herhaling</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>Your local database has a newer modification date than the one on OneDrive. Do you want to override your local data?</value>
+    <value>Uw lokale database heeft een nieuwere wijzigingsdatum dan die op OneDrive. Wilt u uw lokale gegevens toch overschrijven?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Override Local Data</value>
+    <value>Overschrijf de lokale data</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
-    <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
+    <value>Uw gegevens worden opgeslagen in uw OneDrive-account. U vindt ze in de toepassingsmap  met de naam "MoneyFox".</value>
   </data>
   <data name="DarkLabel" xml:space="preserve">
-    <value>Dark</value>
+    <value>Donker</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
-    <value>Light</value>
+    <value>Licht</value>
   </data>
   <data name="WindowsDefaultLabel" xml:space="preserve">
-    <value>Windows Default</value>
+    <value>Windows standaard</value>
   </data>
   <data name="NoCategoryLabel" xml:space="preserve">
-    <value>[No Category]</value>
+    <value>Geen categorie</value>
   </data>
   <data name="IncomeSpendingLabel" xml:space="preserve">
-    <value>Income / Expenses:</value>
+    <value>Inkomen / uitgaven</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Geanuleerd</value>
   </data>
   <data name="LoginCanceledMessage" xml:space="preserve">
-    <value>Login was canceled.</value>
+    <value>Login is geanuleerd</value>
   </data>
   <data name="UnknownErrorMessage" xml:space="preserve">
-    <value>There was an issue during the operation. Error Message {0}</value>
+    <value>Er is een probleem opgetreden tijdens de operatie. Foutbericht {0}</value>
   </data>
   <data name="LogoutCanceledMessage" xml:space="preserve">
     <value>Logout was canceled.</value>
