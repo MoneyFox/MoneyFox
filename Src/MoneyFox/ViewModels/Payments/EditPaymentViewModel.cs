@@ -1,11 +1,14 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Payments
 {
@@ -30,6 +33,9 @@ namespace MoneyFox.ViewModels.Payments
             await base.InitializeAsync();
             SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
         }
+
+        public RelayCommand<PaymentViewModel> DeleteCommand
+            => new RelayCommand<PaymentViewModel>(async (p) => await DeletePayment(p));
 
         protected override async Task SavePaymentAsync()
         {
@@ -64,6 +70,15 @@ namespace MoneyFox.ViewModels.Payments
                                                     SelectedPayment.RecurringPayment?.EndDate);
 
             await mediator.Send(command);
+        }
+
+        private async Task DeletePayment(PaymentViewModel payment)
+        {
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+            {
+                await mediator.Send(new DeletePaymentByIdCommand(payment.Id));
+                await Shell.Current.Navigation.PopModalAsync();
+            }
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Resources;
 using MoneyFox.Views.Dialogs;
 using System;
 using System.Threading.Tasks;
@@ -45,7 +46,10 @@ namespace MoneyFox.Services
 
         public async Task<bool> ShowConfirmMessageAsync(string title, string message, string? positiveButtonText = null, string? negativeButtonText = null)
         {
-            var confirmDialog = new ConfirmMessageDialog(title, message, positiveButtonText ?? "", negativeButtonText ?? "" );
+            var confirmDialog = new ConfirmMessageDialog(title,
+                                                         message,
+                                                         positiveButtonText ?? Strings.YesLabel,
+                                                         negativeButtonText ?? Strings.NoLabel);
             return await confirmDialog.ShowAsync();
         }
     }

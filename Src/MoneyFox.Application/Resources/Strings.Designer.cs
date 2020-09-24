@@ -223,6 +223,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply Filter.
+        /// </summary>
+        public static string ApplyFilterLabel {
+            get {
+                return ResourceManager.GetString("ApplyFilterLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Assets.
         /// </summary>
         public static string AssetsLabel {
@@ -1138,6 +1147,15 @@ namespace MoneyFox.Application.Resources {
         public static string IsExcludedLabel {
             get {
                 return ResourceManager.GetString("IsExcludedLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Group List.
+        /// </summary>
+        public static string IsGroupedLabel {
+            get {
+                return ResourceManager.GetString("IsGroupedLabel", resourceCulture);
             }
         }
         
