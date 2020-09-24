@@ -71,6 +71,8 @@ namespace MoneyFox.Uwp.Services
 
         private async Task InitializeAsync(object activationArgs)
         {
+            if(ConfigurationManager.AppSettings != null) return;
+
             ExecutingPlatform.Current = AppPlatform.UWP;
             ConfigurationManager.Initialise(PortableStream.Current);
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
