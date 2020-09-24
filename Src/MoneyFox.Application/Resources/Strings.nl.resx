@@ -172,10 +172,10 @@
     <value>Inkomsten bewerken</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>Winst</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Mandatory field</value>
+    <value>Verplichte velden</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Maandelijks</value>
@@ -187,25 +187,26 @@
     <value>Nee</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
+    <value>In orde</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existing backups will be overwritten. Do you wanna continue?</value>
+    <value>Bestaande backups worden overgeschreven, wil je doorgaan?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Overschrijven</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenue</value>
+    <value>Omzet
+</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Expense</value>
+    <value>Bewerk onkosten</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>statistieken</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Edit Transfer</value>
+    <value>Bewerk overschrijving</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
     <value>Wekelijks</value>
@@ -217,7 +218,7 @@
     <value>Ja</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+    <value>Je plaatselijke data wordt gewist, zeker dat je wilt doorgaan?</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Inkomsten toevoegen</value>
@@ -235,16 +236,16 @@
     <value>Categoriesamenvatting</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>categorie spreiden</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged Account</value>
+    <value>Laad account</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Doelaccount</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
+    <value>De einddatum van een terugkerende betaling moet in de toekomst liggen. Controleer uw invoer.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Invalid End Date</value>
