@@ -585,34 +585,35 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Het bedrag mag niet negatief zijn. Of het wordt afgetrokken of toegevoegd,dit wordt bepaald door het soort betaling dat u uitvoerd.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>Negatief bedrag</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
-    <value>Save</value>
+    <value>opslaan</value>
   </data>
   <data name="InvalidNumberCurrentBalanceMessage" xml:space="preserve">
-    <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
+    <value>Uw huidige saldo lijkt een ongeldig teken te bevatten. Controleer of u geen speciale tekens heeft ingevoerd en het juiste scheidingsteken heeft gebruikt.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Ongeldig nummer</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
-    <value>Saving Account...</value>
+    <value>Spaarrekening</value>
   </data>
   <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Saving Category...</value>
+    <value>
+Categorie opslaan ...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Saving Payment...</value>
+    <value>Betaling opslaan</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>End of Month</value>
+    <value>Eind van deze maand</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Betaling toevoegen</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Payment type</value>
+    <value>Betalings wijze</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
     <value>Income</value>
