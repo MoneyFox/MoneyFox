@@ -248,20 +248,20 @@
     <value>De einddatum van een terugkerende betaling moet in de toekomst liggen. Controleer uw invoer.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Invalid End Date</value>
+    <value>Verkeerde eind datum.</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Not Now</value>
+    <value>Niet nu</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>We hope you like our app. Support us with a rating in the store.
-Do you want to go the the store to rate?</value>
+    <value>We hopen dat je deze app leuk vindt. Steun ons met een waardering in de store.
+Wil je naar de store om te om ons te beoordelen?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>Beoordeel deze app.</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>Wekelijks</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Voeg categorie toe</value>
@@ -270,10 +270,11 @@ Do you want to go the the store to rate?</value>
     <value>Categorie bewerken</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>inkomsten, uitgaven en winsten voor de geselecteerde periode.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spreading of the expenses to the categories.</value>
+    <value>Verspreiden van de uitgaven in de categorieën.
+</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
     <value>Summary of the categories with a Payment.</value>
@@ -291,25 +292,25 @@ Do you want to go the the store to rate?</value>
     <value>Overdracht toevoegen</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>Niet verbonden met het internet, check je connectie met het internet opnieuw!</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
     <value>Geen internetverbinding</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An Account with that name already exists.</value>
+    <value>Een account met deze naam bestaat reeds.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A Category with that name already exists.</value>
+    <value>Een categorie met deze naam bestaat reeds.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Name already used</value>
+    <value>Naam al in gebruik.</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Laden...</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>Er was een error tijdens het inloggen, gelieve later opnieuw te proberen.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>Version</value>
