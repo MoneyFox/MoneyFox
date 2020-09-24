@@ -24,7 +24,7 @@
                    Keyboard="Numeric"
                    Focused="AmountFieldGotFocus"
                    Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
-                   Text="{Binding SelectedAccountVm.Amount, Converter={StaticResource DecimalConverter}}" />
+                   Text="{Binding SelectedAccountVm.CurrentBalance, Converter={StaticResource DecimalConverter}}" />
 
             <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
                    Text="{Binding SelectedAccountVm.Note}" />
