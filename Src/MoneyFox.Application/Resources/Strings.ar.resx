@@ -722,8 +722,9 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Complete</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it an expense, an income or a transfer.
-Payments you created will show up under the account you chose. To get there go to the account list and select the respective account</value>
+    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
+Payments you created will show up under the account you choose. 
+To get there go to the account list and select the respective account.</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Apply Filter</value>
