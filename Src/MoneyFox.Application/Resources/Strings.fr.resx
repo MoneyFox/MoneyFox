@@ -719,13 +719,13 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <value>Terminé</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it an expense, an income or a transfer.
-Payments you created will show up under the account you chose. To get there go to the account list and select the respective account</value>
+    <value>Lorsque vous créez un paiement, vous pouvez sélectionner la catégorie pour ce paiement avec le compte et si c'est une dépense, un revenu ou un transfert.
+Les paiements que vous avez créés apparaîtront sous le compte que vous avez choisi. Pour y parvenir, allez dans la liste des comptes et sélectionnez le compte correspondant</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Appliquer Filtre</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>Liste des groupes</value>
   </data>
 </root>
