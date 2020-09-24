@@ -570,19 +570,19 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Afmelden is geanuleerd</value>
   </data>
   <data name="RestoreBackupCanceledMessage" xml:space="preserve">
-    <value>Restoring backup was canceled.</value>
+    <value>Herstellen van backup is geanuleerd</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>Upload backup was canceled.</value>
+    <value>upload back-up is geannuleerd</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
-    <value>Default Region</value>
+    <value>Standaard regio</value>
   </data>
   <data name="DefaultRegionText" xml:space="preserve">
-    <value>This region will be used as a default for your application.</value>
+    <value>Deze regio wordt gebruikt als standaard in uw app.</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+    <value>Het bedrag mag niet negatief zijn. Of het wordt afgetrokken of toegevoegd,dit wordt bepaald door het soort betaling dat u uitvoerd.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
     <value>Negative amount</value>
