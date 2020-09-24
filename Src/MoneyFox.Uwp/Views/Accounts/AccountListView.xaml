@@ -54,15 +54,23 @@
                         Padding="{StaticResource SmallListItemPadding}"
                         Background="{ThemeResource ListItemBrush}">
                         <TextBlock
-                            Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                            Style="{ThemeResource HeaderStyle}"
                             Text="{x:Bind Name}"
                             TextTrimming="CharacterEllipsis" />
 
                         <TextBlock
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                             Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                            TextAlignment="Right" />
+                            TextAlignment="Center" />
+
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Bottom"
+                                    HorizontalAlignment="Right">
+                            <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
+                            <TextBlock Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
+                        </StackPanel>
                     </Grid>
                 </StackPanel>
             </uwpToolkit:DropShadowPanel>
