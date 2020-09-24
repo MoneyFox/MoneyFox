@@ -13,7 +13,7 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
-        <converter:PaymentAmountConverter x:Key="PaymentViewModelAmountConverter" />
+        <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="GroupHeaderTemplate" >
@@ -123,7 +123,7 @@
                                                             TextTrimming="CharacterEllipsis" />
                                                     </StackPanel>
                                                     <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
-                                                        <TextBlock Text="{Binding Converter={StaticResource PaymentViewModelAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
+                                                        <TextBlock Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
 
                                                         <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                                                             <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
