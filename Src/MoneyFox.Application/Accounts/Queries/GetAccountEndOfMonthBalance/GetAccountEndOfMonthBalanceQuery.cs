@@ -35,7 +35,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 this.contextAdapter = contextAdapter;
             }
 
-            private int accountId = 0;
+            private int accountId;
 
             public async Task<decimal> Handle(GetAccountEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
             {

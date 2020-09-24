@@ -40,10 +40,16 @@ namespace MoneyFox
                 App.Current.UserAppTheme = a.RequestedTheme;
             };
 
-            CultureHelper.CurrentCulture = new CultureInfo(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
+            var settingsFacade = new SettingsFacade(new SettingsAdapter());
+            CultureHelper.CurrentCulture = new CultureInfo(settingsFacade.DefaultCulture);
 
             InitializeComponent();
             MainPage = new AppShell();
+
+            if(!settingsFacade.IsSetupCompleted)
+            {
+                Shell.Current.GoToAsync(ViewModelLocator.WelcomeViewRoute).Wait();
+            }
         }
 
         protected override void OnStart()

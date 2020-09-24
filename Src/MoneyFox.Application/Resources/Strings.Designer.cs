@@ -268,6 +268,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        public static string BackLabel {
+            get {
+                return ResourceManager.GetString("BackLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup created successfully.
         /// </summary>
         public static string BackupCreatedMessage {
@@ -403,6 +412,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categories can help order your payments. Also it makes it easier to analyze in the statistics..
+        /// </summary>
+        public static string CategorieIntroductionText {
+            get {
+                return ResourceManager.GetString("CategorieIntroductionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spreading of the expenses to the categories..
         /// </summary>
         public static string CategorieSpreadingDescription {
@@ -502,6 +520,33 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to That&apos;s it! You&apos;re set for using the MoneyFox..
+        /// </summary>
+        public static string CompletedText {
+            get {
+                return ResourceManager.GetString("CompletedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Done!.
+        /// </summary>
+        public static string CompletedTitle {
+            get {
+                return ResourceManager.GetString("CompletedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complete.
+        /// </summary>
+        public static string CompleteLabel {
+            get {
+                return ResourceManager.GetString("CompleteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Contact.
         /// </summary>
         public static string ContactLabel {
@@ -529,11 +574,29 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create Account Now.
+        /// </summary>
+        public static string CreateAccountNowLabel {
+            get {
+                return ResourceManager.GetString("CreateAccountNowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create Backup.
         /// </summary>
         public static string CreateBackupLabel {
             get {
                 return ResourceManager.GetString("CreateBackupLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Category now.
+        /// </summary>
+        public static string CreateCategoryNowLabel {
+            get {
+                return ResourceManager.GetString("CreateCategoryNowLabel", resourceCulture);
             }
         }
         
@@ -1268,6 +1331,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        public static string NextLabel {
+            get {
+                return ResourceManager.GetString("NextLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There are no Accounts to display..
         /// </summary>
         public static string NoAccountsMessage {
@@ -1399,6 +1471,16 @@ namespace MoneyFox.Application.Resources {
         public static string OverwriteTitle {
             get {
                 return ResourceManager.GetString("OverwriteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you create a payment you can select the category for that payment along with the account and if it an expense, an income or a transfer.
+        ///Payments you created will show up under the account you chose. To get there go to the account list and select the respective account.
+        /// </summary>
+        public static string PaymentIntroductionText {
+            get {
+                return ResourceManager.GetString("PaymentIntroductionText", resourceCulture);
             }
         }
         
@@ -1612,6 +1694,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Skip.
+        /// </summary>
+        public static string SkipLabel {
+            get {
+                return ResourceManager.GetString("SkipLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time Range:.
         /// </summary>
         public static string StatisticsTimeRangeTitle {
@@ -1734,6 +1825,25 @@ namespace MoneyFox.Application.Resources {
         public static string WelcomeLabel {
             get {
                 return ResourceManager.GetString("WelcomeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Glad to have you!.
+        /// </summary>
+        public static string WelcomePageSubtitle {
+            get {
+                return ResourceManager.GetString("WelcomePageSubtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The MoneyFox helps you to track your expenses and incomes in an easy way. 
+        ///To start create a new account. Accounts are used to organize payments and money in collections..
+        /// </summary>
+        public static string WelcomePageText {
+            get {
+                return ResourceManager.GetString("WelcomePageText", resourceCulture);
             }
         }
         
