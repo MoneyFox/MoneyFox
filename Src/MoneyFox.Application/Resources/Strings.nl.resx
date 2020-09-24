@@ -121,7 +121,7 @@
     <value>Over</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
-    <value>Please select an Account.</value>
+    <value>Selecteer een account aub.</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Voeg account toe</value>
@@ -166,7 +166,7 @@
     <value>Onkosten</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Geef een woordje uitleg aan Moneyfox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
     <value>Inkomsten bewerken</value>
@@ -277,7 +277,7 @@ Wil je naar de store om te om ons te beoordelen?</value>
 </value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>Samenvatting van de categorieën met een betaling.</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Annuleer</value>
