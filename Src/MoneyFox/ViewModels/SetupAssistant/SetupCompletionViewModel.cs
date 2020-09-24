@@ -16,16 +16,15 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         public RelayCommand CompleteCommand
-            => new RelayCommand(async () => await CompleteSetup());
+            => new RelayCommand(CompleteSetup);
 
         public RelayCommand BackCommand
-            => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
+            => new RelayCommand(async () => await Shell.Current.Navigation.PopAsync());
 
-        private async Task CompleteSetup()
+        private void CompleteSetup()
         {
             settingsFacade.IsSetupCompleted = true;
             Xamarin.Forms.Application.Current.MainPage = new AppShell();
-            //await Shell.Current.GoToAsync($"//{ViewModelLocator.DashboardRoute}");
         }
     }
 }
