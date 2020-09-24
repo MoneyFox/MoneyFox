@@ -34,7 +34,8 @@ namespace MoneyFox.ViewModels.SetupAssistant
         private async Task SkipSetup()
         {
             settingsFacade.IsSetupCompleted = true;
-            await Shell.Current.GoToAsync($"//{ViewModelLocator.DashboardRoute}");
+            Xamarin.Forms.Application.Current.MainPage = new AppShell();
+            //await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute});
         }
     }
 }
