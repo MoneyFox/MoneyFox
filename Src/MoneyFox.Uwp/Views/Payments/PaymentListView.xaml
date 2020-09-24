@@ -36,6 +36,9 @@
         <Flyout x:Key="FilterFlyout" Placement="Top">
             <ListBox SelectionMode="Multiple">
                 <ListBoxItem>
+                    <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}" IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
+                <ListBoxItem>
                     <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
                 <ListBoxItem>
@@ -48,6 +51,9 @@
                 <ListBoxItem>
                     <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+                </ListBoxItem>
+                <ListBoxItem>
+                    <Button Content="{x:Bind resources:Strings.ApplyFilterLabel}" Command="{Binding ApplyFilterCommand}" />
                 </ListBoxItem>
             </ListBox>
         </Flyout>

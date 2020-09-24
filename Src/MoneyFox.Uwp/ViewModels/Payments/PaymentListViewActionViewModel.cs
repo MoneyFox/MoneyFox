@@ -29,6 +29,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private readonly int accountId;
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
+        private bool isGrouped;
         private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
         private bool isTransferAvailable;
@@ -76,6 +77,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         /// <inheritdoc/>
         public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccountAsync);
+
+        /// <inheritdoc/>
+        public RelayCommand ApplyFilterCommand => new RelayCommand(ApplyFilter);
 
         /// <summary>
         /// Indicates if the transfer option is available or if it shall be hidden.
@@ -132,7 +136,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                     return;
                 isClearedFilterActive = value;
                 RaisePropertyChanged();
-                UpdateList();
             }
         }
 
@@ -146,7 +149,18 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                     return;
                 isRecurringFilterActive = value;
                 RaisePropertyChanged();
-                UpdateList();
+            }
+        }
+
+        /// <inheritdoc/>
+        public bool IsGrouped
+        {
+            get => isGrouped;
+            set
+            {
+                if(isRecurringFilterActive == value) return;
+                isGrouped = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -160,7 +174,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                     return;
                 timeRangeStart = value;
                 RaisePropertyChanged();
-                UpdateList();
             }
         }
 
@@ -174,7 +187,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                     return;
                 timeRangeEnd = value;
                 RaisePropertyChanged();
-                UpdateList();
             }
         }
 
@@ -190,7 +202,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             await balanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
-        private void UpdateList()
+        private void ApplyFilter()
         {
             MessengerInstance.Send(new PaymentListFilterChangedMessage
             {

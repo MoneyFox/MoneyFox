@@ -184,9 +184,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
-            var payments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
-                                                                                                               filterMessage.TimeRangeStart,
-                                                                                                               filterMessage.TimeRangeEnd)
+            var payments = mapper.Map<List<PaymentViewModel>>(
+                await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
+                                                                     filterMessage.TimeRangeStart,
+                                                                     filterMessage.TimeRangeEnd)
             {
                 IsClearedFilterActive = filterMessage.IsClearedFilterActive,
                 IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
@@ -200,7 +201,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                                 s => s.Date);
 
             var source = new CollectionViewSource();
-            source.IsSourceGrouped = true;
+            source.IsSourceGrouped = filterMessage.IsGrouped;
             source.Source = group;
 
             GroupedPayments = source;
