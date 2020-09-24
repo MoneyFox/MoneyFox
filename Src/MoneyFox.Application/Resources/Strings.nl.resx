@@ -670,59 +670,59 @@ Categorie opslaan ...</value>
     <value>Back-up successvol gemaakt.</value>
   </data>
   <data name="SelectStatisticTitle" xml:space="preserve">
-    <value>Select Statistic</value>
+    <value>Selecteer statistiek</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense {1} / Income: {0}</value>
+    <value>Uitgaven {1} / inkomen: {0}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0}</value>
+    <value>Aanmaakdatum: {0}</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0}</value>
+    <value>Wijzigingsdatum: {0}</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
-    <value>Date Range</value>
+    <value>Datumbereik</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Logged out successfully.</value>
+    <value>Uitloggen Succesvol</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Logged out</value>
+    <value>Uitgelogd</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Maak een nieuw account</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Glad to have you!</value>
+    <value>Blij jou te hebben</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way. 
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>De MoneyFox helpt u, om uw uitgaven en inkomsten op een gemakkelijke manier bij te houden.
+Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier bij te houden.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Next</value>
+    <value>Volgende</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also it makes it easier to analyze in the statistics.</value>
+    <value>Categorieën kunnen  je helpen, om je betalingen te ordenen en te analyseren in de statistieken</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Terug.</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Skip</value>
+    <value>Overslaan</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Maak een nieuwe categorie</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
-    <value>That's it! You're set for using the MoneyFox.</value>
+    <value>Dit is het, je bent nu klaar om MoneyFox te gebruiken.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Klaar</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
-    <value>Complete</value>
+    <value>Volledig</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
     <value>When you create a payment you can select the category for that payment along with the account and if it an expense, an income or a transfer.
