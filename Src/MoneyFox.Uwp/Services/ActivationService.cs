@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using MoneyFox.Application.Common;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Ui.Shared.ViewModels.Settings;
@@ -73,8 +74,8 @@ namespace MoneyFox.Uwp.Services
         {
             if(ConfigurationManager.AppSettings != null) return;
 
+            InitConfig();
             ExecutingPlatform.Current = AppPlatform.UWP;
-            ConfigurationManager.Initialise(PortableStream.Current);
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
 #if !DEBUG
@@ -89,6 +90,13 @@ namespace MoneyFox.Uwp.Services
 
             await JumpListService.InitializeAsync();
             ThemeSelectorService.Initialize();
+        }
+
+        private void InitConfig()
+        {
+            ConfigurationManager.Initialise(PortableStream.Current);
+            if(ConfigurationManager.AppSettings == null)
+                throw new ConfigFailedToInitException();
         }
 
         private static void RegisterServices()
