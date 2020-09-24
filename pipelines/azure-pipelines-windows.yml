@@ -25,7 +25,7 @@ variables:
 jobs:
 - job: BuildWindows
   displayName: 'Build Windows Release'
-  timeoutInMinutes: 140
+  timeoutInMinutes: 200
 
   steps:
   - task: DownloadSecureFile@1
