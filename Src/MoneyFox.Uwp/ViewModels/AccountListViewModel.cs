@@ -5,6 +5,7 @@ using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
+using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
@@ -98,9 +99,11 @@ namespace MoneyFox.Uwp.ViewModels
 
                 var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
                 includedAlphaGroup.AddRange(mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetIncludedAccountQuery())));
+                includedAlphaGroup.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 var excludedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
                 excludedAlphaGroup.AddRange(mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetExcludedAccountQuery())));
+                excludedAlphaGroup.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 Accounts.Clear();
 

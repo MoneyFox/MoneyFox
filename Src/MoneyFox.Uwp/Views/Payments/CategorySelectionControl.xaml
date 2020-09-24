@@ -15,10 +15,13 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="30" />
+            <ColumnDefinition Width="6" />
+            <ColumnDefinition Width="40" />
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="23" />
+            <RowDefinition Height="32" />
             <RowDefinition Height="32" />
         </Grid.RowDefinitions>
 
@@ -44,5 +47,18 @@
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
         </SymbolIcon>
+
+        <Button Grid.Column="3"
+                Grid.Row="1">
+            <SymbolIcon Symbol="Add"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.AddNewCategoryCommand}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </SymbolIcon>
+        </Button>
     </Grid>
 </UserControl>

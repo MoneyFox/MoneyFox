@@ -12,9 +12,8 @@ namespace MoneyFox.Domain.Entities
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        private Payment()
-        {
-        }
+        // used for EF
+        private Payment() { }
 
         public Payment(DateTime date,
                        decimal amount,
