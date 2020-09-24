@@ -96,7 +96,7 @@ namespace MoneyFox.Uwp.Services
         {
             ConfigurationManager.Initialise(PortableStream.Current);
             if(ConfigurationManager.AppSettings == null)
-                throw new ConfigFailedToInitException();
+                throw new FailedToInitConfiFileException();
         }
 
         private static void RegisterServices()
