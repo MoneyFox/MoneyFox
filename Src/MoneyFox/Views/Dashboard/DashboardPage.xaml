@@ -51,7 +51,6 @@
                     Text="{x:Static resources:Strings.AssetsLabel}"
                     VerticalOptions="Center" />
 
-
                 <!--  Assets card  -->
                 <yummy:PancakeView
                     Grid.Row="2"
