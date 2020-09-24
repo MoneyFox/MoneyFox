@@ -19,6 +19,8 @@ using MoneyFox.Views.Statistics;
 using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Ui.Shared.ViewModels.Settings;
+using MoneyFox.ViewModels.SetupAssistant;
+using MoneyFox.Views.SetupAssistant;
 
 namespace MoneyFox
 {
@@ -60,6 +62,9 @@ namespace MoneyFox
         public static string StatisticCategorySummaryRoute => $"Settings/Show{nameof(StatisticCategorySummaryPage)}";
         public static string StatisticSelectorRoute => $"Settings/Show{nameof(StatisticSelectorPage)}";
         public static string PaymentForCategoryListRoute => $"Settings/Show{nameof(PaymentForCategoryListPage)}";
+        public static string WelcomeViewRoute => $"Setup/{nameof(WelcomePage)}";
+        public static string CategoryIntroductionRoute => $"Setup/{nameof(CategoryIntroductionPage)}";
+        public static string SetupCompletionRoute => $"Setup/{nameof(SetupCompletionPage)}";
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
