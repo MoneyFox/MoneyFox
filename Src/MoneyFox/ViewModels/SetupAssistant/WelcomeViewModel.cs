@@ -29,13 +29,12 @@ namespace MoneyFox.ViewModels.SetupAssistant
 
         public RelayCommand NextStepCommand => new RelayCommand(async ()
             => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
-        public RelayCommand SkipCommand => new RelayCommand(async() => await SkipSetup());
+        public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 
-        private async Task SkipSetup()
+        private void SkipSetup()
         {
             settingsFacade.IsSetupCompleted = true;
             Xamarin.Forms.Application.Current.MainPage = new AppShell();
-            //await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute});
         }
     }
 }
