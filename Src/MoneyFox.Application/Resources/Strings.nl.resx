@@ -313,16 +313,16 @@ Wil je naar de store om te om ons te beoordelen?</value>
     <value>Er was een error tijdens het inloggen, gelieve later opnieuw te proberen.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Versie</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
     <value>Contact</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Om al je bijdragen te bekijken, schakel over naar Git Hub</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>De icon van deze app is gemaakt door:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
     <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
@@ -465,16 +465,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Search</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>Enddate</value>
+    <value>eind datum</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
-    <value>Recurrence</value>
+    <value>Herhalling</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>There are no Payments. Add one by tapping on the plus button.</value>
+    <value>Er zijn geen betalingen. Doe een betaling door op het plus teken te klikken.</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
-    <value>Email</value>
+    <value>e-mail</value>
   </data>
   <data name="WebsiteLabel" xml:space="preserve">
     <value>Website</value>
@@ -483,34 +483,34 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Backup</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Categorieën</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>selecteer categorie</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Geldstroom</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Categorieën spreiden</value>
   </data>
   <data name="CategoryNameLabel" xml:space="preserve">
-    <value>Category Name</value>
+    <value>Categorie naam</value>
   </data>
   <data name="FilterLabel" xml:space="preserve">
     <value>Filter</value>
   </data>
   <data name="TimeRangeEndLabel" xml:space="preserve">
-    <value>Time Range End</value>
+    <value>Einde tijdsbereik.</value>
   </data>
   <data name="TimeRangeStartLabel" xml:space="preserve">
-    <value>Time Range Start</value>
+    <value>Tijdsbereik Starten</value>
   </data>
   <data name="SelectDateLabel" xml:space="preserve">
-    <value>Select Date</value>
+    <value>selecteer datum</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Neem een categorie</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
     <value>Personalization</value>
