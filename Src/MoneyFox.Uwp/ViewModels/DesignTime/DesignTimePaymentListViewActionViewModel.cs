@@ -28,5 +28,9 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public DateTime TimeRangeStart { get; set; }
 
         public DateTime TimeRangeEnd { get; set; }
+
+        public RelayCommand ApplyFilterCommand { get; } = null!;
+
+        public bool IsGrouped { get; set; }
     }
 }

@@ -33,8 +33,11 @@
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
 
-        <Flyout x:Key="FilterFlyout" Placement="Top">
-            <ListBox SelectionMode="Multiple">
+        <Flyout x:Key="FilterFlyout">
+            <ListBox SelectionMode="Multiple" Background="Transparent" Width="250px" >
+                <ListBoxItem>
+                    <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}" IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                </ListBoxItem>
                 <ListBoxItem>
                     <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
@@ -49,6 +52,9 @@
                     <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
                 </ListBoxItem>
+                <ListBoxItem>
+                    <Button Content="{x:Bind resources:Strings.ApplyFilterLabel}" Command="{Binding ApplyFilterCommand}" />
+                </ListBoxItem>
             </ListBox>
         </Flyout>
 
@@ -61,11 +67,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <TextBlock Text="{Binding Title}"
+                   Grid.Row="0"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
         <CommandBar
             Grid.Row="0"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
             DataContext="{Binding ViewActionViewModel}"
             OverflowButtonVisibility="Collapsed"
+            DefaultLabelPosition="Right"
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton
@@ -75,10 +85,6 @@
                     Label="{x:Bind resources:Strings.FilterLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-
-        <TextBlock Text="{Binding Title}"
-                   Grid.Row="0"
-                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <userControls:BalanceControl
             Grid.Row="1"

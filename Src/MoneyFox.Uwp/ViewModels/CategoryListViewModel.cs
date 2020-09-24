@@ -14,7 +14,8 @@ namespace MoneyFox.Uwp.ViewModels
         public CategoryListViewModel(IMediator mediator,
                                      IMapper mapper,
                                      IDialogService dialogService,
-                                     NavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
+                                     NavigationService navigationService)
+            : base(mediator, mapper, dialogService, navigationService)
         {
         }
 

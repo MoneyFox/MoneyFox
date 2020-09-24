@@ -1,12 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using MoneyFox.Domain.Entities;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Common.Interfaces
 {
-    public interface IEfCoreContext
+    public interface IEfCoreContext : IDisposable
     {
         DbSet<Account> Accounts { get; }
 
@@ -25,7 +26,5 @@ namespace MoneyFox.Application.Common.Interfaces
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
 
         EntityEntry Entry(object entity);
-
-        void Dispose();
     }
 }

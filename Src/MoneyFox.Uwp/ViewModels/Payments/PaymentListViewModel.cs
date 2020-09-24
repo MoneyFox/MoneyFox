@@ -184,24 +184,32 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
-            var payments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
-                                                                                                               filterMessage.TimeRangeStart,
-                                                                                                               filterMessage.TimeRangeEnd)
-            {
-                IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-            }));
+            var payments = mapper.Map<List<PaymentViewModel>>(
+                await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
+                                                                     filterMessage.TimeRangeStart,
+                                                                     filterMessage.TimeRangeEnd)
+                {
+                    IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                    IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+                }));
 
             payments.ForEach(x => x.CurrentAccountId = AccountId);
 
-            List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
-                .CreateGroups(payments,
-                                s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                                s => s.Date);
-
             var source = new CollectionViewSource();
-            source.IsSourceGrouped = true;
-            source.Source = group;
+            source.IsSourceGrouped = filterMessage.IsGrouped;
+
+            if(filterMessage.IsGrouped)
+            {
+                List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
+                    .CreateGroups(payments,
+                                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                    s => s.Date);
+                source.Source = group;
+            }
+            else
+            {
+                source.Source = payments;
+            }
 
             GroupedPayments = source;
         }

@@ -31,6 +31,8 @@ namespace MoneyFox.Application.Common.Facades
         bool IsLoggedInToBackupService { get; set; }
 
         string DefaultCulture { get; set; }
+
+        bool IsSetupCompleted { get; set; }
     }
 
     public class SettingsFacade : ISettingsFacade
@@ -57,6 +59,9 @@ namespace MoneyFox.Application.Common.Facades
         private readonly string DEFAULT_CULTURE_KEYDEFAULT = CultureInfo.CurrentCulture.Name;
 
         private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
+
+        private const string IS_SETUP_COMPLETED_KEYNAME = "IsSetupCompleted";
+        private const bool IS_SETUP_COMPLETED__KEY_DEFAULT = false;
 
         private readonly ISettingsAdapter settingsAdapter;
 
@@ -166,6 +171,13 @@ namespace MoneyFox.Application.Common.Facades
         {
             get => settingsAdapter.GetValue(DEFAULT_CULTURE_KEYNAME, DEFAULT_CULTURE_KEYDEFAULT);
             set => settingsAdapter.AddOrUpdate(DEFAULT_CULTURE_KEYNAME, value);
+        }
+
+        /// <inheritdoc/>
+        public bool IsSetupCompleted
+        {
+            get => settingsAdapter.GetValue(IS_SETUP_COMPLETED_KEYNAME, IS_SETUP_COMPLETED__KEY_DEFAULT);
+            set => settingsAdapter.AddOrUpdate(IS_SETUP_COMPLETED_KEYNAME, value);
         }
     }
 }

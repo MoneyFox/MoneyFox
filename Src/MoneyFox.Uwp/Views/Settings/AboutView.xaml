@@ -48,7 +48,7 @@
                                    HorizontalAlignment="Left"
                                    VerticalAlignment="Center"
                                    Style="{ThemeResource BodyTextBlockStyle}"
-                                   Text="{Binding Version}"
+                                   Text="{x:Bind ViewModel.Version}"
                                    TextWrapping="Wrap" />
                     </StackPanel>
                     <TextBlock Margin="0,10,0,5"
@@ -67,7 +67,7 @@
                                    TextWrapping="Wrap">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
-                                    <core:InvokeCommandAction Command="{Binding GoToWebsiteCommand, Mode=OneWay}" />
+                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToWebsiteCommand}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </TextBlock>
@@ -80,7 +80,7 @@
                                    TextWrapping="Wrap">
                             <interactivity:Interaction.Behaviors>
                                 <core:EventTriggerBehavior EventName="Tapped">
-                                    <core:InvokeCommandAction Command="{Binding SendMailCommand, Mode=OneWay}" />
+                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.SendMailCommand}" />
                                 </core:EventTriggerBehavior>
                             </interactivity:Interaction.Behaviors>
                         </TextBlock>
@@ -104,7 +104,7 @@
 
                 <Button Margin="0,10,0,10"
                         HorizontalAlignment="Stretch"
-                        Command="{Binding RateAppCommand}"
+                        Command="{x:Bind ViewModel.RateAppCommand}"
                         Content="{x:Bind resources:Strings.RateLabel}" />
                 <TextBlock Margin="0,12,0,0"
                            HorizontalAlignment="Left"
@@ -119,7 +119,7 @@
                            TextWrapping="Wrap">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{Binding GoToRepositoryCommand, Mode=OneWay}" />
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToRepositoryCommand}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </TextBlock>
@@ -136,7 +136,7 @@
                            TextWrapping="Wrap">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{Binding GoToTranslationProjectCommand, Mode=OneWay}" />
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToTranslationProjectCommand}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </TextBlock>
@@ -154,7 +154,7 @@
                            TextWrapping="Wrap">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{Binding GoToDesignerTwitterAccount, Mode=OneWay}" />
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToDesignerTwitterAccountCommand}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </TextBlock>
@@ -172,7 +172,7 @@
                            TextWrapping="Wrap">
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{Binding GoToContributionPageCommand, Mode=OneWay}" />
+                            <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToContributionPageCommand}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
                 </TextBlock>

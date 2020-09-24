@@ -19,21 +19,22 @@ namespace MoneyFox.Uwp.Converter
 
             string sign;
 
-            if(payment.Type == PaymentType.Transfer)
-            {
-                sign = payment.ChargedAccountId == payment.CurrentAccountId
-                            ? "-"
-                            : "+";
-            }
-            else
-            {
-                sign = payment.Type == (int) PaymentType.Expense
-                       ? "-"
-                       : "+";
-            }
+            sign = payment.Type == PaymentType.Transfer
+                ? GetSignForTransfer(payment)
+                : GetSignForNonTransfer(payment);
 
             return $"{sign} {payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";
         }
+
+        private string GetSignForTransfer(PaymentViewModel payment)
+            => payment.ChargedAccountId == payment.CurrentAccountId
+                       ? "-"
+                       : "+";
+
+        private string GetSignForNonTransfer(PaymentViewModel payment)
+            => payment.Type == (int)PaymentType.Expense
+                       ? "-"
+                       : "+";
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {

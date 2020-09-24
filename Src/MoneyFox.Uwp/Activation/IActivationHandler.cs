@@ -2,24 +2,24 @@
 
 namespace MoneyFox.Uwp.Activation
 {
-    internal abstract class ActivationHandler
+    internal interface IActivationHandler
     {
-        public abstract bool CanHandle(object args);
+        bool CanHandle(object args);
 
-        public abstract Task HandleAsync(object args);
+        Task HandleAsync(object args);
     }
 
-    internal abstract class ActivationHandler<T> : ActivationHandler
+    internal abstract class ActivationHandler<T> : IActivationHandler
                             where T : class
     {
         protected abstract Task HandleInternalAsync(T args);
 
-        public override async Task HandleAsync(object args)
+        public async Task HandleAsync(object args)
         {
             await HandleInternalAsync(args as T);
         }
 
-        public override bool CanHandle(object args)
+        public bool CanHandle(object args)
         {
             return args is T && CanHandleInternal(args as T);
         }
