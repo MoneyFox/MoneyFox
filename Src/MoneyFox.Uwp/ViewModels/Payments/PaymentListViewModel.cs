@@ -188,21 +188,28 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                      filterMessage.TimeRangeStart,
                                                                      filterMessage.TimeRangeEnd)
-            {
-                IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-            }));
+                {
+                    IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                    IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+                }));
 
             payments.ForEach(x => x.CurrentAccountId = AccountId);
 
-            List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
-                .CreateGroups(payments,
-                                s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                                s => s.Date);
-
             var source = new CollectionViewSource();
             source.IsSourceGrouped = filterMessage.IsGrouped;
-            source.Source = group;
+
+            if(filterMessage.IsGrouped)
+            {
+                List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
+                    .CreateGroups(payments,
+                                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                    s => s.Date);
+                source.Source = group;
+            }
+            else
+            {
+                source.Source = payments;
+            }
 
             GroupedPayments = source;
         }
