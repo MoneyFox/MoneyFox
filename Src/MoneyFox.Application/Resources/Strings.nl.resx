@@ -127,22 +127,22 @@
     <value>Voeg account toe</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Inkomen</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Expense</value>
+    <value>Uitgaven</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>overschrijving</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Cashflow</value>
+    <value>in en uitgaven</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Dagelijks</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Daily without weekend</value>
+    <value>Enkel weekdagen </value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Weet u zeker dat u deze account wilt verwijderen?</value>
@@ -163,13 +163,13 @@
     <value>Bewerk</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expenses</value>
+    <value>Onkosten</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Feedback Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Edit Income</value>
+    <value>Inkomsten bewerken</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
     <value>Gains</value>
