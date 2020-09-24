@@ -96,7 +96,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                                                        SelectedPayment.RecurringPayment?.EndDate);
 
                 await mediator.Send(command);
-                navigationService.GoBack();
             }
             catch(InvalidEndDateException)
             {
