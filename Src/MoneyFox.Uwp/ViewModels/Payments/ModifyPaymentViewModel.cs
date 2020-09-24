@@ -21,6 +21,7 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Views.Payments;
+using MoneyFox.Uwp.Views;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
@@ -60,6 +61,12 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
         /// </summary>
         public RelayCommand SelectedItemChangedCommand => new RelayCommand(UpdateOtherComboBox);
+
+        /// <summary>
+        ///     Opens the create category dialog.
+        /// </summary>
+        public RelayCommand AddNewCategoryCommand
+            => new RelayCommand(async () => await new AddCategoryDialog().ShowAsync());
 
         /// <summary>
         /// Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
