@@ -158,7 +158,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             get => isGrouped;
             set
             {
-                if(isRecurringFilterActive == value) return;
+                if(isGrouped == value) return;
                 isGrouped = value;
                 RaisePropertyChanged();
             }
@@ -170,8 +170,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             get => timeRangeStart;
             set
             {
-                if(timeRangeStart == value)
-                    return;
+                if(timeRangeStart == value) return;
                 timeRangeStart = value;
                 RaisePropertyChanged();
             }
@@ -183,8 +182,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             get => timeRangeEnd;
             set
             {
-                if(timeRangeEnd == value)
-                    return;
+                if(timeRangeEnd == value) return;
                 timeRangeEnd = value;
                 RaisePropertyChanged();
             }
@@ -209,7 +207,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,
                 TimeRangeStart = TimeRangeStart,
-                TimeRangeEnd = TimeRangeEnd
+                TimeRangeEnd = TimeRangeEnd,
+                IsGrouped = IsGrouped
             });
         }
     }

@@ -67,11 +67,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <TextBlock Text="{Binding Title}"
+                   Grid.Row="0"
+                   Style="{StaticResource UwpPageTitleStyle}" />
+
         <CommandBar
             Grid.Row="0"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
             DataContext="{Binding ViewActionViewModel}"
             OverflowButtonVisibility="Collapsed"
+            DefaultLabelPosition="Right"
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton
@@ -81,10 +86,6 @@
                     Label="{x:Bind resources:Strings.FilterLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
-
-        <TextBlock Text="{Binding Title}"
-                   Grid.Row="0"
-                   Style="{StaticResource UwpPageTitleStyle}" />
 
         <userControls:BalanceControl
             Grid.Row="1"
