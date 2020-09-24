@@ -33,8 +33,8 @@
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
 
-        <Flyout x:Key="FilterFlyout" Placement="Top">
-            <ListBox SelectionMode="Multiple">
+        <Flyout x:Key="FilterFlyout">
+            <ListBox SelectionMode="Multiple" Background="Transparent" Width="250px" >
                 <ListBoxItem>
                     <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}" IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
                 </ListBoxItem>
@@ -73,7 +73,6 @@
 
         <CommandBar
             Grid.Row="0"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
             DataContext="{Binding ViewActionViewModel}"
             OverflowButtonVisibility="Collapsed"
             DefaultLabelPosition="Right"
