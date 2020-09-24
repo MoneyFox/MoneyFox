@@ -725,8 +725,9 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <value>Volledig</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>Wanneer u een betaling aanmaakt, kunt u de categorie voor die betaling, samen met de rekening selecteren of het nu een uitgave, inkomen of overboeking betreft.
-Betalingen die u heeft gemaakt, verschijnen onder het account dat u heeft gekozen. Om daar te komen, gaat u naar de accountlijst en selecteert u het respectieve account</value>
+    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
+Payments you created will show up under the account you choose. 
+To get there go to the account list and select the respective account.</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Voeg filter toe</value>
