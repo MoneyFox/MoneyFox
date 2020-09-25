@@ -573,7 +573,7 @@ WAARSCHUWING: Lokale wijzigingen die u ondertussen heeft aangebracht, gaan verlo
     <value>Herstellen van backup is geanuleerd</value>
   </data>
   <data name="UploadBackupCanceledMessage" xml:space="preserve">
-    <value>upload back-up is geannuleerd</value>
+    <value>opgeladen back-up is geannuleerd</value>
   </data>
   <data name="DefaultRegionHeader" xml:space="preserve">
     <value>Standaard regio</value>
@@ -725,9 +725,9 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <value>Volledig</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose. 
-To get there go to the account list and select the respective account.</value>
+    <value>Wanneer je een betaling aanmaakt, kunt u aanduiden welke de categorie is voor die betaling, de rekening selecteren en of het een uitgave, een inkomen of een overboeking betreft aanduiden.
+Betalingen die u heeft gemaakt, worden zo weergegeven onder het account dat u kiest.
+Om daar te komen, gaat u naar de accountlijst en selecteert u het respectieve account.</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
     <value>Voeg filter toe</value>
