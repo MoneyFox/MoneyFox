@@ -670,18 +670,63 @@
     <value>Dépense {1} / Revenue: {0}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
-    <value>Creation Date: {0}</value>
+    <value>Date de création : {0}</value>
   </data>
   <data name="ModificationDateTemplateLabel" xml:space="preserve">
-    <value>Modification Date: {0}</value>
+    <value>Date de modification : {0}</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
-    <value>Date Range</value>
+    <value>Date (période)</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Logged out successfully.</value>
+    <value>Déconnexion réussie.</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Logged out</value>
+    <value>Déconnecté</value>
+  </data>
+  <data name="CreateAccountNowLabel" xml:space="preserve">
+    <value>Créer un compte maintenant</value>
+  </data>
+  <data name="WelcomePageSubtitle" xml:space="preserve">
+    <value>Heureux de vous avoir !</value>
+  </data>
+  <data name="WelcomePageText" xml:space="preserve">
+    <value>Le MoneyFox vous aide à suivre facilement vos dépenses et vos revenus.
+Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organiser les paiements et l'argent dans les collections.</value>
+  </data>
+  <data name="NextLabel" xml:space="preserve">
+    <value>Suivant</value>
+  </data>
+  <data name="CategorieIntroductionText" xml:space="preserve">
+    <value>Les catégories peuvent aider à trier vos paiements. Cela facilite également les analyses statistiques.</value>
+  </data>
+  <data name="BackLabel" xml:space="preserve">
+    <value>Précédent</value>
+  </data>
+  <data name="SkipLabel" xml:space="preserve">
+    <value>Ignorer</value>
+  </data>
+  <data name="CreateCategoryNowLabel" xml:space="preserve">
+    <value>Créer une catégorie</value>
+  </data>
+  <data name="CompletedText" xml:space="preserve">
+    <value>Voilà ! Vous êtes prêts à utiliser le MoneyFox.</value>
+  </data>
+  <data name="CompletedTitle" xml:space="preserve">
+    <value>Fini !</value>
+  </data>
+  <data name="CompleteLabel" xml:space="preserve">
+    <value>Terminé</value>
+  </data>
+  <data name="PaymentIntroductionText" xml:space="preserve">
+    <value>Lorsque vous créez un paiement, vous pouvez sélectionner la catégorie pour ce paiement ainsi que le compte et si c'est une dépense, un revenu ou un transfert.
+Les paiements que vous avez créés apparaîtront sous le compte que vous avez choisi.
+Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respectif.</value>
+  </data>
+  <data name="ApplyFilterLabel" xml:space="preserve">
+    <value>Appliquer Filtre</value>
+  </data>
+  <data name="IsGroupedLabel" xml:space="preserve">
+    <value>Liste des groupes</value>
   </data>
 </root>

@@ -685,4 +685,49 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
   <data name="LoggedOutTitle" xml:space="preserve">
     <value>Logged out</value>
   </data>
+  <data name="CreateAccountNowLabel" xml:space="preserve">
+    <value>Create Account Now</value>
+  </data>
+  <data name="WelcomePageSubtitle" xml:space="preserve">
+    <value>Glad to have you!</value>
+  </data>
+  <data name="WelcomePageText" xml:space="preserve">
+    <value>The MoneyFox helps you to track your expenses and incomes in an easy way. 
+To start create a new account. Accounts are used to organize payments and money in collections.</value>
+  </data>
+  <data name="NextLabel" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="CategorieIntroductionText" xml:space="preserve">
+    <value>Categories can help order your payments. Also it makes it easier to analyze in the statistics.</value>
+  </data>
+  <data name="BackLabel" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="SkipLabel" xml:space="preserve">
+    <value>Skip</value>
+  </data>
+  <data name="CreateCategoryNowLabel" xml:space="preserve">
+    <value>Create Category now</value>
+  </data>
+  <data name="CompletedText" xml:space="preserve">
+    <value>That's it! You're set for using the MoneyFox.</value>
+  </data>
+  <data name="CompletedTitle" xml:space="preserve">
+    <value>Done!</value>
+  </data>
+  <data name="CompleteLabel" xml:space="preserve">
+    <value>Complete</value>
+  </data>
+  <data name="PaymentIntroductionText" xml:space="preserve">
+    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
+Payments you created will show up under the account you choose. 
+To get there go to the account list and select the respective account.</value>
+  </data>
+  <data name="ApplyFilterLabel" xml:space="preserve">
+    <value>Apply Filter</value>
+  </data>
+  <data name="IsGroupedLabel" xml:space="preserve">
+    <value>Group List</value>
+  </data>
 </root>
