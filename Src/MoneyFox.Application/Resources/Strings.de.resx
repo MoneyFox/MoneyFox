@@ -688,48 +688,47 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Ausgeloggt</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Jetzt Konto erstellen</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
-    <value>Glad to have you!</value>
+    <value>Schön, dass du hier bist!</value>
   </data>
   <data name="WelcomePageText" xml:space="preserve">
-    <value>The MoneyFox helps you to track your expenses and incomes in an easy way. 
-To start create a new account. Accounts are used to organize payments and money in collections.</value>
+    <value>Der MoneyFox hilft dir deine Ausgaben und Einnahmen auf einfach Weise im Überblick zu behalten.
+Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen und Geld in Gruppen.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Next</value>
+    <value>Weiter</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also it makes it easier to analyze in the statistics.</value>
+    <value>Kategorien können helfen deine Zahlungen zu organisieren. Sie vereinfachen zudem die Analyse deiner Ausgaben und Einnahmen mit Hilfe der Statistiken.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Zurück</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Skip</value>
+    <value>Überspringen</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Jetzt Kategorie erstellen</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
-    <value>That's it! You're set for using the MoneyFox.</value>
+    <value>Das wars! Du hast alles was du brauchst um mit dem MoneyFox zu starten.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Fertig!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
-    <value>Complete</value>
+    <value>Abschließen</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose. 
-To get there go to the account list and select the respective account.</value>
+    <value>Wenn du eine Zahlung erstellst kannst du dieser eine Kategorie zuweisen, sowie auswählen ob es sich dabei um eine Ausgabe, eine Einnahme oder einen Übertrag handelt.
+Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorthin zu gelangen, gehe auf die Kontoübersicht und wähle das gewünschte Konto aus.</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Filter anwenden</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>Liste gruppieren</value>
   </data>
 </root>
