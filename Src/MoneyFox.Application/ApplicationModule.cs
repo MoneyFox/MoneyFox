@@ -28,6 +28,11 @@ namespace MoneyFox.Application
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Facade", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(ThisAssembly)
+                   .Where(t => t.Name.EndsWith("Helper", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces()
+                   .SingleInstance();
         }
 
         private void RegisterMediatr(ContainerBuilder builder)

@@ -18,10 +18,12 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
         public class Handler : IRequestHandler<GetUnclearedPaymentsOfThisMonthQuery, List<Payment>>
         {
             private readonly IContextAdapter contextAdapter;
+            private readonly ISystemDateHelper systemDateHelper;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
             {
                 this.contextAdapter = contextAdapter;
+                this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request, CancellationToken cancellationToken)
@@ -31,7 +33,7 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
                                                           .Include(x => x.ChargedAccount)
                                                           .Include(x => x.TargetAccount)
                                                           .AreNotCleared()
-                                                          .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth());
+                                                          .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper));
 
                 if(request.AccountId != 0)
                 {

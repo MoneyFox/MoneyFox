@@ -25,6 +25,8 @@ namespace MoneyFox.ViewModels.Dashboard
         private ObservableCollection<AccountViewModel> accounts = new ObservableCollection<AccountViewModel>();
         private ObservableCollection<DashboardBudgetEntryViewModel> budgetEntries = new ObservableCollection<DashboardBudgetEntryViewModel>();
 
+        private bool isRunning;
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
 
@@ -38,13 +40,23 @@ namespace MoneyFox.ViewModels.Dashboard
 
         public async Task InitializeAsync()
         {
-            Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-            Accounts.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+            if(isRunning) return;
 
-            Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
-            EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
-            MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
-            MonthlyIncomes = await mediator.Send(new GetMonthlyIncomeQuery());
+            try
+            {
+                isRunning = true;
+                Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+                Accounts.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+
+                Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+                EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
+                MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
+                MonthlyIncomes = await mediator.Send(new GetMonthlyIncomeQuery());
+            }
+            finally
+            {
+                isRunning = false;
+            }
         }
 
         public decimal Assets

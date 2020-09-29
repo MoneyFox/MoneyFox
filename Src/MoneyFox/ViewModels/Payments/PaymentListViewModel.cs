@@ -117,6 +117,7 @@ namespace MoneyFox.ViewModels.Payments
                 .Sum(x => x.Amount),
                 group.Where(x => x.Type == PaymentType.Income
                     || (x.Type == PaymentType.Transfer
+                        && x.TargetAccount != null
                         && x.TargetAccount.Id == SelectedAccount.Id))
                 .Sum(x => x.Amount));
         }

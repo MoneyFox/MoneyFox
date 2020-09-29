@@ -28,6 +28,8 @@ namespace MoneyFox.ViewModels.Accounts
         private readonly IMapper mapper;
         private readonly IDialogService dialogService;
 
+        private bool isRunning;
+
         public AccountListViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)
         {
             this.mediator = mediator;
@@ -39,25 +41,35 @@ namespace MoneyFox.ViewModels.Accounts
 
         public async Task OnAppearingAsync()
         {
-            Accounts.Clear();
-
-            var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-            accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
-
-            var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
-            var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
-
-            includedAccountGroup.AddRange(accountVms.Where(x => !x.IsExcluded));
-            excludedAccountGroup.AddRange(accountVms.Where(x => x.IsExcluded));
-
-            if(includedAccountGroup.Any())
+            try
             {
-                Accounts.Add(includedAccountGroup);
+                if(isRunning) return;
+                isRunning = true;
+
+                Accounts.Clear();
+
+                var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+                accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+
+                var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
+                var excludedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
+
+                includedAccountGroup.AddRange(accountVms.Where(x => !x.IsExcluded));
+                excludedAccountGroup.AddRange(accountVms.Where(x => x.IsExcluded));
+
+                if(includedAccountGroup.Any())
+                {
+                    Accounts.Add(includedAccountGroup);
+                }
+
+                if(excludedAccountGroup.Any())
+                {
+                    Accounts.Add(excludedAccountGroup);
+                }
             }
-
-            if(excludedAccountGroup.Any())
+            finally
             {
-                Accounts.Add(excludedAccountGroup);
+                isRunning = false;
             }
         }
 

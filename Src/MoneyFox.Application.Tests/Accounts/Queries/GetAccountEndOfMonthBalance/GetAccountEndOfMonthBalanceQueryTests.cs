@@ -42,10 +42,13 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
         public async Task GetCorrectSumForSingleAccount()
         {
             // Arrange
+            var systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
+
             var account1 = new Account("test", 100);
             var account2 = new Account("test", 200);
-            var payment1 = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Income, account1);
-            var payment2 = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Expense, account2);
+            var payment1 = new Payment(new DateTime(2020, 09, 15), 50, PaymentType.Income, account1);
+            var payment2 = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, account2);
 
             await context.AddAsync(account1);
             await context.AddAsync(account2);
@@ -54,7 +57,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             await context.SaveChangesAsync();
 
             // Act
-            decimal result = await new GetAccountEndOfMonthBalanceQuery.Handler(contextAdapterMock).Handle(
+            decimal result = await new GetAccountEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
                 new GetAccountEndOfMonthBalanceQuery(account1.Id), default);
 
             // Assert
