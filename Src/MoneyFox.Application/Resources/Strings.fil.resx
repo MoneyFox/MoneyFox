@@ -700,7 +700,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Next</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also it makes it easier to analyze in the statistics.</value>
+    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
     <value>Back</value>
@@ -730,5 +730,8 @@ To get there go to the account list and select the respective account.</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>Group List</value>
+  </data>
+  <data name="LoggedInMessage" xml:space="preserve">
+    <value>Loggedin successfully.</value>
   </data>
 </root>
