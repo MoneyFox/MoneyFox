@@ -36,7 +36,7 @@ steps:
     sourcePath: 'Src/MoneyFox.Android/Properties/AndroidManifest.xml'
     versionCodeOption: 'buildid'
     versionCode: '$(date:yyyy)$(DayOfYear)$(rev:.rrr)'
-    versionCodeOffset: '1'
+    versionCodeOffset: '0'
     versionName: '$(Major).$(Minor).$(Build.BuildId)'
     printFile: true
 
