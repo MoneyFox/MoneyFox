@@ -37,17 +37,19 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <StackLayout>
-
-            <Label Style="{StaticResource TextHeadline}"
+        <Grid RowDefinitions="45, 35, *">
+            <Label Grid.Row="0"
                    Margin="15,0,15,0"
+                   Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.CategorySummaryTitle}" />
 
-            <Label Margin="15,0,15,0"
+            <Label Grid.Row="1"
+                   Margin="15,0,15,0"
                    Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
             <CollectionView x:Name="CategorySummaryList"
+                            Grid.Row="2"
                             EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
                             ItemsSource="{Binding CategorySummary}" >
 
@@ -105,6 +107,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
