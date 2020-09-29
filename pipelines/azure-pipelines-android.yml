@@ -19,7 +19,7 @@ variables:
   Major: '7'
   Minor: '1'
 
-name: $(date:yyyy)$(DayOfYear)$(rev:.rrr)
+name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
 
 - task: NuGetToolInstaller@1
