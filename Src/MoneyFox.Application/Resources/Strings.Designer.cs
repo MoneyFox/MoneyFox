@@ -421,7 +421,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Categories can help order your payments. Also it makes it easier to analyze in the statistics..
+        ///   Looks up a localized string similar to Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics..
         /// </summary>
         public static string CategorieIntroductionText {
             get {
