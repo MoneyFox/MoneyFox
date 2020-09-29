@@ -67,7 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microcharts.Forms">
-      <Version>0.9.5.7</Version>
+      <Version>0.9.5.8</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AppCenter.Analytics">
       <Version>3.4.2</Version>
