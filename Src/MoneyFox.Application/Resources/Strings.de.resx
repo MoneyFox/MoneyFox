@@ -701,7 +701,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Weiter</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Kategorien können helfen deine Zahlungen zu organisieren. Sie vereinfachen zudem die Analyse deiner Ausgaben und Einnahmen mit Hilfe der Statistiken.</value>
+    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
     <value>Zurück</value>
@@ -730,5 +730,8 @@ Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorth
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>Liste gruppieren</value>
+  </data>
+  <data name="LoggedInMessage" xml:space="preserve">
+    <value>Loggedin successfully.</value>
   </data>
 </root>
