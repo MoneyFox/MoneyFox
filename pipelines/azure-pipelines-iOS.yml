@@ -14,6 +14,10 @@ pr: none
 pool:
   vmImage: macOS-latest
 
+variables:
+  Major: '7'
+  Minor: '1'
+
 steps:
 - task: UseDotNet@2
   displayName: 'Use .Net Core sdk 3.1.101'
@@ -32,9 +36,9 @@ steps:
    echo $Minor
    echo $BUILD_BUILDNUMBER
    
-   VERSION=$Major.$Minor.$BUILD_BUILDNUMBER
+   VERSION=$Major.$Minor.$BUILD_BUILDID
    echo $VERSION
-   
+
    INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
    echo $INFO_PLIST_FILE
    

@@ -17,14 +17,14 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
     public class GetMonthlyExpenseQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
-        private readonly IContextAdapter contextAdapterMock;
+        private readonly IContextAdapter contextAdapter;
 
         public GetMonthlyExpenseQueryTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
 
-            contextAdapterMock = Substitute.For<IContextAdapter>();
-            contextAdapterMock.Context.Returns(context);
+            contextAdapter = Substitute.For<IContextAdapter>();
+            contextAdapter.Context.Returns(context);
         }
 
         public void Dispose()
@@ -42,6 +42,10 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
         public async Task ReturnCorrectAmount()
         {
             // Arrange
+
+            var systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
+
             var account = new Account("test", 80);
 
             var payment1 = new Payment(DateTime.Now.AddDays(-2), 50, PaymentType.Expense, account);
@@ -54,7 +58,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
             await context.SaveChangesAsync();
 
             // Act
-            var sum = await new GetMonthlyExpenseQuery.Handler(contextAdapterMock).Handle(new GetMonthlyExpenseQuery(), default);
+            var sum = await new GetMonthlyExpenseQuery.Handler(contextAdapter, systemDateHelper).Handle(new GetMonthlyExpenseQuery(), default);
 
             // Assert
             sum.Should().Be(70);

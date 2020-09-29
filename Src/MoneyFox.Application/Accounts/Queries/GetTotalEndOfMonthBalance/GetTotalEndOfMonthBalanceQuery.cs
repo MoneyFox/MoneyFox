@@ -22,10 +22,12 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
             private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
             private readonly IContextAdapter contextAdapter;
+            private readonly ISystemDateHelper systemDateHelper;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
             {
                 this.contextAdapter = contextAdapter;
+                this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
@@ -112,7 +114,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                                   .Include(x => x.ChargedAccount)
                                   .Include(x => x.TargetAccount)
                                   .AreNotCleared()
-                                  .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
+                                  .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
                                   .ToListAsync();
             }
         }

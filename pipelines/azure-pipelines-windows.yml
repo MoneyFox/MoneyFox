@@ -20,7 +20,7 @@ variables:
   buildConfiguration: 'Release'
   appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
   Major: '7'
-  Minor: '0'
+  Minor: '1'
 
 jobs:
 - job: BuildWindows
