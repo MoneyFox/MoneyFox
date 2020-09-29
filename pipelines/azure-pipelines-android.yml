@@ -31,6 +31,15 @@ steps:
   inputs:
     restoreSolution: Src/MoneyFox.Android/MoneyFox.Android.csproj
 
+- task: android-manifest-version@1
+  inputs:
+    sourcePath: 'Src/MoneyFox.Android/Properties/AndroidManifest.xml'
+    versionCodeOption: 'buildid'
+    versionCode: '$(date:yyyy)$(DayOfYear)$(rev:.rrr)'
+    versionCodeOffset: '1'
+    versionName: '$(Major).$(Minor).$(Build.BuildId)'
+    printFile: true
+
 - task: DotNetCoreCLI@2
   displayName: 'Run Tests'
   inputs:
@@ -43,14 +52,6 @@ steps:
   inputs:
     sourcePath: Src/MoneyFox
     filePattern: App.config
-
-- task: richardfennellBM.BM-VSTS-Versioning-Task.Version-AndroidManifest-Task.VersionAndroidManifest@2
-  displayName: 'Version Android Manifest'
-  inputs:
-    VersionNumber: '$(Major).$(Minor).$(Build.BuildId).$(rev:rrr)'
-    VersionNameFormat: '{1}.{2}.{3}.{4}'
-    VersionCodeFormat: '{3}{4}'
-    VersionRegex: '\d+.\d+.\d+.\d+'
 
 - task: DownloadSecureFile@1
   displayName: 'Download secure file'
