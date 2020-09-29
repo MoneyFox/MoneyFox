@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Resources;
+﻿using CommonServiceLocator;
+using MoneyFox.Application.Resources;
 using MoneyFox.ViewModels.Categories;
 using Xamarin.Forms;
 
@@ -13,6 +14,7 @@ namespace MoneyFox.Views.Categories
         public EditCategoryPage(int categoryId)
         {
             InitializeComponent();
+            BindingContext = ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
 
             this.categoryId = categoryId;
 
