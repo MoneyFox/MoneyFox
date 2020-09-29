@@ -36,6 +36,8 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly ISettingsFacade settingsFacade;
         private readonly NavigationService navigationService;
 
+        private bool isRunning;
+
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
 
         public AccountListViewModel(IMediator mediator,
@@ -95,6 +97,9 @@ namespace MoneyFox.Uwp.ViewModels
         {
             try
             {
+                if(isRunning) return;
+
+                isRunning = true;
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
                 var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
@@ -122,6 +127,10 @@ namespace MoneyFox.Uwp.ViewModels
             {
                 logManager.Error(ex);
                 await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.ToString());
+            }
+            finally
+            {
+                isRunning = false;
             }
         }
 
