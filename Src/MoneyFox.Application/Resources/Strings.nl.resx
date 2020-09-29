@@ -704,7 +704,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <value>Volgende</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categorieën kunnen  je helpen, om je betalingen te ordenen en te analyseren in de statistieken</value>
+    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
     <value>Terug.</value>
@@ -734,5 +734,8 @@ Om daar te komen, gaat u naar de accountlijst en selecteert u het respectieve ac
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>groepslijst</value>
+  </data>
+  <data name="LoggedInMessage" xml:space="preserve">
+    <value>Loggedin successfully.</value>
   </data>
 </root>

@@ -698,7 +698,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
     <value>Suivant</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Les catégories peuvent aider à trier vos paiements. Cela facilite également les analyses statistiques.</value>
+    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
     <value>Précédent</value>
@@ -728,5 +728,8 @@ Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respe
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
     <value>Liste des groupes</value>
+  </data>
+  <data name="LoggedInMessage" xml:space="preserve">
+    <value>Loggedin successfully.</value>
   </data>
 </root>
