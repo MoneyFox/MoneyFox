@@ -106,7 +106,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
 
-            await toastService.ShowToastAsync(Strings.LoggedOutMessage, Strings.LoggedOutTitle);
+            await toastService.ShowToastAsync(Strings.LoggedInMessage, Strings.LoggedOutTitle);
 
             logger.Info("Successfully logged in.");
         }
