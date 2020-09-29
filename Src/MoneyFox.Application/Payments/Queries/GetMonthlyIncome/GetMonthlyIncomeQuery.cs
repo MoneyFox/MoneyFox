@@ -16,9 +16,10 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
             private readonly IContextAdapter contextAdapter;
             private readonly ISystemDateHelper systemDateHelper;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
             {
                 this.contextAdapter = contextAdapter;
+                this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<decimal> Handle(GetMonthlyIncomeQuery request, CancellationToken cancellationToken)
