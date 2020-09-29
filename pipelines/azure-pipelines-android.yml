@@ -19,7 +19,6 @@ variables:
   Major: '7'
   Minor: '1'
 
-name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
 
 - task: NuGetToolInstaller@1
@@ -48,7 +47,7 @@ steps:
 - task: richardfennellBM.BM-VSTS-Versioning-Task.Version-AndroidManifest-Task.VersionAndroidManifest@2
   displayName: 'Version Android Manifest'
   inputs:
-    VersionNumber: '$(Major).$(Minor).$(Build.Id).$(Build.Number)'
+    VersionNumber: '$(Major).$(Minor).$(Build.BuildId).$(rev:rrr)'
     VersionNameFormat: '{1}.{2}.{3}.{4}'
     VersionCodeFormat: '{3}{4}'
     VersionRegex: '\d+.\d+.\d+.\d+'
