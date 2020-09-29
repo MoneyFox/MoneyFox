@@ -20,7 +20,7 @@ namespace MoneyFox.Application.Common
         /// <returns>Last day of the month</returns>
         public static DateTime GetEndOfMonth()
         {
-            DateTime today = DateTime.Today;
+            DateTime today = SystemDateHelper.Today;
             return new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
         }
     }

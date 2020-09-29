@@ -29,6 +29,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
 
         public void Dispose()
         {
+            SystemDateHelper.Today = DateTime.Today;
+
             Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -42,8 +44,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
         public async Task GetIncludedAccountBalanceSummary_CorrectSum()
         {
             // Arrange
+            SystemDateHelper.Today = new DateTime(2020, 09, 05);
             var accountIncluded = new Account("test", 100);
-            var payment = new Payment(DateTime.Now.AddDays(2), 50, PaymentType.Expense, accountIncluded);
+            var payment = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, accountIncluded);
 
             await context.AddAsync(accountIncluded);
             await context.AddAsync(payment);
