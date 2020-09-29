@@ -13,8 +13,9 @@ namespace MoneyFox.Application.Tests
         {
             // Arrange
             // Act
+            var systemDateHelper = new SystemDateHelper();
             // Assert
-            SystemDateHelper.Today.Should().Be(DateTime.Today);
+            systemDateHelper.Today.Should().Be(DateTime.Today);
         }
     }
 }

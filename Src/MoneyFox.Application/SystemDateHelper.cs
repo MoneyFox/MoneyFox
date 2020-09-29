@@ -2,8 +2,8 @@
 
 namespace MoneyFox.Application
 {
-    public static class SystemDateHelper
+    public class SystemDateHelper : ISystemDateHelper
     {
-        public static DateTime Today { get; set; } = DateTime.Today;
+        public DateTime Today => DateTime.Today;
     }
 }

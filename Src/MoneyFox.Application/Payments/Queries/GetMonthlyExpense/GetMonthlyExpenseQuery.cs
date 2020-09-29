@@ -14,10 +14,12 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
         public class Handler : IRequestHandler<GetMonthlyExpenseQuery, decimal>
         {
             private readonly IContextAdapter contextAdapter;
+            private readonly ISystemDateHelper systemDateHelper;
 
-            public Handler(IContextAdapter contextAdapter)
+            public Handler(IContextAdapter contextAdapter, ISystemDateHelper systemDateHelper)
             {
                 this.contextAdapter = contextAdapter;
+                this.systemDateHelper = systemDateHelper;
             }
 
             public async Task<decimal> Handle(GetMonthlyExpenseQuery request, CancellationToken cancellationToken)
@@ -25,7 +27,7 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
                 return (await contextAdapter.Context
                                         .Payments
                                         .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth())
-                                        .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth())
+                                        .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
                                         .IsExpense()
                                         .Select(x => x.Amount)
                                         .ToListAsync(cancellationToken))

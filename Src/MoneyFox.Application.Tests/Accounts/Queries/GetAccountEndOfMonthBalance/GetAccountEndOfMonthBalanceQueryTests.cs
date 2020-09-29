@@ -29,8 +29,6 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
 
         public void Dispose()
         {
-            SystemDateHelper.Today = DateTime.Today;
-
             Dispose(true);
             GC.SuppressFinalize(this);
         }
@@ -44,7 +42,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
         public async Task GetCorrectSumForSingleAccount()
         {
             // Arrange
-            SystemDateHelper.Today = new DateTime(2020, 09, 05);
+            var systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
+
             var account1 = new Account("test", 100);
             var account2 = new Account("test", 200);
             var payment1 = new Payment(new DateTime(2020, 09, 15), 50, PaymentType.Income, account1);
@@ -57,7 +57,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             await context.SaveChangesAsync();
 
             // Act
-            decimal result = await new GetAccountEndOfMonthBalanceQuery.Handler(contextAdapterMock).Handle(
+            decimal result = await new GetAccountEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
                 new GetAccountEndOfMonthBalanceQuery(account1.Id), default);
 
             // Assert
