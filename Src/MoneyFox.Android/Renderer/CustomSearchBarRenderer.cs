@@ -14,6 +14,7 @@ using Xamarin.Forms.Platform.Android;
 using Color = Xamarin.Forms.Color;
 using Object = Java.Lang.Object;
 
+#nullable enable
 [assembly: ExportRenderer(typeof(SearchBar), typeof(CustomSearchBarRenderer))]
 namespace MoneyFox.Droid.Renderer
 {
@@ -58,16 +59,17 @@ namespace MoneyFox.Droid.Renderer
             {
                 editText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
 
-                Drawable textSelectHandleDrawable = editText.TextSelectHandle;
-                textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                Drawable? textSelectHandleDrawable = editText.TextSelectHandle;
+
+                textSelectHandleDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                 editText.TextSelectHandle = textSelectHandleDrawable;
 
-                Drawable textSelectHandleLeftDrawable = editText.TextSelectHandleLeft;
-                textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                Drawable? textSelectHandleLeftDrawable = editText.TextSelectHandleLeft;
+                textSelectHandleLeftDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                 editText.TextSelectHandle = textSelectHandleLeftDrawable;
 
-                Drawable textSelectHandleRightDrawable = editText.TextSelectHandleRight;
-                textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                Drawable? textSelectHandleRightDrawable = editText.TextSelectHandleRight;
+                textSelectHandleRightDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                 editText.TextSelectHandle = textSelectHandleRightDrawable;
             }
             catch(Exception ex)
@@ -103,15 +105,22 @@ namespace MoneyFox.Droid.Renderer
                     field.Accessible = true;
                     int handle = field.GetInt(editText);
 
-                    Drawable handleDrawable = Resources.GetDrawable(handle, null);
+                    Drawable? handleDrawable = Resources?.GetDrawable(handle, null);
+
+                    if(handleDrawable == null)
+                    {
+                        return;
+                    }
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
-                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     }
                     else
                     {
-                        handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
+#pragma warning disable CS0618 // Type or member is obsolete
+                        handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn!);
+#pragma warning restore CS0618 // Type or member is obsolete
                     }
 
                     field = editor.Class.GetDeclaredField(drawableName);
