@@ -11,8 +11,8 @@ namespace MoneyFox.Application.Common
         ///     Returns the first day of the current month.
         /// </summary>
         /// <returns></returns>
-        public static DateTime GetFirstDayMonth()
-            => new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
+        public static DateTime GetFirstDayMonth(ISystemDateHelper systemDateHelper)
+            => new DateTime(systemDateHelper.Today.Year, systemDateHelper.Today.Month, 1);
 
         /// <summary>
         ///     Returns the last day of the month
