@@ -26,7 +26,7 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
             {
                 return (await contextAdapter.Context
                                             .Payments
-                                            .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth())
+                                            .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
                                             .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
                                             .IsIncome()
                                             .Select(x => x.Amount)
