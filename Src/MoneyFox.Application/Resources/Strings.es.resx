@@ -668,7 +668,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Select Statistic</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense {1} / Income: {0}</value>
+    <value>Expense: {0} / Income: {1}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Creation Date: {0}</value>
