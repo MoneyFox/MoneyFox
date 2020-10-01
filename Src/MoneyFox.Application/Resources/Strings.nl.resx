@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutTitle" xml:space="preserve">
-    <value>Over</value>
+    <value>Omtrent.</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Selecteer een account aub.</value>
@@ -673,7 +673,7 @@ Categorie opslaan ...</value>
     <value>Selecteer statistiek</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense: {0} / Income: {1}</value>
+    <value>Onkosten: {0} / Inkomen: {1}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Aanmaakdatum: {0}</value>
@@ -704,7 +704,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
     <value>Volgende</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
+    <value>Categorieën die je uitgaven kan ordenen. Die maken het alsook mogelijk om deze en de inkomens beter te analyseren in de statistieken.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
     <value>Terug.</value>
@@ -736,6 +736,6 @@ Om daar te komen, gaat u naar de accountlijst en selecteert u het respectieve ac
     <value>groepslijst</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Succesvol ingelogd.</value>
   </data>
 </root>
