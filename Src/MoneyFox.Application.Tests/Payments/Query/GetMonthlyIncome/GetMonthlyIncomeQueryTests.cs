@@ -47,9 +47,9 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
 
             var account = new Account("test", 80);
 
-            var payment1 = new Payment(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 10), 50, PaymentType.Income, account);
-            var payment2 = new Payment(new DateTime(DateTime.Now.Year, DateTime.Now.Month, 18), 20, PaymentType.Income, account);
-            var payment3 = new Payment(DateTime.Now, 30, PaymentType.Expense, account);
+            var payment1 = new Payment(new DateTime(2020, 09, 10), 50, PaymentType.Income, account);
+            var payment2 = new Payment(new DateTime(2020, 09, 18), 20, PaymentType.Income, account);
+            var payment3 = new Payment(new DateTime(2020, 09, 4), 30, PaymentType.Expense, account);
 
             await context.AddAsync(payment1);
             await context.AddAsync(payment2);
