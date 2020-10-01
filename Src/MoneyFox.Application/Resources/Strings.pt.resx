@@ -669,7 +669,7 @@ AVISO: As alterações locais feitas entretanto serão perdidas!</value>
     <value>Select Statistic</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense {1} / Income: {0}</value>
+    <value>Expense: {0} / Income: {1}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Creation Date: {0}</value>
