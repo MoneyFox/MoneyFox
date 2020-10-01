@@ -36,34 +36,34 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                                                          .HasDateSmallerEqualsThan(request.EndDate.Date)
                                                          .ToListAsync(cancellationToken);
 
-            var incomeAmount = payments.Where(x => x.Type == PaymentType.Income)
+            decimal incomeAmount = payments.Where(x => x.Type == PaymentType.Income)
                                                .Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)
-                         {
-                             Label = Strings.RevenueLabel,
-                             ValueLabel = Math.Round(incomeAmount, 2, MidpointRounding.AwayFromZero)
+            {
+                Label = Strings.RevenueLabel,
+                ValueLabel = Math.Round(incomeAmount, 2, MidpointRounding.AwayFromZero)
                                               .ToString("C", CultureHelper.CurrentCulture),
-                             Color = GREEN_HEX_CODE
-                         };
+                Color = GREEN_HEX_CODE
+            };
 
-            var expenseAmount = payments.Where(x => x.Type == PaymentType.Expense)
+            decimal expenseAmount = payments.Where(x => x.Type == PaymentType.Expense)
                                                 .Sum(x => x.Amount);
             var spent = new StatisticEntry(expenseAmount)
-                        {
-                            Label = Strings.ExpenseLabel,
-                            ValueLabel = Math.Round(expenseAmount, 2, MidpointRounding.AwayFromZero)
+            {
+                Label = Strings.ExpenseLabel,
+                ValueLabel = Math.Round(expenseAmount, 2, MidpointRounding.AwayFromZero)
                                              .ToString("C", CultureHelper.CurrentCulture),
-                            Color = RED_HEX_CODE
-                        };
+                Color = RED_HEX_CODE
+            };
 
             decimal valueIncreased = incomeAmount - expenseAmount;
             var increased = new StatisticEntry(valueIncreased)
-                            {
-                                Label = Strings.IncreaseLabel,
-                                ValueLabel = Math.Round(valueIncreased, 2, MidpointRounding.AwayFromZero)
+            {
+                Label = Strings.IncreaseLabel,
+                ValueLabel = Math.Round(valueIncreased, 2, MidpointRounding.AwayFromZero)
                                                  .ToString("C", CultureHelper.CurrentCulture),
-                                Color = BLUE_HEX_CODE
-                            };
+                Color = BLUE_HEX_CODE
+            };
 
             return new List<StatisticEntry> { income, spent, increased };
         }

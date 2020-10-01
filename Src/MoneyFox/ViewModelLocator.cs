@@ -2,6 +2,9 @@
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
+using MoneyFox.Ui.Shared.ViewModels.About;
+using MoneyFox.Ui.Shared.ViewModels.Backup;
+using MoneyFox.Ui.Shared.ViewModels.Settings;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Budget;
 using MoneyFox.ViewModels.Categories;
@@ -10,17 +13,13 @@ using MoneyFox.ViewModels.Dialogs;
 using MoneyFox.ViewModels.Payments;
 using MoneyFox.ViewModels.Statistics;
 using MoneyFox.Views.Accounts;
+using MoneyFox.Views.Backup;
 using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
 using MoneyFox.Views.Settings;
-using MoneyFox.Views.Backup;
-using MoneyFox.Views.Statistics;
-using MoneyFox.Ui.Shared.ViewModels.About;
-using MoneyFox.Ui.Shared.ViewModels.Backup;
-using MoneyFox.Ui.Shared.ViewModels.Settings;
-using MoneyFox.ViewModels.SetupAssistant;
 using MoneyFox.Views.SetupAssistant;
+using MoneyFox.Views.Statistics;
 
 namespace MoneyFox
 {

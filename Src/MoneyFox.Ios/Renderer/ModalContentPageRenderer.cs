@@ -11,7 +11,7 @@ namespace MoneyFox.iOS.Renderer
 {
     public class ModalContentPageRenderer : PageRenderer
     {
-        public new ContentPage Element => (ContentPage) base.Element;
+        public new ContentPage Element => (ContentPage)base.Element;
 
         public override void ViewWillAppear(bool animated)
         {

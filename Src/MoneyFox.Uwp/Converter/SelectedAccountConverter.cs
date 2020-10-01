@@ -7,14 +7,8 @@ namespace MoneyFox.Uwp.Converter
 {
     public class SelectedAccountConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
-        {
-            return ((SelectionChangedEventArgs) value).AddedItems.FirstOrDefault();
-        }
+        public object Convert(object value, Type targetType, object parameter, string language) => ((SelectionChangedEventArgs)value).AddedItems.FirstOrDefault();
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            throw new NotSupportedException();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotSupportedException();
     }
 }

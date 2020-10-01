@@ -40,7 +40,8 @@ namespace MoneyFox.ViewModels.Dashboard
 
         public async Task InitializeAsync()
         {
-            if(isRunning) return;
+            if(isRunning)
+                return;
 
             try
             {
@@ -104,7 +105,8 @@ namespace MoneyFox.ViewModels.Dashboard
             get => budgetEntries;
             private set
             {
-                if(budgetEntries == value) return;
+                if(budgetEntries == value)
+                    return;
                 budgetEntries = value;
                 RaisePropertyChanged();
             }
@@ -115,7 +117,8 @@ namespace MoneyFox.ViewModels.Dashboard
             get => accounts;
             private set
             {
-                if(accounts == value) return;
+                if(accounts == value)
+                    return;
                 accounts = value;
                 RaisePropertyChanged();
             }

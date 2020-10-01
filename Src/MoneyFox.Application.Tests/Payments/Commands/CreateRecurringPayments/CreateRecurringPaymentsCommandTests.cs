@@ -7,7 +7,6 @@ using MoneyFox.Persistence;
 using Moq;
 using Should;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -35,10 +34,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreateRecurringPayments
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task PaymentsClearedAndSaved()
@@ -53,7 +49,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreateRecurringPayments
             // Act
             await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new CreateRecurringPaymentsCommand(),
                                                                                                default);
-            List<Payment> loadedPayments = context.Payments.ToList();
+            var loadedPayments = context.Payments.ToList();
 
             // Assert
             loadedPayments.Count.ShouldEqual(2);

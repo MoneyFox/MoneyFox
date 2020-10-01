@@ -12,19 +12,13 @@ namespace MoneyFox.Ui.Shared.Tests.Utilities
     public class HelperFunctionsTests
     {
         [Fact]
-        public void GetEndOfMonth_NoneInput_LastDayOfMonth()
-        {
-            HelperFunctions.GetEndOfMonth().GetType().Should().Be(typeof(DateTime));
-        }
+        public void GetEndOfMonth_NoneInput_LastDayOfMonth() => HelperFunctions.GetEndOfMonth().GetType().Should().Be(typeof(DateTime));
 
         [Theory]
         [InlineData(6000000.45)]
         [InlineData(6000000)]
         [InlineData(6000000.4567)]
-        public void FormatLargeNumbers_ValidString(decimal amount)
-        {
-            HelperFunctions.FormatLargeNumbers(amount).Should().Be(amount.ToString("N2"));
-        }
+        public void FormatLargeNumbers_ValidString(decimal amount) => HelperFunctions.FormatLargeNumbers(amount).Should().Be(amount.ToString("N2"));
 
         [Theory]
         [InlineData("10'000", "10'000", "de-CH")]

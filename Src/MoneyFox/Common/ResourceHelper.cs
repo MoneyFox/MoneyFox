@@ -8,10 +8,10 @@ namespace MoneyFox.Common
         {
             if(App.Current.UserAppTheme == OSAppTheme.Dark)
             {
-                App.Current.Resources.TryGetValue("TextPrimaryColor_Dark", out var darkTextColor);
+                App.Current.Resources.TryGetValue("TextPrimaryColor_Dark", out object? darkTextColor);
                 return (Color)darkTextColor;
             }
-            App.Current.Resources.TryGetValue("TextPrimaryColor_Light", out var lightTextColor);
+            App.Current.Resources.TryGetValue("TextPrimaryColor_Light", out object? lightTextColor);
             return (Color)lightTextColor;
         }
 
@@ -19,10 +19,10 @@ namespace MoneyFox.Common
         {
             if(App.Current.UserAppTheme == OSAppTheme.Dark)
             {
-                App.Current.Resources.TryGetValue("BackgroundColorDark", out var darkBackgroundColor);
+                App.Current.Resources.TryGetValue("BackgroundColorDark", out object? darkBackgroundColor);
                 return (Color)darkBackgroundColor;
             }
-            App.Current.Resources.TryGetValue("BackgroundColorLight", out var lightBackgroundColor);
+            App.Current.Resources.TryGetValue("BackgroundColorLight", out object? lightBackgroundColor);
             return (Color)lightBackgroundColor;
         }
     }

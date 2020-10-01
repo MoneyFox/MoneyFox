@@ -7,9 +7,9 @@ namespace MoneyFox.Views.Categories
 {
     public partial class EditCategoryPage
     {
-        private EditCategoryViewModel ViewModel => (EditCategoryViewModel) BindingContext;
+        private EditCategoryViewModel ViewModel => (EditCategoryViewModel)BindingContext;
 
-        private int categoryId;
+        private readonly int categoryId;
 
         public EditCategoryPage(int categoryId)
         {

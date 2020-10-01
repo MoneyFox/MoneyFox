@@ -123,10 +123,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             }
         }
 
-        private async Task InitializeAsync()
-        {
-            await LoadedAsync();
-        }
+        private async Task InitializeAsync() => await LoadedAsync();
 
         private async Task LoadedAsync()
         {

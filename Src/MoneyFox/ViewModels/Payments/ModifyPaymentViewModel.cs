@@ -88,7 +88,7 @@ namespace MoneyFox.ViewModels.Payments
 
         protected virtual async Task InitializeAsync()
         {
-            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+            List<AccountViewModel>? accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);

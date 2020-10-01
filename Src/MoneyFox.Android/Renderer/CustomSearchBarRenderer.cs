@@ -11,8 +11,8 @@ using System;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Object = Java.Lang.Object;
 using Color = Xamarin.Forms.Color;
+using Object = Java.Lang.Object;
 
 [assembly: ExportRenderer(typeof(SearchBar), typeof(CustomSearchBarRenderer))]
 namespace MoneyFox.Droid.Renderer
@@ -94,7 +94,7 @@ namespace MoneyFox.Droid.Renderer
                 string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
                 string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
-                for(var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
+                for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {
                     string fieldName = fieldsNames[index];
                     string drawableName = drawableNames[index];

@@ -3,7 +3,6 @@ using Microcharts;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using SkiaSharp;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;

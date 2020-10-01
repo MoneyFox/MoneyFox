@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
 using MediatR;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
@@ -7,13 +9,11 @@ using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
-using GalaSoft.MvvmLight.Command;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
@@ -63,7 +63,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         {
             try
             {
-                var updateRecurring = false;
+                bool updateRecurring = false;
                 if(SelectedPayment.IsRecurring)
                 {
                     updateRecurring = await dialogService.ShowConfirmMessageAsync(Strings.ModifyRecurrenceTitle,
@@ -107,7 +107,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                                                             Strings.DeletePaymentConfirmationMessage,
                                                             Strings.YesLabel,
                                                             Strings.NoLabel))
+            {
                 return;
+            }
 
             var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
 

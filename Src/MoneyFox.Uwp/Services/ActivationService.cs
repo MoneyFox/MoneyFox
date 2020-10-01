@@ -72,7 +72,8 @@ namespace MoneyFox.Uwp.Services
 
         private async Task InitializeAsync(object activationArgs)
         {
-            if(ConfigurationManager.AppSettings != null) return;
+            if(ConfigurationManager.AppSettings != null)
+                return;
 
             InitConfig();
             ExecutingPlatform.Current = AppPlatform.UWP;
@@ -141,9 +142,6 @@ namespace MoneyFox.Uwp.Services
             await RateDisplayService.ShowIfAppropriateAsync();
         }
 
-        private bool IsInteractive(object args)
-        {
-            return args is IActivatedEventArgs;
-        }
+        private bool IsInteractive(object args) => args is IActivatedEventArgs;
     }
 }

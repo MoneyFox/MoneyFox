@@ -24,10 +24,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountById
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken)
-            {
-                return await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
-            }
+            public async Task<Account> Handle(GetAccountByIdQuery request, CancellationToken cancellationToken) => await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
         }
     }
 }

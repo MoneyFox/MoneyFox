@@ -13,7 +13,7 @@ namespace MoneyFox.Views.Payments
             set => accountId = Convert.ToInt32(Uri.UnescapeDataString(value));
         }
 
-        private PaymentListViewModel ViewModel => (PaymentListViewModel) BindingContext;
+        private PaymentListViewModel ViewModel => (PaymentListViewModel)BindingContext;
 
         public PaymentListPage()
         {

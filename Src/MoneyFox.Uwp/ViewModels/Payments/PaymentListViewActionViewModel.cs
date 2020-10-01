@@ -4,6 +4,7 @@ using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
@@ -12,7 +13,6 @@ using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
@@ -158,7 +158,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             get => isGrouped;
             set
             {
-                if(isGrouped == value) return;
+                if(isGrouped == value)
+                    return;
                 isGrouped = value;
                 RaisePropertyChanged();
             }
@@ -170,7 +171,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             get => timeRangeStart;
             set
             {
-                if(timeRangeStart == value) return;
+                if(timeRangeStart == value)
+                    return;
                 timeRangeStart = value;
                 RaisePropertyChanged();
             }
@@ -182,7 +184,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             get => timeRangeEnd;
             set
             {
-                if(timeRangeEnd == value) return;
+                if(timeRangeEnd == value)
+                    return;
                 timeRangeEnd = value;
                 RaisePropertyChanged();
             }

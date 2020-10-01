@@ -49,10 +49,7 @@ namespace MoneyFox.Uwp.Src
         }
 
         /// <inheritdoc/>
-        public async Task<decimal> GetTotalBalance()
-        {
-            return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
-        }
+        public async Task<decimal> GetTotalBalance() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
 
         /// <inheritdoc/>
         public async Task<decimal> GetTotalEndOfMonthBalance()

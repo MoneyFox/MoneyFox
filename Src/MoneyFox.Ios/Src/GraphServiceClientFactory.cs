@@ -19,7 +19,7 @@ namespace MoneyFox.iOS.Src
                 return Task.CompletedTask;
             });
 
-            var pipeline = GraphClientFactory.CreatePipeline(GraphClientFactory.CreateDefaultHandlers(authProvider), HttpMessageHandler);
+            HttpMessageHandler pipeline = GraphClientFactory.CreatePipeline(GraphClientFactory.CreateDefaultHandlers(authProvider), HttpMessageHandler);
             var httpProvider = new HttpProvider(pipeline, true, new Serializer());
 
             return new GraphServiceClient(authProvider, httpProvider);

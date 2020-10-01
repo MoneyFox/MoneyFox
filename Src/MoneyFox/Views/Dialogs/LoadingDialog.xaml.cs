@@ -18,14 +18,8 @@ namespace MoneyFox.Views.Dialogs
             return dialog;
         }
 
-        public async Task ShowAsync()
-        {
-            await App.Current.MainPage.Navigation.PushPopupAsync(this);
-        }
+        public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public async Task DismissAsync()
-        {
-            await App.Current.MainPage.Navigation.PopPopupAsync();
-        }
+        public async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
     }
 }

@@ -42,7 +42,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            var statisticItems = await Mediator.Send(new GetCashFlowQuery
+            System.Collections.Generic.List<Application.Statistics.StatisticEntry>? statisticItems = await Mediator.Send(new GetCashFlowQuery
             {
                 EndDate = EndDate,
                 StartDate = StartDate

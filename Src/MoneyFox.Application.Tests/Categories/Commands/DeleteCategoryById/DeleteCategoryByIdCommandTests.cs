@@ -42,10 +42,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()

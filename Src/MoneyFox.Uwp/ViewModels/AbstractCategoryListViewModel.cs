@@ -4,20 +4,20 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
-using MoneyFox.Uwp.Views;
-using System;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -72,7 +72,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         public bool IsCategoriesEmpty => !CategoryList?.Any() ?? true;
 
-        public RelayCommand AppearingCommand => new RelayCommand(async() => await ViewAppearingAsync());
+        public RelayCommand AppearingCommand => new RelayCommand(async () => await ViewAppearingAsync());
 
         /// <summary>
         /// Deletes the passed CategoryViewModel after show a confirmation dialog.
@@ -96,17 +96,14 @@ namespace MoneyFox.Uwp.ViewModels
         /// </summary>
         public AsyncCommand<string> SearchCommand => new AsyncCommand<string>(SearchAsync);
 
-        public async Task ViewAppearingAsync()
-        {
-            await SearchAsync();
-        }
+        public async Task ViewAppearingAsync() => await SearchAsync();
 
         /// <summary>
         /// Performs a search with the text in the search text property
         /// </summary>
         public async Task SearchAsync(string searchText = "")
         {
-            var categoriesVms = Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
+            List<CategoryViewModel> categoriesVms = Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
             CategoryList = CreateGroup(categoriesVms);
         }
 

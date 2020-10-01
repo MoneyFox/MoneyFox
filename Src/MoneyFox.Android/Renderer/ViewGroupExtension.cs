@@ -9,7 +9,7 @@ namespace MoneyFox.Droid.Renderer
         internal static IEnumerable<T> GetChildrenOfType<T>(this AViewGroup self)
                                        where T : AView
         {
-            for(var i = 0; i < self.ChildCount; i++)
+            for(int i = 0; i < self.ChildCount; i++)
             {
                 AView child = self.GetChildAt(i);
                 var typedChild = child as T;

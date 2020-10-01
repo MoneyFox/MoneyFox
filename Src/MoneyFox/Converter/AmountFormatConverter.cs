@@ -20,7 +20,7 @@ namespace MoneyFox.Converter
         /// <returns>Converted currency string.</returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var currencyValue = (decimal) value;
+            decimal currencyValue = (decimal)value;
             return currencyValue.ToString("C", CultureHelper.CurrentCulture);
         }
 
@@ -28,9 +28,6 @@ namespace MoneyFox.Converter
         /// Returns the value.
         /// </summary>
         /// <returns>Passed value.</returns>
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value;
     }
 }

@@ -1,25 +1,25 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
-using MoneyFox.Uwp.Src;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
+using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
+using MoneyFox.Application.Resources;
+using MoneyFox.Ui.Shared.Groups;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
-using GalaSoft.MvvmLight.Command;
-using Windows.UI.Xaml.Data;
-using MoneyFox.Ui.Shared.Groups;
 using System.Globalization;
-using MoneyFox.Application.Payments.Commands.DeletePaymentById;
-using MoneyFox.Application.Resources;
-using GalaSoft.MvvmLight.Messaging;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+using System.Threading.Tasks;
+using Windows.UI.Xaml.Data;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
@@ -184,7 +184,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
-            var payments = mapper.Map<List<PaymentViewModel>>(
+            List<PaymentViewModel> payments = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                      filterMessage.TimeRangeStart,
                                                                      filterMessage.TimeRangeEnd)
@@ -195,8 +195,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             payments.ForEach(x => x.CurrentAccountId = AccountId);
 
-            var source = new CollectionViewSource();
-            source.IsSourceGrouped = filterMessage.IsGrouped;
+            var source = new CollectionViewSource
+            {
+                IsSourceGrouped = filterMessage.IsGrouped
+            };
 
             if(filterMessage.IsGrouped)
             {
@@ -220,7 +222,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                                                             Strings.DeletePaymentConfirmationMessage,
                                                             Strings.YesLabel,
                                                             Strings.NoLabel))
+            {
                 return;
+            }
 
             var command = new DeletePaymentByIdCommand(payment.Id);
 

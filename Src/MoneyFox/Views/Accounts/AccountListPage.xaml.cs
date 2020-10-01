@@ -5,7 +5,7 @@ namespace MoneyFox.Views.Accounts
 {
     public partial class AccountListPage : ContentPage
     {
-        private AccountListViewModel ViewModel => (AccountListViewModel) BindingContext;
+        private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
 
         public AccountListPage()
         {

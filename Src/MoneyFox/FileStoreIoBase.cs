@@ -71,9 +71,6 @@ namespace MoneyFox
             }
         }
 
-        protected virtual string AppendPath(string path)
-        {
-            return Path.Combine(BasePath, path);
-        }
+        protected virtual string AppendPath(string path) => Path.Combine(BasePath, path);
     }
 }

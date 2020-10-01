@@ -16,9 +16,6 @@ namespace MoneyFox.Views.SetupAssistant
             BindingContext = ServiceLocator.Current.GetInstance<WelcomeViewModel>();
         }
 
-        protected override async void OnAppearing()
-        {
-            await ViewModel.InitAsync();
-        }
+        protected override async void OnAppearing() => await ViewModel.InitAsync();
     }
 }

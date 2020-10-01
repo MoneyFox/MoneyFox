@@ -132,7 +132,7 @@ namespace MoneyFox.Uwp
                 return;
             }
 
-            var pageString = item.GetValue(NavHelper.NavigateToProperty) as string;
+            string pageString = item.GetValue(NavHelper.NavigateToProperty) as string;
             NavigationService.Navigate(GetTypeByString(pageString));
         }
 
@@ -148,15 +148,9 @@ namespace MoneyFox.Uwp
             };
         }
 
-        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args)
-        {
-            NavigationService.GoBack();
-        }
+        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args) => NavigationService.GoBack();
 
-        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e)
-        {
-            throw e.Exception;
-        }
+        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e) => throw e.Exception;
 
         private void Frame_Navigated(object sender, NavigationEventArgs e)
         {
@@ -169,7 +163,7 @@ namespace MoneyFox.Uwp
 
         private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
         {
-            var pageType = GetTypeByString(menuItem.GetValue(NavHelper.NavigateToProperty) as string);
+            Type pageType = GetTypeByString(menuItem.GetValue(NavHelper.NavigateToProperty) as string);
             return pageType == sourcePageType;
         }
 
@@ -184,9 +178,6 @@ namespace MoneyFox.Uwp
             return keyboardAccelerator;
         }
 
-        private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args)
-        {
-            args.Handled = true;
-        }
+        private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args) => args.Handled = true;
     }
 }

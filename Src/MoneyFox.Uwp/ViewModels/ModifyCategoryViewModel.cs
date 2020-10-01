@@ -3,13 +3,13 @@ using GalaSoft.MvvmLight;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -100,9 +100,6 @@ namespace MoneyFox.Uwp.ViewModels
             await DialogService.HideLoadingDialogAsync();
         }
 
-        private async Task CancelAsync()
-        {
-            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
-        }
+        private async Task CancelAsync() => SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
     }
 }

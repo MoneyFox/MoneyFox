@@ -5,7 +5,7 @@ namespace MoneyFox.Views.Dashboard
 {
     public partial class DashboardPage : ContentPage
     {
-        private DashboardViewModel ViewModel => (DashboardViewModel) BindingContext;
+        private DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
 
         public DashboardPage()
         {

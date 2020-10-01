@@ -39,7 +39,7 @@ namespace MoneyFox.ViewModels.Payments
 
         protected override async Task SavePaymentAsync()
         {
-            var updateRecurring = false;
+            bool updateRecurring = false;
             if(SelectedPayment.IsRecurring)
             {
                 updateRecurring = await dialogService.ShowConfirmMessageAsync(Strings.ModifyRecurrenceTitle,

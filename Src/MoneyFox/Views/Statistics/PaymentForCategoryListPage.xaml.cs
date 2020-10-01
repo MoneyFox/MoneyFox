@@ -22,9 +22,6 @@ namespace MoneyFox.Views.Statistics
             ToolbarItems.Add(doneItem);
         }
 
-        private async Task Close()
-        {
-            await Navigation.PopModalAsync();
-        }
+        private async Task Close() => await Navigation.PopModalAsync();
     }
 }

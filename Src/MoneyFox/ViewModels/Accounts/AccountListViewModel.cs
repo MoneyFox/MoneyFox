@@ -43,12 +43,13 @@ namespace MoneyFox.ViewModels.Accounts
         {
             try
             {
-                if(isRunning) return;
+                if(isRunning)
+                    return;
                 isRunning = true;
 
                 Accounts.Clear();
 
-                var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+                List<AccountViewModel>? accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
                 accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);

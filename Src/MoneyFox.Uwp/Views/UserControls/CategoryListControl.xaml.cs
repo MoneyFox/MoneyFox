@@ -26,30 +26,28 @@ namespace MoneyFox.Uwp.Views.UserControls
 
         private async void EditCategory(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
-            var category = element.DataContext as CategoryViewModel;
-
-            if(category == null) return;
-
-            await new EditCategoryDialog(category.Id).ShowAsync();
-
-            ((AbstractCategoryListViewModel) DataContext).EditCategoryCommand.Execute(category);
-        }
-
-        private void DeleteCategory(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
             var category = element.DataContext as CategoryViewModel;
 
             if(category == null)
                 return;
 
-            ((AbstractCategoryListViewModel) DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
+            await new EditCategoryDialog(category.Id).ShowAsync();
+
+            ((AbstractCategoryListViewModel)DataContext).EditCategoryCommand.Execute(category);
         }
 
-        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
+        private void DeleteCategory(object sender, RoutedEventArgs e)
         {
-            ((AbstractCategoryListViewModel) DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text).FireAndForgetSafeAsync();
+            var element = (FrameworkElement)sender;
+            var category = element.DataContext as CategoryViewModel;
+
+            if(category == null)
+                return;
+
+            ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
         }
+
+        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e) => ((AbstractCategoryListViewModel)DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text).FireAndForgetSafeAsync();
     }
 }

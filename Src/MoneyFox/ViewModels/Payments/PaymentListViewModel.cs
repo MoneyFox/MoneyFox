@@ -89,7 +89,7 @@ namespace MoneyFox.ViewModels.Payments
 
         private async Task LoadPaymentsByMessageAsync()
         {
-            var paymentVms = mapper.Map<List<PaymentViewModel>>(
+            List<PaymentViewModel>? paymentVms = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id,
                                                                      lastMessage.TimeRangeStart,
                                                                      lastMessage.TimeRangeEnd,
@@ -128,6 +128,6 @@ namespace MoneyFox.ViewModels.Payments
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new RelayCommand<PaymentViewModel>(async (paymentViewModel)
-                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent}));
+                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
     }
 }

@@ -88,7 +88,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             {
                 logManager.Info("Logout.");
 
-                List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
+                var accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
 
                 while(accounts.Any())
                 {
@@ -128,7 +128,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                         throw new BackupAuthenticationFailedException("Was not able to automatically login.");
                 }
 
-                var uploadedItem = await GraphServiceClient
+                DriveItem? uploadedItem = await GraphServiceClient
                                         .Me
                                         .Drive
                                         .Special
@@ -195,7 +195,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             DriveItem lastBackup = archivedBackups.OrderByDescending(x => x.CreatedDateTime).First();
 
-            var appRoot = await GraphServiceClient
+            DriveItem? appRoot = await GraphServiceClient
                                         .Me
                                         .Drive
                                         .Special
@@ -357,7 +357,8 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             logManager.Info("Archive Backup.");
 
-            if(ArchiveFolder == null) return;
+            if(ArchiveFolder == null)
+                return;
 
             if(GraphServiceClient == null)
             {
@@ -425,7 +426,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
         private async Task LoadArchiveFolderAsync()
         {
-            if(ArchiveFolder != null) return;
+            if(ArchiveFolder != null)
+                return;
 
             if(GraphServiceClient == null)
             {

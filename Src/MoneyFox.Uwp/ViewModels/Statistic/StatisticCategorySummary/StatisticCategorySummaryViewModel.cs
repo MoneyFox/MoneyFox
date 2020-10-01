@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
-        private static ILogger logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         private ObservableCollection<CategoryOverviewViewModel> categorySummary;
 
@@ -82,7 +82,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         {
             logger.Info($"Loading payments for category with id {summaryItem.CategoryId}");
 
-            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await Mediator.Send(new GetPaymentsForCategoryQuery(summaryItem.CategoryId, StartDate, EndDate)));
+            List<PaymentViewModel> loadedPayments = mapper.Map<List<PaymentViewModel>>(await Mediator.Send(new GetPaymentsForCategoryQuery(summaryItem.CategoryId, StartDate, EndDate)));
 
             List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
                .CreateGroups(loadedPayments,

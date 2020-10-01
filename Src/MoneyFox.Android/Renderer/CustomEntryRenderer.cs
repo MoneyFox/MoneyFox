@@ -11,8 +11,8 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Material.Android;
 using Xamarin.Forms.Platform.Android;
-using Object = Java.Lang.Object;
 using Color = Xamarin.Forms.Color;
+using Object = Java.Lang.Object;
 
 #nullable enable
 [assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] { typeof(VisualMarker.MaterialVisual) })]
@@ -82,13 +82,14 @@ namespace MoneyFox.Droid.Renderer
                 field.Accessible = true;
 
                 Object? editor = field.Get(Control.EditText);
-                if(editor == null) return;
+                if(editor == null)
+                    return;
 
                 string[] fieldsNames =
                 { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
                 string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
-                for(var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
+                for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {
                     string fieldName = fieldsNames[index];
                     string drawableName = drawableNames[index];

@@ -282,9 +282,6 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             }
         }
 
-        public void CreateMappings(Profile configuration)
-        {
-            configuration.CreateMap<Payment, PaymentViewModel>().ForMember(x => x.CurrentAccountId, opt => opt.Ignore()).ReverseMap();
-        }
+        public void CreateMappings(Profile configuration) => configuration.CreateMap<Payment, PaymentViewModel>().ForMember(x => x.CurrentAccountId, opt => opt.Ignore()).ReverseMap();
     }
 }

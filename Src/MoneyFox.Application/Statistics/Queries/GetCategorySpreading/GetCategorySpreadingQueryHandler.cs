@@ -48,11 +48,11 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
         {
             return (from payment in payments
                     group payment by new
-                                     {
-                                         category = payment.Category != null
+                    {
+                        category = payment.Category != null
                                                     ? payment.Category.Name
                                                     : string.Empty
-                                     }
+                    }
                     into temp
                     select (
                                temp.Sum(x => x.Type == PaymentType.Income
@@ -66,13 +66,13 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 
         private IEnumerable<StatisticEntry> AggregateData(List<(decimal Value, string Label)> statisticData)
         {
-            List<StatisticEntry> statisticList = statisticData
+            var statisticList = statisticData
                                                 .Take(6)
                                                 .Select(x => new StatisticEntry(x.Value)
-                                                             {
-                                                                 ValueLabel = x.Value.ToString("C", CultureHelper.CurrentCulture),
-                                                                 Label = x.Label
-                                                             })
+                                                {
+                                                    ValueLabel = x.Value.ToString("C", CultureHelper.CurrentCulture),
+                                                    Label = x.Label
+                                                })
                                                 .ToList();
 
             AddOtherItem(statisticData, statisticList);
@@ -91,10 +91,10 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                                   .Sum(x => x.Value);
 
             var othersItem = new StatisticEntry(otherValue)
-                             {
-                                 Label = Strings.OthersLabel,
-                                 ValueLabel = otherValue.ToString("C", CultureHelper.CurrentCulture)
-                             };
+            {
+                Label = Strings.OthersLabel,
+                ValueLabel = otherValue.ToString("C", CultureHelper.CurrentCulture)
+            };
 
             if(othersItem.Value > 0)
                 statisticList.Add(othersItem);
@@ -102,7 +102,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
 
         private static void SetColors(List<StatisticEntry> statisticItems)
         {
-            for(var i = 0; i < statisticItems.Count; i++)
+            for(int i = 0; i < statisticItems.Count; i++)
             {
                 statisticItems[i].Color = Colors[i];
             }

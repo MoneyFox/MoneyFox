@@ -3,7 +3,6 @@ using MediatR;
 using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;

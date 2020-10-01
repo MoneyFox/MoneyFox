@@ -11,9 +11,6 @@ namespace MoneyFox.Application.Common.Adapters
 
     public class BrowserAdapter : IBrowserAdapter
     {
-        public async Task OpenWebsiteAsync(Uri uri)
-        {
-            await Browser.OpenAsync(uri, BrowserLaunchMode.External);
-        }
+        public async Task OpenWebsiteAsync(Uri uri) => await Browser.OpenAsync(uri, BrowserLaunchMode.External);
     }
 }

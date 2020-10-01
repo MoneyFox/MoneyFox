@@ -155,7 +155,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                 throw new NetworkConnectionException();
             }
 
-            var result = await DownloadBackupAsync(backupMode);
+            BackupRestoreResult result = await DownloadBackupAsync(backupMode);
 
             if(result == BackupRestoreResult.NewBackupRestored)
             {
@@ -241,7 +241,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                     semaphoreSlim.Release();
                 }
                 else
+                {
                     cancellationTokenSource.Cancel();
+                }
             }
             catch(FileNotFoundException ex)
             {

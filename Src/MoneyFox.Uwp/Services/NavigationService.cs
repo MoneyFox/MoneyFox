@@ -10,16 +10,16 @@ namespace MoneyFox.Uwp.Services
 {
     public partial class NavigationService : INavigationService
     {
-        static private readonly ConcurrentDictionary<Type, Type> viewModelMap = new ConcurrentDictionary<Type, Type>();
+        private static readonly ConcurrentDictionary<Type, Type> viewModelMap = new ConcurrentDictionary<Type, Type>();
 
         static NavigationService()
         {
             MainViewId = ApplicationView.GetForCurrentView().Id;
         }
 
-        static public int MainViewId { get; }
+        public static int MainViewId { get; }
 
-        static public void Register<TViewModel, TView>() where TView : Page
+        public static void Register<TViewModel, TView>() where TView : Page
         {
             if(!viewModelMap.TryAdd(typeof(TViewModel), typeof(TView)))
             {
@@ -27,12 +27,9 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        static public Type GetView<TViewModel>()
-        {
-            return GetView(typeof(TViewModel));
-        }
+        public static Type GetView<TViewModel>() => GetView(typeof(TViewModel));
 
-        static public Type GetView(Type viewModel)
+        public static Type GetView(Type viewModel)
         {
             if(viewModelMap.TryGetValue(viewModel, out Type view))
             {
@@ -41,9 +38,9 @@ namespace MoneyFox.Uwp.Services
             throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
         }
 
-        static public Type GetViewModel(Type view)
+        public static Type GetViewModel(Type view)
         {
-            var type = viewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
+            Type? type = viewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
             if(type == null)
             {
                 throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
@@ -78,15 +75,9 @@ namespace MoneyFox.Uwp.Services
             return false;
         }
 
-        public void Initialize(object frame)
-        {
-            Frame = (Frame)frame;
-        }
+        public void Initialize(object frame) => Frame = (Frame)frame;
 
-        public bool Navigate<TViewModel>(object parameter = null)
-        {
-            return Navigate(typeof(TViewModel), parameter);
-        }
+        public bool Navigate<TViewModel>(object parameter = null) => Navigate(typeof(TViewModel), parameter);
 
         public bool Navigate(Type viewModelType, object parameter = null)
         {

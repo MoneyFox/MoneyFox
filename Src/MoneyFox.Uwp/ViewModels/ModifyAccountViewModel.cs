@@ -1,13 +1,13 @@
 ﻿using GalaSoft.MvvmLight;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Services;
 using NLog;
 using System.Globalization;
 using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -85,7 +85,9 @@ namespace MoneyFox.Uwp.ViewModels
             }
 
             if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
                 SelectedAccount.CurrentBalance = convertedValue;
+            }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");

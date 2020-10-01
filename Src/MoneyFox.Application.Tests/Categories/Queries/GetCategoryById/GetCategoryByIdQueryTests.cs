@@ -32,10 +32,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetCategory_CategoryNotFound()

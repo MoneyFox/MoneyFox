@@ -9,9 +9,6 @@ namespace MoneyFox.Uwp.Src
     {
         private const string STORE_URL = "ms-windows-store:reviewapp?appid=";
 
-        public async void RateApp()
-        {
-            await Launcher.LaunchUriAsync(new Uri($"{STORE_URL}{CurrentApp.AppId}"));
-        }
+        public async void RateApp() => await Launcher.LaunchUriAsync(new Uri($"{STORE_URL}{CurrentApp.AppId}"));
     }
 }
