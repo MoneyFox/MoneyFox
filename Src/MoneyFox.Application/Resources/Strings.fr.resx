@@ -667,7 +667,7 @@
     <value>Sélectionnez une statistique</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Dépense {1} / Revenue: {0}</value>
+    <value>Expense: {0} / Income: {1}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Date de création : {0}</value>

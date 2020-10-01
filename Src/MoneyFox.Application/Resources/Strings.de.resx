@@ -670,7 +670,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Statistik auswählen</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Ausgaben {1} / Einnahmen: {0}</value>
+    <value>Ausgaben: {0} / Einnahmen: {1}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Erstellungsdatum: {0}</value>
@@ -701,7 +701,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Weiter</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
+    <value>Kategorien können helfen deine Zahlungen zu organisieren. Sie vereinfachen zudem die Analyse deiner Ausgaben und Einnahmen mit Hilfe der Statistiken.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
     <value>Zurück</value>
@@ -732,6 +732,6 @@ Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorth
     <value>Liste gruppieren</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Erfolgreich eingeloggt.</value>
   </data>
 </root>
