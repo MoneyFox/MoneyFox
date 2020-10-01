@@ -10,12 +10,13 @@ using System;
 using System.IO;
 using Xamarin.Essentials;
 
+#nullable enable
 namespace MoneyFox.Droid
 {
     [Application]
     public class MainApplication : Android.App.Application
     {
-        private Logger logManager;
+        private Logger? logManager;
 
         public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
         {
@@ -25,8 +26,8 @@ namespace MoneyFox.Droid
         {
             InitLogger();
 
-            logManager.Info("Application Started.");
-            logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion);
+            logManager?.Info("Application Started.");
+            logManager?.Info("App Version: {Version}", new DroidAppInformation().GetVersion);
 
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
@@ -39,19 +40,19 @@ namespace MoneyFox.Droid
 
         private void RegisterServices()
         {
-            logManager.Debug("Register Services.");
+            logManager?.Debug("Register Services.");
 
             var builder = new ContainerBuilder();
             builder.RegisterModule<AndroidModule>();
 
             ViewModelLocator.RegisterServices(builder);
 
-            logManager.Debug("Register Services finished.");
+            logManager?.Debug("Register Services finished.");
         }
 
         public override void OnTerminate()
         {
-            logManager.Info("Application Terminating.");
+            logManager?.Info("Application Terminating.");
             LogManager.Shutdown();
             base.OnTerminate();
         }
