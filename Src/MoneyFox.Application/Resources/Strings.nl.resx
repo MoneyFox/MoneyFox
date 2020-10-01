@@ -673,7 +673,7 @@ Categorie opslaan ...</value>
     <value>Selecteer statistiek</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Expense: {0} / Income: {1}</value>
+    <value>Onkosten: {0} / Inkomen: {1}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Aanmaakdatum: {0}</value>
