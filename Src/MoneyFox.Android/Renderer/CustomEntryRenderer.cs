@@ -34,9 +34,13 @@ namespace MoneyFox.Droid.Renderer
             Control.EditText.SetHighlightColor(Color.Accent.ToAndroid());
 
             if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+            {
                 TrySetCursorPointerColorNew();
+            }
             else
+            {
                 TrySetCursorPointerColor();
+            }
         }
 
         private void TrySetCursorPointerColorNew()
@@ -85,8 +89,7 @@ namespace MoneyFox.Droid.Renderer
                 if(editor == null)
                     return;
 
-                string[] fieldsNames =
-                { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
+                string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
                 string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
                 for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
@@ -107,11 +110,13 @@ namespace MoneyFox.Droid.Renderer
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
-                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     }
                     else
                     {
-                        handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
+#pragma warning disable CS0618 // Type or member is obsolete
+                        handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn!);
+#pragma warning restore CS0618 // Type or member is obsolete
                     }
 
                     field = editor.Class.GetDeclaredField(drawableName);
