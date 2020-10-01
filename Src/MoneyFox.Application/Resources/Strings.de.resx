@@ -670,7 +670,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Statistik auswählen</value>
   </data>
   <data name="ExpenseAndIncomeTemplate" xml:space="preserve">
-    <value>Ausgaben {1} / Einnahmen: {0}</value>
+    <value>Expense: {0} / Income: {1}</value>
   </data>
   <data name="CreationDateTemplateLabel" xml:space="preserve">
     <value>Erstellungsdatum: {0}</value>
