@@ -136,7 +136,7 @@
     <value>Transfer</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Cashflow</value>
+    <value>Dòng tiền</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Hàng ngày</value>
@@ -175,19 +175,19 @@
     <value>Gains</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Mandatory field</value>
+    <value>Trường bắt buộc</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Monthly</value>
+    <value>Hàng Tháng</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Please insert a name.</value>
+    <value>Vui lòng nhập tên</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Không</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
+    <value>Đồng ý</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Existing backups will be overwritten. Do you wanna continue?</value>
