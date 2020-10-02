@@ -13,6 +13,13 @@ namespace MoneyFox.Views.Accounts
             BindingContext = ViewModelLocator.AccountListViewModel;
         }
 
-        protected override async void OnAppearing() => await ViewModel.OnAppearingAsync();
+        protected override async void OnAppearing()
+        {
+            ViewModel.Subscribe();
+            await ViewModel.OnAppearingAsync();
+        }
+
+        protected override void OnDisappearing()
+            => ViewModel.Unsubscribe();
     }
 }
