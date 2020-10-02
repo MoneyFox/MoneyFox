@@ -19,7 +19,7 @@ namespace MoneyFox.ViewModels.Statistics
         protected MobileStatisticViewModel(DateTime startDate, DateTime endDate, IMediator mediator)
             : base(startDate, endDate, mediator)
         {
-            BackgroundColor = SKColor.Parse(ResourceHelper.GetCurrentBackgroundColor().ToHex());
+            BackgroundColor = SKColor.Parse(ResourceHelper.CurrentBackgroundColor.ToHex());
         }
 
         public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await ShowFilterDialog());
