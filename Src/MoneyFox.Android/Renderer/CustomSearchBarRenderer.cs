@@ -141,24 +141,34 @@ namespace MoneyFox.Droid.Renderer
 
         private void UpdateSearchButtonColor()
         {
-            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_mag_icon", null, null);
-            if(searchViewCloseButtonId != 0)
-                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
+            int? searchViewCloseButtonId = Control.Resources?.GetIdentifier("android:id/search_mag_icon", null, null);
+            if(searchViewCloseButtonId.HasValue && searchViewCloseButtonId != 0)
+            {
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId.Value));
+            }
         }
 
         private void UpdateCancelButtonColor()
         {
-            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
-            if(searchViewCloseButtonId != 0)
-                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId));
+            int? searchViewCloseButtonId = Control.Resources?.GetIdentifier("android:id/search_close_btn", null, null);
+            if(searchViewCloseButtonId.HasValue && searchViewCloseButtonId != 0)
+            {
+                SetColorGray(FindViewById<ImageView>(searchViewCloseButtonId.Value));
+            }
         }
 
-        private static void SetColorGray(ImageView image)
+        private static void SetColorGray(ImageView? image)
         {
             if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
-                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn));
+            {
+                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray, BlendMode.SrcIn!));
+            }
             else
-                image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn);
+            {
+#pragma warning disable CS0618 // Type or member is obsolete
+                image?.Drawable?.SetColorFilter(Android.Graphics.Color.Gray, PorterDuff.Mode.SrcIn!);
+#pragma warning restore CS0618 // Type or member is obsolete
+            }
         }
     }
 }
