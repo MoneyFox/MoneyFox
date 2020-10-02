@@ -136,13 +136,13 @@
     <value>Transfer</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Cashflow</value>
+    <value>Dòng tiền</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Daily</value>
+    <value>Hàng ngày</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Daily without weekend</value>
+    <value>Hàng ngày trừ ngày cuối tuần</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Do you really want to delete this Account?</value>
@@ -151,16 +151,16 @@
     <value>Do you really want to delete this Category?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Delete</value>
+    <value>Xóa</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Delete?</value>
+    <value>Xóa?</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
     <value>Do you really want to delete this Payment?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Edit</value>
+    <value>Sửa</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Expenses</value>
@@ -175,25 +175,25 @@
     <value>Gains</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
-    <value>Mandatory field</value>
+    <value>Trường bắt buộc</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
-    <value>Monthly</value>
+    <value>Hàng Tháng</value>
   </data>
   <data name="NameRequiredMessage" xml:space="preserve">
-    <value>Please insert a name.</value>
+    <value>Vui lòng nhập tên</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
-    <value>No</value>
+    <value>Không</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
+    <value>Đồng ý</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Existing backups will be overwritten. Do you wanna continue?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Overwrite?</value>
+    <value>Ghi đè?</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Revenue</value>
@@ -202,19 +202,19 @@
     <value>Edit Expense</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Thống kê</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
     <value>Edit Transfer</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Weekly</value>
+    <value>Hàng tuần</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Yearly</value>
+    <value>Hàng năm</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Có</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
     <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
@@ -229,7 +229,7 @@
     <value>Add Transfer</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Edit {0}</value>
+    <value>Sửa {0}</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Category Summary</value>
@@ -247,17 +247,17 @@
     <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Invalid End Date</value>
+    <value>Ngày kết thúc không hợp lệ</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Not Now</value>
+    <value>Không phải bây giờ</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
     <value>We hope you like our app. Support us with a rating in the store.
 Do you want to go the the store to rate?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
-    <value>Rate this app</value>
+    <value>Đánh giá ứng dụng</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
     <value>Biweekly</value>
@@ -278,7 +278,7 @@ Do you want to go the the store to rate?</value>
     <value>Summary of the categories with a Payment.</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Huỷ</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
     <value>Add expense</value>
@@ -293,7 +293,7 @@ Do you want to go the the store to rate?</value>
     <value>You are not connected to the internet. Please check your connection and try again.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
-    <value>No Internet Connection</value>
+    <value>Không có kết nối mạng</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
     <value>An Account with that name already exists.</value>
@@ -305,16 +305,16 @@ Do you want to go the the store to rate?</value>
     <value>Name already used</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
-    <value>Loading...</value>
+    <value>Đang tải...</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
     <value>There was an error during the authentication. Please try again later.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
-    <value>Version</value>
+    <value>Phiên bản</value>
   </data>
   <data name="ContactLabel" xml:space="preserve">
-    <value>Contact</value>
+    <value>Liên hệ</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
     <value>To see all contributions head over to GitHub:</value>
@@ -327,7 +327,7 @@ Do you want to go the the store to rate?</value>
 Tap to visit the Repository:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
-    <value>Rate this app!</value>
+    <value>Đánh giá ứng dụng</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
     <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
@@ -698,16 +698,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
 To start create a new account. Accounts are used to organize payments and money in collections.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Next</value>
+    <value>Kế tiếp</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
     <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Trở lại</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Skip</value>
+    <value>Bỏ qua</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Create Category now</value>
@@ -716,10 +716,10 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>That's it! You're set for using the MoneyFox.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Xong!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
-    <value>Complete</value>
+    <value>Hoàn thành</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
     <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
