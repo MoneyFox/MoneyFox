@@ -151,16 +151,16 @@
     <value>Do you really want to delete this Category?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
-    <value>Delete</value>
+    <value>Xóa</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
-    <value>Delete?</value>
+    <value>Xóa?</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
     <value>Do you really want to delete this Payment?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
-    <value>Edit</value>
+    <value>Sửa</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Expenses</value>
