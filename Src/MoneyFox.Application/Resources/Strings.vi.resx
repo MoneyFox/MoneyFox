@@ -139,10 +139,10 @@
     <value>Cashflow</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
-    <value>Daily</value>
+    <value>Hàng ngày</value>
   </data>
   <data name="DailyWithoutWeekendLabel" xml:space="preserve">
-    <value>Daily without weekend</value>
+    <value>Hàng ngày trừ ngày cuối tuần</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
     <value>Do you really want to delete this Account?</value>
