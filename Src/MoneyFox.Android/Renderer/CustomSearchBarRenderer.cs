@@ -53,24 +53,24 @@ namespace MoneyFox.Droid.Renderer
             }
         }
 
-        private void TrySetCursorPointerColorNew(EditText editText)
+        private void TrySetCursorPointerColorNew(TextView textView)
         {
             try
             {
-                editText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
+                textView.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
 
-                Drawable? textSelectHandleDrawable = editText.TextSelectHandle;
+                Drawable? textSelectHandleDrawable = textView.TextSelectHandle;
 
                 textSelectHandleDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
-                editText.TextSelectHandle = textSelectHandleDrawable;
+                textView.TextSelectHandle = textSelectHandleDrawable;
 
-                Drawable? textSelectHandleLeftDrawable = editText.TextSelectHandleLeft;
+                Drawable? textSelectHandleLeftDrawable = textView.TextSelectHandleLeft;
                 textSelectHandleLeftDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
-                editText.TextSelectHandle = textSelectHandleLeftDrawable;
+                textView.TextSelectHandle = textSelectHandleLeftDrawable;
 
-                Drawable? textSelectHandleRightDrawable = editText.TextSelectHandleRight;
+                Drawable? textSelectHandleRightDrawable = textView.TextSelectHandleRight;
                 textSelectHandleRightDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
-                editText.TextSelectHandle = textSelectHandleRightDrawable;
+                textView.TextSelectHandle = textSelectHandleRightDrawable;
             }
             catch(Exception ex)
             {
@@ -78,15 +78,15 @@ namespace MoneyFox.Droid.Renderer
             }
         }
 
-        private void TrySetCursorPointerColor(EditText editText)
+        private void TrySetCursorPointerColor(TextView textView)
         {
             try
             {
-                var textViewTemplate = new TextView(editText.Context);
+                var textViewTemplate = new TextView(textView.Context);
 
                 Field field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
-                Object? editor = field.Get(editText);
+                Object? editor = field.Get(textView);
 
                 if(editor == null)
                 {
@@ -103,7 +103,7 @@ namespace MoneyFox.Droid.Renderer
 
                     field = textViewTemplate.Class.GetDeclaredField(fieldName);
                     field.Accessible = true;
-                    int handle = field.GetInt(editText);
+                    int handle = field.GetInt(textView);
 
                     Drawable? handleDrawable = Resources?.GetDrawable(handle, null);
 
@@ -131,7 +131,7 @@ namespace MoneyFox.Droid.Renderer
                 IntPtr intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
                 IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
 
-                JNIEnv.SetField(editText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
+                JNIEnv.SetField(textView.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
             }
             catch(Exception ex)
             {
