@@ -35,7 +35,9 @@ namespace MoneyFox.Uwp.Src
                 StorageFile fromFile = StorageFileFromRelativePath(from);
 
                 if(overwrite && !SafeDeleteFile(destination))
+                {
                     return false;
+                }
 
                 string fullToPath = ToFullPath(destination);
                 string toDirectory = Path.GetDirectoryName(fullToPath);

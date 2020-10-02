@@ -54,9 +54,14 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
                                                                  .HasAccountId(request.AccountId);
 
                 if(request.IsClearedFilterActive)
+                {
                     paymentQuery = paymentQuery.AreCleared();
+                }
+
                 if(request.IsRecurringFilterActive)
+                {
                     paymentQuery = paymentQuery.AreRecurring();
+                }
 
                 paymentQuery = paymentQuery.Where(x => x.Date >= request.TimeRangeStart);
                 paymentQuery = paymentQuery.Where(x => x.Date <= request.TimeRangeEnd);

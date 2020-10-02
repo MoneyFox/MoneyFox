@@ -20,7 +20,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(isClearedFilterActive == value)
+                {
                     return;
+                }
+
                 isClearedFilterActive = value;
                 RaisePropertyChanged();
                 UpdateList();
@@ -36,7 +39,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(isRecurringFilterActive == value)
+                {
                     return;
+                }
+
                 isRecurringFilterActive = value;
                 RaisePropertyChanged();
                 UpdateList();
@@ -52,7 +58,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(timeRangeStart == value)
+                {
                     return;
+                }
+
                 timeRangeStart = value;
                 RaisePropertyChanged();
                 UpdateList();
@@ -68,7 +77,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(timeRangeEnd == value)
+                {
                     return;
+                }
+
                 timeRangeEnd = value;
                 RaisePropertyChanged();
                 UpdateList();

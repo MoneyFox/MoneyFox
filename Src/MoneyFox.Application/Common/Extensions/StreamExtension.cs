@@ -57,7 +57,9 @@ namespace MoneyFox.Application.Common.Extensions
             finally
             {
                 if(stream.CanSeek)
+                {
                     stream.Position = originalPosition;
+                }
             }
         }
     }

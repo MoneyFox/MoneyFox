@@ -13,7 +13,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(totalEarned == value)
+                {
                     return;
+                }
+
                 totalEarned = value;
                 RaisePropertyChanged();
             }
@@ -25,7 +28,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(totalSpent == value)
+                {
                     return;
+                }
+
                 totalSpent = value;
                 RaisePropertyChanged();
             }

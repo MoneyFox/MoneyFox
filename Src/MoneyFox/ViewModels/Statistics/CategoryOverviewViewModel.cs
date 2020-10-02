@@ -20,7 +20,10 @@ namespace MoneyFox.ViewModels.Statistics
             set
             {
                 if(categoryId == value)
+                {
                     return;
+                }
+
                 categoryId = value;
                 RaisePropertyChanged();
             }
@@ -35,7 +38,10 @@ namespace MoneyFox.ViewModels.Statistics
             set
             {
                 if(Math.Abs(this.value - value) < 0.01m)
+                {
                     return;
+                }
+
                 this.value = value;
                 RaisePropertyChanged();
             }
@@ -50,7 +56,10 @@ namespace MoneyFox.ViewModels.Statistics
             set
             {
                 if(Math.Abs(average - value) < 0.01m)
+                {
                     return;
+                }
+
                 average = value;
                 RaisePropertyChanged();
             }
@@ -65,7 +74,10 @@ namespace MoneyFox.ViewModels.Statistics
             set
             {
                 if(Math.Abs(this.value - value) < 0.01m)
+                {
                     return;
+                }
+
                 percentage = value;
                 RaisePropertyChanged();
             }
@@ -80,7 +92,10 @@ namespace MoneyFox.ViewModels.Statistics
             set
             {
                 if(label == value)
+                {
                     return;
+                }
+
                 label = value;
                 RaisePropertyChanged();
             }

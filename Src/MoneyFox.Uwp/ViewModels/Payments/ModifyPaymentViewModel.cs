@@ -100,7 +100,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(recurrence == value)
+                {
                     return;
+                }
 
                 recurrence = value;
                 RaisePropertyChanged();
@@ -133,7 +135,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(selectedPayment == value)
+                {
                     return;
+                }
+
                 selectedPayment = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(AccountHeader));
@@ -149,7 +154,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(amountString == value)
+                {
                     return;
+                }
+
                 amountString = value;
                 RaisePropertyChanged();
             }
@@ -198,7 +206,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(title == value)
+                {
                     return;
+                }
+
                 title = value;
                 RaisePropertyChanged();
             }
@@ -268,7 +279,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if(SelectedPayment == null || message == null)
+            {
                 return;
+            }
+
             SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
         }
 
@@ -280,18 +294,24 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             foreach(AccountViewModel account in TargetAccounts)
             {
                 if(!tempCollection.Contains(account))
+                {
                     tempCollection.Add(account);
+                }
             }
 
             foreach(AccountViewModel account in tempCollection)
             {
                 //fills targetaccounts
                 if(!TargetAccounts.Contains(account))
+                {
                     TargetAccounts.Add(account);
+                }
 
                 //fills chargedaccounts
                 if(!ChargedAccounts.Contains(account))
+                {
                     ChargedAccounts.Add(account);
+                }
             }
 
             TargetAccounts.Remove(selectedPayment.ChargedAccount);

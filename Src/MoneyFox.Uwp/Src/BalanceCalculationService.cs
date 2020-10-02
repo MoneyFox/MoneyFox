@@ -131,9 +131,13 @@ namespace MoneyFox.Uwp.Src
         private static decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
         {
             if(accountId == payment.ChargedAccount.Id)
+            {
                 balance -= payment.Amount;
+            }
             else
+            {
                 balance += payment.Amount;
+            }
 
             return balance;
         }

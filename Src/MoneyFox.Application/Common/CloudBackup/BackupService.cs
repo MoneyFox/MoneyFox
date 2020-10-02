@@ -99,7 +99,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task LoginAsync()
         {
             if(!connectivity.IsConnected)
+            {
                 throw new NetworkConnectionException();
+            }
 
             await cloudBackupService.LoginAsync();
 
@@ -114,7 +116,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task LogoutAsync()
         {
             if(!connectivity.IsConnected)
+            {
                 throw new NetworkConnectionException();
+            }
 
             await cloudBackupService.LogoutAsync();
 
@@ -127,7 +131,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task<bool> IsBackupExistingAsync()
         {
             if(!connectivity.IsConnected)
+            {
                 return false;
+            }
 
             List<string> files = await cloudBackupService.GetFileNamesAsync();
             return files != null && files.Any();
@@ -136,7 +142,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task<DateTime> GetBackupDateAsync()
         {
             if(!connectivity.IsConnected)
+            {
                 return DateTime.MinValue;
+            }
 
             DateTime date = await cloudBackupService.GetBackupDateAsync();
             return date.ToLocalTime();
@@ -227,7 +235,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         private async Task EnqueueBackupTaskAsync(int attempts = 0)
         {
             if(!connectivity.IsConnected)
+            {
                 throw new NetworkConnectionException();
+            }
 
             logger.Info("Enqueue Backup upload.");
 

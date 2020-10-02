@@ -45,7 +45,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(title == value)
+                {
                     return;
+                }
+
                 title = value;
                 RaisePropertyChanged();
             }
@@ -70,7 +73,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(amountString == value)
+                {
                     return;
+                }
+
                 amountString = value;
                 RaisePropertyChanged();
             }

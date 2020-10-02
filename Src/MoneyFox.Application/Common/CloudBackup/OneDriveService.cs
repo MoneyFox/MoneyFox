@@ -125,7 +125,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                 {
                     await LoginAsync();
                     if(GraphServiceClient == null)
+                    {
                         throw new BackupAuthenticationFailedException("Was not able to automatically login.");
+                    }
                 }
 
                 DriveItem? uploadedItem = await GraphServiceClient
@@ -227,7 +229,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                 {
                     await LoginAsync();
                     if(GraphServiceClient == null)
+                    {
                         throw new BackupAuthenticationFailedException("Was not able to automatically login.");
+                    }
                 }
 
                 DriveItem existingBackup = (await GraphServiceClient
@@ -240,7 +244,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                    .FirstOrDefault(x => x.Name == backupName);
 
                 if(existingBackup == null)
+                {
                     throw new NoBackupFoundException($"No backup with the name {backupName} was found.");
+                }
 
                 return await GraphServiceClient.Drive.Items[existingBackup.Id].Content.Request().GetAsync();
             }
@@ -273,7 +279,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                 {
                     await LoginAsync();
                     if(GraphServiceClient == null)
+                    {
                         return DateTime.MinValue;
+                    }
                 }
 
                 DriveItem existingBackup = (await GraphServiceClient
@@ -286,7 +294,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                    .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
                 if(existingBackup != null)
+                {
                     return existingBackup.LastModifiedDateTime?.DateTime ?? DateTime.MinValue;
+                }
 
                 return DateTime.MinValue;
             }
@@ -308,7 +318,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                 {
                     await LoginAsync();
                     if(GraphServiceClient == null)
+                    {
                         throw new BackupAuthenticationFailedException("Was not able to automatically login.");
+                    }
                 }
 
                 return (await GraphServiceClient
@@ -344,7 +356,10 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                                                       .GetAsync();
 
             if(archiveBackups.Count < BACKUP_ARCHIVE_COUNT)
+            {
                 return;
+            }
+
             DriveItem oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
 
             await GraphServiceClient.Drive
@@ -358,7 +373,9 @@ namespace MoneyFox.Application.Common.CloudBackup
             logManager.Info("Archive Backup.");
 
             if(ArchiveFolder == null)
+            {
                 return;
+            }
 
             if(GraphServiceClient == null)
             {
@@ -375,7 +392,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
             if(currentBackup == null)
+            {
                 return;
+            }
 
             var updateItem = new DriveItem
             {
@@ -427,7 +446,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         private async Task LoadArchiveFolderAsync()
         {
             if(ArchiveFolder != null)
+            {
                 return;
+            }
 
             if(GraphServiceClient == null)
             {

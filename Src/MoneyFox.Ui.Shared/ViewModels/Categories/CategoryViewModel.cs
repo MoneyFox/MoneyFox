@@ -19,7 +19,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
             set
             {
                 if(id == value)
+                {
                     return;
+                }
+
                 id = value;
                 RaisePropertyChanged();
             }
@@ -31,7 +34,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
             set
             {
                 if(name == value)
+                {
                     return;
+                }
+
                 name = value;
                 RaisePropertyChanged();
             }
@@ -43,7 +49,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
             set
             {
                 if(creationTime == value)
+                {
                     return;
+                }
+
                 creationTime = value;
                 RaisePropertyChanged();
             }
@@ -55,7 +64,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
             set
             {
                 if(modificationDate == value)
+                {
                     return;
+                }
+
                 modificationDate = value;
                 RaisePropertyChanged();
             }
@@ -70,7 +82,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
             set
             {
                 if(note == value)
+                {
                     return;
+                }
+
                 note = value;
                 RaisePropertyChanged();
             }

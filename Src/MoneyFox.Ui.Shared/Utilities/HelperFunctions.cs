@@ -60,7 +60,9 @@ namespace MoneyFox.Ui.Shared.Utilities
                 }
 
                 if(punctuationCount > decimalSeparatorIndex)
+                {
                     return amount;
+                }
 
                 string? decimalsString = stringBuilder.ToString();
                 amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) + CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator + decimalsString.Substring(decimalSeparatorIndex - punctuationCount);

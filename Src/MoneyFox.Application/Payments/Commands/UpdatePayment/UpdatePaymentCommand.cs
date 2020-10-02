@@ -95,7 +95,9 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                 Payment existingPayment = await contextAdapter.Context.Payments.FindAsync(request.Id);
 
                 if(existingPayment == null)
+                {
                     return Unit.Value;
+                }
 
                 existingPayment.UpdatePayment(request.Date,
                                               request.Amount,

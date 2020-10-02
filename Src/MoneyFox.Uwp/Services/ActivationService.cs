@@ -73,7 +73,9 @@ namespace MoneyFox.Uwp.Services
         private async Task InitializeAsync(object activationArgs)
         {
             if(ConfigurationManager.AppSettings != null)
+            {
                 return;
+            }
 
             InitConfig();
             ExecutingPlatform.Current = AppPlatform.UWP;
@@ -97,7 +99,9 @@ namespace MoneyFox.Uwp.Services
         {
             ConfigurationManager.Initialise(PortableStream.Current);
             if(ConfigurationManager.AppSettings == null)
+            {
                 throw new FailedToInitConfiFileException();
+            }
         }
 
         private static void RegisterServices()

@@ -34,7 +34,10 @@ namespace MoneyFox.ViewModels.Statistics
             set
             {
                 if(chart == value)
+                {
                     return;
+                }
+
                 chart = value;
                 RaisePropertyChanged();
             }

@@ -98,7 +98,9 @@ namespace MoneyFox.Droid
             command.CanExecuteChanged += (s, e) =>
                                          {
                                              if(command.CanExecute(null))
+                                             {
                                                  command.Execute(null);
+                                             }
                                          };
         }
     }

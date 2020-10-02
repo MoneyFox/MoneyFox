@@ -28,7 +28,10 @@ namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
             object item = e.AddedItems.FirstOrDefault();
 
             if(item == null)
+            {
                 return;
+            }
+
             ViewModel.SummaryEntrySelectedCommand.Execute((CategoryOverviewViewModel)item);
         }
     }

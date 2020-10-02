@@ -15,7 +15,9 @@ namespace MoneyFox.Droid.Renderer
                 var typedChild = child as T;
 
                 if(typedChild != null)
+                {
                     yield return typedChild;
+                }
 
                 if(child is AViewGroup)
                 {

@@ -21,7 +21,9 @@ namespace MoneyFox
             string fullPath = AppendPath(path);
 
             if(!File.Exists(fullPath))
+            {
                 throw new FileNotFoundException("File could not be opened.", path);
+            }
 
             return File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
         }
@@ -43,9 +45,13 @@ namespace MoneyFox
                 if(File.Exists(fullTo))
                 {
                     if(overwrite)
+                    {
                         File.Delete(fullTo);
+                    }
                     else
+                    {
                         return false;
+                    }
                 }
 
                 File.Move(fullFrom, fullTo);
@@ -63,7 +69,9 @@ namespace MoneyFox
         {
             string fullPath = AppendPath(path);
             if(File.Exists(fullPath))
+            {
                 File.Delete(fullPath);
+            }
 
             using(FileStream fileStream = File.OpenWrite(fullPath))
             {

@@ -84,7 +84,9 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
         private static void AddOtherItem(IEnumerable<(decimal Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
         {
             if(statisticList.Count < NUMBER_OF_STATISTIC_ITEMS)
+            {
                 return;
+            }
 
             decimal otherValue = statisticData
                                   .Where(x => statisticList.All(y => x.Label != y.Label))
@@ -97,7 +99,9 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
             };
 
             if(othersItem.Value > 0)
+            {
                 statisticList.Add(othersItem);
+            }
         }
 
         private static void SetColors(List<StatisticEntry> statisticItems)

@@ -171,7 +171,9 @@ namespace MoneyFox.Uwp
         {
             var keyboardAccelerator = new KeyboardAccelerator { Key = key };
             if(modifiers.HasValue)
+            {
                 keyboardAccelerator.Modifiers = modifiers.Value;
+            }
 
             keyboardAccelerator.Invoked += OnKeyboardAcceleratorInvoked;
 

@@ -13,7 +13,10 @@ namespace MoneyFox.Converter
             var category = (CategoryViewModel)value;
 
             if(category == null)
+            {
                 return Strings.SelectCategoryTitle;
+            }
+
             return category.Name;
         }
 

@@ -39,7 +39,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(id == value)
+                {
                     return;
+                }
+
                 id = value;
                 RaisePropertyChanged();
             }
@@ -56,7 +59,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(chargedAccountId == value)
+                {
                     return;
+                }
+
                 chargedAccountId = value;
                 RaisePropertyChanged();
             }
@@ -71,7 +77,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(targetAccountId == value)
+                {
                     return;
+                }
+
                 targetAccountId = value;
                 RaisePropertyChanged();
             }
@@ -86,7 +95,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(date == value)
+                {
                     return;
+                }
+
                 date = value;
                 RaisePropertyChanged();
             }
@@ -101,7 +113,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(Math.Abs(amount - value) < 0.01m)
+                {
                     return;
+                }
+
                 amount = value;
                 RaisePropertyChanged();
             }
@@ -117,7 +132,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(isCleared == value)
+                {
                     return;
+                }
+
                 isCleared = value;
                 RaisePropertyChanged();
             }
@@ -132,7 +150,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(type == value)
+                {
                     return;
+                }
+
                 type = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(IsTransfer));
@@ -148,7 +169,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(note == value)
+                {
                     return;
+                }
+
                 note = value;
                 RaisePropertyChanged();
             }
@@ -163,7 +187,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(isRecurring == value)
+                {
                     return;
+                }
+
                 isRecurring = value;
 
                 RecurringPayment = isRecurring
@@ -180,7 +207,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(creationTime == value)
+                {
                     return;
+                }
+
                 creationTime = value;
                 RaisePropertyChanged();
             }
@@ -192,7 +222,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(modificationDate == value)
+                {
                     return;
+                }
+
                 modificationDate = value;
                 RaisePropertyChanged();
             }
@@ -208,7 +241,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(chargedAccount == value)
+                {
                     return;
+                }
+
                 chargedAccount = value;
                 RaisePropertyChanged();
             }
@@ -224,7 +260,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(targetAccount == value)
+                {
                     return;
+                }
+
                 targetAccount = value;
                 RaisePropertyChanged();
             }
@@ -239,7 +278,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(categoryViewModel == value)
+                {
                     return;
+                }
+
                 categoryViewModel = value;
                 RaisePropertyChanged();
             }
@@ -254,7 +296,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(recurringPaymentViewModel == value)
+                {
                     return;
+                }
+
                 recurringPaymentViewModel = value;
                 RaisePropertyChanged();
             }
@@ -276,7 +321,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             set
             {
                 if(currentAccountId == value)
+                {
                     return;
+                }
+
                 currentAccountId = value;
                 RaisePropertyChanged();
             }

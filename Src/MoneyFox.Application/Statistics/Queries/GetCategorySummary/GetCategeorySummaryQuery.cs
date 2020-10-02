@@ -126,7 +126,9 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                         .ToList();
 
                 if(payments.Count == 0)
+                {
                     return 0;
+                }
 
                 return SumForCategory(payments);
             }
@@ -139,7 +141,9 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                                         .ToList();
 
                 if(payments.Count == 0)
+                {
                     return 0;
+                }
 
                 return SumForCategory(payments);
             }
@@ -150,7 +154,9 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
                 if(timeDiff.Days < DAY_DIVIDER)
+                {
                     return sumForCategory;
+                }
 
                 return Math.Round(sumForCategory / (timeDiff.Days / DAY_DIVIDER), 2, MidpointRounding.ToEven);
             }

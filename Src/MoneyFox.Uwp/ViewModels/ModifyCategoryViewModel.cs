@@ -78,7 +78,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(title == value)
+                {
                     return;
+                }
+
                 title = value;
                 RaisePropertyChanged();
             }

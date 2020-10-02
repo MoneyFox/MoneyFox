@@ -26,7 +26,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             set
             {
                 if(id == value)
+                {
                     return;
+                }
+
                 id = value;
                 RaisePropertyChanged();
             }
@@ -41,7 +44,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             set
             {
                 if(name == value)
+                {
                     return;
+                }
+
                 name = value;
                 RaisePropertyChanged();
             }
@@ -82,7 +88,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             set
             {
                 if(note == value)
+                {
                     return;
+                }
+
                 note = value;
                 RaisePropertyChanged();
             }
@@ -97,7 +106,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             set
             {
                 if(isOverdrawn == value)
+                {
                     return;
+                }
+
                 isOverdrawn = value;
                 RaisePropertyChanged();
             }
@@ -112,7 +124,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             set
             {
                 if(isExcluded == value)
+                {
                     return;
+                }
+
                 isExcluded = value;
                 RaisePropertyChanged();
             }
@@ -124,7 +139,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             set
             {
                 if(creationTime == value)
+                {
                     return;
+                }
+
                 creationTime = value;
                 RaisePropertyChanged();
             }
@@ -136,7 +154,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             set
             {
                 if(modificationDate == value)
+                {
                     return;
+                }
+
                 modificationDate = value;
                 RaisePropertyChanged();
             }

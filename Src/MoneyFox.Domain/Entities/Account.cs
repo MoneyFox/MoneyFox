@@ -16,7 +16,9 @@ namespace MoneyFox.Domain.Entities
         public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
             if(string.IsNullOrWhiteSpace(name))
+            {
                 throw new ArgumentNullException(nameof(name));
+            }
 
             ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
@@ -50,7 +52,9 @@ namespace MoneyFox.Domain.Entities
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
             if(string.IsNullOrWhiteSpace(name))
+            {
                 throw new ArgumentNullException(nameof(name));
+            }
 
             Name = name;
             CurrentBalance = currentBalance;
@@ -76,9 +80,14 @@ namespace MoneyFox.Domain.Entities
         private void ApplyPaymentAmount(Payment payment, bool invert = false)
         {
             if(payment.ChargedAccount == null)
+            {
                 throw new InvalidOperationException("Uninitialized property: " + nameof(payment.ChargedAccount));
+            }
+
             if(!payment.IsCleared)
+            {
                 return;
+            }
 
             decimal amount = invert
                              ? -payment.Amount
@@ -100,7 +109,9 @@ namespace MoneyFox.Domain.Entities
         private static void ThrowIfPaymentNull(Payment payment)
         {
             if(payment == null)
+            {
                 throw new ArgumentNullException(nameof(payment));
+            }
         }
     }
 }

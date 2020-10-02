@@ -90,7 +90,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(isTransferAvailable == value)
+                {
                     return;
+                }
+
                 isTransferAvailable = value;
                 RaisePropertyChanged();
             }
@@ -105,7 +108,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(isAddIncomeAvailable == value)
+                {
                     return;
+                }
+
                 isAddIncomeAvailable = value;
                 RaisePropertyChanged();
             }
@@ -120,7 +126,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(IsAddExpenseAvailable == value)
+                {
                     return;
+                }
+
                 isAddExpenseAvailable = value;
                 RaisePropertyChanged();
             }
@@ -133,7 +142,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(isClearedFilterActive == value)
+                {
                     return;
+                }
+
                 isClearedFilterActive = value;
                 RaisePropertyChanged();
             }
@@ -146,7 +158,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(isRecurringFilterActive == value)
+                {
                     return;
+                }
+
                 isRecurringFilterActive = value;
                 RaisePropertyChanged();
             }
@@ -159,7 +174,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(isGrouped == value)
+                {
                     return;
+                }
+
                 isGrouped = value;
                 RaisePropertyChanged();
             }
@@ -172,7 +190,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(timeRangeStart == value)
+                {
                     return;
+                }
+
                 timeRangeStart = value;
                 RaisePropertyChanged();
             }
@@ -185,7 +206,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(timeRangeEnd == value)
+                {
                     return;
+                }
+
                 timeRangeEnd = value;
                 RaisePropertyChanged();
             }

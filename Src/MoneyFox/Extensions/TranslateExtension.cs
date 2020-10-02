@@ -19,7 +19,9 @@ namespace MoneyFox.Extensions
         public object ProvideValue(IServiceProvider serviceProvider)
         {
             if(Text == null)
+            {
                 return string.Empty;
+            }
 
             return ResMgr.Value.GetString(Text, CultureHelper.CurrentCulture) ?? Text;
         }

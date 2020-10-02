@@ -69,7 +69,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             private set
             {
                 if(backupLastModified == value)
+                {
                     return;
+                }
+
                 backupLastModified = value;
                 RaisePropertyChanged();
             }
@@ -84,7 +87,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             private set
             {
                 if(isLoadingBackupAvailability == value)
+                {
                     return;
+                }
+
                 isLoadingBackupAvailability = value;
                 RaisePropertyChanged();
             }
@@ -104,7 +110,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             private set
             {
                 if(backupAvailable == value)
+                {
                     return;
+                }
+
                 backupAvailable = value;
                 RaisePropertyChanged();
             }
@@ -117,7 +126,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             set
             {
                 if(settingsFacade.IsBackupAutouploadEnabled == value)
+                {
                     return;
+                }
+
                 settingsFacade.IsBackupAutouploadEnabled = value;
                 RaisePropertyChanged();
             }
@@ -128,10 +140,14 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
         private async Task LoadedAsync()
         {
             if(!IsLoggedIn)
+            {
                 return;
+            }
 
             if(!connectivity.IsConnected)
+            {
                 await dialogService.ShowMessageAsync(Strings.NoNetworkTitle, Strings.NoNetworkMessage);
+            }
 
             IsLoadingBackupAvailability = true;
             try
@@ -208,7 +224,9 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
         private async Task CreateBackupAsync()
         {
             if(!await ShowOverwriteBackupInfoAsync())
+            {
                 return;
+            }
 
             await dialogService.ShowLoadingDialogAsync();
 
@@ -235,7 +253,9 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
         private async Task RestoreBackupAsync()
         {
             if(!await ShowOverwriteDataInfoAsync())
+            {
                 return;
+            }
 
             await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();

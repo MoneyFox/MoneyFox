@@ -44,7 +44,10 @@ namespace MoneyFox.ViewModels.Accounts
             try
             {
                 if(isRunning)
+                {
                     return;
+                }
+
                 isRunning = true;
 
                 Accounts.Clear();

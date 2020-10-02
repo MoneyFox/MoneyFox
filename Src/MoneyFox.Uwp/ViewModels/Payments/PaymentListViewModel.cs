@@ -111,7 +111,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             private set
             {
                 if(viewActionViewModel == value)
+                {
                     return;
+                }
+
                 viewActionViewModel = value;
                 RaisePropertyChanged();
             }
@@ -141,7 +144,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             private set
             {
                 if(title == value)
+                {
                     return;
+                }
+
                 title = value;
                 RaisePropertyChanged();
             }

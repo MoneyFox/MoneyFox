@@ -63,7 +63,10 @@ namespace MoneyFox.Uwp.ViewModels
             private set
             {
                 if(source == value)
+                {
                     return;
+                }
+
                 source = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(IsCategoriesEmpty));

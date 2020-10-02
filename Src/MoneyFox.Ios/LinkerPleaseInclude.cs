@@ -104,7 +104,9 @@ namespace MoneyFox.iOS
             command.CanExecuteChanged += (s, e) =>
                                          {
                                              if(command.CanExecute(null))
+                                             {
                                                  command.Execute(null);
+                                             }
                                          };
         }
 

@@ -43,7 +43,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 if(incomeExpenseBalance == value)
+                {
                     return;
+                }
+
                 incomeExpenseBalance = value;
                 RaisePropertyChanged();
             }
@@ -55,7 +58,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             private set
             {
                 if(categorySummary == value)
+                {
                     return;
+                }
+
                 categorySummary = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(HasData));

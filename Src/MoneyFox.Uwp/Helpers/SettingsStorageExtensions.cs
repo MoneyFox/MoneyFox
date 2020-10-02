@@ -10,7 +10,9 @@ namespace MoneyFox.Uwp.Helpers
         {
 
             if(settings.Values.TryGetValue(key, out object obj))
+            {
                 return (T)obj;
+            }
 
             return default;
         }

@@ -30,7 +30,9 @@ namespace MoneyFox.Uwp.Views.UserControls
             var category = element.DataContext as CategoryViewModel;
 
             if(category == null)
+            {
                 return;
+            }
 
             await new EditCategoryDialog(category.Id).ShowAsync();
 
@@ -43,9 +45,9 @@ namespace MoneyFox.Uwp.Views.UserControls
             var category = element.DataContext as CategoryViewModel;
 
             if(category == null)
+            {
                 return;
-
-            ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
+            } ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
         }
 
         private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e) => ((AbstractCategoryListViewModel)DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text).FireAndForgetSafeAsync();
