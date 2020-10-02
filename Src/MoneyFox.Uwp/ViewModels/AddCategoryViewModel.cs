@@ -41,6 +41,12 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
+            if(string.IsNullOrEmpty(SelectedCategory.Note))
+            {
+                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NoteRequiredMessage);
+                return;
+            }
+
             await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note));
         }
     }

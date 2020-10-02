@@ -49,6 +49,12 @@ namespace MoneyFox.ViewModels.Categories
                 return;
             }
 
+            if(string.IsNullOrEmpty(SelectedCategory.Note))
+            {
+                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NoteRequiredMessage);
+                return;
+            }
+
             if(await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
             {
                 await dialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
