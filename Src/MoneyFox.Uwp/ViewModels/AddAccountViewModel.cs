@@ -14,7 +14,6 @@ namespace MoneyFox.Uwp.ViewModels
     public class AddAccountViewModel : ModifyAccountViewModel
     {
         private readonly IMediator mediator;
-        private readonly IMapper mapper;
 
         public AddAccountViewModel(IMediator mediator,
                                    IMapper mapper,
@@ -22,7 +21,6 @@ namespace MoneyFox.Uwp.ViewModels
                                    INavigationService navigationService) : base(dialogService, navigationService)
         {
             this.mediator = mediator;
-            this.mapper = mapper;
 
             Title = Strings.AddAccountTitle;
         }

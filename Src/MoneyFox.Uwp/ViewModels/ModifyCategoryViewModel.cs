@@ -11,6 +11,7 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IMediator mediator;
         private readonly IMapper mapper;
 
-        private CategoryViewModel selectedCategory;
+        private CategoryViewModel selectedCategory = new CategoryViewModel();
         private string title = "";
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The currently selected CategoryViewModel
         /// </summary>
-        public CategoryViewModel? SelectedCategory
+        public CategoryViewModel SelectedCategory
         {
             get => selectedCategory;
             set
