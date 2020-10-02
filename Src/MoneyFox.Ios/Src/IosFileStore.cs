@@ -6,7 +6,7 @@
         {
         }
 
-        public const string ResScheme = "res:";
+        private const string ResScheme = "res:";
 
         protected override string AppendPath(string path)
         {
