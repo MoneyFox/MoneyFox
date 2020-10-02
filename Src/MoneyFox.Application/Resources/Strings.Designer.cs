@@ -925,7 +925,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expense {1} / Income: {0}.
+        ///   Looks up a localized string similar to Expense: {0} / Income: {1}.
         /// </summary>
         public static string ExpenseAndIncomeTemplate {
             get {
@@ -1444,6 +1444,15 @@ namespace MoneyFox.Application.Resources {
         public static string NoteLabel {
             get {
                 return ResourceManager.GetString("NoteLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please insert a note..
+        /// </summary>
+        public static string NoteRequiredMessage {
+            get {
+                return ResourceManager.GetString("NoteRequiredMessage", resourceCulture);
             }
         }
         
