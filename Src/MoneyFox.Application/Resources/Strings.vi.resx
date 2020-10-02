@@ -193,7 +193,7 @@
     <value>Existing backups will be overwritten. Do you wanna continue?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
-    <value>Overwrite?</value>
+    <value>Ghi đè?</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
     <value>Revenue</value>
@@ -202,19 +202,19 @@
     <value>Edit Expense</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Thống kê</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
     <value>Edit Transfer</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
-    <value>Weekly</value>
+    <value>Hàng tuần</value>
   </data>
   <data name="YearlyLabel" xml:space="preserve">
-    <value>Yearly</value>
+    <value>Hàng năm</value>
   </data>
   <data name="YesLabel" xml:space="preserve">
-    <value>Yes</value>
+    <value>Có</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
     <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
@@ -229,7 +229,7 @@
     <value>Add Transfer</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
-    <value>Edit {0}</value>
+    <value>Sửa {0}</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
     <value>Category Summary</value>
@@ -247,10 +247,10 @@
     <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
-    <value>Invalid End Date</value>
+    <value>Ngày kết thúc không hợp lệ</value>
   </data>
   <data name="NotNowLabel" xml:space="preserve">
-    <value>Not Now</value>
+    <value>Không phải bây giờ</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
     <value>We hope you like our app. Support us with a rating in the store.
