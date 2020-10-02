@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Foundation;
 using Microsoft.Identity.Client;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Common;
 using NLog;
 using NLog.Config;
