@@ -50,7 +50,7 @@ namespace MoneyFox.Uwp.Services
             if(IsInteractive(activationArgs))
             {
                 // Initialize things like registering background task before the app is loaded
-                await InitializeAsync(activationArgs);
+                await InitializeAsync();
 
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
@@ -70,7 +70,7 @@ namespace MoneyFox.Uwp.Services
             await StartupTasksService.StartupAsync();
         }
 
-        private async Task InitializeAsync(object activationArgs)
+        private async Task InitializeAsync()
         {
             if(ConfigurationManager.AppSettings != null)
             {
@@ -146,6 +146,6 @@ namespace MoneyFox.Uwp.Services
             await RateDisplayService.ShowIfAppropriateAsync();
         }
 
-        private bool IsInteractive(object args) => args is IActivatedEventArgs;
+        private static bool IsInteractive(object args) => args is IActivatedEventArgs;
     }
 }
