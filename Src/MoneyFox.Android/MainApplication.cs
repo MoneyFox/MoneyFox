@@ -36,7 +36,8 @@ namespace MoneyFox.Droid
             base.OnCreate();
         }
 
-        private void HandleAndroidException(object sender, RaiseThrowableEventArgs e) => logManager.Fatal(e.Exception, "Application Terminating. 1");
+        private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
+            => logManager?.Fatal(e.Exception, "Application Terminating. 1");
 
         private void RegisterServices()
         {
