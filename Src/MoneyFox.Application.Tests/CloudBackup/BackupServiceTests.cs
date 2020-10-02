@@ -142,7 +142,9 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.LogoutAsync())
+#pragma warning disable S3626 // Jump statements should not be redundant
                                   .Callback(() => throw new BackupException());
+#pragma warning restore S3626 // Jump statements should not be redundant
 
             settingsFacadeMock.SetupAllProperties();
             settingsFacadeMock.Object.IsBackupAutouploadEnabled = true;

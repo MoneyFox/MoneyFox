@@ -12,7 +12,6 @@ namespace MoneyFox.Uwp.ViewModels
     public class AddCategoryViewModel : ModifyCategoryViewModel
     {
         private readonly IMediator mediator;
-        private readonly IMapper mapper;
 
         public AddCategoryViewModel(IMediator mediator,
                                     IDialogService dialogService,
@@ -21,7 +20,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         {
             this.mediator = mediator;
-            this.mapper = mapper;
 
             Title = Strings.AddCategoryTitle;
         }

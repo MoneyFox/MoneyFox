@@ -51,6 +51,7 @@ namespace MoneyFox.Ui.Shared.Utilities
                     else
                     {
                         punctuationCount++;
+
                         if(amount.IndexOf(c) >= amount.Length - 3)
                         {
                             decimalSeparatorIndex = amount.IndexOf(c);
@@ -65,7 +66,9 @@ namespace MoneyFox.Ui.Shared.Utilities
                 }
 
                 string? decimalsString = stringBuilder.ToString();
-                amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) + CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator + decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
+                amount = $"{decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount)}" +
+                         $"{CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator}" +
+                         $"{decimalsString.Substring(decimalSeparatorIndex - punctuationCount)}";
             }
 
             return amount;
