@@ -2,6 +2,7 @@
 using AView = Android.Views.View;
 using AViewGroup = Android.Views.ViewGroup;
 
+#nullable enable
 namespace MoneyFox.Droid.Renderer
 {
     public static class ViewGroupExtension
@@ -11,7 +12,12 @@ namespace MoneyFox.Droid.Renderer
         {
             for(int i = 0; i < self.ChildCount; i++)
             {
-                AView child = self.GetChildAt(i);
+                AView? child = self.GetChildAt(i);
+                if(child == null)
+                {
+                    continue;
+                }
+
                 var typedChild = child as T;
 
                 if(typedChild != null)
