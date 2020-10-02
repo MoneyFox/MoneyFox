@@ -2,6 +2,7 @@
 using NLog;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MoneyFox
 {
@@ -16,7 +17,7 @@ namespace MoneyFox
 
         protected string BasePath { get; }
 
-        public override Stream OpenRead(string path)
+        public override async Task<Stream> OpenReadAsync(string path)
         {
             string fullPath = AppendPath(path);
 
@@ -25,10 +26,10 @@ namespace MoneyFox
                 throw new FileNotFoundException("File could not be opened.", path);
             }
 
-            return File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            return await Task.FromResult(File.Open(fullPath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
         }
 
-        public override bool TryMove(string from, string destination, bool overwrite)
+        public override async Task<bool> TryMoveAsync(string from, string destination, bool overwrite)
         {
             try
             {
@@ -39,7 +40,7 @@ namespace MoneyFox
                 {
                     logger.Error("Error during file move {0} : {1}. File does not exist!", from, destination);
 
-                    return false;
+                    return await Task.FromResult(false);
                 }
 
                 if(File.Exists(fullTo))
@@ -50,22 +51,22 @@ namespace MoneyFox
                     }
                     else
                     {
-                        return false;
+                        return await Task.FromResult(false);
                     }
                 }
 
                 File.Move(fullFrom, fullTo);
 
-                return true;
+                return await Task.FromResult(true);
             }
             catch(Exception ex)
             {
                 logger.Error(ex.ToString);
-                return false;
+                return await Task.FromResult(false);
             }
         }
 
-        protected override void WriteFileCommon(string path, Action<Stream> streamAction)
+        protected override Task WriteFileCommonAsync(string path, Action<Stream> streamAction)
         {
             string fullPath = AppendPath(path);
             if(File.Exists(fullPath))
@@ -77,6 +78,8 @@ namespace MoneyFox
             {
                 streamAction?.Invoke(fileStream);
             }
+
+            return Task.CompletedTask;
         }
 
         protected virtual string AppendPath(string path) => Path.Combine(BasePath, path);

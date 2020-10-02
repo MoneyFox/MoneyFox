@@ -12,12 +12,12 @@ namespace MoneyFox.Uwp.Src
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        public override Stream OpenRead(string path)
+        public override async Task<Stream> OpenReadAsync(string path)
         {
             try
             {
-                StorageFile storageFile = StorageFileFromRelativePath(path);
-                IRandomAccessStreamWithContentType streamWithContentType = storageFile.OpenReadAsync().Await();
+                StorageFile storageFile = await StorageFileFromRelativePathAsync(path);
+                IRandomAccessStreamWithContentType streamWithContentType = await storageFile.OpenReadAsync();
 
                 return streamWithContentType.AsStreamForRead();
             }
@@ -28,13 +28,13 @@ namespace MoneyFox.Uwp.Src
             }
         }
 
-        public override bool TryMove(string from, string destination, bool overwrite)
+        public override async Task<bool> TryMoveAsync(string from, string destination, bool overwrite)
         {
             try
             {
-                StorageFile fromFile = StorageFileFromRelativePath(from);
+                StorageFile fromFile = await StorageFileFromRelativePathAsync(from);
 
-                if(overwrite && !SafeDeleteFile(destination))
+                if(overwrite && !await SafeDeleteFile(destination))
                 {
                     return false;
                 }
@@ -42,8 +42,8 @@ namespace MoneyFox.Uwp.Src
                 string fullToPath = ToFullPath(destination);
                 string toDirectory = Path.GetDirectoryName(fullToPath);
                 string toFileName = Path.GetFileName(fullToPath);
-                StorageFolder toStorageFolder = StorageFolder.GetFolderFromPathAsync(toDirectory).Await();
-                fromFile.MoveAsync(toStorageFolder, toFileName).Await();
+                StorageFolder toStorageFolder = await StorageFolder.GetFolderFromPathAsync(toDirectory);
+                await fromFile.MoveAsync(toStorageFolder, toFileName);
 
                 return true;
             }
@@ -54,14 +54,14 @@ namespace MoneyFox.Uwp.Src
             }
         }
 
-        protected override void WriteFileCommon(string path, Action<Stream> streamAction)
+        protected override async Task WriteFileCommonAsync(string path, Action<Stream> streamAction)
         {
-            SafeDeleteFile(path);
+            await SafeDeleteFile(path);
 
             try
             {
-                StorageFile storageFile = CreateStorageFileFromRelativePathAsync(path).GetAwaiter().GetResult();
-                using(IRandomAccessStream streamWithContentType = storageFile.OpenAsync(FileAccessMode.ReadWrite).Await())
+                StorageFile storageFile = await CreateStorageFileFromRelativePathAsync(path);
+                using(IRandomAccessStream streamWithContentType = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
                 {
                     using(Stream stream = streamWithContentType.AsStreamForWrite())
                     {
@@ -76,20 +76,20 @@ namespace MoneyFox.Uwp.Src
             }
         }
 
-        private static StorageFile StorageFileFromRelativePath(string path)
+        private static async Task<StorageFile> StorageFileFromRelativePathAsync(string path)
         {
             string fullPath = ToFullPath(path);
-            StorageFile storageFile = StorageFile.GetFileFromPathAsync(fullPath).Await();
+            StorageFile storageFile = await StorageFile.GetFileFromPathAsync(fullPath);
 
             return storageFile;
         }
 
-        private static bool SafeDeleteFile(string path)
+        private static async Task<bool> SafeDeleteFile(string path)
         {
             try
             {
-                StorageFile toFile = StorageFileFromRelativePath(path);
-                toFile.DeleteAsync().Await();
+                StorageFile toFile = await StorageFileFromRelativePathAsync(path);
+                await toFile.DeleteAsync();
 
                 return true;
             }

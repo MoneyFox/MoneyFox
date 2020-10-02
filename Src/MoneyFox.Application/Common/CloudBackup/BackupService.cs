@@ -191,14 +191,14 @@ namespace MoneyFox.Application.Common.CloudBackup
                 using(Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
                                                                                   DatabaseConstants.BACKUP_NAME))
                 {
-                    fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
+                    await fileStore.WriteFileAsync(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
                 }
 
                 logger.Info("Backup downloaded. Replace current file.");
 
-                bool moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME,
-                                                     DatabasePathHelper.GetDbPath(),
-                                                     true);
+                bool moveSucceed = await fileStore.TryMoveAsync(DatabaseConstants.BACKUP_NAME,
+                                                                DatabasePathHelper.GetDbPath(),
+                                                                true);
 
                 if(!moveSucceed)
                 {
@@ -245,7 +245,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                                           cancellationTokenSource.Token);
             try
             {
-                if(await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabasePathHelper.GetDbPath())))
+                if(await cloudBackupService.UploadAsync(await fileStore.OpenReadAsync(DatabasePathHelper.GetDbPath())))
                 {
                     logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();
