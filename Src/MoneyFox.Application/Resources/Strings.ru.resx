@@ -130,13 +130,13 @@
     <value>Доход</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Расходы</value>
+    <value>Расход</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
     <value>Перевод</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
-    <value>Баланс</value>
+    <value>Денежный поток</value>
   </data>
   <data name="DailyLabel" xml:space="preserve">
     <value>Каждый день</value>
@@ -274,7 +274,7 @@
     <value>Распространение расходов к категории.</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Краткое описание категорий с оплатой.</value>
+    <value>Краткое описание категорий с платежом.</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Отмена</value>
@@ -383,7 +383,7 @@
     <value>Автоматически загружать и скачивать резервные копии</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
+    <value>Вы обновили периодическую операцию. Вы хотите обновить будущие операции?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
     <value>Удалить повторения?</value>
@@ -467,7 +467,7 @@
     <value>Периодичность</value>
   </data>
   <data name="NoPaymentsMessage" xml:space="preserve">
-    <value>У вас нет платежей. Добавьте один, нажав на кнопку «плюс».</value>
+    <value>У вас нет операций. Добавьте новую, нажав на кнопку «плюс».</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Email</value>
@@ -524,7 +524,7 @@
     <value>Оставьте отзыв!</value>
   </data>
   <data name="ModifyRecurrenceMessage" xml:space="preserve">
-    <value>Вы обновили периодический платеж. Вы хотите обновить будущие платежи?</value>
+    <value>Вы обновили периодическую операцию. Вы хотите обновить будущие операции?</value>
   </data>
   <data name="ModifyRecurrenceTitle" xml:space="preserve">
     <value>Изменить периодичность</value>
@@ -599,16 +599,16 @@
     <value>Сохранение категории...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Сохранение платежа...</value>
+    <value>Сохранение операции...</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>Конец месяца</value>
+    <value>На конец месяца</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Добавить платеж</value>
+    <value>Добавить операцию</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Тип платежа</value>
+    <value>Тип операции</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
     <value>Доход</value>
@@ -617,7 +617,7 @@
     <value>Перевод</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Платежи для категории</value>
+    <value>Операции в категории</value>
   </data>
   <data name="CreationDateLabel" xml:space="preserve">
     <value>Дата создания:</value>
@@ -635,7 +635,7 @@
     <value>Бюджеты</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
-    <value>Конец месяца:</value>
+    <value>На конец месяца:</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
     <value>Перейти к счетам</value>
@@ -696,41 +696,41 @@
 Чтобы начать, создайте новый счёт. Они используются для упорядочивания платежей и денег в коллекциях.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
-    <value>Next</value>
+    <value>Далее</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
+    <value>Категории могут помочь отсортировать ваши платежи. Также они облегчают анализ ваших расходов и доходов в статистике.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Назад</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Skip</value>
+    <value>Пропустить</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Создать категорию</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
-    <value>That's it! You're set for using the MoneyFox.</value>
+    <value>Вот и все! Вы можете использовать MoneyFox.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Готово!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
-    <value>Complete</value>
+    <value>Готово</value>
   </data>
   <data name="PaymentIntroductionText" xml:space="preserve">
-    <value>When you create a payment you can select the category for that payment along with the account and if it is an expense, an income or a transfer.
-Payments you created will show up under the account you choose. 
-To get there go to the account list and select the respective account.</value>
+    <value>При создании операции вы можете выбрать категорию для неё, используемый счёт и тип: расход, доход или перевод.
+Созданные вами операции будут отображаться под выбранным счётом. 
+Чтобы попасть туда перейдите в список счетов и выберите нужный счёт.</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Применить фильтр</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>Список групп</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Вы успешно вошли.</value>
   </data>
 </root>
