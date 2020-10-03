@@ -163,7 +163,7 @@
     <value>Изменить</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Расход</value>
+    <value>Расходы</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Обратная связь Money Fox</value>
@@ -187,7 +187,7 @@
     <value>Нет</value>
   </data>
   <data name="OkLabel" xml:space="preserve">
-    <value>Ok</value>
+    <value>ОК</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
     <value>Будут перезаписаны существующие резервные копии. Вы хотите продолжить?</value>
@@ -199,7 +199,7 @@
     <value>Прибыль</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Изменения расходов</value>
+    <value>Изменить расход</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Статистика</value>
@@ -220,13 +220,13 @@
     <value>Локальные данные будут удалены. Вы уверены, что хотите продолжить?</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Доход</value>
+    <value>Добавить доход</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Добавить расход</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Перевод</value>
+    <value>Добавить перевод</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
     <value>Редактировать {0}</value>
@@ -253,7 +253,8 @@
     <value>Не сейчас</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>Мы надеемся, что вам понравилось наше приложение. Помогите нам с оценкой в магазине. Перейти в магазин для оценки?</value>
+    <value>Мы надеемся, что вам понравилось наше приложение. Помогите нам с оценкой в магазине.
+Перейти в магазин для оценки?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Оценить приложение</value>
@@ -262,7 +263,7 @@
     <value>Раз в две недели</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Добавить категорию </value>
+    <value>Добавить категорию</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
     <value>Изменить категорию</value>
@@ -322,7 +323,8 @@
     <value>Значок приложения был создан:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>Это проект с открытым исходным кодом. Мы будем рады поработать с вами! Нажмите, чтобы перейти в репозиторий:</value>
+    <value>Это проект с открытым исходным кодом. Мы будем рады поработать с вами!
+Нажмите, чтобы перейти в репозиторий:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
     <value>Оцените это приложение!</value>
@@ -346,8 +348,8 @@
     <value>Выйти</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Восстановить ваши данные из OneDrive. 
-Внимание: Ваши локальные данные будут потеряны!</value>
+    <value>Скачать резервную копию и заменить ей локальные данные.
+ВНИМАНИЕ: Ваши локальные изменения будут утеряны!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
     <value>Восстановить из резервной копии</value>
@@ -374,7 +376,7 @@
     <value>Бесконечный</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Повторяется</value>
+    <value>Переодический</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
     <value>Если вы активируете эту настройку, мы автоматически создадим резервную копию ваших данных на OneDrive. Также периодически проверяем, если что-то изменилось на другом устройстве.</value>
@@ -386,7 +388,7 @@
     <value>Вы обновили периодическую операцию. Вы хотите обновить будущие операции?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>Удалить повторения?</value>
+    <value>Удалить периодичность?</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
     <value>Два раза в месяц</value>
@@ -530,10 +532,10 @@
     <value>Изменить периодичность</value>
   </data>
   <data name="ForceOverrideBackupMessage" xml:space="preserve">
-    <value>База данных на вашем компьютере новее, чем на OneDrive. Вы точно хотите перезаписать данные на компьютере?</value>
+    <value>База данных на вашем компьютере новее, чем на OneDrive. Вы точно хотите перезаписать локальные данные?</value>
   </data>
   <data name="ForceOverrideBackupTitle" xml:space="preserve">
-    <value>Перезаписать данные</value>
+    <value>Перезаписать локальные данные</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
     <value>Ваши данные будут сохранены в аккаунте OneDrive. Вы найдете их в папке приложения под названием MoneyFox.</value>
@@ -578,7 +580,7 @@
     <value>Этот регион будет использоваться по умолчанию для вашего приложения.</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>Сумма не может быть отрицательной. Вычет или пополнение суммы зависит от вида создаваемого вами платежа.</value>
+    <value>Сумма не может быть отрицательной. Вычет или пополнение суммы зависит от вида создаваемой вами операции.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
     <value>Отрицательная сумма</value>
@@ -626,7 +628,7 @@
     <value>Дата изменения:</value>
   </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>Не выбрана запись. Выберите запись в списке, чтобы увидеть платежи в ней.</value>
+    <value>Не выбрана запись. Выберите запись в списке, чтобы увидеть операции в ней.</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
     <value>Активы</value>
@@ -693,13 +695,13 @@
   </data>
   <data name="WelcomePageText" xml:space="preserve">
     <value>MoneyFox поможет Вам легко отслеживать Ваши расходы и доходы. 
-Чтобы начать, создайте новый счёт. Они используются для упорядочивания платежей и денег в коллекциях.</value>
+Чтобы начать, создайте новый счёт. Они используются для упорядочивания операций и денег в коллекциях.</value>
   </data>
   <data name="NextLabel" xml:space="preserve">
     <value>Далее</value>
   </data>
   <data name="CategorieIntroductionText" xml:space="preserve">
-    <value>Категории могут помочь отсортировать ваши платежи. Также они облегчают анализ ваших расходов и доходов в статистике.</value>
+    <value>Категории могут помочь отсортировать ваши операции. Также они облегчают анализ ваших расходов и доходов в статистике.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
     <value>Назад</value>
