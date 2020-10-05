@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using NLog;
-using System;
 using Windows.UI.Xaml;
 
 namespace MoneyFox.Uwp.Helpers
@@ -11,7 +10,7 @@ namespace MoneyFox.Uwp.Helpers
 
         public static string GetNavigateTo(NavigationViewItem item)
         {
-            var value = (string) item.GetValue(NavigateToProperty);
+            string value = (string)item.GetValue(NavigateToProperty);
             logger.Info("Get Navigation value: {val}", value);
 
             return value;

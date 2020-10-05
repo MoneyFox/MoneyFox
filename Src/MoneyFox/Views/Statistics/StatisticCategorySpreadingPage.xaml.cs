@@ -4,7 +4,7 @@ namespace MoneyFox.Views.Statistics
 {
     public partial class StatisticCategorySpreadingPage
     {
-        private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel) BindingContext;
+        private StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)BindingContext;
 
         public StatisticCategorySpreadingPage()
         {

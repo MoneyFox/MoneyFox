@@ -21,11 +21,19 @@ namespace MoneyFox.Application.Common.Helpers
         public static bool CheckIfRepeatable(Payment payment)
         {
             if(!payment.IsCleared)
+            {
                 return false;
+            }
+
             if(!payment.IsRecurring)
+            {
                 return false;
+            }
+
             if(payment.RecurringPayment == null)
+            {
                 throw new RecurringPaymentNullException();
+            }
 
             switch(payment.RecurringPayment.Recurrence)
             {
@@ -96,7 +104,9 @@ namespace MoneyFox.Application.Common.Helpers
                 double difference = -(value - max);
 
                 if(difference < 0)
+                {
                     date = date.AddDays(difference);
+                }
 
                 return date;
             }

@@ -44,7 +44,7 @@ namespace MoneyFox.Application.Common.Facades
         private const bool BACKUP_LOGGEDIN_KEY_DEFAULT = false;
 
         private const string THEME_KEYNAME = "Theme";
-        private const int THEME_KEYDEFAULT = (int) AppTheme.Light;
+        private const int THEME_KEYDEFAULT = (int)AppTheme.Light;
 
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME = "LastExecutionTimeStampSyncBackup";
         private const string LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT = "";
@@ -98,9 +98,9 @@ namespace MoneyFox.Application.Common.Facades
             {
                 int themeInt = settingsAdapter.GetValue(THEME_KEYNAME, THEME_KEYDEFAULT);
 
-                return (AppTheme) Enum.ToObject(typeof(AppTheme), themeInt);
+                return (AppTheme)Enum.ToObject(typeof(AppTheme), themeInt);
             }
-            set => settingsAdapter.AddOrUpdate(THEME_KEYNAME, (int) value);
+            set => settingsAdapter.AddOrUpdate(THEME_KEYNAME, (int)value);
         }
 
         /// <inheritdoc/>
@@ -120,7 +120,9 @@ namespace MoneyFox.Application.Common.Facades
                                      CultureInfo.InvariantCulture,
                                      DateTimeStyles.None,
                                      out DateTime outValue))
+                {
                     return outValue;
+                }
 
                 return DateTime.MinValue;
             }
@@ -139,7 +141,9 @@ namespace MoneyFox.Application.Common.Facades
                                      CultureInfo.InvariantCulture,
                                      DateTimeStyles.None,
                                      out DateTime outValue))
+                {
                     return outValue;
+                }
 
                 return DateTime.MinValue;
             }
@@ -158,7 +162,9 @@ namespace MoneyFox.Application.Common.Facades
                                      CultureInfo.InvariantCulture,
                                      DateTimeStyles.None,
                                      out DateTime outValue))
+                {
                     return outValue;
+                }
 
                 return DateTime.MinValue;
             }

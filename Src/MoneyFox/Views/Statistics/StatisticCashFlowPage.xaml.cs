@@ -4,7 +4,7 @@ namespace MoneyFox.Views.Statistics
 {
     public partial class StatisticCashFlowPage
     {
-        private StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel) BindingContext;
+        private StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)BindingContext;
 
         public StatisticCashFlowPage()
         {

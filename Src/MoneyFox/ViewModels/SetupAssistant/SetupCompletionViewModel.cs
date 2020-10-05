@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Facades;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Payments

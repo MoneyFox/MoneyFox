@@ -10,7 +10,9 @@ namespace MoneyFox.Extensions
             var page = Routing.GetOrCreateContent(route) as Page;
 
             if(page is null)
+            {
                 return Task.CompletedTask;
+            }
 
             return shell.Navigation.PushModalAsync(new NavigationPage(page)
             {

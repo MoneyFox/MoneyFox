@@ -35,7 +35,7 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                                                .IsNotExpired()
                                                                                .ToListAsync();
 
-                List<Payment> recPaymentsToCreate = recurringPayments
+                var recPaymentsToCreate = recurringPayments
                                                    .Where(x => x.RelatedPayments.Any())
                                                    .Where(x => RecurringPaymentHelper.CheckIfRepeatable(x.RelatedPayments
                                                                                                          .OrderByDescending(d => d.Date)

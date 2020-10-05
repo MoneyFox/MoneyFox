@@ -13,8 +13,8 @@ namespace MoneyFox.Uwp.Views.Payments
 
         public ModifyPaymentViewModel ViewModel
         {
-            get { return (ModifyPaymentViewModel)GetValue(ViewModelProperty); }
-            set { SetValue(ViewModelProperty, value); }
+            get => (ModifyPaymentViewModel)GetValue(ViewModelProperty);
+            set => SetValue(ViewModelProperty, value);
         }
         public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register("ViewModel",
                                                                                                   typeof(ModifyPaymentViewModel),

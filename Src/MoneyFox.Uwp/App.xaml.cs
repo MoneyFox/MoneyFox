@@ -39,25 +39,13 @@ namespace MoneyFox.Uwp
             OverrideTitleBarColor();
         }
 
-        protected override async void OnActivated(IActivatedEventArgs args)
-        {
-            await ActivationService.ActivateAsync(args);
-        }
+        protected override async void OnActivated(IActivatedEventArgs args) => await ActivationService.ActivateAsync(args);
 
-        private ActivationService CreateActivationService()
-        {
-            return new ActivationService(typeof(AccountListViewModel), new Lazy<UIElement>(CreateShell));
-        }
+        private ActivationService CreateActivationService() => new ActivationService(typeof(AccountListViewModel), new Lazy<UIElement>(CreateShell));
 
-        private UIElement CreateShell()
-        {
-            return new AppShell();
-        }
+        private UIElement CreateShell() => new AppShell();
 
-        protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args)
-        {
-            await ActivationService.ActivateAsync(args);
-        }
+        protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args) => await ActivationService.ActivateAsync(args);
 
         private static void OverrideTitleBarColor()
         {
@@ -69,10 +57,7 @@ namespace MoneyFox.Uwp
             viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
         }
 
-        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
-            LogManager.GetCurrentClassLogger().Fatal(e.Exception);
-        }
+        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e) => LogManager.GetCurrentClassLogger().Fatal(e.Exception);
 
         /// <summary>
         /// Invoked when application execution is being suspended.  Application state is saved     without knowing

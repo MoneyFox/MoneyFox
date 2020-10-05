@@ -88,7 +88,7 @@ namespace MoneyFox.ViewModels.Payments
 
         protected virtual async Task InitializeAsync()
         {
-            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+            List<AccountViewModel>? accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
@@ -99,7 +99,7 @@ namespace MoneyFox.ViewModels.Payments
         /// </summary>
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
-        public List<PaymentType> PaymentTypeList => new List<PaymentType>
+        public static List<PaymentType> PaymentTypeList => new List<PaymentType>
         {
             PaymentType.Expense,
             PaymentType.Income,
@@ -109,7 +109,7 @@ namespace MoneyFox.ViewModels.Payments
         /// <summary>
         /// List with the different recurrence types.     This has to have the same order as the enum
         /// </summary>
-        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
+        public static List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
             PaymentRecurrence.Daily,
             PaymentRecurrence.DailyWithoutWeekend,

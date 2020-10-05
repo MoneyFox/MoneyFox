@@ -31,15 +31,12 @@ namespace MoneyFox.ViewModels.Categories
             MessengerInstance.Register<ReloadMessage>(this, async (m) => await InitializeAsync());
         }
 
-        public async Task InitializeAsync()
-        {
-            await SearchCategoryAsync();
-        }
+        public async Task InitializeAsync() => await SearchCategoryAsync();
 
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> Categories
         {
             get => categories;
-            set
+            private set
             {
                 categories = value;
                 RaisePropertyChanged();
@@ -50,7 +47,7 @@ namespace MoneyFox.ViewModels.Categories
 
         public RelayCommand<string> SearchCategoryCommand => new RelayCommand<string>(async (searchTerm) => await SearchCategoryAsync(searchTerm));
 
-        private string searchTerm;
+        private string searchTerm = string.Empty;
         public string SearchTerm
         {
             get => searchTerm;
@@ -63,9 +60,9 @@ namespace MoneyFox.ViewModels.Categories
 
         private async Task SearchCategoryAsync(string searchTerm = "")
         {
-            var categorieVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
+            List<CategoryViewModel>? categorieVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
 
-            var groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms, CultureInfo.CurrentUICulture,
+            List<AlphaGroupListGroupCollection<CategoryViewModel>>? groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms, CultureInfo.CurrentUICulture,
                 s => string.IsNullOrEmpty(s.Name)
                     ? "-"
                     : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));

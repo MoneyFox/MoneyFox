@@ -106,24 +106,12 @@ namespace MoneyFox.Application.Common.Adapters
             }
         }
 
-        public void AddOrUpdate(string key, bool value)
-        {
-            Preferences.Set(key, value);
-        }
+        public void AddOrUpdate(string key, bool value) => Preferences.Set(key, value);
 
-        public void AddOrUpdate(string key, string value)
-        {
-            Preferences.Set(key, value);
-        }
+        public void AddOrUpdate(string key, string value) => Preferences.Set(key, value);
 
-        public void AddOrUpdate(string key, int value)
-        {
-            Preferences.Set(key, value);
-        }
+        public void AddOrUpdate(string key, int value) => Preferences.Set(key, value);
 
-        public void Remove(string key)
-        {
-            Preferences.Remove(key);
-        }
+        public void Remove(string key) => Preferences.Remove(key);
     }
 }

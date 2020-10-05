@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Domain;
-using System;
 using Windows.UI.Xaml.Controls;
 
 namespace MoneyFox.Uwp.Views
@@ -9,7 +8,7 @@ namespace MoneyFox.Uwp.Views
     /// </summary>
     public sealed partial class AppShell
     {
-        private WindowsShellViewModel ViewModel => (WindowsShellViewModel) DataContext;
+        private WindowsShellViewModel ViewModel => (WindowsShellViewModel)DataContext;
 
         public AppShell()
         {

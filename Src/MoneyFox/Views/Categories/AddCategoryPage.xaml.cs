@@ -6,7 +6,7 @@ namespace MoneyFox.Views.Categories
 {
     public partial class AddCategoryPage
     {
-        private AddCategoryViewModel ViewModel => (AddCategoryViewModel) BindingContext;
+        private AddCategoryViewModel ViewModel => (AddCategoryViewModel)BindingContext;
 
         public AddCategoryPage()
         {

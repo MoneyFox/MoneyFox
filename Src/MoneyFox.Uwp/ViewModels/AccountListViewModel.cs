@@ -71,7 +71,10 @@ namespace MoneyFox.Uwp.ViewModels
             private set
             {
                 if(accounts == value)
+                {
                     return;
+                }
+
                 accounts = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(HasNoAccounts));
@@ -88,16 +91,16 @@ namespace MoneyFox.Uwp.ViewModels
 
         public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(DeleteAsync);
 
-        private void EditAccount(AccountViewModel accountViewModel)
-        {
-            navigationService.Navigate<EditAccountViewModel>(accountViewModel.Id);
-        }
+        private void EditAccount(AccountViewModel accountViewModel) => navigationService.Navigate<EditAccountViewModel>(accountViewModel.Id);
 
         private async Task LoadAsync()
         {
             try
             {
-                if(isRunning) return;
+                if(isRunning)
+                {
+                    return;
+                }
 
                 isRunning = true;
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
@@ -136,14 +139,20 @@ namespace MoneyFox.Uwp.ViewModels
 
         private void GoToPaymentOverView(AccountViewModel accountViewModel)
         {
-            if(accountViewModel == null) return;
+            if(accountViewModel == null)
+            {
+                return;
+            }
 
             navigationService.Navigate<PaymentListViewModel>(accountViewModel.Id);
         }
 
         private async Task DeleteAsync(AccountViewModel accountToDelete)
         {
-            if(accountToDelete == null) return;
+            if(accountToDelete == null)
+            {
+                return;
+            }
 
             if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {

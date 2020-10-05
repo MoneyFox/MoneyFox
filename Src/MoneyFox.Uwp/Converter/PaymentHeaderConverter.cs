@@ -9,7 +9,7 @@ namespace MoneyFox.Uwp.Converter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            var pType = (PaymentType) value;
+            var pType = (PaymentType)value;
             switch(pType)
             {
                 default:
@@ -22,9 +22,6 @@ namespace MoneyFox.Uwp.Converter
             }
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
-        {
-            throw new NotSupportedException();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotSupportedException();
     }
 }

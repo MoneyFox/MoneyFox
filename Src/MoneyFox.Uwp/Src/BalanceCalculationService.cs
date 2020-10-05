@@ -49,10 +49,7 @@ namespace MoneyFox.Uwp.Src
         }
 
         /// <inheritdoc/>
-        public async Task<decimal> GetTotalBalance()
-        {
-            return await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
-        }
+        public async Task<decimal> GetTotalBalance() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
 
         /// <inheritdoc/>
         public async Task<decimal> GetTotalEndOfMonthBalance()
@@ -134,9 +131,13 @@ namespace MoneyFox.Uwp.Src
         private static decimal HandleTransferAmount(Payment payment, decimal balance, int accountId)
         {
             if(accountId == payment.ChargedAccount.Id)
+            {
                 balance -= payment.Amount;
+            }
             else
+            {
                 balance += payment.Amount;
+            }
 
             return balance;
         }

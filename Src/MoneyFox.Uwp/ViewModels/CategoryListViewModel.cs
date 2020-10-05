@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Uwp.Services;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -22,9 +22,6 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override void ItemClick(CategoryViewModel category)
-        {
-            EditCategoryCommand.Execute(category);
-        }
+        protected override void ItemClick(CategoryViewModel category) => EditCategoryCommand.Execute(category);
     }
 }

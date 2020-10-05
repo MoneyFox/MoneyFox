@@ -26,10 +26,8 @@ namespace MoneyFox.Uwp.Activation
             await Task.CompletedTask;
         }
 
-        protected override bool CanHandleInternal(LaunchActivatedEventArgs args)
-        {
+        protected override bool CanHandleInternal(LaunchActivatedEventArgs args) =>
             // None of the ActivationHandlers has handled the app activation
-            return startupViewModel != null;
-        }
+            startupViewModel != null;
     }
 }

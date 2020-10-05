@@ -90,15 +90,15 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             private void AddEntryForPaymentsWithoutCategory(List<Payment> payments)
             {
                 categoryOverviewItems.Add(new CategoryOverviewItem
-                                          {
-                                              Label = Strings.NoCategoryLabel,
-                                              Value = payments.Where(x => x.Category == null)
+                {
+                    Label = Strings.NoCategoryLabel,
+                    Value = payments.Where(x => x.Category == null)
                                                               .Where(x => x.Type != PaymentType.Transfer)
                                                               .Sum(x => x.Type == PaymentType.Expense
                                                                         ? -x.Amount
                                                                         : x.Amount),
-                                              Average = CalculateAverageForPaymentsWithoutCategory()
-                                          });
+                    Average = CalculateAverageForPaymentsWithoutCategory()
+                });
             }
 
             private static void CalculatePercentage(List<CategoryOverviewItem> categories)
@@ -119,27 +119,31 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 
             private decimal CalculateAverageForCategory(int id)
             {
-                List<Payment> payments = paymentLastTwelveMonths
+                var payments = paymentLastTwelveMonths
                                         .Where(x => x.Category != null)
                                         .Where(x => x.Category!.Id == id)
                                         .OrderByDescending(x => x.Date)
                                         .ToList();
 
                 if(payments.Count == 0)
+                {
                     return 0;
+                }
 
                 return SumForCategory(payments);
             }
 
             private decimal CalculateAverageForPaymentsWithoutCategory()
             {
-                List<Payment> payments = paymentLastTwelveMonths
+                var payments = paymentLastTwelveMonths
                                         .Where(x => x.Category == null)
                                         .OrderByDescending(x => x.Date)
                                         .ToList();
 
                 if(payments.Count == 0)
+                {
                     return 0;
+                }
 
                 return SumForCategory(payments);
             }
@@ -150,7 +154,9 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 TimeSpan timeDiff = DateTime.Today - DateTime.Today.AddYears(-1);
 
                 if(timeDiff.Days < DAY_DIVIDER)
+                {
                     return sumForCategory;
+                }
 
                 return Math.Round(sumForCategory / (timeDiff.Days / DAY_DIVIDER), 2, MidpointRounding.ToEven);
             }

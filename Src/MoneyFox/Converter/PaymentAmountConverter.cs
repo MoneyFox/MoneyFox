@@ -1,9 +1,8 @@
-﻿using System.Globalization;
-using Xamarin.Forms;
-using System;
-using MoneyFox.Application;
-using MoneyFox.Domain;
+﻿using MoneyFox.Ui.Shared.ConverterLogic;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
+using System;
+using System.Globalization;
+using Xamarin.Forms;
 
 namespace MoneyFox.Converter
 {
@@ -18,27 +17,9 @@ namespace MoneyFox.Converter
                 return string.Empty;
             }
 
-            string sign;
-
-            if(payment.Type == PaymentType.Transfer)
-            {
-                sign = payment.ChargedAccountId == payment.CurrentAccountId
-                            ? "-"
-                            : "+";
-            }
-            else
-            {
-                sign = payment.Type == (int)PaymentType.Expense
-                       ? "-"
-                       : "+";
-            }
-
-            return $"{sign} {payment.Amount.ToString("C2", CultureHelper.CurrentCulture)}";
+            return PaymentAmountConverterLogic.GetAmountSign(payment);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotSupportedException();
     }
 }

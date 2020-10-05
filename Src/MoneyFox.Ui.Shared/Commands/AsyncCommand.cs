@@ -21,10 +21,7 @@ namespace MoneyFox.Ui.Shared.Commands
             this.canExecute = canExecute;
         }
 
-        public bool CanExecute()
-        {
-            return !isExecuting && (canExecute?.Invoke() ?? true);
-        }
+        public bool CanExecute() => !isExecuting && (canExecute?.Invoke() ?? true);
 
         public async Task ExecuteAsync()
         {
@@ -44,21 +41,12 @@ namespace MoneyFox.Ui.Shared.Commands
             RaiseCanExecuteChanged();
         }
 
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
+        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 
 
-        bool ICommand.CanExecute(object parameter)
-        {
-            return CanExecute();
-        }
+        bool ICommand.CanExecute(object parameter) => CanExecute();
 
-        void ICommand.Execute(object parameter)
-        {
-            ExecuteAsync().FireAndForgetSafeAsync();
-        }
+        void ICommand.Execute(object parameter) => ExecuteAsync().FireAndForgetSafeAsync();
     }
 
     public class AsyncCommand<T> : IAsyncCommand<T>
@@ -75,10 +63,7 @@ namespace MoneyFox.Ui.Shared.Commands
             this.canExecute = canExecute;
         }
 
-        public bool CanExecute(T parameter)
-        {
-            return !isExecuting && (canExecute?.Invoke(parameter) ?? true);
-        }
+        public bool CanExecute(T parameter) => !isExecuting && (canExecute?.Invoke(parameter) ?? true);
 
         public async Task ExecuteAsync(T parameter)
         {
@@ -98,20 +83,11 @@ namespace MoneyFox.Ui.Shared.Commands
             RaiseCanExecuteChanged();
         }
 
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
+        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
 
 
-        bool ICommand.CanExecute(object parameter)
-        {
-            return CanExecute((T) parameter);
-        }
+        bool ICommand.CanExecute(object parameter) => CanExecute((T)parameter);
 
-        void ICommand.Execute(object parameter)
-        {
-            ExecuteAsync((T) parameter).FireAndForgetSafeAsync();
-        }
+        void ICommand.Execute(object parameter) => ExecuteAsync((T)parameter).FireAndForgetSafeAsync();
     }
 }

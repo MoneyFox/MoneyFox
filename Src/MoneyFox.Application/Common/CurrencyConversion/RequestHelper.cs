@@ -33,10 +33,10 @@ namespace MoneyFox.Application.Common.CurrencyConversion
         {
             string jsonString;
 
-            var request = (HttpWebRequest) WebRequest.Create(url);
+            var request = (HttpWebRequest)WebRequest.Create(url);
             request.AutomaticDecompression = DecompressionMethods.GZip;
 
-            using(var response = (HttpWebResponse) request.GetResponse())
+            using(var response = (HttpWebResponse)request.GetResponse())
             using(Stream stream = response.GetResponseStream())
             using(var reader = new StreamReader(stream))
             {

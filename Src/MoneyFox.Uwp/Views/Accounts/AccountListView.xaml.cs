@@ -31,20 +31,23 @@ namespace MoneyFox.Uwp.Views.Accounts
 
         private async void Edit_OnClick(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
-            if(!(element.DataContext is AccountViewModel account)) return;
+            var element = (FrameworkElement)sender;
+            if(!(element.DataContext is AccountViewModel account))
+            {
+                return;
+            }
 
             await new EditAccountView(account.Id).ShowAsync();
         }
 
         private void Delete_OnClick(object sender, RoutedEventArgs e)
         {
-            var element = (FrameworkElement) sender;
+            var element = (FrameworkElement)sender;
 
             if(!(element.DataContext is AccountViewModel account))
+            {
                 return;
-
-            (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
+            } (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
         }
 
         private void AccountClicked(object sender, ItemClickEventArgs parameter)

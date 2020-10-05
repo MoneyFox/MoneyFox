@@ -11,8 +11,8 @@ using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Material.Android;
 using Xamarin.Forms.Platform.Android;
-using Object = Java.Lang.Object;
 using Color = Xamarin.Forms.Color;
+using Object = Java.Lang.Object;
 
 #nullable enable
 [assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] { typeof(VisualMarker.MaterialVisual) })]
@@ -34,9 +34,13 @@ namespace MoneyFox.Droid.Renderer
             Control.EditText.SetHighlightColor(Color.Accent.ToAndroid());
 
             if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+            {
                 TrySetCursorPointerColorNew();
+            }
             else
+            {
                 TrySetCursorPointerColor();
+            }
         }
 
         private void TrySetCursorPointerColorNew()
@@ -48,21 +52,21 @@ namespace MoneyFox.Droid.Renderer
                 Drawable? textSelectHandleDrawable = Control.EditText.TextSelectHandle;
                 if(textSelectHandleDrawable != null)
                 {
-                    textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                    textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleDrawable;
                 }
 
                 Drawable? textSelectHandleLeftDrawable = Control.EditText.TextSelectHandleLeft;
                 if(textSelectHandleLeftDrawable != null)
                 {
-                    textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                    textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleLeftDrawable;
                 }
 
                 Drawable? textSelectHandleRightDrawable = Control.EditText.TextSelectHandleRight;
                 if(textSelectHandleRightDrawable != null)
                 {
-                    textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                    textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleRightDrawable;
                 }
             }
@@ -82,13 +86,15 @@ namespace MoneyFox.Droid.Renderer
                 field.Accessible = true;
 
                 Object? editor = field.Get(Control.EditText);
-                if(editor == null) return;
+                if(editor == null)
+                {
+                    return;
+                }
 
-                string[] fieldsNames =
-                { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
+                string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
                 string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
-                for(var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
+                for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {
                     string fieldName = fieldsNames[index];
                     string drawableName = drawableNames[index];
@@ -106,11 +112,13 @@ namespace MoneyFox.Droid.Renderer
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
-                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn));
+                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     }
                     else
                     {
-                        handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn);
+#pragma warning disable CS0618 // Type or member is obsolete
+                        handleDrawable.SetColorFilter(Color.Accent.ToAndroid(), PorterDuff.Mode.SrcIn!);
+#pragma warning restore CS0618 // Type or member is obsolete
                     }
 
                     field = editor.Class.GetDeclaredField(drawableName);

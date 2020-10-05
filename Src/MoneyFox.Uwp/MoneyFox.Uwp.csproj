@@ -174,11 +174,11 @@
     <Compile Include="Services\ActivationService.cs" />
     <Compile Include="Services\JumpListService.cs" />
     <Compile Include="Services\LoggerService.cs" />
+    <Compile Include="Services\NavigationServiceInitializerService.cs" />
     <Compile Include="Services\RateDisplayService.cs" />
     <Compile Include="Services\StartupTasksService.cs" />
     <Compile Include="Services\ThemeSelectorService.cs" />
     <Compile Include="Services\ToastService.cs" />
-    <Compile Include="Src\AsyncExtensions.cs" />
     <Compile Include="Src\BalanceCalculationService.cs" />
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\GraphClientFactory.cs" />

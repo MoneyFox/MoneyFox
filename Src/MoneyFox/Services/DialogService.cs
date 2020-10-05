@@ -26,7 +26,9 @@ namespace MoneyFox.Services
         public async Task HideLoadingDialogAsync()
         {
             if(loadingDialog == null)
+            {
                 return;
+            }
 
             try
             {
