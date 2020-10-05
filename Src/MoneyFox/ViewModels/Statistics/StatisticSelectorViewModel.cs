@@ -41,9 +41,9 @@ namespace MoneyFox.ViewModels.Statistics
         /// Navigates to the statistic view and shows the selected statistic
         /// </summary>
         public RelayCommand<StatisticSelectorType> GoToStatisticCommand
-            => new RelayCommand<StatisticSelectorType>(async (s) => await GoToStatistic(s));
+            => new RelayCommand<StatisticSelectorType>(async (s) => await GoToStatisticAsync(s));
 
-        private async Task GoToStatistic(StatisticSelectorType item)
+        private async Task GoToStatisticAsync(StatisticSelectorType item)
         {
             if(item.Type == StatisticType.Cashflow)
             {

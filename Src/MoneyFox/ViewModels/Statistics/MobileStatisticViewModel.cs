@@ -22,10 +22,10 @@ namespace MoneyFox.ViewModels.Statistics
             BackgroundColor = SKColor.Parse(ResourceHelper.CurrentBackgroundColor.ToHex());
         }
 
-        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await ShowFilterDialog());
+        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await ShowFilterDialogAsync());
 
         protected SKColor BackgroundColor { get; }
 
-        private async Task ShowFilterDialog() => await new DateSelectionPopup().ShowAsync();
+        private async Task ShowFilterDialogAsync() => await new DateSelectionPopup().ShowAsync();
     }
 }
