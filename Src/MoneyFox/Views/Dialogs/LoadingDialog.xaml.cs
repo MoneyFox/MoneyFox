@@ -10,7 +10,7 @@ namespace MoneyFox.Views.Dialogs
             InitializeComponent();
         }
 
-        internal static async Task<LoadingDialog> Loading()
+        internal static async Task<LoadingDialog> LoadingAsync()
         {
             var dialog = new LoadingDialog();
             await dialog.ShowAsync();
