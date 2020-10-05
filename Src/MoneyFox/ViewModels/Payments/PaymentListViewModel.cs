@@ -103,7 +103,6 @@ namespace MoneyFox.ViewModels.Payments
         {
             try
             {
-                dialogser
                 if(isRunning)
                 {
                     return;

@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.Src
             {
                 StorageFile fromFile = await StorageFileFromRelativePathAsync(from);
 
-                if(overwrite && !await SafeDeleteFile(destination))
+                if(overwrite && !await SafeDeleteFileAsync(destination))
                 {
                     return false;
                 }
@@ -56,7 +56,7 @@ namespace MoneyFox.Uwp.Src
 
         protected override async Task WriteFileCommonAsync(string path, Action<Stream> streamAction)
         {
-            await SafeDeleteFile(path);
+            await SafeDeleteFileAsync(path);
 
             try
             {
@@ -84,7 +84,7 @@ namespace MoneyFox.Uwp.Src
             return storageFile;
         }
 
-        private static async Task<bool> SafeDeleteFile(string path)
+        private static async Task<bool> SafeDeleteFileAsync(string path)
         {
             try
             {
