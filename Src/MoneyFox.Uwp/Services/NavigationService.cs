@@ -50,7 +50,7 @@ namespace MoneyFox.Uwp.Services
 
         public bool IsMainView => CoreApplication.GetCurrentView().IsMain;
 
-        public Frame Frame { get; private set; }
+        public Frame? Frame { get; private set; }
 
         public bool CanGoBack => Frame.CanGoBack;
 
@@ -77,9 +77,9 @@ namespace MoneyFox.Uwp.Services
 
         public void Initialize(object frame) => Frame = (Frame)frame;
 
-        public bool Navigate<TViewModel>(object parameter = null) => Navigate(typeof(TViewModel), parameter);
+        public bool Navigate<TViewModel>(object? parameter = null) => Navigate(typeof(TViewModel), parameter);
 
-        public bool Navigate(Type viewModelType, object parameter = null)
+        public bool Navigate(Type viewModelType, object? parameter = null)
         {
             if(Frame == null)
             {
