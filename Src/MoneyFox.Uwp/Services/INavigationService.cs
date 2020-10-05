@@ -4,8 +4,6 @@ namespace MoneyFox.Uwp.Services
 {
     public interface INavigationService
     {
-        bool IsMainView { get; }
-
         void Initialize(object frame);
 
         bool Navigate<TViewModel>(object parameter = null);

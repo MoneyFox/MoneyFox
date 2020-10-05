@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using Windows.ApplicationModel.Core;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 
@@ -48,17 +47,15 @@ namespace MoneyFox.Uwp.Services
             return type;
         }
 
-        public bool IsMainView => CoreApplication.GetCurrentView().IsMain;
-
         public Frame? Frame { get; private set; }
 
-        public bool CanGoBack => Frame.CanGoBack;
+        public bool CanGoBack => Frame?.CanGoBack ?? false;
 
         public bool GoBack()
         {
             if(CanGoBack)
             {
-                Frame.GoBack();
+                Frame?.GoBack();
                 return true;
             }
 
@@ -67,7 +64,7 @@ namespace MoneyFox.Uwp.Services
 
         public bool GoForward()
         {
-            if(Frame.CanGoForward)
+            if(Frame != null && Frame.CanGoForward)
             {
                 Frame.GoForward();
                 return true;
