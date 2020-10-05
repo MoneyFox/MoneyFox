@@ -70,6 +70,7 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
+    <MtouchLink>None</MtouchLink>
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>8.0</LangVersion>
