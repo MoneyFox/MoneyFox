@@ -34,7 +34,7 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
                                                                             .Categories
                                                                             .OrderBy(x => x.Name);
 
-                var categories = await categoriesQuery.ToListAsync(cancellationToken);
+                List<Category>? categories = await categoriesQuery.ToListAsync(cancellationToken);
 
                 if(!string.IsNullOrEmpty(request.SearchTerm))
                 {

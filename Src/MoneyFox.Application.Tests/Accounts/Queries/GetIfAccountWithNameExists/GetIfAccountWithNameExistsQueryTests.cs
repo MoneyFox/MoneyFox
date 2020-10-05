@@ -32,10 +32,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Theory]
         [InlineData("Foo", true)]

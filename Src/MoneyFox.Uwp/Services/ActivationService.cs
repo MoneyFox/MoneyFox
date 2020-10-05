@@ -1,21 +1,7 @@
 ﻿using Autofac;
 using MoneyFox.Application.Common;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.ViewModels.Statistic;
-using MoneyFox.Ui.Shared.ViewModels.Backup;
-using MoneyFox.Ui.Shared.ViewModels.Settings;
 using MoneyFox.Uwp.Activation;
-using MoneyFox.Uwp.ViewModels;
-using MoneyFox.Uwp.ViewModels.Payments;
-using MoneyFox.Uwp.ViewModels.Settings;
-using MoneyFox.Uwp.ViewModels.Statistic;
-using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
-using MoneyFox.Uwp.Views;
-using MoneyFox.Uwp.Views.Accounts;
-using MoneyFox.Uwp.Views.Payments;
-using MoneyFox.Uwp.Views.Settings;
-using MoneyFox.Uwp.Views.Statistics;
-using MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using System;
@@ -50,7 +36,7 @@ namespace MoneyFox.Uwp.Services
             if(IsInteractive(activationArgs))
             {
                 // Initialize things like registering background task before the app is loaded
-                await InitializeAsync(activationArgs);
+                await InitializeAsync();
 
                 // Do not repeat app initialization when the Window already has content,
                 // just ensure that the window is active
@@ -70,9 +56,12 @@ namespace MoneyFox.Uwp.Services
             await StartupTasksService.StartupAsync();
         }
 
-        private async Task InitializeAsync(object activationArgs)
+        private async Task InitializeAsync()
         {
-            if(ConfigurationManager.AppSettings != null) return;
+            if(ConfigurationManager.AppSettings != null)
+            {
+                return;
+            }
 
             InitConfig();
             ExecutingPlatform.Current = AppPlatform.UWP;
@@ -85,9 +74,9 @@ namespace MoneyFox.Uwp.Services
 
             LoggerService.Initialize();
 
-            ConfigureNavigation();
             RegisterServices();
 
+            NavigationServiceInitializerService.Initialize();
             await JumpListService.InitializeAsync();
             ThemeSelectorService.Initialize();
         }
@@ -96,7 +85,9 @@ namespace MoneyFox.Uwp.Services
         {
             ConfigurationManager.Initialise(PortableStream.Current);
             if(ConfigurationManager.AppSettings == null)
+            {
                 throw new FailedToInitConfiFileException();
+            }
         }
 
         private static void RegisterServices()
@@ -105,22 +96,6 @@ namespace MoneyFox.Uwp.Services
 
             builder.RegisterModule<WindowsModule>();
             ViewModelLocator.RegisterServices(builder);
-        }
-
-        private void ConfigureNavigation()
-        {
-            NavigationService.Register<AccountListViewModel, AccountListView>();
-            NavigationService.Register<PaymentListViewModel, PaymentListView>();
-            NavigationService.Register<AddPaymentViewModel, AddPaymentView>();
-            NavigationService.Register<EditPaymentViewModel, EditPaymentView>();
-            NavigationService.Register<CategoryListViewModel, CategoryListView>();
-            NavigationService.Register<SettingsViewModel, SettingsView>();
-            NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
-            NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
-            NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
-            NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();
-            NavigationService.Register<BackupViewModel, BackupView>();
-            NavigationService.Register<WindowsSettingsViewModel, SettingsView>();
         }
 
         private async Task HandleActivationAsync(object activationArgs)
@@ -141,9 +116,6 @@ namespace MoneyFox.Uwp.Services
             await RateDisplayService.ShowIfAppropriateAsync();
         }
 
-        private bool IsInteractive(object args)
-        {
-            return args is IActivatedEventArgs;
-        }
+        private static bool IsInteractive(object args) => args is IActivatedEventArgs;
     }
 }

@@ -33,10 +33,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task CorrectPaymentsSelected()
@@ -54,7 +51,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
+            System.Collections.Generic.List<Payment> result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
                 new GetPaymentsForCategoryQuery(
                     category.Id,
                     DateTime.Now.AddDays(-1),
@@ -80,7 +77,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
             await context.SaveChangesAsync();
 
             // Act
-            var result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
+            System.Collections.Generic.List<Payment> result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
                 new GetPaymentsForCategoryQuery(
                     0,
                     DateTime.Now.AddDays(-1),

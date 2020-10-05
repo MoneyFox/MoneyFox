@@ -11,9 +11,6 @@ namespace MoneyFox.Uwp.Views
             InitializeComponent();
         }
 
-        private async void AddNewCategoryClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-        {
-            await new AddCategoryDialog().ShowAsync();
-        }
+        private async void AddNewCategoryClick(object sender, Windows.UI.Xaml.RoutedEventArgs e) => await new AddCategoryDialog().ShowAsync();
     }
 }

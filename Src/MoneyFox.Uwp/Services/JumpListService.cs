@@ -19,7 +19,9 @@ namespace MoneyFox.Uwp.Services
         public static async Task InitializeAsync()
         {
             if(!ApiInformation.IsTypePresent("Windows.UI.StartScreen.JumpList"))
+            {
                 return;
+            }
 
             try
             {

@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Common.FileStore
 {
     public abstract class FileStoreBase : IFileStore
     {
-        public void WriteFile(string path, IEnumerable<byte> contents)
+        public async Task WriteFileAsync(string path, IEnumerable<byte> contents)
         {
-            WriteFileCommon(path,
+            await WriteFileCommonAsync(path,
                             stream =>
                             {
                                 using(var binaryWriter = new BinaryWriter(stream))
@@ -20,10 +21,10 @@ namespace MoneyFox.Application.Common.FileStore
                             });
         }
 
-        public abstract Stream OpenRead(string path);
+        public abstract Task<Stream> OpenReadAsync(string path);
 
-        public abstract bool TryMove(string from, string destination, bool overwrite);
+        public abstract Task<bool> TryMoveAsync(string from, string destination, bool overwrite);
 
-        protected abstract void WriteFileCommon(string path, Action<Stream> streamAction);
+        protected abstract Task WriteFileCommonAsync(string path, Action<Stream> streamAction);
     }
 }

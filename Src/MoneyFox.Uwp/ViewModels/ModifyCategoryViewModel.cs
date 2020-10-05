@@ -3,14 +3,15 @@ using GalaSoft.MvvmLight;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>
@@ -21,7 +22,7 @@ namespace MoneyFox.Uwp.ViewModels
         private readonly IMediator mediator;
         private readonly IMapper mapper;
 
-        private CategoryViewModel selectedCategory;
+        private CategoryViewModel selectedCategory = new CategoryViewModel();
         private string title = "";
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// The currently selected CategoryViewModel
         /// </summary>
-        public CategoryViewModel? SelectedCategory
+        public CategoryViewModel SelectedCategory
         {
             get => selectedCategory;
             set
@@ -78,7 +79,10 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 if(title == value)
+                {
                     return;
+                }
+
                 title = value;
                 RaisePropertyChanged();
             }
@@ -100,9 +104,6 @@ namespace MoneyFox.Uwp.ViewModels
             await DialogService.HideLoadingDialogAsync();
         }
 
-        private async Task CancelAsync()
-        {
-            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
-        }
+        private async Task CancelAsync() => SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
     }
 }

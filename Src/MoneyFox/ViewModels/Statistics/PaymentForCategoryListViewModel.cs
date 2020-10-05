@@ -17,7 +17,7 @@ namespace MoneyFox.ViewModels.Statistics
 {
     public class PaymentForCategoryListViewModel : ViewModelBase
     {
-        private static ILogger logger = LogManager.GetCurrentClassLogger();
+        private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
         private PaymentsForCategoryMessage? receivedMessage;
 
@@ -62,7 +62,7 @@ namespace MoneyFox.ViewModels.Statistics
 
             logger.Info($"Loading payments for category with id {receivedMessage.CategoryId}");
 
-            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(
+            List<PaymentViewModel>? loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(
                 new GetPaymentsForCategoryQuery(receivedMessage.CategoryId, receivedMessage.StartDate, receivedMessage.EndDate)));
 
             List<DateListGroupCollection<PaymentViewModel>> dailyItems

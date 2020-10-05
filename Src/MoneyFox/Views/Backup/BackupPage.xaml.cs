@@ -4,7 +4,7 @@ namespace MoneyFox.Views.Backup
 {
     public partial class BackupPage
     {
-        public BackupViewModel ViewModel => (BackupViewModel) BindingContext;
+        public BackupViewModel ViewModel => (BackupViewModel)BindingContext;
 
         public BackupPage()
         {

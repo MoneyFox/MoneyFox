@@ -26,7 +26,7 @@ namespace MoneyFox
 
         public App()
         {
-            Xamarin.Forms.Device.SetFlags(new [] {
+            Xamarin.Forms.Device.SetFlags(new[] {
                 "AppTheme_Experimental",
                 "SwipeView_Experimental"
             });
@@ -48,7 +48,9 @@ namespace MoneyFox
 
             if(!settingsFacade.IsSetupCompleted)
             {
+#pragma warning disable S4462 // Calls to "async" methods should not be blocking
                 Shell.Current.GoToAsync(ViewModelLocator.WelcomeViewRoute).Wait();
+#pragma warning restore S4462 // Calls to "async" methods should not be blocking
             }
         }
 
@@ -69,8 +71,8 @@ namespace MoneyFox
         {
             if(ConfigurationManager.AppSettings != null)
             {
-                var iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
-                var androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
+                string? iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
+                string? androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
 
                 AppCenter.Start($"android={androidAppCenterSecret};" +
                                 $"ios={iosAppCenterSecret}",
@@ -93,7 +95,7 @@ namespace MoneyFox
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
-            var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+            IMediator? mediator = ServiceLocator.Current.GetInstance<IMediator>();
             if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
             {
                 await mediator.Send(new ClearPaymentsCommand());
@@ -103,7 +105,7 @@ namespace MoneyFox
 
             try
             {
-                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                IBackupService? backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
                 await mediator.Send(new ClearPaymentsCommand());

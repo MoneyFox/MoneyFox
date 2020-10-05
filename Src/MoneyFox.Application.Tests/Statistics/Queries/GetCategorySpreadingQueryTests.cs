@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -38,10 +37,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetValues_CorrectSums()
@@ -65,12 +61,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result =
+            var result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                                                                                              {
-                                                                                                  StartDate = DateTime.Today.AddDays(-3),
-                                                                                                  EndDate = DateTime.Today.AddDays(3)
-                                                                                              },
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                },
                                                                                               default))
                .ToList();
 
@@ -101,12 +97,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result =
+            var result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                                                                                              {
-                                                                                                  StartDate = DateTime.Today.AddDays(-3),
-                                                                                                  EndDate = DateTime.Today.AddDays(3)
-                                                                                              },
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                },
                                                                                               default))
                .ToList();
 
@@ -132,12 +128,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result =
+            var result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                                                                                              {
-                                                                                                  StartDate = DateTime.Today.AddDays(-3),
-                                                                                                  EndDate = DateTime.Today.AddDays(3)
-                                                                                              },
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                },
                                                                                               default))
                .ToList();
 
@@ -166,12 +162,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result =
+            var result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                                                                                              {
-                                                                                                  StartDate = DateTime.Today.AddDays(-3),
-                                                                                                  EndDate = DateTime.Today.AddDays(3)
-                                                                                              },
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                },
                                                                                               default))
                .ToList();
 
@@ -206,12 +202,12 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result =
+            var result =
                 (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                                                                                              {
-                                                                                                  StartDate = DateTime.Today.AddDays(-3),
-                                                                                                  EndDate = DateTime.Today.AddDays(3)
-                                                                                              },
+                {
+                    StartDate = DateTime.Today.AddDays(-3),
+                    EndDate = DateTime.Today.AddDays(3)
+                },
                                                                                               default))
                .ToList();
 

@@ -39,7 +39,7 @@ namespace MoneyFox.Application
         {
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
 
-            var mediatrOpenTypes = new[]
+            Type[]? mediatrOpenTypes = new[]
             {
                 typeof(IRequestHandler<,>),
                 typeof(IRequestExceptionHandler<,,>),
@@ -47,7 +47,7 @@ namespace MoneyFox.Application
                 typeof(INotificationHandler<>),
             };
 
-            foreach(var mediatrOpenType in mediatrOpenTypes)
+            foreach(Type? mediatrOpenType in mediatrOpenTypes)
             {
                 builder
                     .RegisterAssemblyTypes(ThisAssembly)
@@ -68,7 +68,7 @@ namespace MoneyFox.Application
 
             builder.Register<ServiceFactory>(ctx =>
             {
-                var c = ctx.Resolve<IComponentContext>();
+                IComponentContext? c = ctx.Resolve<IComponentContext>();
                 return t => c.Resolve(t);
             });
         }

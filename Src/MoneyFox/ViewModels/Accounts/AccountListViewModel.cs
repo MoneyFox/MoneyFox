@@ -35,20 +35,28 @@ namespace MoneyFox.ViewModels.Accounts
             this.mediator = mediator;
             this.mapper = mapper;
             this.dialogService = dialogService;
-
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync());
         }
+
+        public void Subscribe()
+            => MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync());
+
+        public void Unsubscribe()
+            => MessengerInstance.Unregister<ReloadMessage>(this);
 
         public async Task OnAppearingAsync()
         {
             try
             {
-                if(isRunning) return;
+                if(isRunning)
+                {
+                    return;
+                }
+
                 isRunning = true;
 
                 Accounts.Clear();
 
-                var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+                List<AccountViewModel>? accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
                 accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);

@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 using Autofac;
-using MoneyFox.Common;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Droid.Src;
 using NLog;
 using NLog.Config;
@@ -10,12 +10,13 @@ using System;
 using System.IO;
 using Xamarin.Essentials;
 
+#nullable enable
 namespace MoneyFox.Droid
 {
     [Application]
     public class MainApplication : Android.App.Application
     {
-        private Logger logManager;
+        private Logger? logManager;
 
         public MainApplication(IntPtr handle, JniHandleOwnership transer) : base(handle, transer)
         {
@@ -25,8 +26,8 @@ namespace MoneyFox.Droid
         {
             InitLogger();
 
-            logManager.Info("Application Started.");
-            logManager.Info("App Version: {Version}", new DroidAppInformation().GetVersion);
+            logManager?.Info("Application Started.");
+            logManager?.Info("App Version: {Version}", new DroidAppInformation().GetVersion);
 
             // Setup handler for uncaught exceptions.
             AndroidEnvironment.UnhandledExceptionRaiser += HandleAndroidException;
@@ -36,25 +37,23 @@ namespace MoneyFox.Droid
         }
 
         private void HandleAndroidException(object sender, RaiseThrowableEventArgs e)
-        {
-            logManager.Fatal(e.Exception, "Application Terminating. 1");
-        }
+            => logManager?.Fatal(e.Exception, "Application Terminating. 1");
 
         private void RegisterServices()
         {
-            logManager.Debug("Register Services.");
+            logManager?.Debug("Register Services.");
 
             var builder = new ContainerBuilder();
             builder.RegisterModule<AndroidModule>();
 
             ViewModelLocator.RegisterServices(builder);
 
-            logManager.Debug("Register Services finished.");
+            logManager?.Debug("Register Services finished.");
         }
 
         public override void OnTerminate()
         {
-            logManager.Info("Application Terminating.");
+            logManager?.Info("Application Terminating.");
             LogManager.Shutdown();
             base.OnTerminate();
         }

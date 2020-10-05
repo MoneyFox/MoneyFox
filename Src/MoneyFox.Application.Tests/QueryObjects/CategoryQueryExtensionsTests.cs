@@ -22,7 +22,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             };
 
             // Act
-            List<Category> resultList = categoryQueryList.WhereNameContains("Foo").ToList();
+            var resultList = categoryQueryList.WhereNameContains("Foo").ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -42,7 +42,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            List<Category> resultList = categoryQueryList.OrderByName().ToList();
+            var resultList = categoryQueryList.OrderByName().ToList();
 
             // Assert
             Assert.Equal(3, resultList.Count);

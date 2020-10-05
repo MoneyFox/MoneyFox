@@ -14,24 +14,12 @@ namespace MoneyFox.Application.Common.CurrencyConversion
             apiKey = tokenObject.CurrencyConverterApi;
         }
 
-        public double Convert(double amount, string from, string to)
-        {
-            return RequestHelper.ExchangeRate(from, to, apiKey) * amount;
-        }
+        public double Convert(double amount, string from, string to) => RequestHelper.ExchangeRate(from, to, apiKey) * amount;
 
-        public async Task<double> ConvertAsync(double amount, string from, string to)
-        {
-            return await Task.Run(() => Convert(amount, from, to));
-        }
+        public async Task<double> ConvertAsync(double amount, string from, string to) => await Task.Run(() => Convert(amount, from, to));
 
-        public List<Currency> GetAllCurrencies()
-        {
-            return RequestHelper.GetAllCurrencies(apiKey).OrderBy(x => x.CurrencyName).ToList();
-        }
+        public List<Currency> GetAllCurrencies() => RequestHelper.GetAllCurrencies(apiKey).OrderBy(x => x.CurrencyName).ToList();
 
-        public async Task<List<Currency>> GetAllCurrenciesAsync()
-        {
-            return await Task.Run(() => GetAllCurrencies());
-        }
+        public async Task<List<Currency>> GetAllCurrenciesAsync() => await Task.Run(() => GetAllCurrencies());
     }
 }

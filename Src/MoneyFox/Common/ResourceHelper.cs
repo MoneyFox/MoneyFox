@@ -4,26 +4,18 @@ namespace MoneyFox.Common
 {
     public static class ResourceHelper
     {
-        public static Color GetCurrentTextColor()
+        public static Color CurrentBackgroundColor
         {
-            if(App.Current.UserAppTheme == OSAppTheme.Dark)
+            get
             {
-                App.Current.Resources.TryGetValue("TextPrimaryColor_Dark", out var darkTextColor);
-                return (Color)darkTextColor;
+                if(App.Current.UserAppTheme == OSAppTheme.Dark)
+                {
+                    App.Current.Resources.TryGetValue("BackgroundColorDark", out object? darkBackgroundColor);
+                    return (Color)darkBackgroundColor;
+                }
+                App.Current.Resources.TryGetValue("BackgroundColorLight", out object? lightBackgroundColor);
+                return (Color)lightBackgroundColor;
             }
-            App.Current.Resources.TryGetValue("TextPrimaryColor_Light", out var lightTextColor);
-            return (Color)lightTextColor;
-        }
-
-        public static Color GetCurrentBackgroundColor()
-        {
-            if(App.Current.UserAppTheme == OSAppTheme.Dark)
-            {
-                App.Current.Resources.TryGetValue("BackgroundColorDark", out var darkBackgroundColor);
-                return (Color)darkBackgroundColor;
-            }
-            App.Current.Resources.TryGetValue("BackgroundColorLight", out var lightBackgroundColor);
-            return (Color)lightBackgroundColor;
         }
     }
 }

@@ -5,7 +5,7 @@ namespace MoneyFox.Views.Dashboard
 {
     public partial class DashboardPage : ContentPage
     {
-        private DashboardViewModel ViewModel => (DashboardViewModel) BindingContext;
+        private DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
 
         public DashboardPage()
         {
@@ -13,6 +13,15 @@ namespace MoneyFox.Views.Dashboard
             BindingContext = ViewModelLocator.DashboardViewModel;
         }
 
-        protected override async void OnAppearing() => await ViewModel.InitializeAsync();
+        protected override async void OnAppearing()
+        {
+            ViewModel.Subscribe();
+            await ViewModel.InitializeAsync();
+        }
+
+        protected override void OnDisappearing()
+        {
+            ViewModel.Unsubscribe();
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace MoneyFox.Views.Accounts
 {
     public partial class AccountListPage : ContentPage
     {
-        private AccountListViewModel ViewModel => (AccountListViewModel) BindingContext;
+        private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
 
         public AccountListPage()
         {
@@ -13,6 +13,13 @@ namespace MoneyFox.Views.Accounts
             BindingContext = ViewModelLocator.AccountListViewModel;
         }
 
-        protected override async void OnAppearing() => await ViewModel.OnAppearingAsync();
+        protected override async void OnAppearing()
+        {
+            ViewModel.Subscribe();
+            await ViewModel.OnAppearingAsync();
+        }
+
+        protected override void OnDisappearing()
+            => ViewModel.Unsubscribe();
     }
 }

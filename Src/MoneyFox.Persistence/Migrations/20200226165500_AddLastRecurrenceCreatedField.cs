@@ -23,11 +23,11 @@ namespace MoneyFox.Persistence.Migrations
 
             migrationBuilder.CreateTable(name: "Tags",
                                          columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
+                                         {
+                                             Id = table.Column<int>(nullable: false)
                               .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: true)
-                },
+                                             Name = table.Column<string>(nullable: true)
+                                         },
                                          constraints: table =>
                                                       {
                                                           table.PrimaryKey("PK_Tags", x => x.Id);
@@ -35,10 +35,10 @@ namespace MoneyFox.Persistence.Migrations
 
             migrationBuilder.CreateTable(name: "PaymentTag",
                                          columns: table => new
-                {
-                    PaymentId = table.Column<int>(nullable: false),
-                    TagId = table.Column<int>(nullable: false)
-                },
+                                         {
+                                             PaymentId = table.Column<int>(nullable: false),
+                                             TagId = table.Column<int>(nullable: false)
+                                         },
                                          constraints: table =>
                                                       {
                                                           table.PrimaryKey("PK_PaymentTag", x => new { x.PaymentId, x.TagId });

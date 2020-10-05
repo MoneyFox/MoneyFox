@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.Services
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
-            var mediator = ServiceLocator.Current.GetInstance<IMediator>();
+            IMediator mediator = ServiceLocator.Current.GetInstance<IMediator>();
             if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
             {
                 await mediator.Send(new ClearPaymentsCommand());
@@ -29,7 +29,7 @@ namespace MoneyFox.Uwp.Services
 
             try
             {
-                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                IBackupService backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
                 await mediator.Send(new ClearPaymentsCommand());

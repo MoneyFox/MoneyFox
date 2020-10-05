@@ -28,6 +28,8 @@ namespace MoneyFox.ViewModels.Payments
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
         private PaymentListFilterChangedMessage lastMessage = new PaymentListFilterChangedMessage();
 
+        private bool isRunning;
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
 
@@ -35,13 +37,6 @@ namespace MoneyFox.ViewModels.Payments
         {
             this.mediator = mediator;
             this.mapper = mapper;
-
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync(SelectedAccount.Id));
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message =>
-            {
-                lastMessage = message;
-                await LoadPaymentsByMessageAsync();
-            });
         }
 
         public AccountViewModel SelectedAccount
@@ -57,7 +52,7 @@ namespace MoneyFox.ViewModels.Payments
         public ObservableCollection<DateListGroupCollection<PaymentViewModel>> Payments
         {
             get => payments;
-            set
+            private set
             {
                 payments = value;
                 RaisePropertyChanged();
@@ -81,31 +76,62 @@ namespace MoneyFox.ViewModels.Payments
             PaymentRecurrence.Yearly
         };
 
+        public void Subscribe()
+        {
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync(SelectedAccount.Id));
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message =>
+            {
+                lastMessage = message;
+                await LoadPaymentsByMessageAsync();
+            });
+        }
+
+        public void Unsubscribe()
+        {
+            MessengerInstance.Unregister<ReloadMessage>(this);
+            MessengerInstance.Unregister<PaymentListFilterChangedMessage>(this);
+        }
+
         public async Task OnAppearingAsync(int accountId)
         {
             SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
             await LoadPaymentsByMessageAsync();
+
         }
 
         private async Task LoadPaymentsByMessageAsync()
         {
-            var paymentVms = mapper.Map<List<PaymentViewModel>>(
+            try
+            {
+                if(isRunning)
+                {
+                    return;
+                }
+
+                isRunning = true;
+
+                List<PaymentViewModel>? paymentVms = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id,
                                                                      lastMessage.TimeRangeStart,
                                                                      lastMessage.TimeRangeEnd,
                                                                      lastMessage.IsClearedFilterActive,
                                                                      lastMessage.IsRecurringFilterActive)));
 
-            paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
+                paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
 
-            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-               .CreateGroups(paymentVms,
-                             s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                             s => s.Date);
+                List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
+                   .CreateGroups(paymentVms,
+                                 s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                 s => s.Date);
 
-            dailyItems.ForEach(CalculateSubBalances);
+                dailyItems.ForEach(CalculateSubBalances);
 
-            Payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+                Payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+            }
+            finally
+            {
+                isRunning = false;
+            }
         }
 
         private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group)
@@ -128,6 +154,6 @@ namespace MoneyFox.ViewModels.Payments
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
             => new RelayCommand<PaymentViewModel>(async (paymentViewModel)
-                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent}));
+                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
     }
 }

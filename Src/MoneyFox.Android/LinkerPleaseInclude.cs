@@ -37,28 +37,19 @@ namespace MoneyFox.Droid
         /// Includes the specified button.
         /// </summary>
         /// <param name="button">The button.</param>
-        public void Include(Button button)
-        {
-            button.Click += (s, e) => button.Text = button.Text + string.Empty;
-        }
+        public void Include(Button button) => button.Click += (s, e) => button.Text = button.Text + string.Empty;
 
         /// <summary>
         /// Includes the specified check box.
         /// </summary>
         /// <param name="checkBox">The check box.</param>
-        public void Include(CheckBox checkBox)
-        {
-            checkBox.CheckedChange += (sender, args) => checkBox.Checked = !checkBox.Checked;
-        }
+        public void Include(CheckBox checkBox) => checkBox.CheckedChange += (sender, args) => checkBox.Checked = !checkBox.Checked;
 
         /// <summary>
         /// Includes the specified view.
         /// </summary>
         /// <param name="view">The view.</param>
-        public void Include(View view)
-        {
-            view.Click += (s, e) => view.ContentDescription = view.ContentDescription + string.Empty;
-        }
+        public void Include(View view) => view.Click += (s, e) => view.ContentDescription = view.ContentDescription + string.Empty;
 
         /// <summary>
         /// Includes the specified textView.
@@ -75,19 +66,13 @@ namespace MoneyFox.Droid
         /// Includes the specified compoundButton.
         /// </summary>
         /// <param name="compoundButton">The compoundButton.</param>
-        public void Include(CompoundButton compoundButton)
-        {
-            compoundButton.CheckedChange += (sender, args) => compoundButton.Checked = !compoundButton.Checked;
-        }
+        public void Include(CompoundButton compoundButton) => compoundButton.CheckedChange += (sender, args) => compoundButton.Checked = !compoundButton.Checked;
 
         /// <summary>
         /// Includes the specified seekBar.
         /// </summary>
         /// <param name="seekBar">The seekBar.</param>
-        public void Include(SeekBar seekBar)
-        {
-            seekBar.ProgressChanged += (sender, args) => seekBar.Progress = seekBar.Progress + 1;
-        }
+        public void Include(SeekBar seekBar) => seekBar.ProgressChanged += (sender, args) => seekBar.Progress = seekBar.Progress + 1;
 
         /// <summary>
         /// Includes the specified changed.
@@ -102,10 +87,7 @@ namespace MoneyFox.Droid
                 };
         }
 
-        public void Include(LinearLayout layout)
-        {
-            layout.Click += (s, e) => layout.Visibility = layout.Visibility - 1;
-        }
+        public void Include(LinearLayout layout) => layout.Click += (s, e) => layout.Visibility = layout.Visibility - 1;
 
         /// <summary>
         /// Includes the specified command.
@@ -116,7 +98,9 @@ namespace MoneyFox.Droid
             command.CanExecuteChanged += (s, e) =>
                                          {
                                              if(command.CanExecute(null))
+                                             {
                                                  command.Execute(null);
+                                             }
                                          };
         }
     }
