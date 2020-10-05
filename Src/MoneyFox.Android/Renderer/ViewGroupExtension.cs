@@ -18,16 +18,15 @@ namespace MoneyFox.Droid.Renderer
                     continue;
                 }
 
-                var typedChild = child as T;
 
-                if(typedChild != null)
+                if(child is T typedChild)
                 {
                     yield return typedChild;
                 }
 
-                if(child is AViewGroup)
+                if(child is AViewGroup childAsViewGroup)
                 {
-                    IEnumerable<T> myChildren = ((AViewGroup)child).GetChildrenOfType<T>();
+                    IEnumerable<T> myChildren = childAsViewGroup.GetChildrenOfType<T>();
                     foreach(T nextChild in myChildren)
                     {
                         yield return nextChild;

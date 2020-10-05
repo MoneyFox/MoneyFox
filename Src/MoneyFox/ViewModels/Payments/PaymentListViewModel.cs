@@ -28,6 +28,8 @@ namespace MoneyFox.ViewModels.Payments
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
         private PaymentListFilterChangedMessage lastMessage = new PaymentListFilterChangedMessage();
 
+        private bool isRunning;
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
 
@@ -94,27 +96,43 @@ namespace MoneyFox.ViewModels.Payments
         {
             SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
             await LoadPaymentsByMessageAsync();
+
         }
 
         private async Task LoadPaymentsByMessageAsync()
         {
-            List<PaymentViewModel>? paymentVms = mapper.Map<List<PaymentViewModel>>(
+            try
+            {
+                dialogser
+                if(isRunning)
+                {
+                    return;
+                }
+
+                isRunning = true;
+
+                List<PaymentViewModel>? paymentVms = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id,
                                                                      lastMessage.TimeRangeStart,
                                                                      lastMessage.TimeRangeEnd,
                                                                      lastMessage.IsClearedFilterActive,
                                                                      lastMessage.IsRecurringFilterActive)));
 
-            paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
+                paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
 
-            List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-               .CreateGroups(paymentVms,
-                             s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                             s => s.Date);
+                List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
+                   .CreateGroups(paymentVms,
+                                 s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                 s => s.Date);
 
-            dailyItems.ForEach(CalculateSubBalances);
+                dailyItems.ForEach(CalculateSubBalances);
 
-            Payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+                Payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
+            }
+            finally
+            {
+                isRunning = false;
+            }
         }
 
         private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group)
