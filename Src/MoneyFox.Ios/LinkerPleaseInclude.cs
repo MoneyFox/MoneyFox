@@ -3,6 +3,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Input;
 using UIKit;
+using Xamarin.Forms;
 
 // ReSharper disable UnusedVariable
 #pragma warning disable CA1822 // Mark members as static
@@ -61,6 +62,8 @@ namespace MoneyFox.iOS
                                      date.Date = NSDate.DistantFuture;
                                  };
         }
+
+        public void Include(Picker picker) => picker.ItemDisplayBinding = new Binding();
 
         public void Include(UISlider slider)
         {
