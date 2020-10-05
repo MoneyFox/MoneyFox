@@ -38,10 +38,10 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async (m) => await ReloadMessageSent());
+            => MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync());
 
         public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this, async (m) => await ReloadMessageSent());
+            => MessengerInstance.Unregister<ReloadMessage>(this);
 
         public async Task OnAppearingAsync()
         {
@@ -105,8 +105,6 @@ namespace MoneyFox.ViewModels.Accounts
         public RelayCommand<AccountViewModel> DeleteAccountCommand
             => new RelayCommand<AccountViewModel>(async (accountViewModel)
                 => await DeleteAccountAsync(accountViewModel));
-
-        private async Task ReloadMessageSent() => await OnAppearingAsync();
 
         private async Task DeleteAccountAsync(AccountViewModel accountViewModel)
         {
