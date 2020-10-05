@@ -35,13 +35,6 @@ namespace MoneyFox.ViewModels.Payments
         {
             this.mediator = mediator;
             this.mapper = mapper;
-
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync(SelectedAccount.Id));
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message =>
-            {
-                lastMessage = message;
-                await LoadPaymentsByMessageAsync();
-            });
         }
 
         public AccountViewModel SelectedAccount
@@ -57,7 +50,7 @@ namespace MoneyFox.ViewModels.Payments
         public ObservableCollection<DateListGroupCollection<PaymentViewModel>> Payments
         {
             get => payments;
-            set
+            private set
             {
                 payments = value;
                 RaisePropertyChanged();
@@ -80,6 +73,22 @@ namespace MoneyFox.ViewModels.Payments
             PaymentRecurrence.Biannually,
             PaymentRecurrence.Yearly
         };
+
+        public void Subscribe()
+        {
+            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync(SelectedAccount.Id));
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message =>
+            {
+                lastMessage = message;
+                await LoadPaymentsByMessageAsync();
+            });
+        }
+
+        public void Unsubscribe()
+        {
+            MessengerInstance.Unregister<ReloadMessage>(this);
+            MessengerInstance.Unregister<PaymentListFilterChangedMessage>(this);
+        }
 
         public async Task OnAppearingAsync(int accountId)
         {

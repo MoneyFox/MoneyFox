@@ -21,6 +21,15 @@ namespace MoneyFox.Views.Payments
             BindingContext = ViewModelLocator.PaymentListViewModel;
         }
 
-        protected override async void OnAppearing() => await ViewModel.OnAppearingAsync(accountId);
+        protected override async void OnAppearing()
+        {
+            ViewModel.Subscribe();
+            await ViewModel.OnAppearingAsync(accountId);
+        }
+
+        protected override void OnDisappearing()
+        {
+            ViewModel.Unsubscribe();
+        }
     }
 }
