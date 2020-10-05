@@ -10,11 +10,10 @@ namespace MoneyFox.Domain.Entities
         //used by EF Core
         private Category() { }
 
-        public Category(string name, string note = "")
+        public Category(string name, string note = "", bool requireNote = false)
         {
             CreationTime = DateTime.Now;
-
-            UpdateData(name, note);
+            UpdateData(name, note, requireNote);
         }
 
         [Key]
@@ -25,13 +24,15 @@ namespace MoneyFox.Domain.Entities
 
         public string? Note { get;set; }
 
+        public bool RequireNote { get; set; }
+
         public DateTime ModificationDate { get; private set; }
 
         public DateTime CreationTime { get; private set; }
 
         public List<Payment> Payments { get; private set; } = new List<Payment>();
 
-        public void UpdateData(string name, string note = "")
+        public void UpdateData(string name, string note = "", bool requireNote = false)
         {
             if(string.IsNullOrWhiteSpace(name))
             {
@@ -40,6 +41,7 @@ namespace MoneyFox.Domain.Entities
 
             Name = name;
             Note = note;
+            RequireNote = requireNote;
             ModificationDate = DateTime.Now;
         }
     }
