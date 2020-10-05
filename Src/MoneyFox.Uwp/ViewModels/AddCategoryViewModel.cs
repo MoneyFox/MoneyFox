@@ -40,6 +40,11 @@ namespace MoneyFox.Uwp.ViewModels
                 await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
+            if (string.IsNullOrEmpty(SelectedCategory.Note))
+            {
+                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NoteRequiredMessage);
+                return;
+            }
 
             await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note));
         }
