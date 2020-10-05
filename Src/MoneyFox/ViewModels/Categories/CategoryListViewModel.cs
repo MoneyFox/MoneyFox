@@ -36,7 +36,7 @@ namespace MoneyFox.ViewModels.Categories
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> Categories
         {
             get => categories;
-            set
+            private set
             {
                 categories = value;
                 RaisePropertyChanged();
@@ -47,7 +47,7 @@ namespace MoneyFox.ViewModels.Categories
 
         public RelayCommand<string> SearchCategoryCommand => new RelayCommand<string>(async (searchTerm) => await SearchCategoryAsync(searchTerm));
 
-        private string searchTerm;
+        private string searchTerm = string.Empty;
         public string SearchTerm
         {
             get => searchTerm;

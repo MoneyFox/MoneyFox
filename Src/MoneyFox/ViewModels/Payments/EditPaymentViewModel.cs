@@ -35,7 +35,7 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         public RelayCommand<PaymentViewModel> DeleteCommand
-            => new RelayCommand<PaymentViewModel>(async (p) => await DeletePayment(p));
+            => new RelayCommand<PaymentViewModel>(async (p) => await DeletePaymentAsync(p));
 
         protected override async Task SavePaymentAsync()
         {
@@ -72,7 +72,7 @@ namespace MoneyFox.ViewModels.Payments
             await mediator.Send(command);
         }
 
-        private async Task DeletePayment(PaymentViewModel payment)
+        private async Task DeletePaymentAsync(PaymentViewModel payment)
         {
             if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
             {
