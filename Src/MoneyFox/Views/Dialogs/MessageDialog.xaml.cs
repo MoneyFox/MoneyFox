@@ -17,14 +17,12 @@ namespace MoneyFox.Views.Dialogs
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
             nameof(PopupTitle),
             typeof(string),
-            typeof(MessageDialog),
-            default(string));
+            typeof(MessageDialog));
 
         public static readonly BindableProperty PopupMessageProperty = BindableProperty.Create(
             nameof(PopupMessage),
             typeof(string),
-            typeof(MessageDialog),
-            default(string));
+            typeof(MessageDialog));
 
         public string PopupTitle
         {

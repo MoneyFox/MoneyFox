@@ -13,7 +13,7 @@ namespace MoneyFox.Views.Statistics
 
             var doneItem = new ToolbarItem
             {
-                Command = new Command(async () => await Close()),
+                Command = new Command(async () => await CloseAsync()),
                 Text = Strings.DoneLabel,
                 Priority = 1,
                 Order = ToolbarItemOrder.Primary
@@ -22,6 +22,6 @@ namespace MoneyFox.Views.Statistics
             ToolbarItems.Add(doneItem);
         }
 
-        private async Task Close() => await Navigation.PopModalAsync();
+        private async Task CloseAsync() => await Navigation.PopModalAsync();
     }
 }
