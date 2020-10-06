@@ -24,6 +24,12 @@ steps:
   inputs:
     version: 3.1.101
 
+- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0 
+  displayName: 'Select the Xamarin SDK version 6.12.0'
+      
+- script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_12.2.app;sudo xcode-select --switch /Applications/Xcode_12.2.app/Contents/Developer
+  displayName: 'Updating xcode version'
+
 - bash: |
    # Write your commands here
    
