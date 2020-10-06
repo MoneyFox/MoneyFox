@@ -43,16 +43,13 @@ steps:
    echo $BUILD_BUILDNUMBER
    
    VERSION=$Major.$Minor.$BUILD_BUILDID
-   SHORT_VERSION=$Major.$Minor.$BUILD_BUILDNUMBER
-
    echo $VERSION
-   echo $SHORT_VERSION
 
    INFO_PLIST_FILE=$BUILD_REPOSITORY_LOCALPATH/Src/MoneyFox.Ios/Info.plist
    echo $INFO_PLIST_FILE
    
    echo "Updating version name to $VERSION_NAME in Info.plist"
-   plutil -replace CFBundleShortVersionString -string $SHORT_VERSION $INFO_PLIST_FILE
+   plutil -replace CFBundleShortVersionString -string $VERSION $INFO_PLIST_FILE
    plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
   displayName: 'Bash Script'
   env:
