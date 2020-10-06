@@ -15,16 +15,16 @@ namespace MoneyFox.Persistence.Migrations
         {
             migrationBuilder.CreateTable("Accounts",
                                          table => new
-                                                  {
-                                                      Id = table.Column<int>()
+                                         {
+                                             Id = table.Column<int>()
                                                                 .Annotation("Sqlite:Autoincrement", true),
-                                                      CurrentBalance = table.Column<double>(),
-                                                      Iban = table.Column<string>(nullable: true),
-                                                      IsExcluded = table.Column<bool>(),
-                                                      IsOverdrawn = table.Column<bool>(),
-                                                      Name = table.Column<string>(),
-                                                      Note = table.Column<string>(nullable: true)
-                                                  },
+                                             CurrentBalance = table.Column<double>(),
+                                             Iban = table.Column<string>(nullable: true),
+                                             IsExcluded = table.Column<bool>(),
+                                             IsOverdrawn = table.Column<bool>(),
+                                             Name = table.Column<string>(),
+                                             Note = table.Column<string>(nullable: true)
+                                         },
                                          constraints: table =>
                                                       {
                                                           table.PrimaryKey("PK_Accounts", x => x.Id);
@@ -32,12 +32,12 @@ namespace MoneyFox.Persistence.Migrations
 
             migrationBuilder.CreateTable("Categories",
                                          table => new
-                                                  {
-                                                      Id = table.Column<int>()
+                                         {
+                                             Id = table.Column<int>()
                                                                 .Annotation("Sqlite:Autoincrement", true),
-                                                      Name = table.Column<string>(),
-                                                      Note = table.Column<string>(nullable: true)
-                                                  },
+                                             Name = table.Column<string>(),
+                                             Note = table.Column<string>(nullable: true)
+                                         },
                                          constraints: table =>
                                                       {
                                                           table.PrimaryKey("PK_Categories", x => x.Id);
@@ -45,20 +45,20 @@ namespace MoneyFox.Persistence.Migrations
 
             migrationBuilder.CreateTable("RecurringPayments",
                                          table => new
-                                                  {
-                                                      Id = table.Column<int>()
+                                         {
+                                             Id = table.Column<int>()
                                                                 .Annotation("Sqlite:Autoincrement", true),
-                                                      Amount = table.Column<double>(),
-                                                      CategoryId = table.Column<int>(nullable: true),
-                                                      ChargedAccountId = table.Column<int>(),
-                                                      EndDate = table.Column<DateTime>(nullable: true),
-                                                      IsEndless = table.Column<bool>(),
-                                                      Note = table.Column<string>(nullable: true),
-                                                      Recurrence = table.Column<int>(),
-                                                      StartDate = table.Column<DateTime>(),
-                                                      TargetAccountId = table.Column<int>(nullable: true),
-                                                      Type = table.Column<int>()
-                                                  },
+                                             Amount = table.Column<double>(),
+                                             CategoryId = table.Column<int>(nullable: true),
+                                             ChargedAccountId = table.Column<int>(),
+                                             EndDate = table.Column<DateTime>(nullable: true),
+                                             IsEndless = table.Column<bool>(),
+                                             Note = table.Column<string>(nullable: true),
+                                             Recurrence = table.Column<int>(),
+                                             StartDate = table.Column<DateTime>(),
+                                             TargetAccountId = table.Column<int>(nullable: true),
+                                             Type = table.Column<int>()
+                                         },
                                          constraints: table =>
                                                       {
                                                           table.PrimaryKey("PK_RecurringPayments", x => x.Id);
@@ -81,20 +81,20 @@ namespace MoneyFox.Persistence.Migrations
 
             migrationBuilder.CreateTable("Payments",
                                          table => new
-                                                  {
-                                                      Id = table.Column<int>()
+                                         {
+                                             Id = table.Column<int>()
                                                                 .Annotation("Sqlite:Autoincrement", true),
-                                                      Amount = table.Column<double>(),
-                                                      CategoryId = table.Column<int>(nullable: true),
-                                                      ChargedAccountId = table.Column<int>(),
-                                                      Date = table.Column<DateTime>(),
-                                                      IsCleared = table.Column<bool>(),
-                                                      IsRecurring = table.Column<bool>(),
-                                                      Note = table.Column<string>(nullable: true),
-                                                      RecurringPaymentId = table.Column<int>(nullable: true),
-                                                      TargetAccountId = table.Column<int>(nullable: true),
-                                                      Type = table.Column<int>()
-                                                  },
+                                             Amount = table.Column<double>(),
+                                             CategoryId = table.Column<int>(nullable: true),
+                                             ChargedAccountId = table.Column<int>(),
+                                             Date = table.Column<DateTime>(),
+                                             IsCleared = table.Column<bool>(),
+                                             IsRecurring = table.Column<bool>(),
+                                             Note = table.Column<string>(nullable: true),
+                                             RecurringPaymentId = table.Column<int>(nullable: true),
+                                             TargetAccountId = table.Column<int>(nullable: true),
+                                             Type = table.Column<int>()
+                                         },
                                          constraints: table =>
                                                       {
                                                           table.PrimaryKey("PK_Payments", x => x.Id);

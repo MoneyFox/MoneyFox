@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediatR;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Extensions;

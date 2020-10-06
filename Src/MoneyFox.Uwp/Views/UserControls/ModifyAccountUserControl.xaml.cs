@@ -9,9 +9,6 @@ namespace MoneyFox.Uwp.Views.UserControls
             InitializeComponent();
         }
 
-        private void TextBoxOnFocus(object sender, RoutedEventArgs e)
-        {
-            TextBoxCurrentBalance.SelectAll();
-        }
+        private void TextBoxOnFocus(object sender, RoutedEventArgs e) => TextBoxCurrentBalance.SelectAll();
     }
 }

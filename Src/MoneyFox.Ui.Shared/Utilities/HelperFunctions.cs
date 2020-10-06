@@ -26,10 +26,7 @@ namespace MoneyFox.Ui.Shared.Utilities
         /// </summary>
         /// <param name="value">decimal who shall be converted</param>
         /// <returns>Formated string.</returns>
-        public static string FormatLargeNumbers(decimal value)
-        {
-            return value.ToString("N2", CultureInfo.CurrentCulture);
-        }
+        public static string FormatLargeNumbers(decimal value) => value.ToString("N2", CultureInfo.CurrentCulture);
 
         /// <summary>
         /// Returns the number string with just his culture's decimal separator.     If it is an Int it will return the
@@ -41,17 +38,20 @@ namespace MoneyFox.Ui.Shared.Utilities
         {
             if(amount.Any(char.IsPunctuation))
             {
-                var decimalSeparatorIndex = 0;
-                var punctuationCount = 0;
+                int decimalSeparatorIndex = 0;
+                int punctuationCount = 0;
                 var stringBuilder = new StringBuilder();
 
                 foreach(char c in amount)
                 {
                     if(!char.IsPunctuation(c))
+                    {
                         stringBuilder.Append(c);
+                    }
                     else
                     {
                         punctuationCount++;
+
                         if(amount.IndexOf(c) >= amount.Length - 3)
                         {
                             decimalSeparatorIndex = amount.IndexOf(c);
@@ -61,10 +61,14 @@ namespace MoneyFox.Ui.Shared.Utilities
                 }
 
                 if(punctuationCount > decimalSeparatorIndex)
+                {
                     return amount;
+                }
 
-                var decimalsString = stringBuilder.ToString();
-                amount = decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount) + CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator + decimalsString.Substring(decimalSeparatorIndex - punctuationCount);
+                string? decimalsString = stringBuilder.ToString();
+                amount = $"{decimalsString.Substring(0, decimalSeparatorIndex - punctuationCount)}" +
+                         $"{CultureInfo.CurrentCulture.NumberFormat.CurrencyDecimalSeparator}" +
+                         $"{decimalsString.Substring(decimalSeparatorIndex - punctuationCount)}";
             }
 
             return amount;

@@ -14,8 +14,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
         {
             // Arrange
             const int catId = 5234;
-            var dateRangeFrom = DateTime.Now.AddDays(1);
-            var dateRangeTo = DateTime.Now.AddDays(2);
+            DateTime dateRangeFrom = DateTime.Now.AddDays(1);
+            DateTime dateRangeTo = DateTime.Now.AddDays(2);
 
             // Act
             var query = new GetPaymentsForCategoryQuery(catId, dateRangeFrom, dateRangeTo);

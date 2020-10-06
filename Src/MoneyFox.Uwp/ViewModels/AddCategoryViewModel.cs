@@ -3,7 +3,6 @@ using MediatR;
 using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
@@ -13,7 +12,6 @@ namespace MoneyFox.Uwp.ViewModels
     public class AddCategoryViewModel : ModifyCategoryViewModel
     {
         private readonly IMediator mediator;
-        private readonly IMapper mapper;
 
         public AddCategoryViewModel(IMediator mediator,
                                     IDialogService dialogService,
@@ -22,7 +20,6 @@ namespace MoneyFox.Uwp.ViewModels
 
         {
             this.mediator = mediator;
-            this.mapper = mapper;
 
             Title = Strings.AddCategoryTitle;
         }

@@ -4,7 +4,10 @@
 # https://aka.ms/yaml
 
 pr:
-- master
+ autoCancel: false
+ branches:
+   include:
+     - master
 
 jobs:
 

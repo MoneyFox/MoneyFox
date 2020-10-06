@@ -33,16 +33,13 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetCorrectSumForSingleAccount()
         {
             // Arrange
-            var systemDateHelper = Substitute.For<ISystemDateHelper>();
+            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
             var account1 = new Account("test", 100);

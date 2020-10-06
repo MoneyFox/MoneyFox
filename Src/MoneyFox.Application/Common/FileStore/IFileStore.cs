@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Common.FileStore
 {
     public interface IFileStore
     {
-        void WriteFile(string path, IEnumerable<byte> contents);
+        Task WriteFileAsync(string path, IEnumerable<byte> contents);
 
-        bool TryMove(string from, string destination, bool overwrite);
+        Task<bool> TryMoveAsync(string from, string destination, bool overwrite);
 
-        Stream OpenRead(string path);
+        Task<Stream> OpenReadAsync(string path);
     }
 }

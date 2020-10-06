@@ -15,15 +15,9 @@ namespace MoneyFox.iOS
     // are preserved in the deployed app
     public class LinkerPleaseInclude
     {
-        public void Include(UIButton uiButton)
-        {
-            uiButton.TouchUpInside += (s, e) => uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
-        }
+        public void Include(UIButton uiButton) => uiButton.TouchUpInside += (s, e) => uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
 
-        public void Include(UIBarButtonItem barButton)
-        {
-            barButton.Clicked += (s, e) => barButton.Title = $"{barButton.Title}";
-        }
+        public void Include(UIBarButtonItem barButton) => barButton.Clicked += (s, e) => barButton.Title = $"{barButton.Title}";
 
         public void Include(UITextField textField)
         {
@@ -49,10 +43,7 @@ namespace MoneyFox.iOS
             label.AttributedText = new NSAttributedString($"{label.AttributedText}");
         }
 
-        public void Include(UIImageView imageView)
-        {
-            imageView.Image = new UIImage(imageView.Image?.CGImage);
-        }
+        public void Include(UIImageView imageView) => imageView.Image = new UIImage(imageView.Image?.CGImage);
 
         public void Include(UIDatePicker date)
         {
@@ -74,10 +65,7 @@ namespace MoneyFox.iOS
                                    };
         }
 
-        public void Include(UIProgressView progress)
-        {
-            progress.Progress = progress.Progress + 1;
-        }
+        public void Include(UIProgressView progress) => progress.Progress = progress.Progress + 1;
 
         public void Include(UISwitch sw)
         {
@@ -119,7 +107,9 @@ namespace MoneyFox.iOS
             command.CanExecuteChanged += (s, e) =>
                                          {
                                              if(command.CanExecute(null))
+                                             {
                                                  command.Execute(null);
+                                             }
                                          };
         }
 

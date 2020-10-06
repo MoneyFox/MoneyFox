@@ -9,14 +9,8 @@ namespace MoneyFox.Converter
     /// </summary>
     public class DateVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (DateTime) value != new DateTime();
-        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) => (DateTime)value != new DateTime();
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return (DateTime) value != new DateTime();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => (DateTime)value != new DateTime();
     }
 }

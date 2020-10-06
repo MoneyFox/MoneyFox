@@ -23,14 +23,8 @@ namespace MoneyFox.ViewModels.Categories
             this.mapper = mapper;
         }
 
-        public async Task InitializeAsync(int categoryId)
-        {
-            SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(categoryId)));
-        }
+        public async Task InitializeAsync(int categoryId) => SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(categoryId)));
 
-        protected override async Task SaveCategoryAsync()
-        {
-            await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
-        }
+        protected override async Task SaveCategoryAsync() => await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
     }
 }

@@ -45,10 +45,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()

@@ -14,7 +14,7 @@ namespace MoneyFox.Uwp.Views.Payments
     {
         public override bool ShowHeader => false;
 
-        private PaymentListViewModel ViewModel => (PaymentListViewModel) DataContext;
+        private PaymentListViewModel ViewModel => (PaymentListViewModel)DataContext;
 
         public PaymentListView()
         {
@@ -31,10 +31,7 @@ namespace MoneyFox.Uwp.Views.Payments
             }
         }
 
-        private void AppBarToggleButton_Click(object sender, RoutedEventArgs e)
-        {
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement) sender);
-        }
+        private void AppBarToggleButton_Click(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
 
         private void DataGrid_LoadingRowGroup(object sender, Microsoft.Toolkit.Uwp.UI.Controls.DataGridRowGroupHeaderEventArgs e)
         {

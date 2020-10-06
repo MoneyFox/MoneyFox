@@ -99,7 +99,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task LoginAsync()
         {
             if(!connectivity.IsConnected)
+            {
                 throw new NetworkConnectionException();
+            }
 
             await cloudBackupService.LoginAsync();
 
@@ -114,7 +116,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task LogoutAsync()
         {
             if(!connectivity.IsConnected)
+            {
                 throw new NetworkConnectionException();
+            }
 
             await cloudBackupService.LogoutAsync();
 
@@ -127,7 +131,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task<bool> IsBackupExistingAsync()
         {
             if(!connectivity.IsConnected)
+            {
                 return false;
+            }
 
             List<string> files = await cloudBackupService.GetFileNamesAsync();
             return files != null && files.Any();
@@ -136,7 +142,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task<DateTime> GetBackupDateAsync()
         {
             if(!connectivity.IsConnected)
+            {
                 return DateTime.MinValue;
+            }
 
             DateTime date = await cloudBackupService.GetBackupDateAsync();
             return date.ToLocalTime();
@@ -155,7 +163,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                 throw new NetworkConnectionException();
             }
 
-            var result = await DownloadBackupAsync(backupMode);
+            BackupRestoreResult result = await DownloadBackupAsync(backupMode);
 
             if(result == BackupRestoreResult.NewBackupRestored)
             {
@@ -183,14 +191,14 @@ namespace MoneyFox.Application.Common.CloudBackup
                 using(Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
                                                                                   DatabaseConstants.BACKUP_NAME))
                 {
-                    fileStore.WriteFile(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
+                    await fileStore.WriteFileAsync(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
                 }
 
                 logger.Info("Backup downloaded. Replace current file.");
 
-                bool moveSucceed = fileStore.TryMove(DatabaseConstants.BACKUP_NAME,
-                                                     DatabasePathHelper.GetDbPath(),
-                                                     true);
+                bool moveSucceed = await fileStore.TryMoveAsync(DatabaseConstants.BACKUP_NAME,
+                                                                DatabasePathHelper.GetDbPath(),
+                                                                true);
 
                 if(!moveSucceed)
                 {
@@ -227,7 +235,9 @@ namespace MoneyFox.Application.Common.CloudBackup
         private async Task EnqueueBackupTaskAsync(int attempts = 0)
         {
             if(!connectivity.IsConnected)
+            {
                 throw new NetworkConnectionException();
+            }
 
             logger.Info("Enqueue Backup upload.");
 
@@ -235,13 +245,15 @@ namespace MoneyFox.Application.Common.CloudBackup
                                           cancellationTokenSource.Token);
             try
             {
-                if(await cloudBackupService.UploadAsync(fileStore.OpenRead(DatabasePathHelper.GetDbPath())))
+                if(await cloudBackupService.UploadAsync(await fileStore.OpenReadAsync(DatabasePathHelper.GetDbPath())))
                 {
                     logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();
                 }
                 else
+                {
                     cancellationTokenSource.Cancel();
+                }
             }
             catch(FileNotFoundException ex)
             {

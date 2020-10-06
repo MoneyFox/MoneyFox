@@ -9,7 +9,9 @@ namespace MoneyFox.Uwp.Views.UserControls
         {
             InitializeComponent();
             if(DesignMode.DesignModeEnabled)
+            {
                 DataContext = new DesignTimeBalanceViewViewModel();
+            }
         }
     }
 }

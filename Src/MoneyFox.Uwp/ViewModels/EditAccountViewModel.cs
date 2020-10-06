@@ -39,10 +39,7 @@ namespace MoneyFox.Uwp.ViewModels
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 
-        protected override async Task SaveAccount()
-        {
-            await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
-        }
+        protected override async Task SaveAccount() => await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
 
         protected async Task DeleteAccount()
         {

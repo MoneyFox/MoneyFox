@@ -16,7 +16,7 @@ namespace MoneyFox.Uwp.Views.Payments
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = ((ComboBoxItem)e.AddedItems[0]).Content?.ToString() ?? "";
+            string selectedItem = ((ComboBoxItem)e.AddedItems[0]).Content?.ToString() ?? "";
 
             if(selectedItem == Strings.IncomeLabel)
             {

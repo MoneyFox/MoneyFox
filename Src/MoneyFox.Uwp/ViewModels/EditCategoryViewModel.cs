@@ -38,15 +38,12 @@ namespace MoneyFox.Uwp.ViewModels
 
         protected override async Task InitializeAsync()
         {
-            var category = await mediator.Send(new GetCategoryByIdQuery(CategoryId));
+            Category category = await mediator.Send(new GetCategoryByIdQuery(CategoryId));
             SelectedCategory = mapper.Map<CategoryViewModel>(category);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
         }
 
-        protected override async Task SaveCategoryAsync()
-        {
-            await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
-        }
+        protected override async Task SaveCategoryAsync() => await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
 
         private async Task DeleteCategoryAsync()
         {

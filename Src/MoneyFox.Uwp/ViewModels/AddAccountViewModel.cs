@@ -2,20 +2,18 @@
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Ui.Shared.Utilities;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 
 namespace MoneyFox.Uwp.ViewModels
 {
     public class AddAccountViewModel : ModifyAccountViewModel
     {
         private readonly IMediator mediator;
-        private readonly IMapper mapper;
 
         public AddAccountViewModel(IMediator mediator,
                                    IMapper mapper,
@@ -23,7 +21,6 @@ namespace MoneyFox.Uwp.ViewModels
                                    INavigationService navigationService) : base(dialogService, navigationService)
         {
             this.mediator = mediator;
-            this.mapper = mapper;
 
             Title = Strings.AddAccountTitle;
         }

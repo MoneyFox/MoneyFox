@@ -5,6 +5,6 @@ namespace MoneyFox.Uwp.Services
 {
     public class ToastService : IToastService
     {
-        public Task ShowToastAsync(string message, string title = "") { return Task.CompletedTask; }
+        public Task ShowToastAsync(string message, string title = "") => Task.CompletedTask;
     }
 }
