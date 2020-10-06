@@ -99,7 +99,7 @@ namespace MoneyFox.ViewModels.Payments
         /// </summary>
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
-        public static List<PaymentType> PaymentTypeList => new List<PaymentType>
+        public List<PaymentType> PaymentTypeList => new List<PaymentType>
         {
             PaymentType.Expense,
             PaymentType.Income,
@@ -109,7 +109,7 @@ namespace MoneyFox.ViewModels.Payments
         /// <summary>
         /// List with the different recurrence types.     This has to have the same order as the enum
         /// </summary>
-        public static List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
+        public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
             PaymentRecurrence.Daily,
             PaymentRecurrence.DailyWithoutWeekend,
