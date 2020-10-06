@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
+using NLog.LayoutRenderers;
 using System;
 
 namespace MoneyFox.Ui.Shared.ViewModels.Categories
@@ -10,6 +11,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
         private int id;
         private string name = "";
         private string note = "";
+        private bool requireNote = false;
         private DateTime creationTime;
         private DateTime modificationDate;
 
@@ -33,6 +35,18 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
                 if(name == value)
                     return;
                 name = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        public bool RequireNote
+        {
+            get => requireNote;
+            set
+            {
+                if(requireNote == value)
+                    return;
+                requireNote = value;
                 RaisePropertyChanged();
             }
         }
