@@ -20,7 +20,7 @@
 
                 <Picker ItemsSource="{Binding AvailableCultures}"
                         SelectedItem="{Binding SelectedCulture, Mode=TwoWay}"
-                        ItemDisplayBinding="{Binding DisplayName}" />
+                        ItemDisplayBinding="{Binding EnglishName}" />
 
             </StackLayout>
         </ScrollView>
