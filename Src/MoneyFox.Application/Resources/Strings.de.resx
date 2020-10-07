@@ -734,4 +734,10 @@ Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorth
   <data name="LoggedInMessage" xml:space="preserve">
     <value>Erfolgreich eingeloggt.</value>
   </data>
+  <data name="RequireNoteCheckbox" xml:space="preserve">
+    <value>Note required</value>
+  </data>
+  <data name="ANoteForPaymentIsRequired" xml:space="preserve">
+    <value>A note for payment is required</value>
+  </data>
 </root>
