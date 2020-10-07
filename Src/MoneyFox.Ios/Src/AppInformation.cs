@@ -7,9 +7,6 @@ namespace MoneyFox.iOS.Src
     public class AppInformation : IAppInformation
     {
         /// <inheritdoc/>
-        public string GetVersion
-        {
-            get => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString();
-        }
+        public string GetVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString();
     }
 }

@@ -23,10 +23,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Settings
             AvailableCultures = new ObservableCollection<CultureInfo>();
         }
 
-        public async Task InitializeAsync()
-        {
-            await LoadAvailableCulturesAsync();
-        }
+        public async Task InitializeAsync() => await LoadAvailableCulturesAsync();
 
         private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 
@@ -36,9 +33,15 @@ namespace MoneyFox.Ui.Shared.ViewModels.Settings
             set
             {
                 if(value == null)
+                {
                     return;
+                }
+
                 if(selectedCulture == value)
+                {
                     return;
+                }
+
                 selectedCulture = value;
                 settingsFacade.DefaultCulture = selectedCulture.Name;
                 CultureHelper.CurrentCulture = selectedCulture;

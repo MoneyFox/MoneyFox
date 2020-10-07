@@ -24,7 +24,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 if(categoryId == value)
+                {
                     return;
+                }
+
                 categoryId = value;
                 RaisePropertyChanged();
             }
@@ -39,7 +42,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 if(Math.Abs(this.value - value) < DECIMAL_DELTA)
+                {
                     return;
+                }
+
                 this.value = value;
                 RaisePropertyChanged();
             }
@@ -54,7 +60,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 if(Math.Abs(average - value) < DECIMAL_DELTA)
+                {
                     return;
+                }
+
                 average = value;
                 RaisePropertyChanged();
             }
@@ -69,7 +78,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 if(Math.Abs(this.value - value) < DECIMAL_DELTA)
+                {
                     return;
+                }
+
                 percentage = value;
                 RaisePropertyChanged();
             }
@@ -84,7 +96,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 if(label == value)
+                {
                     return;
+                }
+
                 label = value;
                 RaisePropertyChanged();
             }
@@ -102,7 +117,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 if(source == value)
+                {
                     return;
+                }
+
                 source = value;
                 RaisePropertyChanged();
             }

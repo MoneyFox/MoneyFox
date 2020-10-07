@@ -44,7 +44,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 logManager.Info($"Calculate EndOfMonth Balance for account {request.AccountId}.");
                 accountId = request.AccountId;
 
-                var account = await contextAdapter.Context.Accounts.WithId(accountId).FirstAsync();
+                Account? account = await contextAdapter.Context.Accounts.WithId(accountId).FirstAsync();
                 decimal balance = await GetCurrentAccountBalanceAsync();
 
                 foreach(Payment payment in await GetUnclearedPaymentsForThisMonthAsync())

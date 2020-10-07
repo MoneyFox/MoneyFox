@@ -1,16 +1,16 @@
 ﻿using Android.App;
-using Android.Content.PM;
-using Android.Runtime;
-using Android.OS;
-using Xamarin.Forms.Platform.Android;
-using Microsoft.Identity.Client;
 using Android.Content;
+using Android.Content.PM;
+using Android.OS;
+using Android.Runtime;
+using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
 using Plugin.Toasts;
+using Xamarin.Forms.Platform.Android;
 
 namespace MoneyFox.Droid
 {
-    [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.Orientation )]
+    [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -47,9 +47,6 @@ namespace MoneyFox.Droid
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        public override void OnBackPressed()
-        {
-            Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
-        }
+        public override void OnBackPressed() => Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
     }
 }

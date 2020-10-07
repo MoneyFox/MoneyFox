@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using GalaSoft.MvvmLight.Command;
+﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic;
+using System.Collections.Generic;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {

@@ -43,7 +43,10 @@ namespace MoneyFox.ViewModels.Dialogs
             set
             {
                 if(isClearedFilterActive == value)
+                {
                     return;
+                }
+
                 isClearedFilterActive = value;
                 RaisePropertyChanged();
             }
@@ -58,7 +61,10 @@ namespace MoneyFox.ViewModels.Dialogs
             set
             {
                 if(isRecurringFilterActive == value)
+                {
                     return;
+                }
+
                 isRecurringFilterActive = value;
                 RaisePropertyChanged();
             }
@@ -73,7 +79,10 @@ namespace MoneyFox.ViewModels.Dialogs
             set
             {
                 if(timeRangeStart == value)
+                {
                     return;
+                }
+
                 timeRangeStart = value;
                 RaisePropertyChanged();
             }
@@ -88,7 +97,10 @@ namespace MoneyFox.ViewModels.Dialogs
             set
             {
                 if(timeRangeEnd == value)
+                {
                     return;
+                }
+
                 timeRangeEnd = value;
                 RaisePropertyChanged();
             }

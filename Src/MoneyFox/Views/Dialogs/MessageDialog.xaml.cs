@@ -17,14 +17,12 @@ namespace MoneyFox.Views.Dialogs
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
             nameof(PopupTitle),
             typeof(string),
-            typeof(MessageDialog),
-            default(string));
+            typeof(MessageDialog));
 
         public static readonly BindableProperty PopupMessageProperty = BindableProperty.Create(
             nameof(PopupMessage),
             typeof(string),
-            typeof(MessageDialog),
-            default(string));
+            typeof(MessageDialog));
 
         public string PopupTitle
         {
@@ -38,19 +36,10 @@ namespace MoneyFox.Views.Dialogs
             set => SetValue(PopupMessageProperty, value);
         }
 
-        public async Task ShowAsync()
-        {
-            await App.Current.MainPage.Navigation.PushPopupAsync(this);
-        }
+        public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public async Task DismissAsync()
-        {
-            await App.Current.MainPage.Navigation.PopPopupAsync();
-        }
+        public async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
 
-        private async void OnOkClick(object sender, System.EventArgs e)
-        {
-            await DismissAsync();
-        }
+        private async void OnOkClick(object sender, System.EventArgs e) => await DismissAsync();
     }
 }

@@ -13,13 +13,13 @@ namespace MoneyFox.Converter
             var category = (CategoryViewModel)value;
 
             if(category == null)
+            {
                 return Strings.SelectCategoryTitle;
+            }
+
             return category.Name;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotSupportedException();
-        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotSupportedException();
     }
 }

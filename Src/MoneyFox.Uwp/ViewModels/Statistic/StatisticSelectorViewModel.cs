@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
+using System.Collections.Generic;
 
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {

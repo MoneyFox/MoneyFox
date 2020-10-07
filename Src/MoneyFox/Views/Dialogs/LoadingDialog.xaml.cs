@@ -10,7 +10,7 @@ namespace MoneyFox.Views.Dialogs
             InitializeComponent();
         }
 
-        internal static async Task<LoadingDialog> Loading()
+        internal static async Task<LoadingDialog> LoadingAsync()
         {
             var dialog = new LoadingDialog();
             await dialog.ShowAsync();
@@ -18,14 +18,8 @@ namespace MoneyFox.Views.Dialogs
             return dialog;
         }
 
-        public async Task ShowAsync()
-        {
-            await App.Current.MainPage.Navigation.PushPopupAsync(this);
-        }
+        public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public async Task DismissAsync()
-        {
-            await App.Current.MainPage.Navigation.PopPopupAsync();
-        }
+        public async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
     }
 }

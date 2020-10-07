@@ -35,10 +35,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task PaymentsClearedCorrectly()
@@ -79,7 +76,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
 
             // Act
             await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(), default);
-            List<Payment> loadedPayments = context.Payments.ToList();
+            var loadedPayments = context.Payments.ToList();
 
             // Assert
             loadedPayments[0].IsCleared.ShouldBeFalse();

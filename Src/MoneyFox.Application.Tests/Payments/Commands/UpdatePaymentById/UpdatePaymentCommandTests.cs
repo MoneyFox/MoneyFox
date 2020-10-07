@@ -45,10 +45,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task UpdatePayment_PaymentFound()
@@ -96,7 +93,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
         public async Task CategoryForRecurringPaymentUpdated()
         {
             // Arrange
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80),null);
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80), null);
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             await context.AddAsync(payment1);
@@ -140,7 +137,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
         public async Task RecurrenceForRecurringPaymentUpdated()
         {
             // Arrange
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80),null);
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80), null);
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             await context.AddAsync(payment1);

@@ -5,23 +5,23 @@ using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Messages;
+using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.Views;
+using MoneyFox.Uwp.Views.Payments;
 using NLog;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
-using MoneyFox.Messages;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
-using System;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
-using MoneyFox.Uwp.Views.Payments;
-using MoneyFox.Uwp.Views;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
@@ -100,7 +100,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(recurrence == value)
+                {
                     return;
+                }
 
                 recurrence = value;
                 RaisePropertyChanged();
@@ -133,7 +135,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(selectedPayment == value)
+                {
                     return;
+                }
+
                 selectedPayment = value;
                 RaisePropertyChanged();
                 RaisePropertyChanged(nameof(AccountHeader));
@@ -149,7 +154,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(amountString == value)
+                {
                     return;
+                }
+
                 amountString = value;
                 RaisePropertyChanged();
             }
@@ -198,7 +206,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             set
             {
                 if(title == value)
+                {
                     return;
+                }
+
                 title = value;
                 RaisePropertyChanged();
             }
@@ -216,22 +227,16 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         protected virtual async Task InitializeAsync()
         {
-            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+            List<AccountViewModel> accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
 
             ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
             TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
             Categories = new ObservableCollection<CategoryViewModel>(mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery())));
         }
 
-        public void Subscribe()
-        {
-            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
-        }
+        public void Subscribe() => MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
 
-        public void Unsubscribe()
-        {
-            MessengerInstance.Unregister<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
-        }
+        public void Unsubscribe() => MessengerInstance.Unregister<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
 
         private async Task SavePaymentBaseAsync()
         {
@@ -242,7 +247,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
 
             if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
+            {
                 SelectedPayment.Amount = convertedValue;
+            }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
@@ -269,10 +276,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             await dialogService.HideLoadingDialogAsync();
         }
 
-        public void Cancel()
-        {
-            navigationService.GoBack();
-        }
+        public void Cancel() => navigationService.GoBack();
 
         /// <summary>
         /// Moved to own method for debugg reasons
@@ -281,14 +285,14 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if(SelectedPayment == null || message == null)
+            {
                 return;
+            }
+
             SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
         }
 
-        private void ResetSelection()
-        {
-            SelectedPayment.Category = null;
-        }
+        private void ResetSelection() => SelectedPayment.Category = null;
 
         private void UpdateOtherComboBox()
         {
@@ -296,18 +300,24 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             foreach(AccountViewModel account in TargetAccounts)
             {
                 if(!tempCollection.Contains(account))
+                {
                     tempCollection.Add(account);
+                }
             }
 
             foreach(AccountViewModel account in tempCollection)
             {
                 //fills targetaccounts
                 if(!TargetAccounts.Contains(account))
+                {
                     TargetAccounts.Add(account);
+                }
 
                 //fills chargedaccounts
                 if(!ChargedAccounts.Contains(account))
+                {
                     ChargedAccounts.Add(account);
+                }
             }
 
             TargetAccounts.Remove(selectedPayment.ChargedAccount);

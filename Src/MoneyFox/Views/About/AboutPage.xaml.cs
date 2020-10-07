@@ -1,6 +1,4 @@
-﻿using MoneyFox.Application.Resources;
-
-namespace MoneyFox.Views.About
+﻿namespace MoneyFox.Views.About
 {
     public partial class AboutPage
     {

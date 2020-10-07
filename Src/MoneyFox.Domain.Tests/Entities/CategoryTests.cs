@@ -13,13 +13,11 @@ namespace MoneyFox.Domain.Tests.Entities
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
-        public void Ctor_NameEmpty_ArgumentNullException(string name)
-        {
+        public void Ctor_NameEmpty_ArgumentNullException(string name) =>
             // Arrange
 
             // Act / Assert
             Assert.Throws<ArgumentNullException>(() => new Category(name));
-        }
 
         [Fact]
         public void Ctor_NoParams_DefaultValuesSet()

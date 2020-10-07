@@ -45,10 +45,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task CreatePayment_PaymentSaved()

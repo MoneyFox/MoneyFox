@@ -9,7 +9,7 @@ namespace MoneyFox.Presentation.Dialogs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterPopup
     {
-        private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel) BindingContext;
+        private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel)BindingContext;
 
         public FilterPopup()
         {
@@ -25,15 +25,9 @@ namespace MoneyFox.Presentation.Dialogs
             ViewModel.Initialize(message);
         }
 
-        public async Task ShowAsync()
-        {
-            await App.Current.MainPage.Navigation.PushPopupAsync(this);
-        }
+        public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public async Task DismissAsync()
-        {
-            await App.Current.MainPage.Navigation.PopPopupAsync();
-        }
+        public async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
 
         private async void Button_OnClicked(object sender, System.EventArgs e)
         {

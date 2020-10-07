@@ -24,7 +24,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            List<Payment> resultList = paymentListQuery.HasDateLargerEqualsThan(DateTime.Now).ToList();
+            var resultList = paymentListQuery.HasDateLargerEqualsThan(DateTime.Now).ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -44,7 +44,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            List<Payment> resultList = paymentListQuery.AreCleared().ToList();
+            var resultList = paymentListQuery.AreCleared().ToList();
 
             // Assert
             Assert.Single(resultList);
@@ -63,7 +63,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            List<Payment> resultList = paymentListQuery.AreNotCleared().ToList();
+            var resultList = paymentListQuery.AreNotCleared().ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -105,7 +105,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            List<Payment> resultList = paymentListQuery.WithoutTransfers().ToList();
+            var resultList = paymentListQuery.WithoutTransfers().ToList();
 
             // Assert
             Assert.Equal(3, resultList.Count);

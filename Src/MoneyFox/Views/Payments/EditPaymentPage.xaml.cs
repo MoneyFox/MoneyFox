@@ -6,9 +6,9 @@ namespace MoneyFox.Views.Payments
 {
     public partial class EditPaymentPage
     {
-        private EditPaymentViewModel ViewModel => (EditPaymentViewModel) BindingContext;
+        private EditPaymentViewModel ViewModel => (EditPaymentViewModel)BindingContext;
 
-        private int paymentId;
+        private readonly int paymentId;
 
         public EditPaymentPage(int paymentId)
         {

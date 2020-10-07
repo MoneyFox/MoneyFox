@@ -59,7 +59,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   toastService);
 
             // Act / Assert
-            await Assert.ThrowsAsync<NetworkConnectionException>(async() => await backupService.LoginAsync());
+            await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LoginAsync());
         }
 
         [Fact]
@@ -69,7 +69,9 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.LoginAsync())
+#pragma warning disable S3626 // Jump statements should not be redundant
                                   .Callback(() => throw new BackupException());
+#pragma warning restore S3626 // Jump statements should not be redundant
 
             settingsFacadeMock.SetupAllProperties();
 
@@ -82,7 +84,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   toastService);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async() => await backupService.LoginAsync());
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.LoginAsync());
 
             // Assert
             settingsFacadeMock.Object.IsBackupAutouploadEnabled.ShouldBeFalse();
@@ -130,7 +132,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   toastService);
 
             // Act / Assert
-            await Assert.ThrowsAsync<NetworkConnectionException>(async() => await backupService.LogoutAsync());
+            await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.LogoutAsync());
         }
 
         [Fact]
@@ -140,7 +142,9 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.LogoutAsync())
+#pragma warning disable S3626 // Jump statements should not be redundant
                                   .Callback(() => throw new BackupException());
+#pragma warning restore S3626 // Jump statements should not be redundant
 
             settingsFacadeMock.SetupAllProperties();
             settingsFacadeMock.Object.IsBackupAutouploadEnabled = true;
@@ -155,7 +159,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   toastService);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async() => await backupService.LogoutAsync());
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.LogoutAsync());
 
             // Assert
             settingsFacadeMock.Object.IsBackupAutouploadEnabled.ShouldBeTrue();
@@ -321,7 +325,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   toastService);
 
             // Act / Assert
-            await Assert.ThrowsAsync<NetworkConnectionException>(async() => await backupService.RestoreBackupAsync());
+            await Assert.ThrowsAsync<NetworkConnectionException>(async () => await backupService.RestoreBackupAsync());
         }
 
         [Fact]
@@ -376,7 +380,9 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                   .ReturnsAsync(new List<string> { DatabaseConstants.BACKUP_NAME });
 
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
+#pragma warning disable S3626 // Jump statements should not be redundant
                                   .Callback(() => throw new BackupException());
+#pragma warning restore S3626 // Jump statements should not be redundant
 
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Now);
 
@@ -389,7 +395,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   toastService);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async() => await backupService.RestoreBackupAsync());
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.RestoreBackupAsync());
 
             // Assert
             settingsFacadeMock.Object.LastDatabaseUpdate.ShouldEqual(expectedPassedDate);
@@ -431,7 +437,9 @@ namespace MoneyFox.Application.Tests.CloudBackup
 
             cloudBackupServiceMock.Setup(x => x.UploadAsync(It.IsAny<Stream>())).ReturnsAsync(true);
             cloudBackupServiceMock.Setup(x => x.LoginAsync())
+#pragma warning disable S3626 // Jump statements should not be redundant
                                   .Callback(() => throw new BackupException());
+#pragma warning restore S3626 // Jump statements should not be redundant
 
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(false);
@@ -445,7 +453,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
                                                   toastService);
 
             // Act
-            await Assert.ThrowsAsync<BackupException>(async() => await backupService.UploadBackupAsync());
+            await Assert.ThrowsAsync<BackupException>(async () => await backupService.UploadBackupAsync());
 
             // Assert
             cloudBackupServiceMock.Verify(x => x.LoginAsync(), Times.Once);

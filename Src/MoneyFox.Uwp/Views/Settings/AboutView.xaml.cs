@@ -8,7 +8,7 @@ namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class AboutView
     {
-        private AboutViewModel ViewModel = ServiceLocator.Current.GetInstance<AboutViewModel>();
+        private readonly AboutViewModel ViewModel = ServiceLocator.Current.GetInstance<AboutViewModel>();
 
         public AboutView()
         {
@@ -22,7 +22,7 @@ namespace MoneyFox.Uwp.Views.Settings
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            StoreServicesFeedbackLauncher launcher = StoreServicesFeedbackLauncher.GetDefault();
+            var launcher = StoreServicesFeedbackLauncher.GetDefault();
             await launcher.LaunchAsync();
         }
     }

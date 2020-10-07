@@ -24,12 +24,9 @@ namespace MoneyFox.Uwp.ViewModels.Settings
 
         private ICommand switchThemeCommand;
 
-        public ICommand SwitchThemeCommand
-        {
-            get => switchThemeCommand ??= new RelayCommand<string>(param =>
-                    {
-                        themeSelectorAdapter.SetTheme(param);
-                    });
-        }
+        public ICommand SwitchThemeCommand => switchThemeCommand ??= new RelayCommand<string>(param =>
+                                                                {
+                                                                    themeSelectorAdapter.SetTheme(param);
+                                                                });
     }
 }

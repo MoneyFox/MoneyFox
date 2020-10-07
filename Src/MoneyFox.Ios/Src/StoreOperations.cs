@@ -7,9 +7,6 @@ namespace MoneyFox.iOS.Src
     public class StoreOperations : IStoreOperations
     {
         /// <inheritdoc/>
-        public void RateApp()
-        {
-            SKStoreReviewController.RequestReview();
-        }
+        public void RateApp() => SKStoreReviewController.RequestReview();
     }
 }

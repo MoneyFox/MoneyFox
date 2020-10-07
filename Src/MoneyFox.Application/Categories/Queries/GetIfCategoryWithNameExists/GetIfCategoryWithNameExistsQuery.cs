@@ -25,9 +25,7 @@ namespace MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists
             }
 
             public async Task<bool> Handle(GetIfCategoryWithNameExistsQuery request, CancellationToken cancellationToken)
-            {
-                return await context.Categories.AnyAsync(x => x.Name == request.CategoryName, cancellationToken);
-            }
+                => await context.Categories.AnyAsync(x => x.Name == request.CategoryName, cancellationToken);
         }
     }
 }

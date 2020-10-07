@@ -13,12 +13,16 @@ namespace MoneyFox.Uwp.Src
         public static BitmapImage GetImage(string path, bool negateResult = false)
         {
             if(string.IsNullOrEmpty(path))
+            {
                 return null;
+            }
 
             bool isDarkTheme = Windows.UI.Xaml.Application.Current.RequestedTheme == ApplicationTheme.Dark;
 
             if(negateResult)
+            {
                 isDarkTheme = !isDarkTheme;
+            }
 
             path = $"ms-appx:{(string.Format(CultureInfo.InvariantCulture, path, isDarkTheme ? "dark" : "light"))}";
 

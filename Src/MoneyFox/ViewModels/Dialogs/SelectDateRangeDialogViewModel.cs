@@ -66,9 +66,6 @@ namespace MoneyFox.ViewModels.Dialogs
         /// </summary>
         public RelayCommand DoneCommand => new RelayCommand(Done);
 
-        private void Done()
-        {
-            MessengerInstance.Send(new DateSelectedMessage(this, StartDate, EndDate));
-        }
+        private void Done() => MessengerInstance.Send(new DateSelectedMessage(this, StartDate, EndDate));
     }
 }

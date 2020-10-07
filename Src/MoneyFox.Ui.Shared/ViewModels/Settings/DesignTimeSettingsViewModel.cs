@@ -10,6 +10,6 @@ namespace MoneyFox.Ui.Shared.ViewModels.Settings
 
         public CultureInfo SelectedCulture { get; set; } = CultureInfo.CurrentCulture;
 
-        public Task InitializeAsync() { return Task.CompletedTask; }
+        public Task InitializeAsync() => Task.CompletedTask;
     }
 }

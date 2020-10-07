@@ -39,7 +39,7 @@ namespace MoneyFox.Ui.Shared.Tests.ViewModels
         [Fact]
         public void Version_NoParams_ReturnCorrectMail()
         {
-            var appinfos = Substitute.For<IAppInformation>();
+            IAppInformation appinfos = Substitute.For<IAppInformation>();
             appinfos.GetVersion.Returns("42");
 
             new AboutViewModel(appinfos,
@@ -53,7 +53,7 @@ namespace MoneyFox.Ui.Shared.Tests.ViewModels
         [Fact]
         public async Task GoToWebsite_NoParams_Called()
         {
-            var webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
+            IBrowserAdapter webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
             webbrowserTaskSetup.OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl)))
                                .Returns(Task.CompletedTask);
 
@@ -70,7 +70,7 @@ namespace MoneyFox.Ui.Shared.Tests.ViewModels
         [Fact]
         public async Task GoToRepository_NoParams_CommandCalled()
         {
-            var webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
+            IBrowserAdapter webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
             webbrowserTaskSetup.OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl)))
                                .Returns(Task.CompletedTask);
 
@@ -87,7 +87,7 @@ namespace MoneyFox.Ui.Shared.Tests.ViewModels
         [Fact]
         public void RateApp_NoParams_CommandCalled()
         {
-            var storeFeaturesSetup = Substitute.For<IStoreOperations>();
+            IStoreOperations storeFeaturesSetup = Substitute.For<IStoreOperations>();
 
             new AboutViewModel(Substitute.For<IAppInformation>(),
                                Substitute.For<IEmailAdapter>(),

@@ -43,10 +43,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task CreateCategoryCommand_CorrectNumberLoaded()

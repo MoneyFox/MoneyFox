@@ -33,16 +33,13 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task ReturnCorrectAmount()
         {
             // Arrange
-            var systemDateHelper = Substitute.For<ISystemDateHelper>();
+            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
             var account = new Account("test", 80);
@@ -57,7 +54,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
             await context.SaveChangesAsync();
 
             // Act
-            var sum = await new GetMonthlyIncomeQuery.Handler(contextAdapter, systemDateHelper).Handle(new GetMonthlyIncomeQuery(), default);
+            decimal sum = await new GetMonthlyIncomeQuery.Handler(contextAdapter, systemDateHelper).Handle(new GetMonthlyIncomeQuery(), default);
 
             // Assert
             sum.Should().Be(70);

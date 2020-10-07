@@ -11,13 +11,11 @@ namespace MoneyFox.Domain.Tests.Entities
     public class PaymentTests
     {
         [Fact]
-        public void Ctor_ChargedAccountNull_ArgumentNullException()
-        {
+        public void Ctor_ChargedAccountNull_ArgumentNullException() =>
             // Arrange
 
             // Act / Assert
             Assert.Throws<AccountNullException>(() => new Payment(DateTime.Now, 123, PaymentType.Expense, null, note: "note"));
-        }
 
         [Theory]
         [InlineData(1, false)]

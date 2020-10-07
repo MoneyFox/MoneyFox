@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Uwp.Services;
-using MoneyFox.Messages;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Messages;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.Services;
 
 namespace MoneyFox.Uwp.ViewModels
 {
@@ -31,7 +31,11 @@ namespace MoneyFox.Uwp.ViewModels
             get => selectedCategory;
             set
             {
-                if(selectedCategory.Equals(value)) return;
+                if(selectedCategory.Equals(value))
+                {
+                    return;
+                }
+
                 selectedCategory = value;
                 RaisePropertyChanged();
             }
@@ -40,9 +44,6 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override void ItemClick(CategoryViewModel category)
-        {
-            MessengerInstance.Send(new CategorySelectedMessage(category.Id));
-        }
+        protected override void ItemClick(CategoryViewModel category) => MessengerInstance.Send(new CategorySelectedMessage(category.Id));
     }
 }

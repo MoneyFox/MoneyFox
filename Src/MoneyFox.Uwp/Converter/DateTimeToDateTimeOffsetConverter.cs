@@ -23,7 +23,7 @@ namespace MoneyFox.Uwp.Converter
         {
             try
             {
-                var dto = (DateTimeOffset) value;
+                var dto = (DateTimeOffset)value;
 
                 return dto.DateTime;
             }

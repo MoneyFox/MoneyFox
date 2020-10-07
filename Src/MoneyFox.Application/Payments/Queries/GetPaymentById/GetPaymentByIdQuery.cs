@@ -24,10 +24,7 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentById
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<Payment> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken)
-            {
-                return await contextAdapter.Context.Payments.FindAsync(request.PaymentId);
-            }
+            public async Task<Payment> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken) => await contextAdapter.Context.Payments.FindAsync(request.PaymentId);
         }
     }
 }

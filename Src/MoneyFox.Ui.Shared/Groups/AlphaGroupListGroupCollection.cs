@@ -75,10 +75,14 @@ namespace MoneyFox.Ui.Shared.Groups
                 string index = getKey(item);
 
                 if(list.All(a => a.Key != index))
+                {
                     list.Add(new AlphaGroupListGroupCollection<T>(index, itemClickCommand));
+                }
 
                 if(!string.IsNullOrEmpty(index))
+                {
                     list.Find(a => a.Key == index).Add(item);
+                }
             }
 
             if(sort)
@@ -95,7 +99,9 @@ namespace MoneyFox.Ui.Shared.Groups
         private static void ThrowIfNull(object parameter)
         {
             if(parameter == null)
+            {
                 throw new GroupListParameterNullException();
+            }
         }
     }
 }

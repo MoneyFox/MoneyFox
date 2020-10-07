@@ -17,10 +17,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountCount
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<int> Handle(GetAccountCountQuery request, CancellationToken cancellationToken)
-            {
-                return await contextAdapter.Context.Accounts.CountAsync(cancellationToken);
-            }
+            public async Task<int> Handle(GetAccountCountQuery request, CancellationToken cancellationToken) => await contextAdapter.Context.Accounts.CountAsync(cancellationToken);
         }
     }
 }

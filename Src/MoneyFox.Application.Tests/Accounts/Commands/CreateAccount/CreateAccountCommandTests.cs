@@ -42,10 +42,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
-        {
-            InMemoryEfCoreContextFactory.Destroy(context);
-        }
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetAccountQuery_CorrectNumberLoaded()

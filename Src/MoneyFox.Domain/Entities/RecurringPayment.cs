@@ -29,7 +29,9 @@ namespace MoneyFox.Domain.Entities
                                 DateTime? lastRecurrenceCreated = null)
         {
             if(!IsEndless && endDate != null && endDate < DateTime.Today)
+            {
                 throw new InvalidEndDateException();
+            }
 
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             StartDate = startDate;
@@ -89,7 +91,9 @@ namespace MoneyFox.Domain.Entities
                                            Category? category = null)
         {
             if(!IsEndless && endDate != null && endDate < DateTime.Today)
+            {
                 throw new InvalidEndDateException();
+            }
 
             ChargedAccount = chargedAccount ?? throw new ArgumentNullException(nameof(chargedAccount));
             EndDate = endDate;
