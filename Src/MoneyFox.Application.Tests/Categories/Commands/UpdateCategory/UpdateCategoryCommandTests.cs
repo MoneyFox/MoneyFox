@@ -63,6 +63,25 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
         }
 
         [Fact]
+        public async Task UpdateCategoryCommand_ShouldUpdateRequireNote()
+        {
+            // Arrange
+            var category = new Category("test", requireNote: false);
+            await context.AddAsync(category);
+            await context.SaveChangesAsync();
+
+            // Act
+            category.UpdateData("foo", requireNote: true);
+            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+               .Handle(new UpdateCategoryCommand(category), default);
+
+            Category loadedCategory = await context.Categories.FindAsync(category.Id);
+
+            // Assert
+            loadedCategory.RequireNote.ShouldBeTrue();
+        }
+
+        [Fact]
         public async Task SyncDoneOnCreation()
         {
             // Arrange

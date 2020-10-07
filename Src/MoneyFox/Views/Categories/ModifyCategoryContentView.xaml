@@ -1,19 +1,30 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             mc:Ignorable="d"
-             x:Class="MoneyFox.Views.Categories.ModifyCategoryContentView">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="MoneyFox.Views.Categories.ModifyCategoryContentView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+    mc:Ignorable="d">
 
-  <ContentView.Content>
-      <StackLayout>
-            <Entry Placeholder="{x:Static resources:Strings.CategoryNameLabel}"
-                   Text="{Binding SelectedCategory.Name}" />
+    <ContentView.Content>
+        <StackLayout>
+            <Entry Placeholder="{x:Static resources:Strings.CategoryNameLabel}" Text="{Binding SelectedCategory.Name}" />
 
-            <Entry Placeholder="{x:Static resources:Strings.NoteLabel}"
-                   Text="{Binding SelectedCategory.Note}" />
+            <Entry Placeholder="{x:Static resources:Strings.NoteLabel}" Text="{Binding SelectedCategory.Note}" />
+
+            <StackLayout CompressedLayout.IsHeadless="True" Orientation="Horizontal">
+                <CheckBox
+                    HorizontalOptions="Start"
+                    IsChecked="{Binding SelectedCategory.RequireNote}"
+                    VerticalOptions="Center" />
+                <Label
+                    Margin="-20,0,0,0"
+                    HorizontalOptions="StartAndExpand"
+                    Text="{x:Static resources:Strings.RequireNoteCheckbox}"
+                    VerticalOptions="Center" />
+            </StackLayout>
         </StackLayout>
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>

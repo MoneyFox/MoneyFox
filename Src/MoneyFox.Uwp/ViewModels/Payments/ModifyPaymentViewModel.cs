@@ -263,6 +263,12 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 return;
             }
 
+            if(SelectedPayment.Category.RequireNote && string.IsNullOrEmpty(SelectedPayment.Note))
+            {
+                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.ANoteForPaymentIsRequired);
+                return;
+            }
+
             await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
             await SavePaymentAsync();
             MessengerInstance.Send(new ReloadMessage());

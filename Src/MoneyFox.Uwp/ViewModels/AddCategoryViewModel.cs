@@ -38,7 +38,7 @@ namespace MoneyFox.Uwp.ViewModels
                 return;
             }
 
-            await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note));
+            await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note, SelectedCategory.RequireNote));
         }
     }
 }

@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
+using Microsoft.Graph;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Interfaces;
@@ -150,6 +151,12 @@ namespace MoneyFox.ViewModels.Payments
             if(SelectedPayment.Amount < 0)
             {
                 await dialogService.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage);
+                return;
+            }
+
+            if((SelectedPayment.Category?.RequireNote == true) && string.IsNullOrEmpty(SelectedPayment.Note))
+            {
+                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.ANoteForPaymentIsRequired);
                 return;
             }
 

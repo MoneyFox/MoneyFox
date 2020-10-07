@@ -223,6 +223,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A note for payment is required.
+        /// </summary>
+        public static string ANoteForPaymentIsRequired {
+            get {
+                return ResourceManager.GetString("ANoteForPaymentIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply Filter.
         /// </summary>
         public static string ApplyFilterLabel {
@@ -925,7 +934,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expense {1} / Income: {0}.
+        ///   Looks up a localized string similar to Expense: {0} / Income: {1}.
         /// </summary>
         public static string ExpenseAndIncomeTemplate {
             get {
@@ -1591,6 +1600,15 @@ namespace MoneyFox.Application.Resources {
         public static string RecurringLabel {
             get {
                 return ResourceManager.GetString("RecurringLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Note required.
+        /// </summary>
+        public static string RequireNoteCheckbox {
+            get {
+                return ResourceManager.GetString("RequireNoteCheckbox", resourceCulture);
             }
         }
         

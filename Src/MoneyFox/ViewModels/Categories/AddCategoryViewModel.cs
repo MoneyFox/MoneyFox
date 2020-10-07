@@ -17,6 +17,9 @@ namespace MoneyFox.ViewModels.Categories
             this.mediator = mediator;
         }
 
-        protected override async Task SaveCategoryAsync() => await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note));
+        protected override async Task SaveCategoryAsync()
+        {
+            await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note, SelectedCategory.RequireNote));
+        }
     }
 }

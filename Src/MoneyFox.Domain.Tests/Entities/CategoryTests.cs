@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Domain.Entities;
 using Should;
 using System;
+using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
@@ -30,6 +31,7 @@ namespace MoneyFox.Domain.Tests.Entities
             // Assert
             category.Name.ShouldEqual(testName);
             category.Note.ShouldBeEmpty();
+            category.RequireNote.ShouldBeFalse();
             category.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
             category.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
         }
@@ -42,11 +44,12 @@ namespace MoneyFox.Domain.Tests.Entities
             const string testNote = "foo";
 
             // Act / Assert
-            var category = new Category(testName, testNote);
+            var category = new Category(testName, testNote, true);
 
             // Assert
             category.Name.ShouldEqual(testName);
             category.Note.ShouldEqual(testNote);
+            category.RequireNote.ShouldBeTrue();
         }
 
         [Theory]
@@ -75,6 +78,7 @@ namespace MoneyFox.Domain.Tests.Entities
             // Assert
             testCategory.Name.ShouldEqual(testName);
             testCategory.Note.ShouldBeEmpty();
+            testCategory.RequireNote.ShouldBeFalse();
             testCategory.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-0.5), DateTime.Now);
         }
 
@@ -88,11 +92,12 @@ namespace MoneyFox.Domain.Tests.Entities
             var testCategory = new Category("Foo");
 
             // Act / Assert
-            testCategory.UpdateData(testName, testNote);
+            testCategory.UpdateData(testName, testNote, true);
 
             // Assert
             testCategory.Name.ShouldEqual(testName);
             testCategory.Note.ShouldEqual(testNote);
+            testCategory.RequireNote.ShouldBeTrue();
         }
     }
 }
