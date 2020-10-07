@@ -39,7 +39,7 @@
             TextWrapping="Wrap" />
         <CheckBox
             x:Uid="RequireNoteCheckbox"
-            HorizontalAlignment="Right"
+            HorizontalAlignment="Left"
             Content="{x:Bind resources:Strings.RequireNoteCheckbox}"
             IsChecked="{Binding SelectedCategory.RequireNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </StackPanel>

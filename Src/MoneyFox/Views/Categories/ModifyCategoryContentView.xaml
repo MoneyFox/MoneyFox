@@ -16,12 +16,12 @@
 
             <StackLayout CompressedLayout.IsHeadless="True" Orientation="Horizontal">
                 <CheckBox
-                    HorizontalOptions="EndAndExpand"
+                    HorizontalOptions="Start"
                     IsChecked="{Binding SelectedCategory.RequireNote}"
                     VerticalOptions="Center" />
                 <Label
                     Margin="-20,0,0,0"
-                    HorizontalOptions="End"
+                    HorizontalOptions="StartAndExpand"
                     Text="{x:Static resources:Strings.RequireNoteCheckbox}"
                     VerticalOptions="Center" />
             </StackLayout>
