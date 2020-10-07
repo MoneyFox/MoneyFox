@@ -46,10 +46,12 @@
                 </ListBoxItem>
                 <ListBoxItem>
                     <CalendarDatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        FirstDayOfWeek="Monday"
                                         Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
                 </ListBoxItem>
                 <ListBoxItem>
                     <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                        FirstDayOfWeek="Monday"
                                         Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
                 </ListBoxItem>
                 <ListBoxItem>
