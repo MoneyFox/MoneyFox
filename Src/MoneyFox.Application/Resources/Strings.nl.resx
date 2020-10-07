@@ -738,4 +738,10 @@ Om daar te komen, gaat u naar de accountlijst en selecteert u het respectieve ac
   <data name="LoggedInMessage" xml:space="preserve">
     <value>Succesvol ingelogd.</value>
   </data>
+  <data name="RequireNoteCheckbox" xml:space="preserve">
+    <value>Note required</value>
+  </data>
+  <data name="ANoteForPaymentIsRequired" xml:space="preserve">
+    <value>A note for payment is required</value>
+  </data>
 </root>
