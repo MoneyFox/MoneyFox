@@ -732,4 +732,10 @@ Pour y arriver, allez dans la liste des comptes et sélectionnez le compte respe
   <data name="LoggedInMessage" xml:space="preserve">
     <value>Loggedin successfully.</value>
   </data>
+  <data name="RequireNoteCheckbox" xml:space="preserve">
+    <value>Note required</value>
+  </data>
+  <data name="ANoteForPaymentIsRequired" xml:space="preserve">
+    <value>A note for payment is required</value>
+  </data>
 </root>
