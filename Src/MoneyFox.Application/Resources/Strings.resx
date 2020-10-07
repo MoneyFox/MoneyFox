@@ -736,6 +736,9 @@ To get there go to the account list and select the respective account.</value>
     <value>Loggedin successfully.</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Require note</value>
+    <value>Note required</value>
+  </data>
+  <data name="ANoteForPaymentIsRequired" xml:space="preserve">
+    <value>A note for payment is required</value>
   </data>
 </root>

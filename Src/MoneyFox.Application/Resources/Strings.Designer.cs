@@ -223,6 +223,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A note for payment is required.
+        /// </summary>
+        public static string ANoteForPaymentIsRequired {
+            get {
+                return ResourceManager.GetString("ANoteForPaymentIsRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply Filter.
         /// </summary>
         public static string ApplyFilterLabel {
@@ -1595,7 +1604,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Require note.
+        ///   Looks up a localized string similar to Note required.
         /// </summary>
         public static string RequireNoteCheckbox {
             get {
