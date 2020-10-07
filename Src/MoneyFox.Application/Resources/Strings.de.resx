@@ -735,9 +735,9 @@ Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorth
     <value>Erfolgreich eingeloggt.</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>Notiz erforderlich</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>Für diese Zahlung ist eine Notiz erforderlich.</value>
   </data>
 </root>
