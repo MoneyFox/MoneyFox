@@ -104,7 +104,7 @@
             VerticalAlignment="Stretch"
             Header="{x:Bind resources:Strings.RecurringLabel}"
             IsOn="{x:Bind ViewModel.SelectedPayment.IsRecurring, Mode=TwoWay}" />
-        <StackPanel Visibility="{x:Bind ViewModel.SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}}">
+        <StackPanel Visibility="{x:Bind ViewModel.SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
             <ComboBox
                 Margin="{StaticResource SmallTitleContentMargin}"
                 HorizontalAlignment="Stretch"
