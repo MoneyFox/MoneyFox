@@ -107,8 +107,15 @@ steps:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: |
       **/*.ipa
-      **/WhatToTest.txt
     TargetFolder: '$(build.artifactstagingdirectory)'
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: |
+      **/release_notes.txt
+    TargetFolder: '$(build.artifactstagingdirectory)/metadata'
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
