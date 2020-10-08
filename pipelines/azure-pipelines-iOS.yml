@@ -51,7 +51,7 @@ steps:
    echo "Updating version name to $VERSION_NAME in Info.plist"
    plutil -replace CFBundleShortVersionString -string $BUILD_BUILDNUMBER $INFO_PLIST_FILE
    plutil -replace CFBundleVersion -string $VERSION $INFO_PLIST_FILE
-  displayName: 'Bash Script'
+  displayName: 'Set App Version'
   env:
     Major: $(Major)
     Minor: $(Minor)
@@ -105,10 +105,19 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: |
-      **/*.ipa
-      **/WhatToTest.txt
+    Contents: '**/*.ipa'
     TargetFolder: '$(build.artifactstagingdirectory)'
+    flattenFolders: true
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/release_notes.txt'
+    TargetFolder: '$(build.artifactstagingdirectory)/metadata/default'
+    CleanTargetFolder: true
+    OverWrite: true
+    flattenFolders: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
