@@ -113,8 +113,8 @@ steps:
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
-    Contents: '**/release_notes.txt'
-    TargetFolder: '$(build.artifactstagingdirectory)/metadata/default'
+    Contents: '**/changelog.txt'
+    TargetFolder: '$(build.artifactstagingdirectory)/.fastlane'
     CleanTargetFolder: true
     OverWrite: true
     flattenFolders: true
