@@ -119,6 +119,17 @@ steps:
     OverWrite: true
     flattenFolders: true
 
+
+- task: CopyFiles@2
+  displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**/release_notes.txt'
+    TargetFolder: '$(build.artifactstagingdirectory)/metadata'
+    CleanTargetFolder: true
+    OverWrite: true
+    flattenFolders: true
+
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Artifact: drop'
   inputs:
