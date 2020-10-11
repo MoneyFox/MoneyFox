@@ -126,7 +126,7 @@ steps:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**/release_notes.txt'
     TargetFolder: '$(build.artifactstagingdirectory)/metadata'
-    CleanTargetFolder: true
+    CleanTargetFolder: false
     OverWrite: true
     flattenFolders: true
 
