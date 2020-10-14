@@ -125,7 +125,7 @@ steps:
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**/release_notes.txt'
-    TargetFolder: '$(build.artifactstagingdirectory)/metadata'
+    TargetFolder: '$(build.artifactstagingdirectory)/metadata/en-GB'
     CleanTargetFolder: false
     OverWrite: true
     flattenFolders: true
