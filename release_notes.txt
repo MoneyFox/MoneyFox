@@ -1,4 +1,4 @@
-To learn more about the latest version, please visit https://github.com/MoneyFox/MoneyFox/releases
+This release contains general bugfixes and improvements.
 
 |-----------|
 | HUG       |
