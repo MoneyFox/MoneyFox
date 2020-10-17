@@ -1,23 +1,35 @@
-﻿using System.Threading.Tasks;
+﻿using MoneyFox.Domain.Exceptions;
+using NLog;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MoneyFox.Extensions
 {
     public static class NavigationExtension
     {
+        private readonly static Logger logger = LogManager.GetCurrentClassLogger();
+
         public static Task GoToModalAsync(this Shell shell, string route)
         {
-            var page = Routing.GetOrCreateContent(route) as Page;
-
-            if(page is null)
+            try
             {
-                return Task.CompletedTask;
+                if(!(Routing.GetOrCreateContent(route) is Page page))
+                {
+                    return Task.CompletedTask;
+                }
+
+                return shell.Navigation.PushModalAsync(new NavigationPage(page)
+                {
+                    BarBackgroundColor = Color.Transparent
+                });
             }
-
-            return shell.Navigation.PushModalAsync(new NavigationPage(page)
+            catch(Exception ex)
             {
-                BarBackgroundColor = Color.Transparent
-            });
+                var exception = new NavigationException($"Navigation to route {route} failed. ", ex);
+                logger.Error(exception);
+                throw exception;
+            }
         }
     }
 }
