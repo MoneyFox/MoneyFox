@@ -9,10 +9,9 @@ namespace MoneyFox.Persistence
         {
             builder.Register(c => EfCoreContextFactory.Create())
                    .As<DbContext>()
-                   .AsImplementedInterfaces()
-                   .SingleInstance();
+                   .AsImplementedInterfaces();
 
-            builder.RegisterType<ContextAdapter>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
         }
     }
 }
