@@ -2,6 +2,7 @@
 using System.Globalization;
 using Windows.ApplicationModel;
 
+#nullable enable
 namespace MoneyFox.Uwp.Src
 {
     public class WindowsAppInformation : IAppInformation

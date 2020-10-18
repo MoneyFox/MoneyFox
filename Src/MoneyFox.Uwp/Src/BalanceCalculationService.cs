@@ -9,6 +9,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.Src
 {
     /// <summary>

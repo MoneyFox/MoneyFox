@@ -7,6 +7,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 
+#nullable enable
 namespace MoneyFox.Uwp.Src
 {
     public class DialogService : IDialogService
