@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Storage;
 using Windows.Storage.Streams;
 
+#nullable enable
 namespace MoneyFox.Uwp.Src
 {
     public class WindowsFileStore : FileStoreBase

@@ -2,6 +2,7 @@
 using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Navigation;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class AddPaymentView

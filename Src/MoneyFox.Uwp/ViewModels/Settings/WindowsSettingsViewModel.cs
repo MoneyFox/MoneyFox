@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Settings;
 using System.Windows.Input;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public class WindowsSettingsViewModel : SettingsViewModel, IWindowsSettingsViewModel

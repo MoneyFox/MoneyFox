@@ -1,4 +1,5 @@
-﻿namespace MoneyFox.Uwp.Views.Dialogs
+﻿#nullable enable
+namespace MoneyFox.Uwp.Views.Dialogs
 {
     public sealed partial class SelectDateRangeDialog
     {

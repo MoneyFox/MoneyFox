@@ -53,13 +53,15 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             // Arrange
             var account = new Account("test", 80);
             context.Add(account);
+            context.SaveChanges();
 
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
             // Act
             await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
                                                    backupServiceMock.Object,
-                                                   settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+                                                   settingsFacadeMock.Object)
+                                          .Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);
@@ -72,6 +74,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             // Arrange
             var account = new Account("test", 80);
             context.Add(account);
+            context.SaveChanges();
 
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
@@ -114,6 +117,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             // Arrange
             var account = new Account("test", 80);
             context.Add(account);
+            context.SaveChanges();
 
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 

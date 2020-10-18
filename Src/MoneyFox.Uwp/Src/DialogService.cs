@@ -7,6 +7,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Popups;
 
+#nullable enable
 namespace MoneyFox.Uwp.Src
 {
     public class DialogService : IDialogService
@@ -54,7 +55,7 @@ namespace MoneyFox.Uwp.Src
         /// <summary>
         /// Shows a loading Dialog.
         /// </summary>
-        public async Task ShowLoadingDialogAsync(string message = null)
+        public async Task ShowLoadingDialogAsync(string? message = null)
         {
             // Be sure no other dialog is open.
             await HideLoadingDialogAsync();

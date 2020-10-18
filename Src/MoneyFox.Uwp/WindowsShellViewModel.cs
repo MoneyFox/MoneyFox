@@ -24,6 +24,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
+#nullable enable
 namespace MoneyFox.Uwp
 {
     public class WindowsShellViewModel : ViewModelBase
@@ -55,9 +56,9 @@ namespace MoneyFox.Uwp
             set => Set(ref selected, value);
         }
 
-        public ICommand LoadedCommand => loadedCommand ?? (loadedCommand = new AsyncCommand(OnLoadedAsync));
+        public ICommand LoadedCommand => loadedCommand ??= new AsyncCommand(OnLoadedAsync);
 
-        public ICommand ItemInvokedCommand => itemInvokedCommand ?? (itemInvokedCommand = new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked));
+        public ICommand ItemInvokedCommand => itemInvokedCommand ??= new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
 
         public RelayCommand<PaymentType> GoToPaymentCommand => new RelayCommand<PaymentType>(t => NavigationService.Navigate<AddPaymentViewModel>(t));
 
@@ -132,7 +133,7 @@ namespace MoneyFox.Uwp
                 return;
             }
 
-            string pageString = item.GetValue(NavHelper.NavigateToProperty) as string;
+            string pageString = (string) item.GetValue(NavHelper.NavigateToProperty);
             NavigationService.Navigate(GetTypeByString(pageString));
         }
 

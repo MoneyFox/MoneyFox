@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.CloudBackup;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.Src
 {
     public class GraphClientFactory : IGraphClientFactory

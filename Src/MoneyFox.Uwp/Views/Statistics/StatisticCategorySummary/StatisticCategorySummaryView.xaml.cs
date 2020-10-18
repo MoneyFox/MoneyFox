@@ -6,6 +6,7 @@ using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
 {
     public sealed partial class StatisticCategorySummaryView

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public class IncomeExpenseBalanceViewModel : ViewModelBase

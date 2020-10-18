@@ -19,11 +19,12 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : ViewModelBase
     {
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source;
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
 
         /// <summary>
         /// Base class for the category list user control

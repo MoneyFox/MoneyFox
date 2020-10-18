@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Domain;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>
@@ -10,12 +11,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// <summary>
         ///     Name of the statistic
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         /// <summary>
         ///     Short description for the statistic
         /// </summary>
-        public string Description { get; set; }
+        public string Description { get; set; } = "";
 
         /// <summary>
         ///     Type of this item.

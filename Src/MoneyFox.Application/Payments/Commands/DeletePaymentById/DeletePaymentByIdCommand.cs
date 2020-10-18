@@ -44,7 +44,10 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
 
                 Payment entityToDelete = await contextAdapter.Context
                                                              .Payments
-                                                             .FindAsync(request.PaymentId);
+                                                             .Include(x => x.ChargedAccount)
+                                                             .Include(x => x.TargetAccount)
+                                                             .Include(x => x.RecurringPayment)
+                                                             .SingleAsync(x => x.Id == request.PaymentId);
 
                 entityToDelete.ChargedAccount!.RemovePaymentAmount(entityToDelete);
                 entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);

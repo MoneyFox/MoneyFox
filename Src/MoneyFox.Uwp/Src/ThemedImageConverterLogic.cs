@@ -4,13 +4,14 @@ using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
+#nullable enable
 namespace MoneyFox.Uwp.Src
 {
     public static class ThemedImageConverterLogic
     {
         private static readonly Dictionary<string, BitmapImage> ImageCache = new Dictionary<string, BitmapImage>();
 
-        public static BitmapImage GetImage(string path, bool negateResult = false)
+        public static BitmapImage? GetImage(string path, bool negateResult = false)
         {
             if(string.IsNullOrEmpty(path))
             {

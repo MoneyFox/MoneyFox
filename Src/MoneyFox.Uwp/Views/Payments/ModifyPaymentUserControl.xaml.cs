@@ -3,6 +3,7 @@ using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Controls;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class ModifyPaymentUserControl

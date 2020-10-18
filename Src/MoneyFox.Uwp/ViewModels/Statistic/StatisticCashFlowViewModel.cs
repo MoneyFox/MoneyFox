@@ -5,6 +5,7 @@ using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>

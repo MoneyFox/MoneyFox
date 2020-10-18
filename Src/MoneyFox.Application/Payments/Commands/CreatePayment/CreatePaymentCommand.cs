@@ -43,14 +43,18 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
             public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
             {
                 contextAdapter.Context.Entry(request.PaymentToSave).State = EntityState.Added;
+                contextAdapter.Context.Entry(request.PaymentToSave.ChargedAccount).State = EntityState.Modified;
+
+                if(request.PaymentToSave.TargetAccount != null)
+                {
+                    contextAdapter.Context.Entry(request.PaymentToSave.TargetAccount).State = EntityState.Modified;
+                }
 
                 if(request.PaymentToSave.IsRecurring)
                 {
                     if(request.PaymentToSave.RecurringPayment == null)
                     {
-                        var exception =
-                            new
-                                RecurringPaymentNullException($"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
+                        var exception = new RecurringPaymentNullException($"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
                         logger.Error(exception);
                         throw exception;
                     }

@@ -39,12 +39,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById
         public async Task GetCategory_CategoryNotFound()
         {
             // Arrange
-
-            // Act
-            Payment result = await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(999), default);
-
-            // Assert
-            result.ShouldBeNull();
+            // Act / Assert
+            await Assert.ThrowsAsync<InvalidOperationException>(async () => await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(999), default));
         }
 
         [Fact]

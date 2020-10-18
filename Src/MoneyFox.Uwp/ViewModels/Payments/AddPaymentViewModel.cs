@@ -15,6 +15,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     public class AddPaymentViewModel : ModifyPaymentViewModel

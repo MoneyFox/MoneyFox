@@ -2,6 +2,7 @@
 using NLog;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Domain.Entities
 {
@@ -15,6 +16,7 @@ namespace MoneyFox.Domain.Entities
         // used for EF
         private Payment() { }
 
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "ignored")]
         public Payment(DateTime date,
                        decimal amount,
                        PaymentType type,

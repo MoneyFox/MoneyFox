@@ -14,6 +14,7 @@ using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <inheritdoc cref="IPaymentListViewActionViewModel"/>

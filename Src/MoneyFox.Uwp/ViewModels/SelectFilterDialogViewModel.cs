@@ -2,6 +2,7 @@
 using MoneyFox.Application.Common.Messages;
 using System;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public class SelectFilterDialogViewModel : ViewModelBase, ISelectFilterDialogViewModel
@@ -31,7 +32,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// Indicates wether the filter to only display recurring Payments is active or not.
+        /// Indicates whether the filter to only display recurring Payments is active or not.
         /// </summary>
         public bool IsRecurringFilterActive
         {

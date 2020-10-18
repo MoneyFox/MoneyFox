@@ -7,6 +7,8 @@ namespace MoneyFox.Application.Common.Messages
     /// </summary>
     public class PaymentListFilterChangedMessage
     {
+        private const int DEFAULT_MONTHS_BACK = -2;
+
         /// <summary>
         ///     Indicates if only cleared payments should be displayed.
         /// </summary>
@@ -25,7 +27,7 @@ namespace MoneyFox.Application.Common.Messages
         /// <summary>
         ///     Start of the time range to load payments.
         /// </summary>
-        public DateTime TimeRangeStart { get; set; } = DateTime.Now.AddMonths(-2);
+        public DateTime TimeRangeStart { get; set; } = DateTime.Now.AddMonths(DEFAULT_MONTHS_BACK);
 
         /// <summary>
         ///     End of the time range to load payments.

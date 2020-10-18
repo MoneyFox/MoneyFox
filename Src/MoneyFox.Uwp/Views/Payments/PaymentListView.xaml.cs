@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class PaymentListView
@@ -40,7 +41,7 @@ namespace MoneyFox.Uwp.Views.Payments
             e.RowGroupHeader.PropertyValue = item.Date.ToString("D", CultureInfo.CurrentCulture);
         }
 
-        private async void DataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void DataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             if(((FrameworkElement)e.OriginalSource).DataContext is PaymentViewModel vm)
             {
@@ -50,7 +51,7 @@ namespace MoneyFox.Uwp.Views.Payments
 
         private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
         {
-            if((sender as FrameworkElement).DataContext is PaymentViewModel vm)
+            if(((FrameworkElement)sender).DataContext is PaymentViewModel vm)
             {
                 ViewModel.DeletePaymentCommand.Execute(vm);
             }

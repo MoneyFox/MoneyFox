@@ -9,6 +9,7 @@ using NLog;
 using System.Globalization;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public abstract class ModifyAccountViewModel : ViewModelBase

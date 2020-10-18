@@ -2,6 +2,7 @@ using Android.Content;
 using Android.Net;
 using MoneyFox.Application.Common.Interfaces;
 
+#nullable enable
 namespace MoneyFox.Droid.Src
 {
     /// <summary>
@@ -17,7 +18,7 @@ namespace MoneyFox.Droid.Src
         /// </summary>
         public void RateApp()
         {
-            string appPackageName = Android.App.Application.Context.PackageName;
+            string appPackageName = Android.App.Application.Context.PackageName ?? "";
 
             try
             {

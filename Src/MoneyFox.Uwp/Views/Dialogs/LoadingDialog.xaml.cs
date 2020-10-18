@@ -1,5 +1,6 @@
 ﻿using Windows.UI.Xaml.Controls;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Dialogs
 {
     public sealed partial class LoadingDialog : ContentDialog

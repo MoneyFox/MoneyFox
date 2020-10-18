@@ -21,6 +21,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>
@@ -120,12 +121,12 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
         }
 
-        private CollectionViewSource groupedPayments;
+        private CollectionViewSource? groupedPayments;
 
         /// <summary>
         /// Returns grouped related payments
         /// </summary>
-        public CollectionViewSource GroupedPayments
+        public CollectionViewSource? GroupedPayments
         {
             get => groupedPayments;
             private set
