@@ -43,6 +43,12 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
             public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
             {
                 contextAdapter.Context.Entry(request.PaymentToSave).State = EntityState.Added;
+                contextAdapter.Context.Entry(request.PaymentToSave.ChargedAccount).State = EntityState.Modified;
+
+                if(request.PaymentToSave.TargetAccount != null)
+                {
+                    contextAdapter.Context.Entry(request.PaymentToSave.TargetAccount).State = EntityState.Modified;
+                }
 
                 if(request.PaymentToSave.IsRecurring)
                 {
