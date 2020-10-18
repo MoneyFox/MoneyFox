@@ -84,7 +84,7 @@ namespace MoneyFox.ViewModels.Accounts
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
         {
             get => accounts;
-            set
+            private set
             {
                 accounts = value;
                 RaisePropertyChanged();
