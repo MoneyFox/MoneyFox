@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp.Src
     {
         private static readonly Dictionary<string, BitmapImage> ImageCache = new Dictionary<string, BitmapImage>();
 
-        public static BitmapImage GetImage(string path, bool negateResult = false)
+        public static BitmapImage? GetImage(string path, bool negateResult = false)
         {
             if(string.IsNullOrEmpty(path))
             {

@@ -22,7 +22,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
-        private ObservableCollection<CategoryOverviewViewModel> categorySummary;
+        private ObservableCollection<CategoryOverviewViewModel> categorySummary = new ObservableCollection<CategoryOverviewViewModel>();
 
         private readonly IMapper mapper;
 
@@ -31,12 +31,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             : base(mediator)
         {
             this.mapper = mapper;
-
-            CategorySummary = new ObservableCollection<CategoryOverviewViewModel>();
-            IncomeExpenseBalance = new IncomeExpenseBalanceViewModel();
         }
 
-        private IncomeExpenseBalanceViewModel incomeExpenseBalance;
+        private IncomeExpenseBalanceViewModel incomeExpenseBalance = new IncomeExpenseBalanceViewModel();
 
         public IncomeExpenseBalanceViewModel IncomeExpenseBalance
         {
@@ -74,8 +71,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 
         public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new RelayCommand<CategoryOverviewViewModel>(async (c) => await SummaryEntrySelected(c));
 
-        private CategoryOverviewViewModel selectedOverviewItem;
-        public CategoryOverviewViewModel SelectedOverviewItem
+        private CategoryOverviewViewModel? selectedOverviewItem;
+        public CategoryOverviewViewModel? SelectedOverviewItem
         {
             get => selectedOverviewItem;
             set
