@@ -1,11 +1,9 @@
-﻿using FluentAssertions;
-using MoneyFox.Application.Categories.Command.CreateCategory;
+﻿using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
-using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
 using Should;
@@ -61,7 +59,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
         public async Task CreateCategoryCommand_ShouldSaveRequireNoteCorretly()
         {
             // Arrange
-            // Act 
+            // Act
             await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
                 .Handle(new CreateCategoryCommand("Test", requireNote: true), default);
 

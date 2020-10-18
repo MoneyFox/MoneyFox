@@ -5,6 +5,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 {
     public static class StatisticUtilities
     {
+        private const int POSITIONS_TO_ROUND = 2;
+
         /// <summary>
         /// Will round all values of the passed statistic item list
         /// </summary>
@@ -13,8 +15,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
         {
             items.ForEach(x =>
                           {
-                              x.Value = Math.Round(x.Value, 2, MidpointRounding.AwayFromZero);
-                              x.Percentage = Math.Round(x.Percentage, 2, MidpointRounding.AwayFromZero);
+                              x.Value = Math.Round(x.Value, POSITIONS_TO_ROUND, MidpointRounding.AwayFromZero);
+                              x.Percentage = Math.Round(x.Percentage, POSITIONS_TO_ROUND, MidpointRounding.AwayFromZero);
                           });
         }
     }
