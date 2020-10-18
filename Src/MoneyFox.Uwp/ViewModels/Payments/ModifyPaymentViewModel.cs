@@ -23,6 +23,7 @@ using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>
@@ -263,7 +264,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 return;
             }
 
-            if(SelectedPayment.Category.RequireNote && string.IsNullOrEmpty(SelectedPayment.Note))
+            if(SelectedPayment.Category != null
+                && SelectedPayment.Category.RequireNote
+                && string.IsNullOrEmpty(SelectedPayment.Note))
             {
                 await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.ANoteForPaymentIsRequired);
                 return;
