@@ -21,6 +21,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Data;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>

@@ -1,4 +1,5 @@
-﻿namespace MoneyFox.Uwp.Views.UserControls
+﻿#nullable enable
+namespace MoneyFox.Uwp.Views.UserControls
 {
     public sealed partial class IncomeExpenseBalanceUserControl
     {

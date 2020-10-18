@@ -14,6 +14,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>

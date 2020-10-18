@@ -8,6 +8,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class PaymentListView

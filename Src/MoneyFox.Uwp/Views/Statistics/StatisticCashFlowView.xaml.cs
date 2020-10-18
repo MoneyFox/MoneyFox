@@ -3,6 +3,7 @@ using MoneyFox.Uwp.Views.Dialogs;
 using System;
 using Windows.UI.Xaml;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCashFlowView

@@ -4,6 +4,7 @@ using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System;
 using System.Collections.ObjectModel;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
     public class CategoryOverviewViewModel : ViewModelBase

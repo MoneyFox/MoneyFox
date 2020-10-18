@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public class CategoryListViewModel : AbstractCategoryListViewModel, ICategoryListViewModel

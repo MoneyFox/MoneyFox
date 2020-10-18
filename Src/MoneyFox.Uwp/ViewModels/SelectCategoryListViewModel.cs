@@ -5,6 +5,7 @@ using MoneyFox.Messages;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     /// <inheritdoc cref="ISelectCategoryListViewModel"/>

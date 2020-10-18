@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public class AccountListViewActionViewModel : ViewModelBase, IAccountListViewActionViewModel

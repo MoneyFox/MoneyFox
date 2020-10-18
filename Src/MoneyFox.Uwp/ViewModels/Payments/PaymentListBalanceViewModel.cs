@@ -5,6 +5,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Src;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>

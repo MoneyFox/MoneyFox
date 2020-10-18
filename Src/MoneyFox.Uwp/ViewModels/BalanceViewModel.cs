@@ -4,6 +4,7 @@ using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     /// <summary>

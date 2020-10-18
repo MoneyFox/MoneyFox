@@ -19,6 +19,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public abstract class AbstractCategoryListViewModel : ViewModelBase

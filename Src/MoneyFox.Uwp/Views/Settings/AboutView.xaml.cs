@@ -4,6 +4,7 @@ using MoneyFox.Ui.Shared.ViewModels.About;
 using System;
 using Windows.UI.Xaml;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class AboutView

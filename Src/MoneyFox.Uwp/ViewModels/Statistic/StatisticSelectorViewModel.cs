@@ -7,6 +7,7 @@ using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 using System.Collections.Generic;
 
+#nullable enable
 namespace MoneyFox.Presentation.ViewModels.Statistic
 {
     public class StatisticSelectorViewModel : ViewModelBase, IStatisticSelectorViewModel

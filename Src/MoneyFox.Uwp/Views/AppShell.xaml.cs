@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Domain;
 using Windows.UI.Xaml.Controls;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views
 {
     /// <summary>

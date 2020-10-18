@@ -1,5 +1,6 @@
 ﻿using System;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class CategoryListView

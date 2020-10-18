@@ -6,6 +6,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>

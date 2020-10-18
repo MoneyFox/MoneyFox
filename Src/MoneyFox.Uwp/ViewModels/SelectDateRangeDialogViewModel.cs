@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Messages;
 using System;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public class SelectDateRangeDialogViewModel : ViewModelBase

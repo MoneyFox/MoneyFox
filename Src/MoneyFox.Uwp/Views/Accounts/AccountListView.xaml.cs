@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
+#nullable enable
 namespace MoneyFox.Uwp.Views.Accounts
 {
     /// <summary>
