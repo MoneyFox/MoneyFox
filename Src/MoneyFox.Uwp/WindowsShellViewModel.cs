@@ -24,6 +24,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 using WinUI = Microsoft.UI.Xaml.Controls;
 
+#nullable enable
 namespace MoneyFox.Uwp
 {
     public class WindowsShellViewModel : ViewModelBase
