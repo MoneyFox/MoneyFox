@@ -79,7 +79,7 @@
             <TextBlock
                 VerticalAlignment="Center"
                 Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                Text="{x:Bind ViewModel.Title}" />
+                Text="{x:Bind ViewModel.Title, Mode=OneWay}" />
             <userControls:IncomeExpenseBalanceUserControl DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
         </StackPanel>
 
