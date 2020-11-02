@@ -24,6 +24,11 @@ namespace MoneyFox.Application.Common.CloudBackup
     public interface IBackupService
     {
         /// <summary>
+        /// Informations about logged user.
+        /// </summary>
+        UserAccount UserAccount { get; set; }
+
+        /// <summary>
         /// Login user.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
@@ -79,6 +84,8 @@ namespace MoneyFox.Application.Common.CloudBackup
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        public UserAccount UserAccount { get; set; }
+
         public BackupService(ICloudBackupService cloudBackupService,
                              IFileStore fileStore,
                              ISettingsFacade settingsFacade,
@@ -94,6 +101,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             this.contextAdapter = contextAdapter;
             this.messenger = messenger;
             this.toastService = toastService;
+            this.UserAccount = cloudBackupService.UserAccount;
         }
 
         public async Task LoginAsync()
@@ -104,6 +112,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             }
 
             await cloudBackupService.LoginAsync();
+            UserAccount = cloudBackupService.UserAccount.GetUserAccount();
 
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;

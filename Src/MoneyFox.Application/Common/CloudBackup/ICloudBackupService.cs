@@ -15,6 +15,11 @@ namespace MoneyFox.Application.Common.CloudBackup
     public interface ICloudBackupService
     {
         /// <summary>
+        /// Informations about logged user.
+        /// </summary>
+        UserAccount UserAccount { get; set; }
+
+        /// <summary>
         /// Login user.
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>

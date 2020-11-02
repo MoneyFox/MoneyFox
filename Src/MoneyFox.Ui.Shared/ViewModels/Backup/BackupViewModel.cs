@@ -28,6 +28,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
         private readonly ISettingsFacade settingsFacade;
         private readonly IToastService toastService;
         private bool backupAvailable;
+        private UserAccount userAccount;
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
@@ -43,6 +44,8 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             this.connectivity = connectivity;
             this.settingsFacade = settingsFacade;
             this.toastService = toastService;
+            this.userAccount = new UserAccount();
+
         }
 
         /// <inheritdoc/>
@@ -135,6 +138,21 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             }
         }
 
+        public UserAccount UserAccount 
+        {
+            get => userAccount;
+            set
+            {
+                if(userAccount == value)
+                {
+                    return;
+                }
+
+                userAccount = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private async Task InitializeAsync() => await LoadedAsync();
 
         private async Task LoadedAsync()
@@ -154,6 +172,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             {
                 BackupAvailable = await backupService.IsBackupExistingAsync();
                 BackupLastModified = await backupService.GetBackupDateAsync();
+                UserAccount = backupService.UserAccount.GetUserAccount();
             }
             catch(BackupAuthenticationFailedException ex)
             {
@@ -186,6 +205,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             try
             {
                 await backupService.LoginAsync();
+                UserAccount = backupService.UserAccount.GetUserAccount();
             }
             catch(BackupOperationCanceledException)
             {
