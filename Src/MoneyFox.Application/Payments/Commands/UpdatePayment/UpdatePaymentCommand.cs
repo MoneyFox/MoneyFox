@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
@@ -92,18 +93,27 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 
             public async Task<Unit> Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
             {
-                Payment existingPayment = await contextAdapter.Context.Payments.FindAsync(request.Id);
+                Payment existingPayment = await contextAdapter.Context
+                                                              .Payments
+                                                              .Include(x => x.ChargedAccount)
+                                                              .Include(x => x.TargetAccount)
+                                                              .Include(x => x.Category)
+                                                              .Include(x => x.RecurringPayment)
+                                                              .FirstAsync(x => x.Id == request.Id);
 
                 if(existingPayment == null)
                 {
                     return Unit.Value;
                 }
 
+                var chargedAccount = await contextAdapter.Context.Accounts.FindAsync(request.ChargedAccountId);
+                var targetAccount = await contextAdapter.Context.Accounts.FindAsync(request.TargetAccountId);
+
                 existingPayment.UpdatePayment(request.Date,
                                               request.Amount,
                                               request.Type,
-                                              await contextAdapter.Context.Accounts.FindAsync(request.ChargedAccountId),
-                                              await contextAdapter.Context.Accounts.FindAsync(request.TargetAccountId),
+                                              chargedAccount,
+                                              targetAccount,
                                               await contextAdapter.Context.Categories.FindAsync(request.CategoryId),
                                               request.Note);
 
