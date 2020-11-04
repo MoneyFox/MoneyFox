@@ -106,23 +106,19 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task DeletePaymentAsync()
         {
-            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
-                                                            Strings.DeletePaymentConfirmationMessage,
-                                                            Strings.YesLabel,
-                                                            Strings.NoLabel))
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                                                            Strings.DeletePaymentConfirmationMessage))
             {
-                return;
+                var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
+
+                if(SelectedPayment.IsRecurring)
+                {
+                    command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
+                                                                                                 Strings.DeleteRecurringPaymentMessage);
+                }
+
+                await mediator.Send(command);
             }
-
-            var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
-
-            if(SelectedPayment.IsRecurring)
-            {
-                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
-                                                                                             Strings.DeleteRecurringPaymentMessage);
-            }
-
-            await mediator.Send(command);
         }
     }
 }
