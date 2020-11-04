@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Helpers;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
+using NLog.Fluent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -51,6 +52,8 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                    .ToList();
 
                 recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
+
+                Log.Info($"Create {recPaymentsToCreate.Count} recurring payments.");
 
                 contextAdapter.Context.Payments.AddRange(recPaymentsToCreate);
                 await contextAdapter.Context.SaveChangesAsync();
