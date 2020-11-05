@@ -10,6 +10,8 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
 {
     public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>
     {
+        private const decimal DECIMAL_DELTA = 0.01m;
+
         private int id;
         private DateTime startDate;
         private DateTime? endDate;
@@ -96,7 +98,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
             get => amount;
             set
             {
-                if(Math.Abs(amount - value) < 0.01m)
+                if(Math.Abs(amount - value) < DECIMAL_DELTA)
                 {
                     return;
                 }
