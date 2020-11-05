@@ -23,6 +23,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IDialogService dialogService;
+        private readonly INavigationService navigationService;
 
         [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Intended")]
         public EditPaymentViewModel(IMediator mediator,
@@ -36,6 +37,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.mediator = mediator;
             this.mapper = mapper;
             this.dialogService = dialogService;
+            this.navigationService = navigationService;
         }
 
         /// <summary>
@@ -106,23 +108,28 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task DeletePaymentAsync()
         {
-            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
-                                                            Strings.DeletePaymentConfirmationMessage,
-                                                            Strings.YesLabel,
-                                                            Strings.NoLabel))
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                                                            Strings.DeletePaymentConfirmationMessage))
             {
-                return;
+                var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
+
+                if(SelectedPayment.IsRecurring)
+                {
+                    command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
+                                                                                                 Strings.DeleteRecurringPaymentMessage);
+                }
+
+                try
+                {
+                    await dialogService.ShowLoadingDialogAsync();
+                    await mediator.Send(command);
+                    navigationService.GoBack();
+                }
+                finally
+                {
+                    await dialogService.HideLoadingDialogAsync();
+                }
             }
-
-            var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
-
-            if(SelectedPayment.IsRecurring)
-            {
-                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
-                                                                                             Strings.DeleteRecurringPaymentMessage);
-            }
-
-            await mediator.Send(command);
         }
     }
 }

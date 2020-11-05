@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Helpers;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
+using NLog;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -15,6 +16,8 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
     {
         public class Handler : IRequestHandler<CreateRecurringPaymentsCommand>
         {
+            private readonly static Logger logger = LogManager.GetCurrentClassLogger();
+
             private readonly IContextAdapter contextAdapter;
 
             public Handler(IContextAdapter contextAdapter)
@@ -51,6 +54,8 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                                                    .ToList();
 
                 recPaymentsToCreate.ForEach(x => x.RecurringPayment?.SetLastRecurrenceCreatedDate());
+
+                logger.Info($"Create {recPaymentsToCreate.Count} recurring payments.");
 
                 contextAdapter.Context.Payments.AddRange(recPaymentsToCreate);
                 await contextAdapter.Context.SaveChangesAsync();
