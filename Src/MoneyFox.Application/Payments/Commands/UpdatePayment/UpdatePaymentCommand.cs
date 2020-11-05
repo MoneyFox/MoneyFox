@@ -7,6 +7,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
@@ -119,33 +120,14 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 
                 if(request.IsRecurring && request.UpdateRecurringPayment && request.PaymentRecurrence.HasValue)
                 {
-                    if(existingPayment.IsRecurring)
-                    {
-                        existingPayment.RecurringPayment!
-                           .UpdateRecurringPayment(request.Amount,
-                                                   request.PaymentRecurrence.Value,
-                                                   existingPayment.ChargedAccount,
-                                                   request.Note,
-                                                   request.IsEndless.HasValue && request.IsEndless.Value
-                                                   ? null
-                                                   : request.EndDate,
-                                                   existingPayment.TargetAccount,
-                                                   existingPayment.Category);
-                    }
-                    else
-                    {
-                        existingPayment.AddRecurringPayment(request.PaymentRecurrence.Value,
-                                                            request.IsEndless.HasValue && request.IsEndless.Value
-                                                            ? null
-                                                            : request.EndDate);
-                    }
+                    HandleRecurringPayment(request, existingPayment);
                 }
                 else if(!request.IsRecurring && existingPayment.RecurringPayment != null)
                 {
                     contextAdapter.Context.RecurringPayments
                                           .Remove(existingPayment.RecurringPayment!);
 
-                    var linkedPayments = contextAdapter.Context.Payments
+                    List<Payment> linkedPayments = contextAdapter.Context.Payments
                                                                          .Where(x => x.IsRecurring)
                                                                          .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
                                                                          .ToList();
@@ -159,6 +141,35 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                 backupService.UploadBackupAsync().FireAndForgetSafeAsync();
 
                 return Unit.Value;
+            }
+
+            private static void HandleRecurringPayment(UpdatePaymentCommand request, Payment existingPayment)
+            {
+                if(existingPayment.IsRecurring)
+                {
+                    existingPayment.RecurringPayment!
+                                   .UpdateRecurringPayment(request.Amount,
+                                                           request.PaymentRecurrence ?? existingPayment.RecurringPayment.Recurrence,
+                                                           existingPayment.ChargedAccount,
+                                                           request.Note,
+                                                           request.IsEndless.HasValue && request.IsEndless.Value
+                                                           ? null
+                                                           : request.EndDate,
+                                                           existingPayment.TargetAccount,
+                                                           existingPayment.Category);
+                }
+                else
+                {
+                    if(!request.PaymentRecurrence.HasValue)
+                    {
+                        throw new ArgumentNullException(nameof(request.PaymentRecurrence));
+                    }
+
+                    existingPayment.AddRecurringPayment(request.PaymentRecurrence.Value,
+                                                        request.IsEndless.HasValue && request.IsEndless.Value
+                                                        ? null
+                                                        : request.EndDate);
+                }
             }
         }
     }
