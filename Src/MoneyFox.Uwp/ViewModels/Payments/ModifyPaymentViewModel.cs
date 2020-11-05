@@ -191,7 +191,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
         }
 
-        private ObservableCollection<CategoryViewModel> categories;
+        private ObservableCollection<CategoryViewModel> categories = new ObservableCollection<CategoryViewModel>();
         public ObservableCollection<CategoryViewModel> Categories
         {
             get => categories;
