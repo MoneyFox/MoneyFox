@@ -83,8 +83,16 @@ namespace MoneyFox.ViewModels.Payments
                                                                                                        Strings.DeleteRecurringPaymentMessage);
                 }
 
-                await mediator.Send(deleteCommand);
-                await Shell.Current.Navigation.PopModalAsync();
+                try
+                {
+                    await dialogService.ShowLoadingDialogAsync();
+                    await mediator.Send(deleteCommand);
+                    await Shell.Current.Navigation.PopModalAsync();
+                }
+                finally
+                {
+                    await dialogService.HideLoadingDialogAsync();
+                }
             }
         }
     }
