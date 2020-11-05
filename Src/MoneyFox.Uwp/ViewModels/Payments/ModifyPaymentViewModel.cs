@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Messages;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
@@ -31,7 +32,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
     /// </summary>
     public abstract class ModifyPaymentViewModel : ViewModelBase, IModifyPaymentViewModel
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         private readonly IMapper mapper;
         private readonly IMediator mediator;
@@ -253,7 +254,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
             else
             {
-                logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
+                logger.Warn($"Amount string {AmountString} could not be parsed to double.");
                 await dialogService.ShowMessageAsync(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
                 return;
             }
@@ -272,11 +273,26 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 return;
             }
 
-            await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
-            await SavePaymentAsync();
-            MessengerInstance.Send(new ReloadMessage());
-            navigationService.GoBack();
-            await dialogService.HideLoadingDialogAsync();
+            try
+            {
+                await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
+                await SavePaymentAsync();
+                MessengerInstance.Send(new ReloadMessage());
+                navigationService.GoBack();
+            }
+            catch(InvalidEndDateException)
+            {
+                await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex);
+                throw;
+            }
+            finally
+            {
+                await dialogService.HideLoadingDialogAsync();
+            }
         }
 
         public void Cancel() => navigationService.GoBack();
