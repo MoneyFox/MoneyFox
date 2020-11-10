@@ -5,6 +5,8 @@ namespace MoneyFox.ViewModels.Statistics
 {
     public class CategoryOverviewViewModel : ViewModelBase
     {
+        private const decimal DECIMAL_DELTA = 0.01m;
+
         private int categoryId;
         private string label = "";
         private decimal value;
@@ -37,7 +39,7 @@ namespace MoneyFox.ViewModels.Statistics
             get => value;
             set
             {
-                if(Math.Abs(this.value - value) < 0.01m)
+                if(Math.Abs(this.value - value) < DECIMAL_DELTA)
                 {
                     return;
                 }
@@ -55,7 +57,7 @@ namespace MoneyFox.ViewModels.Statistics
             get => average;
             set
             {
-                if(Math.Abs(average - value) < 0.01m)
+                if(Math.Abs(average - value) < DECIMAL_DELTA)
                 {
                     return;
                 }
@@ -73,7 +75,7 @@ namespace MoneyFox.ViewModels.Statistics
             get => percentage;
             set
             {
-                if(Math.Abs(this.value - value) < 0.01m)
+                if(Math.Abs(this.value - value) < DECIMAL_DELTA)
                 {
                     return;
                 }

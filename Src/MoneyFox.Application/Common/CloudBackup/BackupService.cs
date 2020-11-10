@@ -258,6 +258,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                 {
                     logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();
+                    await toastService.ShowToastAsync(Strings.BackupCreatedMessage);
                 }
                 else
                 {

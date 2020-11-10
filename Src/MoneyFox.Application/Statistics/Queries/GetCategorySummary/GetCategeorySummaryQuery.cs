@@ -25,6 +25,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
             private const int DAY_DIVIDER = 30;
             private const int NUMBERS_OF_MONTHS_TO_LOAD = -12;
             private const decimal DECIMAL_DELTA = 0.1m;
+            private const int POSITIONS_TO_ROUND = 2;
 
             private readonly IContextAdapter contextAdapter;
 
@@ -158,7 +159,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                     return sumForCategory;
                 }
 
-                return Math.Round(sumForCategory / (timeDiff.Days / DAY_DIVIDER), 2, MidpointRounding.ToEven);
+                return Math.Round(sumForCategory / (timeDiff.Days / DAY_DIVIDER), POSITIONS_TO_ROUND, MidpointRounding.ToEven);
             }
         }
     }
