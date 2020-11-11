@@ -172,7 +172,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             {
                 BackupAvailable = await backupService.IsBackupExistingAsync();
                 BackupLastModified = await backupService.GetBackupDateAsync();
-                UserAccount = backupService.UserAccount.GetUserAccount();
+                if(backupService.UserAccount != null)
+                {
+                    UserAccount = backupService.UserAccount.GetUserAccount();
+                }
             }
             catch(BackupAuthenticationFailedException ex)
             {

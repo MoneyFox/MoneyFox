@@ -112,8 +112,11 @@ namespace MoneyFox.Application.Common.CloudBackup
             }
 
             await cloudBackupService.LoginAsync();
-            UserAccount = cloudBackupService.UserAccount.GetUserAccount();
-
+            if(cloudBackupService.UserAccount != null)
+            {
+                UserAccount = cloudBackupService.UserAccount.GetUserAccount();
+            }
+           
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
 
