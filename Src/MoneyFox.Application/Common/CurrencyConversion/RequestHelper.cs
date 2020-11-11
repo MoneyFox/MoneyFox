@@ -31,17 +31,15 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         private static string GetResponse(string url)
         {
-            string jsonString;
-
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.AutomaticDecompression = DecompressionMethods.GZip;
 
-            using(var response = (HttpWebResponse)request.GetResponse())
-            using(Stream stream = response.GetResponseStream())
-            using(var reader = new StreamReader(stream))
-            {
-                jsonString = reader.ReadToEnd();
-            }
+            using var response = (HttpWebResponse)request.GetResponse();
+            Stream stream = response.GetResponseStream();
+            using var reader = new StreamReader(stream);
+
+            string jsonString = reader.ReadToEnd();
+
 
             return jsonString;
         }

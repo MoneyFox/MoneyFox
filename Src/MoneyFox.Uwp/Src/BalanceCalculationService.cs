@@ -6,6 +6,7 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -72,25 +73,36 @@ namespace MoneyFox.Uwp.Src
                         break;
 
                     case PaymentType.Transfer:
-                        foreach(Account account in excluded)
-                        {
-                            if(Equals(account.Id, payment.ChargedAccount.Id))
-                            {
-                                //Transfer from excluded account
-                                balance += payment.Amount;
-                            }
-
-                            if(Equals(account.Id, payment.TargetAccount.Id))
-                            {
-                                //Transfer to excluded account
-                                balance -= payment.Amount;
-                            }
-                        }
-
+                        balance = HandleTransfer(excluded, balance, payment);
                         break;
 
                     default:
                         throw new InvalidPaymentTypeException();
+                }
+            }
+
+            return balance;
+        }
+
+        private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
+        {
+            foreach(Account account in excluded)
+            {
+                if(payment.TargetAccount == null)
+                {
+                    throw new InvalidOperationException("Uninitialized property: " + nameof(payment.TargetAccount));
+                }
+
+                if(Equals(account.Id, payment.ChargedAccount.Id))
+                {
+                    //Transfer from excluded account
+                    balance += payment.Amount;
+                }
+
+                if(Equals(account.Id, payment.TargetAccount.Id))
+                {
+                    //Transfer to excluded account
+                    balance -= payment.Amount;
                 }
             }
 

@@ -13,6 +13,9 @@ namespace MoneyFox.ViewModels.Statistics
     /// </summary>
     public class StatisticCashFlowViewModel : MobileStatisticViewModel
     {
+        private const int BAR_CHART_MARGINS = 20;
+        private const float BAR_CHART_TEXT_SIZE = 26f;
+
         private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
                                                         ? "Lobster-Regular"
                                                         : null;
@@ -60,8 +63,8 @@ namespace MoneyFox.ViewModels.Statistics
                     Color = SKColor.Parse(x.Color)
                 }).ToList(),
                 BackgroundColor = BackgroundColor,
-                Margin = 20,
-                LabelTextSize = 26f,
+                Margin = BAR_CHART_MARGINS,
+                LabelTextSize = BAR_CHART_TEXT_SIZE,
                 Typeface = typeFaceForIOS12
             };
         }
