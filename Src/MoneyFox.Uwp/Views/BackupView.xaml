@@ -33,21 +33,39 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
 
         <StackPanel EntranceNavigationTransitionInfo.IsTargetElement="True">
+            <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}">
+                <PersonPicture
+                    ProfilePicture="{Binding UserAccount.Photo}" />
+
+                <TextBlock
+                    Margin="{StaticResource MediumTopMargin}"
+                    Text="{Binding UserAccount.Name}"
+                    FontWeight="Bold"
+                    FontSize="20"
+                    HorizontalAlignment="Center" />
+
+                <TextBlock
+                    Margin="{StaticResource MediumBottomMargin}"
+                    Text="{Binding UserAccount.Email}" 
+                    FontSize="16"
+                    HorizontalAlignment="Center" />
+            </StackPanel>
 
             <Button
+                Margin="{StaticResource LargeTopMargin}"
                 HorizontalAlignment="Stretch"
                 Command="{Binding LoginCommand}"
                 Content="{x:Bind resources:Strings.LoginLabel}"
                 Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}" />
 
             <Button
+                Margin="{StaticResource LargeTopMargin}"
                 HorizontalAlignment="Stretch"
                 Command="{Binding LogoutCommand}"
                 Content="{x:Bind resources:Strings.LogoutLabel}"
                 Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}" />
 
             <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}">
-
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"
                     Text="{x:Bind resources:Strings.BackupInformationLabel}"

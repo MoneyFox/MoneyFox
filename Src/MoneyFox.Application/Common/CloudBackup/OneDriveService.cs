@@ -20,7 +20,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         private const string BACKUP_NAME_TEMP = "moneyfox.db_upload";
 
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
-        private readonly string[] scopes = { "Files.ReadWrite" };
+        private readonly string[] scopes = { "Files.ReadWrite", "User.ReadBasic.All" };
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
@@ -34,11 +34,14 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             this.publicClientApplication = publicClientApplication;
             this.graphClientFactory = graphClientFactory;
+            this.UserAccount = new UserAccount();
         }
 
         private IGraphServiceClient? GraphServiceClient { get; set; }
 
         private DriveItem? ArchiveFolder { get; set; }
+
+        public UserAccount UserAccount { get; set; }
 
         /// <summary>
         /// Login User to OneDrive.
@@ -55,6 +58,8 @@ namespace MoneyFox.Application.Common.CloudBackup
                 authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
+                var user = await GraphServiceClient.Me.Request().GetAsync();
+                UserAccount.SetUserAccount(user);
             }
             catch(MsalUiRequiredException ex)
             {
@@ -65,6 +70,9 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                           .ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
+                var user = await GraphServiceClient.Me.Request().GetAsync();
+                UserAccount = new UserAccount();
+                UserAccount.SetUserAccount(user);
             }
             catch(MsalClientException ex)
             {
