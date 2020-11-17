@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Backup;
 using System.Collections.Generic;
 

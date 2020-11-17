@@ -35,7 +35,7 @@
         <StackPanel EntranceNavigationTransitionInfo.IsTargetElement="True">
             <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}">
                 <PersonPicture
-                    ProfilePicture="{Binding UserAccount.Photo}" />
+                    ProfilePicture="{Binding UserAccount.ProfilePicture}" />
 
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"
@@ -46,7 +46,7 @@
 
                 <TextBlock
                     Margin="{StaticResource MediumBottomMargin}"
-                    Text="{Binding UserAccount.Email}" 
+                    Text="{Binding UserAccount.Email}"
                     FontSize="16"
                     HorizontalAlignment="Center" />
             </StackPanel>

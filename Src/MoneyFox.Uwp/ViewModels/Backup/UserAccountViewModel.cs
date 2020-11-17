@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp.ViewModels.Backup
         /// <summary>
         ///     Users profile photo from Microsoft account.
         /// </summary>
-        public ImageSource ProfilePicture {
+        public ImageSource? ProfilePicture {
             get => profilePicture;
             set
             {
@@ -60,6 +60,11 @@ namespace MoneyFox.Uwp.ViewModels.Backup
             configuration.CreateMap<UserAccount, UserAccountViewModel>()
                          .ForMember(dest => dest.ProfilePicture, opt => opt.MapFrom((src, d, ob) =>
                          {
+                             if(src.PhotoStream == null)
+                             {
+                                 return null;
+                             }
+
                              var imageSource = new BitmapImage();
                              imageSource.SetSource(src.PhotoStream.AsRandomAccessStream());
                              return imageSource;
