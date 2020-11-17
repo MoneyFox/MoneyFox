@@ -596,31 +596,31 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Saving Account...</value>
   </data>
   <data name="SavingCategoryMessage" xml:space="preserve">
-    <value>Saving Category...</value>
+    <value>Zapisywanie kategorii...</value>
   </data>
   <data name="SavingPaymentMessage" xml:space="preserve">
-    <value>Saving Payment...</value>
+    <value>Zapisywanie płatności...</value>
   </data>
   <data name="EndOfMonthBalanceLabel" xml:space="preserve">
-    <value>End of Month</value>
+    <value>Koniec Miesiąca</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Dodaj Płatność</value>
   </data>
   <data name="PaymentTypeLabel" xml:space="preserve">
-    <value>Payment type</value>
+    <value>Rodzaj Płatności</value>
   </data>
   <data name="IncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Przychód</value>
   </data>
   <data name="TransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>Przelew</value>
   </data>
   <data name="PaymentsForCategoryTitle" xml:space="preserve">
-    <value>Payments for Category</value>
+    <value>Płatności dla kategorii</value>
   </data>
   <data name="CreationDateLabel" xml:space="preserve">
-    <value>Creation Date:</value>
+    <value>Data utworzenia:</value>
   </data>
   <data name="ModificationDateLabel" xml:space="preserve">
     <value>Modification Date:</value>
@@ -632,7 +632,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Assets</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
-    <value>Budgets</value>
+    <value>Budżet</value>
   </data>
   <data name="EndOfMonthLabel" xml:space="preserve">
     <value>End Of Month:</value>
@@ -686,7 +686,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Logged out</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Utwórz Konto Teraz</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -702,10 +702,10 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Categories can help order your payments. Also they make it easier to analyze your spendings and incomes in the statistics.</value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Cofnij</value>
   </data>
   <data name="SkipLabel" xml:space="preserve">
-    <value>Skip</value>
+    <value>Pomiń</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
     <value>Create Category now</value>
@@ -714,7 +714,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>That's it! You're set for using the MoneyFox.</value>
   </data>
   <data name="CompletedTitle" xml:space="preserve">
-    <value>Done!</value>
+    <value>Gotowe!</value>
   </data>
   <data name="CompleteLabel" xml:space="preserve">
     <value>Complete</value>
