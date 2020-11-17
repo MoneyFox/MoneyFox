@@ -455,7 +455,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>There are no categories to display. </value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Dodaj Konto</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
     <value>Szukaj</value>
@@ -590,7 +590,7 @@ Czy chcesz przejść do sklepu aby ocenić?</value>
     <value>Your current balance seems to be an invalid number. Please check that you haven't entered any special characters and used the correct separator.</value>
   </data>
   <data name="InvalidNumberTitle" xml:space="preserve">
-    <value>Invalid Number</value>
+    <value>Nieprawidłowy numer</value>
   </data>
   <data name="SavingAccountMessage" xml:space="preserve">
     <value>Saving Account...</value>
