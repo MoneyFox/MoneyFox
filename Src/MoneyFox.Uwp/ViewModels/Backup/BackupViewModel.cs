@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Graph;
 using MoneyFox.Application.Common;
@@ -13,7 +14,7 @@ using NLog;
 using System;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Backup
+namespace MoneyFox.Uwp.ViewModels.Backup
 {
     /// <summary>
     /// Representation of the backup view.
@@ -27,8 +28,11 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
         private readonly IToastService toastService;
+        private readonly IMapper mapper;
+
         private bool backupAvailable;
-        private UserAccount userAccount;
+
+        private UserAccountViewModel userAccount = new UserAccountViewModel();
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
@@ -37,15 +41,15 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
                                IDialogService dialogService,
                                IConnectivityAdapter connectivity,
                                ISettingsFacade settingsFacade,
-                               IToastService toastService)
+                               IToastService toastService,
+                               IMapper mapper)
         {
             this.backupService = backupService;
             this.dialogService = dialogService;
             this.connectivity = connectivity;
             this.settingsFacade = settingsFacade;
             this.toastService = toastService;
-            this.userAccount = new UserAccount();
-
+            this.mapper = mapper;
         }
 
         /// <inheritdoc/>
@@ -138,7 +142,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             }
         }
 
-        public UserAccount UserAccount 
+        public UserAccountViewModel UserAccount
         {
             get => userAccount;
             set
@@ -174,7 +178,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
                 BackupLastModified = await backupService.GetBackupDateAsync();
                 if(backupService.UserAccount != null)
                 {
-                    UserAccount = backupService.UserAccount.GetUserAccount();
+                    UserAccount = mapper.Map<UserAccountViewModel>(backupService.UserAccount.GetUserAccount());
                 }
             }
             catch(BackupAuthenticationFailedException ex)
@@ -208,7 +212,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             try
             {
                 await backupService.LoginAsync();
-                UserAccount = backupService.UserAccount.GetUserAccount();
+                UserAccount = mapper.Map<UserAccountViewModel>(backupService.UserAccount.GetUserAccount());
             }
             catch(BackupOperationCanceledException)
             {

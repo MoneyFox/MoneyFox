@@ -58,7 +58,17 @@ namespace MoneyFox.Application.Common.CloudBackup
                 authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
-                var user = await GraphServiceClient.Me.Request().GetAsync();
+                User user = await GraphServiceClient.Me.Request().GetAsync();
+
+                Stream photo = await GraphServiceClient.Me.Photo.Content.Request().GetAsync();
+
+                if(photo != null)
+                {
+                    MemoryStream ms = new MemoryStream();
+                    photo.CopyTo(ms);
+                    UserAccount.PhotoStream = ms;
+                }
+
                 UserAccount.SetUserAccount(user);
             }
             catch(MsalUiRequiredException ex)

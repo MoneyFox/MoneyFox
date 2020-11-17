@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Backup
+namespace MoneyFox.Uwp.ViewModels.Backup
 {
     public class DesignTimeBackupViewModel : IBackupViewModel
     {

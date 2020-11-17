@@ -193,6 +193,10 @@
     <Compile Include="ViewModels\AccountListViewModel.cs" />
     <Compile Include="ViewModels\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\AddCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Backup\BackupViewModel.cs" />
+    <Compile Include="ViewModels\Backup\DesignTimeBackupViewModel.cs" />
+    <Compile Include="ViewModels\Backup\IBackupViewModel.cs" />
+    <Compile Include="ViewModels\Backup\UserAccountViewModel.cs" />
     <Compile Include="ViewModels\Payments\AddPaymentViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\CategoryListViewModel.cs" />

@@ -2,6 +2,7 @@
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.Uwp.ViewModels.Backup;
 using System.Collections.Generic;
 
 namespace MoneyFox.Uwp.AutoMapper
@@ -16,7 +17,7 @@ namespace MoneyFox.Uwp.AutoMapper
 
         private void LoadStandardMappings()
         {
-            IList<Map> mapsFromNotShared = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
+            IList<Map> mapsFromNotShared = MapperProfileHelper.LoadStandardMappings(typeof(UserAccountViewModel).Assembly);
 
             foreach(Map map in mapsFromNotShared)
             {
@@ -33,7 +34,7 @@ namespace MoneyFox.Uwp.AutoMapper
 
         private void LoadCustomMappings()
         {
-            IList<IHaveCustomMapping> mapsFromNotShared = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
+            IList<IHaveCustomMapping> mapsFromNotShared = MapperProfileHelper.LoadCustomMappings(typeof(UserAccountViewModel).Assembly);
 
             foreach(IHaveCustomMapping map in mapsFromNotShared)
             {
