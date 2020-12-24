@@ -122,7 +122,7 @@
                 Margin="{StaticResource SmallTitleContentMargin}"
                 Date="{x:Bind ViewModel.SelectedPayment.RecurringPayment.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 Header="{x:Bind resources:Strings.EnddateLabel}"
-                Visibility="{x:Bind ViewModel.SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}" />
+                Visibility="{x:Bind ViewModel.SelectedPayment.RecurringPayment.IsEndless, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert, Mode=OneWay}" />
         </StackPanel>
     </StackPanel>
 </UserControl>
