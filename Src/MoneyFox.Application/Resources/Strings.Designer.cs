@@ -619,6 +619,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Creation Date.
+        /// </summary>
+        public static string CreationDateHeader {
+            get {
+                return ResourceManager.GetString("CreationDateHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Creation Date:.
         /// </summary>
         public static string CreationDateLabel {
@@ -1300,6 +1309,15 @@ namespace MoneyFox.Application.Resources {
         public static string MandatoryFieldEmptyTitle {
             get {
                 return ResourceManager.GetString("MandatoryFieldEmptyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modification Date.
+        /// </summary>
+        public static string ModificationDateHeader {
+            get {
+                return ResourceManager.GetString("ModificationDateHeader", resourceCulture);
             }
         }
         
