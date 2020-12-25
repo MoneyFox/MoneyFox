@@ -741,9 +741,9 @@ Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorth
     <value>Für diese Zahlung ist eine Notiz erforderlich.</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Erstellungsdatum</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Änderungsdatum</value>
   </data>
 </root>
