@@ -740,4 +740,10 @@ Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorth
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>Für diese Zahlung ist eine Notiz erforderlich.</value>
   </data>
+  <data name="CreationDateHeader" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="ModificationDateHeader" xml:space="preserve">
+    <value>Modification Date</value>
+  </data>
 </root>

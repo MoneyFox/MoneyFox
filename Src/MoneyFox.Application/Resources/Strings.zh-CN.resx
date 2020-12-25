@@ -740,4 +740,10 @@ To get there go to the account list and select the respective account.</value>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>A note for payment is required</value>
   </data>
+  <data name="CreationDateHeader" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="ModificationDateHeader" xml:space="preserve">
+    <value>Modification Date</value>
+  </data>
 </root>

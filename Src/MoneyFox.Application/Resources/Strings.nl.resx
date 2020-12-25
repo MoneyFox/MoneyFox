@@ -744,4 +744,10 @@ Om daar te komen, gaat u naar de accountlijst en selecteert u het respectieve ac
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>A note for payment is required</value>
   </data>
+  <data name="CreationDateHeader" xml:space="preserve">
+    <value>Creation Date</value>
+  </data>
+  <data name="ModificationDateHeader" xml:space="preserve">
+    <value>Modification Date</value>
+  </data>
 </root>
