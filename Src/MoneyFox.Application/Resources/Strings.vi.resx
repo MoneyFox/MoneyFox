@@ -342,17 +342,17 @@ Tap to visit the Repository:</value>
     <value>Last Backup created at:</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Đăng nhập</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>Đăng xuất</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
     <value>Download the previous uploaded database backup and replace your local data with it.
 WARNING: Local changes you made meanwhile will be lost!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Khôi phục sao lưu</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
     <value>Account Name</value>
@@ -364,13 +364,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Note</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Số tiền</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Thể loại</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Ngày</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Is Endless</value>
@@ -421,16 +421,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Cleared</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Done</value>
+    <value>Xong</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>Is Recurring</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Select Filter</value>
+    <value>Chọn bộ lọc</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Đăng nhập thất bại!</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>
@@ -439,16 +439,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Recurring</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
-    <value>Others</value>
+    <value>Khác</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Tài khoản</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Cài đặt</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Time Range:</value>
+    <value>Khoảng thời gian</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
     <value>Category Summary</value>
@@ -742,9 +742,9 @@ To get there go to the account list and select the respective account.</value>
     <value>A note for payment is required</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Ngày tạo</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Ngày chỉnh sửa</value>
   </data>
 </root>
