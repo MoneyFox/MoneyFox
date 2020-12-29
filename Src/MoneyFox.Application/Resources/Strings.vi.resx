@@ -124,16 +124,16 @@
     <value>Vui lòng lựa chọn một tài khoản.</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Thêm tài khoản</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Thu nhập</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Expense</value>
+    <value>Chi tiêu</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>Chuyển khoản</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Dòng tiền</value>
@@ -145,10 +145,10 @@
     <value>Hàng ngày trừ ngày cuối tuần</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Account?</value>
+    <value>Bạn thực sự muốn xóa tài khoản?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Category?</value>
+    <value>Bạn có thực sự muốn xóa danh mục này?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
     <value>Xóa</value>
@@ -157,22 +157,22 @@
     <value>Xóa?</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Payment?</value>
+    <value>Bạn có thực sự muốn xóa thanh toán này?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
     <value>Sửa</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expenses</value>
+    <value>Chi phí</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Phản hồi Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Edit Income</value>
+    <value>Chỉnh sửa thu nhập</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>Thu được</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Trường bắt buộc</value>
@@ -190,22 +190,22 @@
     <value>Đồng ý</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existing backups will be overwritten. Do you wanna continue?</value>
+    <value>Các bản sao lưu đã tồn tại sẽ bị ghi đè. Bạn có muốn tiếp tục?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Ghi đè?</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenue</value>
+    <value>Thu</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Expense</value>
+    <value>Sửa chi phí</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Thống kê</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Edit Transfer</value>
+    <value>Sửa chuyển khoản</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
     <value>Hàng tuần</value>
@@ -217,34 +217,34 @@
     <value>Có</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+    <value>Dữ liệu trên máy của bạn sẽ bị xoá. Bạn có muốn tiếp tục?</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Add Income</value>
+    <value>Thêm thu nhập</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Thêm chi phí</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>Thêm chuyển khoản</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
     <value>Sửa {0}</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Tóm tắt danh mục</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Lan truyền danh mục</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged Account</value>
+    <value>Thay đổi tài khoản</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Tài khoản mục tiêu</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
+    <value>Ngày kết thúc của thanh toán định kỳ phải ở tương lai. Vui lòng kiểm tra lại.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Ngày kết thúc không hợp lệ</value>
@@ -253,62 +253,62 @@
     <value>Không phải bây giờ</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>We hope you like our app. Support us with a rating in the store.
-Do you want to go the the store to rate?</value>
+    <value>Chúng tôi hy vong bạn thích ứng dụng này. Hổ trợ chúng tôi bằng cách đánh giá tích cực trên cửa hàng.
+Bạn có muốn chuyển tới cửa hàng để đánh giá?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Đánh giá ứng dụng</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>Hai tuần một lần</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Thêm danh mục</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit Category</value>
+    <value>Sửa danh mục</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>Thu nhập, chi phí và lợi nhuận trong khoảng thời gian đã chọn.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spreading of the expenses to the categories.</value>
+    <value>Phân bổ chi phí cho các hạng mục.</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>Tóm tắt các danh mục có thanh toán.</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Huỷ</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Add expense</value>
+    <value>Thêm chi phí</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Add income</value>
+    <value>Thêm thu nhập</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Add transfer</value>
+    <value>Thêm chuyển khoản</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>Bạn không kết nối với Internet. Vui lòng kiểm tra kết nối của bạn và thử lại.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
     <value>Không có kết nối mạng</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An Account with that name already exists.</value>
+    <value>Tài khoản với tên này đã tồn tại.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A Category with that name already exists.</value>
+    <value>Danh mục với tên này đã tồn tại.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Name already used</value>
+    <value>Tên đã sử dụng!</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Đang tải...</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>Đã xảy ra lỗi trong quá trình xác thực. Vui lòng thử lại sau.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>Phiên bản</value>
@@ -317,60 +317,60 @@ Do you want to go the the store to rate?</value>
     <value>Liên hệ</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Để xem tất cả các đóng góp, hãy chuyển đến GitHub:</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Biểu tượng được tạo bởi:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Đây là một dự án mã nguồn mở - và chúng tôi rất muốn làm việc với bạn! Hãy tự do đóng góp.
+Nhấn để truy cập Repository:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
     <value>Đánh giá ứng dụng</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>Có phải một số nơi không được dịch đúng cách hoặc không được dịch không? Giúp chúng tôi! Tham gia cộng đồng và giúp cải thiện Money Fox:</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts to display.</value>
+    <value>Không có tài khoản để hiển thị.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Tạo sao lưu</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Bản sao lưu cuối cùng được tạo lúc:</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
-    <value>Login</value>
+    <value>Đăng nhập</value>
   </data>
   <data name="LogoutLabel" xml:space="preserve">
-    <value>Logout</value>
+    <value>Đăng xuất</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>Tải xuống bản sao lưu dữ liệu đã tải lên trước đó và thay thế dữ liệu trên máy của bạn.
+CẢNH BÁO: Các thay đổi trên máy của bạn sẽ bị mất!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
-    <value>Restore Backup</value>
+    <value>Khôi phục sao lưu</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Tên tài khoản</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Số dư hiện tại</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Ghi chú</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Số tiền</value>
   </data>
   <data name="CategoryLabel" xml:space="preserve">
-    <value>Category</value>
+    <value>Thể loại</value>
   </data>
   <data name="DateLabel" xml:space="preserve">
-    <value>Date</value>
+    <value>Ngày</value>
   </data>
   <data name="EndlessLabel" xml:space="preserve">
     <value>Is Endless</value>
@@ -421,16 +421,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Cleared</value>
   </data>
   <data name="DoneLabel" xml:space="preserve">
-    <value>Done</value>
+    <value>Xong</value>
   </data>
   <data name="IsRecurringFilterLabel" xml:space="preserve">
     <value>Is Recurring</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
-    <value>Select Filter</value>
+    <value>Chọn bộ lọc</value>
   </data>
   <data name="LoginFailedTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Đăng nhập thất bại!</value>
   </data>
   <data name="IsClearedLabel" xml:space="preserve">
     <value>Cleared</value>
@@ -439,16 +439,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Recurring</value>
   </data>
   <data name="OthersLabel" xml:space="preserve">
-    <value>Others</value>
+    <value>Khác</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Tài khoản</value>
   </data>
   <data name="SettingsTitle" xml:space="preserve">
-    <value>Settings</value>
+    <value>Cài đặt</value>
   </data>
   <data name="StatisticsTimeRangeTitle" xml:space="preserve">
-    <value>Time Range:</value>
+    <value>Khoảng thời gian</value>
   </data>
   <data name="CategorySummaryTitle" xml:space="preserve">
     <value>Category Summary</value>
@@ -457,13 +457,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>There are no categories to display. </value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Thêm tài khoản</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Tìm kiếm</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>Enddate</value>
+    <value>Ngày kết thúc</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
     <value>Recurrence</value>
@@ -478,16 +478,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Website</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Backup</value>
+    <value>Sao lưu</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Thể loại</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Chọn thể loại</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Dòng tiền</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
     <value>Category Spreading</value>
@@ -511,7 +511,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Add Category</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Cá nhân hóa</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Last year monthly average: </value>
@@ -679,16 +679,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Modification Date: {0}</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
-    <value>Date Range</value>
+    <value>Phạm vi ngày</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Logged out successfully.</value>
+    <value>Đăng xuất thành công.</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Logged out</value>
+    <value>Đăng xuất</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Tạo tài khoản ngay</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -710,7 +710,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Bỏ qua</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Tạo thể loại ngay</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
     <value>That's it! You're set for using the MoneyFox.</value>
@@ -727,24 +727,24 @@ Payments you created will show up under the account you choose.
 To get there go to the account list and select the respective account.</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Áp dụng bộ lọc</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>Danh sách Nhóm</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Đăng nhập thành công</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>Ghi chú bắt buộc</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>A note for payment is required</value>
   </data>
   <data name="CreationDateHeader" xml:space="preserve">
-    <value>Creation Date</value>
+    <value>Ngày tạo</value>
   </data>
   <data name="ModificationDateHeader" xml:space="preserve">
-    <value>Modification Date</value>
+    <value>Ngày chỉnh sửa</value>
   </data>
 </root>
