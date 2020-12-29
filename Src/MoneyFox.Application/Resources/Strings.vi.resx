@@ -124,16 +124,16 @@
     <value>Vui lòng lựa chọn một tài khoản.</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Thêm tài khoản</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Thu nhập</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Expense</value>
+    <value>Chi tiêu</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>Chuyển khoản</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Dòng tiền</value>
@@ -145,10 +145,10 @@
     <value>Hàng ngày trừ ngày cuối tuần</value>
   </data>
   <data name="DeleteAccountConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Account?</value>
+    <value>Bạn thực sự muốn xóa tài khoản?</value>
   </data>
   <data name="DeleteCategoryConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Category?</value>
+    <value>Bạn có thực sự muốn xóa danh mục này?</value>
   </data>
   <data name="DeleteLabel" xml:space="preserve">
     <value>Xóa</value>
@@ -457,13 +457,13 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>There are no categories to display. </value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Thêm tài khoản</value>
   </data>
   <data name="SearchLabel" xml:space="preserve">
-    <value>Search</value>
+    <value>Tìm kiếm</value>
   </data>
   <data name="EnddateLabel" xml:space="preserve">
-    <value>Enddate</value>
+    <value>Ngày kết thúc</value>
   </data>
   <data name="RecurrenceLabel" xml:space="preserve">
     <value>Recurrence</value>
@@ -478,16 +478,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Website</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
-    <value>Backup</value>
+    <value>Sao lưu</value>
   </data>
   <data name="CategoriesTitle" xml:space="preserve">
-    <value>Categories</value>
+    <value>Thể loại</value>
   </data>
   <data name="SelectCategoryTitle" xml:space="preserve">
-    <value>Select Category</value>
+    <value>Chọn thể loại</value>
   </data>
   <data name="CashFlowStatisticTitle" xml:space="preserve">
-    <value>Cash Flow</value>
+    <value>Dòng tiền</value>
   </data>
   <data name="CategorySpreadingTitle" xml:space="preserve">
     <value>Category Spreading</value>
@@ -511,7 +511,7 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Add Category</value>
   </data>
   <data name="PersonalizationTitle" xml:space="preserve">
-    <value>Personalization</value>
+    <value>Cá nhân hóa</value>
   </data>
   <data name="MonthlyAverageLabel" xml:space="preserve">
     <value>Last year monthly average: </value>
@@ -679,16 +679,16 @@ WARNING: Local changes you made meanwhile will be lost!</value>
     <value>Modification Date: {0}</value>
   </data>
   <data name="DateRangeHeader" xml:space="preserve">
-    <value>Date Range</value>
+    <value>Phạm vi ngày</value>
   </data>
   <data name="LoggedOutMessage" xml:space="preserve">
-    <value>Logged out successfully.</value>
+    <value>Đăng xuất thành công.</value>
   </data>
   <data name="LoggedOutTitle" xml:space="preserve">
-    <value>Logged out</value>
+    <value>Đăng xuất</value>
   </data>
   <data name="CreateAccountNowLabel" xml:space="preserve">
-    <value>Create Account Now</value>
+    <value>Tạo tài khoản ngay</value>
   </data>
   <data name="WelcomePageSubtitle" xml:space="preserve">
     <value>Glad to have you!</value>
@@ -710,7 +710,7 @@ To start create a new account. Accounts are used to organize payments and money 
     <value>Bỏ qua</value>
   </data>
   <data name="CreateCategoryNowLabel" xml:space="preserve">
-    <value>Create Category now</value>
+    <value>Tạo thể loại ngay</value>
   </data>
   <data name="CompletedText" xml:space="preserve">
     <value>That's it! You're set for using the MoneyFox.</value>
@@ -727,16 +727,16 @@ Payments you created will show up under the account you choose.
 To get there go to the account list and select the respective account.</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Áp dụng bộ lọc</value>
   </data>
   <data name="IsGroupedLabel" xml:space="preserve">
-    <value>Group List</value>
+    <value>Danh sách Nhóm</value>
   </data>
   <data name="LoggedInMessage" xml:space="preserve">
-    <value>Loggedin successfully.</value>
+    <value>Đăng nhập thành công</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
-    <value>Note required</value>
+    <value>Ghi chú bắt buộc</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>A note for payment is required</value>
