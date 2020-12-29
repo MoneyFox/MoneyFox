@@ -163,7 +163,7 @@
     <value>Sửa</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Chi tiêu</value>
+    <value>Chi phí</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
     <value>Phản hồi Money Fox</value>
@@ -172,7 +172,7 @@
     <value>Chỉnh sửa thu nhập</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Tăng</value>
+    <value>Thu được</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Trường bắt buộc</value>
@@ -199,7 +199,7 @@
     <value>Thu</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Sửa chi tiêu</value>
+    <value>Sửa chi phí</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Thống kê</value>
@@ -223,7 +223,7 @@
     <value>Thêm thu nhập</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Thêm chi tiêu</value>
+    <value>Thêm chi phí</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Thêm chuyển khoản</value>
@@ -253,62 +253,62 @@
     <value>Không phải bây giờ</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>We hope you like our app. Support us with a rating in the store.
-Do you want to go the the store to rate?</value>
+    <value>Chúng tôi hy vong bạn thích ứng dụng này. Hổ trợ chúng tôi bằng cách đánh giá tích cực trên cửa hàng.
+Bạn có muốn chuyển tới cửa hàng để đánh giá?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Đánh giá ứng dụng</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>Hai tuần một lần</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Thêm danh mục</value>
   </data>
   <data name="EditCategoryTitle" xml:space="preserve">
-    <value>Edit Category</value>
+    <value>Sửa danh mục</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>Thu nhập, chi phí và lợi nhuận trong khoảng thời gian đã chọn.</value>
   </data>
   <data name="CategorieSpreadingDescription" xml:space="preserve">
-    <value>Spreading of the expenses to the categories.</value>
+    <value>Phân bổ chi phí cho các hạng mục.</value>
   </data>
   <data name="CategorySummaryDescription" xml:space="preserve">
-    <value>Summary of the categories with a Payment.</value>
+    <value>Tóm tắt các danh mục có thanh toán.</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
     <value>Huỷ</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Add expense</value>
+    <value>Thêm chi phí</value>
   </data>
   <data name="IncomeHeader" xml:space="preserve">
-    <value>Add income</value>
+    <value>Thêm thu nhập</value>
   </data>
   <data name="TransferHeader" xml:space="preserve">
-    <value>Add transfer</value>
+    <value>Thêm chuyển khoản</value>
   </data>
   <data name="NoNetworkMessage" xml:space="preserve">
-    <value>You are not connected to the internet. Please check your connection and try again.</value>
+    <value>Bạn không kết nối với Internet. Vui lòng kiểm tra kết nối của bạn và thử lại.</value>
   </data>
   <data name="NoNetworkTitle" xml:space="preserve">
     <value>Không có kết nối mạng</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An Account with that name already exists.</value>
+    <value>Tài khoản với tên này đã tồn tại.</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
-    <value>A Category with that name already exists.</value>
+    <value>Danh mục với tên này đã tồn tại.</value>
   </data>
   <data name="DuplicatedNameTitle" xml:space="preserve">
-    <value>Name already used</value>
+    <value>Tên đã sử dụng!</value>
   </data>
   <data name="LoadingLabel" xml:space="preserve">
     <value>Đang tải...</value>
   </data>
   <data name="ErrorMessageAuthenticationFailed" xml:space="preserve">
-    <value>There was an error during the authentication. Please try again later.</value>
+    <value>Đã xảy ra lỗi trong quá trình xác thực. Vui lòng thử lại sau.</value>
   </data>
   <data name="VersionLabel" xml:space="preserve">
     <value>Phiên bản</value>
@@ -317,14 +317,14 @@ Do you want to go the the store to rate?</value>
     <value>Liên hệ</value>
   </data>
   <data name="ContributerLabel" xml:space="preserve">
-    <value>To see all contributions head over to GitHub:</value>
+    <value>Để xem tất cả các đóng góp, hãy chuyển đến GitHub:</value>
   </data>
   <data name="IconDesignerLabel" xml:space="preserve">
-    <value>The app icon was created by:</value>
+    <value>Biểu tượng được tạo bởi:</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>This is an open-source project – and we’d love to work with you! Feel free to contribute.
-Tap to visit the Repository:</value>
+    <value>Đây là một dự án mã nguồn mở - và chúng tôi rất muốn làm việc với bạn! Hãy tự do đóng góp.
+Nhấn để truy cập Repository:</value>
   </data>
   <data name="RateLabel" xml:space="preserve">
     <value>Đánh giá ứng dụng</value>
