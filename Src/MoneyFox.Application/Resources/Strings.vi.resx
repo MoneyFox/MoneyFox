@@ -157,22 +157,22 @@
     <value>Xóa?</value>
   </data>
   <data name="DeletePaymentConfirmationMessage" xml:space="preserve">
-    <value>Do you really want to delete this Payment?</value>
+    <value>Bạn có thực sự muốn xóa thanh toán này?</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
     <value>Sửa</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
-    <value>Expenses</value>
+    <value>Chi tiêu</value>
   </data>
   <data name="FeedbackSubject" xml:space="preserve">
-    <value>Feedback Money Fox</value>
+    <value>Phản hồi Money Fox</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Edit Income</value>
+    <value>Chỉnh sửa thu nhập</value>
   </data>
   <data name="IncreaseLabel" xml:space="preserve">
-    <value>Gains</value>
+    <value>Tăng</value>
   </data>
   <data name="MandatoryFieldEmptyTitle" xml:space="preserve">
     <value>Trường bắt buộc</value>
@@ -190,22 +190,22 @@
     <value>Đồng ý</value>
   </data>
   <data name="OverwriteBackupMessage" xml:space="preserve">
-    <value>Existing backups will be overwritten. Do you wanna continue?</value>
+    <value>Các bản sao lưu đã tồn tại sẽ bị ghi đè. Bạn có muốn tiếp tục?</value>
   </data>
   <data name="OverwriteTitle" xml:space="preserve">
     <value>Ghi đè?</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Revenue</value>
+    <value>Thu</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Edit Expense</value>
+    <value>Sửa chi tiêu</value>
   </data>
   <data name="StatisticsTitle" xml:space="preserve">
     <value>Thống kê</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Edit Transfer</value>
+    <value>Sửa chuyển khoản</value>
   </data>
   <data name="WeeklyLabel" xml:space="preserve">
     <value>Hàng tuần</value>
@@ -217,34 +217,34 @@
     <value>Có</value>
   </data>
   <data name="OverwriteDataMessage" xml:space="preserve">
-    <value>Your local data will be deleted. Are you sure you wanna proceed?</value>
+    <value>Dữ liệu trên máy của bạn sẽ bị xoá. Bạn có muốn tiếp tục?</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
-    <value>Add Income</value>
+    <value>Thêm thu nhập</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Thêm chi tiêu</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
-    <value>Add Transfer</value>
+    <value>Thêm chuyển khoản</value>
   </data>
   <data name="EditAccountTitle" xml:space="preserve">
     <value>Sửa {0}</value>
   </data>
   <data name="CategorySummaryLabel" xml:space="preserve">
-    <value>Category Summary</value>
+    <value>Tóm tắt danh mục</value>
   </data>
   <data name="CategorySpreadingLabel" xml:space="preserve">
-    <value>Category Spreading</value>
+    <value>Lan truyền danh mục</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Charged Account</value>
+    <value>Thay đổi tài khoản</value>
   </data>
   <data name="TargetAccountLabel" xml:space="preserve">
-    <value>Target Account</value>
+    <value>Tài khoản mục tiêu</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
-    <value>The enddate of a recurring Payment has to be in the future. Please check your input.</value>
+    <value>Ngày kết thúc của thanh toán định kỳ phải ở tương lai. Vui lòng kiểm tra lại.</value>
   </data>
   <data name="InvalidEnddateTitle" xml:space="preserve">
     <value>Ngày kết thúc không hợp lệ</value>
