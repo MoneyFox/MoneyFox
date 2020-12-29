@@ -330,16 +330,16 @@ Nhấn để truy cập Repository:</value>
     <value>Đánh giá ứng dụng</value>
   </data>
   <data name="TranslationLabel" xml:space="preserve">
-    <value>Is something not properly translated or not translated at all? Help us! Head over to crowdin and help improve the Money Fox:</value>
+    <value>Có phải một số nơi không được dịch đúng cách hoặc không được dịch không? Giúp chúng tôi! Tham gia cộng đồng và giúp cải thiện Money Fox:</value>
   </data>
   <data name="NoAccountsMessage" xml:space="preserve">
-    <value>There are no Accounts to display.</value>
+    <value>Không có tài khoản để hiển thị.</value>
   </data>
   <data name="CreateBackupLabel" xml:space="preserve">
-    <value>Create Backup</value>
+    <value>Tạo sao lưu</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
-    <value>Last Backup created at:</value>
+    <value>Bản sao lưu cuối cùng được tạo lúc:</value>
   </data>
   <data name="LoginLabel" xml:space="preserve">
     <value>Đăng nhập</value>
@@ -348,20 +348,20 @@ Nhấn để truy cập Repository:</value>
     <value>Đăng xuất</value>
   </data>
   <data name="RestoreBackupInformationLabel" xml:space="preserve">
-    <value>Download the previous uploaded database backup and replace your local data with it.
-WARNING: Local changes you made meanwhile will be lost!</value>
+    <value>Tải xuống bản sao lưu dữ liệu đã tải lên trước đó và thay thế dữ liệu trên máy của bạn.
+CẢNH BÁO: Các thay đổi trên máy của bạn sẽ bị mất!</value>
   </data>
   <data name="RestoreBackupLabel" xml:space="preserve">
     <value>Khôi phục sao lưu</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Tên tài khoản</value>
   </data>
   <data name="CurrentBalanceLabel" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Số dư hiện tại</value>
   </data>
   <data name="NoteLabel" xml:space="preserve">
-    <value>Note</value>
+    <value>Ghi chú</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
     <value>Số tiền</value>
