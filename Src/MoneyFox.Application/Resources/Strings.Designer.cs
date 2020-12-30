@@ -90,6 +90,15 @@ namespace MoneyFox.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Accounts.
         /// </summary>
+        public static string AccountsHeader {
+            get {
+                return ResourceManager.GetString("AccountsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accounts.
+        /// </summary>
         public static string AccountsTitle {
             get {
                 return ResourceManager.GetString("AccountsTitle", resourceCulture);
@@ -1363,6 +1372,15 @@ namespace MoneyFox.Application.Resources {
         public static string MonthlyAverageLabel {
             get {
                 return ResourceManager.GetString("MonthlyAverageLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly Cashflow.
+        /// </summary>
+        public static string MonthlyCashflowTitle {
+            get {
+                return ResourceManager.GetString("MonthlyCashflowTitle", resourceCulture);
             }
         }
         

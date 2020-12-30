@@ -747,4 +747,10 @@ To get there go to the account list and select the respective account.</value>
   <data name="ModificationDateHeader" xml:space="preserve">
     <value>Modification Date</value>
   </data>
+  <data name="MonthlyCashflowTitle" xml:space="preserve">
+    <value>Monthly Cashflow</value>
+  </data>
+  <data name="AccountsHeader" xml:space="preserve">
+    <value>Accounts</value>
+  </data>
 </root>
