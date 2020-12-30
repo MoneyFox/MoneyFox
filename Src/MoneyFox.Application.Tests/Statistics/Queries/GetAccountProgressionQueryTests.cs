@@ -46,19 +46,22 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_CorrectSums()
         {
             // Arrange
+            Account account = new ("Foo1");
             context.AddRange(new List<Payment>
                 {
-                    new Payment(DateTime.Today, 60, PaymentType.Income, new Account("Foo1")),
-                    new Payment(DateTime.Today, 20, PaymentType.Expense, new Account("Foo2")),
-                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, new Account("Foo3")),
-                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, new Account("Foo3"))
+                    new Payment(DateTime.Today, 60, PaymentType.Income, account),
+                    new Payment(DateTime.Today, 20, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
                 });
+            context.Add(account);
             context.SaveChanges();
 
             // Act
             List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(new GetAccountProgressionQuery
             {
-                StartDate = DateTime.Today.AddDays(-3),
+                AccountId = account.Id,
+                StartDate = DateTime.Today.AddYears(-1),
                 EndDate = DateTime.Today.AddDays(3)
             }, default);
 

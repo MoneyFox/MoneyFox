@@ -2,9 +2,11 @@
 {
     public class StatisticEntry
     {
-        public StatisticEntry(decimal value)
+        public StatisticEntry(decimal value, string label = "", string valueLabel = "")
         {
             Value = value;
+            Label = label;
+            ValueLabel = valueLabel;
         }
 
         public decimal Value { get; }
