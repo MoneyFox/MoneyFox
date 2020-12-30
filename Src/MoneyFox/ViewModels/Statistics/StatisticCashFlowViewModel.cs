@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microcharts;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using SkiaSharp;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -48,7 +50,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            System.Collections.Generic.List<Application.Statistics.StatisticEntry>? statisticItems = await Mediator.Send(new GetCashFlowQuery
+            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetCashFlowQuery
             {
                 EndDate = EndDate,
                 StartDate = StartDate
@@ -60,7 +62,8 @@ namespace MoneyFox.ViewModels.Statistics
                 {
                     Label = x.Label,
                     ValueLabel = x.ValueLabel,
-                    Color = SKColor.Parse(x.Color)
+                    Color = SKColor.Parse(x.Color),
+                    ValueLabelColor = SKColor.Parse(x.Color)
                 }).ToList(),
                 BackgroundColor = BackgroundColor,
                 Margin = BAR_CHART_MARGINS,
