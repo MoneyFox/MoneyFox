@@ -1,19 +1,15 @@
-﻿using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
-using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -43,6 +39,35 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
+        public async Task CalculateCorrectSums()
+        {
+            // Arrange
+            Account account = new ("Foo1");
+            context.AddRange(new List<Payment>
+                {
+                    new Payment(DateTime.Today, 60, PaymentType.Income, account),
+                    new Payment(DateTime.Today, 20, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
+                });
+            context.Add(account);
+            context.SaveChanges();
+
+            // Act
+            List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(new GetAccountProgressionQuery
+            {
+                AccountId = account.Id,
+                StartDate = DateTime.Today.AddYears(-1),
+                EndDate = DateTime.Today.AddDays(3)
+            }, default);
+
+            // Assert
+            result[0].Value.Should().Be(40);
+            result[1].Value.Should().Be(-50);
+            result[2].Value.Should().Be(-40);
+        }
+
+        [Fact]
         public async Task GetValues_CorrectSums()
         {
             // Arrange
@@ -66,9 +91,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             }, default);
 
             // Assert
-            result[0].Value.ShouldEqual(40);
-            result[1].Value.ShouldEqual(-50);
-            result[2].Value.ShouldEqual(-40);
+            result[0].Color.Should().Be("#9bcd9b");
+            result[1].Color.Should().Be("#cd3700");
+            result[2].Color.Should().Be("#cd3700");
         }
     }
 }
