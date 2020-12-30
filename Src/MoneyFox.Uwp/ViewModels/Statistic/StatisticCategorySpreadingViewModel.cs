@@ -13,7 +13,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
-        private ObservableCollection<StatisticEntry> statisticItems;
+        private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
 
         public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
         {
