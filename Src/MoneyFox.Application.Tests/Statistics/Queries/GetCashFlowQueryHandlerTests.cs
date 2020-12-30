@@ -57,14 +57,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
-                StartDate = DateTime
-                                                                                                                             .Today
-                                                                                                                             .AddDays(-3),
-                EndDate = DateTime
-                                                                                                                           .Today
-                                                                                                                           .AddDays(3)
-            },
-                                                                                                              default);
+                StartDate = DateTime.Today.AddDays(-3),
+                EndDate = DateTime.Today.AddDays(3)
+            }, default);
 
             // Assert
             result[0].Value.ShouldEqual(80);
@@ -80,14 +75,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
-                StartDate = DateTime
-                                                                                                                             .Today
-                                                                                                                             .AddDays(-3),
-                EndDate = DateTime
-                                                                                                                           .Today
-                                                                                                                           .AddDays(3)
-            },
-                                                                                                              default);
+                StartDate = DateTime.Today.AddDays(-3),
+                EndDate = DateTime.Today.AddDays(3)
+            },default);
 
             // Assert
             result[0].Color.ShouldEqual("#9bcd9b");
@@ -103,14 +93,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
-                StartDate = DateTime
-                                                                                                                             .Today
-                                                                                                                             .AddDays(-3),
-                EndDate = DateTime
-                                                                                                                           .Today
-                                                                                                                           .AddDays(3)
-            },
-                                                                                                              default);
+                StartDate = DateTime.Today.AddDays(-3),
+                EndDate = DateTime.Today.AddDays(3)
+            }, default);
 
             // Assert
             result[0].Label.ShouldEqual(Strings.RevenueLabel);
@@ -135,14 +120,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
-                StartDate = DateTime
-                                                                                                                             .Today
-                                                                                                                             .AddDays(-3),
-                EndDate = DateTime
-                                                                                                                           .Today
-                                                                                                                           .AddDays(3)
-            },
-                                                                                                              default);
+                StartDate = DateTime.Today.AddDays(-3),
+                EndDate = DateTime.Today.AddDays(3)
+            }, default);
 
             // Assert
             result[2].ValueLabel[indexNegativeSign].ShouldEqual(expectedNegativeSign);
@@ -166,14 +146,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
-                StartDate = DateTime
-                                                                                                                             .Today
-                                                                                                                             .AddDays(-3),
-                EndDate = DateTime
-                                                                                                                           .Today
-                                                                                                                           .AddDays(3)
-            },
-                                                                                                              default);
+                StartDate = DateTime.Today.AddDays(-3),
+                EndDate = DateTime.Today.AddDays(3)
+            }, default);
 
             // Assert
             // We have to test here for Mac since they have a different standard sign than Windows.
@@ -195,14 +170,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
             {
-                StartDate = DateTime
-                                                                                                                             .Today
-                                                                                                                             .AddDays(-3),
-                EndDate = DateTime
-                                                                                                                           .Today
-                                                                                                                           .AddDays(3)
-            },
-                                                                                                              default);
+                StartDate = DateTime.Today.AddDays(-3),
+                EndDate = DateTime.Today.AddDays(3)
+            }, default);
 
             // Assert
             result[0].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
