@@ -54,14 +54,14 @@ namespace MoneyFox.ViewModels.Statistics
                 EndDate = EndDate
             }));
 
-            var microChartItems = statisticItems
-                                         .Select(x => new ChartEntry((float)x.Value)
-                                         {
-                                             Label = x.Label,
-                                             ValueLabel = x.ValueLabel,
-                                             Color = SKColor.Parse(x.Color)
-                                         })
-                                         .ToList();
+            var microChartItems = statisticItems.Select(x => new ChartEntry((float)x.Value)
+                                                {
+                                                    Label = x.Label,
+                                                    ValueLabel = x.ValueLabel,
+                                                    Color = SKColor.Parse(x.Color),
+                                                    ValueLabelColor = SKColor.Parse(x.Color)
+                                                })
+                                                .ToList();
 
             Chart = new DonutChart
             {
