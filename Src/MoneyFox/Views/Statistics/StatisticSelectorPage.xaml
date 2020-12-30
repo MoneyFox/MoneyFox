@@ -32,7 +32,7 @@
                                                                                  Light={StaticResource CardBackgroundLight}}"
                                                Padding="15"
                                                CornerRadius="10"
-                                               HeightRequest="45"
+                                               MinimumHeightRequest="45"
                                                HorizontalOptions="FillAndExpand" >
 
                                 <yummy:PancakeView.Shadow>
