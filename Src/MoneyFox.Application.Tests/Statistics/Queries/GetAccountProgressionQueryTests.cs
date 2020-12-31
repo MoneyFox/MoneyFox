@@ -91,7 +91,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             }, default);
 
             // Assert
-            result[0].Color.Should().Be("#9bcd9b");
+            result[0].Color.Should().Be("#87cefa");
             result[1].Color.Should().Be("#cd3700");
             result[2].Color.Should().Be("#cd3700");
         }
