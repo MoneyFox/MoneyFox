@@ -49,7 +49,7 @@ namespace MoneyFox.ViewModels.Statistics
         public RelayCommand<StatisticSelectorType> GoToStatisticCommand
             => new RelayCommand<StatisticSelectorType>(async (s) => await GoToStatisticAsync(s));
 
-        private async Task GoToStatisticAsync(StatisticSelectorType item)
+        private static async Task GoToStatisticAsync(StatisticSelectorType item)
         {
             if(item.Type == StatisticType.Cashflow)
             {

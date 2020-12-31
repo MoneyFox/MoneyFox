@@ -19,7 +19,7 @@ namespace MoneyFox
             RegisterRoutes();
         }
 
-        private void RegisterRoutes()
+        private static void RegisterRoutes()
         {
             Routing.RegisterRoute(ViewModelLocator.WelcomeViewRoute, typeof(WelcomePage));
             Routing.RegisterRoute(ViewModelLocator.CategoryIntroductionRoute, typeof(CategoryIntroductionPage));
