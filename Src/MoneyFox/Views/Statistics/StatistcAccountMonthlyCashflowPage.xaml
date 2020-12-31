@@ -3,6 +3,7 @@
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="MoneyFox.Views.Statistics.StatistcAccountMonthlyCashflowPage"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:theme="clr-namespace:MoneyFox"
              Visual="Material" >
     <Shell.TitleView>
@@ -36,7 +37,11 @@
                     ItemsSource="{Binding Accounts}"
                     SelectedItem="{Binding SelectedAccount}"
                     ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}">
-
+                <Picker.Behaviors>
+                    <xct:EventToCommandBehavior
+                        EventName="SelectedIndexChanged"
+                        Command="{Binding LoadAsync}" />
+                </Picker.Behaviors>
             </Picker>
 
             <microcharts:ChartView Grid.Row="2" Chart="{Binding Chart}" />
