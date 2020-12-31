@@ -753,4 +753,10 @@ To get there go to the account list and select the respective account.</value>
   <data name="AccountsHeader" xml:space="preserve">
     <value>Accounts</value>
   </data>
+  <data name="MonthlyCashflowDescription" xml:space="preserve">
+    <value>Shows a monthly cashflow for the selected account.</value>
+  </data>
+  <data name="MonthlyCashflowLabel" xml:space="preserve">
+    <value>Monthly Cashflow</value>
+  </data>
 </root>
