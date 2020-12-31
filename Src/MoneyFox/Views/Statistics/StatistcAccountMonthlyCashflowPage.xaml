@@ -48,7 +48,7 @@
                 <Picker.Behaviors>
                     <xct:EventToCommandBehavior
                         EventName="SelectedIndexChanged"
-                        Command="{Binding LoadAsync}" />
+                        Command="{Binding LoadDataCommand}" />
                 </Picker.Behaviors>
             </Picker>
 

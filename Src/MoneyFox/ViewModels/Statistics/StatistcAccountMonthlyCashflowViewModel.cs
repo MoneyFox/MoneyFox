@@ -1,9 +1,13 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using GalaSoft.MvvmLight.Command;
+using MediatR;
 using Microcharts;
+using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries.GetCashFlow;
+using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using SkiaSharp;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,8 +32,13 @@ namespace MoneyFox.ViewModels.Statistics
 
         private BarChart chart = new BarChart();
 
-        public StatistcAccountMonthlyCashflowViewModel(IMediator mediator) : base(mediator)
+        private readonly IMapper mapper;
+
+        public StatistcAccountMonthlyCashflowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
         {
+            this.mapper = mapper;
+
+            StartDate = DateTime.Now.AddYears(-1);
         }
 
         /// <summary>
@@ -54,10 +63,25 @@ namespace MoneyFox.ViewModels.Statistics
 
         public AccountViewModel? SelectedAccount { get; set; }
 
+        public RelayCommand InitCommand => new RelayCommand(async () => await InitAsync());
+
+        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
+
+        private async Task InitAsync()
+        {
+            Accounts.Clear();
+            List<AccountViewModel> accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
+            accounts.ForEach(Accounts.Add);
+
+            SelectedAccount = Accounts.First();
+            await LoadAsync();
+        }
+
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetCashFlowQuery
+            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetAccountProgressionQuery
             {
+                AccountId = SelectedAccount?.Id ?? 0,
                 EndDate = EndDate,
                 StartDate = StartDate
             });
