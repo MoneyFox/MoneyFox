@@ -3,7 +3,6 @@
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="MoneyFox.Views.Statistics.StatistcAccountMonthlyCashflowPage"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              xmlns:theme="clr-namespace:MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              Visual="Material" >
@@ -33,7 +32,7 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, 38, *" Padding="15,0,15,0">
+        <Grid RowDefinitions="38, 38,38, *" Padding="15,0,15,0">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.MonthlyCashflowTitle}" />
 
@@ -41,18 +40,13 @@
                    Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
-            <Picker Title="{x:Static resources:Strings.AccountsHeader}"
+            <Picker Grid.Row="2"
+                    Title="{x:Static resources:Strings.AccountsHeader}"
                     ItemsSource="{Binding Accounts}"
                     SelectedItem="{Binding SelectedAccount}"
-                    ItemDisplayBinding="{Binding ., Converter={StaticResource AccountNameConverter}}">
-                <Picker.Behaviors>
-                    <xct:EventToCommandBehavior
-                        EventName="SelectedIndexChanged"
-                        Command="{Binding LoadDataCommand}" />
-                </Picker.Behaviors>
-            </Picker>
+                    ItemDisplayBinding="{Binding Name}" />
 
-            <microcharts:ChartView Grid.Row="2" Chart="{Binding Chart}" />
+            <microcharts:ChartView Grid.Row="3" Chart="{Binding Chart}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

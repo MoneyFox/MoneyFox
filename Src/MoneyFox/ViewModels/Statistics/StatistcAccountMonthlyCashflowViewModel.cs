@@ -31,7 +31,7 @@ namespace MoneyFox.ViewModels.Statistics
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
         private BarChart chart = new BarChart();
-
+        private AccountViewModel selectedAccount = null!;
         private readonly IMapper mapper;
 
         public StatistcAccountMonthlyCashflowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
@@ -61,7 +61,21 @@ namespace MoneyFox.ViewModels.Statistics
 
         public ObservableCollection<AccountViewModel> Accounts { get; private set; } = new ObservableCollection<AccountViewModel>();
 
-        public AccountViewModel? SelectedAccount { get; set; }
+        public AccountViewModel SelectedAccount
+        {
+            get => selectedAccount;
+            set
+            {
+                if(selectedAccount == value)
+                {
+                    return;
+                }
+
+                selectedAccount = value;
+                LoadDataCommand.Execute(null);
+                RaisePropertyChanged();
+            }
+        }
 
         public RelayCommand InitCommand => new RelayCommand(async () => await InitAsync());
 
@@ -75,6 +89,7 @@ namespace MoneyFox.ViewModels.Statistics
 
             SelectedAccount = Accounts.First();
             await LoadAsync();
+            RaisePropertyChanged();
         }
 
         protected override async Task LoadAsync()
