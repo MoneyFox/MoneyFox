@@ -5,7 +5,7 @@ using System;
 
 namespace MoneyFox.Ui.Shared.ViewModels.Accounts
 {
-    public class AccountViewModel : ViewModelBase, IMapFrom<Account>
+    public class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
         private int id;
         private string name = "";
@@ -163,17 +163,13 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             }
         }
 
-        public override bool Equals(object obj) => (obj as AccountViewModel)?.Id == Id;
-
-        public override int GetHashCode()
+        public bool Equals(AccountViewModel other)
         {
-            unchecked
+            if(other == null)
             {
-                int hashCode = 7;
-                hashCode = hashCode * 397 ^ id.GetHashCode();
-
-                return hashCode;
+                return false;
             }
+            return (this.Id.Equals(other.Id));
         }
     }
 }
