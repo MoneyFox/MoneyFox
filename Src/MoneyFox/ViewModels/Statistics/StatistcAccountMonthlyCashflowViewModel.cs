@@ -66,14 +66,9 @@ namespace MoneyFox.ViewModels.Statistics
             get => selectedAccount;
             set
             {
-                if(selectedAccount == value)
-                {
-                    return;
-                }
-
                 selectedAccount = value;
-                LoadDataCommand.Execute(null);
                 RaisePropertyChanged();
+                LoadDataCommand.Execute(null);
             }
         }
 
@@ -89,7 +84,6 @@ namespace MoneyFox.ViewModels.Statistics
 
             SelectedAccount = Accounts.First();
             await LoadAsync();
-            RaisePropertyChanged();
         }
 
         protected override async Task LoadAsync()

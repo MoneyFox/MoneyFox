@@ -1767,6 +1767,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected Account.
+        /// </summary>
+        public static string SelectedAccountHeader {
+            get {
+                return ResourceManager.GetString("SelectedAccountHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Filter.
         /// </summary>
         public static string SelectFilterTitle {

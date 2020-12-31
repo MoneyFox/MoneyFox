@@ -11,8 +11,8 @@ namespace MoneyFox.Views.Statistics
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.StatistcAccountMonthlyCashflowViewModel;
-
-            ViewModel.InitCommand.Execute(null);
         }
+
+        protected override void OnAppearing() => ViewModel.InitCommand.Execute(null);
     }
 }

@@ -5,7 +5,7 @@ using System;
 
 namespace MoneyFox.Ui.Shared.ViewModels.Accounts
 {
-    public class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
+    public sealed class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
         private int id;
         private string name = "";
@@ -169,7 +169,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             {
                 return false;
             }
-            return (this.Id.Equals(other.Id));
+            return (Id.Equals(other.Id));
         }
     }
 }
