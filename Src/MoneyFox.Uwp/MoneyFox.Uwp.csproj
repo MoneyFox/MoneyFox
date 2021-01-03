@@ -19,7 +19,7 @@
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
     <PackageCertificateKeyFile>
     </PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>59EE3311EF93C0CFB9ACA95AE3EC5A27C3CFD4F4</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>9E5C6DA1EE0F90889DF19824CC8AD7364FEA1F52</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
