@@ -17,8 +17,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WindowsXamlEnableOverview>true</WindowsXamlEnableOverview>
-    <PackageCertificateKeyFile>MoneyFox.Uwp_TemporaryKey.pfx</PackageCertificateKeyFile>
-    <PackageCertificateThumbprint>60BEE9A5DCA9DF2D1383655A13B9A6F8006CC6AA</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>59EE3311EF93C0CFB9ACA95AE3EC5A27C3CFD4F4</PackageCertificateThumbprint>
     <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
