@@ -746,4 +746,22 @@ To get there go to the account list and select the respective account.</value>
   <data name="ModificationDateHeader" xml:space="preserve">
     <value>Modification Date</value>
   </data>
+  <data name="AccountsToolTip" xml:space="preserve">
+    <value>Manage your Accounts</value>
+  </data>
+  <data name="AddPaymentTitle" xml:space="preserve">
+    <value>Add Payment</value>
+  </data>
+  <data name="AddPaymentToolTip" xml:space="preserve">
+    <value>Add a Payment with details</value>
+  </data>
+  <data name="BackupToolTip" xml:space="preserve">
+    <value>Backup your information</value>
+  </data>
+  <data name="CategoriesToolTip" xml:space="preserve">
+    <value>Manage your Categories</value>
+  </data>
+  <data name="StatisticsToolTip" xml:space="preserve">
+    <value>View your Statistics</value>
+  </data>
 </root>
