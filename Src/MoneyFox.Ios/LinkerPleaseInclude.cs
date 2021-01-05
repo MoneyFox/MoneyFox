@@ -55,14 +55,14 @@ namespace MoneyFox.iOS
 
         public void Include(UISlider slider)
         {
-            slider.Value = slider.Value + 1;
+            slider.Value += 1;
             slider.ValueChanged += (sender, args) =>
                                    {
                                        slider.Value = 1;
                                    };
         }
 
-        public void Include(UIProgressView progress) => progress.Progress = progress.Progress + 1;
+        public void Include(UIProgressView progress) => progress.Progress += 1;
 
         public void Include(UISwitch sw)
         {
@@ -75,7 +75,7 @@ namespace MoneyFox.iOS
 
         public void Include(UIStepper s)
         {
-            s.Value = s.Value + 1;
+            s.Value += 1;
             s.ValueChanged += (sender, args) =>
                               {
                                   s.Value = 0;
@@ -84,7 +84,7 @@ namespace MoneyFox.iOS
 
         public void Include(UIPageControl s)
         {
-            s.Pages = s.Pages + 1;
+            s.Pages += 1;
             s.ValueChanged += (sender, args) =>
                               {
                                   s.Pages = 0;

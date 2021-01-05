@@ -48,21 +48,14 @@ namespace MoneyFox.Ui.Shared.Utilities
         /// <returns>The string for the determined type.</returns>
         public static string GetTypeString(int type)
         {
-            switch(type)
+            return type switch
             {
-                case (int)PaymentType.Income:
-                    return PaymentType.Income.ToString();
-
-                case (int)PaymentType.Expense:
-                    return PaymentType.Expense.ToString();
-
-                case (int)PaymentType.Transfer:
-                    return PaymentType.Transfer.ToString();
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type),
-                                                          "Passed Number didn't match to a payment type.");
-            }
+                (int)PaymentType.Income => PaymentType.Income.ToString(),
+                (int)PaymentType.Expense => PaymentType.Expense.ToString(),
+                (int)PaymentType.Transfer => PaymentType.Transfer.ToString(),
+                _ => throw new ArgumentOutOfRangeException(nameof(type),
+"Passed Number didn't match to a payment type."),
+            };
         }
     }
 }

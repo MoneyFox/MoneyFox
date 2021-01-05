@@ -1,11 +1,11 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -55,9 +55,9 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
             await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(), default);
 
             // Assert
-            paymentList[0].IsCleared.ShouldBeFalse();
-            paymentList[1].IsCleared.ShouldBeTrue();
-            paymentList[2].IsCleared.ShouldBeTrue();
+            paymentList[0].IsCleared.Should().BeFalse();
+            paymentList[1].IsCleared.Should().BeTrue();
+            paymentList[2].IsCleared.Should().BeTrue();
         }
 
         [Fact]
@@ -79,9 +79,9 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
             var loadedPayments = context.Payments.ToList();
 
             // Assert
-            loadedPayments[0].IsCleared.ShouldBeFalse();
-            loadedPayments[1].IsCleared.ShouldBeTrue();
-            loadedPayments[2].IsCleared.ShouldBeTrue();
+            loadedPayments[0].IsCleared.Should().BeFalse();
+            loadedPayments[1].IsCleared.Should().BeTrue();
+            loadedPayments[2].IsCleared.Should().BeTrue();
         }
     }
 }

@@ -1,10 +1,10 @@
-﻿using MoneyFox.Application.Accounts.Queries.GetAccountById;
+﻿using FluentAssertions;
+using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -49,7 +49,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountById
                 await new GetAccountByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountByIdQuery(account1.Id), default);
 
             // Assert
-            result.Name.ShouldEqual(account1.Name);
+            result.Name.Should().Be(account1.Name);
         }
     }
 }

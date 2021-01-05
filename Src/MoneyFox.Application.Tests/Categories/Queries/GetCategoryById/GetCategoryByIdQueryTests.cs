@@ -1,10 +1,10 @@
-﻿using MoneyFox.Application.Categories.Queries.GetCategoryById;
+﻿using FluentAssertions;
+using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -44,7 +44,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
                 await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryByIdQuery(999), default);
 
             // Assert
-            result.ShouldBeNull();
+            result.Should().BeNull();
         }
 
         [Fact]
@@ -60,8 +60,8 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
                 await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryByIdQuery(testCat1.Id), default);
 
             // Assert
-            result.ShouldNotBeNull();
-            result.Name.ShouldEqual(testCat1.Name);
+            result.Should().NotBeNull();
+            result.Name.Should().Be(testCat1.Name);
         }
     }
 }

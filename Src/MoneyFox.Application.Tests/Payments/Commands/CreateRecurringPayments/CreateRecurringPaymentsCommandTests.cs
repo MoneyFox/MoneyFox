@@ -1,11 +1,11 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -52,8 +52,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreateRecurringPayments
             var loadedPayments = context.Payments.ToList();
 
             // Assert
-            loadedPayments.Count.ShouldEqual(2);
-            loadedPayments.ForEach(x => x.Amount.ShouldEqual(166));
+            loadedPayments.Count.Should().Be(2);
+            loadedPayments.ForEach(x => x.Amount.Should().Be(166));
         }
     }
 }

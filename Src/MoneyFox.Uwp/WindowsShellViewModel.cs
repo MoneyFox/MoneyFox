@@ -66,6 +66,11 @@ namespace MoneyFox.Uwp
         {
             Logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
 
+            if(NavigationService == null)
+            {
+                return;
+            }
+
             this.navigationView = navigationView;
             this.keyboardAccelerators = keyboardAccelerators;
 

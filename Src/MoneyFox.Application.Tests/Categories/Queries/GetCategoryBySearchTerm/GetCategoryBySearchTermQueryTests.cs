@@ -1,10 +1,10 @@
-﻿using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
+﻿using FluentAssertions;
+using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -51,7 +51,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
                                                                                                  default);
 
             // Assert
-            result.Count.ShouldEqual(2);
+            result.Count.Should().Be(2);
         }
 
         [Fact]

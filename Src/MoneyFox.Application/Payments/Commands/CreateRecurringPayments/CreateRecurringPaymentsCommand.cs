@@ -16,7 +16,7 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
     {
         public class Handler : IRequestHandler<CreateRecurringPaymentsCommand>
         {
-            private readonly static Logger logger = LogManager.GetCurrentClassLogger();
+            private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
             private readonly IContextAdapter contextAdapter;
 

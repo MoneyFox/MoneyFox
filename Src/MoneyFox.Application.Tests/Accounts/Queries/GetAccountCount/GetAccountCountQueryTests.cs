@@ -1,10 +1,10 @@
-﻿using MoneyFox.Application.Accounts.Queries.GetAccountCount;
+﻿using FluentAssertions;
+using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using NSubstitute;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -48,7 +48,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
             int result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
 
             // Assert
-            result.ShouldEqual(2);
+            result.Should().Be(2);
         }
     }
 }

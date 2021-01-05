@@ -32,7 +32,7 @@ namespace MoneyFox.Services
 
             try
             {
-                await loadingDialog.DismissAsync();
+                await LoadingDialog.DismissAsync();
             }
             catch(IndexOutOfRangeException)
             {

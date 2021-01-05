@@ -44,7 +44,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             this.connectivity = connectivity;
             this.settingsFacade = settingsFacade;
             this.toastService = toastService;
-            this.userAccount = new UserAccount();
+            userAccount = new UserAccount();
 
         }
 

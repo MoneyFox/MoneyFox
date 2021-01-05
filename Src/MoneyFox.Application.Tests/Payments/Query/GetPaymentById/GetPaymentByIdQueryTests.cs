@@ -1,11 +1,11 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -36,12 +36,10 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById
         protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
-        public async Task GetCategory_CategoryNotFound()
-        {
+        public async Task GetCategory_CategoryNotFound() =>
             // Arrange
             // Act / Assert
             await Assert.ThrowsAsync<InvalidOperationException>(async () => await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(999), default));
-        }
 
         [Fact]
         public async Task GetCategory_CategoryFound()
@@ -56,8 +54,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById
                 await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(payment1.Id), default);
 
             // Assert
-            result.ShouldNotBeNull();
-            result.Id.ShouldEqual(payment1.Id);
+            result.Should().NotBeNull();
+            result.Id.Should().Be(payment1.Id);
         }
     }
 }

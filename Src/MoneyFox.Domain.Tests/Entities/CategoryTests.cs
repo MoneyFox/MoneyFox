@@ -1,5 +1,5 @@
-﻿using MoneyFox.Domain.Entities;
-using Should;
+﻿using FluentAssertions;
+using MoneyFox.Domain.Entities;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
@@ -28,11 +28,11 @@ namespace MoneyFox.Domain.Tests.Entities
             var category = new Category(testName);
 
             // Assert
-            category.Name.ShouldEqual(testName);
-            category.Note.ShouldBeEmpty();
-            category.RequireNote.ShouldBeFalse();
-            category.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
-            category.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            category.Name.Should().Be(testName);
+            category.Note.Should().BeEmpty();
+            category.RequireNote.Should().BeFalse();
+            category.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            category.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -46,9 +46,9 @@ namespace MoneyFox.Domain.Tests.Entities
             var category = new Category(testName, testNote, true);
 
             // Assert
-            category.Name.ShouldEqual(testName);
-            category.Note.ShouldEqual(testNote);
-            category.RequireNote.ShouldBeTrue();
+            category.Name.Should().Be(testName);
+            category.Note.Should().Be(testNote);
+            category.RequireNote.Should().BeTrue();
         }
 
         [Theory]
@@ -75,10 +75,10 @@ namespace MoneyFox.Domain.Tests.Entities
             testCategory.UpdateData(testName);
 
             // Assert
-            testCategory.Name.ShouldEqual(testName);
-            testCategory.Note.ShouldBeEmpty();
-            testCategory.RequireNote.ShouldBeFalse();
-            testCategory.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-0.5), DateTime.Now);
+            testCategory.Name.Should().Be(testName);
+            testCategory.Note.Should().BeEmpty();
+            testCategory.RequireNote.Should().BeFalse();
+            testCategory.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-0.5));
         }
 
         [Fact]
@@ -94,9 +94,9 @@ namespace MoneyFox.Domain.Tests.Entities
             testCategory.UpdateData(testName, testNote, true);
 
             // Assert
-            testCategory.Name.ShouldEqual(testName);
-            testCategory.Note.ShouldEqual(testNote);
-            testCategory.RequireNote.ShouldBeTrue();
+            testCategory.Name.Should().Be(testName);
+            testCategory.Note.Should().Be(testNote);
+            testCategory.RequireNote.Should().BeTrue();
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿using MoneyFox.Domain.Entities;
+﻿using FluentAssertions;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
@@ -29,7 +29,7 @@ namespace MoneyFox.Domain.Tests.Entities
             // Act
 
             // Assert
-            payment.IsCleared.ShouldEqual(expectedIsCleared);
+            payment.IsCleared.Should().Be(expectedIsCleared);
         }
 
         [Fact]
@@ -41,8 +41,8 @@ namespace MoneyFox.Domain.Tests.Entities
             var payment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
 
             // Assert
-            payment.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
-            payment.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            payment.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            payment.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Theory]
@@ -58,7 +58,7 @@ namespace MoneyFox.Domain.Tests.Entities
             payment.ClearPayment();
 
             // Assert
-            payment.IsCleared.ShouldEqual(expectedIsCleared);
+            payment.IsCleared.Should().Be(expectedIsCleared);
         }
 
         [Fact]
@@ -84,7 +84,7 @@ namespace MoneyFox.Domain.Tests.Entities
             testPayment.UpdatePayment(DateTime.Now.AddDays(daysToAdd), 123, PaymentType.Expense, new Account("foo"));
 
             // Assert
-            testPayment.IsCleared.ShouldEqual(expectedIsCleared);
+            testPayment.IsCleared.Should().Be(expectedIsCleared);
         }
     }
 }
