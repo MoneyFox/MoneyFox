@@ -85,13 +85,13 @@ namespace MoneyFox
 #pragma warning disable 4014
             Task.Run(async () =>
             {
-                await StartupTasks();
+                await StartupTasksAsync();
             }).ConfigureAwait(false);
 #pragma warning restore 4014
 
         }
 
-        private async Task StartupTasks()
+        private async Task StartupTasksAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
