@@ -1,4 +1,5 @@
 ﻿using Rg.Plugins.Popup.Extensions;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -38,8 +39,8 @@ namespace MoneyFox.Views.Dialogs
 
         public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
+        public static async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
 
-        private async void OnOkClick(object sender, System.EventArgs e) => await DismissAsync();
+        private async void OnOkClick(object sender, EventArgs e) => await DismissAsync();
     }
 }

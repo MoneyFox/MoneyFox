@@ -27,7 +27,7 @@ namespace MoneyFox.Presentation.Dialogs
 
         public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
+        private static async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
 
         private async void Button_OnClicked(object sender, System.EventArgs e)
         {
