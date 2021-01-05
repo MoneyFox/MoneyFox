@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Accounts.Commands.UpdateAccount;
+﻿using FluentAssertions;
+using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
@@ -7,7 +8,6 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -64,7 +64,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
             Account loadedAccount = await context.Accounts.FindAsync(account.Id);
 
             // Assert
-            loadedAccount.Name.ShouldEqual("foo");
+            loadedAccount.Name.Should().Be("foo");
         }
 
         [Fact]

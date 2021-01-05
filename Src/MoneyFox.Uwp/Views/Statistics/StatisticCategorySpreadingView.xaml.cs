@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.Views.Dialogs;
+using System;
 using Windows.UI.Xaml;
 
 #nullable enable

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentAssertions;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
@@ -8,7 +9,6 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -57,7 +57,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
                .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
-            (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).ShouldBeNull();
+            (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().BeNull();
         }
 
         [Fact]

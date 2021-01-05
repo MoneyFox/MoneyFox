@@ -1,11 +1,11 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -71,10 +71,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                .ToList();
 
             // Assert
-            result.Count.ShouldEqual(3);
-            result[0].Value.ShouldEqual(90);
-            result[1].Value.ShouldEqual(30);
-            result[2].Value.ShouldEqual(10);
+            result.Count.Should().Be(3);
+            result[0].Value.Should().Be(90);
+            result[1].Value.Should().Be(30);
+            result[2].Value.Should().Be(10);
         }
 
         [Fact]
@@ -107,7 +107,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                .ToList();
 
             // Assert
-            result.Count.ShouldEqual(2);
+            result.Count.Should().Be(2);
         }
 
         [Fact]
@@ -138,8 +138,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                .ToList();
 
             // Assert
-            result[0].Label.ShouldEqual(testCat1.Name);
-            result[1].Label.ShouldEqual(testCat2.Name);
+            result[0].Label.Should().Be(testCat1.Name);
+            result[1].Label.Should().Be(testCat2.Name);
         }
 
         [Fact]
@@ -172,13 +172,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                .ToList();
 
             // Assert
-            result[0].Color.ShouldEqual("#266489");
-            result[1].Color.ShouldEqual("#68B9C0");
-            result[2].Color.ShouldEqual("#90D585");
-            result[3].Color.ShouldEqual("#F3C151");
-            result[4].Color.ShouldEqual("#F37F64");
-            result[5].Color.ShouldEqual("#424856");
-            result[6].Color.ShouldEqual("#8F97A4");
+            result[0].Color.Should().Be("#266489");
+            result[1].Color.Should().Be("#68B9C0");
+            result[2].Color.Should().Be("#90D585");
+            result[3].Color.Should().Be("#F3C151");
+            result[4].Color.Should().Be("#F37F64");
+            result[5].Color.Should().Be("#424856");
+            result[6].Color.Should().Be("#8F97A4");
         }
 
         [Theory]
@@ -212,9 +212,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                .ToList();
 
             // Assert
-            result[0].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
-            result[1].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
-            result[2].ValueLabel[0].ShouldEqual(expectedCurrencySymbol);
+            result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);
+            result[1].ValueLabel[0].Should().Be(expectedCurrencySymbol);
+            result[2].ValueLabel[0].Should().Be(expectedCurrencySymbol);
         }
     }
 }

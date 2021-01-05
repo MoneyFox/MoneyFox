@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Common;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
@@ -8,7 +9,6 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -65,7 +65,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             // Assert
             Assert.Single(context.Payments);
-            (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
+            (await context.Payments.FindAsync(payment1.Id)).Should().NotBeNull();
         }
 
         [Fact]
@@ -107,8 +107,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             // Assert
             Account loadedAccount = await context.Accounts.FindAsync(account.Id);
-            loadedAccount.ShouldNotBeNull();
-            loadedAccount.CurrentBalance.ShouldEqual(newCurrentBalance);
+            loadedAccount.Should().NotBeNull();
+            loadedAccount.CurrentBalance.Should().Be(newCurrentBalance);
         }
 
         [Fact]
@@ -131,8 +131,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             // Assert
             Assert.Single(context.Payments);
             Assert.Single(context.RecurringPayments);
-            (await context.Payments.FindAsync(payment1.Id)).ShouldNotBeNull();
-            (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).ShouldNotBeNull();
+            (await context.Payments.FindAsync(payment1.Id)).Should().NotBeNull();
+            (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Should().NotBeNull();
         }
     }
 }
