@@ -1,6 +1,6 @@
-﻿using MoneyFox.Domain.Entities;
+﻿using FluentAssertions;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
@@ -36,9 +36,9 @@ namespace MoneyFox.Domain.Tests.Entities
                                                         "note");
 
             // Assert
-            recurringPayment.LastRecurrenceCreated.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
-            recurringPayment.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
-            recurringPayment.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            recurringPayment.LastRecurrenceCreated.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            recurringPayment.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            recurringPayment.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -61,13 +61,13 @@ namespace MoneyFox.Domain.Tests.Entities
                                                         note);
 
             // Assert
-            recurringPayment.StartDate.ShouldEqual(startDate);
-            recurringPayment.IsEndless.ShouldBeTrue();
-            recurringPayment.Amount.ShouldEqual(amount);
-            recurringPayment.Type.ShouldEqual(type);
-            recurringPayment.Recurrence.ShouldEqual(recurrence);
-            recurringPayment.ChargedAccount.ShouldEqual(account);
-            recurringPayment.Note.ShouldEqual(note);
+            recurringPayment.StartDate.Should().Be(startDate);
+            recurringPayment.IsEndless.Should().BeTrue();
+            recurringPayment.Amount.Should().Be(amount);
+            recurringPayment.Type.Should().Be(type);
+            recurringPayment.Recurrence.Should().Be(recurrence);
+            recurringPayment.ChargedAccount.Should().Be(account);
+            recurringPayment.Note.Should().Be(note);
         }
 
         [Fact]
@@ -83,7 +83,7 @@ namespace MoneyFox.Domain.Tests.Entities
                                                         "note");
 
             // Assert
-            recurringPayment.IsEndless.ShouldBeTrue();
+            recurringPayment.IsEndless.Should().BeTrue();
         }
 
         [Fact]
@@ -100,8 +100,8 @@ namespace MoneyFox.Domain.Tests.Entities
                                                         DateTime.Today);
 
             // Assert
-            recurringPayment.IsEndless.ShouldBeFalse();
-            recurringPayment.EndDate.ShouldEqual(DateTime.Today);
+            recurringPayment.IsEndless.Should().BeFalse();
+            recurringPayment.EndDate.Should().Be(DateTime.Today);
         }
 
         [Fact]
@@ -141,13 +141,13 @@ namespace MoneyFox.Domain.Tests.Entities
             recurringPayment.UpdateRecurringPayment(amount, recurrence, account, note, endDate);
 
             // Assert
-            recurringPayment.StartDate.ShouldEqual(startDate);
-            recurringPayment.EndDate.ShouldEqual(endDate);
-            recurringPayment.Amount.ShouldEqual(amount);
-            recurringPayment.Type.ShouldEqual(type);
-            recurringPayment.Recurrence.ShouldEqual(recurrence);
-            recurringPayment.ChargedAccount.ShouldEqual(account);
-            recurringPayment.Note.ShouldEqual(note);
+            recurringPayment.StartDate.Should().Be(startDate);
+            recurringPayment.EndDate.Should().Be(endDate);
+            recurringPayment.Amount.Should().Be(amount);
+            recurringPayment.Type.Should().Be(type);
+            recurringPayment.Recurrence.Should().Be(recurrence);
+            recurringPayment.ChargedAccount.Should().Be(account);
+            recurringPayment.Note.Should().Be(note);
         }
 
         [Fact]
@@ -175,7 +175,7 @@ namespace MoneyFox.Domain.Tests.Entities
             recurringPayment.UpdateRecurringPayment(amount, recurrence, account, note, endDate);
 
             // Assert
-            recurringPayment.CreationTime.ShouldEqual(creationTime);
+            recurringPayment.CreationTime.Should().Be(creationTime);
         }
 
         [Fact]
@@ -193,7 +193,7 @@ namespace MoneyFox.Domain.Tests.Entities
             recurringPayment.UpdateRecurringPayment(123, PaymentRecurrence.Daily, new Account("123"));
 
             // Assert
-            recurringPayment.IsEndless.ShouldBeTrue();
+            recurringPayment.IsEndless.Should().BeTrue();
         }
 
         [Fact]
@@ -211,7 +211,7 @@ namespace MoneyFox.Domain.Tests.Entities
             recurringPayment.UpdateRecurringPayment(123, PaymentRecurrence.Daily, new Account("123"), string.Empty, DateTime.Now);
 
             // Assert
-            recurringPayment.IsEndless.ShouldBeFalse();
+            recurringPayment.IsEndless.Should().BeFalse();
         }
 
         [Fact]
@@ -235,8 +235,8 @@ namespace MoneyFox.Domain.Tests.Entities
             recurringPayment.SetLastRecurrenceCreatedDate();
 
             // Assert
-            recurringPayment.LastRecurrenceCreated.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
-            recurringPayment.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            recurringPayment.LastRecurrenceCreated.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            recurringPayment.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
     }
 }

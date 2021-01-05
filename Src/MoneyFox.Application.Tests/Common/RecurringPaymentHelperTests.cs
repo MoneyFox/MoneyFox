@@ -1,8 +1,8 @@
-﻿using MoneyFox.Application.Common.Extensions;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Helpers;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
@@ -37,7 +37,7 @@ namespace MoneyFox.Application.Tests.Common
             payment.AddRecurringPayment(recurrence, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                                  .ShouldEqual(expectedResult);
+                                  .Should().Be(expectedResult);
         }
 
         [Fact]
@@ -49,7 +49,7 @@ namespace MoneyFox.Application.Tests.Common
             payment.AddRecurringPayment(PaymentRecurrence.Bimonthly, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                                  .ShouldEqual(true);
+                                  .Should().Be(true);
         }
 
         [Theory]
@@ -67,7 +67,7 @@ namespace MoneyFox.Application.Tests.Common
             payment.AddRecurringPayment(recurrence, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                                  .ShouldBeFalse();
+                                  .Should().BeFalse();
         }
 
         [Fact]
@@ -79,7 +79,7 @@ namespace MoneyFox.Application.Tests.Common
             payment.AddRecurringPayment(PaymentRecurrence.Monthly, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                                  .ShouldBeFalse();
+                                  .Should().BeFalse();
         }
     }
 }

@@ -58,7 +58,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
                     DateTime.Now.AddDays(1)), default);
 
             // Assert
-            result.Count.Should().Be(2);
+            result.Should().HaveCount(2);
         }
 
         [Fact]
@@ -84,7 +84,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
                     DateTime.Now.AddDays(1)), default);
 
             // Assert
-            result.Count.Should().Be(1);
+            result.Should().ContainSingle();
         }
     }
 }

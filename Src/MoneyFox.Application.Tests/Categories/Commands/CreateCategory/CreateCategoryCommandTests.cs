@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Categories.Command.CreateCategory;
+﻿using FluentAssertions;
+using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
@@ -6,7 +7,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -63,10 +63,10 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
             await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
                 .Handle(new CreateCategoryCommand("Test", requireNote: true), default);
 
-            var loadedCategory = context.Categories.First();
+            Domain.Entities.Category loadedCategory = context.Categories.First();
 
             // Assert
-            loadedCategory.RequireNote.ShouldBeTrue();
+            loadedCategory.RequireNote.Should().BeTrue();
         }
 
         [Fact]

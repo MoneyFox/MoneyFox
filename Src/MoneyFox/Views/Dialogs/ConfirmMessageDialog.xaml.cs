@@ -85,7 +85,7 @@ namespace MoneyFox.Views.Dialogs
             confirmTaskCompletionSource?.SetResult(false);
         }
 
-        public async Task DismissAsync()
+        private static async Task DismissAsync()
             => await App.Current.MainPage.Navigation.PopPopupAsync();
     }
 }

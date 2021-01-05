@@ -13,11 +13,9 @@ namespace MoneyFox.Application.Common.FileStore
             await WriteFileCommonAsync(path,
                             stream =>
                             {
-                                using(var binaryWriter = new BinaryWriter(stream))
-                                {
-                                    binaryWriter.Write(contents.ToArray());
-                                    binaryWriter.Flush();
-                                }
+                                using var binaryWriter = new BinaryWriter(stream);
+                                binaryWriter.Write(contents.ToArray());
+                                binaryWriter.Flush();
                             });
         }
 

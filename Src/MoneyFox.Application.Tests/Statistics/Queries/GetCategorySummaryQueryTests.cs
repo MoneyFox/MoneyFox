@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Application.Tests.Infrastructure;
@@ -6,7 +7,6 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -71,11 +71,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                            default);
 
             // Assert
-            result.CategoryOverviewItems.Count.ShouldEqual(4);
-            result.CategoryOverviewItems[0].Value.ShouldEqual(-90);
-            result.CategoryOverviewItems[1].Value.ShouldEqual(-30);
-            result.CategoryOverviewItems[2].Value.ShouldEqual(-10);
-            result.CategoryOverviewItems[3].Value.ShouldEqual(100);
+            result.CategoryOverviewItems.Count.Should().Be(4);
+            result.CategoryOverviewItems[0].Value.Should().Be(-90);
+            result.CategoryOverviewItems[1].Value.Should().Be(-30);
+            result.CategoryOverviewItems[2].Value.Should().Be(-10);
+            result.CategoryOverviewItems[3].Value.Should().Be(100);
         }
 
         [Fact]
@@ -110,10 +110,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                            default);
 
             // Assert
-            result.CategoryOverviewItems[0].Label.ShouldEqual(testCat1.Name);
-            result.CategoryOverviewItems[1].Label.ShouldEqual(testCat2.Name);
-            result.CategoryOverviewItems[2].Label.ShouldEqual(testCat3.Name);
-            result.CategoryOverviewItems[3].Label.ShouldEqual(testCat4.Name);
+            result.CategoryOverviewItems[0].Label.Should().Be(testCat1.Name);
+            result.CategoryOverviewItems[1].Label.Should().Be(testCat2.Name);
+            result.CategoryOverviewItems[2].Label.Should().Be(testCat3.Name);
+            result.CategoryOverviewItems[3].Label.Should().Be(testCat4.Name);
         }
 
         [Fact]
@@ -147,9 +147,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                            default);
 
             // Assert
-            result.CategoryOverviewItems[0].Percentage.ShouldEqual(60);
-            result.CategoryOverviewItems[1].Percentage.ShouldEqual(40);
-            result.CategoryOverviewItems[2].Percentage.ShouldEqual(100);
+            result.CategoryOverviewItems[0].Percentage.Should().Be(60);
+            result.CategoryOverviewItems[1].Percentage.Should().Be(40);
+            result.CategoryOverviewItems[2].Percentage.Should().Be(100);
         }
 
         [Fact]
@@ -177,7 +177,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                            default);
 
             // Assert
-            result.CategoryOverviewItems[0].Value.ShouldEqual(-60);
+            result.CategoryOverviewItems[0].Value.Should().Be(-60);
         }
 
         [Fact]
@@ -205,7 +205,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                            default);
 
             // Assert
-            result.CategoryOverviewItems[0].Label.ShouldEqual(Strings.NoCategoryLabel);
+            result.CategoryOverviewItems[0].Label.Should().Be(Strings.NoCategoryLabel);
         }
     }
 }

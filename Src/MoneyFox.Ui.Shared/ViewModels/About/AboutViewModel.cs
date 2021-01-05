@@ -36,12 +36,12 @@ namespace MoneyFox.Ui.Shared.ViewModels.About
         /// <summary>
         /// Opens the webbrowser and loads to the apply solutions     website
         /// </summary>
-        public RelayCommand GoToWebsiteCommand => new RelayCommand(async () => await GoToWebsite());
+        public RelayCommand GoToWebsiteCommand => new RelayCommand(async () => await GoToWebsiteAsync());
 
         /// <summary>
         /// Sends a feedback mail to the apply solutions support     mail address
         /// </summary>
-        public RelayCommand SendMailCommand => new RelayCommand(async () => await SendMail());
+        public RelayCommand SendMailCommand => new RelayCommand(async () => await SendMailAsync());
 
         /// <summary>
         /// Opens the store to rate the app.
@@ -83,10 +83,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.About
         /// </summary>
         public string SupportMail => AppConstants.SupportMail;
 
-        private async Task GoToWebsite()
+        private async Task GoToWebsiteAsync()
             => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.WebsiteUrl));
 
-        private async Task SendMail()
+        private async Task SendMailAsync()
         {
             await emailAdapter.SendEmailAsync(Strings.FeedbackSubject,
                                               string.Empty,

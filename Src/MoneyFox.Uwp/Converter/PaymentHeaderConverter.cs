@@ -10,16 +10,12 @@ namespace MoneyFox.Uwp.Converter
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var pType = (PaymentType)value;
-            switch(pType)
+            return pType switch
             {
-                default:
-                case PaymentType.Income:
-                    return Strings.IncomeHeader;
-                case PaymentType.Expense:
-                    return Strings.ExpenseHeader;
-                case PaymentType.Transfer:
-                    return Strings.TransferHeader;
-            }
+                PaymentType.Expense => Strings.ExpenseHeader,
+                PaymentType.Transfer => Strings.TransferHeader,
+                _ => Strings.IncomeHeader,
+            };
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotSupportedException();

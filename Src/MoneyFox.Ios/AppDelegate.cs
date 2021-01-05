@@ -2,7 +2,6 @@
 using Foundation;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common.Constants;
-using MoneyFox.Common;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -22,7 +21,7 @@ namespace MoneyFox.iOS
     // User Interface of the application, as well as listening (and optionally responding) to
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
         private Logger? logManager;
 
