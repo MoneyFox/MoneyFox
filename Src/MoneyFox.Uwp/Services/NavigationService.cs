@@ -7,7 +7,7 @@ using Windows.UI.Xaml.Controls;
 #nullable enable
 namespace MoneyFox.Uwp.Services
 {
-    public partial class NavigationService : INavigationService
+    public class NavigationService : INavigationService
     {
         private static readonly ConcurrentDictionary<Type, Type> viewModelMap = new ConcurrentDictionary<Type, Type>();
 
