@@ -106,6 +106,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage your Accounts.
+        /// </summary>
+        public static string AccountsToolTip {
+            get {
+                return ResourceManager.GetString("AccountsToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Account.
         /// </summary>
         public static string AddAccountLabel {
@@ -183,6 +192,24 @@ namespace MoneyFox.Application.Resources {
         public static string AddPaymentLabel {
             get {
                 return ResourceManager.GetString("AddPaymentLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add Payment.
+        /// </summary>
+        public static string AddPaymentTitle {
+            get {
+                return ResourceManager.GetString("AddPaymentTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add a Payment with details.
+        /// </summary>
+        public static string AddPaymentToolTip {
+            get {
+                return ResourceManager.GetString("AddPaymentToolTip", resourceCulture);
             }
         }
         
@@ -358,6 +385,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup your information.
+        /// </summary>
+        public static string BackupToolTip {
+            get {
+                return ResourceManager.GetString("BackupToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Biannually.
         /// </summary>
         public static string BiannuallyLabel {
@@ -462,6 +498,15 @@ namespace MoneyFox.Application.Resources {
         public static string CategoriesTitle {
             get {
                 return ResourceManager.GetString("CategoriesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage your Categories.
+        /// </summary>
+        public static string CategoriesToolTip {
+            get {
+                return ResourceManager.GetString("CategoriesToolTip", resourceCulture);
             }
         }
         
@@ -1826,6 +1871,15 @@ namespace MoneyFox.Application.Resources {
         public static string StatisticsTitle {
             get {
                 return ResourceManager.GetString("StatisticsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View your Statistics.
+        /// </summary>
+        public static string StatisticsToolTip {
+            get {
+                return ResourceManager.GetString("StatisticsToolTip", resourceCulture);
             }
         }
         
