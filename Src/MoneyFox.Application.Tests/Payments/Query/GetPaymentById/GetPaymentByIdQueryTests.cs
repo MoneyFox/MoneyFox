@@ -36,12 +36,10 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById
         protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
-        public async Task GetCategory_CategoryNotFound()
-        {
+        public async Task GetCategory_CategoryNotFound() =>
             // Arrange
             // Act / Assert
             await Assert.ThrowsAsync<InvalidOperationException>(async () => await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(999), default));
-        }
 
         [Fact]
         public async Task GetCategory_CategoryFound()

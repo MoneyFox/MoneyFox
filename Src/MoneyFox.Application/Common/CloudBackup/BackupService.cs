@@ -101,7 +101,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             this.contextAdapter = contextAdapter;
             this.messenger = messenger;
             this.toastService = toastService;
-            this.UserAccount = cloudBackupService.UserAccount;
+            UserAccount = cloudBackupService.UserAccount;
         }
 
         public async Task LoginAsync()

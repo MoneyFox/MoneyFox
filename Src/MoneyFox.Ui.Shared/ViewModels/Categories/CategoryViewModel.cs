@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
-using NLog.LayoutRenderers;
 using System;
 
 namespace MoneyFox.Ui.Shared.ViewModels.Categories
@@ -51,7 +50,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
             set
             {
                 if(requireNote == value)
+                {
                     return;
+                }
+
                 requireNote = value;
                 RaisePropertyChanged();
             }

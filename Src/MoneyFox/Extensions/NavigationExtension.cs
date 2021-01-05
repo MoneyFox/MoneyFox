@@ -8,7 +8,7 @@ namespace MoneyFox.Extensions
 {
     public static class NavigationExtension
     {
-        private readonly static Logger logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public static Task GoToModalAsync(this Shell shell, string route)
         {

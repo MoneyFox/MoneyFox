@@ -7,7 +7,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
@@ -107,8 +106,8 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                     return Unit.Value;
                 }
 
-                var chargedAccount = await contextAdapter.Context.Accounts.FindAsync(request.ChargedAccountId);
-                var targetAccount = await contextAdapter.Context.Accounts.FindAsync(request.TargetAccountId);
+                Account? chargedAccount = await contextAdapter.Context.Accounts.FindAsync(request.ChargedAccountId);
+                Account? targetAccount = await contextAdapter.Context.Accounts.FindAsync(request.TargetAccountId);
 
                 existingPayment.UpdatePayment(request.Date,
                                               request.Amount,
@@ -127,7 +126,7 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                     contextAdapter.Context.RecurringPayments
                                           .Remove(existingPayment.RecurringPayment!);
 
-                    List<Payment> linkedPayments = contextAdapter.Context.Payments
+                    var linkedPayments = contextAdapter.Context.Payments
                                                                          .Where(x => x.IsRecurring)
                                                                          .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
                                                                          .ToList();

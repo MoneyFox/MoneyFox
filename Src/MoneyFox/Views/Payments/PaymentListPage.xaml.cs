@@ -29,9 +29,6 @@ namespace MoneyFox.Views.Payments
             await ViewModel.OnAppearingAsync(accountId);
         }
 
-        protected override void OnDisappearing()
-        {
-            ViewModel.Unsubscribe();
-        }
+        protected override void OnDisappearing() => ViewModel.Unsubscribe();
     }
 }

@@ -63,7 +63,7 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
             await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
                 .Handle(new CreateCategoryCommand("Test", requireNote: true), default);
 
-            var loadedCategory = context.Categories.First();
+            Domain.Entities.Category loadedCategory = context.Categories.First();
 
             // Assert
             loadedCategory.RequireNote.ShouldBeTrue();
