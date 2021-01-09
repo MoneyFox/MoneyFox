@@ -580,6 +580,9 @@
     <PackageReference Include="FontAwesome.UWP">
       <Version>4.7.0.9</Version>
     </PackageReference>
+    <PackageReference Include="Microcharts">
+      <Version>0.9.5.9</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Graph">
       <Version>3.21.0</Version>
     </PackageReference>
