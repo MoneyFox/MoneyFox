@@ -7,8 +7,8 @@
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
-                xmlns:models="using:MoneyFox.Uwp.ViewModels.Statistic"
                 xmlns:designtime="using:MoneyFox.Presentation.ViewModels.DesignTime"
+                xmlns:models="using:MoneyFox.Ui.Shared.ViewModels.Statistics"
                 mc:Ignorable="d"
                 DataContext="{Binding StatisticSelectorVm, Source={StaticResource Locator}}">
 

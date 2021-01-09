@@ -245,7 +245,6 @@
     <Compile Include="ViewModels\Statistic\IStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\StatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticSelectorType.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSelectorViewModel.cs" />
     <Compile Include="Views\Accounts\AccountListToolbar.xaml.cs">
       <DependentUpon>AccountListToolbar.xaml</DependentUpon>
