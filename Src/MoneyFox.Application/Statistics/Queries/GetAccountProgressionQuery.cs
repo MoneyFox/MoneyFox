@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,18 @@ namespace MoneyFox.Application.Statistics.Queries
             AccountId = accountId;
             StartDate = startDate;
             EndDate = endDate;
+
+            if(startDate > EndDate)
+            {
+                throw new StartAfterEnddateException();
+            }
         }
 
-        public int AccountId { get; set; }
+        public int AccountId { get; private set; }
 
-        public DateTime StartDate { get; set; }
+        public DateTime StartDate { get; private set; }
 
-        public DateTime EndDate { get; set; }
+        public DateTime EndDate { get; private set; }
     }
 
     public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressionQuery, List<StatisticEntry>>

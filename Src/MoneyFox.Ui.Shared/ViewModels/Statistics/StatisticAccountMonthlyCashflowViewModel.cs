@@ -26,11 +26,11 @@ namespace MoneyFox.ViewModels.Statistics
         private const int BAR_CHART_MARGINS = 20;
         private const float BAR_CHART_TEXT_SIZE = 26f;
 
-        //private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
-        //                                                ? "Lobster-Regular"
-        //                                                : null;
+        private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
+                                                        ? "Lobster-Regular"
+                                                        : null;
 
-        private static readonly string? fontFamily = "Lobster-Regular";
+        //private static readonly string? fontFamily = null;
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
         private BarChart chart = new BarChart();
@@ -95,7 +95,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, EndDate, StartDate));
+            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
 
             Chart = new BarChart
             {
@@ -106,7 +106,6 @@ namespace MoneyFox.ViewModels.Statistics
                     Color = SKColor.Parse(x.Color),
                     ValueLabelColor = SKColor.Parse(x.Color)
                 }).ToList(),
-                BackgroundColor = SKColors.Transparent,
                 Margin = BAR_CHART_MARGINS,
                 LabelTextSize = BAR_CHART_TEXT_SIZE,
                 Typeface = typeFaceForIOS12

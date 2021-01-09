@@ -48,7 +48,7 @@
         </Grid>
 
         <Grid Grid.Row="2">
-            <microcharts:ChartView Chart="{Binding Chart}" />
+            <microcharts:ChartView Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <CommandBar Grid.Row="2"
