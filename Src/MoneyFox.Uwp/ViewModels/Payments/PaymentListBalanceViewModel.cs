@@ -52,7 +52,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         {
             AccountViewModel account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
 
-            return await balanceCalculationService.GetEndOfMonthBalanceForAccount(account);
+            return await balanceCalculationService.GetEndOfMonthBalanceForAccountAsync(account);
         }
     }
 }
