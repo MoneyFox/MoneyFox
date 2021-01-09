@@ -34,7 +34,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             this.publicClientApplication = publicClientApplication;
             this.graphClientFactory = graphClientFactory;
-            this.UserAccount = new UserAccount();
+            UserAccount = new UserAccount();
         }
 
         private IGraphServiceClient? GraphServiceClient { get; set; }
@@ -58,7 +58,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                 authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
-                var user = await GraphServiceClient.Me.Request().GetAsync();
+                User? user = await GraphServiceClient.Me.Request().GetAsync();
                 UserAccount.SetUserAccount(user);
             }
             catch(MsalUiRequiredException ex)
@@ -70,7 +70,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                           .ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
-                var user = await GraphServiceClient.Me.Request().GetAsync();
+                User? user = await GraphServiceClient.Me.Request().GetAsync();
                 UserAccount = new UserAccount();
                 UserAccount.SetUserAccount(user);
             }

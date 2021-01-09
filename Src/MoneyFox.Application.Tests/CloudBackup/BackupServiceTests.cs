@@ -10,7 +10,6 @@ using MoneyFox.Domain.Exceptions;
 using MoneyFox.Services;
 using Moq;
 using NSubstitute;
-using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -87,8 +86,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
             await Assert.ThrowsAsync<BackupException>(async () => await backupService.LoginAsync());
 
             // Assert
-            settingsFacadeMock.Object.IsBackupAutouploadEnabled.ShouldBeFalse();
-            settingsFacadeMock.Object.IsLoggedInToBackupService.ShouldBeFalse();
+            settingsFacadeMock.Object.IsBackupAutouploadEnabled.Should().BeFalse();
+            settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeFalse();
         }
 
         [Fact]
@@ -113,8 +112,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
             await backupService.LoginAsync();
 
             // Assert
-            settingsFacadeMock.Object.IsBackupAutouploadEnabled.ShouldBeTrue();
-            settingsFacadeMock.Object.IsLoggedInToBackupService.ShouldBeTrue();
+            settingsFacadeMock.Object.IsBackupAutouploadEnabled.Should().BeTrue();
+            settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeTrue();
         }
 
         [Fact]
@@ -162,8 +161,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
             await Assert.ThrowsAsync<BackupException>(async () => await backupService.LogoutAsync());
 
             // Assert
-            settingsFacadeMock.Object.IsBackupAutouploadEnabled.ShouldBeTrue();
-            settingsFacadeMock.Object.IsLoggedInToBackupService.ShouldBeTrue();
+            settingsFacadeMock.Object.IsBackupAutouploadEnabled.Should().BeTrue();
+            settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeTrue();
         }
 
         [Fact]
@@ -188,8 +187,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
             await backupService.LogoutAsync();
 
             // Assert
-            settingsFacadeMock.Object.IsBackupAutouploadEnabled.ShouldBeFalse();
-            settingsFacadeMock.Object.IsLoggedInToBackupService.ShouldBeFalse();
+            settingsFacadeMock.Object.IsBackupAutouploadEnabled.Should().BeFalse();
+            settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeFalse();
         }
 
         [Fact]
@@ -210,7 +209,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             bool result = await backupService.IsBackupExistingAsync();
 
             // Assert
-            result.ShouldBeFalse();
+            result.Should().BeFalse();
         }
 
         [Fact]
@@ -234,7 +233,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             bool result = await backupService.IsBackupExistingAsync();
 
             // Assert
-            result.ShouldBeFalse();
+            result.Should().BeFalse();
         }
 
         [Fact]
@@ -258,7 +257,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             bool result = await backupService.IsBackupExistingAsync();
 
             // Assert
-            result.ShouldBeTrue();
+            result.Should().BeTrue();
         }
 
         [Fact]
@@ -279,7 +278,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             DateTime result = await backupService.GetBackupDateAsync();
 
             // Assert
-            result.ShouldEqual(DateTime.MinValue);
+            result.Should().Be(DateTime.MinValue);
         }
 
         [Fact]
@@ -304,7 +303,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             DateTime result = await backupService.GetBackupDateAsync();
 
             // Assert
-            result.ShouldEqual(DateTime.Today);
+            result.Should().Be(DateTime.Today);
         }
 
         [Fact]
@@ -398,7 +397,7 @@ namespace MoneyFox.Application.Tests.CloudBackup
             await Assert.ThrowsAsync<BackupException>(async () => await backupService.RestoreBackupAsync());
 
             // Assert
-            settingsFacadeMock.Object.LastDatabaseUpdate.ShouldEqual(expectedPassedDate);
+            settingsFacadeMock.Object.LastDatabaseUpdate.Should().Be(expectedPassedDate);
         }
 
         [Fact]

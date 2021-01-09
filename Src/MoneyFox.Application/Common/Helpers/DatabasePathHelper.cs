@@ -14,7 +14,7 @@ namespace MoneyFox.Application.Common.Helpers
 
         public static string GetDbPath()
         {
-            string? databasePath = string.Empty;
+            string databasePath = string.Empty;
             switch(ExecutingPlatform.Current)
             {
                 case AppPlatform.iOS:

@@ -1,11 +1,11 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -54,7 +54,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
                 new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
 
             // Assert
-            result.First().Id.ShouldEqual(payment1.Id);
+            result.First().Id.Should().Be(payment1.Id);
         }
 
         [Fact]
@@ -74,7 +74,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
                 new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
 
             // Assert
-            result.First().Id.ShouldEqual(payment2.Id);
+            result.First().Id.Should().Be(payment2.Id);
         }
     }
 }

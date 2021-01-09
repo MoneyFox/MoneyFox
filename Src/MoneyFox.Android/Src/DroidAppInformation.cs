@@ -9,7 +9,7 @@ namespace MoneyFox.Droid.Src
         {
             get
             {
-                var context = Android.App.Application.Context;
+                Android.Content.Context? context = Android.App.Application.Context;
 
                 if(context == null)
                 {

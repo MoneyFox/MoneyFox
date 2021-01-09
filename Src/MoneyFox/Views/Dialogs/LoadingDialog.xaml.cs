@@ -20,6 +20,6 @@ namespace MoneyFox.Views.Dialogs
 
         public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
+        public static async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
     }
 }

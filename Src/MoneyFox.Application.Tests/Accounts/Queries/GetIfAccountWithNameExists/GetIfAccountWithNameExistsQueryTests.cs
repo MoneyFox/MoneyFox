@@ -1,10 +1,10 @@
-﻿using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
+﻿using FluentAssertions;
+using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -53,7 +53,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
                    .Handle(new GetIfAccountWithNameExistsQuery(name), default);
 
             // Assert
-            result.ShouldEqual(expectedResult);
+            result.Should().Be(expectedResult);
         }
     }
 }

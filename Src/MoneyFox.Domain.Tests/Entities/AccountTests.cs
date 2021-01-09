@@ -1,5 +1,5 @@
-﻿using MoneyFox.Domain.Entities;
-using Should;
+﻿using FluentAssertions;
+using MoneyFox.Domain.Entities;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
@@ -31,7 +31,7 @@ namespace MoneyFox.Domain.Tests.Entities
             var account = new Account("test", currentBalance);
 
             // Assert
-            account.IsOverdrawn.ShouldEqual(expectedIsOverdrawn);
+            account.IsOverdrawn.Should().Be(expectedIsOverdrawn);
         }
 
         [Fact]
@@ -44,13 +44,13 @@ namespace MoneyFox.Domain.Tests.Entities
             var account = new Account(testName);
 
             // Assert
-            account.Name.ShouldEqual(testName);
-            account.CurrentBalance.ShouldEqual(0);
-            account.Note.ShouldBeEmpty();
-            account.IsOverdrawn.ShouldBeFalse();
-            account.IsExcluded.ShouldBeFalse();
-            account.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
-            account.CreationTime.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            account.Name.Should().Be(testName);
+            account.CurrentBalance.Should().Be(0);
+            account.Note.Should().BeEmpty();
+            account.IsOverdrawn.Should().BeFalse();
+            account.IsExcluded.Should().BeFalse();
+            account.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            account.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -66,11 +66,11 @@ namespace MoneyFox.Domain.Tests.Entities
             var account = new Account(testName, testBalance, testNote, testExcluded);
 
             // Assert
-            account.Name.ShouldEqual(testName);
-            account.CurrentBalance.ShouldEqual(testBalance);
-            account.Note.ShouldEqual(testNote);
-            account.IsExcluded.ShouldEqual(testExcluded);
-            account.IsOverdrawn.ShouldBeFalse();
+            account.Name.Should().Be(testName);
+            account.CurrentBalance.Should().Be(testBalance);
+            account.Note.Should().Be(testNote);
+            account.IsExcluded.Should().Be(testExcluded);
+            account.IsOverdrawn.Should().BeFalse();
         }
 
         [Theory]
@@ -98,7 +98,7 @@ namespace MoneyFox.Domain.Tests.Entities
             testAccount.UpdateAccount(testAccount.Name, currentBalance);
 
             // Assert
-            testAccount.IsOverdrawn.ShouldEqual(expectedIsOverdrawn);
+            testAccount.IsOverdrawn.Should().Be(expectedIsOverdrawn);
         }
 
         [Fact]
@@ -112,11 +112,11 @@ namespace MoneyFox.Domain.Tests.Entities
             testAccount.UpdateAccount(testname);
 
             // Assert
-            testAccount.Name.ShouldEqual(testname);
-            testAccount.CurrentBalance.ShouldEqual(0);
-            testAccount.Note.ShouldBeEmpty();
-            testAccount.IsOverdrawn.ShouldBeFalse();
-            testAccount.IsExcluded.ShouldBeFalse();
+            testAccount.Name.Should().Be(testname);
+            testAccount.CurrentBalance.Should().Be(0);
+            testAccount.Note.Should().BeEmpty();
+            testAccount.IsOverdrawn.Should().BeFalse();
+            testAccount.IsExcluded.Should().BeFalse();
         }
 
         [Fact]
@@ -134,11 +134,11 @@ namespace MoneyFox.Domain.Tests.Entities
             testAccount.UpdateAccount(testname, testBalance, testnote, testExcluded);
 
             // Assert
-            testAccount.Name.ShouldEqual(testname);
-            testAccount.CurrentBalance.ShouldEqual(testBalance);
-            testAccount.Note.ShouldEqual(testnote);
-            testAccount.IsExcluded.ShouldEqual(testExcluded);
-            testAccount.IsOverdrawn.ShouldBeFalse();
+            testAccount.Name.Should().Be(testname);
+            testAccount.CurrentBalance.Should().Be(testBalance);
+            testAccount.Note.Should().Be(testnote);
+            testAccount.IsExcluded.Should().Be(testExcluded);
+            testAccount.IsOverdrawn.Should().BeFalse();
         }
 
         [Fact]
@@ -152,7 +152,7 @@ namespace MoneyFox.Domain.Tests.Entities
             testAccount.UpdateAccount("asdf", 123);
 
             // Assert
-            testAccount.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -178,7 +178,7 @@ namespace MoneyFox.Domain.Tests.Entities
             new Payment(DateTime.Today, 50, paymentType, account);
 
             // Assert
-            account.CurrentBalance.ShouldEqual(expectedBalance);
+            account.CurrentBalance.Should().Be(expectedBalance);
         }
 
         [Theory]
@@ -194,7 +194,7 @@ namespace MoneyFox.Domain.Tests.Entities
             account.AddPaymentAmount(payment);
 
             // Assert
-            account.CurrentBalance.ShouldEqual(100);
+            account.CurrentBalance.Should().Be(100);
         }
 
         [Fact]
@@ -215,8 +215,8 @@ namespace MoneyFox.Domain.Tests.Entities
             new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
 
             // Assert
-            chargedAccount.CurrentBalance.ShouldEqual(50);
-            targetAccount.CurrentBalance.ShouldEqual(150);
+            chargedAccount.CurrentBalance.Should().Be(50);
+            targetAccount.CurrentBalance.Should().Be(150);
         }
 
         [Fact]
@@ -230,7 +230,7 @@ namespace MoneyFox.Domain.Tests.Entities
             testAccount.AddPaymentAmount(payment);
 
             // Assert
-            testAccount.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -256,7 +256,7 @@ namespace MoneyFox.Domain.Tests.Entities
             account.RemovePaymentAmount(payment);
 
             // Assert
-            account.CurrentBalance.ShouldEqual(expectedBalance);
+            account.CurrentBalance.Should().Be(expectedBalance);
         }
 
         [Fact]
@@ -279,8 +279,8 @@ namespace MoneyFox.Domain.Tests.Entities
             targetAccount.RemovePaymentAmount(payment);
 
             // Assert
-            chargedAccount.CurrentBalance.ShouldEqual(100);
-            targetAccount.CurrentBalance.ShouldEqual(100);
+            chargedAccount.CurrentBalance.Should().Be(100);
+            targetAccount.CurrentBalance.Should().Be(100);
         }
 
         [Fact]
@@ -294,7 +294,7 @@ namespace MoneyFox.Domain.Tests.Entities
             testAccount.RemovePaymentAmount(payment);
 
             // Assert
-            testAccount.ModificationDate.ShouldBeInRange(DateTime.Now.AddSeconds(-1), DateTime.Now);
+            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
     }
 }

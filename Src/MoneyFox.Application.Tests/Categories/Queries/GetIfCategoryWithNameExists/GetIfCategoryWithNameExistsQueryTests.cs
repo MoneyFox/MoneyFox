@@ -1,8 +1,8 @@
-﻿using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
+﻿using FluentAssertions;
+using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -41,7 +41,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExi
                 await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(new GetIfCategoryWithNameExistsQuery("Foo"), default);
 
             // Assert
-            result.ShouldBeFalse();
+            result.Should().BeFalse();
         }
 
         [Fact]
@@ -58,7 +58,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExi
                                                                                    default);
 
             // Assert
-            result.ShouldBeTrue();
+            result.Should().BeTrue();
         }
     }
 }

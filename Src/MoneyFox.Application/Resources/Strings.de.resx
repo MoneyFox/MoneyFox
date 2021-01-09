@@ -746,4 +746,22 @@ Erstellte Zahlungen werden dir unter dem ausgewählten Konto angezeigt. Um dorth
   <data name="ModificationDateHeader" xml:space="preserve">
     <value>Änderungsdatum</value>
   </data>
+  <data name="AccountsToolTip" xml:space="preserve">
+    <value>Verwalte deine Konten</value>
+  </data>
+  <data name="AddPaymentTitle" xml:space="preserve">
+    <value>Zahlung hinzufügen</value>
+  </data>
+  <data name="AddPaymentToolTip" xml:space="preserve">
+    <value>Zahlung mit Details hinzufügen</value>
+  </data>
+  <data name="BackupToolTip" xml:space="preserve">
+    <value>Sichere deine Daten</value>
+  </data>
+  <data name="CategoriesToolTip" xml:space="preserve">
+    <value>Verwalte deine Kategorien</value>
+  </data>
+  <data name="StatisticsToolTip" xml:space="preserve">
+    <value>Statistiken über deine Einnahmen und Ausgaben</value>
+  </data>
 </root>

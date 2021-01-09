@@ -1,10 +1,10 @@
-﻿using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
+﻿using FluentAssertions;
+using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Persistence;
 using Moq;
-using Should;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
@@ -48,7 +48,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountNameById
                                                                                             default);
 
             // Assert
-            result.ShouldEqual(account1.Name);
+            result.Should().Be(account1.Name);
         }
     }
 }
