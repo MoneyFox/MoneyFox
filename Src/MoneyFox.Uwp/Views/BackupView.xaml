@@ -12,12 +12,7 @@
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:backup="using:MoneyFox.Ui.Shared.ViewModels.Backup"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding BackupVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-
-    <d:Page.DataContext>
-        <backup:DesignTimeBackupViewModel />
-    </d:Page.DataContext>
 
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
@@ -46,7 +41,7 @@
 
                 <TextBlock
                     Margin="{StaticResource MediumBottomMargin}"
-                    Text="{Binding UserAccount.Email}" 
+                    Text="{Binding UserAccount.Email}"
                     FontSize="16"
                     HorizontalAlignment="Center" />
             </StackPanel>

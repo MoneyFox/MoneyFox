@@ -12,6 +12,7 @@ namespace MoneyFox.Uwp.Views.Settings
         public SettingsView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.SettingsVm;
         }
     }
 }

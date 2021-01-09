@@ -3,6 +3,7 @@ using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels.Statistic;
+using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -15,6 +16,8 @@ namespace MoneyFox.Uwp
 {
     public class ViewModelLocator
     {
+        protected ViewModelLocator() { }
+
         static ViewModelLocator()
         {
             if(!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
@@ -79,5 +82,7 @@ namespace MoneyFox.Uwp
         //  Settings
         //*****************
         public static WindowsSettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<WindowsSettingsViewModel>();
+
+        public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
     }
 }

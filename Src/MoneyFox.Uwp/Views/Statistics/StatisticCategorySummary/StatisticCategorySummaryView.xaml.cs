@@ -18,6 +18,7 @@ namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
         public StatisticCategorySummaryView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.StatisticCategorySummaryVm;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e) => ViewModel.LoadedCommand.Execute(null);

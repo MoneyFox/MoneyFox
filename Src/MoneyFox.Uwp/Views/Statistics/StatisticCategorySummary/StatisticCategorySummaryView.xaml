@@ -16,7 +16,6 @@
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
     d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
                                      IsDesignTimeCreatable=True}"
-    DataContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>

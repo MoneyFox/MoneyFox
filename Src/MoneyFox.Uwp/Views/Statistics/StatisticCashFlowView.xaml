@@ -8,8 +8,7 @@
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
-                mc:Ignorable="d"
-                DataContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">
+                mc:Ignorable="d" >
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeStatisticCashFlowViewModel />
@@ -54,6 +53,7 @@
                 </chart:BarSeries>
             </chart:RadCartesianChart>
         </Grid>
+
         <CommandBar Grid.Row="2"
                     Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal"

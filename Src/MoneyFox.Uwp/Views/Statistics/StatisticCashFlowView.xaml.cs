@@ -13,6 +13,7 @@ namespace MoneyFox.Uwp.Views.Statistics
         public StatisticCashFlowView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.StatisticCashFlowVm;
         }
 
         private async void SetDate(object sender, RoutedEventArgs e)

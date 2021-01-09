@@ -11,6 +11,7 @@ namespace MoneyFox.Uwp.Views
         public EditCategoryDialog(int categoryId)
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.EditCategoryVm;
 
             ViewModel.CategoryId = categoryId;
         }

@@ -24,9 +24,9 @@ namespace MoneyFox.Uwp.Views.Accounts
         {
             InitializeComponent();
 
-            if(DesignMode.DesignModeEnabled)
+            if(!DesignMode.DesignModeEnabled)
             {
-                DataContext = new DesignTimeAccountListViewModel();
+                DataContext = ViewModelLocator.AccountListVm;
             }
         }
 

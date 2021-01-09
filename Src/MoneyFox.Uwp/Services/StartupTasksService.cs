@@ -15,6 +15,8 @@ namespace MoneyFox.Uwp.Services
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        protected StartupTasksService() { }
+
         public static async Task StartupAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());

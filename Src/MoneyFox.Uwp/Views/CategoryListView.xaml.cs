@@ -10,6 +10,7 @@ namespace MoneyFox.Uwp.Views
         public CategoryListView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.CategoryListVm;
         }
 
         private async void AddNewCategoryClick(object sender, Windows.UI.Xaml.RoutedEventArgs e) => await new AddCategoryDialog().ShowAsync();

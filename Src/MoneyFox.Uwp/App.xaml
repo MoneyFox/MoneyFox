@@ -1,13 +1,10 @@
 ﻿<Application
     x:Class="MoneyFox.Uwp.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:uwp="using:MoneyFox.Uwp">
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
 
     <Application.Resources>
         <ResourceDictionary>
-            <uwp:ViewModelLocator x:Key="Locator" />
-
             <ResourceDictionary.ThemeDictionaries>
                 <ResourceDictionary x:Key="Dark">
                     <ResourceDictionary.MergedDictionaries>
