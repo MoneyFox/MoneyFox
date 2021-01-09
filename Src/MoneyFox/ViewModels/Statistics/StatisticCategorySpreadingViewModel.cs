@@ -15,6 +15,7 @@ namespace MoneyFox.ViewModels.Statistics
     /// </summary>
     public class StatisticCategorySpreadingViewModel : MobileStatisticViewModel
     {
+        private const float LABEL_TEXT_SIZE = 26f;
         private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
                                                     ? "Lobster-Regular" : null;
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
@@ -67,7 +68,7 @@ namespace MoneyFox.ViewModels.Statistics
             {
                 Entries = microChartItems,
                 BackgroundColor = BackgroundColor,
-                LabelTextSize = 26f,
+                LabelTextSize = LABEL_TEXT_SIZE,
                 Typeface = typeFaceForIOS12
             };
         }
