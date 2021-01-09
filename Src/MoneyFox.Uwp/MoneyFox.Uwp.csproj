@@ -160,7 +160,6 @@
     <Compile Include="Converter\RecurrenceTypeConverter.cs" />
     <Compile Include="Converter\PaymentHeaderConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
-    <Compile Include="Converter\SelectedAccountConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
     <Compile Include="Helpers\StringMatchConverter.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
