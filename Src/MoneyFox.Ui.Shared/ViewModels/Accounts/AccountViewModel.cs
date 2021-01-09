@@ -165,9 +165,6 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
 
         public override bool Equals(object obj) => (obj as AccountViewModel)?.Id == Id;
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(id);
-        }
+        public override int GetHashCode() => HashCode.Combine(id);
     }
 }

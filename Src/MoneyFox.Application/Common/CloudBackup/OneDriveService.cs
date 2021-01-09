@@ -48,16 +48,15 @@ namespace MoneyFox.Application.Common.CloudBackup
         /// </summary>
         public async Task LoginAsync()
         {
-            AuthenticationResult? authResult = null;
             IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
 
             // let's see if we have a user in our belly already
             try
             {
                 IAccount firstAccount = accounts.FirstOrDefault();
-                authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+                _ = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
-                GraphServiceClient = graphClientFactory.CreateClient(authResult);
+                GraphServiceClient = graphClientFactory.CreateClient(null);
                 User? user = await GraphServiceClient.Me.Request().GetAsync();
                 UserAccount.SetUserAccount(user);
             }
@@ -65,11 +64,11 @@ namespace MoneyFox.Application.Common.CloudBackup
             {
                 logManager.Debug(ex);
                 // pop the browser for the interactive experience
-                authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
+                _ = await publicClientApplication.AcquireTokenInteractive(scopes)
                                                           .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                                                           .ExecuteAsync();
 
-                GraphServiceClient = graphClientFactory.CreateClient(authResult);
+                GraphServiceClient = graphClientFactory.CreateClient(null);
                 User? user = await GraphServiceClient.Me.Request().GetAsync();
                 UserAccount = new UserAccount();
                 UserAccount.SetUserAccount(user);
