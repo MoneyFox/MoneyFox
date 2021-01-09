@@ -13,8 +13,6 @@
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:statisticUc="using:MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary"
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
-    d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
-                                     IsDesignTimeCreatable=True}"
     mc:Ignorable="d">
 
     <Page.Resources>
