@@ -1,10 +1,12 @@
-﻿using Autofac;
+﻿
+using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
 using GalaSoft.MvvmLight;
 using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Ui.Shared.ViewModels.Settings;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Budget;
 using MoneyFox.ViewModels.Categories;

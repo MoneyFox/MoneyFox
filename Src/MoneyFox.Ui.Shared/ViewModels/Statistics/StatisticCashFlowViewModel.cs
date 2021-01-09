@@ -4,13 +4,12 @@ using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.Ui.Shared.ViewModels.Statistics
 {
     /// <summary>
     /// Representation of the cash flow view.

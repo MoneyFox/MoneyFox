@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;

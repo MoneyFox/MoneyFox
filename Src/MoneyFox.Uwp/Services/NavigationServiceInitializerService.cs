@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Ui.Shared.ViewModels.Settings;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Settings;

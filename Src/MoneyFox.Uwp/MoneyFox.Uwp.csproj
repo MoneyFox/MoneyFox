@@ -206,7 +206,6 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
     <Compile Include="ViewModels\Payments\RecurringPaymentViewModel.cs" />
@@ -244,7 +243,6 @@
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\CategoryOverviewViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticSelectorViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\StatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSelectorType.cs" />

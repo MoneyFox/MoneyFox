@@ -3,17 +3,12 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                xmlns:microcharts="using:Microcharts.Uwp" xmlns:resources="using:MoneyFox.Application.Resources"
                 mc:Ignorable="d"
                 DataContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">
-
-    <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeStatisticCashFlowViewModel />
-    </d:MvxWindowsPage.DataContext>
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -35,34 +30,17 @@
                        VerticalAlignment="Center" />
         </Grid>
 
-        <Grid Grid.Row="1">
-            <chart:RadCartesianChart>
-                <chart:RadCartesianChart.HorizontalAxis>
-                    <chart:CategoricalAxis />
-                </chart:RadCartesianChart.HorizontalAxis>
-                <chart:RadCartesianChart.VerticalAxis>
-                    <chart:LinearAxis />
-                </chart:RadCartesianChart.VerticalAxis>
+        <microcharts:ChartView Grid.Row="1"
+                               Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                <chart:BarSeries ItemsSource="{Binding StatisticItems}">
-                    <chart:BarSeries.CategoryBinding>
-                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
-                    </chart:BarSeries.CategoryBinding>
-                    <chart:BarSeries.ValueBinding>
-                        <chart:PropertyNameDataPointBinding PropertyName="Value" />
-                    </chart:BarSeries.ValueBinding>
-                </chart:BarSeries>
-            </chart:RadCartesianChart>
-        </Grid>
         <CommandBar Grid.Row="2"
                     Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.SecondaryCommands>
-                <AppBarButton x:Uid="SetDateButton"
-                              Click="SetDate"
+                <AppBarButton Click="SetDate"
                               Icon="Calendar"
-                              Label="Set Date" />
+                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>
