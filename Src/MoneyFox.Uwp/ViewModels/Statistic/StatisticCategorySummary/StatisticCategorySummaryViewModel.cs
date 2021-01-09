@@ -69,7 +69,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         /// <inheritdoc/>
         public bool HasData => CategorySummary.Any();
 
-        public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new RelayCommand<CategoryOverviewViewModel>(async (c) => await SummaryEntrySelected(c));
+        public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new RelayCommand<CategoryOverviewViewModel>(async (c) => await SummaryEntrySelectedAsync(c));
 
         private CategoryOverviewViewModel? selectedOverviewItem;
         public CategoryOverviewViewModel? SelectedOverviewItem
@@ -82,7 +82,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             }
         }
 
-        private async Task SummaryEntrySelected(CategoryOverviewViewModel summaryItem)
+        private async Task SummaryEntrySelectedAsync(CategoryOverviewViewModel summaryItem)
         {
             logger.Info($"Loading payments for category with id {summaryItem.CategoryId}");
 

@@ -75,7 +75,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// <summary>
         /// Deletes the passed PaymentViewModel.
         /// </summary>
-        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(async (vm) => await DeletePayment(vm));
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(async (vm) => await DeletePaymentAsync(vm));
 
         /// <summary>
         /// Id for the current account.
@@ -223,7 +223,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             GroupedPayments = source;
         }
 
-        private async Task DeletePayment(PaymentViewModel payment)
+        private async Task DeletePaymentAsync(PaymentViewModel payment)
         {
             if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
                                                             Strings.DeletePaymentConfirmationMessage,

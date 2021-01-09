@@ -26,7 +26,7 @@ namespace MoneyFox.Uwp.ViewModels
             Title = Strings.AddAccountTitle;
         }
 
-        protected override Task Initialize()
+        protected override Task InitializeAsync()
         {
             SelectedAccount = new AccountViewModel();
             AmountString = HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.ViewModels
             return Task.CompletedTask;
         }
 
-        protected override async Task SaveAccount()
+        protected override async Task SaveAccountAsync()
         {
             if(await mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name)))
             {
