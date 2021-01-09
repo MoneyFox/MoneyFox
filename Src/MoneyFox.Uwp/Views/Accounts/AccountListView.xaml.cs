@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.Views.Accounts
     {
         public override bool ShowHeader => false;
 
-        private AccountListViewModel ViewModel => (AccountListViewModel) DataContext;
+        private AccountListViewModel ViewModel => (AccountListViewModel)DataContext;
 
         /// <summary>
         /// Initialize View.

@@ -27,9 +27,13 @@ namespace MoneyFox.ViewModels.Categories
         {
             this.mediator = mediator;
             this.mapper = mapper;
-
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await InitializeAsync());
         }
+
+        public void Subscribe()
+            => MessengerInstance.Register<ReloadMessage>(this, async (m) => await InitializeAsync());
+
+        public void Unsubscribe()
+            => MessengerInstance.Unregister<ReloadMessage>(this);
 
         public async Task InitializeAsync() => await SearchCategoryAsync();
 
