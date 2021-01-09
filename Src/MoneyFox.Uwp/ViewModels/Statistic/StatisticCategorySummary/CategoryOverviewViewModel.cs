@@ -106,8 +106,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             }
         }
 
-
-        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source;
+        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source
+            = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
 
         /// <summary>
         ///     Source for the payment list
