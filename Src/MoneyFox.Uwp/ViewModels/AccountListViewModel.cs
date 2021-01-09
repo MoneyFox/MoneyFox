@@ -21,12 +21,14 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
+    [SuppressMessage("Major Code Smell", "S1200:Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
     public class AccountListViewModel : ViewModelBase, IAccountListViewModel
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
@@ -39,7 +41,7 @@ namespace MoneyFox.Uwp.ViewModels
 
         private bool isRunning;
 
-        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts;
+        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
 
         public AccountListViewModel(IMediator mediator,
                                     IMapper mapper,
@@ -56,11 +58,13 @@ namespace MoneyFox.Uwp.ViewModels
 
             BalanceViewModel = new BalanceViewModel(balanceCalculationService);
             ViewActionViewModel = new AccountListViewActionViewModel(this.navigationService);
-
-            Accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
-
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await LoadAsync());
         }
+
+        public void Subscribe()
+            => MessengerInstance.Register<ReloadMessage>(this, async (m) => await LoadAsync());
+
+        public void Unsubscribe()
+            => MessengerInstance.Unregister<ReloadMessage>(this);
 
         public IBalanceViewModel BalanceViewModel { get; }
 

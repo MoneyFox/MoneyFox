@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeModifyAccountViewModel

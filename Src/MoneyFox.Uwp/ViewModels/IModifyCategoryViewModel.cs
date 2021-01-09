@@ -1,6 +1,7 @@
 ﻿using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public interface IModifyCategoryViewModel

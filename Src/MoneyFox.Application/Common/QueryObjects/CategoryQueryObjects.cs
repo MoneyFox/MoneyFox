@@ -30,7 +30,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         [SuppressMessage("Style", "IDE0022:Use expression body for methods", Justification = "Since used on database can't set locale.")]
         [SuppressMessage("Minor Code Smell", "S4058:Overloads with a \"StringComparison\" parameter should be used", Justification = "Since used on database can't set locale.")]
         [SuppressMessage("Minor Code Smell", "S1449:Culture should be specified for \"string\" operations", Justification = "Since used on database can't set locale.")]
-        public static IEnumerable<Category> WhereNameContains(this List<Category> query, string searchterm)
+        public static IEnumerable<Category> WhereNameContains(this IEnumerable<Category> query, string searchterm)
             => query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
 
         /// <summary>

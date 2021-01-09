@@ -38,9 +38,13 @@ namespace MoneyFox.Uwp.ViewModels
             Mapper = mapper;
             DialogService = dialogService;
             NavigationService = navigationService;
-
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await SearchAsync());
         }
+
+        public void Subscribe()
+            => MessengerInstance.Register<ReloadMessage>(this, async (m) => await SearchAsync());
+
+        public void Unsubscribe()
+            => MessengerInstance.Unregister<ReloadMessage>(this);
 
         protected NavigationService NavigationService { get; }
 

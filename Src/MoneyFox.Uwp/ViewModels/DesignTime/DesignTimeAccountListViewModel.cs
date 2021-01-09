@@ -6,6 +6,7 @@ using MoneyFox.Uwp.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]

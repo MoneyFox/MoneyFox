@@ -10,7 +10,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
-    DataContext="{Binding CategoryListVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <d:Page.DataContext>

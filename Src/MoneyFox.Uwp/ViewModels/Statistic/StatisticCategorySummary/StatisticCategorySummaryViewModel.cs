@@ -71,7 +71,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         /// <inheritdoc/>
         public bool HasData => CategorySummary.Any();
 
-        public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new RelayCommand<CategoryOverviewViewModel>(async (c) => await SummaryEntrySelected(c));
+        public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new RelayCommand<CategoryOverviewViewModel>(async (c) => await SummaryEntrySelectedAsync(c));
 
         private CategoryOverviewViewModel? selectedOverviewItem;
         public CategoryOverviewViewModel? SelectedOverviewItem
@@ -84,7 +84,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             }
         }
 
-        private async Task SummaryEntrySelected(CategoryOverviewViewModel summaryItem)
+        private async Task SummaryEntrySelectedAsync(CategoryOverviewViewModel summaryItem)
         {
             logger.Info($"Loading payments for category with id {summaryItem.CategoryId}");
 
@@ -95,13 +95,15 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                              s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                              s => s.Date);
 
-            summaryItem.Source = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>(
-                DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(dailyItems,
-                                                                                                s =>
-                                                                                                {
-                                                                                                    var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
-                                                                                                    return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                                                                                                }, s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture)));
+            summaryItem.Source.Clear();
+
+            DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(dailyItems,
+                                                                                            s =>
+                                                                                            {
+                                                                                                var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
+                                                                                                return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
+                                                                                            }, s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture))
+                                                                              .ForEach(summaryItem.Source.Add);
 
             SelectedOverviewItem = summaryItem;
         }

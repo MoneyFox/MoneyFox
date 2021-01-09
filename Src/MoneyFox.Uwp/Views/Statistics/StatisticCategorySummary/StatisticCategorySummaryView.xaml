@@ -13,7 +13,6 @@
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:statisticUc="using:MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary"
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
-    DataContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <Page.Resources>

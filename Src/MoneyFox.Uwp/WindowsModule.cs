@@ -61,21 +61,13 @@ namespace MoneyFox.Uwp
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces();
-
-            builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces().AsSelf()
                    .AsSelf();
 
             builder.RegisterAssemblyTypes(typeof(BackupViewModel).Assembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces();
-
-            builder.RegisterAssemblyTypes(typeof(BackupViewModel).Assembly)
-                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces()
                    .AsSelf();
 
             CultureHelper.CurrentCulture = CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);

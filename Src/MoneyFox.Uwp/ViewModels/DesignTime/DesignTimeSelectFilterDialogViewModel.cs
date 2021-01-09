@@ -1,5 +1,6 @@
 ﻿using System;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeSelectFilterDialogViewModel : ISelectFilterDialogViewModel

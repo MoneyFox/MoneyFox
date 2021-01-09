@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Ui.Shared.Commands;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
     public interface IBalanceViewModel

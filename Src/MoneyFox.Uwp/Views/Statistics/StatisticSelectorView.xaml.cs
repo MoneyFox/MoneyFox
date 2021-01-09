@@ -12,6 +12,7 @@ namespace MoneyFox.Uwp.Views.Statistics
         public StatisticSelectorView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.StatisticSelectorVm;
         }
     }
 }

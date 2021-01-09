@@ -4,6 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Activation;
 
+#nullable enable
 namespace MoneyFox.Uwp.Activation
 {
     internal class DefaultLaunchActivationHandler : ActivationHandler<LaunchActivatedEventArgs>

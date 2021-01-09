@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeModifyPaymentViewModel : IModifyPaymentViewModel

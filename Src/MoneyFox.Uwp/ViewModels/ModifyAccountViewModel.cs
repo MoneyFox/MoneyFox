@@ -28,17 +28,17 @@ namespace MoneyFox.Uwp.ViewModels
             NavigationService = navigationService;
         }
 
-        protected abstract Task SaveAccount();
+        protected abstract Task SaveAccountAsync();
 
-        protected abstract Task Initialize();
+        protected abstract Task InitializeAsync();
 
         protected IDialogService DialogService { get; }
 
         protected INavigationService NavigationService { get; }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(Initialize);
+        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBase);
+        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBaseAsync);
 
         public string Title
         {
@@ -83,7 +83,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        private async Task SaveAccountBase()
+        private async Task SaveAccountBaseAsync()
         {
             if(string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
@@ -103,7 +103,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
 
             await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
-            await SaveAccount();
+            await SaveAccountAsync();
             MessengerInstance.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
         }

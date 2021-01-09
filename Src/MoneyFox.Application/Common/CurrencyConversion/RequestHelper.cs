@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Application.Common.CurrencyConversion.Models;
 using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -9,11 +10,13 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 {
     public static class RequestHelper
     {
-        public const string BASE_URL = "https://free.currconv.com/api/v7/";
+#pragma warning disable S1075 // URIs should not be hardcoded
+        private const string BASE_URL = "https://free.currconv.com/api/v7/";
+#pragma warning restore S1075 // URIs should not be hardcoded
 
         public static List<Currency> GetAllCurrencies(string apiKey)
         {
-            string url = $"{BASE_URL}currencies?apiKey={apiKey}";
+            Uri url = new Uri($"{BASE_URL}currencies?apiKey={apiKey}");
 
             string jsonString = GetResponse(url);
 
@@ -23,13 +26,13 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         public static double ExchangeRate(string from, string to, string apiKey)
         {
-            string url = $"{BASE_URL}convert?q={from}_{to}&compact=ultra&apiKey={apiKey}";
+            Uri url = new Uri($"{BASE_URL}convert?q={from}_{to}&compact=ultra&apiKey={apiKey}");
 
             string jsonString = GetResponse(url);
             return JObject.Parse(jsonString).First.First["val"].ToObject<double>();
         }
 
-        private static string GetResponse(string url)
+        private static string GetResponse(Uri url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.AutomaticDecompression = DecompressionMethods.GZip;

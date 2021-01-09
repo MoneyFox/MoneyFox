@@ -23,6 +23,9 @@ namespace MoneyFox.iOS
     [Register("AppDelegate")]
     public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
     {
+        private const int NOTIFICATION_NEW_MAJOR_VERSION = 10;
+        private const int NOTIFICATION_LEGACY_MAJOR_VERSION = 8;
+
         private Logger? logManager;
 
         //
@@ -63,7 +66,7 @@ namespace MoneyFox.iOS
         private void RequestToastPermissions(UIApplication app)
         {
             // Request Permissions
-            if(UIDevice.CurrentDevice.CheckSystemVersion(10, 0))
+            if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_NEW_MAJOR_VERSION, 0))
             {
                 // Request Permissions
                 UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
@@ -71,7 +74,7 @@ namespace MoneyFox.iOS
                     // Do something if needed
                 });
             }
-            else if(UIDevice.CurrentDevice.CheckSystemVersion(8, 0))
+            else if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_LEGACY_MAJOR_VERSION, 0))
             {
                 var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
                 UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);

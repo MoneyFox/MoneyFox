@@ -11,7 +11,7 @@ namespace MoneyFox.Application.Common.Constants
         /// <summary>
         /// URL to the Apply Solutions website
         /// </summary>
-        public static string WebsiteUrl => "http://www.apply-solutions.ch";
+        public static string WebsiteUrl => "https://www.apply-solutions.ch";
 
         /// <summary>
         /// Mail address for support

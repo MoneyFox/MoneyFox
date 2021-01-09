@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using System;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
     public interface ISelectDateRangeDialogViewModel

@@ -13,6 +13,7 @@ namespace MoneyFox.Uwp.Views.Statistics
         public StatisticCashFlowView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.StatisticCashFlowVm;
         }
     }
 }

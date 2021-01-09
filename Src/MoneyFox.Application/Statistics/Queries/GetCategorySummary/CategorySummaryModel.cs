@@ -19,6 +19,6 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
 
         public decimal TotalSpent { get; set; }
 
-        public List<CategoryOverviewItem> CategoryOverviewItems { get; set; }
+        public List<CategoryOverviewItem> CategoryOverviewItems { get; private set; }
     }
 }

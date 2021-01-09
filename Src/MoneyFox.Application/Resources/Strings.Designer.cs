@@ -1421,7 +1421,7 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shows a monthly cashflow for the selected account..
+        ///   Looks up a localized string similar to Shows the monthly cashflow for the selected account..
         /// </summary>
         public static string MonthlyCashflowDescription {
             get {

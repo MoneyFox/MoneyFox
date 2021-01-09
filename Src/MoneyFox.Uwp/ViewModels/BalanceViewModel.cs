@@ -68,12 +68,12 @@ namespace MoneyFox.Uwp.ViewModels
         /// Calculates the sum of all accounts at the current moment.
         /// </summary>
         /// <returns>Sum of the balance of all accounts.</returns>
-        protected virtual async Task<decimal> CalculateTotalBalanceAsync() => await balanceCalculationService.GetTotalBalance();
+        protected virtual async Task<decimal> CalculateTotalBalanceAsync() => await balanceCalculationService.GetTotalBalanceAsync();
 
         /// <summary>
         /// Calculates the sum of all accounts at the end of the month.
         /// </summary>
         /// <returns>Sum of all balances including all payments to come till end of month.</returns>
-        protected virtual async Task<decimal> GetEndOfMonthValueAsync() => await balanceCalculationService.GetTotalEndOfMonthBalance();
+        protected virtual async Task<decimal> GetEndOfMonthValueAsync() => await balanceCalculationService.GetTotalEndOfMonthBalanceAsync();
     }
 }

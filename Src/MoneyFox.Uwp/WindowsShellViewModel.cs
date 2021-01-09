@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
@@ -36,11 +37,11 @@ namespace MoneyFox.Uwp
         private readonly KeyboardAccelerator backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
         private bool isBackEnabled;
-        private IList<KeyboardAccelerator> keyboardAccelerators;
-        private WinUI.NavigationView navigationView;
-        private WinUI.NavigationViewItem selected;
-        private ICommand loadedCommand;
-        private ICommand itemInvokedCommand;
+        private IList<KeyboardAccelerator>? keyboardAccelerators;
+        private WinUI.NavigationView? navigationView;
+        private WinUI.NavigationViewItem? selected;
+        private ICommand? loadedCommand;
+        private ICommand? itemInvokedCommand;
 
         public bool IsBackEnabled
         {
@@ -50,7 +51,7 @@ namespace MoneyFox.Uwp
 
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
 
-        public WinUI.NavigationViewItem Selected
+        public WinUI.NavigationViewItem? Selected
         {
             get => selected;
             set => Set(ref selected, value);
@@ -102,6 +103,11 @@ namespace MoneyFox.Uwp
 
         private async Task OnLoadedAsync()
         {
+            if(keyboardAccelerators == null)
+            {
+                return;
+            }
+
             // Keyboard accelerators are added here to avoid showing 'Alt + left' tooltip on the page.
             // More info on tracking issue https://github.com/Microsoft/microsoft-ui-xaml/issues/8
             keyboardAccelerators.Add(altLeftKeyboardAccelerator);
@@ -121,7 +127,7 @@ namespace MoneyFox.Uwp
                 return;
             }
 
-            WinUI.NavigationViewItem item = navigationView.MenuItems
+            WinUI.NavigationViewItem? item = navigationView?.MenuItems
                                                           .OfType<WinUI.NavigationViewItem>()
                                                           .FirstOrDefault(menuItem =>
                                                           {
@@ -150,7 +156,7 @@ namespace MoneyFox.Uwp
                 "StatisticSelectorViewModel" => typeof(StatisticSelectorViewModel),
                 "CategoryListViewModel" => typeof(CategoryListViewModel),
                 "BackupViewModel" => typeof(BackupViewModel),
-                _ => null,
+                _ => throw new PageNotFoundException(pageString),
             };
         }
 
@@ -162,14 +168,14 @@ namespace MoneyFox.Uwp
         {
             IsBackEnabled = NavigationService.CanGoBack;
 
-            Selected = navigationView.MenuItems
+            Selected = navigationView?.MenuItems
                                      .OfType<WinUI.NavigationViewItem>()
                                      .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
 
         private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
         {
-            Type pageType = GetTypeByString(menuItem.GetValue(NavHelper.NavigateToProperty) as string);
+            Type pageType = GetTypeByString(menuItem.GetValue(NavHelper.NavigateToProperty) as string ?? "");
             return pageType == sourcePageType;
         }
 

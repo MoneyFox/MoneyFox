@@ -6,6 +6,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Domain.Exceptions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -161,7 +162,7 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                 {
                     if(!request.PaymentRecurrence.HasValue)
                     {
-                        throw new ArgumentNullException(nameof(request.PaymentRecurrence));
+                        throw new RecurrenceNullException(nameof(request.PaymentRecurrence));
                     }
 
                     existingPayment.AddRecurringPayment(request.PaymentRecurrence.Value,

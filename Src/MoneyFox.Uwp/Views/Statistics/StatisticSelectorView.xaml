@@ -9,8 +9,8 @@
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
                 xmlns:designtime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                 xmlns:models="using:MoneyFox.Ui.Shared.ViewModels.Statistics"
-                mc:Ignorable="d"
-                DataContext="{Binding StatisticSelectorVm, Source={StaticResource Locator}}">
+                mc:Ignorable="d" >
+
 
     <d:MvxWindowsPage.DataContext>
         <designtime:DesignTimeStatisticSelectorViewModel />

@@ -5,6 +5,7 @@ using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.Generic;
 
+#nullable enable
 namespace MoneyFox.Presentation.ViewModels.DesignTime
 {
     public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel

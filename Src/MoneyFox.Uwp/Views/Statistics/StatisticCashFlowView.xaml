@@ -6,9 +6,10 @@
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:microcharts="using:Microcharts.Uwp" xmlns:resources="using:MoneyFox.Application.Resources"
-                mc:Ignorable="d"
-                DataContext="{Binding StatisticCashFlowVm, Source={StaticResource Locator}}">
+                xmlns:microcharts="using:Microcharts.Uwp"
+                xmlns:resources="using:MoneyFox.Application.Resources"
+                mc:Ignorable="d" >
+
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">

@@ -8,6 +8,7 @@ namespace MoneyFox.Uwp.Views
         public AddCategoryDialog()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.AddCategoryVm;
         }
     }
 }

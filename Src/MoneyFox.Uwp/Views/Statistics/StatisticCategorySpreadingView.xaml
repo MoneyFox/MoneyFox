@@ -10,7 +10,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:views="using:MoneyFox.Uwp.Views"
-    DataContext="{Binding StatisticCategorySpreadingVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>

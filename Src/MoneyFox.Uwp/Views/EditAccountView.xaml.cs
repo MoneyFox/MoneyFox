@@ -11,6 +11,7 @@ namespace MoneyFox.Uwp.Views
         public EditAccountView(int accountId)
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.EditAccountVm;
             ViewModel.AccountId = accountId;
         }
     }

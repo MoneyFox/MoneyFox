@@ -9,11 +9,14 @@ using NLog;
 using System;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     public class StartupTasksService
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+        protected StartupTasksService() { }
 
         public static async Task StartupAsync()
         {

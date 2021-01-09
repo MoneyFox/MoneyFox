@@ -6,6 +6,7 @@ namespace MoneyFox.Uwp.Views
         public AddAccountDialog()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.AddAccountVm;
         }
     }
 }
