@@ -82,7 +82,7 @@ namespace MoneyFox
         public static SelectFilterDialogViewModel SelectFilterDialogViewModel => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
         public static BackupViewModel BackupViewModel => ServiceLocator.Current.GetInstance<BackupViewModel>();
         public static StatisticCashFlowViewModel StatisticCashFlowViewModel => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
-        public static StatistcAccountMonthlyCashflowViewModel StatistcAccountMonthlyCashflowViewModel => ServiceLocator.Current.GetInstance<StatistcAccountMonthlyCashflowViewModel>();
+        public static StatisticAccountMonthlyCashflowViewModel StatistcAccountMonthlyCashflowViewModel => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingViewModel => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
         public static StatisticCategorySummaryViewModel StatisticCategorySummaryViewModel => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
         public static StatisticSelectorViewModel StatisticSelectorViewModel => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();

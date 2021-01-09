@@ -5,6 +5,7 @@ using MoneyFox.Domain;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
+using MoneyFox.ViewModels.Statistics;
 using System.Collections.Generic;
 
 #nullable enable
@@ -35,6 +36,12 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             },
             new StatisticSelectorType
             {
+                Name = Strings.MonthlyCashflowLabel,
+                Description = Strings.MonthlyCashflowDescription,
+                Type = StatisticType.MonthlyAccountCashFlow
+            },
+            new StatisticSelectorType
+            {
                 Name = Strings.CategorySpreadingLabel,
                 Description = Strings.CategorieSpreadingDescription,
                 Type = StatisticType.CategorySpreading
@@ -57,6 +64,10 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             if(item.Type == StatisticType.Cashflow)
             {
                 navigationService.Navigate<StatisticCashFlowViewModel>();
+            }
+            else if(item.Type == StatisticType.MonthlyAccountCashFlow)
+            {
+                navigationService.Navigate<StatisticAccountMonthlyCashflowViewModel>();
             }
             else if(item.Type == StatisticType.CategorySpreading)
             {

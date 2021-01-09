@@ -21,22 +21,23 @@ namespace MoneyFox.ViewModels.Statistics
     /// <summary>
     /// Representation of the cash flow view.
     /// </summary>
-    public class StatistcAccountMonthlyCashflowViewModel : StatisticViewModel
+    public class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
     {
         private const int BAR_CHART_MARGINS = 20;
         private const float BAR_CHART_TEXT_SIZE = 26f;
 
-        private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
-                                                        ? "Lobster-Regular"
-                                                        : null;
+        //private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
+        //                                                ? "Lobster-Regular"
+        //                                                : null;
 
+        private static readonly string? fontFamily = "Lobster-Regular";
         private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
 
         private BarChart chart = new BarChart();
         private AccountViewModel selectedAccount = null!;
         private readonly IMapper mapper;
 
-        public StatistcAccountMonthlyCashflowViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(mediator, dialogService)
+        public StatisticAccountMonthlyCashflowViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(mediator, dialogService)
         {
             this.mapper = mapper;
 
@@ -68,6 +69,10 @@ namespace MoneyFox.ViewModels.Statistics
             get => selectedAccount;
             set
             {
+                if(selectedAccount == value)
+                {
+                    return;
+                }
                 selectedAccount = value;
                 RaisePropertyChanged();
                 LoadDataCommand.Execute(null);
