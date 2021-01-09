@@ -238,7 +238,6 @@
     <Compile Include="ViewModels\Settings\DesignTimeWindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\IWindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\WindowsSettingsViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\IStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\CategoryOverviewViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs" />
