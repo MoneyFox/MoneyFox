@@ -21,7 +21,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
             <RowDefinition />
-            <RowDefinition Height="Auto" />
+            <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -51,7 +51,7 @@
             <microcharts:ChartView Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
-        <CommandBar Grid.Row="2"
+        <CommandBar Grid.Row="3"
                     Style="{ThemeResource DefaultCommandBar}"
                     ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">

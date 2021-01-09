@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microcharts;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
@@ -8,7 +9,6 @@ using SkiaSharp;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Statistics
 {
@@ -17,10 +17,6 @@ namespace MoneyFox.ViewModels.Statistics
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
-        private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
-                                                    ? "Lobster-Regular" : null;
-        private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
-
         private DonutChart chart = new DonutChart();
 
         public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
@@ -68,9 +64,10 @@ namespace MoneyFox.ViewModels.Statistics
             Chart = new DonutChart
             {
                 Entries = microChartItems,
-                BackgroundColor = SKColors.Transparent,
-                LabelTextSize = 26f,
-                Typeface = typeFaceForIOS12
+                BackgroundColor = ChartOptions.BackgroundColor,
+                Margin = ChartOptions.Margin,
+                LabelTextSize = ChartOptions.LabelTextSize,
+                Typeface = ChartOptions.TypeFace
             };
         }
     }

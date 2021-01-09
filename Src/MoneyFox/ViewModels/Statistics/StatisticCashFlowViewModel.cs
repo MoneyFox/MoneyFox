@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microcharts;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
@@ -8,7 +9,6 @@ using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Statistics
 {
@@ -17,15 +17,6 @@ namespace MoneyFox.ViewModels.Statistics
     /// </summary>
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
-        private const int BAR_CHART_MARGINS = 20;
-        private const float BAR_CHART_TEXT_SIZE = 26f;
-
-        private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
-                                                        ? "Lobster-Regular"
-                                                        : null;
-
-        private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
-
         private BarChart chart = new BarChart();
 
         public StatisticCashFlowViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
@@ -67,10 +58,10 @@ namespace MoneyFox.ViewModels.Statistics
                     Color = SKColor.Parse(x.Color),
                     ValueLabelColor = SKColor.Parse(x.Color)
                 }).ToList(),
-                BackgroundColor = SKColors.Transparent,
-                Margin = BAR_CHART_MARGINS,
-                LabelTextSize = BAR_CHART_TEXT_SIZE,
-                Typeface = typeFaceForIOS12
+                BackgroundColor = ChartOptions.BackgroundColor,
+                Margin = ChartOptions.Margin,
+                LabelTextSize = ChartOptions.LabelTextSize,
+                Typeface = ChartOptions.TypeFace
             };
         }
     }

@@ -22,6 +22,8 @@ namespace MoneyFox.Uwp.Services
 {
     internal class ActivationService
     {
+        private const float CHART_LABEL_SIZE = 12f;
+
         private readonly Type defaultNavItem;
         private readonly Lazy<UIElement> shell;
 
@@ -65,6 +67,7 @@ namespace MoneyFox.Uwp.Services
 
             InitConfig();
             ExecutingPlatform.Current = AppPlatform.UWP;
+            ChartOptions.LabelTextSize = CHART_LABEL_SIZE;
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 
 #if !DEBUG

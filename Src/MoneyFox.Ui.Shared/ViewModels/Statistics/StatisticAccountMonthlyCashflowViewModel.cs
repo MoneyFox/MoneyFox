@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
@@ -14,7 +15,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Statistics
 {
@@ -23,17 +23,8 @@ namespace MoneyFox.ViewModels.Statistics
     /// </summary>
     public class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
     {
-        private const int BAR_CHART_MARGINS = 20;
-        private const float BAR_CHART_TEXT_SIZE = 26f;
-
-        private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
-                                                        ? "Lobster-Regular"
-                                                        : null;
-
-        //private static readonly string? fontFamily = null;
-        private readonly SKTypeface typeFaceForIOS12 = SKTypeface.FromFamilyName(fontFamily);
-
         private BarChart chart = new BarChart();
+        private bool hasNoData;
         private AccountViewModel selectedAccount = null!;
         private readonly IMapper mapper;
 
@@ -45,7 +36,7 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         /// <summary>
-        /// Chart to render.
+        ///     Chart to render.
         /// </summary>
         public BarChart Chart
         {
@@ -58,6 +49,24 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 chart = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     Chart to render.
+        /// </summary>
+        public bool HasNoData
+        {
+            get => hasNoData;
+            set
+            {
+                if(hasNoData == value)
+                {
+                    return;
+                }
+
+                hasNoData = value;
                 RaisePropertyChanged();
             }
         }
@@ -95,7 +104,9 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
+            List<StatisticEntry> statisticItems = await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
+
+            HasNoData = !statisticItems.Any();
 
             Chart = new BarChart
             {
@@ -106,9 +117,10 @@ namespace MoneyFox.ViewModels.Statistics
                     Color = SKColor.Parse(x.Color),
                     ValueLabelColor = SKColor.Parse(x.Color)
                 }).ToList(),
-                Margin = BAR_CHART_MARGINS,
-                LabelTextSize = BAR_CHART_TEXT_SIZE,
-                Typeface = typeFaceForIOS12
+                BackgroundColor = ChartOptions.BackgroundColor,
+                Margin = ChartOptions.Margin,
+                LabelTextSize = ChartOptions.LabelTextSize,
+                Typeface = ChartOptions.TypeFace
             };
         }
     }
