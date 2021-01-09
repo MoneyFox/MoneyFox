@@ -10,6 +10,7 @@ namespace MoneyFox.Uwp.Views
         public BackupView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.BackupVm;
         }
     }
 }

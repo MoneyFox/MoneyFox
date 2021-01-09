@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Windows.UI.Xaml.Data;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]

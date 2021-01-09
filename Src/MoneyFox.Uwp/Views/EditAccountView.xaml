@@ -8,7 +8,6 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     Title="{Binding Title}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-    DataContext="{Binding EditAccountVm, Source={StaticResource Locator}}"
     PrimaryButtonCommand="{Binding SaveCommand}"
     PrimaryButtonText="{x:Bind resources:Strings.DoneLabel}"
     SecondaryButtonCommand="{Binding CancelCommand}"

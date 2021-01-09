@@ -2,6 +2,7 @@
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Application.Common.Helpers
 {
@@ -35,45 +36,51 @@ namespace MoneyFox.Application.Common.Helpers
                 throw new RecurringPaymentNullException();
             }
 
-            switch(payment.RecurringPayment.Recurrence)
+            return CheckRecurrence(payment.RecurringPayment);
+        }
+
+        [SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "Switch")]
+        private static bool CheckRecurrence(RecurringPayment recurringPayment)
+        {
+            switch(recurringPayment.Recurrence)
             {
                 case PaymentRecurrence.Daily:
-                    return DateTime.Today.Date != payment.RecurringPayment.LastRecurrenceCreated.Date;
+                    return DateTime.Today.Date != recurringPayment.LastRecurrenceCreated.Date;
 
                 case PaymentRecurrence.DailyWithoutWeekend:
-                    return DateTime.Today.Date != payment.RecurringPayment.LastRecurrenceCreated.Date
+                    return DateTime.Today.Date != recurringPayment.LastRecurrenceCreated.Date
                            && DateTime.Today.DayOfWeek != DayOfWeek.Saturday
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
                 case PaymentRecurrence.Weekly:
-                    TimeSpan daysWeekly = DateTime.Today.Date - payment.RecurringPayment.LastRecurrenceCreated.Date;
+                    TimeSpan daysWeekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
 
                     return daysWeekly.Days >= WEEKLY_RECURRENCE_DAYS;
 
                 case PaymentRecurrence.Biweekly:
-                    TimeSpan daysBiweekly = DateTime.Today.Date - payment.RecurringPayment.LastRecurrenceCreated.Date;
+                    TimeSpan daysBiweekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
 
                     return daysBiweekly.Days >= BIWEEKLY_RECURRENCE_DAYS;
 
                 case PaymentRecurrence.Monthly:
-                    return DateTime.Now.Month != payment.RecurringPayment.LastRecurrenceCreated.Date.Month;
+                    return DateTime.Now.Month != recurringPayment.LastRecurrenceCreated.Date.Month;
 
                 case PaymentRecurrence.Bimonthly:
                     DateTime date = DateTime.Now.AddMonths(BIMONTHLY_RECURRENCE_MONTHS);
 
-                    return payment.RecurringPayment.LastRecurrenceCreated.Date.Month <= date.Month
-                           && payment.RecurringPayment.LastRecurrenceCreated.Date.Year == date.Year;
+                    return recurringPayment.LastRecurrenceCreated.Date.Month <= date.Month
+                           && recurringPayment.LastRecurrenceCreated.Date.Year == date.Year;
 
                 case PaymentRecurrence.Quarterly:
-                    return CheckQuarterly(payment.RecurringPayment);
+                    return CheckQuarterly(recurringPayment);
 
                 case PaymentRecurrence.Biannually:
-                    return CheckBiannually(payment.RecurringPayment);
+                    return CheckBiannually(recurringPayment);
 
                 case PaymentRecurrence.Yearly:
-                    return DateTime.Now.Year != payment.RecurringPayment.LastRecurrenceCreated.Date.Year
-                           && DateTime.Now.Month >= payment.RecurringPayment.LastRecurrenceCreated.Date.Month
-                           || DateTime.Now.Year - payment.RecurringPayment.LastRecurrenceCreated.Date.Year > 1;
+                    return DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
+                           && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month
+                           || DateTime.Now.Year - recurringPayment.LastRecurrenceCreated.Date.Year > 1;
 
                 default:
                     return false;

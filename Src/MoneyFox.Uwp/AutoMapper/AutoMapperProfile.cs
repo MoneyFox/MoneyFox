@@ -4,6 +4,7 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using System.Collections.Generic;
 
+#nullable enable
 namespace MoneyFox.Uwp.AutoMapper
 {
     public class AutoMapperProfile : Profile

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 
+#nullable enable
 namespace MoneyFox.Uwp.AutoMapper
 {
     public static class AutoMapperFactory

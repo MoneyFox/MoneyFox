@@ -2,6 +2,7 @@
 using NLog;
 using Windows.UI.Xaml;
 
+#nullable enable
 namespace MoneyFox.Uwp.Helpers
 {
     public static class NavHelper

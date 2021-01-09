@@ -31,18 +31,18 @@ namespace MoneyFox.Uwp.ViewModels
             this.mapper = mapper;
         }
 
-        public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccount);
+        public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccountAsync);
 
-        protected override async Task Initialize()
+        protected override async Task InitializeAsync()
         {
             SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(AccountId)));
             AmountString = HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 
-        protected override async Task SaveAccount() => await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
+        protected override async Task SaveAccountAsync() => await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
 
-        protected async Task DeleteAccount()
+        protected async Task DeleteAccountAsync()
         {
             if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {

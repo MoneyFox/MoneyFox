@@ -18,6 +18,7 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 #endif
 
+#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     internal class ActivationService

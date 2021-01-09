@@ -2,6 +2,7 @@
 using MoneyFox.Ui.Shared.Commands;
 using System;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
     /// <summary>

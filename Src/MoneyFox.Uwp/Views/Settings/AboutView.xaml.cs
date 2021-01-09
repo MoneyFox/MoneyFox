@@ -1,5 +1,4 @@
-﻿using CommonServiceLocator;
-using Microsoft.Services.Store.Engagement;
+﻿using Microsoft.Services.Store.Engagement;
 using MoneyFox.Ui.Shared.ViewModels.About;
 using System;
 using Windows.UI.Xaml;
@@ -9,11 +8,12 @@ namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class AboutView
     {
-        private readonly AboutViewModel ViewModel = ServiceLocator.Current.GetInstance<AboutViewModel>();
+        private AboutViewModel ViewModel => (AboutViewModel)DataContext;
 
         public AboutView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.AboutVm;
 
             if(StoreServicesFeedbackLauncher.IsSupported())
             {

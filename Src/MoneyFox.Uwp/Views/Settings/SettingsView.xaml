@@ -9,8 +9,7 @@
                 xmlns:helpers="using:MoneyFox.Uwp.Helpers"
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Settings" xmlns:settings="using:MoneyFox.Uwp.Views.Settings"
-                mc:Ignorable="d"
-                DataContext="{Binding SettingsVm, Source={StaticResource Locator}}">
+                mc:Ignorable="d">
 
     <d:Page.DataContext>
         <designTime:DesignTimeWindowsSettingsViewModel />

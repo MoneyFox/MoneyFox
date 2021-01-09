@@ -2,6 +2,7 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using Windows.UI.Xaml.Data;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     public interface IPaymentListViewModel

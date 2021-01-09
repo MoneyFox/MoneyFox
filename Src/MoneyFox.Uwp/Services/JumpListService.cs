@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
 using Windows.UI.StartScreen;
 
+#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     internal static class JumpListService

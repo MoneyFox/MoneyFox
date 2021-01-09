@@ -21,20 +21,20 @@ namespace MoneyFox.Uwp.Src
         /// <summary>
         /// Returns the sum of all account balances that are not excluded.
         /// </summary>
-        Task<decimal> GetTotalBalance();
+        Task<decimal> GetTotalBalanceAsync();
 
         /// <summary>
         /// Returns the sum of the balance of the passed accounts at the ned of month.
         /// </summary>
         /// <returns>Sum of the end of month balance.</returns>
-        Task<decimal> GetTotalEndOfMonthBalance();
+        Task<decimal> GetTotalEndOfMonthBalanceAsync();
 
         /// <summary>
         /// Returns the the balance of the passed accounts at the ned of month.
         /// </summary>
         /// <param name="account">Account to calculate the balance.</param>
         /// <returns>The end of month balance.</returns>
-        Task<decimal> GetEndOfMonthBalanceForAccount(AccountViewModel account);
+        Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account);
     }
 
     /// <inheritdoc/>
@@ -51,14 +51,14 @@ namespace MoneyFox.Uwp.Src
         }
 
         /// <inheritdoc/>
-        public async Task<decimal> GetTotalBalance() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+        public async Task<decimal> GetTotalBalanceAsync() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
 
         /// <inheritdoc/>
-        public async Task<decimal> GetTotalEndOfMonthBalance()
+        public async Task<decimal> GetTotalEndOfMonthBalanceAsync()
         {
             List<Account> excluded = await mediator.Send(new GetExcludedAccountQuery());
 
-            decimal balance = await GetTotalBalance();
+            decimal balance = await GetTotalBalanceAsync();
 
             foreach(Payment payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
             {
@@ -110,7 +110,7 @@ namespace MoneyFox.Uwp.Src
         }
 
         /// <inheritdoc/>
-        public async Task<decimal> GetEndOfMonthBalanceForAccount(AccountViewModel account)
+        public async Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account)
         {
             decimal balance = account.CurrentBalance;
 

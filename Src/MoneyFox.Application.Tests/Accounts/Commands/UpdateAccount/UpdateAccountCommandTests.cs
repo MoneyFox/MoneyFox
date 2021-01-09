@@ -82,7 +82,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
                                                    settingsFacadeMock.Object)
                 .Handle(new UpdateAccountCommand(account), default);
 
-            Account loadedAccount = await context.Accounts.FindAsync(account.Id);
+            _ = await context.Accounts.FindAsync(account.Id);
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);

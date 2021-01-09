@@ -6,6 +6,7 @@ using Windows.Storage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 
+#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     public static class ThemeSelectorService

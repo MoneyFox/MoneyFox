@@ -1,10 +1,12 @@
 ﻿using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Ui.Shared
 {
     public static class RecurrenceTypeConverterLogic
     {
+        [SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "Switch")]
         public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum)
         {
             return passedEnum switch

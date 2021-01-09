@@ -13,6 +13,7 @@ namespace MoneyFox.Uwp.Views.Statistics
         public StatisticCategorySpreadingView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.StatisticCategorySpreadingVm;
         }
 
         private async void SetDate(object sender, RoutedEventArgs e)
