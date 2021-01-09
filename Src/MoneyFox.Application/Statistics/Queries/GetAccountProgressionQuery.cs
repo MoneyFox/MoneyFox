@@ -68,7 +68,7 @@ namespace MoneyFox.Application.Statistics.Queries
             return returnList;
         }
 
-        private decimal GetPaymentAmountForSum(Payment payment, GetAccountProgressionQuery request)
+        private static decimal GetPaymentAmountForSum(Payment payment, GetAccountProgressionQuery request)
         {
             return payment.Type switch
             {

@@ -29,7 +29,8 @@ namespace MoneyFox.Ui.Shared.ViewModels.Statistics
         protected StatisticViewModel(IMediator mediator, IDialogService dialogService)
             : this(DateTime.Today.GetFirstDayOfMonth(),
                   DateTime.Today.GetLastDayOfMonth(),
-                  mediator)
+                  mediator,
+                  dialogService)
         {
             this.dialogService = dialogService;
         }
@@ -39,11 +40,13 @@ namespace MoneyFox.Ui.Shared.ViewModels.Statistics
         /// </summary>
         protected StatisticViewModel(DateTime startDate,
                                      DateTime endDate,
-                                     IMediator mediator)
+                                     IMediator mediator,
+                                     IDialogService dialogService)
         {
             StartDate = startDate;
             EndDate = endDate;
             Mediator = mediator;
+            this.dialogService = dialogService;
 
             MessengerInstance.Register<DateSelectedMessage>(this,
                                                             async message =>
