@@ -49,7 +49,7 @@ namespace MoneyFox.Ui.Shared.Commands
         void ICommand.Execute(object parameter) => ExecuteAsync().FireAndForgetSafeAsync();
     }
 
-    public class AsyncCommand<T> : IAsyncCommand<T>
+    public sealed class AsyncCommand<T> : IAsyncCommand<T>
     {
         public event EventHandler? CanExecuteChanged;
 
