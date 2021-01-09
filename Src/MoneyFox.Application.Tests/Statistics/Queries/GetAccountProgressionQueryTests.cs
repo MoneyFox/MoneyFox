@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Statistics.Queries;
+﻿using FluentAssertions;
+using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain.Exceptions;
 using System;
 using Xunit;
@@ -21,8 +22,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
             var date = DateTime.Now;
 
-            // Act / Assert
-            Assert.Throws<StartAfterEnddateException>(() => new GetAccountProgressionQuery(0, date, date));
+            // Act
+            var query = new GetAccountProgressionQuery(0, date, date);
+
+            // Assert
+            query.Should().NotBeNull();
         }
     }
 }
