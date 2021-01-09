@@ -42,10 +42,21 @@ namespace MoneyFox.Domain.Entities
 
         public int? CategoryId { get; private set; }
 
+        /// <summary>
+        ///     Date when this payment is executed.
+        /// </summary>
         public DateTime Date { get; private set; }
 
         public decimal Amount { get; private set; }
 
+        /// <summary>
+        ///     The account balance after this payment.
+        /// </summary>
+        public decimal AccountBalance { get; private set; }
+
+        /// <summary>
+        ///     Indicates if this payment is already cleared.
+        /// </summary>
         public bool IsCleared { get; private set; }
 
         public PaymentType Type { get; private set; }
