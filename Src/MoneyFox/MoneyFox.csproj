@@ -127,6 +127,9 @@
     <EmbeddedResource Update="Views\Statistics\PaymentForCategoryListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Statistics\StatistcAccountMonthlyCashflowPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\Statistics\StatisticCashFlowPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>

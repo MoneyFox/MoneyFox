@@ -5,7 +5,7 @@ using System;
 
 namespace MoneyFox.Ui.Shared.ViewModels.Accounts
 {
-    public class AccountViewModel : ViewModelBase, IMapFrom<Account>
+    public sealed class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
         private int id;
         private string name = "";

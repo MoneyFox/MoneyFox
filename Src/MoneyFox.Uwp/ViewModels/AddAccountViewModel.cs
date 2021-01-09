@@ -46,7 +46,6 @@ namespace MoneyFox.Uwp.ViewModels
                                                          SelectedAccount.CurrentBalance,
                                                          SelectedAccount.Note,
                                                          SelectedAccount.IsExcluded));
-            NavigationService.GoBack();
         }
     }
 }

@@ -5,12 +5,14 @@ using GalaSoft.MvvmLight;
 using MoneyFox.Presentation.ViewModels.Statistic;
 using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Settings;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
+using MoneyFox.ViewModels.Statistics;
 
 namespace MoneyFox.Uwp
 {
@@ -71,6 +73,8 @@ namespace MoneyFox.Uwp
         //  Statistics
         //*****************
         public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
+
+        public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashflowVm => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
 
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
 

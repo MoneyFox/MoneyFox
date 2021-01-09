@@ -206,7 +206,6 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
     <Compile Include="ViewModels\Payments\RecurringPaymentViewModel.cs" />
@@ -239,15 +238,12 @@
     <Compile Include="ViewModels\Settings\DesignTimeWindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\IWindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\WindowsSettingsViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\IStatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\CategoryOverviewViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\Statistic\IStatisticSelectorViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\StatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticSelectorType.cs" />
     <Compile Include="ViewModels\Statistic\StatisticSelectorViewModel.cs" />
     <Compile Include="Views\Accounts\AccountListToolbar.xaml.cs">
       <DependentUpon>AccountListToolbar.xaml</DependentUpon>
@@ -303,6 +299,9 @@
     </Compile>
     <Compile Include="Views\Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\StatistcAccountMonthlyCashflowView.xaml.cs">
+      <DependentUpon>StatistcAccountMonthlyCashflowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Statistics\StatisticCashFlowView.xaml.cs">
       <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
@@ -524,6 +523,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Statistics\StatistcAccountMonthlyCashflowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Statistics\StatisticCashFlowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -578,6 +581,9 @@
     </PackageReference>
     <PackageReference Include="FontAwesome.UWP">
       <Version>4.7.0.9</Version>
+    </PackageReference>
+    <PackageReference Include="Microcharts">
+      <Version>0.9.5.9</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Graph">
       <Version>3.21.0</Version>

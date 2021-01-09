@@ -25,6 +25,12 @@ namespace MoneyFox.ViewModels.Statistics
             },
             new StatisticSelectorType
             {
+                Name = Strings.MonthlyCashflowLabel,
+                Description = Strings.MonthlyCashflowDescription,
+                Type = StatisticType.MonthlyAccountCashFlow
+            },
+            new StatisticSelectorType
+            {
                 Name = Strings.CategorySpreadingLabel,
                 Description = Strings.CategorieSpreadingDescription,
                 Type = StatisticType.CategorySpreading
@@ -43,7 +49,7 @@ namespace MoneyFox.ViewModels.Statistics
         public RelayCommand<StatisticSelectorType> GoToStatisticCommand
             => new RelayCommand<StatisticSelectorType>(async (s) => await GoToStatisticAsync(s));
 
-        private async Task GoToStatisticAsync(StatisticSelectorType item)
+        private static async Task GoToStatisticAsync(StatisticSelectorType item)
         {
             if(item.Type == StatisticType.Cashflow)
             {
@@ -56,6 +62,10 @@ namespace MoneyFox.ViewModels.Statistics
             else if(item.Type == StatisticType.CategorySummary)
             {
                 await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategorySummaryRoute);
+            }
+            else if(item.Type == StatisticType.MonthlyAccountCashFlow)
+            {
+                await Shell.Current.GoToAsync(ViewModelLocator.StatistcAccountMonthlyCashflowRoute);
             }
         }
     }

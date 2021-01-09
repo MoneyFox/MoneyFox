@@ -59,7 +59,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
-            },default);
+            }, default);
+
 
             // Assert
             result[0].Value.Should().Be(80);
@@ -95,7 +96,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
-            },default);
+            }, default);
 
             // Assert
             result[0].Label.Should().Be(Strings.RevenueLabel);
@@ -122,7 +123,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
-            },default);
+            }, default);
 
             // Assert
             result[2].ValueLabel[indexNegativeSign].Should().Be(expectedNegativeSign);
@@ -148,7 +149,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
-            },default);
+            }, default);
 
             // Assert
             // We have to test here for Mac since they have a different standard sign than Windows.
@@ -172,7 +173,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
-            },default);
+            }, default);
 
             // Assert
             result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);

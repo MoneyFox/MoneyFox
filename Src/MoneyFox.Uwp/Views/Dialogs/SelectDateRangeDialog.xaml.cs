@@ -6,6 +6,8 @@ namespace MoneyFox.Uwp.Views.Dialogs
         public SelectDateRangeDialog()
         {
             InitializeComponent();
+
+            DataContext = ViewModelLocator.SelectDateRangeDialogVm;
         }
     }
 }

@@ -3,6 +3,7 @@ using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Extensions;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using NLog;
 using System;
 using System.Collections.ObjectModel;
@@ -13,7 +14,7 @@ using Xamarin.Forms;
 namespace MoneyFox.ViewModels.Statistics
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
-    public class StatisticCategorySummaryViewModel : MobileStatisticViewModel
+    public class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         private readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
@@ -22,7 +23,7 @@ namespace MoneyFox.ViewModels.Statistics
         private ObservableCollection<CategoryOverviewViewModel> categorySummary = new ObservableCollection<CategoryOverviewViewModel>();
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 IDialogService dialogService) : base(mediator)
+                                                 IDialogService dialogService) : base(mediator, dialogService)
         {
             this.dialogService = dialogService;
 
