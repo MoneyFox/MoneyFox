@@ -47,7 +47,7 @@ namespace MoneyFox.ViewModels.Categories
             }
         }
 
-        public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
+        public static RelayCommand GoToAddCategoryCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
 
         public RelayCommand<string> SearchCategoryCommand => new RelayCommand<string>(async (searchTerm) => await SearchCategoryAsync(searchTerm));
 
