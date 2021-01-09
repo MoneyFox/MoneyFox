@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
@@ -15,7 +16,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     {
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
+        public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
         {
         }
 

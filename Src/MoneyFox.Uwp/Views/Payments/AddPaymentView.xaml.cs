@@ -22,5 +22,7 @@ namespace MoneyFox.Uwp.Views.Payments
         protected override void OnNavigatedFrom(NavigationEventArgs e) => ViewModel.Unsubscribe();
 
         public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
+
+        public override bool ShowHeader => false;
     }
 }

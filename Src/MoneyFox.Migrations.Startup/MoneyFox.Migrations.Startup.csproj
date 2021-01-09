@@ -34,6 +34,8 @@
     </PackageReference>
     <PackageReference Include="NLog" Version="4.7.6" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.1874" />
+    <PackageReference Include="Xamarin.Forms" Version="4.8.0.1821" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="4.8.0.1821" />
   </ItemGroup>
 
   <ItemGroup>

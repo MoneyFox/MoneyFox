@@ -6,7 +6,6 @@
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
@@ -14,14 +13,8 @@
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:statisticUc="using:MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary"
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
-    d:DataContext="{d:DesignInstance designTime:DesignTimeStatisticCategorySummaryViewModel,
-                                     IsDesignTimeCreatable=True}"
     DataContext="{Binding StatisticCategorySummaryVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-
-    <d:MvxWindowsPage.DataContext>
-        <viewModels:DesignTimeStatisticCategorySummaryViewModel />
-    </d:MvxWindowsPage.DataContext>
 
     <Page.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
@@ -114,11 +107,9 @@
             ClosedDisplayMode="Minimal"
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.SecondaryCommands>
-                <AppBarButton
-                    x:Uid="SetDate"
-                    Click="SetDate"
-                    Icon="Calendar"
-                    Label="Set Date" />
+                <AppBarButton Icon="Calendar"
+                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
+                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

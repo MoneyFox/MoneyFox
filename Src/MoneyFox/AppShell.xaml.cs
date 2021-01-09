@@ -19,7 +19,7 @@ namespace MoneyFox
             RegisterRoutes();
         }
 
-        private void RegisterRoutes()
+        private static void RegisterRoutes()
         {
             Routing.RegisterRoute(ViewModelLocator.WelcomeViewRoute, typeof(WelcomePage));
             Routing.RegisterRoute(ViewModelLocator.CategoryIntroductionRoute, typeof(CategoryIntroductionPage));
@@ -38,6 +38,7 @@ namespace MoneyFox
             Routing.RegisterRoute(ViewModelLocator.BackupRoute, typeof(BackupPage));
             Routing.RegisterRoute(ViewModelLocator.SettingsRoute, typeof(SettingsPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCashFlowRoute, typeof(StatisticCashFlowPage));
+            Routing.RegisterRoute(ViewModelLocator.StatistcAccountMonthlyCashflowRoute, typeof(StatistcAccountMonthlyCashflowPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCategorySpreadingRoute, typeof(StatisticCategorySpreadingPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCategorySummaryRoute, typeof(StatisticCategorySummaryPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticSelectorRoute, typeof(StatisticSelectorPage));
