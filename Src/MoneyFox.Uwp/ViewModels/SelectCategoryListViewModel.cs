@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp.ViewModels
     /// <inheritdoc cref="ISelectCategoryListViewModel"/>
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
-        private CategoryViewModel selectedCategory;
+        private CategoryViewModel? selectedCategory;
 
         /// <summary>
         /// Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
@@ -27,16 +27,11 @@ namespace MoneyFox.Uwp.ViewModels
         /// <summary>
         /// CategoryViewModel currently selected in the view.
         /// </summary>
-        public CategoryViewModel SelectedCategory
+        public CategoryViewModel? SelectedCategory
         {
             get => selectedCategory;
             set
             {
-                if(selectedCategory.Equals(value))
-                {
-                    return;
-                }
-
                 selectedCategory = value;
                 RaisePropertyChanged();
             }

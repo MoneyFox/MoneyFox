@@ -115,7 +115,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
         {
             get => source;
-            set
+            private set
             {
                 if(source == value)
                 {
