@@ -167,13 +167,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                int hashCode = 7;
-                hashCode = hashCode * 397 ^ id.GetHashCode();
-
-                return hashCode;
-            }
+            return HashCode.Combine(id);
         }
     }
 }
