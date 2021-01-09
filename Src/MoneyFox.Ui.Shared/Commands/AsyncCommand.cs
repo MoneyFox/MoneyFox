@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace MoneyFox.Ui.Shared.Commands
 {
-    public class AsyncCommand : IAsyncCommand
+    public sealed class AsyncCommand : IAsyncCommand
     {
         public event EventHandler? CanExecuteChanged;
 
