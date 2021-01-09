@@ -64,11 +64,11 @@ namespace MoneyFox.Application.Common.CloudBackup
             {
                 logManager.Debug(ex);
                 // pop the browser for the interactive experience
-                _ = await publicClientApplication.AcquireTokenInteractive(scopes)
+                AuthenticationResult authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
                                                           .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                                                           .ExecuteAsync();
 
-                GraphServiceClient = graphClientFactory.CreateClient(null);
+                GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User? user = await GraphServiceClient.Me.Request().GetAsync();
                 UserAccount = new UserAccount();
                 UserAccount.SetUserAccount(user);
