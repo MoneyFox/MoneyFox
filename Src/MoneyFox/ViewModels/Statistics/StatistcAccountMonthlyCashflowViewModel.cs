@@ -88,12 +88,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetAccountProgressionQuery
-            {
-                AccountId = SelectedAccount?.Id ?? 0,
-                EndDate = EndDate,
-                StartDate = StartDate
-            });
+            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, EndDate, StartDate));
 
             Chart = new BarChart
             {

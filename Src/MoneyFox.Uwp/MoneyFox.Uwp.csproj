@@ -211,6 +211,7 @@
     <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
     <Compile Include="ViewModels\Payments\RecurringPaymentViewModel.cs" />
     <Compile Include="ViewModels\RecurringPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatistcAccountMonthlyCashflowViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\EditAccountViewModel.cs" />

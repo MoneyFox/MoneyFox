@@ -54,12 +54,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(new GetAccountProgressionQuery
-            {
-                AccountId = account.Id,
-                StartDate = DateTime.Today.AddYears(-1),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
+                new GetAccountProgressionQuery(account.Id,
+                                                      DateTime.Today.AddYears(-1),
+                                                      DateTime.Today.AddDays(3)), default);
 
             // Assert
             result[0].Value.Should().Be(40);
@@ -83,12 +81,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(new GetAccountProgressionQuery
-            {
-                AccountId = account.Id,
-                StartDate = DateTime.Today.AddYears(-1),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
+                new GetAccountProgressionQuery(account.Id,
+                                                      DateTime.Today.AddYears(-1),
+                                                      DateTime.Today.AddDays(3)), default);
 
             // Assert
             result[0].Color.Should().Be("#87cefa");

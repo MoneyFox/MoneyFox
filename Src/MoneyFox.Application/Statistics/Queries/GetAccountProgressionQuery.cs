@@ -14,12 +14,20 @@ namespace MoneyFox.Application.Statistics.Queries
 {
     public class GetAccountProgressionQuery : IRequest<List<StatisticEntry>>
     {
+        public GetAccountProgressionQuery(int accountId, DateTime startDate, DateTime endDate)
+        {
+            AccountId = accountId;
+            StartDate = startDate;
+            EndDate = endDate;
+        }
+
         public int AccountId { get; set; }
 
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }
     }
+
     public class GetAccountProgressionHandler : IRequestHandler<GetAccountProgressionQuery, List<StatisticEntry>>
     {
         private const string RED_HEX_CODE = "#cd3700";
