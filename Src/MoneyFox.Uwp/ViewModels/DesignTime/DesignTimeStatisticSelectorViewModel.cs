@@ -2,7 +2,7 @@
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Presentation.ViewModels.Statistic;
-using MoneyFox.Uwp.ViewModels.Statistic;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.Generic;
 
 namespace MoneyFox.Presentation.ViewModels.DesignTime

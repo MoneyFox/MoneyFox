@@ -37,7 +37,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                                                          .ToListAsync(cancellationToken);
 
             decimal incomeAmount = payments.Where(x => x.Type == PaymentType.Income)
-                                               .Sum(x => x.Amount);
+                                           .Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)
             {
                 Label = Strings.RevenueLabel,

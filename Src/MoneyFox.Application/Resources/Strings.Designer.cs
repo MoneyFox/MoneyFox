@@ -90,6 +90,15 @@ namespace MoneyFox.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Accounts.
         /// </summary>
+        public static string AccountsHeader {
+            get {
+                return ResourceManager.GetString("AccountsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accounts.
+        /// </summary>
         public static string AccountsTitle {
             get {
                 return ResourceManager.GetString("AccountsTitle", resourceCulture);
@@ -1412,6 +1421,33 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shows a monthly cashflow for the selected account..
+        /// </summary>
+        public static string MonthlyCashflowDescription {
+            get {
+                return ResourceManager.GetString("MonthlyCashflowDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly Cashflow.
+        /// </summary>
+        public static string MonthlyCashflowLabel {
+            get {
+                return ResourceManager.GetString("MonthlyCashflowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monthly Cashflow.
+        /// </summary>
+        public static string MonthlyCashflowTitle {
+            get {
+                return ResourceManager.GetString("MonthlyCashflowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monthly.
         /// </summary>
         public static string MonthlyLabel {
@@ -1772,6 +1808,15 @@ namespace MoneyFox.Application.Resources {
         public static string SelectDateLabel {
             get {
                 return ResourceManager.GetString("SelectDateLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected Account.
+        /// </summary>
+        public static string SelectedAccountHeader {
+            get {
+                return ResourceManager.GetString("SelectedAccountHeader", resourceCulture);
             }
         }
         

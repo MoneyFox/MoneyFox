@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Ui.Shared.Groups;
@@ -27,8 +28,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         private readonly IMapper mapper;
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 IMapper mapper)
-            : base(mediator)
+                                                 IMapper mapper,
+                                                 IDialogService dialogService)
+            : base(mediator, dialogService)
         {
             this.mapper = mapper;
         }
