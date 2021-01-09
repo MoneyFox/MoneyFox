@@ -127,7 +127,7 @@
     <value>Bitte Konto auswählen.</value>
   </data>
   <data name="AccountsHeader" xml:space="preserve">
-    <value>Accounts</value>
+    <value>Konten</value>
   </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>Konten</value>
@@ -557,13 +557,13 @@ Klicke auf den Link um das Repository zu besuchen:</value>
     <value>Durchschnitt im letzten Jahr:</value>
   </data>
   <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows a monthly cashflow for the selected account.</value>
+    <value>Zeigt den monatlichen Kapitalfluss für das ausgewählte Konto.</value>
   </data>
   <data name="MonthlyCashflowLabel" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Monatlicher Kapitalfluss</value>
   </data>
   <data name="MonthlyCashflowTitle" xml:space="preserve">
-    <value>Monthly Cashflow</value>
+    <value>Monatlicher Kapitalfluss</value>
   </data>
   <data name="MonthlyLabel" xml:space="preserve">
     <value>Monatlich</value>
@@ -689,7 +689,7 @@ ACHTUNG: In der Zwischenzeit gemachte lokale Änderungen gehen verloren!</value>
     <value>Datum wählen</value>
   </data>
   <data name="SelectedAccountHeader" xml:space="preserve">
-    <value>Selected Account</value>
+    <value>Ausgewähltes Konto</value>
   </data>
   <data name="SelectFilterTitle" xml:space="preserve">
     <value>Filter auswählen</value>
