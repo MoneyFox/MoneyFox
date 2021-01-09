@@ -54,9 +54,9 @@ namespace MoneyFox.Application.Common.CloudBackup
             try
             {
                 IAccount firstAccount = accounts.FirstOrDefault();
-                _ = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+                AuthenticationResult authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
-                GraphServiceClient = graphClientFactory.CreateClient(null);
+                GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User? user = await GraphServiceClient.Me.Request().GetAsync();
                 UserAccount.SetUserAccount(user);
             }
