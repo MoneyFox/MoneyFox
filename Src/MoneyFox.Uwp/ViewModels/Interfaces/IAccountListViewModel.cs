@@ -4,6 +4,7 @@ using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System.Collections.ObjectModel;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
     /// <summary>

@@ -2,6 +2,7 @@
 using MoneyFox.Ui.Shared.ViewModels.Settings;
 using System.Windows.Input;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public class DesignTimeWindowsSettingsViewModel : DesignTimeSettingsViewModel, IWindowsSettingsViewModel

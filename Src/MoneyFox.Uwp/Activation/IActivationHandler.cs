@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.Activation
 {
     internal interface IActivationHandler

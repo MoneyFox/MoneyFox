@@ -13,6 +13,7 @@ using MoneyFox.Uwp.Views.Settings;
 using MoneyFox.Uwp.Views.Statistics;
 using MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary;
 
+#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     public static class NavigationServiceInitializerService

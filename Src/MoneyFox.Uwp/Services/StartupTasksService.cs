@@ -9,6 +9,7 @@ using NLog;
 using System;
 using System.Threading.Tasks;
 
+#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     public class StartupTasksService

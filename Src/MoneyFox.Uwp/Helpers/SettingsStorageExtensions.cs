@@ -1,5 +1,6 @@
 ﻿using Windows.Storage;
 
+#nullable enable
 namespace MoneyFox.Uwp.Helpers
 {
     public static class SettingsStorageExtensions

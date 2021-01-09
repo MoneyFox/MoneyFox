@@ -9,6 +9,7 @@ using Xamarin.Essentials;
 using PCLAppConfig;
 #endif
 
+#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     public static class LoggerService

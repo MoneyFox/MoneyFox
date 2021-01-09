@@ -3,6 +3,7 @@ using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 
+#nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimePaymentListViewActionViewModel : IPaymentListViewActionViewModel
