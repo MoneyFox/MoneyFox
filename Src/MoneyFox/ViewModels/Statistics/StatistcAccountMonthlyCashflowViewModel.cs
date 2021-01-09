@@ -3,9 +3,11 @@ using GalaSoft.MvvmLight.Command;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,7 @@ namespace MoneyFox.ViewModels.Statistics
     /// <summary>
     /// Representation of the cash flow view.
     /// </summary>
-    public class StatistcAccountMonthlyCashflowViewModel : MobileStatisticViewModel
+    public class StatistcAccountMonthlyCashflowViewModel : StatisticViewModel
     {
         private const int BAR_CHART_MARGINS = 20;
         private const float BAR_CHART_TEXT_SIZE = 26f;
@@ -34,7 +36,7 @@ namespace MoneyFox.ViewModels.Statistics
         private AccountViewModel selectedAccount = null!;
         private readonly IMapper mapper;
 
-        public StatistcAccountMonthlyCashflowViewModel(IMediator mediator, IMapper mapper) : base(mediator)
+        public StatistcAccountMonthlyCashflowViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService) : base(mediator, dialogService)
         {
             this.mapper = mapper;
 

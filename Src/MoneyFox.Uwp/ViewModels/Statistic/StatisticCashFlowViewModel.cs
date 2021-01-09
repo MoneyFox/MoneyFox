@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
@@ -15,8 +16,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     {
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
 
-        public StatisticCashFlowViewModel(IMediator mediator)
-            : base(mediator)
+        public StatisticCashFlowViewModel(IMediator mediator, IDialogService dialogService)
+            : base(mediator, dialogService)
         {
         }
 

@@ -83,5 +83,7 @@ namespace MoneyFox.Uwp.Src
             loadingDialog?.Hide();
             return Task.CompletedTask;
         }
+
+        public async Task ShowDateRangeSelectionDialogAsync() => await new SelectDateRangeDialog().ShowAsync();
     }
 }

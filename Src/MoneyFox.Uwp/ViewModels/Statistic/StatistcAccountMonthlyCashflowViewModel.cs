@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediatR;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
@@ -18,8 +19,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         private AccountViewModel selectedAccount = null!;
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
 
-        public StatistcAccountMonthlyCashflowViewModel(IMediator mediator)
-            : base(mediator)
+        public StatistcAccountMonthlyCashflowViewModel(IMediator mediator, IDialogService dialogService)
+            : base(mediator, dialogService)
         {
         }
 

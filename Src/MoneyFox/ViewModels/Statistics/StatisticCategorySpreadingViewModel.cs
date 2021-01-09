@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microcharts;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace MoneyFox.ViewModels.Statistics
     /// <summary>
     /// Representation of the category Spreading View
     /// </summary>
-    public class StatisticCategorySpreadingViewModel : MobileStatisticViewModel
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private static readonly string? fontFamily = Device.RuntimePlatform == Device.iOS
                                                     ? "Lobster-Regular" : null;
@@ -21,7 +23,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         private DonutChart chart = new DonutChart();
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
+        public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
         {
         }
 

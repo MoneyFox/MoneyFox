@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using Microcharts;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries.GetCashFlow;
+using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace MoneyFox.ViewModels.Statistics
     /// <summary>
     /// Representation of the cash flow view.
     /// </summary>
-    public class StatisticCashFlowViewModel : MobileStatisticViewModel
+    public class StatisticCashFlowViewModel : StatisticViewModel
     {
         private const int BAR_CHART_MARGINS = 20;
         private const float BAR_CHART_TEXT_SIZE = 26f;
@@ -26,7 +28,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         private BarChart chart = new BarChart();
 
-        public StatisticCashFlowViewModel(IMediator mediator) : base(mediator)
+        public StatisticCashFlowViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
         {
         }
 
