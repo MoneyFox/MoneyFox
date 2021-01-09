@@ -66,7 +66,7 @@ namespace MoneyFox.ViewModels.Statistics
             Chart = new DonutChart
             {
                 Entries = microChartItems,
-                BackgroundColor = BackgroundColor,
+                BackgroundColor = SKColors.Transparent,
                 LabelTextSize = 26f,
                 Typeface = typeFaceForIOS12
             };

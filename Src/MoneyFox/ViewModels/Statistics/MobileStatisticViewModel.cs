@@ -1,9 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediatR;
-using MoneyFox.Common;
 using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
-using SkiaSharp;
 using System;
 using System.Threading.Tasks;
 
@@ -19,12 +17,9 @@ namespace MoneyFox.ViewModels.Statistics
         protected MobileStatisticViewModel(DateTime startDate, DateTime endDate, IMediator mediator)
             : base(startDate, endDate, mediator)
         {
-            BackgroundColor = SKColor.Parse(ResourceHelper.CurrentBackgroundColor.ToHex());
         }
 
         public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await ShowFilterDialogAsync());
-
-        protected SKColor BackgroundColor { get; }
 
         private async Task ShowFilterDialogAsync() => await new DateSelectionPopup().ShowAsync();
     }

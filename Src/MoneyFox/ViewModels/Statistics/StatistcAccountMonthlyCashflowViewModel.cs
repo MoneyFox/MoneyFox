@@ -99,7 +99,7 @@ namespace MoneyFox.ViewModels.Statistics
                     Color = SKColor.Parse(x.Color),
                     ValueLabelColor = SKColor.Parse(x.Color)
                 }).ToList(),
-                BackgroundColor = BackgroundColor,
+                BackgroundColor = SKColors.Transparent,
                 Margin = BAR_CHART_MARGINS,
                 LabelTextSize = BAR_CHART_TEXT_SIZE,
                 Typeface = typeFaceForIOS12
