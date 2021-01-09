@@ -1,8 +1,5 @@
 ﻿using MoneyFox.Application.Resources;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
-using MoneyFox.Uwp.Views.Dialogs;
-using System;
-using Windows.UI.Xaml;
 
 #nullable enable
 namespace MoneyFox.Uwp.Views.Statistics

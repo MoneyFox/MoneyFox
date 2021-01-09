@@ -1,9 +1,6 @@
 ﻿using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
-using MoneyFox.Uwp.Views.Dialogs;
-using System;
 using System.Linq;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 #nullable enable
