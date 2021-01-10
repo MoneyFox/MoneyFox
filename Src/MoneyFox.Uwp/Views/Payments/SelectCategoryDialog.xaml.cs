@@ -1,5 +1,4 @@
-﻿using CommonServiceLocator;
-using MoneyFox.Uwp.ViewModels;
+﻿using MoneyFox.Uwp.ViewModels;
 using Windows.UI.Xaml.Controls;
 
 #nullable enable
@@ -12,7 +11,7 @@ namespace MoneyFox.Uwp.Views.Payments
         public SelectCategoryDialog()
         {
             InitializeComponent();
-            DataContext = ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
+            DataContext = ViewModelLocator.SelectCategoryListVm;
             ViewModel.AppearingCommand.Execute(null);
         }
 
