@@ -27,7 +27,7 @@
         <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
     </UserControl.Resources>
 
-    <StackPanel>
+    <StackPanel Margin="{StaticResource MediumBottomMargin}">
         <TextBox
             Margin="{StaticResource SmallTitleContentMargin}"
             VerticalAlignment="Top"
