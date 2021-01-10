@@ -27,8 +27,6 @@ namespace MoneyFox
 {
     public class ViewModelLocator
     {
-        protected ViewModelLocator() { }
-
         static ViewModelLocator()
         {
             if(!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
