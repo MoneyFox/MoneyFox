@@ -176,5 +176,27 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             // Assert
             (await context.Payments.FindAsync(payment1.Id)).AccountBalance.Should().Be(40);
         }
+
+        [Fact]
+        public async Task AccountBalanceCorrectlySetOnFollowingPayments()
+        {
+            // Arrange
+            var account = new Account("test", 80);
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+            context.Add(account);
+            context.Add(payment1);
+            context.SaveChanges();
+
+            var payment2 = new Payment(DateTime.Now.AddDays(-1), 30, PaymentType.Expense, account);
+
+            // Act
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object)
+                                          .Handle(new CreatePaymentCommand(payment2), default);
+
+            // Assert
+            (await context.Payments.FindAsync(payment1.Id)).AccountBalance.Should().Be(30);
+        }
     }
 }

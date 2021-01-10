@@ -4,6 +4,7 @@ using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using NLog;
@@ -62,12 +63,32 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
                     contextAdapter.Context.Entry(request.PaymentToSave.RecurringPayment).State = EntityState.Added;
                 }
 
+                await UpdateAccountBalanceOnLaterPaymentsAsync(request.PaymentToSave, cancellationToken);
+
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 backupService.UploadBackupAsync().FireAndForgetSafeAsync();
 
                 return Unit.Value;
+            }
+
+            private async Task UpdateAccountBalanceOnLaterPaymentsAsync(Payment originalPayment, CancellationToken cancellationToken = default)
+            {
+                await contextAdapter.Context
+                                    .Payments
+                                    .HasNotId(originalPayment.Id)
+                                    .AreCleared()
+                                    .WithChargedAccountId(originalPayment.ChargedAccount.Id)
+                                    .AreAfterOrEqual(originalPayment.Date)
+                                    .ForEachAsync(p => UpdateAccountBalance(p, originalPayment.ChargedAccount), cancellationToken);
+            }
+
+            private static void UpdateAccountBalance(Payment payment, Account account)
+            {
+                account.RemovePaymentAmount(payment);
+                account.AddPaymentAmount(payment);
+                payment.UpdateAccountBalance(account.CurrentBalance);
             }
         }
     }
