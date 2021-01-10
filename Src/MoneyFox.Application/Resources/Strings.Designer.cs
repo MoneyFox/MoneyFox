@@ -70,6 +70,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Account Balance.
+        /// </summary>
+        public static string AccountBalanceLabel {
+            get {
+                return ResourceManager.GetString("AccountBalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Account Name.
         /// </summary>
         public static string AccountNameLabel {

@@ -780,4 +780,7 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="StatisticsToolTip" xml:space="preserve">
     <value>View your Statistics</value>
   </data>
+  <data name="AccountBalanceLabel" xml:space="preserve">
+    <value>Account Balance</value>
+  </data>
 </root>

@@ -123,6 +123,7 @@
                 <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}" Binding="{Binding Category.Name}" />
 
                 <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsClearedLabel}" Binding="{Binding IsCleared}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AccountBalanceLabel}" Binding="{Binding AccountBalance}" />
                 <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}" Binding="{Binding IsRecurring}" />
                 <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}" Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
 

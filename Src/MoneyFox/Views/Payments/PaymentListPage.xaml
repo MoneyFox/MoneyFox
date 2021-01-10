@@ -15,6 +15,7 @@
 
     <ContentPage.Resources>
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
     </ContentPage.Resources>
 
     <Shell.TitleView>
@@ -112,6 +113,13 @@
                                                 </Grid>
 
                                                 <Grid>
+                                                    <Label Style="{StaticResource TextBodySecondary}"
+                                                                HorizontalTextAlignment="End"
+                                                                VerticalTextAlignment="Start"
+                                                                Text="{Binding AccountBalance, Converter={StaticResource AmountFormatConverter}}" />
+                                                </Grid>
+
+                                                <Grid>
                                                     <Label LineBreakMode="TailTruncation"
                                                                Style="{StaticResource TextBodySecondary}"
                                                                Text="{Binding Category.Name}" />
@@ -150,9 +158,9 @@
                                                 </Grid>
 
                                                 <Label Style="{StaticResource TextBodySecondary}"
-                                                           HorizontalTextAlignment="Start"
-                                                           LineBreakMode="TailTruncation"
-                                                           Text="{Binding Note}" />
+                                                       HorizontalTextAlignment="Start"
+                                                       LineBreakMode="TailTruncation"
+                                                       Text="{Binding Note}" />
                                             </StackLayout>
                                         </DataTemplate>
                                     </BindableLayout.ItemTemplate>
