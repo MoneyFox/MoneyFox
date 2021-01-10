@@ -9,7 +9,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-    xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:views="using:MoneyFox.Uwp.Views" xmlns:resources="using:MoneyFox.Application.Resources"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
