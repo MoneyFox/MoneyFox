@@ -557,7 +557,7 @@ Klicke auf den Link um das Repository zu besuchen:</value>
     <value>Durchschnitt im letzten Jahr:</value>
   </data>
   <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Zeigt den monatlichen Kapitalfluss für das ausgewählte Konto.</value>
+    <value>Shows the monthly cashflow for the selected account.</value>
   </data>
   <data name="MonthlyCashflowLabel" xml:space="preserve">
     <value>Monatlicher Kapitalfluss</value>
