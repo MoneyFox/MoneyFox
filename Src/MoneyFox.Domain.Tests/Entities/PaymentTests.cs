@@ -159,5 +159,19 @@ namespace MoneyFox.Domain.Tests.Entities
             // Assert
             testPayment.AccountBalance.Should().Be(60);
         }
+
+        [Fact]
+        public void AccountBalanceOnlySetWhenPaymentCleared()
+        {
+            // Arrange
+            Account account1 = new("test1", 100);
+            Payment testPayment = new(DateTime.Now.AddDays(1), 40, PaymentType.Expense, account1, account1);
+
+            // Act
+            testPayment.ClearPayment();
+
+            // Assert
+            testPayment.AccountBalance.Should().Be(0);
+        }
     }
 }

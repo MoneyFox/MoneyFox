@@ -140,12 +140,19 @@ namespace MoneyFox.Domain.Entities
 
         public void ClearPayment()
         {
+            // If already cleared, don't execute again.
             if(IsCleared)
             {
                 return;
             }
 
             IsCleared = Date.Date <= DateTime.Today.Date;
+
+            // if not ready to be cleared, skip the rest.
+            if(!IsCleared)
+            {
+                return;
+            }
 
             if(ChargedAccount == null)
             {
