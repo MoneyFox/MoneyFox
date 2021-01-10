@@ -11,6 +11,7 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <converter:DecimalConverter x:Key="DecimalConverter" />
+            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentView.Resources>
 
@@ -23,6 +24,7 @@
             <Entry x:Name="AmountEntry"
                    Keyboard="Numeric"
                    Focused="AmountFieldGotFocus"
+                   IsEnabled="{Binding IsEdit, Converter={StaticResource InverseBoolConverter}}"
                    Placeholder="{x:Static resources:Strings.CurrentBalanceLabel}"
                    Text="{Binding SelectedAccountVm.CurrentBalance, Converter={StaticResource DecimalConverter}}" />
 

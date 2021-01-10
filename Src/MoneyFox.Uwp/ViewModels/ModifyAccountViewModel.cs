@@ -28,6 +28,8 @@ namespace MoneyFox.Uwp.ViewModels
             NavigationService = navigationService;
         }
 
+        protected abstract bool isEdit;
+
         protected abstract Task SaveAccountAsync();
 
         protected abstract Task InitializeAsync();
@@ -54,6 +56,8 @@ namespace MoneyFox.Uwp.ViewModels
                 RaisePropertyChanged();
             }
         }
+
+        public virtual bool IsEdit => false;
 
         public AccountViewModel SelectedAccount
         {
