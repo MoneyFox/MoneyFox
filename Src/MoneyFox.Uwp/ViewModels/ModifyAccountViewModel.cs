@@ -55,6 +55,8 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
+        public virtual bool IsEdit => false;
+
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;

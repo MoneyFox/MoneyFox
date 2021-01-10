@@ -27,8 +27,6 @@ namespace MoneyFox
 {
     public class ViewModelLocator
     {
-        protected ViewModelLocator() { }
-
         static ViewModelLocator()
         {
             if(!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
@@ -63,7 +61,7 @@ namespace MoneyFox
         public static string StatisticCashFlowRoute => $"Settings/Show{nameof(StatisticCashFlowPage)}";
         public static string StatisticCategorySpreadingRoute => $"Settings/Show{nameof(StatisticCategorySpreadingPage)}";
         public static string StatisticCategorySummaryRoute => $"Settings/Show{nameof(StatisticCategorySummaryPage)}";
-        public static string StatistcAccountMonthlyCashflowRoute => $"Settings/Show{nameof(StatistcAccountMonthlyCashflowPage)}";
+        public static string StatisticAccountMonthlyCashflowRoute => $"Settings/Show{nameof(StatisticAccountMonthlyCashflowPage)}";
         public static string StatisticSelectorRoute => $"Settings/Show{nameof(StatisticSelectorPage)}";
         public static string PaymentForCategoryListRoute => $"Settings/Show{nameof(PaymentForCategoryListPage)}";
         public static string WelcomeViewRoute => $"Setup/{nameof(WelcomePage)}";

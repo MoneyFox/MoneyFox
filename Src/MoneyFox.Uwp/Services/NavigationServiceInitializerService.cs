@@ -29,7 +29,7 @@ namespace MoneyFox.Uwp.Services
             NavigationService.Register<CategoryListViewModel, CategoryListView>();
             NavigationService.Register<SettingsViewModel, SettingsView>();
             NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
-            NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatistcAccountMonthlyCashflowView>();
+            NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashflowView>();
             NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
             NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
             NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();

@@ -7,7 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     x:Uid="SelectDateRangeDialog"
     Title="Select Daterange"
-    DataContext="{Binding SelectDateRangeDialogVm, Source={StaticResource Locator}}"
     PrimaryButtonCommand="{Binding DoneCommand}"
     PrimaryButtonText="done"
     SecondaryButtonText="cancel"

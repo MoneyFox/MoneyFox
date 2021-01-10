@@ -3,11 +3,11 @@ using Xamarin.Forms;
 
 namespace MoneyFox.Views.Statistics
 {
-    public partial class StatistcAccountMonthlyCashflowPage : ContentPage
+    public partial class StatisticAccountMonthlyCashflowPage : ContentPage
     {
         private StatisticAccountMonthlyCashflowViewModel ViewModel => (StatisticAccountMonthlyCashflowViewModel)BindingContext;
 
-        public StatistcAccountMonthlyCashflowPage()
+        public StatisticAccountMonthlyCashflowPage()
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.StatistcAccountMonthlyCashflowViewModel;

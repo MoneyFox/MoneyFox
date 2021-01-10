@@ -14,7 +14,6 @@
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Accounts"
     xmlns:accountlist="using:MoneyFox.Uwp.Views.Accounts"
-    DataContext="{Binding AccountListVm, Source={StaticResource Locator}}"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>

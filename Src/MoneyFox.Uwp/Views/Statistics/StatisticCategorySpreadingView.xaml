@@ -9,7 +9,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-    xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:views="using:MoneyFox.Uwp.Views" xmlns:resources="using:MoneyFox.Application.Resources"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
@@ -83,11 +83,9 @@
             ClosedDisplayMode="Minimal"
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.SecondaryCommands>
-                <AppBarButton
-                    x:Uid="SetDate"
-                    Click="SetDate"
-                    Icon="Calendar"
-                    Label="Set Date" />
+                <AppBarButton Icon="Calendar"
+                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
+                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </Grid>

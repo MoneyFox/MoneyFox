@@ -11,8 +11,8 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <muxc:ProgressRing
-                Width="80"
-                Height="80"
+                Width="50"
+                Height="50"
                 IsActive="True" />
             <TextBlock
                 x:Name="LoadingText"
