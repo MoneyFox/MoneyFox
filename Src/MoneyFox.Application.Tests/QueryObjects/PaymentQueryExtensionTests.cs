@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Common.QueryObjects;
+﻿using FluentAssertions;
+using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using System;
@@ -13,7 +14,26 @@ namespace MoneyFox.Application.Tests.QueryObjects
     public class PaymentQueryExtensionTests
     {
         [Fact]
-        public void HasDateLargerEqualsThan()
+        public void HasNotId()
+        {
+            // Arrange
+            IQueryable<Payment> paymentListQuery = new List<Payment>
+            {
+                new Payment(DateTime.Now, 12, PaymentType.Expense, new Account("d")),
+                new Payment(DateTime.Now.AddDays(1), 13, PaymentType.Expense, new Account("d")),
+                new Payment(DateTime.Now.AddDays(1), 14, PaymentType.Expense, new Account("d"))
+            }.AsQueryable();
+
+            // Act
+            var resultList = paymentListQuery.HasNotId(paymentListQuery.First().Id).ToList();
+
+            // Assert
+            // Since we haven't added the payments to the DB all Id's are 0.
+            resultList.Should().BeEmpty();
+        }
+
+        [Fact]
+        public void AreAfterOrEqual()
         {
             // Arrange
             IQueryable<Payment> paymentListQuery = new List<Payment>

@@ -11,6 +11,14 @@ namespace MoneyFox.Application.Common.QueryObjects
     public static class PaymentQueryObjects
     {
         /// <summary>
+        ///     Adds a filter to a query for payments with a different id than the passed one.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <returns>Query filtered different id's.</returns>
+        public static IQueryable<Payment> HasNotId(this IQueryable<Payment> query, int id)
+            => query.Where(payment => payment.Id != id);
+
+        /// <summary>
         ///     Adds a filter to a query for payments with type expense
         /// </summary>
         /// <param name="query">Existing query.</param>

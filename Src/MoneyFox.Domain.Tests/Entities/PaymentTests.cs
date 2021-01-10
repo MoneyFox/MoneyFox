@@ -100,5 +100,34 @@ namespace MoneyFox.Domain.Tests.Entities
             // Assert
             testPayment.IsCleared.Should().Be(expectedIsCleared);
         }
+
+        [Fact]
+        public void AccountBalanceCorrectlyUpdated()
+        {
+            // Arrange
+            Account account = new("test", 200);
+            var testPayment = new Payment(DateTime.Now, 100, PaymentType.Expense, account);
+
+            // Act
+            testPayment.UpdatePayment(DateTime.Now, 150, PaymentType.Expense, account);
+
+            // Assert
+            testPayment.AccountBalance.Should().Be(50);
+        }
+
+        [Fact]
+        public void AccountBalanceCorrectlyAssigned()
+        {
+            // Arrange
+            const decimal newBalance = 666;
+            Account account = new("test", 200);
+            Payment testPayment = new(DateTime.Now, 100, PaymentType.Expense, account);
+
+            // Act
+            testPayment.UpdateAccountBalance(newBalance);
+
+            // Assert
+            testPayment.AccountBalance.Should().Be(newBalance);
+        }
     }
 }

@@ -145,7 +145,6 @@ namespace MoneyFox.Domain.Entities
             }
 
             ChargedAccount.AddPaymentAmount(this);
-            AccountBalance = ChargedAccount.CurrentBalance;
 
             if(Type == PaymentType.Transfer)
             {
@@ -158,5 +157,7 @@ namespace MoneyFox.Domain.Entities
                 TargetAccount.AddPaymentAmount(this);
             }
         }
+
+        public void UpdateAccountBalance(decimal accountBalance) => AccountBalance = accountBalance;
     }
 }

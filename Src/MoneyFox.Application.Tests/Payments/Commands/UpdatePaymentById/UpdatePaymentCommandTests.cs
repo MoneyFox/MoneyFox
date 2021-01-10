@@ -48,7 +48,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
         protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
-        public async Task UpdatePayment_PaymentFound()
+        public async Task AmountCorrectlyUpdated()
         {
             // Arrange
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
@@ -218,6 +218,48 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
             settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+        }
+
+        [Fact]
+        public async Task AccountBalanceOnFollowUpPaymentsCorrectlyUpdated()
+        {
+            // Arrange
+            Account account = new("test", 200);
+            Payment payment1 = new (DateTime.Now.AddMinutes(-1), 50, PaymentType.Expense, account);
+            Payment payment2 = new (DateTime.Now, 20, PaymentType.Expense, account);
+            await context.AddAsync(payment1);
+            await context.AddAsync(payment2);
+            await context.SaveChangesAsync();
+
+            // Act
+            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object)
+               .Handle(new UpdatePaymentCommand(payment1.Id,
+                                                payment1.Date,
+                                                80,
+                                                payment1.IsCleared,
+                                                payment1.Type,
+                                                payment1.Note,
+                                                payment1.IsRecurring,
+                                                payment1.Category != null
+                                                ? payment1.Category.Id
+                                                : 0,
+                                                payment1.ChargedAccount != null
+                                                ? payment1.ChargedAccount.Id
+                                                : 0,
+                                                payment1.TargetAccount != null
+                                                ? payment1.TargetAccount.Id
+                                                : 0,
+                                                false,
+                                                null,
+                                                null,
+                                                null),
+                       default);
+
+            // Assert
+            Payment laterPayment = await context.Payments.FindAsync(payment2.Id);
+            laterPayment.AccountBalance.Should().Be(100);
         }
     }
 }

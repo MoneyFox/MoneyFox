@@ -4,6 +4,7 @@ using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
@@ -118,6 +119,8 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                                               await contextAdapter.Context.Categories.FindAsync(request.CategoryId),
                                               request.Note);
 
+                await UpdateAccountBalanceOnLaterPaymentsAsync(existingPayment, chargedAccount, cancellationToken);
+
                 if(request.IsRecurring && request.UpdateRecurringPayment && request.PaymentRecurrence.HasValue)
                 {
                     HandleRecurringPayment(request, existingPayment);
@@ -141,6 +144,31 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                 backupService.UploadBackupAsync().FireAndForgetSafeAsync();
 
                 return Unit.Value;
+            }
+
+            private async Task UpdateAccountBalanceOnLaterPaymentsAsync(Payment originalPayment, Account account, CancellationToken cancellationToken = default)
+            {
+                var foo = await contextAdapter.Context
+                                    .Payments
+                                    .HasNotId(originalPayment.Id)
+                                    .AreCleared()
+                                    .WithChargedAccountId(account.Id)
+                                    .AreAfterOrEqual(originalPayment.Date)
+                                    .ToListAsync(cancellationToken);
+
+                await contextAdapter.Context
+                                    .Payments
+                                    .HasNotId(originalPayment.Id)
+                                    .AreCleared()
+                                    .WithChargedAccountId(account.Id)
+                                    .AreAfterOrEqual(originalPayment.Date)
+                                    .ForEachAsync(p => UpdateAccountBalance(p, account), cancellationToken);
+            }
+
+            private static void UpdateAccountBalance(Payment payment, Account account)
+            {
+                account.RemovePaymentAmount(payment);
+                account.AddPaymentAmount(payment);
             }
 
             private static void HandleRecurringPayment(UpdatePaymentCommand request, Payment existingPayment)
