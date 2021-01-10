@@ -30,4 +30,10 @@
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="xunit.runner.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
