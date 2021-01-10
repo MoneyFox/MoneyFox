@@ -16,7 +16,7 @@ pool:
 
 variables:
   Major: '7'
-  Minor: '2'
+  Minor: '3'
 
 steps:
 - task: UseDotNet@2
