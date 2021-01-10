@@ -32,8 +32,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
                                                          .Payments
                                                          .Include(x => x.Category)
                                                          .WithoutTransfers()
-                                                         .HasDateLargerEqualsThan(request.StartDate.Date)
-                                                         .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                                         .AreAfterOrEqual(request.StartDate.Date)
+                                                         .AreBeforeOrEqual(request.EndDate.Date)
                                                          .ToListAsync(cancellationToken);
 
             decimal incomeAmount = payments.Where(x => x.Type == PaymentType.Income)

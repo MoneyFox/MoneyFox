@@ -53,7 +53,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="date">Date to filter for.</param>
         /// <returns>Query filtered for not cleared payments.</returns>
-        public static IQueryable<Payment> HasDateLargerEqualsThan(this IQueryable<Payment> query, DateTime date) => query.Where(payment => payment.Date.Date >= date.Date);
+        public static IQueryable<Payment> AreAfterOrEqual(this IQueryable<Payment> query, DateTime date) => query.Where(payment => payment.Date.Date >= date.Date);
 
         /// <summary>
         ///     Adds a filter to a query for payments who has a date smaller or equals to the passed date.
@@ -61,7 +61,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="date">Date to filter for.</param>
         /// <returns>Query filtered for the date.</returns>
-        public static IQueryable<Payment> HasDateSmallerEqualsThan(this IQueryable<Payment> query, DateTime date) => query.Where(payment => payment.Date.Date <= date.Date);
+        public static IQueryable<Payment> AreBeforeOrEqual(this IQueryable<Payment> query, DateTime date) => query.Where(payment => payment.Date.Date <= date.Date);
 
         /// <summary>
         ///     Adds a filter to a query for payments who are not Transfers

@@ -33,7 +33,7 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
                                                           .Include(x => x.ChargedAccount)
                                                           .Include(x => x.TargetAccount)
                                                           .AreNotCleared()
-                                                          .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper));
+                                                          .AreBeforeOrEqual(HelperFunctions.GetEndOfMonth(systemDateHelper));
 
                 if(request.AccountId != 0)
                 {

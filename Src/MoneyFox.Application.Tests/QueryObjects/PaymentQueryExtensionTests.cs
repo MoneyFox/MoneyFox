@@ -24,7 +24,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.HasDateLargerEqualsThan(DateTime.Now).ToList();
+            var resultList = paymentListQuery.AreAfterOrEqual(DateTime.Now).ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);

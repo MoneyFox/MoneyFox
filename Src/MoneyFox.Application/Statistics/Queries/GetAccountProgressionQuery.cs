@@ -53,8 +53,8 @@ namespace MoneyFox.Application.Statistics.Queries
                                                .Include(x => x.Category)
                                                .Include(x => x.ChargedAccount)
                                                .HasAccountId(request.AccountId)
-                                               .HasDateLargerEqualsThan(request.StartDate.Date)
-                                               .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                               .AreAfterOrEqual(request.StartDate.Date)
+                                               .AreBeforeOrEqual(request.EndDate.Date)
                                                .ToListAsync(cancellationToken);
 
             var returnList = new List<StatisticEntry>();

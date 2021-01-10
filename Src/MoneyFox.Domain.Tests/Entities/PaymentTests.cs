@@ -62,6 +62,20 @@ namespace MoneyFox.Domain.Tests.Entities
         }
 
         [Fact]
+        public void AccountBalanceCorrectAfterClearing()
+        {
+            // Arrange
+            Account account = new("test", 500);
+            var payment = new Payment(DateTime.Now, 123, PaymentType.Expense, account);
+
+            // Act
+            payment.ClearPayment();
+
+            // Assert
+            payment.AccountBalance.Should().Be(account.CurrentBalance);
+        }
+
+        [Fact]
         public void UpdatePayment_ChargedAccountNull_ArgumentNullException()
         {
             // Arrange

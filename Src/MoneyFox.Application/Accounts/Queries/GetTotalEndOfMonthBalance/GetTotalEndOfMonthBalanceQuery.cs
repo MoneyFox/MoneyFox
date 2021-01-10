@@ -114,7 +114,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                                   .Include(x => x.ChargedAccount)
                                   .Include(x => x.TargetAccount)
                                   .AreNotCleared()
-                                  .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
+                                  .AreBeforeOrEqual(HelperFunctions.GetEndOfMonth(systemDateHelper))
                                   .ToListAsync();
             }
         }

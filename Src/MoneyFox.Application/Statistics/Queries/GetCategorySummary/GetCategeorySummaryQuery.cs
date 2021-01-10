@@ -51,8 +51,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 List<Payment> paymentsInTimeRange = await contextAdapter.Context
                                                                         .Payments
                                                                         .Include(x => x.Category)
-                                                                        .HasDateLargerEqualsThan(request.StartDate.Date)
-                                                                        .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                                                        .AreAfterOrEqual(request.StartDate.Date)
+                                                                        .AreBeforeOrEqual(request.EndDate.Date)
                                                                         .Where(x => x.Type != PaymentType.Transfer)
                                                                         .ToListAsync(cancellationToken);
 

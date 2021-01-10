@@ -39,8 +39,8 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
                                        .Payments
                                        .Include(x => x.Category)
                                        .WithoutTransfers()
-                                       .HasDateLargerEqualsThan(request.StartDate.Date)
-                                       .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                       .AreAfterOrEqual(request.StartDate.Date)
+                                       .AreBeforeOrEqual(request.EndDate.Date)
                                        .ToListAsync(cancellationToken);
         }
 
