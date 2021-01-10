@@ -17,6 +17,8 @@ namespace MoneyFox.ViewModels.Accounts
             this.dialogService = dialogService;
         }
 
+        public virtual bool IsEdit => false;
+
         private AccountViewModel selectedAccountVm = new AccountViewModel();
 
         /// <summary>

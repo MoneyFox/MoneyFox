@@ -155,6 +155,7 @@
     <Compile Include="Converter\DateVisibilityConverter.cs" />
     <Compile Include="Converter\DecimalConverter.cs" />
     <Compile Include="Converter\AmountFormatConverter.cs" />
+    <Compile Include="Converter\InverseBoolConverter.cs" />
     <Compile Include="Converter\PaymentAmountConverter.cs" />
     <Compile Include="Converter\PaymentTypeToStringConverter.cs" />
     <Compile Include="Converter\RecurrenceTypeConverter.cs" />
@@ -299,8 +300,8 @@
     <Compile Include="Views\Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Statistics\StatistcAccountMonthlyCashflowView.xaml.cs">
-      <DependentUpon>StatistcAccountMonthlyCashflowView.xaml</DependentUpon>
+    <Compile Include="Views\Statistics\StatisticAccountMonthlyCashflowView.xaml.cs">
+      <DependentUpon>StatisticAccountMonthlyCashflowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Statistics\StatisticCashFlowView.xaml.cs">
       <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
@@ -522,7 +523,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Statistics\StatistcAccountMonthlyCashflowView.xaml">
+    <Page Include="Views\Statistics\StatisticAccountMonthlyCashflowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

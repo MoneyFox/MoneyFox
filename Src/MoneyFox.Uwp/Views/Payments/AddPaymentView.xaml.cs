@@ -10,6 +10,7 @@ namespace MoneyFox.Uwp.Views.Payments
         public AddPaymentView()
         {
             InitializeComponent();
+            DataContext = ViewModelLocator.AddPaymentVm;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
