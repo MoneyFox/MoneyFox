@@ -53,7 +53,7 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
                                                                  .Include(x => x.TargetAccount)
                                                                  .Include(x => x.Category)
                                                                  .Include(x => x.RecurringPayment)
-                                                                 .HasAccountId(request.AccountId);
+                                                                 .WithAccountId(request.AccountId);
 
                 if(request.IsClearedFilterActive)
                 {

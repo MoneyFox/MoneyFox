@@ -76,11 +76,22 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="accountId">AccountId to filter for</param>
         /// <returns>Query filtered for the account id.</returns>
-        public static IQueryable<Payment> HasAccountId(this IQueryable<Payment> query, int accountId)
+        public static IQueryable<Payment> WithAccountId(this IQueryable<Payment> query, int accountId)
         {
             return query.Where(payment => payment.ChargedAccount!.Id == accountId
                                           || payment.TargetAccount != null
                                           && payment.TargetAccount.Id == accountId);
+        }
+
+        /// <summary>
+        ///     Adds a filter to a query for payments who has a certain id as charged.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <param name="accountId">AccountId to filter for</param>
+        /// <returns>Query filtered for the account id.</returns>
+        public static IQueryable<Payment> WithChargedAccountId(this IQueryable<Payment> query, int accountId)
+        {
+            return query.Where(payment => payment.ChargedAccount!.Id == accountId);
         }
 
         /// <summary>

@@ -52,7 +52,7 @@ namespace MoneyFox.Application.Statistics.Queries
                                                .Payments
                                                .Include(x => x.Category)
                                                .Include(x => x.ChargedAccount)
-                                               .HasAccountId(request.AccountId)
+                                               .WithAccountId(request.AccountId)
                                                .AreAfterOrEqual(request.StartDate.Date)
                                                .AreBeforeOrEqual(request.EndDate.Date)
                                                .ToListAsync(cancellationToken);

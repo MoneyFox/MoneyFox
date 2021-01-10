@@ -37,7 +37,7 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
 
                 if(request.AccountId != 0)
                 {
-                    query = query.HasAccountId(request.AccountId);
+                    query = query.WithAccountId(request.AccountId);
                 }
 
                 return await query.ToListAsync(cancellationToken);

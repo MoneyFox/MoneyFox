@@ -119,7 +119,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
             {
                 return await contextAdapter.Context
                                            .Payments
-                                           .HasAccountId(accountId)
+                                           .WithAccountId(accountId)
                                            .Include(x => x.ChargedAccount)
                                            .Include(x => x.TargetAccount)
                                            .AreNotCleared()
