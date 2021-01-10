@@ -134,5 +134,47 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             (await context.Payments.FindAsync(payment1.Id)).Should().NotBeNull();
             (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Should().NotBeNull();
         }
+
+        [Fact]
+        public async Task AccountBalanceCorrectlySet()
+        {
+            // Arrange
+            var account = new Account("test", 80);
+            context.Add(account);
+            context.SaveChanges();
+
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+
+            // Act
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object)
+                                          .Handle(new CreatePaymentCommand(payment1), default);
+
+            // Assert
+            (await context.Payments.FindAsync(payment1.Id)).AccountBalance.Should().Be(60);
+        }
+
+        [Fact]
+        public async Task AccountBalanceCorrectlySetOnTransfer()
+        {
+            // Arrange
+            var account1 = new Account("test1", 100);
+            var account2 = new Account("test2", 200);
+            context.Add(account1);
+            context.Add(account2);
+            context.SaveChanges();
+
+            var payment1 = new Payment(DateTime.Now, 60, PaymentType.Transfer, account1, account2);
+
+            // Act
+            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object)
+                                          .Handle(new CreatePaymentCommand(payment1), default);
+
+            // Assert
+            (await context.Payments.FindAsync(payment1.Id)).AccountBalance.Should().Be(40);
+        }
     }
 }

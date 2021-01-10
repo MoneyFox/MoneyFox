@@ -102,6 +102,9 @@ namespace MoneyFox.Domain.Entities
 
             AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
 
+            // reset cleared status, so that balances are calculated again.
+            IsCleared = false;
+
             ClearPayment();
         }
 
@@ -137,6 +140,11 @@ namespace MoneyFox.Domain.Entities
 
         public void ClearPayment()
         {
+            if(IsCleared)
+            {
+                return;
+            }
+
             IsCleared = Date.Date <= DateTime.Today.Date;
 
             if(ChargedAccount == null)
@@ -145,6 +153,7 @@ namespace MoneyFox.Domain.Entities
             }
 
             ChargedAccount.AddPaymentAmount(this);
+            AccountBalance = ChargedAccount.CurrentBalance;
 
             if(Type == PaymentType.Transfer)
             {

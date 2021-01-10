@@ -148,14 +148,6 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 
             private async Task UpdateAccountBalanceOnLaterPaymentsAsync(Payment originalPayment, Account account, CancellationToken cancellationToken = default)
             {
-                var foo = await contextAdapter.Context
-                                    .Payments
-                                    .HasNotId(originalPayment.Id)
-                                    .AreCleared()
-                                    .WithChargedAccountId(account.Id)
-                                    .AreAfterOrEqual(originalPayment.Date)
-                                    .ToListAsync(cancellationToken);
-
                 await contextAdapter.Context
                                     .Payments
                                     .HasNotId(originalPayment.Id)
@@ -169,6 +161,7 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
             {
                 account.RemovePaymentAmount(payment);
                 account.AddPaymentAmount(payment);
+                payment.UpdateAccountBalance(account.CurrentBalance);
             }
 
             private static void HandleRecurringPayment(UpdatePaymentCommand request, Payment existingPayment)

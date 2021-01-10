@@ -104,7 +104,6 @@ namespace MoneyFox.Domain.Entities
                 CurrentBalance += amount;
             }
 
-            payment.UpdateAccountBalance(CurrentBalance);
             ModificationDate = DateTime.Now;
         }
 
