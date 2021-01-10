@@ -8,6 +8,7 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:converter="using:MoneyFox.Uwp.Converter"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
