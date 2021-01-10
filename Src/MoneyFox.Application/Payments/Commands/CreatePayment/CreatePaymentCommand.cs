@@ -86,7 +86,6 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
 
             private static void UpdateAccountBalance(Payment payment, Account account)
             {
-                account.RemovePaymentAmount(payment);
                 account.AddPaymentAmount(payment);
                 payment.UpdateAccountBalance(account.CurrentBalance);
             }
