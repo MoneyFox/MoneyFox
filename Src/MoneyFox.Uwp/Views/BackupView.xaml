@@ -78,7 +78,7 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="41*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
                     </Grid.ColumnDefinitions>
 
                     <Button
@@ -90,7 +90,9 @@
 
                     <muxc:ProgressRing
                         Grid.Column="1"
-                        Margin="0,3,0,3"
+                        Margin="3"
+                        Height="25"
+                        Width="25"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Background="Transparent"
