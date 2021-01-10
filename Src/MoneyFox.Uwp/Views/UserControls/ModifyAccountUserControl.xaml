@@ -22,6 +22,10 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
+    <UserControl.Resources>
+        <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </UserControl.Resources>
+
     <StackPanel>
         <TextBox
             Margin="{StaticResource SmallTitleContentMargin}"
@@ -34,6 +38,7 @@
             GotFocus="TextBoxOnFocus"
             Header="{x:Bind resources:Strings.CurrentBalanceLabel}"
             InputScope="Number"
+            IsEnabled="{Binding IsEdit, Converter={StaticResource InverseBoolConverter}}"
             Text="{Binding AmountString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             TextAlignment="Right" />
         <TextBox
