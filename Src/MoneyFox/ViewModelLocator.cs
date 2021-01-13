@@ -46,27 +46,27 @@ namespace MoneyFox
         }
 
         // Routes
-        public static string DashboardRoute => $"Dashboard/{nameof(DashboardPage)}";
-        public static string AccountListRoute => $"Account/{nameof(AccountListPage)}";
-        public static string AddAccountRoute => $"Account/{nameof(AddAccountPage)}";
-        public static string EditAccountRoute => $"Account/{nameof(EditAccountPage)}";
-        public static string BudgetListRoute => $"Budget/{nameof(BudgetListPage)}";
-        public static string PaymentListRoute => $"Payment/{nameof(PaymentListPage)}";
-        public static string AddPaymentRoute => $"Payment/{nameof(AddPaymentPage)}";
-        public static string CategoryListRoute => $"Category/{nameof(CategoryListPage)}";
-        public static string SelectCategoryRoute => $"Category/{nameof(SelectCategoryPage)}";
-        public static string AddCategoryRoute => $"Category/{nameof(AddCategoryPage)}";
-        public static string BackupRoute => $"Backup/Show{nameof(BackupPage)}";
-        public static string SettingsRoute => $"Settings/Show{nameof(SettingsPage)}";
-        public static string StatisticCashFlowRoute => $"Settings/Show{nameof(StatisticCashFlowPage)}";
-        public static string StatisticCategorySpreadingRoute => $"Settings/Show{nameof(StatisticCategorySpreadingPage)}";
-        public static string StatisticCategorySummaryRoute => $"Settings/Show{nameof(StatisticCategorySummaryPage)}";
-        public static string StatisticAccountMonthlyCashflowRoute => $"Settings/Show{nameof(StatisticAccountMonthlyCashflowPage)}";
-        public static string StatisticSelectorRoute => $"Settings/Show{nameof(StatisticSelectorPage)}";
-        public static string PaymentForCategoryListRoute => $"Settings/Show{nameof(PaymentForCategoryListPage)}";
-        public static string WelcomeViewRoute => $"Setup/{nameof(WelcomePage)}";
-        public static string CategoryIntroductionRoute => $"Setup/{nameof(CategoryIntroductionPage)}";
-        public static string SetupCompletionRoute => $"Setup/{nameof(SetupCompletionPage)}";
+        public static string DashboardRoute => nameof(DashboardPage);
+        public static string AccountListRoute => nameof(AccountListPage);
+        public static string AddAccountRoute => nameof(AddAccountPage);
+        public static string EditAccountRoute => nameof(EditAccountPage);
+        public static string BudgetListRoute => nameof(BudgetListPage);
+        public static string PaymentListRoute => nameof(PaymentListPage);
+        public static string AddPaymentRoute => nameof(AddPaymentPage);
+        public static string CategoryListRoute => nameof(CategoryListPage);
+        public static string SelectCategoryRoute => nameof(SelectCategoryPage);
+        public static string AddCategoryRoute => nameof(AddCategoryPage);
+        public static string BackupRoute => nameof(BackupPage);
+        public static string SettingsRoute => nameof(SettingsPage);
+        public static string StatisticCashFlowRoute => nameof(StatisticCashFlowPage);
+        public static string StatisticCategorySpreadingRoute => nameof(StatisticCategorySpreadingPage);
+        public static string StatisticCategorySummaryRoute => nameof(StatisticCategorySummaryPage);
+        public static string StatisticAccountMonthlyCashflowRoute => nameof(StatisticAccountMonthlyCashflowPage);
+        public static string StatisticSelectorRoute => nameof(StatisticSelectorPage);
+        public static string PaymentForCategoryListRoute => nameof(PaymentForCategoryListPage);
+        public static string WelcomeViewRoute => nameof(WelcomePage);
+        public static string CategoryIntroductionRoute => nameof(CategoryIntroductionPage);
+        public static string SetupCompletionRoute => nameof(SetupCompletionPage);
 
         // ViewModels
         public static DashboardViewModel DashboardViewModel => ServiceLocator.Current.GetInstance<DashboardViewModel>();
