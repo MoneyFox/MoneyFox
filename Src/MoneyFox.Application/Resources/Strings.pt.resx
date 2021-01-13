@@ -556,7 +556,7 @@
     <value>Média mensal do ano passado: </value>
   </data>
   <data name="MonthlyCashflowDescription" xml:space="preserve">
-    <value>Shows a monthly cashflow for the selected account.</value>
+    <value>Shows the monthly cashflow for the selected account.</value>
   </data>
   <data name="MonthlyCashflowLabel" xml:space="preserve">
     <value>Monthly Cashflow</value>

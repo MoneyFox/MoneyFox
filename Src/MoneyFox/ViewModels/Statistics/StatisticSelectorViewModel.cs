@@ -65,7 +65,7 @@ namespace MoneyFox.ViewModels.Statistics
             }
             else if(item.Type == StatisticType.MonthlyAccountCashFlow)
             {
-                await Shell.Current.GoToAsync(ViewModelLocator.StatistcAccountMonthlyCashflowRoute);
+                await Shell.Current.GoToAsync(ViewModelLocator.StatisticAccountMonthlyCashflowRoute);
             }
         }
     }

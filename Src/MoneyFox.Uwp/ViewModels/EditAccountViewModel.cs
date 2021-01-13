@@ -29,7 +29,10 @@ namespace MoneyFox.Uwp.ViewModels
         {
             this.mediator = mediator;
             this.mapper = mapper;
+
         }
+
+        public override bool IsEdit => true;
 
         public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccountAsync);
 
