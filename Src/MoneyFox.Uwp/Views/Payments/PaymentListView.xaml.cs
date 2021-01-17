@@ -24,12 +24,15 @@ namespace MoneyFox.Uwp.Views.Payments
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            ViewModel.Subscribe();
             if(e.Parameter != null)
             {
                 ViewModel.AccountId = (int)e.Parameter;
                 ViewModel.InitializeCommand.Execute(null);
             }
         }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e) => ViewModel.Unsubscribe();
 
         private void AppBarToggleButton_Click(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
 

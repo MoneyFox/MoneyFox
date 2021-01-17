@@ -60,10 +60,15 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
             this.navigationService = navigationService;
+        }
 
+        public void Subscribe()
+        {
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPaymentsAsync(message));
             MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
         }
+
+        public void Unsubscribe() => MessengerInstance.Unregister(this);
 
         public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
