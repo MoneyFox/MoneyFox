@@ -21,6 +21,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
     /// />
     public class PaymentListViewActionViewModel : ViewModelBase, IPaymentListViewActionViewModel
     {
+        private const int TRANSFER_THRESHOLD = 2;
+
         private readonly IMediator mediator;
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
@@ -59,7 +61,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             int accountCount = mediator.Send(new GetAccountCountQuery()).Result;
 #pragma warning restore S4462 // Calls to "async" methods should not be blocking
 
-            IsTransferAvailable = accountCount >= 2;
+            IsTransferAvailable = accountCount >= TRANSFER_THRESHOLD;
             IsAddIncomeAvailable = accountCount >= 1;
             IsAddExpenseAvailable = accountCount >= 1;
         }

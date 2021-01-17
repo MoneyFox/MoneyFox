@@ -42,7 +42,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private IBalanceViewModel balanceViewModel = null!;
 
         private string title = "";
-        private IPaymentListViewActionViewModel viewActionViewModel;
+        private IPaymentListViewActionViewModel? viewActionViewModel;
 
         /// <summary>
         /// Default constructor
@@ -106,7 +106,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// <summary>
         /// View Model for the global actions on the view.
         /// </summary>
-        public IPaymentListViewActionViewModel ViewActionViewModel
+        public IPaymentListViewActionViewModel? ViewActionViewModel
         {
             get => viewActionViewModel;
             private set
