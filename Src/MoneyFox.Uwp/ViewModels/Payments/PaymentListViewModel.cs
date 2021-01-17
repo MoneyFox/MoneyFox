@@ -42,7 +42,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private IBalanceViewModel balanceViewModel = null!;
 
         private string title = "";
-        private IPaymentListViewActionViewModel viewActionViewModel;
+        private IPaymentListViewActionViewModel? viewActionViewModel;
 
         /// <summary>
         /// Default constructor
@@ -60,10 +60,15 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.settingsFacade = settingsFacade;
             this.balanceCalculationService = balanceCalculationService;
             this.navigationService = navigationService;
+        }
 
+        public void Subscribe()
+        {
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPaymentsAsync(message));
             MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
         }
+
+        public void Unsubscribe() => MessengerInstance.Unregister(this);
 
         public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
@@ -106,7 +111,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// <summary>
         /// View Model for the global actions on the view.
         /// </summary>
-        public IPaymentListViewActionViewModel ViewActionViewModel
+        public IPaymentListViewActionViewModel? ViewActionViewModel
         {
             get => viewActionViewModel;
             private set

@@ -32,6 +32,6 @@ namespace MoneyFox.Presentation.ViewModels.DesignTime
             }
         };
 
-        public RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; }
+        public RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; } = null!;
     }
 }
