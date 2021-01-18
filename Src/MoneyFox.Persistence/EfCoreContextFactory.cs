@@ -8,7 +8,7 @@ namespace MoneyFox.Persistence
         public static EfCoreContext Create()
         {
             DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
-                                                     .UseSqlite($"Data Source={DatabasePathHelper.GetDbPath()}")
+                                                     .UseSqlite($"Data Source={DatabasePathHelper.DbPath}")
                                                      .Options;
 
             var context = new EfCoreContext(options);

@@ -19,7 +19,7 @@ namespace MoneyFox.Persistence.Tests.Helper
             ExecutingPlatform.Current = platform;
 
             // Act
-            string result = DatabasePathHelper.GetDbPath();
+            string result = DatabasePathHelper.DbPath;
 
             // Assert
             result.Should().Contain(expectedPathSegment);
