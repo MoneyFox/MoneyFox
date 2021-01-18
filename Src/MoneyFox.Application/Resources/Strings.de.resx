@@ -780,9 +780,9 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Statistiken über deine Einnahmen und Ausgaben</value>
   </data>
   <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>Anmeldung zum Sicherungsdienst ist fehlgeschlagen. Das automatische Backup wurde deaktiviert. Bitte logge dich erneut ein und aktiviere es wieder.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>Login fehlgeschlagen!</value>
   </data>
 </root>
