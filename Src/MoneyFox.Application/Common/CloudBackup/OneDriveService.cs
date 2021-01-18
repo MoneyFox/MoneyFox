@@ -63,15 +63,15 @@ namespace MoneyFox.Application.Common.CloudBackup
             catch(MsalUiRequiredException ex)
             {
                 logManager.Debug(ex);
-                // pop the browser for the interactive experience
-                AuthenticationResult authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
-                                                          .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
-                                                          .ExecuteAsync();
+                //// pop the browser for the interactive experience
+                //AuthenticationResult authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
+                //                                          .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
+                //                                          .ExecuteAsync();
 
-                GraphServiceClient = graphClientFactory.CreateClient(authResult);
-                User? user = await GraphServiceClient.Me.Request().GetAsync();
-                UserAccount = new UserAccount();
-                UserAccount.SetUserAccount(user);
+                //GraphServiceClient = graphClientFactory.CreateClient(authResult);
+                //User? user = await GraphServiceClient.Me.Request().GetAsync();
+                //UserAccount = new UserAccount();
+                //UserAccount.SetUserAccount(user);
             }
             catch(MsalClientException ex)
             {
