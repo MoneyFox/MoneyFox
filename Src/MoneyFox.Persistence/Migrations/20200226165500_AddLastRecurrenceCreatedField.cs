@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Persistence.Migrations
 {
+    [SuppressMessage("Minor Code Smell", "S3254:Default parameter values should not be passed as arguments")]
     public partial class AddLastRecurrenceCreatedField : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
