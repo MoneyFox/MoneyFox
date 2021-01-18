@@ -1,7 +1,6 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.Common.Facades;
 using MoneyFox.Domain.Exceptions;
 using NLog;
 using System;
@@ -56,19 +55,10 @@ namespace MoneyFox.Application.Common.CloudBackup
             {
                 AuthenticationResult authResult;
                 IAccount firstAccount = accounts.FirstOrDefault();
-                if(firstAccount == null)
-                {
-                    // pop the browser for the interactive experience
-                    authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
+                authResult = firstAccount == null ? await publicClientApplication.AcquireTokenInteractive(scopes)
                                                               .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
-                                                              .ExecuteAsync();
-
-                }
-                else
-                {
-                    // Acquire result silent
-                    authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
-                }
+                                                              .ExecuteAsync()
+                                                  : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User user = await GraphServiceClient.Me.Request().GetAsync();

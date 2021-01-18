@@ -23,7 +23,7 @@ namespace MoneyFox
     public partial class App : Xamarin.Forms.Application
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
-        private bool isRunning = false;
+        private bool isRunning;
 
         public App()
         {
