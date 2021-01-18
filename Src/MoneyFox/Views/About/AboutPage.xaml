@@ -4,13 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             xmlns:designTime="clr-namespace:MoneyFox.Ui.Shared.ViewModels.About;assembly=MoneyFox.Ui.Shared"
              Visual="Material"
              mc:Ignorable="d">
-
-    <d:ContentPage.BindingContext>
-        <designTime:DesignTimeAboutViewModel/>
-    </d:ContentPage.BindingContext>
 
     <ContentPage.Content>
         <ScrollView>
