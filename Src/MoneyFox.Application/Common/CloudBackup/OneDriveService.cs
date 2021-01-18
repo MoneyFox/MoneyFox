@@ -18,7 +18,6 @@ namespace MoneyFox.Application.Common.CloudBackup
     {
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string BACKUP_NAME_TEMP = "moneyfox.db_upload";
-
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
         private readonly string[] scopes = { "Files.ReadWrite", "User.ReadBasic.All" };
 
@@ -34,6 +33,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         {
             this.publicClientApplication = publicClientApplication;
             this.graphClientFactory = graphClientFactory;
+
             UserAccount = new UserAccount();
         }
 
@@ -53,25 +53,21 @@ namespace MoneyFox.Application.Common.CloudBackup
             // let's see if we have a user in our belly already
             try
             {
+                AuthenticationResult authResult;
                 IAccount firstAccount = accounts.FirstOrDefault();
-                AuthenticationResult authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+                authResult = firstAccount == null ? await publicClientApplication.AcquireTokenInteractive(scopes)
+                                                              .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
+                                                              .ExecuteAsync()
+                                                  : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
-                User? user = await GraphServiceClient.Me.Request().GetAsync();
+                User user = await GraphServiceClient.Me.Request().GetAsync();
                 UserAccount.SetUserAccount(user);
             }
             catch(MsalUiRequiredException ex)
             {
                 logManager.Debug(ex);
-                // pop the browser for the interactive experience
-                AuthenticationResult authResult = await publicClientApplication.AcquireTokenInteractive(scopes)
-                                                          .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
-                                                          .ExecuteAsync();
-
-                GraphServiceClient = graphClientFactory.CreateClient(authResult);
-                User? user = await GraphServiceClient.Me.Request().GetAsync();
-                UserAccount = new UserAccount();
-                UserAccount.SetUserAccount(user);
+                throw;
             }
             catch(MsalClientException ex)
             {
@@ -310,7 +306,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             catch(Exception ex)
             {
                 logManager.Error(ex);
-                return DateTime.MinValue;
+                throw;
             }
         }
 
