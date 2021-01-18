@@ -33,6 +33,8 @@ namespace MoneyFox.Application.Common.Facades
         string DefaultCulture { get; set; }
 
         bool IsSetupCompleted { get; set; }
+
+        DateTime LastExecutionTimeStampSyncBackup { get; set; }
     }
 
     public class SettingsFacade : ISettingsFacade

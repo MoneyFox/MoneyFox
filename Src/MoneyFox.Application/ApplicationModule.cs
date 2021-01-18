@@ -23,7 +23,8 @@ namespace MoneyFox.Application
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Adapter", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces();
+                   .AsImplementedInterfaces()
+                   .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Facade", StringComparison.CurrentCultureIgnoreCase))

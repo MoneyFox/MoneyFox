@@ -120,7 +120,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
 
-            await toastService.ShowToastAsync(Strings.LoggedInMessage, Strings.LoggedOutTitle);
+            await toastService.ShowToastAsync(Strings.LoggedOutMessage, Strings.LoggedOutTitle);
 
             logger.Info("Successfully logged in.");
         }
@@ -158,8 +158,18 @@ namespace MoneyFox.Application.Common.CloudBackup
                 return DateTime.MinValue;
             }
 
-            DateTime date = await cloudBackupService.GetBackupDateAsync();
-            return date.ToLocalTime();
+            try
+            {
+                DateTime date = await cloudBackupService.GetBackupDateAsync();
+                return date.ToLocalTime();
+            }
+            catch(BackupOperationCanceledException ex)
+            {
+                logger.Error(ex, "Operation canceled during get backup date. Execute logout");
+                await LogoutAsync();
+                await toastService.ShowToastAsync(Strings.FailedToLoginToBackupMessage, Strings.FailedToLoginToBackupTitle);
+            }
+            return DateTime.MinValue.ToLocalTime();
         }
 
         public async Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic)
@@ -175,52 +185,70 @@ namespace MoneyFox.Application.Common.CloudBackup
                 throw new NetworkConnectionException();
             }
 
-            BackupRestoreResult result = await DownloadBackupAsync(backupMode);
-
-            if(result == BackupRestoreResult.NewBackupRestored)
+            try
             {
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+                BackupRestoreResult result = await DownloadBackupAsync(backupMode);
 
-                await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
-                messenger.Send(new ReloadMessage());
+                if(result == BackupRestoreResult.NewBackupRestored)
+                {
+                    settingsFacade.LastDatabaseUpdate = DateTime.Now;
+
+                    await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
+                    messenger.Send(new ReloadMessage());
+                }
+            }
+            catch(BackupOperationCanceledException ex)
+            {
+                logger.Error(ex, "Operation canceled during restore backup. Execute logout");
+                await LogoutAsync();
+                await toastService.ShowToastAsync(Strings.FailedToLoginToBackupMessage, Strings.FailedToLoginToBackupTitle);
             }
         }
 
         private async Task<BackupRestoreResult> DownloadBackupAsync(BackupMode backupMode)
         {
-            DateTime backupDate = await GetBackupDateAsync();
-            if(settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
+            try
             {
-                logger.Info("Local backup is newer than remote. Don't download backup");
-                return BackupRestoreResult.Canceled;
+                DateTime backupDate = await GetBackupDateAsync();
+                if(settingsFacade.LastDatabaseUpdate > backupDate && backupMode == BackupMode.Automatic)
+                {
+                    logger.Info("Local backup is newer than remote. Don't download backup");
+                    return BackupRestoreResult.Canceled;
+                }
+
+                List<string> backups = await cloudBackupService.GetFileNamesAsync();
+
+                if(backups.Contains(DatabaseConstants.BACKUP_NAME))
+                {
+                    logger.Info("New backup found. Starting download.");
+                    using(Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
+                                                                                      DatabaseConstants.BACKUP_NAME))
+                    {
+                        await fileStore.WriteFileAsync(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
+                    }
+
+                    logger.Info("Backup downloaded. Replace current file.");
+
+                    bool moveSucceed = await fileStore.TryMoveAsync(DatabaseConstants.BACKUP_NAME,
+                                                                    DatabasePathHelper.DbPath,
+                                                                    true);
+
+                    if(!moveSucceed)
+                    {
+                        throw new BackupException("Error Moving downloaded backup file");
+                    }
+
+                    logger.Info("Recreate database context.");
+                    contextAdapter.RecreateContext();
+
+                    return BackupRestoreResult.NewBackupRestored;
+                }
             }
-
-            List<string> backups = await cloudBackupService.GetFileNamesAsync();
-
-            if(backups.Contains(DatabaseConstants.BACKUP_NAME))
+            catch(BackupOperationCanceledException ex)
             {
-                logger.Info("New backup found. Starting download.");
-                using(Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
-                                                                                  DatabaseConstants.BACKUP_NAME))
-                {
-                    await fileStore.WriteFileAsync(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
-                }
-
-                logger.Info("Backup downloaded. Replace current file.");
-
-                bool moveSucceed = await fileStore.TryMoveAsync(DatabaseConstants.BACKUP_NAME,
-                                                                DatabasePathHelper.DbPath,
-                                                                true);
-
-                if(!moveSucceed)
-                {
-                    throw new BackupException("Error Moving downloaded backup file");
-                }
-
-                logger.Info("Recreate database context.");
-                contextAdapter.RecreateContext();
-
-                return BackupRestoreResult.NewBackupRestored;
+                logger.Error(ex, "Operation canceled during restore backup. Execute logout");
+                await LogoutAsync();
+                await toastService.ShowToastAsync(Strings.FailedToLoginToBackupMessage, Strings.FailedToLoginToBackupTitle);
             }
 
             return BackupRestoreResult.BackupNotFound;
