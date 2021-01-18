@@ -1024,6 +1024,24 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again..
+        /// </summary>
+        public static string FailedToLoginToBackupMessage {
+            get {
+                return ResourceManager.GetString("FailedToLoginToBackupMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login failed!.
+        /// </summary>
+        public static string FailedToLoginToBackupTitle {
+            get {
+                return ResourceManager.GetString("FailedToLoginToBackupTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feedback Money Fox.
         /// </summary>
         public static string FeedbackSubject {

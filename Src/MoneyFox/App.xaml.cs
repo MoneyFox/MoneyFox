@@ -94,19 +94,15 @@ namespace MoneyFox
         private async Task StartupTasksAsync()
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
-
-            IMediator? mediator = ServiceLocator.Current.GetInstance<IMediator>();
-            if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
-            {
-                await mediator.Send(new ClearPaymentsCommand());
-                await mediator.Send(new CreateRecurringPaymentsCommand());
-                return;
-            }
+            IMediator mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
             try
             {
-                IBackupService? backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-                await backupService.RestoreBackupAsync();
+                if(settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
+                {
+                    IBackupService backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                    await backupService.RestoreBackupAsync();
+                }
 
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
