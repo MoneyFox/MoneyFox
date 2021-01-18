@@ -90,7 +90,7 @@ namespace MoneyFox
 
         private async Task StartupTasksAsync()
         {
-            var settingsFacade = new SettingsFacade(new SettingsAdapter());
+            ISettingsFacade settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
             IMediator mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
             try
