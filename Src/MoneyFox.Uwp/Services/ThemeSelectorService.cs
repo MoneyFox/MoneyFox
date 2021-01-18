@@ -43,7 +43,7 @@ namespace MoneyFox.Uwp.Services
         private static ElementTheme LoadThemeFromSettings()
         {
             ElementTheme cacheTheme = ElementTheme.Default;
-            string themeName = ApplicationData.Current.LocalSettings.ReadAsync<string>(SettingsKey);
+            string themeName = ApplicationData.Current.LocalSettings.Read<string>(SettingsKey);
 
             if(!string.IsNullOrEmpty(themeName))
             {
