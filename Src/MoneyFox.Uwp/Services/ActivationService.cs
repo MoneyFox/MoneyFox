@@ -117,7 +117,7 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        private Type GetStartupView(string startupArgs, Type defaultView)
+        private static Type GetStartupView(string startupArgs, Type defaultView)
         {
             return startupArgs == AppConstants.AddPaymentId
                 ? typeof(AddPaymentViewModel)
