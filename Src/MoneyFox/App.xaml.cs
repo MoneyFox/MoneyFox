@@ -23,6 +23,7 @@ namespace MoneyFox
     public partial class App : Xamarin.Forms.Application
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private bool isRunning;
 
         public App()
         {
@@ -82,31 +83,31 @@ namespace MoneyFox
 
         private void ExecuteStartupTasks()
         {
-#pragma warning disable 4014
             Task.Run(async () =>
             {
                 await StartupTasksAsync();
             }).ConfigureAwait(false);
-#pragma warning restore 4014
-
         }
 
         private async Task StartupTasksAsync()
         {
-            var settingsFacade = new SettingsFacade(new SettingsAdapter());
-
-            IMediator? mediator = ServiceLocator.Current.GetInstance<IMediator>();
-            if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
+            // Don't execute this again when already running
+            if(isRunning)
             {
-                await mediator.Send(new ClearPaymentsCommand());
-                await mediator.Send(new CreateRecurringPaymentsCommand());
                 return;
             }
+            isRunning = true;
+
+            ISettingsFacade settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
+            IMediator mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
             try
             {
-                IBackupService? backupService = ServiceLocator.Current.GetInstance<IBackupService>();
-                await backupService.RestoreBackupAsync();
+                if(settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
+                {
+                    IBackupService backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                    await backupService.RestoreBackupAsync();
+                }
 
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
@@ -121,6 +122,7 @@ namespace MoneyFox
             finally
             {
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                isRunning = false;
             }
         }
     }
