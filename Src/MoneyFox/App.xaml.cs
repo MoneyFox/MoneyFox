@@ -23,6 +23,7 @@ namespace MoneyFox
     public partial class App : Xamarin.Forms.Application
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private bool isRunning = false;
 
         public App()
         {
@@ -90,6 +91,13 @@ namespace MoneyFox
 
         private async Task StartupTasksAsync()
         {
+            // Don't execute this again when already running
+            if(isRunning)
+            {
+                return;
+            }
+            isRunning = true;
+
             ISettingsFacade settingsFacade = ServiceLocator.Current.GetInstance<ISettingsFacade>();
             IMediator mediator = ServiceLocator.Current.GetInstance<IMediator>();
 
@@ -114,6 +122,7 @@ namespace MoneyFox
             finally
             {
                 settingsFacade.LastExecutionTimeStampSyncBackup = DateTime.Now;
+                isRunning = false;
             }
         }
     }
