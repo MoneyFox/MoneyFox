@@ -42,9 +42,7 @@ namespace MoneyFox.Application.Common.Constants
         /// <summary>
         /// ID string for add payment shortcuts
         /// </summary>
-#pragma warning disable S2339 // Public constant members should not be used
-        public const string AddPaymentId = "AddIncomeId";
-#pragma warning restore S2339 // Public constant members should not be used
+        public static string AddPaymentId => "AddIncomeId";
 
         public static string LogFileName => "moneyfox.log";
 

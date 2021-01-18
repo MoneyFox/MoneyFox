@@ -119,11 +119,9 @@ namespace MoneyFox.Uwp.Services
 
         private Type GetStartupView(string startupArgs, Type defaultView)
         {
-            return startupArgs switch
-            {
-                AppConstants.AddPaymentId => typeof(AddPaymentViewModel),
-                _ => defaultView,
-            };
+            return startupArgs == AppConstants.AddPaymentId
+                ? typeof(AddPaymentViewModel)
+                : defaultView;
         }
 
         private static async Task StartupAsync()
