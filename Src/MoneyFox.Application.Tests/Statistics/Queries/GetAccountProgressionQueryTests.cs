@@ -2,10 +2,12 @@
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain.Exceptions;
 using System;
+using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
 namespace MoneyFox.Application.Tests.Statistics.Queries
 {
+    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public class GetAccountProgressionQueryTests
     {
         [Fact]

@@ -71,7 +71,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                .ToList();
 
             // Assert
-            result.Count.Should().Be(3);
+            result.Should().HaveCount(3);
             result[0].Value.Should().Be(90);
             result[1].Value.Should().Be(30);
             result[2].Value.Should().Be(10);
@@ -107,7 +107,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                .ToList();
 
             // Assert
-            result.Count.Should().Be(2);
+            result.Should().HaveCount(2);
         }
 
         [Fact]
