@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Uwp.Activation;
+using MoneyFox.Uwp.ViewModels.Payments;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using System;
@@ -106,12 +108,22 @@ namespace MoneyFox.Uwp.Services
         {
             if(IsInteractive(activationArgs))
             {
-                var defaultHandler = new DefaultLaunchActivationHandler(defaultNavItem);
+                string arguments = (activationArgs as LaunchActivatedEventArgs)?.Arguments ?? "";
+                var defaultHandler = new DefaultLaunchActivationHandler(GetStartupView(arguments, defaultNavItem));
                 if(defaultHandler.CanHandle(activationArgs))
                 {
                     await defaultHandler.HandleAsync(activationArgs);
                 }
             }
+        }
+
+        private Type GetStartupView(string startupArgs, Type defaultView)
+        {
+            return startupArgs switch
+            {
+                AppConstants.AddPaymentId => typeof(AddPaymentViewModel),
+                _ => defaultView,
+            };
         }
 
         private static async Task StartupAsync()
