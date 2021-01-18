@@ -10,8 +10,8 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         Task<double> ConvertAsync(double amount, string from, string to);
 
-        List<Currency> GetAllCurrencies();
+        List<Currency> LoadAllCurrencies();
 
-        Task<List<Currency>> GetAllCurrenciesAsync();
+        Task<List<Currency>> LoadAllCurrenciesAsync();
     }
 }

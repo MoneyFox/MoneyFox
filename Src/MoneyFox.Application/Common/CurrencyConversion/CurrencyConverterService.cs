@@ -18,8 +18,8 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         public async Task<double> ConvertAsync(double amount, string from, string to) => await Task.Run(() => Convert(amount, from, to));
 
-        public List<Currency> GetAllCurrencies() => RequestHelper.GetAllCurrencies(apiKey).OrderBy(x => x.CurrencyName).ToList();
+        public List<Currency> LoadAllCurrencies() => RequestHelper.GetAllCurrencies(apiKey).OrderBy(x => x.CurrencyName).ToList();
 
-        public async Task<List<Currency>> GetAllCurrenciesAsync() => await Task.Run(() => GetAllCurrencies());
+        public async Task<List<Currency>> LoadAllCurrenciesAsync() => await Task.Run(() => LoadAllCurrencies());
     }
 }
