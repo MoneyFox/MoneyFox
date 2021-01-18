@@ -82,13 +82,10 @@ namespace MoneyFox
 
         private void ExecuteStartupTasks()
         {
-#pragma warning disable 4014
             Task.Run(async () =>
             {
                 await StartupTasksAsync();
             }).ConfigureAwait(false);
-#pragma warning restore 4014
-
         }
 
         private async Task StartupTasksAsync()
