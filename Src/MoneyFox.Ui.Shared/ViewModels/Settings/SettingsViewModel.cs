@@ -37,7 +37,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Settings
                     return;
                 }
 
-                if(selectedCulture == value)
+                if(selectedCulture.Equals(value))
                 {
                     return;
                 }
