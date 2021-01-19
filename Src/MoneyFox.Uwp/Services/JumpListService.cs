@@ -12,8 +12,6 @@ namespace MoneyFox.Uwp.Services
     internal static class JumpListService
     {
         private const string INCOME_ICON = "ms-appx:///Assets/IncomeTileIcon.png";
-        private const string EXPENSE_ICON = "ms-appx:///Assets/SpendingTileIcon.png";
-        private const string TRANSFER_ICON = "ms-appx:///Assets/TransferTileIcon.png";
 
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -30,20 +28,9 @@ namespace MoneyFox.Uwp.Services
                 jumpList.Items.Clear();
                 jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
 
-                var listItemAddIncome = JumpListItem.CreateWithArguments(AppConstants.AddIncomeTileId,
-                                                                         Strings.AddIncomeLabel);
-                listItemAddIncome.Logo = new Uri(INCOME_ICON);
-                jumpList.Items.Add(listItemAddIncome);
-
-                var listItemAddSpending = JumpListItem.CreateWithArguments(AppConstants.AddExpenseTileId,
-                                                                           Strings.AddExpenseLabel);
-                listItemAddSpending.Logo = new Uri(EXPENSE_ICON);
-                jumpList.Items.Add(listItemAddSpending);
-
-                var listItemAddTransfer = JumpListItem.CreateWithArguments(AppConstants.AddTransferTileId,
-                                                                           Strings.AddTransferLabel);
-                listItemAddTransfer.Logo = new Uri(TRANSFER_ICON);
-                jumpList.Items.Add(listItemAddTransfer);
+                var listItemAddPayment = JumpListItem.CreateWithArguments(AppConstants.AddPaymentId, Strings.AddPaymentLabel);
+                listItemAddPayment.Logo = new Uri(INCOME_ICON);
+                jumpList.Items.Add(listItemAddPayment);
 
                 await jumpList.SaveAsync();
             }

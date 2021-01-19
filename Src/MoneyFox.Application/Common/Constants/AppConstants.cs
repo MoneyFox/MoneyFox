@@ -40,19 +40,9 @@ namespace MoneyFox.Application.Common.Constants
         public static string GithubContributionUrl => "https://github.com/MoneyFox/MoneyFox/graphs/contributors";
 
         /// <summary>
-        /// ID string for add income shortcuts
+        /// ID string for add payment shortcuts
         /// </summary>
-        public static string AddIncomeTileId => "AddIncomeTile";
-
-        /// <summary>
-        /// ID string for add transfer shortcuts
-        /// </summary>
-        public static string AddExpenseTileId => "AddSpendingTile";
-
-        /// <summary>
-        /// ID string for add transfer shortcuts
-        /// </summary>
-        public static string AddTransferTileId => "AddTransferTile";
+        public static string AddPaymentId => "AddIncomeId";
 
         public static string LogFileName => "moneyfox.log";
 

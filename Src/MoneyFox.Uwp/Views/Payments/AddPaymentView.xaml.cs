@@ -15,8 +15,13 @@ namespace MoneyFox.Uwp.Views.Payments
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            PaymentType? passedType = e.Parameter as PaymentType?;
+            PaymentType type = passedType == null
+                ? PaymentType.Expense
+                : passedType.Value;
+
             ViewModel.Subscribe();
-            ViewModel.PaymentType = (PaymentType)e.Parameter;
+            ViewModel.PaymentType = type;
             ViewModel.InitializeCommand.Execute(null);
         }
 
