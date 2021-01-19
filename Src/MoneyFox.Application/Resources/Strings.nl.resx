@@ -783,4 +783,10 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
   <data name="StatisticsToolTip" xml:space="preserve">
     <value>View your Statistics</value>
   </data>
+  <data name="FailedToLoginToBackupMessage" xml:space="preserve">
+    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+  </data>
+  <data name="FailedToLoginToBackupTitle" xml:space="preserve">
+    <value>Login failed!</value>
+  </data>
 </root>
