@@ -779,4 +779,10 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="StatisticsToolTip" xml:space="preserve">
     <value>Statistiken über deine Einnahmen und Ausgaben</value>
   </data>
+  <data name="FailedToLoginToBackupMessage" xml:space="preserve">
+    <value>Anmeldung zum Sicherungsdienst ist fehlgeschlagen. Das automatische Backup wurde deaktiviert. Bitte logge dich erneut ein und aktiviere es wieder.</value>
+  </data>
+  <data name="FailedToLoginToBackupTitle" xml:space="preserve">
+    <value>Login fehlgeschlagen!</value>
+  </data>
 </root>
