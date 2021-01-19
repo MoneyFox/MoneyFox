@@ -15,13 +15,13 @@ namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
 
         private void PaymentListUserControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
-            if(args.NewValue is CategoryOverviewViewModel)
+            if(args.NewValue is CategoryOverviewViewModel model)
             {
-                ViewModel = (CategoryOverviewViewModel)args.NewValue;
+                ViewModel = model;
                 Bindings.Update();
             }
         }
 
-        public CategoryOverviewViewModel ViewModel { get; set; }
+        public CategoryOverviewViewModel? ViewModel { get; set; }
     }
 }

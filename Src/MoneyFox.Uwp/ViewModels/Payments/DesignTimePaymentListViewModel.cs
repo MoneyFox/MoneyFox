@@ -39,6 +39,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public int AccountId { get; } = 13;
 
-        public RelayCommand LoadDataCommand => throw new NotImplementedException();
+        public RelayCommand LoadDataCommand => throw new NotSupportedException();
     }
 }

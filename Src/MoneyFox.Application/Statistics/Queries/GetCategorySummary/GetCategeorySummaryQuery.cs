@@ -88,7 +88,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 categoryOverviewItems.Add(categoryOverViewItem);
             }
 
-            private void AddEntryForPaymentsWithoutCategory(List<Payment> payments)
+            private void AddEntryForPaymentsWithoutCategory(IEnumerable<Payment> payments)
             {
                 categoryOverviewItems.Add(new CategoryOverviewItem
                 {
@@ -102,7 +102,7 @@ namespace MoneyFox.Application.Statistics.Queries.GetCategorySummary
                 });
             }
 
-            private static void CalculatePercentage(List<CategoryOverviewItem> categories)
+            private static void CalculatePercentage(IEnumerable<CategoryOverviewItem> categories)
             {
                 decimal sumNegative = categories.Where(x => x.Value < 0).Sum(x => x.Value);
                 decimal sumPositive = categories.Where(x => x.Value > 0).Sum(x => x.Value);

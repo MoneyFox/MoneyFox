@@ -66,7 +66,8 @@ namespace MoneyFox.ViewModels.Categories
         {
             List<CategoryViewModel>? categorieVms = mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
 
-            List<AlphaGroupListGroupCollection<CategoryViewModel>>? groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms, CultureInfo.CurrentUICulture,
+            List<AlphaGroupListGroupCollection<CategoryViewModel>>? groups = AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms,
+                CultureInfo.CurrentUICulture,
                 s => string.IsNullOrEmpty(s.Name)
                     ? "-"
                     : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture));

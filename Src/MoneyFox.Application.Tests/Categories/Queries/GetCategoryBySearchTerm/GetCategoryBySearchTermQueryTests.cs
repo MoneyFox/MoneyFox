@@ -51,7 +51,7 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
                                                                                                  default);
 
             // Assert
-            result.Count.Should().Be(2);
+            result.Should().HaveCount(2);
         }
 
         [Fact]

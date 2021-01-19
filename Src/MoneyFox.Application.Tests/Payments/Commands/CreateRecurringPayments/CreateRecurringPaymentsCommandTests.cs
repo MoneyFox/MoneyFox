@@ -52,7 +52,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreateRecurringPayments
             var loadedPayments = context.Payments.ToList();
 
             // Assert
-            loadedPayments.Count.Should().Be(2);
+            loadedPayments.Should().HaveCount(2);
             loadedPayments.ForEach(x => x.Amount.Should().Be(166));
         }
     }

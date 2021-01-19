@@ -169,7 +169,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             {
                 return false;
             }
-            return (Id.Equals(other.Id));
+            return Id.Equals(other.Id);
         }
     }
 }

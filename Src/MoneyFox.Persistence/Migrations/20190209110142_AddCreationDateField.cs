@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 using System;
+using System.Diagnostics.CodeAnalysis;
 
-#pragma warning disable S3254 // Default parameter values should not be passed as arguments
-#pragma warning disable S3900 // Arguments of public methods should be validated against null
-#pragma warning disable CA1062 // Validate arguments of public methods
-#pragma warning disable S1192 // String literals should not be duplicated
 namespace MoneyFox.Persistence.Migrations
 {
+    [SuppressMessage("Minor Code Smell", "S1192:String literals should not be duplicated")]
+    [SuppressMessage("Minor Code Smell", "S3254:Default parameter values should not be passed as arguments")]
     public partial class AddCreationDateField : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)

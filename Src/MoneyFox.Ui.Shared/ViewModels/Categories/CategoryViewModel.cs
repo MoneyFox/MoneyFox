@@ -10,7 +10,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Categories
         private int id;
         private string name = "";
         private string note = "";
-        private bool requireNote = false;
+        private bool requireNote;
         private DateTime creationTime;
         private DateTime modificationDate;
 

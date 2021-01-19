@@ -7,7 +7,9 @@ namespace MoneyFox.Uwp.Converter
 {
     public class DateTimeToStringConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language) => ((DateTime)value).ToString("d", CultureHelper.CurrentCulture);
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotImplementedException();
+        public object Convert(object value, Type targetType, object parameter, string language)
+            => ((DateTime)value).ToString("d", CultureHelper.CurrentCulture);
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+            => throw new NotSupportedException();
     }
 }
