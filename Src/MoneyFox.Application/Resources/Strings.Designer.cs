@@ -1313,6 +1313,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Logged in!.
+        /// </summary>
+        public static string LoggedInTitle {
+            get {
+                return ResourceManager.GetString("LoggedInTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logged out successfully..
         /// </summary>
         public static string LoggedOutMessage {
