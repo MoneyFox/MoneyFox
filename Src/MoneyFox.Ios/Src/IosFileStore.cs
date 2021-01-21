@@ -12,7 +12,7 @@
         {
             if(path.StartsWith(ResScheme))
             {
-                return path.Substring(ResScheme.Length);
+                return path[ResScheme.Length..];
             }
 
             return base.AppendPath(path);
