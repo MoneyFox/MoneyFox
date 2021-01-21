@@ -88,7 +88,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         public async Task LoginSilentAsync()
         {
             IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
-            IAccount firstAccount = accounts.FirstOrDefault();
+            IAccount? firstAccount = accounts.FirstOrDefault();
 
             if(firstAccount == null)
             {

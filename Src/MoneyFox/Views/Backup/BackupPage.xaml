@@ -29,9 +29,6 @@
                 <Label Style="{StaticResource TextHeadline}"
                     Text="{x:Static resources:Strings.BackupTitle}" />
 
-                <Label Text="{x:Static resources:Strings.BackupServiceTitle}"
-                       Style="{StaticResource TextTitle}" />
-
                 <StackLayout IsVisible="{Binding IsLoggedIn}">
                     <Label Style="{StaticResource TextTitle}"
                            Text="{Binding UserAccount.Name}"
