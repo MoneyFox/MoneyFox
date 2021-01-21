@@ -83,6 +83,25 @@ namespace MoneyFox.Application.Common.CloudBackup
         }
 
         /// <summary>
+        /// Login User to OneDrive silently.
+        /// </summary>
+        public async Task LoginSilentAsync()
+        {
+            IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
+            IAccount? firstAccount = accounts.FirstOrDefault();
+
+            if(firstAccount == null)
+            {
+                throw new BackupAuthenticationFailedException();
+            }
+            AuthenticationResult authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+
+            GraphServiceClient = graphClientFactory.CreateClient(authResult);
+            User user = await GraphServiceClient.Me.Request().GetAsync();
+            UserAccount.SetUserAccount(user);
+        }
+
+        /// <summary>
         /// Logout User from OneDrive.
         /// </summary>
         public async Task LogoutAsync()
@@ -126,7 +145,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
                 if(GraphServiceClient == null)
                 {
-                    await LoginAsync();
+                    await LoginSilentAsync();
                     if(GraphServiceClient == null)
                     {
                         throw new BackupAuthenticationFailedException("Was not able to automatically login.");
@@ -230,7 +249,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
                 if(GraphServiceClient == null)
                 {
-                    await LoginAsync();
+                    await LoginSilentAsync();
                     if(GraphServiceClient == null)
                     {
                         throw new BackupAuthenticationFailedException("Was not able to automatically login.");
@@ -280,7 +299,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
                 if(GraphServiceClient == null)
                 {
-                    await LoginAsync();
+                    await LoginSilentAsync();
                     if(GraphServiceClient == null)
                     {
                         return DateTime.MinValue;
@@ -319,7 +338,7 @@ namespace MoneyFox.Application.Common.CloudBackup
 
                 if(GraphServiceClient == null)
                 {
-                    await LoginAsync();
+                    await LoginSilentAsync();
                     if(GraphServiceClient == null)
                     {
                         throw new BackupAuthenticationFailedException("Was not able to automatically login.");

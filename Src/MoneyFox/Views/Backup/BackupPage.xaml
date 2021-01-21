@@ -7,7 +7,6 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:designTime="clr-namespace:MoneyFox.Ui.Shared.ViewModels.About;assembly=MoneyFox.Ui.Shared"
-             xmlns:backup="clr-namespace:MoneyFox.Ui.Shared.ViewModels.Backup;assembly=MoneyFox.Ui.Shared"
              mc:Ignorable="d"
              Shell.NavBarHasShadow="False"
              BackgroundColor="{DynamicResource WindowBackgroundColor}"
@@ -30,13 +29,10 @@
                 <Label Style="{StaticResource TextHeadline}"
                     Text="{x:Static resources:Strings.BackupTitle}" />
 
-                <Label Text="{x:Static resources:Strings.BackupServiceTitle}"
-                       Style="{StaticResource TextTitle}" />
-
                 <StackLayout IsVisible="{Binding IsLoggedIn}">
                     <Label Style="{StaticResource TextTitle}"
                            Text="{Binding UserAccount.Name}"
-                           FontAttributes="Bold" 
+                           FontAttributes="Bold"
                            HorizontalTextAlignment="Center"
                            Margin="0,10,0,0" />
 

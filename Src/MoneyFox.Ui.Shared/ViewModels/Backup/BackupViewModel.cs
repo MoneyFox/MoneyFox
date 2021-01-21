@@ -138,7 +138,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             }
         }
 
-        public UserAccount UserAccount 
+        public UserAccount UserAccount
         {
             get => userAccount;
             set
@@ -159,6 +159,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
         {
             if(!IsLoggedIn)
             {
+                RaisePropertyChanged(nameof(IsLoggedIn));
                 return;
             }
 

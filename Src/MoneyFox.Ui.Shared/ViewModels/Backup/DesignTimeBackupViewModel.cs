@@ -23,6 +23,6 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
 
         public bool BackupAvailable { get; }
 
-        public bool IsAutoBackupEnabled { get; } = false;
+        public bool IsAutoBackupEnabled { get; }
     }
 }

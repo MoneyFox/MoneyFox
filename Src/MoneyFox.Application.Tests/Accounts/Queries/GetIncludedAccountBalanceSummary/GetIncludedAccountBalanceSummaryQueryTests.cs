@@ -13,7 +13,7 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceSummary
 {
     [ExcludeFromCodeCoverage]
-    public class GetIncludedAccountBalanceSummaryQueryTests
+    public class GetIncludedAccountBalanceSummaryQueryTests : IDisposable
     {
         private readonly EfCoreContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;

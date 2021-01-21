@@ -23,6 +23,12 @@ namespace MoneyFox.Application.Common.CloudBackup
         Task LoginAsync();
 
         /// <summary>
+        /// Login user.
+        /// </summary>
+        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in Silently.</exception>
+        Task LoginSilentAsync();
+
+        /// <summary>
         /// Logout user.
         /// </summary>
         Task LogoutAsync();
@@ -32,7 +38,7 @@ namespace MoneyFox.Application.Common.CloudBackup
         /// </summary>
         /// <param name="dataToUpload">Stream of data to upload.</param>
         /// <returns>Returns a TaskCompletionType which indicates if the task was successful or not</returns>
-        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
+        /// <exception cref="BackupOperationCanceledException">Thrown when the user couldn't be logged in.</exception>
         Task<bool> UploadAsync(Stream dataToUpload);
 
         /// <summary>
