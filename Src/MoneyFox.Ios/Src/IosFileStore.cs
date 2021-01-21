@@ -1,4 +1,6 @@
-﻿namespace MoneyFox.iOS.Src
+﻿using System;
+
+namespace MoneyFox.iOS.Src
 {
     public class IosFileStore : FileStoreIoBase
     {
@@ -10,7 +12,7 @@
 
         protected override string AppendPath(string path)
         {
-            if(path.StartsWith(ResScheme))
+            if(path.StartsWith(ResScheme, StringComparison.OrdinalIgnoreCase))
             {
                 return path[ResScheme.Length..];
             }
