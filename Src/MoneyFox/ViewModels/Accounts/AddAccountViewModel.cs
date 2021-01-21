@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using MediatR;
+﻿using MediatR;
 using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
@@ -14,7 +13,6 @@ namespace MoneyFox.ViewModels.Accounts
         private readonly IDialogService dialogService;
 
         public AddAccountViewModel(IMediator mediator,
-                                   IMapper mapper,
                                    IDialogService dialogService)
             : base(dialogService)
         {
