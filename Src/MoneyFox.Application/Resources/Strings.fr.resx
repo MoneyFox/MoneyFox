@@ -783,4 +783,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
     <value>Login failed!</value>
   </data>
+  <data name="LoggedInTitle" xml:space="preserve">
+    <value>Logged in!</value>
+  </data>
 </root>
