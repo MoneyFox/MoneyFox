@@ -37,11 +37,6 @@ namespace MoneyFox.Ui.Shared.ViewModels.Settings
                     return;
                 }
 
-                if(selectedCulture.Equals(value))
-                {
-                    return;
-                }
-
                 selectedCulture = value;
                 settingsFacade.DefaultCulture = selectedCulture.Name;
                 CultureHelper.CurrentCulture = selectedCulture;
