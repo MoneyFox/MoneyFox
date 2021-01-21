@@ -19,26 +19,22 @@ namespace MoneyFox.Views.Dialogs
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
             nameof(PopupTitle),
             typeof(string),
-            typeof(ConfirmMessageDialog),
-            default(string));
+            typeof(ConfirmMessageDialog));
 
         public static readonly BindableProperty PopupMessageProperty = BindableProperty.Create(
             nameof(PopupMessage),
             typeof(string),
-            typeof(ConfirmMessageDialog),
-            default(string));
+            typeof(ConfirmMessageDialog));
 
         public static readonly BindableProperty PositiveTextProperty = BindableProperty.Create(
             nameof(PositiveText),
             typeof(string),
-            typeof(ConfirmMessageDialog),
-            default(string));
+            typeof(ConfirmMessageDialog));
 
         public static readonly BindableProperty NegativeTextProperty = BindableProperty.Create(
             nameof(NegativeText),
             typeof(string),
-            typeof(ConfirmMessageDialog),
-            default(string));
+            typeof(ConfirmMessageDialog));
 
         public string PopupTitle
         {

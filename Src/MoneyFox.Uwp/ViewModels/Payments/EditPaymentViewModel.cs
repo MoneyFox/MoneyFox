@@ -12,7 +12,6 @@ using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
 using System;
-using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 
 #nullable enable
@@ -25,7 +24,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
 
-        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "Intended")]
         public EditPaymentViewModel(IMediator mediator,
                                     IMapper mapper,
                                     IDialogService dialogService,

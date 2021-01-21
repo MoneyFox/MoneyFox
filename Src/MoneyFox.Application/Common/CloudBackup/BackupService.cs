@@ -120,7 +120,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
 
-            await toastService.ShowToastAsync(Strings.LoggedOutMessage, Strings.LoggedOutTitle);
+            await toastService.ShowToastAsync(Strings.LoggedInMessage, Strings.LoggedInTitle);
 
             logger.Info("Successfully logged in.");
         }
@@ -136,6 +136,8 @@ namespace MoneyFox.Application.Common.CloudBackup
 
             settingsFacade.IsLoggedInToBackupService = false;
             settingsFacade.IsBackupAutouploadEnabled = false;
+
+            await toastService.ShowToastAsync(Strings.LoggedOutMessage, Strings.LoggedOutTitle);
 
             logger.Info("Successfully logged out.");
         }
@@ -163,7 +165,8 @@ namespace MoneyFox.Application.Common.CloudBackup
                 DateTime date = await cloudBackupService.GetBackupDateAsync();
                 return date.ToLocalTime();
             }
-            catch(BackupOperationCanceledException ex)
+            catch(Exception ex)
+                when (ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
             {
                 logger.Error(ex, "Operation canceled during get backup date. Execute logout");
                 await LogoutAsync();
