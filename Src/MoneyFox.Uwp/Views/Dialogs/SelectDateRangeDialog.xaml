@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:resources="using:MoneyFox.Application.Resources"
     Title="Select Daterange"
     PrimaryButtonCommand="{Binding DoneCommand}"
     PrimaryButtonText="done"
@@ -23,13 +23,13 @@
             HorizontalAlignment="Stretch"
             FirstDayOfWeek="Monday"
             Date="{Binding StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Header="startdate" />
+            Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
         <CalendarDatePicker
             Margin="0,5,0,0"
             HorizontalAlignment="Stretch"
             FirstDayOfWeek="Monday"
             Date="{Binding EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            Header="enddate" />
+            Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
     </StackPanel>
 </ContentDialog>
