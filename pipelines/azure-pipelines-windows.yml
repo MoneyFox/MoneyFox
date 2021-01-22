@@ -4,7 +4,6 @@
 # https://aka.ms/yaml
 
 trigger:
-  batch: true
   branches:
     include:
     - master
@@ -103,12 +102,10 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Windows Project'
     inputs:
-      solution: Src/MoneyFox.Desktop.sln
-      msbuildArgs: '/p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\"   /p:UapAppxPackageBuildMode=StoreUpload   /p:AppxBundlePlatforms="$(BuildPlatform)"  /p:AppxBundle=Always  /p:AppxPackageSigningEnabled=true /p:JavaSdkDirectory="$(JAVA_HOME)/"'
+      solution: Src/MoneyFox.sln
+      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
       platform: x64
       configuration: '$(BuildConfiguration)'
-      clean: true
-      msbuildArchitecture: x64
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
