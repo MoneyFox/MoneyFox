@@ -21,12 +21,6 @@ jobs:
     value: '**/MoneyFox.Mobile.sln'
 
   steps:
-  - task: UseDotNet@2
-    displayName: 'Use correct .Net sdk'
-    inputs:
-      packageType: 'sdk'
-      version: '3.x'
-
   #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
   #  displayName: 'Select the Xamarin SDK version 6.12.0'
 
