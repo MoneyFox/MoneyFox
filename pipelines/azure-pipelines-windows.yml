@@ -28,12 +28,6 @@ jobs:
 
   steps:
   
-  - task: UseDotNet@2
-  displayName: 'Use correct .Net sdk'
-    inputs:
-      packageType: 'sdk'
-      version: '3.x'
-
   - task: DownloadSecureFile@1
     displayName: 'Download secure file'
     name: 'signingCert'
@@ -54,6 +48,12 @@ jobs:
     displayName: 'Install Cert'
     env:
       CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
+      
+  - task: UseDotNet@2
+    displayName: 'Use correct .Net sdk'
+    inputs:
+      packageType: 'sdk'
+      version: '3.x'
 
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
