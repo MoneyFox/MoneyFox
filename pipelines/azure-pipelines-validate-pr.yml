@@ -16,8 +16,7 @@ jobs:
     vmImage: 'macos-latest'
 
   variables:  
-  - name: solution
-    value: '**/MoneyFox.Mobile.sln'
+    solution: '**/MoneyFox.Mobile.sln'
 
   steps:
   - task: UseDotNet@2
@@ -73,8 +72,7 @@ jobs:
     vmImage: windows-latest
 
   variables:  
-  - name: solution
-    value: '**/MoneyFox.sln'
+    solution: '**/MoneyFox.Mobile.sln'
 
   steps:
   - task: pjcollins.azp-utilities-boots.boots.Boots@1
@@ -110,10 +108,8 @@ jobs:
     vmImage: windows-latest
 
   variables:  
-  - name: solution
-    value: '**/MoneyFox.sln'
-  - name: appxPackageDir
-    value: '$(build.artifactStagingDirectory)\AppxPackages\\'
+    solution: '**/MoneyFox.Desktop.sln'
+    appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
   steps:
   - task: DownloadSecureFile@1
