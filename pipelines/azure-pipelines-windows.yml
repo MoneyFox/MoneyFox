@@ -55,6 +55,17 @@ jobs:
       packageType: 'sdk'
       version: '3.x'
 
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.appxmanifest
+        $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
+        $xmlDoc.Package.Properties.DisplayName="MoneyFox"
+        $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="Money Fox"
+        $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.appxmanifest')
+      failOnStderr: true
+
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
     inputs:
@@ -109,7 +120,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Windows Project'
     inputs:
-      solution: Src/MoneyFox.sln
+      solution: '**/MoneyFox.Uwp.csproj'
       msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
       platform: x64
       configuration: '$(BuildConfiguration)'
