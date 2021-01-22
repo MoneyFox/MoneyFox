@@ -27,6 +27,13 @@ jobs:
   timeoutInMinutes: 200
 
   steps:
+  
+  - task: UseDotNet@2
+  displayName: 'Use correct .Net sdk'
+    inputs:
+      packageType: 'sdk'
+      version: '3.x'
+
   - task: DownloadSecureFile@1
     displayName: 'Download secure file'
     name: 'signingCert'
@@ -51,7 +58,7 @@ jobs:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
     inputs:
-      versionSpec: 3.x
+      versionSpec: 5.x
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
