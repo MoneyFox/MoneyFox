@@ -785,4 +785,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
     <value>Login fehlgeschlagen!</value>
   </data>
+  <data name="LoggedInTitle" xml:space="preserve">
+    <value>Angemeldet!</value>
+  </data>
 </root>
