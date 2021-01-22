@@ -175,11 +175,9 @@ jobs:
     displayName: 'Build Windows Project'
     inputs:
       solution: Src/MoneyFox.sln
-      msbuildArgs: '/p:AppxPackageDir="$(Build.ArtifactStagingDirectory)\AppxPackages\\"   /p:UapAppxPackageBuildMode=CI   /p:AppxBundlePlatforms="$(BuildPlatform)"  /p:AppxBundle=Always  /p:AppxPackageSigningEnabled=true /p:JavaSdkDirectory="$(JAVA_HOME)/"'
+      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
       platform: x64
       configuration: '$(BuildConfiguration)'
-      clean: true
-      msbuildArchitecture: x64
 
   - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
