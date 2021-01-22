@@ -15,8 +15,12 @@ jobs:
   displayName: "Run Tests MacOS and Build iOS"
   pool:
     vmImage: 'macos-latest'
-  steps:
 
+  variables:  
+  - name: solution
+    value: '**/MoneyFox.Mobile.sln'
+
+  steps:
   - task: UseDotNet@2
     displayName: 'Use correct .Net sdk'
     inputs:
@@ -41,14 +45,10 @@ jobs:
       provProfileSecureFile: 'MoneyFox_Distribution_2020.mobileprovision'
 
   - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet'
-    inputs:
-      versionSpec: '5.x'
 
   - task: NuGetCommand@2
-    displayName: 'NuGet restore'
     inputs:
-        restoreSolution: '**/MoneyFox.Mobile.sln'
+      restoreSolution: '$(solution)'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
@@ -73,6 +73,10 @@ jobs:
   pool:
     vmImage: windows-latest
 
+  variables:  
+  - name: solution
+    value: '**/MoneyFox.sln'
+
   steps:
   - task: pjcollins.azp-utilities-boots.boots.Boots@1
     displayName: 'Install https://aka.ms/xamarin-android-commercial-d16-2-windows '
@@ -85,14 +89,10 @@ jobs:
     enabled: false
 
   - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet'
-    inputs:
-      versionSpec: 5.x
 
   - task: NuGetCommand@2
-    displayName: 'NuGet restore'
     inputs:
-      restoreSolution: '**/MoneyFox.Mobile.sln'
+      restoreSolution: '$(solution)'
 
   - task: XamarinAndroid@1
     displayName: 'Build Android Project'
@@ -110,8 +110,11 @@ jobs:
   pool:
     vmImage: windows-latest
 
-  variables:
-    appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
+  variables:  
+  - name: solution
+    value: '**/MoneyFox.sln'
+  - name: appxPackageDir
+    value: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
   steps:
   - task: DownloadSecureFile@1
@@ -136,14 +139,10 @@ jobs:
       CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
   - task: NuGetToolInstaller@1
-    displayName: 'Use NuGet'
-    inputs:
-      versionSpec: 5.x
 
   - task: NuGetCommand@2
-    displayName: 'NuGet restore'
     inputs:
-      restoreSolution: '**/MoneyFox.sln'
+      restoreSolution: '$(solution)'
 
   - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
     displayName: 'Prepare analysis on SonarCloud'
