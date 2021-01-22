@@ -37,7 +37,6 @@
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton
-                    x:Uid="AddCategoryViewModelLabel"
                     Click="AddNewCategoryClick"
                     Icon="Add"
                     Label="{x:Bind resources:Strings.AddCategoryLabel}" />

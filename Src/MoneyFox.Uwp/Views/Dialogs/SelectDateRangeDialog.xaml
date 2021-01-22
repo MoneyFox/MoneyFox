@@ -5,7 +5,6 @@
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Uid="SelectDateRangeDialog"
     Title="Select Daterange"
     PrimaryButtonCommand="{Binding DoneCommand}"
     PrimaryButtonText="done"
@@ -20,7 +19,6 @@
 
     <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <CalendarDatePicker
-            x:Uid="StartDateHeader"
             Margin="0,5,0,0"
             HorizontalAlignment="Stretch"
             FirstDayOfWeek="Monday"
@@ -28,7 +26,6 @@
             Header="startdate" />
 
         <CalendarDatePicker
-            x:Uid="EndDateHeader"
             Margin="0,5,0,0"
             HorizontalAlignment="Stretch"
             FirstDayOfWeek="Monday"
