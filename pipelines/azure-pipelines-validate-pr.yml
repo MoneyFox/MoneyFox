@@ -118,7 +118,7 @@ jobs:
 
   steps:
   - task: DownloadSecureFile@1
-    displayName: 'Download secure file'
+    displayName: 'Download Windows Certificate'
     name: 'signingCert'
     inputs:
       secureFile: 'MoneyFoxCert_2020.pfx'
