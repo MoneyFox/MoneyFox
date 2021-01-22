@@ -786,4 +786,7 @@
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
     <value>Login failed!</value>
   </data>
+  <data name="LoggedInTitle" xml:space="preserve">
+    <value>Logged in!</value>
+  </data>
 </root>
