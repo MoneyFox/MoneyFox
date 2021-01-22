@@ -283,28 +283,29 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
 
             await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();
-            if(settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync())
+            if(settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
+            {
+                await dialogService.ShowLoadingDialogAsync();
+
+                try
+                {
+                    await backupService.RestoreBackupAsync(BackupMode.Manual);
+                    await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
+                }
+                catch(BackupOperationCanceledException)
+                {
+                    logger.Info("Restoring the backup was canceled by the user.");
+                    await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
+                }
+                catch(Exception ex)
+                {
+                    logger.Error(ex, "Restore Backup failed.");
+                    await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+                }
+            }
+            else
             {
                 logger.Info("Restore Backup canceled by the user due to newer local data.");
-                return;
-            }
-
-            await dialogService.ShowLoadingDialogAsync();
-
-            try
-            {
-                await backupService.RestoreBackupAsync(BackupMode.Manual);
-                await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
-            }
-            catch(BackupOperationCanceledException)
-            {
-                logger.Info("Restoring the backup was canceled by the user.");
-                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
-            }
-            catch(Exception ex)
-            {
-                logger.Error(ex, "Restore Backup failed.");
-                await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
             }
 
             await dialogService.HideLoadingDialogAsync();
