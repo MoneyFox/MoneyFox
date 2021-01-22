@@ -12,6 +12,7 @@ using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
+using MoneyFox.Uwp.Views.Categories;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

@@ -8,7 +8,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
 #nullable enable
-namespace MoneyFox.Uwp.Views.UserControls
+namespace MoneyFox.Uwp.Views.Categories
 {
     public partial class CategoryListControl
     {

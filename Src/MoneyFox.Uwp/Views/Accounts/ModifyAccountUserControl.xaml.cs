@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 
 #nullable enable
-namespace MoneyFox.Uwp.Views.UserControls
+namespace MoneyFox.Uwp.Views.Accounts
 {
     public sealed partial class ModifyAccountUserControl
     {

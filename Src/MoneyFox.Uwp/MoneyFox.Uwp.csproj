@@ -251,10 +251,10 @@
     <Compile Include="Views\Accounts\AccountListView.xaml.cs">
       <DependentUpon>AccountListView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddAccountDialog.xaml.cs">
+    <Compile Include="Views\Accounts\AddAccountDialog.xaml.cs">
       <DependentUpon>AddAccountDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AddCategoryDialog.xaml.cs">
+    <Compile Include="Views\Categories\AddCategoryDialog.xaml.cs">
       <DependentUpon>AddCategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Payments\AddPaymentView.xaml.cs">
@@ -264,7 +264,7 @@
       <DependentUpon>BackupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BaseView.cs" />
-    <Compile Include="Views\CategoryListView.xaml.cs">
+    <Compile Include="Views\Categories\CategoryListView.xaml.cs">
       <DependentUpon>CategoryListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
@@ -273,10 +273,10 @@
     <Compile Include="Views\Dialogs\SelectDateRangeDialog.xaml.cs">
       <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditAccountView.xaml.cs">
+    <Compile Include="Views\Accounts\EditAccountView.xaml.cs">
       <DependentUpon>EditAccountView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditCategoryDialog.xaml.cs">
+    <Compile Include="Views\Categories\EditCategoryDialog.xaml.cs">
       <DependentUpon>EditCategoryDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Payments\CategorySelectionControl.xaml.cs">
@@ -318,16 +318,16 @@
     <Compile Include="Views\UserControls\BalanceControl.xaml.cs">
       <DependentUpon>BalanceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\CategoryListControl.xaml.cs">
+    <Compile Include="Views\Categories\CategoryListControl.xaml.cs">
       <DependentUpon>CategoryListControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UserControls\IncomeExpenseBalanceUserControl.xaml.cs">
       <DependentUpon>IncomeExpenseBalanceUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ModifyAccountUserControl.xaml.cs">
+    <Compile Include="Views\Accounts\ModifyAccountUserControl.xaml.cs">
       <DependentUpon>ModifyAccountUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserControls\ModifyCategoryUserControl.xaml.cs">
+    <Compile Include="Views\Categories\ModifyCategoryUserControl.xaml.cs">
       <DependentUpon>ModifyCategoryUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Payments\ModifyPaymentUserControl.xaml.cs">
@@ -459,11 +459,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddAccountDialog.xaml">
+    <Page Include="Views\Accounts\AddAccountDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddCategoryDialog.xaml">
+    <Page Include="Views\Categories\AddCategoryDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -475,7 +475,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CategoryListView.xaml">
+    <Page Include="Views\Categories\CategoryListView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -487,11 +487,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\EditAccountView.xaml">
+    <Page Include="Views\Accounts\EditAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditCategoryDialog.xaml">
+    <Page Include="Views\Categories\EditCategoryDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -547,7 +547,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\CategoryListControl.xaml">
+    <Page Include="Views\Categories\CategoryListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -555,11 +555,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\ModifyAccountUserControl.xaml">
+    <Page Include="Views\Accounts\ModifyAccountUserControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\UserControls\ModifyCategoryUserControl.xaml">
+    <Page Include="Views\Categories\ModifyCategoryUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

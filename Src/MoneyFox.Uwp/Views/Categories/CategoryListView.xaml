@@ -1,8 +1,7 @@
 ﻿<views:BaseView
-    x:Class="MoneyFox.Uwp.Views.CategoryListView"
+    x:Class="MoneyFox.Uwp.Views.Categories.CategoryListView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
@@ -10,6 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:category="using:MoneyFox.Uwp.Views.Categories"
     mc:Ignorable="d">
 
     <d:Page.DataContext>
@@ -44,7 +44,7 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
-        <controls:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
+        <category:CategoryListControl Grid.Row="1" Margin="{StaticResource NegativeMediumLeftRightWithTopMargin}" />
 
     </Grid>
 </views:BaseView>

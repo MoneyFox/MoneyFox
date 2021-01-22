@@ -2,7 +2,7 @@
 using Windows.UI.Xaml.Controls;
 
 #nullable enable
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Uwp.Views.Accounts
 {
     public sealed partial class EditAccountView : ContentDialog
     {

@@ -3,7 +3,7 @@ using System;
 using Windows.UI.Xaml.Navigation;
 
 #nullable enable
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Uwp.Views.Categories
 {
     public sealed partial class CategoryListView
     {

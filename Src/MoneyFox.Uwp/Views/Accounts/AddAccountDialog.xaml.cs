@@ -1,5 +1,5 @@
 ﻿#nullable enable
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Uwp.Views.Accounts
 {
     public sealed partial class AddAccountDialog
     {

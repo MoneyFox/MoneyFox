@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml.Controls;
 
 #nullable enable
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Uwp.Views.Categories
 {
     public sealed partial class AddCategoryDialog : ContentDialog
     {
