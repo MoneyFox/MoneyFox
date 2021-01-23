@@ -14,7 +14,10 @@ namespace MoneyFox.Uwp.Views.Settings
         }
 
         private void OnLoad(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-            => ContentFrame.Navigate(typeof(SettingsView));
+        {
+            ContentFrame.Navigate(typeof(SettingsView));
+            SettingsView.SelectedItem = SettingsView.MenuItems[0];
+        }
 
         private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
