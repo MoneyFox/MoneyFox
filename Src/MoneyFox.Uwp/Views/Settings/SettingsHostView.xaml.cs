@@ -1,4 +1,5 @@
-﻿using MoneyFox.Uwp.ViewModels.Settings;
+﻿using Microsoft.UI.Xaml.Controls;
+using System;
 
 #nullable enable
 namespace MoneyFox.Uwp.Views.Settings
@@ -7,12 +8,21 @@ namespace MoneyFox.Uwp.Views.Settings
     {
         public override bool ShowHeader => false;
 
-        private WindowsSettingsViewModel ViewModel => (WindowsSettingsViewModel)DataContext;
-
         public SettingsHostView()
         {
             InitializeComponent();
-            DataContext = ViewModelLocator.SettingsVm;
+        }
+
+        private void OnLoad(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+            => ContentFrame.Navigate(typeof(SettingsView));
+
+        private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            Type page = args.InvokedItemContainer.Tag.ToString() == "settings"
+                ? typeof(SettingsView)
+                : typeof(AboutView);
+
+            ContentFrame.Navigate(page);
         }
     }
 }

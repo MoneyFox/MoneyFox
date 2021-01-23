@@ -6,18 +6,14 @@
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:resources="using:MoneyFox.Application.Resources"
-                xmlns:helpers="using:MoneyFox.Uwp.Helpers"
                 xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Settings" xmlns:settings="using:MoneyFox.Uwp.Views.Settings" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Settings"
+                xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
                 mc:Ignorable="d">
 
     <d:Page.DataContext>
         <designTime:DesignTimeWindowsSettingsViewModel />
     </d:Page.DataContext>
-
-    <Page.Resources>
-        <helpers:StringMatchConverter x:Key="EnumToBooleanConverter" />
-    </Page.Resources>
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -29,73 +25,17 @@
         <muxc:NavigationView x:Name="SettingsView"
                              PaneDisplayMode="Top"
                              IsBackButtonVisible="Collapsed"
-                             IsSettingsVisible="False">
+                             IsSettingsVisible="False"
+                             Loaded="OnLoad"
+                             ItemInvoked="OnItemInvoked">
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Tag="home" Icon="Home" Content="Home"/>
-                <muxc:NavigationViewItem Tag="home" Icon="Home" Content="Home"/>
+                <muxc:NavigationViewItem Tag="settings" Icon="Home" Content="{x:Bind resources:Strings.SettingsTitle}"/>
+                <muxc:NavigationViewItem Tag="about" Icon="Home" Content="{x:Bind resources:Strings.AboutTitle}"/>
             </muxc:NavigationView.MenuItems>
+
+            <Frame x:Name="ContentFrame"
+                   Padding="12,0,12,24"
+                   IsTabStop="True" />
         </muxc:NavigationView>
-        <Pivot>
-            <PivotItem Header="{x:Bind resources:Strings.SettingsTitle}">
-                <ScrollViewer Margin="0,0,-10,0">
-                    <StackPanel Margin="0,0,20,0">
-
-                        <!-- Regional Settings -->
-                        <StackPanel>
-                            <TextBlock
-                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                        Text="{x:Bind resources:Strings.DefaultRegionText}"
-                        TextWrapping="WrapWholeWords" />
-
-                            <ComboBox
-                        HorizontalAlignment="Stretch"
-                        DisplayMemberPath="DisplayName"
-                        Header="{x:Bind resources:Strings.DefaultRegionHeader}"
-                        ItemsSource="{x:Bind ViewModel.AvailableCultures}"
-                        SelectedItem="{Binding SelectedCulture, Mode=TwoWay}" />
-                        </StackPanel>
-
-                        <!-- Personalizations -->
-                        <StackPanel Margin="{StaticResource LargeTopMargin}">
-                            <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.PersonalizationTitle}"
-                               TextWrapping="WrapWholeWords" />
-
-                            <StackPanel>
-                                <RadioButton
-                            Content="{x:Bind resources:Strings.LightLabel}"
-                            GroupName="AppTheme"
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
-                            Command="{Binding SwitchThemeCommand}"
-                            FontSize="15">
-                                    <RadioButton.CommandParameter>Light</RadioButton.CommandParameter>
-                                </RadioButton>
-                                <RadioButton
-                            Content="{x:Bind resources:Strings.DarkLabel}"
-                            GroupName="AppTheme"
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
-                            Command="{Binding SwitchThemeCommand}"
-                            FontSize="15">
-                                    <RadioButton.CommandParameter>Dark</RadioButton.CommandParameter>
-                                </RadioButton>
-                                <RadioButton
-                            Content="{x:Bind resources:Strings.WindowsDefaultLabel}"
-                            GroupName="AppTheme"
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
-                            Command="{Binding SwitchThemeCommand}"
-                            FontSize="15">
-                                    <RadioButton.CommandParameter>Default</RadioButton.CommandParameter>
-                                </RadioButton>
-                            </StackPanel>
-                        </StackPanel>
-                    </StackPanel>
-                </ScrollViewer>
-
-            </PivotItem>
-
-            <PivotItem Header="{x:Bind resources:Strings.AboutTitle}">
-                <settings:AboutView />
-            </PivotItem>
-        </Pivot>
     </Grid>
 </views:BaseView>
