@@ -8,6 +8,8 @@ namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCategorySpreadingView
     {
+        public override bool ShowHeader => false;
+
         public StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)DataContext;
 
         public override string Header => Strings.CategorySpreadingTitle;

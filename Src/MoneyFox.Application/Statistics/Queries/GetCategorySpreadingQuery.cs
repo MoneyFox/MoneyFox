@@ -15,17 +15,26 @@ namespace MoneyFox.Application.Statistics.Queries
 {
     public class GetCategorySpreadingQuery : IRequest<IEnumerable<StatisticEntry>>
     {
-        public DateTime StartDate { get; set; }
+        private const int NUMBER_OF_STATISTIC_ITEMS = 6;
 
-        public DateTime EndDate { get; set; }
+        public GetCategorySpreadingQuery(DateTime startDate, DateTime endDate, int numberOfCategoriesToShow = NUMBER_OF_STATISTIC_ITEMS)
+        {
+            StartDate = startDate;
+            EndDate = endDate;
+            NumberOfCategoriesToShow = numberOfCategoriesToShow;
+        }
+
+        public DateTime StartDate { get; private set; }
+
+        public DateTime EndDate { get; private set; }
+
+        public int NumberOfCategoriesToShow { get; private set; }
     }
 
     public class GetCategorySpreadingQueryHandler : IRequestHandler<GetCategorySpreadingQuery, IEnumerable<StatisticEntry>>
     {
-        private const int NUMBER_OF_STATISTIC_ITEMS = 6;
-
         public static readonly string[] Colors =
-        { "#266489", "#68B9C0", "#90D585", "#F3C151", "#F37F64", "#424856", "#8F97A4" };
+        { "#266489", "#68B9C0", "#90D585", "#F3C151", "#F37F64", "#424856", "#8F97A4", "#7EAFC4", "#69E1BD", "#A6F297", "#F9F871", "#0087A3", "#00AAA9", "#3DCA9A", "#9BE582" };
 
         private readonly IContextAdapter contextAdapter;
 
@@ -36,8 +45,7 @@ namespace MoneyFox.Application.Statistics.Queries
 
         public async Task<IEnumerable<StatisticEntry>> Handle(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
         {
-            return AggregateData(SelectRelevantDataFromList(await GetPaymentsWithoutTransferAsync(request,
-                                                                                                  cancellationToken)));
+            return AggregateData(SelectRelevantDataFromList(await GetPaymentsWithoutTransferAsync(request, cancellationToken)), request.NumberOfCategoriesToShow);
         }
 
         private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransferAsync(GetCategorySpreadingQuery request,
@@ -62,36 +70,35 @@ namespace MoneyFox.Application.Statistics.Queries
                                                     : string.Empty
                     }
                     into temp
-                    select (
-                               temp.Sum(x => x.Type == PaymentType.Income
-                                                ? -x.Amount
-                                                : x.Amount),
-                               temp.Key.category))
+                    select (temp.Sum(x => x.Type == PaymentType.Income
+                                                        ? -x.Amount
+                                                        : x.Amount),
+                            temp.Key.category))
                   .Where(x => x.Item1 > 0)
                   .OrderByDescending(x => x.Item1)
                   .ToList();
         }
 
-        private IEnumerable<StatisticEntry> AggregateData(List<(decimal Value, string Label)> statisticData)
+        private IEnumerable<StatisticEntry> AggregateData(List<(decimal Value, string Label)> statisticData, int amountOfCategoriesToShow)
         {
             var statisticList = statisticData
-                                                .Take(6)
-                                                .Select(x => new StatisticEntry(x.Value)
-                                                {
-                                                    ValueLabel = x.Value.ToString("C", CultureHelper.CurrentCulture),
-                                                    Label = x.Label
-                                                })
-                                                .ToList();
+                                    .Take(amountOfCategoriesToShow)
+                                    .Select(x => new StatisticEntry(x.Value)
+                                    {
+                                        ValueLabel = x.Value.ToString("C", CultureHelper.CurrentCulture),
+                                        Label = x.Label
+                                    })
+                                    .ToList();
 
-            AddOtherItem(statisticData, statisticList);
+            AddOtherItem(statisticData, statisticList, amountOfCategoriesToShow);
             SetColors(statisticList);
 
             return statisticList;
         }
 
-        private static void AddOtherItem(IEnumerable<(decimal Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList)
+        private static void AddOtherItem(IEnumerable<(decimal Value, string Label)> statisticData, ICollection<StatisticEntry> statisticList, int amountOfCategoriesToShow)
         {
-            if(statisticList.Count < NUMBER_OF_STATISTIC_ITEMS)
+            if(statisticList.Count < amountOfCategoriesToShow)
             {
                 return;
             }
