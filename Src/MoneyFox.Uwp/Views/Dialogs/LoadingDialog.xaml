@@ -16,7 +16,6 @@
                 IsActive="True" />
             <TextBlock
                 x:Name="LoadingText"
-                x:Uid="Loading"
                 TextAlignment="Center" />
         </StackPanel>
     </Grid>

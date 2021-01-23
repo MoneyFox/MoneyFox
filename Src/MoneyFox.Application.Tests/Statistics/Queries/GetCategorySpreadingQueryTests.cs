@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
+using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
