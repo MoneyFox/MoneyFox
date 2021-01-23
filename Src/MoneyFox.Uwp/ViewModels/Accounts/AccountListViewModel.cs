@@ -26,7 +26,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Accounts
 {
     [SuppressMessage("Major Code Smell", "S1200:Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
     public class AccountListViewModel : ViewModelBase, IAccountListViewModel

@@ -5,7 +5,7 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Categories
 {
     public class CategoryListViewModel : AbstractCategoryListViewModel, ICategoryListViewModel
     {

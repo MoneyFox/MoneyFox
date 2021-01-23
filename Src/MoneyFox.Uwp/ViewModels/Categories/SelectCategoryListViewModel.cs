@@ -6,7 +6,7 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Categories
 {
     /// <inheritdoc cref="ISelectCategoryListViewModel"/>
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel

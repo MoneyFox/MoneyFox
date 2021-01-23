@@ -11,7 +11,6 @@ using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.Views;
 using MoneyFox.Uwp.Views.Categories;
 using System;
 using System.Collections.Generic;
@@ -21,7 +20,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Categories
 {
     public abstract class AbstractCategoryListViewModel : ViewModelBase
     {

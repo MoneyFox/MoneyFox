@@ -5,7 +5,7 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using System.Collections.ObjectModel;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Categories
 {
     /// <summary>
     /// Defines the interface for a category list.

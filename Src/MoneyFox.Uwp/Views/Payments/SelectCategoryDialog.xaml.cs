@@ -1,4 +1,4 @@
-﻿using MoneyFox.Uwp.ViewModels;
+﻿using MoneyFox.Uwp.ViewModels.Categories;
 using Windows.UI.Xaml.Controls;
 
 #nullable enable

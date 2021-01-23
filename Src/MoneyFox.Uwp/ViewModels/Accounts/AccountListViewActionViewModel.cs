@@ -4,7 +4,7 @@ using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Accounts
 {
     public class AccountListViewActionViewModel : ViewModelBase, IAccountListViewActionViewModel
     {

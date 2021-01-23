@@ -1,4 +1,4 @@
-﻿using MoneyFox.Uwp.ViewModels;
+﻿using MoneyFox.Uwp.ViewModels.Categories;
 using System;
 using Windows.UI.Xaml.Navigation;
 

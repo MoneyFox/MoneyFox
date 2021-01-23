@@ -14,7 +14,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Categories
 {
     public class EditCategoryViewModel : ModifyCategoryViewModel
     {

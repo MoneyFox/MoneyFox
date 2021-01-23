@@ -12,7 +12,7 @@ using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Categories
 {
     /// <summary>
     /// View Model for creating and editing Categories without dialog

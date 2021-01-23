@@ -2,7 +2,7 @@
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Categories
 {
     public interface IModifyCategoryViewModel
     {

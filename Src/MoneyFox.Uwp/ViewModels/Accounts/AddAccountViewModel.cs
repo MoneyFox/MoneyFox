@@ -9,7 +9,7 @@ using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels
+namespace MoneyFox.Uwp.ViewModels.Accounts
 {
     public class AddAccountViewModel : ModifyAccountViewModel
     {
