@@ -3,13 +3,13 @@
 #nullable enable
 namespace MoneyFox.Uwp.Views.Settings
 {
-    public sealed partial class SettingsView
+    public sealed partial class SettingsHostView
     {
         public override bool ShowHeader => false;
 
         private WindowsSettingsViewModel ViewModel => (WindowsSettingsViewModel)DataContext;
 
-        public SettingsView()
+        public SettingsHostView()
         {
             InitializeComponent();
             DataContext = ViewModelLocator.SettingsVm;
