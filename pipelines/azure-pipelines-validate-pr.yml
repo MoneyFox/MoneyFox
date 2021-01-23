@@ -4,7 +4,6 @@
 # https://aka.ms/yaml
 
 pr:
- autoCancel: false
  branches:
    include:
      - master
@@ -17,8 +16,7 @@ jobs:
     vmImage: 'macos-latest'
 
   variables:  
-  - name: solution
-    value: '**/MoneyFox.Mobile.sln'
+    solution: '**/MoneyFox.Mobile.sln'
 
   steps:
   #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
@@ -67,8 +65,7 @@ jobs:
     vmImage: windows-latest
 
   variables:  
-  - name: solution
-    value: '**/MoneyFox.sln'
+    solution: '**/MoneyFox.Mobile.sln'
 
   steps:
   - task: pjcollins.azp-utilities-boots.boots.Boots@1
@@ -104,10 +101,8 @@ jobs:
     vmImage: windows-latest
 
   variables:  
-  - name: solution
-    value: '**/MoneyFox.sln'
-  - name: appxPackageDir
-    value: '$(build.artifactStagingDirectory)\AppxPackages\\'
+    solution: '**/MoneyFox.Desktop.sln'
+    appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
   steps:
   - task: DownloadSecureFile@1
