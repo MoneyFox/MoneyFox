@@ -9,7 +9,9 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-    xmlns:views="using:MoneyFox.Uwp.Views" xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:converter="using:MoneyFox.Uwp.Converter"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
@@ -22,12 +24,30 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
+    <Page.Resources>
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+
+        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
+            <StackPanel Spacing="12">
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+                <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
+            </StackPanel>
+        </Flyout>
+    </Page.Resources>
+
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
@@ -37,6 +57,19 @@
                 Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                 Text="{Binding Title}" />
         </Grid>
+
+        <CommandBar
+            Grid.Row="0"
+            OverflowButtonVisibility="Collapsed"
+            Margin="{StaticResource NegativeMediumLeftRightMargin}"
+            Style="{ThemeResource DefaultCommandBar}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Calendar"
+                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                              Click="OpenFilterFlyout"
+                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
 
         <Grid Grid.Row="1">
             <chart:RadPieChart x:Name="chart" PaletteName="DefaultDark">
@@ -76,17 +109,5 @@
                 </primitives:RadLegendControl.ItemTemplate>
             </primitives:RadLegendControl>
         </Grid>
-
-        <CommandBar
-            Grid.Row="3"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
-            ClosedDisplayMode="Minimal"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Calendar"
-                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 </views:BaseView>
