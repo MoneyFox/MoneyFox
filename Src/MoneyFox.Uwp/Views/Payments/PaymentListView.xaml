@@ -88,6 +88,7 @@
                            LoadingRowGroup="DataGrid_LoadingRowGroup"
                            DoubleTapped="DataGrid_DoubleTapped"
                            IsReadOnly="True"
+                           Margin="{StaticResource NegativeMediumLeftRightMargin}"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
             <controls:DataGrid.RowStyle>
