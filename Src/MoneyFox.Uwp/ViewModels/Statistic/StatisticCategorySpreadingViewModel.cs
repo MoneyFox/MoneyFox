@@ -1,9 +1,11 @@
 ﻿using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
+using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
@@ -42,12 +44,16 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// </summary>
         protected override async Task LoadAsync()
         {
-            StatisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(
+            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(
                 new GetCategorySpreadingQuery
                 {
                     StartDate = StartDate,
                     EndDate = EndDate
-                }));
+                });
+
+            statisticEntries.ToList().ForEach(x => x.Label = $"{x.Label} ({x.ValueLabel})");
+
+            StatisticItems = new ObservableCollection<StatisticEntry>(statisticEntries);
         }
     }
 }

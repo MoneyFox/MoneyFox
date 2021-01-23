@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Application.Statistics.Queries.GetCashFlow
+namespace MoneyFox.Application.Statistics.Queries
 {
     public class GetCashFlowQuery : IRequest<List<StatisticEntry>>
     {

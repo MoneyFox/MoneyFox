@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Domain;
 using MoneyFox.Application.Common.QueryObjects;
 
-namespace MoneyFox.Application.Statistics.Queries.GetCategorySpreading
+namespace MoneyFox.Application.Statistics.Queries
 {
     public class GetCategorySpreadingQuery : IRequest<IEnumerable<StatisticEntry>>
     {
