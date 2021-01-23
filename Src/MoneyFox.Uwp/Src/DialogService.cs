@@ -6,7 +6,6 @@ using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
-using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 
 #nullable enable
@@ -53,8 +52,13 @@ namespace MoneyFox.Uwp.Src
         {
             await HideLoadingDialogAsync();
 
-            var dialog = new MessageDialog(message, title);
-            dialog.Commands.Add(new UICommand(Strings.OkLabel));
+            var dialog = new ContentDialog
+            {
+                Title = title,
+                Content = message
+            };
+            dialog.PrimaryButtonText = Strings.OkLabel;
+            dialog.RequestedTheme = ThemeSelectorService.Theme;
 
             await dialog.ShowAsync();
         }
@@ -76,10 +80,10 @@ namespace MoneyFox.Uwp.Src
 
             // RunAsync all of the UI info.
             await dispatcher.RunAsync(CoreDispatcherPriority.High,
-                                      async () =>
-                                      {
-                                          await loadingDialog.ShowAsync();
-                                      });
+                async () =>
+                {
+                    await loadingDialog.ShowAsync();
+                });
         }
 
         /// <summary>
