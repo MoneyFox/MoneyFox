@@ -6,7 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls" xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Categories"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Categories"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d"
     Title="{x:Bind resources:Strings.SelectCategoryTitle}"
     SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}" >
@@ -17,11 +19,13 @@
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="viewModels:CategoryViewModel">
             <controls:DropShadowPanel
-                Margin="-12,0,-12,0"
+                Margin="-10,4,-7,0"
                 HorizontalContentAlignment="Stretch"
                 BlurRadius="4.0"
                 ShadowOpacity="0.40">
-                <StackPanel Padding="{StaticResource SmallListItemPadding}" Background="{ThemeResource ListItemBrush}">
+                <StackPanel Padding="{StaticResource SmallListItemPadding}"
+                            Background="{ThemeResource ListItemBrush}"
+                            CornerRadius="2">
                     <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
                 </StackPanel>
             </controls:DropShadowPanel>
