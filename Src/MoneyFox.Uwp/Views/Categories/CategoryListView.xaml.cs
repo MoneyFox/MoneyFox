@@ -17,10 +17,13 @@ namespace MoneyFox.Uwp.Views.Categories
             DataContext = ViewModelLocator.CategoryListVm;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) => ViewModel.Subscribe();
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+            => ViewModel.Subscribe();
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e) => ViewModel.Unsubscribe();
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+            => ViewModel.Unsubscribe();
 
-        private async void AddNewCategoryClick(object sender, Windows.UI.Xaml.RoutedEventArgs e) => await new AddCategoryDialog().ShowAsync();
+        private async void AddNewCategoryClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+            => await new AddCategoryDialog().ShowAsync();
     }
 }
