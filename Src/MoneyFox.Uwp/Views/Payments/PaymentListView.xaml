@@ -5,12 +5,12 @@
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
@@ -33,31 +33,19 @@
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
 
-        <Flyout x:Key="FilterFlyout">
-            <ListBox SelectionMode="Multiple" Background="Transparent" Width="250px" >
-                <ListBoxItem>
-                    <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}" IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}" IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <CalendarDatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
+            <StackPanel Spacing="6">
+                <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}" IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}" IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CalendarDatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         FirstDayOfWeek="Monday"
                                         Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         FirstDayOfWeek="Monday"
                                         Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <Button Content="{x:Bind resources:Strings.ApplyFilterLabel}" Command="{Binding ApplyFilterCommand}" />
-                </ListBoxItem>
-            </ListBox>
+                <Button Content="{x:Bind resources:Strings.ApplyFilterLabel}" Command="{Binding ApplyFilterCommand}" />
+            </StackPanel>
         </Flyout>
 
     </Page.Resources>
