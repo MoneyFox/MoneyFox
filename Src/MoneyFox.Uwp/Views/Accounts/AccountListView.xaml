@@ -32,9 +32,8 @@
         <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="viewModels:AccountViewModel">
-
-            <uwpToolkit:DropShadowPanel ShadowOpacity="0.40">
-                <StackPanel Width="250">
+            <uwpToolkit:DropShadowPanel ShadowOpacity="0.40" Margin="4,3,3,6">
+                <StackPanel Width="250" CornerRadius="{StaticResource DefaultCornerRadius}">
                     <StackPanel.ContextFlyout>
                         <MenuFlyout>
                             <MenuFlyoutItem
@@ -99,7 +98,7 @@
             ItemsSource="{Binding Accounts}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
+                    <StackPanel Margin="{StaticResource MediumBottomMargin}">
                         <TextBlock Style="{ThemeResource HeaderStyle}" Text="{Binding Key}" />
 
                         <GridView

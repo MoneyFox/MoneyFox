@@ -25,7 +25,7 @@
                 ShadowOpacity="0.40">
                 <StackPanel Padding="{StaticResource SmallListItemPadding}"
                             Background="{ThemeResource ListItemBrush}"
-                            CornerRadius="2">
+                            CornerRadius="{StaticResource DefaultCornerRadius}">
                     <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
                 </StackPanel>
             </controls:DropShadowPanel>
