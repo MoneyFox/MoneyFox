@@ -22,7 +22,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="23" />
             <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="{x:Bind resources:Strings.CategoryLabel}" />
