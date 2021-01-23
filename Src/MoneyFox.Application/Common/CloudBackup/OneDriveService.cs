@@ -260,9 +260,10 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                  .Me
                                                  .Drive
                                                  .Special
-                                                 .AppRoot.Children
-                                                         .Request()
-                                                         .GetAsync())
+                                                 .AppRoot
+                                                 .Children
+                                                 .Request()
+                                                 .GetAsync())
                    .FirstOrDefault(x => x.Name == backupName);
 
                 if(existingBackup == null)
@@ -310,9 +311,10 @@ namespace MoneyFox.Application.Common.CloudBackup
                                                  .Me
                                                  .Drive
                                                  .Special
-                                                 .AppRoot.Children
-                                                         .Request()
-                                                         .GetAsync())
+                                                 .AppRoot
+                                                 .Children
+                                                 .Request()
+                                                 .GetAsync())
                    .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
                 if(existingBackup != null)
@@ -349,9 +351,10 @@ namespace MoneyFox.Application.Common.CloudBackup
                              .Me
                              .Drive
                              .Special
-                             .AppRoot.Children
-                                     .Request()
-                                     .GetAsync())
+                             .AppRoot
+                             .Children
+                             .Request()
+                             .GetAsync())
                       .Select(x => x.Name)
                       .ToList();
             }
@@ -482,8 +485,8 @@ namespace MoneyFox.Application.Common.CloudBackup
                                   .Drive
                                   .Special
                                   .AppRoot.Children
-                                          .Request()
-                                          .GetAsync())
+                                  .Request()
+                                  .GetAsync())
                            .CurrentPage
                            .FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
 
@@ -510,9 +513,10 @@ namespace MoneyFox.Application.Common.CloudBackup
                                  .Me
                                  .Drive
                                  .Special
-                                 .AppRoot.Children
-                                         .Request()
-                                         .AddAsync(folderToCreate);
+                                 .AppRoot
+                                 .Children
+                                 .Request()
+                                 .AddAsync(folderToCreate);
         }
     }
 }
