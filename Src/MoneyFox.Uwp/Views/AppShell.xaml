@@ -35,14 +35,10 @@
         <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="White"/>
         <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White"/>
         <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="White"/>
-        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White"/>
-
+        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White" />
 
         <Style x:Key="CustomNavigationMenuStyle" TargetType="Button" BasedOn="{StaticResource PaneToggleButtonStyle}">
             <Setter Property="Foreground" Value="White" />
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Foreground" Value="White"/>
         </Style>
     </Page.Resources>
 
@@ -65,7 +61,6 @@
 
 				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="AccountListViewModel"
                                           Content="{x:Bind resources:Strings.AccountsTitle}"
-                                          Foreground="White"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.AccountsToolTip}">
                     <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;" />
