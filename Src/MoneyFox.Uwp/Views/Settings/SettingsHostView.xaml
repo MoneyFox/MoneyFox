@@ -26,8 +26,8 @@
                              ItemInvoked="OnItemInvoked">
 
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Tag="settings" Content="{x:Bind resources:Strings.SettingsTitle}"/>
-                <muxc:NavigationViewItem Tag="about" Content="{x:Bind resources:Strings.AboutTitle}"/>
+                <muxc:NavigationViewItem Tag="settings" Icon="Setting" Content="{x:Bind resources:Strings.SettingsTitle}"/>
+                <muxc:NavigationViewItem Tag="about" Icon="Help" Content="{x:Bind resources:Strings.AboutTitle}"/>
             </muxc:NavigationView.MenuItems>
 
             <Frame x:Name="ContentFrame"
