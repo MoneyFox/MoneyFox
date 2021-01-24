@@ -10,7 +10,7 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
@@ -121,5 +121,18 @@
 
         </controls:DataGrid>
 
+        <controls:Loading x:Name="LoadingControl"
+                          IsLoading="{x:Bind ViewModel.IsBusy, Mode=OneWay}"
+                          Grid.RowSpan="3"
+                          Opacity="0.6">
+            <controls:Loading.Background>
+                <SolidColorBrush Color="Black" Opacity="0.6" />
+            </controls:Loading.Background>
+
+            <StackPanel Padding="12">
+                <muxc:ProgressRing IsActive="True" Width="50" Height="50" />
+                <TextBlock Text="{x:Bind resources:Strings.LoadingLabel}" VerticalAlignment="Center" />
+            </StackPanel>
+        </controls:Loading>
     </Grid>
 </views:BaseView>
