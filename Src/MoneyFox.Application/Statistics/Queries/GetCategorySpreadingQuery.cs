@@ -17,16 +17,22 @@ namespace MoneyFox.Application.Statistics.Queries
     {
         private const int NUMBER_OF_STATISTIC_ITEMS = 6;
 
-        public GetCategorySpreadingQuery(DateTime startDate, DateTime endDate, int numberOfCategoriesToShow = NUMBER_OF_STATISTIC_ITEMS)
+        public GetCategorySpreadingQuery(DateTime startDate,
+                                         DateTime endDate,
+                                         PaymentType paymentType = PaymentType.Expense,
+                                         int numberOfCategoriesToShow = NUMBER_OF_STATISTIC_ITEMS)
         {
             StartDate = startDate;
             EndDate = endDate;
+            PaymentType = paymentType;
             NumberOfCategoriesToShow = numberOfCategoriesToShow;
         }
 
         public DateTime StartDate { get; private set; }
 
         public DateTime EndDate { get; private set; }
+
+        public PaymentType PaymentType { get; private set; }
 
         public int NumberOfCategoriesToShow { get; private set; }
     }
@@ -43,40 +49,46 @@ namespace MoneyFox.Application.Statistics.Queries
             this.contextAdapter = contextAdapter;
         }
 
+        private GetCategorySpreadingQuery currentRequest;
+
         public async Task<IEnumerable<StatisticEntry>> Handle(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
         {
-            return AggregateData(SelectRelevantDataFromList(await GetPaymentsWithoutTransferAsync(request, cancellationToken)), request.NumberOfCategoriesToShow);
+            currentRequest = request;
+            return AggregateData(SelectRelevantDataFromList(await GetPaymentsWithoutTransferAsync(cancellationToken)), request.NumberOfCategoriesToShow);
         }
 
-        private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransferAsync(GetCategorySpreadingQuery request,
-                                                                                 CancellationToken cancellationToken)
+        private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransferAsync(CancellationToken cancellationToken)
         {
             return await contextAdapter.Context
                                        .Payments
                                        .Include(x => x.Category)
                                        .WithoutTransfers()
-                                       .HasDateLargerEqualsThan(request.StartDate.Date)
-                                       .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                       .HasDateLargerEqualsThan(currentRequest.StartDate.Date)
+                                       .HasDateSmallerEqualsThan(currentRequest.EndDate.Date)
                                        .ToListAsync(cancellationToken);
         }
 
         private List<(decimal Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
         {
-            return (from payment in payments
-                    group payment by new
-                    {
-                        category = payment.Category != null
-                                                    ? payment.Category.Name
-                                                    : string.Empty
-                    }
-                    into temp
-                    select (temp.Sum(x => x.Type == PaymentType.Income
-                                                        ? -x.Amount
-                                                        : x.Amount),
-                            temp.Key.category))
-                  .Where(x => x.Item1 > 0)
-                  .OrderByDescending(x => x.Item1)
-                  .ToList();
+            var query = from payment in payments
+                        group payment by new
+                        {
+                            category = payment.Category != null
+                                                        ? payment.Category.Name
+                                                        : string.Empty
+                        }
+                        into temp
+                        select (temp.Sum(x => x.Type == PaymentType.Income
+                                                            ? -x.Amount
+                                                            : x.Amount),
+                                temp.Key.category);
+
+            query = currentRequest.PaymentType == PaymentType.Expense
+                ? query.Where(x => x.Item1 > 0)
+                : query.Where(x => x.Item1 < 0);
+
+            return query.OrderByDescending(x => x.Item1)
+                        .ToList();
         }
 
         private IEnumerable<StatisticEntry> AggregateData(List<(decimal Value, string Label)> statisticData, int amountOfCategoriesToShow)
