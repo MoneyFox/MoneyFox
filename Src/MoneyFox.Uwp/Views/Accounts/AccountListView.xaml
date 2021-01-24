@@ -9,6 +9,7 @@
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:views="using:MoneyFox.Uwp.Views"
@@ -105,6 +106,7 @@
                             x:Name="AccountGrid"
                             IsItemClickEnabled="True"
                             IsSynchronizedWithCurrentItem="False"
+                            animations:ReorderGridAnimation.Duration="250"
                             ItemClick="AccountClicked"
                             ItemTemplate="{StaticResource AccountItemTemplate}"
                             ItemsSource="{Binding}" />
