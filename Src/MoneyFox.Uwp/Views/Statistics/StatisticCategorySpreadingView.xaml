@@ -68,10 +68,10 @@
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Calendar"
+                <AppBarButton Icon="Filter"
                               FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
                               Click="OpenFilterFlyout"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
+                              Label="{x:Bind resources:Strings.FilterLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
