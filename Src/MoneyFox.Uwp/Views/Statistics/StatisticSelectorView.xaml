@@ -10,8 +10,8 @@
                 xmlns:designtime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                 xmlns:models="using:MoneyFox.Ui.Shared.ViewModels.Statistics"
                 xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
+                xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
                 mc:Ignorable="d" >
-
 
     <d:MvxWindowsPage.DataContext>
         <designtime:DesignTimeStatisticSelectorViewModel />
@@ -55,6 +55,7 @@
 
         <GridView ItemTemplate="{StaticResource StatistcTypeTemplate}"
                   ItemsSource="{Binding StatisticItems}"
+                  animations:ReorderGridAnimation.Duration="250"
                   Grid.Row="0"
                   Background="Transparent">
 
