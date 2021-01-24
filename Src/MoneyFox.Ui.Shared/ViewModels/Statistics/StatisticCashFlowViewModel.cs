@@ -3,7 +3,7 @@ using Microcharts;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries.GetCashFlow;
+using MoneyFox.Application.Statistics.Queries;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;

@@ -7,6 +7,8 @@ using MoneyFox.Ui.Shared.ViewModels.About;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.Accounts;
+using MoneyFox.Uwp.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Settings;
