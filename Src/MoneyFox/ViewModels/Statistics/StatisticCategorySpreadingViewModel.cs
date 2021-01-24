@@ -46,11 +46,7 @@ namespace MoneyFox.ViewModels.Statistics
         /// </summary>
         protected override async Task LoadAsync()
         {
-            var statisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery
-            {
-                StartDate = StartDate,
-                EndDate = EndDate
-            }));
+            var statisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate)));
 
             var microChartItems = statisticItems.Select(x => new ChartEntry((float)x.Value)
             {

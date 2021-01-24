@@ -70,7 +70,7 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0,0,0,30" Padding="{StaticResource SmallListItemPadding}">
+                        <StackPanel Margin="0,0,0,30" Padding="{StaticResource SmallListItemPadding}" >
 
                             <TextBlock
                                 Margin="{StaticResource NegativeMediumLeftRightMargin}"
@@ -103,17 +103,18 @@
                                     <DataTemplate x:DataType="viewModels:PaymentViewModel">
                                         <toolkit:DropShadowPanel
                                             HorizontalContentAlignment="Stretch"
+                                            Margin="0,2,0,2"
                                             BlurRadius="4.0"
                                             ShadowOpacity="0.40">
                                             <Grid
                                                 MinWidth="100"
-                                                Margin="{StaticResource NegativeMediumLeftRighWithSmallTopMargin}"
+                                                CornerRadius="{StaticResource DefaultCornerRadius}"
                                                 Padding="{StaticResource SmallListItemPadding}"
                                                 HorizontalAlignment="Stretch"
                                                 Background="{ThemeResource ListItemBrush}">
 
                                                 <Grid Margin="{StaticResource MediumLeftRightMargin}">
-                                                    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                                    <StackPanel VerticalAlignment="Center" Orientation="Vertical" >
                                                         <TextBlock HorizontalAlignment="Stretch" Text="{x:Bind Category.Name}" />
                                                         <TextBlock
                                                             MaxWidth="150"

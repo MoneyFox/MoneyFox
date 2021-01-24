@@ -9,7 +9,10 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
-    xmlns:views="using:MoneyFox.Uwp.Views" xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:resources="using:MoneyFox.Application.Resources"
+    xmlns:converter="using:MoneyFox.Uwp.Converter"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
@@ -22,25 +25,68 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
+    <Page.Resources>
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+
+        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
+            <StackPanel Spacing="12">
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+                <muxc:NumberBox Value="{x:Bind ViewModel.NumberOfCategoriesToShow, Mode=TwoWay}"
+                                SmallChange="1"
+                                LargeChange="5"
+                                Maximum="14"
+                                SpinButtonPlacementMode="Inline" />
+
+                <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
+            </StackPanel>
+        </Flyout>
+    </Page.Resources>
+
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <TextBlock Style="{StaticResource UwpPageTitleStyle}" Text="{x:Bind resources:Strings.CategoriesTitle}" />
+
+
+        <CommandBar
+            Grid.Row="0"
+            OverflowButtonVisibility="Collapsed"
+            Margin="{StaticResource NegativeMediumLeftRightMargin}"
+            Style="{ThemeResource DefaultCommandBar}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Filter"
+                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                              Click="OpenFilterFlyout"
+                              Label="{x:Bind resources:Strings.FilterLabel}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+
+        <Grid Grid.Row="1">
             <TextBlock
                 VerticalAlignment="Center"
                 Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                 Text="{Binding Title}" />
         </Grid>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <chart:RadPieChart x:Name="chart" PaletteName="DefaultDark">
-                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}" RadiusFactor="0.6">
+                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
+                                      RadiusFactor="0.6"
+                                      Foreground="{ThemeResource AppForegroundColorPrimary}" >
                     <chart:DoughnutSeries.ValueBinding>
                         <chart:PropertyNameDataPointBinding PropertyName="Value" />
                     </chart:DoughnutSeries.ValueBinding>
@@ -51,7 +97,7 @@
             </chart:RadPieChart>
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <primitives:RadLegendControl LegendProvider="{Binding ElementName=chart}">
                 <primitives:RadLegendControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -76,17 +122,5 @@
                 </primitives:RadLegendControl.ItemTemplate>
             </primitives:RadLegendControl>
         </Grid>
-
-        <CommandBar
-            Grid.Row="3"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
-            ClosedDisplayMode="Minimal"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Calendar"
-                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 </views:BaseView>

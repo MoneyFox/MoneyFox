@@ -17,13 +17,14 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
+        private int numberOfCategoriesToShow = 6;
 
         public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
         {
         }
 
         /// <summary>
-        /// Statistic items to display.
+        ///     Statistic items to display.
         /// </summary>
         public ObservableCollection<StatisticEntry> StatisticItems
         {
@@ -40,16 +41,28 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         }
 
         /// <summary>
+        ///     Amount of categories to show. All Payments not fitting in here will go to the other category
+        /// </summary>
+        public int NumberOfCategoriesToShow
+        {
+            get => numberOfCategoriesToShow;
+            set
+            {
+                if(numberOfCategoriesToShow == value)
+                {
+                    return;
+                }
+                numberOfCategoriesToShow = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task LoadAsync()
         {
-            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(
-                new GetCategorySpreadingQuery
-                {
-                    StartDate = StartDate,
-                    EndDate = EndDate
-                });
+            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate, NumberOfCategoriesToShow));
 
             statisticEntries.ToList().ForEach(x => x.Label = $"{x.Label} ({x.ValueLabel})");
 

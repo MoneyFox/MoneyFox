@@ -9,6 +9,7 @@
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
                 xmlns:designtime="using:MoneyFox.Presentation.ViewModels.DesignTime"
                 xmlns:models="using:MoneyFox.Ui.Shared.ViewModels.Statistics"
+                xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
                 mc:Ignorable="d" >
 
 
@@ -20,22 +21,28 @@
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
         <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
-            <StackPanel Background="{ThemeResource ListItemBrush}"
-                        HorizontalAlignment="Stretch"
-                        Width="400"
-                        Height="60"
-                        Margin="{StaticResource SmallListItemMargin}"
-                        Padding="{StaticResource SmallListItemPadding}">
+            <controls:DropShadowPanel
+                HorizontalContentAlignment="Stretch"
+                Margin="3,4,0,0"
+                BlurRadius="4.0"
+                ShadowOpacity="0.40">
+                <StackPanel Background="{ThemeResource ListItemBrush}"
+                            HorizontalAlignment="Stretch"
+                            Width="400"
+                            Height="60"
+                            CornerRadius="{StaticResource DefaultCornerRadius}"
+                            Padding="{StaticResource SmallListItemPadding}">
 
-                <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
-                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}" >
+                        <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                Text="{x:Bind Name}"
                                TextTrimming="CharacterEllipsis" />
-                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                        <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                                Text="{x:Bind Description}"
                                TextWrapping="WrapWholeWords" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </controls:DropShadowPanel>
         </DataTemplate>
     </Page.Resources>
 

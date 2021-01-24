@@ -89,6 +89,7 @@
         <userControls:CategorySelectionControl ViewModel="{x:Bind ViewModel}" />
 
         <CalendarDatePicker
+            Margin="{StaticResource SmallTitleContentMargin}"
             HorizontalAlignment="Stretch"
             FirstDayOfWeek="Monday"
             Date="{x:Bind ViewModel.SelectedPayment.Date, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
