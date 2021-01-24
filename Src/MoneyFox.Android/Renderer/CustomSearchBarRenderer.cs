@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Widget;
 using Java.Lang.Reflect;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Droid.Renderer;
 using NLog;
 using System;
@@ -29,27 +30,35 @@ namespace MoneyFox.Droid.Renderer
         protected override void OnElementChanged(ElementChangedEventArgs<SearchBar> e)
         {
             base.OnElementChanged(e);
-            if(Control != null)
+            try
             {
-                SearchView searchView = Control;
-                searchView.Iconified = false;
-                searchView.SetIconifiedByDefault(false);
-
-                EditText editText = Control.GetChildrenOfType<EditText>().First();
-
-                editText.SetHighlightColor(Color.Accent.ToAndroid());
-
-                if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                if(Control != null)
                 {
-                    TrySetCursorPointerColorNew(editText);
-                }
-                else
-                {
-                    TrySetCursorPointerColor(editText);
-                }
 
-                UpdateSearchButtonColor();
-                UpdateCancelButtonColor();
+                    SearchView searchView = Control;
+                    searchView.Iconified = false;
+                    searchView.SetIconifiedByDefault(false);
+
+                    EditText editText = Control.GetChildrenOfType<EditText>().First();
+
+                    editText.SetHighlightColor(Color.Accent.ToAndroid());
+
+                    if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
+                    {
+                        TrySetCursorPointerColorNew(editText);
+                    }
+                    else
+                    {
+                        TrySetCursorPointerColor(editText);
+                    }
+
+                    UpdateSearchButtonColor();
+                    UpdateCancelButtonColor();
+                }
+            }
+            catch (Exception ex)
+            {
+                Crashes.TrackError(ex);
             }
         }
 

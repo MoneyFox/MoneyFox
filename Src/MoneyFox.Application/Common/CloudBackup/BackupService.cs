@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
@@ -171,6 +172,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                 logger.Error(ex, "Operation canceled during get backup date. Execute logout");
                 await LogoutAsync();
                 await toastService.ShowToastAsync(Strings.FailedToLoginToBackupMessage, Strings.FailedToLoginToBackupTitle);
+                Crashes.TrackError(ex);
             }
             return DateTime.MinValue.ToLocalTime();
         }

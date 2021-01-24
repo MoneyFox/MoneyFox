@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediatR;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
@@ -208,6 +209,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             {
                 IsBusy = true;
                 await LoadPaymentsAsync();
+
                 //Refresh balance control with the current account
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
                 IsBusy = false;
