@@ -54,9 +54,7 @@ namespace MoneyFox.ViewModels.Accounts
 
                 isRunning = true;
 
-                Accounts.Clear();
-
-                List<AccountViewModel>? accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+                List<AccountViewModel> accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
                 accountVms.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 var includedAccountGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
@@ -65,15 +63,19 @@ namespace MoneyFox.ViewModels.Accounts
                 includedAccountGroup.AddRange(accountVms.Where(x => !x.IsExcluded));
                 excludedAccountGroup.AddRange(accountVms.Where(x => x.IsExcluded));
 
+                var newAccountCollection = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
+
                 if(includedAccountGroup.Any())
                 {
-                    Accounts.Add(includedAccountGroup);
+                    newAccountCollection.Add(includedAccountGroup);
                 }
 
                 if(excludedAccountGroup.Any())
                 {
-                    Accounts.Add(excludedAccountGroup);
+                    newAccountCollection.Add(excludedAccountGroup);
                 }
+                // Don't clear and add items separately since iOS doesn't handle batch updates correctly.
+                Accounts = newAccountCollection;
             }
             finally
             {
