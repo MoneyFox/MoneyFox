@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediatR;
+using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
@@ -41,7 +42,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private int accountId;
         private IBalanceViewModel balanceViewModel = null!;
 
+        private PaymentListFilterChangedMessage filterMessage = new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) };
+
         private string title = "";
+        private bool isBusy = true;
         private IPaymentListViewActionViewModel? viewActionViewModel;
 
         /// <summary>
@@ -64,7 +68,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public void Subscribe()
         {
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPaymentsAsync(message));
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async (message) => {
+                filterMessage = message;
+                await LoadDataAsync();
+            });
             MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
         }
 
@@ -129,7 +136,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private CollectionViewSource? groupedPayments;
 
         /// <summary>
-        /// Returns grouped related payments
+        ///     Returns grouped related payments
         /// </summary>
         public CollectionViewSource? GroupedPayments
         {
@@ -142,7 +149,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Returns the name of the account title for the current page
+        ///     Returns the name of the account title for the current page
         /// </summary>
         public string Title
         {
@@ -159,6 +166,23 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
         }
 
+        /// <summary>
+        ///     Indicates if the view is loading.
+        /// </summary>
+        public bool IsBusy
+        {
+            get => isBusy;
+            private set
+            {
+                if(isBusy == value)
+                {
+                    return;
+                }
+
+                isBusy = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private async Task InitializeAsync()
         {
@@ -175,26 +199,22 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                                                                      BalanceViewModel,
                                                                      navigationService);
 
-            await LoadPaymentListAsync();
-        }
-
-        private async Task LoadPaymentListAsync()
-        {
-            await dialogService.ShowLoadingDialogAsync();
-
             await LoadDataAsync();
-
-            await dialogService.HideLoadingDialogAsync();
         }
 
         private async Task LoadDataAsync()
         {
-            await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) });
-            //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+            await DispatcherHelper.ExecuteOnUIThreadAsync(async () =>
+            {
+                IsBusy = true;
+                await LoadPaymentsAsync();
+                //Refresh balance control with the current account
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+                IsBusy = false;
+            });
         }
 
-        private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
+        private async Task LoadPaymentsAsync()
         {
             List<PaymentViewModel> payments = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
