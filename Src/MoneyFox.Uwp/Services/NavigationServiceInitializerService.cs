@@ -30,14 +30,14 @@ namespace MoneyFox.Uwp.Services
             NavigationService.Register<AddPaymentViewModel, AddPaymentView>();
             NavigationService.Register<EditPaymentViewModel, EditPaymentView>();
             NavigationService.Register<CategoryListViewModel, CategoryListView>();
-            NavigationService.Register<SettingsViewModel, SettingsView>();
+            NavigationService.Register<SettingsViewModel, SettingsHostView>();
             NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
             NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashflowView>();
             NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
             NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
             NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();
             NavigationService.Register<BackupViewModel, BackupView>();
-            NavigationService.Register<WindowsSettingsViewModel, SettingsView>();
+            NavigationService.Register<WindowsSettingsViewModel, SettingsHostView>();
         }
     }
 }

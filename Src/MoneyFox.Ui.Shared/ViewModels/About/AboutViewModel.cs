@@ -34,7 +34,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.About
         }
 
         /// <summary>
-        /// Opens the webbrowser and loads to the apply solutions     website
+        /// Opens the web browser and loads to the apply solutions     website
         /// </summary>
         public RelayCommand GoToWebsiteCommand => new RelayCommand(async () => await GoToWebsiteAsync());
 
@@ -49,12 +49,12 @@ namespace MoneyFox.Ui.Shared.ViewModels.About
         public RelayCommand RateAppCommand => new RelayCommand(RateApp);
 
         /// <summary>
-        /// Opens the webbrowser and loads repository page     on GitHub
+        /// Opens the web browser and loads repository page     on GitHub
         /// </summary>
         public RelayCommand GoToRepositoryCommand => new RelayCommand(async () => await GoToRepositoryAsync());
 
         /// <summary>
-        /// Opens the webbrowser and loads the project on crowdin.
+        /// Opens the web browser and loads the project on Crowdin.
         /// </summary>
         public RelayCommand GoToTranslationProjectCommand => new RelayCommand(async () => await GoToTranslationProjectAsync());
 

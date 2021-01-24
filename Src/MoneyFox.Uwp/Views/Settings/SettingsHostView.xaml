@@ -1,0 +1,38 @@
+﻿<views:BaseView x:Class="MoneyFox.Uwp.Views.Settings.SettingsHostView"
+                xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:resources="using:MoneyFox.Application.Resources"
+                xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Settings"
+                xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+                mc:Ignorable="d">
+
+    <views:BaseView.Resources>
+        <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="Transparent"/>
+    </views:BaseView.Resources>
+
+    <d:Page.DataContext>
+        <designTime:DesignTimeWindowsSettingsViewModel />
+    </d:Page.DataContext>
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" >
+        <muxc:NavigationView x:Name="SettingsView"
+                             PaneDisplayMode="Top"
+                             IsBackButtonVisible="Collapsed"
+                             IsSettingsVisible="False"
+                             Loaded="OnLoad"
+                             ItemInvoked="OnItemInvoked">
+
+            <muxc:NavigationView.MenuItems>
+                <muxc:NavigationViewItem Tag="settings" Icon="Setting" Content="{x:Bind resources:Strings.SettingsTitle}"/>
+                <muxc:NavigationViewItem Tag="about" Icon="Help" Content="{x:Bind resources:Strings.AboutTitle}"/>
+            </muxc:NavigationView.MenuItems>
+
+            <Frame x:Name="ContentFrame"
+                   Padding="12,12,12,24"
+                   IsTabStop="True" />
+        </muxc:NavigationView>
+    </Grid>
+</views:BaseView>
