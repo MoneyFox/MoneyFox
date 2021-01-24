@@ -87,8 +87,8 @@ namespace MoneyFox.Application.Statistics.Queries
                 ? query.Where(x => x.Item1 > 0)
                 : query.Where(x => x.Item1 < 0);
 
-            return query.OrderByDescending(x => x.Item1)
-                        .Select(x => (Math.Abs(x.Item1), x.category))
+            return query.Select(x => (Math.Abs(x.Item1), x.category))
+                        .OrderByDescending(x => x.Item1)
                         .ToList();
         }
 

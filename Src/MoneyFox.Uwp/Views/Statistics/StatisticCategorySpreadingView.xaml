@@ -26,6 +26,7 @@
     </i:Interaction.Behaviors>
 
     <Page.Resources>
+        <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
 
         <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
@@ -87,9 +88,14 @@
                 Margin="{StaticResource SmallTitleContentMargin}"
                 HorizontalAlignment="Stretch"
                 Header="{x:Bind resources:Strings.SelectedPaymentTypeHeader}"
-                DisplayMemberPath="Name"
                 ItemsSource="{x:Bind ViewModel.PaymentTypes, Mode=OneWay}"
                 SelectedItem="{x:Bind ViewModel.SelectedPaymentType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Converter={StaticResource PaymentTypeToStringConverter}}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
 
                 <i:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
