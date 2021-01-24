@@ -80,7 +80,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <inheritdoc />
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await new SelectCategoryDialog().ShowAsync());
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async ()
+            => await new SelectCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync());
 
         /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel

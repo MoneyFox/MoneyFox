@@ -33,31 +33,19 @@
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
 
-        <Flyout x:Key="FilterFlyout">
-            <ListBox SelectionMode="Multiple" Background="Transparent" Width="250px" >
-                <ListBoxItem>
-                    <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}" IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}" IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <CalendarDatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
+            <StackPanel Spacing="6">
+                <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}" IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}" IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CalendarDatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         FirstDayOfWeek="Monday"
                                         Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                         FirstDayOfWeek="Monday"
                                         Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
-                </ListBoxItem>
-                <ListBoxItem>
-                    <Button Content="{x:Bind resources:Strings.ApplyFilterLabel}" Command="{Binding ApplyFilterCommand}" />
-                </ListBoxItem>
-            </ListBox>
+                <Button Content="{x:Bind resources:Strings.ApplyFilterLabel}" Command="{Binding ApplyFilterCommand}" />
+            </StackPanel>
         </Flyout>
 
     </Page.Resources>
@@ -100,6 +88,7 @@
                            LoadingRowGroup="DataGrid_LoadingRowGroup"
                            DoubleTapped="DataGrid_DoubleTapped"
                            IsReadOnly="True"
+                           Margin="{StaticResource NegativeMediumLeftRightMargin}"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
             <controls:DataGrid.RowStyle>
