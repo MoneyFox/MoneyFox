@@ -2,7 +2,7 @@
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries.GetCashFlow;
+using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;

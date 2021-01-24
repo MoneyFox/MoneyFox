@@ -2,6 +2,7 @@
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.ViewModels.Categories;
 using System.Collections.ObjectModel;
 
 #nullable enable
