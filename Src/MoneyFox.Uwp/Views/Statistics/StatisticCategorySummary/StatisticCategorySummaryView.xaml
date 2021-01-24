@@ -17,6 +17,22 @@
 
     <Page.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+
+        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
+            <StackPanel Spacing="12">
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+                <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
+            </StackPanel>
+        </Flyout>
 
         <DataTemplate x:Key="CategoryOverviewItemTemplate" x:DataType="viewModels:CategoryOverviewViewModel">
             <controls:DropShadowPanel
@@ -86,7 +102,8 @@
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Calendar"
-                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
+                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                              Click="OpenFilterFlyout"
                               Label="{x:Bind resources:Strings.SelectDateLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
