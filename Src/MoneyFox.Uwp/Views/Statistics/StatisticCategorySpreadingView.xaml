@@ -55,6 +55,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -82,6 +83,23 @@
         </Grid>
 
         <Grid Grid.Row="2">
+            <ComboBox
+                Margin="{StaticResource SmallTitleContentMargin}"
+                HorizontalAlignment="Stretch"
+                Header="{x:Bind resources:Strings.SelectedPaymentTypeHeader}"
+                DisplayMemberPath="Name"
+                ItemsSource="{x:Bind ViewModel.PaymentTypes, Mode=OneWay}"
+                SelectedItem="{x:Bind ViewModel.SelectedPaymentType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+
+                <i:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadDataCommand}" />
+                    </core:EventTriggerBehavior>
+                </i:Interaction.Behaviors>
+            </ComboBox>
+        </Grid>
+
+        <Grid Grid.Row="3">
             <chart:RadPieChart x:Name="chart" PaletteName="DefaultDark">
                 <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
                                       RadiusFactor="0.6"
@@ -96,7 +114,7 @@
             </chart:RadPieChart>
         </Grid>
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="4">
             <primitives:RadLegendControl LegendProvider="{Binding ElementName=chart}">
                 <primitives:RadLegendControl.ItemsPanel>
                     <ItemsPanelTemplate>

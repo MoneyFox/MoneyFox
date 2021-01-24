@@ -1,7 +1,9 @@
-﻿using MediatR;
+﻿using GalaSoft.MvvmLight.Command;
+using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
+using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,9 +20,22 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     {
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
         private int numberOfCategoriesToShow = 6;
+        private PaymentType selectedPaymentType;
 
         public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
         {
+        }
+
+        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
+
+        public PaymentType SelectedPaymentType
+        {
+            get => selectedPaymentType;
+            set
+            {
+                selectedPaymentType = value;
+                RaisePropertyChanged();
+            }
         }
 
         /// <summary>
@@ -56,6 +71,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 RaisePropertyChanged();
             }
         }
+
+        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
         /// <summary>
         /// Set a custom CategorySpreadingModel with the set Start and End date
