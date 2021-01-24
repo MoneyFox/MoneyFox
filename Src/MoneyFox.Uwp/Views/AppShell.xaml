@@ -29,16 +29,28 @@
             FallbackColor="#40537F"
             TintColor="#40537F"
             TintOpacity=".7" />
+
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPointerOver" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelected" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPointerOver" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundPressed" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForegroundSelectedPressed" Color="White"/>
+        <SolidColorBrush x:Key="NavigationViewItemForeground" Color="White" />
+
+        <Style x:Key="CustomNavigationMenuStyle" TargetType="Button" BasedOn="{StaticResource PaneToggleButtonStyle}">
+            <Setter Property="Foreground" Value="White" />
+        </Style>
     </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <winui:NavigationView x:Name="NavView"
-                              Foreground="White"
+                              Foreground="{ThemeResource ApplicationForegroundThemeBrush}"
                               AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame}"
                               Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
                               IsBackButtonVisible="Visible"
                               IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+                              PaneToggleButtonStyle="{StaticResource CustomNavigationMenuStyle}"
                               IsSettingsVisible="true"
                               OpenPaneLength="280"
                               PaneDisplayMode="Left"
@@ -47,13 +59,17 @@
 
             <winui:NavigationView.MenuItems>
 
-				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="AccountListViewModel" Content="{x:Bind resources:Strings.AccountsTitle}" ToolTipService.ToolTip="{x:Bind resources:Strings.AccountsToolTip}">
+				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="AccountListViewModel"
+                                          Content="{x:Bind resources:Strings.AccountsTitle}"
+                                          ToolTipService.ToolTip="{x:Bind resources:Strings.AccountsToolTip}">
                     <winui:NavigationViewItem.Icon>
                         <FontIcon Glyph="&#xE10F;" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="StatisticSelectorViewModel" Content="{x:Bind resources:Strings.StatisticsTitle}" ToolTipService.ToolTip="{x:Bind resources:Strings.StatisticsToolTip}">
+				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="StatisticSelectorViewModel"
+                                          Content="{x:Bind resources:Strings.StatisticsTitle}"
+                                          ToolTipService.ToolTip="{x:Bind resources:Strings.StatisticsToolTip}">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome
                             HorizontalAlignment="Center"
@@ -62,7 +78,9 @@
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="CategoryListViewModel" Content="{x:Bind resources:Strings.CategoriesTitle}" ToolTipService.ToolTip="{x:Bind resources:Strings.CategoriesToolTip}">
+				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="CategoryListViewModel"
+                                          Content="{x:Bind resources:Strings.CategoriesTitle}"
+                                          ToolTipService.ToolTip="{x:Bind resources:Strings.CategoriesToolTip}">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome
                             HorizontalAlignment="Center"
@@ -71,7 +89,9 @@
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
-				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="BackupViewModel" Content="{x:Bind resources:Strings.BackupTitle}" ToolTipService.ToolTip="{x:Bind resources:Strings.BackupToolTip}">
+				<winui:NavigationViewItem helpers:NavHelper.NavigateTo="BackupViewModel"
+                                          Content="{x:Bind resources:Strings.BackupTitle}"
+                                          ToolTipService.ToolTip="{x:Bind resources:Strings.BackupToolTip}">
                     <winui:NavigationViewItem.Icon>
                         <uwp:FontAwesome
                             HorizontalAlignment="Center"

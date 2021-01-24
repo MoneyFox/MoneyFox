@@ -1,4 +1,6 @@
-﻿using MoneyFox.ViewModels.Statistics;
+﻿using MoneyFox.Presentation.Dialogs;
+using MoneyFox.ViewModels.Statistics;
+using System;
 using Xamarin.Forms;
 
 namespace MoneyFox.Views.Statistics
@@ -14,5 +16,8 @@ namespace MoneyFox.Views.Statistics
         }
 
         protected override void OnAppearing() => ViewModel.InitCommand.Execute(null);
+
+        private async void OpenFilterDialog(object sender, EventArgs e)
+            => await new DateSelectionPopup(ViewModel.StartDate, ViewModel.EndDate).ShowAsync();
     }
 }

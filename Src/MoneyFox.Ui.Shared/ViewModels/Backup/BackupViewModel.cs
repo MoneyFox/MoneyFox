@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
@@ -44,8 +45,8 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             this.connectivity = connectivity;
             this.settingsFacade = settingsFacade;
             this.toastService = toastService;
-            userAccount = new UserAccount();
 
+            userAccount = new UserAccount();
         }
 
         /// <inheritdoc/>
@@ -219,6 +220,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             {
                 logger.Error(ex, "Login Failed.");
                 await dialogService.ShowMessageAsync(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
+                Crashes.TrackError(ex);
             }
 
             RaisePropertyChanged(nameof(IsLoggedIn));
@@ -239,6 +241,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             {
                 logger.Error(ex, "Logout Failed.");
                 await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.Message);
+                Crashes.TrackError(ex);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
@@ -269,6 +272,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             {
                 logger.Error(ex, "Create Backup failed.");
                 await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+                Crashes.TrackError(ex);
             }
 
             await dialogService.HideLoadingDialogAsync();
@@ -283,28 +287,30 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
 
             await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();
-            if(settingsFacade.LastDatabaseUpdate > backupDate && !await ShowForceOverrideConfirmationAsync())
+            if(settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
+            {
+                await dialogService.ShowLoadingDialogAsync();
+
+                try
+                {
+                    await backupService.RestoreBackupAsync(BackupMode.Manual);
+                    await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
+                }
+                catch(BackupOperationCanceledException)
+                {
+                    logger.Info("Restoring the backup was canceled by the user.");
+                    await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
+                }
+                catch(Exception ex)
+                {
+                    logger.Error(ex, "Restore Backup failed.");
+                    await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+                    Crashes.TrackError(ex);
+                }
+            }
+            else
             {
                 logger.Info("Restore Backup canceled by the user due to newer local data.");
-                return;
-            }
-
-            await dialogService.ShowLoadingDialogAsync();
-
-            try
-            {
-                await backupService.RestoreBackupAsync(BackupMode.Manual);
-                await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
-            }
-            catch(BackupOperationCanceledException)
-            {
-                logger.Info("Restoring the backup was canceled by the user.");
-                await dialogService.ShowMessageAsync(Strings.CanceledTitle, Strings.RestoreBackupCanceledMessage);
-            }
-            catch(Exception ex)
-            {
-                logger.Error(ex, "Restore Backup failed.");
-                await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
             }
 
             await dialogService.HideLoadingDialogAsync();

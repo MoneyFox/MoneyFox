@@ -23,7 +23,7 @@ namespace MoneyFox.ViewModels.Statistics
         private ObservableCollection<CategoryOverviewViewModel> categorySummary = new ObservableCollection<CategoryOverviewViewModel>();
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 IDialogService dialogService) : base(mediator, dialogService)
+                                                 IDialogService dialogService) : base(mediator)
         {
             this.dialogService = dialogService;
 

@@ -15,6 +15,7 @@
 
     <ContentPage.Resources>
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
+        <converter:DateFormatConverter x:Key="DateFormatConverter" />
     </ContentPage.Resources>
 
     <Shell.TitleView>
@@ -103,7 +104,7 @@
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="Start"
                                                                 VerticalTextAlignment="Start"
-                                                                Text="{Binding Date, StringFormat='{0:d}'}" />
+                                                                Text="{Binding Date, Converter={StaticResource DateFormatConverter}}" />
 
                                                     <Label Style="{StaticResource TextBody}"
                                                                 HorizontalTextAlignment="End"

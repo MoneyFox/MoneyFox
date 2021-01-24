@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.ViewModels;
+using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.Views;
 using NLog;
 using System;

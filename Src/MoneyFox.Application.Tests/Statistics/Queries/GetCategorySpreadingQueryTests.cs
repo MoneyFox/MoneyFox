@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Statistics.Queries.GetCategorySpreading;
+using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -61,13 +61,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result =
-                (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                },
-                                                                                              default))
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+               .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
                .ToList();
 
             // Assert
@@ -97,14 +92,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result =
-                (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                },
-                                                                                              default))
-               .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
+                .ToList();
 
             // Assert
             result.Should().HaveCount(2);
@@ -128,14 +118,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result =
-                (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                },
-                                                                                              default))
-               .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
+                .ToList();
 
             // Assert
             result[0].Label.Should().Be(testCat1.Name);
@@ -162,14 +147,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result =
-                (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                },
-                                                                                              default))
-               .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
+                .ToList();
 
             // Assert
             result[0].Color.Should().Be("#266489");
@@ -202,14 +182,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result =
-                (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object).Handle(new GetCategorySpreadingQuery
-                {
-                    StartDate = DateTime.Today.AddDays(-3),
-                    EndDate = DateTime.Today.AddDays(3)
-                },
-                                                                                              default))
-               .ToList();
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),default))
+                .ToList();
 
             // Assert
             result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);

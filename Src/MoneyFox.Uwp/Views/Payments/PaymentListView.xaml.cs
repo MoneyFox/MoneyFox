@@ -1,4 +1,5 @@
-﻿using MoneyFox.Ui.Shared.ViewModels.Payments;
+﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Payments;
 using System.Globalization;
 using Windows.UI.Xaml;
@@ -28,15 +29,14 @@ namespace MoneyFox.Uwp.Views.Payments
             if(e.Parameter != null)
             {
                 ViewModel.AccountId = (int)e.Parameter;
-                ViewModel.InitializeCommand.Execute(null);
             }
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e) => ViewModel.Unsubscribe();
 
-        private void AppBarToggleButton_Click(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        private void OpenFilterFlyout(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
 
-        private void DataGrid_LoadingRowGroup(object sender, Microsoft.Toolkit.Uwp.UI.Controls.DataGridRowGroupHeaderEventArgs e)
+        private void DataGrid_LoadingRowGroup(object sender, DataGridRowGroupHeaderEventArgs e)
         {
             ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
             var item = (PaymentViewModel)group.GroupItems[0];

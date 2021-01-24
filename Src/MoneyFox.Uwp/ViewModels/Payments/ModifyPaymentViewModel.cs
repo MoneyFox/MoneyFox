@@ -16,6 +16,7 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
+using MoneyFox.Uwp.Views.Categories;
 using MoneyFox.Uwp.Views.Payments;
 using NLog;
 using System;
@@ -79,7 +80,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <inheritdoc />
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await new SelectCategoryDialog().ShowAsync());
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async ()
+            => await new SelectCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync());
 
         /// <summary>
         /// Resets the CategoryViewModel of the currently selected PaymentViewModel

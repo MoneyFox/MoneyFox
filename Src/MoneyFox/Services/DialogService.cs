@@ -1,6 +1,5 @@
 ﻿using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Presentation.Dialogs;
 using MoneyFox.Views.Dialogs;
 using System;
 using System.Threading.Tasks;
@@ -55,7 +54,5 @@ namespace MoneyFox.Services
                                                          negativeButtonText ?? Strings.NoLabel);
             return await confirmDialog.ShowAsync();
         }
-
-        public async Task ShowDateRangeSelectionDialogAsync() => await new DateSelectionPopup().ShowAsync();
     }
 }

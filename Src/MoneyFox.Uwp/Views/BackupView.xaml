@@ -10,7 +10,6 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
-    xmlns:backup="using:MoneyFox.Ui.Shared.ViewModels.Backup"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
@@ -114,17 +113,17 @@
                 <!-- Auto Backup Sync -->
 
                 <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.BackupTitle}"
-                               TextWrapping="WrapWholeWords" />
+                           Text="{x:Bind resources:Strings.BackupTitle}"
+                           TextWrapping="WrapWholeWords" />
 
                 <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.AutobackupInformationLabel}"
-                               TextWrapping="WrapWholeWords" />
+                           Text="{x:Bind resources:Strings.AutobackupInformationLabel}"
+                           TextWrapping="WrapWholeWords" />
 
                 <ToggleSwitch VerticalAlignment="Center"
-                                  Margin="0,6,0,0"
-                                  Header="{x:Bind resources:Strings.AutobackupLabel}"
-                                  IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
+                              Margin="0,6,0,0"
+                              Header="{x:Bind resources:Strings.AutobackupLabel}"
+                              IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
 
             </StackPanel>
         </StackPanel>

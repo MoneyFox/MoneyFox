@@ -11,10 +11,13 @@ namespace MoneyFox.Presentation.Dialogs
     public partial class DateSelectionPopup
     {
         private SelectDateRangeDialogViewModel ViewModel => (SelectDateRangeDialogViewModel)BindingContext;
-        public DateSelectionPopup()
+        public DateSelectionPopup(DateTime dateFrom, DateTime dateTo)
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.SelectDateRangeDialogViewModel;
+
+            ViewModel.StartDate = dateFrom;
+            ViewModel.EndDate = dateTo;
         }
 
         public DateSelectionPopup(DateSelectedMessage message)

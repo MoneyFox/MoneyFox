@@ -30,7 +30,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         public StatisticCategorySummaryViewModel(IMediator mediator,
                                                  IMapper mapper,
                                                  IDialogService dialogService)
-            : base(mediator, dialogService)
+            : base(mediator)
         {
             this.mapper = mapper;
         }

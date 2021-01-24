@@ -1,4 +1,6 @@
-﻿using MoneyFox.ViewModels.Statistics;
+﻿using MoneyFox.Presentation.Dialogs;
+using MoneyFox.ViewModels.Statistics;
+using System;
 
 namespace MoneyFox.Views.Statistics
 {
@@ -12,5 +14,8 @@ namespace MoneyFox.Views.Statistics
             BindingContext = ViewModelLocator.StatisticCategorySummaryViewModel;
             ViewModel.LoadedCommand.Execute(null);
         }
+
+        private async void OpenFilterDialog(object sender, EventArgs e)
+            => await new DateSelectionPopup(ViewModel.StartDate, ViewModel.EndDate).ShowAsync();
     }
 }

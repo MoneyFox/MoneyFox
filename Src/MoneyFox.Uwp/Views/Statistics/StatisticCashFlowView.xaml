@@ -8,8 +8,27 @@
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:microcharts="using:Microcharts.Uwp"
                 xmlns:resources="using:MoneyFox.Application.Resources"
+                xmlns:converter="using:MoneyFox.Uwp.Converter"
                 mc:Ignorable="d" >
 
+    <Page.Resources>
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+
+        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
+            <StackPanel Spacing="12">
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+                <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
+            </StackPanel>
+        </Flyout>
+    </Page.Resources>
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -19,10 +38,10 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -31,18 +50,18 @@
                        VerticalAlignment="Center" />
         </Grid>
 
+        <CommandBar Grid.Row="0"
+                    Style="{ThemeResource DefaultCommandBar}"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Calendar"
+                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                              Click="OpenFilterFlyout"
+                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+
         <microcharts:ChartView Grid.Row="1"
                                Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        <CommandBar Grid.Row="2"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    ClosedDisplayMode="Minimal"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Calendar"
-                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 </views:BaseView>

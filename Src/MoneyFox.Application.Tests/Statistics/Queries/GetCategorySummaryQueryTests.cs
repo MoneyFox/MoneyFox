@@ -62,7 +62,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Act
             CategorySummaryModel result =
-                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
                    {
                        StartDate = DateTime.Today.AddDays(-3),
@@ -101,7 +101,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Act
             CategorySummaryModel result =
-                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
                    {
                        StartDate = DateTime.Today.AddDays(-3),
@@ -138,7 +138,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Act
             CategorySummaryModel result =
-                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
                    {
                        StartDate = DateTime.Today.AddDays(-3),
@@ -168,7 +168,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Act
             CategorySummaryModel result =
-                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
                    {
                        StartDate = DateTime.Today.AddDays(-3),
@@ -196,7 +196,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Act
             CategorySummaryModel result =
-                await new GetCategorySummaryQuery.GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
                    .Handle(new GetCategorySummaryQuery
                    {
                        StartDate = DateTime.Today.AddDays(-3),

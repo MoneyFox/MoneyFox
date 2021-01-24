@@ -22,7 +22,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="23" />
             <RowDefinition Height="32" />
-            <RowDefinition Height="32" />
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="{x:Bind resources:Strings.CategoryLabel}" />
@@ -39,6 +38,7 @@
         <SymbolIcon Symbol="Cancel"
                     Grid.Column="1"
                     Grid.Row="1"
+                    Foreground="{ThemeResource AppForegroundColorPrimary}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <interactivity:Interaction.Behaviors>
