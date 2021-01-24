@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediatR;
+using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
@@ -198,11 +199,14 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadDataAsync()
         {
-            IsBusy = true;
-            await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) });
-            //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-            IsBusy = false;
+            await DispatcherHelper.ExecuteOnUIThreadAsync(async () =>
+            {
+                IsBusy = true;
+                await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) });
+                //Refresh balance control with the current account
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+                IsBusy = false;
+            });
         }
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
