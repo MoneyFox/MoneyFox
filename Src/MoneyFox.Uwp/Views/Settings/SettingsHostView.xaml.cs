@@ -1,5 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
-using System;
+using Windows.UI.Xaml.Media.Animation;
 
 #nullable enable
 namespace MoneyFox.Uwp.Views.Settings
@@ -21,11 +21,18 @@ namespace MoneyFox.Uwp.Views.Settings
 
         private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
-            Type page = args.InvokedItemContainer.Tag.ToString() == "settings"
-                ? typeof(SettingsView)
-                : typeof(AboutView);
-
-            ContentFrame.Navigate(page);
+            if(args.InvokedItemContainer.Tag.ToString() == "settings")
+            {
+                ContentFrame.Navigate(typeof(SettingsView),
+                                      null,
+                                      new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+            }
+            else
+            {
+                ContentFrame.Navigate(typeof(AboutView),
+                                      null,
+                                      new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+            }
         }
     }
 }

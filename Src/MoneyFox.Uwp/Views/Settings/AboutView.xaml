@@ -11,7 +11,7 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid>
         <ScrollViewer HorizontalAlignment="Center"
                       VerticalScrollBarVisibility="Auto">
             <StackPanel>

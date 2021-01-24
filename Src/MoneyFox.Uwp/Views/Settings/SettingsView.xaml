@@ -22,7 +22,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid>
         <ScrollViewer Margin="0,0,-10,0">
             <StackPanel Margin="0,0,20,0">
 
