@@ -18,7 +18,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Statistics
     {
         private BarChart chart = new BarChart();
 
-        public StatisticCashFlowViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
+        public StatisticCashFlowViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
         {
         }
 

@@ -19,7 +19,7 @@ namespace MoneyFox.ViewModels.Statistics
     {
         private DonutChart chart = new DonutChart();
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
+        public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
         {
         }
 

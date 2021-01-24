@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
         private int numberOfCategoriesToShow = 6;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator, dialogService)
+        public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
         {
         }
 

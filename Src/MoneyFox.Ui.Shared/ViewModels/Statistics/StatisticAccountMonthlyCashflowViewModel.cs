@@ -30,7 +30,7 @@ namespace MoneyFox.ViewModels.Statistics
 
         public StatisticAccountMonthlyCashflowViewModel(IMediator mediator,
                                                         IMapper mapper,
-                                                        IDialogService dialogService) : base(mediator, dialogService)
+                                                        IDialogService dialogService) : base(mediator)
         {
             this.mapper = mapper;
 
