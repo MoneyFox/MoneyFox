@@ -159,9 +159,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
         }
 
-
         private async Task InitializeAsync()
         {
+            await dialogService.ShowLoadingDialogAsync();
+
             Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
 
             BalanceViewModel = new PaymentListBalanceViewModel(mediator,
@@ -175,15 +176,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                                                                      BalanceViewModel,
                                                                      navigationService);
 
-            await LoadPaymentListAsync();
-        }
-
-        private async Task LoadPaymentListAsync()
-        {
-            await dialogService.ShowLoadingDialogAsync();
-
             await LoadDataAsync();
-
             await dialogService.HideLoadingDialogAsync();
         }
 
