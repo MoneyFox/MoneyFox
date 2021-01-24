@@ -28,7 +28,6 @@ namespace MoneyFox.Uwp.Views.Payments
             if(e.Parameter != null)
             {
                 ViewModel.AccountId = (int)e.Parameter;
-                ViewModel.InitializeCommand.Execute(null);
             }
         }
 
