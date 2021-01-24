@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Graph;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
@@ -219,6 +220,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             {
                 logger.Error(ex, "Login Failed.");
                 await dialogService.ShowMessageAsync(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
+                Crashes.TrackError(ex);
             }
 
             RaisePropertyChanged(nameof(IsLoggedIn));
@@ -239,6 +241,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             {
                 logger.Error(ex, "Logout Failed.");
                 await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, ex.Message);
+                Crashes.TrackError(ex);
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
@@ -269,6 +272,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
             {
                 logger.Error(ex, "Create Backup failed.");
                 await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+                Crashes.TrackError(ex);
             }
 
             await dialogService.HideLoadingDialogAsync();
@@ -301,6 +305,7 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
                 {
                     logger.Error(ex, "Restore Backup failed.");
                     await dialogService.ShowMessageAsync(Strings.BackupFailedTitle, ex.Message);
+                    Crashes.TrackError(ex);
                 }
             }
             else

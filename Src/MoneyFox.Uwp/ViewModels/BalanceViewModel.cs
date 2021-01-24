@@ -1,7 +1,9 @@
 ﻿using GalaSoft.MvvmLight;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
+using System;
 using System.Threading.Tasks;
 
 #nullable enable
@@ -49,19 +51,26 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust  
+        /// Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///   itself and show different data.
         /// </summary>
         public AsyncCommand UpdateBalanceCommand => new AsyncCommand(UpdateBalanceAsync);
 
         /// <summary>
-        /// Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust  
+        /// Refreshes the balances. Depending on if it is displayed in a payment view or a general view it will adjust
         ///   itself and show different data.
         /// </summary>
         private async Task UpdateBalanceAsync()
         {
-            TotalBalance = await CalculateTotalBalanceAsync();
-            EndOfMonthBalance = await GetEndOfMonthValueAsync();
+            try
+            {
+                TotalBalance = await CalculateTotalBalanceAsync();
+                EndOfMonthBalance = await GetEndOfMonthValueAsync();
+            }
+            catch(Exception ex)
+            {
+                Crashes.TrackError(ex);
+            }
         }
 
         /// <summary>
