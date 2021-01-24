@@ -121,7 +121,11 @@ namespace MoneyFox.Application.Statistics.Queries
 
         private static void SetColors(List<StatisticEntry> statisticItems)
         {
-            for(int i = 0; i < statisticItems.Count; i++)
+            int counter = statisticItems.Count >= Colors.Length
+                ? Colors.Length
+                : statisticItems.Count;
+
+            for(int i = 0; i < counter; i++)
             {
                 statisticItems[i].Color = Colors[i];
             }
