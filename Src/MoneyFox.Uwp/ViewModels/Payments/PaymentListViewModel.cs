@@ -205,26 +205,15 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadDataAsync()
         {
-            try
+            await DispatcherHelper.ExecuteOnUIThreadAsync(async () =>
             {
-                await DispatcherHelper.ExecuteOnUIThreadAsync(async () =>
-                {
-                    IsBusy = true;
-                    await LoadPaymentsAsync();
+                IsBusy = true;
+                await LoadPaymentsAsync();
 
-                    //Refresh balance control with the current account
-                    await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-                    IsBusy = false;
-                });
-            }
-            catch(Exception ex)
-            {
-                Crashes.TrackError(ex);
-            }
-            finally
-            {
+                //Refresh balance control with the current account
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
                 IsBusy = false;
-            }
+            });
         }
 
         private async Task LoadPaymentsAsync()
