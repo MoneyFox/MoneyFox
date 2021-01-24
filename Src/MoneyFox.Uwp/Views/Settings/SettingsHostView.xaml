@@ -9,6 +9,10 @@
                 xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
                 mc:Ignorable="d">
 
+    <views:BaseView.Resources>
+        <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="Transparent"/>
+    </views:BaseView.Resources>
+
     <d:Page.DataContext>
         <designTime:DesignTimeWindowsSettingsViewModel />
     </d:Page.DataContext>
