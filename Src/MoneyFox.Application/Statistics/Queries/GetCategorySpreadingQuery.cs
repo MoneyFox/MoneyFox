@@ -42,6 +42,7 @@ namespace MoneyFox.Application.Statistics.Queries
         public static readonly string[] Colors =
         { "#266489", "#68B9C0", "#90D585", "#F3C151", "#F37F64", "#424856", "#8F97A4", "#7EAFC4", "#69E1BD", "#A6F297", "#F9F871", "#0087A3", "#00AAA9", "#3DCA9A", "#9BE582" };
 
+        private GetCategorySpreadingQuery currentRequest = null!;
         private readonly IContextAdapter contextAdapter;
 
         public GetCategorySpreadingQueryHandler(IContextAdapter contextAdapter)
@@ -49,7 +50,6 @@ namespace MoneyFox.Application.Statistics.Queries
             this.contextAdapter = contextAdapter;
         }
 
-        private GetCategorySpreadingQuery currentRequest;
 
         public async Task<IEnumerable<StatisticEntry>> Handle(GetCategorySpreadingQuery request, CancellationToken cancellationToken)
         {
@@ -88,6 +88,7 @@ namespace MoneyFox.Application.Statistics.Queries
                 : query.Where(x => x.Item1 < 0);
 
             return query.OrderByDescending(x => x.Item1)
+                        .Select(x => (Math.Abs(x.Item1), x.category))
                         .ToList();
         }
 

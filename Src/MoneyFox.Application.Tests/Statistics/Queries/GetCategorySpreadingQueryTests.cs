@@ -191,5 +191,38 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             result[1].ValueLabel[0].Should().Be(expectedCurrencySymbol);
             result[2].ValueLabel[0].Should().Be(expectedCurrencySymbol);
         }
+
+        [Fact]
+        public async Task CorrectSumsForIncome()
+        {
+            // Arrange
+            var testCat1 = new Category("Ausgehen");
+            var testCat2 = new Category("Rent");
+
+            var account = new Account("test");
+
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 90, PaymentType.Income, account, category: testCat1),
+                new Payment(DateTime.Today, 60, PaymentType.Expense, account, category: testCat1),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2),
+                new Payment(DateTime.Today, 90, PaymentType.Income, account, category: testCat2)
+            };
+
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
+
+            // Act
+            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+               .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3),
+                                                            DateTime.Today.AddDays(3),
+                                                            PaymentType.Income), default))
+               .ToList();
+
+            // Assert
+            result.Should().HaveCount(2);
+            result[0].Value.Should().Be(30);
+            result[1].Value.Should().Be(80);
+        }
     }
 }

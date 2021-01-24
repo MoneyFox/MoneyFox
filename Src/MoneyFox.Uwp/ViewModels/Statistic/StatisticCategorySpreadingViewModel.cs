@@ -33,6 +33,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             get => selectedPaymentType;
             set
             {
+                if(selectedPaymentType == value)
+                {
+                    return;
+                }
                 selectedPaymentType = value;
                 RaisePropertyChanged();
             }
@@ -79,7 +83,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// </summary>
         protected override async Task LoadAsync()
         {
-            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate, NumberOfCategoriesToShow));
+            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(new GetCategorySpreadingQuery(StartDate,
+                                                                                                                    EndDate,
+                                                                                                                    SelectedPaymentType,
+                                                                                                                    NumberOfCategoriesToShow));
 
             statisticEntries.ToList().ForEach(x => x.Label = $"{x.Label} ({x.ValueLabel})");
 
