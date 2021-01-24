@@ -1,11 +1,12 @@
 ﻿using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
+using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views.Dialogs;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
-using Windows.UI.Popups;
+using Windows.UI.Xaml.Controls;
 
 #nullable enable
 namespace MoneyFox.Uwp.Src
@@ -28,13 +29,18 @@ namespace MoneyFox.Uwp.Src
         {
             await HideLoadingDialogAsync();
 
-            var dialog = new MessageDialog(message, title);
-            dialog.Commands.Add(new UICommand(positiveButtonText ?? Strings.YesLabel));
-            dialog.Commands.Add(new UICommand(negativeButtonText ?? Strings.NoLabel));
+            var dialog = new ContentDialog
+            {
+                Title = title,
+                Content = message
+            };
+            dialog.PrimaryButtonText = positiveButtonText ?? Strings.YesLabel;
+            dialog.SecondaryButtonText = negativeButtonText ?? Strings.NoLabel;
+            dialog.RequestedTheme = ThemeSelectorService.Theme;
 
-            IUICommand result = await dialog.ShowAsync();
+            ContentDialogResult result = await dialog.ShowAsync();
 
-            return result.Label == (positiveButtonText ?? Strings.YesLabel);
+            return result == ContentDialogResult.Primary;
         }
 
         /// <summary>
@@ -46,8 +52,13 @@ namespace MoneyFox.Uwp.Src
         {
             await HideLoadingDialogAsync();
 
-            var dialog = new MessageDialog(message, title);
-            dialog.Commands.Add(new UICommand(Strings.OkLabel));
+            var dialog = new ContentDialog
+            {
+                Title = title,
+                Content = message
+            };
+            dialog.PrimaryButtonText = Strings.OkLabel;
+            dialog.RequestedTheme = ThemeSelectorService.Theme;
 
             await dialog.ShowAsync();
         }
@@ -69,10 +80,10 @@ namespace MoneyFox.Uwp.Src
 
             // RunAsync all of the UI info.
             await dispatcher.RunAsync(CoreDispatcherPriority.High,
-                                      async () =>
-                                      {
-                                          await loadingDialog.ShowAsync();
-                                      });
+                async () =>
+                {
+                    await loadingDialog.ShowAsync();
+                });
         }
 
         /// <summary>
