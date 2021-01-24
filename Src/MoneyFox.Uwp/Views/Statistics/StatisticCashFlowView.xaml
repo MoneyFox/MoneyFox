@@ -19,10 +19,10 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
-            <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -31,18 +31,17 @@
                        VerticalAlignment="Center" />
         </Grid>
 
-        <microcharts:ChartView Grid.Row="1"
-                               Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-
-        <CommandBar Grid.Row="2"
+        <CommandBar Grid.Row="0"
                     Style="{ThemeResource DefaultCommandBar}"
-                    ClosedDisplayMode="Minimal"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.SecondaryCommands>
+            <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Calendar"
                               Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
                               Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.SecondaryCommands>
+            </CommandBar.PrimaryCommands>
         </CommandBar>
+
+        <microcharts:ChartView Grid.Row="1"
+                               Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </views:BaseView>

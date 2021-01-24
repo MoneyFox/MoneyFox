@@ -18,7 +18,7 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition />
             <RowDefinition Height="Auto" />
@@ -29,6 +29,16 @@
                        Text="{Binding Title}"
                        VerticalAlignment="Center" />
         </Grid>
+
+        <CommandBar Grid.Row="0"
+                    Style="{ThemeResource DefaultCommandBar}"
+                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Calendar"
+                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
+                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
 
         <Grid Grid.Row="1">
             <ComboBox
@@ -49,16 +59,5 @@
         <Grid Grid.Row="2">
             <microcharts:ChartView Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
-
-        <CommandBar Grid.Row="3"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    ClosedDisplayMode="Minimal"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Calendar"
-                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 </views:BaseView>
