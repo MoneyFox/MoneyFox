@@ -38,6 +38,7 @@
         <SymbolIcon Symbol="Cancel"
                     Grid.Column="1"
                     Grid.Row="1"
+                    Foreground="{ThemeResource AppForegroundColorPrimary}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <interactivity:Interaction.Behaviors>

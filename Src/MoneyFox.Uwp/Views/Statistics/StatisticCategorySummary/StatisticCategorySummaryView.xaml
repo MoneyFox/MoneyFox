@@ -19,32 +19,38 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
 
         <DataTemplate x:Key="CategoryOverviewItemTemplate" x:DataType="viewModels:CategoryOverviewViewModel">
-            <StackPanel
-                Margin="{StaticResource SmallListItemMargin}"
-                HorizontalAlignment="Stretch"
-                Background="{ThemeResource ListItemBrush}">
+            <controls:DropShadowPanel
+                    HorizontalContentAlignment="Stretch"
+                    Margin="6,2,0,2"
+                    BlurRadius="4.0"
+                    ShadowOpacity="0.40">
+                <StackPanel
+                    CornerRadius="{StaticResource DefaultCornerRadius}"
+                    HorizontalAlignment="Stretch"
+                    Background="{ThemeResource ListItemBrush}">
 
-                <StackPanel Margin="{StaticResource MediumLeftRightMargin}" Padding="{StaticResource SmallListItemPadding}">
-                    <Grid HorizontalAlignment="Stretch">
-                        <TextBlock
-                            Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                            Text="{x:Bind Label}"
-                            TextTrimming="CharacterEllipsis" />
-                        <TextBlock
-                            HorizontalAlignment="Right"
-                            Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                            Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
-                            TextAlignment="Right" />
-                    </Grid>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
-                        <TextBlock
-                            Margin="3,0,0,0"
-                            Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                            Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
+                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}" Padding="{StaticResource SmallListItemPadding}">
+                        <Grid HorizontalAlignment="Stretch">
+                            <TextBlock
+                                Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                                Text="{x:Bind Label}"
+                                TextTrimming="CharacterEllipsis" />
+                            <TextBlock
+                                HorizontalAlignment="Right"
+                                Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                                Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
+                                TextAlignment="Right" />
+                        </Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
+                            <TextBlock
+                                Margin="3,0,0,0"
+                                Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
+            </controls:DropShadowPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
@@ -75,6 +81,16 @@
             <userControls:IncomeExpenseBalanceUserControl DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
         </StackPanel>
 
+        <CommandBar
+            Grid.Row="0"
+            Style="{ThemeResource DefaultCommandBar}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Calendar"
+                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
+                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+
         <controls:MasterDetailsView
             x:Name="CategorySummaryList"
             Grid.Row="1"
@@ -100,16 +116,5 @@
             </controls:MasterDetailsView.DetailsTemplate>
 
         </controls:MasterDetailsView>
-
-        <CommandBar
-            Grid.Row="2"
-            ClosedDisplayMode="Minimal"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Icon="Calendar"
-                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.SecondaryCommands>
-        </CommandBar>
     </Grid>
 </views:BaseView>
