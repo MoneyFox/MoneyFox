@@ -35,6 +35,7 @@
         <CommandBar
             Grid.Row="0"
             OverflowButtonVisibility="Collapsed"
+            Margin="{StaticResource NegativeMediumLeftRightMargin}"
             Style="{ThemeResource DefaultCommandBar}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton
