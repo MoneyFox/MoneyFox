@@ -134,6 +134,5 @@
                 <TextBlock Text="{x:Bind resources:Strings.LoadingLabel}" VerticalAlignment="Center" />
             </StackPanel>
         </controls:Loading>
-
     </Grid>
 </views:BaseView>

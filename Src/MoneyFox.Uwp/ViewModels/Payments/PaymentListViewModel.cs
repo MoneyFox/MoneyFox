@@ -42,6 +42,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private int accountId;
         private IBalanceViewModel balanceViewModel = null!;
 
+        private PaymentListFilterChangedMessage filterMessage = new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) };
+
         private string title = "";
         private bool isBusy = true;
         private IPaymentListViewActionViewModel? viewActionViewModel;
@@ -66,7 +68,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public void Subscribe()
         {
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message => await LoadPaymentsAsync(message));
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async (message) => {
+                filterMessage = message;
+                await LoadDataAsync();
+            });
             MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
         }
 
@@ -202,14 +207,14 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             await DispatcherHelper.ExecuteOnUIThreadAsync(async () =>
             {
                 IsBusy = true;
-                await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) });
+                await LoadPaymentsAsync();
                 //Refresh balance control with the current account
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
                 IsBusy = false;
             });
         }
 
-        private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
+        private async Task LoadPaymentsAsync()
         {
             List<PaymentViewModel> payments = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
