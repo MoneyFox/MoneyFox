@@ -16,6 +16,7 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views;
+using MoneyFox.Uwp.Views.Categories;
 using MoneyFox.Uwp.Views.Payments;
 using NLog;
 using System;

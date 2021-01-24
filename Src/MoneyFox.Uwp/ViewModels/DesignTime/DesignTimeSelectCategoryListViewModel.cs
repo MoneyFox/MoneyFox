@@ -1,4 +1,5 @@
 ﻿using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.ViewModels.Categories;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
