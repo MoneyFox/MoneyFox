@@ -1,11 +1,14 @@
-﻿using MediatR;
+﻿using GalaSoft.MvvmLight.Command;
+using MediatR;
 using Microcharts;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
+using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -18,9 +21,27 @@ namespace MoneyFox.ViewModels.Statistics
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private DonutChart chart = new DonutChart();
+        private PaymentType selectedPaymentType;
 
         public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
         {
+        }
+
+        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
+
+        public PaymentType SelectedPaymentType
+        {
+            get => selectedPaymentType;
+            set
+            {
+                if(selectedPaymentType == value)
+                {
+                    return;
+                }
+                selectedPaymentType = value;
+                RaisePropertyChanged();
+                LoadDataCommand.Execute(null);
+            }
         }
 
         /// <summary>
@@ -41,12 +62,14 @@ namespace MoneyFox.ViewModels.Statistics
             }
         }
 
+        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
+
         /// <summary>
         /// Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task LoadAsync()
         {
-            var statisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate)));
+            var statisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate, SelectedPaymentType)));
 
             var microChartItems = statisticItems.Select(x => new ChartEntry((float)x.Value)
             {
