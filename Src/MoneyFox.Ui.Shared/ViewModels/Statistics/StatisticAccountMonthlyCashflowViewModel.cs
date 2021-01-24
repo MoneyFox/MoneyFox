@@ -100,8 +100,11 @@ namespace MoneyFox.ViewModels.Statistics
             List<AccountViewModel> accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
             accounts.ForEach(Accounts.Add);
 
-            SelectedAccount = Accounts.First();
-            await LoadAsync();
+            if(Accounts.Any())
+            {
+                SelectedAccount = Accounts.First();
+                await LoadAsync();
+            }
         }
 
         protected override async Task LoadAsync()
