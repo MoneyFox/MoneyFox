@@ -42,6 +42,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private IBalanceViewModel balanceViewModel = null!;
 
         private string title = "";
+        private bool isBusy = true;
         private IPaymentListViewActionViewModel? viewActionViewModel;
 
         /// <summary>
@@ -129,7 +130,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private CollectionViewSource? groupedPayments;
 
         /// <summary>
-        /// Returns grouped related payments
+        ///     Returns grouped related payments
         /// </summary>
         public CollectionViewSource? GroupedPayments
         {
@@ -142,7 +143,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Returns the name of the account title for the current page
+        ///     Returns the name of the account title for the current page
         /// </summary>
         public string Title
         {
@@ -159,10 +160,26 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
         }
 
+        /// <summary>
+        ///     Indicates if the view is loading.
+        /// </summary>
+        public bool IsBusy
+        {
+            get => isBusy;
+            private set
+            {
+                if(isBusy == value)
+                {
+                    return;
+                }
+
+                isBusy = value;
+                RaisePropertyChanged();
+            }
+        }
+
         private async Task InitializeAsync()
         {
-            await dialogService.ShowLoadingDialogAsync();
-
             Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
 
             BalanceViewModel = new PaymentListBalanceViewModel(mediator,
@@ -177,14 +194,15 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                                                                      navigationService);
 
             await LoadDataAsync();
-            await dialogService.HideLoadingDialogAsync();
         }
 
         private async Task LoadDataAsync()
         {
+            IsBusy = true;
             await LoadPaymentsAsync(new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) });
             //Refresh balance control with the current account
             await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+            IsBusy = false;
         }
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)

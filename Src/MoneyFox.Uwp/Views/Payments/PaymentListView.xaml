@@ -11,7 +11,7 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
@@ -64,37 +64,39 @@
     </Page.Resources>
 
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True" >
-        <Grid.RowDefinitions>
-            <RowDefinition Height="60" />
-            <RowDefinition Height="60" />
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <TextBlock Text="{Binding Title}"
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="{Binding Title}"
                    Grid.Row="0"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <CommandBar
+            <CommandBar
             Grid.Row="0"
             DataContext="{Binding ViewActionViewModel}"
             OverflowButtonVisibility="Collapsed"
             DefaultLabelPosition="Right"
             Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton
+                <CommandBar.PrimaryCommands>
+                    <AppBarButton
                     Click="AppBarToggleButton_Click"
                     FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
                     Icon="Filter"
                     Label="{x:Bind resources:Strings.FilterLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
+                </CommandBar.PrimaryCommands>
+            </CommandBar>
 
-        <userControls:BalanceControl
+            <userControls:BalanceControl
             Grid.Row="1"
             Margin="{StaticResource MediumLeftRightMargin}"
             DataContext="{Binding BalanceViewModel}" />
 
-        <controls:DataGrid ItemsSource="{x:Bind ViewModel.GroupedPayments.View, Mode=OneWay}"
+            <controls:DataGrid ItemsSource="{x:Bind ViewModel.GroupedPayments.View, Mode=OneWay}"
                            Grid.Row="2"
                            x:Name="PaymentGrid"
                            AutoGenerateColumns="False"
@@ -103,35 +105,46 @@
                            IsReadOnly="True"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
-            <controls:DataGrid.RowStyle>
-                <Style TargetType="controls:DataGridRow">
-                    <Setter Property="controls:DataGridRow.ContextFlyout">
-                        <Setter.Value>
-                            <MenuFlyout>
-                                <MenuFlyoutItem Text="Delete" Icon="Delete" Click="MenuFlyoutItem_Click" />
-                            </MenuFlyout>
-                        </Setter.Value>
-                    </Setter>
-                </Style>
-            </controls:DataGrid.RowStyle>
+                <controls:DataGrid.RowStyle>
+                    <Style TargetType="controls:DataGridRow">
+                        <Setter Property="controls:DataGridRow.ContextFlyout">
+                            <Setter.Value>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem Text="Delete" Icon="Delete" Click="MenuFlyoutItem_Click" />
+                                </MenuFlyout>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </controls:DataGrid.RowStyle>
 
-            <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.PaymentTypeLabel}" Binding="{Binding Type, Converter={StaticResource PaymentTypeToStringConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Converter={StaticResource PaymentAmountConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.TargetAccountLabel}" Binding="{Binding TargetAccount.Name}" />
+                <controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" />
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.PaymentTypeLabel}" Binding="{Binding Type, Converter={StaticResource PaymentTypeToStringConverter}}" />
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Converter={StaticResource PaymentAmountConverter}}" />
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.TargetAccountLabel}" Binding="{Binding TargetAccount.Name}" />
 
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}" Binding="{Binding Category.Name}" />
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}" Binding="{Binding Category.Name}" />
 
-                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsClearedLabel}" Binding="{Binding IsCleared}" />
-                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}" Binding="{Binding IsRecurring}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}" Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
+                    <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsClearedLabel}" Binding="{Binding IsCleared}" />
+                    <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}" Binding="{Binding IsRecurring}" />
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}" Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
 
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ModificationDateHeader}" Binding="{Binding ModificationDate, Converter={StaticResource DateTimeToStringConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CreationDateHeader}" Binding="{Binding CreationTime, Converter={StaticResource DateTimeToStringConverter}}" />
-            </controls:DataGrid.Columns>
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ModificationDateHeader}" Binding="{Binding ModificationDate, Converter={StaticResource DateTimeToStringConverter}}" />
+                    <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CreationDateHeader}" Binding="{Binding CreationTime, Converter={StaticResource DateTimeToStringConverter}}" />
+                </controls:DataGrid.Columns>
 
-        </controls:DataGrid>
+            </controls:DataGrid>
+        </Grid>
 
+        <controls:Loading x:Name="LoadingControl" IsLoading="{x:Bind ViewModel.IsBusy, Mode=OneWay}" Grid.RowSpan="3" Opacity="0.6">
+            <controls:Loading.Background>
+                <SolidColorBrush Color="Black" Opacity="0.6" />
+            </controls:Loading.Background>
+
+            <StackPanel Padding="12">
+                <muxc:ProgressRing IsActive="True" Width="50" Height="50" />
+                <TextBlock Text="{x:Bind resources:Strings.LoadingLabel}" VerticalAlignment="Center" />
+            </StackPanel>
+        </controls:Loading>
     </Grid>
 </views:BaseView>
