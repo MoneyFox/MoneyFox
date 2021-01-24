@@ -25,7 +25,7 @@
                 Text="{x:Static theme:IconFont.Filter}"
                 VerticalOptions="Center"
                 TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
-                Command="{Binding ShowFilterDialogCommand}"/>
+                Clicked="OpenFilterDialog" />
         </Grid>
     </Shell.TitleView>
 
