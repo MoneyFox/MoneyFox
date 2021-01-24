@@ -33,10 +33,5 @@ namespace MoneyFox.Application.Common.Interfaces
         ///     Hides the previously opened Loading Dialog.
         /// </summary>
         Task HideLoadingDialogAsync();
-
-        /// <summary>
-        ///     Shows a dialog to select a date range
-        /// </summary>
-        Task ShowDateRangeSelectionDialogAsync();
     }
 }
