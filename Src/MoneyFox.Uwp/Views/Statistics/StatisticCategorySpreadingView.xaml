@@ -40,7 +40,9 @@
 
         <Grid Grid.Row="1">
             <chart:RadPieChart x:Name="chart" PaletteName="DefaultDark">
-                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}" RadiusFactor="0.6" Foreground="{ThemeResource AppForegroundColorPrimary}" >
+                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
+                                      RadiusFactor="0.6"
+                                      Foreground="{ThemeResource AppForegroundColorPrimary}" >
                     <chart:DoughnutSeries.ValueBinding>
                         <chart:PropertyNameDataPointBinding PropertyName="Value" />
                     </chart:DoughnutSeries.ValueBinding>

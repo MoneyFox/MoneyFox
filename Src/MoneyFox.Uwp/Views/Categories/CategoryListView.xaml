@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
-    xmlns:category="using:MoneyFox.Uwp.Views.Categories"
+    xmlns:controls="using:MoneyFox.Uwp.Views.Categories"
     mc:Ignorable="d">
 
     <d:Page.DataContext>
