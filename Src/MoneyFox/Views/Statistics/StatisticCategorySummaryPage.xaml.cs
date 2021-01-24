@@ -15,7 +15,7 @@ namespace MoneyFox.Views.Statistics
             ViewModel.LoadedCommand.Execute(null);
         }
 
-        private async void OpenFilterDialog(object sender, EventArgs e)
+        private static async void OpenFilterDialog(object sender, EventArgs e)
             => await new DateSelectionPopup().ShowAsync();
     }
 }
