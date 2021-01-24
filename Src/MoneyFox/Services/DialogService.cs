@@ -55,7 +55,5 @@ namespace MoneyFox.Services
                                                          negativeButtonText ?? Strings.NoLabel);
             return await confirmDialog.ShowAsync();
         }
-
-        public async Task ShowDateRangeSelectionDialogAsync() => await new DateSelectionPopup().ShowAsync();
     }
 }

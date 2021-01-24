@@ -17,7 +17,7 @@ namespace MoneyFox.Views.Statistics
 
         protected override void OnAppearing() => ViewModel.InitCommand.Execute(null);
 
-        private static async void OpenFilterDialog(object sender, EventArgs e)
-            => await new DateSelectionPopup().ShowAsync();
+        private async void OpenFilterDialog(object sender, EventArgs e)
+            => await new DateSelectionPopup(ViewModel.StartDate, ViewModel.EndDate).ShowAsync();
     }
 }
