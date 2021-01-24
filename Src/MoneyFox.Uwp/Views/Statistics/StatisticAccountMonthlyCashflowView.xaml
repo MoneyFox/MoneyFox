@@ -7,7 +7,27 @@
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views" xmlns:microcharts="using:Microcharts.Uwp"
                 xmlns:resources="using:MoneyFox.Application.Resources"
+                xmlns:converter="using:MoneyFox.Uwp.Converter"
                 mc:Ignorable="d">
+
+    <Page.Resources>
+        <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+
+        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
+            <StackPanel Spacing="12">
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+                <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
+            </StackPanel>
+        </Flyout>
+    </Page.Resources>
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
@@ -35,7 +55,8 @@
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Icon="Calendar"
-                              Command="{x:Bind ViewModel.ShowFilterDialogCommand}"
+                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                              Click="OpenFilterFlyout"
                               Label="{x:Bind resources:Strings.SelectDateLabel}" />
             </CommandBar.PrimaryCommands>
         </CommandBar>
