@@ -58,7 +58,5 @@
         Opacity="0.8"
         Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="SystemControlHyperlinkTextBrush" Color="{ThemeResource SystemAccentColor}" />
-    <SolidColorBrush x:Key="ContentDialogBorderThemeBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="JumpListDefaultEnabledBackground" Color="{ThemeResource SystemAccentColor}" />
-
 </ResourceDictionary>

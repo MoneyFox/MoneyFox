@@ -73,6 +73,7 @@ namespace MoneyFox.Uwp.Src
             await HideLoadingDialogAsync();
 
             loadingDialog = new LoadingDialog { Text = message ?? Strings.LoadingLabel };
+            loadingDialog.RequestedTheme = ThemeSelectorService.Theme;
 
             CoreApplicationView coreWindow = CoreApplication.MainView;
 
