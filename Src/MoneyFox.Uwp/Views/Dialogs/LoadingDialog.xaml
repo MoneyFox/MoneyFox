@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     Style="{StaticResource DefaultContentDialog}"
-    Background="Transparent"
     mc:Ignorable="d">
 
     <Grid>
@@ -17,7 +16,8 @@
                 IsActive="True" />
             <TextBlock
                 x:Name="LoadingText"
-                TextAlignment="Center" />
+                TextAlignment="Center"
+                Text="{x:Bind Text, Mode=OneWay}" />
         </StackPanel>
     </Grid>
 </ContentDialog>
