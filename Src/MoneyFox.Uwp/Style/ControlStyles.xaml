@@ -17,9 +17,4 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="DefaultLabelPosition" Value="Right" />
     </Style>
-
-    <Style x:Key="DefaultContentDialog" TargetType="ContentDialog">
-        <Setter Property="Background" Value="{StaticResource ContentDialogBackgroundColor}" />
-    </Style>
-
 </ResourceDictionary>
