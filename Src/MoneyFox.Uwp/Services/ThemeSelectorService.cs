@@ -1,4 +1,5 @@
-﻿using MoneyFox.Uwp.Helpers;
+﻿using Microsoft.AppCenter.Crashes;
+using MoneyFox.Uwp.Helpers;
 using System;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
@@ -34,7 +35,14 @@ namespace MoneyFox.Uwp.Services
                           {
                               if(Window.Current.Content is FrameworkElement frameworkElement)
                               {
-                                  frameworkElement.RequestedTheme = Theme;
+                                  try
+                                  {
+                                      frameworkElement.RequestedTheme = Theme;
+                                  }
+                                  catch(AccessViolationException ex)
+                                  {
+                                      Crashes.TrackError(ex);
+                                  }
                               }
                           });
             }
