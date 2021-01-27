@@ -206,7 +206,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private async Task LoadDataAsync()
         {
             await dialogService.ShowLoadingDialogAsync();
-            await Task.Delay(200);
             await LoadPaymentsAsync();
 
             //Refresh balance control with the current account
