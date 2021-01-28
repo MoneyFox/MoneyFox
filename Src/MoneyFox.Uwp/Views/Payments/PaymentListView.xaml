@@ -120,19 +120,5 @@
             </controls:DataGrid.Columns>
 
         </controls:DataGrid>
-
-        <controls:Loading x:Name="LoadingControl"
-                          IsLoading="{x:Bind ViewModel.IsBusy, Mode=OneWay}"
-                          Grid.RowSpan="3"
-                          Opacity="0.6">
-            <controls:Loading.Background>
-                <SolidColorBrush Color="Black" Opacity="0.6" />
-            </controls:Loading.Background>
-
-            <StackPanel Padding="12">
-                <muxc:ProgressRing IsActive="True" Width="50" Height="50" />
-                <TextBlock Text="{x:Bind resources:Strings.LoadingLabel}" VerticalAlignment="Center" />
-            </StackPanel>
-        </controls:Loading>
     </Grid>
 </views:BaseView>
