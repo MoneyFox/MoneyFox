@@ -13,6 +13,7 @@ namespace MoneyFox.Uwp.Src
 {
     public class DialogService : IDialogService
     {
+        private const int DELAY_MS = 5;
         private LoadingDialog? loadingDialog;
 
         /// <summary>
@@ -72,6 +73,7 @@ namespace MoneyFox.Uwp.Src
             await HideLoadingDialogAsync();
 
             loadingDialog = new LoadingDialog { Text = message ?? Strings.LoadingLabel };
+            loadingDialog.RequestedTheme = ThemeSelectorService.Theme;
 
             CoreApplicationView coreWindow = CoreApplication.MainView;
 
@@ -84,6 +86,9 @@ namespace MoneyFox.Uwp.Src
                 {
                     await loadingDialog.ShowAsync();
                 });
+
+            // we have to add a delay here for the UI to be able to redraw in certain conditions.
+            await Task.Delay(DELAY_MS);
         }
 
         /// <summary>
