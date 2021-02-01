@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
     [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]
     public class DesignTimeStatisticCategorySpreadingViewModel : IStatisticCategorySpreadingViewModel
     {
-        public string Title => "I AM A MIGHTY TITLE";
+        public static string Title => "I AM A MIGHTY TITLE";
 
         public ObservableCollection<StatisticEntry> StatisticItems
                                                     => new ObservableCollection<StatisticEntry>(new List<StatisticEntry>
