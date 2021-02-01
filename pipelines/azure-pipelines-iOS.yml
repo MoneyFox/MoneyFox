@@ -121,7 +121,7 @@ steps:
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**/release_notes.txt'
-    TargetFolder: 'efault'
+    TargetFolder: 'default'
     CleanTargetFolder: true
     OverWrite: true
     flattenFolders: true
