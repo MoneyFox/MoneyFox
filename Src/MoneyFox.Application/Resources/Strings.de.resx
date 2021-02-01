@@ -788,4 +788,7 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
   <data name="LoggedInTitle" xml:space="preserve">
     <value>Angemeldet!</value>
   </data>
+  <data name="SelectedPaymentTypeHeader" xml:space="preserve">
+    <value>Selected Payment Type</value>
+  </data>
 </root>
