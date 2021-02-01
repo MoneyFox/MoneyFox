@@ -113,7 +113,7 @@ steps:
     targetType: 'inline'
     script: |
       $sourceRoot = '$(system.defaultworkingdirectory)/assets/metadata'      
-      Copy-Item -Path $sourceRoot  -Destination $(build.artifactstagingdirectory) -Recursed
+      Copy-Item -Path $sourceRoot  -Destination $(build.artifactstagingdirectory) -Recurse
   
 - task: CopyFiles@2
   enabled: false
