@@ -25,13 +25,13 @@ namespace MoneyFox.Uwp.Views.Settings
             {
                 ContentFrame.Navigate(typeof(SettingsView),
                                       null,
-                                      new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromRight });
+                                      new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight });
             }
             else
             {
                 ContentFrame.Navigate(typeof(AboutView),
                                       null,
-                                      new SlideNavigationTransitionInfo() { Effect = SlideNavigationTransitionEffect.FromLeft });
+                                      new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromLeft });
             }
         }
     }

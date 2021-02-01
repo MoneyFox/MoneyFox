@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
@@ -22,7 +21,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         private int numberOfCategoriesToShow = 6;
         private PaymentType selectedPaymentType;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
+        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
         {
         }
 
