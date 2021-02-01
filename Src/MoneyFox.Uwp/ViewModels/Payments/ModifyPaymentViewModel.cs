@@ -15,7 +15,6 @@ using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.Views;
 using MoneyFox.Uwp.Views.Categories;
 using MoneyFox.Uwp.Views.Payments;
 using NLog;
@@ -328,13 +327,13 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             foreach(AccountViewModel account in tempCollection)
             {
-                //fills targetaccounts
+                //fills target accounts
                 if(!TargetAccounts.Contains(account))
                 {
                     TargetAccounts.Add(account);
                 }
 
-                //fills chargedaccounts
+                //fills charged accounts
                 if(!ChargedAccounts.Contains(account))
                 {
                     ChargedAccounts.Add(account);

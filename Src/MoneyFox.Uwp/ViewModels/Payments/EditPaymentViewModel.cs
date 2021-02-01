@@ -11,6 +11,7 @@ using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.Utilities;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
+using NLog;
 using System;
 using System.Threading.Tasks;
 
@@ -19,6 +20,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 {
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IDialogService dialogService;
@@ -122,6 +125,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                     await dialogService.ShowLoadingDialogAsync();
                     await mediator.Send(command);
                     navigationService.GoBack();
+                }
+                catch(PaymentNotFoundException ex)
+                {
+                    logger.Warn(ex);
                 }
                 finally
                 {

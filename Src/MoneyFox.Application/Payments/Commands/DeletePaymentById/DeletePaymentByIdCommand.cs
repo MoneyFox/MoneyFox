@@ -5,6 +5,7 @@ using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,12 +43,17 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
             {
                 await backupService.RestoreBackupAsync();
 
-                Payment entityToDelete = await contextAdapter.Context
+                Payment? entityToDelete = await contextAdapter.Context
                                                              .Payments
                                                              .Include(x => x.ChargedAccount)
                                                              .Include(x => x.TargetAccount)
                                                              .Include(x => x.RecurringPayment)
-                                                             .SingleAsync(x => x.Id == request.PaymentId);
+                                                             .SingleOrDefaultAsync(x => x.Id == request.PaymentId, cancellationToken);
+
+                if(entityToDelete == null)
+                {
+                    throw new PaymentNotFoundException();
+                }
 
                 entityToDelete.ChargedAccount!.RemovePaymentAmount(entityToDelete);
                 entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
