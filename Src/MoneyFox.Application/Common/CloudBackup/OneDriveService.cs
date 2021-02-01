@@ -87,18 +87,26 @@ namespace MoneyFox.Application.Common.CloudBackup
         /// </summary>
         public async Task LoginSilentAsync()
         {
-            IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
-            IAccount? firstAccount = accounts.FirstOrDefault();
-
-            if(firstAccount == null)
+            try
             {
+                IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
+                IAccount? firstAccount = accounts.FirstOrDefault();
+
+                if(firstAccount == null)
+                {
+                    throw new BackupAuthenticationFailedException();
+                }
+                AuthenticationResult authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+
+                GraphServiceClient = graphClientFactory.CreateClient(authResult);
+                User user = await GraphServiceClient.Me.Request().GetAsync();
+                UserAccount.SetUserAccount(user);
+            }
+            catch(MsalUiRequiredException ex)
+            {
+                logManager.Info(ex);
                 throw new BackupAuthenticationFailedException();
             }
-            AuthenticationResult authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
-
-            GraphServiceClient = graphClientFactory.CreateClient(authResult);
-            User user = await GraphServiceClient.Me.Request().GetAsync();
-            UserAccount.SetUserAccount(user);
         }
 
         /// <summary>
