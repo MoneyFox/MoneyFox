@@ -15,7 +15,7 @@ jobs:
   pool:
     vmImage: 'macos-latest'
 
-  variables:
+  variables:  
     solution: '**/MoneyFox.Mobile.sln'
 
   steps:
@@ -47,7 +47,7 @@ jobs:
     inputs:
       command: 'test'
       projects: |
-        **/*.Tests.csproj
+        **/*.Tests.csproj        
         !**/MoneyFox.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
@@ -65,7 +65,7 @@ jobs:
   pool:
     vmImage: windows-latest
 
-  variables:
+  variables:  
     solution: '**/MoneyFox.Mobile.sln'
 
   steps:
@@ -101,7 +101,7 @@ jobs:
   pool:
     vmImage: windows-latest
 
-  variables:
+  variables:  
     solution: '**/MoneyFox.Desktop.sln'
     appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
