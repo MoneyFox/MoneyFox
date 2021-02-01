@@ -786,4 +786,7 @@ Pour commencer, créez un nouveau compte. Les comptes sont utilisés pour organi
   <data name="LoggedInTitle" xml:space="preserve">
     <value>Logged in!</value>
   </data>
+  <data name="SelectedPaymentTypeHeader" xml:space="preserve">
+    <value>Selected Payment Type</value>
+  </data>
 </root>
