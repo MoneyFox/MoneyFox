@@ -15,7 +15,7 @@ jobs:
   pool:
     vmImage: 'macos-latest'
 
-  variables:  
+  variables:
     solution: '**/MoneyFox.Mobile.sln'
 
   steps:
@@ -48,6 +48,7 @@ jobs:
       command: 'test'
       projects: |
         **/*.Tests.csproj
+        !**/MoneyFox.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
   - task: XamariniOS@2
@@ -64,7 +65,7 @@ jobs:
   pool:
     vmImage: windows-latest
 
-  variables:  
+  variables:
     solution: '**/MoneyFox.Mobile.sln'
 
   steps:
@@ -100,7 +101,7 @@ jobs:
   pool:
     vmImage: windows-latest
 
-  variables:  
+  variables:
     solution: '**/MoneyFox.Desktop.sln'
     appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
