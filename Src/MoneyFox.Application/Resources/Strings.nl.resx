@@ -792,4 +792,7 @@ Maak een nieuw account aan om hier dan uw budgetten op een gemakkelijke manier b
   <data name="LoggedInTitle" xml:space="preserve">
     <value>Logged in!</value>
   </data>
+  <data name="SelectedPaymentTypeHeader" xml:space="preserve">
+    <value>Selected Payment Type</value>
+  </data>
 </root>
