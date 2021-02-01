@@ -6,6 +6,7 @@ using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Persistence;
 using Moq;
 using System;
@@ -43,6 +44,16 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
         }
 
         protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+
+        [Fact]
+        public async Task ThrowExceptionWhenPaymentNotFound()
+        {
+            // Arrange
+            // Act / Assert
+            await Assert.ThrowsAsync<PaymentNotFoundException>(async ()
+                => await new DeletePaymentByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+                    .Handle(new DeletePaymentByIdCommand(12), default));
+        }
 
         [Fact]
         public async Task DeletePayment_PaymentDeleted()
