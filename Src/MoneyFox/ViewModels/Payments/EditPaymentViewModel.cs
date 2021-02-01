@@ -6,7 +6,9 @@ using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
+using NLog;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -14,6 +16,8 @@ namespace MoneyFox.ViewModels.Payments
 {
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
         private readonly IMediator mediator;
         private readonly IMapper mapper;
         private readonly IDialogService dialogService;
@@ -88,6 +92,10 @@ namespace MoneyFox.ViewModels.Payments
                     await dialogService.ShowLoadingDialogAsync();
                     await mediator.Send(deleteCommand);
                     await Shell.Current.Navigation.PopModalAsync();
+                }
+                catch(PaymentNotFoundException ex)
+                {
+                    logger.Warn(ex);
                 }
                 finally
                 {
