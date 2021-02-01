@@ -1848,6 +1848,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Selected Payment Type.
+        /// </summary>
+        public static string SelectedPaymentTypeHeader {
+            get {
+                return ResourceManager.GetString("SelectedPaymentTypeHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Filter.
         /// </summary>
         public static string SelectFilterTitle {
