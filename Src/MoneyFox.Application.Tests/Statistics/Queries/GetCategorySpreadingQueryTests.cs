@@ -221,8 +221,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Assert
             result.Should().HaveCount(2);
-            result[0].Value.Should().Be(30);
-            result[1].Value.Should().Be(80);
+            result[0].Value.Should().Be(80);
+            result[1].Value.Should().Be(30);
         }
     }
 }
