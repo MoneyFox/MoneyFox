@@ -1,8 +1,10 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using Microsoft.AppCenter.Crashes;
+using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views.Dialogs;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
@@ -84,7 +86,17 @@ namespace MoneyFox.Uwp.Src
             await dispatcher.RunAsync(CoreDispatcherPriority.High,
                 async () =>
                 {
-                    await loadingDialog.ShowAsync();
+                    try
+                    {
+                        await loadingDialog.ShowAsync();
+                    }
+                    catch(Exception ex)
+                    {
+                        Crashes.TrackError(ex, new Dictionary<string, string>
+                        {
+                            { "Message", "Loading Dialog couldn't be opened." }
+                        });
+                    }
                 });
 
             // we have to add a delay here for the UI to be able to redraw in certain conditions.
