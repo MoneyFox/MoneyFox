@@ -108,12 +108,20 @@ steps:
     TargetFolder: '$(build.artifactstagingdirectory)'
     flattenFolders: true
 
+- task: PowerShell@2
+  inputs:
+    targetType: 'inline'
+    script: |
+      $sourceRoot = '$(system.defaultworkingdirectory)/assets/metadata'      
+      Copy-Item -Path $sourceRoot  -Destination $(build.artifactstagingdirectory) -Recurse
+  
 - task: CopyFiles@2
+  enabled: false
   displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
   inputs:
     SourceFolder: '$(system.defaultworkingdirectory)'
     Contents: '**/release_notes.txt'
-    TargetFolder: '$(build.artifactstagingdirectory)/metadata/default'
+    TargetFolder: 'default'
     CleanTargetFolder: true
     OverWrite: true
     flattenFolders: true
