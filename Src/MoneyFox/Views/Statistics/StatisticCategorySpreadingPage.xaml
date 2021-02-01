@@ -6,9 +6,13 @@
              mc:Ignorable="d"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             xmlns:theme="clr-namespace:MoneyFox"
+             xmlns:theme="clr-namespace:MoneyFox" xmlns:converter="clr-namespace:MoneyFox.Converter"
              Visual="Material"
              x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">
+
+    <ContentPage.Resources>
+        <converter:PaymentTypeStringConverter x:Key="PaymentTypeStringConverter" />
+    </ContentPage.Resources>
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,66">
@@ -29,7 +33,7 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, 38, *" Padding="15,0,15,0">
+        <Grid RowDefinitions="38, 38, auto, *" Padding="15,0,15,0">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.CategorySpreadingTitle}" />
 
@@ -37,7 +41,13 @@
                    Style="{StaticResource TextBodySecondary}"
                    Text="{Binding Title}" />
 
-            <microcharts:ChartView Grid.Row="2" Chart="{Binding Chart}" />
+            <Picker Grid.Row="2"
+                    Title="{x:Static resources:Strings.SelectedPaymentTypeHeader}"
+                    ItemsSource="{Binding PaymentTypes}"
+                    SelectedItem="{Binding SelectedPaymentType, Mode=TwoWay}"
+                    ItemDisplayBinding="{Binding ., Converter={StaticResource PaymentTypeStringConverter}}" />
+
+            <microcharts:ChartView Grid.Row="3" Chart="{Binding Chart}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
