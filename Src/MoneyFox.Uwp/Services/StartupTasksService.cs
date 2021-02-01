@@ -1,5 +1,6 @@
 ﻿using CommonServiceLocator;
 using MediatR;
+using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
@@ -7,6 +8,7 @@ using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using NLog;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 #nullable enable
@@ -43,7 +45,7 @@ namespace MoneyFox.Uwp.Services
             catch(Exception ex)
             {
                 logger.Fatal(ex);
-                throw;
+                Crashes.TrackError(ex, new Dictionary<string, string> {{ "Context", "Startup."}});
             }
             finally
             {
