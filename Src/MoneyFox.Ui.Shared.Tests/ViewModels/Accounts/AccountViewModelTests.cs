@@ -7,6 +7,7 @@ using Xunit;
 namespace MoneyFox.Ui.Shared.Tests.ViewModels.Accounts
 {
     [ExcludeFromCodeCoverage]
+    [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
     public class AccountViewModelTests
     {
         [Theory]

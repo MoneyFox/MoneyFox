@@ -23,7 +23,7 @@ namespace MoneyFox.ViewModels.Statistics
         private DonutChart chart = new DonutChart();
         private PaymentType selectedPaymentType;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator, IDialogService dialogService) : base(mediator)
+        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
         {
         }
 
