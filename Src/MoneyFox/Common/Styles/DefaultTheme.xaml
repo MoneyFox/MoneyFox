@@ -309,6 +309,7 @@
 
     <!-- Picker -->
     <Style TargetType="Picker">
+        <Setter Property="TitleColor" Value="{StaticResource NeutralSecondary}" />
         <Setter Property="TextColor" Value="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
     </Style>
 
