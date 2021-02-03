@@ -28,8 +28,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         private readonly IMapper mapper;
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 IMapper mapper,
-                                                 IDialogService dialogService)
+                                                 IMapper mapper)
             : base(mediator)
         {
             this.mapper = mapper;

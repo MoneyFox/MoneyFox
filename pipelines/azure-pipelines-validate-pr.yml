@@ -47,7 +47,8 @@ jobs:
     inputs:
       command: 'test'
       projects: |
-        **/*.Tests.csproj
+        **/*.Tests.csproj        
+        !**/MoneyFox.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
   - task: XamariniOS@2

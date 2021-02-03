@@ -4,7 +4,6 @@ using MediatR;
 using Microcharts;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
@@ -29,8 +28,7 @@ namespace MoneyFox.ViewModels.Statistics
         private readonly IMapper mapper;
 
         public StatisticAccountMonthlyCashflowViewModel(IMediator mediator,
-                                                        IMapper mapper,
-                                                        IDialogService dialogService) : base(mediator)
+                                                        IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
 

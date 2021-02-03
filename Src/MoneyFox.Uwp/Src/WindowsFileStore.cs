@@ -62,13 +62,9 @@ namespace MoneyFox.Uwp.Src
             try
             {
                 StorageFile storageFile = await CreateStorageFileFromRelativePathAsync(path);
-                using(IRandomAccessStream streamWithContentType = await storageFile.OpenAsync(FileAccessMode.ReadWrite))
-                {
-                    using(Stream stream = streamWithContentType.AsStreamForWrite())
-                    {
-                        streamAction(stream);
-                    }
-                }
+                using IRandomAccessStream streamWithContentType = await storageFile.OpenAsync(FileAccessMode.ReadWrite);
+                using Stream stream = streamWithContentType.AsStreamForWrite();
+                streamAction(stream);
             }
             catch(Exception ex)
             {
