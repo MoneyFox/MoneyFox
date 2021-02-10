@@ -24,16 +24,16 @@ namespace MoneyFox.Uwp.Services
         {
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
 
-            IMediator mediator = ServiceLocator.Current.GetInstance<IMediator>();
-            if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
-            {
-                await mediator.Send(new ClearPaymentsCommand());
-                await mediator.Send(new CreateRecurringPaymentsCommand());
-                return;
-            }
-
             try
             {
+                IMediator mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
+                {
+                    await mediator.Send(new ClearPaymentsCommand());
+                    await mediator.Send(new CreateRecurringPaymentsCommand());
+                    return;
+                }
+
                 IBackupService backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 

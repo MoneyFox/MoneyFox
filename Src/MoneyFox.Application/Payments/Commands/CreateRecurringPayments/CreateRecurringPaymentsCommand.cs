@@ -25,7 +25,6 @@ namespace MoneyFox.Application.Payments.Commands.CreateRecurringPayments
                 this.contextAdapter = contextAdapter;
             }
 
-
             public async Task<Unit> Handle(CreateRecurringPaymentsCommand request, CancellationToken cancellationToken)
             {
                 List<RecurringPayment> recurringPayments = await contextAdapter.Context
