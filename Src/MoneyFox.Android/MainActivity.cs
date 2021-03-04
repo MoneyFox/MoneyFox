@@ -1,11 +1,11 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
-using Plugin.Toasts;
 using Xamarin.Forms.Platform.Android;
 
 namespace MoneyFox.Droid
@@ -24,12 +24,12 @@ namespace MoneyFox.Droid
 
             base.OnCreate(savedInstanceState);
 
+            UserDialogs.Init(this);
             Rg.Plugins.Popup.Popup.Init(this);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
-            ToastNotification.Init(this);
 
             LoadApplication(new App());
         }
