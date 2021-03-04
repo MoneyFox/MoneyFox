@@ -90,7 +90,6 @@ steps:
     projects: |
       **/*.Tests.csproj
       !**/MoneyFox.Tests.csproj
-  enabled: false
 
 - task: XamariniOS@2
   displayName: 'Build Xamarin.iOS '
