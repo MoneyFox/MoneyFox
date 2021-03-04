@@ -13,7 +13,7 @@ namespace MoneyFox.iOS
             builder.RegisterType<GraphServiceClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
-            builder.RegisterType<UserDialogsImpl>().As<IUserDialogs>();
+            builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))).AsImplementedInterfaces();
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
 

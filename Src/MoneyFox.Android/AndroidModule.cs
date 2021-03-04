@@ -13,7 +13,7 @@ namespace MoneyFox.Droid
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
-            builder.RegisterType<UserDialogsImpl>().As<IUserDialogs>();
+            builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
             builder.Register(c => new FileStoreIoBase(Android.App.Application.Context.FilesDir?.Path ?? "")).AsImplementedInterfaces();
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
 
