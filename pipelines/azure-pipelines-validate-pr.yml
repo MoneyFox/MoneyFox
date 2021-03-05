@@ -138,7 +138,7 @@ jobs:
       SonarCloud: 'MoneyFox SonarCloud'
       organization: 'moneyfox-1'
       scannerMode: 'MSBuild'
-      projectKey: 'moneyfox-project'
+      projectKey: 'MoneyFox_MoneyFox'
       extraProperties: |
         # Additional properties that will be passed to the scanner,
         # Put one key=value per line, example:
