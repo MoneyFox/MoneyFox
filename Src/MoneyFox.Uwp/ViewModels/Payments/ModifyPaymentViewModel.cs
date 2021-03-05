@@ -298,10 +298,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public void Cancel() => navigationService.GoBack();
 
-        /// <summary>
-        /// Moved to own method for debugg reasons
-        /// </summary>
-        /// <param name="message">Message stent.</param>
         private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if(SelectedPayment == null || message == null)

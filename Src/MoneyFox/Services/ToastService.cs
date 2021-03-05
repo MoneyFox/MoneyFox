@@ -1,27 +1,21 @@
-﻿using Plugin.Toasts;
+﻿using Acr.UserDialogs;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Services
 {
     public class ToastService : IToastService
     {
-        private readonly IToastNotificator toastNotificator;
+        private readonly IUserDialogs userDialogs;
 
-        public ToastService(IToastNotificator toastNotificator)
+        public ToastService(IUserDialogs userDialogs)
         {
-            this.toastNotificator = toastNotificator;
+            this.userDialogs = userDialogs;
         }
 
-        public async Task ShowToastAsync(string message, string title = "")
+        public Task ShowToastAsync(string message, string title = "")
         {
-            var options = new NotificationOptions
-            {
-                Title = title,
-                Description = message,
-                ClearFromHistory = true
-            };
-
-            await toastNotificator.Notify(options);
+            userDialogs.Toast(new ToastConfig(message));
+            return Task.CompletedTask;
         }
     }
 }
