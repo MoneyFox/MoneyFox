@@ -147,6 +147,7 @@ jobs:
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
+    enabled: false
     inputs:
       command: test
       projects: '**/*.Tests.csproj'
@@ -161,6 +162,7 @@ jobs:
 
   - task: VSBuild@1
     displayName: 'Build Windows Project'
+    enabled: false
     inputs:
       solution: '**/MoneyFox.Uwp.csproj'
       msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
