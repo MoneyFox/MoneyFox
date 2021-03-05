@@ -139,7 +139,6 @@ jobs:
       organization: 'moneyfox-1'
       scannerMode: 'MSBuild'
       projectKey: 'moneyfox-project'
-      projectVersion: '$(Major).$(Minor).$(Build.BuildNumber)'
       extraProperties: |
         # Additional properties that will be passed to the scanner,
         # Put one key=value per line, example:
