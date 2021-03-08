@@ -113,7 +113,7 @@ namespace MoneyFox.Uwp.Src
             return Task.CompletedTask;
         }
 
-        private void CloseAllOpenDialogs()
+        private static void CloseAllOpenDialogs()
         {
             var openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
             foreach(var popup in openedpopups)
