@@ -27,11 +27,13 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountNameById
 
             public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
             {
-                return await contextAdapter.Context
-                                           .Accounts
-                                           .Where(x => x.Id == request.AccountId)
-                                           .Select(x => x.Name)
-                                           .FirstAsync(cancellationToken);
+                var account = await contextAdapter.Context
+                                                  .Accounts
+                                                  .Where(x => x.Id == request.AccountId)
+                                                  .Select(x => x.Name)
+                                                  .FirstOrDefaultAsync(cancellationToken);
+
+                return account ?? string.Empty;
             }
         }
     }
