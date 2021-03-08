@@ -21,7 +21,7 @@ steps:
 - task: UseDotNet@2
   displayName: 'Use correct .Net sdk'
   inputs:
-    version: 5.0.x
+    version: 3.1.x
 
 #- script: sudo $AGENT_HOMEDIRECTORY/scripts/select-xamarin-sdk.sh 6_12_0 
 #  displayName: 'Select the Xamarin SDK version 6.12.0'
@@ -90,7 +90,6 @@ steps:
     projects: |
       **/*.Tests.csproj
       !**/MoneyFox.Tests.csproj
-  enabled: false
 
 - task: XamariniOS@2
   displayName: 'Build Xamarin.iOS '

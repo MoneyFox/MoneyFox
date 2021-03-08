@@ -5,7 +5,6 @@ using MoneyFox.Application.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using Plugin.Toasts;
 using System.IO;
 using UIKit;
 using UserNotifications;
@@ -50,7 +49,6 @@ namespace MoneyFox.iOS
 
             UINavigationBar.Appearance.Translucent = false;
 
-            ToastNotification.Init();
             RequestToastPermissions(uiApplication);
 
             return base.FinishedLaunching(uiApplication, launchOptions);
