@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RuleSet Name="SonarQube - moneyfox-project MoneyFox way" ToolsVersion="16.0">
-  <Include Path="..\.sonarlint\moneyfox-projectcsharp.ruleset" Action="Default" />
-  <Include Path="..\.sonarlint\moneyfox-projectcsharp.ruleset" Action="Default" />
+  <Include Path="..\.sonarlint\moneyfox_moneyfoxcsharp.ruleset" Action="Default" />
 </RuleSet>
