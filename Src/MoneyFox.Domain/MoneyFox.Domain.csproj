@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\moneyfox-project\CSharp\SonarLint.xml" Link="SonarLint.xml" />
+    <AdditionalFiles Include="..\.sonarlint\moneyfox_moneyfox\CSharp\SonarLint.xml" Link="SonarLint.xml" />
   </ItemGroup>
 
 
