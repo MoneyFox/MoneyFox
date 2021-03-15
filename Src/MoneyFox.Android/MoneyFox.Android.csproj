@@ -190,11 +190,6 @@
     <AndroidResource Include="Resources\drawable\ic_backup_black.png" />
   </ItemGroup>
   <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\moneyfox-project\CSharp\SonarLint.xml">
-      <Link>SonarLint.xml</Link>
-    </AdditionalFiles>
-  </ItemGroup>
-  <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_accounts_black.png" />
   </ItemGroup>
   <ItemGroup>
@@ -305,10 +300,15 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_dashboard_white.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AdditionalFiles Include="..\.sonarlint\moneyfox_moneyfox\CSharp\SonarLint.xml">
+      <Link>SonarLint.xml</Link>
+    </AdditionalFiles>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
