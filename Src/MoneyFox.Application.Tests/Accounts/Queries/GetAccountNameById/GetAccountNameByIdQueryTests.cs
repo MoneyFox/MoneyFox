@@ -50,5 +50,18 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountNameById
             // Assert
             result.Should().Be(account1.Name);
         }
+
+        [Fact]
+        public async Task EmptyStringWhenNoAccountFound()
+        {
+            // Arrange
+            // Act
+            string result =
+                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountNameByIdQuery(33),
+                                                                                            default);
+
+            // Assert
+            result.Should().Be(string.Empty);
+        }
     }
 }
