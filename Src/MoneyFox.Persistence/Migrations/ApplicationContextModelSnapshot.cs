@@ -28,7 +28,7 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<decimal>("CurrentBalance")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsDisabled")
+                    b.Property<bool>("IsDeactivated")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsExcluded")

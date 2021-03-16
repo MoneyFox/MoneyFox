@@ -74,14 +74,14 @@ namespace MoneyFox.Domain.Tests.Entities
         }
 
         [Fact]
-        public void CtorDisabledShouldBeFalse()
+        public void CtorDeactivatedShouldBeFalse()
         {
             // Arrange
             // Act
             var testAccount = new Account("foo");
 
             // Assert
-            testAccount.IsDisabled.Should().BeFalse();
+            testAccount.IsDeactivated.Should().BeFalse();
         }
 
         [Theory]
@@ -309,16 +309,16 @@ namespace MoneyFox.Domain.Tests.Entities
         }
 
         [Fact]
-        public void DisableAccountOnDisable()
+        public void DisableAccountOnDeactivate()
         {
             // Arrange
             var testAccount = new Account("foo");
 
             // Act
-            testAccount.Disable();
+            testAccount.Deactivate();
 
             // Assert
-            testAccount.IsDisabled.Should().BeTrue();
+            testAccount.IsDeactivated.Should().BeTrue();
         }
     }
 }

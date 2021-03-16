@@ -2,12 +2,12 @@
 
 namespace MoneyFox.Persistence.Migrations
 {
-    public partial class AddDisabledFieldToAccount : Migration
+    public partial class AddDeactivatedFieldToAccount : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<bool>(
-                name: "IsDisabled",
+                name: "IsDeactivated",
                 table: "Accounts",
                 nullable: false,
                 defaultValue: false);
@@ -16,7 +16,7 @@ namespace MoneyFox.Persistence.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "IsDisabled",
+                name: "IsDeactivated",
                 table: "Accounts");
         }
     }

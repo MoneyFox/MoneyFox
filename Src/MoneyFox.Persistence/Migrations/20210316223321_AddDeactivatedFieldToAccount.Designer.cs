@@ -9,8 +9,8 @@ using MoneyFox.Persistence;
 namespace MoneyFox.Persistence.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
-    [Migration("20210316222958_AddDisabledFieldToAccount")]
-    partial class AddDisabledFieldToAccount
+    [Migration("20210316223321_AddDeactivatedFieldToAccount")]
+    partial class AddDeactivatedFieldToAccount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,7 +30,7 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<decimal>("CurrentBalance")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool>("IsDisabled")
+                    b.Property<bool>("IsDeactivated")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsExcluded")

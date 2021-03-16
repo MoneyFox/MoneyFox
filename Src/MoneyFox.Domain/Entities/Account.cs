@@ -59,7 +59,7 @@ namespace MoneyFox.Domain.Entities
         /// <summary>
         ///     Indicates that an account is disabled and should no longer be displayed
         /// </summary>
-        public bool IsDisabled { get; private set; }
+        public bool IsDeactivated { get; private set; }
 
         /// <summary>
         ///     Date of the last modification
@@ -128,7 +128,7 @@ namespace MoneyFox.Domain.Entities
             ModificationDate = DateTime.Now;
         }
 
-        public void Disable() => IsDisabled = true;
+        public void Deactivate() => IsDeactivated = true;
 
         private static void ThrowIfPaymentNull(Payment payment)
         {
