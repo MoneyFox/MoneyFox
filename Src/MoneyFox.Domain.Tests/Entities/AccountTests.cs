@@ -73,6 +73,17 @@ namespace MoneyFox.Domain.Tests.Entities
             account.IsOverdrawn.Should().BeFalse();
         }
 
+        [Fact]
+        public void CtorDisabledShouldBeFalse()
+        {
+            // Arrange
+            // Act
+            var testAccount = new Account("foo");
+
+            // Assert
+            testAccount.IsDisabled.Should().BeFalse();
+        }
+
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
@@ -295,6 +306,19 @@ namespace MoneyFox.Domain.Tests.Entities
 
             // Assert
             testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+        }
+
+        [Fact]
+        public void DisableAccountOnDisable()
+        {
+            // Arrange
+            var testAccount = new Account("foo");
+
+            // Act
+            testAccount.Disable();
+
+            // Assert
+            testAccount.IsDisabled.Should().BeTrue();
         }
     }
 }
