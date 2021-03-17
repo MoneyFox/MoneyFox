@@ -51,5 +51,27 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             // Assert
             Assert.Single(result);
         }
+
+        [Fact]
+        public async Task DontLoadDeactivatedAccount()
+        {
+            // Arrange
+            var accountExcluded = new Account("test", 80, isExcluded: true);
+            var accountIncluded = new Account("test", 80);
+            var accountDeactivated = new Account("test", 80);
+            accountDeactivated.Deactivate();
+
+            await context.AddAsync(accountExcluded);
+            await context.AddAsync(accountIncluded);
+            await context.AddAsync(accountDeactivated);
+            await context.SaveChangesAsync();
+
+            // Act
+            List<Account> result =
+                await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(new GetIncludedAccountQuery(), default);
+
+            // Assert
+            Assert.Single(result);
+        }
     }
 }
