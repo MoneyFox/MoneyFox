@@ -24,6 +24,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccounts
             {
                 List<Account>? accounts = await contextAdapter.Context
                                                    .Accounts
+                                                   .AreActive()
                                                    .OrderByInclusion()
                                                    .OrderByName()
                                                    .ToListAsync(cancellationToken);

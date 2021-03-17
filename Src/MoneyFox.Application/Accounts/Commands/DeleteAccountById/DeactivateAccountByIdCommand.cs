@@ -34,9 +34,8 @@ namespace MoneyFox.Application.Accounts.Commands.DeleteAccountById
 
             public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
             {
-                Account entityToDelete = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
-
-                contextAdapter.Context.Accounts.Remove(entityToDelete);
+                Account entityToDeactivate = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
+                entityToDeactivate.Deactivate();
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
