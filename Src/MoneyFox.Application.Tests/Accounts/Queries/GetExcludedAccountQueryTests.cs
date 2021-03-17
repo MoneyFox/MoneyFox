@@ -53,7 +53,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
 
             // Assert
             resultList.Should().HaveCount(1);
-            resultList[1].CurrentBalance.Should().Be(1);
+            resultList[0].CurrentBalance.Should().Be(80);
         }
 
         [Fact]
@@ -67,6 +67,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
 
             await context.AddAsync(accountExcluded);
             await context.AddAsync(accountIncluded);
+            await context.AddAsync(accountDeactivated);
             await context.SaveChangesAsync();
 
             // Act
@@ -76,7 +77,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
 
             // Assert
             resultList.Should().HaveCount(1);
-            resultList[1].CurrentBalance.Should().Be(1);
+            resultList[0].CurrentBalance.Should().Be(80);
         }
     }
 }
