@@ -8,7 +8,7 @@ namespace MoneyFox.Application.Common.QueryObjects
     /// <summary>
     /// Provides Extensions for categories queries.
     /// </summary>
-    public static class CategoryQueryObjects
+    public static class CategoryQueryExtensions
     {
         /// <summary>
         /// Adds a filter to a query to find all category with the passed name.

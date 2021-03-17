@@ -161,7 +161,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
             if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await mediator.Send(new DeleteAccountByIdCommand(accountToDelete.Id));
+                await mediator.Send(new DeactivateAccountByIdCommand(accountToDelete.Id));
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);
 
                 Accounts.Clear();

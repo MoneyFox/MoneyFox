@@ -24,6 +24,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetExcludedAccount
             {
                 return await contextAdapter.Context
                                            .Accounts
+                                           .AreActive()
                                            .AreExcluded()
                                            .OrderByName()
                                            .ToListAsync(cancellationToken);
