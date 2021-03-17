@@ -222,7 +222,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         {
             if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await mediator.Send(new DeleteAccountByIdCommand(accountId));
+                await mediator.Send(new DeactivateAccountByIdCommand(accountId));
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 navigationService.GoBack();
             }

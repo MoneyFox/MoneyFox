@@ -17,14 +17,14 @@ using Xunit;
 namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
 {
     [ExcludeFromCodeCoverage]
-    public class DeleteAccountByIdCommandTests : IDisposable
+    public class DeactivateAccountByIdCommandTests : IDisposable
     {
         private readonly EfCoreContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
         private readonly Mock<IBackupService> backupServiceMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
 
-        public DeleteAccountByIdCommandTests()
+        public DeactivateAccountByIdCommandTests()
         {
             context = InMemoryEfCoreContextFactory.Create();
 
@@ -56,10 +56,10 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteAccountByIdCommand.Handler(contextAdapterMock.Object,
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
                                                        backupServiceMock.Object,
                                                        settingsFacadeMock.Object)
-                .Handle(new DeleteAccountByIdCommand(account.Id), default);
+                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
 
             // Assert
             (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().BeNull();
@@ -74,10 +74,10 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteAccountByIdCommand.Handler(contextAdapterMock.Object,
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
                                                        backupServiceMock.Object,
                                                        settingsFacadeMock.Object)
-                .Handle(new DeleteAccountByIdCommand(account.Id), default);
+                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);

@@ -49,7 +49,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
         {
             if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
-                await mediator.Send(new DeleteAccountByIdCommand(SelectedAccount.Id));
+                await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccount.Id));
                 NavigationService.GoBack();
             }
         }
