@@ -29,7 +29,6 @@ namespace MoneyFox.ViewModels.Payments
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         private PaymentViewModel selectedPayment = new PaymentViewModel();
-
         private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
         private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
 
