@@ -8,7 +8,7 @@ namespace MoneyFox.Application.Common.QueryObjects
     /// <summary>
     /// Provides Extensions for payments queries.
     /// </summary>
-    public static class PaymentQueryObjects
+    public static class PaymentQueryExtensions
     {
         /// <summary>
         ///     Adds a filter to a query for payments with type expense
