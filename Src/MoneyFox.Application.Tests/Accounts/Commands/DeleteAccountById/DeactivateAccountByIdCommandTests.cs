@@ -48,7 +48,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
         protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
-        public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()
+        public async Task DeactivatedAccountNotDeleted()
         {
             // Arrange
             var account = new Account("test");
@@ -62,7 +62,25 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
                 .Handle(new DeactivateAccountByIdCommand(account.Id), default);
 
             // Assert
-            (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().BeNull();
+            (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().NotBeNull();
+        }
+
+        [Fact]
+        public async Task AccoutnDeactivated()
+        {
+            // Arrange
+            var account = new Account("test");
+            await context.AddAsync(account);
+            await context.SaveChangesAsync();
+
+            // Act
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
+                                                       backupServiceMock.Object,
+                                                       settingsFacadeMock.Object)
+                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
+
+            // Assert
+            (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
         }
 
         [Fact]
