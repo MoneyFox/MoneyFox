@@ -160,9 +160,9 @@ jobs:
       platform: 'x86|x64'
       testSelector: 'testAssemblies'
       testAssemblyVer2: |
-        **\MoneyFox.Uwp.Tests.build.appxrecipe
-        !**\*.Tests.dll
-        !**\obj\**
+        **/MoneyFox.Uwp.Tests.build.appxrecipe
+        !**/*.Tests.dll
+        !**/obj/**
       searchFolder: '$(System.DefaultWorkingDirectory)'
 
   - task: CopyFiles@2
