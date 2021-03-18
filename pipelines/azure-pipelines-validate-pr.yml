@@ -148,9 +148,21 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
-      command: test
-      projects: '**/*.Tests.csproj'
+      command: 'test'
+      projects: |
+        **/*.Tests.csproj
+        !**/*Uwp.csproj
       arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+
+  - task: VSTest@2
+    inputs:
+      platform: 'x86|x64'
+      testSelector: 'testAssemblies'
+      testAssemblyVer2: |
+        **\Release\MoneyFox.Uwp.Tests.build.appxrecipe
+        !**\*.Tests.dll
+        !**\obj\**
+      searchFolder: '$(System.DefaultWorkingDirectory)'
 
   - task: CopyFiles@2
     displayName: 'Copy coverage xml to staging'
