@@ -181,8 +181,7 @@
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\GraphClientFactory.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
-    <Compile Include="Src\PaymentSorting\IPaymentSortOperation.cs" />
-    <Compile Include="Src\PaymentSorting\PaymentSortOperationDate.cs" />
+    <Compile Include="Extensions\SortDirectionExtension.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
