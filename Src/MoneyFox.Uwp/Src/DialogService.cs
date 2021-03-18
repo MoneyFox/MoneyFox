@@ -8,7 +8,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 
 #nullable enable
 namespace MoneyFox.Uwp.Src
@@ -30,8 +32,7 @@ namespace MoneyFox.Uwp.Src
                                                         string? positiveButtonText = null,
                                                         string? negativeButtonText = null)
         {
-            await HideLoadingDialogAsync();
-
+            CloseAllOpenDialogs();
             var dialog = new ContentDialog
             {
                 Title = title,
@@ -53,7 +54,7 @@ namespace MoneyFox.Uwp.Src
         /// <param name="message">Text to display.</param>
         public async Task ShowMessageAsync(string title, string message)
         {
-            await HideLoadingDialogAsync();
+            CloseAllOpenDialogs();
 
             var dialog = new ContentDialog
             {
@@ -72,7 +73,7 @@ namespace MoneyFox.Uwp.Src
         public async Task ShowLoadingDialogAsync(string? message = null)
         {
             // Be sure no other dialog is open.
-            await HideLoadingDialogAsync();
+            CloseAllOpenDialogs();
 
             loadingDialog = new LoadingDialog { Text = message ?? Strings.LoadingLabel };
             loadingDialog.RequestedTheme = ThemeSelectorService.Theme;
@@ -110,6 +111,18 @@ namespace MoneyFox.Uwp.Src
         {
             loadingDialog?.Hide();
             return Task.CompletedTask;
+        }
+
+        private static void CloseAllOpenDialogs()
+        {
+            var openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
+            foreach(var popup in openedpopups)
+            {
+                if(popup.Child is ContentDialog dialog)
+                {
+                    dialog.Hide();
+                }
+            }
         }
     }
 }

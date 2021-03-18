@@ -1,5 +1,7 @@
-﻿using Microsoft.Toolkit.Uwp.UI.Controls;
+﻿using Microsoft.Toolkit.Uwp.UI;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.Uwp.Extensions;
 using MoneyFox.Uwp.ViewModels.Payments;
 using System.Globalization;
 using Windows.UI.Xaml;
@@ -56,6 +58,30 @@ namespace MoneyFox.Uwp.Views.Payments
             if(((FrameworkElement)sender).DataContext is PaymentViewModel vm)
             {
                 ViewModel.DeletePaymentCommand.Execute(vm);
+            }
+        }
+
+        private void SortDataGrid(object sender, DataGridColumnEventArgs e)
+        {
+            var sortParameter = new SortParameter
+            {
+                Tag = e.Column.Tag.ToString(),
+            };
+
+            sortParameter.SortDirection = e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending
+                ? Ui.Shared.PaymentSorting.SortDirection.Ascending
+                : Ui.Shared.PaymentSorting.SortDirection.Descending;
+            e.Column.SortDirection = sortParameter.SortDirection.ToDataGridDirection();
+
+            ViewModel.SortDataCommand.Execute(sortParameter);
+
+            // Remove sorting indicators from other columns
+            foreach(var dgColumn in PaymentGrid.Columns)
+            {
+                if(dgColumn.Tag == null || dgColumn.Tag.ToString() != e.Column.Tag.ToString())
+                {
+                    dgColumn.SortDirection = null;
+                }
             }
         }
     }

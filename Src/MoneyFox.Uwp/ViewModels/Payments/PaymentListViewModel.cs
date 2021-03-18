@@ -5,6 +5,7 @@ using GalaSoft.MvvmLight.Messaging;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
 using Microsoft.Toolkit.Uwp.Helpers;
+using Microsoft.Toolkit.Uwp.UI.Controls;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
@@ -16,6 +17,7 @@ using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Src;
+using MoneyFox.Uwp.Src.PaymentSorting;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -82,13 +84,17 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadDataAsync());
 
+        public RelayCommand<SortParameter> SortDataCommand
+            => new RelayCommand<SortParameter>(sortParameter => SortData(sortParameter));
+
         public RelayCommand<PaymentViewModel> EditPaymentCommand
             => new RelayCommand<PaymentViewModel>((vm) => navigationService.Navigate<EditPaymentViewModel>(vm));
 
         /// <summary>
         /// Deletes the passed PaymentViewModel.
         /// </summary>
-        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(async (vm) => await DeletePaymentAsync(vm));
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(async (vm)
+            => await DeletePaymentAsync(vm));
 
         /// <summary>
         /// Id for the current account.
@@ -133,6 +139,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 RaisePropertyChanged();
             }
         }
+
+        /// <summary>
+        ///     This list is only used as a cache so we don't have to reload all payments from the database for every operation.
+        /// </summary>
+        private List<PaymentViewModel> PaymentList { get; set; }
 
         private CollectionViewSource? groupedPayments;
 
@@ -205,17 +216,28 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadDataAsync()
         {
-            await dialogService.ShowLoadingDialogAsync();
-            await LoadPaymentsAsync();
+            if (AccountId == 0)
+            {
+                return;
+            }
 
-            //Refresh balance control with the current account
-            await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
-            await dialogService.HideLoadingDialogAsync();
+            try
+            {
+                await dialogService.ShowLoadingDialogAsync();
+                await LoadPaymentsAsync();
+
+                //Refresh balance control with the current account
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+            }
+            finally
+            {
+                await dialogService.HideLoadingDialogAsync();
+            }
         }
 
         private async Task LoadPaymentsAsync()
         {
-            List<PaymentViewModel> payments = mapper.Map<List<PaymentViewModel>>(
+            PaymentList = mapper.Map<List<PaymentViewModel>>(
                 await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
                                                                      filterMessage.TimeRangeStart,
                                                                      filterMessage.TimeRangeEnd)
@@ -224,8 +246,13 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                     IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
                 }));
 
-            payments.ForEach(x => x.CurrentAccountId = AccountId);
+            PaymentList.ForEach(x => x.CurrentAccountId = AccountId);
 
+            SetViewSource(PaymentList);
+        }
+
+        private void SetViewSource(IEnumerable<PaymentViewModel> payments)
+        {
             var source = new CollectionViewSource
             {
                 IsSourceGrouped = filterMessage.IsGrouped
@@ -267,6 +294,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             await mediator.Send(command);
             Messenger.Default.Send(new ReloadMessage());
+        }
+
+        private void SortData(SortParameter parameter)
+        {
+            SetViewSource(new PaymentSortOperationDate().Sort(PaymentList, parameter.SortDirection));
         }
     }
 }
