@@ -49,6 +49,7 @@ jobs:
       projects: |
         **/*.Tests.csproj        
         !**/MoneyFox.Tests.csproj
+        !**/MoneyFox.UWP.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
   - task: XamariniOS@2
@@ -151,7 +152,7 @@ jobs:
       command: 'test'
       projects: |
         **/*.Tests.csproj
-        !**/*.UWP.Tests.csproj
+        !**/MoneyFox.UWP.Tests.csproj
       arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
   - task: VSTest@2
