@@ -155,14 +155,23 @@ jobs:
         !**/MoneyFox.UWP.Tests.csproj
       arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
+  - task: VSBuild@1
+    displayName: 'Build Windows Project'
+    inputs:
+      solution: '**/MoneyFox.Uwp.csproj'
+      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
+      platform: x64
+      configuration: '$(BuildConfiguration)'
+
   - task: VSTest@2
+    displayName: 'Run UWP Tests'
     inputs:
       platform: 'x86|x64'
       testSelector: 'testAssemblies'
       testAssemblyVer2: |
-        **/MoneyFox.Uwp.Tests.build.appxrecipe
-        !**/*.Tests.dll
-        !**/obj/**
+        **\MoneyFox.Uwp.Tests.build.appxrecipe
+        !**\*.Tests.dll
+        !**\obj\**
       searchFolder: '$(System.DefaultWorkingDirectory)'
 
   - task: CopyFiles@2
@@ -171,14 +180,6 @@ jobs:
       SourceFolder: '$(Agent.TempDirectory)'
       Contents: '**\*.opencover.xml'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: VSBuild@1
-    displayName: 'Build Windows Project'
-    inputs:
-      solution: '**/MoneyFox.Uwp.csproj'
-      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
-      platform: x64
-      configuration: '$(BuildConfiguration)'
 
   - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
