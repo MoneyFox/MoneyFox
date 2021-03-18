@@ -56,5 +56,31 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             // Assert
             result.Should().Be(50);
         }
+
+        [Fact]
+        public async Task DontIncludeDeactivatedAccountsInBalance()
+        {
+            // Arrange
+            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
+
+            var accountIncluded = new Account("test", 100);
+            var accountDeactivated = new Account("test", 100);
+            accountDeactivated.Deactivate();
+
+            var payment = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, accountIncluded);
+
+            await context.AddAsync(accountIncluded);
+            await context.AddAsync(accountDeactivated);
+            await context.AddAsync(payment);
+            await context.SaveChangesAsync();
+
+            // Act
+            decimal result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
+                new GetTotalEndOfMonthBalanceQuery(), default);
+
+            // Assert
+            result.Should().Be(50);
+        }
     }
 }

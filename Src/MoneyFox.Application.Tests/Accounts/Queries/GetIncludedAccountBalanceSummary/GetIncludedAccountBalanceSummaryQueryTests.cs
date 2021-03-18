@@ -52,5 +52,28 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceS
             // Assert
             result.Should().Be(80);
         }
+
+        [Fact]
+        public async Task DontIncludeDeactivatedAccounts()
+        {
+            // Arrange
+            var accountExcluded = new Account("test", 80, isExcluded: true);
+            var accountIncluded = new Account("test", 80);
+            var accountDeactivated = new Account("test", 80);
+            accountDeactivated.Deactivate();
+
+            await context.AddAsync(accountExcluded);
+            await context.AddAsync(accountIncluded);
+            await context.AddAsync(accountDeactivated);
+            await context.SaveChangesAsync();
+
+            // Act
+            decimal result =
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
+                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+
+            // Assert
+            result.Should().Be(80);
+        }
     }
 }
