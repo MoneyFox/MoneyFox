@@ -181,6 +181,8 @@
     <Compile Include="Src\DialogService.cs" />
     <Compile Include="Src\GraphClientFactory.cs" />
     <Compile Include="Src\MarketplaceOperations.cs" />
+    <Compile Include="Src\PaymentSorting\IPaymentSortOperation.cs" />
+    <Compile Include="Src\PaymentSorting\PaymentSortOperationDate.cs" />
     <Compile Include="Src\ThemedImageConverterLogic.cs" />
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
@@ -208,6 +210,7 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Payments\SortParameter.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\Accounts\EditAccountViewModel.cs" />

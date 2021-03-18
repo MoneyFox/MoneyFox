@@ -58,5 +58,29 @@ namespace MoneyFox.Uwp.Views.Payments
                 ViewModel.DeletePaymentCommand.Execute(vm);
             }
         }
+
+        private void SortDataGrid(object sender, DataGridColumnEventArgs e)
+        {
+            var sortParameter = new SortParameter
+            {
+                Tag = e.Column.Tag.ToString(),
+            };
+
+            sortParameter.SortDirection = e.Column.SortDirection == null || e.Column.SortDirection == DataGridSortDirection.Descending
+                ? DataGridSortDirection.Ascending
+                : DataGridSortDirection.Descending;
+            e.Column.SortDirection = sortParameter.SortDirection;
+
+            ViewModel.SortDataCommand.Execute(sortParameter);
+
+            // Remove sorting indicators from other columns
+            foreach(var dgColumn in PaymentGrid.Columns)
+            {
+                if(dgColumn.Tag == null || dgColumn.Tag.ToString() != e.Column.Tag.ToString())
+                {
+                    dgColumn.SortDirection = null;
+                }
+            }
+        }
     }
 }

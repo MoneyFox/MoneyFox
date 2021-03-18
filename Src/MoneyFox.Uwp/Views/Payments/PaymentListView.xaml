@@ -81,13 +81,14 @@
             Margin="{StaticResource MediumLeftRightMargin}"
             DataContext="{Binding BalanceViewModel}" />
 
-        <controls:DataGrid ItemsSource="{x:Bind ViewModel.GroupedPayments.View, Mode=OneWay}"
+        <controls:DataGrid x:Name="PaymentGrid"
+                           ItemsSource="{x:Bind ViewModel.GroupedPayments.View, Mode=OneWay}"
                            Grid.Row="2"
-                           x:Name="PaymentGrid"
                            AutoGenerateColumns="False"
                            LoadingRowGroup="DataGrid_LoadingRowGroup"
                            DoubleTapped="DataGrid_DoubleTapped"
                            IsReadOnly="True"
+                           Sorting="SortDataGrid"
                            Margin="{StaticResource NegativeMediumLeftRightMargin}"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
@@ -104,7 +105,7 @@
             </controls:DataGrid.RowStyle>
 
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" Tag="Date" />
                 <controls:DataGridTextColumn Header="{x:Bind resources:Strings.PaymentTypeLabel}" Binding="{Binding Type, Converter={StaticResource PaymentTypeToStringConverter}}" />
                 <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Converter={StaticResource PaymentAmountConverter}}" />
                 <controls:DataGridTextColumn Header="{x:Bind resources:Strings.TargetAccountLabel}" Binding="{Binding TargetAccount.Name}" />
