@@ -158,7 +158,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build Windows Project'
     inputs:
-      solution: '**/MoneyFox.Uwp.csproj'
+      solution: '$(solution)'
       msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
       platform: x64
       configuration: '$(BuildConfiguration)'
