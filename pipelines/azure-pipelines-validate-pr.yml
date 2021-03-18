@@ -151,7 +151,7 @@ jobs:
       command: 'test'
       projects: |
         **/*.Tests.csproj
-        !**/*Uwp.csproj
+        !**/*.UWP.Tests.csproj
       arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
   - task: VSTest@2
