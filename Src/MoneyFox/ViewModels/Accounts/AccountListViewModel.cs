@@ -115,7 +115,7 @@ namespace MoneyFox.ViewModels.Accounts
                 Strings.YesLabel,
                 Strings.NoLabel))
             {
-                await mediator.Send(new DeleteAccountByIdCommand(accountViewModel.Id));
+                await mediator.Send(new DeactivateAccountByIdCommand(accountViewModel.Id));
                 await OnAppearingAsync();
             }
         }

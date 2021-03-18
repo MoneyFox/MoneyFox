@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Accounts.Commands.DeleteAccountById
 {
-    public class DeleteAccountByIdCommand : IRequest
+    public class DeactivateAccountByIdCommand : IRequest
     {
-        public DeleteAccountByIdCommand(int accountId)
+        public DeactivateAccountByIdCommand(int accountId)
         {
             AccountId = accountId;
         }
 
         public int AccountId { get; }
 
-        public class Handler : IRequestHandler<DeleteAccountByIdCommand>
+        public class Handler : IRequestHandler<DeactivateAccountByIdCommand>
         {
             private readonly IContextAdapter contextAdapter;
             private readonly IBackupService backupService;
@@ -32,11 +32,10 @@ namespace MoneyFox.Application.Accounts.Commands.DeleteAccountById
                 this.settingsFacade = settingsFacade;
             }
 
-            public async Task<Unit> Handle(DeleteAccountByIdCommand request, CancellationToken cancellationToken)
+            public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
             {
-                Account entityToDelete = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
-
-                contextAdapter.Context.Accounts.Remove(entityToDelete);
+                Account entityToDeactivate = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
+                entityToDeactivate.Deactivate();
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

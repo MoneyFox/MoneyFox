@@ -50,5 +50,24 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
             // Assert
             result.Should().Be(2);
         }
+
+        [Fact]
+        public async Task HandleDeactivatedAccountsCorrectly()
+        {
+            // Arrange
+            var account = new Account("test", 80);
+            var accountDeactivated = new Account("test", 80);
+            accountDeactivated.Deactivate();
+
+            await context.AddAsync(accountDeactivated);
+            await context.AddAsync(account);
+            await context.SaveChangesAsync();
+
+            // Act
+            int result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
+
+            // Assert
+            result.Should().Be(1);
+        }
     }
 }

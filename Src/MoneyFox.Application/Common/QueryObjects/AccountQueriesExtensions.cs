@@ -8,7 +8,7 @@ namespace MoneyFox.Application.Common.QueryObjects
     /// <summary>
     ///     Query Objects for account queries.
     /// </summary>
-    public static class AccountQueries
+    public static class AccountQueriesExtensions
     {
         /// <summary>
         ///     Adds a filter for the accountId
@@ -29,6 +29,12 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <returns>Query with a filter for not excluded accounts.</returns>
         public static IQueryable<Account> AreExcluded(this IQueryable<Account> query) => query.Where(x => x.IsExcluded);
+
+        /// <summary>
+        ///     Adds a filter for active accounts
+        /// </summary>
+        public static IQueryable<Account> AreActive(this IQueryable<Account> query)
+            => query.Where(x => !x.IsDeactivated);
 
         /// <summary>
         ///     Order a query by a name.
