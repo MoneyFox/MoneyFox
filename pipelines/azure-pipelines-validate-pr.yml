@@ -166,13 +166,11 @@ jobs:
   - task: VSTest@2
     displayName: 'Run UWP Tests'
     inputs:
-      platform: 'x86|x64'
       testSelector: 'testAssemblies'
       testAssemblyVer2: |
-        **\MoneyFox.Uwp.Tests.build.appxrecipe
-        !**\*.Tests.dll
-        !**\obj\**
+        **\*.appxrecipe
       searchFolder: '$(System.DefaultWorkingDirectory)'
+      platform: 'x86|x64'
 
   - task: CopyFiles@2
     displayName: 'Copy coverage xml to staging'
