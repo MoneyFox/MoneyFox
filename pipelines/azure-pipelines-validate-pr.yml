@@ -160,7 +160,7 @@ jobs:
       platform: 'x86|x64'
       testSelector: 'testAssemblies'
       testAssemblyVer2: |
-        **\Release\MoneyFox.Uwp.Tests.build.appxrecipe
+        **\MoneyFox.Uwp.Tests.build.appxrecipe
         !**\*.Tests.dll
         !**\obj\**
       searchFolder: '$(System.DefaultWorkingDirectory)'
