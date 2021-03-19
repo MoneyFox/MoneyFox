@@ -49,6 +49,7 @@ jobs:
       projects: |
         **/*.Tests.csproj        
         !**/MoneyFox.Tests.csproj
+        !**/MoneyFox.UWP.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
 
   - task: XamariniOS@2
@@ -148,9 +149,18 @@ jobs:
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
-      command: test
-      projects: '**/*.Tests.csproj'
+      command: 'test'
+      projects: |
+        **/*.Tests.csproj
       arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
+
+  - task: VSBuild@1
+    displayName: 'Build Windows Project'
+    inputs:
+      solution: '$(solution)'
+      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
+      platform: x64
+      configuration: '$(BuildConfiguration)'
 
   - task: CopyFiles@2
     displayName: 'Copy coverage xml to staging'
@@ -158,14 +168,6 @@ jobs:
       SourceFolder: '$(Agent.TempDirectory)'
       Contents: '**\*.opencover.xml'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: VSBuild@1
-    displayName: 'Build Windows Project'
-    inputs:
-      solution: '**/MoneyFox.Uwp.csproj'
-      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
-      platform: x64
-      configuration: '$(BuildConfiguration)'
 
   - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
     displayName: 'Run Code Analysis'
