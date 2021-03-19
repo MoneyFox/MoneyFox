@@ -152,7 +152,6 @@ jobs:
       command: 'test'
       projects: |
         **/*.Tests.csproj
-        !**/MoneyFox.UWP.Tests.csproj
       arguments: '--configuration $(BuildConfiguration) --collect:"XPlat Code Coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover'
 
   - task: VSBuild@1
@@ -162,15 +161,6 @@ jobs:
       msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
       platform: x64
       configuration: '$(BuildConfiguration)'
-
-  - task: VSTest@2
-    displayName: 'Run UWP Tests'
-    inputs:
-      testSelector: 'testAssemblies'
-      testAssemblyVer2: |
-        **\*.appxrecipe
-      searchFolder: '$(System.DefaultWorkingDirectory)'
-      platform: 'x86|x64'
 
   - task: CopyFiles@2
     displayName: 'Copy coverage xml to staging'
