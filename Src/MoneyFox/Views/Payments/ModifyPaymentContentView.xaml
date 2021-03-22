@@ -6,6 +6,7 @@
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:theme="clr-namespace:MoneyFox"
+             xmlns:componentmodel="clr-namespace:System.ComponentModel;assembly=System"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Payments.ModifyPaymentContentView">
 

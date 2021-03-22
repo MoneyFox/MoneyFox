@@ -1,10 +1,13 @@
 ﻿using Autofac;
 using Foundation;
 using Microsoft.Identity.Client;
+using MoneyFox.Application;
 using MoneyFox.Application.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using System;
+using System.Globalization;
 using System.IO;
 using UIKit;
 using UserNotifications;
