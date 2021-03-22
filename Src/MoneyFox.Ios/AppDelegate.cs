@@ -1,10 +1,13 @@
 ﻿using Autofac;
 using Foundation;
 using Microsoft.Identity.Client;
+using MoneyFox.Application;
 using MoneyFox.Application.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using System;
+using System.Globalization;
 using System.IO;
 using UIKit;
 using UserNotifications;
@@ -38,6 +41,7 @@ namespace MoneyFox.iOS
         {
             InitLogger();
             RegisterServices();
+            GetLocale();
 
             Rg.Plugins.Popup.Popup.Init();
 
@@ -52,6 +56,11 @@ namespace MoneyFox.iOS
             RequestToastPermissions(uiApplication);
 
             return base.FinishedLaunching(uiApplication, launchOptions);
+        }
+
+        private void GetLocale()
+        {
+            CultureHelper.CurrentCulture = new CultureInfo(NSLocale.CurrentLocale.LanguageCode);
         }
 
         // Needed for auth
