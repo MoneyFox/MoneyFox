@@ -34,7 +34,9 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
             {
                 logManager.Info("Calculate EndOfMonth Balance.");
 
-                List<Account> excluded = await contextAdapter.Context.Accounts.AreExcluded().ToListAsync();
+                List<Account> excluded = await contextAdapter.Context.Accounts.AreActive()
+                                                                              .AreExcluded()
+                                                                              .ToListAsync();
                 decimal balance = await GetCurrentAccountBalanceAsync();
 
                 foreach(Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
@@ -102,6 +104,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
             {
                 return (await contextAdapter.Context
                                             .Accounts
+                                            .AreActive()
                                             .AreNotExcluded()
                                             .Select(x => x.CurrentBalance)
                                             .ToListAsync())

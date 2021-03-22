@@ -23,6 +23,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary
             {
                 return (await contextAdapter.Context
                                             .Accounts
+                                            .AreActive()
                                             .AreNotExcluded()
                                             .Select(x => x.CurrentBalance)
                                             .ToListAsync(cancellationToken))
