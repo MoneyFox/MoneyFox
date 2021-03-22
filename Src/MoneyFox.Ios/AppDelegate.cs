@@ -41,7 +41,6 @@ namespace MoneyFox.iOS
         {
             InitLogger();
             RegisterServices();
-            GetLocale();
 
             Rg.Plugins.Popup.Popup.Init();
 
@@ -56,11 +55,6 @@ namespace MoneyFox.iOS
             RequestToastPermissions(uiApplication);
 
             return base.FinishedLaunching(uiApplication, launchOptions);
-        }
-
-        private void GetLocale()
-        {
-            CultureHelper.CurrentCulture = new CultureInfo(NSLocale.CurrentLocale.LanguageCode);
         }
 
         // Needed for auth
