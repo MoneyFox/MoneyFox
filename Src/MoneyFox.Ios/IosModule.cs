@@ -20,7 +20,7 @@ namespace MoneyFox.iOS
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))).AsImplementedInterfaces();
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
 
-            CultureHelper.CurrentCulture = new CultureInfo(NSLocale.CurrentLocale.LanguageCode);
+            CultureHelper.CurrentLocale = new CultureInfo(NSLocale.CurrentLocale.CountryCode);
 
             builder.RegisterModule<MoneyFoxModule>();
         }

@@ -11,7 +11,7 @@ namespace MoneyFox.Converter
         {
             if(value is decimal)
             {
-                return value.ToString();
+                return ((decimal)value).ToString(CultureHelper.CurrentLocale);
             }
             return value;
         }
