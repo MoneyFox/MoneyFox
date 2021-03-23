@@ -7,6 +7,8 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
 {
     public sealed class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
+        private const decimal DECIMAL_DELTA = 0.01m;
+
         private int id;
         private string name = "";
         private decimal currentBalance;
@@ -61,6 +63,11 @@ namespace MoneyFox.Ui.Shared.ViewModels.Accounts
             get => currentBalance;
             set
             {
+                if(Math.Abs(currentBalance - value) < DECIMAL_DELTA)
+                {
+                    return;
+                }
+
                 currentBalance = value;
                 RaisePropertyChanged();
             }
