@@ -108,30 +108,30 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
-        <controls:ListDetailsView
+        <controls:MasterDetailsView
             x:Name="CategorySummaryList"
             Grid.Row="1"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
             SelectedItem=""
             ItemsSource="{x:Bind ViewModel.CategorySummary}"
-            ListPaneWidth="550"
+            MasterPaneWidth="550"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectionChanged="CategorySummaryList_SelectionChanged">
 
-            <controls:ListDetailsView.ItemContainerStyle>
+            <controls:MasterDetailsView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                     <Setter Property="VerticalContentAlignment" Value="Stretch" />
                 </Style>
-            </controls:ListDetailsView.ItemContainerStyle>
+            </controls:MasterDetailsView.ItemContainerStyle>
 
-            <controls:ListDetailsView.DetailsTemplate>
+            <controls:MasterDetailsView.DetailsTemplate>
                 <DataTemplate x:DataType="viewModels:CategoryOverviewViewModel">
                     <statisticUc:PaymentListUserControl />
                 </DataTemplate>
-            </controls:ListDetailsView.DetailsTemplate>
+            </controls:MasterDetailsView.DetailsTemplate>
 
-        </controls:ListDetailsView>
+        </controls:MasterDetailsView>
     </Grid>
 </views:BaseView>
