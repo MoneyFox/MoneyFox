@@ -106,7 +106,7 @@
                             x:Name="AccountGrid"
                             IsItemClickEnabled="True"
                             IsSynchronizedWithCurrentItem="False"
-                            animations:ItemsReorderAnimation.Duration ="250"
+                            animations:ReorderGridAnimation.Duration="250"
                             ItemClick="AccountClicked"
                             ItemTemplate="{StaticResource AccountItemTemplate}"
                             ItemsSource="{Binding}" />
