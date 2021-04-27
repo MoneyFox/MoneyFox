@@ -6,6 +6,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,8 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
 
         public class Handler : IRequestHandler<DeletePaymentByIdCommand>
         {
+            private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
             private readonly IContextAdapter contextAdapter;
             private readonly IBackupService backupService;
             private readonly ISettingsFacade settingsFacade;
@@ -69,8 +72,15 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
 
+                try
+                {
+                    backupService.UploadBackupAsync().FireAndForgetSafeAsync();
+                }
+                catch(NetworkConnectionException)
+                {
+                    logManager.Info("No Network Connection. Couldn't Upload backup.");
+                }
                 return Unit.Value;
             }
 
