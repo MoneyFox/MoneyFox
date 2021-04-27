@@ -12,15 +12,18 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Ui.Shared.Groups;
 using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Src;
 using MoneyFox.Uwp.ViewModels.Interfaces;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using Telerik.UI.Xaml.Controls.Chart;
 using Windows.UI.Xaml.Data;
 
 #nullable enable
@@ -31,6 +34,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
     /// </summary>
     public class PaymentListViewModel : ViewModelBase
     {
+        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
         private const int DEFAULT_MONTH_BACK = -2;
 
         private readonly IMediator mediator;
@@ -268,16 +273,23 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 return;
             }
 
-            var command = new DeletePaymentByIdCommand(payment.Id);
-
-            if(payment.IsRecurring)
+            try
             {
-                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
-                                                                                             Strings.DeleteRecurringPaymentMessage);
-            }
+                var command = new DeletePaymentByIdCommand(payment.Id);
 
-            await mediator.Send(command);
-            Messenger.Default.Send(new ReloadMessage());
+                if(payment.IsRecurring)
+                {
+                    command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
+                                                                                                 Strings.DeleteRecurringPaymentMessage);
+                }
+
+                await mediator.Send(command);
+                Messenger.Default.Send(new ReloadMessage());
+            }
+            catch(Exception ex)
+            {
+                logManager.Error(ex, "Error during deleting payment.");
+            }
         }
     }
 }
