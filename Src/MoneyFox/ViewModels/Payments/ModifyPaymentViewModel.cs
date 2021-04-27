@@ -99,8 +99,6 @@ namespace MoneyFox.ViewModels.Payments
         /// </summary>
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
-        [SuppressMessage("Minor Code Smell", "S2325:Methods and properties that don't access instance data should be static",
-            Justification = "Must be non-static in order for the binding to work")]
         public List<PaymentType> PaymentTypeList => new List<PaymentType>
         {
             PaymentType.Expense,
@@ -111,8 +109,6 @@ namespace MoneyFox.ViewModels.Payments
         /// <summary>
         /// List with the different recurrence types.     This has to have the same order as the enum
         /// </summary>
-        [SuppressMessage("Minor Code Smell", "S2325:Methods and properties that don't access instance data should be static",
-             Justification = "Must be non-static in order for the binding to work")]
         public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
             PaymentRecurrence.Daily,
