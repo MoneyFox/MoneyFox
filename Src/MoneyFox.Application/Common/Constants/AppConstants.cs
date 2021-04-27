@@ -5,7 +5,6 @@ namespace MoneyFox.Application.Common.Constants
     /// <summary>
     /// String Constants for usage in the app
     /// </summary>
-    [SuppressMessage("Major Code Smell", "S3996:URI properties should not be strings", Justification = "We use the string to display as well.")]
     public static class AppConstants
     {
         /// <summary>
