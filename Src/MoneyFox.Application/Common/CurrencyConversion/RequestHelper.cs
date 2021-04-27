@@ -16,7 +16,7 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         public static List<Currency> GetAllCurrencies(string apiKey)
         {
-            Uri url = new Uri($"{BASE_URL}currencies?apiKey={apiKey}");
+            var url = new Uri($"{BASE_URL}currencies?apiKey={apiKey}");
 
             string jsonString = GetResponse(url);
 
@@ -26,7 +26,7 @@ namespace MoneyFox.Application.Common.CurrencyConversion
 
         public static double ExchangeRate(string from, string to, string apiKey)
         {
-            Uri url = new Uri($"{BASE_URL}convert?q={from}_{to}&compact=ultra&apiKey={apiKey}");
+            var url = new Uri($"{BASE_URL}convert?q={from}_{to}&compact=ultra&apiKey={apiKey}");
 
             string jsonString = GetResponse(url);
             return JObject.Parse(jsonString).First.First["val"].ToObject<double>();

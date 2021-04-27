@@ -8,9 +8,9 @@ namespace MoneyFox.Application.Common
     /// </summary>
     public static class ChartOptions
     {
-        public static float Margin {get;set;} = 20;
-        public static float LabelTextSize { get;set;} = 26f;
-        public static SKColor BackgroundColor { get;set;} = SKColors.Transparent;
+        public static float Margin { get; set; } = 20;
+        public static float LabelTextSize { get; set; } = 26f;
+        public static SKColor BackgroundColor { get; set; } = SKColors.Transparent;
         public static SKTypeface TypeFace { get; set; } = SKTypeface.FromFamilyName("Lobster-Regular");
     }
 }
