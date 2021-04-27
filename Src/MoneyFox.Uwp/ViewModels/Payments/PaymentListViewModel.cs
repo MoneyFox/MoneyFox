@@ -289,6 +289,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             catch(Exception ex)
             {
                 logManager.Error(ex, "Error during deleting payment.");
+                await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, Strings.UnknownErrorMessage);
             }
         }
     }
