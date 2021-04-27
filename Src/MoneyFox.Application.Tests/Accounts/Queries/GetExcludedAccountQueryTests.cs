@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
-using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;

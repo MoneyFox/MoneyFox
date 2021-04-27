@@ -12,10 +12,10 @@ namespace MoneyFox.Tests.Converter
     public class DecimalConverterTests
     {
         [Theory]
-        [InlineData("en-US","nl", "36,41", 36.41)]
-        [InlineData("en-GB","en-GB", "34.41", 34.41)]
-        [InlineData("de-CH","de-CH", "33.41", 33.41)]
-        [InlineData("de-DE","de-DE", "33,41", 33.41)]
+        [InlineData("en-US", "nl", "36,41", 36.41)]
+        [InlineData("en-GB", "en-GB", "34.41", 34.41)]
+        [InlineData("de-CH", "de-CH", "33.41", 33.41)]
+        [InlineData("de-DE", "de-DE", "33,41", 33.41)]
         public void ConvertCorrectly(string culture, string locale, string value, decimal expectedResult)
         {
             // Arrange
@@ -25,7 +25,7 @@ namespace MoneyFox.Tests.Converter
             var converter = new DecimalConverter();
 
             // Act
-            decimal result = (decimal) converter.ConvertBack(value, null, null, Thread.CurrentThread.CurrentUICulture);
+            decimal result = (decimal)converter.ConvertBack(value, null, null, Thread.CurrentThread.CurrentUICulture);
 
             // Assert
             result.Should().Be(expectedResult);

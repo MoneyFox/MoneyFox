@@ -1,9 +1,9 @@
-﻿using MoneyFox.Domain.Entities;
+﻿using MoneyFox.Application.Common.QueryObjects;
+using MoneyFox.Domain.Entities;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using MoneyFox.Application.Common.QueryObjects;
-using Xunit;
 using System.Linq;
+using Xunit;
 
 namespace MoneyFox.Application.Tests.QueryObjects
 {

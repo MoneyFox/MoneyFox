@@ -16,8 +16,8 @@ namespace MoneyFox.Ui.Shared.Tests.ViewModels.Settings
         public void CollectionNotNullAfterCtor()
         {
             // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var dialogService = Substitute.For<IDialogService>();
+            ISettingsFacade settingsFacade = Substitute.For<ISettingsFacade>();
+            IDialogService dialogService = Substitute.For<IDialogService>();
 
             // Act
             var viewModel = new SettingsViewModel(settingsFacade, dialogService);
@@ -30,8 +30,8 @@ namespace MoneyFox.Ui.Shared.Tests.ViewModels.Settings
         public void UpdateSettingsOnSet()
         {
             // Arrange
-            var settingsFacade = Substitute.For<ISettingsFacade>();
-            var dialogService = Substitute.For<IDialogService>();
+            ISettingsFacade settingsFacade = Substitute.For<ISettingsFacade>();
+            IDialogService dialogService = Substitute.For<IDialogService>();
             var viewModel = new SettingsViewModel(settingsFacade, dialogService);
 
             // Act

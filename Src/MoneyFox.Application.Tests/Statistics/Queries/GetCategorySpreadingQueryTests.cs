@@ -183,7 +183,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Act
             var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),default))
+                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
                 .ToList();
 
             // Assert
