@@ -2,7 +2,6 @@
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
