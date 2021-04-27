@@ -45,7 +45,7 @@ namespace MoneyFox.Uwp.Services
             catch(Exception ex)
             {
                 logger.Fatal(ex);
-                Crashes.TrackError(ex, new Dictionary<string, string> {{ "Context", "Startup."}});
+                Crashes.TrackError(ex, new Dictionary<string, string> { { "Context", "Startup." } });
             }
             finally
             {

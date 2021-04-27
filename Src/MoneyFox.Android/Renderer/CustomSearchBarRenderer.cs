@@ -56,7 +56,7 @@ namespace MoneyFox.Droid.Renderer
                     UpdateCancelButtonColor();
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 Crashes.TrackError(ex);
             }

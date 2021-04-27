@@ -8,7 +8,6 @@ using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.Payments;
@@ -146,7 +145,7 @@ namespace MoneyFox.Uwp
                 return;
             }
 
-            string pageString = (string) item.GetValue(NavHelper.NavigateToProperty);
+            string pageString = (string)item.GetValue(NavHelper.NavigateToProperty);
             NavigationService.Navigate(GetTypeByString(pageString));
         }
 
