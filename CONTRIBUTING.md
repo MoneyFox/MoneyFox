@@ -34,4 +34,10 @@ Please make pull requests against the `master` branch.
 Also, please ensure you have unit tests written for your changes where possible and that all existing tests are still running.
 
 ## Getting Started
-Have a look at our [Documentation](https://apply-solutions.atlassian.net/wiki/display/MON/MoneyFox)
+To start developing you have to have Visual Studio 2019 or JetBrains Rider installed with the modules for the Universal Windows Platform and Xamarin.
+In order to build the Windows Project, you'll have to create a new test certificate. The easiest way is via the Package.appxmanifest - Packaging - Choose Certificate - "Create...". The values you can choose freely.
+
+### OneDrive Backup
+This is only required if you want to create or restore backups. Please ensure that you register an app for the usage with OneDrive and add the ID in the OneDriveAuthenticator. [Link](http://go.microsoft.com/fwlink/p/?LinkId=193157)
+
+You then have to place your ID in the OneDriveAuthenticator Placeholder.
