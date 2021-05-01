@@ -27,7 +27,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountNameById
 
             public async Task<string> Handle(GetAccountNameByIdQuery request, CancellationToken cancellationToken)
             {
-                var account = await contextAdapter.Context
+                string? account = await contextAdapter.Context
                                                   .Accounts
                                                   .Where(x => x.Id == request.AccountId)
                                                   .Select(x => x.Name)

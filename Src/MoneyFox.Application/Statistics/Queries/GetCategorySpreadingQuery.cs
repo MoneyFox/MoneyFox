@@ -1,15 +1,15 @@
 ﻿using MediatR;
+using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Threading;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Domain;
-using MoneyFox.Application.Common.QueryObjects;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Statistics.Queries
 {
@@ -70,18 +70,18 @@ namespace MoneyFox.Application.Statistics.Queries
 
         private List<(decimal Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
         {
-            var query = from payment in payments
-                        group payment by new
-                        {
-                            category = payment.Category != null
-                                                        ? payment.Category.Name
-                                                        : string.Empty
-                        }
+            IEnumerable<(decimal, string category)>? query = from payment in payments
+                                                             group payment by new
+                                                             {
+                                                                 category = payment.Category != null
+                                                                                             ? payment.Category.Name
+                                                                                             : string.Empty
+                                                             }
                         into temp
-                        select (temp.Sum(x => x.Type == PaymentType.Income
-                                                            ? -x.Amount
-                                                            : x.Amount),
-                                temp.Key.category);
+                                                             select (temp.Sum(x => x.Type == PaymentType.Income
+                                                                                                 ? -x.Amount
+                                                                                                 : x.Amount),
+                                                                     temp.Key.category);
 
             query = currentRequest.PaymentType == PaymentType.Expense
                 ? query.Where(x => x.Item1 > 0)

@@ -3,8 +3,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using MediatR;
-using Microsoft.AppCenter.Crashes;
-using Microsoft.Toolkit.Uwp.Helpers;
 using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
@@ -74,7 +72,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public void Subscribe()
         {
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async (message) => {
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async (message) =>
+            {
                 filterMessage = message;
                 await LoadDataAsync();
             });
@@ -210,7 +209,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadDataAsync()
         {
-            if (AccountId == 0)
+            if(AccountId == 0)
             {
                 return;
             }

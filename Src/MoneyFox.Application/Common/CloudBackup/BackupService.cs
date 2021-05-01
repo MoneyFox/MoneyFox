@@ -167,7 +167,7 @@ namespace MoneyFox.Application.Common.CloudBackup
                 return date.ToLocalTime();
             }
             catch(Exception ex)
-                when (ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
+                when(ex is BackupOperationCanceledException || ex is BackupAuthenticationFailedException)
             {
                 logger.Error(ex, "Operation canceled during get backup date. Execute logout");
                 await LogoutAsync();

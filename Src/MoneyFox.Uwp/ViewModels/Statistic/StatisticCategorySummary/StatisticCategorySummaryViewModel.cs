@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Ui.Shared.Groups;

@@ -78,7 +78,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             {
                 StartDate = DateTime.Today.AddDays(-3),
                 EndDate = DateTime.Today.AddDays(3)
-            },default);
+            }, default);
 
             // Assert
             result[0].Color.Should().Be("#9bcd9b");
