@@ -42,7 +42,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task CalculateCorrectSums()
         {
             // Arrange
-            Account account = new ("Foo1");
+            Account account = new("Foo1");
             context.AddRange(new List<Payment>
                 {
                     new Payment(DateTime.Today, 60, PaymentType.Income, account),
@@ -69,7 +69,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_CorrectSums()
         {
             // Arrange
-            Account account = new ("Foo1");
+            Account account = new("Foo1");
             context.AddRange(new List<Payment>
                 {
                     new Payment(DateTime.Today, 60, PaymentType.Income, account),

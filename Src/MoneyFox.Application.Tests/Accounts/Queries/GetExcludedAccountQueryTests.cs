@@ -1,6 +1,5 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
-using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
@@ -52,7 +51,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
                    .Handle(new GetExcludedAccountQuery(), default);
 
             // Assert
-            resultList.Should().HaveCount(1);
+            resultList.Should().ContainSingle();
             resultList[0].CurrentBalance.Should().Be(80);
         }
 
@@ -76,7 +75,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
                    .Handle(new GetExcludedAccountQuery(), default);
 
             // Assert
-            resultList.Should().HaveCount(1);
+            resultList.Should().ContainSingle();
             resultList[0].CurrentBalance.Should().Be(80);
         }
     }

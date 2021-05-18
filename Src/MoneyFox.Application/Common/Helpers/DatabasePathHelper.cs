@@ -14,7 +14,8 @@ namespace MoneyFox.Application.Common.Helpers
 
         public static string DbPath
         {
-            get {
+            get
+            {
                 string databasePath;
                 switch(ExecutingPlatform.Current)
                 {

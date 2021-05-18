@@ -22,7 +22,7 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public void NoExceptionOnSameDate()
         {
             // Arrange
-            var date = DateTime.Now;
+            DateTime date = DateTime.Now;
 
             // Act
             var query = new GetAccountProgressionQuery(0, date, date);

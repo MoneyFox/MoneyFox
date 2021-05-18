@@ -9,11 +9,9 @@ namespace MoneyFox.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if(value is decimal)
-            {
-                return ((decimal)value).ToString(CultureHelper.CurrentLocale);
-            }
-            return value;
+            return value is decimal
+                ? ((decimal)value).ToString(CultureHelper.CurrentLocale)
+                : value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

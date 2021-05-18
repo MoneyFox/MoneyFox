@@ -31,7 +31,7 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentById
 
             public async Task<Payment> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken)
             {
-                var payment = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
+                Payment? payment = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
                                                                    .Include(x => x.TargetAccount)
                                                                    .Include(x => x.RecurringPayment)
                                                                    .Include(x => x.Category)

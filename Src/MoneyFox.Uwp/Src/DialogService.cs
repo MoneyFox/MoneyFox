@@ -115,8 +115,8 @@ namespace MoneyFox.Uwp.Src
 
         private static void CloseAllOpenDialogs()
         {
-            var openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
-            foreach(var popup in openedpopups)
+            IReadOnlyList<Windows.UI.Xaml.Controls.Primitives.Popup>? openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
+            foreach(Windows.UI.Xaml.Controls.Primitives.Popup? popup in openedpopups)
             {
                 if(popup.Child is ContentDialog dialog)
                 {
