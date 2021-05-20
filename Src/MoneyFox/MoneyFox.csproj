@@ -147,6 +147,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Views\Statistics\StatisticCategoryProgressionPage.xaml.cs">
+      <DependentUpon>StatisticCategoryProgressionPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml.cs">
       <DependentUpon>StatisticAccountMonthlyCashflowPage.xaml</DependentUpon>
     </Compile>

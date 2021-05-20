@@ -529,6 +529,24 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shows the progression of a category by month..
+        /// </summary>
+        public static string CategoryProgressionDescription {
+            get {
+                return ResourceManager.GetString("CategoryProgressionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Category Progression.
+        /// </summary>
+        public static string CategoryProgressionLabel {
+            get {
+                return ResourceManager.GetString("CategoryProgressionLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category Spreading.
         /// </summary>
         public static string CategorySpreadingLabel {
@@ -1817,6 +1835,15 @@ namespace MoneyFox.Application.Resources {
         public static string SearchLabel {
             get {
                 return ResourceManager.GetString("SearchLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select category...
+        /// </summary>
+        public static string SelectCategoryLabel {
+            get {
+                return ResourceManager.GetString("SelectCategoryLabel", resourceCulture);
             }
         }
         

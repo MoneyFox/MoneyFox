@@ -31,6 +31,12 @@ namespace MoneyFox.ViewModels.Statistics
             },
             new StatisticSelectorType
             {
+                Name = Strings.CategoryProgressionLabel,
+                Description = Strings.CategoryProgressionDescription,
+                Type = StatisticType.CategoryProgression
+            },
+            new StatisticSelectorType
+            {
                 Name = Strings.CategorySpreadingLabel,
                 Description = Strings.CategorieSpreadingDescription,
                 Type = StatisticType.CategorySpreading
@@ -66,6 +72,10 @@ namespace MoneyFox.ViewModels.Statistics
             else if(item.Type == StatisticType.MonthlyAccountCashFlow)
             {
                 await Shell.Current.GoToAsync(ViewModelLocator.StatisticAccountMonthlyCashflowRoute);
+            }
+            else if(item.Type == StatisticType.CategoryProgression)
+            {
+                await Shell.Current.GoToAsync(ViewModelLocator.StatisticCategoryProgressionRoute);
             }
         }
     }
