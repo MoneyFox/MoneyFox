@@ -81,5 +81,4 @@ namespace MoneyFox.Application.Statistics.Queries
             };
         }
     }
-
 }
