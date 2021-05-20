@@ -25,7 +25,7 @@ namespace MoneyFox.ViewModels.Statistics
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
         private BarChart chart = new BarChart();
-        private bool hasNoData;
+        private bool hasNoData = true;
         private CategoryViewModel? selectedCategory;
         private readonly IMapper mapper;
 
@@ -113,6 +113,7 @@ namespace MoneyFox.ViewModels.Statistics
         {
             if(SelectedCategory == null)
             {
+                HasNoData = true;
                 return;
             }
 

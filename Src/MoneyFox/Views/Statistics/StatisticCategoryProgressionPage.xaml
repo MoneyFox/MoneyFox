@@ -39,11 +39,16 @@
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.CategoryProgressionTitle}" />
 
-            <Button Grid.Row="1"
+            <Label Grid.Row="1"
+                   Style="{StaticResource TextBodySecondary}"
+                   Text="{Binding Title}" />
+
+            <Button Grid.Row="2"
                         Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
                         Command="{Binding GoToSelectCategoryDialogCommand}" />
 
             <microcharts:ChartView Grid.Row="3" Chart="{Binding Chart}" IsVisible="{Binding HasNoData, Converter={StaticResource InverseBoolConverter}}" />
+
             <Label Grid.Row="3"
                    Text="{x:Static resources:Strings.SelectCategoryLabel}"
                    Style="{DynamicResource DeemphasizedLabelStyle}"
