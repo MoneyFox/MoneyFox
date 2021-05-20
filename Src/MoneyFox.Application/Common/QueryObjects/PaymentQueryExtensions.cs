@@ -84,6 +84,17 @@ namespace MoneyFox.Application.Common.QueryObjects
         }
 
         /// <summary>
+        ///     Adds a filter to a query for payments who has a certain category assosciated.
+        /// </summary>
+        /// <param name="query">Existing query.</param>
+        /// <param name="categoryId">CategoryId to filter for</param>
+        /// <returns>Query filtered for the category id.</returns>
+        public static IQueryable<Payment> HasCategoryId(this IQueryable<Payment> query, int categoryId)
+        {
+            return query.Where(payment => payment.Category!.Id == categoryId);
+        }
+
+        /// <summary>
         ///     Orders a query descending by the date.
         /// </summary>
         /// <param name="query">Existing query.</param>
