@@ -209,6 +209,7 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Statistic\StatisticCategoryProgressionViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\Accounts\EditAccountViewModel.cs" />
@@ -301,6 +302,9 @@
     </Compile>
     <Compile Include="Views\Settings\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Statistics\StatisticCategoryProgressionView.xaml.cs">
+      <DependentUpon>StatisticCategoryProgressionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Statistics\StatisticAccountMonthlyCashflowView.xaml.cs">
       <DependentUpon>StatisticAccountMonthlyCashflowView.xaml</DependentUpon>
@@ -528,6 +532,10 @@
     <Page Include="Views\Settings\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Statistics\StatisticCategoryProgressionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Statistics\StatisticAccountMonthlyCashflowView.xaml">
       <Generator>MSBuild:Compile</Generator>
