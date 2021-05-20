@@ -26,7 +26,7 @@ namespace MoneyFox.ViewModels.Statistics
     {
         private BarChart chart = new BarChart();
         private bool hasNoData;
-        private CategoryViewModel? SelectedCategory = null;
+        private CategoryViewModel? selectedCategory;
         private readonly IMapper mapper;
 
         public StatisticCategoryProgressionViewModel(IMediator mediator,
@@ -37,6 +37,21 @@ namespace MoneyFox.ViewModels.Statistics
             StartDate = DateTime.Now.AddYears(-1);
 
             MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
+        }
+
+        public CategoryViewModel? SelectedCategory
+        {
+            get => selectedCategory;
+            set
+            {
+                if(selectedCategory == value)
+                {
+                    return;
+                }
+
+                selectedCategory = value;
+                RaisePropertyChanged();
+            }
         }
 
         /// <summary>

@@ -5,6 +5,8 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:theme="clr-namespace:MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
+             xmlns:statistics1="clr-namespace:MoneyFox.ViewModels.Statistics"
+             x:DataType="statistics1:StatisticCategoryProgressionViewModel"
              Visual="Material" >
 
     <ContentPage.Resources>
