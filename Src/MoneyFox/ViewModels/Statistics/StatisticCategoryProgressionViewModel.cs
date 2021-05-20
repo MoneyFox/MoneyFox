@@ -26,7 +26,7 @@ namespace MoneyFox.ViewModels.Statistics
     {
         private BarChart chart = new BarChart();
         private bool hasNoData;
-        private CategoryViewModel? SelectedCagegory = null;
+        private CategoryViewModel? SelectedCategory = null;
         private readonly IMapper mapper;
 
         public StatisticCategoryProgressionViewModel(IMediator mediator,
@@ -79,28 +79,29 @@ namespace MoneyFox.ViewModels.Statistics
 
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
 
-        public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCagegory = null);
+        public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
 
 
         private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
-            if(SelectedCagegory == null || message == null)
+            if(message == null)
             {
                 return;
             }
 
-            SelectedCagegory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+            SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+            await LoadAsync();
         }
 
 
         protected override async Task LoadAsync()
         {
-            if(SelectedCagegory == null)
+            if(SelectedCategory == null)
             {
                 return;
             }
 
-            List<StatisticEntry> statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(SelectedCagegory?.Id ?? 0, StartDate, EndDate));
+            List<StatisticEntry> statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory?.Id ?? 0, StartDate, EndDate));
 
             HasNoData = !statisticItems.Any();
 

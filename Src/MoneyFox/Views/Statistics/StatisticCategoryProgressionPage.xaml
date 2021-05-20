@@ -35,32 +35,17 @@
     <ContentPage.Content>
         <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,0">
             <Label Style="{StaticResource TextHeadline}"
-                   Text="{x:Static resources:Strings.MonthlyCashflowTitle}" />
+                   Text="{x:Static resources:Strings.CategoryProgressionTitle}" />
 
-            <Grid Grid.Row="1">
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="70*" />
-                    <ColumnDefinition Width="30" />
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0"
-                        Text="{Binding SelectedPayment.Category, Converter={StaticResource NoCategorySelectedConverter}}"
+            <Button Grid.Row="1"
+                        Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
                         Command="{Binding GoToSelectCategoryDialogCommand}" />
 
-                <Label Grid.Column="1"
-                        VerticalOptions="Center"
-                        Text="{x:Static theme:IconFont.Trash}"
-                        FontSize="30"
-                        FontFamily="FontAwesome">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding ResetCategoryCommand}" />
-                    </Label.GestureRecognizers>
-                </Label>
-            </Grid>
-
             <microcharts:ChartView Grid.Row="3" Chart="{Binding Chart}" IsVisible="{Binding HasNoData, Converter={StaticResource InverseBoolConverter}}" />
-            <Label Text="{x:Static resources:Strings.SelectCategoryLabel}" Style="{DynamicResource DeemphasizedLabelStyle}" />
+            <Label Grid.Row="3"
+                   Text="{x:Static resources:Strings.SelectCategoryLabel}"
+                   Style="{DynamicResource DeemphasizedLabelStyle}"
+                   IsVisible="{Binding HasNoData}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>

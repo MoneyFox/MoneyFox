@@ -547,6 +547,15 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category Progression.
+        /// </summary>
+        public static string CategoryProgressionTitle {
+            get {
+                return ResourceManager.GetString("CategoryProgressionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category Spreading.
         /// </summary>
         public static string CategorySpreadingLabel {

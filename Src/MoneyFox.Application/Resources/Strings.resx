@@ -801,4 +801,7 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="SelectCategoryLabel" xml:space="preserve">
     <value>Select category..</value>
   </data>
+  <data name="CategoryProgressionTitle" xml:space="preserve">
+    <value>Category Progression</value>
+  </data>
 </root>
