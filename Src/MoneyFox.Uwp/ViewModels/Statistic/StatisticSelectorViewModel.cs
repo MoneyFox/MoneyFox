@@ -43,6 +43,12 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             },
             new StatisticSelectorType
             {
+                Name = Strings.CategoryProgressionLabel,
+                Description = Strings.CategoryProgressionDescription,
+                Type = StatisticType.CategoryProgression
+            },
+            new StatisticSelectorType
+            {
                 Name = Strings.CategorySpreadingLabel,
                 Description = Strings.CategorieSpreadingDescription,
                 Type = StatisticType.CategorySpreading
@@ -77,6 +83,10 @@ namespace MoneyFox.Presentation.ViewModels.Statistic
             else if(item.Type == StatisticType.CategorySummary)
             {
                 navigationService.Navigate<StatisticCategorySummaryViewModel>();
+            }
+            else if(item.Type == StatisticType.CategoryProgression)
+            {
+                navigationService.Navigate<StatisticCategoryProgressionViewModel>();
             }
         }
     }

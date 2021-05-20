@@ -14,7 +14,7 @@ namespace MoneyFox.Converter
 
             if(category == null)
             {
-                return Strings.SelectCategoryTitle;
+                return Strings.SelectCategoryLabel;
             }
 
             return category.Name;

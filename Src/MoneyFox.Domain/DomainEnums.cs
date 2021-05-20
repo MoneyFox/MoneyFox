@@ -26,7 +26,8 @@
         CategorySpreading,
         CategorySummary,
         CashflowHistory,
-        MonthlyAccountCashFlow
+        MonthlyAccountCashFlow,
+        CategoryProgression
     }
 
     public enum SettingsType

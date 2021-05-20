@@ -792,4 +792,16 @@ To start create a new account. Accounts are used to organize payments and money 
   <data name="SelectedPaymentTypeHeader" xml:space="preserve">
     <value>Selected Payment Type</value>
   </data>
+  <data name="CategoryProgressionDescription" xml:space="preserve">
+    <value>Shows the progression of a category by month.</value>
+  </data>
+  <data name="CategoryProgressionLabel" xml:space="preserve">
+    <value>Category Progression</value>
+  </data>
+  <data name="SelectCategoryLabel" xml:space="preserve">
+    <value>Select category..</value>
+  </data>
+  <data name="CategoryProgressionTitle" xml:space="preserve">
+    <value>Category Progression</value>
+  </data>
 </root>

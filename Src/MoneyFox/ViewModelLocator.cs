@@ -62,6 +62,7 @@ namespace MoneyFox
         public static string StatisticCategorySpreadingRoute => nameof(StatisticCategorySpreadingPage);
         public static string StatisticCategorySummaryRoute => nameof(StatisticCategorySummaryPage);
         public static string StatisticAccountMonthlyCashflowRoute => nameof(StatisticAccountMonthlyCashflowPage);
+        public static string StatisticCategoryProgressionRoute => nameof(StatisticCategoryProgressionPage);
         public static string StatisticSelectorRoute => nameof(StatisticSelectorPage);
         public static string PaymentForCategoryListRoute => nameof(PaymentForCategoryListPage);
         public static string WelcomeViewRoute => nameof(WelcomePage);
@@ -84,6 +85,7 @@ namespace MoneyFox
         public static SelectFilterDialogViewModel SelectFilterDialogViewModel => ServiceLocator.Current.GetInstance<SelectFilterDialogViewModel>();
         public static BackupViewModel BackupViewModel => ServiceLocator.Current.GetInstance<BackupViewModel>();
         public static StatisticCashFlowViewModel StatisticCashFlowViewModel => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
+        public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionViewModel => ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
         public static StatisticAccountMonthlyCashflowViewModel StatistcAccountMonthlyCashflowViewModel => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingViewModel => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
         public static StatisticCategorySummaryViewModel StatisticCategorySummaryViewModel => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
