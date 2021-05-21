@@ -792,15 +792,15 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Zahlungsart wählen</value>
   </data>
   <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>Zeigt die Entwicklung einer Kategorie von Monat zu Monat.</value>
   </data>
   <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Kategorieverlauf</value>
   </data>
   <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Select category..</value>
+    <value>Kategorie auswählen..</value>
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Kategorieverlauf</value>
   </data>
 </root>
