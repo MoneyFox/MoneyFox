@@ -50,6 +50,7 @@ jobs:
       CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
   - task: PowerShell@2
+    displayName: "Set Package Information"
     inputs:
       targetType: 'inline'
       script: |
@@ -60,6 +61,20 @@ jobs:
         $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="Money Fox"
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.appxmanifest')
       failOnStderr: true
+
+  - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
+    displayName: 'Replace tokens in MoneyFox'
+    inputs:
+      sourcePath: Src/MoneyFox.Uwp
+      filePattern: App.config
+
+  - task: VersionAPPX@2
+    inputs:
+      Path: '$(Build.SourcesDirectory)'
+      VersionNumber: '$(Major).$(Minor).$(Build.BuildId)'
+      InjectVersion: false
+      VersionRegex: '\d+.\d+.\d+'
+      OutputVersion: 'OutputedVersion'
 
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
@@ -98,20 +113,6 @@ jobs:
       SourceFolder: '$(Agent.TempDirectory)'
       Contents: '**\*.opencover.xml'
       TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
-    displayName: 'Replace tokens in MoneyFox'
-    inputs:
-      sourcePath: Src/MoneyFox.Uwp
-      filePattern: App.config
-
-  - task: VersionAPPX@2
-    inputs:
-      Path: '$(Build.SourcesDirectory)'
-      VersionNumber: '$(Major).$(Minor).$(Build.BuildId)'
-      InjectVersion: false
-      VersionRegex: '\d+.\d+.\d+'
-      OutputVersion: 'OutputedVersion'
 
   - task: VSBuild@1
     displayName: 'Build Windows Project'
