@@ -60,6 +60,7 @@ jobs:
         $xmlDoc.Package.Properties.DisplayName="Money Fox"
         $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="Money Fox"
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.appxmanifest')
+        $xmlDoc.Save('$(build.artifactStagingDirectory)\Package.appxmanifest')
       failOnStderr: true
 
   - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
