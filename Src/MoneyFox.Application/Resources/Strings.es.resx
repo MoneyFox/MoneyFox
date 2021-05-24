@@ -639,7 +639,7 @@ Para llegar allí ve a la lista de cuentas y selecciona la cuenta correspondient
     <value>¡Puntúa la aplicación!</value>
   </data>
   <data name="RateReminderText" xml:space="preserve">
-    <value>Esperamos que te guste nuestro app. Apóyanos valorando la app en la tienda. ¿Quieres ir a valorar la app?</value>
+    <value>Esperamos que te guste nuestra app. Apóyanos valorando la app en la tienda. ¿Quieres valorar la app?</value>
   </data>
   <data name="RateReminderTitle" xml:space="preserve">
     <value>Valora esta aplicación</value>
@@ -648,7 +648,7 @@ Para llegar allí ve a la lista de cuentas y selecciona la cuenta correspondient
     <value>Periodicidad</value>
   </data>
   <data name="RecurringLabel" xml:space="preserve">
-    <value>Es períodico</value>
+    <value>Es Recurrente</value>
   </data>
   <data name="RequireNoteCheckbox" xml:space="preserve">
     <value>Se requiere una nota</value>
@@ -664,7 +664,7 @@ ATENCIÓN: ¡Los datos que creaste desde la copia de respaldo se perderán!</val
     <value>Restaurar copia de seguridad</value>
   </data>
   <data name="RevenueLabel" xml:space="preserve">
-    <value>Ingresos</value>
+    <value>Ganancias</value>
   </data>
   <data name="SaveLabel" xml:space="preserve">
     <value>Guardar</value>
