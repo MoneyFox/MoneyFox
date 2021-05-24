@@ -761,43 +761,43 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
     <value>Sí</value>
   </data>
   <data name="AccountsToolTip" xml:space="preserve">
-    <value>Manage your Accounts</value>
+    <value>Gestionar tus Cuentas</value>
   </data>
   <data name="AddPaymentTitle" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Registrar Pago</value>
   </data>
   <data name="AddPaymentToolTip" xml:space="preserve">
-    <value>Add a Payment with details</value>
+    <value>Añadir un pago con detalles</value>
   </data>
   <data name="BackupToolTip" xml:space="preserve">
-    <value>Backup your information</value>
+    <value>Respaldar tu información</value>
   </data>
   <data name="CategoriesToolTip" xml:space="preserve">
-    <value>Manage your Categories</value>
+    <value>Gestionar categorías</value>
   </data>
   <data name="StatisticsToolTip" xml:space="preserve">
-    <value>View your Statistics</value>
+    <value>Ver tus Estadisticas</value>
   </data>
   <data name="FailedToLoginToBackupMessage" xml:space="preserve">
-    <value>Failed to login to your backup service. Automatic backup upload was disabled. Please login and enable it again.</value>
+    <value>Error al iniciar sesión en tu servicio de copia de seguridad. La subida automática de la copia de seguridad fue deshabilitada. Por favor, inicia sesión y vuelve a activarla.</value>
   </data>
   <data name="FailedToLoginToBackupTitle" xml:space="preserve">
-    <value>Login failed!</value>
+    <value>¡Error al iniciar sesión!</value>
   </data>
   <data name="LoggedInTitle" xml:space="preserve">
-    <value>Logged in!</value>
+    <value>Sesión iniciada!</value>
   </data>
   <data name="SelectedPaymentTypeHeader" xml:space="preserve">
-    <value>Selected Payment Type</value>
+    <value>Seleccione el tipo de transacción</value>
   </data>
   <data name="CategoryProgressionDescription" xml:space="preserve">
-    <value>Shows the progression of a category by month.</value>
+    <value>Muestra la progresión de una categoría por mes.</value>
   </data>
   <data name="CategoryProgressionLabel" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Progresión de la categoría</value>
   </data>
   <data name="SelectCategoryLabel" xml:space="preserve">
-    <value>Select category..</value>
+    <value>Seleccionar Categoría...</value>
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
     <value>Category Progression</value>
