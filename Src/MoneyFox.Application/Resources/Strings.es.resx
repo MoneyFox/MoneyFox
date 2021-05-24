@@ -142,13 +142,13 @@
     <value>Añadir categoría</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Añadir categoría </value>
+    <value>Añadir categoría</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
     <value>Gasto</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Añadir gastos</value>
+    <value>Añadir gasto</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
     <value>Ingreso</value>
@@ -166,13 +166,13 @@
     <value>Agregar transferencia</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Cantidad</value>
+    <value>Monto</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
     <value>El monto no puede ser negativo. Si desea restar o añadir, esto se determina por el tipo de pago, no por el signo.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Cantidad negativa</value>
+    <value>Monto negativo</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
     <value>Se requiere una nota para el pago.</value>
@@ -800,6 +800,6 @@ Para empezar crea una nueva cuenta. Las cuentas se utilizan para organizar en gr
     <value>Seleccionar Categoría...</value>
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
-    <value>Category Progression</value>
+    <value>Progresión de la categoría</value>
   </data>
 </root>
