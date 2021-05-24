@@ -187,7 +187,7 @@
     <value>Error de autentificación</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>Si activa esta configuración, haremos una copia de seguridad de sus datos automáticamente a OneDrive. También comprobamos periódicamente si algo ha cambiado desde otro dispositivo.</value>
+    <value>Si activa esta configuración, haremos una copia de seguridad automáticamente a OneDrive. También comprobamos periódicamente si algo ha cambiado desde otro dispositivo vinculado a esta cuenta.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
     <value>Subir y descargar copias de seguridad automáticamente</value>
@@ -274,7 +274,7 @@
     <value>Resumen de la categoría</value>
   </data>
   <data name="ChargedAccountLabel" xml:space="preserve">
-    <value>Cuenta cargada</value>
+    <value>Cuenta afectada (destino)</value>
   </data>
   <data name="ClearedFilterLabel" xml:space="preserve">
     <value>Limpiado</value>
@@ -355,10 +355,10 @@
     <value>¿Realmente desea eliminar este pago?</value>
   </data>
   <data name="DeleteRecurringPaymentMessage" xml:space="preserve">
-    <value>Ha eliminado un pago recurrente. ¿Desea eliminar también la frecuencia?</value>
+    <value>Ha eliminado un pago recurrente. ¿Desea eliminar también la recurrencia?</value>
   </data>
   <data name="DeleteRecurringPaymentTitle" xml:space="preserve">
-    <value>¿Eliminar la serie?</value>
+    <value>¿Eliminar la recurrencia?</value>
   </data>
   <data name="DeleteTitle" xml:space="preserve">
     <value>¿Borrar?</value>
@@ -382,16 +382,16 @@
     <value>Editar categoría</value>
   </data>
   <data name="EditIncomeTitle" xml:space="preserve">
-    <value>Editar ingresos</value>
+    <value>Editar Ingreso</value>
   </data>
   <data name="EditLabel" xml:space="preserve">
     <value>Editar</value>
   </data>
   <data name="EditSpendingTitle" xml:space="preserve">
-    <value>Editar cuenta</value>
+    <value>Editar Gasto</value>
   </data>
   <data name="EditTransferTitle" xml:space="preserve">
-    <value>Editar la transferencia</value>
+    <value>Editar Transferencia</value>
   </data>
   <data name="EmailLabel" xml:space="preserve">
     <value>Correo electrónico</value>
@@ -418,7 +418,7 @@
     <value>Gasto: {0} / Ingreso: {1}</value>
   </data>
   <data name="ExpenseHeader" xml:space="preserve">
-    <value>Añadir gastos</value>
+    <value>Añadir gasto</value>
   </data>
   <data name="ExpenseLabel" xml:space="preserve">
     <value>Gastos</value>
@@ -439,7 +439,7 @@
     <value>Se ha producido un error</value>
   </data>
   <data name="GoToAccountsLabel" xml:space="preserve">
-    <value>Ir a las cuentas</value>
+    <value>Ir a las Cuentas</value>
   </data>
   <data name="GoToBudgetsLabel" xml:space="preserve">
     <value>Ir a Presupuestos</value>
@@ -448,7 +448,7 @@
     <value>El icono de la aplicación fue creado por:</value>
   </data>
   <data name="IncludedAccountsHeader" xml:space="preserve">
-    <value>Cuentas incluidas</value>
+    <value>Cuentas Incluidas</value>
   </data>
   <data name="IncomeAndExpensesLabel" xml:space="preserve">
     <value>Ingresos y Gastos</value>
@@ -466,10 +466,10 @@
     <value>Ganancias</value>
   </data>
   <data name="InfoLabel" xml:space="preserve">
-    <value>Info</value>
+    <value>Información</value>
   </data>
   <data name="InfoOpenSource" xml:space="preserve">
-    <value>¡Este es un proyecto de código abierto – y nos encantaría trabajar con usted! No dude en contribuir. Pulse para visitar el repositorio:</value>
+    <value>¡Este es un proyecto de código abierto – y nos encantaría trabajar contigo! No dudes en contribuir. Pulse para visitar el repositorio:</value>
   </data>
   <data name="InvalidEnddateMessage" xml:space="preserve">
     <value>La fecha de finalización de un pago recurrente tiene que ser en el futuro. Por favor comprueba tu entrada.</value>
@@ -583,7 +583,7 @@
     <value>[Sin categoría]</value>
   </data>
   <data name="NoCategorySummaryEntrySelectedMessage" xml:space="preserve">
-    <value>No hay entrada seleccionada. Elige una entrada en la lista para ver sus pagos.</value>
+    <value>No hay entrada seleccionada. Elige una entrada en la lista para ver sus transacciones.</value>
   </data>
   <data name="NoLabel" xml:space="preserve">
     <value>No</value>
