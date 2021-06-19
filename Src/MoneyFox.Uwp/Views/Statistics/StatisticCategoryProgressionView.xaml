@@ -31,12 +31,6 @@
         </Flyout>
     </Page.Resources>
 
-    <interactivity:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding InitCommand}" />
-        </core:EventTriggerBehavior>
-    </interactivity:Interaction.Behaviors>
-
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
@@ -73,7 +67,7 @@
             Content="{x:Bind ViewModel.SelectedCategory.Name, FallbackValue='Select Category..', Mode=OneWay}">
         </Button>
 
-        <Grid Grid.Row="3" Visibility="{x:Bind ViewModel.HasNoData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert}">
+        <Grid Grid.Row="3" Visibility="{x:Bind ViewModel.HasNoData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert, UpdateSourceTrigger=PropertyChanged}">
             <microcharts:ChartView Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
     </Grid>
