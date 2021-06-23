@@ -63,9 +63,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                                                       DateTime.Today.AddDays(3)), default);
 
             // Assert
-            result[0].Value.Should().Be(40);
-            result[1].Value.Should().Be(-50);
-            result[2].Value.Should().Be(-40);
+            result[12].Value.Should().Be(40);
+            result[11].Value.Should().Be(-50);
+            result[10].Value.Should().Be(-40);
         }
 
         [Fact]
