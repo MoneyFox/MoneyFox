@@ -12,7 +12,6 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
