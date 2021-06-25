@@ -7,13 +7,14 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Application.Statistics.Queries
 {
-    public class GetCategoryProgressionQuery : IRequest<List<StatisticEntry>>
+    public class GetCategoryProgressionQuery : IRequest<IImmutableList<StatisticEntry>>
     {
         public GetCategoryProgressionQuery(int categoryId, DateTime startDate, DateTime endDate)
         {
@@ -34,7 +35,7 @@ namespace MoneyFox.Application.Statistics.Queries
         public DateTime EndDate { get; private set; }
     }
 
-    public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgressionQuery, List<StatisticEntry>>
+    public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgressionQuery, IImmutableList<StatisticEntry>>
     {
         private const string RED_HEX_CODE = "#cd3700";
         private const string BLUE_HEX_CODE = "#87cefa";
@@ -46,7 +47,7 @@ namespace MoneyFox.Application.Statistics.Queries
             this.contextAdapter = contextAdapter;
         }
 
-        public async Task<List<StatisticEntry>> Handle(GetCategoryProgressionQuery request, CancellationToken cancellationToken)
+        public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request, CancellationToken cancellationToken)
         {
             List<Payment>? payments = await contextAdapter.Context
                                                .Payments
@@ -57,15 +58,46 @@ namespace MoneyFox.Application.Statistics.Queries
                                                .HasDateSmallerEqualsThan(request.EndDate.Date)
                                                .ToListAsync(cancellationToken);
 
-            var returnList = new List<StatisticEntry>();
+
+            var statisticList = new List<StatisticEntry>();
             foreach(var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
             {
                 var statisticEntry = new StatisticEntry(group.Sum(x => GetPaymentAmountForSum(x, request)), $"{group.Key.Month:d2} {group.Key.Year:d4}");
                 statisticEntry.ValueLabel = statisticEntry.Value.ToString("c", CultureHelper.CurrentCulture);
                 statisticEntry.Color = statisticEntry.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
-                returnList.Add(statisticEntry);
+                statisticList.Add(statisticEntry);
             }
-            return returnList;
+            return FillReturnList(request, statisticList);
+        }
+
+        private static IImmutableList<StatisticEntry> FillReturnList(
+            GetCategoryProgressionQuery request,
+            IEnumerable<StatisticEntry> statisticEntries)
+        {
+            var returnList = new List<StatisticEntry>();
+            DateTime startDate = request.StartDate;
+            DateTime endDate = request.EndDate.AddMonths(1);
+
+            do
+            {
+                List<StatisticEntry>? items = statisticEntries.Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}")
+                                                                        .ToList();
+
+                returnList.AddRange(items);
+
+                if(!items.Any())
+                {
+                    var placeholderItem = new StatisticEntry(0, $"{startDate.Month:d2} {startDate.Year:d4}");
+                    placeholderItem.ValueLabel = placeholderItem.Value.ToString("c", CultureHelper.CurrentCulture);
+                    placeholderItem.Color = placeholderItem.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
+
+                    returnList.Add(placeholderItem);
+                }
+
+                startDate = startDate.AddMonths(1);
+            } while(startDate.Month != endDate.Month || startDate.Year != endDate.Year);
+
+            return returnList.ToImmutableList();
         }
 
         private static decimal GetPaymentAmountForSum(Payment payment, GetCategoryProgressionQuery request)
