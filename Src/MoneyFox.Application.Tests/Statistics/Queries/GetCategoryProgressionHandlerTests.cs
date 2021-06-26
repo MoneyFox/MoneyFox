@@ -9,6 +9,7 @@ using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
@@ -56,15 +57,15 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
+            IImmutableList<StatisticEntry> result = await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
                 new GetCategoryProgressionQuery(category.Id,
                                                       DateTime.Today.AddYears(-1),
                                                       DateTime.Today.AddDays(3)), default);
 
             // Assert
-            result[0].Value.Should().Be(40);
-            result[1].Value.Should().Be(-50);
-            result[2].Value.Should().Be(-40);
+            result[12].Value.Should().Be(40);
+            result[11].Value.Should().Be(-50);
+            result[10].Value.Should().Be(-40);
         }
 
         [Fact]
