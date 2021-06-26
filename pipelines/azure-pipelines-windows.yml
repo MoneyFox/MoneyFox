@@ -50,16 +50,6 @@ jobs:
       CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
   - task: PowerShell@2
-    displayName: "Set Certificate"
-    inputs:
-      targetType: 'inline'
-      script: |
-        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\MoneyFox.Uwp\MoneyFox.Uwp.csproj
-        $xmlDoc.Project.PropertyGroup.PackageCertificateThumbprint="59EE3311EF93C0CFB9ACA95AE3EC5A27C3CFD4F4"
-        $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Uwp\MoneyFox.Uwp.csproj')
-      failOnStderr: true
-
-  - task: PowerShell@2
     displayName: "Set AppManifest"
     inputs:
       targetType: 'inline'
@@ -140,7 +130,11 @@ jobs:
     displayName: 'Build Windows Project'
     inputs:
       solution: '**/MoneyFox.Uwp.csproj'
-      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
+      msbuildArgs: |
+        /p:AppxBundlePlatforms="$(buildPlatform)" 
+        /p:AppxPackageDir="$(appxPackageDir)" 
+        /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI
+        /p:PackageCertificateThumbprint=59EE3311EF93C0CFB9ACA95AE3EC5A27C3CFD4F4
       platform: x64
       configuration: '$(BuildConfiguration)'
 
