@@ -65,10 +65,8 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
-                        <Grid Padding="15,6,15,12">
+                        <Grid Padding="15,6,15,12" >
                             <yummy:PancakeView
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                  Light={StaticResource CardBackgroundLight}}"
                                 CornerRadius="10"
                                 HeightRequest="80"
                                 HorizontalOptions="FillAndExpand">
@@ -95,7 +93,8 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid>
+                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                            Light={StaticResource CardBackgroundLight}}">
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"
