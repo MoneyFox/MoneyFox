@@ -130,11 +130,11 @@ jobs:
     displayName: 'Build Windows Project'
     inputs:
       solution: '**/MoneyFox.Uwp.csproj'
-      msbuildArgs: |
+      msbuildArgs: '
         /p:AppxBundlePlatforms="$(buildPlatform)" 
         /p:AppxPackageDir="$(appxPackageDir)" 
         /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI
-        /p:PackageCertificateThumbprint=59EE3311EF93C0CFB9ACA95AE3EC5A27C3CFD4F4
+        /p:PackageCertificateThumbprint="59EE3311EF93C0CFB9ACA95AE3EC5A27C3CFD4F4"'
       platform: x64
       configuration: '$(BuildConfiguration)'
 
