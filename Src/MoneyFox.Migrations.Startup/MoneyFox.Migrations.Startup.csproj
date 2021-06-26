@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Configurations>Debug;Release</Configurations>
+    <Configurations>Release;ReleaseUWP;Debug</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -34,8 +34,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="NLog" Version="4.7.9" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.1931" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2012" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
   </ItemGroup>
 
   <ItemGroup>
