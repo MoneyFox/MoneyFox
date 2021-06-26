@@ -40,8 +40,8 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.6.0" />
     <PackageReference Include="SkiaSharp" Version="2.80.2" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.29.0" />
-    <PackageReference Include="Microsoft.Graph" Version="3.28.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.33.0" />
+    <PackageReference Include="Microsoft.Graph" Version="3.35.0" />
   </ItemGroup>
 
   <ItemGroup>
