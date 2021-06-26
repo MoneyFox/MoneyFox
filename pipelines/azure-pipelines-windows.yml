@@ -133,8 +133,12 @@ jobs:
       msbuildArgs: '
         /p:AppxBundlePlatforms="$(buildPlatform)" 
         /p:AppxPackageDir="$(appxPackageDir)" 
-        /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI
-        /p:PackageCertificateThumbprint="59EE3311EF93C0CFB9ACA95AE3EC5A27C3CFD4F4"'
+        /p:AppxBundle=Always 
+        /p:UapAppxPackageBuildMode=CI
+        /p:AppxPackageSigningEnabled=true
+        /p:PackageCertificateThumbprint=""
+        /p:PackageCertificateKeyFile="$(signingCert.secureFilePath)"
+        /p:PackageCertificatePassword="$(UWP_Certificate_Password)"'
       platform: x64
       configuration: '$(BuildConfiguration)'
 
