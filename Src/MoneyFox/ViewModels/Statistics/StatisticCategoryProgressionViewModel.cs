@@ -12,7 +12,7 @@ using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System;
-using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -117,7 +117,7 @@ namespace MoneyFox.ViewModels.Statistics
                 return;
             }
 
-            List<StatisticEntry> statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory?.Id ?? 0, StartDate, EndDate));
+            IImmutableList<StatisticEntry> statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory?.Id ?? 0, StartDate, EndDate));
 
             HasNoData = !statisticItems.Any();
 
