@@ -9,7 +9,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Domain.Exceptions;
 using MoneyFox.Messages;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;
@@ -274,16 +273,20 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 return;
             }
 
+            if(SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment!.IsEndless
+                                           && SelectedPayment.RecurringPayment.EndDate != null
+                                           && SelectedPayment.RecurringPayment.EndDate < DateTime.Now)
+            {
+                await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+                return;
+            }
+
             try
             {
                 await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
                 await SavePaymentAsync();
                 MessengerInstance.Send(new ReloadMessage());
                 navigationService.GoBack();
-            }
-            catch(InvalidEndDateException)
-            {
-                await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
             }
             catch(Exception ex)
             {
