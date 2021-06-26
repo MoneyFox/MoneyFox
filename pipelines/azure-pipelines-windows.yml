@@ -50,7 +50,7 @@ jobs:
       CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
   - task: PowerShell@2
-    displayName: "Set Package Information"
+    displayName: "Set AppManifest"
     inputs:
       targetType: 'inline'
       script: |
@@ -61,7 +61,17 @@ jobs:
         $xmlDoc.Package.Properties.DisplayName="Money Fox"
         $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="Money Fox"
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.appxmanifest')
-        $xmlDoc.Save('$(build.artifactStagingDirectory)\Package.appxmanifest')
+      failOnStderr: true
+
+  - task: PowerShell@2
+    displayName: "Set Store Association"
+    inputs:
+      targetType: 'inline'
+      script: |
+        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.StoreAssociation.xml
+        $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+        $xmlDoc.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
+        $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.StoreAssociation.xml')
       failOnStderr: true
 
   - task: colinsalmcorner.colinsalmcorner-buildtasks.replace-tokens-task.ReplaceTokens@1
