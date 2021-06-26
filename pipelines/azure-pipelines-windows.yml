@@ -70,7 +70,7 @@ jobs:
       script: |
         [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.StoreAssociation.xml
         $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
-        $xmlDoc.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
+        $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
         $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.StoreAssociation.xml')
       failOnStderr: true
 
