@@ -65,10 +65,14 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
-                        <Grid Padding="15,6,15,12">
+                        <Grid Padding="15,6,15,12" >
+            
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
+                                                      CommandParameter="{Binding .}" />
+                            </Grid.GestureRecognizers>
+
                             <yummy:PancakeView
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                  Light={StaticResource CardBackgroundLight}}"
                                 CornerRadius="10"
                                 HeightRequest="80"
                                 HorizontalOptions="FillAndExpand">
@@ -78,10 +82,6 @@
                                 </yummy:PancakeView.Shadow>
 
                                 <SwipeView>
-                                    <SwipeView.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
-                                    </SwipeView.GestureRecognizers>
-
                                     <SwipeView.RightItems>
                                         <SwipeItems>
                                             <SwipeItem
@@ -95,7 +95,8 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid>
+                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                            Light={StaticResource CardBackgroundLight}}">
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"
