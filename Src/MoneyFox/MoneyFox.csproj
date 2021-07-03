@@ -47,8 +47,8 @@
     <PackageReference Include="Microsoft.Identity.Client" Version="4.33.0" />
     <PackageReference Include="NLog" Version="4.7.10" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2012" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.29.0" />
-    <PackageReference Include="NLog" Version="4.7.9" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.33.0" />
+    <PackageReference Include="NLog" Version="4.7.10" />
     <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
