@@ -24,7 +24,6 @@ variables:
 jobs:
 - job: BuildWindows
   displayName: 'Build Windows Release'
-  timeoutInMinutes: 200
 
   steps:
 
@@ -65,6 +64,7 @@ jobs:
 
   - task: PowerShell@2
     displayName: "Set Store Association"
+    enabled: false
     inputs:
       targetType: 'inline'
       script: |
