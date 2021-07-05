@@ -20,7 +20,7 @@
     <Shell.TitleView>
         <Grid>
             <Button
-                Margin="{OnPlatform iOS='0,0,65,0', Default='0,0,15,0'}"
+                Margin="0,0,5,0"
                 Padding="0"
                 BorderWidth="0"
                 Command="{Binding GoToAddAccountCommand}"
@@ -65,14 +65,10 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="accounts:AccountViewModel">
-                        <Grid Padding="15,6,15,12" >
-            
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
-                                                      CommandParameter="{Binding .}" />
-                            </Grid.GestureRecognizers>
-
+                        <Grid Padding="15,6,15,12">
                             <yummy:PancakeView
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                  Light={StaticResource CardBackgroundLight}}"
                                 CornerRadius="10"
                                 HeightRequest="80"
                                 HorizontalOptions="FillAndExpand">
@@ -82,6 +78,10 @@
                                 </yummy:PancakeView.Shadow>
 
                                 <SwipeView>
+                                    <SwipeView.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
+                                    </SwipeView.GestureRecognizers>
+
                                     <SwipeView.RightItems>
                                         <SwipeItems>
                                             <SwipeItem
@@ -95,8 +95,7 @@
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
-                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                            Light={StaticResource CardBackgroundLight}}">
+                                    <Grid>
                                         <Label
                                             Margin="10,2,0,0"
                                             HorizontalTextAlignment="Start"

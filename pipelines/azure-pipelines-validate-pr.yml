@@ -15,7 +15,7 @@ jobs:
   pool:
     vmImage: 'macos-latest'
 
-  variables:
+  variables:  
     solution: '**/MoneyFox.Mobile.sln'
 
   steps:
@@ -49,7 +49,7 @@ jobs:
     inputs:
       command: 'test'
       projects: |
-        **/*.Tests.csproj
+        **/*.Tests.csproj        
         !**/MoneyFox.Tests.csproj
         !**/MoneyFox.UWP.Tests.csproj
       arguments: '--configuration $(BuildConfiguration)'
@@ -68,7 +68,7 @@ jobs:
   pool:
     vmImage: windows-latest
 
-  variables:
+  variables:  
     solution: '**/MoneyFox.Mobile.sln'
 
   steps:
@@ -101,11 +101,10 @@ jobs:
 
 - job: WindowsTestsAndBuild
   displayName: "Run Tests and Build Windows"
-  timeoutInMinutes: 90
   pool:
     vmImage: windows-latest
 
-  variables:
+  variables:  
     solution: '**/MoneyFox.Desktop.sln'
     appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
@@ -161,7 +160,7 @@ jobs:
     displayName: 'Build Windows Project'
     inputs:
       solution: '$(solution)'
-      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
+      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
       platform: x64
       configuration: '$(BuildConfiguration)'
 
