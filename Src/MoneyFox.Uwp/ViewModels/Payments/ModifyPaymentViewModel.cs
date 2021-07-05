@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Messages;
 using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Ui.Shared.ViewModels.Categories;

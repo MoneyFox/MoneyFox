@@ -7,16 +7,16 @@
              Visual="Material" >
 
     <Shell.TitleView>
-        <Grid>
+        <Grid ColumnDefinitions="*,66">
             <Button
-                Margin="{OnPlatform iOS='0,0,65,0', Default='0,0,15,0'}"
+                Margin="0,0,5,0"
                 Padding="0"
+                Grid.Column="1"
                 BorderWidth="0"
                 FontFamily="FontAwesome"
                 FontSize="24"
                 HeightRequest="44"
                 WidthRequest="66"
-                HorizontalOptions="End"
                 Text="{x:Static theme:IconFont.Filter}"
                 VerticalOptions="Center"
                 TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
