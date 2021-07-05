@@ -101,6 +101,7 @@ jobs:
 
 - job: WindowsTestsAndBuild
   displayName: "Run Tests and Build Windows"
+  timeoutInMinutes: 90
   pool:
     vmImage: windows-latest
 
