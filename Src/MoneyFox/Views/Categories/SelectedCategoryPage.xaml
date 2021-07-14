@@ -87,6 +87,9 @@
                                             <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
                                                    Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.GoToEditCategoryCommand}"
                                                    CommandParameter="{Binding .}"/>
+                                            <SwipeItem Text="{x:Static resources:Strings.DeleteLabel}"
+                                                   Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.DeleteCategoryCommand}"
+                                                   CommandParameter="{Binding .}"/>
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
