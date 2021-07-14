@@ -72,9 +72,7 @@
                                         CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
-                                               CornerRadius="10"
+                            <yummy:PancakeView CornerRadius="10"
                                                HeightRequest="45"
                                                HorizontalOptions="FillAndExpand">
 
@@ -82,7 +80,8 @@
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
 
-                                <SwipeView>
+                                <SwipeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                             Light={StaticResource CardBackgroundLight}}">
                                     <SwipeView.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
