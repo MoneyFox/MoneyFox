@@ -308,6 +308,9 @@
     <Compile Include="Views\Statistics\StatisticCashFlowView.xaml.cs">
       <DependentUpon>StatisticCashFlowView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Statistics\StatisticCategoryProgressionView.xaml.cs">
+      <DependentUpon>StatisticCategoryProgressionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Statistics\StatisticCategorySpreadingView.xaml.cs">
       <DependentUpon>StatisticCategorySpreadingView.xaml</DependentUpon>
     </Compile>
@@ -534,6 +537,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Statistics\StatisticCashFlowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Statistics\StatisticCategoryProgressionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
