@@ -4,6 +4,7 @@ using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
 using MoneyFox.Ui.Shared.ViewModels.Statistics;
+using MoneyFox.Uwp.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
-        private int numberOfCategoriesToShow = 6;
+        private int numberOfCategoriesToShow = CategoryNumberSpreadingService.LoadCategoryNumberSpreadingFromSettings();
         private PaymentType selectedPaymentType;
 
         public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
@@ -71,6 +72,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                     return;
                 }
                 numberOfCategoriesToShow = value;
+                CategoryNumberSpreadingService.SaveCategoryNumberSpreadingInSettings(value);
                 RaisePropertyChanged();
             }
         }
