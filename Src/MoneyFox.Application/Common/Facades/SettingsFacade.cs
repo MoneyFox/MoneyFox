@@ -34,6 +34,8 @@ namespace MoneyFox.Application.Common.Facades
 
         bool IsSetupCompleted { get; set; }
 
+        int CategorySpreadingNumber { get; set; }
+
         DateTime LastExecutionTimeStampSyncBackup { get; set; }
     }
 
@@ -64,6 +66,9 @@ namespace MoneyFox.Application.Common.Facades
 
         private const string IS_SETUP_COMPLETED_KEYNAME = "IsSetupCompleted";
         private const bool IS_SETUP_COMPLETED__KEY_DEFAULT = false;
+
+        private const string CATEGORY_SPREADING_NUMBER_KEYNAME = "CategorySpreadingNumber";
+        private const int CATEGORY_SPREADING_NUMBER_DEFAULT = 6;
 
         private readonly ISettingsAdapter settingsAdapter;
 
@@ -186,6 +191,13 @@ namespace MoneyFox.Application.Common.Facades
         {
             get => settingsAdapter.GetValue(IS_SETUP_COMPLETED_KEYNAME, IS_SETUP_COMPLETED__KEY_DEFAULT);
             set => settingsAdapter.AddOrUpdate(IS_SETUP_COMPLETED_KEYNAME, value);
+        }
+
+        /// <inheritdoc/>
+        public int CategorySpreadingNumber
+        {
+            get => settingsAdapter.GetValue(CATEGORY_SPREADING_NUMBER_KEYNAME, CATEGORY_SPREADING_NUMBER_DEFAULT);
+            set => settingsAdapter.AddOrUpdate(CATEGORY_SPREADING_NUMBER_KEYNAME, value);
         }
     }
 }
