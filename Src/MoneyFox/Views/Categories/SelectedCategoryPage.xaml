@@ -64,10 +64,8 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="categories:CategoryViewModel">
-                        <Grid Padding="15, 6, 15, 8">
-                            <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                                 Light={StaticResource CardBackgroundLight}}"
-                                               CornerRadius="10"
+                        <Grid Padding="15, 6, 15, 8" >
+                            <yummy:PancakeView CornerRadius="10"
                                                HeightRequest="40"
                                                HorizontalOptions="FillAndExpand">
 
@@ -75,7 +73,8 @@
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
 
-                                <SwipeView>
+                                <SwipeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                             Light={StaticResource CardBackgroundLight}}">
                                     <SwipeView.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding BindingContext.SelectCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
@@ -86,6 +85,9 @@
                                         <SwipeItems>
                                             <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
                                                    Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.GoToEditCategoryCommand}"
+                                                   CommandParameter="{Binding .}"/>
+                                            <SwipeItem Text="{x:Static resources:Strings.DeleteLabel}"
+                                                   Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.DeleteCategoryCommand}"
                                                    CommandParameter="{Binding .}"/>
                                         </SwipeItems>
                                     </SwipeView.RightItems>
