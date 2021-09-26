@@ -300,11 +300,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable-xhdpi\ic_dashboard_white.png" />
   </ItemGroup>
-  <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\moneyfox_moneyfox\CSharp\SonarLint.xml">
-      <Link>SonarLint.xml</Link>
-    </AdditionalFiles>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
