@@ -28,10 +28,6 @@
     <Compile Remove="Migrations\20190804113407_AddModificationDateField.Designer.cs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\moneyfox_moneyfox\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
-
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.1.0" />

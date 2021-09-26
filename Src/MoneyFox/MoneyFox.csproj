@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\moneyfox_moneyfox\CSharp\SonarLint.xml" Link="SonarLint.xml" />
     <Content Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
