@@ -28,7 +28,6 @@
     <Compile Remove="Migrations\20190804113407_AddModificationDateField.Designer.cs" />
   </ItemGroup>
 
-
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
