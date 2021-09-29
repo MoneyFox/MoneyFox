@@ -29,11 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\moneyfox_moneyfox\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <PackageReference Include="Autofac" Version="6.2.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.3.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.3.0" />
