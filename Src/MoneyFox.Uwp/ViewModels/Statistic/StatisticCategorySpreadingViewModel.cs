@@ -20,11 +20,14 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
-        private int numberOfCategoriesToShow = new SettingsFacade(new SettingsAdapter()).CategorySpreadingNumber;
+        private ISettingsFacade settingsFacade = null;
+        private int numberOfCategoriesToShow;
         private PaymentType selectedPaymentType;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
+        public StatisticCategorySpreadingViewModel(IMediator mediator, ISettingsFacade settingsFacade) : base(mediator)
         {
+            this.settingsFacade = settingsFacade;
+            this.numberOfCategoriesToShow = this.settingsFacade.CategorySpreadingNumber;
         }
 
         public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
@@ -73,7 +76,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                     return;
                 }
                 numberOfCategoriesToShow = value;
-                new SettingsFacade(new SettingsAdapter()).CategorySpreadingNumber = value;
+                this.settingsFacade.CategorySpreadingNumber = value;
                 RaisePropertyChanged();
             }
         }
