@@ -47,7 +47,6 @@
             <CollectionView
                 x:Name="AccountCollectionView"
                 Grid.Row="1"
-                EmptyView="{x:Static resources:Strings.NoAccountsMessage}"
                 IsGrouped="true"
                 ItemsSource="{Binding Accounts}">
 
@@ -135,6 +134,16 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid >
+                        <Label Style="{StaticResource TextSubheadSecondary}"
+                               Margin="10,0,10,0"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="{x:Static resources:Strings.NoAccountsMessage}" />
+                    </Grid>
+                </CollectionView.EmptyView>
             </CollectionView>
         </Grid>
     </ContentPage.Content>

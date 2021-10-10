@@ -64,7 +64,6 @@
 
             <CollectionView Grid.Row="1"
                             ItemsSource="{Binding Payments}"
-                            EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
                             x:Name="PaymentCollectionView">
 
                 <CollectionView.ItemTemplate>
@@ -162,6 +161,16 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid >
+                        <Label Style="{StaticResource TextSubheadSecondary}"
+                               Margin="10,0,10,0"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="{x:Static resources:Strings.NoPaymentsMessage}" />
+                    </Grid>
+                </CollectionView.EmptyView>
             </CollectionView>
         </Grid>
     </ContentPage.Content>

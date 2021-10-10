@@ -35,7 +35,7 @@
         <Grid IsClippedToBounds="False"
               RowDefinitions="40, 40, *">
 
-            <Label Style="{StaticResource TextHeadline}"
+            <Label Style="{AppThemeBinding TextHeadline}"
                    Grid.Row="0"
                    Margin="15,0,15,0"
                    Text="{x:Static resources:Strings.CategoriesTitle}" />
@@ -50,8 +50,8 @@
             <CollectionView Grid.Row="2"
                             x:Name="CategoryCollectionView"
                             IsGrouped="true"
-                            EmptyView="{x:Static resources:Strings.NoCategoriesMessage}"
                             ItemsSource="{Binding Categories}" >
+
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
                         <Label FontFamily="Product"
@@ -111,6 +111,16 @@
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+                    <Grid >
+                        <Label Style="{StaticResource TextSubheadSecondary}"
+                               Margin="10,0,10,0"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               Text="{x:Static resources:Strings.NoCategoriesMessage}" />
+                    </Grid>
+                </CollectionView.EmptyView>
             </CollectionView>
         </Grid>
     </ContentPage.Content>
