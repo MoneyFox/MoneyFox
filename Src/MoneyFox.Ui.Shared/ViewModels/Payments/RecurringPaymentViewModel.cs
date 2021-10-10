@@ -27,7 +27,8 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
         public RecurringPaymentViewModel()
         {
             Recurrence = PaymentRecurrence.Daily;
-            EndDate = DateTime.Today;
+            EndDate = null;
+            IsEndless = true;
         }
 
         public int Id

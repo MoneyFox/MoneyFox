@@ -67,8 +67,6 @@
                     <DataTemplate x:DataType="accounts:AccountViewModel">
                         <Grid Padding="15,6,15,12">
                             <yummy:PancakeView
-                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
-                                                                  Light={StaticResource CardBackgroundLight}}"
                                 CornerRadius="10"
                                 HeightRequest="80"
                                 HorizontalOptions="FillAndExpand">
@@ -77,7 +75,8 @@
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
 
-                                <SwipeView>
+                                <SwipeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                                                             Light={StaticResource CardBackgroundLight}}">
                                     <SwipeView.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
                                     </SwipeView.GestureRecognizers>

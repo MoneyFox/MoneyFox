@@ -32,6 +32,9 @@
     <Color x:Key="BackgroundColorDark">#121212</Color>
     <Color x:Key="BackgroundColorLight">#EFF2F5</Color>
 
+    <Color x:Key="BackgroundColorSearchBarDark">#323130</Color>
+    <Color x:Key="BackgroundColorSearchBarLight">#EFF2F5</Color>
+
     <Color x:Key="TextPrimaryColor_Dark">#FFFFFF</Color>
     <Color x:Key="TextPrimaryColor_Light">#323130</Color>
 
@@ -393,10 +396,6 @@
     </Style>
 
     <!-- SwipeItem -->
-    <Style TargetType="SwipeView" ApplyToDerivedTypes="True">
-        <Setter Property="BackgroundColor"
-                Value="{AppThemeBinding Dark={StaticResource CardBackgroundDark}, Light={StaticResource CardBackgroundLight}}"/>
-    </Style>
 
     <Style TargetType="SwipeItem" ApplyToDerivedTypes="True">
         <Setter Property="BackgroundColor"

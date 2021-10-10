@@ -19,10 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <AdditionalFiles Include="..\.sonarlint\moneyfox_moneyfox\CSharp\SonarLint.xml" Link="SonarLint.xml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -33,9 +29,9 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="NLog" Version="4.7.9" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.1931" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.1931" />
+    <PackageReference Include="NLog" Version="4.7.10" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2083" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
   </ItemGroup>
 
   <ItemGroup>
