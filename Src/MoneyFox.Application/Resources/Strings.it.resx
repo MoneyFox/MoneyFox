@@ -121,7 +121,7 @@
     <value>A riguardo</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Nome dell'account</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Seleziona un profilo.</value>
@@ -133,16 +133,16 @@
     <value>Accounts</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Aggiungi un account</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Aggiungi un account</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Aggiungi una categoria</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Aggiungi una categoria</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
     <value>Expense</value>
