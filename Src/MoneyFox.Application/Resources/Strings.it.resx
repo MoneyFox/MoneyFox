@@ -121,7 +121,7 @@
     <value>A riguardo</value>
   </data>
   <data name="AccountNameLabel" xml:space="preserve">
-    <value>Account Name</value>
+    <value>Nome dell'account</value>
   </data>
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Seleziona un profilo.</value>
@@ -133,109 +133,109 @@
     <value>Accounts</value>
   </data>
   <data name="AddAccountLabel" xml:space="preserve">
-    <value>Add Account</value>
+    <value>Aggiungi un account</value>
   </data>
   <data name="AddAccountTitle" xml:space="preserve">
     <value>Aggiungi un account</value>
   </data>
   <data name="AddCategoryLabel" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Aggiungi una categoria</value>
   </data>
   <data name="AddCategoryTitle" xml:space="preserve">
-    <value>Add Category</value>
+    <value>Aggiungi una categoria</value>
   </data>
   <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Expense</value>
+    <value>Spesa</value>
   </data>
   <data name="AddExpenseTitle" xml:space="preserve">
-    <value>Add Expense</value>
+    <value>Aggiungi una spesa</value>
   </data>
   <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Income</value>
+    <value>Entrate</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Aggiungi un entrata</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
-    <value>Add Payment</value>
+    <value>Aggiungi un Pagamento</value>
   </data>
   <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transfer</value>
+    <value>Trasferimento</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Aggiungi un movimento</value>
   </data>
   <data name="AmountLabel" xml:space="preserve">
-    <value>Amount</value>
+    <value>Importo</value>
   </data>
   <data name="AmountMayNotBeNegativeMessage" xml:space="preserve">
-    <value>The amount may not be negative. If it is subtracted or added is deteremined by the kind of payment you create.</value>
+    <value>L'importo non può essere negativo. Se viene sottratto o aggiunto viene determinato dal tipo di pagamento che si crea.</value>
   </data>
   <data name="AmountMayNotBeNegativeTitle" xml:space="preserve">
-    <value>Negative amount</value>
+    <value>Importo negativo</value>
   </data>
   <data name="ANoteForPaymentIsRequired" xml:space="preserve">
-    <value>A note for payment is required</value>
+    <value>È richiesta una nota per il pagamento</value>
   </data>
   <data name="ApplyFilterLabel" xml:space="preserve">
-    <value>Apply Filter</value>
+    <value>Applica filtro</value>
   </data>
   <data name="AssetsLabel" xml:space="preserve">
     <value>Assets</value>
   </data>
   <data name="AuthenticationFailedTitle" xml:space="preserve">
-    <value>Authentication failed</value>
+    <value>Autenticazione fallita</value>
   </data>
   <data name="AutobackupInformationLabel" xml:space="preserve">
-    <value>If you activate this setting we backup your data automatically to OneDrive. Also we check periodically if something changed on another device.</value>
+    <value>Se attivi questa impostazione, eseguiremo il backup automatico dei tuoi dati su OneDrive. Inoltre controlleremo periodicamente se qualcosa è cambiato su un altro dispositivo.</value>
   </data>
   <data name="AutobackupLabel" xml:space="preserve">
-    <value>Automatically upload and download backups</value>
+    <value>Carica e scarica automaticamente i backup</value>
   </data>
   <data name="AutobackupTitle" xml:space="preserve">
-    <value>Autobackup</value>
+    <value>Backup automatico </value>
   </data>
   <data name="BackLabel" xml:space="preserve">
-    <value>Back</value>
+    <value>Indietro</value>
   </data>
   <data name="BackupCreatedMessage" xml:space="preserve">
-    <value>Backup created successfully</value>
+    <value>Backup creato con successo</value>
   </data>
   <data name="BackupFailedTitle" xml:space="preserve">
-    <value>Backup failed!</value>
+    <value>Backup fallito!</value>
   </data>
   <data name="BackupInformationLabel" xml:space="preserve">
     <value>Your data will be saved to your OneDrive Account. You’ll find them in the Application Folder in a new folder called "MoneyFox".</value>
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
-    <value>Backup restored successfully.</value>
+    <value>Backup ripristinato con successo.</value>
   </data>
   <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Backup Service</value>
+    <value>Servizio di Backup</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Backup</value>
   </data>
   <data name="BiannuallyLabel" xml:space="preserve">
-    <value>Biannually</value>
+    <value>Biennale</value>
   </data>
   <data name="BimonthlyLabel" xml:space="preserve">
     <value>Bimonthly</value>
   </data>
   <data name="BiweeklyLabel" xml:space="preserve">
-    <value>Biweekly</value>
+    <value>Bisettimanale</value>
   </data>
   <data name="BudgetsLabel" xml:space="preserve">
     <value>Budgets</value>
   </data>
   <data name="CanceledTitle" xml:space="preserve">
-    <value>Canceled</value>
+    <value>Annullato</value>
   </data>
   <data name="CancelLabel" xml:space="preserve">
-    <value>Cancel</value>
+    <value>Annulla</value>
   </data>
   <data name="CashflowDescription" xml:space="preserve">
-    <value>Income, expenses and gains for the selected time period.</value>
+    <value>Entrate, spese e guadagni per il periodo selezionato</value>
   </data>
   <data name="CashflowLabel" xml:space="preserve">
     <value>Flusso di cassa</value>
