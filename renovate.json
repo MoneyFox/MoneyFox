@@ -17,6 +17,10 @@
       ],
       "groupName": "all major dependencies",
       "groupSlug": "all-major"
+    },
+    {
+      "matchPackagePatterns": ["^Microsoft.EntityFrameworkCore"],
+      "enabled": false
     }
   ]
 }
