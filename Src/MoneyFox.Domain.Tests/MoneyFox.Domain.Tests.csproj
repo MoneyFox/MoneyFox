@@ -21,7 +21,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="FluentAssertions" Version="5.10.3" />
+    <PackageReference Include="FluentAssertions" Version="6.1.0" />
     <PackageReference Include="FluentAssertions.Analyzers" Version="0.11.4" />
     <PackageReference Include="NLog" Version="4.7.10" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.10.0" />
