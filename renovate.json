@@ -1,9 +1,7 @@
 {
   "packageRules": [
     {
-      "packagePatterns": [
-        "*"
-      ],
+      "packagePatterns": ["*"],
       "updateTypes": [
         "minor",
         "patch"
@@ -12,10 +10,8 @@
       "groupSlug": "all-minor-patch"
     },
     {
-      "packagePatterns": [
-        "*"
-      ],
-      "ignoreDeps": ["Microsoft.EntityFrameworkCore.Design", "Microsoft.EntityFrameworkCore.InMemory", "Microsoft.EntityFrameworkCore.Sqlite", "Microsoft.EntityFrameworkCore.Tools"],
+      "packagePatterns": ["*"],
+      "excludePackagePatterns": ["^Microsoft.EntityFrameworkCore"],
       "updateTypes": [
         "major"
       ],
