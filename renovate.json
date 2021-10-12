@@ -1,0 +1,27 @@
+{
+  "assignees" : [ "npadrutt" ],
+  "packageRules": [
+    {
+      "packagePatterns": ["*"],
+      "updateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    },
+    {
+      "packagePatterns": ["*"],
+      "excludePackagePatterns": ["^Microsoft.EntityFrameworkCore"],
+      "updateTypes": [
+        "major"
+      ],
+      "groupName": "all major dependencies",
+      "groupSlug": "all-major"
+    },
+    {
+      "matchPackagePatterns": ["^Microsoft.EntityFrameworkCore"],
+      "enabled": false
+    }
+  ]
+}
