@@ -15,6 +15,7 @@
       "packagePatterns": [
         "*"
       ],
+      "ignoreDeps": ["Microsoft.EntityFrameworkCore.Design", "Microsoft.EntityFrameworkCore.InMemory", "Microsoft.EntityFrameworkCore.Sqlite", "Microsoft.EntityFrameworkCore.Tools"],
       "updateTypes": [
         "major"
       ],
