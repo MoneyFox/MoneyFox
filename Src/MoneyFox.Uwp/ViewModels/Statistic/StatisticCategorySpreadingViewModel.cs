@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediatR;
+using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
@@ -18,11 +19,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
         private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
-        private int numberOfCategoriesToShow = 6;
+        private readonly ISettingsFacade settingsFacade;
         private PaymentType selectedPaymentType;
 
-        public StatisticCategorySpreadingViewModel(IMediator mediator) : base(mediator)
+        public StatisticCategorySpreadingViewModel(IMediator mediator, ISettingsFacade settingsFacade) : base(mediator)
         {
+            this.settingsFacade = settingsFacade;
         }
 
         public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
@@ -63,14 +65,14 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// </summary>
         public int NumberOfCategoriesToShow
         {
-            get => numberOfCategoriesToShow;
+            get => this.settingsFacade.CategorySpreadingNumber;
             set
             {
-                if(numberOfCategoriesToShow == value)
+                if(this.settingsFacade.CategorySpreadingNumber == value)
                 {
                     return;
                 }
-                numberOfCategoriesToShow = value;
+                this.settingsFacade.CategorySpreadingNumber = value;
                 RaisePropertyChanged();
             }
         }
