@@ -1,5 +1,5 @@
 {
-  "assignees" : [ "nino.padrutt@hotmail.com" ],
+  "assignees" : [ "npadrutt" ],
   "packageRules": [
     {
       "packagePatterns": ["*"],
