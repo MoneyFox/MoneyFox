@@ -29,7 +29,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="NLog" Version="4.7.10" />
+    <PackageReference Include="NLog" Version="4.7.11" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
   </ItemGroup>

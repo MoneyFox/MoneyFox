@@ -23,7 +23,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
     <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
-    <AppInstallerUpdateFrequency>1</AppInstallerUpdateFrequency>
+    <AppInstallerUpdateFrequency>0</AppInstallerUpdateFrequency>
     <AppInstallerCheckForUpdateFrequency>OnApplicationRun</AppInstallerCheckForUpdateFrequency>
     <SingleThreadNUTC>false</SingleThreadNUTC>
     <Use64BitCompiler>true</Use64BitCompiler>
@@ -33,6 +33,7 @@
     <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
     <PackageCertificateKeyFile>MoneyFox.Uwp_TemporaryKey.pfx</PackageCertificateKeyFile>
     <PackageCertificateKeyFile />
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -635,7 +636,7 @@
       <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
-      <Version>4.7.10</Version>
+      <Version>4.7.11</Version>
     </PackageReference>
     <PackageReference Include="NotificationsExtensions.Win10">
       <Version>14332.0.2</Version>
