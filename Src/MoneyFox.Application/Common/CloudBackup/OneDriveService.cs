@@ -37,7 +37,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             UserAccount = new UserAccount();
         }
 
-        private IGraphServiceClient? GraphServiceClient { get; set; }
+        private GraphServiceClient? GraphServiceClient { get; set; }
 
         private DriveItem? ArchiveFolder { get; set; }
 
