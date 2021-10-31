@@ -87,6 +87,10 @@ namespace MoneyFox.Ui.Shared.ViewModels.Payments
                 }
 
                 isEndless = value;
+                EndDate = isEndless is false
+                    ? EndDate = DateTime.Today
+                    : null;
+
                 RaisePropertyChanged();
             }
         }
