@@ -153,8 +153,8 @@ namespace MoneyFox.ViewModels.Payments
             }
 
             if(SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment!.IsEndless
-                                           && SelectedPayment.RecurringPayment.EndDate != null
-                                           && SelectedPayment.RecurringPayment.EndDate < DateTime.Now)
+                                           && SelectedPayment.RecurringPayment.EndDate.HasValue
+                                           && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
             {
                 await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
                 return;
