@@ -32,13 +32,12 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid IsClippedToBounds="False"
-              RowDefinitions="40, 40, *">
+        <Grid IsClippedToBounds="False" RowDefinitions="40, 40, *">
 
-            <Label Style="{AppThemeBinding TextHeadline}"
-                   Grid.Row="0"
-                   Margin="15,0,15,0"
-                   Text="{x:Static resources:Strings.CategoriesTitle}" />
+            <Label
+                Margin="15,0,15,0"
+                Style="{StaticResource TextHeadline}"
+                Text="{x:Static resources:Strings.CategoriesTitle}" />
 
             <SearchBar Grid.Row="1"
                        x:Name="categorySearchBar"
