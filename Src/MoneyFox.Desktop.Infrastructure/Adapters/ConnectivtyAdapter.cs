@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Application.Common.Adapters;
 using NLog;
-using System;
+using System.Net.NetworkInformation;
 
 namespace MoneyFox.Desktop.Infrastructure.Adapters
 {
@@ -10,6 +10,6 @@ namespace MoneyFox.Desktop.Infrastructure.Adapters
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         /// <inheritdoc/>
-        public bool IsConnected => throw new NotImplementedException();
+        public bool IsConnected => NetworkInterface.GetIsNetworkAvailable();
     }
 }
