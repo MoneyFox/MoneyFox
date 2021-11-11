@@ -13,7 +13,7 @@ jobs:
 - job: BuildiOS
   displayName: "Run Tests MacOS and Build iOS"
   pool:
-    vmImage: 'macos-latest'
+    vmImage: 'macOS-11'
 
   variables:  
     solution: '**/MoneyFox.Mobile.sln'
