@@ -1,17 +1,11 @@
-﻿using NLog;
+﻿using MoneyFox.Application.Common.Adapters;
+using NLog;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace MoneyFox.Application.Common.Adapters
+namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
-    public interface IEmailAdapter
-    {
-        Task SendEmailAsync(string subject, string body, List<string> recipients);
-
-        Task SendEmailAsync(string subject, string body, List<string> recipients, List<string> filePaths);
-    }
-
     public class EmailAdapter : IEmailAdapter
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();

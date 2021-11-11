@@ -3,6 +3,7 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.AutoMapper;
+using MoneyFox.Mobile.Infrastructure;
 using MoneyFox.Persistence;
 using MoneyFox.ViewModels.Settings;
 using System;
@@ -16,6 +17,7 @@ namespace MoneyFox
         {
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();
+            builder.RegisterModule<InfrastructureMobile>();
 
             builder.RegisterInstance(AutoMapperFactory.Create());
 

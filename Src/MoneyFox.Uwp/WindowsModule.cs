@@ -4,10 +4,11 @@ using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
+using MoneyFox.Desktop.Infrastructure;
+using MoneyFox.Desktop.Infrastructure.Adapters;
 using MoneyFox.Persistence;
 using MoneyFox.Uwp.AutoMapper;
 using MoneyFox.Uwp.Services;
@@ -26,6 +27,7 @@ namespace MoneyFox.Uwp
 
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<PersistenceModule>();
+            builder.RegisterModule<InfrastructureDesktop>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<ToastService>().AsImplementedInterfaces();

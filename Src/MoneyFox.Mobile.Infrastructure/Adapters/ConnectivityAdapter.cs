@@ -1,19 +1,9 @@
-﻿using NLog;
+﻿using MoneyFox.Application.Common.Adapters;
+using NLog;
 using Xamarin.Essentials;
 
-namespace MoneyFox.Application.Common.Adapters
+namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
-    /// <summary>
-    /// Provides access to the connectivity state.
-    /// </summary>
-    public interface IConnectivityAdapter
-    {
-        /// <summary>
-        /// returns if the device is connected to the internet.
-        /// </summary>
-        bool IsConnected { get; }
-    }
-
     /// <inheritdoc/>
     public class ConnectivityAdapter : IConnectivityAdapter
     {
