@@ -28,12 +28,12 @@ namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
         {
             object item = e.AddedItems.FirstOrDefault();
 
-            if(item == null)
+            if(!(item is CategoryOverviewViewModel vm))
             {
                 return;
             }
 
-            ViewModel.SummaryEntrySelectedCommand.Execute((CategoryOverviewViewModel)item);
+            ViewModel.SummaryEntrySelectedCommand.Execute(vm);
         }
     }
 }
