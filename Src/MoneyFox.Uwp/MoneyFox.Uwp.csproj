@@ -150,6 +150,10 @@
     </Compile>
     <Compile Include="AutoMapper\AutoMapperFactory.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile.cs" />
+    <Compile Include="Commands\AsyncCommand.cs" />
+    <Compile Include="Commands\IAsyncCommand.cs" />
+    <Compile Include="ConverterLogic\PaymentAmountConverterLogic.cs" />
+    <Compile Include="ConverterLogic\RecurrenceTypeConverterLogic.cs" />
     <Compile Include="Converter\AmountFormatDecimalConverter.cs" />
     <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
     <Compile Include="Converter\ClickConverter.cs" />
@@ -165,6 +169,8 @@
     <Compile Include="Converter\PaymentHeaderConverter.cs" />
     <Compile Include="Converter\RevertVisibilityConverter.cs" />
     <Compile Include="Converter\SelectedConverter.cs" />
+    <Compile Include="Groups\AlphaGroupListGroupCollection.cs" />
+    <Compile Include="Groups\DateListGroupCollection.cs" />
     <Compile Include="Helpers\StringMatchConverter.cs" />
     <Compile Include="Helpers\NavHelper.cs" />
     <Compile Include="Helpers\SettingsStorageExtensions.cs" />
@@ -188,12 +194,21 @@
     <Compile Include="Src\ThemeSelectorAdapter.cs" />
     <Compile Include="Src\WindowsAppInformation.cs" />
     <Compile Include="Src\WindowsFileStore.cs" />
+    <Compile Include="Utilities\HelperFunctions.cs" />
+    <Compile Include="Utilities\PaymentTypeHelper.cs" />
     <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="ViewModels\About\AboutViewModel.cs" />
+    <Compile Include="ViewModels\About\IAboutViewModel.cs" />
+    <Compile Include="ViewModels\Accounts\AccountViewModel.cs" />
+    <Compile Include="ViewModels\Backup\BackupViewModel.cs" />
+    <Compile Include="ViewModels\Backup\DesignTimeBackupViewModel.cs" />
+    <Compile Include="ViewModels\Backup\IBackupViewModel.cs" />
     <Compile Include="ViewModels\Categories\AbstractCategoryListViewModel.cs" />
     <Compile Include="ViewModels\Accounts\AccountListViewActionViewModel.cs" />
     <Compile Include="ViewModels\Accounts\AccountListViewModel.cs" />
     <Compile Include="ViewModels\Accounts\AddAccountViewModel.cs" />
     <Compile Include="ViewModels\Categories\AddCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Categories\CategoryViewModel.cs" />
     <Compile Include="ViewModels\Payments\AddPaymentViewModel.cs" />
     <Compile Include="ViewModels\BalanceViewModel.cs" />
     <Compile Include="ViewModels\Categories\CategoryListViewModel.cs" />
@@ -211,6 +226,15 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
+    <Compile Include="ViewModels\Payments\PaymentViewModel.cs" />
+    <Compile Include="ViewModels\Payments\RecurringPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Settings\DesignTimeSettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\ISettingsViewModel.cs" />
+    <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticAccountMonthlyCashflowViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticCashFlowViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticSelectorType.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategoryProgressionViewModel.cs" />
     <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
@@ -667,10 +691,6 @@
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
       <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
       <Name>MoneyFox.Persistence</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj">
-      <Project>{c1217fb5-7a43-4dda-a98f-72eca57a1ade}</Project>
-      <Name>MoneyFox.Ui.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
