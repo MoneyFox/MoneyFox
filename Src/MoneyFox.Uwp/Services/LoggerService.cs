@@ -2,28 +2,20 @@
 using NLog;
 using NLog.Config;
 using NLog.Targets;
-using System.IO;
-using Xamarin.Essentials;
-
-#if !DEBUG
-using PCLAppConfig;
-#endif
 
 #nullable enable
 namespace MoneyFox.Uwp.Services
 {
     public static class LoggerService
     {
+        public static string LogFileName => "moneyfox.log";
+
         public static void Initialize()
         {
             var config = new LoggingConfiguration();
-
-            // Configure file
             var logfile = new FileTarget("logfile")
             {
-                FileName = Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName),
-                AutoFlush = true,
-                ArchiveEvery = FileArchivePeriod.Month
+                FileName = AppConstants.LogFileName, AutoFlush = true, ArchiveEvery = FileArchivePeriod.Month
             };
 
             // Configure console
