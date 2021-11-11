@@ -22,13 +22,14 @@ name: $(date:yyyy)$(DayOfYear)$(rev:rrr)
 steps:
 
 - task: NuGetToolInstaller@1
-  displayName: 'Use NuGet '
+  displayName: 'Use NuGet'
   inputs:
     versionSpec: 5.x
   
 - task: JavaToolInstaller@0
+  displayName: 'Install Java 11'
   inputs:
-    versionSpec: '17'
+    versionSpec: '11'
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 

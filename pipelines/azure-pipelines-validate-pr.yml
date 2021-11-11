@@ -83,14 +83,16 @@ jobs:
     enabled: false
   
   - task: JavaToolInstaller@0
+    displayName: 'Install Java 11'
     inputs:
-      versionSpec: '17'
+      versionSpec: '11'
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
 
   - task: NuGetToolInstaller@1
 
   - task: NuGetCommand@2
+    displayName: 'Install Nuget Packages for solution'
     inputs:
       restoreSolution: '$(solution)'
 
