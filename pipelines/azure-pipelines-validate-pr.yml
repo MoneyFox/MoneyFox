@@ -66,7 +66,7 @@ jobs:
 - job: BuildAndroid
   displayName: "Build Android"
   pool:
-    vmImage: windows-latest
+    vmImage: windows-2022
 
   variables:  
     solution: '**/MoneyFox.Mobile.sln'
@@ -102,7 +102,7 @@ jobs:
 - job: WindowsTestsAndBuild
   displayName: "Run Tests and Build Windows"
   pool:
-    vmImage: windows-latest
+    vmImage: windows-2022
 
   variables:  
     solution: '**/MoneyFox.Desktop.sln'
