@@ -9,7 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Ui.Shared.Tests.ViewModels
+namespace MoneyFox.Tests.ViewModels
 {
     [ExcludeFromCodeCoverage]
     public class AboutViewModelTests

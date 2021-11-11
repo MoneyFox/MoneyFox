@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
-namespace MoneyFox.Ui.Shared.Tests.ViewModels.Accounts
+namespace MoneyFox.Tests.ViewModels.Accounts
 {
     [ExcludeFromCodeCoverage]
     [SuppressMessage("Style", "IDE0022:Use expression body for methods")]
