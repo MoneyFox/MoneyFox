@@ -8,7 +8,7 @@ using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetMonthlyIncome;
 using MoneyFox.Extensions;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.ViewModels.Accounts;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using Xamarin.Forms;

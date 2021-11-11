@@ -4,7 +4,7 @@ using Rg.Plugins.Popup.Extensions;
 using System.Threading.Tasks;
 using Xamarin.Forms.Xaml;
 
-namespace MoneyFox.Presentation.Dialogs
+namespace MoneyFox.Views.Dialogs
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterPopup

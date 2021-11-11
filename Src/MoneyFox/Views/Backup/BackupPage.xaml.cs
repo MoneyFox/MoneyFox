@@ -1,4 +1,4 @@
-﻿using MoneyFox.Ui.Shared.ViewModels.Backup;
+﻿using MoneyFox.ViewModels.Backup;
 
 namespace MoneyFox.Views.Backup
 {

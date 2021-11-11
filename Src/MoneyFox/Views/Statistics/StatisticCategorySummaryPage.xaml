@@ -7,6 +7,7 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:theme="clr-namespace:MoneyFox"
+             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              x:Name="StatisticCategorySummary"
              Visual="Material"
              mc:Ignorable="d">
@@ -22,7 +23,7 @@
                 FontSize="24"
                 HeightRequest="44"
                 WidthRequest="66"
-                Text="{x:Static theme:IconFont.Filter}"
+                Text="{x:Static styles:IconFont.Filter}"
                 VerticalOptions="Center"
                 TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
                 Clicked="OpenFilterDialog" />

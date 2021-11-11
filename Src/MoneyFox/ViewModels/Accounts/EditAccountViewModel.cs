@@ -4,7 +4,6 @@ using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts

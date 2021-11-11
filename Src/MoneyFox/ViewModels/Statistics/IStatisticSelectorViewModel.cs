@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.Generic;
 
 namespace MoneyFox.ViewModels.Statistics

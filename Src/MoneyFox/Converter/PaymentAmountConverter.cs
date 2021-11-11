@@ -1,5 +1,5 @@
-﻿using MoneyFox.Ui.Shared.ConverterLogic;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+﻿using MoneyFox.ConverterLogic;
+using MoneyFox.ViewModels.Payments;
 using System;
 using System.Globalization;
 using Xamarin.Forms;

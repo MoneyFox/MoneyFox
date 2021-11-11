@@ -51,7 +51,6 @@
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
-    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
