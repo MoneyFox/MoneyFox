@@ -4,7 +4,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;

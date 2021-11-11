@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Statistics
+namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     /// <summary>
     /// Representation of the cash flow view.

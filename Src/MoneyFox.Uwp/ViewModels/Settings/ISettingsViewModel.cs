@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Settings
+namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public interface ISettingsViewModel
     {

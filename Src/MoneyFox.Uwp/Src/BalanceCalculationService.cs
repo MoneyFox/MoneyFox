@@ -5,13 +5,13 @@ using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Uwp.ViewModels.Accounts;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     /// <summary>
     /// Provides different calculations for the balance at the end of month.

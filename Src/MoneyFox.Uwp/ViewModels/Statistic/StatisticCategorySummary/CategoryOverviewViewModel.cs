@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
-using MoneyFox.Ui.Shared.Groups;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.Uwp.Groups;
+using MoneyFox.Uwp.ViewModels.Payments;
 using System;
 using System.Collections.ObjectModel;
 

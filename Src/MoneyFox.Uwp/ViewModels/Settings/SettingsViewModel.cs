@@ -7,7 +7,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Settings
+namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {

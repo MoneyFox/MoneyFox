@@ -3,7 +3,7 @@ using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 using System;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Categories
+namespace MoneyFox.Uwp.ViewModels.Categories
 {
     public class CategoryViewModel : ViewModelBase, IMapFrom<Category>
     {

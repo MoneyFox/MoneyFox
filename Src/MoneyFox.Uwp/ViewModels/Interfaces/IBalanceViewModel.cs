@@ -1,4 +1,4 @@
-﻿using MoneyFox.Ui.Shared.Commands;
+﻿using MoneyFox.Uwp.Commands;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Interfaces

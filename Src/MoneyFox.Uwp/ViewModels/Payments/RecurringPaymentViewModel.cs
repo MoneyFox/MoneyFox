@@ -2,11 +2,11 @@
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.ViewModels.Accounts;
+using MoneyFox.Uwp.ViewModels.Categories;
 using System;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Payments
+namespace MoneyFox.Uwp.ViewModels.Payments
 {
     public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>
     {

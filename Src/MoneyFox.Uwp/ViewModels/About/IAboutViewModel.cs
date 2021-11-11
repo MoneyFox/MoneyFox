@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 
-namespace MoneyFox.Ui.Shared.ViewModels.About
+namespace MoneyFox.Uwp.ViewModels.About
 {
     public interface IAboutViewModel
     {

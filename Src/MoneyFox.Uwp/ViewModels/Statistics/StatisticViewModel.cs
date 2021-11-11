@@ -8,7 +8,7 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Statistics
+namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     /// <summary>
     /// Represents the statistic view.

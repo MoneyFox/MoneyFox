@@ -2,7 +2,7 @@
 using MoneyFox.Domain;
 using System.Diagnostics.CodeAnalysis;
 
-namespace MoneyFox.Ui.Shared
+namespace MoneyFox.Uwp.ConverterLogic
 {
     public static class RecurrenceTypeConverterLogic
     {

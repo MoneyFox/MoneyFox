@@ -1,5 +1,4 @@
-﻿using MoneyFox.Ui.Shared.ViewModels.Payments;
-using MoneyFox.Uwp.ViewModels.Payments;
+﻿using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Navigation;
 
 #nullable enable

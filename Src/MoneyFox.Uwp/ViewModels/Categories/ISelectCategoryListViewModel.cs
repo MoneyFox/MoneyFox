@@ -1,6 +1,4 @@
-﻿using MoneyFox.Ui.Shared.ViewModels.Categories;
-
-#nullable enable
+﻿#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Categories
 {
     /// <summary>

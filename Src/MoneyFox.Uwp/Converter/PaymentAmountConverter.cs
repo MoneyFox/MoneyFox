@@ -1,5 +1,5 @@
-﻿using MoneyFox.Ui.Shared.ConverterLogic;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+﻿using MoneyFox.Uwp.ConverterLogic;
+using MoneyFox.Uwp.ViewModels.Payments;
 using System;
 using Windows.UI.Xaml.Data;
 

@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application.Statistics;
-using MoneyFox.Ui.Shared.Commands;
+using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

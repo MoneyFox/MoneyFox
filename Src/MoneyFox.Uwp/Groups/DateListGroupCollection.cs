@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MoneyFox.Ui.Shared.Groups
+namespace MoneyFox.Uwp.Groups
 {
     public class DateListGroupCollection<T> : List<T>
     {

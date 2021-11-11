@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace MoneyFox.Ui.Shared.Utilities
+namespace MoneyFox.Uwp.Utilities
 {
     /// <summary>
     /// Utility methods

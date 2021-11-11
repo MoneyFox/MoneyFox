@@ -13,8 +13,8 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:views="using:MoneyFox.Uwp.Views"
-    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Accounts"
     xmlns:accountlist="using:MoneyFox.Uwp.Views.Accounts"
+    xmlns:accounts="using:MoneyFox.Uwp.ViewModels.Accounts"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
@@ -32,7 +32,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:ClickConverter x:Key="ClickConverter" />
 
-        <DataTemplate x:Key="AccountItemTemplate" x:DataType="viewModels:AccountViewModel">
+        <DataTemplate x:Key="AccountItemTemplate" x:DataType="accounts:AccountViewModel">
             <uwpToolkit:DropShadowPanel ShadowOpacity="0.40" Margin="4,3,3,6">
                 <StackPanel Width="250" CornerRadius="{StaticResource DefaultCornerRadius}">
                     <StackPanel.ContextFlyout>

@@ -3,7 +3,7 @@ using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 using System;
 
-namespace MoneyFox.Ui.Shared.ViewModels.Accounts
+namespace MoneyFox.Uwp.ViewModels.Accounts
 {
     public sealed class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
     {

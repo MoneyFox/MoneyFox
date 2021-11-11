@@ -1,5 +1,5 @@
 ﻿using Microsoft.Services.Store.Engagement;
-using MoneyFox.Ui.Shared.ViewModels.About;
+using MoneyFox.Uwp.ViewModels.About;
 using System;
 using Windows.UI.Xaml;
 

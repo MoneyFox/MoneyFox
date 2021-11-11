@@ -2,7 +2,7 @@
 using MoneyFox.Domain;
 using System;
 
-namespace MoneyFox.Ui.Shared.Utilities
+namespace MoneyFox.Uwp.Utilities
 {
     /// <summary>
     /// A collection of helper methods for handling PaymentTypes

@@ -6,8 +6,7 @@ using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Accounts;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.ViewModels.Statistics
+namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     /// <summary>
     /// Representation of the cash flow view.

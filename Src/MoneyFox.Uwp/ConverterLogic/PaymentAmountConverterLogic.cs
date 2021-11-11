@@ -1,8 +1,8 @@
 ﻿using MoneyFox.Application;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.Uwp.ViewModels.Payments;
 
-namespace MoneyFox.Ui.Shared.ConverterLogic
+namespace MoneyFox.Uwp.ConverterLogic
 {
     public static class PaymentAmountConverterLogic
     {

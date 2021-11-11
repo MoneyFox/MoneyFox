@@ -7,20 +7,20 @@
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
-                xmlns:designtime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-                xmlns:models="using:MoneyFox.Ui.Shared.ViewModels.Statistics"
                 xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
                 xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                xmlns:statistics="using:MoneyFox.Uwp.ViewModels.Statistics"
                 mc:Ignorable="d" >
 
     <d:MvxWindowsPage.DataContext>
-        <designtime:DesignTimeStatisticSelectorViewModel />
+        <designTime:DesignTimeStatisticSelectorViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <Page.Resources>
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
-        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
+        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="statistics:StatisticSelectorType">
             <controls:DropShadowPanel
                 HorizontalContentAlignment="Stretch"
                 Margin="3,4,0,0"

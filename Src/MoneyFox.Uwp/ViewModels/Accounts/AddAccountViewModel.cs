@@ -3,9 +3,8 @@ using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.Utilities;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.Utilities;
 using System.Threading.Tasks;
 
 #nullable enable
