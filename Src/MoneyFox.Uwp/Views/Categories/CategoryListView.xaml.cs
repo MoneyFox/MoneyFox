@@ -1,4 +1,6 @@
-﻿using MoneyFox.Uwp.ViewModels.Categories;
+﻿using MoneyFox.Application.Resources;
+using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.ViewModels.Categories;
 using System;
 using Windows.UI.Xaml.Navigation;
 
@@ -7,7 +9,7 @@ namespace MoneyFox.Uwp.Views.Categories
 {
     public sealed partial class CategoryListView
     {
-        public override bool ShowHeader => false;
+        public override string Header => Strings.CategoriesTitle;
 
         private CategoryListViewModel ViewModel => (CategoryListViewModel)DataContext;
 
@@ -24,6 +26,6 @@ namespace MoneyFox.Uwp.Views.Categories
             => ViewModel.Unsubscribe();
 
         private async void AddNewCategoryClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-            => await new AddCategoryDialog().ShowAsync();
+            => await new AddCategoryDialog{RequestedTheme = ThemeSelectorService.Theme}.ShowAsync();
     }
 }
