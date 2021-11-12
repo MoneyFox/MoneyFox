@@ -3,7 +3,7 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.AutoMapper;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure;
 using MoneyFox.Ui.Shared.ViewModels.Settings;
 using System;
 using Module = Autofac.Module;

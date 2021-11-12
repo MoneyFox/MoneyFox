@@ -7,6 +7,7 @@ using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.Persistence;
 using MoneyFox.Persistence;
 using Moq;
 using System;

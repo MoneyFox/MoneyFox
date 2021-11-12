@@ -2,21 +2,19 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Persistence.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
-    [Migration("20200226165500_AddLastRecurrenceCreatedField")]
-    partial class AddLastRecurrenceCreatedField
+    partial class ApplicationContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.2");
+                .HasAnnotation("ProductVersion", "3.1.12");
 
             modelBuilder.Entity("MoneyFox.Domain.Entities.Account", b =>
                 {
@@ -29,6 +27,9 @@ namespace MoneyFox.Persistence.Migrations
 
                     b.Property<decimal>("CurrentBalance")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeactivated")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsExcluded")
                         .HasColumnType("INTEGER");
@@ -71,6 +72,9 @@ namespace MoneyFox.Persistence.Migrations
 
                     b.Property<string>("Note")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("RequireNote")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -146,7 +150,7 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<int?>("CategoryId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ChargedAccountId")
+                    b.Property<int>("ChargedAccountId")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("CreationTime")
@@ -220,7 +224,9 @@ namespace MoneyFox.Persistence.Migrations
 
                     b.HasOne("MoneyFox.Domain.Entities.Account", "ChargedAccount")
                         .WithMany()
-                        .HasForeignKey("ChargedAccountId");
+                        .HasForeignKey("ChargedAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("MoneyFox.Domain.Entities.Account", "TargetAccount")
                         .WithMany()

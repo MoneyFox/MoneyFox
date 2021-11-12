@@ -1,10 +1,11 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Helpers;
+using MoneyFox.Infrastructure.Persistence;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
-namespace MoneyFox.Persistence.Tests.Helper
+namespace MoneyFox.Infrastructure.Tests.Helper
 {
     [ExcludeFromCodeCoverage]
     public class DatabasePathHelperTests

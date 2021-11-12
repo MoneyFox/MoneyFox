@@ -8,7 +8,7 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.AutoMapper;
 using MoneyFox.Uwp.Services;

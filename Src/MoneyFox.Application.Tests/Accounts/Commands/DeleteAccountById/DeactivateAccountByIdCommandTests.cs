@@ -7,6 +7,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.Persistence;
 using MoneyFox.Persistence;
 using Moq;
 using System;

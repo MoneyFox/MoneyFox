@@ -664,9 +664,9 @@
       <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
       <Name>MoneyFox.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj">
-      <Project>{6877760B-E89C-4313-9367-20D74F762BE6}</Project>
-      <Name>MoneyFox.Persistence</Name>
+    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
+      <Project>{0429508E-AFD9-4F1C-900A-EA1997FC8567}</Project>
+      <Name>MoneyFox.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj">
       <Project>{c1217fb5-7a43-4dda-a98f-72eca57a1ade}</Project>

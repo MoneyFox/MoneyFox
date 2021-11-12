@@ -1,7 +1,8 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Infrastructure.Persistence;
 
-namespace MoneyFox.Persistence
+namespace MoneyFox.Infrastructure
 {
     public class PersistenceModule : Module
     {
