@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Application.Common.CloudBackup
+namespace MoneyFox.Application.DbBackup
 {
     /// <summary>
     /// Provides Backup and Restore operations.
@@ -21,12 +21,6 @@ namespace MoneyFox.Application.Common.CloudBackup
         /// </summary>
         /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
         Task LoginAsync();
-
-        /// <summary>
-        /// Login user.
-        /// </summary>
-        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in Silently.</exception>
-        Task LoginSilentAsync();
 
         /// <summary>
         /// Logout user.

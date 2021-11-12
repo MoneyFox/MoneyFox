@@ -8,7 +8,7 @@ using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure;
 using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.AutoMapper;
 using MoneyFox.Uwp.Services;
@@ -26,7 +26,7 @@ namespace MoneyFox.Uwp
             builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
 
             builder.RegisterModule<ApplicationModule>();
-            builder.RegisterModule<PersistenceModule>();
+            builder.RegisterModule<InfrastructureModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<ToastService>().AsImplementedInterfaces();
@@ -40,13 +40,7 @@ namespace MoneyFox.Uwp
 
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
-
-            builder.Register(c => PublicClientApplicationBuilder
-                                 .Create(AppConstants.MSAL_APPLICATION_ID)
-                                 .WithRedirectUri($"msal{AppConstants.MSAL_APPLICATION_ID}://auth")
-                                 .Build())
-                   .AsImplementedInterfaces();
-
+            
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))

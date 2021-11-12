@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Application.Common.Interfaces;
 
-namespace MoneyFox.Persistence
+namespace MoneyFox.Infrastructure.Persistence
 {
     public class ContextAdapter : IContextAdapter
     {

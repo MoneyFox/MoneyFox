@@ -368,9 +368,6 @@
     <PackageReference Include="Microsoft.AppCenter.Analytics">
       <Version>4.4.0</Version>
     </PackageReference>
-    <PackageReference Include="Microsoft.Identity.Client">
-      <Version>4.35.1</Version>
-    </PackageReference>
     <PackageReference Include="NLog">
       <Version>4.7.12</Version>
     </PackageReference>
@@ -393,6 +390,10 @@
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj">
       <Project>{9d569165-5277-4b92-a621-6710c487f51b}</Project>
       <Name>MoneyFox.Application</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
+      <Project>{CA773928-B26B-43DE-B874-87854F929534}</Project>
+      <Name>MoneyFox.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
       <Project>{97801952-BB0D-4CAA-BA07-CBAE00A5860F}</Project>
