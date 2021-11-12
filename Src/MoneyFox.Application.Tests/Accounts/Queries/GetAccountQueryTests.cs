@@ -5,68 +5,68 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries
+namespace MoneyFox.Application.Tests.Accounts.Queries;
+
+[ExcludeFromCodeCoverage]
+public class GetAccountQueryTests : IDisposable
 {
-    [ExcludeFromCodeCoverage]
-    public class GetAccountQueryTests : IDisposable
+    private readonly EfCoreContext context;
+    private readonly Mock<IContextAdapter> contextAdapterMock;
+
+    public GetAccountQueryTests()
     {
-        private readonly EfCoreContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        context = InMemoryEfCoreContextFactory.Create();
 
-        public GetAccountQueryTests()
-        {
-            context = InMemoryEfCoreContextFactory.Create();
+        contextAdapterMock = new Mock<IContextAdapter>();
+        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+    }
 
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+    [Fact]
+    public async Task GetAccountQuery_CorrectNumberLoaded()
+    {
+        // Arrange
+        var account = new Account("test", 80);
+        await context.AddAsync(account);
+        await context.SaveChangesAsync();
 
-        [Fact]
-        public async Task GetAccountQuery_CorrectNumberLoaded()
-        {
-            // Arrange
-            var account = new Account("test", 80);
-            await context.AddAsync(account);
-            await context.SaveChangesAsync();
+        // Act
+        var result =
+            await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
 
-            // Act
-            List<Account> result = await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
+        // Assert
+        Assert.Single(result);
+    }
 
-            // Assert
-            Assert.Single(result);
-        }
+    [Fact]
+    public async Task DontLoadDeactivatedAccounts()
+    {
+        // Arrange
+        var account1 = new Account("test", 80);
+        var account2 = new Account("test", 80);
 
-        [Fact]
-        public async Task DontLoadDeactivatedAccounts()
-        {
-            // Arrange
-            var account1 = new Account("test", 80);
-            var account2 = new Account("test", 80);
+        account2.Deactivate();
 
-            account2.Deactivate();
+        await context.AddAsync(account1);
+        await context.AddAsync(account2);
+        await context.SaveChangesAsync();
 
-            await context.AddAsync(account1);
-            await context.AddAsync(account2);
-            await context.SaveChangesAsync();
+        // Act
+        var result =
+            await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
 
-            // Act
-            List<Account> result = await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
-
-            // Assert
-            Assert.Single(result);
-        }
+        // Assert
+        Assert.Single(result);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Rg.Plugins.Popup.Extensions;
+using System;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -6,16 +7,6 @@ namespace MoneyFox.Views.Dialogs
 {
     public partial class ConfirmMessageDialog
     {
-        public ConfirmMessageDialog(string title, string message, string positiveText = "", string negativeText = "")
-        {
-            InitializeComponent();
-
-            PopupTitle = title;
-            PopupMessage = message;
-            PositiveText = positiveText;
-            NegativeText = negativeText;
-        }
-
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
             nameof(PopupTitle),
             typeof(string),
@@ -35,6 +26,18 @@ namespace MoneyFox.Views.Dialogs
             nameof(NegativeText),
             typeof(string),
             typeof(ConfirmMessageDialog));
+
+        private TaskCompletionSource<bool>? confirmTaskCompletionSource;
+
+        public ConfirmMessageDialog(string title, string message, string positiveText = "", string negativeText = "")
+        {
+            InitializeComponent();
+
+            PopupTitle = title;
+            PopupMessage = message;
+            PositiveText = positiveText;
+            NegativeText = negativeText;
+        }
 
         public string PopupTitle
         {
@@ -60,28 +63,26 @@ namespace MoneyFox.Views.Dialogs
             set => SetValue(NegativeTextProperty, value);
         }
 
-        private TaskCompletionSource<bool>? confirmTaskCompletionSource;
-
         public async Task<bool> ShowAsync()
         {
             confirmTaskCompletionSource = new TaskCompletionSource<bool>();
-            await App.Current.MainPage.Navigation.PushPopupAsync(this);
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(this);
             return await confirmTaskCompletionSource.Task;
         }
 
-        private async void PositiveHandlerClicked(object sender, System.EventArgs e)
+        private async void PositiveHandlerClicked(object sender, EventArgs e)
         {
             await DismissAsync();
             confirmTaskCompletionSource?.SetResult(true);
         }
 
-        private async void NegativeHandlerClicked(object sender, System.EventArgs e)
+        private async void NegativeHandlerClicked(object sender, EventArgs e)
         {
             await DismissAsync();
             confirmTaskCompletionSource?.SetResult(false);
         }
 
         private static async Task DismissAsync()
-            => await App.Current.MainPage.Navigation.PopPopupAsync();
+            => await Xamarin.Forms.Application.Current.MainPage.Navigation.PopPopupAsync();
     }
 }

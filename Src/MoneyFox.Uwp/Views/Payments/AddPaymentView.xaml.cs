@@ -13,10 +13,14 @@ namespace MoneyFox.Uwp.Views.Payments
             DataContext = ViewModelLocator.AddPaymentVm;
         }
 
+        public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
+
+        public override bool ShowHeader => false;
+
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var passedType = e.Parameter as PaymentType?;
-            PaymentType type = passedType == null
+            var type = passedType == null
                 ? PaymentType.Expense
                 : passedType.Value;
 
@@ -26,9 +30,5 @@ namespace MoneyFox.Uwp.Views.Payments
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e) => ViewModel.Unsubscribe();
-
-        public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
-
-        public override bool ShowHeader => false;
     }
 }

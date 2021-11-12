@@ -22,7 +22,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccounts
 
             public async Task<List<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
             {
-                List<Account>? accounts = await contextAdapter.Context
+                var accounts = await contextAdapter.Context
                                                    .Accounts
                                                    .AreActive()
                                                    .OrderByInclusion()

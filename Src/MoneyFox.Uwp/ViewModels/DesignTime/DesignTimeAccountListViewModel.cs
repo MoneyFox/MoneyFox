@@ -9,24 +9,29 @@ using System.Diagnostics.CodeAnalysis;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
-    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]
+    [SuppressMessage(
+        "Major Code Smell",
+        "S109:Magic numbers should not be used",
+        Justification = "Not needed in design time")]
     public class DesignTimeAccountListViewModel : IAccountListViewModel
     {
+        public RelayCommand GoToAddAccountCommand { get; } = null!;
+
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts
         {
             get;
         } =
             new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>
-        {
-            new AlphaGroupListGroupCollection<AccountViewModel>("Included")
             {
-                new AccountViewModel { Name = "Income", CurrentBalance = 1234 }
-            },
-            new AlphaGroupListGroupCollection<AccountViewModel>("Excluded")
-            {
-                new AccountViewModel { Name = "Savings", CurrentBalance = 4325 }
-            }
-        };
+                new AlphaGroupListGroupCollection<AccountViewModel>("Included")
+                {
+                    new AccountViewModel {Name = "Income", CurrentBalance = 1234}
+                },
+                new AlphaGroupListGroupCollection<AccountViewModel>("Excluded")
+                {
+                    new AccountViewModel {Name = "Savings", CurrentBalance = 4325}
+                }
+            };
 
         public bool HasNoAccounts { get; }
 
@@ -41,7 +46,5 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public RelayCommand<AccountViewModel> EditAccountCommand { get; } = null!;
 
         public AsyncCommand<AccountViewModel> DeleteAccountCommand { get; } = null!;
-
-        public RelayCommand GoToAddAccountCommand { get; } = null!;
     }
 }

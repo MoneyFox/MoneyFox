@@ -34,7 +34,8 @@ namespace MoneyFox.Domain.Entities
         /// <summary>
         ///     The name of the account.
         /// </summary>
-        [Required] public string Name { get; private set; } = null!;
+        [Required]
+        public string Name { get; private set; } = null!;
 
         /// <summary>
         ///     The current account balance.
@@ -47,7 +48,7 @@ namespace MoneyFox.Domain.Entities
         public string? Note { get; set; }
 
         /// <summary>
-        ///      Indicates if this account is overdrawn or not.
+        ///     Indicates if this account is overdrawn or not.
         /// </summary>
         public bool IsOverdrawn { get; private set; }
 
@@ -69,7 +70,7 @@ namespace MoneyFox.Domain.Entities
         /// <summary>
         ///     Date when the entry was created.
         /// </summary>
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; }
 
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
@@ -111,13 +112,13 @@ namespace MoneyFox.Domain.Entities
                 return;
             }
 
-            decimal amount = invert
-                             ? -payment.Amount
-                             : payment.Amount;
+            var amount = invert
+                ? -payment.Amount
+                : payment.Amount;
 
             if(payment.Type == PaymentType.Expense
-               || payment.Type == PaymentType.Transfer
-               && payment.ChargedAccount.Id == Id)
+               || (payment.Type == PaymentType.Transfer
+                   && payment.ChargedAccount.Id == Id))
             {
                 CurrentBalance -= amount;
             }
@@ -125,6 +126,7 @@ namespace MoneyFox.Domain.Entities
             {
                 CurrentBalance += amount;
             }
+
             ModificationDate = DateTime.Now;
         }
 

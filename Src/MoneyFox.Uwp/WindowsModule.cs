@@ -1,15 +1,12 @@
 ﻿using Autofac;
 using GalaSoft.MvvmLight.Messaging;
 using MediatR;
-using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Desktop.Infrastructure;
 using MoneyFox.Desktop.Infrastructure.Adapters;
-using MoneyFox.Persistence;
 using MoneyFox.Infrastructure;
 using MoneyFox.Uwp.AutoMapper;
 using MoneyFox.Uwp.Services;
@@ -23,7 +20,11 @@ namespace MoneyFox.Uwp
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
+            builder.Register(
+                c => new TokenObject
+                {
+                    CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]
+                });
 
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<InfrastructureDesktop>();
@@ -41,7 +42,7 @@ namespace MoneyFox.Uwp
 
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
-            
+
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
@@ -56,10 +57,12 @@ namespace MoneyFox.Uwp
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces().AsSelf()
+                   .AsImplementedInterfaces()
+                   .AsSelf()
                    .AsSelf();
 
-            CultureHelper.CurrentCulture = CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
+            CultureHelper.CurrentCulture =
+                CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);
         }
     }
 }

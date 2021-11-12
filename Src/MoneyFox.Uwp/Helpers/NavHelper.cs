@@ -9,9 +9,16 @@ namespace MoneyFox.Uwp.Helpers
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        public static readonly DependencyProperty NavigateToProperty =
+            DependencyProperty.RegisterAttached(
+                "NavigateTo",
+                typeof(string),
+                typeof(NavHelper),
+                new PropertyMetadata(null));
+
         public static string GetNavigateTo(NavigationViewItem item)
         {
-            string value = (string)item.GetValue(NavigateToProperty);
+            var value = (string)item.GetValue(NavigateToProperty);
             logger.Info("Get Navigation value: {val}", value);
 
             return value;
@@ -22,8 +29,5 @@ namespace MoneyFox.Uwp.Helpers
             logger.Info("Set Navigation value: {value}", value);
             item.SetValue(NavigateToProperty, value);
         }
-
-        public static readonly DependencyProperty NavigateToProperty =
-            DependencyProperty.RegisterAttached("NavigateTo", typeof(string), typeof(NavHelper), new PropertyMetadata(null));
     }
 }

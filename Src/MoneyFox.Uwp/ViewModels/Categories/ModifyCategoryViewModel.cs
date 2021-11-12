@@ -14,23 +14,23 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp.ViewModels.Categories
 {
     /// <summary>
-    /// View Model for creating and editing Categories without dialog
+    ///     View Model for creating and editing Categories without dialog
     /// </summary>
     public abstract class ModifyCategoryViewModel : ViewModelBase, IModifyCategoryViewModel
     {
-        private readonly IMediator mediator;
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
         private CategoryViewModel selectedCategory = new CategoryViewModel();
         private string title = "";
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(IMediator mediator,
-                                          NavigationService navigationService,
-                                          IMapper mapper,
-                                          IDialogService dialogService)
+            NavigationService navigationService,
+            IMapper mapper,
+            IDialogService dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -39,38 +39,14 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             DialogService = dialogService;
         }
 
-        protected abstract Task InitializeAsync();
-
-        protected abstract Task SaveCategoryAsync();
-
         protected NavigationService NavigationService { get; }
 
         protected IDialogService DialogService { get; }
 
         public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBaseAsync);
-
         /// <summary>
-        /// Cancel the current operation
-        /// </summary>
-        public AsyncCommand CancelCommand => new AsyncCommand(CancelAsync);
-
-        /// <summary>
-        /// The currently selected CategoryViewModel
-        /// </summary>
-        public CategoryViewModel SelectedCategory
-        {
-            get => selectedCategory;
-            set
-            {
-                selectedCategory = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Returns the Title based on whether a CategoryViewModel is being created or edited
+        ///     Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
         public string Title
         {
@@ -89,6 +65,30 @@ namespace MoneyFox.Uwp.ViewModels.Categories
 
         public int CategoryId { get; set; }
 
+        public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBaseAsync);
+
+        /// <summary>
+        ///     Cancel the current operation
+        /// </summary>
+        public AsyncCommand CancelCommand => new AsyncCommand(CancelAsync);
+
+        /// <summary>
+        ///     The currently selected CategoryViewModel
+        /// </summary>
+        public CategoryViewModel SelectedCategory
+        {
+            get => selectedCategory;
+            set
+            {
+                selectedCategory = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        protected abstract Task InitializeAsync();
+
+        protected abstract Task SaveCategoryAsync();
+
         private async Task SaveCategoryBaseAsync()
         {
             if(await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
@@ -103,6 +103,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             await DialogService.HideLoadingDialogAsync();
         }
 
-        private async Task CancelAsync() => SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
+        private async Task CancelAsync() => SelectedCategory =
+            mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(SelectedCategory.Id)));
     }
 }

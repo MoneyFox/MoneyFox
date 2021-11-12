@@ -15,21 +15,25 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public DateTime EndDate { get; } = DateTime.Now;
 
+        public DateTime Date { get; }
+
+        public RelayCommand DeleteCommand { get; } = null!;
+
         public PaymentRecurrence Recurrence { get; } = PaymentRecurrence.Monthly;
 
         public List<PaymentRecurrence> RecurrenceList
-                                       => new List<PaymentRecurrence>
-        {
-            PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
-            PaymentRecurrence.Weekly,
-            PaymentRecurrence.Biweekly,
-            PaymentRecurrence.Monthly,
-            PaymentRecurrence.Bimonthly,
-            PaymentRecurrence.Quarterly,
-            PaymentRecurrence.Biannually,
-            PaymentRecurrence.Yearly
-        };
+            => new List<PaymentRecurrence>
+            {
+                PaymentRecurrence.Daily,
+                PaymentRecurrence.DailyWithoutWeekend,
+                PaymentRecurrence.Weekly,
+                PaymentRecurrence.Biweekly,
+                PaymentRecurrence.Monthly,
+                PaymentRecurrence.Bimonthly,
+                PaymentRecurrence.Quarterly,
+                PaymentRecurrence.Biannually,
+                PaymentRecurrence.Yearly
+            };
 
         public PaymentViewModel SelectedPayment { get; } = null!;
 
@@ -43,15 +47,11 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public string AccountHeader { get; } = "";
 
-        public DateTime Date { get; }
-
         public RelayCommand SelectedItemChangedCommand { get; } = null!;
 
         public RelayCommand SaveCommand { get; } = null!;
 
         public RelayCommand GoToSelectCategoryDialogCommand { get; } = null!;
-
-        public RelayCommand DeleteCommand { get; } = null!;
 
         public RelayCommand CancelCommand { get; } = null!;
 

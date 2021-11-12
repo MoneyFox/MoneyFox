@@ -20,22 +20,24 @@ namespace MoneyFox.iOS.Renderer
             var RightNavList = new List<UIBarButtonItem>();
             var ToolbarList = new List<ToolbarItem>();
 
-            UINavigationItem navigationItem = NavigationController.TopViewController.NavigationItem;
+            var navigationItem = NavigationController.TopViewController.NavigationItem;
 
             // Add to new list for sorting
-            foreach(ToolbarItem itm in Element.ToolbarItems)
+            foreach(var itm in Element.ToolbarItems)
             {
                 ToolbarList.Add(itm);
             }
 
             // Sort the list
-            ToolbarList.Sort((i1, i2) =>
-            {
-                return i1.Priority > i2.Priority
-                    ? -1 : 1;
-            });
+            ToolbarList.Sort(
+                (i1, i2) =>
+                {
+                    return i1.Priority > i2.Priority
+                        ? -1
+                        : 1;
+                });
 
-            foreach(ToolbarItem itm in ToolbarList)
+            foreach(var itm in ToolbarList)
             {
                 if(itm.Priority < 0)
                 {

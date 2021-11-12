@@ -25,8 +25,8 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
 
         public class Handler : IRequestHandler<CreateCategoryCommand>
         {
-            private readonly IContextAdapter contextAdapter;
             private readonly IBackupService backupService;
+            private readonly IContextAdapter contextAdapter;
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter, IBackupService backupService, ISettingsFacade settingsFacade)
@@ -36,12 +36,14 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
                 this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc/>
+            /// <inheritdoc />
             public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
             {
                 await backupService.RestoreBackupAsync();
 
-                await contextAdapter.Context.Categories.AddAsync(new Category(request.Name, request.Note, request.RequireNote), cancellationToken);
+                await contextAdapter.Context.Categories.AddAsync(
+                    new Category(request.Name, request.Note, request.RequireNote),
+                    cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

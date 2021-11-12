@@ -9,8 +9,8 @@ namespace MoneyFox.Uwp.ViewModels
 {
     public class SelectDateRangeDialogViewModel : ViewModelBase
     {
-        private DateTime startDate;
         private DateTime endDate;
+        private DateTime startDate;
 
         public SelectDateRangeDialogViewModel()
         {
@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// Start Date for the custom date range
+        ///     Start Date for the custom date range
         /// </summary>
         public DateTime StartDate
         {
@@ -32,7 +32,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// End Date for the custom date range
+        ///     End Date for the custom date range
         /// </summary>
         public DateTime EndDate
         {
@@ -45,7 +45,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// Selects the dates and notifies observer via the MessageHub
+        ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
         public RelayCommand DoneCommand => new RelayCommand(Done);
 

@@ -3,7 +3,6 @@ using MoneyFox.Uwp.ViewModels.Payments;
 using System.Globalization;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
 
@@ -12,15 +11,15 @@ namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class PaymentListView
     {
-        public override bool ShowHeader => false;
-
-        private PaymentListViewModel ViewModel => (PaymentListViewModel)DataContext;
-
         public PaymentListView()
         {
             InitializeComponent();
             DataContext = ViewModelLocator.PaymentListVm;
         }
+
+        public override bool ShowHeader => false;
+
+        private PaymentListViewModel ViewModel => (PaymentListViewModel)DataContext;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -33,11 +32,12 @@ namespace MoneyFox.Uwp.Views.Payments
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e) => ViewModel.Unsubscribe();
 
-        private void OpenFilterFlyout(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        private void OpenFilterFlyout(object sender, RoutedEventArgs e)
+            => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
 
         private void DataGrid_LoadingRowGroup(object sender, DataGridRowGroupHeaderEventArgs e)
         {
-            ICollectionViewGroup group = e.RowGroupHeader.CollectionViewGroup;
+            var group = e.RowGroupHeader.CollectionViewGroup;
             var item = (PaymentViewModel)group.GroupItems[0];
             e.RowGroupHeader.PropertyValue = item.Date.ToString("D", CultureInfo.CurrentCulture);
         }

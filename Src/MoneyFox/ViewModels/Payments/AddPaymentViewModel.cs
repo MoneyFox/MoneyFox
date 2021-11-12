@@ -11,12 +11,12 @@ namespace MoneyFox.ViewModels.Payments
 {
     public class AddPaymentViewModel : ModifyPaymentViewModel
     {
-        private readonly IMediator mediator;
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
         public AddPaymentViewModel(IMediator mediator,
-                                   IMapper mapper,
-                                   IDialogService dialogService)
+            IMapper mapper,
+            IDialogService dialogService)
             : base(mediator, mapper, dialogService)
         {
             this.mediator = mediator;
@@ -31,19 +31,22 @@ namespace MoneyFox.ViewModels.Payments
 
         protected override async Task SavePaymentAsync()
         {
-            var payment = new Payment(SelectedPayment.Date,
-                                        SelectedPayment.Amount,
-                                        SelectedPayment.Type,
-                                        await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
-                                        SelectedPayment.TargetAccount != null
-                                            ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
-                                            : null,
-                                        mapper.Map<Category>(SelectedPayment.Category),
-                                        SelectedPayment.Note);
+            var payment = new Payment(
+                SelectedPayment.Date,
+                SelectedPayment.Amount,
+                SelectedPayment.Type,
+                await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
+                SelectedPayment.TargetAccount != null
+                    ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
+                    : null,
+                mapper.Map<Category>(SelectedPayment.Category),
+                SelectedPayment.Note);
 
             if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
             {
-                payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.IsEndless
+                payment.AddRecurringPayment(
+                    SelectedPayment.RecurringPayment.Recurrence,
+                    SelectedPayment.RecurringPayment.IsEndless
                         ? null
                         : SelectedPayment.RecurringPayment.EndDate);
             }

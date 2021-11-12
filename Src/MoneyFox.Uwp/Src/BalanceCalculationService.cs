@@ -14,53 +14,54 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp
 {
     /// <summary>
-    /// Provides different calculations for the balance at the end of month.
+    ///     Provides different calculations for the balance at the end of month.
     /// </summary>
     public interface IBalanceCalculationService
     {
         /// <summary>
-        /// Returns the sum of all account balances that are not excluded.
+        ///     Returns the sum of all account balances that are not excluded.
         /// </summary>
         Task<decimal> GetTotalBalanceAsync();
 
         /// <summary>
-        /// Returns the sum of the balance of the passed accounts at the ned of month.
+        ///     Returns the sum of the balance of the passed accounts at the ned of month.
         /// </summary>
         /// <returns>Sum of the end of month balance.</returns>
         Task<decimal> GetTotalEndOfMonthBalanceAsync();
 
         /// <summary>
-        /// Returns the the balance of the passed accounts at the ned of month.
+        ///     Returns the the balance of the passed accounts at the ned of month.
         /// </summary>
         /// <param name="account">Account to calculate the balance.</param>
         /// <returns>The end of month balance.</returns>
         Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account);
     }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public class BalanceCalculationService : IBalanceCalculationService
     {
         private readonly IMediator mediator;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public BalanceCalculationService(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
-        /// <inheritdoc/>
-        public async Task<decimal> GetTotalBalanceAsync() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+        /// <inheritdoc />
+        public async Task<decimal> GetTotalBalanceAsync()
+            => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<decimal> GetTotalEndOfMonthBalanceAsync()
         {
-            List<Account> excluded = await mediator.Send(new GetExcludedAccountQuery());
+            var excluded = await mediator.Send(new GetExcludedAccountQuery());
 
-            decimal balance = await GetTotalBalanceAsync();
+            var balance = await GetTotalBalanceAsync();
 
-            foreach(Payment payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
+            foreach(var payment in await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery()))
             {
                 switch(payment.Type)
                 {
@@ -84,39 +85,15 @@ namespace MoneyFox.Uwp
             return balance;
         }
 
-        private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
-        {
-            foreach(Account account in excluded)
-            {
-                if(payment.TargetAccount == null)
-                {
-                    throw new InvalidOperationException("Uninitialized property: " + nameof(payment.TargetAccount));
-                }
-
-                if(Equals(account.Id, payment.ChargedAccount.Id))
-                {
-                    //Transfer from excluded account
-                    balance += payment.Amount;
-                }
-
-                if(Equals(account.Id, payment.TargetAccount.Id))
-                {
-                    //Transfer to excluded account
-                    balance -= payment.Amount;
-                }
-            }
-
-            return balance;
-        }
-
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account)
         {
-            decimal balance = account.CurrentBalance;
+            var balance = account.CurrentBalance;
 
-            List<Payment> paymentList = await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery { AccountId = account.Id });
+            var paymentList =
+                await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery {AccountId = account.Id});
 
-            foreach(Payment payment in paymentList)
+            foreach(var payment in paymentList)
 
             {
                 switch(payment.Type)
@@ -135,6 +112,31 @@ namespace MoneyFox.Uwp
                         break;
                     default:
                         throw new InvalidPaymentTypeException();
+                }
+            }
+
+            return balance;
+        }
+
+        private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
+        {
+            foreach(var account in excluded)
+            {
+                if(payment.TargetAccount == null)
+                {
+                    throw new InvalidOperationException("Uninitialized property: " + nameof(payment.TargetAccount));
+                }
+
+                if(Equals(account.Id, payment.ChargedAccount.Id))
+                {
+                    //Transfer from excluded account
+                    balance += payment.Amount;
+                }
+
+                if(Equals(account.Id, payment.TargetAccount.Id))
+                {
+                    //Transfer to excluded account
+                    balance -= payment.Amount;
                 }
             }
 

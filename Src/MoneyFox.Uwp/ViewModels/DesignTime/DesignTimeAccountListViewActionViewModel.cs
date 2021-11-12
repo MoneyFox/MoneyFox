@@ -12,12 +12,12 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public RelayCommand GoToAddTransferCommand { get; } = null!;
 
-        public RelayCommand GoToAddAccountCommand { get; } = null!;
-
         public bool IsAddIncomeAvailable { get; }
 
         public bool IsAddExpenseAvailable { get; }
 
         public bool IsTransferAvailable { get; }
+
+        public RelayCommand GoToAddAccountCommand { get; } = null!;
     }
 }

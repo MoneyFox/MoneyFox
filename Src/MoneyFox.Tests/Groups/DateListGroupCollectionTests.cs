@@ -18,15 +18,16 @@ namespace MoneyFox.Tests.Groups
             // Arrange
             var paymentList = new List<PaymentViewModel>
             {
-                new PaymentViewModel{ Id = 1, Date = DateTime.Now},
-                new PaymentViewModel{ Id = 2, Date = DateTime.Now.AddMonths(-1)}
+                new PaymentViewModel {Id = 1, Date = DateTime.Now},
+                new PaymentViewModel {Id = 2, Date = DateTime.Now.AddMonths(-1)}
             };
 
             // Act
-            List<DateListGroupCollection<PaymentViewModel>> createdGroup
-                = DateListGroupCollection<PaymentViewModel>.CreateGroups(paymentList,
-                                                                         s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                                                                         s => s.Date);
+            var createdGroup
+                = DateListGroupCollection<PaymentViewModel>.CreateGroups(
+                    paymentList,
+                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                    s => s.Date);
             // Assert
             createdGroup.Should().HaveCount(2);
             createdGroup[0][0].Id.Should().Be(1);

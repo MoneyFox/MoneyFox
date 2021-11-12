@@ -4,80 +4,77 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using Moq;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries
+namespace MoneyFox.Application.Tests.Accounts.Queries;
+
+[ExcludeFromCodeCoverage]
+public class GetExcludedAccountQueryTests : IDisposable
 {
-    [ExcludeFromCodeCoverage]
-    public class GetExcludedAccountQueryTests : IDisposable
+    private readonly EfCoreContext context;
+    private readonly Mock<IContextAdapter> contextAdapterMock;
+
+    public GetExcludedAccountQueryTests()
     {
-        private readonly EfCoreContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        context = InMemoryEfCoreContextFactory.Create();
 
-        public GetExcludedAccountQueryTests()
-        {
-            context = InMemoryEfCoreContextFactory.Create();
+        contextAdapterMock = new Mock<IContextAdapter>();
+        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+    }
 
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+    [Fact]
+    public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
+    {
+        // Arrange
+        var accountExcluded = new Account("test", 80, isExcluded: true);
+        var accountIncluded = new Account("test", 80);
+        await context.AddAsync(accountExcluded);
+        await context.AddAsync(accountIncluded);
+        await context.SaveChangesAsync();
 
-        [Fact]
-        public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
-        {
-            // Arrange
-            var accountExcluded = new Account("test", 80, isExcluded: true);
-            var accountIncluded = new Account("test", 80);
-            await context.AddAsync(accountExcluded);
-            await context.AddAsync(accountIncluded);
-            await context.SaveChangesAsync();
+        // Act
+        var resultList =
+            await new GetExcludedAccountQuery.Handler(contextAdapterMock.Object)
+                .Handle(new GetExcludedAccountQuery(), default);
 
-            // Act
-            List<Account> resultList =
-                await new GetExcludedAccountQuery.Handler(contextAdapterMock.Object)
-                   .Handle(new GetExcludedAccountQuery(), default);
+        // Assert
+        resultList.Should().ContainSingle();
+        resultList[0].CurrentBalance.Should().Be(80);
+    }
 
-            // Assert
-            resultList.Should().ContainSingle();
-            resultList[0].CurrentBalance.Should().Be(80);
-        }
+    [Fact]
+    public async Task DontLoadDeactivatedAccounts()
+    {
+        // Arrange
+        var accountExcluded = new Account("test", 80, isExcluded: true);
+        var accountIncluded = new Account("test", 80);
+        var accountDeactivated = new Account("test", 80);
+        accountDeactivated.Deactivate();
 
-        [Fact]
-        public async Task DontLoadDeactivatedAccounts()
-        {
-            // Arrange
-            var accountExcluded = new Account("test", 80, isExcluded: true);
-            var accountIncluded = new Account("test", 80);
-            var accountDeactivated = new Account("test", 80);
-            accountDeactivated.Deactivate();
+        await context.AddAsync(accountExcluded);
+        await context.AddAsync(accountIncluded);
+        await context.AddAsync(accountDeactivated);
+        await context.SaveChangesAsync();
 
-            await context.AddAsync(accountExcluded);
-            await context.AddAsync(accountIncluded);
-            await context.AddAsync(accountDeactivated);
-            await context.SaveChangesAsync();
+        // Act
+        var resultList =
+            await new GetExcludedAccountQuery.Handler(contextAdapterMock.Object)
+                .Handle(new GetExcludedAccountQuery(), default);
 
-            // Act
-            List<Account> resultList =
-                await new GetExcludedAccountQuery.Handler(contextAdapterMock.Object)
-                   .Handle(new GetExcludedAccountQuery(), default);
-
-            // Assert
-            resultList.Should().ContainSingle();
-            resultList[0].CurrentBalance.Should().Be(80);
-        }
+        // Assert
+        resultList.Should().ContainSingle();
+        resultList[0].CurrentBalance.Should().Be(80);
     }
 }

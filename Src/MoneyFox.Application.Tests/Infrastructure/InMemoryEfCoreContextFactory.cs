@@ -3,29 +3,28 @@ using MoneyFox.Infrastructure.Persistence;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace MoneyFox.Application.Tests.Infrastructure
+namespace MoneyFox.Application.Tests.Infrastructure;
+
+[ExcludeFromCodeCoverage]
+internal static class InMemoryEfCoreContextFactory
 {
-    [ExcludeFromCodeCoverage]
-    internal static class InMemoryEfCoreContextFactory
+    public static EfCoreContext Create()
     {
-        public static EfCoreContext Create()
-        {
-            DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
-                                                     .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                                                     .Options;
+        var options = new DbContextOptionsBuilder<EfCoreContext>()
+                      .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                      .Options;
 
-            var context = new EfCoreContext(options);
+        var context = new EfCoreContext(options);
 
-            context.Database.EnsureCreated();
-            context.SaveChanges();
+        context.Database.EnsureCreated();
+        context.SaveChanges();
 
-            return context;
-        }
+        return context;
+    }
 
-        public static void Destroy(EfCoreContext context)
-        {
-            context.Database.EnsureDeleted();
-            context.Dispose();
-        }
+    public static void Destroy(EfCoreContext context)
+    {
+        context.Database.EnsureDeleted();
+        context.Dispose();
     }
 }

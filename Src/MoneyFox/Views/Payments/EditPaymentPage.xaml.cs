@@ -6,8 +6,6 @@ namespace MoneyFox.Views.Payments
 {
     public partial class EditPaymentPage
     {
-        private EditPaymentViewModel ViewModel => (EditPaymentViewModel)BindingContext;
-
         private readonly int paymentId;
 
         public EditPaymentPage(int paymentId)
@@ -36,6 +34,8 @@ namespace MoneyFox.Views.Payments
             ToolbarItems.Add(cancelItem);
             ToolbarItems.Add(saveItem);
         }
+
+        private EditPaymentViewModel ViewModel => (EditPaymentViewModel)BindingContext;
 
         protected override async void OnAppearing() => await ViewModel.InitializeAsync(paymentId);
     }

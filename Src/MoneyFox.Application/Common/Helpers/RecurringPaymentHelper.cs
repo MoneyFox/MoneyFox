@@ -15,7 +15,7 @@ namespace MoneyFox.Application.Common.Helpers
         private const int BIMONTHLY_RECURRENCE_MONTHS = -2;
 
         /// <summary>
-        /// Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
+        ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
         /// </summary>
         /// <param name="payment">Last occurrence of the recurring payment.</param>
         /// <returns>True or False if the payment has to be repeated.</returns>
@@ -39,7 +39,10 @@ namespace MoneyFox.Application.Common.Helpers
             return CheckRecurrence(payment.RecurringPayment);
         }
 
-        [SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "Switch")]
+        [SuppressMessage(
+            "Critical Code Smell",
+            "S1541:Methods and properties should not be too complex",
+            Justification = "Switch")]
         private static bool CheckRecurrence(RecurringPayment recurringPayment)
         {
             switch(recurringPayment.Recurrence)
@@ -53,12 +56,12 @@ namespace MoneyFox.Application.Common.Helpers
                            && DateTime.Today.DayOfWeek != DayOfWeek.Sunday;
 
                 case PaymentRecurrence.Weekly:
-                    TimeSpan daysWeekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
+                    var daysWeekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
 
                     return daysWeekly.Days >= WEEKLY_RECURRENCE_DAYS;
 
                 case PaymentRecurrence.Biweekly:
-                    TimeSpan daysBiweekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
+                    var daysBiweekly = DateTime.Today.Date - recurringPayment.LastRecurrenceCreated.Date;
 
                     return daysBiweekly.Days >= BIWEEKLY_RECURRENCE_DAYS;
 
@@ -66,7 +69,7 @@ namespace MoneyFox.Application.Common.Helpers
                     return DateTime.Now.Month != recurringPayment.LastRecurrenceCreated.Date.Month;
 
                 case PaymentRecurrence.Bimonthly:
-                    DateTime date = DateTime.Now.AddMonths(BIMONTHLY_RECURRENCE_MONTHS);
+                    var date = DateTime.Now.AddMonths(BIMONTHLY_RECURRENCE_MONTHS);
 
                     return recurringPayment.LastRecurrenceCreated.Date.Month <= date.Month
                            && recurringPayment.LastRecurrenceCreated.Date.Year == date.Year;
@@ -78,8 +81,8 @@ namespace MoneyFox.Application.Common.Helpers
                     return CheckBiannually(recurringPayment);
 
                 case PaymentRecurrence.Yearly:
-                    return DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
-                           && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month
+                    return (DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
+                            && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month)
                            || DateTime.Now.Year - recurringPayment.LastRecurrenceCreated.Date.Year > 1;
 
                 default:
@@ -89,13 +92,13 @@ namespace MoneyFox.Application.Common.Helpers
 
         private static bool CheckQuarterly(RecurringPayment recurringPayment)
         {
-            TimeSpan dateDiff = DateTime.Now - recurringPayment.LastRecurrenceCreated.Date;
+            var dateDiff = DateTime.Now - recurringPayment.LastRecurrenceCreated.Date;
             return dateDiff.TotalDays >= QUARTERLY_RECURRENCE_DAYS;
         }
 
         private static bool CheckBiannually(RecurringPayment recurringPayment)
         {
-            TimeSpan dateDiff = DateTime.Now - recurringPayment.LastRecurrenceCreated.Date;
+            var dateDiff = DateTime.Now - recurringPayment.LastRecurrenceCreated.Date;
 
             return dateDiff.TotalDays >= BIANNUALLY_RECURRENCE_DAYS;
         }
@@ -104,10 +107,10 @@ namespace MoneyFox.Application.Common.Helpers
         {
             if(recurringPayment.Recurrence == PaymentRecurrence.Monthly)
             {
-                DateTime date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
+                var date = DateTime.Today.AddDays(recurringPayment.StartDate.Day - DateTime.Today.Day);
 
-                int value = recurringPayment.StartDate.Day; //the Day value i.e. 31
-                int max = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
+                var value = recurringPayment.StartDate.Day; //the Day value i.e. 31
+                var max = DateTime.DaysInMonth(DateTime.Today.Year, DateTime.Today.Month);
                 double difference = -(value - max);
 
                 if(difference < 0)

@@ -3,7 +3,6 @@ using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
-using MoneyFox.Domain.Entities;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,8 +20,8 @@ namespace MoneyFox.Application.Categories.Command.DeleteCategoryById
 
         public class Handler : IRequestHandler<DeleteCategoryByIdCommand>
         {
-            private readonly IContextAdapter contextAdapter;
             private readonly IBackupService backupService;
+            private readonly IContextAdapter contextAdapter;
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter, IBackupService backupService, ISettingsFacade settingsFacade)
@@ -35,7 +34,7 @@ namespace MoneyFox.Application.Categories.Command.DeleteCategoryById
             public async Task<Unit> Handle(DeleteCategoryByIdCommand request, CancellationToken cancellationToken)
             {
                 await backupService.RestoreBackupAsync();
-                Category entityToDelete = await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
+                var entityToDelete = await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
 
                 contextAdapter.Context.Categories.Remove(entityToDelete);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);

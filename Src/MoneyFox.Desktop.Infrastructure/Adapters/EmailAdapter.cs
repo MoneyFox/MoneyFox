@@ -21,7 +21,7 @@ namespace MoneyFox.Desktop.Infrastructure.Adapters
         {
             var emailMessage = new EmailMessage {Subject = subject, Body = body};
 
-            foreach(EmailRecipient emailRecipient in recipients.Select(s => new EmailRecipient(s)))
+            foreach(var emailRecipient in recipients.Select(s => new EmailRecipient(s)))
             {
                 emailMessage.To.Add(emailRecipient);
             }

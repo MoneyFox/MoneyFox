@@ -24,11 +24,13 @@ namespace MoneyFox.Uwp.Services
 
             try
             {
-                JumpList jumpList = await JumpList.LoadCurrentAsync();
+                var jumpList = await JumpList.LoadCurrentAsync();
                 jumpList.Items.Clear();
                 jumpList.SystemGroupKind = JumpListSystemGroupKind.None;
 
-                var listItemAddPayment = JumpListItem.CreateWithArguments(AppConstants.AddPaymentId, Strings.AddPaymentLabel);
+                var listItemAddPayment = JumpListItem.CreateWithArguments(
+                    AppConstants.AddPaymentId,
+                    Strings.AddPaymentLabel);
                 listItemAddPayment.Logo = new Uri(INCOME_ICON);
                 jumpList.Items.Add(listItemAddPayment);
 

@@ -17,8 +17,8 @@ namespace MoneyFox.ViewModels.Dialogs
 
     public class SelectDateRangeDialogViewModel : ViewModelBase
     {
-        private DateTime startDate;
         private DateTime endDate;
+        private DateTime startDate;
 
         public SelectDateRangeDialogViewModel()
         {
@@ -27,16 +27,7 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        ///     Initalize the viewmodel with a previous sent message.
-        /// </summary>
-        public void Initialize(DateSelectedMessage message)
-        {
-            StartDate = message.StartDate;
-            EndDate = message.EndDate;
-        }
-
-        /// <summary>
-        /// Start Date for the custom date range
+        ///     Start Date for the custom date range
         /// </summary>
         public DateTime StartDate
         {
@@ -49,7 +40,7 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        /// End Date for the custom date range
+        ///     End Date for the custom date range
         /// </summary>
         public DateTime EndDate
         {
@@ -62,9 +53,18 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        /// Selects the dates and notifies observer via the MessageHub
+        ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
         public RelayCommand DoneCommand => new RelayCommand(Done);
+
+        /// <summary>
+        ///     Initalize the viewmodel with a previous sent message.
+        /// </summary>
+        public void Initialize(DateSelectedMessage message)
+        {
+            StartDate = message.StartDate;
+            EndDate = message.EndDate;
+        }
 
         private void Done() => MessengerInstance.Send(new DateSelectedMessage(this, StartDate, EndDate));
     }

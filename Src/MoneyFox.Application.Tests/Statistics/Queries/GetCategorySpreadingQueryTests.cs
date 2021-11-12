@@ -14,215 +14,217 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Statistics.Queries
+namespace MoneyFox.Application.Tests.Statistics.Queries;
+
+[ExcludeFromCodeCoverage]
+[Collection("CultureCollection")]
+public class GetCategorySpreadingQueryTests : IDisposable
 {
-    [ExcludeFromCodeCoverage]
-    [Collection("CultureCollection")]
-    public class GetCategorySpreadingQueryTests : IDisposable
+    private readonly EfCoreContext context;
+    private readonly Mock<IContextAdapter> contextAdapterMock;
+
+    public GetCategorySpreadingQueryTests()
     {
-        private readonly EfCoreContext context;
-        private readonly Mock<IContextAdapter> contextAdapterMock;
+        context = InMemoryEfCoreContextFactory.Create();
 
-        public GetCategorySpreadingQueryTests()
+        contextAdapterMock = new Mock<IContextAdapter>();
+        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+    }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+
+    [Fact]
+    public async Task GetValues_CorrectSums()
+    {
+        // Arrange
+        var testCat1 = new Category("Ausgehen");
+        var testCat2 = new Category("Rent");
+        var testCat3 = new Category("Food");
+
+        var account = new Account("test");
+
+        var paymentList = new List<Payment>
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            new(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
+            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
+            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2)
+        };
 
-            contextAdapterMock = new Mock<IContextAdapter>();
-            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-        }
+        context.Payments.AddRange(paymentList);
+        context.SaveChanges();
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
-
-        [Fact]
-        public async Task GetValues_CorrectSums()
-        {
-            // Arrange
-            var testCat1 = new Category("Ausgehen");
-            var testCat2 = new Category("Rent");
-            var testCat3 = new Category("Food");
-
-            var account = new Account("test");
-
-            var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2)
-            };
-
-            context.Payments.AddRange(paymentList);
-            context.SaveChanges();
-
-            // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-               .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
-               .ToList();
-
-            // Assert
-            result.Should().HaveCount(3);
-            result[0].Value.Should().Be(90);
-            result[1].Value.Should().Be(30);
-            result[2].Value.Should().Be(10);
-        }
-
-        [Fact]
-        public async Task GetValues_IgnoreSingleIncomes()
-        {
-            // Arrange
-            var testCat1 = new Category("Ausgehen");
-            var testCat2 = new Category("Rent");
-            var testCat3 = new Category("Food");
-
-            var account = new Account("test");
-            var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3)
-            };
-
-            context.Payments.AddRange(paymentList);
-            context.SaveChanges();
-
-            // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+        // Act
+        var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
                 .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
-                .ToList();
+            .ToList();
 
-            // Assert
-            result.Should().HaveCount(2);
-        }
+        // Assert
+        result.Should().HaveCount(3);
+        result[0].Value.Should().Be(90);
+        result[1].Value.Should().Be(30);
+        result[2].Value.Should().Be(10);
+    }
 
-        [Fact]
-        public async Task GetValues_CorrectLabel()
+    [Fact]
+    public async Task GetValues_IgnoreSingleIncomes()
+    {
+        // Arrange
+        var testCat1 = new Category("Ausgehen");
+        var testCat2 = new Category("Rent");
+        var testCat3 = new Category("Food");
+
+        var account = new Account("test");
+        var paymentList = new List<Payment>
         {
-            // Arrange
-            var testCat1 = new Category("Ausgehen");
-            var testCat2 = new Category("Rent");
+            new(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
+            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3)
+        };
 
-            var account = new Account("test");
-            var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2)
-            };
+        context.Payments.AddRange(paymentList);
+        context.SaveChanges();
 
-            context.Payments.AddRange(paymentList);
-            context.SaveChanges();
-
-            // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+        // Act
+        var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
                 .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
-                .ToList();
+            .ToList();
 
-            // Assert
-            result[0].Label.Should().Be(testCat1.Name);
-            result[1].Label.Should().Be(testCat2.Name);
-        }
+        // Assert
+        result.Should().HaveCount(2);
+    }
 
-        [Fact]
-        public async Task GetValues_CorrectColor()
+    [Fact]
+    public async Task GetValues_CorrectLabel()
+    {
+        // Arrange
+        var testCat1 = new Category("Ausgehen");
+        var testCat2 = new Category("Rent");
+
+        var account = new Account("test");
+        var paymentList = new List<Payment>
         {
-            // Arrange
-            var account = new Account("test");
-            var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("d")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("e")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("f")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("g"))
-            };
+            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2)
+        };
 
-            context.Payments.AddRange(paymentList);
-            context.SaveChanges();
+        context.Payments.AddRange(paymentList);
+        context.SaveChanges();
 
-            // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+        // Act
+        var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
                 .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
-                .ToList();
+            .ToList();
 
-            // Assert
-            result[0].Color.Should().Be("#266489");
-            result[1].Color.Should().Be("#68B9C0");
-            result[2].Color.Should().Be("#90D585");
-            result[3].Color.Should().Be("#F3C151");
-            result[4].Color.Should().Be("#F37F64");
-            result[5].Color.Should().Be("#424856");
-            result[6].Color.Should().Be("#8F97A4");
-        }
+        // Assert
+        result[0].Label.Should().Be(testCat1.Name);
+        result[1].Label.Should().Be(testCat2.Name);
+    }
 
-        [Theory]
-        [InlineData("en-US", '$')]
-        [InlineData("de-CH", 'C')]
-        public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
+    [Fact]
+    public async Task GetValues_CorrectColor()
+    {
+        // Arrange
+        var account = new Account("test");
+        var paymentList = new List<Payment>
         {
-            // Arrange
-            var cultureInfo = new CultureInfo(culture);
-            CultureHelper.CurrentCulture = cultureInfo;
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c")),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("d")),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("e")),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("f")),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("g"))
+        };
 
-            var account = new Account("test");
-            var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c"))
-            };
+        context.Payments.AddRange(paymentList);
+        context.SaveChanges();
 
-            context.Payments.AddRange(paymentList);
-            context.SaveChanges();
-
-            // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+        // Act
+        var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
                 .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
-                .ToList();
+            .ToList();
 
-            // Assert
-            result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);
-            result[1].ValueLabel[0].Should().Be(expectedCurrencySymbol);
-            result[2].ValueLabel[0].Should().Be(expectedCurrencySymbol);
-        }
+        // Assert
+        result[0].Color.Should().Be("#266489");
+        result[1].Color.Should().Be("#68B9C0");
+        result[2].Color.Should().Be("#90D585");
+        result[3].Color.Should().Be("#F3C151");
+        result[4].Color.Should().Be("#F37F64");
+        result[5].Color.Should().Be("#424856");
+        result[6].Color.Should().Be("#8F97A4");
+    }
 
-        [Fact]
-        public async Task CorrectSumsForIncome()
+    [Theory]
+    [InlineData("en-US", '$')]
+    [InlineData("de-CH", 'C')]
+    public async Task GetValues_CorrectCurrency(string culture, char expectedCurrencySymbol)
+    {
+        // Arrange
+        var cultureInfo = new CultureInfo(culture);
+        CultureHelper.CurrentCulture = cultureInfo;
+
+        var account = new Account("test");
+        var paymentList = new List<Payment>
         {
-            // Arrange
-            var testCat1 = new Category("Ausgehen");
-            var testCat2 = new Category("Rent");
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("a")),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("b")),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: new Category("c"))
+        };
 
-            var account = new Account("test");
+        context.Payments.AddRange(paymentList);
+        context.SaveChanges();
 
-            var paymentList = new List<Payment>
-            {
-                new Payment(DateTime.Today, 90, PaymentType.Income, account, category: testCat1),
-                new Payment(DateTime.Today, 60, PaymentType.Expense, account, category: testCat1),
-                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2),
-                new Payment(DateTime.Today, 90, PaymentType.Income, account, category: testCat2)
-            };
+        // Act
+        var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
+            .ToList();
 
-            context.Payments.AddRange(paymentList);
-            context.SaveChanges();
+        // Assert
+        result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);
+        result[1].ValueLabel[0].Should().Be(expectedCurrencySymbol);
+        result[2].ValueLabel[0].Should().Be(expectedCurrencySymbol);
+    }
 
-            // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-               .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3),
-                                                            DateTime.Today.AddDays(3),
-                                                            PaymentType.Income), default))
-               .ToList();
+    [Fact]
+    public async Task CorrectSumsForIncome()
+    {
+        // Arrange
+        var testCat1 = new Category("Ausgehen");
+        var testCat2 = new Category("Rent");
 
-            // Assert
-            result.Should().HaveCount(2);
-            result[0].Value.Should().Be(80);
-            result[1].Value.Should().Be(30);
-        }
+        var account = new Account("test");
+
+        var paymentList = new List<Payment>
+        {
+            new(DateTime.Today, 90, PaymentType.Income, account, category: testCat1),
+            new(DateTime.Today, 60, PaymentType.Expense, account, category: testCat1),
+            new(DateTime.Today, 10, PaymentType.Expense, account, category: testCat2),
+            new(DateTime.Today, 90, PaymentType.Income, account, category: testCat2)
+        };
+
+        context.Payments.AddRange(paymentList);
+        context.SaveChanges();
+
+        // Act
+        var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                .Handle(
+                    new GetCategorySpreadingQuery(
+                        DateTime.Today.AddDays(-3),
+                        DateTime.Today.AddDays(3),
+                        PaymentType.Income),
+                    default))
+            .ToList();
+
+        // Assert
+        result.Should().HaveCount(2);
+        result[0].Value.Should().Be(80);
+        result[1].Value.Should().Be(30);
     }
 }

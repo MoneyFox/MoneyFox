@@ -28,30 +28,32 @@ namespace MoneyFox.Uwp.Services
 
         public static async Task SetRequestedThemeAsync()
         {
-            foreach(CoreApplicationView view in CoreApplication.Views)
+            foreach(var view in CoreApplication.Views)
             {
                 await view.Dispatcher
-                          .RunAsync(CoreDispatcherPriority.Normal, () =>
-                          {
-                              if(Window.Current.Content is FrameworkElement frameworkElement)
+                          .RunAsync(
+                              CoreDispatcherPriority.Normal,
+                              () =>
                               {
-                                  try
+                                  if(Window.Current.Content is FrameworkElement frameworkElement)
                                   {
-                                      frameworkElement.RequestedTheme = Theme;
+                                      try
+                                      {
+                                          frameworkElement.RequestedTheme = Theme;
+                                      }
+                                      catch(AccessViolationException ex)
+                                      {
+                                          Crashes.TrackError(ex);
+                                      }
                                   }
-                                  catch(AccessViolationException ex)
-                                  {
-                                      Crashes.TrackError(ex);
-                                  }
-                              }
-                          });
+                              });
             }
         }
 
         private static ElementTheme LoadThemeFromSettings()
         {
-            ElementTheme cacheTheme = ElementTheme.Default;
-            string themeName = ApplicationData.Current.LocalSettings.Read<string>(SettingsKey);
+            var cacheTheme = ElementTheme.Default;
+            var themeName = ApplicationData.Current.LocalSettings.Read<string>(SettingsKey);
 
             if(!string.IsNullOrEmpty(themeName))
             {
@@ -61,6 +63,7 @@ namespace MoneyFox.Uwp.Services
             return cacheTheme;
         }
 
-        private static void SaveThemeInSettings(ElementTheme theme) => ApplicationData.Current.LocalSettings.SaveString(SettingsKey, theme.ToString());
+        private static void SaveThemeInSettings(ElementTheme theme)
+            => ApplicationData.Current.LocalSettings.SaveString(SettingsKey, theme.ToString());
     }
 }

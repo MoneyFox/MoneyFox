@@ -8,57 +8,59 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExists
+namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExists;
+
+[ExcludeFromCodeCoverage]
+public class GetIfCategoryWithNameExistsQueryTests : IDisposable
 {
-    [ExcludeFromCodeCoverage]
-    public class GetIfCategoryWithNameExistsQueryTests : IDisposable
+    private readonly EfCoreContext context;
+
+    public GetIfCategoryWithNameExistsQueryTests()
     {
-        private readonly EfCoreContext context;
+        context = InMemoryEfCoreContextFactory.Create();
+    }
 
-        public GetIfCategoryWithNameExistsQueryTests()
-        {
-            context = InMemoryEfCoreContextFactory.Create();
-        }
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
 
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+    [Fact]
+    public async Task CategoryWithSameNameDontExist()
+    {
+        // Arrange
+        var testCat1 = new Category("Ausgehen");
+        await context.Categories.AddAsync(testCat1);
+        await context.SaveChangesAsync();
 
-        [Fact]
-        public async Task CategoryWithSameNameDontExist()
-        {
-            // Arrange
-            var testCat1 = new Category("Ausgehen");
-            await context.Categories.AddAsync(testCat1);
-            await context.SaveChangesAsync();
+        // Act
+        var result =
+            await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(
+                new GetIfCategoryWithNameExistsQuery("Foo"),
+                default);
 
-            // Act
-            bool result =
-                await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(new GetIfCategoryWithNameExistsQuery("Foo"), default);
+        // Assert
+        result.Should().BeFalse();
+    }
 
-            // Assert
-            result.Should().BeFalse();
-        }
+    [Fact]
+    public async Task CategoryWithSameNameExist()
+    {
+        // Arrange
+        var testCat1 = new Category("Ausgehen");
+        await context.Categories.AddAsync(testCat1);
+        await context.SaveChangesAsync();
 
-        [Fact]
-        public async Task CategoryWithSameNameExist()
-        {
-            // Arrange
-            var testCat1 = new Category("Ausgehen");
-            await context.Categories.AddAsync(testCat1);
-            await context.SaveChangesAsync();
+        // Act
+        var result =
+            await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(
+                new GetIfCategoryWithNameExistsQuery(testCat1.Name),
+                default);
 
-            // Act
-            bool result =
-                await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(new GetIfCategoryWithNameExistsQuery(testCat1.Name),
-                                                                                   default);
-
-            // Assert
-            result.Should().BeTrue();
-        }
+        // Assert
+        result.Should().BeTrue();
     }
 }

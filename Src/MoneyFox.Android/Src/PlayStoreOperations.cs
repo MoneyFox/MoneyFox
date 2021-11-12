@@ -6,19 +6,19 @@ using MoneyFox.Application.Common.Interfaces;
 namespace MoneyFox.Droid
 {
     /// <summary>
-    /// Gives access to the features of google play on android.
+    ///     Gives access to the features of google play on android.
     /// </summary>
     public class PlayStoreOperations : IStoreOperations
     {
         private const string MARKET_URI = "market://details?id=";
 
         /// <summary>
-        /// Open the app page in the play store to rate the app. If the store page couldn't be opened,     the browser
-        /// will be opened.
+        ///     Open the app page in the play store to rate the app. If the store page couldn't be opened,     the browser
+        ///     will be opened.
         /// </summary>
         public void RateApp()
         {
-            string appPackageName = Android.App.Application.Context.PackageName ?? "";
+            var appPackageName = Android.App.Application.Context.PackageName ?? "";
 
             try
             {
@@ -31,8 +31,9 @@ namespace MoneyFox.Droid
             }
             catch(ActivityNotFoundException)
             {
-                var intent = new Intent(Intent.ActionView,
-                                        Uri.Parse($"http://play.google.com/store/apps/details?id={appPackageName}"));
+                var intent = new Intent(
+                    Intent.ActionView,
+                    Uri.Parse($"http://play.google.com/store/apps/details?id={appPackageName}"));
                 // we need to add this, because the activity is in a new context.
                 // Otherwise the runtime will block the execution and throw an exception
                 intent.AddFlags(ActivityFlags.NewTask);

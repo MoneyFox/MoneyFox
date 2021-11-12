@@ -9,11 +9,11 @@ namespace MoneyFox.Uwp.ViewModels
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
-        private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
+        private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
 
         /// <summary>
-        /// Indicates wether the filter for only cleared Payments is active or not.
+        ///     Indicates wether the filter for only cleared Payments is active or not.
         /// </summary>
         public bool IsClearedFilterActive
         {
@@ -32,7 +32,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// Indicates whether the filter to only display recurring Payments is active or not.
+        ///     Indicates whether the filter to only display recurring Payments is active or not.
         /// </summary>
         public bool IsRecurringFilterActive
         {
@@ -51,7 +51,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// Start of the time range to load payments.
+        ///     Start of the time range to load payments.
         /// </summary>
         public DateTime TimeRangeStart
         {
@@ -70,7 +70,7 @@ namespace MoneyFox.Uwp.ViewModels
         }
 
         /// <summary>
-        /// End of the time range to load payments.
+        ///     End of the time range to load payments.
         /// </summary>
         public DateTime TimeRangeEnd
         {
@@ -88,15 +88,13 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        private void UpdateList()
-        {
-            MessengerInstance.Send(new PaymentListFilterChangedMessage
+        private void UpdateList() => MessengerInstance.Send(
+            new PaymentListFilterChangedMessage
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,
                 TimeRangeStart = TimeRangeStart,
                 TimeRangeEnd = TimeRangeEnd
             });
-        }
     }
 }

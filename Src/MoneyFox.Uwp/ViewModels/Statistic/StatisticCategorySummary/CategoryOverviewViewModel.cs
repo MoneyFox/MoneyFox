@@ -10,14 +10,18 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
     public class CategoryOverviewViewModel : ViewModelBase
     {
         private const decimal DECIMAL_DELTA = 0.01m;
+        private decimal average;
         private int categoryId;
         private string label = "";
-        private decimal value;
-        private decimal average;
         private decimal percentage;
 
+        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source
+            = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
+
+        private decimal value;
+
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public int CategoryId
         {
@@ -35,7 +39,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         }
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public decimal Value
         {
@@ -53,7 +57,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         }
 
         /// <summary>
-        /// Average of this item
+        ///     Average of this item
         /// </summary>
         public decimal Average
         {
@@ -71,7 +75,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         }
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public decimal Percentage
         {
@@ -89,7 +93,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         }
 
         /// <summary>
-        /// Label to show in the chart
+        ///     Label to show in the chart
         /// </summary>
         public string Label
         {
@@ -105,9 +109,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 RaisePropertyChanged();
             }
         }
-
-        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source
-            = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
 
         /// <summary>
         ///     Source for the payment list

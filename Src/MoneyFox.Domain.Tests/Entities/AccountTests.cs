@@ -5,320 +5,329 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Xunit;
 
-namespace MoneyFox.Domain.Tests.Entities
+namespace MoneyFox.Domain.Tests.Entities;
+
+[ExcludeFromCodeCoverage]
+public class AccountTests
 {
-    [ExcludeFromCodeCoverage]
-    public class AccountTests
+    [Theory]
+    [InlineData("")]
+    [InlineData(" ")]
+    public void Ctor_NameEmpty_ArgumentNullException(string name) =>
+        // Arrange
+
+        // Act / Assert
+        Assert.Throws<ArgumentNullException>(() => new Account(name));
+
+    [Theory]
+    [InlineData(-12, true)]
+    [InlineData(12, false)]
+    [InlineData(0, false)]
+    public void Ctor_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
     {
-        [Theory]
-        [InlineData("")]
-        [InlineData(" ")]
-        public void Ctor_NameEmpty_ArgumentNullException(string name) =>
-            // Arrange
+        // Arrange
 
-            // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new Account(name));
+        // Act / Assert
+        var account = new Account("test", currentBalance);
 
-        [Theory]
-        [InlineData(-12, true)]
-        [InlineData(12, false)]
-        [InlineData(0, false)]
-        public void Ctor_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
-        {
-            // Arrange
+        // Assert
+        account.IsOverdrawn.Should().Be(expectedIsOverdrawn);
+    }
 
-            // Act / Assert
-            var account = new Account("test", currentBalance);
+    [Fact]
+    public void Ctor_NoParams_DefaultValuesSet()
+    {
+        // Arrange
+        const string testName = "test";
 
-            // Assert
-            account.IsOverdrawn.Should().Be(expectedIsOverdrawn);
-        }
+        // Act / Assert
+        var account = new Account(testName);
 
-        [Fact]
-        public void Ctor_NoParams_DefaultValuesSet()
-        {
-            // Arrange
-            const string testName = "test";
+        // Assert
+        account.Name.Should().Be(testName);
+        account.CurrentBalance.Should().Be(0);
+        account.Note.Should().BeEmpty();
+        account.IsOverdrawn.Should().BeFalse();
+        account.IsExcluded.Should().BeFalse();
+        account.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+        account.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+    }
 
-            // Act / Assert
-            var account = new Account(testName);
+    [Fact]
+    public void Ctor_Params_ValuesCorrectlySet()
+    {
+        // Arrange
+        const string testName = "test";
+        const decimal testBalance = 10;
+        const string testNote = "foo";
+        const bool testExcluded = true;
 
-            // Assert
-            account.Name.Should().Be(testName);
-            account.CurrentBalance.Should().Be(0);
-            account.Note.Should().BeEmpty();
-            account.IsOverdrawn.Should().BeFalse();
-            account.IsExcluded.Should().BeFalse();
-            account.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-            account.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-        }
+        // Act / Assert
+        var account = new Account(testName, testBalance, testNote, testExcluded);
 
-        [Fact]
-        public void Ctor_Params_ValuesCorrectlySet()
-        {
-            // Arrange
-            const string testName = "test";
-            const decimal testBalance = 10;
-            const string testNote = "foo";
-            const bool testExcluded = true;
+        // Assert
+        account.Name.Should().Be(testName);
+        account.CurrentBalance.Should().Be(testBalance);
+        account.Note.Should().Be(testNote);
+        account.IsExcluded.Should().Be(testExcluded);
+        account.IsOverdrawn.Should().BeFalse();
+    }
 
-            // Act / Assert
-            var account = new Account(testName, testBalance, testNote, testExcluded);
+    [Fact]
+    public void CtorDeactivatedShouldBeFalse()
+    {
+        // Arrange
+        // Act
+        var testAccount = new Account("foo");
 
-            // Assert
-            account.Name.Should().Be(testName);
-            account.CurrentBalance.Should().Be(testBalance);
-            account.Note.Should().Be(testNote);
-            account.IsExcluded.Should().Be(testExcluded);
-            account.IsOverdrawn.Should().BeFalse();
-        }
+        // Assert
+        testAccount.IsDeactivated.Should().BeFalse();
+    }
 
-        [Fact]
-        public void CtorDeactivatedShouldBeFalse()
-        {
-            // Arrange
-            // Act
-            var testAccount = new Account("foo");
+    [Theory]
+    [InlineData("")]
+    [InlineData(" ")]
+    public void UpdateData_NameEmpty_ArgumentNullException(string name)
+    {
+        // Arrange
+        var testAccount = new Account("test");
 
-            // Assert
-            testAccount.IsDeactivated.Should().BeFalse();
-        }
+        // Act / Assert
+        Assert.Throws<ArgumentNullException>(() => testAccount.UpdateAccount(name));
+    }
 
-        [Theory]
-        [InlineData("")]
-        [InlineData(" ")]
-        public void UpdateData_NameEmpty_ArgumentNullException(string name)
-        {
-            // Arrange
-            var testAccount = new Account("test");
+    [Theory]
+    [InlineData(-12, true)]
+    [InlineData(12, false)]
+    [InlineData(0, false)]
+    public void UpdateData_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
+    {
+        // Arrange
+        var testAccount = new Account("test");
 
-            // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => testAccount.UpdateAccount(name));
-        }
+        // Act / Assert
+        testAccount.UpdateAccount(testAccount.Name, currentBalance);
 
-        [Theory]
-        [InlineData(-12, true)]
-        [InlineData(12, false)]
-        [InlineData(0, false)]
-        public void UpdateData_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
-        {
-            // Arrange
-            var testAccount = new Account("test");
+        // Assert
+        testAccount.IsOverdrawn.Should().Be(expectedIsOverdrawn);
+    }
 
-            // Act / Assert
-            testAccount.UpdateAccount(testAccount.Name, currentBalance);
+    [Fact]
+    public void UpdateData_NoParams_DefaultValuesSet()
+    {
+        // Arrange
+        const string testname = "test";
+        var testAccount = new Account("foo");
 
-            // Assert
-            testAccount.IsOverdrawn.Should().Be(expectedIsOverdrawn);
-        }
+        // Act / Assert
+        testAccount.UpdateAccount(testname);
 
-        [Fact]
-        public void UpdateData_NoParams_DefaultValuesSet()
-        {
-            // Arrange
-            const string testname = "test";
-            var testAccount = new Account("foo");
+        // Assert
+        testAccount.Name.Should().Be(testname);
+        testAccount.CurrentBalance.Should().Be(0);
+        testAccount.Note.Should().BeEmpty();
+        testAccount.IsOverdrawn.Should().BeFalse();
+        testAccount.IsExcluded.Should().BeFalse();
+    }
 
-            // Act / Assert
-            testAccount.UpdateAccount(testname);
+    [Fact]
+    public void UpdateData_Params_ValuesCorrectlySet()
+    {
+        // Arrange
+        const string testname = "test";
+        const decimal testBalance = 10;
+        const string testnote = "foo";
+        const bool testExcluded = true;
 
-            // Assert
-            testAccount.Name.Should().Be(testname);
-            testAccount.CurrentBalance.Should().Be(0);
-            testAccount.Note.Should().BeEmpty();
-            testAccount.IsOverdrawn.Should().BeFalse();
-            testAccount.IsExcluded.Should().BeFalse();
-        }
+        var testAccount = new Account("foo");
 
-        [Fact]
-        public void UpdateData_Params_ValuesCorrectlySet()
-        {
-            // Arrange
-            const string testname = "test";
-            const decimal testBalance = 10;
-            const string testnote = "foo";
-            const bool testExcluded = true;
+        // Act / Assert
+        testAccount.UpdateAccount(testname, testBalance, testnote, testExcluded);
 
-            var testAccount = new Account("foo");
+        // Assert
+        testAccount.Name.Should().Be(testname);
+        testAccount.CurrentBalance.Should().Be(testBalance);
+        testAccount.Note.Should().Be(testnote);
+        testAccount.IsExcluded.Should().Be(testExcluded);
+        testAccount.IsOverdrawn.Should().BeFalse();
+    }
 
-            // Act / Assert
-            testAccount.UpdateAccount(testname, testBalance, testnote, testExcluded);
+    [Fact]
+    public void UpdateData_Params_ModificationDateSet()
+    {
+        // Arrange
 
-            // Assert
-            testAccount.Name.Should().Be(testname);
-            testAccount.CurrentBalance.Should().Be(testBalance);
-            testAccount.Note.Should().Be(testnote);
-            testAccount.IsExcluded.Should().Be(testExcluded);
-            testAccount.IsOverdrawn.Should().BeFalse();
-        }
+        var testAccount = new Account("foo");
 
-        [Fact]
-        public void UpdateData_Params_ModificationDateSet()
-        {
-            // Arrange
+        // Act / Assert
+        testAccount.UpdateAccount("asdf", 123);
 
-            var testAccount = new Account("foo");
+        // Assert
+        testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+    }
 
-            // Act / Assert
-            testAccount.UpdateAccount("asdf", 123);
+    [Fact]
+    public void AddPaymentAmount_PaymentNull_ArgumentNullException()
+    {
+        // Arrange
+        var account = new Account("test");
 
-            // Assert
-            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-        }
+        // Act / Assert
+        Assert.Throws<ArgumentNullException>(() => account.AddPaymentAmount(null));
+    }
 
-        [Fact]
-        public void AddPaymentAmount_PaymentNull_ArgumentNullException()
-        {
-            // Arrange
-            var account = new Account("test");
+    [Theory]
+    [InlineData(PaymentType.Expense, 50)]
+    [InlineData(PaymentType.Income, 150)]
+    public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType,
+        decimal expectedBalance)
+    {
+        // Arrange
+        var account = new Account("Test", 100);
 
-            // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => account.AddPaymentAmount(null));
-        }
+        // Act
+        // AddPaymentAmount executed in the clear method
+        new Payment(DateTime.Today, 50, paymentType, account);
 
-        [Theory]
-        [InlineData(PaymentType.Expense, 50)]
-        [InlineData(PaymentType.Income, 150)]
-        public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
-        {
-            // Arrange
-            var account = new Account("Test", 100);
+        // Assert
+        account.CurrentBalance.Should().Be(expectedBalance);
+    }
 
-            // Act
-            // AddPaymentAmount executed in the clear method
-            new Payment(DateTime.Today, 50, paymentType, account);
+    [Theory]
+    [InlineData(PaymentType.Expense)]
+    [InlineData(PaymentType.Income)]
+    public void AddPaymentAmount_IncomeExpenseNotCleared_CurrentBalanceNotAdjusted(PaymentType paymentType)
+    {
+        // Arrange
+        var account = new Account("Test", 100);
+        var payment = new Payment(DateTime.Today.AddDays(2), 50, paymentType, account);
 
-            // Assert
-            account.CurrentBalance.Should().Be(expectedBalance);
-        }
+        // Act
+        account.AddPaymentAmount(payment);
 
-        [Theory]
-        [InlineData(PaymentType.Expense)]
-        [InlineData(PaymentType.Income)]
-        public void AddPaymentAmount_IncomeExpenseNotCleared_CurrentBalanceNotAdjusted(PaymentType paymentType)
-        {
-            // Arrange
-            var account = new Account("Test", 100);
-            var payment = new Payment(DateTime.Today.AddDays(2), 50, paymentType, account);
+        // Assert
+        account.CurrentBalance.Should().Be(100);
+    }
 
-            // Act
-            account.AddPaymentAmount(payment);
+    [Fact]
+    public void AddPaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
+    {
+        // Arrange
+        var chargedAccount = new Account("Test", 100);
+        var targetAccount = new Account("Test", 100);
 
-            // Assert
-            account.CurrentBalance.Should().Be(100);
-        }
+        var chargedAccountId = typeof(Account).GetField(
+            "<Id>k__BackingField",
+            BindingFlags.Instance | BindingFlags.NonPublic);
+        chargedAccountId.SetValue(chargedAccount, 3);
 
-        [Fact]
-        public void AddPaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
-        {
-            // Arrange
-            var chargedAccount = new Account("Test", 100);
-            var targetAccount = new Account("Test", 100);
+        var targetAccountId = typeof(Account).GetField(
+            "<Id>k__BackingField",
+            BindingFlags.Instance | BindingFlags.NonPublic);
+        targetAccountId.SetValue(targetAccount, 4);
 
-            FieldInfo chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            chargedAccountId.SetValue(chargedAccount, 3);
+        // Act
+        // AddPaymentAmount executed in the clear method
+        new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
 
-            FieldInfo targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            targetAccountId.SetValue(targetAccount, 4);
+        // Assert
+        chargedAccount.CurrentBalance.Should().Be(50);
+        targetAccount.CurrentBalance.Should().Be(150);
+    }
 
-            // Act
-            // AddPaymentAmount executed in the clear method
-            new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+    [Fact]
+    public void AddPaymentAmount_Params_ModificationDateSet()
+    {
+        // Arrange
+        var testAccount = new Account("foo");
+        var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
 
-            // Assert
-            chargedAccount.CurrentBalance.Should().Be(50);
-            targetAccount.CurrentBalance.Should().Be(150);
-        }
+        // Act
+        testAccount.AddPaymentAmount(payment);
 
-        [Fact]
-        public void AddPaymentAmount_Params_ModificationDateSet()
-        {
-            // Arrange
-            var testAccount = new Account("foo");
-            var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
+        // Assert
+        testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+    }
 
-            // Act
-            testAccount.AddPaymentAmount(payment);
+    [Fact]
+    public void RemovePaymentAmount_PaymentNull_ArgumentNullException()
+    {
+        // Arrange
+        var account = new Account("test");
 
-            // Assert
-            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-        }
+        // Act / Assert
+        Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null));
+    }
 
-        [Fact]
-        public void RemovePaymentAmount_PaymentNull_ArgumentNullException()
-        {
-            // Arrange
-            var account = new Account("test");
+    [Theory]
+    [InlineData(PaymentType.Expense, 100)]
+    [InlineData(PaymentType.Income, 100)]
+    public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType,
+        decimal expectedBalance)
+    {
+        // Arrange
+        var account = new Account("Test", 100);
+        var payment = new Payment(DateTime.Today, 50, paymentType, account);
 
-            // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null));
-        }
+        // Act
+        account.RemovePaymentAmount(payment);
 
-        [Theory]
-        [InlineData(PaymentType.Expense, 100)]
-        [InlineData(PaymentType.Income, 100)]
-        public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
-        {
-            // Arrange
-            var account = new Account("Test", 100);
-            var payment = new Payment(DateTime.Today, 50, paymentType, account);
+        // Assert
+        account.CurrentBalance.Should().Be(expectedBalance);
+    }
 
-            // Act
-            account.RemovePaymentAmount(payment);
+    [Fact]
+    public void RemovePaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
+    {
+        // Arrange
+        var chargedAccount = new Account("Test", 100);
+        var targetAccount = new Account("Test", 100);
 
-            // Assert
-            account.CurrentBalance.Should().Be(expectedBalance);
-        }
+        var chargedAccountId = typeof(Account).GetField(
+            "<Id>k__BackingField",
+            BindingFlags.Instance | BindingFlags.NonPublic);
+        chargedAccountId.SetValue(chargedAccount, 3);
 
-        [Fact]
-        public void RemovePaymentAmount_Transfer_CurrentBalanceAdjustedCorrectly()
-        {
-            // Arrange
-            var chargedAccount = new Account("Test", 100);
-            var targetAccount = new Account("Test", 100);
+        var targetAccountId = typeof(Account).GetField(
+            "<Id>k__BackingField",
+            BindingFlags.Instance | BindingFlags.NonPublic);
+        targetAccountId.SetValue(targetAccount, 4);
 
-            FieldInfo chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            chargedAccountId.SetValue(chargedAccount, 3);
+        var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
 
-            FieldInfo targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
-            targetAccountId.SetValue(targetAccount, 4);
+        // Act
+        chargedAccount.RemovePaymentAmount(payment);
+        targetAccount.RemovePaymentAmount(payment);
 
-            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+        // Assert
+        chargedAccount.CurrentBalance.Should().Be(100);
+        targetAccount.CurrentBalance.Should().Be(100);
+    }
 
-            // Act
-            chargedAccount.RemovePaymentAmount(payment);
-            targetAccount.RemovePaymentAmount(payment);
+    [Fact]
+    public void RemovePaymentAmount_Params_ModificationDateSet()
+    {
+        // Arrange
+        var testAccount = new Account("foo");
+        var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
 
-            // Assert
-            chargedAccount.CurrentBalance.Should().Be(100);
-            targetAccount.CurrentBalance.Should().Be(100);
-        }
+        // Act
+        testAccount.RemovePaymentAmount(payment);
 
-        [Fact]
-        public void RemovePaymentAmount_Params_ModificationDateSet()
-        {
-            // Arrange
-            var testAccount = new Account("foo");
-            var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
+        // Assert
+        testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+    }
 
-            // Act
-            testAccount.RemovePaymentAmount(payment);
+    [Fact]
+    public void DisableAccountOnDeactivate()
+    {
+        // Arrange
+        var testAccount = new Account("foo");
 
-            // Assert
-            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-        }
+        // Act
+        testAccount.Deactivate();
 
-        [Fact]
-        public void DisableAccountOnDeactivate()
-        {
-            // Arrange
-            var testAccount = new Account("foo");
-
-            // Act
-            testAccount.Deactivate();
-
-            // Assert
-            testAccount.IsDeactivated.Should().BeTrue();
-        }
+        // Assert
+        testAccount.IsDeactivated.Should().BeTrue();
     }
 }

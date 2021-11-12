@@ -1,5 +1,4 @@
 ﻿using CommonServiceLocator;
-using MoneyFox.ViewModels.Payments;
 using MoneyFox.ViewModels.SetupAssistant;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

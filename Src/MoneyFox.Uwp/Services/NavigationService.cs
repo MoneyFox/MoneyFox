@@ -18,35 +18,6 @@ namespace MoneyFox.Uwp.Services
 
         public static int MainViewId { get; }
 
-        public static void Register<TViewModel, TView>() where TView : Page
-        {
-            if(!viewModelMap.TryAdd(typeof(TViewModel), typeof(TView)))
-            {
-                throw new InvalidOperationException($"ViewModel already registered '{typeof(TViewModel).FullName}'");
-            }
-        }
-
-        public static Type GetView<TViewModel>() => GetView(typeof(TViewModel));
-
-        public static Type GetView(Type viewModel)
-        {
-            if(viewModelMap.TryGetValue(viewModel, out Type view))
-            {
-                return view;
-            }
-            throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
-        }
-
-        public static Type GetViewModel(Type view)
-        {
-            Type? type = viewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
-            if(type == null)
-            {
-                throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
-            }
-            return type;
-        }
-
         public Frame? Frame { get; private set; }
 
         public bool CanGoBack => Frame?.CanGoBack ?? false;
@@ -69,6 +40,7 @@ namespace MoneyFox.Uwp.Services
                 Frame.GoForward();
                 return true;
             }
+
             return false;
         }
 
@@ -82,7 +54,39 @@ namespace MoneyFox.Uwp.Services
             {
                 throw new InvalidOperationException("Navigation frame not initialized.");
             }
+
             return Frame.Navigate(GetView(viewModelType), parameter);
+        }
+
+        public static void Register<TViewModel, TView>() where TView : Page
+        {
+            if(!viewModelMap.TryAdd(typeof(TViewModel), typeof(TView)))
+            {
+                throw new InvalidOperationException($"ViewModel already registered '{typeof(TViewModel).FullName}'");
+            }
+        }
+
+        public static Type GetView<TViewModel>() => GetView(typeof(TViewModel));
+
+        public static Type GetView(Type viewModel)
+        {
+            if(viewModelMap.TryGetValue(viewModel, out var view))
+            {
+                return view;
+            }
+
+            throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
+        }
+
+        public static Type GetViewModel(Type view)
+        {
+            var type = viewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
+            if(type == null)
+            {
+                throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
+            }
+
+            return type;
         }
     }
 }

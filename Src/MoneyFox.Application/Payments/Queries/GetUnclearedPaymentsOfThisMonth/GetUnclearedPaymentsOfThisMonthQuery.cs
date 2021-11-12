@@ -5,7 +5,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Domain.Entities;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,14 +25,16 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
                 this.systemDateHelper = systemDateHelper;
             }
 
-            public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request, CancellationToken cancellationToken)
+            public async Task<List<Payment>> Handle(GetUnclearedPaymentsOfThisMonthQuery request,
+                CancellationToken cancellationToken)
             {
-                IQueryable<Payment> query = contextAdapter.Context
-                                                          .Payments
-                                                          .Include(x => x.ChargedAccount)
-                                                          .Include(x => x.TargetAccount)
-                                                          .AreNotCleared()
-                                                          .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper));
+                var query = contextAdapter.Context
+                                          .Payments
+                                          .Include(x => x.ChargedAccount)
+                                          .Include(x => x.TargetAccount)
+                                          .AreNotCleared()
+                                          .HasDateSmallerEqualsThan(
+                                              HelperFunctions.GetEndOfMonth(systemDateHelper));
 
                 if(request.AccountId != 0)
                 {

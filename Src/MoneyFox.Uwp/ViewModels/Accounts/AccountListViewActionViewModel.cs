@@ -15,7 +15,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             this.navigationService = navigationService;
         }
 
-        /// <inheritdoc/>
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(() => navigationService.Navigate<AddAccountViewModel>());
+        /// <inheritdoc />
+        public RelayCommand GoToAddAccountCommand
+            => new RelayCommand(() => navigationService.Navigate<AddAccountViewModel>());
     }
 }

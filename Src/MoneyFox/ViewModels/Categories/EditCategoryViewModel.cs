@@ -10,20 +10,22 @@ namespace MoneyFox.ViewModels.Categories
 {
     public class EditCategoryViewModel : ModifyCategoryViewModel
     {
-        private readonly IMediator mediator;
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
         public EditCategoryViewModel(IMediator mediator,
-                                     IMapper mapper,
-                                     IDialogService dialogService)
+            IMapper mapper,
+            IDialogService dialogService)
             : base(mediator, dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
         }
 
-        public async Task InitializeAsync(int categoryId) => SelectedCategory = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(categoryId)));
+        public async Task InitializeAsync(int categoryId) => SelectedCategory =
+            mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(categoryId)));
 
-        protected override async Task SaveCategoryAsync() => await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
+        protected override async Task SaveCategoryAsync()
+            => await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
     }
 }

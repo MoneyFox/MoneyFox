@@ -4,7 +4,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,16 +34,16 @@ namespace MoneyFox.Application.Statistics.Queries
 
         public async Task<List<StatisticEntry>> Handle(GetCashFlowQuery request, CancellationToken cancellationToken)
         {
-            List<Payment> payments = await contextAdapter.Context
-                                                         .Payments
-                                                         .Include(x => x.Category)
-                                                         .WithoutTransfers()
-                                                         .HasDateLargerEqualsThan(request.StartDate.Date)
-                                                         .HasDateSmallerEqualsThan(request.EndDate.Date)
-                                                         .ToListAsync(cancellationToken);
+            var payments = await contextAdapter.Context
+                                               .Payments
+                                               .Include(x => x.Category)
+                                               .WithoutTransfers()
+                                               .HasDateLargerEqualsThan(request.StartDate.Date)
+                                               .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                               .ToListAsync(cancellationToken);
 
-            decimal incomeAmount = payments.Where(x => x.Type == PaymentType.Income)
-                                           .Sum(x => x.Amount);
+            var incomeAmount = payments.Where(x => x.Type == PaymentType.Income)
+                                       .Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)
             {
                 Label = Strings.RevenueLabel,
@@ -53,8 +52,8 @@ namespace MoneyFox.Application.Statistics.Queries
                 Color = GREEN_HEX_CODE
             };
 
-            decimal expenseAmount = payments.Where(x => x.Type == PaymentType.Expense)
-                                            .Sum(x => x.Amount);
+            var expenseAmount = payments.Where(x => x.Type == PaymentType.Expense)
+                                        .Sum(x => x.Amount);
             var spent = new StatisticEntry(expenseAmount)
             {
                 Label = Strings.ExpenseLabel,
@@ -63,7 +62,7 @@ namespace MoneyFox.Application.Statistics.Queries
                 Color = RED_HEX_CODE
             };
 
-            decimal valueIncreased = incomeAmount - expenseAmount;
+            var valueIncreased = incomeAmount - expenseAmount;
             var increased = new StatisticEntry(valueIncreased)
             {
                 Label = Strings.IncreaseLabel,
@@ -72,8 +71,7 @@ namespace MoneyFox.Application.Statistics.Queries
                 Color = BLUE_HEX_CODE
             };
 
-            return new List<StatisticEntry> { income, spent, increased };
+            return new List<StatisticEntry> {income, spent, increased};
         }
     }
-
 }

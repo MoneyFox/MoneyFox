@@ -8,9 +8,8 @@ namespace MoneyFox.Application.Common.Helpers
 {
     public static class DatabasePathHelper
     {
-        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
-
         private const string DATABASE_NAME = "moneyfox3.db";
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public static string DbPath
         {
@@ -21,18 +20,23 @@ namespace MoneyFox.Application.Common.Helpers
                 {
                     case AppPlatform.iOS:
                         Batteries_V2.Init();
-                        databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
-                                                    "..",
-                                                    "Library",
-                                                    DATABASE_NAME);
+                        databasePath = Path.Combine(
+                            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                            "..",
+                            "Library",
+                            DATABASE_NAME);
                         break;
 
                     case AppPlatform.Android:
-                        databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), DATABASE_NAME);
+                        databasePath = Path.Combine(
+                            Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                            DATABASE_NAME);
                         break;
 
                     case AppPlatform.UWP:
-                        databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_NAME);
+                        databasePath = Path.Combine(
+                            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+                            DATABASE_NAME);
                         break;
 
                     default:

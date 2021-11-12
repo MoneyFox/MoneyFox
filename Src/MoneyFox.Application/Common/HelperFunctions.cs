@@ -3,7 +3,7 @@
 namespace MoneyFox.Application.Common
 {
     /// <summary>
-    /// Utility methods
+    ///     Utility methods
     /// </summary>
     public static class HelperFunctions
     {
@@ -20,7 +20,7 @@ namespace MoneyFox.Application.Common
         /// <returns>Last day of the month</returns>
         public static DateTime GetEndOfMonth(ISystemDateHelper systemDateHelper)
         {
-            DateTime today = systemDateHelper.Today;
+            var today = systemDateHelper.Today;
             return new DateTime(today.Year, today.Month, DateTime.DaysInMonth(today.Year, today.Month));
         }
     }

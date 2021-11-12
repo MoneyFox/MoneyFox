@@ -11,6 +11,8 @@ namespace MoneyFox.ViewModels.Accounts
     {
         private readonly IDialogService dialogService;
 
+        private AccountViewModel selectedAccountVm = new AccountViewModel();
+
         protected ModifyAccountViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
@@ -18,10 +20,8 @@ namespace MoneyFox.ViewModels.Accounts
 
         public virtual bool IsEdit => false;
 
-        private AccountViewModel selectedAccountVm = new AccountViewModel();
-
         /// <summary>
-        /// The currently selected CategoryViewModel
+        ///     The currently selected CategoryViewModel
         /// </summary>
         public AccountViewModel SelectedAccountVm
         {
@@ -51,7 +51,7 @@ namespace MoneyFox.ViewModels.Accounts
             MessengerInstance.Send(new ReloadMessage());
 
             await dialogService.HideLoadingDialogAsync();
-            await App.Current.MainPage.Navigation.PopModalAsync();
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

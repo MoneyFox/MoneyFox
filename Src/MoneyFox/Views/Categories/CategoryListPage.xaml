@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -7,7 +8,6 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              Visual="Material"
-             xmlns:theme="clr-namespace:MoneyFox"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:categories="clr-namespace:MoneyFox.ViewModels.Categories;assembly=MoneyFox"
              Shell.NavBarHasShadow="False"
@@ -28,7 +28,7 @@
                 Text="{x:Static styles:IconFont.Plus}"
                 TextColor="White"
                 VerticalOptions="Center"
-                Command="{Binding GoToAddCategoryCommand}"/>
+                Command="{Binding GoToAddCategoryCommand}" />
         </Grid>
     </Shell.TitleView>
 
@@ -45,12 +45,12 @@
                        Margin="0,0,0,0"
                        Text="{Binding SearchTerm}"
                        SearchCommand="{Binding SearchCategoryCommand}"
-                       SearchCommandParameter="{Binding Text, Source={x:Reference categorySearchBar}}"/>
+                       SearchCommandParameter="{Binding Text, Source={x:Reference categorySearchBar}}" />
 
             <CollectionView Grid.Row="2"
                             x:Name="CategoryCollectionView"
                             IsGrouped="true"
-                            ItemsSource="{Binding Categories}" >
+                            ItemsSource="{Binding Categories}">
 
                 <CollectionView.GroupHeaderTemplate>
                     <DataTemplate>
@@ -68,8 +68,8 @@
                         <Grid Padding="15, 6, 15, 8">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
-                                        CommandParameter="{Binding .}" />
+                                    Command="{Binding BindingContext.GoToEditCategoryCommand, Source={x:Reference Name=CategoryCollectionView}}"
+                                    CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
                             <yummy:PancakeView CornerRadius="10"
@@ -80,7 +80,8 @@
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
 
-                                <SwipeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                                <SwipeView
+                                    BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                              Light={StaticResource CardBackgroundLight}}">
                                     <SwipeView.GestureRecognizers>
                                         <TapGestureRecognizer
@@ -91,20 +92,20 @@
                                     <SwipeView.RightItems>
                                         <SwipeItems>
                                             <SwipeItem Text="{x:Static resources:Strings.EditLabel}"
-                                                   Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.GoToEditCategoryCommand}"
-                                                   CommandParameter="{Binding .}"/>
+                                                       Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.GoToEditCategoryCommand}"
+                                                       CommandParameter="{Binding .}" />
                                             <SwipeItem Text="{x:Static resources:Strings.DeleteLabel}"
-                                                   Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.DeleteCategoryCommand}"
-                                                   CommandParameter="{Binding .}"/>
+                                                       Command="{Binding Source={x:Reference CategoryCollectionView}, Path=BindingContext.DeleteCategoryCommand}"
+                                                       CommandParameter="{Binding .}" />
                                         </SwipeItems>
                                     </SwipeView.RightItems>
 
                                     <Grid>
                                         <Label Style="{StaticResource TextHead}"
-                                            Margin="10,0,10,0"
-                                            VerticalTextAlignment="Center"
-                                            HorizontalTextAlignment="Start"
-                                            Text="{Binding Name}" />
+                                               Margin="10,0,10,0"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Start"
+                                               Text="{Binding Name}" />
                                     </Grid>
                                 </SwipeView>
                             </yummy:PancakeView>
@@ -113,7 +114,7 @@
                 </CollectionView.ItemTemplate>
 
                 <CollectionView.EmptyView>
-                    <Grid >
+                    <Grid>
                         <Label Style="{StaticResource TextSubheadSecondary}"
                                Margin="10,0,10,0"
                                VerticalTextAlignment="Center"

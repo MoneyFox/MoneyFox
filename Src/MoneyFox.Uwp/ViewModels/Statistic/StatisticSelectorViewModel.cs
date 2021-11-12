@@ -62,7 +62,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// <summary>
         ///     Navigates to the statistic view and shows the selected statistic
         /// </summary>
-        public RelayCommand<StatisticSelectorType> GoToStatisticCommand => new RelayCommand<StatisticSelectorType>(GoToStatistic);
+        public RelayCommand<StatisticSelectorType> GoToStatisticCommand
+            => new RelayCommand<StatisticSelectorType>(GoToStatistic);
 
         private void GoToStatistic(StatisticSelectorType item)
         {

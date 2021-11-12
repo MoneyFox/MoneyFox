@@ -11,12 +11,12 @@ namespace MoneyFox.Uwp.Activation
     {
         private readonly Type startupViewModel;
 
-        public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
-
         public DefaultLaunchActivationHandler(Type startupViewModel)
         {
             this.startupViewModel = startupViewModel;
         }
+
+        public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
 
         protected override async Task HandleInternalAsync(LaunchActivatedEventArgs args)
         {

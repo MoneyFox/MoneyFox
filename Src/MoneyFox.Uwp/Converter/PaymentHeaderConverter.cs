@@ -15,10 +15,11 @@ namespace MoneyFox.Uwp.Converter
             {
                 PaymentType.Expense => Strings.ExpenseHeader,
                 PaymentType.Transfer => Strings.TransferHeader,
-                _ => Strings.IncomeHeader,
+                _ => Strings.IncomeHeader
             };
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotSupportedException();
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+            => throw new NotSupportedException();
     }
 }

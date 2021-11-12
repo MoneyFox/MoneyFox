@@ -5,8 +5,6 @@ namespace MoneyFox.Uwp.Views.Categories
 {
     public sealed partial class EditCategoryDialog
     {
-        private EditCategoryViewModel ViewModel => (EditCategoryViewModel)DataContext;
-
         public EditCategoryDialog(int categoryId)
         {
             InitializeComponent();
@@ -14,5 +12,7 @@ namespace MoneyFox.Uwp.Views.Categories
 
             ViewModel.CategoryId = categoryId;
         }
+
+        private EditCategoryViewModel ViewModel => (EditCategoryViewModel)DataContext;
     }
 }

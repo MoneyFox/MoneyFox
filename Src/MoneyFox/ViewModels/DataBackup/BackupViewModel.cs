@@ -8,7 +8,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Services;
 using NLog;
 using System;
 using System.Threading.Tasks;
@@ -16,28 +15,27 @@ using System.Threading.Tasks;
 namespace MoneyFox.ViewModels.DataBackup
 {
     /// <summary>
-    /// Representation of the backup view.
+    ///     Representation of the backup view.
     /// </summary>
     public class BackupViewModel : ViewModelBase, IBackupViewModel
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly ISettingsFacade settingsFacade;
         private readonly IToastService toastService;
         private bool backupAvailable;
-        private UserAccount userAccount;
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
+        private UserAccount userAccount;
 
         public BackupViewModel(IBackupService backupService,
-                               IDialogService dialogService,
-                               IConnectivityAdapter connectivity,
-                               ISettingsFacade settingsFacade,
-                               IToastService toastService)
+            IDialogService dialogService,
+            IConnectivityAdapter connectivity,
+            ISettingsFacade settingsFacade,
+            IToastService toastService)
         {
             this.backupService = backupService;
             this.dialogService = dialogService;
@@ -48,23 +46,38 @@ namespace MoneyFox.ViewModels.DataBackup
             userAccount = new UserAccount();
         }
 
-        /// <inheritdoc/>
+        public UserAccount UserAccount
+        {
+            get => userAccount;
+            set
+            {
+                if(userAccount == value)
+                {
+                    return;
+                }
+
+                userAccount = value;
+                RaisePropertyChanged();
+            }
+        }
+
+        /// <inheritdoc />
         public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public RelayCommand LoginCommand => new RelayCommand(async () => await LoginAsync());
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public RelayCommand LogoutCommand => new RelayCommand(async () => await LogoutAsync());
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public RelayCommand BackupCommand => new RelayCommand(async () => await CreateBackupAsync());
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public RelayCommand RestoreCommand => new RelayCommand(async () => await RestoreBackupAsync());
 
         /// <summary>
-        /// The Date when the backup was modified the last time.
+        ///     The Date when the backup was modified the last time.
         /// </summary>
         public DateTime BackupLastModified
         {
@@ -82,7 +95,7 @@ namespace MoneyFox.ViewModels.DataBackup
         }
 
         /// <summary>
-        /// Indicator that the app is checking if backups available.
+        ///     Indicator that the app is checking if backups available.
         /// </summary>
         public bool IsLoadingBackupAvailability
         {
@@ -100,12 +113,12 @@ namespace MoneyFox.ViewModels.DataBackup
         }
 
         /// <summary>
-        /// Indicator that the user logged in to the backup service.
+        ///     Indicator that the user logged in to the backup service.
         /// </summary>
         public bool IsLoggedIn => settingsFacade.IsLoggedInToBackupService;
 
         /// <summary>
-        /// Indicates if a backup is available for restore.
+        ///     Indicates if a backup is available for restore.
         /// </summary>
         public bool BackupAvailable
         {
@@ -122,7 +135,7 @@ namespace MoneyFox.ViewModels.DataBackup
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsAutoBackupEnabled
         {
             get => settingsFacade.IsBackupAutouploadEnabled;
@@ -134,21 +147,6 @@ namespace MoneyFox.ViewModels.DataBackup
                 }
 
                 settingsFacade.IsBackupAutouploadEnabled = value;
-                RaisePropertyChanged();
-            }
-        }
-
-        public UserAccount UserAccount
-        {
-            get => userAccount;
-            set
-            {
-                if(userAccount == value)
-                {
-                    return;
-                }
-
-                userAccount = value;
                 RaisePropertyChanged();
             }
         }
@@ -182,14 +180,18 @@ namespace MoneyFox.ViewModels.DataBackup
             {
                 logger.Error(ex, "Issue during Login process.");
                 await backupService.LogoutAsync();
-                await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
+                await dialogService.ShowMessageAsync(
+                    Strings.AuthenticationFailedTitle,
+                    Strings.ErrorMessageAuthenticationFailed);
             }
             catch(Exception ex)
             {
                 if(ex.StackTrace == "4f37.717b")
                 {
                     await backupService.LogoutAsync();
-                    await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
+                    await dialogService.ShowMessageAsync(
+                        Strings.AuthenticationFailedTitle,
+                        Strings.ErrorMessageAuthenticationFailed);
                 }
 
                 logger.Error(ex, "Issue on loading backup view.");
@@ -218,7 +220,9 @@ namespace MoneyFox.ViewModels.DataBackup
             catch(Exception ex)
             {
                 logger.Error(ex, "Login Failed.");
-                await dialogService.ShowMessageAsync(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
+                await dialogService.ShowMessageAsync(
+                    Strings.LoginFailedTitle,
+                    string.Format(Strings.UnknownErrorMessage, ex.Message));
                 Crashes.TrackError(ex);
             }
 
@@ -285,7 +289,7 @@ namespace MoneyFox.ViewModels.DataBackup
             }
 
             await dialogService.ShowLoadingDialogAsync();
-            DateTime backupDate = await backupService.GetBackupDateAsync();
+            var backupDate = await backupService.GetBackupDateAsync();
             if(settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
             {
                 await dialogService.ShowLoadingDialogAsync();
@@ -316,22 +320,25 @@ namespace MoneyFox.ViewModels.DataBackup
         }
 
         private async Task<bool> ShowOverwriteBackupInfoAsync()
-            => await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
-                                                           Strings.OverwriteBackupMessage,
-                                                           Strings.YesLabel,
-                                                           Strings.NoLabel);
+            => await dialogService.ShowConfirmMessageAsync(
+                Strings.OverwriteTitle,
+                Strings.OverwriteBackupMessage,
+                Strings.YesLabel,
+                Strings.NoLabel);
 
         private async Task<bool> ShowOverwriteDataInfoAsync()
-            => await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
-                                                           Strings.OverwriteDataMessage,
-                                                           Strings.YesLabel,
-                                                           Strings.NoLabel);
+            => await dialogService.ShowConfirmMessageAsync(
+                Strings.OverwriteTitle,
+                Strings.OverwriteDataMessage,
+                Strings.YesLabel,
+                Strings.NoLabel);
 
 
         private async Task<bool> ShowForceOverrideConfirmationAsync()
-            => await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle,
-                                                            Strings.ForceOverrideBackupMessage,
-                                                            Strings.YesLabel,
-                                                            Strings.NoLabel);
+            => await dialogService.ShowConfirmMessageAsync(
+                Strings.ForceOverrideBackupTitle,
+                Strings.ForceOverrideBackupMessage,
+                Strings.YesLabel,
+                Strings.NoLabel);
     }
 }

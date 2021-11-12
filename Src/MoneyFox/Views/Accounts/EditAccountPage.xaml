@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <controls:ModalContentPage xmlns:controls="clr-namespace:MoneyFox.Controls"
                            xmlns="http://xamarin.com/schemas/2014/forms"
                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -12,7 +13,7 @@
                            x:Class="MoneyFox.Views.Accounts.EditAccountPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Padding="15,0,15,0" >
+            <StackLayout Padding="15,0,15,0">
 
                 <Label Style="{StaticResource TextHeadline}"
                        Text="{Binding Title}" />
@@ -20,16 +21,16 @@
                 <accounts:ModifyAccountContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                   Text="{Binding SelectedAccount.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+                       Text="{Binding SelectedAccount.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                   Text="{Binding SelectedAccount.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+                       Text="{Binding SelectedAccount.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button x:Name="DeleteAccountButton"
-                    Style="{StaticResource WarningButton}"
-                    Margin="0,12,0,0"
-                    Command="{Binding DeleteCommand}"
-                    Text="{x:Static resources:Strings.DeleteLabel}" />
+                        Style="{StaticResource WarningButton}"
+                        Margin="0,12,0,0"
+                        Command="{Binding DeleteCommand}"
+                        Text="{x:Static resources:Strings.DeleteLabel}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

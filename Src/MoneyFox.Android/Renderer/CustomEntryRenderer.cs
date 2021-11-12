@@ -1,10 +1,8 @@
 ﻿using Android.Content;
 using Android.Graphics;
-using Android.Graphics.Drawables;
 using Android.OS;
 using Android.Runtime;
 using Android.Widget;
-using Java.Lang.Reflect;
 using MoneyFox.Droid.Renderer;
 using NLog;
 using System;
@@ -12,10 +10,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Material.Android;
 using Xamarin.Forms.Platform.Android;
 using Color = Xamarin.Forms.Color;
-using Object = Java.Lang.Object;
 
 #nullable enable
-[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] { typeof(VisualMarker.MaterialVisual) })]
+[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
 
 namespace MoneyFox.Droid.Renderer
 {
@@ -49,24 +46,27 @@ namespace MoneyFox.Droid.Renderer
             {
                 Control.EditText.SetTextCursorDrawable(Resource.Drawable.CustomCursor);
 
-                Drawable? textSelectHandleDrawable = Control.EditText.TextSelectHandle;
+                var textSelectHandleDrawable = Control.EditText.TextSelectHandle;
                 if(textSelectHandleDrawable != null)
                 {
-                    textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
+                    textSelectHandleDrawable.SetColorFilter(
+                        new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleDrawable;
                 }
 
-                Drawable? textSelectHandleLeftDrawable = Control.EditText.TextSelectHandleLeft;
+                var textSelectHandleLeftDrawable = Control.EditText.TextSelectHandleLeft;
                 if(textSelectHandleLeftDrawable != null)
                 {
-                    textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
+                    textSelectHandleLeftDrawable.SetColorFilter(
+                        new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleLeftDrawable;
                 }
 
-                Drawable? textSelectHandleRightDrawable = Control.EditText.TextSelectHandleRight;
+                var textSelectHandleRightDrawable = Control.EditText.TextSelectHandleRight;
                 if(textSelectHandleRightDrawable != null)
                 {
-                    textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
+                    textSelectHandleRightDrawable.SetColorFilter(
+                        new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleRightDrawable;
                 }
             }
@@ -82,28 +82,31 @@ namespace MoneyFox.Droid.Renderer
             {
                 var textViewTemplate = new TextView(Control.EditText.Context);
 
-                Field field = textViewTemplate.Class.GetDeclaredField("mEditor");
+                var field = textViewTemplate.Class.GetDeclaredField("mEditor");
                 field.Accessible = true;
 
-                Object? editor = field.Get(Control.EditText);
+                var editor = field.Get(Control.EditText);
                 if(editor == null)
                 {
                     return;
                 }
 
-                string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
-                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
-
-                for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
+                string[] fieldsNames =
                 {
-                    string fieldName = fieldsNames[index];
-                    string drawableName = drawableNames[index];
+                    "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"
+                };
+                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
+
+                for(var index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
+                {
+                    var fieldName = fieldsNames[index];
+                    var drawableName = drawableNames[index];
 
                     field = textViewTemplate.Class.GetDeclaredField(fieldName);
                     field.Accessible = true;
-                    int handle = field.GetInt(Control.EditText);
+                    var handle = field.GetInt(Control.EditText);
 
-                    Drawable? handleDrawable = Resources?.GetDrawable(handle, null);
+                    var handleDrawable = Resources?.GetDrawable(handle, null);
 
                     if(handleDrawable == null)
                     {
@@ -112,7 +115,8 @@ namespace MoneyFox.Droid.Renderer
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
-                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
+                        handleDrawable.SetColorFilter(
+                            new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
                     }
                     else
                     {
@@ -126,8 +130,8 @@ namespace MoneyFox.Droid.Renderer
                     field.Set(editor, handleDrawable);
                 }
 
-                IntPtr intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
-                IntPtr mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
+                var intPtrtextViewClass = JNIEnv.FindClass(typeof(TextView));
+                var mCursorDrawableResProperty = JNIEnv.GetFieldID(intPtrtextViewClass, "mCursorDrawableRes", "I");
 
                 JNIEnv.SetField(Control.EditText.Handle, mCursorDrawableResProperty, Resource.Drawable.CustomCursor);
             }

@@ -21,31 +21,34 @@
 
         <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
             <StackPanel Spacing="12">
-                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                    FirstDayOfWeek="Monday"
-                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+                <CalendarDatePicker
+                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    FirstDayOfWeek="Monday"
+                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
-                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                    FirstDayOfWeek="Monday"
-                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+                <CalendarDatePicker
+                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    FirstDayOfWeek="Monday"
+                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
 
                 <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
             </StackPanel>
         </Flyout>
 
         <DataTemplate x:Key="CategoryOverviewItemTemplate" x:DataType="viewModels:CategoryOverviewViewModel">
             <controls:DropShadowPanel
-                    HorizontalContentAlignment="Stretch"
-                    Margin="6,2,0,2"
-                    BlurRadius="4.0"
-                    ShadowOpacity="0.40">
+                HorizontalContentAlignment="Stretch"
+                Margin="6,2,0,2"
+                BlurRadius="4.0"
+                ShadowOpacity="0.40">
                 <StackPanel
                     CornerRadius="{StaticResource DefaultCornerRadius}"
                     HorizontalAlignment="Stretch"
                     Background="{ThemeResource ListItemBrush}">
 
-                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}" Padding="{StaticResource SmallListItemPadding}">
+                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
+                                Padding="{StaticResource SmallListItemPadding}">
                         <Grid HorizontalAlignment="Stretch">
                             <TextBlock
                                 Style="{ThemeResource CustomSubtitleTextBlockStyle}"
@@ -58,7 +61,8 @@
                                 TextAlignment="Right" />
                         </Grid>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
+                            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                       Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
                             <TextBlock
                                 Margin="3,0,0,0"
                                 Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
@@ -71,7 +75,8 @@
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
             <Grid>
-                <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.NoCategorySummaryEntrySelectedMessage}" />
+                <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                           Text="{x:Bind resources:Strings.NoCategorySummaryEntrySelectedMessage}" />
             </Grid>
         </DataTemplate>
     </Page.Resources>

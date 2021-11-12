@@ -6,8 +6,6 @@ namespace MoneyFox.Views.Accounts
 {
     public partial class AddAccountPage
     {
-        private AddAccountViewModel ViewModel => (AddAccountViewModel)BindingContext;
-
         public AddAccountPage()
         {
             InitializeComponent();
@@ -33,5 +31,7 @@ namespace MoneyFox.Views.Accounts
             ToolbarItems.Add(cancelItem);
             ToolbarItems.Add(saveItem);
         }
+
+        private AddAccountViewModel ViewModel => (AddAccountViewModel)BindingContext;
     }
 }

@@ -6,8 +6,6 @@ namespace MoneyFox.Views.Categories
 {
     public partial class AddCategoryPage
     {
-        private AddCategoryViewModel ViewModel => (AddCategoryViewModel)BindingContext;
-
         public AddCategoryPage()
         {
             InitializeComponent();
@@ -32,5 +30,7 @@ namespace MoneyFox.Views.Categories
             ToolbarItems.Add(cancelItem);
             ToolbarItems.Add(saveItem);
         }
+
+        private AddCategoryViewModel ViewModel => (AddCategoryViewModel)BindingContext;
     }
 }

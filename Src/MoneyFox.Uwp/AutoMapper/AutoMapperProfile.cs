@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Payments;
-using System.Collections.Generic;
 
 #nullable enable
 namespace MoneyFox.Uwp.AutoMapper
@@ -17,16 +15,16 @@ namespace MoneyFox.Uwp.AutoMapper
 
         private void LoadStandardMappings()
         {
-            IList<Map> mapsFromNotShared = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
+            var mapsFromNotShared = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
 
-            foreach(Map map in mapsFromNotShared)
+            foreach(var map in mapsFromNotShared)
             {
                 CreateMap(map.Source, map.Destination).ReverseMap();
             }
 
-            IList<Map> mapsFromShared = MapperProfileHelper.LoadStandardMappings(typeof(AccountViewModel).Assembly);
+            var mapsFromShared = MapperProfileHelper.LoadStandardMappings(typeof(AccountViewModel).Assembly);
 
-            foreach(Map map in mapsFromShared)
+            foreach(var map in mapsFromShared)
             {
                 CreateMap(map.Source, map.Destination).ReverseMap();
             }
@@ -34,16 +32,18 @@ namespace MoneyFox.Uwp.AutoMapper
 
         private void LoadCustomMappings()
         {
-            IList<IHaveCustomMapping> mapsFromNotShared = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
+            var mapsFromNotShared =
+                MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
 
-            foreach(IHaveCustomMapping map in mapsFromNotShared)
+            foreach(var map in mapsFromNotShared)
             {
                 map.CreateMappings(this);
             }
 
-            IList<IHaveCustomMapping> mapsFromShared = MapperProfileHelper.LoadCustomMappings(typeof(AccountViewModel).Assembly);
+            var mapsFromShared =
+                MapperProfileHelper.LoadCustomMappings(typeof(AccountViewModel).Assembly);
 
-            foreach(IHaveCustomMapping map in mapsFromShared)
+            foreach(var map in mapsFromShared)
             {
                 map.CreateMappings(this);
             }

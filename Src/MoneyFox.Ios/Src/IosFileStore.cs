@@ -4,11 +4,11 @@ namespace MoneyFox.iOS
 {
     public class IosFileStore : FileStoreIoBase
     {
+        private const string ResScheme = "res:";
+
         public IosFileStore(string basePath) : base(basePath)
         {
         }
-
-        private const string ResScheme = "res:";
 
         protected override string AppendPath(string path)
         {
