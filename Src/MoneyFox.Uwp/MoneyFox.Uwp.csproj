@@ -357,7 +357,6 @@
     <Content Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="MoneyFox.Uwp.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ApplyLogo.png" />
