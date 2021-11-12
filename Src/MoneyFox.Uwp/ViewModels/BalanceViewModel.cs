@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Uwp.Src;
+using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Threading.Tasks;

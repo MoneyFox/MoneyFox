@@ -1,6 +1,6 @@
 ﻿using Xamarin.Forms;
 
-namespace MoneyFox.ViewModels.Budget
+namespace MoneyFox.Views.Budget
 {
     public partial class BudgetListPage : ContentPage
     {

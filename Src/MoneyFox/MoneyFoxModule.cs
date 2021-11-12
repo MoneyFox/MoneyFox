@@ -1,8 +1,10 @@
 ﻿using Autofac;
 using MoneyFox.Application;
 using MoneyFox.AutoMapper;
+using MoneyFox.Mobile.Infrastructure;
+using MoneyFox.Persistence;
+using MoneyFox.ViewModels.Settings;
 using MoneyFox.Infrastructure;
-using MoneyFox.Ui.Shared.ViewModels.Settings;
 using System;
 
 namespace MoneyFox
@@ -12,6 +14,8 @@ namespace MoneyFox
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<ApplicationModule>();
+            
+            builder.RegisterModule<InfrastructureMobile>();
             builder.RegisterModule<InfrastructureModule>();
 
             builder.RegisterInstance(AutoMapperFactory.Create());

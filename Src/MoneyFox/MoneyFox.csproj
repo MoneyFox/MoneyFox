@@ -53,8 +53,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
+    <ProjectReference Include="..\MoneyFox.Mobile.Infrastructure\MoneyFox.Mobile.Infrastructure.csproj" />
     <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
-    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Application.Common;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using System;
 using Windows.ApplicationModel;

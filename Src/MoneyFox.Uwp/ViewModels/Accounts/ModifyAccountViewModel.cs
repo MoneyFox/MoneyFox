@@ -2,8 +2,7 @@
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
+using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Services;
 using NLog;
 using System.Globalization;

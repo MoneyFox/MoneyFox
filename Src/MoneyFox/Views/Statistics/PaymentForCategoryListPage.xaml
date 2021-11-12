@@ -7,7 +7,8 @@
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:theme="clr-namespace:MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:payments="clr-namespace:MoneyFox.Ui.Shared.ViewModels.Payments;assembly=MoneyFox.Ui.Shared"
+             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
+             xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
              mc:Ignorable="d">
 
     <ContentPage.Resources>
@@ -87,7 +88,7 @@
                                                                    WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="FontAwesome"
-                                                                                     Glyph="{x:Static theme:IconFont.ExchangeAlt}"
+                                                                                     Glyph="{x:Static styles:IconFont.ExchangeAlt}"
                                                                                      Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
                                                             </Image.Source>
                                                         </Image>
@@ -97,7 +98,7 @@
                                                                    WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="FontAwesome"
-                                                                                 Glyph="{x:Static theme:IconFont.Redo}"
+                                                                                 Glyph="{x:Static styles:IconFont.Redo}"
                                                                                  Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
                                                             </Image.Source>
                                                         </Image>
@@ -107,7 +108,7 @@
                                                                    WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="FontAwesome"
-                                                                                 Glyph="{x:Static theme:IconFont.Check}"
+                                                                                 Glyph="{x:Static styles:IconFont.Check}"
                                                                                  Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
                                                             </Image.Source>
                                                         </Image>

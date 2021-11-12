@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Domain;
-using MoneyFox.Ui.Shared;
+using MoneyFox.Uwp.ConverterLogic;
 using System;
 using Windows.UI.Xaml.Data;
 

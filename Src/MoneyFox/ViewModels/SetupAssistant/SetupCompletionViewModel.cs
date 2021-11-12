@@ -3,7 +3,7 @@ using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Facades;
 using Xamarin.Forms;
 
-namespace MoneyFox.ViewModels.Payments
+namespace MoneyFox.ViewModels.SetupAssistant
 {
     public class SetupCompletionViewModel : ViewModelBase
     {

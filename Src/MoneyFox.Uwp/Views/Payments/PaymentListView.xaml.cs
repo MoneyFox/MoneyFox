@@ -1,5 +1,4 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Payments;
 using System.Globalization;
 using Windows.UI.Xaml;

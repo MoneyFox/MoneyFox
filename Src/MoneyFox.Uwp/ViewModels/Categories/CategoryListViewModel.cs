@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 
 #nullable enable

@@ -7,9 +7,8 @@ using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.Groups;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.Commands;
+using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views.Categories;
 using System;
@@ -92,7 +91,9 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         /// Edit the currently selected CategoryViewModel
         /// </summary>
         public RelayCommand<CategoryViewModel> EditCategoryCommand
-            => new RelayCommand<CategoryViewModel>(async (vm) => await new EditCategoryDialog(vm.Id).ShowAsync());
+            => new RelayCommand<CategoryViewModel>(
+                async vm => await new EditCategoryDialog(vm.Id) {RequestedTheme = ThemeSelectorService.Theme}
+                    .ShowAsync());
 
         /// <summary>
         /// Selects the clicked CategoryViewModel and sends it to the message hub.

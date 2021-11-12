@@ -1,10 +1,9 @@
 ﻿using MoneyFox.Uwp.ViewModels.Categories;
-using Windows.UI.Xaml.Controls;
 
 #nullable enable
 namespace MoneyFox.Uwp.Views.Categories
 {
-    public sealed partial class EditCategoryDialog : ContentDialog
+    public sealed partial class EditCategoryDialog
     {
         private EditCategoryViewModel ViewModel => (EditCategoryViewModel)DataContext;
 

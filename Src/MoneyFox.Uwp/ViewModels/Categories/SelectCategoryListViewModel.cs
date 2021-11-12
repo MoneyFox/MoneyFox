@@ -2,7 +2,6 @@
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Messages;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.Services;
 
 #nullable enable

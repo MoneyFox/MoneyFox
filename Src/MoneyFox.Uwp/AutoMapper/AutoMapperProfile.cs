@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.Uwp.ViewModels.Accounts;
+using MoneyFox.Uwp.ViewModels.Payments;
 using System.Collections.Generic;
 
 #nullable enable

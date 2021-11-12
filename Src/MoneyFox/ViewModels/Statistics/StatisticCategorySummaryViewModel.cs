@@ -3,7 +3,6 @@ using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Extensions;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using NLog;
 using System;
 using System.Collections.ObjectModel;

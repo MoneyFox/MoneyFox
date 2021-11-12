@@ -5,7 +5,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     public class GraphClientFactory : IGraphClientFactory
     {

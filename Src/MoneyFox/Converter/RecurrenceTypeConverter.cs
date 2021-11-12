@@ -1,5 +1,5 @@
-﻿using MoneyFox.Domain;
-using MoneyFox.Ui.Shared;
+﻿using MoneyFox.ConverterLogic;
+using MoneyFox.Domain;
 using System;
 using System.Globalization;
 using Xamarin.Forms;

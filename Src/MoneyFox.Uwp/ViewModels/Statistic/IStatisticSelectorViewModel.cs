@@ -1,8 +1,8 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     public interface IStatisticSelectorViewModel
     {

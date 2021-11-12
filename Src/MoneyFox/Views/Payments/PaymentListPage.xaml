@@ -7,10 +7,10 @@
              mc:Ignorable="d"
              Visual="Material"
              Shell.NavBarHasShadow="False"
-             xmlns:theme="clr-namespace:MoneyFox"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
-             xmlns:payments="clr-namespace:MoneyFox.Ui.Shared.ViewModels.Payments;assembly=MoneyFox.Ui.Shared"
+             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
+             xmlns:payments="clr-namespace:MoneyFox.ViewModels.Payments;assembly=MoneyFox"
              x:Class="MoneyFox.Views.Payments.PaymentListPage">
 
     <ContentPage.Resources>
@@ -29,7 +29,7 @@
                 FontSize="24"
                 HeightRequest="44"
                 WidthRequest="66"
-                Text="{x:Static theme:IconFont.Filter}"
+                Text="{x:Static styles:IconFont.Filter}"
                 VerticalOptions="Center"
                 TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
                 Command="{Binding ShowFilterDialogCommand}"/>
@@ -44,7 +44,7 @@
                 FontSize="24"
                 HeightRequest="44"
                 WidthRequest="66"
-                Text="{x:Static theme:IconFont.Plus}"
+                Text="{x:Static styles:IconFont.Plus}"
                 TextColor="White"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddPaymentCommand}" />
@@ -122,7 +122,7 @@
                                                                    WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="FontAwesome"
-                                                                                     Glyph="{x:Static theme:IconFont.ExchangeAlt}"
+                                                                                     Glyph="{x:Static styles:IconFont.ExchangeAlt}"
                                                                                      Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
                                                             </Image.Source>
                                                         </Image>
@@ -132,7 +132,7 @@
                                                                    WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="FontAwesome"
-                                                                                 Glyph="{x:Static theme:IconFont.Redo}"
+                                                                                 Glyph="{x:Static styles:IconFont.Redo}"
                                                                                  Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
                                                             </Image.Source>
                                                         </Image>
@@ -142,7 +142,7 @@
                                                                    WidthRequest="15">
                                                             <Image.Source>
                                                                 <FontImageSource FontFamily="FontAwesome"
-                                                                                 Glyph="{x:Static theme:IconFont.Check}"
+                                                                                 Glyph="{x:Static styles:IconFont.Check}"
                                                                                  Color="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}" />
                                                             </Image.Source>
                                                         </Image>

@@ -1,7 +1,7 @@
 ﻿using Xamarin.Forms;
 
 [assembly: ExportFont("fa-solid-900.ttf", Alias = "FontAwesome")]
-namespace MoneyFox
+namespace MoneyFox.Common.Styles
 {
     internal static class IconFont
     {

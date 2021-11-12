@@ -1,5 +1,5 @@
-﻿using MoneyFox.Presentation.Dialogs;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
+﻿using MoneyFox.ViewModels.Statistics;
+using MoneyFox.Views.Dialogs;
 using System;
 
 namespace MoneyFox.Views.Statistics
