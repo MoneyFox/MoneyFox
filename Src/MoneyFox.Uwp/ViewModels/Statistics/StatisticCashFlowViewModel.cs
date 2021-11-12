@@ -7,7 +7,6 @@ using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 
 namespace MoneyFox.Uwp.ViewModels.Statistics
 {
@@ -57,7 +56,11 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                     Color = SKColor.Parse(x.Color),
                     ValueLabelColor = SKColor.Parse(x.Color)
                 }).ToList(),
-                BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
+                BackgroundColor = new SKColor(
+                    ChartOptions.BackgroundColor.R,
+                    ChartOptions.BackgroundColor.G,
+                    ChartOptions.BackgroundColor.B,
+                    ChartOptions.BackgroundColor.A),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,
                 Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
