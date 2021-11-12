@@ -40,13 +40,7 @@ namespace MoneyFox.Uwp
 
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
-
-            builder.Register(c => PublicClientApplicationBuilder
-                                 .Create(AppConstants.MSAL_APPLICATION_ID)
-                                 .WithRedirectUri($"msal{AppConstants.MSAL_APPLICATION_ID}://auth")
-                                 .Build())
-                   .AsImplementedInterfaces();
-
+            
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))

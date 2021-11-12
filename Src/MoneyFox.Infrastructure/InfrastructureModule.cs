@@ -1,5 +1,7 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using MoneyFox.Application.Common.Constants;
 using MoneyFox.Infrastructure.OneDrive;
 using MoneyFox.Infrastructure.Persistence;
 
@@ -15,6 +17,12 @@ namespace MoneyFox.Infrastructure
 
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
             
+            builder.Register(c => PublicClientApplicationBuilder
+                    .Create(AppConstants.MSAL_APPLICATION_ID)
+                    .WithRedirectUri($"msal{AppConstants.MSAL_APPLICATION_ID}://auth")
+                    .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+                    .Build())
+                .AsImplementedInterfaces();
             builder.RegisterType<OneDriveService>().AsImplementedInterfaces();
         }
     }
