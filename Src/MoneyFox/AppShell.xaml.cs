@@ -1,6 +1,6 @@
-﻿using MoneyFox.ViewModels.Budget;
-using MoneyFox.Views.Accounts;
+﻿using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Backup;
+using MoneyFox.Views.Budget;
 using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;

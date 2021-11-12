@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Ui.Shared.ViewModels.Settings;
 using System.Windows.Input;
 
 #nullable enable

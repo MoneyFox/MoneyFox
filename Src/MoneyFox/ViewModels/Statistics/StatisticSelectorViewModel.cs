@@ -2,7 +2,6 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;

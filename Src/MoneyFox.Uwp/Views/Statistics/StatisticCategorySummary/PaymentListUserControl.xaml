@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Payments"
+    xmlns:payments="using:MoneyFox.Uwp.ViewModels.Payments"
     x:Name="PaymentControl"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -100,7 +100,7 @@
                                 </ListView.ItemContainerStyle>
 
                                 <ListView.ItemTemplate>
-                                    <DataTemplate x:DataType="viewModels:PaymentViewModel">
+                                    <DataTemplate x:DataType="payments:PaymentViewModel">
                                         <toolkit:DropShadowPanel
                                             HorizontalContentAlignment="Stretch"
                                             Margin="0,2,0,2"

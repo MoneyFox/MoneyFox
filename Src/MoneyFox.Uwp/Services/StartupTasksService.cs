@@ -1,11 +1,11 @@
 ﻿using CommonServiceLocator;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
+using MoneyFox.Desktop.Infrastructure.Adapters;
 using MoneyFox.Infrastructure.DbBackup;
 using NLog;
 using System;

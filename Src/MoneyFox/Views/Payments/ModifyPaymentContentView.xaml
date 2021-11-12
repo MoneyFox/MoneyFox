@@ -7,6 +7,7 @@
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:theme="clr-namespace:MoneyFox"
              xmlns:componentmodel="clr-namespace:System.ComponentModel;assembly=System"
+             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Payments.ModifyPaymentContentView">
 
@@ -61,7 +62,7 @@
 
                 <Label Grid.Column="1"
                         VerticalOptions="Center"
-                        Text="{x:Static theme:IconFont.Trash}"
+                        Text="{x:Static styles:IconFont.Trash}"
                         FontSize="30"
                         FontFamily="FontAwesome">
                     <Label.GestureRecognizers>

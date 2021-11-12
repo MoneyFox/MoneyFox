@@ -1,4 +1,4 @@
-﻿using MoneyFox.Ui.Shared.ViewModels.Settings;
+﻿using MoneyFox.ViewModels.Settings;
 
 namespace MoneyFox.Views.Settings
 {

@@ -6,8 +6,7 @@ using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 

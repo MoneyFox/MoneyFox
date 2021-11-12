@@ -28,10 +28,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Margin="{StaticResource MediumLeftRightMargin}"
-                   Style="{StaticResource UwpPageTitleStyle}"
-                   Text="{x:Bind resources:Strings.CategoriesTitle}" />
-
         <CommandBar
             Grid.Row="0"
             OverflowButtonVisibility="Collapsed"

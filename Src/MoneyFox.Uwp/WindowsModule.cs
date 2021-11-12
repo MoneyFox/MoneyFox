@@ -4,15 +4,15 @@ using MediatR;
 using Microsoft.Identity.Client;
 using MoneyFox.Application;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
+using MoneyFox.Desktop.Infrastructure;
+using MoneyFox.Desktop.Infrastructure.Adapters;
+using MoneyFox.Persistence;
 using MoneyFox.Infrastructure;
-using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.AutoMapper;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.Src;
 using PCLAppConfig;
 using System;
 using System.Globalization;
@@ -26,6 +26,7 @@ namespace MoneyFox.Uwp
             builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
 
             builder.RegisterModule<ApplicationModule>();
+            builder.RegisterModule<InfrastructureDesktop>();
             builder.RegisterModule<InfrastructureModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
@@ -56,12 +57,6 @@ namespace MoneyFox.Uwp
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces().AsSelf()
-                   .AsSelf();
-
-            builder.RegisterAssemblyTypes(typeof(BackupViewModel).Assembly)
-                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces()
                    .AsSelf();
 
             CultureHelper.CurrentCulture = CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);

@@ -8,7 +8,8 @@
              mc:Ignorable="d"
              Visual="Material"
              xmlns:theme="clr-namespace:MoneyFox"
-             xmlns:Categories="clr-namespace:MoneyFox.Ui.Shared.ViewModels.Categories;assembly=MoneyFox.Ui.Shared"
+             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
+             xmlns:categories="clr-namespace:MoneyFox.ViewModels.Categories;assembly=MoneyFox"
              Shell.NavBarHasShadow="False"
              x:Class="MoneyFox.Views.Categories.CategoryListPage">
 
@@ -24,7 +25,7 @@
                 HeightRequest="44"
                 WidthRequest="66"
                 HorizontalOptions="End"
-                Text="{x:Static theme:IconFont.Plus}"
+                Text="{x:Static styles:IconFont.Plus}"
                 TextColor="White"
                 VerticalOptions="Center"
                 Command="{Binding GoToAddCategoryCommand}"/>
@@ -63,7 +64,7 @@
                 </CollectionView.GroupHeaderTemplate>
 
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="Categories:CategoryViewModel">
+                    <DataTemplate x:DataType="categories:CategoryViewModel">
                         <Grid Padding="15, 6, 15, 8">
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer

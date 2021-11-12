@@ -7,6 +7,7 @@
     xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
     xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
     xmlns:theme="clr-namespace:MoneyFox"
+    xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
     Visual="Material"
     mc:Ignorable="d">
 
@@ -21,7 +22,7 @@
                 FontSize="24"
                 HeightRequest="44"
                 WidthRequest="66"
-                Text="{x:Static theme:IconFont.Filter}"
+                Text="{x:Static styles:IconFont.Filter}"
                 VerticalOptions="Center"
                 TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
                 Clicked="OpenFilterDialog" />

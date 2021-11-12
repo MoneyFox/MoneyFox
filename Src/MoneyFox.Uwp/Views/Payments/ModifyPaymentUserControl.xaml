@@ -9,8 +9,8 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Accounts"
     xmlns:userControls="using:MoneyFox.Uwp.Views.Payments"
+    xmlns:accounts="using:MoneyFox.Uwp.ViewModels.Accounts"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -27,7 +27,7 @@
         <converter:DecimalConverter x:Key="DecimalConverter" />
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
 
-        <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="viewModels:AccountViewModel">
+        <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="accounts:AccountViewModel">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{x:Bind Name}" />
                 <TextBlock Text=" (" />

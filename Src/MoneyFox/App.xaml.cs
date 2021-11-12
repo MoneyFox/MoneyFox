@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
+using MoneyFox.Mobile.Infrastructure.Adapters;
 using NLog;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;

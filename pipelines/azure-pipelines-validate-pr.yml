@@ -39,6 +39,9 @@ jobs:
       provProfileSecureFile: 'MoneyFox_Distribution_2021.mobileprovision'
 
   - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 6.x
 
   - task: NuGetCommand@2
     inputs:
@@ -90,6 +93,9 @@ jobs:
       jdkSourceOption: 'PreInstalled'
 
   - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 6.x
 
   - task: NuGetCommand@2
     displayName: 'Install Nuget Packages for solution'
@@ -139,6 +145,9 @@ jobs:
       CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
   - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 6.x
 
   - task: NuGetCommand@2
     inputs:

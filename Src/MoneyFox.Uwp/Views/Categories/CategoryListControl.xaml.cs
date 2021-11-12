@@ -1,5 +1,4 @@
 ﻿using MoneyFox.Application.Common;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System;
 using Windows.UI.Xaml;

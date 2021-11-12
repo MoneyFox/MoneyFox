@@ -5,7 +5,7 @@ using System;
 using Windows.UI.Xaml;
 
 #nullable enable
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     public class ThemeSelectorAdapter : IThemeSelectorAdapter
     {

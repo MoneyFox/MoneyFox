@@ -2,15 +2,13 @@
 using GalaSoft.MvvmLight.Command;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
-using MoneyFox.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 
 #nullable enable
-namespace MoneyFox.Presentation.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     public class StatisticSelectorViewModel : ViewModelBase, IStatisticSelectorViewModel
     {
