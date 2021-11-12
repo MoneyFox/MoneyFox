@@ -131,10 +131,14 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                     Color = SKColor.Parse(x.Color),
                     ValueLabelColor = SKColor.Parse(x.Color)
                 }).ToList(),
-                BackgroundColor = ChartOptions.BackgroundColor,
+                BackgroundColor = new SKColor(
+                    ChartOptions.BackgroundColor.R,
+                    ChartOptions.BackgroundColor.G,
+                    ChartOptions.BackgroundColor.B,
+                    ChartOptions.BackgroundColor.A),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,
-                Typeface = ChartOptions.TypeFace
+                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
             };
         }
     }

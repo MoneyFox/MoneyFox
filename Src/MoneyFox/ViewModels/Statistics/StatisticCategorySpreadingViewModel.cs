@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace MoneyFox.ViewModels.Statistics
 {
@@ -81,10 +82,10 @@ namespace MoneyFox.ViewModels.Statistics
             Chart = new DonutChart
             {
                 Entries = microChartItems,
-                BackgroundColor = ChartOptions.BackgroundColor,
+                BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,
-                Typeface = ChartOptions.TypeFace
+                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
             };
         }
     }
