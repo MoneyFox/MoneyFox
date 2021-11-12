@@ -1,5 +1,7 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Client;
+using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Domain.Exceptions;
 using NLog;
@@ -11,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Logger = NLog.Logger;
 
-namespace MoneyFox.Application.Common.CloudBackup
+namespace MoneyFox.Infrastructure.OneDrive
 {
     /// <inheritdoc/>
     public class OneDriveService : ICloudBackupService

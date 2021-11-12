@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
+using MoneyFox.Infrastructure.OneDrive;
 using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Infrastructure
@@ -13,6 +14,8 @@ namespace MoneyFox.Infrastructure
                    .AsImplementedInterfaces();
 
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
+            
+            builder.RegisterType<OneDriveService>().AsImplementedInterfaces();
         }
     }
 }
