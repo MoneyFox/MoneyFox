@@ -24,7 +24,7 @@ steps:
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
   inputs:
-    versionSpec: 5.x
+    versionSpec: 6.x
   
 - task: JavaToolInstaller@0
   displayName: 'Install Java 11'
