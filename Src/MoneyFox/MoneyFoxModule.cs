@@ -15,7 +15,7 @@ namespace MoneyFox
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<ApplicationModule>();
-            builder.RegisterModule<PersistenceModule>();
+            builder.RegisterModule<InfrastructureModule>();
 
             builder.RegisterInstance(AutoMapperFactory.Create());
 

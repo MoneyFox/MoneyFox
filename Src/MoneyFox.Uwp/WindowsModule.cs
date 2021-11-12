@@ -26,7 +26,7 @@ namespace MoneyFox.Uwp
             builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
 
             builder.RegisterModule<ApplicationModule>();
-            builder.RegisterModule<PersistenceModule>();
+            builder.RegisterModule<InfrastructureModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<ToastService>().AsImplementedInterfaces();

@@ -5,7 +5,7 @@ using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Infrastructure
 {
-    public class PersistenceModule : Module
+    public class InfrastructureModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {
