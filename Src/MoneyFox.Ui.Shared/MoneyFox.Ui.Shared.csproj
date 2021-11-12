@@ -17,6 +17,10 @@
   <ItemGroup>
     <PackageReference Include="Microcharts" Version="0.9.5.9" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.31.0.39249">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>

@@ -87,6 +87,11 @@
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>2.0.0.14</Version>
     </PackageReference>
+    <PackageReference Include="SonarAnalyzer.CSharp">
+      <Version>8.31.0.39249</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="System.Numerics.Vectors">
       <Version>4.5.0</Version>
     </PackageReference>
@@ -304,7 +309,7 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxAndroidHideInfoBar="True" TriggeredFromHotReload="False" />
+      <UserProperties TriggeredFromHotReload="False" XamarinHotReloadXFormsNugetUpgradeInfoBarMoneyFoxAndroidHideInfoBar="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
