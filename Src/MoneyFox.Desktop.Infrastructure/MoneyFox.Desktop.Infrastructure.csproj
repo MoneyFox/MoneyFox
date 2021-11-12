@@ -125,6 +125,8 @@
     <Compile Include="Adapters\EmailAdapter.cs" />
     <Compile Include="Adapters\SettingsAdapter.cs" />
     <Compile Include="InfrastructureDesktop.cs" />
+    <Compile Include="Preferences.cs" />
+    <Compile Include="Preferences.uwp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\MoneyFox.Desktop.Infrastructure.rd.xml" />
   </ItemGroup>
