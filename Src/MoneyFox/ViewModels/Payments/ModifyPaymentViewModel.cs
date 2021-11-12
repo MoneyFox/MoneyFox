@@ -9,7 +9,6 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Extensions;
-using MoneyFox.Messages;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using NLog;

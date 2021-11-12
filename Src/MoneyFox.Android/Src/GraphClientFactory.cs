@@ -4,7 +4,7 @@ using MoneyFox.Infrastructure.DbBackup;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Droid.Src
+namespace MoneyFox.Droid
 {
     public class GraphClientFactory : IGraphClientFactory
     {

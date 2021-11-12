@@ -1,7 +1,7 @@
 using MoneyFox.Application.Common.Interfaces;
 
 #nullable enable
-namespace MoneyFox.Droid.Src
+namespace MoneyFox.Droid
 {
     public class DroidAppInformation : IAppInformation
     {

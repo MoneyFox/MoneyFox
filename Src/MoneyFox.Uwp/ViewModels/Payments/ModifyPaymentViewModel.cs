@@ -10,7 +10,6 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Messages;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Categories;

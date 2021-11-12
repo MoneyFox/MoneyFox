@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
+namespace MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance
 {
     public class GetAccountEndOfMonthBalanceQuery : IRequest<decimal>
     {

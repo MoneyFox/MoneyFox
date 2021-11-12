@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Application.Common.Interfaces;
 using StoreKit;
 
-namespace MoneyFox.iOS.Src
+namespace MoneyFox.iOS
 {
     /// <inheritdoc/>
     public class StoreOperations : IStoreOperations

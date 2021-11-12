@@ -1,7 +1,7 @@
 ﻿using Foundation;
 using MoneyFox.Application.Common.Interfaces;
 
-namespace MoneyFox.iOS.Src
+namespace MoneyFox.iOS
 {
     /// <inheritdoc/>
     public class AppInformation : IAppInformation

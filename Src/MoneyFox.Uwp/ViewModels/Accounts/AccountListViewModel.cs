@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
+using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;

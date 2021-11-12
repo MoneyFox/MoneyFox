@@ -1,7 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Autofac;
 using GalaSoft.MvvmLight.Messaging;
-using MoneyFox.Droid.Src;
 
 #nullable enable
 namespace MoneyFox.Droid

@@ -3,7 +3,7 @@ using Android.Net;
 using MoneyFox.Application.Common.Interfaces;
 
 #nullable enable
-namespace MoneyFox.Droid.Src
+namespace MoneyFox.Droid
 {
     /// <summary>
     /// Gives access to the features of google play on android.

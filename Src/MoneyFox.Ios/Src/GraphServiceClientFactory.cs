@@ -5,7 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace MoneyFox.iOS.Src
+namespace MoneyFox.iOS
 {
     public class GraphServiceClientFactory : IGraphClientFactory
     {

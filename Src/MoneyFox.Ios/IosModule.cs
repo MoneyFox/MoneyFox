@@ -3,7 +3,6 @@ using Autofac;
 using Foundation;
 using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Application;
-using MoneyFox.iOS.Src;
 using NLog;
 using System;
 using System.Globalization;

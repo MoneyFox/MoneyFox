@@ -2,7 +2,6 @@
 using Android.Runtime;
 using Autofac;
 using MoneyFox.Application.Common.Constants;
-using MoneyFox.Droid.Src;
 using NLog;
 using NLog.Config;
 using NLog.Targets;

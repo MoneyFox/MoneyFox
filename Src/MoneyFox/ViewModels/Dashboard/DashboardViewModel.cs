@@ -2,10 +2,12 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediatR;
+using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
 using MoneyFox.Application.Common.Messages;
+using MoneyFox.Application.Payments.Queries.GetMonthlyExpense;
 using MoneyFox.Application.Payments.Queries.GetMonthlyIncome;
 using MoneyFox.Extensions;
 using MoneyFox.ViewModels.Accounts;

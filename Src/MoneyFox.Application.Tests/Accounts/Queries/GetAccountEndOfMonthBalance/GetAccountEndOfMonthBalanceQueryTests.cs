@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
+using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -11,7 +11,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountEndOfMonthBalance
 {
     [ExcludeFromCodeCoverage]
     public class GetAccountEndOfMonthBalanceQueryTests : IDisposable

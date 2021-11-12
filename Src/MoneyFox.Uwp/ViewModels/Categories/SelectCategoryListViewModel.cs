@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Messages;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Uwp.Services;
 
 #nullable enable

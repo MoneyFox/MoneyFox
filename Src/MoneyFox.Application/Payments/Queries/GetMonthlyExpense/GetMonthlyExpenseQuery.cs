@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
+namespace MoneyFox.Application.Payments.Queries.GetMonthlyExpense
 {
     public class GetMonthlyExpenseQuery : IRequest<decimal>
     {

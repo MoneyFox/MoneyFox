@@ -1,18 +1,17 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Payments.Queries.GetMonthlyIncome;
+using MoneyFox.Application.Payments.Queries.GetMonthlyExpense;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using NSubstitute;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
+namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyExpense
 {
     [ExcludeFromCodeCoverage]
     public class GetMonthlyExpenseQueryTests : IDisposable
