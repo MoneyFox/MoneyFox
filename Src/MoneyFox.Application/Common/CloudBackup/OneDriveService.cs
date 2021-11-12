@@ -37,7 +37,7 @@ namespace MoneyFox.Application.Common.CloudBackup
             UserAccount = new UserAccount();
         }
 
-        private IGraphServiceClient? GraphServiceClient { get; set; }
+        private GraphServiceClient? GraphServiceClient { get; set; }
 
         private DriveItem? ArchiveFolder { get; set; }
 
@@ -53,12 +53,11 @@ namespace MoneyFox.Application.Common.CloudBackup
             // let's see if we have a user in our belly already
             try
             {
-                AuthenticationResult authResult;
                 IAccount firstAccount = accounts.FirstOrDefault();
-                authResult = firstAccount == null ? await publicClientApplication.AcquireTokenInteractive(scopes)
-                                                              .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
-                                                              .ExecuteAsync()
-                                                  : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+                AuthenticationResult authResult = firstAccount == null ? await publicClientApplication.AcquireTokenInteractive(scopes)
+                        .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
+                        .ExecuteAsync()
+                    : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User user = await GraphServiceClient.Me.Request().GetAsync();
