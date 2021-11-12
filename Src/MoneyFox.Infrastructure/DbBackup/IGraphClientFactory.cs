@@ -1,7 +1,7 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Client;
 
-namespace MoneyFox.Application.Common.CloudBackup
+namespace MoneyFox.Infrastructure.DbBackup
 {
     public interface IGraphClientFactory
     {

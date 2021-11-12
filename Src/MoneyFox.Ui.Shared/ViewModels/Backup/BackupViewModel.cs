@@ -1,12 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.AppCenter.Crashes;
-using Microsoft.Graph;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Services;
@@ -185,9 +184,9 @@ namespace MoneyFox.Ui.Shared.ViewModels.Backup
                 await backupService.LogoutAsync();
                 await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
             }
-            catch(ServiceException ex)
+            catch(Exception ex)
             {
-                if(ex.Error.Code == "4f37.717b")
+                if(ex.StackTrace == "4f37.717b")
                 {
                     await backupService.LogoutAsync();
                     await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);

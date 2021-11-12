@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Messaging;
 using Microsoft.AppCenter.Crashes;
-using Microsoft.Graph;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Extensions;
@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Helpers;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Services;
@@ -20,54 +21,8 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Application.Common.CloudBackup
+namespace MoneyFox.Infrastructure.DbBackup
 {
-    public interface IBackupService
-    {
-        /// <summary>
-        /// Informations about logged user.
-        /// </summary>
-        UserAccount UserAccount { get; set; }
-
-        /// <summary>
-        /// Login user.
-        /// </summary>
-        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task LoginAsync();
-
-        /// <summary>
-        /// Logout user.
-        /// </summary>
-        Task LogoutAsync();
-
-        /// <summary>
-        /// Checks if there are backups to restore.
-        /// </summary>
-        /// <returns>Backups available or not.</returns>
-        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<bool> IsBackupExistingAsync();
-
-        /// <summary>
-        /// Returns the date when the last backup was created.
-        /// </summary>
-        /// <returns>Creation date of the last backup.</returns>
-        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        Task<DateTime> GetBackupDateAsync();
-
-        /// <summary>
-        /// Restores an existing backup.
-        /// </summary>
-        /// <exception cref="BackupAuthenticationFailedException">Thrown when the user couldn't be logged in.</exception>
-        /// <exception cref="NoBackupFoundException">Thrown when no backup with the right name is found.</exception>
-        Task RestoreBackupAsync(BackupMode backupMode = BackupMode.Automatic);
-
-        /// <summary>
-        /// Enqueues a new backup task.
-        /// </summary>
-        /// <exception cref="NetworkConnectionException">Thrown if there is no internet connection.</exception>
-        Task UploadBackupAsync(BackupMode backupMode = BackupMode.Automatic);
-    }
-
     public class BackupService : IBackupService, IDisposable
     {
         private const int BACKUP_OPERATION_TIMEOUT = 10000;
@@ -311,14 +266,14 @@ namespace MoneyFox.Application.Common.CloudBackup
                 await Task.Delay(BACKUP_REPEAT_DELAY);
                 await EnqueueBackupTaskAsync(attempts + 1);
             }
-            catch(ServiceException ex)
-            {
-                logger.Error(ex, "ServiceException when tried to enqueue Backup.");
-                throw;
-            }
             catch(BackupAuthenticationFailedException ex)
             {
                 logger.Error(ex, "BackupAuthenticationFailedException when tried to enqueue Backup.");
+                throw;
+            }
+            catch(Exception ex)
+            {
+                logger.Error(ex, "ServiceException when tried to enqueue Backup.");
                 throw;
             }
 

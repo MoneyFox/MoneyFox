@@ -1,9 +1,10 @@
 ﻿using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
+using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

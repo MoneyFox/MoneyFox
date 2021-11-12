@@ -1,8 +1,8 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Domain.Exceptions;
 using NLog;
 using System;
@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Logger = NLog.Logger;
 
-namespace MoneyFox.Infrastructure.OneDrive
+namespace MoneyFox.Infrastructure.DbBackup
 {
     /// <inheritdoc/>
     public class OneDriveService : ICloudBackupService
@@ -63,7 +63,7 @@ namespace MoneyFox.Infrastructure.OneDrive
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User user = await GraphServiceClient.Me.Request().GetAsync();
-                UserAccount.SetUserAccount(user);
+                UserAccount.SetUserAccount(user.DisplayName, string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
             }
             catch(MsalUiRequiredException ex)
             {
@@ -86,7 +86,7 @@ namespace MoneyFox.Infrastructure.OneDrive
         /// <summary>
         /// Login User to OneDrive silently.
         /// </summary>
-        public async Task LoginSilentAsync()
+        private async Task LoginSilentAsync()
         {
             try
             {
@@ -101,7 +101,7 @@ namespace MoneyFox.Infrastructure.OneDrive
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User user = await GraphServiceClient.Me.Request().GetAsync();
-                UserAccount.SetUserAccount(user);
+                UserAccount.SetUserAccount(user.DisplayName, string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
             }
             catch(MsalUiRequiredException ex)
             {

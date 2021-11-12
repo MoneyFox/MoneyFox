@@ -1,6 +1,4 @@
-﻿using Microsoft.Graph;
-
-namespace MoneyFox.Application.Common.CloudBackup
+﻿namespace MoneyFox.Application.DbBackup
 {
     /// <summary>
     /// Holds info about logged user.
@@ -10,27 +8,21 @@ namespace MoneyFox.Application.Common.CloudBackup
         /// <summary>
         /// User's name from Microsoft account.
         /// </summary>
-        public string? Name { get; set; }
+        public string? Name { get; private set; }
 
         /// <summary>
         /// Users email from Microsoft account.
         /// </summary>
-        public string? Email { get; set; }
-
-        /// <summary>
-        /// Users profile photo from Microsoft account.
-        /// </summary>
-        public ProfilePhoto? Photo { get; set; }
+        public string? Email { get; private set; }
 
         /// <summary>
         /// Set's informations 
         /// </summary>
         /// <param name="user"></param>
-        public void SetUserAccount(User user)
+        public void SetUserAccount(string displayName, string email)
         {
-            Name = user.DisplayName;
-            Email = string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail;
-            Photo = user.Photo;
+            Name = displayName;
+            Email = email;
         }
 
         /// <summary>

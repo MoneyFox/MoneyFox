@@ -1,12 +1,13 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 using MoneyFox.Persistence;
 using Moq;

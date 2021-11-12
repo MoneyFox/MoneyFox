@@ -145,6 +145,10 @@
       <Project>{9D569165-5277-4B92-A621-6710C487F51B}</Project>
       <Name>MoneyFox.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
+      <Project>{0429508E-AFD9-4F1C-900A-EA1997FC8567}</Project>
+      <Name>MoneyFox.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj">
       <Project>{97801952-BB0D-4CAA-BA07-CBAE00A5860F}</Project>
       <Name>MoneyFox</Name>
