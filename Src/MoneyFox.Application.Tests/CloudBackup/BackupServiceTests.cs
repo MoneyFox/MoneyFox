@@ -1,12 +1,13 @@
 ﻿using FluentAssertions;
 using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Domain.Exceptions;
+using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Services;
 using Moq;
 using NSubstitute;

@@ -3,7 +3,7 @@ using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;

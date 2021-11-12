@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Helpers;
 
-namespace MoneyFox.Persistence
+namespace MoneyFox.Infrastructure.Persistence
 {
     public static class EfCoreContextFactory
     {

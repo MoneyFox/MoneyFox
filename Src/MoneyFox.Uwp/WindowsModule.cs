@@ -10,9 +10,9 @@ using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Desktop.Infrastructure;
 using MoneyFox.Desktop.Infrastructure.Adapters;
 using MoneyFox.Persistence;
+using MoneyFox.Infrastructure;
 using MoneyFox.Uwp.AutoMapper;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.ViewModels.Backup;
 using PCLAppConfig;
 using System;
 using System.Globalization;
@@ -26,8 +26,8 @@ namespace MoneyFox.Uwp
             builder.Register(c => new TokenObject { CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"] });
 
             builder.RegisterModule<ApplicationModule>();
-            builder.RegisterModule<PersistenceModule>();
             builder.RegisterModule<InfrastructureDesktop>();
+            builder.RegisterModule<InfrastructureModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<ToastService>().AsImplementedInterfaces();
@@ -41,13 +41,7 @@ namespace MoneyFox.Uwp
 
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
-
-            builder.Register(c => PublicClientApplicationBuilder
-                                 .Create(AppConstants.MSAL_APPLICATION_ID)
-                                 .WithRedirectUri($"msal{AppConstants.MSAL_APPLICATION_ID}://auth")
-                                 .Build())
-                   .AsImplementedInterfaces();
-
+            
             builder.RegisterAssemblyTypes(ThisAssembly)
                    .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
@@ -63,12 +57,6 @@ namespace MoneyFox.Uwp
                    .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                    .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                    .AsImplementedInterfaces().AsSelf()
-                   .AsSelf();
-
-            builder.RegisterAssemblyTypes(typeof(BackupViewModel).Assembly)
-                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
-                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces()
                    .AsSelf();
 
             CultureHelper.CurrentCulture = CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);

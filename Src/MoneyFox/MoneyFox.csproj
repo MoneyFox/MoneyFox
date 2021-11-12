@@ -43,7 +43,6 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
     <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2196" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.29.0" />
     <PackageReference Include="NLog" Version="4.7.12" />
     <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
@@ -52,6 +51,8 @@
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
     <ProjectReference Include="..\MoneyFox.Mobile.Infrastructure\MoneyFox.Mobile.Infrastructure.csproj" />
     <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
+    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
+    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

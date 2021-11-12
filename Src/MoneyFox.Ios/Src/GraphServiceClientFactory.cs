@@ -1,6 +1,5 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Client;
-using MoneyFox.Application.Common.CloudBackup;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;

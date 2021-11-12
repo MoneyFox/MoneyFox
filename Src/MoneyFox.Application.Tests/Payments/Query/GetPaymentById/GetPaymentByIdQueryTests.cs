@@ -5,6 +5,7 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
+using MoneyFox.Infrastructure.Persistence;
 using MoneyFox.Persistence;
 using Moq;
 using System;

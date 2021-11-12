@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using MoneyFox.Domain.Entities;
 
-namespace MoneyFox.Persistence.Configurations
+namespace MoneyFox.Infrastructure.Persistence.Configurations
 {
     internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {

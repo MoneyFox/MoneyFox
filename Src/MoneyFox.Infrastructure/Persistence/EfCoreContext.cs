@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence.Configurations;
+using MoneyFox.Infrastructure.Persistence.Configurations;
 
-namespace MoneyFox.Persistence
+namespace MoneyFox.Infrastructure.Persistence
 {
     /// <summary>
     /// Represents the data context of the application

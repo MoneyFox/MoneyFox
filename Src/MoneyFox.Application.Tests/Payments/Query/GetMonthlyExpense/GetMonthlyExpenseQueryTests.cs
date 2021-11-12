@@ -4,6 +4,7 @@ using MoneyFox.Application.Payments.Queries.GetMonthlyIncome;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.Persistence;
 using MoneyFox.Persistence;
 using NSubstitute;
 using System;

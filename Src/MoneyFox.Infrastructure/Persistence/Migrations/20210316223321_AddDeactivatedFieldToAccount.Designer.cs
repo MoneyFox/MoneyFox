@@ -4,19 +4,19 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Persistence.Migrations
 {
     [DbContext(typeof(EfCoreContext))]
-    [Migration("20201005031405_AddCategoryRequireNoteFlag")]
-    partial class AddCategoryRequireNoteFlag
+    [Migration("20210316223321_AddDeactivatedFieldToAccount")]
+    partial class AddDeactivatedFieldToAccount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8");
+                .HasAnnotation("ProductVersion", "3.1.12");
 
             modelBuilder.Entity("MoneyFox.Domain.Entities.Account", b =>
                 {
@@ -29,6 +29,9 @@ namespace MoneyFox.Persistence.Migrations
 
                     b.Property<decimal>("CurrentBalance")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsDeactivated")
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsExcluded")
                         .HasColumnType("INTEGER");
