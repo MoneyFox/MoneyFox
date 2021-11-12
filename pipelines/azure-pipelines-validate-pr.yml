@@ -144,18 +144,6 @@ jobs:
     inputs:
       restoreSolution: '$(solution)'
 
-  - task: SonarCloudPrepare@1
-    inputs:
-      SonarCloud: 'MoneyFox SonarCloud'
-      organization: 'moneyfox-1'
-      scannerMode: 'MSBuild'
-      projectKey: 'MoneyFox_MoneyFox'
-      extraProperties: |
-        # Additional properties that will be passed to the scanner,
-        # Put one key=value per line, example:
-        # sonar.exclusions=**/*.bin
-        sonar.cs.opencover.reportsPaths=**/*.opencover.xml
-
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
@@ -171,16 +159,3 @@ jobs:
       msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
       platform: x64
       configuration: '$(BuildConfiguration)'
-
-  - task: CopyFiles@2
-    displayName: 'Copy coverage xml to staging'
-    inputs:
-      SourceFolder: '$(Agent.TempDirectory)'
-      Contents: '**\*.opencover.xml'
-      TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
-    displayName: 'Run Code Analysis'
-
-  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
-    displayName: 'Publish Quality Gate Result'
