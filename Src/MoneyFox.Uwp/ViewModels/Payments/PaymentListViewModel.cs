@@ -78,9 +78,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             Messenger.Unregister<ReloadMessage>(this);
         }
 
-        public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
+        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
-        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadDataAsync(new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)}));
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadDataAsync(new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)}));
 
         public RelayCommand<PaymentViewModel> EditPaymentCommand
             => new RelayCommand<PaymentViewModel>(vm => navigationService.Navigate<EditPaymentViewModel>(vm));
@@ -97,11 +97,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public int AccountId
         {
             get => accountId;
-            set
-            {
-                accountId = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref accountId, value);
         }
 
         /// <summary>
@@ -110,11 +106,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public IBalanceViewModel BalanceViewModel
         {
             get => balanceViewModel;
-            private set
-            {
-                balanceViewModel = value;
-                OnPropertyChanged();
-            }
+            private set=> SetProperty(ref balanceViewModel, value);
         }
 
         /// <summary>
@@ -123,16 +115,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public IPaymentListViewActionViewModel? ViewActionViewModel
         {
             get => viewActionViewModel;
-            private set
-            {
-                if(viewActionViewModel == value)
-                {
-                    return;
-                }
-
-                viewActionViewModel = value;
-                OnPropertyChanged();
-            }
+            private set=> SetProperty(ref viewActionViewModel, value);
         }
 
         private CollectionViewSource? groupedPayments;
@@ -143,11 +126,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public CollectionViewSource? GroupedPayments
         {
             get => groupedPayments;
-            private set
-            {
-                groupedPayments = value;
-                OnPropertyChanged();
-            }
+            private set=> SetProperty(ref groupedPayments, value);
         }
 
         /// <summary>
@@ -156,16 +135,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public string Title
         {
             get => title;
-            private set
-            {
-                if(title == value)
-                {
-                    return;
-                }
-
-                title = value;
-                OnPropertyChanged();
-            }
+            private set=> SetProperty(ref title, value);
         }
 
         /// <summary>
@@ -174,27 +144,20 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public bool IsBusy
         {
             get => isBusy;
-            private set
-            {
-                if(isBusy == value)
-                {
-                    return;
-                }
-
-                isBusy = value;
-                OnPropertyChanged();
-            }
+            private set=> SetProperty(ref isBusy, value);
         }
 
         private async Task InitializeAsync()
         {
             Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
 
-            BalanceViewModel = new PaymentListBalanceViewModel(mediator,
+            BalanceViewModel = new PaymentListBalanceViewModel(
+                mediator,
                 mapper,
                 balanceCalculationService,
                 AccountId);
-            ViewActionViewModel = new PaymentListViewActionViewModel(AccountId,
+            ViewActionViewModel = new PaymentListViewActionViewModel(
+                AccountId,
                 mediator,
                 settingsFacade,
                 dialogService,

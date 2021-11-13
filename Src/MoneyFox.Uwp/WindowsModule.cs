@@ -36,8 +36,6 @@ namespace MoneyFox.Uwp
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
-
-            builder.RegisterInstance(new WeakReferenceMessenger()).InstancePerLifetimeScope().AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.RegisterAssemblyTypes(ThisAssembly)

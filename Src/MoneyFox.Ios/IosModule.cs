@@ -21,7 +21,6 @@ namespace MoneyFox.iOS
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
                 .AsImplementedInterfaces();
-            builder.RegisterInstance(new WeakReferenceMessenger()).InstancePerLifetimeScope().AsImplementedInterfaces();
 
             SetLocale();
             builder.RegisterModule<MoneyFoxModule>();
