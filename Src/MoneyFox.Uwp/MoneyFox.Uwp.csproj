@@ -381,7 +381,6 @@
     <Content Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="MoneyFox.Uwp.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\ApplyLogo.png" />
@@ -438,9 +437,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-125.png" />
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <None Include="MoneyFox.Uwp_TemporaryKey.pfx" />
-    <None Include="MoneyFoxCert_2020.pfx" />
-    <None Include="MoneyFoxCert_2021.pfx" />
     <None Include="Package.StoreAssociation.xml" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\SplashScreen.scale-200.png" />

@@ -28,7 +28,8 @@
     <MtouchArch>x86_64</MtouchArch>
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <CodesignKey>iPhone Developer</CodesignKey>
   </PropertyGroup>
@@ -40,7 +41,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -56,7 +58,8 @@
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
     <MtouchLink>None</MtouchLink>
     <MtouchInterpreter>-all</MtouchInterpreter>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
     <MtouchFastDev>true</MtouchFastDev>
     <CodesignProvision>MoneyFox Development 2020</CodesignProvision>
   </PropertyGroup>
@@ -69,7 +72,8 @@
     <MtouchArch>ARM64</MtouchArch>
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <CodeAnalysisRuleSet>MoneyFox.iOS.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSet>
+    </CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <LangVersion>8.0</LangVersion>
@@ -90,9 +94,6 @@
     <Compile Include="Src\GraphServiceClientFactory.cs" />
     <Compile Include="Src\IosFileStore.cs" />
     <Compile Include="Src\StoreOperations.cs" />
-    <None Include="..\.sonarlint\moneyfox-projectcsharp.ruleset">
-      <Link>moneyfox-projectcsharp.ruleset</Link>
-    </None>
     <None Include="..\MoneyFox\App.config">
       <Link>App.config</Link>
     </None>
@@ -100,7 +101,6 @@
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
-    <None Include="MoneyFox.iOS.ruleset" />
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
