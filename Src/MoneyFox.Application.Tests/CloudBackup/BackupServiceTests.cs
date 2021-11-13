@@ -34,6 +34,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
         public BackupServiceTests()
         {
             cloudBackupServiceMock = new Mock<ICloudBackupService>();
+            cloudBackupServiceMock.SetupGet(x => x.UserAccount).Returns(new UserAccount());
+
             fileStoreMock = new Mock<IFileStore>();
             settingsFacadeMock = new Mock<ISettingsFacade>();
             connectivityAdapterMock = new Mock<IConnectivityAdapter>();
