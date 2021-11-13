@@ -22,7 +22,8 @@ namespace MoneyFox.Tests.Groups
 
             // Act
             List<AlphaGroupListGroupCollection<AccountViewModel>> createdGroup
-                = AlphaGroupListGroupCollection<AccountViewModel>.CreateGroups(accountList,
+                = AlphaGroupListGroupCollection<AccountViewModel>.CreateGroups(
+                    accountList,
                     CultureInfo.CurrentUICulture,
                     s => s.Name);
             // Assert

@@ -22,7 +22,8 @@ namespace MoneyFox.iOS.Renderer
 
             if(Xamarin.Forms.Application.Current.UserAppTheme == OSAppTheme.Dark)
             {
-                Xamarin.Forms.Application.Current.Resources.TryGetValue("BackgroundColorSearchBarDark",
+                Xamarin.Forms.Application.Current.Resources.TryGetValue(
+                    "BackgroundColorSearchBarDark",
                     out object darkTintColor);
                 searchBar.BarTintColor = ((Color)darkTintColor).ToUIColor();
             }
@@ -30,7 +31,8 @@ namespace MoneyFox.iOS.Renderer
             {
                 searchBar.BarStyle = UIBarStyle.Default;
 
-                Xamarin.Forms.Application.Current.Resources.TryGetValue("BackgroundColorSearchBarLight",
+                Xamarin.Forms.Application.Current.Resources.TryGetValue(
+                    "BackgroundColorSearchBarLight",
                     out object lightTintColor);
                 searchBar.BarTintColor = ((Color)lightTintColor).ToUIColor();
             }

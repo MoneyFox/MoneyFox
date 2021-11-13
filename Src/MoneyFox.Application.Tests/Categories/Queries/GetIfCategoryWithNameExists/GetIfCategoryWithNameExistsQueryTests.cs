@@ -39,7 +39,8 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetIfCategoryWithNameExi
             // Act
             bool result =
                 await new GetIfCategoryWithNameExistsQuery.Handler(context).Handle(
-                    new GetIfCategoryWithNameExistsQuery("Foo"), default);
+                    new GetIfCategoryWithNameExistsQuery("Foo"),
+                    default);
 
             // Assert
             result.Should().BeFalse();

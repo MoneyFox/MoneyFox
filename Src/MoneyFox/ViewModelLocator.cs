@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
-using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.ViewModels.About;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;

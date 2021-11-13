@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
@@ -36,15 +35,11 @@ namespace MoneyFox.ViewModels.Categories
             this.dialogService = dialogService;
         }
 
-        protected override void OnActivated()
-        {
-            Messenger.Register<CategoryListViewModel, ReloadMessage>(this, (r, m) => r.SearchCategoryCommand.Execute(""));
-        }
+        protected override void OnActivated() => Messenger.Register<CategoryListViewModel, ReloadMessage>(
+            this,
+            (r, m) => r.SearchCategoryCommand.Execute(""));
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<ReloadMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public async Task InitializeAsync() => await SearchCategoryAsync();
 
@@ -58,8 +53,9 @@ namespace MoneyFox.ViewModels.Categories
             }
         }
 
-        public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () =>
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
+        public RelayCommand GoToAddCategoryCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
 
         public RelayCommand<string> SearchCategoryCommand =>
             new RelayCommand<string>(async searchTerm => await SearchCategoryAsync(searchTerm));
@@ -82,7 +78,8 @@ namespace MoneyFox.ViewModels.Categories
                 mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
 
             List<AlphaGroupListGroupCollection<CategoryViewModel>>? groups =
-                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms,
+                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(
+                    categorieVms,
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
@@ -92,21 +89,24 @@ namespace MoneyFox.ViewModels.Categories
         }
 
         public RelayCommand<CategoryViewModel> GoToEditCategoryCommand
-            => new RelayCommand<CategoryViewModel>(async categoryViewModel
-                => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditCategoryPage(categoryViewModel.Id))
-                    {
-                        BarBackgroundColor = Color.Transparent
-                    }));
+            => new RelayCommand<CategoryViewModel>(
+                async categoryViewModel
+                    => await Shell.Current.Navigation.PushModalAsync(
+                        new NavigationPage(new EditCategoryPage(categoryViewModel.Id))
+                        {
+                            BarBackgroundColor = Color.Transparent
+                        }));
 
 
         public RelayCommand<CategoryViewModel> DeleteCategoryCommand
-            => new RelayCommand<CategoryViewModel>(async categoryViewModel
-                => await DeleteAccountAsync(categoryViewModel));
+            => new RelayCommand<CategoryViewModel>(
+                async categoryViewModel
+                    => await DeleteAccountAsync(categoryViewModel));
 
         private async Task DeleteAccountAsync(CategoryViewModel categoryViewModel)
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeleteCategoryConfirmationMessage,
                    Strings.YesLabel,
                    Strings.NoLabel))

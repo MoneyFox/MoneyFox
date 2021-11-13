@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Services;
 using NLog;
 using System.Globalization;
@@ -36,9 +36,9 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
         protected INavigationService NavigationService { get; }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
+        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(InitializeAsync);
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBaseAsync);
+        public AsyncRelayCommand SaveCommand => new AsyncRelayCommand(SaveAccountBaseAsync);
 
         public string Title
         {
@@ -100,7 +100,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
-                await DialogService.ShowMessageAsync(Strings.InvalidNumberTitle,
+                await DialogService.ShowMessageAsync(
+                    Strings.InvalidNumberTitle,
                     Strings.InvalidNumberCurrentBalanceMessage);
                 return;
             }

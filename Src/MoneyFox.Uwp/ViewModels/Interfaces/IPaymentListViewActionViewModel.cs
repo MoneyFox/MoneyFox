@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Uwp.Commands;
 using System;
 
 #nullable enable
@@ -13,7 +12,7 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
         /// <summary>
         ///     Deletes the currently selected account.
         /// </summary>
-        AsyncCommand DeleteAccountCommand { get; }
+        AsyncRelayCommand DeleteAccountCommand { get; }
 
         /// <summary>
         ///     Apply the filter and reload the list.
@@ -41,7 +40,7 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
         DateTime TimeRangeStart { get; set; }
 
         /// <summary>
-        /// End of the time range to load payments.
+        ///     End of the time range to load payments.
         /// </summary>
         DateTime TimeRangeEnd { get; set; }
     }

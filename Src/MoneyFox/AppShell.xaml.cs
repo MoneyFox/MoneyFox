@@ -38,11 +38,14 @@ namespace MoneyFox
             Routing.RegisterRoute(ViewModelLocator.BackupRoute, typeof(BackupPage));
             Routing.RegisterRoute(ViewModelLocator.SettingsRoute, typeof(SettingsPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCashFlowRoute, typeof(StatisticCashFlowPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticAccountMonthlyCashflowRoute,
+            Routing.RegisterRoute(
+                ViewModelLocator.StatisticAccountMonthlyCashflowRoute,
                 typeof(StatisticAccountMonthlyCashflowPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticCategoryProgressionRoute,
+            Routing.RegisterRoute(
+                ViewModelLocator.StatisticCategoryProgressionRoute,
                 typeof(StatisticCategoryProgressionPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticCategorySpreadingRoute,
+            Routing.RegisterRoute(
+                ViewModelLocator.StatisticCategorySpreadingRoute,
                 typeof(StatisticCategorySpreadingPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCategorySummaryRoute, typeof(StatisticCategorySummaryPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticSelectorRoute, typeof(StatisticSelectorPage));

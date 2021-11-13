@@ -30,7 +30,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
 
             backupServiceMock = new Mock<IBackupService>();
             backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                .Returns(Task.CompletedTask);
+                             .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
@@ -49,10 +49,12 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
         {
             // Arrange
             // Act
-            await new CreateAccountCommand.Handler(contextAdapterMock.Object,
+            await new CreateAccountCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
-                .Handle(new CreateAccountCommand("test", 80),
+                .Handle(
+                    new CreateAccountCommand("test", 80),
                     default);
 
             // Assert
@@ -64,10 +66,12 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
         {
             // Arrange
             // Act
-            await new CreateAccountCommand.Handler(contextAdapterMock.Object,
+            await new CreateAccountCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
-                .Handle(new CreateAccountCommand("Test", 80),
+                .Handle(
+                    new CreateAccountCommand("Test", 80),
                     default);
 
             // Assert

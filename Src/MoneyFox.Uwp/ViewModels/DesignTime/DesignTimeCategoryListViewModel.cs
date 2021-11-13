@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System.Collections.ObjectModel;
@@ -23,7 +22,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public RelayCommand<CategoryViewModel> ItemClickCommand { get; } = null!;
 
-        public AsyncCommand<string> SearchCommand { get; } = null!;
+        public AsyncRelayCommand<string> SearchCommand { get; } = null!;
 
         public CategoryViewModel SelectedCategory { get; set; } = null!;
 

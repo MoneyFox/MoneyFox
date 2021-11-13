@@ -10,6 +10,7 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Entities;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -24,7 +25,7 @@ using Windows.UI.Xaml.Data;
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>
-    /// Representation of the payment list view.
+    ///     Representation of the payment list view.
     /// </summary>
     public class PaymentListViewModel : ObservableRecipient
     {
@@ -47,7 +48,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private IPaymentListViewActionViewModel? viewActionViewModel;
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         public PaymentListViewModel(IMediator mediator,
             IMapper mapper,
@@ -66,10 +67,14 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         protected override void OnActivated()
         {
-            Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(this, (r, m)
-                => r.LoadDataAsync(m));
-            Messenger.Register<PaymentListViewModel, ReloadMessage>(this, (r, m)
-                => r.LoadDataCommand.Execute(null));
+            Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(
+                this,
+                (r, m)
+                    => r.LoadDataAsync(m));
+            Messenger.Register<PaymentListViewModel, ReloadMessage>(
+                this,
+                (r, m)
+                    => r.LoadDataCommand.Execute(null));
         }
 
         protected override void OnDeactivated()
@@ -80,19 +85,21 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
-        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadDataAsync(new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)}));
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(
+            async () => await LoadDataAsync(
+                new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)}));
 
         public RelayCommand<PaymentViewModel> EditPaymentCommand
             => new RelayCommand<PaymentViewModel>(vm => navigationService.Navigate<EditPaymentViewModel>(vm));
 
         /// <summary>
-        /// Deletes the passed PaymentViewModel.
+        ///     Deletes the passed PaymentViewModel.
         /// </summary>
         public RelayCommand<PaymentViewModel> DeletePaymentCommand =>
             new RelayCommand<PaymentViewModel>(async vm => await DeletePaymentAsync(vm));
 
         /// <summary>
-        /// Id for the current account.
+        ///     Id for the current account.
         /// </summary>
         public int AccountId
         {
@@ -101,21 +108,21 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// View Model for the balance subview.
+        ///     View Model for the balance subview.
         /// </summary>
         public IBalanceViewModel BalanceViewModel
         {
             get => balanceViewModel;
-            private set=> SetProperty(ref balanceViewModel, value);
+            private set => SetProperty(ref balanceViewModel, value);
         }
 
         /// <summary>
-        /// View Model for the global actions on the view.
+        ///     View Model for the global actions on the view.
         /// </summary>
         public IPaymentListViewActionViewModel? ViewActionViewModel
         {
             get => viewActionViewModel;
-            private set=> SetProperty(ref viewActionViewModel, value);
+            private set => SetProperty(ref viewActionViewModel, value);
         }
 
         private CollectionViewSource? groupedPayments;
@@ -126,7 +133,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public CollectionViewSource? GroupedPayments
         {
             get => groupedPayments;
-            private set=> SetProperty(ref groupedPayments, value);
+            private set => SetProperty(ref groupedPayments, value);
         }
 
         /// <summary>
@@ -135,7 +142,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public string Title
         {
             get => title;
-            private set=> SetProperty(ref title, value);
+            private set => SetProperty(ref title, value);
         }
 
         private async Task InitializeAsync()
@@ -155,7 +162,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 BalanceViewModel,
                 navigationService);
 
-            await LoadDataAsync(new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)});
+            await LoadDataAsync(
+                new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)});
         }
 
         private async Task LoadDataAsync(PaymentListFilterChangedMessage paymentListFilterChangedMessage)
@@ -171,7 +179,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 await LoadPaymentsAsync(paymentListFilterChangedMessage);
 
                 //Refresh balance control with the current account
-                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync(null);
             }
             catch(Exception ex)
             {
@@ -194,7 +202,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
             };
 
-            var loadedPayments = await mediator.Send(getPaymentsForAccountIdQuery);
+            List<Payment> loadedPayments = await mediator.Send(getPaymentsForAccountIdQuery);
             var payments = mapper.Map<List<PaymentViewModel>>(loadedPayments);
 
             payments.ForEach(x => x.CurrentAccountId = AccountId);
@@ -204,7 +212,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             if(filterMessage.IsGrouped)
             {
                 List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
-                    .CreateGroups(payments,
+                    .CreateGroups(
+                        payments,
                         s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                         s => s.Date);
                 source.Source = group;
@@ -219,7 +228,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task DeletePaymentAsync(PaymentViewModel payment)
         {
-            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(!await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeletePaymentConfirmationMessage,
                    Strings.YesLabel,
                    Strings.NoLabel))

@@ -39,14 +39,9 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         protected override void OnActivated()
-        {
-            Messenger.Register<AccountListViewModel, ReloadMessage>(this, (r, m) => r.OnAppearingAsync());
-        }
+            => Messenger.Register<AccountListViewModel, ReloadMessage>(this, (r, m) => r.OnAppearingAsync());
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<ReloadMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public async Task OnAppearingAsync()
         {
@@ -60,8 +55,9 @@ namespace MoneyFox.ViewModels.Accounts
                 isRunning = true;
 
                 var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-                accountVms.ForEach(async x =>
-                    x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                accountVms.ForEach(
+                    async x =>
+                        x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 var includedAccountGroup =
                     new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
@@ -102,29 +98,34 @@ namespace MoneyFox.ViewModels.Accounts
             }
         }
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () =>
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
         public RelayCommand<AccountViewModel> GoToEditAccountCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel
-                => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditAccountPage(accountViewModel.Id))
-                    {
-                        BarBackgroundColor = Color.Transparent
-                    }));
+            => new RelayCommand<AccountViewModel>(
+                async accountViewModel
+                    => await Shell.Current.Navigation.PushModalAsync(
+                        new NavigationPage(new EditAccountPage(accountViewModel.Id))
+                        {
+                            BarBackgroundColor = Color.Transparent
+                        }));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel
-                => await Shell.Current.GoToAsync(
-                    $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
+            => new RelayCommand<AccountViewModel>(
+                async accountViewModel
+                    => await Shell.Current.GoToAsync(
+                        $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
 
         public RelayCommand<AccountViewModel> DeleteAccountCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel
-                => await DeleteAccountAsync(accountViewModel));
+            => new RelayCommand<AccountViewModel>(
+                async accountViewModel
+                    => await DeleteAccountAsync(accountViewModel));
 
         private async Task DeleteAccountAsync(AccountViewModel accountViewModel)
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeleteAccountConfirmationMessage,
                    Strings.YesLabel,
                    Strings.NoLabel))

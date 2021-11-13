@@ -36,7 +36,7 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        /// Indicates wether the filter for only cleared Payments is active or not.
+        ///     Indicates wether the filter for only cleared Payments is active or not.
         /// </summary>
         public bool IsClearedFilterActive
         {
@@ -54,7 +54,7 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        /// Indicates wether the filter to only display recurring Payments is active or not.
+        ///     Indicates wether the filter to only display recurring Payments is active or not.
         /// </summary>
         public bool IsRecurringFilterActive
         {
@@ -72,7 +72,7 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        /// Start of the time range to load payments.
+        ///     Start of the time range to load payments.
         /// </summary>
         public DateTime TimeRangeStart
         {
@@ -90,7 +90,7 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        /// End of the time range to load payments.
+        ///     End of the time range to load payments.
         /// </summary>
         public DateTime TimeRangeEnd
         {
@@ -107,13 +107,15 @@ namespace MoneyFox.ViewModels.Dialogs
             }
         }
 
-        public RelayCommand FilterSelectedCommand => new RelayCommand(() =>
-            Messenger.Send(new PaymentListFilterChangedMessage
-            {
-                IsClearedFilterActive = IsClearedFilterActive,
-                IsRecurringFilterActive = IsRecurringFilterActive,
-                TimeRangeStart = TimeRangeStart,
-                TimeRangeEnd = TimeRangeEnd
-            }));
+        public RelayCommand FilterSelectedCommand => new RelayCommand(
+            () =>
+                Messenger.Send(
+                    new PaymentListFilterChangedMessage
+                    {
+                        IsClearedFilterActive = IsClearedFilterActive,
+                        IsRecurringFilterActive = IsRecurringFilterActive,
+                        TimeRangeStart = TimeRangeStart,
+                        TimeRangeEnd = TimeRangeEnd
+                    }));
     }
 }

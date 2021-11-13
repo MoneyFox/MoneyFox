@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -9,7 +8,9 @@ using System.Diagnostics.CodeAnalysis;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
-    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used",
+    [SuppressMessage(
+        "Major Code Smell",
+        "S109:Magic numbers should not be used",
         Justification = "Not needed in design time")]
     public class DesignTimeAccountListViewModel : IAccountListViewModel
     {
@@ -35,13 +36,13 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public IAccountListViewActionViewModel ViewActionViewModel { get; } = null!;
 
-        public AsyncCommand LoadDataCommand { get; } = null!;
+        public AsyncRelayCommand LoadDataCommand { get; } = null!;
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand { get; } = null!;
 
         public RelayCommand<AccountViewModel> EditAccountCommand { get; } = null!;
 
-        public AsyncCommand<AccountViewModel> DeleteAccountCommand { get; } = null!;
+        public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand { get; } = null!;
 
         public RelayCommand GoToAddAccountCommand { get; } = null!;
     }

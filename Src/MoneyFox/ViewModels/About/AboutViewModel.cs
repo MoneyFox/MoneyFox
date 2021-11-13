@@ -20,7 +20,7 @@ namespace MoneyFox.ViewModels.About
         private readonly IStoreOperations storeFeatures;
 
         /// <summary>
-        /// Creates an AboutViewModel Object
+        ///     Creates an AboutViewModel Object
         /// </summary>
         public AboutViewModel(IAppInformation appInformation,
             IEmailAdapter emailAdapter,
@@ -34,55 +34,55 @@ namespace MoneyFox.ViewModels.About
         }
 
         /// <summary>
-        /// Opens the web browser and loads to the apply solutions     website
+        ///     Opens the web browser and loads to the apply solutions     website
         /// </summary>
         public RelayCommand GoToWebsiteCommand => new RelayCommand(async () => await GoToWebsiteAsync());
 
         /// <summary>
-        /// Sends a feedback mail to the apply solutions support     mail address
+        ///     Sends a feedback mail to the apply solutions support     mail address
         /// </summary>
         public RelayCommand SendMailCommand => new RelayCommand(async () => await SendMailAsync());
 
         /// <summary>
-        /// Opens the store to rate the app.
+        ///     Opens the store to rate the app.
         /// </summary>
         public RelayCommand RateAppCommand => new RelayCommand(RateApp);
 
         /// <summary>
-        /// Opens the web browser and loads repository page     on GitHub
+        ///     Opens the web browser and loads repository page     on GitHub
         /// </summary>
         public RelayCommand GoToRepositoryCommand => new RelayCommand(async () => await GoToRepositoryAsync());
 
         /// <summary>
-        /// Opens the web browser and loads the project on Crowdin.
+        ///     Opens the web browser and loads the project on Crowdin.
         /// </summary>
         public RelayCommand GoToTranslationProjectCommand =>
             new RelayCommand(async () => await GoToTranslationProjectAsync());
 
         /// <summary>
-        /// Opens the webbrowser and loads the project on crowdin.
+        ///     Opens the webbrowser and loads the project on crowdin.
         /// </summary>
         public RelayCommand GoToDesignerTwitterAccountCommand =>
             new RelayCommand(async () => await GoToDesignerTwitterAccountAsync());
 
         /// <summary>
-        /// Opens the webbrowser loads the contribution page on Github.
+        ///     Opens the webbrowser loads the contribution page on Github.
         /// </summary>
         public RelayCommand GoToContributionPageCommand =>
             new RelayCommand(async () => await GoToContributionPageAsync());
 
         /// <summary>
-        /// Returns the Version of App
+        ///     Returns the Version of App
         /// </summary>
         public string Version => appInformation.GetVersion;
 
         /// <summary>
-        /// Returns the apply solutions webite url from the     resource file
+        ///     Returns the apply solutions webite url from the     resource file
         /// </summary>
         public string Website => AppConstants.WebsiteUrl;
 
         /// <summary>
-        /// Returns the mailaddress for support cases from the     resource file
+        ///     Returns the mailaddress for support cases from the     resource file
         /// </summary>
         public string SupportMail => AppConstants.SupportMail;
 
@@ -90,7 +90,8 @@ namespace MoneyFox.ViewModels.About
             => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.WebsiteUrl));
 
         private async Task SendMailAsync() =>
-            await emailAdapter.SendEmailAsync(Strings.FeedbackSubject,
+            await emailAdapter.SendEmailAsync(
+                Strings.FeedbackSubject,
                 string.Empty,
                 new List<string> {AppConstants.SupportMail},
                 new List<string> {Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName)});

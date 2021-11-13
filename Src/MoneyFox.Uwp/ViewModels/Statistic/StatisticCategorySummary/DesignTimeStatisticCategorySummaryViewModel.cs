@@ -7,7 +7,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
     [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Design Time")]
     public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; set; }
             = new IncomeExpenseBalanceViewModel {TotalEarned = 400, TotalSpent = 600};
 

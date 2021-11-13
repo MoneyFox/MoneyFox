@@ -50,18 +50,19 @@ namespace MoneyFox.Application.Statistics.Queries
             CancellationToken cancellationToken)
         {
             List<Payment>? payments = await contextAdapter.Context
-                .Payments
-                .Include(x => x.Category)
-                .Include(x => x.ChargedAccount)
-                .HasAccountId(request.AccountId)
-                .HasDateLargerEqualsThan(request.StartDate.Date)
-                .HasDateSmallerEqualsThan(request.EndDate.Date)
-                .ToListAsync(cancellationToken);
+                                                          .Payments
+                                                          .Include(x => x.Category)
+                                                          .Include(x => x.ChargedAccount)
+                                                          .HasAccountId(request.AccountId)
+                                                          .HasDateLargerEqualsThan(request.StartDate.Date)
+                                                          .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                                          .ToListAsync(cancellationToken);
 
             var returnList = new List<StatisticEntry>();
             foreach(var group in payments.GroupBy(x => new {x.Date.Month, x.Date.Year}))
             {
-                var statisticEntry = new StatisticEntry(group.Sum(x => GetPaymentAmountForSum(x, request)),
+                var statisticEntry = new StatisticEntry(
+                    group.Sum(x => GetPaymentAmountForSum(x, request)),
                     $"{group.Key.Month:d2} {group.Key.Year:d4}");
                 statisticEntry.ValueLabel = statisticEntry.Value.ToString("c", CultureHelper.CurrentCulture);
                 statisticEntry.Color = statisticEntry.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;

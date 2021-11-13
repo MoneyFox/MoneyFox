@@ -3,7 +3,6 @@ using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Navigation;
 
 #nullable enable
 namespace MoneyFox.Uwp.Views.Categories

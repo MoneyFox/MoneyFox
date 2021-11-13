@@ -45,13 +45,14 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_CorrectSums()
         {
             // Arrange
-            context.AddRange(new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, new Account("Foo1")),
-                new Payment(DateTime.Today, 20, PaymentType.Income, new Account("Foo2")),
-                new Payment(DateTime.Today, 50, PaymentType.Expense, new Account("Foo3")),
-                new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
-            });
+            context.AddRange(
+                new List<Payment>
+                {
+                    new Payment(DateTime.Today, 60, PaymentType.Income, new Account("Foo1")),
+                    new Payment(DateTime.Today, 20, PaymentType.Income, new Account("Foo2")),
+                    new Payment(DateTime.Today, 50, PaymentType.Expense, new Account("Foo3")),
+                    new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
+                });
             context.SaveChanges();
 
             // Act
@@ -100,17 +101,16 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
         [Theory]
         [InlineData("de-CH", 3, '-')]
-        public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign,
+        public async Task GetValues_CorrectNegativeSign(string culture,
+            int indexNegativeSign,
             char expectedNegativeSign)
         {
             // Arrange
             var cultureInfo = new CultureInfo(culture);
             CultureHelper.CurrentCulture = cultureInfo;
 
-            context.AddRange(new List<Payment>
-            {
-                new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
-            });
+            context.AddRange(
+                new List<Payment> {new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))});
             context.SaveChanges();
 
             // Act
@@ -128,10 +128,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_USVersion_CorrectNegativeSign()
         {
             // Arrange
-            context.AddRange(new List<Payment>
-            {
-                new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
-            });
+            context.AddRange(
+                new List<Payment> {new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))});
             context.SaveChanges();
 
             var cultureInfo = new CultureInfo("en-US");
@@ -147,9 +145,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             result[2]
                 .ValueLabel[0]
                 .Should()
-                .Be(RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
-                    ? '-'
-                    : '(');
+                .Be(
+                    RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+                        ? '-'
+                        : '(');
 
             CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }

@@ -23,11 +23,11 @@ namespace MoneyFox.Application.Accounts.Queries.GetExcludedAccount
             public async Task<List<Account>> Handle(GetExcludedAccountQuery request,
                 CancellationToken cancellationToken) =>
                 await contextAdapter.Context
-                    .Accounts
-                    .AreActive()
-                    .AreExcluded()
-                    .OrderByName()
-                    .ToListAsync(cancellationToken);
+                                    .Accounts
+                                    .AreActive()
+                                    .AreExcluded()
+                                    .OrderByName()
+                                    .ToListAsync(cancellationToken);
         }
     }
 }

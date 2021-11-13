@@ -8,7 +8,6 @@ using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views.Categories;
@@ -28,7 +27,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
 
         /// <summary>
-        /// Base class for the category list user control
+        ///     Base class for the category list user control
         /// </summary>
         protected AbstractCategoryListViewModel(IMediator mediator,
             IMapper mapper,
@@ -42,14 +41,11 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         }
 
         protected override void OnActivated()
-        {
-            Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(this, (r, m) => r.SearchCommand.ExecuteAsync(""));
-        }
+            => Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(
+                this,
+                (r, m) => r.SearchCommand.ExecuteAsync(""));
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<ReloadMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         protected NavigationService NavigationService { get; }
 
@@ -60,12 +56,12 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         protected IDialogService DialogService { get; }
 
         /// <summary>
-        /// Handle the selection of a CategoryViewModel in the list
+        ///     Handle the selection of a CategoryViewModel in the list
         /// </summary>
         protected abstract void ItemClick(CategoryViewModel category);
 
         /// <summary>
-        /// Collection with categories alphanumeric grouped by
+        ///     Collection with categories alphanumeric grouped by
         /// </summary>
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
         {
@@ -88,13 +84,13 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         public RelayCommand AppearingCommand => new RelayCommand(async () => await ViewAppearingAsync());
 
         /// <summary>
-        /// Deletes the passed CategoryViewModel after show a confirmation dialog.
+        ///     Deletes the passed CategoryViewModel after show a confirmation dialog.
         /// </summary>
-        public AsyncCommand<CategoryViewModel> DeleteCategoryCommand
-            => new AsyncCommand<CategoryViewModel>(DeleteCategoryAsync);
+        public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand
+            => new AsyncRelayCommand<CategoryViewModel>(DeleteCategoryAsync);
 
         /// <summary>
-        /// Edit the currently selected CategoryViewModel
+        ///     Edit the currently selected CategoryViewModel
         /// </summary>
         public RelayCommand<CategoryViewModel> EditCategoryCommand
             => new RelayCommand<CategoryViewModel>(
@@ -102,19 +98,19 @@ namespace MoneyFox.Uwp.ViewModels.Categories
                     .ShowAsync());
 
         /// <summary>
-        /// Selects the clicked CategoryViewModel and sends it to the message hub.
+        ///     Selects the clicked CategoryViewModel and sends it to the message hub.
         /// </summary>
         public RelayCommand<CategoryViewModel> ItemClickCommand => new RelayCommand<CategoryViewModel>(ItemClick);
 
         /// <summary>
-        /// Executes a search for the passed term and updates the displayed list.
+        ///     Executes a search for the passed term and updates the displayed list.
         /// </summary>
-        public AsyncCommand<string> SearchCommand => new AsyncCommand<string>(SearchAsync);
+        public AsyncRelayCommand<string> SearchCommand => new AsyncRelayCommand<string>(SearchAsync);
 
         public async Task ViewAppearingAsync() => await SearchAsync();
 
         /// <summary>
-        /// Performs a search with the text in the search text property
+        ///     Performs a search with the text in the search text property
         /// </summary>
         public async Task SearchAsync(string searchText = "")
         {
@@ -126,7 +122,8 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(
             IEnumerable<CategoryViewModel> categories) =>
             new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
-                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categories,
+                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(
+                    categories,
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
@@ -135,7 +132,8 @@ namespace MoneyFox.Uwp.ViewModels.Categories
 
         private async Task DeleteCategoryAsync(CategoryViewModel categoryToDelete)
         {
-            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await DialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeleteCategoryConfirmationMessage))
             {
                 await Mediator.Send(new DeleteCategoryByIdCommand(categoryToDelete.Id));

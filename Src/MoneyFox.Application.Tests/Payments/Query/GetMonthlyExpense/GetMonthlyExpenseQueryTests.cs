@@ -57,7 +57,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyExpense
             // Act
             decimal sum =
                 await new GetMonthlyExpenseQuery.Handler(contextAdapter, systemDateHelper).Handle(
-                    new GetMonthlyExpenseQuery(), default);
+                    new GetMonthlyExpenseQuery(),
+                    default);
 
             // Assert
             sum.Should().Be(70);

@@ -32,15 +32,15 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
                 CancellationToken cancellationToken)
             {
                 IOrderedQueryable<Category> categoriesQuery = contextAdapter.Context
-                    .Categories
-                    .OrderBy(x => x.Name);
+                                                                            .Categories
+                                                                            .OrderBy(x => x.Name);
 
                 List<Category>? categories = await categoriesQuery.ToListAsync(cancellationToken);
 
                 if(!string.IsNullOrEmpty(request.SearchTerm))
                 {
                     categories = categories.WhereNameContains(request.SearchTerm)
-                        .ToList();
+                                           .ToList();
                 }
 
                 return categories;

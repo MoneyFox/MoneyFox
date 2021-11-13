@@ -43,12 +43,12 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         protected override void OnActivated()
-        {
-            Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(this, (r, m) => r.ReceiveMessageAsync(m));
-        }
+            => Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
+                this,
+                (r, m) => r.ReceiveMessageAsync(m));
 
         /// <summary>
-        /// The currently selected PaymentViewModel
+        ///     The currently selected PaymentViewModel
         /// </summary>
         public PaymentViewModel SelectedPayment
         {
@@ -61,7 +61,7 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         /// <summary>
-        /// Gives access to all accounts for Charged Dropdown list
+        ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
         public ObservableCollection<AccountViewModel> ChargedAccounts
         {
@@ -74,7 +74,7 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         /// <summary>
-        /// Gives access to all accounts for Target Dropdown list
+        ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
         public ObservableCollection<AccountViewModel> TargetAccounts
         {
@@ -95,7 +95,7 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         /// <summary>
-        /// Indicates if the PaymentViewModel is a transfer.
+        ///     Indicates if the PaymentViewModel is a transfer.
         /// </summary>
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
@@ -105,7 +105,7 @@ namespace MoneyFox.ViewModels.Payments
         };
 
         /// <summary>
-        /// List with the different recurrence types.     This has to have the same order as the enum
+        ///     List with the different recurrence types.     This has to have the same order as the enum
         /// </summary>
         public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
@@ -125,8 +125,9 @@ namespace MoneyFox.ViewModels.Payments
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () =>
-            await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedPayment.Category = null);
 
@@ -144,21 +145,24 @@ namespace MoneyFox.ViewModels.Payments
 
             if(SelectedPayment.Amount < 0)
             {
-                await dialogService.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle,
+                await dialogService.ShowMessageAsync(
+                    Strings.AmountMayNotBeNegativeTitle,
                     Strings.AmountMayNotBeNegativeMessage);
                 return;
             }
 
             if(SelectedPayment.Category?.RequireNote == true && string.IsNullOrEmpty(SelectedPayment.Note))
             {
-                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle,
+                await dialogService.ShowMessageAsync(
+                    Strings.MandatoryFieldEmptyTitle,
                     Strings.ANoteForPaymentIsRequired);
                 return;
             }
 
-            if(SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment!.IsEndless
-                                           && SelectedPayment.RecurringPayment.EndDate.HasValue
-                                           && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
+            if(SelectedPayment.IsRecurring
+               && !SelectedPayment.RecurringPayment!.IsEndless
+               && SelectedPayment.RecurringPayment.EndDate.HasValue
+               && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
             {
                 await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
                 return;

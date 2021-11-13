@@ -14,19 +14,22 @@ namespace MoneyFox.Domain.Tests.Entities
         public void Ctor_ChargedAccountNull_ArgumentNullException() =>
             // Arrange
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new RecurringPayment(DateTime.Now,
-                123,
-                PaymentType.Expense,
-                PaymentRecurrence.Daily,
-                null,
-                "note"));
+            Assert.Throws<ArgumentNullException>(
+                () => new RecurringPayment(
+                    DateTime.Now,
+                    123,
+                    PaymentType.Expense,
+                    PaymentRecurrence.Daily,
+                    null,
+                    "note"));
 
         [Fact]
         public void Ctor_DefaultValuesSet()
         {
             // Arrange
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now,
+            var recurringPayment = new RecurringPayment(
+                DateTime.Now,
                 123,
                 PaymentType.Expense,
                 PaymentRecurrence.Daily,
@@ -51,7 +54,8 @@ namespace MoneyFox.Domain.Tests.Entities
             const string note = "asdf";
 
             // Act
-            var recurringPayment = new RecurringPayment(startDate,
+            var recurringPayment = new RecurringPayment(
+                startDate,
                 amount,
                 type,
                 recurrence,
@@ -73,7 +77,8 @@ namespace MoneyFox.Domain.Tests.Entities
         {
             // Arrange
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now,
+            var recurringPayment = new RecurringPayment(
+                DateTime.Now,
                 123,
                 PaymentType.Expense,
                 PaymentRecurrence.Daily,
@@ -89,7 +94,8 @@ namespace MoneyFox.Domain.Tests.Entities
         {
             // Arrange
             // Act
-            var recurringPayment = new RecurringPayment(DateTime.Now,
+            var recurringPayment = new RecurringPayment(
+                DateTime.Now,
                 123,
                 PaymentType.Expense,
                 PaymentRecurrence.Daily,
@@ -106,20 +112,23 @@ namespace MoneyFox.Domain.Tests.Entities
         public void ShouldThrowAnExceptionWhenDateInvalid() =>
             // Arrange
             // Act / Assert
-            Assert.Throws<InvalidEndDateException>(() => new RecurringPayment(DateTime.Now,
-                123,
-                PaymentType.Expense,
-                PaymentRecurrence.Daily,
-                new Account("Foo"),
-                "note",
-                DateTime.Today.AddDays(-1)));
+            Assert.Throws<InvalidEndDateException>(
+                () => new RecurringPayment(
+                    DateTime.Now,
+                    123,
+                    PaymentType.Expense,
+                    PaymentRecurrence.Daily,
+                    new Account("Foo"),
+                    "note",
+                    DateTime.Today.AddDays(-1)));
 
         [Fact]
         public void ShouldNotThrowExceptionWhenIsEndlessWithNullDateOnCtor()
         {
             // Arrange
             // Act
-            var payment = new RecurringPayment(DateTime.Now,
+            var payment = new RecurringPayment(
+                DateTime.Now,
                 123,
                 PaymentType.Expense,
                 PaymentRecurrence.Daily,
@@ -134,7 +143,8 @@ namespace MoneyFox.Domain.Tests.Entities
         public void ShouldNotThrowExceptionWhenIsEndlessWithNullOnUpdate()
         {
             // Arrange
-            var payment = new RecurringPayment(DateTime.Now,
+            var payment = new RecurringPayment(
+                DateTime.Now,
                 123,
                 PaymentType.Expense,
                 PaymentRecurrence.Daily,
@@ -151,14 +161,18 @@ namespace MoneyFox.Domain.Tests.Entities
         public void ShouldNotThrowExceptionWhenIsEndlessWithMinDateOnUpdate()
         {
             // Arrange
-            var payment = new RecurringPayment(DateTime.Now,
+            var payment = new RecurringPayment(
+                DateTime.Now,
                 123,
                 PaymentType.Expense,
                 PaymentRecurrence.Daily,
                 new Account("Foo"),
                 "note");
             // Act
-            payment.UpdateRecurringPayment(111, PaymentRecurrence.Daily, payment.ChargedAccount,
+            payment.UpdateRecurringPayment(
+                111,
+                PaymentRecurrence.Daily,
+                payment.ChargedAccount,
                 endDate: DateTime.MinValue);
 
             // Assert
@@ -177,7 +191,8 @@ namespace MoneyFox.Domain.Tests.Entities
             var account = new Account("foo");
             const string note = "asdf";
 
-            var recurringPayment = new RecurringPayment(startDate,
+            var recurringPayment = new RecurringPayment(
+                startDate,
                 65,
                 type,
                 PaymentRecurrence.Monthly,
@@ -209,7 +224,8 @@ namespace MoneyFox.Domain.Tests.Entities
             var account = new Account("foo");
             const string note = "asdf";
 
-            var recurringPayment = new RecurringPayment(startDate,
+            var recurringPayment = new RecurringPayment(
+                startDate,
                 65,
                 type,
                 PaymentRecurrence.Monthly,
@@ -229,7 +245,8 @@ namespace MoneyFox.Domain.Tests.Entities
         public void UpdateRecurringPayment_EndDateNull_IsEndless()
         {
             // Arrange
-            var recurringPayment = new RecurringPayment(DateTime.Now.AddDays(-1),
+            var recurringPayment = new RecurringPayment(
+                DateTime.Now.AddDays(-1),
                 65,
                 PaymentType.Income,
                 PaymentRecurrence.Monthly,
@@ -247,7 +264,8 @@ namespace MoneyFox.Domain.Tests.Entities
         public void UpdateRecurringPayment_EndDateSet_IsEndlessFalse()
         {
             // Arrange
-            var recurringPayment = new RecurringPayment(DateTime.Now.AddDays(-1),
+            var recurringPayment = new RecurringPayment(
+                DateTime.Now.AddDays(-1),
                 65,
                 PaymentType.Income,
                 PaymentRecurrence.Monthly,
@@ -255,7 +273,11 @@ namespace MoneyFox.Domain.Tests.Entities
                 "foo");
 
             // Act
-            recurringPayment.UpdateRecurringPayment(123, PaymentRecurrence.Daily, new Account("123"), string.Empty,
+            recurringPayment.UpdateRecurringPayment(
+                123,
+                PaymentRecurrence.Daily,
+                new Account("123"),
+                string.Empty,
                 DateTime.Now);
 
             // Assert
@@ -273,7 +295,8 @@ namespace MoneyFox.Domain.Tests.Entities
             var account = new Account("foo");
             const string note = "asdf";
 
-            var recurringPayment = new RecurringPayment(startDate,
+            var recurringPayment = new RecurringPayment(
+                startDate,
                 amount,
                 type,
                 recurrence,

@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         private decimal percentage;
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public int CategoryId
         {
@@ -35,7 +35,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         }
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public decimal Value
         {
@@ -53,7 +53,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         }
 
         /// <summary>
-        /// Average of this item
+        ///     Average of this item
         /// </summary>
         public decimal Average
         {
@@ -71,7 +71,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         }
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public decimal Percentage
         {
@@ -89,7 +89,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         }
 
         /// <summary>
-        /// Label to show in the chart
+        ///     Label to show in the chart
         /// </summary>
         public string Label
         {

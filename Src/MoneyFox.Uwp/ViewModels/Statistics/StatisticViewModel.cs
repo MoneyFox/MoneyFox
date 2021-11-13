@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     /// <summary>
-    /// Represents the statistic view.
+    ///     Represents the statistic view.
     /// </summary>
     public abstract class StatisticViewModel : ObservableRecipient
     {
@@ -22,18 +22,19 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         protected readonly IMediator Mediator;
 
         /// <summary>
-        /// Creates a StatisticViewModel Object and passes the first and last day of the current month     as a start
-        /// and end date.
+        ///     Creates a StatisticViewModel Object and passes the first and last day of the current month     as a start
+        ///     and end date.
         /// </summary>
         protected StatisticViewModel(IMediator mediator)
-            : this(DateTime.Today.GetFirstDayOfMonth(),
+            : this(
+                DateTime.Today.GetFirstDayOfMonth(),
                 DateTime.Today.GetLastDayOfMonth(),
                 mediator)
         {
         }
 
         /// <summary>
-        /// Creates a Statistic ViewModel with custom start and end date
+        ///     Creates a Statistic ViewModel with custom start and end date
         /// </summary>
         protected StatisticViewModel(
             DateTime startDate,
@@ -44,25 +45,22 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             EndDate = endDate;
             Mediator = mediator;
         }
-        protected override void OnActivated()
-        {
-            Messenger.Register<StatisticViewModel, DateSelectedMessage>(this, (r, m) =>
+
+        protected override void OnActivated() => Messenger.Register<StatisticViewModel, DateSelectedMessage>(
+            this,
+            (r, m) =>
             {
                 r.StartDate = m.StartDate;
                 r.EndDate = m.EndDate;
                 LoadAsync();
             });
-        }
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<DateSelectedMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<DateSelectedMessage>(this);
 
         public RelayCommand LoadedCommand => new RelayCommand(async () => await LoadAsync());
 
         /// <summary>
-        /// Start date for a custom statistic
+        ///     Start date for a custom statistic
         /// </summary>
         public DateTime StartDate
         {
@@ -77,7 +75,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         }
 
         /// <summary>
-        /// End date for a custom statistic
+        ///     End date for a custom statistic
         /// </summary>
         public DateTime EndDate
         {
@@ -92,7 +90,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         }
 
         /// <summary>
-        /// Returns the title for the CategoryViewModel view
+        ///     Returns the title for the CategoryViewModel view
         /// </summary>
         public string Title =>
             $"{Strings.StatisticsTimeRangeTitle} {StartDate.ToString("d", CultureInfo.InvariantCulture)} - {EndDate.ToString("d", CultureInfo.InvariantCulture)}";

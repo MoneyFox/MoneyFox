@@ -51,9 +51,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel"/> who will be
-        /// charged.     In case it's an income the  foreign key to the <see cref="AccountViewModel"/> who will be
-        /// credited.
+        ///     In case it's a expense or transfer the foreign key to the <see cref="AccountViewModel" /> who will be
+        ///     charged.     In case it's an income the  foreign key to the <see cref="AccountViewModel" /> who will be
+        ///     credited.
         /// </summary>
         public int ChargedAccountId
         {
@@ -71,7 +71,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Foreign key to the account who will be credited by a transfer.     Not used for the other payment types.
+        ///     Foreign key to the account who will be credited by a transfer.     Not used for the other payment types.
         /// </summary>
         public int? TargetAccountId
         {
@@ -89,7 +89,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Date when this payment will be executed.
+        ///     Date when this payment will be executed.
         /// </summary>
         public DateTime Date
         {
@@ -107,7 +107,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
+        ///     Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
         /// </summary>
         public decimal Amount
         {
@@ -125,8 +125,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Indicates if this payment was already executed and the amount already credited or charged to the respective
-        ///    account.
+        ///     Indicates if this payment was already executed and the amount already credited or charged to the respective
+        ///     account.
         /// </summary>
         public bool IsCleared
         {
@@ -144,7 +144,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Type of the payment <see cref="PaymentType"/>.
+        ///     Type of the payment <see cref="PaymentType" />.
         /// </summary>
         public PaymentType Type
         {
@@ -163,7 +163,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Additional notes to the payment.
+        ///     Additional notes to the payment.
         /// </summary>
         public string Note
         {
@@ -181,7 +181,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Indicates if the payment will be repeated or if it's a uniquie payment.
+        ///     Indicates if the payment will be repeated or if it's a uniquie payment.
         /// </summary>
         public bool IsRecurring
         {
@@ -234,8 +234,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// In case it's a expense or transfer the account who will be charged.     In case it's an income the account
-        ///   who will be credited.
+        ///     In case it's a expense or transfer the account who will be charged.     In case it's an income the account
+        ///     who will be credited.
         /// </summary>
         public AccountViewModel ChargedAccount
         {
@@ -253,8 +253,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// The <see cref="AccountViewModel"/> who will be credited by a transfer.     Not used for the other payment
-        ///  types.
+        ///     The <see cref="AccountViewModel" /> who will be credited by a transfer.     Not used for the other payment
+        ///     types.
         /// </summary>
         public AccountViewModel? TargetAccount
         {
@@ -272,7 +272,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// The <see cref="Category"/> for this payment
+        ///     The <see cref="Category" /> for this payment
         /// </summary>
         public CategoryViewModel? Category
         {
@@ -290,7 +290,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// The <see cref="RecurringPayment"/> if it's recurring.
+        ///     The <see cref="RecurringPayment" /> if it's recurring.
         /// </summary>
         public RecurringPaymentViewModel? RecurringPayment
         {
@@ -308,14 +308,14 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// This is a shortcut to access if the payment is a transfer or not.
+        ///     This is a shortcut to access if the payment is a transfer or not.
         /// </summary>
         public bool IsTransfer => Type == PaymentType.Transfer;
 
         private int currentAccountId;
 
         /// <summary>
-        /// Id of the account who currently is used for that view.
+        ///     Id of the account who currently is used for that view.
         /// </summary>
         public int CurrentAccountId
         {
@@ -333,7 +333,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         public void CreateMappings(Profile configuration) => configuration.CreateMap<Payment, PaymentViewModel>()
-            .ForMember(x => x.CurrentAccountId, opt => opt.Ignore())
-            .ReverseMap();
+                                                                          .ForMember(
+                                                                              x => x.CurrentAccountId,
+                                                                              opt => opt.Ignore())
+                                                                          .ReverseMap();
     }
 }

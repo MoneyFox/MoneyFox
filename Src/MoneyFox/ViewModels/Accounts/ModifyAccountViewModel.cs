@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -22,7 +22,7 @@ namespace MoneyFox.ViewModels.Accounts
         private AccountViewModel selectedAccountVm = new AccountViewModel();
 
         /// <summary>
-        /// The currently selected CategoryViewModel
+        ///     The currently selected CategoryViewModel
         /// </summary>
         public AccountViewModel SelectedAccountVm
         {

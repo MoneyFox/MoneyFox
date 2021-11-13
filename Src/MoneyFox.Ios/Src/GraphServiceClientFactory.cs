@@ -14,14 +14,16 @@ namespace MoneyFox.iOS
 
         public GraphServiceClient CreateClient(AuthenticationResult authResult)
         {
-            var authProvider = new DelegateAuthenticationProvider(reqMsg =>
-            {
-                reqMsg.Headers.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
-                return Task.CompletedTask;
-            });
+            var authProvider = new DelegateAuthenticationProvider(
+                reqMsg =>
+                {
+                    reqMsg.Headers.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+                    return Task.CompletedTask;
+                });
 
             HttpMessageHandler pipeline =
-                GraphClientFactory.CreatePipeline(GraphClientFactory.CreateDefaultHandlers(authProvider),
+                GraphClientFactory.CreatePipeline(
+                    GraphClientFactory.CreateDefaultHandlers(authProvider),
                     HttpMessageHandler);
             var httpProvider = new HttpProvider(pipeline, true, new Serializer());
 

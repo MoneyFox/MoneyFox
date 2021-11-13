@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>
-    /// Representation of the cash flow view.
+    ///     Representation of the cash flow view.
     /// </summary>
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
@@ -91,8 +91,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async ()
-            => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
+            async ()
+                => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
 
@@ -125,14 +126,15 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
 
             Chart = new BarChart
             {
-                Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                    {
-                        Label = x.Label,
-                        ValueLabel = x.ValueLabel,
-                        Color = SKColor.Parse(x.Color),
-                        ValueLabelColor = SKColor.Parse(x.Color)
-                    })
-                    .ToList(),
+                Entries = statisticItems.Select(
+                                            x => new ChartEntry((float)x.Value)
+                                            {
+                                                Label = x.Label,
+                                                ValueLabel = x.ValueLabel,
+                                                Color = SKColor.Parse(x.Color),
+                                                ValueLabelColor = SKColor.Parse(x.Color)
+                                            })
+                                        .ToList(),
                 BackgroundColor = new SKColor(
                     ChartOptions.BackgroundColor.R,
                     ChartOptions.BackgroundColor.G,

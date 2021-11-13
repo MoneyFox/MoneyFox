@@ -14,10 +14,11 @@ namespace MoneyFox.ViewModels.Categories
         {
         }
 
-        public RelayCommand<CategoryViewModel> SelectCategoryCommand => new RelayCommand<CategoryViewModel>(async c =>
-        {
-            Messenger.Send(new CategorySelectedMessage(c.Id));
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
-        });
+        public RelayCommand<CategoryViewModel> SelectCategoryCommand => new RelayCommand<CategoryViewModel>(
+            async c =>
+            {
+                Messenger.Send(new CategorySelectedMessage(c.Id));
+                await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
+            });
     }
 }

@@ -14,7 +14,7 @@ namespace MoneyFox.ViewModels.Statistics
         private decimal percentage;
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public int CategoryId
         {
@@ -32,7 +32,7 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public decimal Value
         {
@@ -50,7 +50,7 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         /// <summary>
-        /// Average of this item
+        ///     Average of this item
         /// </summary>
         public decimal Average
         {
@@ -68,7 +68,7 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public decimal Percentage
         {
@@ -86,7 +86,7 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         /// <summary>
-        /// Label to show in the chart
+        ///     Label to show in the chart
         /// </summary>
         public string Label
         {

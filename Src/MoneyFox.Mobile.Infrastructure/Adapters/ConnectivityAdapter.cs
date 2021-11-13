@@ -4,12 +4,12 @@ using Xamarin.Essentials;
 
 namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public class ConnectivityAdapter : IConnectivityAdapter
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsConnected
         {
             get

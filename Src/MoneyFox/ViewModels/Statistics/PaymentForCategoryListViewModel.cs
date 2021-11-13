@@ -32,14 +32,11 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         protected override void OnActivated()
-        {
-            Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(this, (r, m) => r.InitializeAsync(m));
-        }
+            => Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(
+                this,
+                (r, m) => r.InitializeAsync(m));
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<PaymentsForCategoryMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<PaymentsForCategoryMessage>(this);
 
 
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList =
@@ -56,24 +53,30 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
-            => new RelayCommand<PaymentViewModel>(async paymentViewModel
-                => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id))
-                    {
-                        BarBackgroundColor = Color.Transparent
-                    }));
+            => new RelayCommand<PaymentViewModel>(
+                async paymentViewModel
+                    => await Shell.Current.Navigation.PushModalAsync(
+                        new NavigationPage(new EditPaymentPage(paymentViewModel.Id))
+                        {
+                            BarBackgroundColor = Color.Transparent
+                        }));
 
         private async Task InitializeAsync(PaymentsForCategoryMessage receivedMessage)
         {
             logger.Info($"Loading payments for category with id {receivedMessage.CategoryId}");
 
-            var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(
-                new GetPaymentsForCategoryQuery(receivedMessage.CategoryId, receivedMessage.StartDate,
-                    receivedMessage.EndDate)));
+            var loadedPayments = mapper.Map<List<PaymentViewModel>>(
+                await mediator.Send(
+                    new GetPaymentsForCategoryQuery(
+                        receivedMessage.CategoryId,
+                        receivedMessage.StartDate,
+                        receivedMessage.EndDate)));
 
             List<DateListGroupCollection<PaymentViewModel>> dailyItems
-                = DateListGroupCollection<PaymentViewModel>.CreateGroups(loadedPayments,
-                    s => s.Date.ToString("D", CultureInfo.CurrentCulture), s => s.Date);
+                = DateListGroupCollection<PaymentViewModel>.CreateGroups(
+                    loadedPayments,
+                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                    s => s.Date);
 
             PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>(dailyItems);
         }

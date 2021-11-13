@@ -1,7 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Autofac;
 using Foundation;
-using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application;
 using NLog;
 using System;
@@ -20,7 +19,7 @@ namespace MoneyFox.iOS
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
-                .AsImplementedInterfaces();
+                   .AsImplementedInterfaces();
 
             SetLocale();
             builder.RegisterModule<MoneyFoxModule>();

@@ -33,7 +33,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             backupServiceMock = new Mock<IBackupService>();
             backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                .Returns(Task.CompletedTask);
+                             .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
@@ -58,7 +58,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
             // Act
-            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+            await new CreatePaymentCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new CreatePaymentCommand(payment1), default);
@@ -79,7 +80,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
 
             // Act
-            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+            await new CreatePaymentCommand.Handler(
+                contextAdapterMock.Object,
                 backupServiceMock.Object,
                 settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
@@ -101,7 +103,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             var payment1 = new Payment(DateTime.Now, 20, paymentType, account);
 
             // Act
-            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+            await new CreatePaymentCommand.Handler(
+                contextAdapterMock.Object,
                 backupServiceMock.Object,
                 settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
@@ -124,7 +127,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             // Act
-            await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
+            await new CreatePaymentCommand.Handler(
+                contextAdapterMock.Object,
                 backupServiceMock.Object,
                 settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 

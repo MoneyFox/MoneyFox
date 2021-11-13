@@ -56,7 +56,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
             // Act
             decimal sum =
                 await new GetMonthlyIncomeQuery.Handler(contextAdapter, systemDateHelper).Handle(
-                    new GetMonthlyIncomeQuery(), default);
+                    new GetMonthlyIncomeQuery(),
+                    default);
 
             // Assert
             sum.Should().Be(70);

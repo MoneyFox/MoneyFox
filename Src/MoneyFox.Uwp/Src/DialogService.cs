@@ -22,7 +22,7 @@ namespace MoneyFox.Uwp
         private LoadingDialog? loadingDialog;
 
         /// <summary>
-        /// Show a dialog with two buttons with customizable Texts. Returns the answer.
+        ///     Show a dialog with two buttons with customizable Texts. Returns the answer.
         /// </summary>
         /// <param name="title">Title for the dialog.</param>
         /// <param name="message">Text for the dialog.</param>
@@ -45,7 +45,7 @@ namespace MoneyFox.Uwp
         }
 
         /// <summary>
-        /// Shows a dialog with title and message. Contains only an OK button.
+        ///     Shows a dialog with title and message. Contains only an OK button.
         /// </summary>
         /// <param name="title">Title to display.</param>
         /// <param name="message">Text to display.</param>
@@ -61,7 +61,7 @@ namespace MoneyFox.Uwp
         }
 
         /// <summary>
-        /// Shows a loading Dialog.
+        ///     Shows a loading Dialog.
         /// </summary>
         public async Task ShowLoadingDialogAsync(string? message = null)
         {
@@ -77,7 +77,8 @@ namespace MoneyFox.Uwp
             CoreDispatcher dispatcher = coreWindow.CoreWindow.Dispatcher;
 
             // RunAsync all of the UI info.
-            await dispatcher.RunAsync(CoreDispatcherPriority.High,
+            await dispatcher.RunAsync(
+                CoreDispatcherPriority.High,
                 async () =>
                 {
                     try
@@ -86,7 +87,8 @@ namespace MoneyFox.Uwp
                     }
                     catch(Exception ex)
                     {
-                        Crashes.TrackError(ex,
+                        Crashes.TrackError(
+                            ex,
                             new Dictionary<string, string> {{"Message", "Loading Dialog couldn't be opened."}});
                     }
                 });
@@ -96,7 +98,7 @@ namespace MoneyFox.Uwp
         }
 
         /// <summary>
-        /// Hides the previously opened Loading Dialog.
+        ///     Hides the previously opened Loading Dialog.
         /// </summary>
         public Task HideLoadingDialogAsync()
         {

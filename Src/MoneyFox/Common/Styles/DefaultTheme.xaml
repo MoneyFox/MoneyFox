@@ -130,8 +130,7 @@
                 <VisualStateGroup
                     x:Name="CommonStates">
                     <VisualState
-                        x:Name="Normal">
-                    </VisualState>
+                        x:Name="Normal" />
                     <VisualState
                         x:Name="Selected">
                         <VisualState.Setters>
@@ -142,8 +141,7 @@
                         </VisualState.Setters>
                     </VisualState>
                     <VisualState
-                        x:Name="Disabled">
-                    </VisualState>
+                        x:Name="Disabled" />
                 </VisualStateGroup>
             </VisualStateGroupList>
         </Setter>

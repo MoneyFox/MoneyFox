@@ -90,7 +90,7 @@ namespace MoneyFox.ViewModels.Categories
         }
 
         /// <summary>
-        /// Additional details about the CategoryViewModel
+        ///     Additional details about the CategoryViewModel
         /// </summary>
         public string Note
         {

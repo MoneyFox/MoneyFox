@@ -53,7 +53,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+            await new DeleteCategoryByIdCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
@@ -73,7 +75,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+            await new DeleteCategoryByIdCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 

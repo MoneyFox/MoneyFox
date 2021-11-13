@@ -10,7 +10,7 @@ namespace MoneyFox.Domain.Entities
     public class RecurringPayment
     {
         /// <summary>
-        /// EF Core constructor
+        ///     EF Core constructor
         /// </summary>
         [UsedImplicitly]
         private RecurringPayment()
@@ -53,7 +53,7 @@ namespace MoneyFox.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; [UsedImplicitly] private set; }
 
-        public DateTime StartDate { get;[UsedImplicitly] private set; }
+        public DateTime StartDate { get; [UsedImplicitly] private set; }
 
         public DateTime? EndDate { get; private set; }
 
@@ -61,7 +61,7 @@ namespace MoneyFox.Domain.Entities
 
         public decimal Amount { get; private set; }
 
-        public PaymentType Type { get; [UsedImplicitly] private set;}
+        public PaymentType Type { get; [UsedImplicitly] private set; }
 
         public PaymentRecurrence Recurrence { get; private set; }
 
@@ -71,7 +71,7 @@ namespace MoneyFox.Domain.Entities
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; [UsedImplicitly] private set;}
+        public DateTime CreationTime { get; [UsedImplicitly] private set; }
 
         public virtual Category? Category { get; private set; }
 
@@ -79,7 +79,7 @@ namespace MoneyFox.Domain.Entities
 
         public virtual Account? TargetAccount { get; private set; }
 
-        public virtual List<Payment> RelatedPayments { get;[UsedImplicitly] private set; } = new List<Payment>();
+        public virtual List<Payment> RelatedPayments { get; [UsedImplicitly] private set; } = new List<Payment>();
 
         public void UpdateRecurringPayment(decimal amount,
             PaymentRecurrence recurrence,

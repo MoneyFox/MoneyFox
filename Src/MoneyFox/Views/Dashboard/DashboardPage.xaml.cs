@@ -13,9 +13,6 @@ namespace MoneyFox.Views.Dashboard
             BindingContext = ViewModelLocator.DashboardViewModel;
         }
 
-        protected override async void OnAppearing()
-        {
-            await ViewModel.InitializeAsync();
-        }
+        protected override async void OnAppearing() => await ViewModel.InitializeAsync();
     }
 }

@@ -7,11 +7,12 @@ namespace MoneyFox.Application.Common.Extensions
     public static class StreamExtension
     {
         /// <summary>
-        /// Reads the bytes of a stream and returns them in an array.
+        ///     Reads the bytes of a stream and returns them in an array.
         /// </summary>
         /// <param name="stream">Stream to read.</param>
         /// <returns></returns>
-        [SuppressMessage("Critical Code Smell",
+        [SuppressMessage(
+            "Critical Code Smell",
             "S134:Control flow statements \"if\", \"switch\", \"for\", \"foreach\", \"while\", \"do\"  and \"try\" should not be nested too deeply")]
         public static byte[] ReadToEnd(this Stream stream)
         {

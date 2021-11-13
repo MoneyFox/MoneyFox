@@ -11,7 +11,7 @@ namespace MoneyFox.ViewModels.Statistics
     public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
     {
         /// <summary>
-        /// All possible statistic to choose from
+        ///     All possible statistic to choose from
         /// </summary>
         public List<StatisticSelectorType> StatisticItems
             => new List<StatisticSelectorType>
@@ -49,7 +49,7 @@ namespace MoneyFox.ViewModels.Statistics
             };
 
         /// <summary>
-        /// Navigates to the statistic view and shows the selected statistic
+        ///     Navigates to the statistic view and shows the selected statistic
         /// </summary>
         public RelayCommand<StatisticSelectorType> GoToStatisticCommand
             => new RelayCommand<StatisticSelectorType>(async s => await GoToStatisticAsync(s));

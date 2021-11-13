@@ -15,47 +15,47 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp
 {
     /// <summary>
-    /// Provides different calculations for the balance at the end of month.
+    ///     Provides different calculations for the balance at the end of month.
     /// </summary>
     public interface IBalanceCalculationService
     {
         /// <summary>
-        /// Returns the sum of all account balances that are not excluded.
+        ///     Returns the sum of all account balances that are not excluded.
         /// </summary>
         Task<decimal> GetTotalBalanceAsync();
 
         /// <summary>
-        /// Returns the sum of the balance of the passed accounts at the ned of month.
+        ///     Returns the sum of the balance of the passed accounts at the ned of month.
         /// </summary>
         /// <returns>Sum of the end of month balance.</returns>
         Task<decimal> GetTotalEndOfMonthBalanceAsync();
 
         /// <summary>
-        /// Returns the the balance of the passed accounts at the ned of month.
+        ///     Returns the the balance of the passed accounts at the ned of month.
         /// </summary>
         /// <param name="account">Account to calculate the balance.</param>
         /// <returns>The end of month balance.</returns>
         Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account);
     }
 
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public class BalanceCalculationService : IBalanceCalculationService
     {
         private readonly IMediator mediator;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public BalanceCalculationService(IMediator mediator)
         {
             this.mediator = mediator;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<decimal> GetTotalBalanceAsync() =>
             await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<decimal> GetTotalEndOfMonthBalanceAsync()
         {
             List<Account> excluded = await mediator.Send(new GetExcludedAccountQuery());
@@ -86,7 +86,7 @@ namespace MoneyFox.Uwp
             return balance;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public async Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account)
         {
             decimal balance = account.CurrentBalance;

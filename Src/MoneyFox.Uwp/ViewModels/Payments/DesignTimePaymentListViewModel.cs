@@ -10,7 +10,9 @@ using Windows.UI.Xaml.Data;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
-    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used",
+    [SuppressMessage(
+        "Major Code Smell",
+        "S109:Magic numbers should not be used",
         Justification = "Not needed in design time")]
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {

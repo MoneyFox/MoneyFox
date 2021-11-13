@@ -6,7 +6,7 @@ using System.Linq;
 namespace MoneyFox.Application.Common.QueryObjects
 {
     /// <summary>
-    /// Provides Extensions for payments queries.
+    ///     Provides Extensions for payments queries.
     /// </summary>
     public static class PaymentQueryExtensions
     {
@@ -83,9 +83,10 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="accountId">AccountId to filter for</param>
         /// <returns>Query filtered for the account id.</returns>
         public static IQueryable<Payment> HasAccountId(this IQueryable<Payment> query, int accountId) =>
-            query.Where(payment => payment.ChargedAccount!.Id == accountId
-                                   || (payment.TargetAccount != null
-                                       && payment.TargetAccount.Id == accountId));
+            query.Where(
+                payment => payment.ChargedAccount!.Id == accountId
+                           || (payment.TargetAccount != null
+                               && payment.TargetAccount.Id == accountId));
 
         /// <summary>
         ///     Adds a filter to a query for payments who has a certain category assosciated.

@@ -13,7 +13,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Statistics
 {
-    /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
+    /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel
     {
         private readonly ILogger logger = LogManager.GetCurrentClassLogger();
@@ -42,14 +42,14 @@ namespace MoneyFox.ViewModels.Statistics
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasData => CategorySummary.Any();
 
         public RelayCommand<CategoryOverviewViewModel> ShowCategoryPaymentsCommand
             => new RelayCommand<CategoryOverviewViewModel>(async vm => await ShowCategoryPaymentsAsync(vm));
 
         /// <summary>
-        /// Overrides the load method to load the category summary data.
+        ///     Overrides the load method to load the category summary data.
         /// </summary>
         protected override async Task LoadAsync()
         {
@@ -58,16 +58,18 @@ namespace MoneyFox.ViewModels.Statistics
                 CategorySummaryModel categorySummaryModel =
                     await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
 
-                CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(categorySummaryModel
-                    .CategoryOverviewItems
-                    .Select(x => new CategoryOverviewViewModel
-                    {
-                        CategoryId = x.CategoryId,
-                        Value = x.Value,
-                        Average = x.Average,
-                        Label = x.Label,
-                        Percentage = x.Percentage
-                    }));
+                CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
+                    categorySummaryModel
+                        .CategoryOverviewItems
+                        .Select(
+                            x => new CategoryOverviewViewModel
+                            {
+                                CategoryId = x.CategoryId,
+                                Value = x.Value,
+                                Average = x.Average,
+                                Label = x.Label,
+                                Percentage = x.Percentage
+                            }));
             }
             catch(Exception ex)
             {
@@ -79,8 +81,11 @@ namespace MoneyFox.ViewModels.Statistics
         private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
         {
             await Shell.Current.GoToModalAsync(ViewModelLocator.PaymentForCategoryListRoute);
-            Messenger.Send(new PaymentsForCategoryMessage(categoryOverviewModel.CategoryId, StartDate,
-                EndDate));
+            Messenger.Send(
+                new PaymentsForCategoryMessage(
+                    categoryOverviewModel.CategoryId,
+                    StartDate,
+                    EndDate));
         }
     }
 }

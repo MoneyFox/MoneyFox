@@ -96,7 +96,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
+        ///     Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
         /// </summary>
         public decimal Amount
         {
@@ -114,7 +114,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Type of the payment <see cref="PaymentType"/>.
+        ///     Type of the payment <see cref="PaymentType" />.
         /// </summary>
         public PaymentType Type
         {
@@ -147,7 +147,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Additional notes to the payment.
+        ///     Additional notes to the payment.
         /// </summary>
         public string Note
         {
@@ -165,8 +165,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// In case it's a expense or transfer the account who will be charged.     In case it's an income the account
-        /// who will be credited.
+        ///     In case it's a expense or transfer the account who will be charged.     In case it's an income the account
+        ///     who will be credited.
         /// </summary>
         public AccountViewModel ChargedAccount
         {
@@ -184,7 +184,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// The <see cref="Category"/> for this payment
+        ///     The <see cref="Category" /> for this payment
         /// </summary>
         public CategoryViewModel? Category
         {

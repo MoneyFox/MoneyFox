@@ -36,13 +36,14 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
                 this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc/>
+            /// <inheritdoc />
             public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
             {
                 await backupService.RestoreBackupAsync();
 
                 await contextAdapter.Context.Categories.AddAsync(
-                    new Category(request.Name, request.Note, request.RequireNote), cancellationToken);
+                    new Category(request.Name, request.Note, request.RequireNote),
+                    cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

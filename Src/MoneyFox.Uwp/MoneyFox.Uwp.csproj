@@ -150,8 +150,6 @@
     </Compile>
     <Compile Include="AutoMapper\AutoMapperFactory.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile.cs" />
-    <Compile Include="Commands\AsyncCommand.cs" />
-    <Compile Include="Commands\IAsyncCommand.cs" />
     <Compile Include="ConverterLogic\PaymentAmountConverterLogic.cs" />
     <Compile Include="ConverterLogic\RecurrenceTypeConverterLogic.cs" />
     <Compile Include="Converter\AmountFormatDecimalConverter.cs" />

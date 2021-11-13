@@ -51,9 +51,9 @@ namespace MoneyFox.Uwp.ViewModels.Settings
             await dialogService.ShowLoadingDialogAsync();
 
             CultureInfo.GetCultures(CultureTypes.AllCultures)
-                .OrderBy(x => x.Name)
-                .ToList()
-                .ForEach(AvailableCultures.Add);
+                       .OrderBy(x => x.Name)
+                       .ToList()
+                       .ForEach(AvailableCultures.Add);
             SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
 
             await dialogService.HideLoadingDialogAsync();

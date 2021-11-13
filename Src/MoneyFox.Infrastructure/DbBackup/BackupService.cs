@@ -120,7 +120,8 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 logger.Error(ex, "Operation canceled during get backup date. Execute logout");
                 await LogoutAsync();
-                await toastService.ShowToastAsync(Strings.FailedToLoginToBackupMessage,
+                await toastService.ShowToastAsync(
+                    Strings.FailedToLoginToBackupMessage,
                     Strings.FailedToLoginToBackupTitle);
                 Crashes.TrackError(ex);
             }
@@ -157,7 +158,8 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 logger.Error(ex, "Operation canceled during restore backup. Execute logout");
                 await LogoutAsync();
-                await toastService.ShowToastAsync(Strings.FailedToLoginToBackupMessage,
+                await toastService.ShowToastAsync(
+                    Strings.FailedToLoginToBackupMessage,
                     Strings.FailedToLoginToBackupTitle);
             }
         }
@@ -178,7 +180,8 @@ namespace MoneyFox.Infrastructure.DbBackup
                 if(backups.Contains(DatabaseConstants.BACKUP_NAME))
                 {
                     logger.Info("New backup found. Starting download.");
-                    using(Stream backupStream = await cloudBackupService.RestoreAsync(DatabaseConstants.BACKUP_NAME,
+                    using(Stream backupStream = await cloudBackupService.RestoreAsync(
+                              DatabaseConstants.BACKUP_NAME,
                               DatabaseConstants.BACKUP_NAME))
                     {
                         await fileStore.WriteFileAsync(DatabaseConstants.BACKUP_NAME, backupStream.ReadToEnd());
@@ -186,7 +189,8 @@ namespace MoneyFox.Infrastructure.DbBackup
 
                     logger.Info("Backup downloaded. Replace current file.");
 
-                    bool moveSucceed = await fileStore.TryMoveAsync(DatabaseConstants.BACKUP_NAME,
+                    bool moveSucceed = await fileStore.TryMoveAsync(
+                        DatabaseConstants.BACKUP_NAME,
                         DatabasePathHelper.DbPath,
                         true);
 
@@ -205,7 +209,8 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 logger.Error(ex, "Operation canceled during restore backup. Execute logout");
                 await LogoutAsync();
-                await toastService.ShowToastAsync(Strings.FailedToLoginToBackupMessage,
+                await toastService.ShowToastAsync(
+                    Strings.FailedToLoginToBackupMessage,
                     Strings.FailedToLoginToBackupTitle);
             }
 
@@ -239,7 +244,8 @@ namespace MoneyFox.Infrastructure.DbBackup
 
             logger.Info("Enqueue Backup upload.");
 
-            await semaphoreSlim.WaitAsync(BACKUP_OPERATION_TIMEOUT,
+            await semaphoreSlim.WaitAsync(
+                BACKUP_OPERATION_TIMEOUT,
                 cancellationTokenSource.Token);
             try
             {

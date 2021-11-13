@@ -3,12 +3,11 @@ using MoneyFox.Domain.Exceptions;
 using NLog;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Domain.Entities
 {
     /// <summary>
-    /// Database model for payments. Includes expenses, income and transfers.     Database table: Payments
+    ///     Database model for payments. Includes expenses, income and transfers.     Database table: Payments
     /// </summary>
     public class Payment
     {
@@ -108,8 +107,17 @@ namespace MoneyFox.Domain.Entities
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
         {
-            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note ?? "", endDate,
-                TargetAccount, Category, Date);
+            RecurringPayment = new RecurringPayment(
+                Date,
+                Amount,
+                Type,
+                recurrence,
+                ChargedAccount,
+                Note ?? "",
+                endDate,
+                TargetAccount,
+                Category,
+                Date);
             IsRecurring = true;
         }
 

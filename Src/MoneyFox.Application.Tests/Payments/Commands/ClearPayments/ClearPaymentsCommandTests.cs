@@ -52,7 +52,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
             await context.SaveChangesAsync();
 
             // Act
-            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(),
+            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
+                new ClearPaymentsCommand(),
                 default);
 
             // Assert
@@ -76,7 +77,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
             await context.SaveChangesAsync();
 
             // Act
-            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(),
+            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
+                new ClearPaymentsCommand(),
                 default);
             List<Payment> loadedPayments = context.Payments.ToList();
 

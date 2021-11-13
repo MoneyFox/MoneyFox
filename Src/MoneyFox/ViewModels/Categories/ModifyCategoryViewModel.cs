@@ -27,7 +27,7 @@ namespace MoneyFox.ViewModels.Categories
         private CategoryViewModel selectedCategory = new CategoryViewModel();
 
         /// <summary>
-        /// The currently selected CategoryViewModel
+        ///     The currently selected CategoryViewModel
         /// </summary>
         public CategoryViewModel SelectedCategory
         {

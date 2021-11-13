@@ -3,10 +3,10 @@ using StoreKit;
 
 namespace MoneyFox.iOS
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public class StoreOperations : IStoreOperations
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void RateApp() => SKStoreReviewController.RequestReview();
     }
 }

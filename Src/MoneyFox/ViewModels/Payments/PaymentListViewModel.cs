@@ -42,8 +42,11 @@ namespace MoneyFox.ViewModels.Payments
 
         protected override void OnActivated()
         {
-            Messenger.Register<PaymentListViewModel, ReloadMessage>(this, (r, m) => OnAppearingAsync(SelectedAccount.Id));
-            Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(this,
+            Messenger.Register<PaymentListViewModel, ReloadMessage>(
+                this,
+                (r, m) => OnAppearingAsync(SelectedAccount.Id));
+            Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(
+                this,
                 (r, m) => LoadPaymentsByMessageAsync(m));
         }
 
@@ -108,16 +111,19 @@ namespace MoneyFox.ViewModels.Payments
                 isRunning = true;
 
                 var paymentVms = mapper.Map<List<PaymentViewModel>>(
-                    await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id,
-                        message.TimeRangeStart,
-                        message.TimeRangeEnd,
-                        message.IsClearedFilterActive,
-                        message.IsRecurringFilterActive)));
+                    await mediator.Send(
+                        new GetPaymentsForAccountIdQuery(
+                            SelectedAccount.Id,
+                            message.TimeRangeStart,
+                            message.TimeRangeEnd,
+                            message.IsClearedFilterActive,
+                            message.IsRecurringFilterActive)));
 
                 paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
 
                 List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-                    .CreateGroups(paymentVms,
+                    .CreateGroups(
+                        paymentVms,
                         s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                         s => s.Date);
 
@@ -132,29 +138,34 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group) =>
-            group.Subtitle = string.Format(Strings.ExpenseAndIncomeTemplate,
-                group.Where(x => x.Type == PaymentType.Expense
-                                 || (x.Type == PaymentType.Transfer
-                                     && x.ChargedAccount.Id == SelectedAccount.Id))
-                    .Sum(x => x.Amount),
-                group.Where(x => x.Type == PaymentType.Income
-                                 || (x.Type == PaymentType.Transfer
-                                     && x.TargetAccount != null
-                                     && x.TargetAccount.Id == SelectedAccount.Id))
-                    .Sum(x => x.Amount));
+            group.Subtitle = string.Format(
+                Strings.ExpenseAndIncomeTemplate,
+                group.Where(
+                         x => x.Type == PaymentType.Expense
+                              || (x.Type == PaymentType.Transfer
+                                  && x.ChargedAccount.Id == SelectedAccount.Id))
+                     .Sum(x => x.Amount),
+                group.Where(
+                         x => x.Type == PaymentType.Income
+                              || (x.Type == PaymentType.Transfer
+                                  && x.TargetAccount != null
+                                  && x.TargetAccount.Id == SelectedAccount.Id))
+                     .Sum(x => x.Amount));
 
         public RelayCommand ShowFilterDialogCommand =>
             new RelayCommand(async () => await new FilterPopup().ShowAsync());
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () =>
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public RelayCommand GoToAddPaymentCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
-            => new RelayCommand<PaymentViewModel>(async paymentViewModel
-                => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id))
-                    {
-                        BarBackgroundColor = Color.Transparent
-                    }));
+            => new RelayCommand<PaymentViewModel>(
+                async paymentViewModel
+                    => await Shell.Current.Navigation.PushModalAsync(
+                        new NavigationPage(new EditPaymentPage(paymentViewModel.Id))
+                        {
+                            BarBackgroundColor = Color.Transparent
+                        }));
     }
 }

@@ -68,13 +68,15 @@ namespace MoneyFox.Droid.Renderer
         {
             if(Xamarin.Forms.Application.Current.UserAppTheme == OSAppTheme.Dark)
             {
-                Xamarin.Forms.Application.Current.Resources.TryGetValue("BackgroundColorSearchBarDark",
+                Xamarin.Forms.Application.Current.Resources.TryGetValue(
+                    "BackgroundColorSearchBarDark",
                     out object darkTintColor);
                 searchView.SetBackgroundColor(((Color)darkTintColor).ToAndroid());
             }
             else
             {
-                Xamarin.Forms.Application.Current.Resources.TryGetValue("BackgroundColorSearchBarLight",
+                Xamarin.Forms.Application.Current.Resources.TryGetValue(
+                    "BackgroundColorSearchBarLight",
                     out object lightTintColor);
                 searchView.SetBackgroundColor(((Color)lightTintColor).ToAndroid());
             }
@@ -88,18 +90,24 @@ namespace MoneyFox.Droid.Renderer
 
                 Drawable? textSelectHandleDrawable = textView.TextSelectHandle;
 
-                textSelectHandleDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(),
-                    BlendMode.SrcIn!));
+                textSelectHandleDrawable?.SetColorFilter(
+                    new BlendModeColorFilter(
+                        Color.Accent.ToAndroid(),
+                        BlendMode.SrcIn!));
                 textView.TextSelectHandle = textSelectHandleDrawable;
 
                 Drawable? textSelectHandleLeftDrawable = textView.TextSelectHandleLeft;
-                textSelectHandleLeftDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(),
-                    BlendMode.SrcIn!));
+                textSelectHandleLeftDrawable?.SetColorFilter(
+                    new BlendModeColorFilter(
+                        Color.Accent.ToAndroid(),
+                        BlendMode.SrcIn!));
                 textView.TextSelectHandle = textSelectHandleLeftDrawable;
 
                 Drawable? textSelectHandleRightDrawable = textView.TextSelectHandleRight;
-                textSelectHandleRightDrawable?.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(),
-                    BlendMode.SrcIn!));
+                textSelectHandleRightDrawable?.SetColorFilter(
+                    new BlendModeColorFilter(
+                        Color.Accent.ToAndroid(),
+                        BlendMode.SrcIn!));
                 textView.TextSelectHandle = textSelectHandleRightDrawable;
             }
             catch(Exception ex)
@@ -147,8 +155,10 @@ namespace MoneyFox.Droid.Renderer
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
-                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(),
-                            BlendMode.SrcIn!));
+                        handleDrawable.SetColorFilter(
+                            new BlendModeColorFilter(
+                                Color.Accent.ToAndroid(),
+                                BlendMode.SrcIn!));
                     }
                     else
                     {
@@ -195,8 +205,10 @@ namespace MoneyFox.Droid.Renderer
         {
             if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
             {
-                image?.Drawable?.SetColorFilter(new BlendModeColorFilter(Android.Graphics.Color.Gray,
-                    BlendMode.SrcIn!));
+                image?.Drawable?.SetColorFilter(
+                    new BlendModeColorFilter(
+                        Android.Graphics.Color.Gray,
+                        BlendMode.SrcIn!));
             }
             else
             {

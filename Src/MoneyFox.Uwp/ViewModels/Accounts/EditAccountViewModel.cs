@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Commands.UpdateAccount;
@@ -6,7 +7,6 @@ using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Utilities;
 using System.Globalization;
@@ -31,7 +31,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
         public override bool IsEdit => true;
 
-        public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccountAsync);
+        public AsyncRelayCommand DeleteCommand => new AsyncRelayCommand(DeleteAccountAsync);
 
         protected override async Task InitializeAsync()
         {
@@ -45,7 +45,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
         protected async Task DeleteAccountAsync()
         {
-            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await DialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccount.Id));

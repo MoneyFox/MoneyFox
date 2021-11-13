@@ -15,7 +15,7 @@ using Xamarin.Essentials;
 namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
-    /// Representation of the category Spreading View
+    ///     Representation of the category Spreading View
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
@@ -45,7 +45,7 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         /// <summary>
-        /// Chart to render.
+        ///     Chart to render.
         /// </summary>
         public DonutChart Chart
         {
@@ -65,21 +65,23 @@ namespace MoneyFox.ViewModels.Statistics
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
         /// <summary>
-        /// Set a custom CategorySpreadingModel with the set Start and End date
+        ///     Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task LoadAsync()
         {
             var statisticItems = new ObservableCollection<StatisticEntry>(
                 await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate, SelectedPaymentType)));
 
-            List<ChartEntry> microChartItems = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                {
-                    Label = x.Label,
-                    ValueLabel = x.ValueLabel,
-                    Color = SKColor.Parse(x.Color),
-                    ValueLabelColor = SKColor.Parse(x.Color)
-                })
-                .ToList();
+            List<ChartEntry> microChartItems = statisticItems
+                                               .Select(
+                                                   x => new ChartEntry((float)x.Value)
+                                                   {
+                                                       Label = x.Label,
+                                                       ValueLabel = x.ValueLabel,
+                                                       Color = SKColor.Parse(x.Color),
+                                                       ValueLabelColor = SKColor.Parse(x.Color)
+                                                   })
+                                               .ToList();
 
             Chart = new DonutChart
             {

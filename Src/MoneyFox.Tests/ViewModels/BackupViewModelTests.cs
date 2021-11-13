@@ -25,7 +25,8 @@ namespace MoneyFox.Tests.ViewModels
             var backupServiceMock = Substitute.For<IBackupService>();
 
             //execute
-            var vm = new BackupViewModel(backupServiceMock,
+            var vm = new BackupViewModel(
+                backupServiceMock,
                 null,
                 connectivitySetup,
                 settingsManagerMock,
@@ -49,7 +50,8 @@ namespace MoneyFox.Tests.ViewModels
             var backupServiceMock = Substitute.For<IBackupService>();
 
             //execute
-            var vm = new BackupViewModel(backupServiceMock,
+            var vm = new BackupViewModel(
+                backupServiceMock,
                 null,
                 connectivitySetup,
                 settingsManagerMock,
@@ -79,7 +81,8 @@ namespace MoneyFox.Tests.ViewModels
             backupServiceMock.GetBackupDateAsync().Returns(returnDate);
 
             //execute
-            var vm = new BackupViewModel(backupServiceMock,
+            var vm = new BackupViewModel(
+                backupServiceMock,
                 null,
                 connectivitySetup,
                 settingsManagerMock,
@@ -103,10 +106,11 @@ namespace MoneyFox.Tests.ViewModels
 
             var backupServiceMock = Substitute.For<IBackupService>();
             backupServiceMock.When(x => x.LogoutAsync())
-                .Do(x => logoutCommandCalled = true);
+                             .Do(x => logoutCommandCalled = true);
 
             //execute
-            var vm = new BackupViewModel(backupServiceMock,
+            var vm = new BackupViewModel(
+                backupServiceMock,
                 null,
                 connectivitySetup,
                 settingsManagerMock,

@@ -42,14 +42,9 @@ namespace MoneyFox.ViewModels.Dashboard
         }
 
         protected override void OnActivated()
-        {
-            Messenger.Register<DashboardViewModel, ReloadMessage>(this, (r, m) => r.InitializeAsync());
-        }
+            => Messenger.Register<DashboardViewModel, ReloadMessage>(this, (r, m) => r.InitializeAsync());
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<ReloadMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public async Task InitializeAsync()
         {
@@ -63,8 +58,9 @@ namespace MoneyFox.ViewModels.Dashboard
                 isRunning = true;
                 Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(
                     await mediator.Send(new GetAccountsQuery()));
-                Accounts.ForEach(async x =>
-                    x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                Accounts.ForEach(
+                    async x =>
+                        x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
                 EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
@@ -147,8 +143,9 @@ namespace MoneyFox.ViewModels.Dashboard
             }
         }
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () =>
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public RelayCommand GoToAddPaymentCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public RelayCommand GoToAccountsCommand =>
             new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
@@ -157,8 +154,9 @@ namespace MoneyFox.ViewModels.Dashboard
             new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel
-                => await Shell.Current.GoToAsync(
-                    $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
+            => new RelayCommand<AccountViewModel>(
+                async accountViewModel
+                    => await Shell.Current.GoToAsync(
+                        $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
     }
 }

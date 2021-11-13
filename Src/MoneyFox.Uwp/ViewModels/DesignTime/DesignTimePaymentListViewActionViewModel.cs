@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 
@@ -20,7 +19,7 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 
         public bool IsTransferAvailable { get; }
 
-        public AsyncCommand DeleteAccountCommand { get; } = null!;
+        public AsyncRelayCommand DeleteAccountCommand { get; } = null!;
 
         public bool IsClearedFilterActive { get; set; }
 

@@ -8,13 +8,13 @@ using MoneyFox.Uwp.Services;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Categories
 {
-    /// <inheritdoc cref="ISelectCategoryListViewModel"/>
+    /// <inheritdoc cref="ISelectCategoryListViewModel" />
     public class SelectCategoryListViewModel : AbstractCategoryListViewModel, ISelectCategoryListViewModel
     {
         private CategoryViewModel? selectedCategory;
 
         /// <summary>
-        /// Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
+        ///     Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
         public SelectCategoryListViewModel(IMediator mediator,
             IMapper mapper,
@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         }
 
         /// <summary>
-        /// CategoryViewModel currently selected in the view.
+        ///     CategoryViewModel currently selected in the view.
         /// </summary>
         public CategoryViewModel? SelectedCategory
         {
@@ -38,7 +38,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         }
 
         /// <summary>
-        /// Post selected CategoryViewModel to message hub
+        ///     Post selected CategoryViewModel to message hub
         /// </summary>
         protected override void ItemClick(CategoryViewModel category) =>
             Messenger.Send(new CategorySelectedMessage(category.Id));

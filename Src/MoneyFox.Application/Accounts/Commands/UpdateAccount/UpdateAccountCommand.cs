@@ -37,10 +37,11 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
                 Account existingAccount = await contextAdapter.Context
-                    .Accounts
-                    .FindAsync(request.Account.Id);
+                                                              .Accounts
+                                                              .FindAsync(request.Account.Id);
 
-                existingAccount.UpdateAccount(request.Account.Name,
+                existingAccount.UpdateAccount(
+                    request.Account.Name,
                     request.Account.CurrentBalance,
                     request.Account.Note ?? "",
                     request.Account.IsExcluded);

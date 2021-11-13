@@ -12,7 +12,7 @@ using Xamarin.Essentials;
 namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
-    /// Representation of the cash flow view.
+    ///     Representation of the cash flow view.
     /// </summary>
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
@@ -23,7 +23,7 @@ namespace MoneyFox.ViewModels.Statistics
         }
 
         /// <summary>
-        /// Chart to render.
+        ///     Chart to render.
         /// </summary>
         public BarChart Chart
         {
@@ -42,21 +42,20 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry>? statisticItems = await Mediator.Send(new GetCashFlowQuery
-            {
-                EndDate = EndDate, StartDate = StartDate
-            });
+            List<StatisticEntry>? statisticItems =
+                await Mediator.Send(new GetCashFlowQuery {EndDate = EndDate, StartDate = StartDate});
 
             Chart = new BarChart
             {
-                Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                    {
-                        Label = x.Label,
-                        ValueLabel = x.ValueLabel,
-                        Color = SKColor.Parse(x.Color),
-                        ValueLabelColor = SKColor.Parse(x.Color)
-                    })
-                    .ToList(),
+                Entries = statisticItems.Select(
+                                            x => new ChartEntry((float)x.Value)
+                                            {
+                                                Label = x.Label,
+                                                ValueLabel = x.ValueLabel,
+                                                Color = SKColor.Parse(x.Color),
+                                                ValueLabelColor = SKColor.Parse(x.Color)
+                                            })
+                                        .ToList(),
                 BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,

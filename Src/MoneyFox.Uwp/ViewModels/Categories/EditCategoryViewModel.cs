@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Command.UpdateCategory;
@@ -6,7 +7,6 @@ using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Services;
 using NLog;
 using System.Globalization;
@@ -32,9 +32,9 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         }
 
         /// <summary>
-        /// Delete the selected CategoryViewModel from the database
+        ///     Delete the selected CategoryViewModel from the database
         /// </summary>
-        public AsyncCommand DeleteCommand => new AsyncCommand(DeleteCategoryAsync);
+        public AsyncRelayCommand DeleteCommand => new AsyncRelayCommand(DeleteCategoryAsync);
 
         protected override async Task InitializeAsync()
         {
@@ -53,12 +53,13 @@ namespace MoneyFox.Uwp.ViewModels.Categories
                 return;
             }
 
-            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await DialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeleteCategoryConfirmationMessage))
             {
                 await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);
-                await CancelCommand.ExecuteAsync();
+                await CancelCommand.ExecuteAsync(null);
             }
         }
     }
