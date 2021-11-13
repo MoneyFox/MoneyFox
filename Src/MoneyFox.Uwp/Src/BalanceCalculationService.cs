@@ -8,6 +8,7 @@ using MoneyFox.Domain.Exceptions;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
@@ -120,20 +121,20 @@ namespace MoneyFox.Uwp
 
         private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
         {
-            foreach(var account in excluded)
+            foreach(var accountId in excluded.Select(x => x.Id))
             {
                 if(payment.TargetAccount == null)
                 {
                     throw new InvalidOperationException("Uninitialized property: " + nameof(payment.TargetAccount));
                 }
 
-                if(Equals(account.Id, payment.ChargedAccount.Id))
+                if(Equals(accountId, payment.ChargedAccount.Id))
                 {
                     //Transfer from excluded account
                     balance += payment.Amount;
                 }
 
-                if(Equals(account.Id, payment.TargetAccount.Id))
+                if(Equals(accountId, payment.TargetAccount.Id))
                 {
                     //Transfer to excluded account
                     balance -= payment.Amount;
