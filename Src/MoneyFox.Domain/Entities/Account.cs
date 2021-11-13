@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -7,6 +8,7 @@ namespace MoneyFox.Domain.Entities
     public class Account
     {
         //used by EF Core
+        [UsedImplicitly]
         private Account() { }
 
         public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
@@ -29,7 +31,7 @@ namespace MoneyFox.Domain.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; private set; }
+        public int Id { get; [UsedImplicitly] private set; }
 
         /// <summary>
         ///     The name of the account.

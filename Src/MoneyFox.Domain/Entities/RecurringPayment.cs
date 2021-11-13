@@ -1,4 +1,5 @@
-﻿using MoneyFox.Domain.Exceptions;
+﻿using JetBrains.Annotations;
+using MoneyFox.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,6 +12,7 @@ namespace MoneyFox.Domain.Entities
         /// <summary>
         ///     EF Core constructor
         /// </summary>
+        [UsedImplicitly]
         private RecurringPayment()
         {
         }

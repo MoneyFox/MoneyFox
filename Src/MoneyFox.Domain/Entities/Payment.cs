@@ -1,4 +1,5 @@
-﻿using MoneyFox.Domain.Exceptions;
+﻿using JetBrains.Annotations;
+using MoneyFox.Domain.Exceptions;
 using NLog;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -14,6 +15,7 @@ namespace MoneyFox.Domain.Entities
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
         // used for EF
+        [UsedImplicitly]
         private Payment() { }
 
         [SuppressMessage(
@@ -41,9 +43,9 @@ namespace MoneyFox.Domain.Entities
             }
         }
 
-        public int Id { get; private set; }
+        public int Id { get; [UsedImplicitly] private set; }
 
-        public int? CategoryId { get; private set; }
+        public int? CategoryId { get; [UsedImplicitly] private set; }
 
         public DateTime Date { get; private set; }
 
