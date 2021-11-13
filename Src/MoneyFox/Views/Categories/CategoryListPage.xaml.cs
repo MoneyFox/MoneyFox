@@ -15,11 +15,7 @@ namespace MoneyFox.Views.Categories
 
         protected override async void OnAppearing()
         {
-            ViewModel.Subscribe();
             await ViewModel.InitializeAsync();
         }
-
-        protected override void OnDisappearing()
-            => ViewModel.Unsubscribe();
     }
 }

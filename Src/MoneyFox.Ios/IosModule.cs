@@ -1,7 +1,7 @@
 ﻿using Acr.UserDialogs;
 using Autofac;
 using Foundation;
-using GalaSoft.MvvmLight.Messaging;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application;
 using NLog;
 using System;
@@ -21,7 +21,7 @@ namespace MoneyFox.iOS
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
                 .AsImplementedInterfaces();
-            builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
+            builder.RegisterInstance(new WeakReferenceMessenger()).InstancePerLifetimeScope().AsImplementedInterfaces();
 
             SetLocale();
             builder.RegisterModule<MoneyFoxModule>();

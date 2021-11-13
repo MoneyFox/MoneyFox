@@ -35,7 +35,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                 }
 
                 chart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

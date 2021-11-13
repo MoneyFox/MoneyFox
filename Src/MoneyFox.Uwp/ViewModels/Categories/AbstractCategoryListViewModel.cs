@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
@@ -21,7 +22,7 @@ using System.Threading.Tasks;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Categories
 {
-    public abstract class AbstractCategoryListViewModel : ViewModelBase
+    public abstract class AbstractCategoryListViewModel : ObservableRecipient
     {
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source =
             new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
@@ -40,11 +41,15 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             NavigationService = navigationService;
         }
 
-        public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async m => await SearchAsync());
+        protected override void OnActivated()
+        {
+            Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(this, (r, m) => r.SearchCommand.ExecuteAsync(""));
+        }
 
-        public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<ReloadMessage>(this);
+        }
 
         protected NavigationService NavigationService { get; }
 
@@ -73,8 +78,8 @@ namespace MoneyFox.Uwp.ViewModels.Categories
                 }
 
                 source = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(IsCategoriesEmpty));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsCategoriesEmpty));
             }
         }
 

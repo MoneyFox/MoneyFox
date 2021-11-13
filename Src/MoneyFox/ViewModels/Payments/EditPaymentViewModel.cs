@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;

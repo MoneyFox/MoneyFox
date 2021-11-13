@@ -1,21 +1,13 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Messages;
 using System;
 
 namespace MoneyFox.ViewModels.Dialogs
 {
-    public interface ISelectDateRangeDialogViewModel
-    {
-        DateTime StartDate { get; set; }
-
-        DateTime EndDate { get; set; }
-
-        RelayCommand DoneCommand { get; set; }
-    }
-
-    public class SelectDateRangeDialogViewModel : ViewModelBase
+    public class SelectDateRangeDialogViewModel : ObservableRecipient
     {
         private DateTime startDate;
         private DateTime endDate;
@@ -44,7 +36,7 @@ namespace MoneyFox.ViewModels.Dialogs
             set
             {
                 startDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -57,7 +49,7 @@ namespace MoneyFox.ViewModels.Dialogs
             set
             {
                 endDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -66,6 +58,6 @@ namespace MoneyFox.ViewModels.Dialogs
         /// </summary>
         public RelayCommand DoneCommand => new RelayCommand(Done);
 
-        private void Done() => MessengerInstance.Send(new DateSelectedMessage(this, StartDate, EndDate));
+        private void Done() => Messenger.Send(new DateSelectedMessage(this, StartDate, EndDate));
     }
 }

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Messages;
@@ -21,14 +22,12 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public class PaymentListViewModel : ViewModelBase
+    public class PaymentListViewModel : ObservableRecipient
     {
         private AccountViewModel selectedAccount = new AccountViewModel();
 
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments =
             new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
-
-        private PaymentListFilterChangedMessage lastMessage = new PaymentListFilterChangedMessage();
 
         private bool isRunning;
 
@@ -41,13 +40,26 @@ namespace MoneyFox.ViewModels.Payments
             this.mapper = mapper;
         }
 
+        protected override void OnActivated()
+        {
+            Messenger.Register<PaymentListViewModel, ReloadMessage>(this, (r, m) => OnAppearingAsync(SelectedAccount.Id));
+            Messenger.Register<PaymentListViewModel, PaymentListFilterChangedMessage>(this,
+                (r, m) => LoadPaymentsByMessageAsync(m));
+        }
+
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<ReloadMessage>(this);
+            Messenger.Unregister<PaymentListFilterChangedMessage>(this);
+        }
+
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;
             set
             {
                 selectedAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -57,7 +69,7 @@ namespace MoneyFox.ViewModels.Payments
             private set
             {
                 payments = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -78,29 +90,13 @@ namespace MoneyFox.ViewModels.Payments
             PaymentRecurrence.Yearly
         };
 
-        public void Subscribe()
-        {
-            MessengerInstance.Register<ReloadMessage>(this, async m => await OnAppearingAsync(SelectedAccount.Id));
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message =>
-            {
-                lastMessage = message;
-                await LoadPaymentsByMessageAsync();
-            });
-        }
-
-        public void Unsubscribe()
-        {
-            MessengerInstance.Unregister<ReloadMessage>(this);
-            MessengerInstance.Unregister<PaymentListFilterChangedMessage>(this);
-        }
-
         public async Task OnAppearingAsync(int accountId)
         {
             SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
-            await LoadPaymentsByMessageAsync();
+            await LoadPaymentsByMessageAsync(new PaymentListFilterChangedMessage());
         }
 
-        private async Task LoadPaymentsByMessageAsync()
+        public async Task LoadPaymentsByMessageAsync(PaymentListFilterChangedMessage message)
         {
             try
             {
@@ -113,10 +109,10 @@ namespace MoneyFox.ViewModels.Payments
 
                 var paymentVms = mapper.Map<List<PaymentViewModel>>(
                     await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id,
-                        lastMessage.TimeRangeStart,
-                        lastMessage.TimeRangeEnd,
-                        lastMessage.IsClearedFilterActive,
-                        lastMessage.IsRecurringFilterActive)));
+                        message.TimeRangeStart,
+                        message.TimeRangeEnd,
+                        message.IsClearedFilterActive,
+                        message.IsRecurringFilterActive)));
 
                 paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
 

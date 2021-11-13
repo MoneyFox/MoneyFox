@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
@@ -18,7 +20,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Categories
 {
-    public class CategoryListViewModel : ViewModelBase
+    public class CategoryListViewModel : ObservableRecipient
     {
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories =
             new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
@@ -34,11 +36,15 @@ namespace MoneyFox.ViewModels.Categories
             this.dialogService = dialogService;
         }
 
-        public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async m => await InitializeAsync());
+        protected override void OnActivated()
+        {
+            Messenger.Register<CategoryListViewModel, ReloadMessage>(this, (r, m) => r.SearchCategoryCommand.Execute(""));
+        }
 
-        public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<ReloadMessage>(this);
+        }
 
         public async Task InitializeAsync() => await SearchCategoryAsync();
 
@@ -48,7 +54,7 @@ namespace MoneyFox.ViewModels.Categories
             private set
             {
                 categories = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

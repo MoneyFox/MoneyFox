@@ -1,11 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 using System;
 
 namespace MoneyFox.Uwp.ViewModels.Accounts
 {
-    public sealed class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
+    public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
         private const decimal DECIMAL_DELTA = 0.01m;
 
@@ -33,7 +33,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 id = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -51,7 +51,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 name = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -69,7 +69,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 currentBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -82,7 +82,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             set
             {
                 endOfMonthBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -100,7 +100,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 note = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -118,7 +118,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 isOverdrawn = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -136,7 +136,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 isExcluded = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -151,7 +151,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 creationTime = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -166,7 +166,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 modificationDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -194,9 +194,6 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
         public override int GetHashCode()
         {
             var hash = new HashCode();
-            hash.Add(PropertyChangedHandler);
-            hash.Add(IsInDesignMode);
-            hash.Add(MessengerInstance);
             hash.Add(Id);
             hash.Add(Name);
             hash.Add(CurrentBalance);

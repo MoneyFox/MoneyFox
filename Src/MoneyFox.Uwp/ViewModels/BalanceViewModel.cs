@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -11,7 +11,7 @@ namespace MoneyFox.Uwp.ViewModels
     /// <summary>
     /// Representation of the BalanceView
     /// </summary>
-    public class BalanceViewModel : ViewModelBase, IBalanceViewModel
+    public class BalanceViewModel : ObservableObject, IBalanceViewModel
     {
         private readonly IBalanceCalculationService balanceCalculationService;
 
@@ -32,7 +32,7 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 totalBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -45,7 +45,7 @@ namespace MoneyFox.Uwp.ViewModels
             set
             {
                 endOfMonthBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

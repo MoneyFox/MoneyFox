@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
@@ -16,7 +17,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
     /// <summary>
     /// View Model for creating and editing Categories without dialog
     /// </summary>
-    public abstract class ModifyCategoryViewModel : ViewModelBase, IModifyCategoryViewModel
+    public abstract class ModifyCategoryViewModel : ObservableRecipient, IModifyCategoryViewModel
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
@@ -65,7 +66,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             set
             {
                 selectedCategory = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -83,7 +84,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
                 }
 
                 title = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -99,7 +100,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
 
             await DialogService.ShowLoadingDialogAsync(Strings.SavingCategoryMessage);
             await SaveCategoryAsync();
-            MessengerInstance.Send(new ReloadMessage());
+            Messenger.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
         }
 

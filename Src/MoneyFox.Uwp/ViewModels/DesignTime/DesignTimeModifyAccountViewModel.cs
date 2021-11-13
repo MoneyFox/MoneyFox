@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Uwp.ViewModels.Accounts;
 
 #nullable enable

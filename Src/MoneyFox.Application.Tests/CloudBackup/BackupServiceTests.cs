@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
@@ -27,7 +26,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
         private readonly Mock<IContextAdapter> contextAdapterMock;
-        private readonly Mock<IMessenger> messengerMock;
 
         private readonly IToastService toastService;
 
@@ -40,7 +38,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock = new Mock<ISettingsFacade>();
             connectivityAdapterMock = new Mock<IConnectivityAdapter>();
             contextAdapterMock = new Mock<IContextAdapter>();
-            messengerMock = new Mock<IMessenger>();
 
             toastService = Substitute.For<IToastService>();
         }
@@ -56,7 +53,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act / Assert
@@ -79,7 +75,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -105,7 +100,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -127,7 +121,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act / Assert
@@ -152,7 +145,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -178,7 +170,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -200,7 +191,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -224,7 +214,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -248,7 +237,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -269,7 +257,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -294,7 +281,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -318,7 +304,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act / Assert
@@ -349,7 +334,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -386,7 +370,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -413,7 +396,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -442,7 +424,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -469,7 +450,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act

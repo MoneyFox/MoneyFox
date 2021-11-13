@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using System;
 
 namespace MoneyFox.Uwp.ViewModels.DataBackup

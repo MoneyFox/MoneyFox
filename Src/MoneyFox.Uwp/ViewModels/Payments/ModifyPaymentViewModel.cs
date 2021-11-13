@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
@@ -27,7 +28,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
     /// <summary>
     /// Handles the logic of the ModifyPayment view
     /// </summary>
-    public abstract class ModifyPaymentViewModel : ViewModelBase, IModifyPaymentViewModel
+    public abstract class ModifyPaymentViewModel : ObservableRecipient, IModifyPaymentViewModel
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -54,6 +55,16 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.navigationService = navigationService;
             this.mediator = mediator;
             this.mapper = mapper;
+        }
+
+        protected override void OnActivated()
+        {
+            Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(this, (r, m) => r.ReceiveMessageAsync(m));
+        }
+
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<CategorySelectedMessage>(this);
         }
 
         /// <summary>
@@ -103,7 +114,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 recurrence = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -138,9 +149,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 selectedPayment = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(AccountHeader));
-                RaisePropertyChanged(nameof(AmountString));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(AccountHeader));
+                OnPropertyChanged(nameof(AmountString));
             }
         }
 
@@ -157,7 +168,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 amountString = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -170,7 +181,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             private set
             {
                 chargedAccounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -183,7 +194,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             private set
             {
                 targetAccounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -195,7 +206,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             private set
             {
                 categories = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -210,7 +221,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 title = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -233,14 +244,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             Categories = new ObservableCollection<CategoryViewModel>(
                 mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery())));
         }
-
-        public void Subscribe() =>
-            MessengerInstance.Register<CategorySelectedMessage>(this,
-                async message => await ReceiveMessageAsync(message));
-
-        public void Unsubscribe() =>
-            MessengerInstance.Unregister<CategorySelectedMessage>(this,
-                async message => await ReceiveMessageAsync(message));
 
         private async Task SavePaymentBaseAsync()
         {
@@ -290,7 +293,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             {
                 await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
                 await SavePaymentAsync();
-                MessengerInstance.Send(new ReloadMessage());
+                Messenger.Send(new ReloadMessage());
                 navigationService.GoBack();
             }
             catch(Exception ex)
@@ -306,7 +309,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public void Cancel() => navigationService.GoBack();
 
-        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
+        public async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if(SelectedPayment == null || message == null)
             {

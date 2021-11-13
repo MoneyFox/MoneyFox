@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Groups;
@@ -15,11 +16,9 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Statistics
 {
-    public class PaymentForCategoryListViewModel : ViewModelBase
+    public class PaymentForCategoryListViewModel : ObservableRecipient
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
-
-        private PaymentsForCategoryMessage? receivedMessage;
 
         private readonly IMediator mediator;
         private readonly IMapper mapper;
@@ -30,12 +29,18 @@ namespace MoneyFox.ViewModels.Statistics
             this.mapper = mapper;
 
             PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
-            MessengerInstance.Register<PaymentsForCategoryMessage>(this, async m =>
-            {
-                receivedMessage = m;
-                await InitializeAsync();
-            });
         }
+
+        protected override void OnActivated()
+        {
+            Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(this, (r, m) => r.InitializeAsync(m));
+        }
+
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<PaymentsForCategoryMessage>(this);
+        }
+
 
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList =
             new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
@@ -46,7 +51,7 @@ namespace MoneyFox.ViewModels.Statistics
             private set
             {
                 paymentList = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -58,14 +63,8 @@ namespace MoneyFox.ViewModels.Statistics
                         BarBackgroundColor = Color.Transparent
                     }));
 
-        private async Task InitializeAsync()
+        private async Task InitializeAsync(PaymentsForCategoryMessage receivedMessage)
         {
-            if(receivedMessage == null)
-            {
-                logger.Error("No message received");
-                return;
-            }
-
             logger.Info($"Loading payments for category with id {receivedMessage.CategoryId}");
 
             var loadedPayments = mapper.Map<List<PaymentViewModel>>(await mediator.Send(

@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Statistics
 {
-    public class StatisticSelectorViewModel : ViewModelBase, IStatisticSelectorViewModel
+    public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
     {
         /// <summary>
         /// All possible statistic to choose from

@@ -1,11 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 using System;
 
 namespace MoneyFox.ViewModels.Categories
 {
-    public class CategoryViewModel : ViewModelBase, IMapFrom<Category>
+    public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     {
         private int id;
         private string name = "";
@@ -25,7 +25,7 @@ namespace MoneyFox.ViewModels.Categories
                 }
 
                 id = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -40,7 +40,7 @@ namespace MoneyFox.ViewModels.Categories
                 }
 
                 name = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -55,7 +55,7 @@ namespace MoneyFox.ViewModels.Categories
                 }
 
                 requireNote = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -70,7 +70,7 @@ namespace MoneyFox.ViewModels.Categories
                 }
 
                 creationTime = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -85,7 +85,7 @@ namespace MoneyFox.ViewModels.Categories
                 }
 
                 modificationDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -103,7 +103,7 @@ namespace MoneyFox.ViewModels.Categories
                 }
 
                 note = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
     }

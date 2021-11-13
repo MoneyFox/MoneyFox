@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -9,7 +9,7 @@ using System;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public class PaymentViewModel : ViewModelBase, IHaveCustomMapping
+    public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     {
         private const decimal DECIMAL_DELTA = 0.01m;
 
@@ -46,7 +46,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 id = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -66,7 +66,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 chargedAccountId = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -84,7 +84,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 targetAccountId = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -102,7 +102,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 date = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -120,7 +120,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 amount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -139,7 +139,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 isCleared = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -157,8 +157,8 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 type = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(IsTransfer));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsTransfer));
             }
         }
 
@@ -176,7 +176,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 note = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -199,7 +199,7 @@ namespace MoneyFox.ViewModels.Payments
                     ? new RecurringPaymentViewModel()
                     : null;
 
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -214,7 +214,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 creationTime = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -229,7 +229,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 modificationDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -248,7 +248,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 chargedAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -267,7 +267,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 targetAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -285,7 +285,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 categoryViewModel = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -303,7 +303,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 recurringPaymentViewModel = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -328,7 +328,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 currentAccountId = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

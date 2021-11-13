@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels.Statistic;

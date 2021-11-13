@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
@@ -20,7 +21,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public abstract class ModifyPaymentViewModel : ViewModelBase
+    public abstract class ModifyPaymentViewModel : ObservableRecipient
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -39,9 +40,11 @@ namespace MoneyFox.ViewModels.Payments
             this.mediator = mediator;
             this.mapper = mapper;
             this.dialogService = dialogService;
+        }
 
-            MessengerInstance.Register<CategorySelectedMessage>(this,
-                async message => await ReceiveMessageAsync(message));
+        protected override void OnActivated()
+        {
+            Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(this, (r, m) => r.ReceiveMessageAsync(m));
         }
 
         /// <summary>
@@ -53,7 +56,7 @@ namespace MoneyFox.ViewModels.Payments
             set
             {
                 selectedPayment = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -66,7 +69,7 @@ namespace MoneyFox.ViewModels.Payments
             private set
             {
                 chargedAccounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -79,7 +82,7 @@ namespace MoneyFox.ViewModels.Payments
             private set
             {
                 targetAccounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -166,7 +169,7 @@ namespace MoneyFox.ViewModels.Payments
             try
             {
                 await SavePaymentAsync();
-                MessengerInstance.Send(new ReloadMessage());
+                Messenger.Send(new ReloadMessage());
                 await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
             }
             catch(Exception ex)
@@ -180,7 +183,7 @@ namespace MoneyFox.ViewModels.Payments
             }
         }
 
-        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
+        public async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if(SelectedPayment == null || message == null)
             {

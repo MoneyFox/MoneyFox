@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using GalaSoft.MvvmLight.Messaging;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application;
 using MoneyFox.Application.Common;
@@ -37,7 +37,7 @@ namespace MoneyFox.Uwp
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
 
-            builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
+            builder.RegisterInstance(new WeakReferenceMessenger()).InstancePerLifetimeScope().AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.RegisterAssemblyTypes(ThisAssembly)

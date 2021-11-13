@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -8,7 +8,7 @@ using System;
 
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
-    public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>
+    public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
     {
         private const decimal DECIMAL_DELTA = 0.01m;
 
@@ -42,7 +42,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 id = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -57,7 +57,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 startDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +72,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 endDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -91,7 +91,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                     ? EndDate = DateTime.Today
                     : null;
 
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -109,7 +109,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 amount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -127,7 +127,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 type = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -142,7 +142,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 recurrence = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -160,7 +160,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 note = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -179,7 +179,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 chargedAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -197,7 +197,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 categoryViewModel = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
     }

@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Domain.Exceptions;
 using System;
 using System.Collections.Generic;

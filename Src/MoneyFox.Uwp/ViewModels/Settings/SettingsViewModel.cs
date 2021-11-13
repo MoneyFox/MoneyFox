@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Uwp.ViewModels.Settings
 {
-    public class SettingsViewModel : ViewModelBase, ISettingsViewModel
+    public class SettingsViewModel : ObservableObject, ISettingsViewModel
     {
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
@@ -40,7 +40,7 @@ namespace MoneyFox.Uwp.ViewModels.Settings
                 selectedCulture = value;
                 settingsFacade.DefaultCulture = selectedCulture.Name;
                 CultureHelper.CurrentCulture = selectedCulture;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

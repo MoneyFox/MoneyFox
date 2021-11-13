@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application.Common.Interfaces;

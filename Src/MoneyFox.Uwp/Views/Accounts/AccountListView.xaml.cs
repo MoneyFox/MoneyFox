@@ -31,10 +31,6 @@ namespace MoneyFox.Uwp.Views.Accounts
             }
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e) => ViewModel.Subscribe();
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e) => ViewModel.Unsubscribe();
-
         private async void Edit_OnClick(object sender, RoutedEventArgs e)
         {
             var element = (FrameworkElement)sender;

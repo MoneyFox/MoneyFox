@@ -1,6 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Autofac;
-using GalaSoft.MvvmLight.Messaging;
+using CommunityToolkit.Mvvm.Messaging;
 
 #nullable enable
 namespace MoneyFox.Droid
@@ -15,7 +15,7 @@ namespace MoneyFox.Droid
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
             builder.Register(c => new FileStoreIoBase(Android.App.Application.Context.FilesDir?.Path ?? ""))
                 .AsImplementedInterfaces();
-            builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
+            builder.RegisterInstance(new WeakReferenceMessenger()).InstancePerLifetimeScope().AsImplementedInterfaces();
 
             builder.RegisterModule<MoneyFoxModule>();
         }

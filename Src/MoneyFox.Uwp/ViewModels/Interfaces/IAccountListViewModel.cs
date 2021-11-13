@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.ViewModels.Accounts;

@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
@@ -36,8 +37,8 @@ namespace MoneyFox.ViewModels.Statistics
             private set
             {
                 categorySummary = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(HasData));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(HasData));
             }
         }
 
@@ -78,7 +79,7 @@ namespace MoneyFox.ViewModels.Statistics
         private async Task ShowCategoryPaymentsAsync(CategoryOverviewViewModel categoryOverviewModel)
         {
             await Shell.Current.GoToModalAsync(ViewModelLocator.PaymentForCategoryListRoute);
-            MessengerInstance.Send(new PaymentsForCategoryMessage(categoryOverviewModel.CategoryId, StartDate,
+            Messenger.Send(new PaymentsForCategoryMessage(categoryOverviewModel.CategoryId, StartDate,
                 EndDate));
         }
     }

@@ -1,5 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
@@ -19,7 +20,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <inheritdoc cref="IPaymentListViewActionViewModel"/>
     /// />
-    public class PaymentListViewActionViewModel : ViewModelBase, IPaymentListViewActionViewModel
+    public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListViewActionViewModel
     {
         private const int TRANSFER_THRESHOLD = 2;
 
@@ -98,7 +99,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isTransferAvailable = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -116,7 +117,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isAddIncomeAvailable = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -134,7 +135,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isAddExpenseAvailable = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -150,7 +151,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isClearedFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -166,7 +167,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isRecurringFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -182,7 +183,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isGrouped = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -198,7 +199,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 timeRangeStart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -214,7 +215,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 timeRangeEnd = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -232,7 +233,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         private void ApplyFilter() =>
-            MessengerInstance.Send(new PaymentListFilterChangedMessage
+            Messenger.Send(new PaymentListFilterChangedMessage
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
@@ -47,7 +47,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 incomeExpenseBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -62,8 +62,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 categorySummary = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(HasData));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(HasData));
             }
         }
 
@@ -81,7 +81,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 selectedOverviewItem = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

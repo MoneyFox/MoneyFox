@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Messaging;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
@@ -22,7 +23,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Infrastructure.DbBackup
 {
-    public class BackupService : IBackupService, IDisposable
+    public class BackupService : ObservableRecipient, IBackupService, IDisposable
     {
         private const int BACKUP_OPERATION_TIMEOUT = 10000;
         private const int BACKUP_REPEAT_DELAY = 2000;
@@ -32,7 +33,6 @@ namespace MoneyFox.Infrastructure.DbBackup
         private readonly ISettingsFacade settingsFacade;
         private readonly IConnectivityAdapter connectivity;
         private readonly IContextAdapter contextAdapter;
-        private readonly IMessenger messenger;
         private readonly IToastService toastService;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
@@ -46,7 +46,6 @@ namespace MoneyFox.Infrastructure.DbBackup
             ISettingsFacade settingsFacade,
             IConnectivityAdapter connectivity,
             IContextAdapter contextAdapter,
-            IMessenger messenger,
             IToastService toastService)
         {
             this.cloudBackupService = cloudBackupService;
@@ -54,7 +53,6 @@ namespace MoneyFox.Infrastructure.DbBackup
             this.settingsFacade = settingsFacade;
             this.connectivity = connectivity;
             this.contextAdapter = contextAdapter;
-            this.messenger = messenger;
             this.toastService = toastService;
             UserAccount = cloudBackupService.UserAccount;
         }
@@ -152,7 +150,7 @@ namespace MoneyFox.Infrastructure.DbBackup
                     settingsFacade.LastDatabaseUpdate = DateTime.Now;
 
                     await toastService.ShowToastAsync(Strings.BackupRestoredMessage);
-                    messenger.Send(new ReloadMessage());
+                    Messenger.Send(new ReloadMessage());
                 }
             }
             catch(BackupOperationCanceledException ex)

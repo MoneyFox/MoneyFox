@@ -15,10 +15,7 @@ namespace MoneyFox.Views.Dashboard
 
         protected override async void OnAppearing()
         {
-            ViewModel.Subscribe();
             await ViewModel.InitializeAsync();
         }
-
-        protected override void OnDisappearing() => ViewModel.Unsubscribe();
     }
 }

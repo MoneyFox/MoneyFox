@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Common;
@@ -39,7 +39,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 selectedPaymentType = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 LoadDataCommand.Execute(null);
             }
         }
@@ -58,7 +58,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 chart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

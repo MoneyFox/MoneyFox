@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Interfaces

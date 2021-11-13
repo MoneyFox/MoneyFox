@@ -614,6 +614,9 @@
     <PackageReference Include="Autofac.Extras.CommonServiceLocator">
       <Version>6.0.1</Version>
     </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm">
+      <Version>7.0.3</Version>
+    </PackageReference>
     <PackageReference Include="FontAwesome.UWP">
       <Version>4.7.0.9</Version>
     </PackageReference>
@@ -646,9 +649,6 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.1</Version>
-    </PackageReference>
-    <PackageReference Include="MvvmLightLibsStd10">
-      <Version>5.4.1.1</Version>
     </PackageReference>
     <PackageReference Include="NLog">
       <Version>4.7.12</Version>

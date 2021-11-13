@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.ViewModels.Payments;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
-    public class CategoryOverviewViewModel : ViewModelBase
+    public class CategoryOverviewViewModel : ObservableObject
     {
         private const decimal DECIMAL_DELTA = 0.01m;
         private int categoryId;
@@ -30,7 +30,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 categoryId = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -48,7 +48,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 this.value = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -66,7 +66,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 average = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -84,7 +84,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 percentage = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -102,7 +102,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 label = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -123,7 +123,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 source = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
     }

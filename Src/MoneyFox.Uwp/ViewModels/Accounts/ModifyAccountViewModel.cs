@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Accounts
 {
-    public abstract class ModifyAccountViewModel : ViewModelBase
+    public abstract class ModifyAccountViewModel : ObservableRecipient
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
@@ -50,7 +51,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 title = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -62,8 +63,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             set
             {
                 selectedAccount = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(AmountString));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(AmountString));
             }
         }
 
@@ -80,7 +81,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 amountString = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -106,7 +107,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
             await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
             await SaveAccountAsync();
-            MessengerInstance.Send(new ReloadMessage());
+            Messenger.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
         }
     }

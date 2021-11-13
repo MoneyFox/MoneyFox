@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
@@ -26,9 +27,7 @@ using System.Threading.Tasks;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Accounts
 {
-    [SuppressMessage("Major Code Smell",
-        "S1200:Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
-    public class AccountListViewModel : ViewModelBase, IAccountListViewModel
+    public class AccountListViewModel : ObservableRecipient, IAccountListViewModel
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
@@ -60,11 +59,15 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             ViewActionViewModel = new AccountListViewActionViewModel(this.navigationService);
         }
 
-        public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async m => await LoadAsync());
+        protected override void OnActivated()
+        {
+            Messenger.Register<AccountListViewModel, ReloadMessage>(this, (r, m) => r.LoadDataCommand.ExecuteAsync());
+        }
 
-        public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<ReloadMessage>(this);
+        }
 
         public IBalanceViewModel BalanceViewModel { get; }
 
@@ -81,8 +84,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 accounts = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(HasNoAccounts));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(HasNoAccounts));
             }
         }
 
@@ -138,7 +141,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                     Accounts.Add(excludedAlphaGroup);
                 }
 
-                RaisePropertyChanged(nameof(HasNoAccounts));
+                OnPropertyChanged(nameof(HasNoAccounts));
             }
             catch(Exception ex)
             {

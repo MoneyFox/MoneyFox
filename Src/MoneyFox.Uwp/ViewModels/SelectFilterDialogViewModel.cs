@@ -1,11 +1,12 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Messages;
 using System;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
-    public class SelectFilterDialogViewModel : ViewModelBase, ISelectFilterDialogViewModel
+    public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
@@ -26,7 +27,7 @@ namespace MoneyFox.Uwp.ViewModels
                 }
 
                 isClearedFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 UpdateList();
             }
         }
@@ -45,7 +46,7 @@ namespace MoneyFox.Uwp.ViewModels
                 }
 
                 isRecurringFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 UpdateList();
             }
         }
@@ -64,7 +65,7 @@ namespace MoneyFox.Uwp.ViewModels
                 }
 
                 timeRangeStart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 UpdateList();
             }
         }
@@ -83,13 +84,13 @@ namespace MoneyFox.Uwp.ViewModels
                 }
 
                 timeRangeEnd = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 UpdateList();
             }
         }
 
         private void UpdateList() =>
-            MessengerInstance.Send(new PaymentListFilterChangedMessage
+            Messenger.Send(new PaymentListFilterChangedMessage
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,

@@ -1,5 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
@@ -7,10 +8,11 @@ using MoneyFox.Application.Resources;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Telerik.Core;
 
 namespace MoneyFox.Uwp.ViewModels.About
 {
-    public class AboutViewModel : ViewModelBase, IAboutViewModel
+    public class AboutViewModel : ObservableObject, IAboutViewModel
     {
         private readonly IAppInformation appInformation;
         private readonly IBrowserAdapter browserAdapter;

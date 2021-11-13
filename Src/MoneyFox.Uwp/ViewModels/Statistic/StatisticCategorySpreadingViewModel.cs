@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
@@ -40,7 +40,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 selectedPaymentType = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -58,7 +58,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 statisticItems = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -76,7 +76,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 settingsFacade.CategorySpreadingNumber = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

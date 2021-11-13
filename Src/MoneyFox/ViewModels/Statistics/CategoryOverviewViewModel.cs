@@ -1,9 +1,9 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System;
 
 namespace MoneyFox.ViewModels.Statistics
 {
-    public class CategoryOverviewViewModel : ViewModelBase
+    public class CategoryOverviewViewModel : ObservableObject
     {
         private const decimal DECIMAL_DELTA = 0.01m;
 
@@ -27,7 +27,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 categoryId = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -45,7 +45,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 this.value = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -63,7 +63,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 average = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -81,7 +81,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 percentage = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -99,7 +99,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 label = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
     }

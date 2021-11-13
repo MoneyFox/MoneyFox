@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
@@ -19,7 +20,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Accounts
 {
-    public class AccountListViewModel : ViewModelBase
+    public class AccountListViewModel : ObservableRecipient
     {
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts =
             new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
@@ -37,11 +38,15 @@ namespace MoneyFox.ViewModels.Accounts
             this.dialogService = dialogService;
         }
 
-        public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async m => await OnAppearingAsync());
+        protected override void OnActivated()
+        {
+            Messenger.Register<AccountListViewModel, ReloadMessage>(this, (r, m) => r.OnAppearingAsync());
+        }
 
-        public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<ReloadMessage>(this);
+        }
 
         public async Task OnAppearingAsync()
         {
@@ -93,7 +98,7 @@ namespace MoneyFox.ViewModels.Accounts
             private set
             {
                 accounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

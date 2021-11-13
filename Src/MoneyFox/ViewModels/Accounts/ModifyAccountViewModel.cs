@@ -1,5 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts
 {
-    public abstract class ModifyAccountViewModel : ViewModelBase
+    public abstract class ModifyAccountViewModel : ObservableRecipient
     {
         private readonly IDialogService dialogService;
 
@@ -29,7 +30,7 @@ namespace MoneyFox.ViewModels.Accounts
             set
             {
                 selectedAccountVm = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -48,7 +49,7 @@ namespace MoneyFox.ViewModels.Accounts
             await dialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
 
             await SaveAccountAsync();
-            MessengerInstance.Send(new ReloadMessage());
+            Messenger.Send(new ReloadMessage());
 
             await dialogService.HideLoadingDialogAsync();
             await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
@@ -48,7 +48,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                 }
 
                 chart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -66,7 +66,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                 }
 
                 hasNoData = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -83,7 +83,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                 }
 
                 selectedAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 LoadDataCommand.Execute(null);
             }
         }

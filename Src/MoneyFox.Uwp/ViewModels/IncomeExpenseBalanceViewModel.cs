@@ -1,9 +1,9 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels
 {
-    public class IncomeExpenseBalanceViewModel : ViewModelBase
+    public class IncomeExpenseBalanceViewModel : ObservableObject
     {
         private decimal totalEarned;
         private decimal totalSpent;
@@ -19,7 +19,7 @@ namespace MoneyFox.Uwp.ViewModels
                 }
 
                 totalEarned = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.ViewModels
                 }
 
                 totalSpent = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
     }

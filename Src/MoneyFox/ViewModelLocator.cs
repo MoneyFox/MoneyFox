@@ -1,7 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.ViewModels.About;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
@@ -25,14 +25,6 @@ namespace MoneyFox
 {
     public class ViewModelLocator
     {
-        static ViewModelLocator()
-        {
-            if(!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
-            {
-                RegisterServices(new ContainerBuilder());
-            }
-        }
-
         public static void RegisterServices(ContainerBuilder registrations)
         {
             IContainer container = registrations.Build();

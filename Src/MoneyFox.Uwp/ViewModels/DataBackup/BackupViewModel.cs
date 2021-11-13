@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
     /// <summary>
     /// Representation of the backup view.
     /// </summary>
-    public class BackupViewModel : ViewModelBase, IBackupViewModel
+    public class BackupViewModel : ObservableObject, IBackupViewModel
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -76,7 +76,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 backupLastModified = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -94,7 +94,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 isLoadingBackupAvailability = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -117,7 +117,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 backupAvailable = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -133,7 +133,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 settingsFacade.IsBackupAutouploadEnabled = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -148,7 +148,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 userAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -158,7 +158,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
         {
             if(!IsLoggedIn)
             {
-                RaisePropertyChanged(nameof(IsLoggedIn));
+                OnPropertyChanged(nameof(IsLoggedIn));
                 return;
             }
 
@@ -224,7 +224,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 Crashes.TrackError(ex);
             }
 
-            RaisePropertyChanged(nameof(IsLoggedIn));
+            OnPropertyChanged(nameof(IsLoggedIn));
             await LoadedAsync();
         }
 
@@ -246,7 +246,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
-            RaisePropertyChanged(nameof(IsLoggedIn));
+            OnPropertyChanged(nameof(IsLoggedIn));
         }
 
         private async Task CreateBackupAsync()

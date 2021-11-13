@@ -1,5 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Messages;
 using System;
 
@@ -16,7 +17,7 @@ namespace MoneyFox.ViewModels.Dialogs
         DateTime TimeRangeEnd { get; set; }
     }
 
-    public class SelectFilterDialogViewModel : ViewModelBase, ISelectFilterDialogViewModel
+    public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
@@ -48,7 +49,7 @@ namespace MoneyFox.ViewModels.Dialogs
                 }
 
                 isClearedFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -66,7 +67,7 @@ namespace MoneyFox.ViewModels.Dialogs
                 }
 
                 isRecurringFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -84,7 +85,7 @@ namespace MoneyFox.ViewModels.Dialogs
                 }
 
                 timeRangeStart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -102,12 +103,12 @@ namespace MoneyFox.ViewModels.Dialogs
                 }
 
                 timeRangeEnd = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public RelayCommand FilterSelectedCommand => new RelayCommand(() =>
-            MessengerInstance.Send(new PaymentListFilterChangedMessage
+            Messenger.Send(new PaymentListFilterChangedMessage
             {
                 IsClearedFilterActive = IsClearedFilterActive,
                 IsRecurringFilterActive = IsRecurringFilterActive,

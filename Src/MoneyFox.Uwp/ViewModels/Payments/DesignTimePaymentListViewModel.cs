@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Uwp.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.DesignTime;
 using MoneyFox.Uwp.ViewModels.Interfaces;

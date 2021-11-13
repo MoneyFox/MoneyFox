@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
@@ -35,9 +36,6 @@ namespace MoneyFox.ViewModels.Statistics
             this.mapper = mapper;
 
             StartDate = DateTime.Now.AddYears(-1);
-
-            MessengerInstance.Register<CategorySelectedMessage>(this,
-                async message => await ReceiveMessageAsync(message));
         }
 
         public CategoryViewModel? SelectedCategory
@@ -51,7 +49,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 selectedCategory = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -69,7 +67,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 chart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -87,7 +85,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 hasNoData = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
