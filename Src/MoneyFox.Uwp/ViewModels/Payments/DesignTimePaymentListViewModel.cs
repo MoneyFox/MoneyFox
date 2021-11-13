@@ -10,7 +10,8 @@ using Windows.UI.Xaml.Data;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
-    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]
+    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used",
+        Justification = "Not needed in design time")]
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
         public IBalanceViewModel BalanceViewModel => new DesignTimeBalanceViewViewModel();
@@ -28,9 +29,22 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             IsSourceGrouped = true,
             Source = new List<PaymentViewModel>
             {
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
+                new PaymentViewModel
+                {
+                    Amount = 123, Category = new CategoryViewModel {Name = "Beer"}, Date = DateTime.Now
+                },
+                new PaymentViewModel
+                {
+                    Amount = 123,
+                    Category = new CategoryViewModel {Name = "Beer"},
+                    Date = DateTime.Now.AddMonths(-1)
+                },
+                new PaymentViewModel
+                {
+                    Amount = 123,
+                    Category = new CategoryViewModel {Name = "Beer"},
+                    Date = DateTime.Now.AddMonths(-1)
+                }
             }
         };
 

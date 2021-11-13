@@ -3,7 +3,6 @@ using Autofac;
 using Foundation;
 using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Application;
-using MoneyFox.iOS.Src;
 using NLog;
 using System;
 using System.Globalization;
@@ -20,7 +19,8 @@ namespace MoneyFox.iOS
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
-            builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments))).AsImplementedInterfaces();
+            builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
+                .AsImplementedInterfaces();
             builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
 
             SetLocale();

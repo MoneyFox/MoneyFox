@@ -15,7 +15,7 @@
             Padding="0,0,10,0"
             HorizontalAlignment="Right"
             Content="{x:Bind resources:Strings.AddAccountLabel}"
-            Foreground="{ThemeResource AppForegroundColorPrimary}"
+            Foreground="{ThemeResource AppForegroundPrimaryBrush}"
             Tapped="AddAccountTapped">
             <winui:NavigationViewItem.Icon>
                 <FontIcon Glyph="&#xE710;" />

@@ -16,7 +16,8 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="name">Name to filter for</param>
         /// <returns>Query with the added filter.</returns>
-        [SuppressMessage("Minor Code Smell", "S4058:Overloads with a \"StringComparison\" parameter should be used", Justification = "Since used on database can't set locale.")]
+        [SuppressMessage("Minor Code Smell", "S4058:Overloads with a \"StringComparison\" parameter should be used",
+            Justification = "Since used on database can't set locale.")]
         public static IQueryable<Category> NameEquals(this IQueryable<Category> query, string name)
             => query.Where(x => x.Name.ToUpper().Equals(name.ToUpper()));
 
@@ -27,8 +28,10 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="query">Existing query.</param>
         /// <param name="searchterm">Search term to look for.</param>
         /// <returns>Query with the added filter.</returns>
-        [SuppressMessage("Minor Code Smell", "S4058:Overloads with a \"StringComparison\" parameter should be used", Justification = "Since used on database can't set locale.")]
-        [SuppressMessage("Minor Code Smell", "S1449:Culture should be specified for \"string\" operations", Justification = "Since used on database can't set locale.")]
+        [SuppressMessage("Minor Code Smell", "S4058:Overloads with a \"StringComparison\" parameter should be used",
+            Justification = "Since used on database can't set locale.")]
+        [SuppressMessage("Minor Code Smell", "S1449:Culture should be specified for \"string\" operations",
+            Justification = "Since used on database can't set locale.")]
         public static IEnumerable<Category> WhereNameContains(this IEnumerable<Category> query, string searchterm)
             => query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
 

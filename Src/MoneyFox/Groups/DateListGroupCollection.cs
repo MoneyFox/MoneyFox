@@ -17,14 +17,16 @@ namespace MoneyFox.Groups
 
         public delegate DateTime GetSortKeyDelegate(T item);
 
+
         /// <summary>
         /// Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        public DateListGroupCollection(string key, RelayCommand<T>? itemClickCommand = null)
+        public DateListGroupCollection(string key, string subtitle, RelayCommand<T>? itemClickCommand = null)
         {
             Key = key;
+            Subtitle = subtitle;
             ItemClickCommand = itemClickCommand;
         }
 
@@ -32,12 +34,10 @@ namespace MoneyFox.Groups
         /// Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
-        /// <param name="Subtitle">The title for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
-        public DateListGroupCollection(string key, string subtitle, RelayCommand<T>? itemClickCommand = null)
+        private DateListGroupCollection(string key, RelayCommand<T>? itemClickCommand = null)
         {
             Key = key;
-            Subtitle = subtitle;
             ItemClickCommand = itemClickCommand;
         }
 
@@ -66,10 +66,10 @@ namespace MoneyFox.Groups
         /// <param name="itemClickCommand">The command to execute on a click.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroupCollection<T>> CreateGroups(IEnumerable<T> items,
-                                                                    GetKeyDelegate getKey,
-                                                                    GetSortKeyDelegate getSortKey,
-                                                                    bool sort = true,
-                                                                    RelayCommand<T>? itemClickCommand = null)
+            GetKeyDelegate getKey,
+            GetSortKeyDelegate getSortKey,
+            bool sort = true,
+            RelayCommand<T>? itemClickCommand = null)
         {
             ThrowIfNull(items);
 

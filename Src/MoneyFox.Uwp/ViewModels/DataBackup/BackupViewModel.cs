@@ -8,7 +8,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Services;
 using NLog;
 using System;
 using System.Threading.Tasks;
@@ -34,10 +33,10 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
         private bool isLoadingBackupAvailability;
 
         public BackupViewModel(IBackupService backupService,
-                               IDialogService dialogService,
-                               IConnectivityAdapter connectivity,
-                               ISettingsFacade settingsFacade,
-                               IToastService toastService)
+            IDialogService dialogService,
+            IConnectivityAdapter connectivity,
+            ISettingsFacade settingsFacade,
+            IToastService toastService)
         {
             this.backupService = backupService;
             this.dialogService = dialogService;
@@ -182,14 +181,16 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
             {
                 logger.Error(ex, "Issue during Login process.");
                 await backupService.LogoutAsync();
-                await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
+                await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle,
+                    Strings.ErrorMessageAuthenticationFailed);
             }
             catch(Exception ex)
             {
                 if(ex.StackTrace == "4f37.717b")
                 {
                     await backupService.LogoutAsync();
-                    await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle, Strings.ErrorMessageAuthenticationFailed);
+                    await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle,
+                        Strings.ErrorMessageAuthenticationFailed);
                 }
 
                 logger.Error(ex, "Issue on loading backup view.");
@@ -218,7 +219,8 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
             catch(Exception ex)
             {
                 logger.Error(ex, "Login Failed.");
-                await dialogService.ShowMessageAsync(Strings.LoginFailedTitle, string.Format(Strings.UnknownErrorMessage, ex.Message));
+                await dialogService.ShowMessageAsync(Strings.LoginFailedTitle,
+                    string.Format(Strings.UnknownErrorMessage, ex.Message));
                 Crashes.TrackError(ex);
             }
 
@@ -317,21 +319,21 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
 
         private async Task<bool> ShowOverwriteBackupInfoAsync()
             => await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
-                                                           Strings.OverwriteBackupMessage,
-                                                           Strings.YesLabel,
-                                                           Strings.NoLabel);
+                Strings.OverwriteBackupMessage,
+                Strings.YesLabel,
+                Strings.NoLabel);
 
         private async Task<bool> ShowOverwriteDataInfoAsync()
             => await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
-                                                           Strings.OverwriteDataMessage,
-                                                           Strings.YesLabel,
-                                                           Strings.NoLabel);
+                Strings.OverwriteDataMessage,
+                Strings.YesLabel,
+                Strings.NoLabel);
 
 
         private async Task<bool> ShowForceOverrideConfirmationAsync()
             => await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle,
-                                                            Strings.ForceOverrideBackupMessage,
-                                                            Strings.YesLabel,
-                                                            Strings.NoLabel);
+                Strings.ForceOverrideBackupMessage,
+                Strings.YesLabel,
+                Strings.NoLabel);
     }
 }

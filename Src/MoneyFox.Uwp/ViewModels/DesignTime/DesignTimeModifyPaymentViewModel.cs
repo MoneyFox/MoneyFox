@@ -18,18 +18,18 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public PaymentRecurrence Recurrence { get; } = PaymentRecurrence.Monthly;
 
         public List<PaymentRecurrence> RecurrenceList
-                                       => new List<PaymentRecurrence>
-        {
-            PaymentRecurrence.Daily,
-            PaymentRecurrence.DailyWithoutWeekend,
-            PaymentRecurrence.Weekly,
-            PaymentRecurrence.Biweekly,
-            PaymentRecurrence.Monthly,
-            PaymentRecurrence.Bimonthly,
-            PaymentRecurrence.Quarterly,
-            PaymentRecurrence.Biannually,
-            PaymentRecurrence.Yearly
-        };
+            => new List<PaymentRecurrence>
+            {
+                PaymentRecurrence.Daily,
+                PaymentRecurrence.DailyWithoutWeekend,
+                PaymentRecurrence.Weekly,
+                PaymentRecurrence.Biweekly,
+                PaymentRecurrence.Monthly,
+                PaymentRecurrence.Bimonthly,
+                PaymentRecurrence.Quarterly,
+                PaymentRecurrence.Biannually,
+                PaymentRecurrence.Yearly
+            };
 
         public PaymentViewModel SelectedPayment { get; } = null!;
 

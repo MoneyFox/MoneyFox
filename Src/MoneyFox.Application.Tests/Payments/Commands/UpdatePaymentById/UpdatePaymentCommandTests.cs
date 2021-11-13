@@ -7,9 +7,7 @@ using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -35,7 +33,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
 
             backupServiceMock = new Mock<IBackupService>();
             backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                             .Returns(Task.CompletedTask);
+                .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.Setup(x => x.LastDatabaseUpdate);
@@ -61,29 +59,29 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
 
             // Act
             await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
-               .Handle(new UpdatePaymentCommand(payment1.Id,
-                                                payment1.Date,
-                                                payment1.Amount,
-                                                payment1.IsCleared,
-                                                payment1.Type,
-                                                payment1.Note,
-                                                payment1.IsRecurring,
-                                                payment1.Category != null
-                                                ? payment1.Category.Id
-                                                : 0,
-                                                payment1.ChargedAccount != null
-                                                ? payment1.ChargedAccount.Id
-                                                : 0,
-                                                payment1.TargetAccount != null
-                                                ? payment1.TargetAccount.Id
-                                                : 0,
-                                                false,
-                                                null,
-                                                null,
-                                                null),
-                       default);
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new UpdatePaymentCommand(payment1.Id,
+                        payment1.Date,
+                        payment1.Amount,
+                        payment1.IsCleared,
+                        payment1.Type,
+                        payment1.Note,
+                        payment1.IsRecurring,
+                        payment1.Category != null
+                            ? payment1.Category.Id
+                            : 0,
+                        payment1.ChargedAccount != null
+                            ? payment1.ChargedAccount.Id
+                            : 0,
+                        payment1.TargetAccount != null
+                            ? payment1.TargetAccount.Id
+                            : 0,
+                        false,
+                        null,
+                        null,
+                        null),
+                    default);
 
             // Assert
             (await context.Payments.FindAsync(payment1.Id)).Amount.Should().Be(payment1.Amount);
@@ -95,7 +93,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
         public async Task CategoryForRecurringPaymentUpdated()
         {
             // Arrange
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80), null);
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             await context.AddAsync(payment1);
@@ -109,37 +107,38 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
 
             // Act
             await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
-               .Handle(new UpdatePaymentCommand(payment1.Id,
-                                                payment1.Date,
-                                                payment1.Amount,
-                                                payment1.IsCleared,
-                                                payment1.Type,
-                                                payment1.Note,
-                                                payment1.IsRecurring,
-                                                payment1.Category.Id,
-                                                payment1.ChargedAccount != null
-                                                ? payment1.ChargedAccount.Id
-                                                : 0,
-                                                payment1.TargetAccount != null
-                                                ? payment1.TargetAccount.Id
-                                                : 0,
-                                                true,
-                                                PaymentRecurrence.Monthly,
-                                                null,
-                                                null),
-                       default);
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new UpdatePaymentCommand(payment1.Id,
+                        payment1.Date,
+                        payment1.Amount,
+                        payment1.IsCleared,
+                        payment1.Type,
+                        payment1.Note,
+                        payment1.IsRecurring,
+                        payment1.Category.Id,
+                        payment1.ChargedAccount != null
+                            ? payment1.ChargedAccount.Id
+                            : 0,
+                        payment1.TargetAccount != null
+                            ? payment1.TargetAccount.Id
+                            : 0,
+                        true,
+                        PaymentRecurrence.Monthly,
+                        null,
+                        null),
+                    default);
 
             // Assert
-            (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Category.Id.Should().Be(payment1.Category.Id);
+            (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Category.Id.Should()
+                .Be(payment1.Category.Id);
         }
 
         [Fact]
         public async Task RecurrenceForRecurringPaymentUpdated()
         {
             // Arrange
-            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80), null);
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
             payment1.AddRecurringPayment(PaymentRecurrence.Monthly);
 
             await context.AddAsync(payment1);
@@ -153,30 +152,31 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
 
             // Act
             await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
-               .Handle(new UpdatePaymentCommand(payment1.Id,
-                                                payment1.Date,
-                                                payment1.Amount,
-                                                payment1.IsCleared,
-                                                payment1.Type,
-                                                payment1.Note,
-                                                payment1.IsRecurring,
-                                                payment1.Category.Id,
-                                                payment1.ChargedAccount != null
-                                                ? payment1.ChargedAccount.Id
-                                                : 0,
-                                                payment1.TargetAccount != null
-                                                ? payment1.TargetAccount.Id
-                                                : 0,
-                                                true,
-                                                PaymentRecurrence.Daily,
-                                                null,
-                                                null),
-                       default);
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new UpdatePaymentCommand(payment1.Id,
+                        payment1.Date,
+                        payment1.Amount,
+                        payment1.IsCleared,
+                        payment1.Type,
+                        payment1.Note,
+                        payment1.IsRecurring,
+                        payment1.Category.Id,
+                        payment1.ChargedAccount != null
+                            ? payment1.ChargedAccount.Id
+                            : 0,
+                        payment1.TargetAccount != null
+                            ? payment1.TargetAccount.Id
+                            : 0,
+                        true,
+                        PaymentRecurrence.Daily,
+                        null,
+                        null),
+                    default);
 
             // Assert
-            (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Recurrence.Should().Be(PaymentRecurrence.Daily);
+            (await context.RecurringPayments.FindAsync(payment1.RecurringPayment.Id)).Recurrence.Should()
+                .Be(PaymentRecurrence.Daily);
         }
 
         #endregion
@@ -193,29 +193,29 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
 
             // Act
             await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
-               .Handle(new UpdatePaymentCommand(payment1.Id,
-                                                payment1.Date,
-                                                payment1.Amount,
-                                                payment1.IsCleared,
-                                                payment1.Type,
-                                                payment1.Note,
-                                                payment1.IsRecurring,
-                                                payment1.Category != null
-                                                ? payment1.Category.Id
-                                                : 0,
-                                                payment1.ChargedAccount != null
-                                                ? payment1.ChargedAccount.Id
-                                                : 0,
-                                                payment1.TargetAccount != null
-                                                ? payment1.TargetAccount.Id
-                                                : 0,
-                                                false,
-                                                null,
-                                                null,
-                                                null),
-                       default);
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new UpdatePaymentCommand(payment1.Id,
+                        payment1.Date,
+                        payment1.Amount,
+                        payment1.IsCleared,
+                        payment1.Type,
+                        payment1.Note,
+                        payment1.IsRecurring,
+                        payment1.Category != null
+                            ? payment1.Category.Id
+                            : 0,
+                        payment1.ChargedAccount != null
+                            ? payment1.ChargedAccount.Id
+                            : 0,
+                        payment1.TargetAccount != null
+                            ? payment1.TargetAccount.Id
+                            : 0,
+                        false,
+                        null,
+                        null,
+                        null),
+                    default);
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);

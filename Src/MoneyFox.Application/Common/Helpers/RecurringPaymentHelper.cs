@@ -39,7 +39,8 @@ namespace MoneyFox.Application.Common.Helpers
             return CheckRecurrence(payment.RecurringPayment);
         }
 
-        [SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "Switch")]
+        [SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex",
+            Justification = "Switch")]
         private static bool CheckRecurrence(RecurringPayment recurringPayment)
         {
             switch(recurringPayment.Recurrence)
@@ -78,8 +79,8 @@ namespace MoneyFox.Application.Common.Helpers
                     return CheckBiannually(recurringPayment);
 
                 case PaymentRecurrence.Yearly:
-                    return DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
-                           && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month
+                    return (DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
+                            && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month)
                            || DateTime.Now.Year - recurringPayment.LastRecurrenceCreated.Date.Year > 1;
 
                 default:

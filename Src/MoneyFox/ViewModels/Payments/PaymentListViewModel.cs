@@ -24,7 +24,10 @@ namespace MoneyFox.ViewModels.Payments
     public class PaymentListViewModel : ViewModelBase
     {
         private AccountViewModel selectedAccount = new AccountViewModel();
-        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
+
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> payments =
+            new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
+
         private PaymentListFilterChangedMessage lastMessage = new PaymentListFilterChangedMessage();
 
         private bool isRunning;
@@ -77,7 +80,7 @@ namespace MoneyFox.ViewModels.Payments
 
         public void Subscribe()
         {
-            MessengerInstance.Register<ReloadMessage>(this, async (m) => await OnAppearingAsync(SelectedAccount.Id));
+            MessengerInstance.Register<ReloadMessage>(this, async m => await OnAppearingAsync(SelectedAccount.Id));
             MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async message =>
             {
                 lastMessage = message;
@@ -95,7 +98,6 @@ namespace MoneyFox.ViewModels.Payments
         {
             SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
             await LoadPaymentsByMessageAsync();
-
         }
 
         private async Task LoadPaymentsByMessageAsync()
@@ -109,19 +111,19 @@ namespace MoneyFox.ViewModels.Payments
 
                 isRunning = true;
 
-                List<PaymentViewModel>? paymentVms = mapper.Map<List<PaymentViewModel>>(
-                await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id,
-                                                                     lastMessage.TimeRangeStart,
-                                                                     lastMessage.TimeRangeEnd,
-                                                                     lastMessage.IsClearedFilterActive,
-                                                                     lastMessage.IsRecurringFilterActive)));
+                var paymentVms = mapper.Map<List<PaymentViewModel>>(
+                    await mediator.Send(new GetPaymentsForAccountIdQuery(SelectedAccount.Id,
+                        lastMessage.TimeRangeStart,
+                        lastMessage.TimeRangeEnd,
+                        lastMessage.IsClearedFilterActive,
+                        lastMessage.IsRecurringFilterActive)));
 
                 paymentVms.ForEach(x => x.CurrentAccountId = SelectedAccount.Id);
 
                 List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-                   .CreateGroups(paymentVms,
-                                 s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                                 s => s.Date);
+                    .CreateGroups(paymentVms,
+                        s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                        s => s.Date);
 
                 dailyItems.ForEach(CalculateSubBalances);
 
@@ -133,26 +135,30 @@ namespace MoneyFox.ViewModels.Payments
             }
         }
 
-        private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group)
-        {
+        private void CalculateSubBalances(DateListGroupCollection<PaymentViewModel> group) =>
             group.Subtitle = string.Format(Strings.ExpenseAndIncomeTemplate,
                 group.Where(x => x.Type == PaymentType.Expense
-                    || (x.Type == PaymentType.Transfer
-                        && x.ChargedAccount.Id == SelectedAccount.Id))
-                .Sum(x => x.Amount),
+                                 || (x.Type == PaymentType.Transfer
+                                     && x.ChargedAccount.Id == SelectedAccount.Id))
+                    .Sum(x => x.Amount),
                 group.Where(x => x.Type == PaymentType.Income
-                    || (x.Type == PaymentType.Transfer
-                        && x.TargetAccount != null
-                        && x.TargetAccount.Id == SelectedAccount.Id))
-                .Sum(x => x.Amount));
-        }
+                                 || (x.Type == PaymentType.Transfer
+                                     && x.TargetAccount != null
+                                     && x.TargetAccount.Id == SelectedAccount.Id))
+                    .Sum(x => x.Amount));
 
-        public RelayCommand ShowFilterDialogCommand => new RelayCommand(async () => await new FilterPopup().ShowAsync());
+        public RelayCommand ShowFilterDialogCommand =>
+            new RelayCommand(async () => await new FilterPopup().ShowAsync());
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () =>
+            await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public RelayCommand<PaymentViewModel> GoToEditPaymentCommand
-            => new RelayCommand<PaymentViewModel>(async (paymentViewModel)
-                => await Shell.Current.Navigation.PushModalAsync(new NavigationPage(new EditPaymentPage(paymentViewModel.Id)) { BarBackgroundColor = Color.Transparent }));
+            => new RelayCommand<PaymentViewModel>(async paymentViewModel
+                => await Shell.Current.Navigation.PushModalAsync(
+                    new NavigationPage(new EditPaymentPage(paymentViewModel.Id))
+                    {
+                        BarBackgroundColor = Color.Transparent
+                    }));
     }
 }

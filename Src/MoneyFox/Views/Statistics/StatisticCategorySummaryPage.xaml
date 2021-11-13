@@ -6,7 +6,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:theme="clr-namespace:MoneyFox"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              x:Name="StatisticCategorySummary"
              Visual="Material"
@@ -33,7 +32,6 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:AmountFormatConverter x:Key="AmountValueConverter" />
-            <converter:InverseBoolConverter x:Key="InverseBoolConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -52,7 +50,7 @@
             <CollectionView x:Name="CategorySummaryList"
                             Grid.Row="2"
                             EmptyView="{x:Static resources:Strings.NoPaymentsMessage}"
-                            ItemsSource="{Binding CategorySummary}" >
+                            ItemsSource="{Binding CategorySummary}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -63,12 +61,13 @@
                                     CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                            <yummy:PancakeView
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
-                                               CornerRadius="10"
-                                               Padding="15"
-                                               HeightRequest="45"
-                                               HorizontalOptions="FillAndExpand">
+                                CornerRadius="10"
+                                Padding="15"
+                                HeightRequest="45"
+                                HorizontalOptions="FillAndExpand">
 
                                 <yummy:PancakeView.Shadow>
                                     <yummy:DropShadow />
@@ -92,7 +91,8 @@
                                                      Orientation="Horizontal"
                                                      Spacing="0"
                                                      VerticalOptions="Center">
-                                            <Label Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" />
+                                            <Label
+                                                Text="{Binding Value, Converter={StaticResource AmountValueConverter}}" />
                                             <Label Text="{Binding Percentage, StringFormat=' ({0} %)'}" />
 
                                         </StackLayout>
@@ -100,7 +100,8 @@
 
                                     <StackLayout Orientation="Horizontal">
                                         <Label Text="{x:Static resources:Strings.MonthlyAverageLabel}" />
-                                        <Label Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
+                                        <Label
+                                            Text="{Binding Average, Converter={StaticResource AmountValueConverter}}" />
                                     </StackLayout>
                                 </StackLayout>
                             </yummy:PancakeView>

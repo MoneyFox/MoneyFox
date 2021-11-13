@@ -25,13 +25,11 @@ namespace MoneyFox.Droid
         /// Includes the INotifyPropertyChanged.
         /// </summary>
         /// <param name="changed">INotifyPropertyChanged.</param>
-        public void Include(INotifyPropertyChanged changed)
-        {
+        public void Include(INotifyPropertyChanged changed) =>
             changed.PropertyChanged += (sender, e) =>
-                                       {
-                                           string test = e.PropertyName;
-                                       };
-        }
+            {
+                string test = e.PropertyName;
+            };
 
         /// <summary>
         /// Includes the specified button.
@@ -43,7 +41,8 @@ namespace MoneyFox.Droid
         /// Includes the specified check box.
         /// </summary>
         /// <param name="checkBox">The check box.</param>
-        public void Include(CheckBox checkBox) => checkBox.CheckedChange += (sender, args) => checkBox.Checked = !checkBox.Checked;
+        public void Include(CheckBox checkBox) =>
+            checkBox.CheckedChange += (sender, args) => checkBox.Checked = !checkBox.Checked;
 
         /// <summary>
         /// Includes the specified view.
@@ -66,7 +65,8 @@ namespace MoneyFox.Droid
         /// Includes the specified compoundButton.
         /// </summary>
         /// <param name="compoundButton">The compoundButton.</param>
-        public void Include(CompoundButton compoundButton) => compoundButton.CheckedChange += (sender, args) => compoundButton.Checked = !compoundButton.Checked;
+        public void Include(CompoundButton compoundButton) => compoundButton.CheckedChange +=
+            (sender, args) => compoundButton.Checked = !compoundButton.Checked;
 
         /// <summary>
         /// Includes the specified seekBar.
@@ -78,14 +78,12 @@ namespace MoneyFox.Droid
         /// Includes the specified changed.
         /// </summary>
         /// <param name="changed">The changed.</param>
-        public void Include(INotifyCollectionChanged changed)
-        {
+        public void Include(INotifyCollectionChanged changed) =>
             changed.CollectionChanged +=
                 (s, e) =>
                 {
                     string test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
                 };
-        }
 
         public void Include(LinearLayout layout) => layout.Click += (s, e) => layout.Visibility -= 1;
 
@@ -93,15 +91,13 @@ namespace MoneyFox.Droid
         /// Includes the specified command.
         /// </summary>
         /// <param name="command">The command.</param>
-        public void Include(ICommand command)
-        {
+        public void Include(ICommand command) =>
             command.CanExecuteChanged += (s, e) =>
-                                         {
-                                             if(command.CanExecute(null))
-                                             {
-                                                 command.Execute(null);
-                                             }
-                                         };
-        }
+            {
+                if(command.CanExecute(null))
+                {
+                    command.Execute(null);
+                }
+            };
     }
 }

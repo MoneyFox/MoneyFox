@@ -88,8 +88,7 @@ namespace MoneyFox.Uwp.ViewModels
             }
         }
 
-        private void UpdateList()
-        {
+        private void UpdateList() =>
             MessengerInstance.Send(new PaymentListFilterChangedMessage
             {
                 IsClearedFilterActive = IsClearedFilterActive,
@@ -97,6 +96,5 @@ namespace MoneyFox.Uwp.ViewModels
                 TimeRangeStart = TimeRangeStart,
                 TimeRangeEnd = TimeRangeEnd
             });
-        }
     }
 }

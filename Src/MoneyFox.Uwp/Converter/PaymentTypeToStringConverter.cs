@@ -17,10 +17,11 @@ namespace MoneyFox.Uwp.Converter
                 PaymentType.Expense => Strings.ExpenseLabel,
                 PaymentType.Income => Strings.IncomeLabel,
                 PaymentType.Transfer => Strings.TransferLabel,
-                _ => string.Empty,
+                _ => string.Empty
             };
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotSupportedException();
+        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+            throw new NotSupportedException();
     }
 }

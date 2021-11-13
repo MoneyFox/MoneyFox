@@ -22,12 +22,13 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
 
-        private ObservableCollection<CategoryOverviewViewModel> categorySummary = new ObservableCollection<CategoryOverviewViewModel>();
+        private ObservableCollection<CategoryOverviewViewModel> categorySummary =
+            new ObservableCollection<CategoryOverviewViewModel>();
 
         private readonly IMapper mapper;
 
         public StatisticCategorySummaryViewModel(IMediator mediator,
-                                                 IMapper mapper)
+            IMapper mapper)
             : base(mediator)
         {
             this.mapper = mapper;
@@ -69,9 +70,11 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         /// <inheritdoc/>
         public bool HasData => CategorySummary.Any();
 
-        public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand => new RelayCommand<CategoryOverviewViewModel>(async (c) => await SummaryEntrySelectedAsync(c));
+        public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand =>
+            new RelayCommand<CategoryOverviewViewModel>(async c => await SummaryEntrySelectedAsync(c));
 
         private CategoryOverviewViewModel? selectedOverviewItem;
+
         public CategoryOverviewViewModel? SelectedOverviewItem
         {
             get => selectedOverviewItem;
@@ -86,22 +89,23 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         {
             logger.Info($"Loading payments for category with id {summaryItem.CategoryId}");
 
-            List<PaymentViewModel> loadedPayments = mapper.Map<List<PaymentViewModel>>(await Mediator.Send(new GetPaymentsForCategoryQuery(summaryItem.CategoryId, StartDate, EndDate)));
+            var loadedPayments = mapper.Map<List<PaymentViewModel>>(
+                await Mediator.Send(new GetPaymentsForCategoryQuery(summaryItem.CategoryId, StartDate, EndDate)));
 
             List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-               .CreateGroups(loadedPayments,
-                             s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                             s => s.Date);
+                .CreateGroups(loadedPayments,
+                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                    s => s.Date);
 
             summaryItem.Source.Clear();
 
             DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(dailyItems,
-                                                                                            s =>
-                                                                                            {
-                                                                                                var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
-                                                                                                return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                                                                                            }, s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture))
-                                                                              .ForEach(summaryItem.Source.Add);
+                    s =>
+                    {
+                        var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
+                        return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
+                    }, s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture))
+                .ForEach(summaryItem.Source.Add);
 
             SelectedOverviewItem = summaryItem;
         }
@@ -111,20 +115,21 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         /// </summary>
         protected override async Task LoadAsync()
         {
-            CategorySummaryModel categorySummaryModel = await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
+            CategorySummaryModel categorySummaryModel =
+                await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
 
             CategorySummary.Clear();
             categorySummaryModel.CategoryOverviewItems
-                                .Select(x => new CategoryOverviewViewModel
-                                {
-                                    CategoryId = x.CategoryId,
-                                    Value = x.Value,
-                                    Average = x.Average,
-                                    Label = x.Label,
-                                    Percentage = x.Percentage
-                                })
-                                .ToList()
-                                .ForEach(CategorySummary.Add);
+                .Select(x => new CategoryOverviewViewModel
+                {
+                    CategoryId = x.CategoryId,
+                    Value = x.Value,
+                    Average = x.Average,
+                    Label = x.Label,
+                    Percentage = x.Percentage
+                })
+                .ToList()
+                .ForEach(CategorySummary.Add);
 
             IncomeExpenseBalance.TotalEarned = categorySummaryModel.TotalEarned;
             IncomeExpenseBalance.TotalSpent = categorySummaryModel.TotalSpent;

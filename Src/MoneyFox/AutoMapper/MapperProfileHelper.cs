@@ -25,13 +25,16 @@ namespace MoneyFox.AutoMapper
         {
             Type[] types = rootAssembly.GetExportedTypes();
 
-            var mapsFrom = (from type in types
-                            from instance in type.GetInterfaces()
-                            where instance.IsGenericType
-                                  && instance.GetGenericTypeDefinition() == typeof(IMapFrom<>)
-                                  && !type.IsAbstract
-                                  && !type.IsInterface
-                            select new Map(type.GetInterfaces().First(x => x.Name.Contains("MapFrom")).GetGenericArguments().First(), type)).ToList();
+            List<Map> mapsFrom = (from type in types
+                    from instance in type.GetInterfaces()
+                    where instance.IsGenericType
+                          && instance.GetGenericTypeDefinition() == typeof(IMapFrom<>)
+                          && !type.IsAbstract
+                          && !type.IsInterface
+                    select new Map(
+                        type.GetInterfaces().First(x => x.Name.Contains("MapFrom")).GetGenericArguments().First(),
+                        type))
+                .ToList();
 
             return mapsFrom;
         }
@@ -40,12 +43,12 @@ namespace MoneyFox.AutoMapper
         {
             Type[] types = rootAssembly.GetExportedTypes();
 
-            var mapsFrom = (from type in types
-                            from instance in type.GetInterfaces()
-                            where typeof(IHaveCustomMapping).IsAssignableFrom(type)
-                                  && !type.IsAbstract
-                                  && !type.IsInterface
-                            select (IHaveCustomMapping)Activator.CreateInstance(type)).ToList();
+            List<IHaveCustomMapping> mapsFrom = (from type in types
+                from instance in type.GetInterfaces()
+                where typeof(IHaveCustomMapping).IsAssignableFrom(type)
+                      && !type.IsAbstract
+                      && !type.IsInterface
+                select (IHaveCustomMapping)Activator.CreateInstance(type)).ToList();
 
             return mapsFrom;
         }

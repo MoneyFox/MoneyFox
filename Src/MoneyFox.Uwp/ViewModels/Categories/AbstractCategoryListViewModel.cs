@@ -23,15 +23,16 @@ namespace MoneyFox.Uwp.ViewModels.Categories
 {
     public abstract class AbstractCategoryListViewModel : ViewModelBase
     {
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source =
+            new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
 
         /// <summary>
         /// Base class for the category list user control
         /// </summary>
         protected AbstractCategoryListViewModel(IMediator mediator,
-                                                IMapper mapper,
-                                                IDialogService dialogService,
-                                                NavigationService navigationService)
+            IMapper mapper,
+            IDialogService dialogService,
+            NavigationService navigationService)
         {
             Mediator = mediator;
             Mapper = mapper;
@@ -40,7 +41,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         }
 
         public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async (m) => await SearchAsync());
+            => MessengerInstance.Register<ReloadMessage>(this, async m => await SearchAsync());
 
         public void Unsubscribe()
             => MessengerInstance.Unregister<ReloadMessage>(this);
@@ -112,24 +113,25 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         /// </summary>
         public async Task SearchAsync(string searchText = "")
         {
-            List<CategoryViewModel> categoriesVms = Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
+            var categoriesVms =
+                Mapper.Map<List<CategoryViewModel>>(await Mediator.Send(new GetCategoryBySearchTermQuery(searchText)));
             CategoryList = CreateGroup(categoriesVms);
         }
 
-        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(IEnumerable<CategoryViewModel> categories)
-        {
-            return new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
+        private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CreateGroup(
+            IEnumerable<CategoryViewModel> categories) =>
+            new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(
                 AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categories,
-                                                                              CultureInfo.CurrentUICulture,
-                                                                              s => string.IsNullOrEmpty(s.Name)
-                                                                                ? "-"
-                                                                                : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture),
-                                                                              itemClickCommand: ItemClickCommand));
-        }
+                    CultureInfo.CurrentUICulture,
+                    s => string.IsNullOrEmpty(s.Name)
+                        ? "-"
+                        : s.Name[0].ToString(CultureInfo.InvariantCulture).ToUpper(CultureInfo.InvariantCulture),
+                    itemClickCommand: ItemClickCommand));
 
         private async Task DeleteCategoryAsync(CategoryViewModel categoryToDelete)
         {
-            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                   Strings.DeleteCategoryConfirmationMessage))
             {
                 await Mediator.Send(new DeleteCategoryByIdCommand(categoryToDelete.Id));
                 await SearchAsync();

@@ -6,7 +6,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
@@ -54,8 +53,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
 
             // Act
             category.UpdateData("foo");
-            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new UpdateCategoryCommand(category), default);
+            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new UpdateCategoryCommand(category), default);
 
             Category loadedCategory = await context.Categories.FindAsync(category.Id);
 
@@ -73,8 +73,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
 
             // Act
             category.UpdateData("foo", requireNote: true);
-            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new UpdateCategoryCommand(category), default);
+            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new UpdateCategoryCommand(category), default);
 
             Category loadedCategory = await context.Categories.FindAsync(category.Id);
 
@@ -94,8 +95,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
             await context.SaveChangesAsync();
 
             // Act
-            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new UpdateCategoryCommand(category), default);
+            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new UpdateCategoryCommand(category), default);
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);

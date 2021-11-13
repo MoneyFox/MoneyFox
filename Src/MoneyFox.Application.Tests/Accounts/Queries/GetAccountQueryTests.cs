@@ -43,7 +43,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             await context.SaveChangesAsync();
 
             // Act
-            List<Account> result = await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
+            List<Account> result =
+                await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
 
             // Assert
             Assert.Single(result);
@@ -63,7 +64,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             await context.SaveChangesAsync();
 
             // Act
-            List<Account> result = await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
+            List<Account> result =
+                await new GetAccountsQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountsQuery(), default);
 
             // Assert
             Assert.Single(result);

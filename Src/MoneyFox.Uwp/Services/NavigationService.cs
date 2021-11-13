@@ -34,6 +34,7 @@ namespace MoneyFox.Uwp.Services
             {
                 return view;
             }
+
             throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
         }
 
@@ -44,6 +45,7 @@ namespace MoneyFox.Uwp.Services
             {
                 throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
             }
+
             return type;
         }
 
@@ -69,6 +71,7 @@ namespace MoneyFox.Uwp.Services
                 Frame.GoForward();
                 return true;
             }
+
             return false;
         }
 
@@ -82,6 +85,7 @@ namespace MoneyFox.Uwp.Services
             {
                 throw new InvalidOperationException("Navigation frame not initialized.");
             }
+
             return Frame.Navigate(GetView(viewModelType), parameter);
         }
     }

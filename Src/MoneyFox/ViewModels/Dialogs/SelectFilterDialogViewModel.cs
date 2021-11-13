@@ -106,12 +106,13 @@ namespace MoneyFox.ViewModels.Dialogs
             }
         }
 
-        public RelayCommand FilterSelectedCommand => new RelayCommand(() => MessengerInstance.Send(new PaymentListFilterChangedMessage
-        {
-            IsClearedFilterActive = IsClearedFilterActive,
-            IsRecurringFilterActive = IsRecurringFilterActive,
-            TimeRangeStart = TimeRangeStart,
-            TimeRangeEnd = TimeRangeEnd
-        }));
+        public RelayCommand FilterSelectedCommand => new RelayCommand(() =>
+            MessengerInstance.Send(new PaymentListFilterChangedMessage
+            {
+                IsClearedFilterActive = IsClearedFilterActive,
+                IsRecurringFilterActive = IsRecurringFilterActive,
+                TimeRangeStart = TimeRangeStart,
+                TimeRangeEnd = TimeRangeEnd
+            }));
     }
 }

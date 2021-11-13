@@ -31,26 +31,26 @@ namespace MoneyFox.Uwp.Services
             foreach(CoreApplicationView view in CoreApplication.Views)
             {
                 await view.Dispatcher
-                          .RunAsync(CoreDispatcherPriority.Normal, () =>
-                          {
-                              if(Window.Current.Content is FrameworkElement frameworkElement)
-                              {
-                                  try
-                                  {
-                                      frameworkElement.RequestedTheme = Theme;
-                                  }
-                                  catch(AccessViolationException ex)
-                                  {
-                                      Crashes.TrackError(ex);
-                                  }
-                              }
-                          });
+                    .RunAsync(CoreDispatcherPriority.Normal, () =>
+                    {
+                        if(Window.Current.Content is FrameworkElement frameworkElement)
+                        {
+                            try
+                            {
+                                frameworkElement.RequestedTheme = Theme;
+                            }
+                            catch(AccessViolationException ex)
+                            {
+                                Crashes.TrackError(ex);
+                            }
+                        }
+                    });
             }
         }
 
         private static ElementTheme LoadThemeFromSettings()
         {
-            ElementTheme cacheTheme = ElementTheme.Default;
+            var cacheTheme = ElementTheme.Default;
             string themeName = ApplicationData.Current.LocalSettings.Read<string>(SettingsKey);
 
             if(!string.IsNullOrEmpty(themeName))
@@ -61,6 +61,7 @@ namespace MoneyFox.Uwp.Services
             return cacheTheme;
         }
 
-        private static void SaveThemeInSettings(ElementTheme theme) => ApplicationData.Current.LocalSettings.SaveString(SettingsKey, theme.ToString());
+        private static void SaveThemeInSettings(ElementTheme theme) =>
+            ApplicationData.Current.LocalSettings.SaveString(SettingsKey, theme.ToString());
     }
 }

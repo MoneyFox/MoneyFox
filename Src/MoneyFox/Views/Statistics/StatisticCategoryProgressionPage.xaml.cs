@@ -7,7 +7,8 @@ namespace MoneyFox.Views.Statistics
 {
     public partial class StatisticCategoryProgressionPage : ContentPage
     {
-        private StatisticCategoryProgressionViewModel ViewModel => (StatisticCategoryProgressionViewModel)BindingContext;
+        private StatisticCategoryProgressionViewModel ViewModel =>
+            (StatisticCategoryProgressionViewModel)BindingContext;
 
         public StatisticCategoryProgressionPage()
         {

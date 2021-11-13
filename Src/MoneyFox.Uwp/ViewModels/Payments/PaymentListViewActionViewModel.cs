@@ -43,11 +43,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// Constructor
         /// </summary>
         public PaymentListViewActionViewModel(int accountId,
-                                              IMediator mediator,
-                                              ISettingsFacade settingsFacade,
-                                              IDialogService dialogService,
-                                              IBalanceViewModel balanceViewModel,
-                                              NavigationService navigationService)
+            IMediator mediator,
+            ISettingsFacade settingsFacade,
+            IDialogService dialogService,
+            IBalanceViewModel balanceViewModel,
+            NavigationService navigationService)
         {
             this.accountId = accountId;
 
@@ -68,15 +68,15 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         /// <inheritdoc/>
         public RelayCommand GoToAddIncomeCommand
-                            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Income));
+            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Income));
 
         /// <inheritdoc/>
         public RelayCommand GoToAddExpenseCommand
-                            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Expense));
+            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Expense));
 
         /// <inheritdoc/>
         public RelayCommand GoToAddTransferCommand
-                            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Transfer));
+            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Transfer));
 
         /// <inheritdoc/>
         public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccountAsync);
@@ -220,7 +220,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task DeleteAccountAsync()
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                   Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeactivateAccountByIdCommand(accountId));
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
@@ -230,8 +231,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             await balanceViewModel.UpdateBalanceCommand.ExecuteAsync();
         }
 
-        private void ApplyFilter()
-        {
+        private void ApplyFilter() =>
             MessengerInstance.Send(new PaymentListFilterChangedMessage
             {
                 IsClearedFilterActive = IsClearedFilterActive,
@@ -240,6 +240,5 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 TimeRangeEnd = TimeRangeEnd,
                 IsGrouped = IsGrouped
             });
-        }
     }
 }

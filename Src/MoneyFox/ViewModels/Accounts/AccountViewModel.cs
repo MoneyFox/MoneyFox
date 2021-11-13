@@ -176,6 +176,7 @@ namespace MoneyFox.ViewModels.Accounts
             {
                 return false;
             }
+
             return Id.Equals(other.Id);
         }
     }

@@ -23,7 +23,7 @@ namespace MoneyFox.Uwp.Views.Settings
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {
-            var launcher = StoreServicesFeedbackLauncher.GetDefault();
+            StoreServicesFeedbackLauncher? launcher = StoreServicesFeedbackLauncher.GetDefault();
             await launcher.LaunchAsync();
         }
     }

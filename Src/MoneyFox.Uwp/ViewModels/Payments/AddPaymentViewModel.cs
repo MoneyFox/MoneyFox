@@ -27,9 +27,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private readonly IDialogService dialogService;
 
         public AddPaymentViewModel(IMediator mediator,
-                                   IMapper mapper,
-                                   IDialogService dialogService,
-                                   INavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
+            IMapper mapper,
+            IDialogService dialogService,
+            INavigationService navigationService) : base(mediator, mapper, dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -62,20 +62,21 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             try
             {
                 var payment = new Payment(SelectedPayment.Date,
-                                          SelectedPayment.Amount,
-                                          SelectedPayment.Type,
-                                          await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
-                                          SelectedPayment.TargetAccount != null
-                                          ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
-                                          : null,
-                                          mapper.Map<Category>(SelectedPayment.Category),
-                                          SelectedPayment.Note);
+                    SelectedPayment.Amount,
+                    SelectedPayment.Type,
+                    await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
+                    SelectedPayment.TargetAccount != null
+                        ? await mediator.Send(new GetAccountByIdQuery(SelectedPayment.TargetAccount.Id))
+                        : null,
+                    mapper.Map<Category>(SelectedPayment.Category),
+                    SelectedPayment.Note);
 
                 if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
                 {
-                    payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence, SelectedPayment.RecurringPayment.IsEndless
-                        ? null
-                        : SelectedPayment.RecurringPayment.EndDate);
+                    payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence,
+                        SelectedPayment.RecurringPayment.IsEndless
+                            ? null
+                            : SelectedPayment.RecurringPayment.EndDate);
                 }
 
                 await mediator.Send(new CreatePaymentCommand(payment));

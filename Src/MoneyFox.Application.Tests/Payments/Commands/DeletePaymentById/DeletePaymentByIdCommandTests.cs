@@ -7,9 +7,7 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -48,14 +46,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
         protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
         [Fact]
-        public async Task ThrowExceptionWhenPaymentNotFound()
-        {
+        public async Task ThrowExceptionWhenPaymentNotFound() =>
             // Arrange
             // Act / Assert
             await Assert.ThrowsAsync<PaymentNotFoundException>(async ()
-                => await new DeletePaymentByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+                => await new DeletePaymentByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+                        settingsFacadeMock.Object)
                     .Handle(new DeletePaymentByIdCommand(12), default));
-        }
 
         [Fact]
         public async Task DeletePayment_PaymentDeleted()
@@ -66,8 +63,9 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeletePaymentByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new DeletePaymentByIdCommand(payment1.Id), default);
+            await new DeletePaymentByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new DeletePaymentByIdCommand(payment1.Id), default);
 
             // Assert
             Assert.Empty(context.Payments);
@@ -78,17 +76,18 @@ namespace MoneyFox.Application.Tests.Payments.Commands.DeletePaymentById
         {
             // Arrange
             backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>()))
-                             .Returns(Task.CompletedTask);
+                .Returns(Task.CompletedTask);
             backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()))
-                             .Returns(Task.CompletedTask);
+                .Returns(Task.CompletedTask);
 
             var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, new Account("test", 80));
             await context.AddAsync(payment1);
             await context.SaveChangesAsync();
 
             // Act
-            await new DeletePaymentByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new DeletePaymentByIdCommand(payment1.Id), default);
+            await new DeletePaymentByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new DeletePaymentByIdCommand(payment1.Id), default);
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);

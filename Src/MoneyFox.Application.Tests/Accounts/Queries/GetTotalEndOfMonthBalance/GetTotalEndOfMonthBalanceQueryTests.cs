@@ -39,7 +39,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
         public async Task GetIncludedAccountBalanceSummary_CorrectSum()
         {
             // Arrange
-            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
+            var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
             var accountIncluded = new Account("test", 100);
@@ -50,8 +50,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             await context.SaveChangesAsync();
 
             // Act
-            decimal result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
-                new GetTotalEndOfMonthBalanceQuery(), default);
+            decimal result =
+                await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
+                    new GetTotalEndOfMonthBalanceQuery(), default);
 
             // Assert
             result.Should().Be(50);
@@ -61,7 +62,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
         public async Task DontIncludeDeactivatedAccountsInBalance()
         {
             // Arrange
-            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
+            var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
             var accountIncluded = new Account("test", 100);
@@ -76,8 +77,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             await context.SaveChangesAsync();
 
             // Act
-            decimal result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
-                new GetTotalEndOfMonthBalanceQuery(), default);
+            decimal result =
+                await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
+                    new GetTotalEndOfMonthBalanceQuery(), default);
 
             // Assert
             result.Should().Be(50);

@@ -27,7 +27,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             this.settingsFacade = settingsFacade;
         }
 
-        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
+        public List<PaymentType> PaymentTypes => new List<PaymentType> {PaymentType.Expense, PaymentType.Income};
 
         public PaymentType SelectedPaymentType
         {
@@ -38,6 +38,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 {
                     return;
                 }
+
                 selectedPaymentType = value;
                 RaisePropertyChanged();
             }
@@ -55,6 +56,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 {
                     return;
                 }
+
                 statisticItems = value;
                 RaisePropertyChanged();
             }
@@ -65,14 +67,15 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// </summary>
         public int NumberOfCategoriesToShow
         {
-            get => this.settingsFacade.CategorySpreadingNumber;
+            get => settingsFacade.CategorySpreadingNumber;
             set
             {
-                if(this.settingsFacade.CategorySpreadingNumber == value)
+                if(settingsFacade.CategorySpreadingNumber == value)
                 {
                     return;
                 }
-                this.settingsFacade.CategorySpreadingNumber = value;
+
+                settingsFacade.CategorySpreadingNumber = value;
                 RaisePropertyChanged();
             }
         }
@@ -85,9 +88,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         protected override async Task LoadAsync()
         {
             IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(new GetCategorySpreadingQuery(StartDate,
-                                                                                                                    EndDate,
-                                                                                                                    SelectedPaymentType,
-                                                                                                                    NumberOfCategoriesToShow));
+                EndDate,
+                SelectedPaymentType,
+                NumberOfCategoriesToShow));
 
             statisticEntries.ToList().ForEach(x => x.Label = $"{x.Label} ({x.ValueLabel})");
 

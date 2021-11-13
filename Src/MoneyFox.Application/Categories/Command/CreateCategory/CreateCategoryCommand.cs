@@ -41,7 +41,8 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
             {
                 await backupService.RestoreBackupAsync();
 
-                await contextAdapter.Context.Categories.AddAsync(new Category(request.Name, request.Note, request.RequireNote), cancellationToken);
+                await contextAdapter.Context.Categories.AddAsync(
+                    new Category(request.Name, request.Note, request.RequireNote), cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

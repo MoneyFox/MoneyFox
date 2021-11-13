@@ -16,11 +16,11 @@ namespace MoneyFox.Uwp
             {
                 PackageVersion version = Package.Current.Id.Version;
                 return string.Format(CultureInfo.InvariantCulture,
-                                     "{0}.{1}.{2}.{3}",
-                                     version.Major,
-                                     version.Minor,
-                                     version.Build,
-                                     version.Revision);
+                    "{0}.{1}.{2}.{3}",
+                    version.Major,
+                    version.Minor,
+                    version.Build,
+                    version.Revision);
             }
         }
     }

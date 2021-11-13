@@ -9,13 +9,13 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:resources="using:MoneyFox.Application.Resources"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid >
+    <Grid>
         <ScrollViewer HorizontalAlignment="Stretch"
-                      VerticalScrollBarVisibility="Auto" >
-            <StackPanel >
-                <StackPanel >
+                      VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <StackPanel>
                     <TextBlock Margin="0,0,0,5"
                                HorizontalAlignment="Left"
                                VerticalAlignment="Top"
