@@ -179,5 +179,34 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
             return Id.Equals(other.Id);
         }
+
+        
+        public override bool Equals(object obj)
+        {
+            if(obj is AccountViewModel vm)
+            {
+                return Equals(vm);
+            }
+
+            return false;
+        }
+        
+        public override int GetHashCode()
+        {
+            var hash = new HashCode();
+            hash.Add(PropertyChangedHandler);
+            hash.Add(IsInDesignMode);
+            hash.Add(MessengerInstance);
+            hash.Add(Id);
+            hash.Add(Name);
+            hash.Add(CurrentBalance);
+            hash.Add(EndOfMonthBalance);
+            hash.Add(Note);
+            hash.Add(IsOverdrawn);
+            hash.Add(IsExcluded);
+            hash.Add(CreationTime);
+            hash.Add(ModificationDate);
+            return hash.ToHashCode();
+        }
     }
 }

@@ -10,7 +10,7 @@
     <Color x:Key="ContentDialogBackgroundColor">#2d2d30</Color>
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
-    <Color x:Key="AppForegroundColorPrimary">White</Color>
+    <Color x:Key="AppForegroundColorPrimaryColor">White</Color>
     <Color x:Key="AppForegroundColorSecondary">#b4b2b0</Color>
     <Color x:Key="AppMenuForeground">White</Color>
     <Color x:Key="ListItemColor">#2d2d30</Color>

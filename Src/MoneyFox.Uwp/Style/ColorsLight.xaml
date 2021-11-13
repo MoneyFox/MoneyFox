@@ -12,7 +12,7 @@
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
 
-    <Color x:Key="AppForegroundColorPrimary">#FF2B343D</Color>
+    <Color x:Key="AppForegroundColorPrimaryColor">#FF2B343D</Color>
     <Color x:Key="AppForegroundColorSecondary">#908e8c</Color>
 
     <Color x:Key="AppMenuForeground">White</Color>

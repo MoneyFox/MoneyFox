@@ -7,12 +7,12 @@
 
     <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}" />
 
-    <SolidColorBrush x:Key="AppForegroundPrimaryBrush" Color="{StaticResource AppForegroundColorPrimary}" />
+    <SolidColorBrush x:Key="AppForegroundPrimaryBrush" Color="{StaticResource AppForegroundColorPrimaryColor}" />
 
     <SolidColorBrush x:Key="AppForegroundSecondaryBrush" Color="{StaticResource AppForegroundColorSecondary}" />
 
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource ColorPrimary}" />
-
+    
     <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource ColorPrimaryDark}" />
 
     <SolidColorBrush x:Key="SplashScreenBackgroundBrush" Color="{StaticResource ColorSplashScreenBackground}" />

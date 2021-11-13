@@ -51,7 +51,7 @@
         x:Key="CustomSubtitleTextBlockStyle"
         BasedOn="{StaticResource SubtitleTextBlockStyle}"
         TargetType="TextBlock">
-        <Setter Property="Foreground" Value="{StaticResource AppForegroundColorPrimary}" />
+        <Setter Property="Foreground" Value="{StaticResource AppForegroundColorPrimaryColor}" />
     </Style>
 
     <Style

@@ -37,7 +37,7 @@
         <SymbolIcon Symbol="Cancel"
                     Grid.Column="1"
                     Grid.Row="1"
-                    Foreground="{ThemeResource AppForegroundColorPrimary}"
+                    Foreground="{ThemeResource AppForegroundPrimaryBrush}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <interactivity:Interaction.Behaviors>
