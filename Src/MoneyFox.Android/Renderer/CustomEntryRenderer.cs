@@ -15,7 +15,7 @@ using Color = Xamarin.Forms.Color;
 using Object = Java.Lang.Object;
 
 #nullable enable
-[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] { typeof(VisualMarker.MaterialVisual) })]
+[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
 
 namespace MoneyFox.Droid.Renderer
 {
@@ -52,21 +52,24 @@ namespace MoneyFox.Droid.Renderer
                 Drawable? textSelectHandleDrawable = Control.EditText.TextSelectHandle;
                 if(textSelectHandleDrawable != null)
                 {
-                    textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
+                    textSelectHandleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(),
+                        BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleDrawable;
                 }
 
                 Drawable? textSelectHandleLeftDrawable = Control.EditText.TextSelectHandleLeft;
                 if(textSelectHandleLeftDrawable != null)
                 {
-                    textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
+                    textSelectHandleLeftDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(),
+                        BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleLeftDrawable;
                 }
 
                 Drawable? textSelectHandleRightDrawable = Control.EditText.TextSelectHandleRight;
                 if(textSelectHandleRightDrawable != null)
                 {
-                    textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
+                    textSelectHandleRightDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(),
+                        BlendMode.SrcIn!));
                     Control.EditText.TextSelectHandle = textSelectHandleRightDrawable;
                 }
             }
@@ -91,8 +94,11 @@ namespace MoneyFox.Droid.Renderer
                     return;
                 }
 
-                string[] fieldsNames = { "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes" };
-                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
+                string[] fieldsNames =
+                {
+                    "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"
+                };
+                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
 
                 for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {
@@ -112,7 +118,8 @@ namespace MoneyFox.Droid.Renderer
 
                     if(Build.VERSION.SdkInt >= BuildVersionCodes.Q)
                     {
-                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(), BlendMode.SrcIn!));
+                        handleDrawable.SetColorFilter(new BlendModeColorFilter(Color.Accent.ToAndroid(),
+                            BlendMode.SrcIn!));
                     }
                     else
                     {

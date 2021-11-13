@@ -20,10 +20,10 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
             IsExcluded = isExcluded;
         }
 
-        public string Name { get; private set; }
-        public decimal CurrentBalance { get; private set; }
-        public string Note { get; private set; }
-        public bool IsExcluded { get; private set; }
+        public string Name { get; }
+        public decimal CurrentBalance { get; }
+        public string Note { get; }
+        public bool IsExcluded { get; }
 
         public class Handler : IRequestHandler<CreateAccountCommand>
         {
@@ -32,8 +32,8 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter,
-                           IBackupService backupService,
-                           ISettingsFacade settingsFacade)
+                IBackupService backupService,
+                ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
@@ -44,10 +44,10 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
                 await contextAdapter.Context.Accounts.AddAsync(new Account(request.Name,
-                                                                           request.CurrentBalance,
-                                                                           request.Note,
-                                                                           request.IsExcluded),
-                                                               cancellationToken);
+                        request.CurrentBalance,
+                        request.Note,
+                        request.IsExcluded),
+                    cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

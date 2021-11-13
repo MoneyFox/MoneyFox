@@ -30,9 +30,9 @@ namespace MoneyFox.Domain.Entities
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; }
 
-        public List<Payment> Payments { get; private set; } = new List<Payment>();
+        public List<Payment> Payments { get; } = new List<Payment>();
 
         public void UpdateData(string name, string note = "", bool requireNote = false)
         {

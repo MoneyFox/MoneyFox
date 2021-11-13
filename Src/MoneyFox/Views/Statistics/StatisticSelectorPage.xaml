@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Statistics.StatisticSelectorPage"
              Visual="Material"
-             x:Name="root" >
+             x:Name="root">
 
     <ContentPage.Content>
         <StackLayout>
@@ -17,7 +17,7 @@
                    Text="{x:Static resources:Strings.SelectStatisticTitle}" />
 
             <CollectionView x:Name="StatisticCollectionView"
-                            ItemsSource="{Binding StatisticItems}" >
+                            ItemsSource="{Binding StatisticItems}">
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -25,16 +25,17 @@
 
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
-                                        Command="{Binding BindingContext.GoToStatisticCommand, Source={x:Reference Name=StatisticCollectionView}}"
-                                        CommandParameter="{Binding .}" />
+                                    Command="{Binding BindingContext.GoToStatisticCommand, Source={x:Reference Name=StatisticCollectionView}}"
+                                    CommandParameter="{Binding .}" />
                             </Grid.GestureRecognizers>
 
-                            <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+                            <yummy:PancakeView
+                                BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                                                  Light={StaticResource CardBackgroundLight}}"
-                                               Padding="15"
-                                               CornerRadius="10"
-                                               MinimumHeightRequest="45"
-                                               HorizontalOptions="FillAndExpand" >
+                                Padding="15"
+                                CornerRadius="10"
+                                MinimumHeightRequest="45"
+                                HorizontalOptions="FillAndExpand">
 
                                 <yummy:PancakeView.Shadow>
                                     <yummy:DropShadow />
@@ -42,7 +43,8 @@
 
                                 <StackLayout Orientation="Vertical" x:DataType="statistics:StatisticSelectorType">
                                     <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
-                                    <Label Text="{Binding Description}" Style="{DynamicResource DeemphasizedLabelStyle}" />
+                                    <Label Text="{Binding Description}"
+                                           Style="{DynamicResource DeemphasizedLabelStyle}" />
                                 </StackLayout>
                             </yummy:PancakeView>
                         </Grid>

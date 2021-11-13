@@ -47,7 +47,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceS
             // Act
             decimal result =
                 await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
-                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+                    .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
             result.Should().Be(80);
@@ -70,7 +70,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceS
             // Act
             decimal result =
                 await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
-                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+                    .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
             result.Should().Be(80);

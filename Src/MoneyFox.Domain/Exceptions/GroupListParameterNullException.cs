@@ -18,7 +18,8 @@ namespace MoneyFox.Domain.Exceptions
         {
         }
 
-        protected GroupListParameterNullException(SerializationInfo info, StreamingContext context) : base(info, context)
+        protected GroupListParameterNullException(SerializationInfo info, StreamingContext context) : base(info,
+            context)
         {
         }
     }

@@ -4,7 +4,6 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
@@ -103,7 +102,7 @@ namespace MoneyFox
             {
                 if(settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
                 {
-                    IBackupService backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                    var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                     await backupService.RestoreBackupAsync();
                 }
 

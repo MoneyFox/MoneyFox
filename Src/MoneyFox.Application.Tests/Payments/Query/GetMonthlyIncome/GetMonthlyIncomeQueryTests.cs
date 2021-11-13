@@ -5,7 +5,6 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using NSubstitute;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -40,7 +39,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
         public async Task ReturnCorrectAmount()
         {
             // Arrange
-            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
+            var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
             var account = new Account("test", 80);
@@ -55,7 +54,9 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
             await context.SaveChangesAsync();
 
             // Act
-            decimal sum = await new GetMonthlyIncomeQuery.Handler(contextAdapter, systemDateHelper).Handle(new GetMonthlyIncomeQuery(), default);
+            decimal sum =
+                await new GetMonthlyIncomeQuery.Handler(contextAdapter, systemDateHelper).Handle(
+                    new GetMonthlyIncomeQuery(), default);
 
             // Assert
             sum.Should().Be(70);

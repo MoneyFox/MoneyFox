@@ -15,7 +15,8 @@ namespace MoneyFox.Uwp.Views.Payments
             ViewModel.AppearingCommand.Execute(null);
         }
 
-        private async void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e) => await ((AbstractCategoryListViewModel)DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text);
+        private async void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e) =>
+            await ((AbstractCategoryListViewModel)DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text);
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {

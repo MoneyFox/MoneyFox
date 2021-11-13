@@ -30,20 +30,22 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 this.systemDateHelper = systemDateHelper;
             }
 
-            public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request, CancellationToken cancellationToken)
+            public async Task<decimal> Handle(GetTotalEndOfMonthBalanceQuery request,
+                CancellationToken cancellationToken)
             {
                 logManager.Info("Calculate EndOfMonth Balance.");
 
                 List<Account> excluded = await contextAdapter.Context.Accounts.AreActive()
-                                                                              .AreExcluded()
-                                                                              .ToListAsync();
+                    .AreExcluded()
+                    .ToListAsync();
                 decimal balance = await GetCurrentAccountBalanceAsync();
 
                 foreach(Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
                 {
                     if(payment.ChargedAccount == null)
                     {
-                        throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
+                        throw new InvalidOperationException(
+                            $"Navigation Property not initialized properly: {nameof(payment.ChargedAccount)}");
                     }
 
                     balance = AddPaymentToBalance(payment, excluded, balance);
@@ -87,7 +89,8 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
 
                     if(payment.TargetAccount == null)
                     {
-                        throw new InvalidOperationException($"Navigation Property not initialized properly: {nameof(payment.TargetAccount)}");
+                        throw new InvalidOperationException(
+                            $"Navigation Property not initialized properly: {nameof(payment.TargetAccount)}");
                     }
 
                     if(Equals(account.Id, payment.TargetAccount.Id))
@@ -100,26 +103,22 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
                 return balance;
             }
 
-            private async Task<decimal> GetCurrentAccountBalanceAsync()
-            {
-                return (await contextAdapter.Context
-                                            .Accounts
-                                            .AreActive()
-                                            .AreNotExcluded()
-                                            .Select(x => x.CurrentBalance)
-                                            .ToListAsync())
-                                            .Sum();
-            }
+            private async Task<decimal> GetCurrentAccountBalanceAsync() =>
+                (await contextAdapter.Context
+                    .Accounts
+                    .AreActive()
+                    .AreNotExcluded()
+                    .Select(x => x.CurrentBalance)
+                    .ToListAsync())
+                .Sum();
 
-            private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync()
-            {
-                return await contextAdapter.Context.Payments
-                                  .Include(x => x.ChargedAccount)
-                                  .Include(x => x.TargetAccount)
-                                  .AreNotCleared()
-                                  .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
-                                  .ToListAsync();
-            }
+            private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync() =>
+                await contextAdapter.Context.Payments
+                    .Include(x => x.ChargedAccount)
+                    .Include(x => x.TargetAccount)
+                    .AreNotCleared()
+                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
+                    .ToListAsync();
         }
     }
 }

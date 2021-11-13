@@ -32,7 +32,7 @@ namespace MoneyFox.Droid
             catch(ActivityNotFoundException)
             {
                 var intent = new Intent(Intent.ActionView,
-                                        Uri.Parse($"http://play.google.com/store/apps/details?id={appPackageName}"));
+                    Uri.Parse($"http://play.google.com/store/apps/details?id={appPackageName}"));
                 // we need to add this, because the activity is in a new context.
                 // Otherwise the runtime will block the execution and throw an exception
                 intent.AddFlags(ActivityFlags.NewTask);

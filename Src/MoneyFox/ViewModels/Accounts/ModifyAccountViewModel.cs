@@ -51,7 +51,7 @@ namespace MoneyFox.ViewModels.Accounts
             MessengerInstance.Send(new ReloadMessage());
 
             await dialogService.HideLoadingDialogAsync();
-            await App.Current.MainPage.Navigation.PopModalAsync();
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

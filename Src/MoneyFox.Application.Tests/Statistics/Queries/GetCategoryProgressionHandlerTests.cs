@@ -43,24 +43,25 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task CalculateCorrectSums()
         {
             // Arrange
-            Account account = new Account("Foo1");
-            Category category = new Category("abcd");
+            var account = new Account("Foo1");
+            var category = new Category("abcd");
             context.AddRange(new List<Payment>
-                {
-                    new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
-                    new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
-                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
-                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
-                });
+            {
+                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
+                new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
+                new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
+                new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
+            });
             context.Add(account);
             context.Add(category);
             context.SaveChanges();
 
             // Act
-            IImmutableList<StatisticEntry> result = await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
-                new GetCategoryProgressionQuery(category.Id,
-                                                      DateTime.Today.AddYears(-1),
-                                                      DateTime.Today.AddDays(3)), default);
+            IImmutableList<StatisticEntry> result =
+                await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
+                    new GetCategoryProgressionQuery(category.Id,
+                        DateTime.Today.AddYears(-1),
+                        DateTime.Today.AddDays(3)), default);
 
             // Assert
             result[12].Value.Should().Be(40);
@@ -72,15 +73,15 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_CorrectSums()
         {
             // Arrange
-            Account account = new Account("Foo1");
-            Category category = new Category("abcd");
+            var account = new Account("Foo1");
+            var category = new Category("abcd");
             context.AddRange(new List<Payment>
-                {
-                    new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
-                    new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
-                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
-                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
-                });
+            {
+                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
+                new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
+                new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
+                new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
+            });
             context.Add(account);
             context.Add(category);
 
@@ -89,8 +90,8 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
                 new GetAccountProgressionQuery(account.Id,
-                                                      DateTime.Today.AddYears(-1),
-                                                      DateTime.Today.AddDays(3)), default);
+                    DateTime.Today.AddYears(-1),
+                    DateTime.Today.AddDays(3)), default);
 
             // Assert
             result[0].Color.Should().Be("#87cefa");

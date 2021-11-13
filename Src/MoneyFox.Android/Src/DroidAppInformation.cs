@@ -1,3 +1,4 @@
+using Android.Content;
 using MoneyFox.Application.Common.Interfaces;
 
 #nullable enable
@@ -9,7 +10,7 @@ namespace MoneyFox.Droid
         {
             get
             {
-                Android.Content.Context? context = Android.App.Application.Context;
+                Context? context = Android.App.Application.Context;
 
                 if(context == null)
                 {
@@ -17,9 +18,9 @@ namespace MoneyFox.Droid
                 }
 
                 return context.PackageManager
-                              ?.GetPackageInfo(context.PackageName ?? string.Empty, 0)
-                              ?.VersionName
-                              ?? string.Empty;
+                           ?.GetPackageInfo(context.PackageName ?? string.Empty, 0)
+                           ?.VersionName
+                       ?? string.Empty;
             }
         }
     }

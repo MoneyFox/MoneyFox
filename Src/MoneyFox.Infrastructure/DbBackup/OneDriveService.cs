@@ -21,7 +21,7 @@ namespace MoneyFox.Infrastructure.DbBackup
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string BACKUP_NAME_TEMP = "moneyfox.db_upload";
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
-        private readonly string[] scopes = { "Files.ReadWrite", "User.ReadBasic.All" };
+        private readonly string[] scopes = {"Files.ReadWrite", "User.ReadBasic.All"};
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
@@ -56,14 +56,17 @@ namespace MoneyFox.Infrastructure.DbBackup
             try
             {
                 IAccount firstAccount = accounts.FirstOrDefault();
-                AuthenticationResult authResult = firstAccount == null ? await publicClientApplication.AcquireTokenInteractive(scopes)
-                        .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
+                AuthenticationResult authResult = firstAccount == null
+                    ? await publicClientApplication.AcquireTokenInteractive(scopes)
+                        .WithParentActivityOrWindow(ParentActivityWrapper
+                            .ParentActivity) // this is required for Android
                         .ExecuteAsync()
                     : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User user = await GraphServiceClient.Me.Request().GetAsync();
-                UserAccount.SetUserAccount(user.DisplayName, string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
+                UserAccount.SetUserAccount(user.DisplayName,
+                    string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
             }
             catch(MsalUiRequiredException ex)
             {
@@ -97,11 +100,14 @@ namespace MoneyFox.Infrastructure.DbBackup
                 {
                     throw new BackupAuthenticationFailedException();
                 }
-                AuthenticationResult authResult = await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+
+                AuthenticationResult authResult =
+                    await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User user = await GraphServiceClient.Me.Request().GetAsync();
-                UserAccount.SetUserAccount(user.DisplayName, string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
+                UserAccount.SetUserAccount(user.DisplayName,
+                    string.IsNullOrEmpty(user.Mail) ? user.UserPrincipalName : user.Mail);
             }
             catch(MsalUiRequiredException ex)
             {
@@ -119,7 +125,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 logManager.Info("Logout.");
 
-                var accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
+                List<IAccount> accounts = (await publicClientApplication.GetAccountsAsync()).ToList();
 
                 while(accounts.Any())
                 {
@@ -161,15 +167,15 @@ namespace MoneyFox.Infrastructure.DbBackup
                     }
                 }
 
-                DriveItem? uploadedItem = await GraphServiceClient
-                                        .Me
-                                        .Drive
-                                        .Special
-                                        .AppRoot
-                                        .ItemWithPath(BACKUP_NAME_TEMP)
-                                        .Content
-                                        .Request()
-                                        .PutAsync<DriveItem>(dataToUpload);
+                var uploadedItem = await GraphServiceClient
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot
+                    .ItemWithPath(BACKUP_NAME_TEMP)
+                    .Content
+                    .Request()
+                    .PutAsync<DriveItem>(dataToUpload);
 
                 await LoadArchiveFolderAsync();
                 await DeleteCleanupOldBackupsAsync();
@@ -215,10 +221,10 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
 
             IDriveItemChildrenCollectionPage archivedBackups = await GraphServiceClient.Drive
-                                                                                      .Items[ArchiveFolder?.Id]
-                                                                                      .Children
-                                                                                      .Request()
-                                                                                      .GetAsync();
+                .Items[ArchiveFolder?.Id]
+                .Children
+                .Request()
+                .GetAsync();
 
             if(!archivedBackups.Any())
             {
@@ -229,17 +235,16 @@ namespace MoneyFox.Infrastructure.DbBackup
             DriveItem lastBackup = archivedBackups.OrderByDescending(x => x.CreatedDateTime).First();
 
             DriveItem? appRoot = await GraphServiceClient
-                                        .Me
-                                        .Drive
-                                        .Special
-                                        .AppRoot
-                                        .Request()
-                                        .GetAsync();
+                .Me
+                .Drive
+                .Special
+                .AppRoot
+                .Request()
+                .GetAsync();
 
             var updateItem = new DriveItem
             {
-                ParentReference = new ItemReference { Id = appRoot.Id },
-                Name = DatabaseConstants.BACKUP_NAME
+                ParentReference = new ItemReference {Id = appRoot.Id}, Name = DatabaseConstants.BACKUP_NAME
             };
 
             await GraphServiceClient
@@ -266,14 +271,14 @@ namespace MoneyFox.Infrastructure.DbBackup
                 }
 
                 DriveItem existingBackup = (await GraphServiceClient
-                                                 .Me
-                                                 .Drive
-                                                 .Special
-                                                 .AppRoot
-                                                 .Children
-                                                 .Request()
-                                                 .GetAsync())
-                   .FirstOrDefault(x => x.Name == backupName);
+                        .Me
+                        .Drive
+                        .Special
+                        .AppRoot
+                        .Children
+                        .Request()
+                        .GetAsync())
+                    .FirstOrDefault(x => x.Name == backupName);
 
                 if(existingBackup == null)
                 {
@@ -317,14 +322,14 @@ namespace MoneyFox.Infrastructure.DbBackup
                 }
 
                 DriveItem existingBackup = (await GraphServiceClient
-                                                 .Me
-                                                 .Drive
-                                                 .Special
-                                                 .AppRoot
-                                                 .Children
-                                                 .Request()
-                                                 .GetAsync())
-                   .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
+                        .Me
+                        .Drive
+                        .Special
+                        .AppRoot
+                        .Children
+                        .Request()
+                        .GetAsync())
+                    .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
                 if(existingBackup != null)
                 {
@@ -357,15 +362,15 @@ namespace MoneyFox.Infrastructure.DbBackup
                 }
 
                 return (await GraphServiceClient
-                             .Me
-                             .Drive
-                             .Special
-                             .AppRoot
-                             .Children
-                             .Request()
-                             .GetAsync())
-                      .Select(x => x.Name)
-                      .ToList();
+                        .Me
+                        .Drive
+                        .Special
+                        .AppRoot
+                        .Children
+                        .Request()
+                        .GetAsync())
+                    .Select(x => x.Name)
+                    .ToList();
             }
             catch(Exception ex)
             {
@@ -384,10 +389,10 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
 
             IDriveItemChildrenCollectionPage archiveBackups = await GraphServiceClient.Drive
-                                                                                      .Items[ArchiveFolder?.Id]
-                                                                                      .Children
-                                                                                      .Request()
-                                                                                      .GetAsync();
+                .Items[ArchiveFolder?.Id]
+                .Children
+                .Request()
+                .GetAsync();
 
             if(archiveBackups.Count < BACKUP_ARCHIVE_COUNT)
             {
@@ -397,9 +402,9 @@ namespace MoneyFox.Infrastructure.DbBackup
             DriveItem oldestBackup = archiveBackups.OrderByDescending(x => x.CreatedDateTime).Last();
 
             await GraphServiceClient.Drive
-                                    .Items[oldestBackup?.Id]
-                                    .Request()
-                                    .DeleteAsync();
+                .Items[oldestBackup?.Id]
+                .Request()
+                .DeleteAsync();
         }
 
         private async Task ArchiveCurrentBackupAsync()
@@ -417,13 +422,13 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
 
             DriveItem currentBackup = (await GraphServiceClient
-                                            .Me
-                                            .Drive
-                                            .Special
-                                            .AppRoot.Children
-                                                    .Request()
-                                                    .GetAsync())
-               .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot.Children
+                    .Request()
+                    .GetAsync())
+                .FirstOrDefault(x => x.Name == DatabaseConstants.BACKUP_NAME);
 
             if(currentBackup == null)
             {
@@ -432,17 +437,17 @@ namespace MoneyFox.Infrastructure.DbBackup
 
             var updateItem = new DriveItem
             {
-                ParentReference = new ItemReference { Id = ArchiveFolder.Id },
+                ParentReference = new ItemReference {Id = ArchiveFolder.Id},
                 Name = string.Format(CultureInfo.InvariantCulture,
-                                                      DatabaseConstants.BACKUP_ARCHIVE_NAME,
-                                                      DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss", CultureInfo.InvariantCulture))
+                    DatabaseConstants.BACKUP_ARCHIVE_NAME,
+                    DateTime.Now.ToString("yyyy-M-d_hh-mm-ssss", CultureInfo.InvariantCulture))
             };
 
             await GraphServiceClient
-                 .Drive
-                 .Items[currentBackup.Id]
-                 .Request()
-                 .UpdateAsync(updateItem);
+                .Drive
+                .Items[currentBackup.Id]
+                .Request()
+                .UpdateAsync(updateItem);
         }
 
         private async Task RenameUploadedBackupAsync()
@@ -455,26 +460,26 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
 
             DriveItem backup_upload = (await GraphServiceClient
-                                            .Me
-                                            .Drive
-                                            .Special
-                                            .AppRoot.Children
-                                                    .Request()
-                                                    .GetAsync())
-               .FirstOrDefault(x => x.Name == BACKUP_NAME_TEMP);
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot.Children
+                    .Request()
+                    .GetAsync())
+                .FirstOrDefault(x => x.Name == BACKUP_NAME_TEMP);
 
             if(backup_upload == null)
             {
                 return;
             }
 
-            var updateItem = new DriveItem { Name = DatabaseConstants.BACKUP_NAME };
+            var updateItem = new DriveItem {Name = DatabaseConstants.BACKUP_NAME};
 
             await GraphServiceClient
-                 .Drive
-                 .Items[backup_upload.Id]
-                 .Request()
-                 .UpdateAsync(updateItem);
+                .Drive
+                .Items[backup_upload.Id]
+                .Request()
+                .UpdateAsync(updateItem);
         }
 
         private async Task LoadArchiveFolderAsync()
@@ -490,14 +495,14 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
 
             ArchiveFolder = (await GraphServiceClient
-                                  .Me
-                                  .Drive
-                                  .Special
-                                  .AppRoot.Children
-                                  .Request()
-                                  .GetAsync())
-                           .CurrentPage
-                           .FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot.Children
+                    .Request()
+                    .GetAsync())
+                .CurrentPage
+                .FirstOrDefault(x => x.Name == DatabaseConstants.ARCHIVE_FOLDER_NAME);
 
             if(ArchiveFolder == null)
             {
@@ -512,20 +517,16 @@ namespace MoneyFox.Infrastructure.DbBackup
                 throw new GraphClientNullException();
             }
 
-            var folderToCreate = new DriveItem
-            {
-                Name = DatabaseConstants.ARCHIVE_FOLDER_NAME,
-                Folder = new Folder()
-            };
+            var folderToCreate = new DriveItem {Name = DatabaseConstants.ARCHIVE_FOLDER_NAME, Folder = new Folder()};
 
             ArchiveFolder = await GraphServiceClient
-                                 .Me
-                                 .Drive
-                                 .Special
-                                 .AppRoot
-                                 .Children
-                                 .Request()
-                                 .AddAsync(folderToCreate);
+                .Me
+                .Drive
+                .Special
+                .AppRoot
+                .Children
+                .Request()
+                .AddAsync(folderToCreate);
         }
     }
 }

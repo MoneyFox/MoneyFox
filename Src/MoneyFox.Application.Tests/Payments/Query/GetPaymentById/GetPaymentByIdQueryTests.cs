@@ -6,7 +6,6 @@ using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -41,7 +40,9 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById
         public async Task GetCategory_CategoryNotFound() =>
             // Arrange
             // Act / Assert
-            await Assert.ThrowsAsync<PaymentNotFoundException>(async () => await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(999), default));
+            await Assert.ThrowsAsync<PaymentNotFoundException>(async () =>
+                await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(999),
+                    default));
 
         [Fact]
         public async Task GetCategory_CategoryFound()
@@ -53,7 +54,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentById
 
             // Act
             Payment result =
-                await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetPaymentByIdQuery(payment1.Id), default);
+                await new GetPaymentByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                    new GetPaymentByIdQuery(payment1.Id), default);
 
             // Assert
             result.Should().NotBeNull();

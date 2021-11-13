@@ -30,13 +30,14 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         private readonly IMapper mapper;
 
         public StatisticCategoryProgressionViewModel(IMediator mediator,
-                                                     IMapper mapper) : base(mediator)
+            IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
 
             StartDate = DateTime.Now.AddYears(-1);
 
-            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
+            MessengerInstance.Register<CategorySelectedMessage>(this,
+                async message => await ReceiveMessageAsync(message));
         }
 
         public CategoryViewModel SelectedCategory
@@ -93,7 +94,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async ()
-             => await new SelectCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync());
+            => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
 
@@ -105,7 +106,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 return;
             }
 
-            SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+            SelectedCategory =
+                mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
             await LoadAsync();
         }
 
@@ -118,19 +120,21 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 return;
             }
 
-            IImmutableList<StatisticEntry> statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory?.Id ?? 0, StartDate, EndDate));
+            IImmutableList<StatisticEntry> statisticItems =
+                await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory?.Id ?? 0, StartDate, EndDate));
 
             HasNoData = !statisticItems.Any();
 
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                {
-                    Label = x.Label,
-                    ValueLabel = x.ValueLabel,
-                    Color = SKColor.Parse(x.Color),
-                    ValueLabelColor = SKColor.Parse(x.Color)
-                }).ToList(),
+                    {
+                        Label = x.Label,
+                        ValueLabel = x.ValueLabel,
+                        Color = SKColor.Parse(x.Color),
+                        ValueLabelColor = SKColor.Parse(x.Color)
+                    })
+                    .ToList(),
                 BackgroundColor = new SKColor(
                     ChartOptions.BackgroundColor.R,
                     ChartOptions.BackgroundColor.G,

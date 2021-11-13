@@ -105,10 +105,12 @@ namespace MoneyFox.Uwp
             string fullPath = ToFullPath(path);
             string directory = Path.GetDirectoryName(fullPath);
             string fileName = Path.GetFileName(fullPath);
-            StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
-            StorageFile storageFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting)
-                                                         .AsTask()
-                                                         .ConfigureAwait(false);
+            StorageFolder storageFolder =
+                await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
+            StorageFile storageFile = await storageFolder
+                .CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting)
+                .AsTask()
+                .ConfigureAwait(false);
 
             return storageFile;
         }

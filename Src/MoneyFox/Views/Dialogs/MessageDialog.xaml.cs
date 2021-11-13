@@ -37,9 +37,11 @@ namespace MoneyFox.Views.Dialogs
             set => SetValue(PopupMessageProperty, value);
         }
 
-        public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
+        public async Task ShowAsync() =>
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public static async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
+        public static async Task DismissAsync() =>
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopPopupAsync();
 
         private async void OnOkClick(object sender, EventArgs e) => await DismissAsync();
     }

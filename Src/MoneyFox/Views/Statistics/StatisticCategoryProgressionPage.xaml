@@ -3,12 +3,11 @@
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="MoneyFox.Views.Statistics.StatisticCategoryProgressionPage"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             xmlns:theme="clr-namespace:MoneyFox"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:statistics1="clr-namespace:MoneyFox.ViewModels.Statistics"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              x:DataType="statistics1:StatisticCategoryProgressionViewModel"
-             Visual="Material" >
+             Visual="Material">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -45,10 +44,11 @@
                    Text="{Binding Title}" />
 
             <Button Grid.Row="2"
-                        Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
-                        Command="{Binding GoToSelectCategoryDialogCommand}" />
+                    Text="{Binding SelectedCategory, Converter={StaticResource NoCategorySelectedConverter}}"
+                    Command="{Binding GoToSelectCategoryDialogCommand}" />
 
-            <microcharts:ChartView Grid.Row="3" Chart="{Binding Chart}" IsVisible="{Binding HasNoData, Converter={StaticResource InverseBoolConverter}}" />
+            <microcharts:ChartView Grid.Row="3" Chart="{Binding Chart}"
+                                   IsVisible="{Binding HasNoData, Converter={StaticResource InverseBoolConverter}}" />
 
             <Label Grid.Row="3"
                    Text="{x:Static resources:Strings.SelectCategoryLabel}"

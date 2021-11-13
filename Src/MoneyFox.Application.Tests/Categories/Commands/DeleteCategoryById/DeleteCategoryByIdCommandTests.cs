@@ -7,7 +7,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
@@ -54,8 +53,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
             (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().BeNull();
@@ -73,8 +73,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);

@@ -22,8 +22,8 @@ namespace MoneyFox.ViewModels.Payments
         private readonly IDialogService dialogService;
 
         public EditPaymentViewModel(IMediator mediator,
-                                    IMapper mapper,
-                                    IDialogService dialogService)
+            IMapper mapper,
+            IDialogService dialogService)
             : base(mediator, mapper, dialogService)
         {
             this.mediator = mediator;
@@ -38,7 +38,7 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         public RelayCommand<PaymentViewModel> DeleteCommand
-            => new RelayCommand<PaymentViewModel>(async (p) => await DeletePaymentAsync(p));
+            => new RelayCommand<PaymentViewModel>(async p => await DeletePaymentAsync(p));
 
         protected override async Task SavePaymentAsync()
         {
@@ -46,44 +46,46 @@ namespace MoneyFox.ViewModels.Payments
             if(SelectedPayment.IsRecurring)
             {
                 updateRecurring = await dialogService.ShowConfirmMessageAsync(Strings.ModifyRecurrenceTitle,
-                                                                              Strings.ModifyRecurrenceMessage,
-                                                                              Strings.YesLabel,
-                                                                              Strings.NoLabel);
+                    Strings.ModifyRecurrenceMessage,
+                    Strings.YesLabel,
+                    Strings.NoLabel);
             }
 
             var command = new UpdatePaymentCommand(SelectedPayment.Id,
-                                                    SelectedPayment.Date,
-                                                    SelectedPayment.Amount,
-                                                    SelectedPayment.IsCleared,
-                                                    SelectedPayment.Type,
-                                                    SelectedPayment.Note,
-                                                    SelectedPayment.IsRecurring,
-                                                    SelectedPayment.Category != null
-                                                        ? SelectedPayment.Category.Id
-                                                        : 0,
-                                                    SelectedPayment.ChargedAccount != null
-                                                        ? SelectedPayment.ChargedAccount.Id
-                                                        : 0,
-                                                    SelectedPayment.TargetAccount != null
-                                                        ? SelectedPayment.TargetAccount.Id
-                                                        : 0,
-                                                    updateRecurring,
-                                                    SelectedPayment.RecurringPayment?.Recurrence,
-                                                    SelectedPayment.RecurringPayment?.IsEndless,
-                                                    SelectedPayment.RecurringPayment?.EndDate);
+                SelectedPayment.Date,
+                SelectedPayment.Amount,
+                SelectedPayment.IsCleared,
+                SelectedPayment.Type,
+                SelectedPayment.Note,
+                SelectedPayment.IsRecurring,
+                SelectedPayment.Category != null
+                    ? SelectedPayment.Category.Id
+                    : 0,
+                SelectedPayment.ChargedAccount != null
+                    ? SelectedPayment.ChargedAccount.Id
+                    : 0,
+                SelectedPayment.TargetAccount != null
+                    ? SelectedPayment.TargetAccount.Id
+                    : 0,
+                updateRecurring,
+                SelectedPayment.RecurringPayment?.Recurrence,
+                SelectedPayment.RecurringPayment?.IsEndless,
+                SelectedPayment.RecurringPayment?.EndDate);
 
             await mediator.Send(command);
         }
 
         private async Task DeletePaymentAsync(PaymentViewModel payment)
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeletePaymentConfirmationMessage))
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                   Strings.DeletePaymentConfirmationMessage))
             {
                 var deleteCommand = new DeletePaymentByIdCommand(payment.Id);
                 if(SelectedPayment.IsRecurring)
                 {
-                    deleteCommand.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
-                                                                                                       Strings.DeleteRecurringPaymentMessage);
+                    deleteCommand.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
+                        Strings.DeleteRecurringPaymentTitle,
+                        Strings.DeleteRecurringPaymentMessage);
                 }
 
                 try

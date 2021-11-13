@@ -2,6 +2,7 @@
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Navigation;
 
 #nullable enable
@@ -25,7 +26,7 @@ namespace MoneyFox.Uwp.Views.Categories
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
             => ViewModel.Unsubscribe();
 
-        private async void AddNewCategoryClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
-            => await new AddCategoryDialog{RequestedTheme = ThemeSelectorService.Theme}.ShowAsync();
+        private async void AddNewCategoryClick(object sender, RoutedEventArgs e)
+            => await new AddCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync();
     }
 }

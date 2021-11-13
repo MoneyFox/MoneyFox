@@ -5,10 +5,13 @@ using MoneyFox.Application.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using Rg.Plugins.Popup;
 using System.IO;
 using UIKit;
 using UserNotifications;
 using Xamarin.Essentials;
+using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
 
@@ -20,7 +23,7 @@ namespace MoneyFox.iOS
     // User Interface of the application, as well as listening (and optionally responding) to
     // application events from iOS.
     [Register("AppDelegate")]
-    public class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public class AppDelegate : FormsApplicationDelegate
     {
         private const int NOTIFICATION_NEW_MAJOR_VERSION = 10;
         private const int NOTIFICATION_LEGACY_MAJOR_VERSION = 8;
@@ -39,11 +42,11 @@ namespace MoneyFox.iOS
             InitLogger();
             RegisterServices();
 
-            Rg.Plugins.Popup.Popup.Init();
+            Popup.Init();
 
-            Xamarin.Forms.Forms.SetFlags("CollectionView_Experimental");
-            Xamarin.Forms.Forms.Init();
-            Xamarin.Forms.FormsMaterial.Init();
+            Forms.SetFlags("CollectionView_Experimental");
+            Forms.Init();
+            FormsMaterial.Init();
 
             LoadApplication(new App());
 
@@ -67,15 +70,17 @@ namespace MoneyFox.iOS
             if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_NEW_MAJOR_VERSION, 0))
             {
                 // Request Permissions
-                UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound, (granted, error) =>
-                {
-                    // Do something if needed
-                });
+                UNUserNotificationCenter.Current.RequestAuthorization(
+                    UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
+                    (granted, error) =>
+                    {
+                        // Do something if needed
+                    });
             }
             else if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_LEGACY_MAJOR_VERSION, 0))
             {
-                var notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+                UIUserNotificationSettings notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
 
                 app.RegisterUserNotificationSettings(notificationSettings);
             }

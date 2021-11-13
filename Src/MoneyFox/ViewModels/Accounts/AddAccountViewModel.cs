@@ -13,7 +13,7 @@ namespace MoneyFox.ViewModels.Accounts
         private readonly IDialogService dialogService;
 
         public AddAccountViewModel(IMediator mediator,
-                                   IDialogService dialogService)
+            IDialogService dialogService)
             : base(dialogService)
         {
             this.mediator = mediator;
@@ -29,9 +29,9 @@ namespace MoneyFox.ViewModels.Accounts
             }
 
             await mediator.Send(new CreateAccountCommand(SelectedAccountVm.Name,
-                                                         SelectedAccountVm.CurrentBalance,
-                                                         SelectedAccountVm.Note,
-                                                         SelectedAccountVm.IsExcluded));
+                SelectedAccountVm.CurrentBalance,
+                SelectedAccountVm.Note,
+                SelectedAccountVm.IsExcluded));
         }
     }
 }

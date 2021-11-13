@@ -40,7 +40,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyExpense
         {
             // Arrange
 
-            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
+            var systemDateHelper = Substitute.For<ISystemDateHelper>();
             systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
             var account = new Account("test", 80);
@@ -55,7 +55,9 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyExpense
             await context.SaveChangesAsync();
 
             // Act
-            decimal sum = await new GetMonthlyExpenseQuery.Handler(contextAdapter, systemDateHelper).Handle(new GetMonthlyExpenseQuery(), default);
+            decimal sum =
+                await new GetMonthlyExpenseQuery.Handler(contextAdapter, systemDateHelper).Handle(
+                    new GetMonthlyExpenseQuery(), default);
 
             // Assert
             sum.Should().Be(70);

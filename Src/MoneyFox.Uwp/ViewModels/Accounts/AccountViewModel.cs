@@ -176,10 +176,11 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             {
                 return false;
             }
+
             return Id.Equals(other.Id);
         }
 
-        
+
         public override bool Equals(object obj)
         {
             if(obj is AccountViewModel vm)
@@ -189,7 +190,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
             return false;
         }
-        
+
         public override int GetHashCode()
         {
             var hash = new HashCode();

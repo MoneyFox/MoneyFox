@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Animation;
 
 #nullable enable
@@ -13,7 +14,7 @@ namespace MoneyFox.Uwp.Views.Settings
             InitializeComponent();
         }
 
-        private void OnLoad(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void OnLoad(object sender, RoutedEventArgs e)
         {
             ContentFrame.Navigate(typeof(SettingsView));
             SettingsView.SelectedItem = SettingsView.MenuItems[0];
@@ -24,14 +25,14 @@ namespace MoneyFox.Uwp.Views.Settings
             if(args.InvokedItemContainer.Tag.ToString() == "settings")
             {
                 ContentFrame.Navigate(typeof(SettingsView),
-                                      null,
-                                      new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight });
+                    null,
+                    new SlideNavigationTransitionInfo {Effect = SlideNavigationTransitionEffect.FromRight});
             }
             else
             {
                 ContentFrame.Navigate(typeof(AboutView),
-                                      null,
-                                      new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromLeft });
+                    null,
+                    new SlideNavigationTransitionInfo {Effect = SlideNavigationTransitionEffect.FromLeft});
             }
         }
     }

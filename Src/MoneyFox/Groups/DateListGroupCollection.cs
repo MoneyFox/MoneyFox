@@ -66,10 +66,10 @@ namespace MoneyFox.Groups
         /// <param name="itemClickCommand">The command to execute on a click.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroupCollection<T>> CreateGroups(IEnumerable<T> items,
-                                                                    GetKeyDelegate getKey,
-                                                                    GetSortKeyDelegate getSortKey,
-                                                                    bool sort = true,
-                                                                    RelayCommand<T>? itemClickCommand = null)
+            GetKeyDelegate getKey,
+            GetSortKeyDelegate getSortKey,
+            bool sort = true,
+            RelayCommand<T>? itemClickCommand = null)
         {
             ThrowIfNull(items);
 

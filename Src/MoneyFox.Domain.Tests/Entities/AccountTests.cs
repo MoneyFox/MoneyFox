@@ -179,7 +179,8 @@ namespace MoneyFox.Domain.Tests.Entities
         [Theory]
         [InlineData(PaymentType.Expense, 50)]
         [InlineData(PaymentType.Income, 150)]
-        public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
+        public void AddPaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType,
+            decimal expectedBalance)
         {
             // Arrange
             var account = new Account("Test", 100);
@@ -215,10 +216,12 @@ namespace MoneyFox.Domain.Tests.Entities
             var chargedAccount = new Account("Test", 100);
             var targetAccount = new Account("Test", 100);
 
-            FieldInfo chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo chargedAccountId =
+                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             chargedAccountId.SetValue(chargedAccount, 3);
 
-            FieldInfo targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo targetAccountId =
+                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             targetAccountId.SetValue(targetAccount, 4);
 
             // Act
@@ -257,7 +260,8 @@ namespace MoneyFox.Domain.Tests.Entities
         [Theory]
         [InlineData(PaymentType.Expense, 100)]
         [InlineData(PaymentType.Income, 100)]
-        public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType, decimal expectedBalance)
+        public void RemovePaymentAmount_IncomeExpense_CurrentBalanceAdjustedCorrectly(PaymentType paymentType,
+            decimal expectedBalance)
         {
             // Arrange
             var account = new Account("Test", 100);
@@ -277,10 +281,12 @@ namespace MoneyFox.Domain.Tests.Entities
             var chargedAccount = new Account("Test", 100);
             var targetAccount = new Account("Test", 100);
 
-            FieldInfo chargedAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo chargedAccountId =
+                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             chargedAccountId.SetValue(chargedAccount, 3);
 
-            FieldInfo targetAccountId = typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            FieldInfo targetAccountId =
+                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
             targetAccountId.SetValue(targetAccount, 4);
 
             var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);

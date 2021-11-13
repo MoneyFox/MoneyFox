@@ -22,17 +22,15 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyExpense
                 this.systemDateHelper = systemDateHelper;
             }
 
-            public async Task<decimal> Handle(GetMonthlyExpenseQuery request, CancellationToken cancellationToken)
-            {
-                return (await contextAdapter.Context
-                                        .Payments
-                                        .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
-                                        .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
-                                        .IsExpense()
-                                        .Select(x => x.Amount)
-                                        .ToListAsync(cancellationToken))
-                                        .Sum();
-            }
+            public async Task<decimal> Handle(GetMonthlyExpenseQuery request, CancellationToken cancellationToken) =>
+                (await contextAdapter.Context
+                    .Payments
+                    .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
+                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
+                    .IsExpense()
+                    .Select(x => x.Amount)
+                    .ToListAsync(cancellationToken))
+                .Sum();
         }
     }
 }

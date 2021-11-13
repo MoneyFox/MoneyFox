@@ -12,8 +12,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml;
-using Frame = Windows.UI.Xaml.Controls.Frame;
-
+using Windows.UI.Xaml.Controls;
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -58,6 +57,7 @@ namespace MoneyFox.Uwp.Services
                 // Tasks after activation
                 await StartupAsync();
             }
+
             await StartupTasksService.StartupAsync();
         }
 
@@ -117,12 +117,10 @@ namespace MoneyFox.Uwp.Services
             }
         }
 
-        private static Type GetStartupView(string startupArgs, Type defaultView)
-        {
-            return startupArgs == AppConstants.AddPaymentId
+        private static Type GetStartupView(string startupArgs, Type defaultView) =>
+            startupArgs == AppConstants.AddPaymentId
                 ? typeof(AddPaymentViewModel)
                 : defaultView;
-        }
 
         private static async Task StartupAsync()
         {

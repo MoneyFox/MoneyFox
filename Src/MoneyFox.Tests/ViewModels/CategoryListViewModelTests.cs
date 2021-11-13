@@ -42,17 +42,15 @@ namespace MoneyFox.Tests.ViewModels
         public async Task ItemLoadedInInit()
         {
             // Arrange
-            mapper.Map<List<CategoryViewModel>>(Arg.Any<List<Category>>()).Returns(new List<CategoryViewModel>
-            {
-                new CategoryViewModel { Name = "asdf" }
-            });
+            mapper.Map<List<CategoryViewModel>>(Arg.Any<List<Category>>())
+                .Returns(new List<CategoryViewModel> {new CategoryViewModel {Name = "asdf"}});
             var viewModel = new CategoryListViewModel(mediator, mapper, dialogService);
 
             // Act
             await viewModel.InitializeAsync();
 
             // Assert
-            await mediator.Received(1).Send(Arg.Any<GetCategoryBySearchTermQuery>(), default);
+            await mediator.Received(1).Send(Arg.Any<GetCategoryBySearchTermQuery>());
             mapper.Received(1).Map<List<CategoryViewModel>>(Arg.Any<List<Category>>());
         }
     }

@@ -7,7 +7,6 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -47,20 +46,18 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             context.AddRange(new List<Payment>
-                {
-                    new Payment(DateTime.Today, 60, PaymentType.Income, new Account("Foo1")),
-                    new Payment(DateTime.Today, 20, PaymentType.Income, new Account("Foo2")),
-                    new Payment(DateTime.Today, 50, PaymentType.Expense, new Account("Foo3")),
-                    new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
-                });
+            {
+                new Payment(DateTime.Today, 60, PaymentType.Income, new Account("Foo1")),
+                new Payment(DateTime.Today, 20, PaymentType.Income, new Account("Foo2")),
+                new Payment(DateTime.Today, 50, PaymentType.Expense, new Account("Foo3")),
+                new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
+            });
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
+                default);
 
 
             // Assert
@@ -75,11 +72,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
+                default);
 
             // Assert
             result[0].Color.Should().Be("#9bcd9b");
@@ -93,11 +88,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
+                default);
 
             // Assert
             result[0].Label.Should().Be(Strings.RevenueLabel);
@@ -107,24 +100,23 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
         [Theory]
         [InlineData("de-CH", 3, '-')]
-        public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign, char expectedNegativeSign)
+        public async Task GetValues_CorrectNegativeSign(string culture, int indexNegativeSign,
+            char expectedNegativeSign)
         {
             // Arrange
             var cultureInfo = new CultureInfo(culture);
             CultureHelper.CurrentCulture = cultureInfo;
 
             context.AddRange(new List<Payment>
-                {
-                    new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
-                });
+            {
+                new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
+            });
             context.SaveChanges();
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
+                default);
 
             // Assert
             result[2].ValueLabel[indexNegativeSign].Should().Be(expectedNegativeSign);
@@ -137,25 +129,27 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             context.AddRange(new List<Payment>
-                {
-                    new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
-                });
+            {
+                new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))
+            });
             context.SaveChanges();
 
             var cultureInfo = new CultureInfo("en-US");
             CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
+                default);
 
             // Assert
             // We have to test here for Mac since they have a different standard sign than Windows.
-            result[2].ValueLabel[0].Should().Be(RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
-                                                ? '-' : '(');
+            result[2]
+                .ValueLabel[0]
+                .Should()
+                .Be(RuntimeInformation.IsOSPlatform(OSPlatform.OSX)
+                    ? '-'
+                    : '(');
 
             CultureHelper.CurrentCulture = CultureInfo.CurrentCulture;
         }
@@ -170,11 +164,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             CultureHelper.CurrentCulture = cultureInfo;
 
             // Act
-            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(new GetCashFlowQuery
-            {
-                StartDate = DateTime.Today.AddDays(-3),
-                EndDate = DateTime.Today.AddDays(3)
-            }, default);
+            List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
+                default);
 
             // Assert
             result[0].ValueLabel[0].Should().Be(expectedCurrencySymbol);

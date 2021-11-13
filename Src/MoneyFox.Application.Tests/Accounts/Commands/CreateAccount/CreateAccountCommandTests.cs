@@ -4,7 +4,6 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
-using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
@@ -31,7 +30,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
 
             backupServiceMock = new Mock<IBackupService>();
             backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                             .Returns(Task.CompletedTask);
+                .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
@@ -51,10 +50,10 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
             // Arrange
             // Act
             await new CreateAccountCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
                 .Handle(new CreateAccountCommand("test", 80),
-                        default);
+                    default);
 
             // Assert
             Assert.Single(context.Accounts);
@@ -66,10 +65,10 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
             // Arrange
             // Act
             await new CreateAccountCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
                 .Handle(new CreateAccountCommand("Test", 80),
-                        default);
+                    default);
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);

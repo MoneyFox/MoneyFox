@@ -30,7 +30,6 @@
     <Page.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
-        <converter:ClickConverter x:Key="ClickConverter" />
 
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="accounts:AccountViewModel">
             <uwpToolkit:DropShadowPanel ShadowOpacity="0.40" Margin="4,3,3,6">
@@ -68,7 +67,8 @@
                                     VerticalAlignment="Bottom"
                                     HorizontalAlignment="Right">
                             <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
-                            <TextBlock Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
+                            <TextBlock
+                                Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
                         </StackPanel>
                     </Grid>
                 </StackPanel>

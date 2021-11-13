@@ -21,9 +21,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// Constructor
         /// </summary>
         public PaymentListBalanceViewModel(IMediator mediator,
-                                           IMapper mapper,
-                                           IBalanceCalculationService balanceCalculationService,
-                                           int accountId) : base(balanceCalculationService)
+            IMapper mapper,
+            IBalanceCalculationService balanceCalculationService,
+            int accountId) : base(balanceCalculationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -37,7 +37,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// <returns>Sum of the balance of all accounts.</returns>
         protected override async Task<decimal> CalculateTotalBalanceAsync()
         {
-            AccountViewModel account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+            var account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
 
             return account.CurrentBalance;
         }
@@ -49,7 +49,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// <returns>Balance of the selected account including all payments to come till end of month.</returns>
         protected override async Task<decimal> GetEndOfMonthValueAsync()
         {
-            AccountViewModel account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+            var account = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
 
             return await balanceCalculationService.GetEndOfMonthBalanceForAccountAsync(account);
         }

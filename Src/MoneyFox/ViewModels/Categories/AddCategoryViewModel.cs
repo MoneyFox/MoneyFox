@@ -10,12 +10,13 @@ namespace MoneyFox.ViewModels.Categories
         private readonly IMediator mediator;
 
         public AddCategoryViewModel(IMediator mediator,
-                                    IDialogService dialogService) : base(mediator, dialogService)
+            IDialogService dialogService) : base(mediator, dialogService)
         {
             this.mediator = mediator;
         }
 
         protected override async Task SaveCategoryAsync()
-            => await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note, SelectedCategory.RequireNote));
+            => await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note,
+                SelectedCategory.RequireNote));
     }
 }

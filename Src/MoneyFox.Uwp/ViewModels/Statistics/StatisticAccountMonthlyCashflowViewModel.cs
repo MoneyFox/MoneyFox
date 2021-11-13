@@ -27,7 +27,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         private readonly IMapper mapper;
 
         public StatisticAccountMonthlyCashflowViewModel(IMediator mediator,
-                                                        IMapper mapper) : base(mediator)
+            IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
 
@@ -70,7 +70,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             }
         }
 
-        public ObservableCollection<AccountViewModel> Accounts { get; private set; } = new ObservableCollection<AccountViewModel>();
+        public ObservableCollection<AccountViewModel> Accounts { get; } = new ObservableCollection<AccountViewModel>();
 
         public AccountViewModel SelectedAccount
         {
@@ -81,6 +81,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                 {
                     return;
                 }
+
                 selectedAccount = value;
                 RaisePropertyChanged();
                 LoadDataCommand.Execute(null);
@@ -94,7 +95,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         private async Task InitAsync()
         {
             Accounts.Clear();
-            List<AccountViewModel> accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
+            var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
             accounts.ForEach(Accounts.Add);
 
             if(Accounts.Any())
@@ -106,19 +107,21 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry> statisticItems = await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
+            List<StatisticEntry> statisticItems =
+                await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
 
             HasNoData = !statisticItems.Any();
 
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                {
-                    Label = x.Label,
-                    ValueLabel = x.ValueLabel,
-                    Color = SKColor.Parse(x.Color),
-                    ValueLabelColor = SKColor.Parse(x.Color)
-                }).ToList(),
+                    {
+                        Label = x.Label,
+                        ValueLabel = x.ValueLabel,
+                        Color = SKColor.Parse(x.Color),
+                        ValueLabelColor = SKColor.Parse(x.Color)
+                    })
+                    .ToList(),
                 BackgroundColor = new SKColor(
                     ChartOptions.BackgroundColor.R,
                     ChartOptions.BackgroundColor.G,

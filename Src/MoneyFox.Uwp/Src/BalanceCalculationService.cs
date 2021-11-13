@@ -52,7 +52,8 @@ namespace MoneyFox.Uwp
         }
 
         /// <inheritdoc/>
-        public async Task<decimal> GetTotalBalanceAsync() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+        public async Task<decimal> GetTotalBalanceAsync() =>
+            await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
 
         /// <inheritdoc/>
         public async Task<decimal> GetTotalEndOfMonthBalanceAsync()
@@ -90,7 +91,8 @@ namespace MoneyFox.Uwp
         {
             decimal balance = account.CurrentBalance;
 
-            List<Payment> paymentList = await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery { AccountId = account.Id });
+            List<Payment> paymentList =
+                await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery {AccountId = account.Id});
 
             foreach(Payment payment in paymentList)
 
@@ -116,10 +118,10 @@ namespace MoneyFox.Uwp
 
             return balance;
         }
-        
+
         private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
         {
-            foreach(var accountId in excluded.Select(x => x.Id))
+            foreach(int accountId in excluded.Select(x => x.Id))
             {
                 if(payment.TargetAccount == null)
                 {

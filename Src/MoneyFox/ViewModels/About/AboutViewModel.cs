@@ -23,9 +23,9 @@ namespace MoneyFox.ViewModels.About
         /// Creates an AboutViewModel Object
         /// </summary>
         public AboutViewModel(IAppInformation appInformation,
-                              IEmailAdapter emailAdapter,
-                              IBrowserAdapter browserAdapter,
-                              IStoreOperations storeOperations)
+            IEmailAdapter emailAdapter,
+            IBrowserAdapter browserAdapter,
+            IStoreOperations storeOperations)
         {
             this.appInformation = appInformation;
             this.emailAdapter = emailAdapter;
@@ -56,17 +56,20 @@ namespace MoneyFox.ViewModels.About
         /// <summary>
         /// Opens the web browser and loads the project on Crowdin.
         /// </summary>
-        public RelayCommand GoToTranslationProjectCommand => new RelayCommand(async () => await GoToTranslationProjectAsync());
+        public RelayCommand GoToTranslationProjectCommand =>
+            new RelayCommand(async () => await GoToTranslationProjectAsync());
 
         /// <summary>
         /// Opens the webbrowser and loads the project on crowdin.
         /// </summary>
-        public RelayCommand GoToDesignerTwitterAccountCommand => new RelayCommand(async () => await GoToDesignerTwitterAccountAsync());
+        public RelayCommand GoToDesignerTwitterAccountCommand =>
+            new RelayCommand(async () => await GoToDesignerTwitterAccountAsync());
 
         /// <summary>
         /// Opens the webbrowser loads the contribution page on Github.
         /// </summary>
-        public RelayCommand GoToContributionPageCommand => new RelayCommand(async () => await GoToContributionPageAsync());
+        public RelayCommand GoToContributionPageCommand =>
+            new RelayCommand(async () => await GoToContributionPageAsync());
 
         /// <summary>
         /// Returns the Version of App
@@ -86,15 +89,11 @@ namespace MoneyFox.ViewModels.About
         private async Task GoToWebsiteAsync()
             => await browserAdapter.OpenWebsiteAsync(new Uri(AppConstants.WebsiteUrl));
 
-        private async Task SendMailAsync()
-        {
+        private async Task SendMailAsync() =>
             await emailAdapter.SendEmailAsync(Strings.FeedbackSubject,
-                                              string.Empty,
-                                              new List<string>
-                                              { AppConstants.SupportMail },
-                                              new List<string>
-                                              { Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName) });
-        }
+                string.Empty,
+                new List<string> {AppConstants.SupportMail},
+                new List<string> {Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName)});
 
         private void RateApp()
             => storeFeatures.RateApp();

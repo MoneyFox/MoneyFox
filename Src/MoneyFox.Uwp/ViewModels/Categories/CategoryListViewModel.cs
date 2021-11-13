@@ -12,9 +12,9 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         /// Creates an CategoryListViewModel for usage when the list including the option is needed.
         /// </summary>
         public CategoryListViewModel(IMediator mediator,
-                                     IMapper mapper,
-                                     IDialogService dialogService,
-                                     NavigationService navigationService)
+            IMapper mapper,
+            IDialogService dialogService,
+            NavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
         {
         }

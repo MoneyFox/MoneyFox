@@ -43,6 +43,5 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
         /// Indicates if the autobackup is enabled or disabled.
         /// </summary>
         bool IsAutoBackupEnabled { get; }
-
     }
 }

@@ -15,7 +15,7 @@ namespace MoneyFox.Uwp.ViewModels.Settings
         private readonly IDialogService dialogService;
 
         public SettingsViewModel(ISettingsFacade settingsFacade,
-                                 IDialogService dialogService)
+            IDialogService dialogService)
         {
             this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
@@ -50,7 +50,10 @@ namespace MoneyFox.Uwp.ViewModels.Settings
         {
             await dialogService.ShowLoadingDialogAsync();
 
-            CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
+            CultureInfo.GetCultures(CultureTypes.AllCultures)
+                .OrderBy(x => x.Name)
+                .ToList()
+                .ForEach(AvailableCultures.Add);
             SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
 
             await dialogService.HideLoadingDialogAsync();

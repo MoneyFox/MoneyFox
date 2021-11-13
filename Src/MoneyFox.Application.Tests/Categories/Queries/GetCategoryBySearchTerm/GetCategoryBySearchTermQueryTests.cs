@@ -4,7 +4,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -48,8 +47,9 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
 
             // Act
             List<Category> result =
-                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery(),
-                                                                                                 default);
+                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
+                    new GetCategoryBySearchTermQuery(),
+                    default);
 
             // Assert
             result.Should().HaveCount(2);
@@ -67,8 +67,9 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
 
             // Act
             List<Category> result =
-                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery("guid"),
-                                                                                                 default);
+                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
+                    new GetCategoryBySearchTermQuery("guid"),
+                    default);
 
             // Assert
             Assert.Single(result);

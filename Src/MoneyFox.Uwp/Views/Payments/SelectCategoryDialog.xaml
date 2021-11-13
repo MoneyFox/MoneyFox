@@ -11,10 +11,9 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d"
     Title="{x:Bind resources:Strings.SelectCategoryTitle}"
-    SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}" >
+    SecondaryButtonText="{x:Bind resources:Strings.CancelLabel}">
 
     <ContentDialog.Resources>
-        <converter:ClickConverter x:Key="ClickConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="categories:CategoryViewModel">
