@@ -138,15 +138,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             private set=> SetProperty(ref title, value);
         }
 
-        /// <summary>
-        ///     Indicates if the view is loading.
-        /// </summary>
-        public bool IsBusy
-        {
-            get => isBusy;
-            private set=> SetProperty(ref isBusy, value);
-        }
-
         private async Task InitializeAsync()
         {
             Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
