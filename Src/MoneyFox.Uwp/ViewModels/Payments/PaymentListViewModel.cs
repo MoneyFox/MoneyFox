@@ -173,6 +173,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 //Refresh balance control with the current account
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
             }
+            catch(Exception ex)
+            {
+                logManager.Error(ex);
+            }
             finally
             {
                 await dialogService.HideLoadingDialogAsync();
@@ -181,14 +185,17 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadPaymentsAsync(PaymentListFilterChangedMessage filterMessage)
         {
-            var payments = mapper.Map<List<PaymentViewModel>>(
-                await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
-                    filterMessage.TimeRangeStart,
-                    filterMessage.TimeRangeEnd)
-                {
-                    IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                    IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-                }));
+            var getPaymentsForAccountIdQuery = new GetPaymentsForAccountIdQuery(
+                AccountId,
+                filterMessage.TimeRangeStart,
+                filterMessage.TimeRangeEnd)
+            {
+                IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+            };
+
+            var loadedPayments = await mediator.Send(getPaymentsForAccountIdQuery);
+            var payments = mapper.Map<List<PaymentViewModel>>(loadedPayments);
 
             payments.ForEach(x => x.CurrentAccountId = AccountId);
 

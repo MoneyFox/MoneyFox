@@ -18,8 +18,6 @@ namespace MoneyFox.Domain.Entities
         [UsedImplicitly]
         private Payment() { }
 
-        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters",
-            Justification = "ignored")]
         public Payment(DateTime date,
             decimal amount,
             PaymentType type,
@@ -53,13 +51,13 @@ namespace MoneyFox.Domain.Entities
 
         public PaymentType Type { get; private set; }
 
-        public string? Note { get; set; }
+        public string? Note { get; private set; }
 
         public bool IsRecurring { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; }
+        public DateTime CreationTime { get; [UsedImplicitly] private set; }
 
         public virtual Category? Category { get; private set; }
 
