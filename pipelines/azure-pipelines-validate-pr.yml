@@ -1,9 +1,15 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
 pr:
  branches:
    include:
      - master
 
 jobs:
+
 - job: BuildiOS
   displayName: "Run Tests MacOS and Build iOS"
   pool:
@@ -31,11 +37,6 @@ jobs:
     inputs:
       provisioningProfileLocation: 'secureFiles'
       provProfileSecureFile: 'MoneyFox_Distribution_2021.mobileprovision'
-
-  - task: UseDotNet@2
-    displayName: 'Use correct .Net sdk'
-    inputs:
-      version: 6.x
 
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
