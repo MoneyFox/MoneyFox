@@ -102,8 +102,7 @@
                     Margin="0,15,0,7"
                     Orientation="Horizontal"
                     Visibility="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
-                    <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.LastBackupDateLabel}" />
+                    <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}" Text="{x:Bind resources:Strings.LastBackupDateLabel}" />
                     <TextBlock
                         Margin="5,0,0,0"
                         Style="{StaticResource DeemphasizedBodyTextBlockStyle}"

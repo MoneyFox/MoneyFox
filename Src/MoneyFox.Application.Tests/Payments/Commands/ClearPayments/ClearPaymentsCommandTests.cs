@@ -5,6 +5,7 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
+using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -13,74 +14,75 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments;
-
-[ExcludeFromCodeCoverage]
-public class ClearPaymentsCommandTests : IDisposable
+namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public ClearPaymentsCommandTests()
+    [ExcludeFromCodeCoverage]
+    public class ClearPaymentsCommandTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
-
-    [Fact]
-    public async Task PaymentsClearedCorrectly()
-    {
-        // Arrange
-        var paymentList = new List<Payment>
+        public ClearPaymentsCommandTests()
         {
-            new(DateTime.Now.AddDays(1), 100, PaymentType.Expense, new Account("Foo")),
-            new(DateTime.Now, 100, PaymentType.Expense, new Account("Foo")),
-            new(DateTime.Now.AddDays(-1), 100, PaymentType.Expense, new Account("Foo"))
-        };
+            context = InMemoryEfCoreContextFactory.Create();
 
-        context.AddRange(paymentList);
-        await context.SaveChangesAsync();
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-        // Act
-        await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(), default);
-
-        // Assert
-        paymentList[0].IsCleared.Should().BeFalse();
-        paymentList[1].IsCleared.Should().BeTrue();
-        paymentList[2].IsCleared.Should().BeTrue();
-    }
-
-    [Fact]
-    public async Task PaymentsClearedAndSaved()
-    {
-        // Arrange
-        var paymentList = new List<Payment>
+        public void Dispose()
         {
-            new(DateTime.Now.AddDays(1), 100, PaymentType.Expense, new Account("Foo")),
-            new(DateTime.Now, 100, PaymentType.Expense, new Account("Foo")),
-            new(DateTime.Now.AddDays(-1), 100, PaymentType.Expense, new Account("Foo"))
-        };
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-        context.AddRange(paymentList);
-        await context.SaveChangesAsync();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(), default);
-        var loadedPayments = context.Payments.ToList();
+        [Fact]
+        public async Task PaymentsClearedCorrectly()
+        {
+            // Arrange
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Now.AddDays(1), 100, PaymentType.Expense, new Account("Foo")),
+                new Payment(DateTime.Now, 100, PaymentType.Expense, new Account("Foo")),
+                new Payment(DateTime.Now.AddDays(-1), 100, PaymentType.Expense, new Account("Foo"))
+            };
 
-        // Assert
-        loadedPayments[0].IsCleared.Should().BeFalse();
-        loadedPayments[1].IsCleared.Should().BeTrue();
-        loadedPayments[2].IsCleared.Should().BeTrue();
+            context.AddRange(paymentList);
+            await context.SaveChangesAsync();
+
+            // Act
+            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(), default);
+
+            // Assert
+            paymentList[0].IsCleared.Should().BeFalse();
+            paymentList[1].IsCleared.Should().BeTrue();
+            paymentList[2].IsCleared.Should().BeTrue();
+        }
+
+        [Fact]
+        public async Task PaymentsClearedAndSaved()
+        {
+            // Arrange
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Now.AddDays(1), 100, PaymentType.Expense, new Account("Foo")),
+                new Payment(DateTime.Now, 100, PaymentType.Expense, new Account("Foo")),
+                new Payment(DateTime.Now.AddDays(-1), 100, PaymentType.Expense, new Account("Foo"))
+            };
+
+            context.AddRange(paymentList);
+            await context.SaveChangesAsync();
+
+            // Act
+            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(), default);
+            var loadedPayments = context.Payments.ToList();
+
+            // Assert
+            loadedPayments[0].IsCleared.Should().BeFalse();
+            loadedPayments[1].IsCleared.Should().BeTrue();
+            loadedPayments[2].IsCleared.Should().BeTrue();
+        }
     }
 }

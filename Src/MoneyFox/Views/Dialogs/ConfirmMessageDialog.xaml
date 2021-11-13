@@ -1,5 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-
+﻿<?xml version="1.0" encoding="utf-8" ?>
 <pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -27,23 +26,20 @@
     </pages:PopupPage.Animation>
 
     <ContentPage.Content>
-        <yummy:PancakeView
-            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+        <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                              Light={StaticResource CardBackgroundLight}}"
-            CornerRadius="10"
-            VerticalOptions="Center"
-            HorizontalOptions="Center"
-            WidthRequest="300">
+                           CornerRadius="10"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           WidthRequest="300">
 
             <yummy:PancakeView.Shadow>
                 <yummy:DropShadow />
             </yummy:PancakeView.Shadow>
 
             <StackLayout Padding="20">
-                <Label Text="{Binding PopupTitle, Source={x:Reference ConfirmDialog}}"
-                       Style="{DynamicResource TextHead}" />
-                <Label Text="{Binding PopupMessage, Source={x:Reference ConfirmDialog}}"
-                       Style="{DynamicResource BaseLabel}" />
+                <Label Text="{Binding PopupTitle, Source={x:Reference ConfirmDialog}}" Style="{DynamicResource TextHead}" />
+                <Label Text="{Binding PopupMessage, Source={x:Reference ConfirmDialog}}" Style="{DynamicResource BaseLabel}" />
 
                 <Grid ColumnDefinitions="*, Auto, 6, Auto">
                     <Button Text="{Binding PositiveText, Source={x:Reference ConfirmDialog}}"

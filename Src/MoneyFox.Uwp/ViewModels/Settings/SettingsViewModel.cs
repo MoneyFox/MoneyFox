@@ -11,13 +11,11 @@ namespace MoneyFox.Uwp.ViewModels.Settings
 {
     public class SettingsViewModel : ViewModelBase, ISettingsViewModel
     {
-        private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-
-        private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
+        private readonly IDialogService dialogService;
 
         public SettingsViewModel(ISettingsFacade settingsFacade,
-            IDialogService dialogService)
+                                 IDialogService dialogService)
         {
             this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
@@ -26,6 +24,8 @@ namespace MoneyFox.Uwp.ViewModels.Settings
         }
 
         public async Task InitializeAsync() => await LoadAvailableCulturesAsync();
+
+        private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 
         public CultureInfo SelectedCulture
         {
@@ -50,10 +50,7 @@ namespace MoneyFox.Uwp.ViewModels.Settings
         {
             await dialogService.ShowLoadingDialogAsync();
 
-            CultureInfo.GetCultures(CultureTypes.AllCultures)
-                       .OrderBy(x => x.Name)
-                       .ToList()
-                       .ForEach(AvailableCultures.Add);
+            CultureInfo.GetCultures(CultureTypes.AllCultures).OrderBy(x => x.Name).ToList().ForEach(AvailableCultures.Add);
             SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
 
             await dialogService.HideLoadingDialogAsync();

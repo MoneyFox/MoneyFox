@@ -7,13 +7,13 @@
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Settings"
                 xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-                mc:Ignorable="d">
+                mc:Ignorable="d" >
 
     <d:Page.DataContext>
         <designTime:DesignTimeWindowsSettingsViewModel />
     </d:Page.DataContext>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" >
         <muxc:NavigationView x:Name="SettingsView"
                              PaneDisplayMode="Top"
                              IsBackButtonVisible="Collapsed"
@@ -22,9 +22,8 @@
                              ItemInvoked="OnItemInvoked">
 
             <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Tag="settings" Icon="Setting"
-                                         Content="{x:Bind resources:Strings.SettingsTitle}" />
-                <muxc:NavigationViewItem Tag="about" Icon="Help" Content="{x:Bind resources:Strings.AboutTitle}" />
+                <muxc:NavigationViewItem Tag="settings" Icon="Setting" Content="{x:Bind resources:Strings.SettingsTitle}"/>
+                <muxc:NavigationViewItem Tag="about" Icon="Help" Content="{x:Bind resources:Strings.AboutTitle}"/>
             </muxc:NavigationView.MenuItems>
 
             <Frame x:Name="ContentFrame"

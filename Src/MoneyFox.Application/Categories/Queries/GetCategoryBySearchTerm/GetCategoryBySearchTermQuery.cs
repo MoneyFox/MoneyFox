@@ -28,14 +28,13 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<List<Category>> Handle(GetCategoryBySearchTermQuery request,
-                CancellationToken cancellationToken)
+            public async Task<List<Category>> Handle(GetCategoryBySearchTermQuery request, CancellationToken cancellationToken)
             {
-                var categoriesQuery = contextAdapter.Context
-                                                    .Categories
-                                                    .OrderBy(x => x.Name);
+                IOrderedQueryable<Category> categoriesQuery = contextAdapter.Context
+                                                                            .Categories
+                                                                            .OrderBy(x => x.Name);
 
-                var categories = await categoriesQuery.ToListAsync(cancellationToken);
+                List<Category>? categories = await categoriesQuery.ToListAsync(cancellationToken);
 
                 if(!string.IsNullOrEmpty(request.SearchTerm))
                 {

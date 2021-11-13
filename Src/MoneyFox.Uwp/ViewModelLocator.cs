@@ -18,6 +18,8 @@ namespace MoneyFox.Uwp
 {
     public class ViewModelLocator
     {
+        protected ViewModelLocator() { }
+
         static ViewModelLocator()
         {
             if(!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
@@ -26,22 +28,27 @@ namespace MoneyFox.Uwp
             }
         }
 
-        protected ViewModelLocator() { }
+        public static void RegisterServices(ContainerBuilder registrations)
+        {
+            IContainer container = registrations.Build();
+
+            if(container != null)
+            {
+                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
+            }
+        }
 
         //*****************
         //  Data Entry
         //*****************
 
-        public static IAccountListViewModel AccountListVm
-            => ServiceLocator.Current.GetInstance<IAccountListViewModel>();
+        public static IAccountListViewModel AccountListVm => ServiceLocator.Current.GetInstance<IAccountListViewModel>();
 
-        public static CategoryListViewModel CategoryListVm
-            => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
+        public static CategoryListViewModel CategoryListVm => ServiceLocator.Current.GetInstance<CategoryListViewModel>();
 
         public static PaymentListViewModel PaymentListVm => ServiceLocator.Current.GetInstance<PaymentListViewModel>();
 
-        public static SelectCategoryListViewModel SelectCategoryListVm
-            => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
+        public static SelectCategoryListViewModel SelectCategoryListVm => ServiceLocator.Current.GetInstance<SelectCategoryListViewModel>();
 
         public static AddAccountViewModel AddAccountVm => ServiceLocator.Current.GetInstance<AddAccountViewModel>();
 
@@ -51,8 +58,7 @@ namespace MoneyFox.Uwp
 
         public static EditAccountViewModel EditAccountVm => ServiceLocator.Current.GetInstance<EditAccountViewModel>();
 
-        public static EditCategoryViewModel EditCategoryVm
-            => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
+        public static EditCategoryViewModel EditCategoryVm => ServiceLocator.Current.GetInstance<EditCategoryViewModel>();
 
         public static EditPaymentViewModel EditPaymentVm => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
 
@@ -61,46 +67,28 @@ namespace MoneyFox.Uwp
         //*****************
         //  Common
         //*****************
-        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm
-            => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm => ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
 
         //*****************
         //  Statistics
         //*****************
-        public static StatisticCashFlowViewModel StatisticCashFlowVm
-            => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
+        public static StatisticCashFlowViewModel StatisticCashFlowVm => ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
 
-        public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionVm
-            => ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
+        public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionVm => ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
 
-        public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashflowVm
-            => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
+        public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashflowVm => ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
 
-        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm
-            => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm => ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
 
-        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm
-            => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm => ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
 
-        public static StatisticSelectorViewModel StatisticSelectorVm
-            => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
+        public static StatisticSelectorViewModel StatisticSelectorVm => ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
 
         //*****************
         //  Settings
         //*****************
-        public static WindowsSettingsViewModel SettingsVm
-            => ServiceLocator.Current.GetInstance<WindowsSettingsViewModel>();
+        public static WindowsSettingsViewModel SettingsVm => ServiceLocator.Current.GetInstance<WindowsSettingsViewModel>();
 
         public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
-
-        public static void RegisterServices(ContainerBuilder registrations)
-        {
-            var container = registrations.Build();
-
-            if(container != null)
-            {
-                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
-            }
-        }
     }
 }

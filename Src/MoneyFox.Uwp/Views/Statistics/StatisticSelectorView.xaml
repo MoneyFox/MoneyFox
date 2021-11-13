@@ -11,7 +11,7 @@
                 xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
                 xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
                 xmlns:statistics="using:MoneyFox.Uwp.ViewModels.Statistics"
-                mc:Ignorable="d">
+                mc:Ignorable="d" >
 
     <d:MvxWindowsPage.DataContext>
         <designTime:DesignTimeStatisticSelectorViewModel />
@@ -33,13 +33,13 @@
                             CornerRadius="{StaticResource DefaultCornerRadius}"
                             Padding="{StaticResource SmallListItemPadding}">
 
-                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}">
+                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}" >
                         <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                   Text="{x:Bind Name}"
-                                   TextTrimming="CharacterEllipsis" />
+                               Text="{x:Bind Name}"
+                               TextTrimming="CharacterEllipsis" />
                         <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                   Text="{x:Bind Description}"
-                                   TextWrapping="WrapWholeWords" />
+                               Text="{x:Bind Description}"
+                               TextWrapping="WrapWholeWords" />
                     </StackPanel>
                 </StackPanel>
             </controls:DropShadowPanel>
@@ -48,6 +48,10 @@
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
 
         <GridView ItemTemplate="{StaticResource StatistcTypeTemplate}"
                   ItemsSource="{Binding StatisticItems}"

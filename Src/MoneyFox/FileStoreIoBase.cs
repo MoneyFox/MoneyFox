@@ -19,7 +19,7 @@ namespace MoneyFox
 
         public override async Task<Stream> OpenReadAsync(string path)
         {
-            var fullPath = AppendPath(path);
+            string fullPath = AppendPath(path);
 
             if(!File.Exists(fullPath))
             {
@@ -33,8 +33,8 @@ namespace MoneyFox
         {
             try
             {
-                var fullFrom = AppendPath(from);
-                var fullTo = AppendPath(destination);
+                string fullFrom = AppendPath(from);
+                string fullTo = AppendPath(destination);
 
                 if(!File.Exists(fullFrom))
                 {
@@ -68,13 +68,13 @@ namespace MoneyFox
 
         protected override Task WriteFileCommonAsync(string path, Action<Stream> streamAction)
         {
-            var fullPath = AppendPath(path);
+            string fullPath = AppendPath(path);
             if(File.Exists(fullPath))
             {
                 File.Delete(fullPath);
             }
 
-            using(var fileStream = File.OpenWrite(fullPath))
+            using(FileStream fileStream = File.OpenWrite(fullPath))
             {
                 streamAction?.Invoke(fileStream);
             }

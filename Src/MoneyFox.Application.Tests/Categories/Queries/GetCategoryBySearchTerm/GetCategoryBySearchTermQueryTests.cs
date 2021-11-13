@@ -4,73 +4,74 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
+using MoneyFox.Persistence;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm;
-
-[ExcludeFromCodeCoverage]
-public class GetCategoryBySearchTermQueryTests : IDisposable
+namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryBySearchTerm
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public GetCategoryBySearchTermQueryTests()
+    [ExcludeFromCodeCoverage]
+    public class GetCategoryBySearchTermQueryTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
+        public GetCategoryBySearchTermQueryTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()
-    {
-        // Arrange
-        var category1 = new Category("test");
-        var category2 = new Category("test2");
-        await context.AddAsync(category1);
-        await context.AddAsync(category2);
-        await context.SaveChangesAsync();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        var result =
-            await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetCategoryBySearchTermQuery(),
-                default);
+        [Fact]
+        public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()
+        {
+            // Arrange
+            var category1 = new Category("test");
+            var category2 = new Category("test2");
+            await context.AddAsync(category1);
+            await context.AddAsync(category2);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().HaveCount(2);
-    }
+            // Act
+            List<Category> result =
+                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery(),
+                                                                                                 default);
 
-    [Fact]
-    public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
-    {
-        // Arrange
-        var category1 = new Category("this is a guid");
-        var category2 = new Category("test2");
-        await context.AddAsync(category1);
-        await context.AddAsync(category2);
-        await context.SaveChangesAsync();
+            // Assert
+            result.Should().HaveCount(2);
+        }
 
-        // Act
-        var result =
-            await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetCategoryBySearchTermQuery("guid"),
-                default);
+        [Fact]
+        public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
+        {
+            // Arrange
+            var category1 = new Category("this is a guid");
+            var category2 = new Category("test2");
+            await context.AddAsync(category1);
+            await context.AddAsync(category2);
+            await context.SaveChangesAsync();
 
-        // Assert
-        Assert.Single(result);
+            // Act
+            List<Category> result =
+                await new GetCategoryBySearchTermQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryBySearchTermQuery("guid"),
+                                                                                                 default);
+
+            // Assert
+            Assert.Single(result);
+        }
     }
 }

@@ -16,15 +16,6 @@ namespace MoneyFox.ViewModels.SetupAssistant
             this.settingsFacade = settingsFacade;
         }
 
-        public RelayCommand GoToAddAccountCommand
-            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
-
-        public RelayCommand NextStepCommand => new RelayCommand(
-            async ()
-                => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
-
-        public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
-
         public async Task InitAsync()
         {
             if(settingsFacade.IsSetupCompleted)
@@ -32,6 +23,13 @@ namespace MoneyFox.ViewModels.SetupAssistant
                 await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute);
             }
         }
+
+        public RelayCommand GoToAddAccountCommand
+            => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+
+        public RelayCommand NextStepCommand => new RelayCommand(async ()
+            => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
+        public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 
         private void SkipSetup()
         {

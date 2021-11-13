@@ -10,12 +10,12 @@ namespace MoneyFox.ViewModels.Accounts
 {
     public class EditAccountViewModel : ModifyAccountViewModel
     {
-        private readonly IMapper mapper;
         private readonly IMediator mediator;
+        private readonly IMapper mapper;
 
         public EditAccountViewModel(IMediator mediator,
-            IMapper mapper,
-            IDialogService dialogService)
+                                    IMapper mapper,
+                                    IDialogService dialogService)
             : base(dialogService)
         {
             this.mediator = mediator;
@@ -24,10 +24,8 @@ namespace MoneyFox.ViewModels.Accounts
 
         public override bool IsEdit => true;
 
-        public async Task InitializeAsync(int accountId) => SelectedAccountVm =
-            mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
+        public async Task InitializeAsync(int accountId) => SelectedAccountVm = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(accountId)));
 
-        protected override async Task SaveAccountAsync()
-            => await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccountVm)));
+        protected override async Task SaveAccountAsync() => await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccountVm)));
     }
 }

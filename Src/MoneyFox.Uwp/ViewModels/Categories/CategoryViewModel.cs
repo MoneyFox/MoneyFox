@@ -7,12 +7,12 @@ namespace MoneyFox.Uwp.ViewModels.Categories
 {
     public class CategoryViewModel : ViewModelBase, IMapFrom<Category>
     {
-        private DateTime creationTime;
         private int id;
-        private DateTime modificationDate;
         private string name = "";
         private string note = "";
         private bool requireNote;
+        private DateTime creationTime;
+        private DateTime modificationDate;
 
         public int Id
         {
@@ -90,7 +90,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         }
 
         /// <summary>
-        ///     Additional details about the CategoryViewModel
+        /// Additional details about the CategoryViewModel
         /// </summary>
         public string Note
         {

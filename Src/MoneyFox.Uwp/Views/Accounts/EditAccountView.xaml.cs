@@ -6,13 +6,13 @@ namespace MoneyFox.Uwp.Views.Accounts
 {
     public sealed partial class EditAccountView : ContentDialog
     {
+        private EditAccountViewModel ViewModel => (EditAccountViewModel)DataContext;
+
         public EditAccountView(int accountId)
         {
             InitializeComponent();
             DataContext = ViewModelLocator.EditAccountVm;
             ViewModel.AccountId = accountId;
         }
-
-        private EditAccountViewModel ViewModel => (EditAccountViewModel)DataContext;
     }
 }

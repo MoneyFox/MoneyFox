@@ -12,48 +12,48 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Payments.Commands.CreateRecurringPayments;
-
-[ExcludeFromCodeCoverage]
-public class CreateRecurringPaymentsCommandTests : IDisposable
+namespace MoneyFox.Application.Tests.Payments.Commands.CreateRecurringPayments
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public CreateRecurringPaymentsCommandTests()
+    [ExcludeFromCodeCoverage]
+    public class CreateRecurringPaymentsCommandTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
+        public CreateRecurringPaymentsCommandTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task PaymentsClearedAndSaved()
-    {
-        // Arrange
-        var payment = new Payment(DateTime.Now.AddDays(-1), 166, PaymentType.Expense, new Account("Foo"));
-        payment.AddRecurringPayment(PaymentRecurrence.Daily);
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        context.AddRange(payment);
-        await context.SaveChangesAsync();
+        [Fact]
+        public async Task PaymentsClearedAndSaved()
+        {
+            // Arrange
+            var payment = new Payment(DateTime.Now.AddDays(-1), 166, PaymentType.Expense, new Account("Foo"));
+            payment.AddRecurringPayment(PaymentRecurrence.Daily);
 
-        // Act
-        await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
-            new CreateRecurringPaymentsCommand(),
-            default);
-        var loadedPayments = context.Payments.ToList();
+            context.AddRange(payment);
+            await context.SaveChangesAsync();
 
-        // Assert
-        loadedPayments.Should().HaveCount(2);
-        loadedPayments.ForEach(x => x.Amount.Should().Be(166));
+            // Act
+            await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new CreateRecurringPaymentsCommand(),
+                                                                                               default);
+            var loadedPayments = context.Payments.ToList();
+
+            // Assert
+            loadedPayments.Should().HaveCount(2);
+            loadedPayments.ForEach(x => x.Amount.Should().Be(166));
+        }
     }
 }

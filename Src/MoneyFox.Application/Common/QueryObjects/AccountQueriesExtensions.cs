@@ -21,8 +21,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query with a filter for excluded accounts.</returns>
-        public static IQueryable<Account> AreNotExcluded(this IQueryable<Account> query)
-            => query.Where(x => !x.IsExcluded);
+        public static IQueryable<Account> AreNotExcluded(this IQueryable<Account> query) => query.Where(x => !x.IsExcluded);
 
         /// <summary>
         ///     Adds a filter to a query for not excluded accounts
@@ -49,8 +48,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// </summary>
         /// <param name="query">Existing query.</param>
         /// <returns>Query ordered by inclusion.</returns>
-        public static IQueryable<Account> OrderByInclusion(this IQueryable<Account> query)
-            => query.OrderBy(x => x.IsExcluded);
+        public static IQueryable<Account> OrderByInclusion(this IQueryable<Account> query) => query.OrderBy(x => x.IsExcluded);
 
         /// <summary>
         ///     Checks if there is an account with the passed name.

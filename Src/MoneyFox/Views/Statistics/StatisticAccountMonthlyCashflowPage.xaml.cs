@@ -7,14 +7,13 @@ namespace MoneyFox.Views.Statistics
 {
     public partial class StatisticAccountMonthlyCashflowPage : ContentPage
     {
+        private StatisticAccountMonthlyCashflowViewModel ViewModel => (StatisticAccountMonthlyCashflowViewModel)BindingContext;
+
         public StatisticAccountMonthlyCashflowPage()
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.StatistcAccountMonthlyCashflowViewModel;
         }
-
-        private StatisticAccountMonthlyCashflowViewModel ViewModel
-            => (StatisticAccountMonthlyCashflowViewModel)BindingContext;
 
         protected override void OnAppearing() => ViewModel.InitCommand.Execute(null);
 

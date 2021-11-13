@@ -3,12 +3,12 @@
 namespace MoneyFox.Utilities
 {
     /// <summary>
-    ///     Utility methods
+    /// Utility methods
     /// </summary>
     public static class HelperFunctions
     {
         /// <summary>
-        ///     Returns the decimal converted to a string in a proper format for this culture.
+        /// Returns the decimal converted to a string in a proper format for this culture.
         /// </summary>
         /// <param name="value">decimal who shall be converted</param>
         /// <returns>Formated string.</returns>

@@ -14,9 +14,9 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         private readonly IMediator mediator;
 
         public AddCategoryViewModel(IMediator mediator,
-            IDialogService dialogService,
-            NavigationService navigationService,
-            IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
+                                    IDialogService dialogService,
+                                    NavigationService navigationService,
+                                    IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
 
         {
             this.mediator = mediator;
@@ -38,8 +38,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
                 return;
             }
 
-            await mediator.Send(
-                new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note, SelectedCategory.RequireNote));
+            await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note, SelectedCategory.RequireNote));
         }
     }
 }

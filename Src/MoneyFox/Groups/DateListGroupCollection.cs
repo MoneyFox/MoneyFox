@@ -9,7 +9,7 @@ namespace MoneyFox.Groups
     public class DateListGroupCollection<T> : List<T>
     {
         /// <summary>
-        ///     The delegate that is used to get the key information.
+        /// The delegate that is used to get the key information.
         /// </summary>
         /// <param name="item">An object of type T</param>
         /// <returns>The key value to use for this object</returns>
@@ -19,7 +19,7 @@ namespace MoneyFox.Groups
 
 
         /// <summary>
-        ///     Public constructor.
+        /// Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
@@ -31,7 +31,7 @@ namespace MoneyFox.Groups
         }
 
         /// <summary>
-        ///     Public constructor.
+        /// Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click</param>
@@ -42,22 +42,22 @@ namespace MoneyFox.Groups
         }
 
         /// <summary>
-        ///     The Key of this group.
+        /// The Key of this group.
         /// </summary>
         public string Key { get; }
 
         /// <summary>
-        ///     The Title of this group.
+        /// The Title of this group.
         /// </summary>
         public string Subtitle { get; set; } = "";
 
         /// <summary>
-        ///     The command to execute on a click.
+        /// The command to execute on a click.
         /// </summary>
         public RelayCommand<T>? ItemClickCommand { get; }
 
         /// <summary>
-        ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
+        /// Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
         /// <param name="getKey">A delegate to get the key from an item.</param>
@@ -66,18 +66,18 @@ namespace MoneyFox.Groups
         /// <param name="itemClickCommand">The command to execute on a click.</param>
         /// <returns>An items source for a LongListSelector</returns>
         public static List<DateListGroupCollection<T>> CreateGroups(IEnumerable<T> items,
-            GetKeyDelegate getKey,
-            GetSortKeyDelegate getSortKey,
-            bool sort = true,
-            RelayCommand<T>? itemClickCommand = null)
+                                                                    GetKeyDelegate getKey,
+                                                                    GetSortKeyDelegate getSortKey,
+                                                                    bool sort = true,
+                                                                    RelayCommand<T>? itemClickCommand = null)
         {
             ThrowIfNull(items);
 
             var list = new List<DateListGroupCollection<T>>();
 
-            foreach(var item in items)
+            foreach(T item in items)
             {
-                var index = getKey(item);
+                string index = getKey(item);
 
                 if(list.All(a => a.Key != index))
                 {
@@ -92,7 +92,7 @@ namespace MoneyFox.Groups
 
             if(sort)
             {
-                foreach(var group in list)
+                foreach(DateListGroupCollection<T> group in list)
                 {
                     group.Sort((c0, c1) => getSortKey(c1).Date.Day.CompareTo(getSortKey(c0).Date.Day));
                 }

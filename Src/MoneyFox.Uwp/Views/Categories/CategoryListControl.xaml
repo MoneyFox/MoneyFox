@@ -24,7 +24,7 @@
                 Margin="0,4,0,0"
                 BlurRadius="4.0"
                 ShadowOpacity="0.40">
-                <StackPanel RightTapped="CategoryListRightTapped">
+                <StackPanel RightTapped="CategoryListRightTapped" >
                     <FlyoutBase.AttachedFlyout>
                         <MenuFlyout>
                             <MenuFlyoutItem
@@ -78,7 +78,7 @@
             Source="{Binding CategoryList}" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="240*" />
@@ -101,8 +101,7 @@
 
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="ItemClick">
-                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}"
-                                                      InputConverter="{StaticResource ClickConverter}" />
+                            <core:InvokeCommandAction Command="{Binding ItemClickCommand, Mode=OneWay}" InputConverter="{StaticResource ClickConverter}" />
                         </core:EventTriggerBehavior>
                     </interactivity:Interaction.Behaviors>
 

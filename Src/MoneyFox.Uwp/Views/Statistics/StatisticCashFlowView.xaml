@@ -9,25 +9,23 @@
                 xmlns:microcharts="using:Microcharts.Uwp"
                 xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
-                mc:Ignorable="d">
+                mc:Ignorable="d" >
 
     <Page.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
 
         <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
             <StackPanel Spacing="12">
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
 
                 <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
             </StackPanel>
         </Flyout>
     </Page.Resources>

@@ -32,11 +32,10 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForCategory
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<List<Payment>> Handle(GetPaymentsForCategoryQuery request,
-                CancellationToken cancellationToken)
+            public async Task<List<Payment>> Handle(GetPaymentsForCategoryQuery request, CancellationToken cancellationToken)
             {
                 IQueryable<Payment> query = contextAdapter.Context.Payments
-                                                          .Include(x => x.Category);
+                                                  .Include(x => x.Category);
 
                 query = request.CategoryId == 0
                     ? query.Where(x => x.Category == null)

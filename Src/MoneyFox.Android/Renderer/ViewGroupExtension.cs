@@ -8,11 +8,11 @@ namespace MoneyFox.Droid.Renderer
     public static class ViewGroupExtension
     {
         internal static IEnumerable<T> GetChildrenOfType<T>(this AViewGroup self)
-            where T : AView
+                                       where T : AView
         {
-            for(var i = 0; i < self.ChildCount; i++)
+            for(int i = 0; i < self.ChildCount; i++)
             {
-                var child = self.GetChildAt(i);
+                AView? child = self.GetChildAt(i);
                 if(child == null)
                 {
                     continue;
@@ -26,8 +26,8 @@ namespace MoneyFox.Droid.Renderer
 
                 if(child is AViewGroup childAsViewGroup)
                 {
-                    var myChildren = childAsViewGroup.GetChildrenOfType<T>();
-                    foreach(var nextChild in myChildren)
+                    IEnumerable<T> myChildren = childAsViewGroup.GetChildrenOfType<T>();
+                    foreach(T nextChild in myChildren)
                     {
                         yield return nextChild;
                     }

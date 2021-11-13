@@ -23,14 +23,16 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyExpense
             }
 
             public async Task<decimal> Handle(GetMonthlyExpenseQuery request, CancellationToken cancellationToken)
-                => (await contextAdapter.Context
+            {
+                return (await contextAdapter.Context
                                         .Payments
                                         .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
                                         .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
                                         .IsExpense()
                                         .Select(x => x.Amount)
                                         .ToListAsync(cancellationToken))
-                    .Sum();
+                                        .Sum();
+            }
         }
     }
 }

@@ -7,6 +7,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
@@ -14,75 +15,70 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById;
-
-[ExcludeFromCodeCoverage]
-public class DeleteCategoryByIdCommandTests : IDisposable
+namespace MoneyFox.Application.Tests.Categories.Commands.DeleteCategoryById
 {
-    private readonly Mock<IBackupService> backupServiceMock;
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-    private readonly Mock<ISettingsFacade> settingsFacadeMock;
-
-    public DeleteCategoryByIdCommandTests()
+    [ExcludeFromCodeCoverage]
+    public class DeleteCategoryByIdCommandTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
-        backupServiceMock = new Mock<IBackupService>();
+        private readonly EfCoreContext context;
+        private readonly Mock<IBackupService> backupServiceMock;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly Mock<ISettingsFacade> settingsFacadeMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        public DeleteCategoryByIdCommandTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
+            backupServiceMock = new Mock<IBackupService>();
 
-        settingsFacadeMock = new Mock<ISettingsFacade>();
-        settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            settingsFacadeMock = new Mock<ISettingsFacade>();
+            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()
-    {
-        // Arrange
-        var category1 = new Category("test");
-        await context.AddAsync(category1);
-        await context.SaveChangesAsync();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        await new DeleteCategoryByIdCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+        [Fact]
+        public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()
+        {
+            // Arrange
+            var category1 = new Category("test");
+            await context.AddAsync(category1);
+            await context.SaveChangesAsync();
 
-        // Assert
-        (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().BeNull();
-    }
+            // Act
+            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+               .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
 
-    [Fact]
-    public async Task SyncDoneOnCreation()
-    {
-        // Arrange
-        backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
-        backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
+            // Assert
+            (await context.Categories.FirstOrDefaultAsync(x => x.Id == category1.Id)).Should().BeNull();
+        }
 
-        var category1 = new Category("test");
-        await context.AddAsync(category1);
-        await context.SaveChangesAsync();
+        [Fact]
+        public async Task SyncDoneOnCreation()
+        {
+            // Arrange
+            backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
+            backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
 
-        // Act
-        await new DeleteCategoryByIdCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+            var category1 = new Category("test");
+            await context.AddAsync(category1);
+            await context.SaveChangesAsync();
 
-        // Assert
-        backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);
-        settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+            // Act
+            await new DeleteCategoryByIdCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+               .Handle(new DeleteCategoryByIdCommand(category1.Id), default);
+
+            // Assert
+            backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+        }
     }
 }

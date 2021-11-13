@@ -10,6 +10,7 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Application.Resources;
+using MoneyFox.Domain.Exceptions;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -18,47 +19,46 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading.Tasks;
+using Telerik.UI.Xaml.Controls.Chart;
 using Windows.UI.Xaml.Data;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
     /// <summary>
-    ///     Representation of the payment list view.
+    /// Representation of the payment list view.
     /// </summary>
     public class PaymentListViewModel : ViewModelBase
     {
-        private const int DEFAULT_MONTH_BACK = -2;
-        private readonly IBalanceCalculationService balanceCalculationService;
-        private readonly IDialogService dialogService;
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-        private readonly IMapper mapper;
+
+        private const int DEFAULT_MONTH_BACK = -2;
 
         private readonly IMediator mediator;
+        private readonly IMapper mapper;
+        private readonly IBalanceCalculationService balanceCalculationService;
+        private readonly IDialogService dialogService;
         private readonly NavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
         private int accountId;
         private IBalanceViewModel balanceViewModel = null!;
 
-        private PaymentListFilterChangedMessage filterMessage =
-            new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK)};
-
-        private CollectionViewSource? groupedPayments;
-        private bool isBusy = true;
+        private PaymentListFilterChangedMessage filterMessage = new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_MONTH_BACK) };
 
         private string title = "";
+        private bool isBusy = true;
         private IPaymentListViewActionViewModel? viewActionViewModel;
 
         /// <summary>
-        ///     Default constructor
+        /// Default constructor
         /// </summary>
         public PaymentListViewModel(IMediator mediator,
-            IMapper mapper,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            IBalanceCalculationService balanceCalculationService,
-            NavigationService navigationService)
+                                    IMapper mapper,
+                                    IDialogService dialogService,
+                                    ISettingsFacade settingsFacade,
+                                    IBalanceCalculationService balanceCalculationService,
+                                    NavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -68,21 +68,32 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.navigationService = navigationService;
         }
 
+        public void Subscribe()
+        {
+            MessengerInstance.Register<PaymentListFilterChangedMessage>(this, async (message) =>
+            {
+                filterMessage = message;
+                await LoadDataAsync();
+            });
+            MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
+        }
+
+        public void Unsubscribe() => MessengerInstance.Unregister(this);
+
         public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadDataAsync());
 
         public RelayCommand<PaymentViewModel> EditPaymentCommand
-            => new RelayCommand<PaymentViewModel>(vm => navigationService.Navigate<EditPaymentViewModel>(vm));
+            => new RelayCommand<PaymentViewModel>((vm) => navigationService.Navigate<EditPaymentViewModel>(vm));
 
         /// <summary>
-        ///     Deletes the passed PaymentViewModel.
+        /// Deletes the passed PaymentViewModel.
         /// </summary>
-        public RelayCommand<PaymentViewModel> DeletePaymentCommand
-            => new RelayCommand<PaymentViewModel>(async vm => await DeletePaymentAsync(vm));
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand => new RelayCommand<PaymentViewModel>(async (vm) => await DeletePaymentAsync(vm));
 
         /// <summary>
-        ///     Id for the current account.
+        /// Id for the current account.
         /// </summary>
         public int AccountId
         {
@@ -95,7 +106,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        ///     View Model for the balance subview.
+        /// View Model for the balance subview.
         /// </summary>
         public IBalanceViewModel BalanceViewModel
         {
@@ -108,7 +119,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        ///     View Model for the global actions on the view.
+        /// View Model for the global actions on the view.
         /// </summary>
         public IPaymentListViewActionViewModel? ViewActionViewModel
         {
@@ -124,6 +135,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 RaisePropertyChanged();
             }
         }
+
+        private CollectionViewSource? groupedPayments;
 
         /// <summary>
         ///     Returns grouped related payments
@@ -174,36 +187,20 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
         }
 
-        public void Subscribe()
-        {
-            MessengerInstance.Register<PaymentListFilterChangedMessage>(
-                this,
-                async message =>
-                {
-                    filterMessage = message;
-                    await LoadDataAsync();
-                });
-            MessengerInstance.Register<ReloadMessage>(this, async m => await LoadDataAsync());
-        }
-
-        public void Unsubscribe() => MessengerInstance.Unregister(this);
-
         private async Task InitializeAsync()
         {
             Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
 
-            BalanceViewModel = new PaymentListBalanceViewModel(
-                mediator,
-                mapper,
-                balanceCalculationService,
-                AccountId);
-            ViewActionViewModel = new PaymentListViewActionViewModel(
-                AccountId,
-                mediator,
-                settingsFacade,
-                dialogService,
-                BalanceViewModel,
-                navigationService);
+            BalanceViewModel = new PaymentListBalanceViewModel(mediator,
+                                                               mapper,
+                                                               balanceCalculationService,
+                                                               AccountId);
+            ViewActionViewModel = new PaymentListViewActionViewModel(AccountId,
+                                                                     mediator,
+                                                                     settingsFacade,
+                                                                     dialogService,
+                                                                     BalanceViewModel,
+                                                                     navigationService);
 
             await LoadDataAsync();
         }
@@ -231,28 +228,28 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task LoadPaymentsAsync()
         {
-            var payments = mapper.Map<List<PaymentViewModel>>(
-                await mediator.Send(
-                    new GetPaymentsForAccountIdQuery(
-                        AccountId,
-                        filterMessage.TimeRangeStart,
-                        filterMessage.TimeRangeEnd)
-                    {
-                        IsClearedFilterActive = filterMessage.IsClearedFilterActive,
-                        IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
-                    }));
+            List<PaymentViewModel> payments = mapper.Map<List<PaymentViewModel>>(
+                await mediator.Send(new GetPaymentsForAccountIdQuery(AccountId,
+                                                                     filterMessage.TimeRangeStart,
+                                                                     filterMessage.TimeRangeEnd)
+                {
+                    IsClearedFilterActive = filterMessage.IsClearedFilterActive,
+                    IsRecurringFilterActive = filterMessage.IsRecurringFilterActive
+                }));
 
             payments.ForEach(x => x.CurrentAccountId = AccountId);
 
-            var source = new CollectionViewSource {IsSourceGrouped = filterMessage.IsGrouped};
+            var source = new CollectionViewSource
+            {
+                IsSourceGrouped = filterMessage.IsGrouped
+            };
 
             if(filterMessage.IsGrouped)
             {
-                var group = DateListGroupCollection<PaymentViewModel>
-                    .CreateGroups(
-                        payments,
-                        s => s.Date.ToString("D", CultureInfo.CurrentCulture),
-                        s => s.Date);
+                List<DateListGroupCollection<PaymentViewModel>> group = DateListGroupCollection<PaymentViewModel>
+                    .CreateGroups(payments,
+                                    s => s.Date.ToString("D", CultureInfo.CurrentCulture),
+                                    s => s.Date);
                 source.Source = group;
             }
             else
@@ -265,11 +262,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task DeletePaymentAsync(PaymentViewModel payment)
         {
-            if(!await dialogService.ShowConfirmMessageAsync(
-                   Strings.DeleteTitle,
-                   Strings.DeletePaymentConfirmationMessage,
-                   Strings.YesLabel,
-                   Strings.NoLabel))
+            if(!await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                                                            Strings.DeletePaymentConfirmationMessage,
+                                                            Strings.YesLabel,
+                                                            Strings.NoLabel))
             {
                 return;
             }
@@ -280,9 +276,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
                 if(payment.IsRecurring)
                 {
-                    command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
-                        Strings.DeleteRecurringPaymentTitle,
-                        Strings.DeleteRecurringPaymentMessage);
+                    command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
+                                                                                                 Strings.DeleteRecurringPaymentMessage);
                 }
 
                 await mediator.Send(command);

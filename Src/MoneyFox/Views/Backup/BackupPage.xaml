@@ -1,5 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage x:Class="MoneyFox.Views.Backup.BackupPage"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -23,7 +22,7 @@
         <ScrollView>
             <StackLayout Padding="16">
                 <Label Style="{StaticResource TextHeadline}"
-                       Text="{x:Static resources:Strings.BackupTitle}" />
+                    Text="{x:Static resources:Strings.BackupTitle}" />
 
                 <StackLayout IsVisible="{Binding IsLoggedIn}">
                     <Label Style="{StaticResource TextTitle}"
@@ -33,8 +32,8 @@
                            Margin="0,10,0,0" />
 
                     <Label Text="{Binding UserAccount.Email}"
-                           HorizontalTextAlignment="Center"
-                           Margin="0,0,0,10" />
+                        HorizontalTextAlignment="Center"
+                        Margin="0,0,0,10" />
                 </StackLayout>
 
                 <Button Command="{Binding LoginCommand}"
@@ -42,30 +41,30 @@
                         Text="{x:Static resources:Strings.LoginLabel}" />
 
                 <Button Command="{Binding LogoutCommand}"
-                        IsVisible="{Binding IsLoggedIn}"
-                        Text="{x:Static resources:Strings.LogoutLabel}" />
+                    IsVisible="{Binding IsLoggedIn}"
+                    Text="{x:Static resources:Strings.LogoutLabel}" />
 
                 <StackLayout IsVisible="{Binding IsLoggedIn}">
 
                     <Label HorizontalOptions="StartAndExpand"
-                           Text="{x:Static resources:Strings.BackupInformationLabel}" />
+                        Text="{x:Static resources:Strings.BackupInformationLabel}" />
 
                     <Button x:Name="ButtonRestoreBackup"
-                            Command="{Binding BackupCommand}"
-                            Text="{x:Static resources:Strings.CreateBackupLabel}" />
+                        Command="{Binding BackupCommand}"
+                        Text="{x:Static resources:Strings.CreateBackupLabel}" />
 
                     <Label HorizontalOptions="StartAndExpand"
-                           Text="{x:Static resources:Strings.RestoreBackupInformationLabel}" />
+                        Text="{x:Static resources:Strings.RestoreBackupInformationLabel}" />
 
                     <Button Command="{Binding RestoreCommand}"
-                            Text="{x:Static resources:Strings.RestoreBackupLabel}" />
+                        Text="{x:Static resources:Strings.RestoreBackupLabel}" />
 
                     <ActivityIndicator Color="DarkBlue"
-                                       HeightRequest="20"
-                                       HorizontalOptions="End"
-                                       IsRunning="{Binding IsLoadingBackupAvailability}"
-                                       IsVisible="{Binding IsLoadingBackupAvailability}"
-                                       VerticalOptions="CenterAndExpand">
+                                    HeightRequest="20"
+                                    HorizontalOptions="End"
+                                    IsRunning="{Binding IsLoadingBackupAvailability}"
+                                    IsVisible="{Binding IsLoadingBackupAvailability}"
+                                    VerticalOptions="CenterAndExpand">
                         <ActivityIndicator.WidthRequest>
                             <OnPlatform x:TypeArguments="x:Double">
                                 <On Value="20" Platform="iOS" />
@@ -75,25 +74,25 @@
                         </ActivityIndicator.WidthRequest>
                     </ActivityIndicator>
                     <StackLayout
-                        IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}"
-                        Orientation="Horizontal">
+                    IsVisible="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}"
+                    Orientation="Horizontal">
                         <Label HorizontalOptions="Start"
-                               Text="{x:Static resources:Strings.LastBackupDateLabel}" />
+                            Text="{x:Static resources:Strings.LastBackupDateLabel}" />
                         <Label Margin="3,0,0,0"
-                               HorizontalOptions="Start"
-                               LineBreakMode="WordWrap"
-                               Text="{Binding BackupLastModified}" />
+                            HorizontalOptions="Start"
+                            LineBreakMode="WordWrap"
+                            Text="{Binding BackupLastModified}" />
                     </StackLayout>
 
 
                     <!-- Autobackup -->
                     <Label Text="{x:Static resources:Strings.AutobackupTitle}"
-                           Style="{StaticResource TextTitle}" />
+                       Style="{StaticResource TextTitle}" />
 
                     <Label Text="{x:Static resources:Strings.AutobackupInformationLabel}" />
 
                     <Grid HorizontalOptions="FillAndExpand"
-                          Margin="0,5,0,0">
+                      Margin="0,5,0,0">
 
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="70*" />
@@ -101,11 +100,11 @@
                         </Grid.ColumnDefinitions>
 
                         <Label Grid.Column="0"
-                               Text="{x:Static resources:Strings.AutobackupLabel}" />
+                           Text="{x:Static resources:Strings.AutobackupLabel}" />
 
                         <Switch Grid.Column="1"
-                                HorizontalOptions="End"
-                                IsToggled="{Binding IsAutoBackupEnabled}" />
+                            HorizontalOptions="End"
+                            IsToggled="{Binding IsAutoBackupEnabled}" />
                     </Grid>
                 </StackLayout>
             </StackLayout>

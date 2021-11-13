@@ -23,7 +23,7 @@ namespace MoneyFox.AutoMapper
     {
         public static IList<Map> LoadStandardMappings(Assembly rootAssembly)
         {
-            var types = rootAssembly.GetExportedTypes();
+            Type[] types = rootAssembly.GetExportedTypes();
 
             var mapsFrom = (from type in types
                             from instance in type.GetInterfaces()
@@ -31,19 +31,14 @@ namespace MoneyFox.AutoMapper
                                   && instance.GetGenericTypeDefinition() == typeof(IMapFrom<>)
                                   && !type.IsAbstract
                                   && !type.IsInterface
-                            select new Map(
-                                type.GetInterfaces()
-                                    .First(x => x.Name.Contains("MapFrom"))
-                                    .GetGenericArguments()
-                                    .First(),
-                                type)).ToList();
+                            select new Map(type.GetInterfaces().First(x => x.Name.Contains("MapFrom")).GetGenericArguments().First(), type)).ToList();
 
             return mapsFrom;
         }
 
         public static IList<IHaveCustomMapping> LoadCustomMappings(Assembly rootAssembly)
         {
-            var types = rootAssembly.GetExportedTypes();
+            Type[] types = rootAssembly.GetExportedTypes();
 
             var mapsFrom = (from type in types
                             from instance in type.GetInterfaces()

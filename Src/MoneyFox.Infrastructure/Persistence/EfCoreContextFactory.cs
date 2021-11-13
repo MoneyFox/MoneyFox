@@ -7,9 +7,9 @@ namespace MoneyFox.Infrastructure.Persistence
     {
         public static EfCoreContext Create()
         {
-            var options = new DbContextOptionsBuilder<EfCoreContext>()
-                          .UseSqlite($"Data Source={DatabasePathHelper.DbPath}")
-                          .Options;
+            DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
+                                                     .UseSqlite($"Data Source={DatabasePathHelper.DbPath}")
+                                                     .Options;
 
             var context = new EfCoreContext(options);
             context.Database.Migrate();

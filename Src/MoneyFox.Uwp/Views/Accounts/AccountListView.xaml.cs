@@ -10,12 +10,16 @@ using Windows.UI.Xaml.Navigation;
 namespace MoneyFox.Uwp.Views.Accounts
 {
     /// <summary>
-    ///     View to display an list of accounts.
+    /// View to display an list of accounts.
     /// </summary>
     public sealed partial class AccountListView : BaseView
     {
+        public override bool ShowHeader => false;
+
+        private AccountListViewModel ViewModel => (AccountListViewModel)DataContext;
+
         /// <summary>
-        ///     Initialize View.
+        /// Initialize View.
         /// </summary>
         public AccountListView()
         {
@@ -26,10 +30,6 @@ namespace MoneyFox.Uwp.Views.Accounts
                 DataContext = ViewModelLocator.AccountListVm;
             }
         }
-
-        public override bool ShowHeader => false;
-
-        private AccountListViewModel ViewModel => (AccountListViewModel)DataContext;
 
         protected override void OnNavigatedTo(NavigationEventArgs e) => ViewModel.Subscribe();
 
@@ -53,9 +53,7 @@ namespace MoneyFox.Uwp.Views.Accounts
             if(!(element.DataContext is AccountViewModel account))
             {
                 return;
-            }
-
-            (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
+            } (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
         }
 
         private void AccountClicked(object sender, ItemClickEventArgs parameter)

@@ -11,13 +11,11 @@ namespace MoneyFox.ViewModels.Categories
 {
     public abstract class ModifyCategoryViewModel : ViewModelBase
     {
-        private readonly IDialogService dialogService;
         private readonly IMediator mediator;
-
-        private CategoryViewModel selectedCategory = new CategoryViewModel();
+        private readonly IDialogService dialogService;
 
         protected ModifyCategoryViewModel(IMediator mediator,
-            IDialogService dialogService)
+                                          IDialogService dialogService)
         {
             this.mediator = mediator;
             this.dialogService = dialogService;
@@ -25,8 +23,10 @@ namespace MoneyFox.ViewModels.Categories
 
         public RelayCommand SaveCommand => new RelayCommand(async () => await SaveCategoryBaseAsync());
 
+        private CategoryViewModel selectedCategory = new CategoryViewModel();
+
         /// <summary>
-        ///     The currently selected CategoryViewModel
+        /// The currently selected CategoryViewModel
         /// </summary>
         public CategoryViewModel SelectedCategory
         {
@@ -59,7 +59,7 @@ namespace MoneyFox.ViewModels.Categories
             MessengerInstance.Send(new ReloadMessage());
             await dialogService.HideLoadingDialogAsync();
 
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
+            await App.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

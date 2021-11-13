@@ -18,19 +18,18 @@ namespace MoneyFox.Tests.ViewModels
         public async Task Initialize_NoConnectivity_NothingCalled()
         {
             // Setup
-            var connectivitySetup = Substitute.For<IConnectivityAdapter>();
+            IConnectivityAdapter connectivitySetup = Substitute.For<IConnectivityAdapter>();
             connectivitySetup.IsConnected.Returns(false);
 
-            var settingsManagerMock = Substitute.For<ISettingsFacade>();
-            var backupServiceMock = Substitute.For<IBackupService>();
+            ISettingsFacade settingsManagerMock = Substitute.For<ISettingsFacade>();
+            IBackupService backupServiceMock = Substitute.For<IBackupService>();
 
             //execute
-            var vm = new BackupViewModel(
-                backupServiceMock,
-                null,
-                connectivitySetup,
-                settingsManagerMock,
-                null);
+            var vm = new BackupViewModel(backupServiceMock,
+                                         null,
+                                         connectivitySetup,
+                                         settingsManagerMock,
+                                         null);
             vm.InitializeCommand.Execute(null);
 
             //assert
@@ -43,19 +42,18 @@ namespace MoneyFox.Tests.ViewModels
         public async Task Initialize_ConnectivityNotLoggedIn_NothingCalled()
         {
             // Setup
-            var connectivitySetup = Substitute.For<IConnectivityAdapter>();
+            IConnectivityAdapter connectivitySetup = Substitute.For<IConnectivityAdapter>();
             connectivitySetup.IsConnected.Returns(true);
 
-            var settingsManagerMock = Substitute.For<ISettingsFacade>();
-            var backupServiceMock = Substitute.For<IBackupService>();
+            ISettingsFacade settingsManagerMock = Substitute.For<ISettingsFacade>();
+            IBackupService backupServiceMock = Substitute.For<IBackupService>();
 
             //execute
-            var vm = new BackupViewModel(
-                backupServiceMock,
-                null,
-                connectivitySetup,
-                settingsManagerMock,
-                null);
+            var vm = new BackupViewModel(backupServiceMock,
+                                         null,
+                                         connectivitySetup,
+                                         settingsManagerMock,
+                                         null);
             vm.InitializeCommand.Execute(null);
 
             //assert
@@ -68,25 +66,24 @@ namespace MoneyFox.Tests.ViewModels
         public void Initialize_ConnectivityLoggedIn_MethodsCalled()
         {
             // Setup
-            var connectivitySetup = Substitute.For<IConnectivityAdapter>();
+            IConnectivityAdapter connectivitySetup = Substitute.For<IConnectivityAdapter>();
             connectivitySetup.IsConnected.Returns(true);
 
-            var settingsManagerMock = Substitute.For<ISettingsFacade>();
+            ISettingsFacade settingsManagerMock = Substitute.For<ISettingsFacade>();
             settingsManagerMock.IsLoggedInToBackupService.Returns(true);
 
-            var returnDate = DateTime.Today;
+            DateTime returnDate = DateTime.Today;
 
-            var backupServiceMock = Substitute.For<IBackupService>();
+            IBackupService backupServiceMock = Substitute.For<IBackupService>();
             backupServiceMock.IsBackupExistingAsync().Returns(true);
             backupServiceMock.GetBackupDateAsync().Returns(returnDate);
 
             //execute
-            var vm = new BackupViewModel(
-                backupServiceMock,
-                null,
-                connectivitySetup,
-                settingsManagerMock,
-                null);
+            var vm = new BackupViewModel(backupServiceMock,
+                                         null,
+                                         connectivitySetup,
+                                         settingsManagerMock,
+                                         null);
             vm.InitializeCommand.Execute(null);
 
             //assert
@@ -99,22 +96,21 @@ namespace MoneyFox.Tests.ViewModels
         public void Logout_PropertiesSet()
         {
             // Setup
-            var connectivitySetup = Substitute.For<IConnectivityAdapter>();
-            var settingsManagerMock = Substitute.For<ISettingsFacade>();
+            IConnectivityAdapter connectivitySetup = Substitute.For<IConnectivityAdapter>();
+            ISettingsFacade settingsManagerMock = Substitute.For<ISettingsFacade>();
 
-            var logoutCommandCalled = false;
+            bool logoutCommandCalled = false;
 
-            var backupServiceMock = Substitute.For<IBackupService>();
+            IBackupService backupServiceMock = Substitute.For<IBackupService>();
             backupServiceMock.When(x => x.LogoutAsync())
                              .Do(x => logoutCommandCalled = true);
 
             //execute
-            var vm = new BackupViewModel(
-                backupServiceMock,
-                null,
-                connectivitySetup,
-                settingsManagerMock,
-                null);
+            var vm = new BackupViewModel(backupServiceMock,
+                                         null,
+                                         connectivitySetup,
+                                         settingsManagerMock,
+                                         null);
             vm.LogoutCommand.Execute(null);
 
             //assert

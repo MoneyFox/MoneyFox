@@ -6,6 +6,8 @@ namespace MoneyFox.Views.Payments
 {
     public partial class AddPaymentPage
     {
+        private AddPaymentViewModel ViewModel => (AddPaymentViewModel)BindingContext;
+
         public AddPaymentPage()
         {
             InitializeComponent();
@@ -31,8 +33,6 @@ namespace MoneyFox.Views.Payments
             ToolbarItems.Add(cancelItem);
             ToolbarItems.Add(saveItem);
         }
-
-        private AddPaymentViewModel ViewModel => (AddPaymentViewModel)BindingContext;
 
         protected override async void OnAppearing() => await ViewModel.InitializeAsync();
     }

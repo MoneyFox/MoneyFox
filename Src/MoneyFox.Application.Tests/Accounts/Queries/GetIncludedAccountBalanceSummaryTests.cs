@@ -10,49 +10,50 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries;
-
-[ExcludeFromCodeCoverage]
-public class GetIncludedAccountBalanceSummaryTests : IDisposable
+namespace MoneyFox.Application.Tests.Accounts.Queries
 {
-    private readonly EfCoreContext context;
-    private readonly IContextAdapter contextAdapter;
-
-    public GetIncludedAccountBalanceSummaryTests()
+    [ExcludeFromCodeCoverage]
+    public class GetIncludedAccountBalanceSummaryTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly IContextAdapter contextAdapter;
 
-        contextAdapter = Substitute.For<IContextAdapter>();
-        contextAdapter.Context.Returns(context);
-    }
+        public GetIncludedAccountBalanceSummaryTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapter = Substitute.For<IContextAdapter>();
+            contextAdapter.Context.Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task GetIncludedAccountBalanceSummary_CorrectSum()
-    {
-        // Arrange
-        var accountExcluded = new Account("test", 80, isExcluded: true);
-        var accountIncluded1 = new Account("test", 100);
-        var accountIncluded2 = new Account("test", 120);
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        await context.AddAsync(accountExcluded);
-        await context.AddAsync(accountIncluded1);
-        await context.AddAsync(accountIncluded2);
-        await context.SaveChangesAsync();
+        [Fact]
+        public async Task GetIncludedAccountBalanceSummary_CorrectSum()
+        {
+            // Arrange
+            var accountExcluded = new Account("test", 80, isExcluded: true);
+            var accountIncluded1 = new Account("test", 100);
+            var accountIncluded2 = new Account("test", 120);
 
-        // Act
-        var result =
-            await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter)
-                .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+            await context.AddAsync(accountExcluded);
+            await context.AddAsync(accountIncluded1);
+            await context.AddAsync(accountIncluded2);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().Be(220);
+            // Act
+            decimal result =
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter)
+                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+
+            // Assert
+            result.Should().Be(220);
+        }
     }
 }

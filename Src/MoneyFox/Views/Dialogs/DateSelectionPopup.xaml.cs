@@ -10,6 +10,7 @@ namespace MoneyFox.Views.Dialogs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DateSelectionPopup
     {
+        private SelectDateRangeDialogViewModel ViewModel => (SelectDateRangeDialogViewModel)BindingContext;
         public DateSelectionPopup(DateTime dateFrom, DateTime dateTo)
         {
             InitializeComponent();
@@ -27,13 +28,9 @@ namespace MoneyFox.Views.Dialogs
             ViewModel.Initialize(message);
         }
 
-        private SelectDateRangeDialogViewModel ViewModel => (SelectDateRangeDialogViewModel)BindingContext;
+        public async Task ShowAsync() => await App.Current.MainPage.Navigation.PushPopupAsync(this);
 
-        public async Task ShowAsync()
-            => await Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(this);
-
-        private static async Task DismissAsync()
-            => await Xamarin.Forms.Application.Current.MainPage.Navigation.PopPopupAsync();
+        private static async Task DismissAsync() => await App.Current.MainPage.Navigation.PopPopupAsync();
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {

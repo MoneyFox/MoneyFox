@@ -24,6 +24,7 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanVisibilityConverter" />
         <converter:RecurrenceTypeConverter x:Key="RecurrenceTypeConverter" />
+        <converter:DecimalConverter x:Key="DecimalConverter" />
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
 
         <DataTemplate x:Key="ComboBoxAccountTemplate" x:DataType="accounts:AccountViewModel">
@@ -104,8 +105,7 @@
             VerticalAlignment="Stretch"
             Header="{x:Bind resources:Strings.RecurringLabel}"
             IsOn="{x:Bind ViewModel.SelectedPayment.IsRecurring, Mode=TwoWay}" />
-        <StackPanel
-            Visibility="{x:Bind ViewModel.SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
+        <StackPanel Visibility="{x:Bind ViewModel.SelectedPayment.IsRecurring, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
             <ComboBox
                 Margin="{StaticResource SmallTitleContentMargin}"
                 HorizontalAlignment="Stretch"

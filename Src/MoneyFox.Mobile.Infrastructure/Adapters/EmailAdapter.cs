@@ -14,7 +14,12 @@ namespace MoneyFox.Mobile.Infrastructure.Adapters
         {
             try
             {
-                var message = new EmailMessage {Subject = subject, Body = body, To = recipients};
+                var message = new EmailMessage
+                {
+                    Subject = subject,
+                    Body = body,
+                    To = recipients
+                };
 
                 await Email.ComposeAsync(message);
             }
@@ -28,9 +33,14 @@ namespace MoneyFox.Mobile.Infrastructure.Adapters
         {
             try
             {
-                var message = new EmailMessage {Subject = subject, Body = body, To = recipients};
+                var message = new EmailMessage
+                {
+                    Subject = subject,
+                    Body = body,
+                    To = recipients
+                };
 
-                foreach(var path in filePaths)
+                foreach(string path in filePaths)
                 {
                     message.Attachments.Add(new EmailAttachment(path, "txt"));
                 }

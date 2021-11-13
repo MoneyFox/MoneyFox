@@ -9,6 +9,7 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Utilities;
+using System;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -21,12 +22,13 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
         private readonly IMediator mediator;
 
         public EditAccountViewModel(IMediator mediator,
-            IMapper mapper,
-            IDialogService dialogService,
-            INavigationService navigationService) : base(dialogService, navigationService)
+                                    IMapper mapper,
+                                    IDialogService dialogService,
+                                    INavigationService navigationService) : base(dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
+
         }
 
         public override bool IsEdit => true;
@@ -40,14 +42,11 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 
-        protected override async Task SaveAccountAsync()
-            => await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
+        protected override async Task SaveAccountAsync() => await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
 
         protected async Task DeleteAccountAsync()
         {
-            if(await DialogService.ShowConfirmMessageAsync(
-                   Strings.DeleteTitle,
-                   Strings.DeleteAccountConfirmationMessage))
+            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccount.Id));
                 NavigationService.GoBack();

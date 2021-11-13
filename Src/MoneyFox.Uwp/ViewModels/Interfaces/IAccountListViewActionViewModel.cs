@@ -3,7 +3,7 @@
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Interfaces
 {
-    /// <inheritdoc />
+    /// <inheritdoc/>
     public interface IAccountListViewActionViewModel
     {
         RelayCommand GoToAddAccountCommand { get; }

@@ -25,8 +25,7 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryById
             }
 
             public async Task<Category> Handle(GetCategoryByIdQuery request,
-                CancellationToken cancellationToken)
-                => await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
+                                               CancellationToken cancellationToken) => await contextAdapter.Context.Categories.FindAsync(request.CategoryId);
         }
     }
 }

@@ -10,42 +10,27 @@ using Windows.UI.Xaml.Data;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
-    [SuppressMessage(
-        "Major Code Smell",
-        "S109:Magic numbers should not be used",
-        Justification = "Not needed in design time")]
+    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
-        public RelayCommand<PaymentViewModel> EditPaymentCommand { get; } = null!;
-
-        public RelayCommand<PaymentViewModel> DeletePaymentCommand { get; } = null!;
         public IBalanceViewModel BalanceViewModel => new DesignTimeBalanceViewViewModel();
 
         public IPaymentListViewActionViewModel ViewActionViewModel { get; } = null!;
 
         public RelayCommand InitializeCommand { get; } = null!;
 
+        public RelayCommand<PaymentViewModel> EditPaymentCommand { get; } = null!;
+
+        public RelayCommand<PaymentViewModel> DeletePaymentCommand { get; } = null!;
+
         public CollectionViewSource GroupedPayments => new CollectionViewSource
         {
             IsSourceGrouped = true,
             Source = new List<PaymentViewModel>
             {
-                new PaymentViewModel
-                {
-                    Amount = 123, Category = new CategoryViewModel {Name = "Beer"}, Date = DateTime.Now
-                },
-                new PaymentViewModel
-                {
-                    Amount = 123,
-                    Category = new CategoryViewModel {Name = "Beer"},
-                    Date = DateTime.Now.AddMonths(-1)
-                },
-                new PaymentViewModel
-                {
-                    Amount = 123,
-                    Category = new CategoryViewModel {Name = "Beer"},
-                    Date = DateTime.Now.AddMonths(-1)
-                }
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
+                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
             }
         };
 

@@ -7,10 +7,11 @@ namespace MoneyFox.Uwp.Commands
 {
     public sealed class AsyncCommand : IAsyncCommand
     {
-        private readonly Func<bool>? canExecute;
-        private readonly Func<Task> execute;
+        public event EventHandler? CanExecuteChanged;
 
         private bool isExecuting;
+        private readonly Func<Task> execute;
+        private readonly Func<bool>? canExecute;
 
         public AsyncCommand(
             Func<Task> execute,
@@ -19,8 +20,6 @@ namespace MoneyFox.Uwp.Commands
             this.execute = execute;
             this.canExecute = canExecute;
         }
-
-        public event EventHandler? CanExecuteChanged;
 
         public bool CanExecute() => !isExecuting && (canExecute?.Invoke() ?? true);
 
@@ -42,28 +41,27 @@ namespace MoneyFox.Uwp.Commands
             RaiseCanExecuteChanged();
         }
 
+        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+
 
         bool ICommand.CanExecute(object parameter) => CanExecute();
 
         void ICommand.Execute(object parameter) => ExecuteAsync().FireAndForgetSafeAsync();
-
-        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public sealed class AsyncCommand<T> : IAsyncCommand<T>
     {
-        private readonly Func<T, bool>? canExecute;
-        private readonly Func<T, Task> execute;
+        public event EventHandler? CanExecuteChanged;
 
         private bool isExecuting;
+        private readonly Func<T, Task> execute;
+        private readonly Func<T, bool>? canExecute;
 
         public AsyncCommand(Func<T, Task> execute, Func<T, bool>? canExecute = null)
         {
             this.execute = execute;
             this.canExecute = canExecute;
         }
-
-        public event EventHandler? CanExecuteChanged;
 
         public bool CanExecute(T parameter) => !isExecuting && (canExecute?.Invoke(parameter) ?? true);
 
@@ -85,11 +83,11 @@ namespace MoneyFox.Uwp.Commands
             RaiseCanExecuteChanged();
         }
 
+        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+
 
         bool ICommand.CanExecute(object parameter) => CanExecute((T)parameter);
 
         void ICommand.Execute(object parameter) => ExecuteAsync((T)parameter).FireAndForgetSafeAsync();
-
-        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 }

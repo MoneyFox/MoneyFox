@@ -10,59 +10,58 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountNameById;
-
-[ExcludeFromCodeCoverage]
-public class GetAccountNameByIdQueryTests : IDisposable
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountNameById
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public GetAccountNameByIdQueryTests()
+    [ExcludeFromCodeCoverage]
+    public class GetAccountNameByIdQueryTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
+        public GetAccountNameByIdQueryTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task GetAccountByIdQuery_CorrectNumberLoaded()
-    {
-        // Arrange
-        var account1 = new Account("test2", 80);
-        await context.AddAsync(account1);
-        await context.SaveChangesAsync();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        var result =
-            await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetAccountNameByIdQuery(account1.Id),
-                default);
+        [Fact]
+        public async Task GetAccountByIdQuery_CorrectNumberLoaded()
+        {
+            // Arrange
+            var account1 = new Account("test2", 80);
+            await context.AddAsync(account1);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().Be(account1.Name);
-    }
+            // Act
+            string result =
+                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountNameByIdQuery(account1.Id),
+                                                                                            default);
 
-    [Fact]
-    public async Task EmptyStringWhenNoAccountFound()
-    {
-        // Arrange
-        // Act
-        var result =
-            await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetAccountNameByIdQuery(33),
-                default);
+            // Assert
+            result.Should().Be(account1.Name);
+        }
 
-        // Assert
-        result.Should().Be(string.Empty);
+        [Fact]
+        public async Task EmptyStringWhenNoAccountFound()
+        {
+            // Arrange
+            // Act
+            string result =
+                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountNameByIdQuery(33),
+                                                                                            default);
+
+            // Assert
+            result.Should().Be(string.Empty);
+        }
     }
 }

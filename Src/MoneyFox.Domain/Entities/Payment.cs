@@ -8,7 +8,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace MoneyFox.Domain.Entities
 {
     /// <summary>
-    ///     Database model for payments. Includes expenses, income and transfers.     Database table: Payments
+    /// Database model for payments. Includes expenses, income and transfers.     Database table: Payments
     /// </summary>
     public class Payment
     {
@@ -18,18 +18,15 @@ namespace MoneyFox.Domain.Entities
         [UsedImplicitly]
         private Payment() { }
 
-        [SuppressMessage(
-            "Major Code Smell",
-            "S107:Methods should not have too many parameters",
-            Justification = "ignored")]
+        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters", Justification = "ignored")]
         public Payment(DateTime date,
-            decimal amount,
-            PaymentType type,
-            Account chargedAccount,
-            Account? targetAccount = null,
-            Category? category = null,
-            string note = "",
-            RecurringPayment? recurringPayment = null)
+                       decimal amount,
+                       PaymentType type,
+                       Account chargedAccount,
+                       Account? targetAccount = null,
+                       Category? category = null,
+                       string note = "",
+                       RecurringPayment? recurringPayment = null)
         {
             CreationTime = DateTime.Now;
             AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
@@ -61,23 +58,30 @@ namespace MoneyFox.Domain.Entities
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; }
+        public DateTime CreationTime { get; private set; }
 
         public virtual Category? Category { get; private set; }
 
-        [Required] public virtual Account ChargedAccount { get; private set; } = null!;
+        private Account chargedAccount = null!;
+
+        [Required]
+        public virtual Account ChargedAccount
+        {
+            get => chargedAccount;
+            private set => chargedAccount = value;
+        }
 
         public virtual Account? TargetAccount { get; private set; }
 
         public virtual RecurringPayment? RecurringPayment { get; private set; }
 
         public void UpdatePayment(DateTime date,
-            decimal amount,
-            PaymentType type,
-            Account chargedAccount,
-            Account? targetAccount = null,
-            Category? category = null,
-            string note = "")
+                                  decimal amount,
+                                  PaymentType type,
+                                  Account chargedAccount,
+                                  Account? targetAccount = null,
+                                  Category? category = null,
+                                  string note = "")
         {
             if(ChargedAccount == null)
             {
@@ -93,12 +97,12 @@ namespace MoneyFox.Domain.Entities
         }
 
         private void AssignValues(DateTime date,
-            decimal amount,
-            PaymentType type,
-            Account chargedAccount,
-            Account? targetAccount,
-            Category? category,
-            string note)
+                                  decimal amount,
+                                  PaymentType type,
+                                  Account chargedAccount,
+                                  Account? targetAccount,
+                                  Category? category,
+                                  string note)
         {
             Date = date;
             Amount = amount;
@@ -112,17 +116,7 @@ namespace MoneyFox.Domain.Entities
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
         {
-            RecurringPayment = new RecurringPayment(
-                Date,
-                Amount,
-                Type,
-                recurrence,
-                ChargedAccount,
-                Note ?? "",
-                endDate,
-                TargetAccount,
-                Category,
-                Date);
+            RecurringPayment = new RecurringPayment(Date, Amount, Type, recurrence, ChargedAccount, Note ?? "", endDate, TargetAccount, Category, Date);
             IsRecurring = true;
         }
 

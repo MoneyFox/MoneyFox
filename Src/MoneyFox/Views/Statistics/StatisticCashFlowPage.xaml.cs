@@ -6,6 +6,8 @@ namespace MoneyFox.Views.Statistics
 {
     public partial class StatisticCashFlowPage
     {
+        private StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)BindingContext;
+
         public StatisticCashFlowPage()
         {
             InitializeComponent();
@@ -13,8 +15,6 @@ namespace MoneyFox.Views.Statistics
 
             ViewModel.LoadedCommand.Execute(null);
         }
-
-        private StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)BindingContext;
 
         private async void OpenFilterDialog(object sender, EventArgs e)
             => await new DateSelectionPopup(ViewModel.StartDate, ViewModel.EndDate).ShowAsync();

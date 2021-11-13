@@ -8,19 +8,19 @@ namespace MoneyFox.ViewModels.Accounts
     public sealed class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
         private const decimal DECIMAL_DELTA = 0.01m;
-        private DateTime creationTime;
-        private decimal currentBalance;
-        private decimal endOfMonthBalance;
 
         private int id;
-        private bool isExcluded;
-        private bool isOverdrawn;
-        private DateTime modificationDate;
         private string name = "";
+        private decimal currentBalance;
+        private decimal endOfMonthBalance;
         private string note = "";
+        private bool isOverdrawn;
+        private bool isExcluded;
+        private DateTime creationTime;
+        private DateTime modificationDate;
 
         /// <summary>
-        ///     Account Id
+        /// Account Id
         /// </summary>
         public int Id
         {
@@ -38,7 +38,7 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         /// <summary>
-        ///     Account Name
+        /// Account Name
         /// </summary>
         public string Name
         {
@@ -56,7 +56,7 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         /// <summary>
-        ///     Current Balance
+        /// Current Balance
         /// </summary>
         public decimal CurrentBalance
         {
@@ -74,7 +74,7 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         /// <summary>
-        ///     Balance End of Month
+        /// Balance End of Month
         /// </summary>
         public decimal EndOfMonthBalance
         {
@@ -87,7 +87,7 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         /// <summary>
-        ///     Note
+        /// Note
         /// </summary>
         public string Note
         {
@@ -105,7 +105,7 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         /// <summary>
-        ///     Indicator if the account currently is overdrawn.
+        /// Indicator if the account currently is overdrawn.
         /// </summary>
         public bool IsOverdrawn
         {
@@ -123,7 +123,7 @@ namespace MoneyFox.ViewModels.Accounts
         }
 
         /// <summary>
-        ///     Indicator if the account is excluded from the balance calculation.
+        /// Indicator if the account is excluded from the balance calculation.
         /// </summary>
         public bool IsExcluded
         {
@@ -176,7 +176,6 @@ namespace MoneyFox.ViewModels.Accounts
             {
                 return false;
             }
-
             return Id.Equals(other.Id);
         }
     }

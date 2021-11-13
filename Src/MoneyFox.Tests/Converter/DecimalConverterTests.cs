@@ -25,7 +25,7 @@ namespace MoneyFox.Tests.Converter
             var converter = new DecimalConverter();
 
             // Act
-            var result = (decimal)converter.ConvertBack(value, null, null, Thread.CurrentThread.CurrentUICulture);
+            decimal result = (decimal)converter.ConvertBack(value, null, null, Thread.CurrentThread.CurrentUICulture);
 
             // Assert
             result.Should().Be(expectedResult);

@@ -14,94 +14,92 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById;
-
-[ExcludeFromCodeCoverage]
-public class DeactivateAccountByIdCommandTests : IDisposable
+namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
 {
-    private readonly Mock<IBackupService> backupServiceMock;
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-    private readonly Mock<ISettingsFacade> settingsFacadeMock;
-
-    public DeactivateAccountByIdCommandTests()
+    [ExcludeFromCodeCoverage]
+    public class DeactivateAccountByIdCommandTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly Mock<IBackupService> backupServiceMock;
+        private readonly Mock<ISettingsFacade> settingsFacadeMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        public DeactivateAccountByIdCommandTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-        backupServiceMock = new Mock<IBackupService>();
-        backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                         .Returns(Task.CompletedTask);
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
 
-        settingsFacadeMock = new Mock<ISettingsFacade>();
-        settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
-    }
+            backupServiceMock = new Mock<IBackupService>();
+            backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
+                             .Returns(Task.CompletedTask);
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            settingsFacadeMock = new Mock<ISettingsFacade>();
+            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task DeactivatedAccountNotDeleted()
-    {
-        // Arrange
-        var account = new Account("test");
-        await context.AddAsync(account);
-        await context.SaveChangesAsync();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        await new DeactivateAccountByIdCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(new DeactivateAccountByIdCommand(account.Id), default);
+        [Fact]
+        public async Task DeactivatedAccountNotDeleted()
+        {
+            // Arrange
+            var account = new Account("test");
+            await context.AddAsync(account);
+            await context.SaveChangesAsync();
 
-        // Assert
-        (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().NotBeNull();
-    }
+            // Act
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
+                                                       backupServiceMock.Object,
+                                                       settingsFacadeMock.Object)
+                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
 
-    [Fact]
-    public async Task AccoutnDeactivated()
-    {
-        // Arrange
-        var account = new Account("test");
-        await context.AddAsync(account);
-        await context.SaveChangesAsync();
+            // Assert
+            (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).Should().NotBeNull();
+        }
 
-        // Act
-        await new DeactivateAccountByIdCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(new DeactivateAccountByIdCommand(account.Id), default);
+        [Fact]
+        public async Task AccoutnDeactivated()
+        {
+            // Arrange
+            var account = new Account("test");
+            await context.AddAsync(account);
+            await context.SaveChangesAsync();
 
-        // Assert
-        (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
-    }
+            // Act
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
+                                                       backupServiceMock.Object,
+                                                       settingsFacadeMock.Object)
+                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
 
-    [Fact]
-    public async Task UploadeBackupOnDelete()
-    {
-        // Arrange
-        var account = new Account("test");
-        await context.AddAsync(account);
-        await context.SaveChangesAsync();
+            // Assert
+            (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
+        }
 
-        // Act
-        await new DeactivateAccountByIdCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(new DeactivateAccountByIdCommand(account.Id), default);
+        [Fact]
+        public async Task UploadeBackupOnDelete()
+        {
+            // Arrange
+            var account = new Account("test");
+            await context.AddAsync(account);
+            await context.SaveChangesAsync();
 
-        // Assert
-        backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
-        settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+            // Act
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
+                                                       backupServiceMock.Object,
+                                                       settingsFacadeMock.Object)
+                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
+
+            // Assert
+            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+        }
     }
 }

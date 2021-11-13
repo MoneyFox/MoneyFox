@@ -23,17 +23,15 @@
         <TextBlock Grid.Row="0" Text="{x:Bind ViewModel.Title}" Style="{StaticResource UwpPageTitleStyle}" />
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <CommandBar Style="{ThemeResource DefaultCommandBar}">
-                <AppBarButton Command="{x:Bind ViewModel.SaveCommand}" Icon="Save"
-                              Label="{x:Bind resources:Strings.DoneLabel}" />
-                <AppBarButton Command="{x:Bind ViewModel.CancelCommand}" Icon="Cancel"
-                              Label="{x:Bind resources:Strings.CancelLabel}" />
+            <CommandBar Style="{ThemeResource DefaultCommandBar}" >
+                <AppBarButton Command="{x:Bind ViewModel.SaveCommand}" Icon="Save" Label="{x:Bind resources:Strings.DoneLabel}" />
+                <AppBarButton Command="{x:Bind ViewModel.CancelCommand}" Icon="Cancel" Label="{x:Bind resources:Strings.CancelLabel}" />
             </CommandBar>
         </StackPanel>
 
         <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <userControls:ModifyPaymentUserControl />
+                <userControls:ModifyPaymentUserControl Grid.Row="0" />
             </StackPanel>
         </ScrollViewer>
     </Grid>

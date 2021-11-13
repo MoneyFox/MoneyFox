@@ -7,12 +7,6 @@ namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class CategorySelectionControl : UserControl
     {
-        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
-            "ViewModel",
-            typeof(ModifyPaymentViewModel),
-            typeof(CategorySelectionControl),
-            new PropertyMetadata(null));
-
         public CategorySelectionControl()
         {
             InitializeComponent();
@@ -23,5 +17,9 @@ namespace MoneyFox.Uwp.Views.Payments
             get => (ModifyPaymentViewModel)GetValue(ViewModelProperty);
             set => SetValue(ViewModelProperty, value);
         }
+        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register("ViewModel",
+                                                                                                  typeof(ModifyPaymentViewModel),
+                                                                                                  typeof(CategorySelectionControl),
+                                                                                                  new PropertyMetadata(null));
     }
 }

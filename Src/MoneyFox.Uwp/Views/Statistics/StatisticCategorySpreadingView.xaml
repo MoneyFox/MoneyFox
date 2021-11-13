@@ -31,15 +31,13 @@
 
         <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
             <StackPanel Spacing="12">
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
 
                 <muxc:NumberBox Value="{x:Bind ViewModel.NumberOfCategoriesToShow, Mode=TwoWay}"
                                 SmallChange="1"
@@ -48,7 +46,7 @@
                                 SpinButtonPlacementMode="Inline" />
 
                 <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
             </StackPanel>
         </Flyout>
     </Page.Resources>
@@ -91,11 +89,11 @@
                 HorizontalAlignment="Stretch"
                 Header="{x:Bind resources:Strings.SelectedPaymentTypeHeader}"
                 ItemsSource="{x:Bind ViewModel.PaymentTypes, Mode=OneWay}"
-                SelectedItem="{x:Bind ViewModel.SelectedPaymentType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                SelectedItem="{x:Bind ViewModel.SelectedPaymentType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
 
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource PaymentTypeToStringConverter}}" />
+                        <TextBlock Text="{Binding Converter={StaticResource PaymentTypeToStringConverter}}"/>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
 
@@ -112,6 +110,7 @@
                 <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
                                       RadiusFactor="0.6"
                                       Foreground="{ThemeResource AppForegroundPrimaryBrush}">
+
                     <chart:DoughnutSeries.ValueBinding>
                         <chart:PropertyNameDataPointBinding PropertyName="Value" />
                     </chart:DoughnutSeries.ValueBinding>

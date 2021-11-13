@@ -6,6 +6,7 @@ using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
+using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
@@ -26,30 +27,27 @@ using System.Threading.Tasks;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Accounts
 {
-    [SuppressMessage(
-        "Major Code Smell",
-        "S1200:Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
+    [SuppressMessage("Major Code Smell", "S1200:Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
     public class AccountListViewModel : ViewModelBase, IAccountListViewModel
     {
-        private readonly IDialogService dialogService;
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-        private readonly IMapper mapper;
 
         private readonly IMediator mediator;
-        private readonly NavigationService navigationService;
+        private readonly IMapper mapper;
+        private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-
-        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts =
-            new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
+        private readonly NavigationService navigationService;
 
         private bool isRunning;
 
+        private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts = new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
+
         public AccountListViewModel(IMediator mediator,
-            IMapper mapper,
-            IBalanceCalculationService balanceCalculationService,
-            IDialogService dialogService,
-            ISettingsFacade settingsFacade,
-            NavigationService navigationService)
+                                    IMapper mapper,
+                                    IBalanceCalculationService balanceCalculationService,
+                                    IDialogService dialogService,
+                                    ISettingsFacade settingsFacade,
+                                    NavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -60,6 +58,12 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             BalanceViewModel = new BalanceViewModel(balanceCalculationService);
             ViewActionViewModel = new AccountListViewActionViewModel(this.navigationService);
         }
+
+        public void Subscribe()
+            => MessengerInstance.Register<ReloadMessage>(this, async (m) => await LoadAsync());
+
+        public void Unsubscribe()
+            => MessengerInstance.Unregister<ReloadMessage>(this);
 
         public IBalanceViewModel BalanceViewModel { get; }
 
@@ -85,21 +89,13 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
         public AsyncCommand LoadDataCommand => new AsyncCommand(LoadAsync);
 
-        public RelayCommand<AccountViewModel> OpenOverviewCommand
-            => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
+        public RelayCommand<AccountViewModel> OpenOverviewCommand => new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
         public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
 
         public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(DeleteAsync);
 
-        public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async m => await LoadAsync());
-
-        public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this);
-
-        private void EditAccount(AccountViewModel accountViewModel)
-            => navigationService.Navigate<EditAccountViewModel>(accountViewModel.Id);
+        private void EditAccount(AccountViewModel accountViewModel) => navigationService.Navigate<EditAccountViewModel>(accountViewModel.Id);
 
         private async Task LoadAsync()
         {
@@ -113,19 +109,13 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 isRunning = true;
                 await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
 
-                var includedAlphaGroup =
-                    new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
-                includedAlphaGroup.AddRange(
-                    mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetIncludedAccountQuery())));
-                includedAlphaGroup.ForEach(
-                    async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                var includedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
+                includedAlphaGroup.AddRange(mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetIncludedAccountQuery())));
+                includedAlphaGroup.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
-                var excludedAlphaGroup =
-                    new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
-                excludedAlphaGroup.AddRange(
-                    mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetExcludedAccountQuery())));
-                excludedAlphaGroup.ForEach(
-                    async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                var excludedAlphaGroup = new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
+                excludedAlphaGroup.AddRange(mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetExcludedAccountQuery())));
+                excludedAlphaGroup.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 Accounts.Clear();
 
@@ -133,7 +123,6 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 {
                     Accounts.Add(includedAlphaGroup);
                 }
-
                 if(excludedAlphaGroup.Any())
                 {
                     Accounts.Add(excludedAlphaGroup);
@@ -169,9 +158,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 return;
             }
 
-            if(await dialogService.ShowConfirmMessageAsync(
-                   Strings.DeleteTitle,
-                   Strings.DeleteAccountConfirmationMessage))
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeactivateAccountByIdCommand(accountToDelete.Id));
                 logManager.Info("Account with Id {id} deleted.", accountToDelete.Id);

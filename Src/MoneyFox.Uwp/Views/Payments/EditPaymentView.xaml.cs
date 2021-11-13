@@ -6,13 +6,13 @@ namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class EditPaymentView : BaseView
     {
+        private EditPaymentViewModel ViewModel => (EditPaymentViewModel)DataContext;
+
         public EditPaymentView()
         {
             InitializeComponent();
             DataContext = ViewModelLocator.EditPaymentVm;
         }
-
-        private EditPaymentViewModel ViewModel => (EditPaymentViewModel)DataContext;
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

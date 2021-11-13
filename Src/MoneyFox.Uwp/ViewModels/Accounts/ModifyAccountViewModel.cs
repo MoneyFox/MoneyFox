@@ -15,19 +15,21 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        private string amountString = "";
-        private AccountViewModel selectedAccount = new AccountViewModel();
+        public int AccountId { get; set; }
 
         private string title = "";
+        private AccountViewModel selectedAccount = new AccountViewModel();
 
         protected ModifyAccountViewModel(IDialogService dialogService,
-            INavigationService navigationService)
+                                         INavigationService navigationService)
         {
             DialogService = dialogService;
             NavigationService = navigationService;
         }
 
-        public int AccountId { get; set; }
+        protected abstract Task SaveAccountAsync();
+
+        protected abstract Task InitializeAsync();
 
         protected IDialogService DialogService { get; }
 
@@ -65,6 +67,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             }
         }
 
+        private string amountString = "";
+
         public string AmountString
         {
             get => amountString;
@@ -80,10 +84,6 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             }
         }
 
-        protected abstract Task SaveAccountAsync();
-
-        protected abstract Task InitializeAsync();
-
         private async Task SaveAccountBaseAsync()
         {
             if(string.IsNullOrWhiteSpace(SelectedAccount.Name))
@@ -92,16 +92,14 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 return;
             }
 
-            if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out var convertedValue))
+            if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
             {
                 SelectedAccount.CurrentBalance = convertedValue;
             }
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
-                await DialogService.ShowMessageAsync(
-                    Strings.InvalidNumberTitle,
-                    Strings.InvalidNumberCurrentBalanceMessage);
+                await DialogService.ShowMessageAsync(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
                 return;
             }
 

@@ -15,18 +15,16 @@
 
         <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
             <StackPanel Spacing="12">
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
 
                 <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
             </StackPanel>
         </Flyout>
     </Page.Resources>
@@ -70,12 +68,12 @@
                 Header="{x:Bind resources:Strings.SelectedAccountHeader}"
                 DisplayMemberPath="Name"
                 ItemsSource="{x:Bind ViewModel.Accounts, Mode=OneWay}"
-                SelectedItem="{x:Bind ViewModel.SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                <interactivity:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding LoadDataCommand}" />
-                    </core:EventTriggerBehavior>
-                </interactivity:Interaction.Behaviors>
+                SelectedItem="{x:Bind ViewModel.SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="SelectionChanged">
+                            <core:InvokeCommandAction Command="{Binding LoadDataCommand}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
             </ComboBox>
         </Grid>
 

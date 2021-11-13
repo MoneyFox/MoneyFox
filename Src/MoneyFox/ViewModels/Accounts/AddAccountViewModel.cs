@@ -9,11 +9,11 @@ namespace MoneyFox.ViewModels.Accounts
 {
     public class AddAccountViewModel : ModifyAccountViewModel
     {
-        private readonly IDialogService dialogService;
         private readonly IMediator mediator;
+        private readonly IDialogService dialogService;
 
         public AddAccountViewModel(IMediator mediator,
-            IDialogService dialogService)
+                                   IDialogService dialogService)
             : base(dialogService)
         {
             this.mediator = mediator;
@@ -28,12 +28,10 @@ namespace MoneyFox.ViewModels.Accounts
                 return;
             }
 
-            await mediator.Send(
-                new CreateAccountCommand(
-                    SelectedAccountVm.Name,
-                    SelectedAccountVm.CurrentBalance,
-                    SelectedAccountVm.Note,
-                    SelectedAccountVm.IsExcluded));
+            await mediator.Send(new CreateAccountCommand(SelectedAccountVm.Name,
+                                                         SelectedAccountVm.CurrentBalance,
+                                                         SelectedAccountVm.Note,
+                                                         SelectedAccountVm.IsExcluded));
         }
     }
 }

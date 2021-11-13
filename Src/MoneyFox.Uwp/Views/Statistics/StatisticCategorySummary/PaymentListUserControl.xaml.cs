@@ -13,10 +13,7 @@ namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
             DataContextChanged += PaymentListUserControl_DataContextChanged;
         }
 
-        public CategoryOverviewViewModel? ViewModel { get; set; }
-
-        private void PaymentListUserControl_DataContextChanged(FrameworkElement sender,
-            DataContextChangedEventArgs args)
+        private void PaymentListUserControl_DataContextChanged(FrameworkElement sender, DataContextChangedEventArgs args)
         {
             if(args.NewValue is CategoryOverviewViewModel model)
             {
@@ -24,5 +21,7 @@ namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
                 Bindings.Update();
             }
         }
+
+        public CategoryOverviewViewModel? ViewModel { get; set; }
     }
 }

@@ -14,21 +14,15 @@ namespace MoneyFox.Domain.Exceptions
         {
         }
 
-        public BackupOperationCanceledException(Exception innerException) : base(
-            "Backup Operation Canceled!",
-            innerException)
+        public BackupOperationCanceledException(Exception innerException) : base("Backup Operation Canceled!", innerException)
         {
         }
 
-        public BackupOperationCanceledException(string message, Exception innerException) : base(
-            message,
-            innerException)
+        public BackupOperationCanceledException(string message, Exception innerException) : base(message, innerException)
         {
         }
 
-        protected BackupOperationCanceledException(SerializationInfo info, StreamingContext context) : base(
-            info,
-            context)
+        protected BackupOperationCanceledException(SerializationInfo info, StreamingContext context) : base(info, context)
         {
         }
     }

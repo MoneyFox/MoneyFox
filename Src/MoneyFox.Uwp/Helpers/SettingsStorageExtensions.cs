@@ -10,7 +10,8 @@ namespace MoneyFox.Uwp.Helpers
 
         public static T Read<T>(this ApplicationDataContainer settings, string key)
         {
-            if(settings.Values.TryGetValue(key, out var obj))
+
+            if(settings.Values.TryGetValue(key, out object obj))
             {
                 return (T)obj;
             }

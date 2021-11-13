@@ -8,16 +8,16 @@ namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class ModifyPaymentUserControl
     {
+        public ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
+
         public ModifyPaymentUserControl()
         {
             InitializeComponent();
         }
 
-        public ModifyPaymentViewModel ViewModel => (ModifyPaymentViewModel)DataContext;
-
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = ((ComboBoxItem)e.AddedItems[0]).Content?.ToString() ?? "";
+            string selectedItem = ((ComboBoxItem)e.AddedItems[0]).Content?.ToString() ?? "";
 
             if(selectedItem == Strings.IncomeLabel)
             {

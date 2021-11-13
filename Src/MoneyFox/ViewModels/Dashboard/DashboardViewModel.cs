@@ -20,25 +20,50 @@ namespace MoneyFox.ViewModels.Dashboard
 {
     public class DashboardViewModel : ViewModelBase
     {
-        private readonly IMapper mapper;
-
-        private readonly IMediator mediator;
-        private ObservableCollection<AccountViewModel> accounts = new ObservableCollection<AccountViewModel>();
         private decimal assets;
-
-        private ObservableCollection<DashboardBudgetEntryViewModel> budgetEntries =
-            new ObservableCollection<DashboardBudgetEntryViewModel>();
-
         private decimal endOfMonthBalance;
+        private decimal monthlyIncomes;
+        private decimal monthlyExpenses;
+        private ObservableCollection<AccountViewModel> accounts = new ObservableCollection<AccountViewModel>();
+        private ObservableCollection<DashboardBudgetEntryViewModel> budgetEntries = new ObservableCollection<DashboardBudgetEntryViewModel>();
 
         private bool isRunning;
-        private decimal monthlyExpenses;
-        private decimal monthlyIncomes;
+
+        private readonly IMediator mediator;
+        private readonly IMapper mapper;
 
         public DashboardViewModel(IMediator mediator, IMapper mapper)
         {
             this.mediator = mediator;
             this.mapper = mapper;
+        }
+
+        public void Subscribe() => MessengerInstance.Register<ReloadMessage>(this, async (m) => await InitializeAsync());
+
+        public void Unsubscribe() => MessengerInstance.Unregister<ReloadMessage>(this);
+
+        public async Task InitializeAsync()
+        {
+            if(isRunning)
+            {
+                return;
+            }
+
+            try
+            {
+                isRunning = true;
+                Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+                Accounts.ForEach(async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+
+                Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+                EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
+                MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
+                MonthlyIncomes = await mediator.Send(new GetMonthlyIncomeQuery());
+            }
+            finally
+            {
+                isRunning = false;
+            }
         }
 
         public decimal Assets
@@ -111,49 +136,12 @@ namespace MoneyFox.ViewModels.Dashboard
             }
         }
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(
-            async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
-
-        public RelayCommand GoToAccountsCommand => new RelayCommand(
-            async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
-
-        public RelayCommand GoToBudgetsCommand => new RelayCommand(
-            async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
+        public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public RelayCommand GoToAccountsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
+        public RelayCommand GoToBudgetsCommand => new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
-            => new RelayCommand<AccountViewModel>(
-                async accountViewModel
-                    => await Shell.Current.GoToAsync(
-                        $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
-
-        public void Subscribe() => MessengerInstance.Register<ReloadMessage>(this, async m => await InitializeAsync());
-
-        public void Unsubscribe() => MessengerInstance.Unregister<ReloadMessage>(this);
-
-        public async Task InitializeAsync()
-        {
-            if(isRunning)
-            {
-                return;
-            }
-
-            try
-            {
-                isRunning = true;
-                Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(
-                    await mediator.Send(new GetAccountsQuery()));
-                Accounts.ForEach(
-                    async x => x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
-
-                Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
-                EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
-                MonthlyExpenses = await mediator.Send(new GetMonthlyExpenseQuery());
-                MonthlyIncomes = await mediator.Send(new GetMonthlyIncomeQuery());
-            }
-            finally
-            {
-                isRunning = false;
-            }
-        }
+            => new RelayCommand<AccountViewModel>(async (accountViewModel)
+                => await Shell.Current.GoToAsync($"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
     }
 }

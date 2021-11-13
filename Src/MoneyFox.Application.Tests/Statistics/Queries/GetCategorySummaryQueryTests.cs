@@ -6,6 +6,7 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
+using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -13,192 +14,199 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Statistics.Queries;
-
-[ExcludeFromCodeCoverage]
-public class GetCategorySummaryQueryTests : IDisposable
+namespace MoneyFox.Application.Tests.Statistics.Queries
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public GetCategorySummaryQueryTests()
+    [ExcludeFromCodeCoverage]
+    public class GetCategorySummaryQueryTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
-
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
-
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
-
-    [Fact]
-    public async Task GetValues_CorrectSums()
-    {
-        // Arrange
-        var testCat1 = new Category("Ausgehen");
-        var testCat2 = new Category("Rent");
-        var testCat3 = new Category("Food");
-        var testCat4 = new Category("Income");
-
-        var account = new Account("test");
-
-        var paymentList = new List<Payment>
+        public GetCategorySummaryQueryTests()
         {
-            new(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
-            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-            new(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
-            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-            new(DateTime.Today, 100, PaymentType.Income, account, category: testCat4)
-        };
+            context = InMemoryEfCoreContextFactory.Create();
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-        // Act
-        var result =
-            await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
-                .Handle(
-                    new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)
-                    },
-                    default);
-
-        // Assert
-        result.CategoryOverviewItems.Count.Should().Be(4);
-        result.CategoryOverviewItems[0].Value.Should().Be(-90);
-        result.CategoryOverviewItems[1].Value.Should().Be(-30);
-        result.CategoryOverviewItems[2].Value.Should().Be(-10);
-        result.CategoryOverviewItems[3].Value.Should().Be(100);
-    }
-
-    [Fact]
-    public async Task GetValues_CorrectLabels()
-    {
-        // Arrange
-        var testCat1 = new Category("Ausgehen");
-        var testCat2 = new Category("Rent");
-        var testCat3 = new Category("Food");
-        var testCat4 = new Category("Income");
-
-        var account = new Account("test");
-        var paymentList = new List<Payment>
+        public void Dispose()
         {
-            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
-            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-            new(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
-            new(DateTime.Today, 100, PaymentType.Income, account, category: testCat4)
-        };
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        var result =
-            await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
-                .Handle(
-                    new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)
-                    },
-                    default);
-
-        // Assert
-        result.CategoryOverviewItems[0].Label.Should().Be(testCat1.Name);
-        result.CategoryOverviewItems[1].Label.Should().Be(testCat2.Name);
-        result.CategoryOverviewItems[2].Label.Should().Be(testCat3.Name);
-        result.CategoryOverviewItems[3].Label.Should().Be(testCat4.Name);
-    }
-
-    [Fact]
-    public async Task GetValues_CorrectPercentage()
-    {
-        // Arrange
-        var testCat1 = new Category("Ausgehen");
-        var testCat2 = new Category("Ausgehen");
-        var testCat3 = new Category("Income");
-
-        var account = new Account("test");
-
-        var paymentList = new List<Payment>
+        [Fact]
+        public async Task GetValues_CorrectSums()
         {
-            new(DateTime.Today, 60, PaymentType.Expense, account, category: testCat1),
-            new(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
-            new(DateTime.Today, 100, PaymentType.Income, account, category: testCat3)
-        };
+            // Arrange
+            var testCat1 = new Category("Ausgehen");
+            var testCat2 = new Category("Rent");
+            var testCat3 = new Category("Food");
+            var testCat4 = new Category("Income");
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+            var account = new Account("test");
 
-        // Act
-        var result =
-            await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
-                .Handle(
-                    new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)
-                    },
-                    default);
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: testCat1),
+                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
+                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
+                new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat4)
+            };
 
-        // Assert
-        result.CategoryOverviewItems[0].Percentage.Should().Be(60);
-        result.CategoryOverviewItems[1].Percentage.Should().Be(40);
-        result.CategoryOverviewItems[2].Percentage.Should().Be(100);
-    }
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
 
-    [Fact]
-    public async Task GetValues_NoCategory_CorrectValue()
-    {
-        // Arrange
-        var account = new Account("test");
+            // Act
+            CategorySummaryModel result =
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                   {
+                       StartDate = DateTime.Today.AddDays(-3),
+                       EndDate = DateTime.Today.AddDays(3)
+                   },
+                           default);
 
-        var paymentList = new List<Payment> {new(DateTime.Today, 60, PaymentType.Expense, account)};
+            // Assert
+            result.CategoryOverviewItems.Count.Should().Be(4);
+            result.CategoryOverviewItems[0].Value.Should().Be(-90);
+            result.CategoryOverviewItems[1].Value.Should().Be(-30);
+            result.CategoryOverviewItems[2].Value.Should().Be(-10);
+            result.CategoryOverviewItems[3].Value.Should().Be(100);
+        }
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        [Fact]
+        public async Task GetValues_CorrectLabels()
+        {
+            // Arrange
+            var testCat1 = new Category("Ausgehen");
+            var testCat2 = new Category("Rent");
+            var testCat3 = new Category("Food");
+            var testCat4 = new Category("Income");
 
-        // Act
-        var result =
-            await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
-                .Handle(
-                    new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)
-                    },
-                    default);
+            var account = new Account("test");
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat1),
+                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
+                new Payment(DateTime.Today, 10, PaymentType.Expense, account, category: testCat3),
+                new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat4)
+            };
 
-        // Assert
-        result.CategoryOverviewItems[0].Value.Should().Be(-60);
-    }
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
 
-    [Fact]
-    public async Task GetValues_NoCategory_CorrectLabel()
-    {
-        // Arrange
-        var account = new Account("test");
+            // Act
+            CategorySummaryModel result =
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                   {
+                       StartDate = DateTime.Today.AddDays(-3),
+                       EndDate = DateTime.Today.AddDays(3)
+                   },
+                           default);
 
-        var paymentList = new List<Payment> {new(DateTime.Today, 60, PaymentType.Expense, account)};
+            // Assert
+            result.CategoryOverviewItems[0].Label.Should().Be(testCat1.Name);
+            result.CategoryOverviewItems[1].Label.Should().Be(testCat2.Name);
+            result.CategoryOverviewItems[2].Label.Should().Be(testCat3.Name);
+            result.CategoryOverviewItems[3].Label.Should().Be(testCat4.Name);
+        }
 
-        context.Payments.AddRange(paymentList);
-        context.SaveChanges();
+        [Fact]
+        public async Task GetValues_CorrectPercentage()
+        {
+            // Arrange
+            var testCat1 = new Category("Ausgehen");
+            var testCat2 = new Category("Ausgehen");
+            var testCat3 = new Category("Income");
 
-        // Act
-        var result =
-            await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
-                .Handle(
-                    new GetCategorySummaryQuery
-                    {
-                        StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)
-                    },
-                    default);
+            var account = new Account("test");
 
-        // Assert
-        result.CategoryOverviewItems[0].Label.Should().Be(Strings.NoCategoryLabel);
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 60, PaymentType.Expense, account, category: testCat1),
+                new Payment(DateTime.Today, 90, PaymentType.Expense, account, category: testCat2),
+                new Payment(DateTime.Today, 100, PaymentType.Income, account, category: testCat3)
+            };
+
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
+
+            // Act
+            CategorySummaryModel result =
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                   {
+                       StartDate = DateTime.Today.AddDays(-3),
+                       EndDate = DateTime.Today.AddDays(3)
+                   },
+                           default);
+
+            // Assert
+            result.CategoryOverviewItems[0].Percentage.Should().Be(60);
+            result.CategoryOverviewItems[1].Percentage.Should().Be(40);
+            result.CategoryOverviewItems[2].Percentage.Should().Be(100);
+        }
+
+        [Fact]
+        public async Task GetValues_NoCategory_CorrectValue()
+        {
+            // Arrange
+            var account = new Account("test");
+
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 60, PaymentType.Expense, account)
+            };
+
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
+
+            // Act
+            CategorySummaryModel result =
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                   {
+                       StartDate = DateTime.Today.AddDays(-3),
+                       EndDate = DateTime.Today.AddDays(3)
+                   },
+                           default);
+
+            // Assert
+            result.CategoryOverviewItems[0].Value.Should().Be(-60);
+        }
+
+        [Fact]
+        public async Task GetValues_NoCategory_CorrectLabel()
+        {
+            // Arrange
+            var account = new Account("test");
+
+            var paymentList = new List<Payment>
+            {
+                new Payment(DateTime.Today, 60, PaymentType.Expense, account)
+            };
+
+            context.Payments.AddRange(paymentList);
+            context.SaveChanges();
+
+            // Act
+            CategorySummaryModel result =
+                await new GetCategorySummaryQueryHandler(contextAdapterMock.Object)
+                   .Handle(new GetCategorySummaryQuery
+                   {
+                       StartDate = DateTime.Today.AddDays(-3),
+                       EndDate = DateTime.Today.AddDays(3)
+                   },
+                           default);
+
+            // Assert
+            result.CategoryOverviewItems[0].Label.Should().Be(Strings.NoCategoryLabel);
+        }
     }
 }

@@ -8,6 +8,8 @@ namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class AboutView
     {
+        private AboutViewModel ViewModel => (AboutViewModel)DataContext;
+
         public AboutView()
         {
             InitializeComponent();
@@ -18,8 +20,6 @@ namespace MoneyFox.Uwp.Views.Settings
                 FeedbackButton.Visibility = Visibility.Visible;
             }
         }
-
-        private AboutViewModel ViewModel => (AboutViewModel)DataContext;
 
         private async void FeedbackButton_Click(object sender, RoutedEventArgs e)
         {

@@ -20,21 +20,20 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 {
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
-        private readonly IDialogService dialogService;
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
-        private readonly IMapper mapper;
 
         private readonly IMediator mediator;
+        private readonly IMapper mapper;
+        private readonly IDialogService dialogService;
         private readonly INavigationService navigationService;
 
         public EditPaymentViewModel(IMediator mediator,
-            IMapper mapper,
-            IDialogService dialogService,
-            INavigationService navigationService) : base(
-            mediator,
-            mapper,
-            dialogService,
-            navigationService)
+                                    IMapper mapper,
+                                    IDialogService dialogService,
+                                    INavigationService navigationService) : base(mediator,
+                                                                                mapper,
+                                                                                dialogService,
+                                                                                navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -43,12 +42,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        ///     Delete the selected CategoryViewModel from the database
+        /// Delete the selected CategoryViewModel from the database
         /// </summary>
         public AsyncCommand DeleteCommand => new AsyncCommand(DeletePaymentAsync);
 
-        public RelayCommand<int> InitializeCommand
-            => new RelayCommand<int>(async paymentId => await InitializeAsync(paymentId));
+        public RelayCommand<int> InitializeCommand => new RelayCommand<int>(async (paymentId) => await InitializeAsync(paymentId));
 
         protected async Task InitializeAsync(int paymentId)
         {
@@ -61,9 +59,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
                 // We have to set this here since otherwise the end date is null. This causes a crash on android.
                 // Also it's user unfriendly if you the default end date is the 1.1.0001.
-                if(SelectedPayment.IsRecurring
-                   && SelectedPayment.RecurringPayment != null
-                   && SelectedPayment.RecurringPayment.IsEndless)
+                if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null && SelectedPayment.RecurringPayment.IsEndless)
                 {
                     SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
                 }
@@ -80,37 +76,35 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         {
             try
             {
-                var updateRecurring = false;
+                bool updateRecurring = false;
                 if(SelectedPayment.IsRecurring)
                 {
-                    updateRecurring = await dialogService.ShowConfirmMessageAsync(
-                        Strings.ModifyRecurrenceTitle,
-                        Strings.ModifyRecurrenceMessage,
-                        Strings.YesLabel,
-                        Strings.NoLabel);
+                    updateRecurring = await dialogService.ShowConfirmMessageAsync(Strings.ModifyRecurrenceTitle,
+                                                                                  Strings.ModifyRecurrenceMessage,
+                                                                                  Strings.YesLabel,
+                                                                                  Strings.NoLabel);
                 }
 
-                var command = new UpdatePaymentCommand(
-                    SelectedPayment.Id,
-                    SelectedPayment.Date,
-                    SelectedPayment.Amount,
-                    SelectedPayment.IsCleared,
-                    SelectedPayment.Type,
-                    SelectedPayment.Note,
-                    SelectedPayment.IsRecurring,
-                    SelectedPayment.Category != null
-                        ? SelectedPayment.Category.Id
-                        : 0,
-                    SelectedPayment.ChargedAccount != null
-                        ? SelectedPayment.ChargedAccount.Id
-                        : 0,
-                    SelectedPayment.TargetAccount != null
-                        ? SelectedPayment.TargetAccount.Id
-                        : 0,
-                    updateRecurring,
-                    SelectedPayment.RecurringPayment?.Recurrence,
-                    SelectedPayment.RecurringPayment?.IsEndless,
-                    SelectedPayment.RecurringPayment?.EndDate);
+                var command = new UpdatePaymentCommand(SelectedPayment.Id,
+                                                       SelectedPayment.Date,
+                                                       SelectedPayment.Amount,
+                                                       SelectedPayment.IsCleared,
+                                                       SelectedPayment.Type,
+                                                       SelectedPayment.Note,
+                                                       SelectedPayment.IsRecurring,
+                                                       SelectedPayment.Category != null
+                                                       ? SelectedPayment.Category.Id
+                                                       : 0,
+                                                       SelectedPayment.ChargedAccount != null
+                                                       ? SelectedPayment.ChargedAccount.Id
+                                                       : 0,
+                                                       SelectedPayment.TargetAccount != null
+                                                       ? SelectedPayment.TargetAccount.Id
+                                                       : 0,
+                                                       updateRecurring,
+                                                       SelectedPayment.RecurringPayment?.Recurrence,
+                                                       SelectedPayment.RecurringPayment?.IsEndless,
+                                                       SelectedPayment.RecurringPayment?.EndDate);
 
                 await mediator.Send(command);
             }
@@ -122,17 +116,15 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task DeletePaymentAsync()
         {
-            if(await dialogService.ShowConfirmMessageAsync(
-                   Strings.DeleteTitle,
-                   Strings.DeletePaymentConfirmationMessage))
+            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                                                            Strings.DeletePaymentConfirmationMessage))
             {
                 var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
 
                 if(SelectedPayment.IsRecurring)
                 {
-                    command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
-                        Strings.DeleteRecurringPaymentTitle,
-                        Strings.DeleteRecurringPaymentMessage);
+                    command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(Strings.DeleteRecurringPaymentTitle,
+                                                                                                 Strings.DeleteRecurringPaymentMessage);
                 }
 
                 try

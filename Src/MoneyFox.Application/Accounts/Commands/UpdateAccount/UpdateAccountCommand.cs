@@ -17,17 +17,17 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
             Account = account;
         }
 
-        public Account Account { get; }
+        public Account Account { get; private set; }
 
         public class Handler : IRequestHandler<UpdateAccountCommand>
         {
-            private readonly IBackupService backupService;
             private readonly IContextAdapter contextAdapter;
+            private readonly IBackupService backupService;
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter,
-                IBackupService backupService,
-                ISettingsFacade settingsFacade)
+                           IBackupService backupService,
+                           ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
@@ -36,15 +36,14 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
 
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
-                var existingAccount = await contextAdapter.Context
-                                                          .Accounts
-                                                          .FindAsync(request.Account.Id);
+                Account existingAccount = await contextAdapter.Context
+                                                              .Accounts
+                                                              .FindAsync(request.Account.Id);
 
-                existingAccount.UpdateAccount(
-                    request.Account.Name,
-                    request.Account.CurrentBalance,
-                    request.Account.Note ?? "",
-                    request.Account.IsExcluded);
+                existingAccount.UpdateAccount(request.Account.Name,
+                                              request.Account.CurrentBalance,
+                                              request.Account.Note ?? "",
+                                              request.Account.IsExcluded);
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 

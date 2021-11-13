@@ -8,17 +8,16 @@ namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCashFlowView
     {
+        public StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
+
+        public override string Header => Strings.CashFlowStatisticTitle;
+
         public StatisticCashFlowView()
         {
             InitializeComponent();
             DataContext = ViewModelLocator.StatisticCashFlowVm;
         }
 
-        public StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
-
-        public override string Header => Strings.CashFlowStatisticTitle;
-
-        private void OpenFilterFlyout(object sender, RoutedEventArgs e)
-            => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        private void OpenFilterFlyout(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
     }
 }

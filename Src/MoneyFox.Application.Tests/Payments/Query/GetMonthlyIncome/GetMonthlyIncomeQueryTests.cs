@@ -5,60 +5,60 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
+using MoneyFox.Persistence;
 using NSubstitute;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome;
-
-[ExcludeFromCodeCoverage]
-public class GetMonthlyIncomeQueryTests : IDisposable
+namespace MoneyFox.Application.Tests.Payments.Query.GetMonthlyIncome
 {
-    private readonly EfCoreContext context;
-    private readonly IContextAdapter contextAdapter;
-
-    public GetMonthlyIncomeQueryTests()
+    [ExcludeFromCodeCoverage]
+    public class GetMonthlyIncomeQueryTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly IContextAdapter contextAdapter;
 
-        contextAdapter = Substitute.For<IContextAdapter>();
-        contextAdapter.Context.Returns(context);
-    }
+        public GetMonthlyIncomeQueryTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapter = Substitute.For<IContextAdapter>();
+            contextAdapter.Context.Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task ReturnCorrectAmount()
-    {
-        // Arrange
-        var systemDateHelper = Substitute.For<ISystemDateHelper>();
-        systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        var account = new Account("test", 80);
+        [Fact]
+        public async Task ReturnCorrectAmount()
+        {
+            // Arrange
+            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
-        var payment1 = new Payment(new DateTime(2020, 09, 10), 50, PaymentType.Income, account);
-        var payment2 = new Payment(new DateTime(2020, 09, 18), 20, PaymentType.Income, account);
-        var payment3 = new Payment(new DateTime(2020, 09, 4), 30, PaymentType.Expense, account);
+            var account = new Account("test", 80);
 
-        await context.AddAsync(payment1);
-        await context.AddAsync(payment2);
-        await context.AddAsync(payment3);
-        await context.SaveChangesAsync();
+            var payment1 = new Payment(new DateTime(2020, 09, 10), 50, PaymentType.Income, account);
+            var payment2 = new Payment(new DateTime(2020, 09, 18), 20, PaymentType.Income, account);
+            var payment3 = new Payment(new DateTime(2020, 09, 4), 30, PaymentType.Expense, account);
 
-        // Act
-        var sum = await new GetMonthlyIncomeQuery.Handler(contextAdapter, systemDateHelper).Handle(
-            new GetMonthlyIncomeQuery(),
-            default);
+            await context.AddAsync(payment1);
+            await context.AddAsync(payment2);
+            await context.AddAsync(payment3);
+            await context.SaveChangesAsync();
 
-        // Assert
-        sum.Should().Be(70);
+            // Act
+            decimal sum = await new GetMonthlyIncomeQuery.Handler(contextAdapter, systemDateHelper).Handle(new GetMonthlyIncomeQuery(), default);
+
+            // Assert
+            sum.Should().Be(70);
+        }
     }
 }

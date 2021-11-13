@@ -4,6 +4,7 @@ using MediatR;
 using Microcharts;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Common;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.ViewModels.Accounts;
 using SkiaSharp;
@@ -17,17 +18,17 @@ using Xamarin.Essentials;
 namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
-    ///     Representation of the cash flow view.
+    /// Representation of the cash flow view.
     /// </summary>
     public class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
     {
-        private readonly IMapper mapper;
         private BarChart chart = new BarChart();
         private bool hasNoData;
         private AccountViewModel selectedAccount = null!;
+        private readonly IMapper mapper;
 
         public StatisticAccountMonthlyCashflowViewModel(IMediator mediator,
-            IMapper mapper) : base(mediator)
+                                                        IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
 
@@ -70,7 +71,7 @@ namespace MoneyFox.ViewModels.Statistics
             }
         }
 
-        public ObservableCollection<AccountViewModel> Accounts { get; } = new ObservableCollection<AccountViewModel>();
+        public ObservableCollection<AccountViewModel> Accounts { get; private set; } = new ObservableCollection<AccountViewModel>();
 
         public AccountViewModel SelectedAccount
         {
@@ -81,7 +82,6 @@ namespace MoneyFox.ViewModels.Statistics
                 {
                     return;
                 }
-
                 selectedAccount = value;
                 RaisePropertyChanged();
                 LoadDataCommand.Execute(null);
@@ -95,7 +95,7 @@ namespace MoneyFox.ViewModels.Statistics
         private async Task InitAsync()
         {
             Accounts.Clear();
-            var accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
+            List<AccountViewModel> accounts = mapper.Map<List<AccountViewModel>>(await Mediator.Send(new GetAccountsQuery()));
             accounts.ForEach(Accounts.Add);
 
             if(Accounts.Any())
@@ -107,23 +107,19 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override async Task LoadAsync()
         {
-            var statisticItems = await Mediator.Send(
-                new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
+            List<StatisticEntry> statisticItems = await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
 
             HasNoData = !statisticItems.Any();
 
             Chart = new BarChart
             {
-                Entries =
-                    statisticItems.Select(
-                                      x => new ChartEntry((float)x.Value)
-                                      {
-                                          Label = x.Label,
-                                          ValueLabel = x.ValueLabel,
-                                          Color = SKColor.Parse(x.Color),
-                                          ValueLabelColor = SKColor.Parse(x.Color)
-                                      })
-                                  .ToList(),
+                Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
+                {
+                    Label = x.Label,
+                    ValueLabel = x.ValueLabel,
+                    Color = SKColor.Parse(x.Color),
+                    ValueLabelColor = SKColor.Parse(x.Color)
+                }).ToList(),
                 BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,

@@ -5,13 +5,13 @@ namespace MoneyFox.Views.Accounts
 {
     public partial class AccountListPage : ContentPage
     {
+        private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
+
         public AccountListPage()
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.AccountListViewModel;
         }
-
-        private AccountListViewModel ViewModel => (AccountListViewModel)BindingContext;
 
         protected override async void OnAppearing()
         {

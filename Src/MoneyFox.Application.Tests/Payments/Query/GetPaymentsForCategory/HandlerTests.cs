@@ -5,87 +5,87 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
+using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory;
-
-[ExcludeFromCodeCoverage]
-public class HandlerTests : IDisposable
+namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public HandlerTests()
+    [ExcludeFromCodeCoverage]
+    public class HandlerTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
+        public HandlerTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task CorrectPaymentsSelected()
-    {
-        // Arrange
-        var account = new Account("asdf");
-        var category = new Category("Test");
-        var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
-        var payment2 = new Payment(DateTime.Now, 30, PaymentType.Expense, account, category: category);
-        var payment3 = new Payment(DateTime.Now, 40, PaymentType.Expense, account, category: category);
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        context.Add(payment1);
-        context.Add(payment2);
-        context.Add(payment3);
-        await context.SaveChangesAsync();
+        [Fact]
+        public async Task CorrectPaymentsSelected()
+        {
+            // Arrange
+            var account = new Account("asdf");
+            var category = new Category("Test");
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+            var payment2 = new Payment(DateTime.Now, 30, PaymentType.Expense, account, category: category);
+            var payment3 = new Payment(DateTime.Now, 40, PaymentType.Expense, account, category: category);
 
-        // Act
-        var result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
-            new GetPaymentsForCategoryQuery(
-                category.Id,
-                DateTime.Now.AddDays(-1),
-                DateTime.Now.AddDays(1)),
-            default);
+            context.Add(payment1);
+            context.Add(payment2);
+            context.Add(payment3);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().HaveCount(2);
-    }
+            // Act
+            System.Collections.Generic.List<Payment> result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
+                new GetPaymentsForCategoryQuery(
+                    category.Id,
+                    DateTime.Now.AddDays(-1),
+                    DateTime.Now.AddDays(1)), default);
 
-    [Fact]
-    public async Task CorrectPaymentsSelectedWithNoCategory()
-    {
-        // Arrange
-        var account = new Account("asdf");
-        var category = new Category("Test");
-        var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
-        var payment2 = new Payment(DateTime.Now, 30, PaymentType.Expense, account, category: category);
-        var payment3 = new Payment(DateTime.Now, 40, PaymentType.Expense, account, category: category);
+            // Assert
+            result.Should().HaveCount(2);
+        }
 
-        context.Add(payment1);
-        context.Add(payment2);
-        context.Add(payment3);
-        await context.SaveChangesAsync();
+        [Fact]
+        public async Task CorrectPaymentsSelectedWithNoCategory()
+        {
+            // Arrange
+            var account = new Account("asdf");
+            var category = new Category("Test");
+            var payment1 = new Payment(DateTime.Now, 20, PaymentType.Expense, account);
+            var payment2 = new Payment(DateTime.Now, 30, PaymentType.Expense, account, category: category);
+            var payment3 = new Payment(DateTime.Now, 40, PaymentType.Expense, account, category: category);
 
-        // Act
-        var result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
-            new GetPaymentsForCategoryQuery(
-                0,
-                DateTime.Now.AddDays(-1),
-                DateTime.Now.AddDays(1)),
-            default);
+            context.Add(payment1);
+            context.Add(payment2);
+            context.Add(payment3);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().ContainSingle();
+            // Act
+            System.Collections.Generic.List<Payment> result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
+                new GetPaymentsForCategoryQuery(
+                    0,
+                    DateTime.Now.AddDays(-1),
+                    DateTime.Now.AddDays(1)), default);
+
+            // Assert
+            result.Should().ContainSingle();
+        }
     }
 }

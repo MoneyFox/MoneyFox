@@ -45,10 +45,10 @@ namespace MoneyFox.Application
                 typeof(IRequestHandler<,>),
                 typeof(IRequestExceptionHandler<,,>),
                 typeof(IRequestExceptionAction<,>),
-                typeof(INotificationHandler<>)
+                typeof(INotificationHandler<>),
             };
 
-            foreach(var mediatrOpenType in mediatrOpenTypes)
+            foreach(Type? mediatrOpenType in mediatrOpenTypes)
             {
                 builder
                     .RegisterAssemblyTypes(ThisAssembly)
@@ -64,16 +64,14 @@ namespace MoneyFox.Application
             // It appears Autofac returns the last registered types first
             builder.RegisterGeneric(typeof(RequestPostProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
             builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
-            builder.RegisterGeneric(typeof(RequestExceptionActionProcessorBehavior<,>))
-                   .As(typeof(IPipelineBehavior<,>));
+            builder.RegisterGeneric(typeof(RequestExceptionActionProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
             builder.RegisterGeneric(typeof(RequestExceptionProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
 
-            builder.Register<ServiceFactory>(
-                ctx =>
-                {
-                    var c = ctx.Resolve<IComponentContext>();
-                    return t => c.Resolve(t);
-                });
+            builder.Register<ServiceFactory>(ctx =>
+            {
+                IComponentContext? c = ctx.Resolve<IComponentContext>();
+                return t => c.Resolve(t);
+            });
         }
     }
 }

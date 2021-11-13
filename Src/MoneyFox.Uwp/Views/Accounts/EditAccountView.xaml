@@ -17,7 +17,7 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <ScrollViewer HorizontalScrollMode="Auto" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <userControls:ModifyAccountUserControl />
+                <userControls:ModifyAccountUserControl Grid.Row="0" />
 
                 <StackPanel Orientation="Horizontal">
                     <TextBlock

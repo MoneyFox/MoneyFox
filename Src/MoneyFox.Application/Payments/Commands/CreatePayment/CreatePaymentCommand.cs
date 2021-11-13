@@ -24,22 +24,22 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
 
         public class Handler : IRequestHandler<CreatePaymentCommand>
         {
-            private readonly IBackupService backupService;
+            private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
             private readonly IContextAdapter contextAdapter;
-            private readonly Logger logger = LogManager.GetCurrentClassLogger();
+            private readonly IBackupService backupService;
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter,
-                IBackupService backupService,
-                ISettingsFacade settingsFacade)
+                           IBackupService backupService,
+                           ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
                 this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc />
+            /// <inheritdoc/>
             public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
             {
                 contextAdapter.Context.Entry(request.PaymentToSave).State = EntityState.Added;
@@ -54,8 +54,7 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
                 {
                     if(request.PaymentToSave.RecurringPayment == null)
                     {
-                        var exception = new RecurringPaymentNullException(
-                            $"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
+                        var exception = new RecurringPaymentNullException($"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
                         logger.Error(exception);
                         throw exception;
                     }

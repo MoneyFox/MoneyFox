@@ -10,7 +10,7 @@ namespace MoneyFox.Desktop.Infrastructure
         {
             lock(locker)
             {
-                var appDataContainer = GetApplicationDataContainer(sharedName);
+                ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
                 return appDataContainer.Values.ContainsKey(key);
             }
         }
@@ -19,7 +19,7 @@ namespace MoneyFox.Desktop.Infrastructure
         {
             lock(locker)
             {
-                var appDataContainer = GetApplicationDataContainer(sharedName);
+                ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
                 if(appDataContainer.Values.ContainsKey(key))
                 {
                     appDataContainer.Values.Remove(key);
@@ -31,7 +31,7 @@ namespace MoneyFox.Desktop.Infrastructure
         {
             lock(locker)
             {
-                var appDataContainer = GetApplicationDataContainer(sharedName);
+                ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
                 appDataContainer.Values.Clear();
             }
         }
@@ -40,7 +40,7 @@ namespace MoneyFox.Desktop.Infrastructure
         {
             lock(locker)
             {
-                var appDataContainer = GetApplicationDataContainer(sharedName);
+                ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
 
                 if(value == null)
                 {
@@ -60,10 +60,10 @@ namespace MoneyFox.Desktop.Infrastructure
         {
             lock(locker)
             {
-                var appDataContainer = GetApplicationDataContainer(sharedName);
+                ApplicationDataContainer appDataContainer = GetApplicationDataContainer(sharedName);
                 if(appDataContainer.Values.ContainsKey(key))
                 {
-                    var tempValue = appDataContainer.Values[key];
+                    object tempValue = appDataContainer.Values[key];
                     if(tempValue != null)
                     {
                         return (T)tempValue;
@@ -76,7 +76,7 @@ namespace MoneyFox.Desktop.Infrastructure
 
         private static ApplicationDataContainer GetApplicationDataContainer(string sharedName)
         {
-            var localSettings = ApplicationData.Current.LocalSettings;
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             if(string.IsNullOrWhiteSpace(sharedName))
             {
                 return localSettings;

@@ -28,15 +28,14 @@ namespace MoneyFox.Application.Statistics.Queries
             }
         }
 
-        public int CategoryId { get; }
+        public int CategoryId { get; private set; }
 
-        public DateTime StartDate { get; }
+        public DateTime StartDate { get; private set; }
 
-        public DateTime EndDate { get; }
+        public DateTime EndDate { get; private set; }
     }
 
-    public class
-        GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgressionQuery, IImmutableList<StatisticEntry>>
+    public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgressionQuery, IImmutableList<StatisticEntry>>
     {
         private const string RED_HEX_CODE = "#cd3700";
         private const string BLUE_HEX_CODE = "#87cefa";
@@ -48,10 +47,9 @@ namespace MoneyFox.Application.Statistics.Queries
             this.contextAdapter = contextAdapter;
         }
 
-        public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request,
-            CancellationToken cancellationToken)
+        public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request, CancellationToken cancellationToken)
         {
-            var payments = await contextAdapter.Context
+            List<Payment>? payments = await contextAdapter.Context
                                                .Payments
                                                .Include(x => x.Category)
                                                .Include(x => x.ChargedAccount)
@@ -62,16 +60,13 @@ namespace MoneyFox.Application.Statistics.Queries
 
 
             var statisticList = new List<StatisticEntry>();
-            foreach(var group in payments.GroupBy(x => new {x.Date.Month, x.Date.Year}))
+            foreach(var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
             {
-                var statisticEntry = new StatisticEntry(
-                    group.Sum(x => GetPaymentAmountForSum(x, request)),
-                    $"{group.Key.Month:d2} {group.Key.Year:d4}");
+                var statisticEntry = new StatisticEntry(group.Sum(x => GetPaymentAmountForSum(x, request)), $"{group.Key.Month:d2} {group.Key.Year:d4}");
                 statisticEntry.ValueLabel = statisticEntry.Value.ToString("c", CultureHelper.CurrentCulture);
                 statisticEntry.Color = statisticEntry.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
                 statisticList.Add(statisticEntry);
             }
-
             return FillReturnList(request, statisticList);
         }
 
@@ -80,14 +75,13 @@ namespace MoneyFox.Application.Statistics.Queries
             IEnumerable<StatisticEntry> statisticEntries)
         {
             var returnList = new List<StatisticEntry>();
-            var startDate = request.StartDate;
-            var endDate = request.EndDate.AddMonths(1);
+            DateTime startDate = request.StartDate;
+            DateTime endDate = request.EndDate.AddMonths(1);
 
             do
             {
-                var items = statisticEntries
-                            .Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}")
-                            .ToList();
+                List<StatisticEntry>? items = statisticEntries.Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}")
+                                                                        .ToList();
 
                 returnList.AddRange(items);
 
@@ -107,14 +101,16 @@ namespace MoneyFox.Application.Statistics.Queries
         }
 
         private static decimal GetPaymentAmountForSum(Payment payment, GetCategoryProgressionQuery request)
-            => payment.Type switch
+        {
+            return payment.Type switch
             {
                 PaymentType.Expense => -payment.Amount,
                 PaymentType.Income => payment.Amount,
                 PaymentType.Transfer => payment.ChargedAccount.Id == request.CategoryId
-                    ? -payment.Amount
-                    : payment.Amount,
-                _ => 0
+                                            ? -payment.Amount
+                                            : payment.Amount,
+                _ => 0,
             };
+        }
     }
 }

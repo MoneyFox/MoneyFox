@@ -16,7 +16,7 @@
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="GroupHeaderTemplate">
+        <DataTemplate x:Key="GroupHeaderTemplate" >
             <Border Padding="3" Background="Transparent">
                 <TextBlock
                     HorizontalAlignment="Left"
@@ -48,7 +48,7 @@
             Source="{x:Bind ViewModel.Source}" />
     </UserControl.Resources>
 
-    <SemanticZoom>
+    <SemanticZoom Grid.Row="1">
         <SemanticZoom.ZoomedInView>
             <ListView
                 x:Name="PaymentListView"
@@ -70,7 +70,7 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0,0,0,30" Padding="{StaticResource SmallListItemPadding}">
+                        <StackPanel Margin="0,0,0,30" Padding="{StaticResource SmallListItemPadding}" >
 
                             <TextBlock
                                 Margin="{StaticResource NegativeMediumLeftRightMargin}"
@@ -114,9 +114,8 @@
                                                 Background="{ThemeResource ListItemBrush}">
 
                                                 <Grid Margin="{StaticResource MediumLeftRightMargin}">
-                                                    <StackPanel VerticalAlignment="Center" Orientation="Vertical">
-                                                        <TextBlock HorizontalAlignment="Stretch"
-                                                                   Text="{x:Bind Category.Name}" />
+                                                    <StackPanel VerticalAlignment="Center" Orientation="Vertical" >
+                                                        <TextBlock HorizontalAlignment="Stretch" Text="{x:Bind Category.Name}" />
                                                         <TextBlock
                                                             MaxWidth="150"
                                                             MaxLines="1"
@@ -125,13 +124,10 @@
                                                             TextTrimming="CharacterEllipsis" />
                                                     </StackPanel>
                                                     <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
-                                                        <TextBlock
-                                                            Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
+                                                        <TextBlock Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
 
-                                                        <StackPanel HorizontalAlignment="Right"
-                                                                    Orientation="Horizontal">
-                                                            <Grid HorizontalAlignment="Right"
-                                                                  Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                            <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                                                                 <Viewbox MaxWidth="15" MaxHeight="15">
                                                                     <SymbolIcon

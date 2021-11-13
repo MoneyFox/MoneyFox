@@ -3,23 +3,24 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Common.Extensions;
-
-[ExcludeFromCodeCoverage]
-public class StreamExtensionTests
+namespace MoneyFox.Application.Tests.Common.Extensions
 {
-    [Fact]
-    public void ReadToEnd()
+    [ExcludeFromCodeCoverage]
+    public class StreamExtensionTests
     {
-        // Arrange
-        byte[] bytes = {12, 22, 25, 23};
-        var stream = new MemoryStream(bytes);
+        [Fact]
+        public void ReadToEnd()
+        {
+            // Arrange
+            byte[] bytes = new byte[] { 12, 22, 25, 23 };
+            var stream = new MemoryStream(bytes);
 
-        // Act
-        var resultBytes = stream.ReadToEnd();
-        stream.Close();
+            // Act
+            byte[] resultBytes = stream.ReadToEnd();
+            stream.Close();
 
-        // Assert
-        Assert.Equal(bytes, resultBytes);
+            // Assert
+            Assert.Equal(bytes, resultBytes);
+        }
     }
 }

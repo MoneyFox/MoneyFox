@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -12,88 +13,83 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Statistics.Queries;
-
-[ExcludeFromCodeCoverage]
-[Collection("CultureCollection")]
-public class GetAccountProgressionHandlerTests : IDisposable
+namespace MoneyFox.Application.Tests.Statistics.Queries
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public GetAccountProgressionHandlerTests()
+    [ExcludeFromCodeCoverage]
+    [Collection("CultureCollection")]
+    public class GetAccountProgressionHandlerTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
+        public GetAccountProgressionHandlerTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task CalculateCorrectSums()
-    {
-        // Arrange
-        Account account = new("Foo1");
-        context.AddRange(
-            new List<Payment>
-            {
-                new(DateTime.Today, 60, PaymentType.Income, account),
-                new(DateTime.Today, 20, PaymentType.Expense, account),
-                new(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
-                new(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
-            });
-        context.Add(account);
-        context.SaveChanges();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        var result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
-            new GetAccountProgressionQuery(
-                account.Id,
-                DateTime.Today.AddYears(-1),
-                DateTime.Today.AddDays(3)),
-            default);
+        [Fact]
+        public async Task CalculateCorrectSums()
+        {
+            // Arrange
+            Account account = new Account("Foo1");
+            context.AddRange(new List<Payment>
+                {
+                    new Payment(DateTime.Today, 60, PaymentType.Income, account),
+                    new Payment(DateTime.Today, 20, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
+                });
+            context.Add(account);
+            context.SaveChanges();
 
-        // Assert
-        result[0].Value.Should().Be(40);
-        result[1].Value.Should().Be(-50);
-        result[2].Value.Should().Be(-40);
-    }
+            // Act
+            List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
+                new GetAccountProgressionQuery(account.Id,
+                                                      DateTime.Today.AddYears(-1),
+                                                      DateTime.Today.AddDays(3)), default);
 
-    [Fact]
-    public async Task GetValues_CorrectSums()
-    {
-        // Arrange
-        Account account = new("Foo1");
-        context.AddRange(
-            new List<Payment>
-            {
-                new(DateTime.Today, 60, PaymentType.Income, account),
-                new(DateTime.Today, 20, PaymentType.Expense, account),
-                new(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
-                new(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
-            });
-        context.Add(account);
-        context.SaveChanges();
+            // Assert
+            result[0].Value.Should().Be(40);
+            result[1].Value.Should().Be(-50);
+            result[2].Value.Should().Be(-40);
+        }
 
-        // Act
-        var result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
-            new GetAccountProgressionQuery(
-                account.Id,
-                DateTime.Today.AddYears(-1),
-                DateTime.Today.AddDays(3)),
-            default);
+        [Fact]
+        public async Task GetValues_CorrectSums()
+        {
+            // Arrange
+            Account account = new Account("Foo1");
+            context.AddRange(new List<Payment>
+                {
+                    new Payment(DateTime.Today, 60, PaymentType.Income, account),
+                    new Payment(DateTime.Today, 20, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
+                });
+            context.Add(account);
+            context.SaveChanges();
 
-        // Assert
-        result[0].Color.Should().Be("#87cefa");
-        result[1].Color.Should().Be("#cd3700");
-        result[2].Color.Should().Be("#cd3700");
+            // Act
+            List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
+                new GetAccountProgressionQuery(account.Id,
+                                                      DateTime.Today.AddYears(-1),
+                                                      DateTime.Today.AddDays(3)), default);
+
+            // Assert
+            result[0].Color.Should().Be("#87cefa");
+            result[1].Color.Should().Be("#cd3700");
+            result[2].Color.Should().Be("#cd3700");
+        }
     }
 }

@@ -6,6 +6,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
@@ -13,100 +14,92 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory;
-
-[ExcludeFromCodeCoverage]
-public class UpdateCategoryCommandTests : IDisposable
+namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
 {
-    private readonly Mock<IBackupService> backupServiceMock;
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-    private readonly Mock<ISettingsFacade> settingsFacadeMock;
-
-    public UpdateCategoryCommandTests()
+    [ExcludeFromCodeCoverage]
+    public class UpdateCategoryCommandTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
-        backupServiceMock = new Mock<IBackupService>();
+        private readonly EfCoreContext context;
+        private readonly Mock<IBackupService> backupServiceMock;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly Mock<ISettingsFacade> settingsFacadeMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        public UpdateCategoryCommandTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
+            backupServiceMock = new Mock<IBackupService>();
 
-        settingsFacadeMock = new Mock<ISettingsFacade>();
-        settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            settingsFacadeMock = new Mock<ISettingsFacade>();
+            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task UpdateCategoryCommand_CorrectNumberLoaded()
-    {
-        // Arrange
-        var category = new Category("test");
-        await context.AddAsync(category);
-        await context.SaveChangesAsync();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        category.UpdateData("foo");
-        await new UpdateCategoryCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(new UpdateCategoryCommand(category), default);
+        [Fact]
+        public async Task UpdateCategoryCommand_CorrectNumberLoaded()
+        {
+            // Arrange
+            var category = new Category("test");
+            await context.AddAsync(category);
+            await context.SaveChangesAsync();
 
-        var loadedCategory = await context.Categories.FindAsync(category.Id);
+            // Act
+            category.UpdateData("foo");
+            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+               .Handle(new UpdateCategoryCommand(category), default);
 
-        // Assert
-        loadedCategory.Name.Should().Be("foo");
-    }
+            Category loadedCategory = await context.Categories.FindAsync(category.Id);
 
-    [Fact]
-    public async Task UpdateCategoryCommand_ShouldUpdateRequireNote()
-    {
-        // Arrange
-        var category = new Category("test", requireNote: false);
-        await context.AddAsync(category);
-        await context.SaveChangesAsync();
+            // Assert
+            loadedCategory.Name.Should().Be("foo");
+        }
 
-        // Act
-        category.UpdateData("foo", requireNote: true);
-        await new UpdateCategoryCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(new UpdateCategoryCommand(category), default);
+        [Fact]
+        public async Task UpdateCategoryCommand_ShouldUpdateRequireNote()
+        {
+            // Arrange
+            var category = new Category("test", requireNote: false);
+            await context.AddAsync(category);
+            await context.SaveChangesAsync();
 
-        var loadedCategory = await context.Categories.FindAsync(category.Id);
+            // Act
+            category.UpdateData("foo", requireNote: true);
+            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+               .Handle(new UpdateCategoryCommand(category), default);
 
-        // Assert
-        loadedCategory.RequireNote.Should().BeTrue();
-    }
+            Category loadedCategory = await context.Categories.FindAsync(category.Id);
 
-    [Fact]
-    public async Task SyncDoneOnCreation()
-    {
-        // Arrange
-        backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
-        backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
+            // Assert
+            loadedCategory.RequireNote.Should().BeTrue();
+        }
 
-        var category = new Category("test");
-        await context.AddAsync(category);
-        await context.SaveChangesAsync();
+        [Fact]
+        public async Task SyncDoneOnCreation()
+        {
+            // Arrange
+            backupServiceMock.Setup(x => x.RestoreBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
+            backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
 
-        // Act
-        await new UpdateCategoryCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(new UpdateCategoryCommand(category), default);
+            var category = new Category("test");
+            await context.AddAsync(category);
+            await context.SaveChangesAsync();
 
-        // Assert
-        backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
-        settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+            // Act
+            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+               .Handle(new UpdateCategoryCommand(category), default);
+
+            // Assert
+            backupServiceMock.Verify(x => x.UploadBackupAsync(It.IsAny<BackupMode>()), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+        }
     }
 }

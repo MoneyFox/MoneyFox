@@ -4,6 +4,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application;
+using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
@@ -69,22 +70,20 @@ namespace MoneyFox
         {
             if(ConfigurationManager.AppSettings != null)
             {
-                var iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
-                var androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
+                string? iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
+                string? androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
 
-                AppCenter.Start(
-                    $"android={androidAppCenterSecret};" + $"ios={iosAppCenterSecret}",
-                    typeof(Analytics),
-                    typeof(Crashes));
+                AppCenter.Start($"android={androidAppCenterSecret};" +
+                                $"ios={iosAppCenterSecret}",
+                    typeof(Analytics), typeof(Crashes));
             }
         }
 
         private void ExecuteStartupTasks() =>
-            Task.Run(
-                    async () =>
-                    {
-                        await StartupTasksAsync();
-                    })
+            Task.Run(async () =>
+                {
+                    await StartupTasksAsync();
+                })
                 .ConfigureAwait(false);
 
         private async Task StartupTasksAsync()
@@ -104,7 +103,7 @@ namespace MoneyFox
             {
                 if(settingsFacade.IsBackupAutouploadEnabled && settingsFacade.IsLoggedInToBackupService)
                 {
-                    var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                    IBackupService backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                     await backupService.RestoreBackupAsync();
                 }
 

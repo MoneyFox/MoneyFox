@@ -3,6 +3,8 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+                xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:microcharts="using:Microcharts.Uwp"
                 xmlns:resources="using:MoneyFox.Application.Resources"
@@ -15,18 +17,16 @@
 
         <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
             <StackPanel Spacing="12">
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+                <CalendarDatePicker Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+                <CalendarDatePicker Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                    FirstDayOfWeek="Monday"
+                                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
 
                 <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"/>
             </StackPanel>
         </Flyout>
     </Page.Resources>
@@ -35,8 +35,8 @@
           Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="12" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="12"/>
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -59,15 +59,15 @@
         </CommandBar>
 
         <Button Grid.Row="1"
-                Grid.Column="0"
-                Grid.ColumnSpan="2"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}"
-                Content="{x:Bind ViewModel.SelectedCategory.Name, FallbackValue='Select Category..', Mode=OneWay}" />
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}"
+            Content="{x:Bind ViewModel.SelectedCategory.Name, FallbackValue='Select Category..', Mode=OneWay}">
+        </Button>
 
-        <Grid Grid.Row="3"
-              Visibility="{x:Bind ViewModel.HasNoData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert, Mode=OneWay}">
+        <Grid Grid.Row="3" Visibility="{x:Bind ViewModel.HasNoData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert, Mode=OneWay}">
             <microcharts:ChartView Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
     </Grid>

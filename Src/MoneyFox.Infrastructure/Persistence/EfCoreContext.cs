@@ -6,7 +6,7 @@ using MoneyFox.Infrastructure.Persistence.Configurations;
 namespace MoneyFox.Infrastructure.Persistence
 {
     /// <summary>
-    ///     Represents the data context of the application
+    /// Represents the data context of the application
     /// </summary>
     public class EfCoreContext : DbContext, IEfCoreContext
     {
@@ -23,7 +23,7 @@ namespace MoneyFox.Infrastructure.Persistence
         public DbSet<Category> Categories { get; set; } = null!;
 
         /// <summary>
-        ///     Called when the models are created.     Enables to configure advanced settings for the models.
+        /// Called when the models are created.     Enables to configure advanced settings for the models.
         /// </summary>
         /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)

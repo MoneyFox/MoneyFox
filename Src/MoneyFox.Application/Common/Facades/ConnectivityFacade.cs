@@ -3,7 +3,7 @@
     public interface IConnectivityFacade
     {
         /// <summary>
-        ///     returns if the device is connected to the internet.
+        /// returns if the device is connected to the internet.
         /// </summary>
         bool IsConnected { get; }
     }

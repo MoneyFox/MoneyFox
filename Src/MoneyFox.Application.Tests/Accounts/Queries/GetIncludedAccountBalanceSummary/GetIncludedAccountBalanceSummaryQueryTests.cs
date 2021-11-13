@@ -10,69 +10,70 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceSummary;
-
-[ExcludeFromCodeCoverage]
-public class GetIncludedAccountBalanceSummaryQueryTests : IDisposable
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetIncludedAccountBalanceSummary
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public GetIncludedAccountBalanceSummaryQueryTests()
+    [ExcludeFromCodeCoverage]
+    public class GetIncludedAccountBalanceSummaryQueryTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
+        public GetIncludedAccountBalanceSummaryQueryTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task GetSummary()
-    {
-        // Arrange
-        var accountExcluded = new Account("test", 80, isExcluded: true);
-        var accountIncluded = new Account("test", 80);
-        await context.AddAsync(accountExcluded);
-        await context.AddAsync(accountIncluded);
-        await context.SaveChangesAsync();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        var result =
-            await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
-                .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+        [Fact]
+        public async Task GetSummary()
+        {
+            // Arrange
+            var accountExcluded = new Account("test", 80, isExcluded: true);
+            var accountIncluded = new Account("test", 80);
+            await context.AddAsync(accountExcluded);
+            await context.AddAsync(accountIncluded);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().Be(80);
-    }
+            // Act
+            decimal result =
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
+                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
-    [Fact]
-    public async Task DontIncludeDeactivatedAccounts()
-    {
-        // Arrange
-        var accountExcluded = new Account("test", 80, isExcluded: true);
-        var accountIncluded = new Account("test", 80);
-        var accountDeactivated = new Account("test", 80);
-        accountDeactivated.Deactivate();
+            // Assert
+            result.Should().Be(80);
+        }
 
-        await context.AddAsync(accountExcluded);
-        await context.AddAsync(accountIncluded);
-        await context.AddAsync(accountDeactivated);
-        await context.SaveChangesAsync();
+        [Fact]
+        public async Task DontIncludeDeactivatedAccounts()
+        {
+            // Arrange
+            var accountExcluded = new Account("test", 80, isExcluded: true);
+            var accountIncluded = new Account("test", 80);
+            var accountDeactivated = new Account("test", 80);
+            accountDeactivated.Deactivate();
 
-        // Act
-        var result =
-            await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
-                .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+            await context.AddAsync(accountExcluded);
+            await context.AddAsync(accountIncluded);
+            await context.AddAsync(accountDeactivated);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().Be(80);
+            // Act
+            decimal result =
+                await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapterMock.Object)
+                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+
+            // Assert
+            result.Should().Be(80);
+        }
     }
 }

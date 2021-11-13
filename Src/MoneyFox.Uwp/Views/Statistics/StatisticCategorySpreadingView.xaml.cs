@@ -8,19 +8,18 @@ namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCategorySpreadingView
     {
-        public StatisticCategorySpreadingView()
-        {
-            InitializeComponent();
-            DataContext = ViewModelLocator.StatisticCategorySpreadingVm;
-        }
-
         public override bool ShowHeader => false;
 
         public StatisticCategorySpreadingViewModel ViewModel => (StatisticCategorySpreadingViewModel)DataContext;
 
         public override string Header => Strings.CategorySpreadingTitle;
 
-        private void OpenFilterFlyout(object sender, RoutedEventArgs e)
-            => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        public StatisticCategorySpreadingView()
+        {
+            InitializeComponent();
+            DataContext = ViewModelLocator.StatisticCategorySpreadingVm;
+        }
+
+        private void OpenFilterFlyout(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
     }
 }

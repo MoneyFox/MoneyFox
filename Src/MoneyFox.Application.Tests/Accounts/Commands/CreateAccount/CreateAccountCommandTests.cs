@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
+using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
@@ -11,71 +12,68 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount;
-
-[ExcludeFromCodeCoverage]
-public class CreateAccountCommandTests : IDisposable
+namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
 {
-    private readonly Mock<IBackupService> backupServiceMock;
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-    private readonly Mock<ISettingsFacade> settingsFacadeMock;
-
-    public CreateAccountCommandTests()
+    [ExcludeFromCodeCoverage]
+    public class CreateAccountCommandTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
+        private readonly Mock<IBackupService> backupServiceMock;
+        private readonly Mock<ISettingsFacade> settingsFacadeMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        public CreateAccountCommandTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-        backupServiceMock = new Mock<IBackupService>();
-        backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                         .Returns(Task.CompletedTask);
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
 
-        settingsFacadeMock = new Mock<ISettingsFacade>();
-        settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
-    }
+            backupServiceMock = new Mock<IBackupService>();
+            backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
+                             .Returns(Task.CompletedTask);
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            settingsFacadeMock = new Mock<ISettingsFacade>();
+            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task GetAccountQuery_CorrectNumberLoaded()
-    {
-        // Arrange
-        // Act
-        await new CreateAccountCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(
-                new CreateAccountCommand("test", 80),
-                default);
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Assert
-        Assert.Single(context.Accounts);
-    }
+        [Fact]
+        public async Task GetAccountQuery_CorrectNumberLoaded()
+        {
+            // Arrange
+            // Act
+            await new CreateAccountCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object)
+                .Handle(new CreateAccountCommand("test", 80),
+                        default);
 
-    [Fact]
-    public async Task BackupUploadedOnCreate()
-    {
-        // Arrange
-        // Act
-        await new CreateAccountCommand.Handler(
-                contextAdapterMock.Object,
-                backupServiceMock.Object,
-                settingsFacadeMock.Object)
-            .Handle(
-                new CreateAccountCommand("Test", 80),
-                default);
+            // Assert
+            Assert.Single(context.Accounts);
+        }
 
-        // Assert
-        backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
-        settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+        [Fact]
+        public async Task BackupUploadedOnCreate()
+        {
+            // Arrange
+            // Act
+            await new CreateAccountCommand.Handler(contextAdapterMock.Object,
+                                                   backupServiceMock.Object,
+                                                   settingsFacadeMock.Object)
+                .Handle(new CreateAccountCommand("Test", 80),
+                        default);
+
+            // Assert
+            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
+            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
+        }
     }
 }

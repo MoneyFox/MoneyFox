@@ -3,18 +3,19 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;
 
-namespace MoneyFox.Application.Tests;
-
-[ExcludeFromCodeCoverage]
-public class SystemDateHelperTests
+namespace MoneyFox.Application.Tests
 {
-    [Fact]
-    public void ValueCorrectInitialized()
+    [ExcludeFromCodeCoverage]
+    public class SystemDateHelperTests
     {
-        // Arrange
-        // Act
-        var systemDateHelper = new SystemDateHelper();
-        // Assert
-        systemDateHelper.Today.Should().Be(DateTime.Today);
+        [Fact]
+        public void ValueCorrectInitialized()
+        {
+            // Arrange
+            // Act
+            var systemDateHelper = new SystemDateHelper();
+            // Assert
+            systemDateHelper.Today.Should().Be(DateTime.Today);
+        }
     }
 }

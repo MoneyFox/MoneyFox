@@ -11,77 +11,76 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance;
-
-[ExcludeFromCodeCoverage]
-public class GetTotalEndOfMonthBalanceQueryTests : IDisposable
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
 {
-    private readonly EfCoreContext context;
-    private readonly IContextAdapter contextAdapterMock;
-
-    public GetTotalEndOfMonthBalanceQueryTests()
+    [ExcludeFromCodeCoverage]
+    public class GetTotalEndOfMonthBalanceQueryTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly IContextAdapter contextAdapterMock;
 
-        contextAdapterMock = Substitute.For<IContextAdapter>();
-        contextAdapterMock.Context.Returns(context);
-    }
+        public GetTotalEndOfMonthBalanceQueryTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapterMock = Substitute.For<IContextAdapter>();
+            contextAdapterMock.Context.Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Fact]
-    public async Task GetIncludedAccountBalanceSummary_CorrectSum()
-    {
-        // Arrange
-        var systemDateHelper = Substitute.For<ISystemDateHelper>();
-        systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        var accountIncluded = new Account("test", 100);
-        var payment = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, accountIncluded);
+        [Fact]
+        public async Task GetIncludedAccountBalanceSummary_CorrectSum()
+        {
+            // Arrange
+            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
-        await context.AddAsync(accountIncluded);
-        await context.AddAsync(payment);
-        await context.SaveChangesAsync();
+            var accountIncluded = new Account("test", 100);
+            var payment = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, accountIncluded);
 
-        // Act
-        var result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
-            new GetTotalEndOfMonthBalanceQuery(),
-            default);
+            await context.AddAsync(accountIncluded);
+            await context.AddAsync(payment);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().Be(50);
-    }
+            // Act
+            decimal result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
+                new GetTotalEndOfMonthBalanceQuery(), default);
 
-    [Fact]
-    public async Task DontIncludeDeactivatedAccountsInBalance()
-    {
-        // Arrange
-        var systemDateHelper = Substitute.For<ISystemDateHelper>();
-        systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
+            // Assert
+            result.Should().Be(50);
+        }
 
-        var accountIncluded = new Account("test", 100);
-        var accountDeactivated = new Account("test", 100);
-        accountDeactivated.Deactivate();
+        [Fact]
+        public async Task DontIncludeDeactivatedAccountsInBalance()
+        {
+            // Arrange
+            ISystemDateHelper systemDateHelper = Substitute.For<ISystemDateHelper>();
+            systemDateHelper.Today.Returns(new DateTime(2020, 09, 05));
 
-        var payment = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, accountIncluded);
+            var accountIncluded = new Account("test", 100);
+            var accountDeactivated = new Account("test", 100);
+            accountDeactivated.Deactivate();
 
-        await context.AddAsync(accountIncluded);
-        await context.AddAsync(accountDeactivated);
-        await context.AddAsync(payment);
-        await context.SaveChangesAsync();
+            var payment = new Payment(new DateTime(2020, 09, 25), 50, PaymentType.Expense, accountIncluded);
 
-        // Act
-        var result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
-            new GetTotalEndOfMonthBalanceQuery(),
-            default);
+            await context.AddAsync(accountIncluded);
+            await context.AddAsync(accountDeactivated);
+            await context.AddAsync(payment);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().Be(50);
+            // Act
+            decimal result = await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
+                new GetTotalEndOfMonthBalanceQuery(), default);
+
+            // Assert
+            result.Should().Be(50);
+        }
     }
 }

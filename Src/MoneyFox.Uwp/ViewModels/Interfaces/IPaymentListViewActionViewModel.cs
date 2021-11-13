@@ -41,7 +41,7 @@ namespace MoneyFox.Uwp.ViewModels.Interfaces
         DateTime TimeRangeStart { get; set; }
 
         /// <summary>
-        ///     End of the time range to load payments.
+        /// End of the time range to load payments.
         /// </summary>
         DateTime TimeRangeEnd { get; set; }
     }

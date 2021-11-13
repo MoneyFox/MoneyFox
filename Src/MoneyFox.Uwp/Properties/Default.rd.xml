@@ -16,23 +16,23 @@
 -->
 
 <Directives xmlns="http://schemas.microsoft.com/netfx/2013/01/metadata">
-	<Application>
-		<!--
+  <Application>
+    <!--
       An Assembly element with Name="*Application*" applies to all assemblies in
       the application package. The asterisks are not wildcards.
     -->
-		<Assembly Name="*Application*" Dynamic="Required All" />
+    <Assembly Name="*Application*" Dynamic="Required All" />
 
 
-		<!-- Add your application specific runtime directives here. -->
+    <!-- Add your application specific runtime directives here. -->
 
-		<Type
-			Name="Windows.Foundation.TypedEventHandler{Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs}"
-			MarshalObject="Public" />
+    <Type
+      Name="Windows.Foundation.TypedEventHandler{Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs}"
+      MarshalObject="Public" />
 
-		<Type Name="Microsoft.UI.Xaml.Controls.NavigationView">
-			<Event Name="ItemInvoked" Dynamic="Required" />
-		</Type>
+    <Type Name="Microsoft.UI.Xaml.Controls.NavigationView">
+      <Event Name="ItemInvoked" Dynamic="Required" />
+    </Type>
 
-	</Application>
+  </Application>
 </Directives>

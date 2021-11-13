@@ -17,7 +17,7 @@ namespace MoneyFox.Converter
                 PaymentType.Expense => Strings.ExpenseLabel,
                 PaymentType.Income => Strings.IncomeLabel,
                 PaymentType.Transfer => Strings.TransferLabel,
-                _ => string.Empty
+                _ => string.Empty,
             };
         }
 

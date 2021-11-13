@@ -11,8 +11,8 @@ namespace MoneyFox.Uwp.ViewModels.Settings
         private readonly IThemeSelectorAdapter themeSelectorAdapter;
 
         public WindowsSettingsViewModel(ISettingsFacade settingsFacade,
-            IDialogService dialogService,
-            IThemeSelectorAdapter themeSelectorAdapter)
+                                        IDialogService dialogService,
+                                        IThemeSelectorAdapter themeSelectorAdapter)
             : base(settingsFacade, dialogService)
         {
             this.themeSelectorAdapter = themeSelectorAdapter;
@@ -22,10 +22,9 @@ namespace MoneyFox.Uwp.ViewModels.Settings
 
         public string ElementTheme => themeSelectorAdapter.Theme;
 
-        public ICommand SwitchThemeCommand => new RelayCommand<string>(
-            param =>
-            {
-                themeSelectorAdapter.SetTheme(param);
-            });
+        public ICommand SwitchThemeCommand => new RelayCommand<string>(param =>
+        {
+            themeSelectorAdapter.SetTheme(param);
+        });
     }
 }

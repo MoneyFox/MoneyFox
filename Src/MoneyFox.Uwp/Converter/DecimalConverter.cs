@@ -10,7 +10,7 @@ namespace MoneyFox.Uwp.Converter
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
-            decimal.TryParse((string)value, out var result);
+            decimal.TryParse((string)value, out decimal result);
 
             return result;
         }

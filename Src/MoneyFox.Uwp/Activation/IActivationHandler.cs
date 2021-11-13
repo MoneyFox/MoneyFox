@@ -11,12 +11,13 @@ namespace MoneyFox.Uwp.Activation
     }
 
     internal abstract class ActivationHandler<T> : IActivationHandler
-        where T : class
+                            where T : class
     {
+        protected abstract Task HandleInternalAsync(T args);
+
         public async Task HandleAsync(object args) => await HandleInternalAsync(args as T);
 
         public bool CanHandle(object args) => args is T && CanHandleInternal(args as T);
-        protected abstract Task HandleInternalAsync(T args);
 
         protected virtual bool CanHandleInternal(T args) => true;
     }

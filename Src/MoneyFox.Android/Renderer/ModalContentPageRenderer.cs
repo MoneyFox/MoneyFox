@@ -5,7 +5,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
 [assembly: ExportRenderer(typeof(ModalContentPage), typeof(ModalContentPageRenderer))]
-
 namespace MoneyFox.Droid.Renderer
 {
     public class ModalContentPageRenderer : PageRenderer

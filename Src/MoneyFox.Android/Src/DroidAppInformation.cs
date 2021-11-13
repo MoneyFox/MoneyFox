@@ -9,7 +9,7 @@ namespace MoneyFox.Droid
         {
             get
             {
-                var context = Android.App.Application.Context;
+                Android.Content.Context? context = Android.App.Application.Context;
 
                 if(context == null)
                 {
@@ -19,7 +19,7 @@ namespace MoneyFox.Droid
                 return context.PackageManager
                               ?.GetPackageInfo(context.PackageName ?? string.Empty, 0)
                               ?.VersionName
-                       ?? string.Empty;
+                              ?? string.Empty;
             }
         }
     }

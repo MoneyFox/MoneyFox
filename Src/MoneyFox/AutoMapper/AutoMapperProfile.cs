@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.ViewModels.Payments;
+using System.Collections.Generic;
 
 namespace MoneyFox.AutoMapper
 {
@@ -13,9 +15,9 @@ namespace MoneyFox.AutoMapper
 
         private void LoadStandardMappings()
         {
-            var maps = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
+            IList<Map> maps = MapperProfileHelper.LoadStandardMappings(typeof(PaymentViewModel).Assembly);
 
-            foreach(var map in maps)
+            foreach(Map map in maps)
             {
                 CreateMap(map.Source, map.Destination).ReverseMap();
             }
@@ -23,9 +25,9 @@ namespace MoneyFox.AutoMapper
 
         private void LoadCustomMappings()
         {
-            var maps = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
+            IList<IHaveCustomMapping> maps = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
 
-            foreach(var map in maps)
+            foreach(IHaveCustomMapping map in maps)
             {
                 map.CreateMappings(this);
             }

@@ -6,18 +6,12 @@ using Android.OS;
 using Android.Runtime;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
-using Rg.Plugins.Popup;
-using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
-using Platform = Xamarin.Essentials.Platform;
 
 namespace MoneyFox.Droid
 {
-    [Activity(
-        Label = "MoneyFox",
-        Theme = "@style/MainTheme",
-        ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.Orientation)]
-    public class MainActivity : FormsAppCompatActivity
+    [Activity(Label = "MoneyFox", Theme = "@style/MainTheme", ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.Orientation)]
+    public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -26,15 +20,15 @@ namespace MoneyFox.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-            SetStatusBarColor(Color.Black.ToAndroid());
+            SetStatusBarColor(Xamarin.Forms.Color.Black.ToAndroid());
 
             base.OnCreate(savedInstanceState);
 
-            Popup.Init(this);
+            Rg.Plugins.Popup.Popup.Init(this);
 
-            Platform.Init(this, savedInstanceState);
-            Forms.Init(this, savedInstanceState);
-            FormsMaterial.Init(this, savedInstanceState);
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            global::Xamarin.Forms.FormsMaterial.Init(this, savedInstanceState);
 
             UserDialogs.Init(this);
             LoadApplication(new App());
@@ -47,15 +41,12 @@ namespace MoneyFox.Droid
             AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
         }
 
-        public override void OnRequestPermissionsResult(int requestCode,
-            string[] permissions,
-            [GeneratedEnum] Permission[] grantResults)
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Permission[] grantResults)
         {
-            Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+            Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-
-        public override void OnBackPressed() => Popup.SendBackPressed(base.OnBackPressed);
+        public override void OnBackPressed() => Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed);
     }
 }

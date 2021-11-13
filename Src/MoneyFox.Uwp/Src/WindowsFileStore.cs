@@ -4,6 +4,7 @@ using System;
 using System.IO;
 using System.Threading.Tasks;
 using Windows.Storage;
+using Windows.Storage.Streams;
 
 #nullable enable
 namespace MoneyFox.Uwp
@@ -16,8 +17,8 @@ namespace MoneyFox.Uwp
         {
             try
             {
-                var storageFile = await StorageFileFromRelativePathAsync(path);
-                var streamWithContentType = await storageFile.OpenReadAsync();
+                StorageFile storageFile = await StorageFileFromRelativePathAsync(path);
+                IRandomAccessStreamWithContentType streamWithContentType = await storageFile.OpenReadAsync();
 
                 return streamWithContentType.AsStreamForRead();
             }
@@ -32,17 +33,17 @@ namespace MoneyFox.Uwp
         {
             try
             {
-                var fromFile = await StorageFileFromRelativePathAsync(from);
+                StorageFile fromFile = await StorageFileFromRelativePathAsync(from);
 
                 if(overwrite && !await SafeDeleteFileAsync(destination))
                 {
                     return false;
                 }
 
-                var fullToPath = ToFullPath(destination);
-                var toDirectory = Path.GetDirectoryName(fullToPath);
-                var toFileName = Path.GetFileName(fullToPath);
-                var toStorageFolder = await StorageFolder.GetFolderFromPathAsync(toDirectory);
+                string fullToPath = ToFullPath(destination);
+                string toDirectory = Path.GetDirectoryName(fullToPath);
+                string toFileName = Path.GetFileName(fullToPath);
+                StorageFolder toStorageFolder = await StorageFolder.GetFolderFromPathAsync(toDirectory);
                 await fromFile.MoveAsync(toStorageFolder, toFileName);
 
                 return true;
@@ -60,9 +61,9 @@ namespace MoneyFox.Uwp
 
             try
             {
-                var storageFile = await CreateStorageFileFromRelativePathAsync(path);
-                using var streamWithContentType = await storageFile.OpenAsync(FileAccessMode.ReadWrite);
-                using var stream = streamWithContentType.AsStreamForWrite();
+                StorageFile storageFile = await CreateStorageFileFromRelativePathAsync(path);
+                using IRandomAccessStream streamWithContentType = await storageFile.OpenAsync(FileAccessMode.ReadWrite);
+                using Stream stream = streamWithContentType.AsStreamForWrite();
                 streamAction(stream);
             }
             catch(Exception ex)
@@ -74,8 +75,8 @@ namespace MoneyFox.Uwp
 
         private static async Task<StorageFile> StorageFileFromRelativePathAsync(string path)
         {
-            var fullPath = ToFullPath(path);
-            var storageFile = await StorageFile.GetFileFromPathAsync(fullPath);
+            string fullPath = ToFullPath(path);
+            StorageFile storageFile = await StorageFile.GetFileFromPathAsync(fullPath);
 
             return storageFile;
         }
@@ -84,7 +85,7 @@ namespace MoneyFox.Uwp
         {
             try
             {
-                var toFile = await StorageFileFromRelativePathAsync(path);
+                StorageFile toFile = await StorageFileFromRelativePathAsync(path);
                 await toFile.DeleteAsync();
 
                 return true;
@@ -101,22 +102,20 @@ namespace MoneyFox.Uwp
 
         private static async Task<StorageFile> CreateStorageFileFromRelativePathAsync(string path)
         {
-            var fullPath = ToFullPath(path);
-            var directory = Path.GetDirectoryName(fullPath);
-            var fileName = Path.GetFileName(fullPath);
-            var storageFolder =
-                await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
-            var storageFile = await storageFolder
-                                    .CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting)
-                                    .AsTask()
-                                    .ConfigureAwait(false);
+            string fullPath = ToFullPath(path);
+            string directory = Path.GetDirectoryName(fullPath);
+            string fileName = Path.GetFileName(fullPath);
+            StorageFolder storageFolder = await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
+            StorageFile storageFile = await storageFolder.CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting)
+                                                         .AsTask()
+                                                         .ConfigureAwait(false);
 
             return storageFile;
         }
 
         private static string ToFullPath(string path)
         {
-            var localFolderPath = ApplicationData.Current.LocalFolder.Path;
+            string localFolderPath = ApplicationData.Current.LocalFolder.Path;
 
             return Path.Combine(localFolderPath, path);
         }

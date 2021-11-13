@@ -10,49 +10,50 @@ using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists;
-
-[ExcludeFromCodeCoverage]
-public class GetIfAccountWithNameExistsQueryTests : IDisposable
+namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
 {
-    private readonly EfCoreContext context;
-    private readonly Mock<IContextAdapter> contextAdapterMock;
-
-    public GetIfAccountWithNameExistsQueryTests()
+    [ExcludeFromCodeCoverage]
+    public class GetIfAccountWithNameExistsQueryTests : IDisposable
     {
-        context = InMemoryEfCoreContextFactory.Create();
+        private readonly EfCoreContext context;
+        private readonly Mock<IContextAdapter> contextAdapterMock;
 
-        contextAdapterMock = new Mock<IContextAdapter>();
-        contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-    }
+        public GetIfAccountWithNameExistsQueryTests()
+        {
+            context = InMemoryEfCoreContextFactory.Create();
 
-    public void Dispose()
-    {
-        Dispose(true);
-        GC.SuppressFinalize(this);
-    }
+            contextAdapterMock = new Mock<IContextAdapter>();
+            contextAdapterMock.SetupGet(x => x.Context).Returns(context);
+        }
 
-    protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
 
-    [Theory]
-    [InlineData("Foo", true)]
-    [InlineData("foo", true)]
-    [InlineData("Foo212", false)]
-    public async Task GetExcludedAccountQuery_CorrectNumberLoaded(string name, bool expectedResult)
-    {
-        // Arrange
-        var accountExcluded = new Account("Foo", 80, isExcluded: true);
-        var accountIncluded = new Account("test", 80);
-        await context.AddAsync(accountExcluded);
-        await context.AddAsync(accountIncluded);
-        await context.SaveChangesAsync();
+        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
 
-        // Act
-        var result =
-            await new GetIfAccountWithNameExistsQuery.Handler(contextAdapterMock.Object)
-                .Handle(new GetIfAccountWithNameExistsQuery(name), default);
+        [Theory]
+        [InlineData("Foo", true)]
+        [InlineData("foo", true)]
+        [InlineData("Foo212", false)]
+        public async Task GetExcludedAccountQuery_CorrectNumberLoaded(string name, bool expectedResult)
+        {
+            // Arrange
+            var accountExcluded = new Account("Foo", 80, isExcluded: true);
+            var accountIncluded = new Account("test", 80);
+            await context.AddAsync(accountExcluded);
+            await context.AddAsync(accountIncluded);
+            await context.SaveChangesAsync();
 
-        // Assert
-        result.Should().Be(expectedResult);
+            // Act
+            bool result =
+                await new GetIfAccountWithNameExistsQuery.Handler(contextAdapterMock.Object)
+                   .Handle(new GetIfAccountWithNameExistsQuery(name), default);
+
+            // Assert
+            result.Should().Be(expectedResult);
+        }
     }
 }

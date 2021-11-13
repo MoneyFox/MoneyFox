@@ -3,6 +3,7 @@ using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
+using MoneyFox.Domain.Entities;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,8 +21,8 @@ namespace MoneyFox.Application.Accounts.Commands.DeleteAccountById
 
         public class Handler : IRequestHandler<DeactivateAccountByIdCommand>
         {
-            private readonly IBackupService backupService;
             private readonly IContextAdapter contextAdapter;
+            private readonly IBackupService backupService;
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter, IBackupService backupService, ISettingsFacade settingsFacade)
@@ -33,7 +34,7 @@ namespace MoneyFox.Application.Accounts.Commands.DeleteAccountById
 
             public async Task<Unit> Handle(DeactivateAccountByIdCommand request, CancellationToken cancellationToken)
             {
-                var entityToDeactivate = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
+                Account entityToDeactivate = await contextAdapter.Context.Accounts.FindAsync(request.AccountId);
                 entityToDeactivate.Deactivate();
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 

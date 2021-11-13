@@ -12,7 +12,8 @@ using Windows.ApplicationModel.Activation;
 using Windows.Globalization;
 using Windows.System.UserProfile;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Frame = Windows.UI.Xaml.Controls.Frame;
+
 #if !DEBUG
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
@@ -57,7 +58,6 @@ namespace MoneyFox.Uwp.Services
                 // Tasks after activation
                 await StartupAsync();
             }
-
             await StartupTasksService.StartupAsync();
         }
 
@@ -108,7 +108,7 @@ namespace MoneyFox.Uwp.Services
         {
             if(IsInteractive(activationArgs))
             {
-                var arguments = (activationArgs as LaunchActivatedEventArgs)?.Arguments ?? "";
+                string arguments = (activationArgs as LaunchActivatedEventArgs)?.Arguments ?? "";
                 var defaultHandler = new DefaultLaunchActivationHandler(GetStartupView(arguments, defaultNavItem));
                 if(defaultHandler.CanHandle(activationArgs))
                 {
@@ -118,9 +118,11 @@ namespace MoneyFox.Uwp.Services
         }
 
         private static Type GetStartupView(string startupArgs, Type defaultView)
-            => startupArgs == AppConstants.AddPaymentId
+        {
+            return startupArgs == AppConstants.AddPaymentId
                 ? typeof(AddPaymentViewModel)
                 : defaultView;
+        }
 
         private static async Task StartupAsync()
         {

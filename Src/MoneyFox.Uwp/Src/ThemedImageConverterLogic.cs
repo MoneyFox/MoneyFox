@@ -18,17 +18,17 @@ namespace MoneyFox.Uwp
                 return null;
             }
 
-            var isDarkTheme = Windows.UI.Xaml.Application.Current.RequestedTheme == ApplicationTheme.Dark;
+            bool isDarkTheme = Windows.UI.Xaml.Application.Current.RequestedTheme == ApplicationTheme.Dark;
 
             if(negateResult)
             {
                 isDarkTheme = !isDarkTheme;
             }
 
-            path = $"ms-appx:{string.Format(CultureInfo.InvariantCulture, path, isDarkTheme ? "dark" : "light")}";
+            path = $"ms-appx:{(string.Format(CultureInfo.InvariantCulture, path, isDarkTheme ? "dark" : "light"))}";
 
             // Check if we already cached the image
-            if(!ImageCache.TryGetValue(path, out var result))
+            if(!ImageCache.TryGetValue(path, out BitmapImage result))
             {
                 result = new BitmapImage(new Uri(path, UriKind.Absolute));
                 ImageCache.Add(path, result);
