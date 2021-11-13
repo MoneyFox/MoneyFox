@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
@@ -61,9 +62,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-               .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
-               .ToList();
+            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                    .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
+                        default))
+                .ToList();
 
             // Assert
             result.Should().HaveCount(3);
@@ -92,8 +94,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
+            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                    .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
+                        default))
                 .ToList();
 
             // Assert
@@ -118,8 +121,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
+            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                    .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
+                        default))
                 .ToList();
 
             // Assert
@@ -147,8 +151,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
+            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                    .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
+                        default))
                 .ToList();
 
             // Assert
@@ -182,8 +187,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-                .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)), default))
+            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                    .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3), DateTime.Today.AddDays(3)),
+                        default))
                 .ToList();
 
             // Assert
@@ -213,11 +219,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            var result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
-               .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3),
-                                                            DateTime.Today.AddDays(3),
-                                                            PaymentType.Income), default))
-               .ToList();
+            List<StatisticEntry> result = (await new GetCategorySpreadingQueryHandler(contextAdapterMock.Object)
+                    .Handle(new GetCategorySpreadingQuery(DateTime.Today.AddDays(-3),
+                        DateTime.Today.AddDays(3),
+                        PaymentType.Income), default))
+                .ToList();
 
             // Assert
             result.Should().HaveCount(2);

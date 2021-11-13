@@ -21,7 +21,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
         private AccountViewModel selectedAccount = new AccountViewModel();
 
         protected ModifyAccountViewModel(IDialogService dialogService,
-                                         INavigationService navigationService)
+            INavigationService navigationService)
         {
             DialogService = dialogService;
             NavigationService = navigationService;
@@ -99,7 +99,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
-                await DialogService.ShowMessageAsync(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
+                await DialogService.ShowMessageAsync(Strings.InvalidNumberTitle,
+                    Strings.InvalidNumberCurrentBalanceMessage);
                 return;
             }
 

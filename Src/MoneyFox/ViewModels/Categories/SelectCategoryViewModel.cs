@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Messages;
+using MoneyFox.Application.Common.Messages;
 
 namespace MoneyFox.ViewModels.Categories
 {
@@ -13,10 +13,10 @@ namespace MoneyFox.ViewModels.Categories
         {
         }
 
-        public RelayCommand<CategoryViewModel> SelectCategoryCommand => new RelayCommand<CategoryViewModel>(async (c) =>
+        public RelayCommand<CategoryViewModel> SelectCategoryCommand => new RelayCommand<CategoryViewModel>(async c =>
         {
             MessengerInstance.Send(new CategorySelectedMessage(c.Id));
-            await App.Current.MainPage.Navigation.PopModalAsync();
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
         });
     }
 }

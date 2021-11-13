@@ -16,13 +16,11 @@ namespace MoneyFox.Application.Tests.QueryObjects
             // Arrange
             var categoryQueryList = new List<Category>
             {
-                new Category("Foo1"),
-                new Category("Foo2"),
-                new Category("absd")
+                new Category("Foo1"), new Category("Foo2"), new Category("absd")
             };
 
             // Act
-            var resultList = categoryQueryList.WhereNameContains("Foo").ToList();
+            List<Category> resultList = categoryQueryList.WhereNameContains("Foo").ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -36,13 +34,11 @@ namespace MoneyFox.Application.Tests.QueryObjects
             // Arrange
             IQueryable<Category> categoryQueryList = new List<Category>
             {
-                new Category("Foo2"),
-                new Category("Foo3"),
-                new Category("Foo1")
+                new Category("Foo2"), new Category("Foo3"), new Category("Foo1")
             }.AsQueryable();
 
             // Act
-            var resultList = categoryQueryList.OrderByName().ToList();
+            List<Category> resultList = categoryQueryList.OrderByName().ToList();
 
             // Assert
             Assert.Equal(3, resultList.Count);

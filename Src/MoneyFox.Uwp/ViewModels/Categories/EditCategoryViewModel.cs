@@ -23,9 +23,9 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         private readonly IMapper mapper;
 
         public EditCategoryViewModel(IMediator mediator,
-                                     IDialogService dialogService,
-                                     NavigationService navigationService,
-                                     IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
+            IDialogService dialogService,
+            NavigationService navigationService,
+            IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
@@ -43,7 +43,8 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditCategoryTitle, SelectedCategory.Name);
         }
 
-        protected override async Task SaveCategoryAsync() => await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
+        protected override async Task SaveCategoryAsync() =>
+            await mediator.Send(new UpdateCategoryCommand(mapper.Map<Category>(SelectedCategory)));
 
         private async Task DeleteCategoryAsync()
         {
@@ -52,7 +53,8 @@ namespace MoneyFox.Uwp.ViewModels.Categories
                 return;
             }
 
-            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteCategoryConfirmationMessage))
+            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+                   Strings.DeleteCategoryConfirmationMessage))
             {
                 await mediator.Send(new DeleteCategoryByIdCommand(SelectedCategory.Id));
                 logManager.Info("Category with Id {id} deleted.", SelectedCategory.Id);

@@ -19,9 +19,9 @@ namespace MoneyFox.Application.Common.Interfaces
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
         Task<bool> ShowConfirmMessageAsync(string title,
-                                           string message,
-                                           string? positiveButtonText = null,
-                                           string? negativeButtonText = null);
+            string message,
+            string? positiveButtonText = null,
+            string? negativeButtonText = null);
 
         /// <summary>
         ///     Shows a loading Dialog.

@@ -1,4 +1,5 @@
-﻿using MoneyFox.Domain.Exceptions;
+﻿using JetBrains.Annotations;
+using MoneyFox.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,20 +12,21 @@ namespace MoneyFox.Domain.Entities
         /// <summary>
         /// EF Core constructor
         /// </summary>
+        [UsedImplicitly]
         private RecurringPayment()
         {
         }
 
         public RecurringPayment(DateTime startDate,
-                                decimal amount,
-                                PaymentType type,
-                                PaymentRecurrence recurrence,
-                                Account chargedAccount,
-                                string note = "",
-                                DateTime? endDate = null,
-                                Account? targetAccount = null,
-                                Category? category = null,
-                                DateTime? lastRecurrenceCreated = null)
+            decimal amount,
+            PaymentType type,
+            PaymentRecurrence recurrence,
+            Account chargedAccount,
+            string note = "",
+            DateTime? endDate = null,
+            Account? targetAccount = null,
+            Category? category = null,
+            DateTime? lastRecurrenceCreated = null)
         {
             if(!IsEndless && endDate != null && endDate < DateTime.Today)
             {
@@ -51,7 +53,7 @@ namespace MoneyFox.Domain.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public DateTime StartDate { get; private set; }
+        public DateTime StartDate { get; }
 
         public DateTime? EndDate { get; private set; }
 
@@ -59,7 +61,7 @@ namespace MoneyFox.Domain.Entities
 
         public decimal Amount { get; private set; }
 
-        public PaymentType Type { get; private set; }
+        public PaymentType Type { get; }
 
         public PaymentRecurrence Recurrence { get; private set; }
 
@@ -69,24 +71,23 @@ namespace MoneyFox.Domain.Entities
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; }
 
         public virtual Category? Category { get; private set; }
 
-        [Required]
-        public virtual Account ChargedAccount { get; private set; } = null!;
+        [Required] public virtual Account ChargedAccount { get; private set; } = null!;
 
         public virtual Account? TargetAccount { get; private set; }
 
-        public virtual List<Payment> RelatedPayments { get; private set; } = new List<Payment>();
+        public virtual List<Payment> RelatedPayments { get; } = new List<Payment>();
 
         public void UpdateRecurringPayment(decimal amount,
-                                           PaymentRecurrence recurrence,
-                                           Account chargedAccount,
-                                           string note = "",
-                                           DateTime? endDate = null,
-                                           Account? targetAccount = null,
-                                           Category? category = null)
+            PaymentRecurrence recurrence,
+            Account chargedAccount,
+            string note = "",
+            DateTime? endDate = null,
+            Account? targetAccount = null,
+            Category? category = null)
         {
             if(!IsEndless && endDate != null && endDate < DateTime.Today)
             {

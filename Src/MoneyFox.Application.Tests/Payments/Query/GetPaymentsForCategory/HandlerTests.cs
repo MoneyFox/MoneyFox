@@ -5,9 +5,9 @@ using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Xunit;
@@ -52,7 +52,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
             await context.SaveChangesAsync();
 
             // Act
-            System.Collections.Generic.List<Payment> result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
+            List<Payment> result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
                 new GetPaymentsForCategoryQuery(
                     category.Id,
                     DateTime.Now.AddDays(-1),
@@ -78,7 +78,7 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
             await context.SaveChangesAsync();
 
             // Act
-            System.Collections.Generic.List<Payment> result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
+            List<Payment> result = await new GetPaymentsForCategoryQuery.Handler(contextAdapterMock.Object).Handle(
                 new GetPaymentsForCategoryQuery(
                     0,
                     DateTime.Now.AddDays(-1),

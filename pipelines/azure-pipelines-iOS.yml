@@ -89,7 +89,6 @@ steps:
     command: 'test'
     projects: |
       **/*.Tests.csproj
-      !**/MoneyFox.Tests.csproj
 
 - task: XamariniOS@2
   displayName: 'Build Xamarin.iOS '

@@ -11,8 +11,8 @@ namespace MoneyFox.Uwp.ViewModels.Settings
         private readonly IThemeSelectorAdapter themeSelectorAdapter;
 
         public WindowsSettingsViewModel(ISettingsFacade settingsFacade,
-                                        IDialogService dialogService,
-                                        IThemeSelectorAdapter themeSelectorAdapter)
+            IDialogService dialogService,
+            IThemeSelectorAdapter themeSelectorAdapter)
             : base(settingsFacade, dialogService)
         {
             this.themeSelectorAdapter = themeSelectorAdapter;

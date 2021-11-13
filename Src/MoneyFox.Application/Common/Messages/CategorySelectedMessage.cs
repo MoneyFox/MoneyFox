@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Messages
+﻿namespace MoneyFox.Application.Common.Messages
 {
     public class CategorySelectedMessage
     {

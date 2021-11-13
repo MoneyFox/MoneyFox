@@ -26,8 +26,8 @@ namespace MoneyFox.ViewModels.Statistics
         /// </summary>
         protected StatisticViewModel(IMediator mediator)
             : this(DateTime.Today.GetFirstDayOfMonth(),
-                  DateTime.Today.GetLastDayOfMonth(),
-                  mediator)
+                DateTime.Today.GetLastDayOfMonth(),
+                mediator)
         {
         }
 
@@ -35,20 +35,20 @@ namespace MoneyFox.ViewModels.Statistics
         /// Creates a Statistic ViewModel with custom start and end date
         /// </summary>
         protected StatisticViewModel(DateTime startDate,
-                                     DateTime endDate,
-                                     IMediator mediator)
+            DateTime endDate,
+            IMediator mediator)
         {
             StartDate = startDate;
             EndDate = endDate;
             Mediator = mediator;
 
             MessengerInstance.Register<DateSelectedMessage>(this,
-                                                            async message =>
-                                                            {
-                                                                StartDate = message.StartDate;
-                                                                EndDate = message.EndDate;
-                                                                await LoadAsync();
-                                                            });
+                async message =>
+                {
+                    StartDate = message.StartDate;
+                    EndDate = message.EndDate;
+                    await LoadAsync();
+                });
         }
 
         public RelayCommand LoadedCommand => new RelayCommand(async () => await LoadAsync());
@@ -86,9 +86,9 @@ namespace MoneyFox.ViewModels.Statistics
         /// <summary>
         /// Returns the title for the CategoryViewModel view
         /// </summary>
-        public string Title => $"{Strings.StatisticsTimeRangeTitle} {StartDate.ToString("d", CultureInfo.InvariantCulture)} - {EndDate.ToString("d", CultureInfo.InvariantCulture)}";
+        public string Title =>
+            $"{Strings.StatisticsTimeRangeTitle} {StartDate.ToString("d", CultureInfo.InvariantCulture)} - {EndDate.ToString("d", CultureInfo.InvariantCulture)}";
 
         protected abstract Task LoadAsync();
-
     }
 }

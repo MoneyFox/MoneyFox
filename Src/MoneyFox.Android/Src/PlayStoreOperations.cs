@@ -3,7 +3,7 @@ using Android.Net;
 using MoneyFox.Application.Common.Interfaces;
 
 #nullable enable
-namespace MoneyFox.Droid.Src
+namespace MoneyFox.Droid
 {
     /// <summary>
     /// Gives access to the features of google play on android.
@@ -32,7 +32,7 @@ namespace MoneyFox.Droid.Src
             catch(ActivityNotFoundException)
             {
                 var intent = new Intent(Intent.ActionView,
-                                        Uri.Parse($"http://play.google.com/store/apps/details?id={appPackageName}"));
+                    Uri.Parse($"http://play.google.com/store/apps/details?id={appPackageName}"));
                 // we need to add this, because the activity is in a new context.
                 // Otherwise the runtime will block the execution and throw an exception
                 intent.AddFlags(ActivityFlags.NewTask);

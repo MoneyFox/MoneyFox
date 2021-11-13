@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Messages;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Uwp.Services;
 
 #nullable enable
@@ -16,9 +16,9 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         /// Creates an CategoryListViewModel for the usage of providing a CategoryViewModel selection.
         /// </summary>
         public SelectCategoryListViewModel(IMediator mediator,
-                                           IMapper mapper,
-                                           IDialogService dialogService,
-                                           NavigationService navigationService)
+            IMapper mapper,
+            IDialogService dialogService,
+            NavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
         {
         }
@@ -39,6 +39,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         /// <summary>
         /// Post selected CategoryViewModel to message hub
         /// </summary>
-        protected override void ItemClick(CategoryViewModel category) => MessengerInstance.Send(new CategorySelectedMessage(category.Id));
+        protected override void ItemClick(CategoryViewModel category) =>
+            MessengerInstance.Send(new CategorySelectedMessage(category.Id));
     }
 }

@@ -18,6 +18,7 @@ namespace MoneyFox.Uwp.Views.Statistics
             DataContext = ViewModelLocator.StatisticCashFlowVm;
         }
 
-        private void OpenFilterFlyout(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        private void OpenFilterFlyout(object sender, RoutedEventArgs e) =>
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
     }
 }

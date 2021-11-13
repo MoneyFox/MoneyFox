@@ -32,13 +32,12 @@
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
                 Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}"
-                Content="{x:Bind ViewModel.SelectedPayment.Category.Name, FallbackValue='Select Category', Mode=OneWay}">
-        </Button>
+                Content="{x:Bind ViewModel.SelectedPayment.Category.Name, FallbackValue='Select Category', Mode=OneWay}" />
 
         <SymbolIcon Symbol="Cancel"
                     Grid.Column="1"
                     Grid.Row="1"
-                    Foreground="{ThemeResource AppForegroundColorPrimary}"
+                    Foreground="{ThemeResource AppForegroundPrimaryBrush}"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
             <interactivity:Interaction.Behaviors>
@@ -51,8 +50,8 @@
         <Button Grid.Column="3"
                 Grid.Row="1">
             <SymbolIcon Symbol="Add"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Tapped">
                         <core:InvokeCommandAction Command="{x:Bind ViewModel.AddNewCategoryCommand}" />

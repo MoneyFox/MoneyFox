@@ -5,6 +5,7 @@ namespace MoneyFox.Views.Settings
     public partial class SettingsPage
     {
         private SettingsViewModel ViewModel => (SettingsViewModel)BindingContext;
+
         public SettingsPage()
         {
             InitializeComponent();

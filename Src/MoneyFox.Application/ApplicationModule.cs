@@ -14,38 +14,36 @@ namespace MoneyFox.Application
             RegisterMediatr(builder);
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => t.Name.EndsWith("Manager", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces();
+                .Where(t => t.Name.EndsWith("Manager", StringComparison.CurrentCultureIgnoreCase))
+                .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces();
+                .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
+                .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => t.Name.EndsWith("Adapter", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces()
-                   .SingleInstance();
+                .Where(t => t.Name.EndsWith("Adapter", StringComparison.CurrentCultureIgnoreCase))
+                .AsImplementedInterfaces()
+                .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => t.Name.EndsWith("Facade", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces();
+                .Where(t => t.Name.EndsWith("Facade", StringComparison.CurrentCultureIgnoreCase))
+                .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                   .Where(t => t.Name.EndsWith("Helper", StringComparison.CurrentCultureIgnoreCase))
-                   .AsImplementedInterfaces()
-                   .SingleInstance();
+                .Where(t => t.Name.EndsWith("Helper", StringComparison.CurrentCultureIgnoreCase))
+                .AsImplementedInterfaces()
+                .SingleInstance();
         }
 
         private void RegisterMediatr(ContainerBuilder builder)
         {
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
 
-            Type[]? mediatrOpenTypes = new[]
+            Type[] mediatrOpenTypes =
             {
-                typeof(IRequestHandler<,>),
-                typeof(IRequestExceptionHandler<,,>),
-                typeof(IRequestExceptionAction<,>),
-                typeof(INotificationHandler<>),
+                typeof(IRequestHandler<,>), typeof(IRequestExceptionHandler<,,>),
+                typeof(IRequestExceptionAction<,>), typeof(INotificationHandler<>)
             };
 
             foreach(Type? mediatrOpenType in mediatrOpenTypes)
@@ -64,12 +62,13 @@ namespace MoneyFox.Application
             // It appears Autofac returns the last registered types first
             builder.RegisterGeneric(typeof(RequestPostProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
             builder.RegisterGeneric(typeof(RequestPreProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
-            builder.RegisterGeneric(typeof(RequestExceptionActionProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
+            builder.RegisterGeneric(typeof(RequestExceptionActionProcessorBehavior<,>))
+                .As(typeof(IPipelineBehavior<,>));
             builder.RegisterGeneric(typeof(RequestExceptionProcessorBehavior<,>)).As(typeof(IPipelineBehavior<,>));
 
             builder.Register<ServiceFactory>(ctx =>
             {
-                IComponentContext? c = ctx.Resolve<IComponentContext>();
+                var c = ctx.Resolve<IComponentContext>();
                 return t => c.Resolve(t);
             });
         }

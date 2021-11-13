@@ -17,15 +17,14 @@ namespace MoneyFox.Tests.Groups
             // Arrange
             var accountList = new List<AccountViewModel>
             {
-                new AccountViewModel{Name = "a"},
-                new AccountViewModel{Name= "b"}
+                new AccountViewModel {Name = "a"}, new AccountViewModel {Name = "b"}
             };
 
             // Act
             List<AlphaGroupListGroupCollection<AccountViewModel>> createdGroup
                 = AlphaGroupListGroupCollection<AccountViewModel>.CreateGroups(accountList,
-                                                                         CultureInfo.CurrentUICulture,
-                                                                         s => s.Name);
+                    CultureInfo.CurrentUICulture,
+                    s => s.Name);
             // Assert
             createdGroup.Should().HaveCount(2);
             createdGroup[0][0].Name.Should().Be("a");

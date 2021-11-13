@@ -7,9 +7,7 @@ using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
-using MoneyFox.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -35,7 +33,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             backupServiceMock = new Mock<IBackupService>();
             backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                             .Returns(Task.CompletedTask);
+                .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
@@ -61,9 +59,9 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             // Act
             await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
-                                          .Handle(new CreatePaymentCommand(payment1), default);
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);
@@ -82,8 +80,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             // Act
             await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+                backupServiceMock.Object,
+                settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
@@ -104,8 +102,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             // Act
             await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+                backupServiceMock.Object,
+                settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Account loadedAccount = await context.Accounts.FindAsync(account.Id);
@@ -127,8 +125,8 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreatePayment
 
             // Act
             await new CreatePaymentCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
+                backupServiceMock.Object,
+                settingsFacadeMock.Object).Handle(new CreatePaymentCommand(payment1), default);
 
             // Assert
             Assert.Single(context.Payments);

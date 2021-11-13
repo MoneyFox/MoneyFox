@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MoneyFox.iOS.Src
+namespace MoneyFox.iOS
 {
     public class IosFileStore : FileStoreIoBase
     {

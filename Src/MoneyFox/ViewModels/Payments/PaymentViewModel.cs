@@ -196,8 +196,8 @@ namespace MoneyFox.ViewModels.Payments
                 isRecurring = value;
 
                 RecurringPayment = isRecurring
-                                   ? new RecurringPaymentViewModel()
-                                   : null;
+                    ? new RecurringPaymentViewModel()
+                    : null;
 
                 RaisePropertyChanged();
             }
@@ -332,6 +332,8 @@ namespace MoneyFox.ViewModels.Payments
             }
         }
 
-        public void CreateMappings(Profile configuration) => configuration.CreateMap<Payment, PaymentViewModel>().ForMember(x => x.CurrentAccountId, opt => opt.Ignore()).ReverseMap();
+        public void CreateMappings(Profile configuration) => configuration.CreateMap<Payment, PaymentViewModel>()
+            .ForMember(x => x.CurrentAccountId, opt => opt.Ignore())
+            .ReverseMap();
     }
 }

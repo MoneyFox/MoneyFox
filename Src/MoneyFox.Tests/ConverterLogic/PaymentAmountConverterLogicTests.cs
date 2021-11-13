@@ -15,10 +15,14 @@ namespace MoneyFox.Tests.ConverterLogic
         [InlineData(PaymentType.Expense, "-", 2, 2)]
         [InlineData(PaymentType.Transfer, "-", 2, 2)]
         [InlineData(PaymentType.Transfer, "+", 2, 3)]
-        public void GetCorrectSignForExpenseAndIncome(PaymentType type, string expectedResult, int chargedAccountId, int currentAccountId)
+        public void GetCorrectSignForExpenseAndIncome(PaymentType type, string expectedResult, int chargedAccountId,
+            int currentAccountId)
         {
             // Arrange
-            var payment = new PaymentViewModel { Type = type, ChargedAccountId = chargedAccountId, CurrentAccountId = currentAccountId };
+            var payment = new PaymentViewModel
+            {
+                Type = type, ChargedAccountId = chargedAccountId, CurrentAccountId = currentAccountId
+            };
 
             // Act
             string result = PaymentAmountConverterLogic.GetAmountSign(payment);

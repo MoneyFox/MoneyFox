@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
@@ -6,7 +7,7 @@
              mc:Ignorable="d"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             xmlns:theme="clr-namespace:MoneyFox" xmlns:converter="clr-namespace:MoneyFox.Converter"
+             xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              Visual="Material"
              x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">

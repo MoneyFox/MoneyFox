@@ -15,7 +15,7 @@ namespace MoneyFox.ViewModels.Categories
         private readonly IDialogService dialogService;
 
         protected ModifyCategoryViewModel(IMediator mediator,
-                                          IDialogService dialogService)
+            IDialogService dialogService)
         {
             this.mediator = mediator;
             this.dialogService = dialogService;
@@ -59,7 +59,7 @@ namespace MoneyFox.ViewModels.Categories
             MessengerInstance.Send(new ReloadMessage());
             await dialogService.HideLoadingDialogAsync();
 
-            await App.Current.MainPage.Navigation.PopModalAsync();
+            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

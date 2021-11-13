@@ -6,10 +6,10 @@ namespace MoneyFox.ConverterLogic
 {
     public static class RecurrenceTypeConverterLogic
     {
-        [SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "Switch")]
-        public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum)
-        {
-            return passedEnum switch
+        [SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex",
+            Justification = "Switch")]
+        public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum) =>
+            passedEnum switch
             {
                 PaymentRecurrence.Daily => Strings.DailyLabel,
                 PaymentRecurrence.DailyWithoutWeekend => Strings.DailyWithoutWeekendLabel,
@@ -20,8 +20,7 @@ namespace MoneyFox.ConverterLogic
                 PaymentRecurrence.Quarterly => Strings.QuarterlyLabel,
                 PaymentRecurrence.Biannually => Strings.BiannuallyLabel,
                 PaymentRecurrence.Yearly => Strings.YearlyLabel,
-                _ => string.Empty,
+                _ => string.Empty
             };
-        }
     }
 }

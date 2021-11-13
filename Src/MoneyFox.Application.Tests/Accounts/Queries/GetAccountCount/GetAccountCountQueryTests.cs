@@ -45,7 +45,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
             await context.SaveChangesAsync();
 
             // Act
-            int result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
+            int result =
+                await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
 
             // Assert
             result.Should().Be(2);
@@ -64,7 +65,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
             await context.SaveChangesAsync();
 
             // Act
-            int result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
+            int result =
+                await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
 
             // Assert
             result.Should().Be(1);

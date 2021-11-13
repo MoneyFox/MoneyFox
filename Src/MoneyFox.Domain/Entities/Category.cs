@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JetBrains.Annotations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,6 +9,7 @@ namespace MoneyFox.Domain.Entities
     public class Category
     {
         //used by EF Core
+        [UsedImplicitly]
         private Category() { }
 
         public Category(string name, string note = "", bool requireNote = false)
@@ -18,19 +20,19 @@ namespace MoneyFox.Domain.Entities
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; private set; }
+        public int Id { get; [UsedImplicitly] private set; }
 
         [Required] public string Name { get; private set; } = "";
 
-        public string? Note { get; set; }
+        public string? Note { get; private set; }
 
-        public bool RequireNote { get; set; }
+        public bool RequireNote { get; private set; }
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; private set; }
+        public DateTime CreationTime { get; }
 
-        public List<Payment> Payments { get; private set; } = new List<Payment>();
+        public List<Payment> Payments { get; } = new List<Payment>();
 
         public void UpdateData(string name, string note = "", bool requireNote = false)
         {

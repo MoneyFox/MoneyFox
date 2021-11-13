@@ -15,6 +15,7 @@ namespace MoneyFox.Application.Common.Extensions
         /// <summary>
         /// Returns the last day of the current month.
         /// </summary>
-        public static DateTime GetLastDayOfMonth(this DateTime self) => new DateTime(self.Year, self.Month, DateTime.DaysInMonth(self.Year, self.Month));
+        public static DateTime GetLastDayOfMonth(this DateTime self) =>
+            new DateTime(self.Year, self.Month, DateTime.DaysInMonth(self.Year, self.Month));
     }
 }

@@ -44,19 +44,19 @@ namespace MoneyFox.ViewModels.Statistics
         {
             List<StatisticEntry>? statisticItems = await Mediator.Send(new GetCashFlowQuery
             {
-                EndDate = EndDate,
-                StartDate = StartDate
+                EndDate = EndDate, StartDate = StartDate
             });
 
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                {
-                    Label = x.Label,
-                    ValueLabel = x.ValueLabel,
-                    Color = SKColor.Parse(x.Color),
-                    ValueLabelColor = SKColor.Parse(x.Color)
-                }).ToList(),
+                    {
+                        Label = x.Label,
+                        ValueLabel = x.ValueLabel,
+                        Color = SKColor.Parse(x.Color),
+                        ValueLabelColor = SKColor.Parse(x.Color)
+                    })
+                    .ToList(),
                 BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,

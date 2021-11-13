@@ -10,6 +10,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Media;
 
 #nullable enable
@@ -28,16 +29,12 @@ namespace MoneyFox.Uwp
         /// <param name="positiveButtonText">Text for the yes button.</param>
         /// <param name="negativeButtonText">Text for the no button.</param>
         public async Task<bool> ShowConfirmMessageAsync(string title,
-                                                        string message,
-                                                        string? positiveButtonText = null,
-                                                        string? negativeButtonText = null)
+            string message,
+            string? positiveButtonText = null,
+            string? negativeButtonText = null)
         {
             CloseAllOpenDialogs();
-            var dialog = new ContentDialog
-            {
-                Title = title,
-                Content = message
-            };
+            var dialog = new ContentDialog {Title = title, Content = message};
             dialog.PrimaryButtonText = positiveButtonText ?? Strings.YesLabel;
             dialog.SecondaryButtonText = negativeButtonText ?? Strings.NoLabel;
             dialog.RequestedTheme = ThemeSelectorService.Theme;
@@ -56,11 +53,7 @@ namespace MoneyFox.Uwp
         {
             CloseAllOpenDialogs();
 
-            var dialog = new ContentDialog
-            {
-                Title = title,
-                Content = message
-            };
+            var dialog = new ContentDialog {Title = title, Content = message};
             dialog.PrimaryButtonText = Strings.OkLabel;
             dialog.RequestedTheme = ThemeSelectorService.Theme;
 
@@ -75,7 +68,7 @@ namespace MoneyFox.Uwp
             // Be sure no other dialog is open.
             CloseAllOpenDialogs();
 
-            loadingDialog = new LoadingDialog { Text = message ?? Strings.LoadingLabel };
+            loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
             loadingDialog.RequestedTheme = ThemeSelectorService.Theme;
 
             CoreApplicationView coreWindow = CoreApplication.MainView;
@@ -93,10 +86,8 @@ namespace MoneyFox.Uwp
                     }
                     catch(Exception ex)
                     {
-                        Crashes.TrackError(ex, new Dictionary<string, string>
-                        {
-                            { "Message", "Loading Dialog couldn't be opened." }
-                        });
+                        Crashes.TrackError(ex,
+                            new Dictionary<string, string> {{"Message", "Loading Dialog couldn't be opened."}});
                     }
                 });
 
@@ -115,8 +106,8 @@ namespace MoneyFox.Uwp
 
         private static void CloseAllOpenDialogs()
         {
-            IReadOnlyList<Windows.UI.Xaml.Controls.Primitives.Popup>? openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
-            foreach(Windows.UI.Xaml.Controls.Primitives.Popup? popup in openedpopups)
+            IReadOnlyList<Popup>? openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
+            foreach(Popup? popup in openedpopups)
             {
                 if(popup.Child is ContentDialog dialog)
                 {

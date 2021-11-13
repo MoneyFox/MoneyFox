@@ -16,6 +16,7 @@ namespace MoneyFox.Uwp.Helpers
             throw new ArgumentException("ExceptionEnumToBooleanConverterParameterMustBeAnEnumName");
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotSupportedException();
+        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+            throw new NotSupportedException();
     }
 }

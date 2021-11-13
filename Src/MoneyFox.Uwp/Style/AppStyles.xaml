@@ -6,23 +6,12 @@
     mc:Ignorable="d">
 
     <SolidColorBrush x:Key="WarningBrush" Color="{StaticResource WarningColor}" />
-
-    <SolidColorBrush x:Key="AppForegroundPrimaryBrush" Color="{StaticResource AppForegroundColorPrimary}" />
-
+    <SolidColorBrush x:Key="AppForegroundPrimaryBrush" Color="{StaticResource AppForegroundColorPrimaryColor}" />
     <SolidColorBrush x:Key="AppForegroundSecondaryBrush" Color="{StaticResource AppForegroundColorSecondary}" />
-
     <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource ColorPrimary}" />
-
     <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource ColorPrimaryDark}" />
-
     <SolidColorBrush x:Key="SplashScreenBackgroundBrush" Color="{StaticResource ColorSplashScreenBackground}" />
-
-    <SolidColorBrush x:Key="AppBarBrush" Color="{StaticResource ColorAppBar}" />
-
-    <SolidColorBrush x:Key="SplitViewToggleButtonForeground" Color="{StaticResource ColorHamburgerButton}" />
-
     <SolidColorBrush x:Key="ApplicationPageBackgroundThemeBrush" Color="{StaticResource ColorCustomBackground}" />
-
     <SolidColorBrush x:Key="ListItemBrush" Color="{StaticResource ListItemColor}" />
     <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
 

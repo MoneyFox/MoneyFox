@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <controls:ModalContentPage xmlns:controls="clr-namespace:MoneyFox.Controls"
                            xmlns="http://xamarin.com/schemas/2014/forms"
                            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -11,8 +12,8 @@
                            x:Class="MoneyFox.Views.Categories.AddCategoryPage">
 
     <ContentPage.Content>
-        <ScrollView Padding="15,0,15,0" >
-            <StackLayout >
+        <ScrollView Padding="15,0,15,0">
+            <StackLayout>
 
                 <Label Style="{StaticResource TextHeadline}"
                        Text="{x:Static resources:Strings.AddCategoryTitle}" />

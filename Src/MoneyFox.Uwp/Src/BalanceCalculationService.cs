@@ -8,6 +8,7 @@ using MoneyFox.Domain.Exceptions;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
@@ -51,7 +52,8 @@ namespace MoneyFox.Uwp
         }
 
         /// <inheritdoc/>
-        public async Task<decimal> GetTotalBalanceAsync() => await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
+        public async Task<decimal> GetTotalBalanceAsync() =>
+            await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
 
         /// <inheritdoc/>
         public async Task<decimal> GetTotalEndOfMonthBalanceAsync()
@@ -84,37 +86,13 @@ namespace MoneyFox.Uwp
             return balance;
         }
 
-        private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
-        {
-            foreach(Account account in excluded)
-            {
-                if(payment.TargetAccount == null)
-                {
-                    throw new InvalidOperationException("Uninitialized property: " + nameof(payment.TargetAccount));
-                }
-
-                if(Equals(account.Id, payment.ChargedAccount.Id))
-                {
-                    //Transfer from excluded account
-                    balance += payment.Amount;
-                }
-
-                if(Equals(account.Id, payment.TargetAccount.Id))
-                {
-                    //Transfer to excluded account
-                    balance -= payment.Amount;
-                }
-            }
-
-            return balance;
-        }
-
         /// <inheritdoc/>
         public async Task<decimal> GetEndOfMonthBalanceForAccountAsync(AccountViewModel account)
         {
             decimal balance = account.CurrentBalance;
 
-            List<Payment> paymentList = await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery { AccountId = account.Id });
+            List<Payment> paymentList =
+                await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery {AccountId = account.Id});
 
             foreach(Payment payment in paymentList)
 
@@ -135,6 +113,31 @@ namespace MoneyFox.Uwp
                         break;
                     default:
                         throw new InvalidPaymentTypeException();
+                }
+            }
+
+            return balance;
+        }
+
+        private static decimal HandleTransfer(List<Account> excluded, decimal balance, Payment payment)
+        {
+            foreach(int accountId in excluded.Select(x => x.Id))
+            {
+                if(payment.TargetAccount == null)
+                {
+                    throw new InvalidOperationException("Uninitialized property: " + nameof(payment.TargetAccount));
+                }
+
+                if(Equals(accountId, payment.ChargedAccount.Id))
+                {
+                    //Transfer from excluded account
+                    balance += payment.Amount;
+                }
+
+                if(Equals(accountId, payment.TargetAccount.Id))
+                {
+                    //Transfer to excluded account
+                    balance -= payment.Amount;
                 }
             }
 

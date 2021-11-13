@@ -13,6 +13,7 @@ namespace MoneyFox.Uwp.Converter
             return currencyValue.ToString("C", CultureHelper.CurrentCulture);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotSupportedException();
+        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+            throw new NotSupportedException();
     }
 }
