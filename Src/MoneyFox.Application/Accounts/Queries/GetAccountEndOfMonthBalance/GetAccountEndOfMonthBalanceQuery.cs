@@ -86,7 +86,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance
 
             private static decimal CalculateBalanceForTransfer(Account account, decimal balance, Payment payment)
             {
-                if(Equals(account.Id, payment.ChargedAccount!.Id))
+                if(Equals(account.Id, payment.ChargedAccount.Id))
                 {
                     //Transfer from excluded account
                     balance -= payment.Amount;

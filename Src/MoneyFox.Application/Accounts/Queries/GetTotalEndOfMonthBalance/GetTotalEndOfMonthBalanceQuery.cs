@@ -80,7 +80,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance
             {
                 foreach(var account in excluded)
                 {
-                    if(Equals(account.Id, payment.ChargedAccount!.Id))
+                    if(Equals(account.Id, payment.ChargedAccount.Id))
                     {
                         //Transfer from excluded account
                         balance += payment.Amount;

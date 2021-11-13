@@ -40,7 +40,7 @@ namespace MoneyFox.Application
         {
             builder.RegisterAssemblyTypes(typeof(IMediator).GetTypeInfo().Assembly).AsImplementedInterfaces();
 
-            Type[]? mediatrOpenTypes =
+            Type[] mediatrOpenTypes =
             {
                 typeof(IRequestHandler<,>),
                 typeof(IRequestExceptionHandler<,,>),

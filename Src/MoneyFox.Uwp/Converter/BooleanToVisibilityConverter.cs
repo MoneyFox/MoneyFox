@@ -7,7 +7,7 @@ namespace MoneyFox.Uwp.Converter
 {
     public class BooleanToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        public object Convert(object value, Type targetType, object? parameter, string language)
         {
             if(parameter != null && parameter.ToString() == "revert")
             {
