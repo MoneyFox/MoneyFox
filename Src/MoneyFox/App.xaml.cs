@@ -20,7 +20,7 @@ using Device = Xamarin.Forms.Device;
 
 namespace MoneyFox
 {
-    public partial class App : Xamarin.Forms.Application
+    public partial class App
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private bool isRunning;

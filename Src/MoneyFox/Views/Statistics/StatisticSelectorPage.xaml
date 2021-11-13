@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
              mc:Ignorable="d"
              x:Class="MoneyFox.Views.Statistics.StatisticSelectorPage"
              Visual="Material"
@@ -40,7 +41,7 @@
                                     <yummy:DropShadow />
                                 </yummy:PancakeView.Shadow>
 
-                                <StackLayout Orientation="Vertical">
+                                <StackLayout Orientation="Vertical" x:DataType="statistics:StatisticSelectorType">
                                     <Label Text="{Binding Name}" Style="{DynamicResource TextSubHead}" />
                                     <Label Text="{Binding Description}"
                                            Style="{DynamicResource DeemphasizedLabelStyle}" />

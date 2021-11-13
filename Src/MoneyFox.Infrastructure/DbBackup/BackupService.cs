@@ -66,10 +66,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
 
             await cloudBackupService.LoginAsync();
-            if(cloudBackupService.UserAccount != null)
-            {
-                UserAccount = cloudBackupService.UserAccount.GetUserAccount();
-            }
+            UserAccount = cloudBackupService.UserAccount.GetUserAccount();
 
             settingsFacade.IsLoggedInToBackupService = true;
             settingsFacade.IsBackupAutouploadEnabled = true;
@@ -104,7 +101,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             }
 
             var files = await cloudBackupService.GetFileNamesAsync();
-            return files != null && files.Any();
+            return files.Any();
         }
 
         public async Task<DateTime> GetBackupDateAsync()
@@ -245,7 +242,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             return BackupRestoreResult.BackupNotFound;
         }
 
-        private async Task EnqueueBackupTaskAsync(int attempts = 0)
+        private async Task EnqueueBackupTaskAsync()
         {
             if(!connectivity.IsConnected)
             {
@@ -278,7 +275,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 logger.Error(ex, "Enqueue Backup failed.");
                 await Task.Delay(BACKUP_REPEAT_DELAY);
-                await EnqueueBackupTaskAsync(attempts + 1);
+                await EnqueueBackupTaskAsync();
             }
             catch(BackupAuthenticationFailedException ex)
             {
