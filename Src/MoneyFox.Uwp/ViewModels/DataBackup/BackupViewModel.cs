@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Adapters;
@@ -15,9 +15,9 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp.ViewModels.DataBackup
 {
     /// <summary>
-    /// Representation of the backup view.
+    ///     Representation of the backup view.
     /// </summary>
-    public class BackupViewModel : ViewModelBase, IBackupViewModel
+    public class BackupViewModel : ObservableObject, IBackupViewModel
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -47,23 +47,23 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
             userAccount = new UserAccount();
         }
 
-        /// <inheritdoc/>
-        public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
+        /// <inheritdoc />
+        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
-        /// <inheritdoc/>
-        public RelayCommand LoginCommand => new RelayCommand(async () => await LoginAsync());
+        /// <inheritdoc />
+        public AsyncRelayCommand LoginCommand => new AsyncRelayCommand(async () => await LoginAsync());
 
-        /// <inheritdoc/>
-        public RelayCommand LogoutCommand => new RelayCommand(async () => await LogoutAsync());
+        /// <inheritdoc />
+        public AsyncRelayCommand LogoutCommand => new AsyncRelayCommand(async () => await LogoutAsync());
 
-        /// <inheritdoc/>
-        public RelayCommand BackupCommand => new RelayCommand(async () => await CreateBackupAsync());
+        /// <inheritdoc />
+        public AsyncRelayCommand BackupCommand => new AsyncRelayCommand(async () => await CreateBackupAsync());
 
-        /// <inheritdoc/>
-        public RelayCommand RestoreCommand => new RelayCommand(async () => await RestoreBackupAsync());
+        /// <inheritdoc />
+        public AsyncRelayCommand RestoreCommand => new AsyncRelayCommand(async () => await RestoreBackupAsync());
 
         /// <summary>
-        /// The Date when the backup was modified the last time.
+        ///     The Date when the backup was modified the last time.
         /// </summary>
         public DateTime BackupLastModified
         {
@@ -76,12 +76,12 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 backupLastModified = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Indicator that the app is checking if backups available.
+        ///     Indicator that the app is checking if backups available.
         /// </summary>
         public bool IsLoadingBackupAvailability
         {
@@ -94,17 +94,17 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 isLoadingBackupAvailability = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Indicator that the user logged in to the backup service.
+        ///     Indicator that the user logged in to the backup service.
         /// </summary>
         public bool IsLoggedIn => settingsFacade.IsLoggedInToBackupService;
 
         /// <summary>
-        /// Indicates if a backup is available for restore.
+        ///     Indicates if a backup is available for restore.
         /// </summary>
         public bool BackupAvailable
         {
@@ -117,11 +117,11 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 backupAvailable = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsAutoBackupEnabled
         {
             get => settingsFacade.IsBackupAutouploadEnabled;
@@ -133,7 +133,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 settingsFacade.IsBackupAutouploadEnabled = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -148,7 +148,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 }
 
                 userAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -158,7 +158,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
         {
             if(!IsLoggedIn)
             {
-                RaisePropertyChanged(nameof(IsLoggedIn));
+                OnPropertyChanged(nameof(IsLoggedIn));
                 return;
             }
 
@@ -181,7 +181,8 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
             {
                 logger.Error(ex, "Issue during Login process.");
                 await backupService.LogoutAsync();
-                await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle,
+                await dialogService.ShowMessageAsync(
+                    Strings.AuthenticationFailedTitle,
                     Strings.ErrorMessageAuthenticationFailed);
             }
             catch(Exception ex)
@@ -189,7 +190,8 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
                 if(ex.StackTrace == "4f37.717b")
                 {
                     await backupService.LogoutAsync();
-                    await dialogService.ShowMessageAsync(Strings.AuthenticationFailedTitle,
+                    await dialogService.ShowMessageAsync(
+                        Strings.AuthenticationFailedTitle,
                         Strings.ErrorMessageAuthenticationFailed);
                 }
 
@@ -219,12 +221,13 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
             catch(Exception ex)
             {
                 logger.Error(ex, "Login Failed.");
-                await dialogService.ShowMessageAsync(Strings.LoginFailedTitle,
+                await dialogService.ShowMessageAsync(
+                    Strings.LoginFailedTitle,
                     string.Format(Strings.UnknownErrorMessage, ex.Message));
                 Crashes.TrackError(ex);
             }
 
-            RaisePropertyChanged(nameof(IsLoggedIn));
+            OnPropertyChanged(nameof(IsLoggedIn));
             await LoadedAsync();
         }
 
@@ -246,7 +249,7 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
             }
 
             // ReSharper disable once ExplicitCallerInfoArgument
-            RaisePropertyChanged(nameof(IsLoggedIn));
+            OnPropertyChanged(nameof(IsLoggedIn));
         }
 
         private async Task CreateBackupAsync()
@@ -318,20 +321,22 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
         }
 
         private async Task<bool> ShowOverwriteBackupInfoAsync()
-            => await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
+            => await dialogService.ShowConfirmMessageAsync(
+                Strings.OverwriteTitle,
                 Strings.OverwriteBackupMessage,
                 Strings.YesLabel,
                 Strings.NoLabel);
 
         private async Task<bool> ShowOverwriteDataInfoAsync()
-            => await dialogService.ShowConfirmMessageAsync(Strings.OverwriteTitle,
+            => await dialogService.ShowConfirmMessageAsync(
+                Strings.OverwriteTitle,
                 Strings.OverwriteDataMessage,
                 Strings.YesLabel,
                 Strings.NoLabel);
 
-
         private async Task<bool> ShowForceOverrideConfirmationAsync()
-            => await dialogService.ShowConfirmMessageAsync(Strings.ForceOverrideBackupTitle,
+            => await dialogService.ShowConfirmMessageAsync(
+                Strings.ForceOverrideBackupTitle,
                 Strings.ForceOverrideBackupMessage,
                 Strings.YesLabel,
                 Strings.NoLabel);

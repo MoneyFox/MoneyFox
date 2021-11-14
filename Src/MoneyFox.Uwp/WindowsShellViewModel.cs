@@ -1,9 +1,8 @@
 ﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Accounts;
@@ -29,7 +28,7 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 #nullable enable
 namespace MoneyFox.Uwp
 {
-    public class WindowsShellViewModel : ViewModelBase
+    public class WindowsShellViewModel : ObservableObject
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
@@ -48,7 +47,7 @@ namespace MoneyFox.Uwp
         public bool IsBackEnabled
         {
             get => isBackEnabled;
-            set => Set(ref isBackEnabled, value);
+            set => SetProperty(ref isBackEnabled, value);
         }
 
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
@@ -56,10 +55,10 @@ namespace MoneyFox.Uwp
         public WinUI.NavigationViewItem? Selected
         {
             get => selected;
-            set => Set(ref selected, value);
+            set => SetProperty(ref selected, value);
         }
 
-        public ICommand LoadedCommand => loadedCommand ??= new AsyncCommand(OnLoadedAsync);
+        public ICommand LoadedCommand => loadedCommand ??= new AsyncRelayCommand(OnLoadedAsync);
 
         public ICommand ItemInvokedCommand => itemInvokedCommand ??=
             new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
@@ -67,7 +66,8 @@ namespace MoneyFox.Uwp
         public RelayCommand<PaymentType> GoToPaymentCommand =>
             new RelayCommand<PaymentType>(t => NavigationService.Navigate<AddPaymentViewModel>(t));
 
-        public void Initialize(Frame frame, WinUI.NavigationView navigationView,
+        public void Initialize(Frame frame,
+            WinUI.NavigationView navigationView,
             IList<KeyboardAccelerator> keyboardAccelerators)
         {
             Logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
@@ -133,17 +133,18 @@ namespace MoneyFox.Uwp
             }
 
             WinUI.NavigationViewItem? item = navigationView?.MenuItems
-                .OfType<WinUI.NavigationViewItem>()
-                .FirstOrDefault(menuItem =>
-                {
-                    if(menuItem.Content is string content
-                       && args.InvokedItem is string invokedItem)
-                    {
-                        return content == invokedItem;
-                    }
+                                                           .OfType<WinUI.NavigationViewItem>()
+                                                           .FirstOrDefault(
+                                                               menuItem =>
+                                                               {
+                                                                   if(menuItem.Content is string content
+                                                                      && args.InvokedItem is string invokedItem)
+                                                                   {
+                                                                       return content == invokedItem;
+                                                                   }
 
-                    return false;
-                });
+                                                                   return false;
+                                                               });
 
             if(item == null)
             {
@@ -174,8 +175,8 @@ namespace MoneyFox.Uwp
             IsBackEnabled = NavigationService.CanGoBack;
 
             Selected = navigationView?.MenuItems
-                .OfType<WinUI.NavigationViewItem>()
-                .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
+                                     .OfType<WinUI.NavigationViewItem>()
+                                     .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
 
         private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)

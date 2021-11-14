@@ -41,7 +41,8 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
 
             // Act
             Category result =
-                await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetCategoryByIdQuery(999),
+                await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                    new GetCategoryByIdQuery(999),
                     default);
 
             // Assert
@@ -59,7 +60,8 @@ namespace MoneyFox.Application.Tests.Categories.Queries.GetCategoryById
             // Act
             Category result =
                 await new GetCategoryByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetCategoryByIdQuery(testCat1.Id), default);
+                    new GetCategoryByIdQuery(testCat1.Id),
+                    default);
 
             // Assert
             result.Should().NotBeNull();

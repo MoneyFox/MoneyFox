@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace MoneyFox.Domain.Exceptions
 {
     /// <summary>
-    /// This Exception is thrown when the user couldn't authenticate on the backup service.
+    ///     This Exception is thrown when the user couldn't authenticate on the backup service.
     /// </summary>
     [Serializable]
     public class BackupAuthenticationFailedException : Exception
@@ -17,7 +17,8 @@ namespace MoneyFox.Domain.Exceptions
         {
         }
 
-        public BackupAuthenticationFailedException(Exception exception) : base("Backup Authentication Failed",
+        public BackupAuthenticationFailedException(Exception exception) : base(
+            "Backup Authentication Failed",
             exception)
         {
         }
@@ -26,7 +27,8 @@ namespace MoneyFox.Domain.Exceptions
         {
         }
 
-        protected BackupAuthenticationFailedException(SerializationInfo info, StreamingContext context) : base(info,
+        protected BackupAuthenticationFailedException(SerializationInfo info, StreamingContext context) : base(
+            info,
             context)
         {
         }

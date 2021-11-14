@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
-    /// <inheritdoc cref="IStatisticCategorySummaryViewModel"/>
+    /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
@@ -47,7 +47,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 incomeExpenseBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -62,12 +62,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 categorySummary = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(HasData));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(HasData));
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool HasData => CategorySummary.Any();
 
         public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand =>
@@ -81,7 +81,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             set
             {
                 selectedOverviewItem = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -93,25 +93,33 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 await Mediator.Send(new GetPaymentsForCategoryQuery(summaryItem.CategoryId, StartDate, EndDate)));
 
             List<DateListGroupCollection<PaymentViewModel>> dailyItems = DateListGroupCollection<PaymentViewModel>
-                .CreateGroups(loadedPayments,
+                .CreateGroups(
+                    loadedPayments,
                     s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                     s => s.Date);
 
             summaryItem.Source.Clear();
 
-            DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(dailyItems,
-                    s =>
-                    {
-                        var date = Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture);
-                        return $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                    }, s => Convert.ToDateTime(s.Key, CultureInfo.CurrentCulture))
-                .ForEach(summaryItem.Source.Add);
+            DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(
+                                                                                  dailyItems,
+                                                                                  s =>
+                                                                                  {
+                                                                                      var date = Convert.ToDateTime(
+                                                                                          s.Key,
+                                                                                          CultureInfo.CurrentCulture);
+                                                                                      return
+                                                                                          $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
+                                                                                  },
+                                                                                  s => Convert.ToDateTime(
+                                                                                      s.Key,
+                                                                                      CultureInfo.CurrentCulture))
+                                                                              .ForEach(summaryItem.Source.Add);
 
             SelectedOverviewItem = summaryItem;
         }
 
         /// <summary>
-        /// Overrides the load method to load the category summary data.
+        ///     Overrides the load method to load the category summary data.
         /// </summary>
         protected override async Task LoadAsync()
         {
@@ -120,16 +128,17 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 
             CategorySummary.Clear();
             categorySummaryModel.CategoryOverviewItems
-                .Select(x => new CategoryOverviewViewModel
-                {
-                    CategoryId = x.CategoryId,
-                    Value = x.Value,
-                    Average = x.Average,
-                    Label = x.Label,
-                    Percentage = x.Percentage
-                })
-                .ToList()
-                .ForEach(CategorySummary.Add);
+                                .Select(
+                                    x => new CategoryOverviewViewModel
+                                    {
+                                        CategoryId = x.CategoryId,
+                                        Value = x.Value,
+                                        Average = x.Average,
+                                        Label = x.Label,
+                                        Percentage = x.Percentage
+                                    })
+                                .ToList()
+                                .ForEach(CategorySummary.Add);
 
             IncomeExpenseBalance.TotalEarned = categorySummaryModel.TotalEarned;
             IncomeExpenseBalance.TotalSpent = categorySummaryModel.TotalSpent;

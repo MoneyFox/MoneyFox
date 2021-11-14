@@ -110,21 +110,21 @@ namespace MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance
 
             private async Task<decimal> GetCurrentAccountBalanceAsync() =>
                 (await contextAdapter.Context
-                    .Accounts
-                    .WithId(accountId)
-                    .Select(x => x.CurrentBalance)
-                    .ToListAsync())
+                                     .Accounts
+                                     .WithId(accountId)
+                                     .Select(x => x.CurrentBalance)
+                                     .ToListAsync())
                 .Sum();
 
             private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync() =>
                 await contextAdapter.Context
-                    .Payments
-                    .HasAccountId(accountId)
-                    .Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .AreNotCleared()
-                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
-                    .ToListAsync();
+                                    .Payments
+                                    .HasAccountId(accountId)
+                                    .Include(x => x.ChargedAccount)
+                                    .Include(x => x.TargetAccount)
+                                    .AreNotCleared()
+                                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
+                                    .ToListAsync();
         }
     }
 }

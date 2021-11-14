@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Interfaces;
@@ -61,7 +61,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         {
             try
             {
-                var payment = new Payment(SelectedPayment.Date,
+                var payment = new Payment(
+                    SelectedPayment.Date,
                     SelectedPayment.Amount,
                     SelectedPayment.Type,
                     await mediator.Send(new GetAccountByIdQuery(SelectedPayment.ChargedAccount.Id)),
@@ -73,7 +74,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
                 if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null)
                 {
-                    payment.AddRecurringPayment(SelectedPayment.RecurringPayment.Recurrence,
+                    payment.AddRecurringPayment(
+                        SelectedPayment.RecurringPayment.Recurrence,
                         SelectedPayment.RecurringPayment.IsEndless
                             ? null
                             : SelectedPayment.RecurringPayment.EndDate);

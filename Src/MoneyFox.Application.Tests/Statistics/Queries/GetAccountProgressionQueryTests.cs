@@ -14,8 +14,9 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public void ExceptionOnInvalidDates() =>
             // Arrange
             // Act / Assert
-            Assert.Throws<StartAfterEnddateException>(() =>
-                new GetAccountProgressionQuery(0, DateTime.Today.AddYears(3), DateTime.Today));
+            Assert.Throws<StartAfterEnddateException>(
+                () =>
+                    new GetAccountProgressionQuery(0, DateTime.Today.AddYears(3), DateTime.Today));
 
         [Fact]
         public void NoExceptionOnSameDate()

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
@@ -18,7 +19,7 @@ using Xamarin.Forms.Internals;
 
 namespace MoneyFox.ViewModels.Dashboard
 {
-    public class DashboardViewModel : ViewModelBase
+    public class DashboardViewModel : ObservableRecipient
     {
         private decimal assets;
         private decimal endOfMonthBalance;
@@ -40,9 +41,10 @@ namespace MoneyFox.ViewModels.Dashboard
             this.mapper = mapper;
         }
 
-        public void Subscribe() => MessengerInstance.Register<ReloadMessage>(this, async m => await InitializeAsync());
+        protected override void OnActivated()
+            => Messenger.Register<DashboardViewModel, ReloadMessage>(this, (r, m) => r.InitializeAsync());
 
-        public void Unsubscribe() => MessengerInstance.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public async Task InitializeAsync()
         {
@@ -56,8 +58,9 @@ namespace MoneyFox.ViewModels.Dashboard
                 isRunning = true;
                 Accounts = mapper.Map<ObservableCollection<AccountViewModel>>(
                     await mediator.Send(new GetAccountsQuery()));
-                Accounts.ForEach(async x =>
-                    x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                Accounts.ForEach(
+                    async x =>
+                        x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 Assets = await mediator.Send(new GetIncludedAccountBalanceSummaryQuery());
                 EndOfMonthBalance = await mediator.Send(new GetTotalEndOfMonthBalanceQuery());
@@ -76,7 +79,7 @@ namespace MoneyFox.ViewModels.Dashboard
             set
             {
                 assets = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -86,7 +89,7 @@ namespace MoneyFox.ViewModels.Dashboard
             set
             {
                 endOfMonthBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -96,7 +99,7 @@ namespace MoneyFox.ViewModels.Dashboard
             set
             {
                 monthlyIncomes = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -106,7 +109,7 @@ namespace MoneyFox.ViewModels.Dashboard
             set
             {
                 monthlyExpenses = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -121,7 +124,7 @@ namespace MoneyFox.ViewModels.Dashboard
                 }
 
                 budgetEntries = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -136,12 +139,13 @@ namespace MoneyFox.ViewModels.Dashboard
                 }
 
                 accounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        public RelayCommand GoToAddPaymentCommand => new RelayCommand(async () =>
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
+        public RelayCommand GoToAddPaymentCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.AddPaymentRoute));
 
         public RelayCommand GoToAccountsCommand =>
             new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.AccountListRoute));
@@ -150,8 +154,9 @@ namespace MoneyFox.ViewModels.Dashboard
             new RelayCommand(async () => await Shell.Current.GoToAsync(ViewModelLocator.BudgetListRoute));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel
-                => await Shell.Current.GoToAsync(
-                    $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
+            => new RelayCommand<AccountViewModel>(
+                async accountViewModel
+                    => await Shell.Current.GoToAsync(
+                        $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
     }
 }

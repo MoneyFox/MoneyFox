@@ -80,7 +80,8 @@ namespace MoneyFox.iOS
             else if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_LEGACY_MAJOR_VERSION, 0))
             {
                 UIUserNotificationSettings notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound, null);
+                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
+                    null);
 
                 app.RegisterUserNotificationSettings(notificationSettings);
             }

@@ -24,7 +24,10 @@ namespace MoneyFox.Uwp.Helpers
         }
 
         public static readonly DependencyProperty NavigateToProperty =
-            DependencyProperty.RegisterAttached("NavigateTo", typeof(string), typeof(NavHelper),
+            DependencyProperty.RegisterAttached(
+                "NavigateTo",
+                typeof(string),
+                typeof(NavHelper),
                 new PropertyMetadata(null));
     }
 }

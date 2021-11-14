@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
@@ -10,7 +11,6 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -19,16 +19,13 @@ using NLog;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Accounts
 {
-    [SuppressMessage("Major Code Smell",
-        "S1200:Classes should not be coupled to too many other classes (Single Responsibility Principle)")]
-    public class AccountListViewModel : ViewModelBase, IAccountListViewModel
+    public class AccountListViewModel : ObservableRecipient, IAccountListViewModel
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
@@ -60,11 +57,12 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             ViewActionViewModel = new AccountListViewActionViewModel(this.navigationService);
         }
 
-        public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async m => await LoadAsync());
+        protected override void OnActivated()
+            => Messenger.Register<AccountListViewModel, ReloadMessage>(
+                this,
+                (r, m) => r.LoadDataCommand.ExecuteAsync(null));
 
-        public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public IBalanceViewModel BalanceViewModel { get; }
 
@@ -81,21 +79,22 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 accounts = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(HasNoAccounts));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(HasNoAccounts));
             }
         }
 
         public bool HasNoAccounts => !Accounts.Any();
 
-        public AsyncCommand LoadDataCommand => new AsyncCommand(LoadAsync);
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(LoadAsync);
 
         public RelayCommand<AccountViewModel> OpenOverviewCommand =>
             new RelayCommand<AccountViewModel>(GoToPaymentOverView);
 
         public RelayCommand<AccountViewModel> EditAccountCommand => new RelayCommand<AccountViewModel>(EditAccount);
 
-        public AsyncCommand<AccountViewModel> DeleteAccountCommand => new AsyncCommand<AccountViewModel>(DeleteAsync);
+        public AsyncRelayCommand<AccountViewModel> DeleteAccountCommand
+            => new AsyncRelayCommand<AccountViewModel>(DeleteAsync);
 
         private void EditAccount(AccountViewModel accountViewModel) =>
             navigationService.Navigate<EditAccountViewModel>(accountViewModel.Id);
@@ -110,21 +109,23 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 isRunning = true;
-                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+                await BalanceViewModel.UpdateBalanceCommand.ExecuteAsync(null!);
 
                 var includedAlphaGroup =
                     new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
                 includedAlphaGroup.AddRange(
                     mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetIncludedAccountQuery())));
-                includedAlphaGroup.ForEach(async x =>
-                    x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                includedAlphaGroup.ForEach(
+                    async x =>
+                        x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 var excludedAlphaGroup =
                     new AlphaGroupListGroupCollection<AccountViewModel>(Strings.ExcludedAccountsHeader);
                 excludedAlphaGroup.AddRange(
                     mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetExcludedAccountQuery())));
-                excludedAlphaGroup.ForEach(async x =>
-                    x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                excludedAlphaGroup.ForEach(
+                    async x =>
+                        x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 Accounts.Clear();
 
@@ -138,7 +139,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                     Accounts.Add(excludedAlphaGroup);
                 }
 
-                RaisePropertyChanged(nameof(HasNoAccounts));
+                OnPropertyChanged(nameof(HasNoAccounts));
             }
             catch(Exception ex)
             {
@@ -168,7 +169,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 return;
             }
 
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeactivateAccountByIdCommand(accountToDelete.Id));

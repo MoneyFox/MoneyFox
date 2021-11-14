@@ -1,5 +1,4 @@
 ﻿using Autofac;
-using GalaSoft.MvvmLight.Messaging;
 using MediatR;
 using MoneyFox.Application;
 using MoneyFox.Application.Common;
@@ -20,8 +19,12 @@ namespace MoneyFox.Uwp
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c =>
-                new TokenObject {CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]});
+            builder.Register(
+                c =>
+                    new TokenObject
+                    {
+                        CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]
+                    });
 
             builder.RegisterModule<ApplicationModule>();
             builder.RegisterModule<InfrastructureDesktop>();
@@ -36,27 +39,25 @@ namespace MoneyFox.Uwp
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
-
-            builder.RegisterInstance(Messenger.Default).AsImplementedInterfaces();
             builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
-                .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
-                .AsImplementedInterfaces();
+                   .Where(t => t.Name.EndsWith("Service", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => !t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
-                .AsImplementedInterfaces()
-                .AsSelf()
-                .SingleInstance();
+                   .Where(t => t.Name.Equals("NavigationService", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces()
+                   .AsSelf()
+                   .SingleInstance();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
-                .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
-                .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
-                .AsImplementedInterfaces()
-                .AsSelf()
-                .AsSelf();
+                   .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
+                   .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
+                   .AsImplementedInterfaces()
+                   .AsSelf()
+                   .AsSelf();
 
             CultureHelper.CurrentCulture =
                 CultureInfo.CreateSpecificCulture(new SettingsFacade(new SettingsAdapter()).DefaultCulture);

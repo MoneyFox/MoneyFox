@@ -40,10 +40,12 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
                 this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc/>
+            /// <inheritdoc />
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
-                await contextAdapter.Context.Accounts.AddAsync(new Account(request.Name,
+                await contextAdapter.Context.Accounts.AddAsync(
+                    new Account(
+                        request.Name,
                         request.CurrentBalance,
                         request.Note,
                         request.IsExcluded),

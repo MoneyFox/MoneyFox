@@ -48,11 +48,11 @@ namespace MoneyFox.Uwp.Views.Categories
             }
 
             ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category)
-                .FireAndForgetSafeAsync();
+                                                        .FireAndForgetSafeAsync();
         }
 
         private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
             => ((AbstractCategoryListViewModel)DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text)
-                .FireAndForgetSafeAsync();
+                                                           .FireAndForgetSafeAsync();
     }
 }

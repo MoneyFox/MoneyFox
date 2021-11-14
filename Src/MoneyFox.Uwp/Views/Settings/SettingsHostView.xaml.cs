@@ -24,13 +24,15 @@ namespace MoneyFox.Uwp.Views.Settings
         {
             if(args.InvokedItemContainer.Tag.ToString() == "settings")
             {
-                ContentFrame.Navigate(typeof(SettingsView),
+                ContentFrame.Navigate(
+                    typeof(SettingsView),
                     null,
                     new SlideNavigationTransitionInfo {Effect = SlideNavigationTransitionEffect.FromRight});
             }
             else
             {
-                ContentFrame.Navigate(typeof(AboutView),
+                ContentFrame.Navigate(
+                    typeof(AboutView),
                     null,
                     new SlideNavigationTransitionInfo {Effect = SlideNavigationTransitionEffect.FromLeft});
             }

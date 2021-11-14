@@ -32,10 +32,10 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentById
             public async Task<Payment> Handle(GetPaymentByIdQuery request, CancellationToken cancellationToken)
             {
                 Payment? payment = await contextAdapter.Context.Payments.Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .Include(x => x.RecurringPayment)
-                    .Include(x => x.Category)
-                    .SingleOrDefaultAsync(x => x.Id == request.PaymentId);
+                                                       .Include(x => x.TargetAccount)
+                                                       .Include(x => x.RecurringPayment)
+                                                       .Include(x => x.Category)
+                                                       .SingleOrDefaultAsync(x => x.Id == request.PaymentId);
 
                 if(payment == null)
                 {

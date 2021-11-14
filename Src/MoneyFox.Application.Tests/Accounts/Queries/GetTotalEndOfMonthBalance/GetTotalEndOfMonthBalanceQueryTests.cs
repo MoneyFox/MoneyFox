@@ -52,7 +52,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             // Act
             decimal result =
                 await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
-                    new GetTotalEndOfMonthBalanceQuery(), default);
+                    new GetTotalEndOfMonthBalanceQuery(),
+                    default);
 
             // Assert
             result.Should().Be(50);
@@ -79,7 +80,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetTotalEndOfMonthBalance
             // Act
             decimal result =
                 await new GetTotalEndOfMonthBalanceQuery.Handler(contextAdapterMock, systemDateHelper).Handle(
-                    new GetTotalEndOfMonthBalanceQuery(), default);
+                    new GetTotalEndOfMonthBalanceQuery(),
+                    default);
 
             // Assert
             result.Should().Be(50);

@@ -1,11 +1,11 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Common.Facades;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.SetupAssistant
 {
-    public class SetupCompletionViewModel : ViewModelBase
+    public class SetupCompletionViewModel : ObservableObject
     {
         private readonly ISettingsFacade settingsFacade;
 

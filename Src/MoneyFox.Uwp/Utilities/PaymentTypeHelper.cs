@@ -5,12 +5,12 @@ using System;
 namespace MoneyFox.Uwp.Utilities
 {
     /// <summary>
-    /// A collection of helper methods for handling PaymentTypes
+    ///     A collection of helper methods for handling PaymentTypes
     /// </summary>
     public static class PaymentTypeHelper
     {
         /// <summary>
-        /// Parse a string to PaymentType
+        ///     Parse a string to PaymentType
         /// </summary>
         /// <param name="input">String to parse.</param>
         /// <returns>Parsed PaymentType.</returns>
@@ -18,7 +18,7 @@ namespace MoneyFox.Uwp.Utilities
             (PaymentType)Enum.Parse(typeof(PaymentType), input);
 
         /// <summary>
-        /// Returns based on an enum int the title for the PaymentType.
+        ///     Returns based on an enum int the title for the PaymentType.
         /// </summary>
         /// <param name="type">Int of the enum.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
@@ -27,7 +27,7 @@ namespace MoneyFox.Uwp.Utilities
             GetViewTitleForType((PaymentType)type, isEditMode);
 
         /// <summary>
-        /// Returns based on an PaymentType the title.
+        ///     Returns based on an PaymentType the title.
         /// </summary>
         /// <param name="type">PaymentType for which the title is searched.</param>
         /// <param name="isEditMode">States if the title is used for the edit mode or for adding</param>
@@ -42,7 +42,7 @@ namespace MoneyFox.Uwp.Utilities
             };
 
         /// <summary>
-        /// Determines the string for PaymentType based on the passed int.
+        ///     Determines the string for PaymentType based on the passed int.
         /// </summary>
         /// <param name="type">The PaymentViewModel type as int.</param>
         /// <returns>The string for the determined type.</returns>
@@ -52,7 +52,8 @@ namespace MoneyFox.Uwp.Utilities
                 (int)PaymentType.Income => PaymentType.Income.ToString(),
                 (int)PaymentType.Expense => PaymentType.Expense.ToString(),
                 (int)PaymentType.Transfer => PaymentType.Transfer.ToString(),
-                _ => throw new ArgumentOutOfRangeException(nameof(type),
+                _ => throw new ArgumentOutOfRangeException(
+                    nameof(type),
                     "Passed Number didn't match to a payment type.")
             };
     }

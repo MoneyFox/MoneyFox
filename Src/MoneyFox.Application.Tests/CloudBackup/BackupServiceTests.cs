@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using GalaSoft.MvvmLight.Messaging;
 using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
@@ -27,7 +26,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
         private readonly Mock<ISettingsFacade> settingsFacadeMock;
         private readonly Mock<IConnectivityAdapter> connectivityAdapterMock;
         private readonly Mock<IContextAdapter> contextAdapterMock;
-        private readonly Mock<IMessenger> messengerMock;
 
         private readonly IToastService toastService;
 
@@ -40,7 +38,6 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock = new Mock<ISettingsFacade>();
             connectivityAdapterMock = new Mock<IConnectivityAdapter>();
             contextAdapterMock = new Mock<IContextAdapter>();
-            messengerMock = new Mock<IMessenger>();
 
             toastService = Substitute.For<IToastService>();
         }
@@ -51,12 +48,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act / Assert
@@ -70,16 +67,16 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.LoginAsync())
-                .Callback(() => throw new BackupException());
+                                  .Callback(() => throw new BackupException());
 
             settingsFacadeMock.SetupAllProperties();
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -100,12 +97,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
 
             settingsFacadeMock.SetupAllProperties();
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -122,12 +119,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act / Assert
@@ -141,18 +138,18 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.LogoutAsync())
-                .Callback(() => throw new BackupException());
+                                  .Callback(() => throw new BackupException());
 
             settingsFacadeMock.SetupAllProperties();
             settingsFacadeMock.Object.IsBackupAutouploadEnabled = true;
             settingsFacadeMock.Object.IsLoggedInToBackupService = true;
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -173,12 +170,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
 
             settingsFacadeMock.SetupAllProperties();
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -195,12 +192,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -217,14 +214,14 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                .ReturnsAsync(new List<string>());
+                                  .ReturnsAsync(new List<string>());
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -241,14 +238,14 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                .ReturnsAsync(new List<string> {"asd"});
+                                  .ReturnsAsync(new List<string> {"asd"});
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -264,12 +261,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             // Arrange
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(false);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -289,12 +286,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Today);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -313,12 +310,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act / Assert
@@ -339,17 +336,17 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
-                .ReturnsAsync(new Mock<Stream>().Object);
+                                  .ReturnsAsync(new Mock<Stream>().Object);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                .ReturnsAsync(new List<string> {"asd"});
+                                  .ReturnsAsync(new List<string> {"asd"});
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -357,8 +354,8 @@ namespace MoneyFox.Application.Tests.CloudBackup
 
             // Assert
             settingsFacadeMock.Object.LastDatabaseUpdate
-                .Should()
-                .BeBefore(DateTime.Now.AddSeconds(-1));
+                              .Should()
+                              .BeBefore(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -374,19 +371,19 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                .ReturnsAsync(new List<string> {DatabaseConstants.BACKUP_NAME});
+                                  .ReturnsAsync(new List<string> {DatabaseConstants.BACKUP_NAME});
 
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
-                .Callback(() => throw new BackupException());
+                                  .Callback(() => throw new BackupException());
 
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Now);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -408,12 +405,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(false);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -432,17 +429,17 @@ namespace MoneyFox.Application.Tests.CloudBackup
 
             cloudBackupServiceMock.Setup(x => x.UploadAsync(It.IsAny<Stream>())).ReturnsAsync(true);
             cloudBackupServiceMock.Setup(x => x.LoginAsync())
-                .Callback(() => throw new BackupException());
+                                  .Callback(() => throw new BackupException());
 
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(false);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act
@@ -464,12 +461,12 @@ namespace MoneyFox.Application.Tests.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
-            var backupService = new BackupService(cloudBackupServiceMock.Object,
+            var backupService = new BackupService(
+                cloudBackupServiceMock.Object,
                 fileStoreMock.Object,
                 settingsFacadeMock.Object,
                 connectivityAdapterMock.Object,
                 contextAdapterMock.Object,
-                messengerMock.Object,
                 toastService);
 
             // Act

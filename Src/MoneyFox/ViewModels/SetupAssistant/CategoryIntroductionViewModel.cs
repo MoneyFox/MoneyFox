@@ -1,11 +1,11 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Extensions;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.SetupAssistant
 {
-    public class CategoryIntroductionViewModel : ViewModelBase
+    public class CategoryIntroductionViewModel : ObservableObject
     {
         public RelayCommand GoToAddCategoryCommand
             => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
