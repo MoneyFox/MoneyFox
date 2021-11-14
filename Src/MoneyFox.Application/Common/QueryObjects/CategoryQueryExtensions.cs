@@ -16,6 +16,7 @@ namespace MoneyFox.Application.Common.QueryObjects
         /// <param name="searchterm">Search term to look for.</param>
         /// <returns>Query with the added filter.</returns>
         public static IEnumerable<Category> WhereNameContains(this IEnumerable<Category> query, string searchterm)
+            // ReSharper disable once StringIndexOfIsCultureSpecific.1
             => query.Where(category => category.Name.ToUpper().IndexOf(searchterm.ToUpper()) >= 0);
 
         /// <summary>

@@ -217,7 +217,6 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
     <Compile Include="ViewModels\Payments\DesignTimePaymentListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />

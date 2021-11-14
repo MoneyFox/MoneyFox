@@ -8,28 +8,28 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
         /// <summary>
         ///     Initialize View Model.
         /// </summary>
-        RelayCommand InitializeCommand { get; }
+        AsyncRelayCommand InitializeCommand { get; }
 
         /// <summary>
         ///     Makes the first login and sets the setting for the future navigation to this page.
         /// </summary>
-        RelayCommand LoginCommand { get; }
+        AsyncRelayCommand LoginCommand { get; }
 
         /// <summary>
         ///     Logs the user out from the backup service.
         /// </summary>
-        RelayCommand LogoutCommand { get; }
+        AsyncRelayCommand LogoutCommand { get; }
 
         /// <summary>
         ///     Will create a backup of the database and upload it to OneDrive
         /// </summary>
-        RelayCommand BackupCommand { get; }
+        AsyncRelayCommand BackupCommand { get; }
 
         /// <summary>
         ///     Will download the database backup from OneDrive and overwrite the     local database with the downloaded.     All
         ///     data models are then reloaded.
         /// </summary>
-        RelayCommand RestoreCommand { get; }
+        AsyncRelayCommand RestoreCommand { get; }
 
         DateTime BackupLastModified { get; }
 

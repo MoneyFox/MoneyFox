@@ -5,15 +5,15 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
 {
     public class DesignTimeBackupViewModel : IBackupViewModel
     {
-        public RelayCommand InitializeCommand { get; } = null!;
+        public AsyncRelayCommand InitializeCommand { get; } = null!;
 
-        public RelayCommand LoginCommand { get; } = null!;
+        public AsyncRelayCommand LoginCommand { get; } = null!;
 
-        public RelayCommand LogoutCommand { get; } = null!;
+        public AsyncRelayCommand LogoutCommand { get; } = null!;
 
-        public RelayCommand BackupCommand { get; } = null!;
+        public AsyncRelayCommand BackupCommand { get; } = null!;
 
-        public RelayCommand RestoreCommand { get; } = null!;
+        public AsyncRelayCommand RestoreCommand { get; } = null!;
 
         public DateTime BackupLastModified { get; }
 

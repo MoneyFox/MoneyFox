@@ -48,19 +48,19 @@ namespace MoneyFox.Uwp.ViewModels.DataBackup
         }
 
         /// <inheritdoc />
-        public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
+        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(async () => await InitializeAsync());
 
         /// <inheritdoc />
-        public RelayCommand LoginCommand => new RelayCommand(async () => await LoginAsync());
+        public AsyncRelayCommand LoginCommand => new AsyncRelayCommand(async () => await LoginAsync());
 
         /// <inheritdoc />
-        public RelayCommand LogoutCommand => new RelayCommand(async () => await LogoutAsync());
+        public AsyncRelayCommand LogoutCommand => new AsyncRelayCommand(async () => await LogoutAsync());
 
         /// <inheritdoc />
-        public RelayCommand BackupCommand => new RelayCommand(async () => await CreateBackupAsync());
+        public AsyncRelayCommand BackupCommand => new AsyncRelayCommand(async () => await CreateBackupAsync());
 
         /// <inheritdoc />
-        public RelayCommand RestoreCommand => new RelayCommand(async () => await RestoreBackupAsync());
+        public AsyncRelayCommand RestoreCommand => new AsyncRelayCommand(async () => await RestoreBackupAsync());
 
         /// <summary>
         ///     The Date when the backup was modified the last time.

@@ -37,7 +37,7 @@ namespace MoneyFox.Application.DbBackup
 
         /// <summary>
         ///     Restores the file with the passed name
-        /// </summary
+        /// </summary>
         /// <param name="backupName">Name of the backup to restore</param>
         /// <param name="dbName">filename in which the database shall be restored.</param>
         /// <returns>TaskCompletionType which indicates if the task was successful or not</returns>

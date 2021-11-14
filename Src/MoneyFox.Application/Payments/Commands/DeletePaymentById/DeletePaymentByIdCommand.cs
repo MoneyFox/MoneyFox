@@ -60,7 +60,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                     throw new PaymentNotFoundException();
                 }
 
-                entityToDelete.ChargedAccount!.RemovePaymentAmount(entityToDelete);
+                entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
                 entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
 
                 if(request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
