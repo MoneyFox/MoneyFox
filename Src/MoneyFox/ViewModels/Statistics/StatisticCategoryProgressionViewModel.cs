@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Common;
@@ -26,8 +25,7 @@ namespace MoneyFox.ViewModels.Statistics
         private bool hasNoData = true;
         private CategoryViewModel? selectedCategory;
 
-        public StatisticCategoryProgressionViewModel(IMediator mediator,
-            IMapper mapper) : base(mediator)
+        public StatisticCategoryProgressionViewModel(IMediator mediator) : base(mediator)
         {
             StartDate = DateTime.Now.AddYears(-1);
         }

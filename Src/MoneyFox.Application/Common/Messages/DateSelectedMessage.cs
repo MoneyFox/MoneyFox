@@ -4,7 +4,7 @@ namespace MoneyFox.Application.Common.Messages
 {
     public class DateSelectedMessage
     {
-        public DateSelectedMessage(object sender, DateTime startDate, DateTime endDate)
+        public DateSelectedMessage(DateTime startDate, DateTime endDate)
         {
             StartDate = startDate;
             EndDate = endDate;
