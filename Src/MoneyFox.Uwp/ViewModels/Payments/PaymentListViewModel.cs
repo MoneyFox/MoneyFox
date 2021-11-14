@@ -44,7 +44,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private IBalanceViewModel balanceViewModel = null!;
 
         private string title = "";
-        private bool isBusy = true;
         private IPaymentListViewActionViewModel? viewActionViewModel;
 
         /// <summary>

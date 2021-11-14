@@ -60,7 +60,6 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
                 new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
                 default);
 
-
             // Assert
             result[0].Value.Should().Be(80);
             result[1].Value.Should().Be(90);

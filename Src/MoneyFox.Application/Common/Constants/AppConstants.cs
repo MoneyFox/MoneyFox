@@ -15,7 +15,6 @@
         /// </summary>
         public static string SupportMail => "mobile.support@apply-solutions.ch";
 
-
         /// <summary>
         ///     URL to the GitHub repository
         /// </summary>

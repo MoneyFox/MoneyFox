@@ -18,7 +18,6 @@ namespace MoneyFox.Droid.Renderer
                     continue;
                 }
 
-
                 if(child is T typedChild)
                 {
                     yield return typedChild;

@@ -38,7 +38,6 @@ namespace MoneyFox.ViewModels.Statistics
 
         protected override void OnDeactivated() => Messenger.Unregister<PaymentsForCategoryMessage>(this);
 
-
         private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList =
             new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
 

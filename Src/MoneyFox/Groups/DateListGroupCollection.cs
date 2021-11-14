@@ -17,7 +17,6 @@ namespace MoneyFox.Groups
 
         public delegate DateTime GetSortKeyDelegate(T item);
 
-
         /// <summary>
         ///     Public constructor.
         /// </summary>

@@ -67,7 +67,6 @@ namespace MoneyFox.Application.Statistics.Queries
             this.contextAdapter = contextAdapter;
         }
 
-
         public async Task<IEnumerable<StatisticEntry>> Handle(GetCategorySpreadingQuery request,
             CancellationToken cancellationToken)
         {

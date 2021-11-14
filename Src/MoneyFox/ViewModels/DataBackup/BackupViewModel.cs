@@ -334,7 +334,6 @@ namespace MoneyFox.ViewModels.DataBackup
                 Strings.YesLabel,
                 Strings.NoLabel);
 
-
         private async Task<bool> ShowForceOverrideConfirmationAsync()
             => await dialogService.ShowConfirmMessageAsync(
                 Strings.ForceOverrideBackupTitle,

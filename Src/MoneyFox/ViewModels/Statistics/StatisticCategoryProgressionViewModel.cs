@@ -2,9 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
-using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Extensions;
@@ -27,13 +25,10 @@ namespace MoneyFox.ViewModels.Statistics
         private BarChart chart = new BarChart();
         private bool hasNoData = true;
         private CategoryViewModel? selectedCategory;
-        private readonly IMapper mapper;
 
         public StatisticCategoryProgressionViewModel(IMediator mediator,
             IMapper mapper) : base(mediator)
         {
-            this.mapper = mapper;
-
             StartDate = DateTime.Now.AddYears(-1);
         }
 
@@ -95,20 +90,6 @@ namespace MoneyFox.ViewModels.Statistics
                 await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
-
-
-        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
-        {
-            if(message == null)
-            {
-                return;
-            }
-
-            SelectedCategory =
-                mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
-            await LoadAsync();
-        }
-
 
         protected override async Task LoadAsync()
         {

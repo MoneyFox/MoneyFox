@@ -57,10 +57,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
 
-#pragma warning disable S4462 // Calls to "async" methods should not be blocking
             int accountCount = mediator.Send(new GetAccountCountQuery()).Result;
-#pragma warning restore S4462 // Calls to "async" methods should not be blocking
-
             IsTransferAvailable = accountCount >= TRANSFER_THRESHOLD;
             IsAddIncomeAvailable = accountCount >= 1;
             IsAddExpenseAvailable = accountCount >= 1;

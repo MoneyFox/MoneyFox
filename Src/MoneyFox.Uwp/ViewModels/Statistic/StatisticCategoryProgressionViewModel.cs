@@ -97,20 +97,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
 
-
-        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
-        {
-            if(message == null)
-            {
-                return;
-            }
-
-            SelectedCategory =
-                mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
-            await LoadAsync();
-        }
-
-
         protected override async Task LoadAsync()
         {
             if(SelectedCategory == null)

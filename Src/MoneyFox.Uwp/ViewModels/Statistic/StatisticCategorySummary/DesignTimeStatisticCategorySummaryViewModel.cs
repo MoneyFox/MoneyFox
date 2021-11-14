@@ -1,12 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using JetBrains.Annotations;
 using System.Collections.ObjectModel;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
-    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Design Time")]
+    [UsedImplicitly]
     public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel
     {
+        public RelayCommand LoadedCommand { get; } = null!;
+
         /// <inheritdoc />
         public IncomeExpenseBalanceViewModel IncomeExpenseBalance { get; set; }
             = new IncomeExpenseBalanceViewModel {TotalEarned = 400, TotalSpent = 600};
@@ -19,8 +21,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             };
 
         public bool HasData { get; } = true;
-
-        public RelayCommand LoadedCommand { get; } = null!;
         public RelayCommand<CategoryOverviewViewModel> SummaryEntrySelectedCommand { get; } = null!;
     }
 }

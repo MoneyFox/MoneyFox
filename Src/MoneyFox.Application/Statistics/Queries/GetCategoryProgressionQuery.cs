@@ -60,7 +60,6 @@ namespace MoneyFox.Application.Statistics.Queries
                                                           .HasDateSmallerEqualsThan(request.EndDate.Date)
                                                           .ToListAsync(cancellationToken);
 
-
             var statisticList = new List<StatisticEntry>();
             foreach(var group in payments.GroupBy(x => new {x.Date.Month, x.Date.Year}))
             {

@@ -57,8 +57,8 @@ namespace MoneyFox.ViewModels.Categories
             async () =>
                 await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
 
-        public RelayCommand<string> SearchCategoryCommand =>
-            new RelayCommand<string>(async searchTerm => await SearchCategoryAsync(searchTerm));
+        public AsyncRelayCommand<string> SearchCategoryCommand =>
+            new AsyncRelayCommand<string>(async searchTerm => await SearchCategoryAsync(searchTerm));
 
         private string searchTerm = string.Empty;
 
@@ -88,8 +88,8 @@ namespace MoneyFox.ViewModels.Categories
             Categories = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(groups);
         }
 
-        public RelayCommand<CategoryViewModel> GoToEditCategoryCommand
-            => new RelayCommand<CategoryViewModel>(
+        public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
+            => new AsyncRelayCommand<CategoryViewModel>(
                 async categoryViewModel
                     => await Shell.Current.Navigation.PushModalAsync(
                         new NavigationPage(new EditCategoryPage(categoryViewModel.Id))
@@ -97,9 +97,8 @@ namespace MoneyFox.ViewModels.Categories
                             BarBackgroundColor = Color.Transparent
                         }));
 
-
-        public RelayCommand<CategoryViewModel> DeleteCategoryCommand
-            => new RelayCommand<CategoryViewModel>(
+        public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand
+            => new AsyncRelayCommand<CategoryViewModel>(
                 async categoryViewModel
                     => await DeleteAccountAsync(categoryViewModel));
 

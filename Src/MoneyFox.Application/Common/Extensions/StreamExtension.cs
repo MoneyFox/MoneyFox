@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
 namespace MoneyFox.Application.Common.Extensions
@@ -11,9 +10,6 @@ namespace MoneyFox.Application.Common.Extensions
         /// </summary>
         /// <param name="stream">Stream to read.</param>
         /// <returns></returns>
-        [SuppressMessage(
-            "Critical Code Smell",
-            "S134:Control flow statements \"if\", \"switch\", \"for\", \"foreach\", \"while\", \"do\"  and \"try\" should not be nested too deeply")]
         public static byte[] ReadToEnd(this Stream stream)
         {
             long originalPosition = 0;

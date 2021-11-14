@@ -180,7 +180,6 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             return Id.Equals(other.Id);
         }
 
-
         public override bool Equals(object obj)
         {
             if(obj is AccountViewModel vm)
