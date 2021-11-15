@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
@@ -34,8 +35,23 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
-
             StartDate = DateTime.Now.AddYears(-1);
+        }
+
+        protected override void OnActivated()
+        {
+            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
+                this,
+                async (r, m) =>
+                {
+                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                    await r.LoadAsync();
+                });
+        }
+
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<CategorySelectedMessage>(this);
         }
 
         public CategoryViewModel SelectedCategory
@@ -89,13 +105,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             }
         }
 
-        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
-
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
             async ()
                 => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
-
-        public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
 
         protected override async Task LoadAsync()
         {
@@ -106,7 +118,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             }
 
             IImmutableList<StatisticEntry> statisticItems =
-                await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory?.Id ?? 0, StartDate, EndDate));
+                await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory.Id, StartDate, EndDate));
 
             HasNoData = !statisticItems.Any();
 
