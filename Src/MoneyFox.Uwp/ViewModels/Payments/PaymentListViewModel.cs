@@ -163,6 +163,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             await LoadDataAsync(
                 new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)});
+            IsActive = true;
         }
 
         private async Task LoadDataAsync(PaymentListFilterChangedMessage paymentListFilterChangedMessage)

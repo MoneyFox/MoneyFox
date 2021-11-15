@@ -43,6 +43,7 @@ namespace MoneyFox.ViewModels.Statistics
             StartDate = startDate;
             EndDate = endDate;
             Mediator = mediator;
+            IsActive = true;
         }
 
         protected override void OnActivated() => Messenger.Register<StatisticViewModel, DateSelectedMessage>(

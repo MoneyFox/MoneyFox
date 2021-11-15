@@ -71,6 +71,8 @@ namespace MoneyFox.ViewModels.Dashboard
             {
                 isRunning = false;
             }
+
+            IsActive = true;
         }
 
         public decimal Assets

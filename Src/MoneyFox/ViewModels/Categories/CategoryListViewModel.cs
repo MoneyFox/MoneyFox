@@ -41,7 +41,11 @@ namespace MoneyFox.ViewModels.Categories
 
         protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
-        public async Task InitializeAsync() => await SearchCategoryAsync();
+        public async Task InitializeAsync()
+        {
+            await SearchCategoryAsync();
+            IsActive = true;
+        }
 
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> Categories
         {
