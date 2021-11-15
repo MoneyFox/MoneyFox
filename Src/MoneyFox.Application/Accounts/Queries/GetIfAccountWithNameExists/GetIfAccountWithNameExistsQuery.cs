@@ -24,7 +24,7 @@ namespace MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists
                 this.contextAdapter = contextAdapter;
             }
 
-            /// <inheritdoc/>
+            /// <inheritdoc />
             public async Task<bool> Handle(GetIfAccountWithNameExistsQuery request, CancellationToken cancellationToken)
                 => await contextAdapter.Context.Accounts.AnyWithNameAsync(request.AccountName);
         }

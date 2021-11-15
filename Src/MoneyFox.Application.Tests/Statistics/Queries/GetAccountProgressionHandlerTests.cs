@@ -43,21 +43,24 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             var account = new Account("Foo1");
-            context.AddRange(new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account),
-                new Payment(DateTime.Today, 20, PaymentType.Expense, account),
-                new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
-                new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
-            });
+            context.AddRange(
+                new List<Payment>
+                {
+                    new Payment(DateTime.Today, 60, PaymentType.Income, account),
+                    new Payment(DateTime.Today, 20, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
+                });
             context.Add(account);
             context.SaveChanges();
 
             // Act
             List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
-                new GetAccountProgressionQuery(account.Id,
+                new GetAccountProgressionQuery(
+                    account.Id,
                     DateTime.Today.AddYears(-1),
-                    DateTime.Today.AddDays(3)), default);
+                    DateTime.Today.AddDays(3)),
+                default);
 
             // Assert
             result[0].Value.Should().Be(40);
@@ -70,21 +73,24 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         {
             // Arrange
             var account = new Account("Foo1");
-            context.AddRange(new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account),
-                new Payment(DateTime.Today, 20, PaymentType.Expense, account),
-                new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
-                new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
-            });
+            context.AddRange(
+                new List<Payment>
+                {
+                    new Payment(DateTime.Today, 60, PaymentType.Income, account),
+                    new Payment(DateTime.Today, 20, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account),
+                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account)
+                });
             context.Add(account);
             context.SaveChanges();
 
             // Act
             List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
-                new GetAccountProgressionQuery(account.Id,
+                new GetAccountProgressionQuery(
+                    account.Id,
                     DateTime.Today.AddYears(-1),
-                    DateTime.Today.AddDays(3)), default);
+                    DateTime.Today.AddDays(3)),
+                default);
 
             // Assert
             result[0].Color.Should().Be("#87cefa");

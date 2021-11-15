@@ -1,5 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Messages;
 using System;
 
@@ -16,7 +17,7 @@ namespace MoneyFox.ViewModels.Dialogs
         DateTime TimeRangeEnd { get; set; }
     }
 
-    public class SelectFilterDialogViewModel : ViewModelBase, ISelectFilterDialogViewModel
+    public class SelectFilterDialogViewModel : ObservableRecipient, ISelectFilterDialogViewModel
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
@@ -35,7 +36,7 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        /// Indicates wether the filter for only cleared Payments is active or not.
+        ///     Indicates wether the filter for only cleared Payments is active or not.
         /// </summary>
         public bool IsClearedFilterActive
         {
@@ -48,12 +49,12 @@ namespace MoneyFox.ViewModels.Dialogs
                 }
 
                 isClearedFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Indicates wether the filter to only display recurring Payments is active or not.
+        ///     Indicates wether the filter to only display recurring Payments is active or not.
         /// </summary>
         public bool IsRecurringFilterActive
         {
@@ -66,12 +67,12 @@ namespace MoneyFox.ViewModels.Dialogs
                 }
 
                 isRecurringFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Start of the time range to load payments.
+        ///     Start of the time range to load payments.
         /// </summary>
         public DateTime TimeRangeStart
         {
@@ -84,12 +85,12 @@ namespace MoneyFox.ViewModels.Dialogs
                 }
 
                 timeRangeStart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// End of the time range to load payments.
+        ///     End of the time range to load payments.
         /// </summary>
         public DateTime TimeRangeEnd
         {
@@ -102,17 +103,19 @@ namespace MoneyFox.ViewModels.Dialogs
                 }
 
                 timeRangeEnd = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        public RelayCommand FilterSelectedCommand => new RelayCommand(() =>
-            MessengerInstance.Send(new PaymentListFilterChangedMessage
-            {
-                IsClearedFilterActive = IsClearedFilterActive,
-                IsRecurringFilterActive = IsRecurringFilterActive,
-                TimeRangeStart = TimeRangeStart,
-                TimeRangeEnd = TimeRangeEnd
-            }));
+        public RelayCommand FilterSelectedCommand => new RelayCommand(
+            () =>
+                Messenger.Send(
+                    new PaymentListFilterChangedMessage
+                    {
+                        IsClearedFilterActive = IsClearedFilterActive,
+                        IsRecurringFilterActive = IsRecurringFilterActive,
+                        TimeRangeStart = TimeRangeStart,
+                        TimeRangeEnd = TimeRangeEnd
+                    }));
     }
 }

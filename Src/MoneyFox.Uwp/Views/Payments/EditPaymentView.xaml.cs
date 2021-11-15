@@ -16,11 +16,8 @@ namespace MoneyFox.Uwp.Views.Payments
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.Subscribe();
             var vm = (PaymentViewModel)e.Parameter;
             ViewModel.InitializeCommand.Execute(vm.Id);
         }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e) => ViewModel.Unsubscribe();
     }
 }

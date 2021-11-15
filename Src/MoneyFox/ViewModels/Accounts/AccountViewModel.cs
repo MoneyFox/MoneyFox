@@ -1,11 +1,11 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain.Entities;
 using System;
 
 namespace MoneyFox.ViewModels.Accounts
 {
-    public sealed class AccountViewModel : ViewModelBase, IMapFrom<Account>, IEquatable<AccountViewModel>
+    public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
         private const decimal DECIMAL_DELTA = 0.01m;
 
@@ -20,7 +20,7 @@ namespace MoneyFox.ViewModels.Accounts
         private DateTime modificationDate;
 
         /// <summary>
-        /// Account Id
+        ///     Account Id
         /// </summary>
         public int Id
         {
@@ -33,12 +33,12 @@ namespace MoneyFox.ViewModels.Accounts
                 }
 
                 id = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Account Name
+        ///     Account Name
         /// </summary>
         public string Name
         {
@@ -51,12 +51,12 @@ namespace MoneyFox.ViewModels.Accounts
                 }
 
                 name = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Current Balance
+        ///     Current Balance
         /// </summary>
         public decimal CurrentBalance
         {
@@ -69,12 +69,12 @@ namespace MoneyFox.ViewModels.Accounts
                 }
 
                 currentBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Balance End of Month
+        ///     Balance End of Month
         /// </summary>
         public decimal EndOfMonthBalance
         {
@@ -82,12 +82,12 @@ namespace MoneyFox.ViewModels.Accounts
             set
             {
                 endOfMonthBalance = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Note
+        ///     Note
         /// </summary>
         public string Note
         {
@@ -100,12 +100,12 @@ namespace MoneyFox.ViewModels.Accounts
                 }
 
                 note = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Indicator if the account currently is overdrawn.
+        ///     Indicator if the account currently is overdrawn.
         /// </summary>
         public bool IsOverdrawn
         {
@@ -118,12 +118,12 @@ namespace MoneyFox.ViewModels.Accounts
                 }
 
                 isOverdrawn = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Indicator if the account is excluded from the balance calculation.
+        ///     Indicator if the account is excluded from the balance calculation.
         /// </summary>
         public bool IsExcluded
         {
@@ -136,7 +136,7 @@ namespace MoneyFox.ViewModels.Accounts
                 }
 
                 isExcluded = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -151,7 +151,7 @@ namespace MoneyFox.ViewModels.Accounts
                 }
 
                 creationTime = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -166,7 +166,7 @@ namespace MoneyFox.ViewModels.Accounts
                 }
 
                 modificationDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 

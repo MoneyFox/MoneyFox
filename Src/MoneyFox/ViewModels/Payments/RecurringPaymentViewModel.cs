@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
@@ -8,7 +8,7 @@ using System;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public class RecurringPaymentViewModel : ViewModelBase, IMapFrom<RecurringPayment>
+    public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
     {
         private const decimal DECIMAL_DELTA = 0.01m;
 
@@ -42,7 +42,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 id = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -57,7 +57,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 startDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +72,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 endDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -91,12 +91,12 @@ namespace MoneyFox.ViewModels.Payments
                     ? EndDate = DateTime.Today
                     : null;
 
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
+        ///     Amount of the payment. Has to be >= 0. If the amount is charged or not is based on the payment type.
         /// </summary>
         public decimal Amount
         {
@@ -109,12 +109,12 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 amount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Type of the payment <see cref="PaymentType"/>.
+        ///     Type of the payment <see cref="PaymentType" />.
         /// </summary>
         public PaymentType Type
         {
@@ -127,7 +127,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 type = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -142,12 +142,12 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 recurrence = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Additional notes to the payment.
+        ///     Additional notes to the payment.
         /// </summary>
         public string Note
         {
@@ -160,13 +160,13 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 note = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// In case it's a expense or transfer the account who will be charged.     In case it's an income the account
-        /// who will be credited.
+        ///     In case it's a expense or transfer the account who will be charged.     In case it's an income the account
+        ///     who will be credited.
         /// </summary>
         public AccountViewModel ChargedAccount
         {
@@ -179,12 +179,12 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 chargedAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// The <see cref="Category"/> for this payment
+        ///     The <see cref="Category" /> for this payment
         /// </summary>
         public CategoryViewModel? Category
         {
@@ -197,7 +197,7 @@ namespace MoneyFox.ViewModels.Payments
                 }
 
                 categoryViewModel = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
     }

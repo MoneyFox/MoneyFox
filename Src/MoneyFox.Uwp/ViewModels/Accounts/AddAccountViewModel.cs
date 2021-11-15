@@ -39,10 +39,12 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 return;
             }
 
-            await mediator.Send(new CreateAccountCommand(SelectedAccount.Name,
-                SelectedAccount.CurrentBalance,
-                SelectedAccount.Note,
-                SelectedAccount.IsExcluded));
+            await mediator.Send(
+                new CreateAccountCommand(
+                    SelectedAccount.Name,
+                    SelectedAccount.CurrentBalance,
+                    SelectedAccount.Note,
+                    SelectedAccount.IsExcluded));
         }
     }
 }

@@ -47,10 +47,10 @@ namespace MoneyFox.Domain.Entities
         /// <summary>
         ///     A note to this account.
         /// </summary>
-        public string? Note { get; set; }
+        public string? Note { get; private set; }
 
         /// <summary>
-        ///      Indicates if this account is overdrawn or not.
+        ///     Indicates if this account is overdrawn or not.
         /// </summary>
         public bool IsOverdrawn { get; private set; }
 

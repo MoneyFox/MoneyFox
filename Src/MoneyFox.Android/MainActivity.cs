@@ -13,7 +13,9 @@ using Platform = Xamarin.Essentials.Platform;
 
 namespace MoneyFox.Droid
 {
-    [Activity(Label = "MoneyFox", Theme = "@style/MainTheme",
+    [Activity(
+        Label = "MoneyFox",
+        Theme = "@style/MainTheme",
         ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.UiMode | ConfigChanges.Orientation)]
     public class MainActivity : FormsAppCompatActivity
     {
@@ -45,7 +47,8 @@ namespace MoneyFox.Droid
             AuthenticationContinuationHelper.SetAuthenticationContinuationEventArgs(requestCode, resultCode, data);
         }
 
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions,
+        public override void OnRequestPermissionsResult(int requestCode,
+            string[] permissions,
             [GeneratedEnum] Permission[] grantResults)
         {
             Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

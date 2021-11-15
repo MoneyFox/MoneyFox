@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
-using GalaSoft.MvvmLight;
 using MoneyFox.Uwp.ViewModels;
 using MoneyFox.Uwp.ViewModels.About;
 using MoneyFox.Uwp.ViewModels.Accounts;
@@ -19,24 +18,6 @@ namespace MoneyFox.Uwp
     public class ViewModelLocator
     {
         protected ViewModelLocator() { }
-
-        static ViewModelLocator()
-        {
-            if(!ServiceLocator.IsLocationProviderSet && ViewModelBase.IsInDesignModeStatic)
-            {
-                RegisterServices(new ContainerBuilder());
-            }
-        }
-
-        public static void RegisterServices(ContainerBuilder registrations)
-        {
-            IContainer container = registrations.Build();
-
-            if(container != null)
-            {
-                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
-            }
-        }
 
         //*****************
         //  Data Entry
@@ -102,5 +83,15 @@ namespace MoneyFox.Uwp
             ServiceLocator.Current.GetInstance<WindowsSettingsViewModel>();
 
         public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
+
+        public static void RegisterServices(ContainerBuilder registrations)
+        {
+            IContainer container = registrations.Build();
+
+            if(container != null)
+            {
+                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
+            }
+        }
     }
 }

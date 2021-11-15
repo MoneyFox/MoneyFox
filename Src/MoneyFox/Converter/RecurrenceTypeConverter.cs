@@ -7,12 +7,12 @@ using Xamarin.Forms;
 namespace MoneyFox.Converter
 {
     /// <summary>
-    /// Converts the RecurrenceType to a string.
+    ///     Converts the RecurrenceType to a string.
     /// </summary>
     public class RecurrenceTypeConverter : IValueConverter
     {
         /// <summary>
-        /// Converts the passed recurrence type to a string.
+        ///     Converts the passed recurrence type to a string.
         /// </summary>
         /// <param name="value">Recurrence type to convert.</param>
         /// <param name="targetType">Is not used.</param>
@@ -23,7 +23,7 @@ namespace MoneyFox.Converter
             RecurrenceTypeConverterLogic.GetStringForPaymentRecurrence((PaymentRecurrence)value);
 
         /// <summary>
-        /// Not implemented.
+        ///     Not implemented.
         /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
             throw new NotSupportedException();

@@ -4,13 +4,12 @@ using System;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Navigation;
 
 #nullable enable
 namespace MoneyFox.Uwp.Views.Accounts
 {
     /// <summary>
-    /// View to display an list of accounts.
+    ///     View to display an list of accounts.
     /// </summary>
     public sealed partial class AccountListView : BaseView
     {
@@ -19,7 +18,7 @@ namespace MoneyFox.Uwp.Views.Accounts
         private AccountListViewModel ViewModel => (AccountListViewModel)DataContext;
 
         /// <summary>
-        /// Initialize View.
+        ///     Initialize View.
         /// </summary>
         public AccountListView()
         {
@@ -30,10 +29,6 @@ namespace MoneyFox.Uwp.Views.Accounts
                 DataContext = ViewModelLocator.AccountListVm;
             }
         }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e) => ViewModel.Subscribe();
-
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e) => ViewModel.Unsubscribe();
 
         private async void Edit_OnClick(object sender, RoutedEventArgs e)
         {

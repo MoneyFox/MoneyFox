@@ -10,10 +10,13 @@ namespace MoneyFox.Uwp
     public class GraphClientFactory : IGraphClientFactory
     {
         public GraphServiceClient CreateClient(AuthenticationResult authResult) =>
-            new GraphServiceClient(new DelegateAuthenticationProvider(requestMessage =>
-            {
-                requestMessage.Headers.Authorization = new AuthenticationHeaderValue("bearer", authResult.AccessToken);
-                return Task.CompletedTask;
-            }));
+            new GraphServiceClient(
+                new DelegateAuthenticationProvider(
+                    requestMessage =>
+                    {
+                        requestMessage.Headers.Authorization =
+                            new AuthenticationHeaderValue("bearer", authResult.AccessToken);
+                        return Task.CompletedTask;
+                    }));
     }
 }

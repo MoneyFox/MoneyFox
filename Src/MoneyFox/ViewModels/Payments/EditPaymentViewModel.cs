@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
@@ -45,13 +45,15 @@ namespace MoneyFox.ViewModels.Payments
             bool updateRecurring = false;
             if(SelectedPayment.IsRecurring)
             {
-                updateRecurring = await dialogService.ShowConfirmMessageAsync(Strings.ModifyRecurrenceTitle,
+                updateRecurring = await dialogService.ShowConfirmMessageAsync(
+                    Strings.ModifyRecurrenceTitle,
                     Strings.ModifyRecurrenceMessage,
                     Strings.YesLabel,
                     Strings.NoLabel);
             }
 
-            var command = new UpdatePaymentCommand(SelectedPayment.Id,
+            var command = new UpdatePaymentCommand(
+                SelectedPayment.Id,
                 SelectedPayment.Date,
                 SelectedPayment.Amount,
                 SelectedPayment.IsCleared,
@@ -77,7 +79,8 @@ namespace MoneyFox.ViewModels.Payments
 
         private async Task DeletePaymentAsync(PaymentViewModel payment)
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeletePaymentConfirmationMessage))
             {
                 var deleteCommand = new DeletePaymentByIdCommand(payment.Id);

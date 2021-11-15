@@ -24,12 +24,12 @@ namespace MoneyFox.Application.Payments.Queries.GetMonthlyIncome
 
             public async Task<decimal> Handle(GetMonthlyIncomeQuery request, CancellationToken cancellationToken) =>
                 (await contextAdapter.Context
-                    .Payments
-                    .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
-                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
-                    .IsIncome()
-                    .Select(x => x.Amount)
-                    .ToListAsync(cancellationToken))
+                                     .Payments
+                                     .HasDateLargerEqualsThan(HelperFunctions.GetFirstDayMonth(systemDateHelper))
+                                     .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
+                                     .IsIncome()
+                                     .Select(x => x.Amount)
+                                     .ToListAsync(cancellationToken))
                 .Sum();
         }
     }

@@ -53,7 +53,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
 
             // Act
             category.UpdateData("foo");
-            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+            await new UpdateCategoryCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new UpdateCategoryCommand(category), default);
 
@@ -73,7 +75,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
 
             // Act
             category.UpdateData("foo", requireNote: true);
-            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+            await new UpdateCategoryCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new UpdateCategoryCommand(category), default);
 
@@ -95,7 +99,9 @@ namespace MoneyFox.Application.Tests.Categories.Commands.UpdateCategory
             await context.SaveChangesAsync();
 
             // Act
-            await new UpdateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object,
+            await new UpdateCategoryCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new UpdateCategoryCommand(category), default);
 

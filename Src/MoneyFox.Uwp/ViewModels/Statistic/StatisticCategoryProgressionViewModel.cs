@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>
-    /// Representation of the cash flow view.
+    ///     Representation of the cash flow view.
     /// </summary>
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
@@ -29,15 +29,13 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         private CategoryViewModel selectedCategory;
         private readonly IMapper mapper;
 
-        public StatisticCategoryProgressionViewModel(IMediator mediator,
+        public StatisticCategoryProgressionViewModel(
+            IMediator mediator,
             IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
 
             StartDate = DateTime.Now.AddYears(-1);
-
-            MessengerInstance.Register<CategorySelectedMessage>(this,
-                async message => await ReceiveMessageAsync(message));
         }
 
         public CategoryViewModel SelectedCategory
@@ -51,7 +49,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 selectedCategory = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -69,7 +67,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 chart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -87,30 +85,17 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 hasNoData = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async ()
-            => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
+            async ()
+                => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
 
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
-
-
-        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
-        {
-            if(message == null)
-            {
-                return;
-            }
-
-            SelectedCategory =
-                mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
-            await LoadAsync();
-        }
-
 
         protected override async Task LoadAsync()
         {
@@ -127,14 +112,15 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
 
             Chart = new BarChart
             {
-                Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                    {
-                        Label = x.Label,
-                        ValueLabel = x.ValueLabel,
-                        Color = SKColor.Parse(x.Color),
-                        ValueLabelColor = SKColor.Parse(x.Color)
-                    })
-                    .ToList(),
+                Entries = statisticItems.Select(
+                                            x => new ChartEntry((float)x.Value)
+                                            {
+                                                Label = x.Label,
+                                                ValueLabel = x.ValueLabel,
+                                                Color = SKColor.Parse(x.Color),
+                                                ValueLabelColor = SKColor.Parse(x.Color)
+                                            })
+                                        .ToList(),
                 BackgroundColor = new SKColor(
                     ChartOptions.BackgroundColor.R,
                     ChartOptions.BackgroundColor.G,

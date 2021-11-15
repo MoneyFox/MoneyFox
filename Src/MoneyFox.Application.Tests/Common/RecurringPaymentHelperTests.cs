@@ -29,7 +29,8 @@ namespace MoneyFox.Application.Tests.Common
         [InlineData(PaymentRecurrence.Yearly, 300, false)]
         [InlineData(PaymentRecurrence.Biannually, 355, true)] // with year change
         [InlineData(PaymentRecurrence.Quarterly, 355, true)] // with year change
-        public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence, int amountOfDaysPassed,
+        public void CheckIfRepeatable_ValidatedRecurrence(PaymentRecurrence recurrence,
+            int amountOfDaysPassed,
             bool expectedResult)
         {
             var account = new Account("foo");
@@ -38,8 +39,8 @@ namespace MoneyFox.Application.Tests.Common
             payment.AddRecurringPayment(recurrence, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                .Should()
-                .Be(expectedResult);
+                                  .Should()
+                                  .Be(expectedResult);
         }
 
         [Fact]
@@ -51,8 +52,8 @@ namespace MoneyFox.Application.Tests.Common
             payment.AddRecurringPayment(PaymentRecurrence.Bimonthly, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                .Should()
-                .Be(true);
+                                  .Should()
+                                  .Be(true);
         }
 
         [Theory]
@@ -67,13 +68,16 @@ namespace MoneyFox.Application.Tests.Common
         {
             var account = new Account("foo");
 
-            var payment = new Payment(DateTime.Today.AddDays(amountOfDaysUntilRepeat), 105, PaymentType.Expense,
+            var payment = new Payment(
+                DateTime.Today.AddDays(amountOfDaysUntilRepeat),
+                105,
+                PaymentType.Expense,
                 account);
             payment.AddRecurringPayment(recurrence, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                .Should()
-                .BeFalse();
+                                  .Should()
+                                  .BeFalse();
         }
 
         [Fact]
@@ -85,8 +89,8 @@ namespace MoneyFox.Application.Tests.Common
             payment.AddRecurringPayment(PaymentRecurrence.Monthly, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                .Should()
-                .BeFalse();
+                                  .Should()
+                                  .BeFalse();
         }
     }
 }

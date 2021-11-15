@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Domain.Exceptions;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,21 +7,21 @@ using System.Linq;
 namespace MoneyFox.Groups
 {
     /// <summary>
-    /// Can be used for a alphanumeric grouping. It will show the whole key as title.     This can be a single name or a
-    /// whole word.
+    ///     Can be used for a alphanumeric grouping. It will show the whole key as title.     This can be a single name or a
+    ///     whole word.
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class AlphaGroupListGroupCollection<T> : List<T>
     {
         /// <summary>
-        /// The delegate that is used to get the key information.
+        ///     The delegate that is used to get the key information.
         /// </summary>
         /// <param name="item">An object of type T</param>
         /// <returns>The key value to use for this object</returns>
         public delegate string GetKeyDelegate(T item);
 
         /// <summary>
-        /// Public constructor.
+        ///     Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click.</param>
@@ -31,7 +31,7 @@ namespace MoneyFox.Groups
         }
 
         /// <summary>
-        /// Public constructor.
+        ///     Public constructor.
         /// </summary>
         /// <param name="key">The key for this group.</param>
         /// <param name="itemClickCommand">The command to execute on click.</param>
@@ -42,17 +42,17 @@ namespace MoneyFox.Groups
         }
 
         /// <summary>
-        /// The Key of this group.
+        ///     The Key of this group.
         /// </summary>
         public string Key { get; }
 
         /// <summary>
-        /// The command to execute on a click.
+        ///     The command to execute on a click.
         /// </summary>
         public RelayCommand<T>? ItemClickCommand { get; }
 
         /// <summary>
-        /// Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
+        ///     Create a list of AlphaGroup{T} with keys set by a SortedLocaleGrouping.
         /// </summary>
         /// <param name="items">The items to place in the groups.</param>
         /// <param name="ci">The CultureInfo to group and sort by.</param>

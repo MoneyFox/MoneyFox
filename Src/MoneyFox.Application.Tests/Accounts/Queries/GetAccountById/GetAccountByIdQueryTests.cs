@@ -47,7 +47,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountById
             // Act
             Account result =
                 await new GetAccountByIdQuery.Handler(contextAdapterMock.Object).Handle(
-                    new GetAccountByIdQuery(account1.Id), default);
+                    new GetAccountByIdQuery(account1.Id),
+                    default);
 
             // Assert
             result.Name.Should().Be(account1.Name);

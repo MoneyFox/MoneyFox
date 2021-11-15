@@ -3,10 +3,10 @@ using MoneyFox.Application.Common.Interfaces;
 
 namespace MoneyFox.iOS
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public class AppInformation : IAppInformation
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public string GetVersion => NSBundle.MainBundle.ObjectForInfoDictionary("CFBundleVersion").ToString();
     }
 }

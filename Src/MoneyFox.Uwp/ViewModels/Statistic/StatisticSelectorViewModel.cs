@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.Services;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
-    public class StatisticSelectorViewModel : ViewModelBase, IStatisticSelectorViewModel
+    public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
     {
         private readonly INavigationService navigationService;
 
