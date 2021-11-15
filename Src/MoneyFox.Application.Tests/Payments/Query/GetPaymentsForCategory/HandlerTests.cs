@@ -56,7 +56,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
                 new GetPaymentsForCategoryQuery(
                     category.Id,
                     DateTime.Now.AddDays(-1),
-                    DateTime.Now.AddDays(1)), default);
+                    DateTime.Now.AddDays(1)),
+                default);
 
             // Assert
             result.Should().HaveCount(2);
@@ -82,7 +83,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForCategory
                 new GetPaymentsForCategoryQuery(
                     0,
                     DateTime.Now.AddDays(-1),
-                    DateTime.Now.AddDays(1)), default);
+                    DateTime.Now.AddDays(1)),
+                default);
 
             // Assert
             result.Should().ContainSingle();

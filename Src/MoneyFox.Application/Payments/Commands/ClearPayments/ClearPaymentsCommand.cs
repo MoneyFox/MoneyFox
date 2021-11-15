@@ -24,12 +24,12 @@ namespace MoneyFox.Application.Payments.Commands.ClearPayments
             public async Task<Unit> Handle(ClearPaymentsCommand request, CancellationToken cancellationToken)
             {
                 List<Payment> unclearedPayments = await contextAdapter.Context
-                    .Payments
-                    .Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .AsQueryable()
-                    .AreNotCleared()
-                    .ToListAsync();
+                                                                      .Payments
+                                                                      .Include(x => x.ChargedAccount)
+                                                                      .Include(x => x.TargetAccount)
+                                                                      .AsQueryable()
+                                                                      .AreNotCleared()
+                                                                      .ToListAsync();
 
                 foreach(Payment payment in unclearedPayments)
                 {

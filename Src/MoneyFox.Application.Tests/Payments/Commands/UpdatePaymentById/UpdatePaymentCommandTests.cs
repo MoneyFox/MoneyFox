@@ -33,7 +33,7 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
 
             backupServiceMock = new Mock<IBackupService>();
             backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                .Returns(Task.CompletedTask);
+                             .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.Setup(x => x.LastDatabaseUpdate);
@@ -58,10 +58,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
             payment1.UpdatePayment(payment1.Date, 100, payment1.Type, payment1.ChargedAccount);
 
             // Act
-            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
+            await new UpdatePaymentCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
-                .Handle(new UpdatePaymentCommand(payment1.Id,
+                .Handle(
+                    new UpdatePaymentCommand(
+                        payment1.Id,
                         payment1.Date,
                         payment1.Amount,
                         payment1.IsCleared,
@@ -106,10 +109,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
             payment1.UpdatePayment(payment1.Date, 100, payment1.Type, payment1.ChargedAccount, category: category);
 
             // Act
-            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
+            await new UpdatePaymentCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
-                .Handle(new UpdatePaymentCommand(payment1.Id,
+                .Handle(
+                    new UpdatePaymentCommand(
+                        payment1.Id,
                         payment1.Date,
                         payment1.Amount,
                         payment1.IsCleared,
@@ -151,10 +157,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
             payment1.UpdatePayment(payment1.Date, 100, payment1.Type, payment1.ChargedAccount, category: category);
 
             // Act
-            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
+            await new UpdatePaymentCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
-                .Handle(new UpdatePaymentCommand(payment1.Id,
+                .Handle(
+                    new UpdatePaymentCommand(
+                        payment1.Id,
                         payment1.Date,
                         payment1.Amount,
                         payment1.IsCleared,
@@ -192,10 +201,13 @@ namespace MoneyFox.Application.Tests.Payments.Commands.UpdatePaymentById
             payment1.UpdatePayment(payment1.Date, 100, payment1.Type, payment1.ChargedAccount);
 
             // Act
-            await new UpdatePaymentCommand.Handler(contextAdapterMock.Object,
+            await new UpdatePaymentCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
-                .Handle(new UpdatePaymentCommand(payment1.Id,
+                .Handle(
+                    new UpdatePaymentCommand(
+                        payment1.Id,
                         payment1.Date,
                         payment1.Amount,
                         payment1.IsCleared,

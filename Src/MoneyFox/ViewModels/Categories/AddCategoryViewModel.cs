@@ -16,7 +16,10 @@ namespace MoneyFox.ViewModels.Categories
         }
 
         protected override async Task SaveCategoryAsync()
-            => await mediator.Send(new CreateCategoryCommand(SelectedCategory.Name, SelectedCategory.Note,
-                SelectedCategory.RequireNote));
+            => await mediator.Send(
+                new CreateCategoryCommand(
+                    SelectedCategory.Name,
+                    SelectedCategory.Note,
+                    SelectedCategory.RequireNote));
     }
 }

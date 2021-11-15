@@ -1,21 +1,13 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Messages;
 using System;
 
 namespace MoneyFox.ViewModels.Dialogs
 {
-    public interface ISelectDateRangeDialogViewModel
-    {
-        DateTime StartDate { get; set; }
-
-        DateTime EndDate { get; set; }
-
-        RelayCommand DoneCommand { get; set; }
-    }
-
-    public class SelectDateRangeDialogViewModel : ViewModelBase
+    public class SelectDateRangeDialogViewModel : ObservableRecipient
     {
         private DateTime startDate;
         private DateTime endDate;
@@ -36,7 +28,7 @@ namespace MoneyFox.ViewModels.Dialogs
         }
 
         /// <summary>
-        /// Start Date for the custom date range
+        ///     Start Date for the custom date range
         /// </summary>
         public DateTime StartDate
         {
@@ -44,12 +36,12 @@ namespace MoneyFox.ViewModels.Dialogs
             set
             {
                 startDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// End Date for the custom date range
+        ///     End Date for the custom date range
         /// </summary>
         public DateTime EndDate
         {
@@ -57,15 +49,15 @@ namespace MoneyFox.ViewModels.Dialogs
             set
             {
                 endDate = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Selects the dates and notifies observer via the MessageHub
+        ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
         public RelayCommand DoneCommand => new RelayCommand(Done);
 
-        private void Done() => MessengerInstance.Send(new DateSelectedMessage(this, StartDate, EndDate));
+        private void Done() => Messenger.Send(new DateSelectedMessage(StartDate, EndDate));
     }
 }

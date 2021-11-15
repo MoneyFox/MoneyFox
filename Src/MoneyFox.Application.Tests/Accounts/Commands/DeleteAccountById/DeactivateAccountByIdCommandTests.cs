@@ -33,7 +33,7 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
 
             backupServiceMock = new Mock<IBackupService>();
             backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                .Returns(Task.CompletedTask);
+                             .Returns(Task.CompletedTask);
 
             settingsFacadeMock = new Mock<ISettingsFacade>();
             settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
@@ -56,7 +56,8 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
+            await new DeactivateAccountByIdCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new DeactivateAccountByIdCommand(account.Id), default);
@@ -74,7 +75,8 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
+            await new DeactivateAccountByIdCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new DeactivateAccountByIdCommand(account.Id), default);
@@ -92,7 +94,8 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.DeleteAccountById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object,
+            await new DeactivateAccountByIdCommand.Handler(
+                    contextAdapterMock.Object,
                     backupServiceMock.Object,
                     settingsFacadeMock.Object)
                 .Handle(new DeactivateAccountByIdCommand(account.Id), default);

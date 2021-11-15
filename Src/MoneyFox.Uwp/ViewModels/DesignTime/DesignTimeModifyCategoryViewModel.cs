@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Uwp.Commands;
+﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Uwp.ViewModels.Categories;
 
 #nullable enable
@@ -7,9 +6,9 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
     public class DesignTimeModifyCategoryViewModel : IModifyCategoryViewModel
     {
-        public AsyncCommand SaveCommand { get; } = null!;
+        public AsyncRelayCommand SaveCommand { get; } = null!;
 
-        public AsyncCommand CancelCommand { get; } = null!;
+        public AsyncRelayCommand CancelCommand { get; } = null!;
 
         public RelayCommand DeleteCommand { get; } = null!;
 

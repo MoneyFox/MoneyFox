@@ -18,7 +18,9 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 {
     public class UpdatePaymentCommand : IRequest
     {
-        [SuppressMessage("Major Code Smell", "S107:Methods should not have too many parameters",
+        [SuppressMessage(
+            "Major Code Smell",
+            "S107:Methods should not have too many parameters",
             Justification = "Intended")]
         public UpdatePaymentCommand(int id,
             DateTime date,
@@ -97,12 +99,12 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
             public async Task<Unit> Handle(UpdatePaymentCommand request, CancellationToken cancellationToken)
             {
                 Payment existingPayment = await contextAdapter.Context
-                    .Payments
-                    .Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .Include(x => x.Category)
-                    .Include(x => x.RecurringPayment)
-                    .FirstAsync(x => x.Id == request.Id);
+                                                              .Payments
+                                                              .Include(x => x.ChargedAccount)
+                                                              .Include(x => x.TargetAccount)
+                                                              .Include(x => x.Category)
+                                                              .Include(x => x.RecurringPayment)
+                                                              .FirstAsync(x => x.Id == request.Id);
 
                 if(existingPayment == null)
                 {
@@ -112,7 +114,8 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                 Account? chargedAccount = await contextAdapter.Context.Accounts.FindAsync(request.ChargedAccountId);
                 Account? targetAccount = await contextAdapter.Context.Accounts.FindAsync(request.TargetAccountId);
 
-                existingPayment.UpdatePayment(request.Date,
+                existingPayment.UpdatePayment(
+                    request.Date,
                     request.Amount,
                     request.Type,
                     chargedAccount,
@@ -127,12 +130,14 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                 else if(!request.IsRecurring && existingPayment.RecurringPayment != null)
                 {
                     contextAdapter.Context.RecurringPayments
-                        .Remove(existingPayment.RecurringPayment!);
+                                  .Remove(existingPayment.RecurringPayment!);
 
                     List<Payment> linkedPayments = contextAdapter.Context.Payments
-                        .Where(x => x.IsRecurring)
-                        .Where(x => x.RecurringPayment!.Id == existingPayment.RecurringPayment!.Id)
-                        .ToList();
+                                                                 .Where(x => x.IsRecurring)
+                                                                 .Where(
+                                                                     x => x.RecurringPayment!.Id
+                                                                          == existingPayment.RecurringPayment!.Id)
+                                                                 .ToList();
 
                     linkedPayments.ForEach(x => x.RemoveRecurringPayment());
                 }
@@ -150,15 +155,16 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                 if(existingPayment.IsRecurring)
                 {
                     existingPayment.RecurringPayment!
-                        .UpdateRecurringPayment(request.Amount,
-                            request.PaymentRecurrence ?? existingPayment.RecurringPayment.Recurrence,
-                            existingPayment.ChargedAccount,
-                            request.Note,
-                            request.IsEndless.HasValue && request.IsEndless.Value
-                                ? null
-                                : request.EndDate,
-                            existingPayment.TargetAccount,
-                            existingPayment.Category);
+                                   .UpdateRecurringPayment(
+                                       request.Amount,
+                                       request.PaymentRecurrence ?? existingPayment.RecurringPayment.Recurrence,
+                                       existingPayment.ChargedAccount,
+                                       request.Note,
+                                       request.IsEndless.HasValue && request.IsEndless.Value
+                                           ? null
+                                           : request.EndDate,
+                                       existingPayment.TargetAccount,
+                                       existingPayment.Category);
                 }
                 else
                 {
@@ -167,7 +173,8 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
                         throw new RecurrenceNullException(nameof(request.PaymentRecurrence));
                     }
 
-                    existingPayment.AddRecurringPayment(request.PaymentRecurrence.Value,
+                    existingPayment.AddRecurringPayment(
+                        request.PaymentRecurrence.Value,
                         request.IsEndless.HasValue && request.IsEndless.Value
                             ? null
                             : request.EndDate);

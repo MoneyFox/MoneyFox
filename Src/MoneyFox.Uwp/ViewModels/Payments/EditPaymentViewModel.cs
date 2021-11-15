@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application.Common.Interfaces;
@@ -8,7 +8,6 @@ using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Utilities;
 using NLog;
@@ -30,7 +29,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         public EditPaymentViewModel(IMediator mediator,
             IMapper mapper,
             IDialogService dialogService,
-            INavigationService navigationService) : base(mediator,
+            INavigationService navigationService) : base(
+            mediator,
             mapper,
             dialogService,
             navigationService)
@@ -42,9 +42,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         /// <summary>
-        /// Delete the selected CategoryViewModel from the database
+        ///     Delete the selected CategoryViewModel from the database
         /// </summary>
-        public AsyncCommand DeleteCommand => new AsyncCommand(DeletePaymentAsync);
+        public AsyncRelayCommand DeleteCommand => new AsyncRelayCommand(DeletePaymentAsync);
 
         public RelayCommand<int> InitializeCommand =>
             new RelayCommand<int>(async paymentId => await InitializeAsync(paymentId));
@@ -60,8 +60,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
                 // We have to set this here since otherwise the end date is null. This causes a crash on android.
                 // Also it's user unfriendly if you the default end date is the 1.1.0001.
-                if(SelectedPayment.IsRecurring && SelectedPayment.RecurringPayment != null
-                                               && SelectedPayment.RecurringPayment.IsEndless)
+                if(SelectedPayment.IsRecurring
+                   && SelectedPayment.RecurringPayment != null
+                   && SelectedPayment.RecurringPayment.IsEndless)
                 {
                     SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
                 }
@@ -81,13 +82,15 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 bool updateRecurring = false;
                 if(SelectedPayment.IsRecurring)
                 {
-                    updateRecurring = await dialogService.ShowConfirmMessageAsync(Strings.ModifyRecurrenceTitle,
+                    updateRecurring = await dialogService.ShowConfirmMessageAsync(
+                        Strings.ModifyRecurrenceTitle,
                         Strings.ModifyRecurrenceMessage,
                         Strings.YesLabel,
                         Strings.NoLabel);
                 }
 
-                var command = new UpdatePaymentCommand(SelectedPayment.Id,
+                var command = new UpdatePaymentCommand(
+                    SelectedPayment.Id,
                     SelectedPayment.Date,
                     SelectedPayment.Amount,
                     SelectedPayment.IsCleared,
@@ -118,7 +121,8 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         private async Task DeletePaymentAsync()
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeletePaymentConfirmationMessage))
             {
                 var command = new DeletePaymentByIdCommand(SelectedPayment.Id);

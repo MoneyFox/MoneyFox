@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Uwp.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.DesignTime;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -10,7 +10,9 @@ using Windows.UI.Xaml.Data;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
-    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used",
+    [SuppressMessage(
+        "Major Code Smell",
+        "S109:Magic numbers should not be used",
         Justification = "Not needed in design time")]
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {

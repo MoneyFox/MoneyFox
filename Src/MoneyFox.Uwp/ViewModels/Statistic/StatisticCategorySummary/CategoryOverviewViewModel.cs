@@ -1,4 +1,4 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.ViewModels.Payments;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
-    public class CategoryOverviewViewModel : ViewModelBase
+    public class CategoryOverviewViewModel : ObservableObject
     {
         private const decimal DECIMAL_DELTA = 0.01m;
         private int categoryId;
@@ -17,7 +17,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         private decimal percentage;
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public int CategoryId
         {
@@ -30,12 +30,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 categoryId = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public decimal Value
         {
@@ -48,12 +48,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 this.value = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Average of this item
+        ///     Average of this item
         /// </summary>
         public decimal Average
         {
@@ -66,12 +66,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 average = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Value of this item
+        ///     Value of this item
         /// </summary>
         public decimal Percentage
         {
@@ -84,12 +84,12 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 percentage = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Label to show in the chart
+        ///     Label to show in the chart
         /// </summary>
         public string Label
         {
@@ -102,7 +102,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 label = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -123,7 +123,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
                 }
 
                 source = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
     }

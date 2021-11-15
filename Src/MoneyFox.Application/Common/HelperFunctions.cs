@@ -3,7 +3,7 @@
 namespace MoneyFox.Application.Common
 {
     /// <summary>
-    /// Utility methods
+    ///     Utility methods
     /// </summary>
     public static class HelperFunctions
     {

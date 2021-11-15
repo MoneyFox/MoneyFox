@@ -30,11 +30,12 @@ namespace MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth
                 CancellationToken cancellationToken)
             {
                 IQueryable<Payment> query = contextAdapter.Context
-                    .Payments
-                    .Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .AreNotCleared()
-                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper));
+                                                          .Payments
+                                                          .Include(x => x.ChargedAccount)
+                                                          .Include(x => x.TargetAccount)
+                                                          .AreNotCleared()
+                                                          .HasDateSmallerEqualsThan(
+                                                              HelperFunctions.GetEndOfMonth(systemDateHelper));
 
                 if(request.AccountId != 0)
                 {

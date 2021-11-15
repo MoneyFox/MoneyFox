@@ -5,28 +5,28 @@ using System.Globalization;
 namespace MoneyFox.Application.Common.Facades
 {
     /// <summary>
-    /// Provides access to the app settings.
+    ///     Provides access to the app settings.
     /// </summary>
     public interface ISettingsFacade
     {
         /// <summary>
-        /// Indicates if the backup shall be synchronized automatically.
+        ///     Indicates if the backup shall be synchronized automatically.
         /// </summary>
         bool IsBackupAutouploadEnabled { get; set; }
 
         /// <summary>
-        /// Timestamp when the database was updated the last time.
+        ///     Timestamp when the database was updated the last time.
         /// </summary>
         /// <value>The last database update.</value>
         DateTime LastDatabaseUpdate { get; set; }
 
         /// <summary>
-        /// Currently selected theme.
+        ///     Currently selected theme.
         /// </summary>
         AppTheme Theme { get; set; }
 
         /// <summary>
-        /// Indicates if the user is logged in to the backup service.
+        ///     Indicates if the user is logged in to the backup service.
         /// </summary>
         bool IsLoggedInToBackupService { get; set; }
 
@@ -79,25 +79,27 @@ namespace MoneyFox.Application.Common.Facades
             this.settingsAdapter = settingsAdapter;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsBackupAutouploadEnabled
         {
             get => settingsAdapter.GetValue(AUTOUPLOAD_BACKUP_KEYNAME, AUTOUPLOAD_BACKUP_KEYDEFAULT);
             set => settingsAdapter.AddOrUpdate(AUTOUPLOAD_BACKUP_KEYNAME, value);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime LastDatabaseUpdate
         {
             get
             {
-                string dateString = settingsAdapter.GetValue(DATABASE_LAST_UPDATE_KEYNAME,
+                string dateString = settingsAdapter.GetValue(
+                    DATABASE_LAST_UPDATE_KEYNAME,
                     DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
 
                 return Convert.ToDateTime(dateString, CultureInfo.InvariantCulture);
             }
             set
-                => settingsAdapter.AddOrUpdate(DATABASE_LAST_UPDATE_KEYNAME,
+                => settingsAdapter.AddOrUpdate(
+                    DATABASE_LAST_UPDATE_KEYNAME,
                     value.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -112,19 +114,21 @@ namespace MoneyFox.Application.Common.Facades
             set => settingsAdapter.AddOrUpdate(THEME_KEYNAME, (int)value);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsLoggedInToBackupService
         {
             get => settingsAdapter.GetValue(BACKUP_LOGGEDIN_KEYNAME, BACKUP_LOGGEDIN_KEY_DEFAULT);
             set => settingsAdapter.AddOrUpdate(BACKUP_LOGGEDIN_KEYNAME, value);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime LastExecutionTimeStampSyncBackup
         {
             get
             {
-                if(DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
+                if(DateTime.TryParse(
+                       settingsAdapter.GetValue(
+                           LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
                            LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_DEFAULT),
                        CultureInfo.InvariantCulture,
                        DateTimeStyles.None,
@@ -136,16 +140,19 @@ namespace MoneyFox.Application.Common.Facades
                 return DateTime.MinValue;
             }
             set
-                => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
+                => settingsAdapter.AddOrUpdate(
+                    LAST_EXECUTION_TIME_STAMP_SYNC_BACKUP_KEY_NAME,
                     value.ToString(CultureInfo.InvariantCulture));
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime LastExecutionTimeStampClearPayments
         {
             get
             {
-                if(DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
+                if(DateTime.TryParse(
+                       settingsAdapter.GetValue(
+                           LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
                            LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_DEFAULT),
                        CultureInfo.InvariantCulture,
                        DateTimeStyles.None,
@@ -157,16 +164,19 @@ namespace MoneyFox.Application.Common.Facades
                 return DateTime.MinValue;
             }
             set
-                => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
+                => settingsAdapter.AddOrUpdate(
+                    LAST_EXECUTION_TIME_STAMP_CLEAR_PAYMENTS_KEY_NAME,
                     value.ToString(CultureInfo.InvariantCulture));
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime LastExecutionTimeStampRecurringPayments
         {
             get
             {
-                if(DateTime.TryParse(settingsAdapter.GetValue(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
+                if(DateTime.TryParse(
+                       settingsAdapter.GetValue(
+                           LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
                            LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT),
                        CultureInfo.InvariantCulture,
                        DateTimeStyles.None,
@@ -178,7 +188,8 @@ namespace MoneyFox.Application.Common.Facades
                 return DateTime.MinValue;
             }
             set
-                => settingsAdapter.AddOrUpdate(LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
+                => settingsAdapter.AddOrUpdate(
+                    LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_NAME,
                     value.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -188,14 +199,14 @@ namespace MoneyFox.Application.Common.Facades
             set => settingsAdapter.AddOrUpdate(DEFAULT_CULTURE_KEYNAME, value);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsSetupCompleted
         {
             get => settingsAdapter.GetValue(IS_SETUP_COMPLETED_KEYNAME, IS_SETUP_COMPLETED__KEY_DEFAULT);
             set => settingsAdapter.AddOrUpdate(IS_SETUP_COMPLETED_KEYNAME, value);
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public int CategorySpreadingNumber
         {
             get => settingsAdapter.GetValue(CATEGORY_SPREADING_NUMBER_KEYNAME, CATEGORY_SPREADING_NUMBER_DEFAULT);

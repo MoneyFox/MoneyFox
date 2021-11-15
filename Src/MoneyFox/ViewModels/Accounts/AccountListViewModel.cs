@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
@@ -19,7 +20,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Accounts
 {
-    public class AccountListViewModel : ViewModelBase
+    public class AccountListViewModel : ObservableRecipient
     {
         private ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> accounts =
             new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>();
@@ -37,11 +38,10 @@ namespace MoneyFox.ViewModels.Accounts
             this.dialogService = dialogService;
         }
 
-        public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async m => await OnAppearingAsync());
+        protected override void OnActivated()
+            => Messenger.Register<AccountListViewModel, ReloadMessage>(this, (r, m) => r.OnAppearingAsync());
 
-        public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public async Task OnAppearingAsync()
         {
@@ -55,8 +55,9 @@ namespace MoneyFox.ViewModels.Accounts
                 isRunning = true;
 
                 var accountVms = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-                accountVms.ForEach(async x =>
-                    x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
+                accountVms.ForEach(
+                    async x =>
+                        x.EndOfMonthBalance = await mediator.Send(new GetAccountEndOfMonthBalanceQuery(x.Id)));
 
                 var includedAccountGroup =
                     new AlphaGroupListGroupCollection<AccountViewModel>(Strings.IncludedAccountsHeader);
@@ -93,33 +94,38 @@ namespace MoneyFox.ViewModels.Accounts
             private set
             {
                 accounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        public RelayCommand GoToAddAccountCommand => new RelayCommand(async () =>
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
+        public RelayCommand GoToAddAccountCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
         public RelayCommand<AccountViewModel> GoToEditAccountCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel
-                => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditAccountPage(accountViewModel.Id))
-                    {
-                        BarBackgroundColor = Color.Transparent
-                    }));
+            => new RelayCommand<AccountViewModel>(
+                async accountViewModel
+                    => await Shell.Current.Navigation.PushModalAsync(
+                        new NavigationPage(new EditAccountPage(accountViewModel.Id))
+                        {
+                            BarBackgroundColor = Color.Transparent
+                        }));
 
         public RelayCommand<AccountViewModel> GoToTransactionListCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel
-                => await Shell.Current.GoToAsync(
-                    $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
+            => new RelayCommand<AccountViewModel>(
+                async accountViewModel
+                    => await Shell.Current.GoToAsync(
+                        $"{ViewModelLocator.PaymentListRoute}?accountId={accountViewModel.Id}"));
 
         public RelayCommand<AccountViewModel> DeleteAccountCommand
-            => new RelayCommand<AccountViewModel>(async accountViewModel
-                => await DeleteAccountAsync(accountViewModel));
+            => new RelayCommand<AccountViewModel>(
+                async accountViewModel
+                    => await DeleteAccountAsync(accountViewModel));
 
         private async Task DeleteAccountAsync(AccountViewModel accountViewModel)
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeleteAccountConfirmationMessage,
                    Strings.YesLabel,
                    Strings.NoLabel))

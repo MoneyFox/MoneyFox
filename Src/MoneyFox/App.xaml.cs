@@ -72,17 +72,19 @@ namespace MoneyFox
                 string? iosAppCenterSecret = ConfigurationManager.AppSettings["IosAppcenterSecret"];
                 string? androidAppCenterSecret = ConfigurationManager.AppSettings["AndroidAppcenterSecret"];
 
-                AppCenter.Start($"android={androidAppCenterSecret};" +
-                                $"ios={iosAppCenterSecret}",
-                    typeof(Analytics), typeof(Crashes));
+                AppCenter.Start(
+                    $"android={androidAppCenterSecret};" + $"ios={iosAppCenterSecret}",
+                    typeof(Analytics),
+                    typeof(Crashes));
             }
         }
 
         private void ExecuteStartupTasks() =>
-            Task.Run(async () =>
-                {
-                    await StartupTasksAsync();
-                })
+            Task.Run(
+                    async () =>
+                    {
+                        await StartupTasksAsync();
+                    })
                 .ConfigureAwait(false);
 
         private async Task StartupTasksAsync()

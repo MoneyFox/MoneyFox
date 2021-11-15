@@ -45,13 +45,14 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
             var account = new Account("Foo1");
             var category = new Category("abcd");
-            context.AddRange(new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
-                new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
-                new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
-                new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
-            });
+            context.AddRange(
+                new List<Payment>
+                {
+                    new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
+                    new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
+                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
+                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
+                });
             context.Add(account);
             context.Add(category);
             context.SaveChanges();
@@ -59,9 +60,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Act
             IImmutableList<StatisticEntry> result =
                 await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
-                    new GetCategoryProgressionQuery(category.Id,
+                    new GetCategoryProgressionQuery(
+                        category.Id,
                         DateTime.Today.AddYears(-1),
-                        DateTime.Today.AddDays(3)), default);
+                        DateTime.Today.AddDays(3)),
+                    default);
 
             // Assert
             result[12].Value.Should().Be(40);
@@ -75,13 +78,14 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             // Arrange
             var account = new Account("Foo1");
             var category = new Category("abcd");
-            context.AddRange(new List<Payment>
-            {
-                new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
-                new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
-                new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
-                new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
-            });
+            context.AddRange(
+                new List<Payment>
+                {
+                    new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
+                    new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
+                    new Payment(DateTime.Today.AddMonths(-1), 50, PaymentType.Expense, account, category: category),
+                    new Payment(DateTime.Today.AddMonths(-2), 40, PaymentType.Expense, account, category: category)
+                });
             context.Add(account);
             context.Add(category);
 
@@ -89,9 +93,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Act
             List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
-                new GetAccountProgressionQuery(account.Id,
+                new GetAccountProgressionQuery(
+                    account.Id,
                     DateTime.Today.AddYears(-1),
-                    DateTime.Today.AddDays(3)), default);
+                    DateTime.Today.AddDays(3)),
+                default);
 
             // Assert
             result[0].Color.Should().Be("#87cefa");

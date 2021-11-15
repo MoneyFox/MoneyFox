@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
@@ -18,7 +18,7 @@ using Xamarin.Essentials;
 namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
-    /// Representation of the cash flow view.
+    ///     Representation of the cash flow view.
     /// </summary>
     public class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
     {
@@ -49,7 +49,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 chart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -67,7 +67,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 hasNoData = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -84,7 +84,7 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 selectedAccount = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 LoadDataCommand.Execute(null);
             }
         }
@@ -115,14 +115,15 @@ namespace MoneyFox.ViewModels.Statistics
 
             Chart = new BarChart
             {
-                Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                    {
-                        Label = x.Label,
-                        ValueLabel = x.ValueLabel,
-                        Color = SKColor.Parse(x.Color),
-                        ValueLabelColor = SKColor.Parse(x.Color)
-                    })
-                    .ToList(),
+                Entries = statisticItems.Select(
+                                            x => new ChartEntry((float)x.Value)
+                                            {
+                                                Label = x.Label,
+                                                ValueLabel = x.ValueLabel,
+                                                Color = SKColor.Parse(x.Color),
+                                                ValueLabelColor = SKColor.Parse(x.Color)
+                                            })
+                                        .ToList(),
                 BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,

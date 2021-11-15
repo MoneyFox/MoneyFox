@@ -150,8 +150,6 @@
     </Compile>
     <Compile Include="AutoMapper\AutoMapperFactory.cs" />
     <Compile Include="AutoMapper\AutoMapperProfile.cs" />
-    <Compile Include="Commands\AsyncCommand.cs" />
-    <Compile Include="Commands\IAsyncCommand.cs" />
     <Compile Include="ConverterLogic\PaymentAmountConverterLogic.cs" />
     <Compile Include="ConverterLogic\RecurrenceTypeConverterLogic.cs" />
     <Compile Include="Converter\AmountFormatDecimalConverter.cs" />
@@ -219,7 +217,6 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyAccountViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimePaymentListViewActionViewModel.cs" />
     <Compile Include="ViewModels\Payments\DesignTimePaymentListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
@@ -614,6 +611,9 @@
     <PackageReference Include="Autofac.Extras.CommonServiceLocator">
       <Version>6.0.1</Version>
     </PackageReference>
+    <PackageReference Include="CommunityToolkit.Mvvm">
+      <Version>7.0.3</Version>
+    </PackageReference>
     <PackageReference Include="FontAwesome.UWP">
       <Version>4.7.0.9</Version>
     </PackageReference>
@@ -647,9 +647,6 @@
     <PackageReference Include="Microsoft.Xaml.Behaviors.Uwp.Managed">
       <Version>2.0.1</Version>
     </PackageReference>
-    <PackageReference Include="MvvmLightLibsStd10">
-      <Version>5.4.1.1</Version>
-    </PackageReference>
     <PackageReference Include="NLog">
       <Version>4.7.12</Version>
     </PackageReference>
@@ -660,7 +657,7 @@
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="SonarAnalyzer.CSharp">
-      <Version>8.31.0.39249</Version>
+      <Version>8.32.0.39516</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

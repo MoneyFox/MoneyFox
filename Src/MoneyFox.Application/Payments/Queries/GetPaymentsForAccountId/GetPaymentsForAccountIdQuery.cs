@@ -49,12 +49,12 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
                 CancellationToken cancellationToken)
             {
                 IQueryable<Payment> paymentQuery = contextAdapter.Context
-                    .Payments
-                    .Include(x => x.ChargedAccount)
-                    .Include(x => x.TargetAccount)
-                    .Include(x => x.Category)
-                    .Include(x => x.RecurringPayment)
-                    .HasAccountId(request.AccountId);
+                                                                 .Payments
+                                                                 .Include(x => x.ChargedAccount)
+                                                                 .Include(x => x.TargetAccount)
+                                                                 .Include(x => x.Category)
+                                                                 .Include(x => x.RecurringPayment)
+                                                                 .HasAccountId(request.AccountId);
 
                 if(request.IsClearedFilterActive)
                 {

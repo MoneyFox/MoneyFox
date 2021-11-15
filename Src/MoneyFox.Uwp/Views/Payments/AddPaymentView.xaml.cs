@@ -20,12 +20,9 @@ namespace MoneyFox.Uwp.Views.Payments
                 ? PaymentType.Expense
                 : passedType.Value;
 
-            ViewModel.Subscribe();
             ViewModel.PaymentType = type;
             ViewModel.InitializeCommand.Execute(null);
         }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e) => ViewModel.Unsubscribe();
 
         public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
 

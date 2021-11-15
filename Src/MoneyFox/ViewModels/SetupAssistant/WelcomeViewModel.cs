@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Extensions;
 using System.Threading.Tasks;
@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.SetupAssistant
 {
-    public class WelcomeViewModel : ViewModelBase
+    public class WelcomeViewModel : ObservableObject
     {
         private readonly ISettingsFacade settingsFacade;
 
@@ -27,8 +27,9 @@ namespace MoneyFox.ViewModels.SetupAssistant
         public RelayCommand GoToAddAccountCommand
             => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
-        public RelayCommand NextStepCommand => new RelayCommand(async ()
-            => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
+        public RelayCommand NextStepCommand => new RelayCommand(
+            async ()
+                => await Shell.Current.GoToAsync(ViewModelLocator.CategoryIntroductionRoute));
 
         public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 

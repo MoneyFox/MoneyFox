@@ -15,7 +15,9 @@ namespace MoneyFox.Tests.ConverterLogic
         [InlineData(PaymentType.Expense, "-", 2, 2)]
         [InlineData(PaymentType.Transfer, "-", 2, 2)]
         [InlineData(PaymentType.Transfer, "+", 2, 3)]
-        public void GetCorrectSignForExpenseAndIncome(PaymentType type, string expectedResult, int chargedAccountId,
+        public void GetCorrectSignForExpenseAndIncome(PaymentType type,
+            string expectedResult,
+            int chargedAccountId,
             int currentAccountId)
         {
             // Arrange

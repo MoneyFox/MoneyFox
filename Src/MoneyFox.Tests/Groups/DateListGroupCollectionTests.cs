@@ -24,7 +24,8 @@ namespace MoneyFox.Tests.Groups
 
             // Act
             List<DateListGroupCollection<PaymentViewModel>> createdGroup
-                = DateListGroupCollection<PaymentViewModel>.CreateGroups(paymentList,
+                = DateListGroupCollection<PaymentViewModel>.CreateGroups(
+                    paymentList,
                     s => s.Date.ToString("D", CultureInfo.CurrentCulture),
                     s => s.Date);
             // Assert

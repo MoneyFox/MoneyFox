@@ -1,12 +1,13 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.Commands;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 
@@ -14,9 +15,9 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp.ViewModels.Categories
 {
     /// <summary>
-    /// View Model for creating and editing Categories without dialog
+    ///     View Model for creating and editing Categories without dialog
     /// </summary>
-    public abstract class ModifyCategoryViewModel : ViewModelBase, IModifyCategoryViewModel
+    public abstract class ModifyCategoryViewModel : ObservableRecipient, IModifyCategoryViewModel
     {
         private readonly IMediator mediator;
         private readonly IMapper mapper;
@@ -25,7 +26,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         private string title = "";
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(IMediator mediator,
             NavigationService navigationService,
@@ -47,17 +48,17 @@ namespace MoneyFox.Uwp.ViewModels.Categories
 
         protected IDialogService DialogService { get; }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
+        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(InitializeAsync);
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveCategoryBaseAsync);
+        public AsyncRelayCommand SaveCommand => new AsyncRelayCommand(SaveCategoryBaseAsync);
 
         /// <summary>
-        /// Cancel the current operation
+        ///     Cancel the current operation
         /// </summary>
-        public AsyncCommand CancelCommand => new AsyncCommand(CancelAsync);
+        public AsyncRelayCommand CancelCommand => new AsyncRelayCommand(CancelAsync);
 
         /// <summary>
-        /// The currently selected CategoryViewModel
+        ///     The currently selected CategoryViewModel
         /// </summary>
         public CategoryViewModel SelectedCategory
         {
@@ -65,12 +66,12 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             set
             {
                 selectedCategory = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Returns the Title based on whether a CategoryViewModel is being created or edited
+        ///     Returns the Title based on whether a CategoryViewModel is being created or edited
         /// </summary>
         public string Title
         {
@@ -83,7 +84,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
                 }
 
                 title = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -99,7 +100,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
 
             await DialogService.ShowLoadingDialogAsync(Strings.SavingCategoryMessage);
             await SaveCategoryAsync();
-            MessengerInstance.Send(new ReloadMessage());
+            Messenger.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
         }
 

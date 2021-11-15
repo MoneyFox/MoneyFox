@@ -36,15 +36,15 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForCategory
                 CancellationToken cancellationToken)
             {
                 IQueryable<Payment> query = contextAdapter.Context.Payments
-                    .Include(x => x.Category);
+                                                          .Include(x => x.Category);
 
                 query = request.CategoryId == 0
                     ? query.Where(x => x.Category == null)
                     : query.Where(x => x.Category!.Id == request.CategoryId);
 
                 return await query.Where(x => x.Date >= request.DateRangeFrom)
-                    .Where(x => x.Date <= request.DateRangeTo)
-                    .ToListAsync();
+                                  .Where(x => x.Date <= request.DateRangeTo)
+                                  .ToListAsync();
             }
         }
     }

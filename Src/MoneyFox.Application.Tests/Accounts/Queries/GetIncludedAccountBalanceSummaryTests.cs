@@ -50,7 +50,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             // Act
             decimal result =
                 await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter)
-                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+                    .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
             result.Should().Be(220);

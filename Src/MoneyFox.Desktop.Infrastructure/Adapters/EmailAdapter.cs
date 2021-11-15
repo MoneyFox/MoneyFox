@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Common.Adapters;
-using NLog;
+﻿using JetBrains.Annotations;
+using MoneyFox.Application.Common.Adapters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +8,13 @@ using Windows.ApplicationModel.Email;
 
 namespace MoneyFox.Desktop.Infrastructure.Adapters
 {
+    [UsedImplicitly]
     public class EmailAdapter : IEmailAdapter
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
         public async Task SendEmailAsync(string subject, string body, List<string> recipients)
             => await SendEmailAsync(subject, body, recipients, new List<string>());
 
-
-        // Attachments are currntly not supportd on uwp
+        // Attachments are currently not supportd on uwp
         public async Task SendEmailAsync(string subject, string body, List<string> recipients, List<string> filePaths)
         {
             var emailMessage = new EmailMessage {Subject = subject, Body = body};

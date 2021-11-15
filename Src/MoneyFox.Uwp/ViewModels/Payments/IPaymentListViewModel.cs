@@ -1,4 +1,4 @@
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using Windows.UI.Xaml.Data;
 

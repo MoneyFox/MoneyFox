@@ -36,7 +36,8 @@ namespace MoneyFox.Application.Categories.Command.UpdateCategory
             {
                 Category existingCategory = await contextAdapter.Context.Categories.FindAsync(request.Category.Id);
 
-                existingCategory.UpdateData(request.Category.Name,
+                existingCategory.UpdateData(
+                    request.Category.Name,
                     request.Category.Note ?? "",
                     request.Category.RequireNote);
 

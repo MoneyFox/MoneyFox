@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Categories.Command.DeleteCategoryById;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
@@ -18,7 +19,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Categories
 {
-    public class CategoryListViewModel : ViewModelBase
+    public class CategoryListViewModel : ObservableRecipient
     {
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> categories =
             new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
@@ -34,11 +35,11 @@ namespace MoneyFox.ViewModels.Categories
             this.dialogService = dialogService;
         }
 
-        public void Subscribe()
-            => MessengerInstance.Register<ReloadMessage>(this, async m => await InitializeAsync());
+        protected override void OnActivated() => Messenger.Register<CategoryListViewModel, ReloadMessage>(
+            this,
+            (r, m) => r.SearchCategoryCommand.Execute(""));
 
-        public void Unsubscribe()
-            => MessengerInstance.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public async Task InitializeAsync() => await SearchCategoryAsync();
 
@@ -48,15 +49,16 @@ namespace MoneyFox.ViewModels.Categories
             private set
             {
                 categories = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        public RelayCommand GoToAddCategoryCommand => new RelayCommand(async () =>
-            await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
+        public RelayCommand GoToAddCategoryCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.AddCategoryRoute));
 
-        public RelayCommand<string> SearchCategoryCommand =>
-            new RelayCommand<string>(async searchTerm => await SearchCategoryAsync(searchTerm));
+        public AsyncRelayCommand<string> SearchCategoryCommand =>
+            new AsyncRelayCommand<string>(async searchTerm => await SearchCategoryAsync(searchTerm));
 
         private string searchTerm = string.Empty;
 
@@ -76,7 +78,8 @@ namespace MoneyFox.ViewModels.Categories
                 mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery(searchTerm)));
 
             List<AlphaGroupListGroupCollection<CategoryViewModel>>? groups =
-                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(categorieVms,
+                AlphaGroupListGroupCollection<CategoryViewModel>.CreateGroups(
+                    categorieVms,
                     CultureInfo.CurrentUICulture,
                     s => string.IsNullOrEmpty(s.Name)
                         ? "-"
@@ -85,22 +88,24 @@ namespace MoneyFox.ViewModels.Categories
             Categories = new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>(groups);
         }
 
-        public RelayCommand<CategoryViewModel> GoToEditCategoryCommand
-            => new RelayCommand<CategoryViewModel>(async categoryViewModel
-                => await Shell.Current.Navigation.PushModalAsync(
-                    new NavigationPage(new EditCategoryPage(categoryViewModel.Id))
-                    {
-                        BarBackgroundColor = Color.Transparent
-                    }));
+        public AsyncRelayCommand<CategoryViewModel> GoToEditCategoryCommand
+            => new AsyncRelayCommand<CategoryViewModel>(
+                async categoryViewModel
+                    => await Shell.Current.Navigation.PushModalAsync(
+                        new NavigationPage(new EditCategoryPage(categoryViewModel.Id))
+                        {
+                            BarBackgroundColor = Color.Transparent
+                        }));
 
-
-        public RelayCommand<CategoryViewModel> DeleteCategoryCommand
-            => new RelayCommand<CategoryViewModel>(async categoryViewModel
-                => await DeleteAccountAsync(categoryViewModel));
+        public AsyncRelayCommand<CategoryViewModel> DeleteCategoryCommand
+            => new AsyncRelayCommand<CategoryViewModel>(
+                async categoryViewModel
+                    => await DeleteAccountAsync(categoryViewModel));
 
         private async Task DeleteAccountAsync(CategoryViewModel categoryViewModel)
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle,
+            if(await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
                    Strings.DeleteCategoryConfirmationMessage,
                    Strings.YesLabel,
                    Strings.NoLabel))
