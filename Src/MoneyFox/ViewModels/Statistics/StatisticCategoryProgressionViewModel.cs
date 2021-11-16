@@ -1,7 +1,11 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using AutoMapper;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microcharts;
+using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Extensions;
@@ -16,18 +20,34 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Statistics
 {
-    /// <summary>
-    ///     Representation of the cash flow view.
-    /// </summary>
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
         private BarChart chart = new BarChart();
         private bool hasNoData = true;
         private CategoryViewModel? selectedCategory;
 
-        public StatisticCategoryProgressionViewModel(IMediator mediator) : base(mediator)
+        private readonly IMapper mapper;
+
+        public StatisticCategoryProgressionViewModel(IMediator mediator, IMapper mapper) : base(mediator)
         {
+            this.mapper = mapper;
             StartDate = DateTime.Now.AddYears(-1);
+        }
+
+        protected override void OnActivated()
+        {
+            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
+                this,
+                async (r, m) =>
+                {
+                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                    await r.LoadAsync();
+                });
+        }
+
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<CategorySelectedMessage>(this);
         }
 
         public CategoryViewModel? SelectedCategory
@@ -86,8 +106,6 @@ namespace MoneyFox.ViewModels.Statistics
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
             async () =>
                 await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
-
-        public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
 
         protected override async Task LoadAsync()
         {

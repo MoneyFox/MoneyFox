@@ -38,14 +38,20 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             Mapper = mapper;
             DialogService = dialogService;
             NavigationService = navigationService;
+            IsActive = true;
         }
 
         protected override void OnActivated()
-            => Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(
+        {
+            Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(
                 this,
                 (r, m) => r.SearchCommand.ExecuteAsync(""));
+        }
 
-        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<ReloadMessage>(this);
+        }
 
         protected NavigationService NavigationService { get; }
 

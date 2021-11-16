@@ -86,6 +86,8 @@ namespace MoneyFox.ViewModels.Accounts
             {
                 isRunning = false;
             }
+
+            IsActive = true;
         }
 
         public ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts

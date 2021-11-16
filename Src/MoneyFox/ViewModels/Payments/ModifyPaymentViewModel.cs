@@ -42,10 +42,21 @@ namespace MoneyFox.ViewModels.Payments
             this.dialogService = dialogService;
         }
 
+        protected virtual async Task InitializeAsync()
+        {
+            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            IsActive = true;
+        }
+
         protected override void OnActivated()
-            => Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
+        {
+            Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
                 this,
                 (r, m) => r.ReceiveMessageAsync(m));
+        }
 
         /// <summary>
         ///     The currently selected PaymentViewModel
@@ -86,14 +97,6 @@ namespace MoneyFox.ViewModels.Payments
             }
         }
 
-        protected virtual async Task InitializeAsync()
-        {
-            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-
-            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
-            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
-        }
-
         /// <summary>
         ///     Indicates if the PaymentViewModel is a transfer.
         /// </summary>
@@ -101,7 +104,9 @@ namespace MoneyFox.ViewModels.Payments
 
         public List<PaymentType> PaymentTypeList => new List<PaymentType>
         {
-            PaymentType.Expense, PaymentType.Income, PaymentType.Transfer
+            PaymentType.Expense,
+            PaymentType.Income,
+            PaymentType.Transfer
         };
 
         /// <summary>
@@ -187,7 +192,7 @@ namespace MoneyFox.ViewModels.Payments
             }
         }
 
-        public async Task ReceiveMessageAsync(CategorySelectedMessage message)
+        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
         {
             if(SelectedPayment == null || message == null)
             {

@@ -38,6 +38,8 @@ namespace MoneyFox.ViewModels.Payments
         {
             this.mediator = mediator;
             this.mapper = mapper;
+
+            IsActive = true;
         }
 
         protected override void OnActivated()

@@ -57,12 +57,28 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.mapper = mapper;
         }
 
+        protected virtual async Task InitializeAsync()
+        {
+            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            Categories = new ObservableCollection<CategoryViewModel>(
+                mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery())));
+            IsActive = true;
+        }
+
         protected override void OnActivated()
-            => Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
+        {
+            Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
                 this,
                 (r, m) => r.ReceiveMessageAsync(m));
+        }
 
-        protected override void OnDeactivated() => Messenger.Unregister<CategorySelectedMessage>(this);
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<CategorySelectedMessage>(this);
+        }
 
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
@@ -232,16 +248,6 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 : Strings.ChargedAccountLabel;
 
         protected abstract Task SavePaymentAsync();
-
-        protected virtual async Task InitializeAsync()
-        {
-            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-
-            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
-            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
-            Categories = new ObservableCollection<CategoryViewModel>(
-                mapper.Map<List<CategoryViewModel>>(await mediator.Send(new GetCategoryBySearchTermQuery())));
-        }
 
         private async Task SavePaymentBaseAsync()
         {

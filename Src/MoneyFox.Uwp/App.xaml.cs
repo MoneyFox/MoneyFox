@@ -39,8 +39,10 @@ namespace MoneyFox.Uwp
             OverrideTitleBarColor();
         }
 
-        protected override async void OnActivated(IActivatedEventArgs args) =>
+        protected override async void OnActivated(IActivatedEventArgs args)
+        {
             await ActivationService.ActivateAsync(args);
+        }
 
         private ActivationService CreateActivationService() =>
             new ActivationService(typeof(AccountListViewModel), new Lazy<UIElement>(CreateShell));

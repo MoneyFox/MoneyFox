@@ -44,16 +44,20 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             StartDate = startDate;
             EndDate = endDate;
             Mediator = mediator;
+            IsActive = true;
         }
 
-        protected override void OnActivated() => Messenger.Register<StatisticViewModel, DateSelectedMessage>(
-            this,
-            (r, m) =>
-            {
-                r.StartDate = m.StartDate;
-                r.EndDate = m.EndDate;
-                LoadAsync();
-            });
+        protected override void OnActivated()
+        {
+            Messenger.Register<StatisticViewModel, DateSelectedMessage>(
+                this,
+                (r, m) =>
+                {
+                    r.StartDate = m.StartDate;
+                    r.EndDate = m.EndDate;
+                    LoadAsync();
+                });
+        }
 
         protected override void OnDeactivated() => Messenger.Unregister<DateSelectedMessage>(this);
 

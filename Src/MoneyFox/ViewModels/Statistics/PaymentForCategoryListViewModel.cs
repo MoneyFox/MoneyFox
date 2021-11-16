@@ -29,6 +29,8 @@ namespace MoneyFox.ViewModels.Statistics
             this.mapper = mapper;
 
             PaymentList = new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
+
+            IsActive = true;
         }
 
         protected override void OnActivated()
