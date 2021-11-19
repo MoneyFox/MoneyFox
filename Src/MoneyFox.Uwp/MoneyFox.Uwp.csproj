@@ -370,9 +370,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <Content Include="Assets\Fonts\materialdesignicons.ttf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="App.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -611,9 +608,6 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm">
       <Version>7.1.2</Version>
-    </PackageReference>
-    <PackageReference Include="FontAwesome.UWP">
-      <Version>4.7.0.9</Version>
     </PackageReference>
     <PackageReference Include="JetBrains.Annotations">
       <Version>2021.3.0</Version>
