@@ -16,13 +16,6 @@
 
     <Page.Resources>
         <winmedia:AcrylicBrush
-            x:Key="NavigationViewDefaultPaneBackground"
-            BackgroundSource="HostBackdrop"
-            FallbackColor="#40537F"
-            TintColor="#40537F"
-            TintOpacity=".7" />
-
-        <winmedia:AcrylicBrush
             x:Key="NavigationViewExpandedPaneBackground"
             BackgroundSource="HostBackdrop"
             FallbackColor="#40537F"
@@ -260,7 +253,7 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <StackPanel x:Name="TopNavArea"
-                                            Background="{ThemeResource NavigationViewTopPaneBackground}"
+                                            Background="{ThemeResource NavigationViewExpandedPaneBackground}"
                                             HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Top"
                                             XYFocusKeyboardNavigation="Enabled" Canvas.ZIndex="1">
                                     <Grid x:Name="TopNavTopPadding"
@@ -516,9 +509,7 @@
                               IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                               PaneToggleButtonStyle="{StaticResource CustomNavigationMenuStyle}"
                               IsSettingsVisible="true"
-                              OpenPaneLength="280"
-                              PaneDisplayMode="Left"
-                              CompactModeThresholdWidth="0"
+                              PaneDisplayMode="Top"
                               SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
 
             <winui:NavigationView.MenuItems>
@@ -554,6 +545,8 @@
                         <SymbolIcon Symbol="SaveLocal" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
+
+                <winui:NavigationViewItemSeparator />
 
             </winui:NavigationView.MenuItems>
 
