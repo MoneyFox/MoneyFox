@@ -7,7 +7,7 @@ namespace MoneyFox.Uwp.Views.Statistics
     {
         public override string Header => Strings.SelectStatisticTitle;
 
-        public override bool ShowHeader => true;
+        public override bool ShowHeader => false;
 
         public StatisticSelectorView()
         {

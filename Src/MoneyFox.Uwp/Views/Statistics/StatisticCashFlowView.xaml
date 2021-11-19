@@ -47,11 +47,9 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-
         <TextBlock Grid.Row="0"
                    Style="{StaticResource UwpPageTitleStyle}"
                    Text="{x:Bind resources:Strings.CategoriesTitle}" />
-
 
         <Grid Grid.Row="1">
             <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"

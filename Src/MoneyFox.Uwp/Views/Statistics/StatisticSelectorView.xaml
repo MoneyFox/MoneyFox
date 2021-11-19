@@ -11,6 +11,7 @@
                 xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
                 xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
                 xmlns:statistics="using:MoneyFox.Uwp.ViewModels.Statistics"
+                xmlns:resources="using:MoneyFox.Application.Resources"
                 mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
@@ -49,10 +50,19 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
 
-        <GridView ItemTemplate="{StaticResource StatistcTypeTemplate}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Style="{StaticResource UwpPageTitleStyle}"
+                   Text="{x:Bind resources:Strings.SelectStatisticTitle}" />
+
+        <GridView Grid.Row="1"
+                  ItemTemplate="{StaticResource StatistcTypeTemplate}"
                   ItemsSource="{Binding StatisticItems}"
                   animations:ItemsReorderAnimation.Duration="0:0:0.2"
-                  Grid.Row="0"
                   Background="Transparent">
 
             <interactivity:Interaction.Behaviors>
