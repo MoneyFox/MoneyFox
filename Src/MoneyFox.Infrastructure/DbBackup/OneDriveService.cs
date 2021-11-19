@@ -58,10 +58,10 @@ namespace MoneyFox.Infrastructure.DbBackup
                 IAccount firstAccount = accounts.FirstOrDefault();
                 AuthenticationResult authResult = firstAccount == null
                     ? await publicClientApplication.AcquireTokenInteractive(scopes)
-                                                   .WithParentActivityOrWindow(
-                                                       ParentActivityWrapper
-                                                           .ParentActivity) // this is required for Android
-                                                   .ExecuteAsync()
+                        .WithUseEmbeddedWebView(true)
+                        .WithParentActivityOrWindow(ParentActivityWrapper
+                            .ParentActivity) // this is required for Android
+                        .ExecuteAsync()
                     : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
