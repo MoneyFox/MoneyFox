@@ -5,23 +5,18 @@
     xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:uwp="using:LiveChartsCore.SkiaSharpView.UWP"
     mc:Ignorable="d">
-
-    <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeStatisticCategorySpreadingViewModel />
-    </d:MvxWindowsPage.DataContext>
 
     <i:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadDataCommand}" />
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
@@ -60,7 +55,6 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <TextBlock Style="{StaticResource UwpPageTitleStyle}" Text="{x:Bind resources:Strings.CategoriesTitle}" />
@@ -108,45 +102,9 @@
         </Grid>
 
         <Grid Grid.Row="3">
-            <chart:RadPieChart x:Name="chart" PaletteName="DefaultDark">
-                <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
-                                      RadiusFactor="0.6"
-                                      Foreground="{ThemeResource AppForegroundPrimaryBrush}">
-
-                    <chart:DoughnutSeries.ValueBinding>
-                        <chart:PropertyNameDataPointBinding PropertyName="Value" />
-                    </chart:DoughnutSeries.ValueBinding>
-                    <chart:PieSeries.LegendTitleBinding>
-                        <chart:PropertyNameDataPointBinding PropertyName="Label" />
-                    </chart:PieSeries.LegendTitleBinding>
-                </chart:DoughnutSeries>
-            </chart:RadPieChart>
-        </Grid>
-
-        <Grid Grid.Row="4">
-            <primitives:RadLegendControl LegendProvider="{Binding ElementName=chart}">
-                <primitives:RadLegendControl.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Vertical" />
-                    </ItemsPanelTemplate>
-                </primitives:RadLegendControl.ItemsPanel>
-                <primitives:RadLegendControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <Ellipse
-                                Width="10"
-                                Height="10"
-                                Fill="{Binding Fill}"
-                                Stroke="{Binding Stroke}"
-                                StrokeThickness="1" />
-                            <TextBlock
-                                Margin="5"
-                                Foreground="{Binding Fill}"
-                                Text="{Binding Title}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </primitives:RadLegendControl.ItemTemplate>
-            </primitives:RadLegendControl>
+            <uwp:PieChart Series="{Binding Series}"
+                          LegendPosition="Right"
+                          LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
         </Grid>
     </Grid>
 </views:BaseView>

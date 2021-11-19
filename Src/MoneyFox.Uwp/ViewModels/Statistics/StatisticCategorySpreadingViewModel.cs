@@ -1,4 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.Measure;
+using LiveChartsCore.SkiaSharpView;
 using MediatR;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
@@ -15,9 +18,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
     /// <summary>
     ///     Representation of the category Spreading View
     /// </summary>
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
-        private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
+        private ObservableCollection<ISeries> series = new ObservableCollection<ISeries>();
         private readonly ISettingsFacade settingsFacade;
         private PaymentType selectedPaymentType;
 
@@ -46,17 +49,17 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         /// <summary>
         ///     Statistic items to display.
         /// </summary>
-        public ObservableCollection<StatisticEntry> StatisticItems
+        public ObservableCollection<ISeries> Series
         {
-            get => statisticItems;
+            get => series;
             private set
             {
-                if(statisticItems == value)
+                if(series == value)
                 {
                     return;
                 }
 
-                statisticItems = value;
+                series = value;
                 OnPropertyChanged();
             }
         }
@@ -93,9 +96,16 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                     SelectedPaymentType,
                     NumberOfCategoriesToShow));
 
-            statisticEntries.ToList().ForEach(x => x.Label = $"{x.Label} ({x.ValueLabel})");
-
-            StatisticItems = new ObservableCollection<StatisticEntry>(statisticEntries);
+            var pieSeries = statisticEntries.Select(x =>
+                new PieSeries<decimal>
+                {
+                    Name = x.Label,
+                    TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
+                    DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
+                    Values = new List<decimal> {x.Value},
+                    InnerRadius = 150
+                });
+            Series = new ObservableCollection<ISeries>(pieSeries);
         }
     }
 }

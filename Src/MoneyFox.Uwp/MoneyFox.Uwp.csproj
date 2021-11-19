@@ -221,7 +221,6 @@
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
-    <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
     <Compile Include="ViewModels\Payments\PaymentViewModel.cs" />
     <Compile Include="ViewModels\Payments\RecurringPaymentViewModel.cs" />
@@ -261,7 +260,6 @@
     <Compile Include="ViewModels\Settings\DesignTimeWindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\IWindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\WindowsSettingsViewModel.cs" />
-    <Compile Include="ViewModels\Statistics\IStatisticCategorySpreadingViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticCategorySummary\CategoryOverviewViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\Statistics\IStatisticSelectorViewModel.cs" />
@@ -700,9 +698,7 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModels\Statistic\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
