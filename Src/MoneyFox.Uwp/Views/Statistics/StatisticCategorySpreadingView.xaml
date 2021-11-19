@@ -75,7 +75,7 @@
             <TextBlock
                 VerticalAlignment="Center"
                 Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                Text="{Binding Title}" />
+                Text="{x:Bind ViewModel.Title}" />
         </Grid>
 
         <Grid Grid.Row="2">
