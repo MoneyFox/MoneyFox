@@ -232,8 +232,8 @@
     <Compile Include="ViewModels\Statistics\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticSelectorType.cs" />
     <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCategoryProgressionViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticCategoryProgressionViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
     <Compile Include="ViewModels\Accounts\EditAccountViewModel.cs" />
     <Compile Include="ViewModels\Categories\EditCategoryViewModel.cs" />
@@ -261,13 +261,13 @@
     <Compile Include="ViewModels\Settings\DesignTimeWindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\IWindowsSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\WindowsSettingsViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCategorySummary\CategoryOverviewViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\IStatisticSelectorViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticCategorySummary\StatisticCategorySummaryViewModel.cs" />
-    <Compile Include="ViewModels\Statistic\StatisticSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\IStatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticCategorySummary\CategoryOverviewViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\IStatisticSelectorViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticCategorySpreadingViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticCategorySummary\StatisticCategorySummaryViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticSelectorViewModel.cs" />
     <Compile Include="Views\Accounts\AccountListToolbar.xaml.cs">
       <DependentUpon>AccountListToolbar.xaml</DependentUpon>
     </Compile>
@@ -700,7 +700,9 @@
       <Name>Visual C++ 2015 Runtime for Universal Windows Platform Apps</Name>
     </SDKReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ViewModels\Statistic\" />
+  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

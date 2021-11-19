@@ -5,7 +5,6 @@ using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
 using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.ViewModels.Payments;
-using MoneyFox.Uwp.ViewModels.Statistics;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -15,7 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
+namespace MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary
 {
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel, IStatisticCategorySummaryViewModel

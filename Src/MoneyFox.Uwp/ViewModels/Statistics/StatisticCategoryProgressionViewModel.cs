@@ -10,7 +10,6 @@ using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Categories;
-using MoneyFox.Uwp.ViewModels.Statistics;
 using MoneyFox.Uwp.Views.Payments;
 using SkiaSharp;
 using System;
@@ -18,7 +17,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Uwp.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     /// <summary>
     ///     Representation of the cash flow view.

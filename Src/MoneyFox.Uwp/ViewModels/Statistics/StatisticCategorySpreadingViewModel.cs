@@ -4,14 +4,13 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
-using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     /// <summary>
     ///     Representation of the category Spreading View

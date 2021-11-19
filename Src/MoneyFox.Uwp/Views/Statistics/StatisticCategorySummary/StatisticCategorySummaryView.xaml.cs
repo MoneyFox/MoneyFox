@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
+using MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary;
 using System.Linq;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;

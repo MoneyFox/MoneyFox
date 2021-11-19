@@ -12,7 +12,7 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:statisticUc="using:MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary"
-    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
+    xmlns:statisticCategorySummary="using:MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -36,7 +36,7 @@
             </StackPanel>
         </Flyout>
 
-        <DataTemplate x:Key="CategoryOverviewItemTemplate" x:DataType="viewModels:CategoryOverviewViewModel">
+        <DataTemplate x:Key="CategoryOverviewItemTemplate" x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
             <controls:DropShadowPanel
                 HorizontalContentAlignment="Stretch"
                 Margin="6,2,0,2"
@@ -132,7 +132,7 @@
             </controls:ListDetailsView.ItemContainerStyle>
 
             <controls:ListDetailsView.DetailsTemplate>
-                <DataTemplate x:DataType="viewModels:CategoryOverviewViewModel">
+                <DataTemplate x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
                     <statisticUc:PaymentListUserControl />
                 </DataTemplate>
             </controls:ListDetailsView.DetailsTemplate>

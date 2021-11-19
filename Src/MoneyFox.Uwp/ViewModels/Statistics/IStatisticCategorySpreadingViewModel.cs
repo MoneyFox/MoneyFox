@@ -1,7 +1,7 @@
 ﻿using MoneyFox.Application.Statistics;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Uwp.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     public interface IStatisticCategorySpreadingViewModel
     {
