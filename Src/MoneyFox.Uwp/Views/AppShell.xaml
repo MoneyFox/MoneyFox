@@ -9,7 +9,6 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:uwp="using:FontAwesome.UWP"
     xmlns:winmedia="using:Microsoft.UI.Xaml.Media"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     RequestedTheme="Light"
@@ -528,7 +527,7 @@
                                           Content="{x:Bind resources:Strings.AccountsTitle}"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.AccountsToolTip}">
                     <winui:NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE10F;" />
+                        <SymbolIcon Symbol="Home" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
@@ -536,10 +535,7 @@
                                           Content="{x:Bind resources:Strings.StatisticsTitle}"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.StatisticsToolTip}">
                     <winui:NavigationViewItem.Icon>
-                        <uwp:FontAwesome
-                            HorizontalAlignment="Center"
-                            FontSize="90"
-                            Icon="BarChart" />
+                        <SymbolIcon Symbol="ZeroBars" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
@@ -547,10 +543,7 @@
                                           Content="{x:Bind resources:Strings.CategoriesTitle}"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.CategoriesToolTip}">
                     <winui:NavigationViewItem.Icon>
-                        <uwp:FontAwesome
-                            HorizontalAlignment="Center"
-                            FontSize="90"
-                            Icon="Tags" />
+                        <SymbolIcon Symbol="Tag" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
@@ -558,10 +551,7 @@
                                           Content="{x:Bind resources:Strings.BackupTitle}"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.BackupToolTip}">
                     <winui:NavigationViewItem.Icon>
-                        <uwp:FontAwesome
-                            HorizontalAlignment="Center"
-                            FontSize="90"
-                            Icon="CloudUpload" />
+                        <SymbolIcon Symbol="SaveLocal" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
