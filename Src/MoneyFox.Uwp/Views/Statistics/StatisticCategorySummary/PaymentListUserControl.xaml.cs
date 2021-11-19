@@ -1,4 +1,4 @@
-﻿using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
+﻿using MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary;
 using Windows.UI.Xaml;
 
 #nullable enable

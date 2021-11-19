@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
+namespace MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary
 {
     public interface IStatisticCategorySummaryViewModel
     {

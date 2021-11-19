@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.ViewModels.Statistic;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 

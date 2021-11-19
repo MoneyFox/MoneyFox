@@ -4,9 +4,9 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:microcharts="using:Microcharts.Uwp"
                 xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
+                xmlns:uwp="using:LiveChartsCore.SkiaSharpView.UWP"
                 mc:Ignorable="d">
 
     <Page.Resources>
@@ -36,18 +36,23 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="12" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <TextBlock Grid.Row="0"
+                   Style="{StaticResource UwpPageTitleStyle}"
+                   Text="{x:Bind resources:Strings.CategoriesTitle}" />
+
+        <Grid Grid.Row="1">
             <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                       Text="{Binding Title}"
+                       Text="{x:Bind ViewModel.Title}"
                        VerticalAlignment="Center" />
         </Grid>
 
-        <CommandBar Grid.Row="0"
+        <CommandBar Grid.Row="1"
                     Style="{ThemeResource DefaultCommandBar}"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
@@ -58,17 +63,20 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
-        <Button Grid.Row="1"
+        <Button Grid.Row="2"
                 Grid.Column="0"
-                Grid.ColumnSpan="2"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
                 Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}"
                 Content="{x:Bind ViewModel.SelectedCategory.Name, FallbackValue='Select Category..', Mode=OneWay}" />
 
-        <Grid Grid.Row="3"
+        <Grid Grid.Row="4"
               Visibility="{x:Bind ViewModel.HasNoData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert, Mode=OneWay}">
-            <microcharts:ChartView Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            <uwp:CartesianChart Series="{x:Bind ViewModel.Series, Mode=OneWay}"
+                                XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
+                                LegendPosition="Bottom"
+                                LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
         </Grid>
+
     </Grid>
 </views:BaseView>
