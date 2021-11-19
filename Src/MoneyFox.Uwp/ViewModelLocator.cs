@@ -63,8 +63,8 @@ namespace MoneyFox.Uwp
         public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionVm =>
             ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
 
-        public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashflowVm =>
-            ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
+        public static StatisticAccountMonthlyCashFlowViewModel StatisticAccountMonthlyCashFlowVm =>
+            ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashFlowViewModel>();
 
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm =>
             ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();

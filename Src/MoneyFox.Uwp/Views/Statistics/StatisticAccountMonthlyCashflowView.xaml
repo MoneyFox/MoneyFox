@@ -5,9 +5,10 @@
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-                xmlns:views="using:MoneyFox.Uwp.Views" xmlns:microcharts="using:Microcharts.Uwp"
+                xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
+                xmlns:uwp="using:LiveChartsCore.SkiaSharpView.UWP"
                 mc:Ignorable="d">
 
     <Page.Resources>
@@ -33,7 +34,7 @@
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding InitCommand}" />
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.InitCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
@@ -41,14 +42,13 @@
           Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition />
-            <RowDefinition />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                       Text="{Binding Title}"
+                       Text="{x:Bind ViewModel.Title}"
                        VerticalAlignment="Center" />
         </Grid>
 
@@ -73,14 +73,17 @@
                 SelectedItem="{x:Bind ViewModel.SelectedAccount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{Binding LoadDataCommand}" />
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadDataCommand}" />
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </ComboBox>
         </Grid>
 
-        <Grid Grid.Row="2">
-            <microcharts:ChartView Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-        </Grid>
+        <uwp:CartesianChart Grid.Row="2"
+                            Series="{x:Bind ViewModel.Series, Mode=OneWay}"
+                            XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
+                            LegendPosition="Bottom"
+                            LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
+
     </Grid>
 </views:BaseView>

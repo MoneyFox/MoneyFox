@@ -72,6 +72,7 @@
 
         <uwp:CartesianChart Grid.Row="2"
                             Series="{x:Bind ViewModel.Series, Mode=OneWay}"
+                            XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
                             LegendPosition="Right"
                             LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
     </Grid>

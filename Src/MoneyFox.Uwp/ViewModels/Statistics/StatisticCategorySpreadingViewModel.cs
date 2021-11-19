@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using JetBrains.Annotations;
 using LiveChartsCore;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
@@ -20,6 +21,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
     /// <summary>
     ///     Representation of the category Spreading View
     /// </summary>
+    [UsedImplicitly]
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
         private readonly ISettingsFacade settingsFacade;
@@ -58,7 +60,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             }
         }
 
-        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
+        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadAsync());
 
         /// <summary>
         ///     Set a custom CategorySpreadingModel with the set Start and End date

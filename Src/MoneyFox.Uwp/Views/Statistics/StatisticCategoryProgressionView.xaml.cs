@@ -12,6 +12,8 @@ namespace MoneyFox.Uwp.Views.Statistics
 
         public override string Header => Strings.MonthlyCashflowTitle;
 
+        public override bool ShowHeader => false;
+
         public StatisticCategoryProgressionView()
         {
             InitializeComponent();

@@ -89,7 +89,7 @@
 
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Converter={StaticResource PaymentTypeToStringConverter}}" />
+                        <TextBlock Text="{x:Bind Converter={StaticResource PaymentTypeToStringConverter}}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
 

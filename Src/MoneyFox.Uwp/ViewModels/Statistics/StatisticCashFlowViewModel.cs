@@ -1,4 +1,6 @@
-﻿using LiveChartsCore;
+﻿using JetBrains.Annotations;
+using LiveChartsCore;
+using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
 using MoneyFox.Application.Statistics;
@@ -14,6 +16,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>
+    [UsedImplicitly]
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
         public StatisticCashFlowViewModel(IMediator mediator) : base(mediator)
@@ -21,6 +24,11 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         }
 
         public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
+
+        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
+        {
+            new Axis { IsVisible = false }
+        };
 
         protected override async Task LoadAsync()
         {

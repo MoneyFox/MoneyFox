@@ -227,7 +227,7 @@
     <Compile Include="ViewModels\Settings\DesignTimeSettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\ISettingsViewModel.cs" />
     <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
-    <Compile Include="ViewModels\Statistics\StatisticAccountMonthlyCashflowViewModel.cs" />
+    <Compile Include="ViewModels\Statistics\StatisticAccountMonthlyCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticCashFlowViewModel.cs" />
     <Compile Include="ViewModels\Statistics\StatisticSelectorType.cs" />
     <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
