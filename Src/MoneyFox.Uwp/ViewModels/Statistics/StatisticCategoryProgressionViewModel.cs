@@ -8,7 +8,6 @@ using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;
 using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
-using Microcharts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Statistics;

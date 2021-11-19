@@ -621,9 +621,6 @@
     <PackageReference Include="LiveChartsCore.SkiaSharpView.UWP">
       <Version>2.0.0-beta.80</Version>
     </PackageReference>
-    <PackageReference Include="Microcharts">
-      <Version>0.9.5.9</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
     </PackageReference>
