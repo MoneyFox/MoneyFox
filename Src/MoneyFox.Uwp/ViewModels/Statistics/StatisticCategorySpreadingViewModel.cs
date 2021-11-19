@@ -3,6 +3,7 @@ using LiveChartsCore;
 using LiveChartsCore.Measure;
 using LiveChartsCore.SkiaSharpView;
 using MediatR;
+using Microsoft.EntityFrameworkCore.Internal;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Uno.Extensions;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Statistics
@@ -20,7 +22,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
-        private ObservableCollection<ISeries> series = new ObservableCollection<ISeries>();
         private readonly ISettingsFacade settingsFacade;
         private PaymentType selectedPaymentType;
 
@@ -34,35 +35,10 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         public PaymentType SelectedPaymentType
         {
             get => selectedPaymentType;
-            set
-            {
-                if(selectedPaymentType == value)
-                {
-                    return;
-                }
-
-                selectedPaymentType = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref selectedPaymentType, value);
         }
 
-        /// <summary>
-        ///     Statistic items to display.
-        /// </summary>
-        public ObservableCollection<ISeries> Series
-        {
-            get => series;
-            private set
-            {
-                if(series == value)
-                {
-                    return;
-                }
-
-                series = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
 
         /// <summary>
         ///     Amount of categories to show. All Payments not fitting in here will go to the other category
@@ -105,7 +81,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                     Values = new List<decimal> {x.Value},
                     InnerRadius = 150
                 });
-            Series = new ObservableCollection<ISeries>(pieSeries);
+            Series.Clear();
+            Series.AddRange(pieSeries);
         }
     }
 }

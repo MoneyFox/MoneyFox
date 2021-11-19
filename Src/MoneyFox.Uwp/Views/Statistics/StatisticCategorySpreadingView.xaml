@@ -38,7 +38,6 @@
                 <muxc:NumberBox Value="{x:Bind ViewModel.NumberOfCategoriesToShow, Mode=TwoWay}"
                                 SmallChange="1"
                                 LargeChange="5"
-                                Maximum="14"
                                 SpinButtonPlacementMode="Inline" />
 
                 <Button Command="{x:Bind ViewModel.LoadedCommand}"
@@ -56,7 +55,9 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource UwpPageTitleStyle}" Text="{x:Bind resources:Strings.CategoriesTitle}" />
+        <TextBlock Grid.Row="0"
+                   Style="{StaticResource UwpPageTitleStyle}"
+                   Text="{x:Bind resources:Strings.CategoriesTitle}" />
 
         <CommandBar
             Grid.Row="0"
@@ -101,7 +102,7 @@
         </Grid>
 
         <Grid Grid.Row="3">
-            <uwp:PieChart Series="{Binding Series}"
+            <uwp:PieChart Series="{x:Bind ViewModel.Series, Mode=OneWay}"
                           LegendPosition="Right"
                           LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
         </Grid>
