@@ -40,7 +40,7 @@ namespace MoneyFox
             Routing.RegisterRoute(ViewModelLocator.StatisticCashFlowRoute, typeof(StatisticCashFlowPage));
             Routing.RegisterRoute(
                 ViewModelLocator.StatisticAccountMonthlyCashflowRoute,
-                typeof(StatisticAccountMonthlyCashflowPage));
+                typeof(StatisticAccountMonthlyCashFlowPage));
             Routing.RegisterRoute(
                 ViewModelLocator.StatisticCategoryProgressionRoute,
                 typeof(StatisticCategoryProgressionPage));

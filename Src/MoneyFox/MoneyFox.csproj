@@ -128,7 +128,7 @@
     <EmbeddedResource Update="Views\Statistics\PaymentForCategoryListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml">
+    <EmbeddedResource Update="Views\Statistics\StatisticAccountMonthlyCashFlowPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Statistics\StatisticCashFlowPage.xaml">
@@ -154,7 +154,7 @@
       <DependentUpon>StatisticCategoryProgressionPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml.cs">
-      <DependentUpon>StatisticAccountMonthlyCashflowPage.xaml</DependentUpon>
+      <DependentUpon>StatisticAccountMonthlyCashFlowPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>
