@@ -97,6 +97,7 @@
         </StackPanel>
 
         <NavigationViewItem
+            Grid.Row="0"
             Padding="0,0,10,0"
             HorizontalAlignment="Right"
             FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
@@ -127,7 +128,7 @@
 
             <controls:ListDetailsView.DetailsTemplate>
                 <DataTemplate x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
-                    <statisticUc:PaymentListUserControl Padding="16,0,16,0"/>
+                    <statisticUc:PaymentListUserControl />
                 </DataTemplate>
             </controls:ListDetailsView.DetailsTemplate>
 

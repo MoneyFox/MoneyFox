@@ -291,9 +291,6 @@
     <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dialogs\SelectDateRangeDialog.xaml.cs">
-      <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Accounts\EditAccountView.xaml.cs">
       <DependentUpon>EditAccountView.xaml</DependentUpon>
     </Compile>
@@ -499,10 +496,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Dialogs\LoadingDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Dialogs\SelectDateRangeDialog.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
