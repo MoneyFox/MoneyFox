@@ -18,19 +18,18 @@
             <StackPanel>
                 <userControls:ModifyCategoryUserControl />
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,12,0,0">
                     <TextBlock
-                        Margin="0,0,3,0"
                         Style="{StaticResource DeemphasizedLabelStyle}"
                         Text="{x:Bind resources:Strings.CreationDateLabel}" />
                     <TextBlock Text="{Binding SelectedCategory.CreationTime}" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
-                        Margin="0,0,3,0"
-                        Style="{StaticResource DeemphasizedLabelStyle}"
-                        Text="{x:Bind resources:Strings.ModificationDateLabel}" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,12,0,0">
+                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                               Text="{x:Bind resources:Strings.ModificationDateLabel}" />
                     <TextBlock Text="{Binding SelectedCategory.ModificationDate}" />
                 </StackPanel>
             </StackPanel>

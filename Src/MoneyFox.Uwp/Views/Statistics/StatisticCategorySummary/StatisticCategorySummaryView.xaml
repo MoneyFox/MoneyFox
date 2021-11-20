@@ -12,7 +12,7 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:statisticUc="using:MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary"
-    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
+    xmlns:statisticCategorySummary="using:MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -36,10 +36,11 @@
             </StackPanel>
         </Flyout>
 
-        <DataTemplate x:Key="CategoryOverviewItemTemplate" x:DataType="viewModels:CategoryOverviewViewModel">
+        <DataTemplate x:Key="CategoryOverviewItemTemplate"
+                      x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
             <controls:DropShadowPanel
                 HorizontalContentAlignment="Stretch"
-                Margin="6,2,0,2"
+                Margin="0,2,0,2"
                 BlurRadius="4.0"
                 ShadowOpacity="0.40">
                 <StackPanel
@@ -102,25 +103,25 @@
             <userControls:IncomeExpenseBalanceUserControl DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
         </StackPanel>
 
-        <CommandBar
-            Grid.Row="0"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Calendar"
-                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-                              Click="OpenFilterFlyout"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
+        <NavigationViewItem
+            Padding="0,0,10,0"
+            HorizontalAlignment="Right"
+            FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+            Content="{x:Bind resources:Strings.SelectDateLabel}"
+            Foreground="{ThemeResource AppForegroundPrimaryBrush}"
+            Tapped="OpenFilterFlyout">
+            <NavigationViewItem.Icon>
+                <SymbolIcon Symbol="Calendar" />
+            </NavigationViewItem.Icon>
+        </NavigationViewItem>
 
         <controls:ListDetailsView
-            x:Name="CategorySummaryList"
             Grid.Row="1"
             Margin="{StaticResource NegativeMediumLeftRightMargin}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
             SelectedItem=""
-            ItemsSource="{x:Bind ViewModel.CategorySummary}"
             CompactModeThresholdWidth="640"
+            ItemsSource="{x:Bind ViewModel.CategorySummary}"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectionChanged="CategorySummaryList_SelectionChanged">
 
@@ -132,8 +133,8 @@
             </controls:ListDetailsView.ItemContainerStyle>
 
             <controls:ListDetailsView.DetailsTemplate>
-                <DataTemplate x:DataType="viewModels:CategoryOverviewViewModel">
-                    <statisticUc:PaymentListUserControl />
+                <DataTemplate x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
+                    <statisticUc:PaymentListUserControl Padding="16,0,16,0"/>
                 </DataTemplate>
             </controls:ListDetailsView.DetailsTemplate>
 

@@ -10,16 +10,14 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
 
-    <Grid>
-        <winui:NavigationViewItem
-            Padding="0,0,10,0"
-            HorizontalAlignment="Right"
-            Content="{x:Bind resources:Strings.AddAccountLabel}"
-            Foreground="{ThemeResource AppForegroundPrimaryBrush}"
-            Tapped="AddAccountTapped">
-            <winui:NavigationViewItem.Icon>
-                <FontIcon Glyph="&#xE710;" />
-            </winui:NavigationViewItem.Icon>
-        </winui:NavigationViewItem>
-    </Grid>
+    <winui:NavigationViewItem
+        Padding="0,0,10,0"
+        HorizontalAlignment="Right"
+        Content="{x:Bind resources:Strings.AddAccountLabel}"
+        Foreground="{ThemeResource AppForegroundPrimaryBrush}"
+        Tapped="AddAccountTapped">
+        <winui:NavigationViewItem.Icon>
+            <FontIcon Glyph="&#xE710;" />
+        </winui:NavigationViewItem.Icon>
+    </winui:NavigationViewItem>
 </UserControl>

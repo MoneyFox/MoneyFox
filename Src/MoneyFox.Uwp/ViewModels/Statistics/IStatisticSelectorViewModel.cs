@@ -1,8 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 
-namespace MoneyFox.Uwp.ViewModels.Statistic
+namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     public interface IStatisticSelectorViewModel
     {

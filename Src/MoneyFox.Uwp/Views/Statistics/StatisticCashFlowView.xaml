@@ -6,9 +6,9 @@
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views"
-                xmlns:microcharts="using:Microcharts.Uwp"
                 xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
+                xmlns:uwp="using:LiveChartsCore.SkiaSharpView.UWP"
                 mc:Ignorable="d">
 
     <Page.Resources>
@@ -34,7 +34,7 @@
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
@@ -43,16 +43,21 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <TextBlock Grid.Row="0"
+                   Style="{StaticResource UwpPageTitleStyle}"
+                   Text="{x:Bind resources:Strings.CategoriesTitle}" />
+
+        <Grid Grid.Row="1">
             <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                       Text="{Binding Title}"
+                       Text="{x:Bind ViewModel.Title}"
                        VerticalAlignment="Center" />
         </Grid>
 
-        <CommandBar Grid.Row="0"
+        <CommandBar Grid.Row="1"
                     Style="{ThemeResource DefaultCommandBar}"
                     Margin="{StaticResource NegativeMediumLeftRightMargin}">
             <CommandBar.PrimaryCommands>
@@ -63,7 +68,10 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
 
-        <microcharts:ChartView Grid.Row="1"
-                               Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <uwp:CartesianChart Grid.Row="2"
+                            Series="{x:Bind ViewModel.Series, Mode=OneWay}"
+                            XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
+                            LegendPosition="Right"
+                            LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
     </Grid>
 </views:BaseView>
