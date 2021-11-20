@@ -1,8 +1,8 @@
+#nullable enable
 using MoneyFox.Application;
 using System;
 using Windows.UI.Xaml.Data;
 
-#nullable enable
 namespace MoneyFox.Uwp.Converter
 {
     public class DateTimeToDateTimeOffsetConverter : IValueConverter
