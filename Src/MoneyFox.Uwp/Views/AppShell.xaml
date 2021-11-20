@@ -569,7 +569,7 @@
                 </core:EventTriggerBehavior>
             </i:Interaction.Behaviors>
 
-            <Frame x:Name="ContentFrame" Padding="60,8,60,0">
+            <Frame x:Name="ContentFrame" Padding="70,8,70,0">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition />

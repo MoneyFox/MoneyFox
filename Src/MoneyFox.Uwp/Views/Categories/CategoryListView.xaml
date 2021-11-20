@@ -30,7 +30,6 @@
         </Grid.RowDefinitions>
 
         <winUi:NavigationViewItem
-            Padding="0,0,10,0"
             HorizontalAlignment="Right"
             Content="{x:Bind resources:Strings.AddCategoryLabel}"
             Foreground="{ThemeResource AppForegroundPrimaryBrush}"

@@ -38,40 +38,33 @@
 
         <DataTemplate x:Key="CategoryOverviewItemTemplate"
                       x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
-            <controls:DropShadowPanel
-                HorizontalContentAlignment="Stretch"
+            <StackPanel
                 Margin="0,2,0,2"
-                BlurRadius="4.0"
-                ShadowOpacity="0.40">
-                <StackPanel
-                    CornerRadius="{StaticResource DefaultCornerRadius}"
-                    HorizontalAlignment="Stretch"
-                    Background="{ThemeResource ListItemBrush}">
+                CornerRadius="{StaticResource DefaultCornerRadius}"
+                HorizontalAlignment="Stretch"
+                Background="{ThemeResource ListItemBrush}">
 
-                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
-                                Padding="{StaticResource SmallListItemPadding}">
-                        <Grid HorizontalAlignment="Stretch">
-                            <TextBlock
-                                Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                Text="{x:Bind Label}"
-                                TextTrimming="CharacterEllipsis" />
-                            <TextBlock
-                                HorizontalAlignment="Right"
-                                Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
-                                TextAlignment="Right" />
-                        </Grid>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                       Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
-                            <TextBlock
-                                Margin="3,0,0,0"
-                                Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
-                        </StackPanel>
+                <StackPanel Padding="{StaticResource SmallListItemPadding}">
+                    <Grid HorizontalAlignment="Stretch">
+                        <TextBlock
+                            Text="{x:Bind Label}"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            HorizontalAlignment="Right"
+                            Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
+                            TextAlignment="Right" />
+                    </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                   Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                            Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
                     </StackPanel>
                 </StackPanel>
-            </controls:DropShadowPanel>
+            </StackPanel>
+
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
@@ -95,7 +88,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="{StaticResource MediumLeftRightMargin}">
+        <StackPanel Grid.Row="0">
             <TextBlock
                 VerticalAlignment="Center"
                 Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"

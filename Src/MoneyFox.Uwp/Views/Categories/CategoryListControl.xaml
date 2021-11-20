@@ -19,32 +19,28 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="categories:CategoryViewModel">
-            <controls:DropShadowPanel
-                HorizontalContentAlignment="Stretch"
-                Margin="0,4,0,0"
-                BlurRadius="4.0"
-                ShadowOpacity="0.40">
-                <StackPanel RightTapped="CategoryListRightTapped">
-                    <FlyoutBase.AttachedFlyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem
-                                Click="EditCategory"
-                                Icon="Edit"
-                                Text="{x:Bind resources:Strings.EditLabel}" />
-                            <MenuFlyoutItem
-                                Click="DeleteCategory"
-                                Icon="Delete"
-                                Text="{x:Bind resources:Strings.DeleteLabel}" />
-                        </MenuFlyout>
-                    </FlyoutBase.AttachedFlyout>
+            <StackPanel RightTapped="CategoryListRightTapped" 
+                        Margin="0,4,0,0">
+                <FlyoutBase.AttachedFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem
+                            Click="EditCategory"
+                            Icon="Edit"
+                            Text="{x:Bind resources:Strings.EditLabel}" />
+                        <MenuFlyoutItem
+                            Click="DeleteCategory"
+                            Icon="Delete"
+                            Text="{x:Bind resources:Strings.DeleteLabel}" />
+                    </MenuFlyout>
+                </FlyoutBase.AttachedFlyout>
 
-                    <StackPanel Padding="{StaticResource SmallListItemPadding}"
-                                Background="{ThemeResource ListItemBrush}"
-                                CornerRadius="{StaticResource DefaultCornerRadius}">
-                        <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
-                    </StackPanel>
+                <StackPanel Padding="{StaticResource SmallListItemPadding}"
+                            Background="{ThemeResource ListItemBrush}"
+                            CornerRadius="{StaticResource DefaultCornerRadius}">
+                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
                 </StackPanel>
-            </controls:DropShadowPanel>
+            </StackPanel>
+
         </DataTemplate>
 
         <DataTemplate x:Key="GroupHeaderTemplate">
@@ -78,7 +74,7 @@
             Source="{Binding CategoryList}" />
     </UserControl.Resources>
 
-    <Grid>
+    <Grid Style="{StaticResource AppGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="240*" />
@@ -88,7 +84,7 @@
             Grid.Row="0"
             Header="{x:Bind resources:Strings.SearchLabel}"
             TextChanged="SearchTextBox_OnTextChanged" />
-
+        
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
 
