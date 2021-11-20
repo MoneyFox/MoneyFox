@@ -25,7 +25,7 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,0">
+        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,0" x:DataType="statistics:StatisticAccountMonthlyCashflowViewModel">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.MonthlyCashflowTitle}" />
 
