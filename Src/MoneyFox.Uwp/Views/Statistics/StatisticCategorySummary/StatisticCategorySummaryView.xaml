@@ -19,59 +19,35 @@
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
 
-        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
-            <StackPanel Spacing="12">
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
-
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
-
-                <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
-            </StackPanel>
-        </Flyout>
-
         <DataTemplate x:Key="CategoryOverviewItemTemplate"
                       x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
-            <controls:DropShadowPanel
-                HorizontalContentAlignment="Stretch"
+            <StackPanel
                 Margin="0,2,0,2"
-                BlurRadius="4.0"
-                ShadowOpacity="0.40">
-                <StackPanel
-                    CornerRadius="{StaticResource DefaultCornerRadius}"
-                    HorizontalAlignment="Stretch"
-                    Background="{ThemeResource ListItemBrush}">
+                CornerRadius="{StaticResource DefaultCornerRadius}"
+                HorizontalAlignment="Stretch"
+                Background="{ThemeResource ListItemBrush}">
 
-                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
-                                Padding="{StaticResource SmallListItemPadding}">
-                        <Grid HorizontalAlignment="Stretch">
-                            <TextBlock
-                                Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                Text="{x:Bind Label}"
-                                TextTrimming="CharacterEllipsis" />
-                            <TextBlock
-                                HorizontalAlignment="Right"
-                                Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                                Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
-                                TextAlignment="Right" />
-                        </Grid>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                       Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
-                            <TextBlock
-                                Margin="3,0,0,0"
-                                Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
-                        </StackPanel>
+                <StackPanel Padding="{StaticResource SmallListItemPadding}">
+                    <Grid HorizontalAlignment="Stretch">
+                        <TextBlock
+                            Text="{x:Bind Label}"
+                            TextTrimming="CharacterEllipsis" />
+                        <TextBlock
+                            HorizontalAlignment="Right"
+                            Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
+                            TextAlignment="Right" />
+                    </Grid>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                   Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
+                        <TextBlock
+                            Margin="3,0,0,0"
+                            Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                            Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
                     </StackPanel>
                 </StackPanel>
-            </controls:DropShadowPanel>
+            </StackPanel>
+
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
@@ -88,36 +64,34 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="45" />
+            <RowDefinition Height="90" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Margin="{StaticResource MediumLeftRightMargin}">
-            <TextBlock
-                VerticalAlignment="Center"
-                Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                Text="{x:Bind ViewModel.Title, Mode=OneWay}" />
+        <StackPanel Grid.Row="0">
             <userControls:IncomeExpenseBalanceUserControl DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
-        </StackPanel>
+            <StackPanel Spacing="12" Orientation="Horizontal">
+                <CalendarDatePicker
+                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    FirstDayOfWeek="Monday"
+                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
-        <NavigationViewItem
-            Padding="0,0,10,0"
-            HorizontalAlignment="Right"
-            FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-            Content="{x:Bind resources:Strings.SelectDateLabel}"
-            Foreground="{ThemeResource AppForegroundPrimaryBrush}"
-            Tapped="OpenFilterFlyout">
-            <NavigationViewItem.Icon>
-                <SymbolIcon Symbol="Calendar" />
-            </NavigationViewItem.Icon>
-        </NavigationViewItem>
+                <CalendarDatePicker
+                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    FirstDayOfWeek="Monday"
+                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+                <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"
+                        VerticalAlignment="Bottom" />
+            </StackPanel>
+        </StackPanel>
 
         <controls:ListDetailsView
             Grid.Row="1"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
             SelectedItem=""
             CompactModeThresholdWidth="640"
@@ -134,7 +108,7 @@
 
             <controls:ListDetailsView.DetailsTemplate>
                 <DataTemplate x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
-                    <statisticUc:PaymentListUserControl Padding="16,0,16,0"/>
+                    <statisticUc:PaymentListUserControl />
                 </DataTemplate>
             </controls:ListDetailsView.DetailsTemplate>
 

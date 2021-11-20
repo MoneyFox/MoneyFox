@@ -11,10 +11,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:uwpToolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:accountlist="using:MoneyFox.Uwp.Views.Accounts"
     xmlns:accounts="using:MoneyFox.Uwp.ViewModels.Accounts"
+    xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
@@ -32,48 +33,45 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="accounts:AccountViewModel">
-            <uwpToolkit:DropShadowPanel ShadowOpacity="0.40" Margin="4,3,3,6">
-                <StackPanel Width="250" CornerRadius="{StaticResource DefaultCornerRadius}">
-                    <StackPanel.ContextFlyout>
-                        <MenuFlyout>
-                            <MenuFlyoutItem
-                                Click="Edit_OnClick"
-                                Icon="Edit"
-                                Text="{x:Bind resources:Strings.EditLabel}" />
-                            <MenuFlyoutItem
-                                Click="Delete_OnClick"
-                                Icon="Delete"
-                                Text="{x:Bind resources:Strings.DeleteLabel}" />
-                        </MenuFlyout>
-                    </StackPanel.ContextFlyout>
+            <StackPanel Width="250" CornerRadius="{StaticResource DefaultCornerRadius}" >
+                <StackPanel.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem
+                            Click="Edit_OnClick"
+                            Icon="Edit"
+                            Text="{x:Bind resources:Strings.EditLabel}" />
+                        <MenuFlyoutItem
+                            Click="Delete_OnClick"
+                            Icon="Delete"
+                            Text="{x:Bind resources:Strings.DeleteLabel}" />
+                    </MenuFlyout>
+                </StackPanel.ContextFlyout>
 
-                    <Grid Height="100"
-                          Padding="{StaticResource SmallListItemPadding}"
-                          Background="{ThemeResource ListItemBrush}">
+                <Grid Height="100"
+                      Padding="{StaticResource SmallListItemPadding}"
+                      Background="{ThemeResource ListItemBrush}">
+                    <TextBlock
+                        Style="{ThemeResource HeaderStyle}"
+                        Text="{x:Bind Name}"
+                        TextTrimming="CharacterEllipsis" />
+
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                        Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                        TextAlignment="Center" />
+
+                    <StackPanel Orientation="Horizontal"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Right">
+                        <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
                         <TextBlock
-                            Style="{ThemeResource HeaderStyle}"
-                            Text="{x:Bind Name}"
-                            TextTrimming="CharacterEllipsis" />
-
-                        <TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                            Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                            TextAlignment="Center" />
-
-                        <StackPanel Orientation="Horizontal"
-                                    VerticalAlignment="Bottom"
-                                    HorizontalAlignment="Right">
-                            <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
-                            <TextBlock
-                                Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
-            </uwpToolkit:DropShadowPanel>
+                            Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
         </DataTemplate>
-
     </Page.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">

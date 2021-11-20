@@ -9,7 +9,6 @@
     <!--  Common texts  -->
     <Style x:Key="UwpPageTitleStyle" TargetType="TextBlock">
         <Setter Property="VerticalAlignment" Value="Center" />
-        <Setter Property="FontWeight" Value="SemiLight" />
         <Setter Property="FontSize" Value="{StaticResource LargeFontSize}" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
         <Setter Property="TextWrapping" Value="NoWrap" />
@@ -59,6 +58,5 @@
         BasedOn="{StaticResource CaptionTextBlockStyle}"
         TargetType="TextBlock">
         <Setter Property="Foreground" Value="DarkGray" />
-
     </Style>
 </ResourceDictionary>

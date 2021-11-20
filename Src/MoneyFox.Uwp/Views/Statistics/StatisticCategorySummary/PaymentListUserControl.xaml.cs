@@ -1,7 +1,7 @@
-﻿using MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary;
+﻿#nullable enable
+using MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary;
 using Windows.UI.Xaml;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary
 {
     public partial class PaymentListUserControl

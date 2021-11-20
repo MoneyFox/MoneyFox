@@ -291,9 +291,6 @@
     <Compile Include="Views\Dialogs\LoadingDialog.xaml.cs">
       <DependentUpon>LoadingDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Dialogs\SelectDateRangeDialog.xaml.cs">
-      <DependentUpon>SelectDateRangeDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Accounts\EditAccountView.xaml.cs">
       <DependentUpon>EditAccountView.xaml</DependentUpon>
     </Compile>
@@ -502,10 +499,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Dialogs\SelectDateRangeDialog.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Accounts\EditAccountView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -631,6 +624,9 @@
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Controls">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.UI.Media">
       <Version>7.1.2</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.UI.Xaml">

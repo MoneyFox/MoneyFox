@@ -11,6 +11,7 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments"
+    xmlns:winUi="using:Microsoft.UI.Xaml.Controls"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
@@ -65,20 +66,19 @@
                    Grid.Row="0"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <CommandBar
+        <winUi:NavigationViewItem
             Grid.Row="0"
             DataContext="{Binding ViewActionViewModel}"
-            OverflowButtonVisibility="Collapsed"
-            DefaultLabelPosition="Right"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton
-                    Click="OpenFilterFlyout"
-                    FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-                    Icon="Filter"
-                    Label="{x:Bind resources:Strings.FilterLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
+            Padding="0,0,10,0"
+            HorizontalAlignment="Right"
+            FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+            Content="{x:Bind resources:Strings.AddAccountLabel}"
+            Foreground="{ThemeResource AppForegroundPrimaryBrush}"
+            Tapped="OpenFilterFlyout">
+            <winUi:NavigationViewItem.Icon>
+                <SymbolIcon Symbol="Filter" />
+            </winUi:NavigationViewItem.Icon>
+        </winUi:NavigationViewItem>
 
         <userControls:BalanceControl
             Grid.Row="1"
