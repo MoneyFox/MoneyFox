@@ -13,4 +13,8 @@
     <Style TargetType="ListView">
         <Setter Property="Margin" Value="-12,0,-12,0" />
     </Style>
+
+    <Style TargetType="Grid" x:Name="AppGrid">
+        <Setter Property="Margin" Value="-12,0,-12,0" />
+    </Style>
 </ResourceDictionary>

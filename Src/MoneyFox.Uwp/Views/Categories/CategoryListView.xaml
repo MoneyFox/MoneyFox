@@ -10,6 +10,7 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:controls="using:MoneyFox.Uwp.Views.Categories"
+    xmlns:winUi="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
     <d:Page.DataContext>
@@ -28,17 +29,16 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <CommandBar
-            Grid.Row="0"
-            OverflowButtonVisibility="Collapsed"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton
-                    Click="AddNewCategoryClick"
-                    Icon="Add"
-                    Label="{x:Bind resources:Strings.AddCategoryLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
+        <winUi:NavigationViewItem
+            Padding="0,0,10,0"
+            HorizontalAlignment="Right"
+            Content="{x:Bind resources:Strings.AddCategoryLabel}"
+            Foreground="{ThemeResource AppForegroundPrimaryBrush}"
+            Tapped="AddNewCategoryClick">
+            <winUi:NavigationViewItem.Icon>
+                <FontIcon Glyph="&#xE710;" />
+            </winUi:NavigationViewItem.Icon>
+        </winUi:NavigationViewItem>
 
         <controls:CategoryListControl Grid.Row="1" />
 
