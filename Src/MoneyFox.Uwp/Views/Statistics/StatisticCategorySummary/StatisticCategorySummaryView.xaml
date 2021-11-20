@@ -71,7 +71,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel  Grid.Row="0">
+        <StackPanel Grid.Row="0">
             <userControls:IncomeExpenseBalanceUserControl DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
             <StackPanel Spacing="12" Orientation="Horizontal">
                 <CalendarDatePicker

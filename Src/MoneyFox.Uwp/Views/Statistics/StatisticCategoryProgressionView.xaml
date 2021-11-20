@@ -12,9 +12,25 @@
     <Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
+    </Page.Resources>
 
-        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
-            <StackPanel Spacing="12">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
+          Margin="{StaticResource MediumLeftRightMargin}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <StackPanel Spacing="12" Orientation="Horizontal">
+                <StackPanel Spacing="8">
+                    <TextBlock Text="{x:Bind resources:Strings.TimeRangeStartLabel}" Foreground="{StaticResource AppForegroundPrimaryBrush}" />
+                    <Button VerticalAlignment="Bottom"
+                            HorizontalAlignment="Stretch"
+                            Width="250"
+                            Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}"
+                            Content="{x:Bind ViewModel.SelectedCategory.Name, FallbackValue='Select Category..', Mode=OneWay}" />
+                </StackPanel>
                 <CalendarDatePicker
                     Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     FirstDayOfWeek="Monday"
@@ -26,51 +42,12 @@
                     Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
 
                 <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"
+                        VerticalAlignment="Bottom" />
             </StackPanel>
-        </Flyout>
-    </Page.Resources>
-
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="12" />
-            <RowDefinition />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <TextBlock Grid.Row="0"
-                   Style="{StaticResource UwpPageTitleStyle}"
-                   Text="{x:Bind resources:Strings.CategoriesTitle}" />
-
-        <Grid Grid.Row="1">
-            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                       Text="{x:Bind ViewModel.Title}"
-                       VerticalAlignment="Center" />
         </Grid>
 
-        <CommandBar Grid.Row="1"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Calendar"
-                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-                              Click="OpenFilterFlyout"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-
-        <Button Grid.Row="2"
-                Grid.Column="0"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch"
-                Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}"
-                Content="{x:Bind ViewModel.SelectedCategory.Name, FallbackValue='Select Category..', Mode=OneWay}" />
-
-        <Grid Grid.Row="4"
+        <Grid Grid.Row="1"
               Visibility="{x:Bind ViewModel.HasNoData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert, Mode=OneWay}">
             <uwp:CartesianChart Series="{x:Bind ViewModel.Series, Mode=OneWay}"
                                 XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"

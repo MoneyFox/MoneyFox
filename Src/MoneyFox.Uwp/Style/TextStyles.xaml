@@ -58,6 +58,5 @@
         BasedOn="{StaticResource CaptionTextBlockStyle}"
         TargetType="TextBlock">
         <Setter Property="Foreground" Value="DarkGray" />
-
     </Style>
 </ResourceDictionary>
