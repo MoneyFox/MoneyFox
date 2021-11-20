@@ -34,17 +34,35 @@ namespace MoneyFox.iOS
             RegisterServices();
 
             Popup.Init();
-
             Forms.Init();
             FormsMaterial.Init();
-
             LoadApplication(new App());
 
-            UINavigationBar.Appearance.Translucent = false;
-
+            RemoveNavigationBarBorder();
             RequestToastPermissions(uiApplication);
 
             return base.FinishedLaunching(uiApplication, launchOptions);
+        }
+
+        private static void RemoveNavigationBarBorder()
+        {
+            UINavigationBar.Appearance.Translucent = false;
+            if (UIDevice.CurrentDevice.CheckSystemVersion(13, 0))
+            {
+                var appearance = new UINavigationBarAppearance()
+                {
+                    BackgroundColor = UIColor.Clear, ShadowColor = null,
+                };
+
+                UINavigationBar.Appearance.StandardAppearance = appearance;
+                UINavigationBar.Appearance.ScrollEdgeAppearance = appearance;
+                UINavigationBar.Appearance.CompactAppearance = appearance;
+            }
+            else
+            {
+                UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
+                UINavigationBar.Appearance.ShadowImage = new UIImage();
+            }
         }
 
         // Needed for auth
