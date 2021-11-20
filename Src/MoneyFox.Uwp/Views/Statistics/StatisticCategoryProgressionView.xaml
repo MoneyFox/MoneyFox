@@ -14,29 +14,28 @@
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
     </Page.Resources>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
             <StackPanel Spacing="12" Orientation="Horizontal">
-                <StackPanel Spacing="8">
+                <StackPanel Spacing="8" VerticalAlignment="Bottom">
                     <TextBlock Text="{x:Bind resources:Strings.TimeRangeStartLabel}" Foreground="{StaticResource AppForegroundPrimaryBrush}" />
-                    <Button VerticalAlignment="Bottom"
-                            HorizontalAlignment="Stretch"
-                            Width="250"
+                    <Button Width="250"
                             Command="{x:Bind ViewModel.GoToSelectCategoryDialogCommand}"
                             Content="{x:Bind ViewModel.SelectedCategory.Name, FallbackValue='Select Category..', Mode=OneWay}" />
                 </StackPanel>
                 <CalendarDatePicker
+                    VerticalAlignment="Bottom"
                     Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     FirstDayOfWeek="Monday"
                     Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
                 <CalendarDatePicker
+                    VerticalAlignment="Bottom"
                     Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     FirstDayOfWeek="Monday"
                     Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />

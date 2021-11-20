@@ -1,23 +1,19 @@
-﻿using MoneyFox.Uwp.ViewModels.Statistics;
-using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls.Primitives;
+﻿#nullable enable
+using MoneyFox.Application.Resources;
+using MoneyFox.Uwp.ViewModels.Statistics;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCashFlowView
     {
-        public StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
+        public override string Header => Strings.CategoriesTitle;
 
-        public override bool ShowHeader => false;
+        public StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
 
         public StatisticCashFlowView()
         {
             InitializeComponent();
             DataContext = ViewModelLocator.StatisticCashFlowVm;
         }
-
-        private void OpenFilterFlyout(object sender, RoutedEventArgs e) =>
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
     }
 }
