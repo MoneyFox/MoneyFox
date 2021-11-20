@@ -61,7 +61,7 @@
 
         <DataTemplate x:Key="JumpTemplate">
             <Border>
-                <Border Margin="5" HorizontalAlignment="Left">
+                <Border HorizontalAlignment="Left">
                     <TextBlock
                         HorizontalAlignment="Left"
                         VerticalAlignment="Center"
@@ -86,7 +86,6 @@
         <TextBox
             x:Name="SearchTextBox"
             Grid.Row="0"
-            Margin="{StaticResource MediumLeftRightMargin}"
             Header="{x:Bind resources:Strings.SearchLabel}"
             TextChanged="SearchTextBox_OnTextChanged" />
 
@@ -137,7 +136,6 @@
 
         <TextBlock
             Grid.Row="1"
-            Margin="6"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"

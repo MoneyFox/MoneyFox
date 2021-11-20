@@ -50,16 +50,7 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
           Margin="{StaticResource MediumLeftRightMargin}">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <TextBlock Grid.Row="0"
-                   Style="{StaticResource UwpPageTitleStyle}"
-                   Text="{x:Bind resources:Strings.SelectStatisticTitle}" />
-
-        <GridView Grid.Row="1"
+        <GridView Grid.Row="0"
                   ItemTemplate="{StaticResource StatistcTypeTemplate}"
                   ItemsSource="{Binding StatisticItems}"
                   animations:ItemsReorderAnimation.Duration="0:0:0.2"

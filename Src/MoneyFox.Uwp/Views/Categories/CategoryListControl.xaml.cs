@@ -1,4 +1,5 @@
-﻿using MoneyFox.Application.Common;
+﻿#nullable enable
+using MoneyFox.Application.Common;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System;
 using Windows.UI.Xaml;
@@ -6,7 +7,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Categories
 {
     public partial class CategoryListControl
