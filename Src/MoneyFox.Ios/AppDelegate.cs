@@ -1,6 +1,7 @@
 ﻿#nullable enable
 using Autofac;
 using Foundation;
+using JetBrains.Annotations;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common.Constants;
 using NLog;
@@ -19,6 +20,7 @@ using LogLevel = NLog.LogLevel;
 namespace MoneyFox.iOS
 {
     [Register("AppDelegate")]
+    [UsedImplicitly]
     public class AppDelegate : FormsApplicationDelegate
     {
         private const int SHADOW_MAJOR_VERSION = 13;
