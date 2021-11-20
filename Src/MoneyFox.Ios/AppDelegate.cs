@@ -21,8 +21,7 @@ namespace MoneyFox.iOS
     [Register("AppDelegate")]
     public class AppDelegate : FormsApplicationDelegate
     {
-        private const int NOTIFICATION_NEW_MAJOR_VERSION = 10;
-        private const int NOTIFICATION_LEGACY_MAJOR_VERSION = 8;
+        private const int SHADOW_MAJOR_VERSION = 13;
 
         private Logger? logManager;
 
@@ -47,7 +46,7 @@ namespace MoneyFox.iOS
         private static void RemoveNavigationBarBorder()
         {
             UINavigationBar.Appearance.Translucent = false;
-            if (UIDevice.CurrentDevice.CheckSystemVersion(13, 0))
+            if (UIDevice.CurrentDevice.CheckSystemVersion(SHADOW_MAJOR_VERSION, 0))
             {
                 var appearance = new UINavigationBarAppearance()
                 {
@@ -74,25 +73,12 @@ namespace MoneyFox.iOS
 
         private void RequestToastPermissions(UIApplication app)
         {
-            // Request Permissions
-            if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_NEW_MAJOR_VERSION, 0))
-            {
-                // Request Permissions
-                UNUserNotificationCenter.Current.RequestAuthorization(
-                    UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
-                    (granted, error) =>
-                    {
-                        // Do something if needed
-                    });
-            }
-            else if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_LEGACY_MAJOR_VERSION, 0))
-            {
-                UIUserNotificationSettings notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
-                    null);
-
-                app.RegisterUserNotificationSettings(notificationSettings);
-            }
+            UNUserNotificationCenter.Current.RequestAuthorization(
+                UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
+                (granted, error) =>
+                {
+                    // Do something if needed
+                });
         }
 
         private void RegisterServices()
