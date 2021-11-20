@@ -1,5 +1,7 @@
-﻿using Autofac;
+﻿#nullable enable
+using Autofac;
 using Foundation;
+using JetBrains.Annotations;
 using Microsoft.Identity.Client;
 using MoneyFox.Application.Common.Constants;
 using NLog;
@@ -15,26 +17,16 @@ using Xamarin.Forms.Platform.iOS;
 using Logger = NLog.Logger;
 using LogLevel = NLog.LogLevel;
 
-#nullable enable
-
 namespace MoneyFox.iOS
 {
-    // The UIApplicationDelegate for the application. This class is responsible for launching the
-    // User Interface of the application, as well as listening (and optionally responding) to
-    // application events from iOS.
     [Register("AppDelegate")]
+    [UsedImplicitly]
     public class AppDelegate : FormsApplicationDelegate
     {
-        private const int NOTIFICATION_NEW_MAJOR_VERSION = 10;
-        private const int NOTIFICATION_LEGACY_MAJOR_VERSION = 8;
+        private const int SHADOW_MAJOR_VERSION = 13;
 
         private Logger? logManager;
 
-        //
-        // This method is invoked when the application has loaded and is ready to run. In this
-        // method you should instantiate the window, load the UI into it and then make the window
-        // visible.
-        //
         // You have 17 seconds to return from this method, or iOS will terminate your application.
         //
         public override bool FinishedLaunching(UIApplication uiApplication, NSDictionary launchOptions)
@@ -43,18 +35,35 @@ namespace MoneyFox.iOS
             RegisterServices();
 
             Popup.Init();
-
-            Forms.SetFlags("CollectionView_Experimental");
             Forms.Init();
             FormsMaterial.Init();
-
             LoadApplication(new App());
 
-            UINavigationBar.Appearance.Translucent = false;
-
+            RemoveNavigationBarBorder();
             RequestToastPermissions(uiApplication);
 
             return base.FinishedLaunching(uiApplication, launchOptions);
+        }
+
+        private static void RemoveNavigationBarBorder()
+        {
+            UINavigationBar.Appearance.Translucent = false;
+            if (UIDevice.CurrentDevice.CheckSystemVersion(SHADOW_MAJOR_VERSION, 0))
+            {
+                var appearance = new UINavigationBarAppearance()
+                {
+                    BackgroundColor = UIColor.Clear, ShadowColor = null,
+                };
+
+                UINavigationBar.Appearance.StandardAppearance = appearance;
+                UINavigationBar.Appearance.ScrollEdgeAppearance = appearance;
+                UINavigationBar.Appearance.CompactAppearance = appearance;
+            }
+            else
+            {
+                UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
+                UINavigationBar.Appearance.ShadowImage = new UIImage();
+            }
         }
 
         // Needed for auth
@@ -66,25 +75,12 @@ namespace MoneyFox.iOS
 
         private void RequestToastPermissions(UIApplication app)
         {
-            // Request Permissions
-            if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_NEW_MAJOR_VERSION, 0))
-            {
-                // Request Permissions
-                UNUserNotificationCenter.Current.RequestAuthorization(
-                    UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
-                    (granted, error) =>
-                    {
-                        // Do something if needed
-                    });
-            }
-            else if(UIDevice.CurrentDevice.CheckSystemVersion(NOTIFICATION_LEGACY_MAJOR_VERSION, 0))
-            {
-                UIUserNotificationSettings notificationSettings = UIUserNotificationSettings.GetSettingsForTypes(
-                    UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound,
-                    null);
-
-                app.RegisterUserNotificationSettings(notificationSettings);
-            }
+            UNUserNotificationCenter.Current.RequestAuthorization(
+                UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
+                (granted, error) =>
+                {
+                    // Do something if needed
+                });
         }
 
         private void RegisterServices()
