@@ -1,11 +1,12 @@
-﻿using MoneyFox.Application.Resources;
+﻿#nullable enable
+using MoneyFox.Uwp.ViewModels.DataBackup;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views
 {
     public sealed partial class BackupView
     {
-        public override string Header => Strings.BackupTitle;
+        public override bool ShowHeader => false;
+        public BackupViewModel ViewModel => (BackupViewModel)DataContext;
 
         public BackupView()
         {
