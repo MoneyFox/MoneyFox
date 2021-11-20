@@ -1,5 +1,4 @@
-﻿using MoneyFox.Application.Resources;
-using MoneyFox.Uwp.ViewModels.Statistics;
+﻿using MoneyFox.Uwp.ViewModels.Statistics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 
@@ -10,7 +9,7 @@ namespace MoneyFox.Uwp.Views.Statistics
     {
         public StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
 
-        public override string Header => Strings.CashFlowStatisticTitle;
+        public override bool ShowHeader => false;
 
         public StatisticCashFlowView()
         {

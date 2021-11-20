@@ -9,20 +9,12 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:uwp="using:FontAwesome.UWP"
     xmlns:winmedia="using:Microsoft.UI.Xaml.Media"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
     RequestedTheme="Light"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <winmedia:AcrylicBrush
-            x:Key="NavigationViewDefaultPaneBackground"
-            BackgroundSource="HostBackdrop"
-            FallbackColor="#40537F"
-            TintColor="#40537F"
-            TintOpacity=".7" />
-
         <winmedia:AcrylicBrush
             x:Key="NavigationViewExpandedPaneBackground"
             BackgroundSource="HostBackdrop"
@@ -261,7 +253,7 @@
                                     <RowDefinition Height="*" />
                                 </Grid.RowDefinitions>
                                 <StackPanel x:Name="TopNavArea"
-                                            Background="{ThemeResource NavigationViewTopPaneBackground}"
+                                            Background="{ThemeResource NavigationViewExpandedPaneBackground}"
                                             HorizontalAlignment="Stretch" Grid.Row="0" VerticalAlignment="Top"
                                             XYFocusKeyboardNavigation="Enabled" Canvas.ZIndex="1">
                                     <Grid x:Name="TopNavTopPadding"
@@ -517,9 +509,7 @@
                               IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                               PaneToggleButtonStyle="{StaticResource CustomNavigationMenuStyle}"
                               IsSettingsVisible="true"
-                              OpenPaneLength="280"
-                              PaneDisplayMode="Left"
-                              CompactModeThresholdWidth="0"
+                              PaneDisplayMode="Top"
                               SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
 
             <winui:NavigationView.MenuItems>
@@ -528,7 +518,7 @@
                                           Content="{x:Bind resources:Strings.AccountsTitle}"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.AccountsToolTip}">
                     <winui:NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE10F;" />
+                        <SymbolIcon Symbol="Home" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
@@ -536,10 +526,7 @@
                                           Content="{x:Bind resources:Strings.StatisticsTitle}"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.StatisticsToolTip}">
                     <winui:NavigationViewItem.Icon>
-                        <uwp:FontAwesome
-                            HorizontalAlignment="Center"
-                            FontSize="90"
-                            Icon="BarChart" />
+                        <SymbolIcon Symbol="ZeroBars" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
@@ -547,10 +534,7 @@
                                           Content="{x:Bind resources:Strings.CategoriesTitle}"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.CategoriesToolTip}">
                     <winui:NavigationViewItem.Icon>
-                        <uwp:FontAwesome
-                            HorizontalAlignment="Center"
-                            FontSize="90"
-                            Icon="Tags" />
+                        <SymbolIcon Symbol="Tag" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
 
@@ -558,12 +542,11 @@
                                           Content="{x:Bind resources:Strings.BackupTitle}"
                                           ToolTipService.ToolTip="{x:Bind resources:Strings.BackupToolTip}">
                     <winui:NavigationViewItem.Icon>
-                        <uwp:FontAwesome
-                            HorizontalAlignment="Center"
-                            FontSize="90"
-                            Icon="CloudUpload" />
+                        <SymbolIcon Symbol="SaveLocal" />
                     </winui:NavigationViewItem.Icon>
                 </winui:NavigationViewItem>
+
+                <winui:NavigationViewItemSeparator />
 
             </winui:NavigationView.MenuItems>
 
@@ -586,7 +569,7 @@
                 </core:EventTriggerBehavior>
             </i:Interaction.Behaviors>
 
-            <Frame x:Name="ContentFrame" Margin="0,0,0,0">
+            <Frame x:Name="ContentFrame" Padding="60,8,60,0">
                 <Frame.ContentTransitions>
                     <TransitionCollection>
                         <NavigationThemeTransition />
@@ -595,11 +578,5 @@
             </Frame>
 
         </winui:NavigationView>
-        <TextBlock
-            x:Name="AppTitle"
-            Margin="60,8,0,0"
-            IsHitTestVisible="False"
-            Style="{StaticResource CustomCaptionTextBlockStyle}"
-            Text="{x:Bind appmodel:Package.Current.DisplayName}" />
     </Grid>
 </Page>

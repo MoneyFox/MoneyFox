@@ -27,20 +27,19 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
 
         <StackPanel EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}">
-                <PersonPicture
-                    ProfilePicture="{Binding UserAccount.Photo}" />
+            <StackPanel Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
+                <PersonPicture />
 
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"
-                    Text="{Binding UserAccount.Name}"
+                    Text="{x:Bind ViewModel.UserAccount.Name, Mode=OneWay}"
                     FontWeight="Bold"
                     FontSize="20"
                     HorizontalAlignment="Center" />
 
                 <TextBlock
                     Margin="{StaticResource MediumBottomMargin}"
-                    Text="{Binding UserAccount.Email}"
+                    Text="{x:Bind ViewModel.UserAccount.Email,Mode=OneWay}"
                     FontSize="16"
                     HorizontalAlignment="Center" />
             </StackPanel>
@@ -48,18 +47,18 @@
             <Button
                 Margin="{StaticResource LargeTopMargin}"
                 HorizontalAlignment="Stretch"
-                Command="{Binding LoginCommand}"
+                Command="{x:Bind ViewModel.LoginCommand, Mode=OneWay}"
                 Content="{x:Bind resources:Strings.LoginLabel}"
-                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert}" />
+                Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, ConverterParameter=revert, Mode=OneWay}" />
 
             <Button
                 Margin="{StaticResource LargeTopMargin}"
                 HorizontalAlignment="Stretch"
-                Command="{Binding LogoutCommand}"
+                Command="{x:Bind ViewModel.LogoutCommand}"
                 Content="{x:Bind resources:Strings.LogoutLabel}"
-                Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}" />
+                Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}" />
 
-            <StackPanel Visibility="{Binding IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}}">
+            <StackPanel Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"
                     Text="{x:Bind resources:Strings.BackupInformationLabel}"
@@ -67,7 +66,7 @@
 
                 <Button
                     HorizontalAlignment="Stretch"
-                    Command="{Binding BackupCommand}"
+                    Command="{x:Bind ViewModel.BackupCommand}"
                     Content="{x:Bind resources:Strings.CreateBackupLabel}" />
 
                 <TextBlock
@@ -83,9 +82,9 @@
                     <Button
                         Grid.ColumnSpan="2"
                         HorizontalAlignment="Stretch"
-                        Command="{Binding RestoreCommand}"
+                        Command="{x:Bind ViewModel.RestoreCommand}"
                         Content="{x:Bind resources:Strings.RestoreBackupLabel}"
-                        IsEnabled="{Binding BackupAvailable}" />
+                        IsEnabled="{x:Bind ViewModel.BackupAvailable, Mode=OneWay}" />
 
                     <muxc:ProgressRing
                         Grid.Column="1"
@@ -95,19 +94,19 @@
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Background="Transparent"
-                        IsActive="{Binding IsLoadingBackupAvailability}" />
+                        IsActive="{x:Bind ViewModel.IsLoadingBackupAvailability, Mode=OneWay}" />
                 </Grid>
 
                 <StackPanel
                     Margin="0,15,0,7"
                     Orientation="Horizontal"
-                    Visibility="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}}">
+                    Visibility="{Binding BackupLastModified, Converter={StaticResource DateVisibilityConverter}, Mode=OneWay}">
                     <TextBlock Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
                                Text="{x:Bind resources:Strings.LastBackupDateLabel}" />
                     <TextBlock
                         Margin="5,0,0,0"
                         Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                        Text="{Binding BackupLastModified}"
+                        Text="{x:Bind ViewModel.BackupLastModified, Mode=OneWay}"
                         TextWrapping="WrapWholeWords" />
                 </StackPanel>
 
@@ -124,7 +123,7 @@
                 <ToggleSwitch VerticalAlignment="Center"
                               Margin="0,6,0,0"
                               Header="{x:Bind resources:Strings.AutobackupLabel}"
-                              IsOn="{Binding IsAutoBackupEnabled, Mode=TwoWay}" />
+                              IsOn="{x:Bind ViewModel.IsAutoBackupEnabled, Mode=TwoWay}" />
 
             </StackPanel>
         </StackPanel>

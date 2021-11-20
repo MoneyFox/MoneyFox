@@ -9,9 +9,8 @@ using MoneyFox.Uwp.ViewModels.DataBackup;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Settings;
-using MoneyFox.Uwp.ViewModels.Statistic;
-using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
 using MoneyFox.Uwp.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary;
 
 namespace MoneyFox.Uwp
 {
@@ -64,8 +63,8 @@ namespace MoneyFox.Uwp
         public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionVm =>
             ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();
 
-        public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashflowVm =>
-            ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
+        public static StatisticAccountMonthlyCashFlowViewModel StatisticAccountMonthlyCashFlowVm =>
+            ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashFlowViewModel>();
 
         public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm =>
             ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();

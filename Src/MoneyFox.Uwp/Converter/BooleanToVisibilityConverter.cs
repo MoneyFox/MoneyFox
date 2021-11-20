@@ -1,8 +1,8 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Data;
 
-#nullable enable
 namespace MoneyFox.Uwp.Converter
 {
     public class BooleanToVisibilityConverter : IValueConverter

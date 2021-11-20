@@ -47,10 +47,9 @@
                         </MenuFlyout>
                     </StackPanel.ContextFlyout>
 
-                    <Grid
-                        Height="100"
-                        Padding="{StaticResource SmallListItemPadding}"
-                        Background="{ThemeResource ListItemBrush}">
+                    <Grid Height="100"
+                          Padding="{StaticResource SmallListItemPadding}"
+                          Background="{ThemeResource ListItemBrush}">
                         <TextBlock
                             Style="{ThemeResource HeaderStyle}"
                             Text="{x:Bind Name}"
@@ -84,16 +83,14 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <accountlist:AccountListToolbar Grid.Row="0" DataContext="{Binding ViewActionViewModel}" />
+        <accountlist:AccountListToolbar Grid.Row="1" DataContext="{Binding ViewActionViewModel}" />
 
         <controls:BalanceControl
-            Grid.Row="1"
-            Margin="{StaticResource MediumLeftRightMargin}"
+            Grid.Row="0"
             DataContext="{Binding BalanceViewModel}" />
 
         <ListView
             Grid.Row="2"
-            Margin="{StaticResource MediumLeftRightMargin}"
             IsEnabled="True"
             IsTapEnabled="False"
             ItemsSource="{Binding Accounts}">
