@@ -1,11 +1,14 @@
-﻿using MoneyFox.Uwp.ViewModels.Payments;
+﻿#nullable enable
+using MoneyFox.Application.Resources;
+using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Navigation;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Payments
 {
-    public sealed partial class EditPaymentView : BaseView
+    public sealed partial class EditPaymentView
     {
+        public override string Header => Strings.EditPaymentTitle;
+
         private EditPaymentViewModel ViewModel => (EditPaymentViewModel)DataContext;
 
         public EditPaymentView()

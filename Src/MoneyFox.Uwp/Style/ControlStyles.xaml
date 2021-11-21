@@ -6,10 +6,6 @@
         <Setter Property="DefaultLabelPosition" Value="Right" />
     </Style>
 
-    <Style TargetType="Frame">
-        <Setter Property="Background" Value="{ThemeResource ApplicationPageBackgroundThemeBrush}" />
-    </Style>
-
     <Style TargetType="ListView">
         <Setter Property="Margin" Value="-12,0,-12,0" />
     </Style>

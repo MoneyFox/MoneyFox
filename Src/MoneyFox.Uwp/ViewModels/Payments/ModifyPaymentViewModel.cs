@@ -243,7 +243,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         ///     Returns the Header for the AccountViewModel field
         /// </summary>
         public string AccountHeader
-            => SelectedPayment?.Type == PaymentType.Income
+            => SelectedPayment.Type == PaymentType.Income
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 

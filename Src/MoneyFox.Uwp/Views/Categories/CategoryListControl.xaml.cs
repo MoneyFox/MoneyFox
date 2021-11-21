@@ -11,6 +11,8 @@ namespace MoneyFox.Uwp.Views.Categories
 {
     public partial class CategoryListControl
     {
+        private AbstractCategoryListViewModel ViewModel => (AbstractCategoryListViewModel)DataContext;
+
         public CategoryListControl()
         {
             InitializeComponent();
@@ -50,9 +52,5 @@ namespace MoneyFox.Uwp.Views.Categories
             ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category)
                                                         .FireAndForgetSafeAsync();
         }
-
-        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
-            => ((AbstractCategoryListViewModel)DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text)
-                                                           .FireAndForgetSafeAsync();
     }
 }

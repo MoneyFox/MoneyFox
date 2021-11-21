@@ -33,8 +33,12 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="accounts:AccountViewModel">
-            <StackPanel Width="250" CornerRadius="{StaticResource DefaultCornerRadius}" >
-                <StackPanel.ContextFlyout>
+            <Grid Height="100" Width="250" 
+                  CornerRadius="{StaticResource DefaultCornerRadius}"
+                  Padding="{StaticResource SmallListItemPadding}"
+                  Background="{ThemeResource ListItemBrush}">
+                
+                <Grid.ContextFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem
                             Click="Edit_OnClick"
@@ -45,32 +49,29 @@
                             Icon="Delete"
                             Text="{x:Bind resources:Strings.DeleteLabel}" />
                     </MenuFlyout>
-                </StackPanel.ContextFlyout>
+                </Grid.ContextFlyout>
 
-                <Grid Height="100"
-                      Padding="{StaticResource SmallListItemPadding}"
-                      Background="{ThemeResource ListItemBrush}">
+                <TextBlock
+                    Style="{ThemeResource HeaderStyle}"
+                    Text="{x:Bind Name}"
+                    TextTrimming="CharacterEllipsis" />
+
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                    Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
+                    TextAlignment="Center" />
+
+                <StackPanel Orientation="Horizontal"
+                            VerticalAlignment="Bottom"
+                            HorizontalAlignment="Right">
+                    <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
                     <TextBlock
-                        Style="{ThemeResource HeaderStyle}"
-                        Text="{x:Bind Name}"
-                        TextTrimming="CharacterEllipsis" />
+                        Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
+                </StackPanel>
+            </Grid>
 
-                    <TextBlock
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                        Text="{x:Bind CurrentBalance, Converter={StaticResource AmountFormatConverter}}"
-                        TextAlignment="Center" />
-
-                    <StackPanel Orientation="Horizontal"
-                                VerticalAlignment="Bottom"
-                                HorizontalAlignment="Right">
-                        <TextBlock Text="{x:Bind resources:Strings.EndOfMonthLabel}" Margin="0,0,6,0" />
-                        <TextBlock
-                            Text="{x:Bind EndOfMonthBalance, Converter={StaticResource AmountFormatConverter}}" />
-                    </StackPanel>
-                </Grid>
-            </StackPanel>
         </DataTemplate>
     </Page.Resources>
 

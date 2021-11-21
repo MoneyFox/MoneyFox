@@ -10,7 +10,6 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
     <Page.Resources>

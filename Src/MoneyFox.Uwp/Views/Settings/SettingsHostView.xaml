@@ -7,29 +7,21 @@
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Settings"
                 xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+                xmlns:settings="using:MoneyFox.Uwp.Views.Settings"
                 mc:Ignorable="d">
 
     <d:Page.DataContext>
         <designTime:DesignTimeWindowsSettingsViewModel />
     </d:Page.DataContext>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
-        <muxc:NavigationView x:Name="SettingsView"
-                             PaneDisplayMode="Top"
-                             IsBackButtonVisible="Collapsed"
-                             IsSettingsVisible="False"
-                             Loaded="OnLoad"
-                             ItemInvoked="OnItemInvoked">
-
-            <muxc:NavigationView.MenuItems>
-                <muxc:NavigationViewItem Tag="settings" Icon="Setting"
-                                         Content="{x:Bind resources:Strings.SettingsTitle}" />
-                <muxc:NavigationViewItem Tag="about" Icon="Help" Content="{x:Bind resources:Strings.AboutTitle}" />
-            </muxc:NavigationView.MenuItems>
-
-            <Frame x:Name="ContentFrame"
-                   Padding="12,12,12,24"
-                   IsTabStop="True" />
-        </muxc:NavigationView>
-    </Grid>
+    <muxc:TabView IsAddTabButtonVisible="false" Margin="{StaticResource NegativeMediumLeftRightMargin}">
+        <muxc:TabView.TabItems>
+            <muxc:TabViewItem IsClosable="False" Header="{x:Bind resources:Strings.SettingsTitle}" >
+                <settings:SettingsView />
+            </muxc:TabViewItem>
+            <muxc:TabViewItem IsClosable="False" Header="{x:Bind resources:Strings.AboutTitle}" >
+                <settings:AboutView />
+            </muxc:TabViewItem>
+        </muxc:TabView.TabItems>
+    </muxc:TabView>
 </views:BaseView>

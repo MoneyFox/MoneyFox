@@ -6,8 +6,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:categories="using:MoneyFox.Uwp.ViewModels.Categories"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d"
     Title="{x:Bind resources:Strings.SelectCategoryTitle}"
@@ -17,17 +18,13 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="categories:CategoryViewModel">
-            <controls:DropShadowPanel
-                Margin="-10,4,-7,0"
-                HorizontalContentAlignment="Stretch"
-                BlurRadius="4.0"
-                ShadowOpacity="0.40">
-                <StackPanel Padding="{StaticResource SmallListItemPadding}"
-                            Background="{ThemeResource ListItemBrush}"
-                            CornerRadius="{StaticResource DefaultCornerRadius}">
-                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
-                </StackPanel>
-            </controls:DropShadowPanel>
+            <StackPanel Padding="{StaticResource SmallListItemPadding}"
+                        Margin="{StaticResource SmallListItemMargin}"
+                        Background="{ThemeResource ListItemBrush}"
+                        CornerRadius="{StaticResource DefaultCornerRadius}">
+                <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
+            </StackPanel>
+
         </DataTemplate>
 
         <DataTemplate x:Key="GroupHeaderTemplate">
@@ -67,11 +64,18 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="240*" />
         </Grid.RowDefinitions>
-        <TextBox
-            x:Name="SearchTextBox"
-            Grid.Row="0"
-            Header="{x:Bind resources:Strings.SearchLabel}"
-            TextChanged="SearchTextBox_OnTextChanged" />
+        
+        <TextBox Grid.Column="0"
+                 x:Name="SearchTextBox"
+                 Header="{x:Bind resources:Strings.SearchLabel}" >
+                
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="TextChanged">
+                    <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchCommand}" 
+                                              CommandParameter="{Binding Text, ElementName=SearchTextBox}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </TextBox>
 
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>

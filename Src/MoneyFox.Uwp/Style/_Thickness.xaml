@@ -7,7 +7,8 @@
     <Thickness x:Key="PageTitleMargin">0,7,12,7</Thickness>
 
     <!--  Small size Margin  -->
-    <Thickness x:Key="SmallListItemMargin">0,2,0,0</Thickness>
+    <Thickness x:Key="SmallListItemMargin">0,3,0,0</Thickness>
+    <Thickness x:Key="SmallMargin">6</Thickness>
     <Thickness x:Key="SmallTopMargin">0,6,0,0</Thickness>
     <Thickness x:Key="SmallLeftMargin">6,0,0,0</Thickness>
     <Thickness x:Key="SmallTitleContentMargin">0,12,0,0</Thickness>
@@ -18,7 +19,7 @@
     <Thickness x:Key="MediumLeftRightTopMargin">12,12,12,0</Thickness>
     <Thickness x:Key="NegativeMediumRightMargin">0,0,-12,0</Thickness>
     <Thickness x:Key="NegativeMediumLeftRightWithTopMargin">-12,12,-12,0</Thickness>
-    <Thickness x:Key="NegativeMediumLeftRightMargin">-12,0,-12,0</Thickness>
+    <Thickness x:Key="NegativeMediumLeftRightMargin">-16,0,-16,0</Thickness>
     <Thickness x:Key="NegativeMediumLeftRighWithSmallTopMargin">-12,0,-12,3</Thickness>
     <Thickness x:Key="MediumLeftTopRightBottomMargin">12,12,12,12</Thickness>
     <Thickness x:Key="MediumLeftMargin">12,0,0,0</Thickness>

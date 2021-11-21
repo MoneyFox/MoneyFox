@@ -9,6 +9,7 @@ using Windows.ApplicationModel.Core;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 using UnhandledExceptionEventArgs = Windows.UI.Xaml.UnhandledExceptionEventArgs;
 
 namespace MoneyFox.Uwp
@@ -55,14 +56,10 @@ namespace MoneyFox.Uwp
         private static void OverrideTitleBarColor()
         {
             //draw into the title bar
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = true;
-
-            //remove the solid-colored backgrounds behind the caption controls and system back button
-            ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
-            viewTitleBar.ButtonBackgroundColor = Colors.Transparent;
+            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
         }
 
-        private static void OnUnhandledException(object sender, UnhandledExceptionEventArgs e) =>
+        private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e) =>
             LogManager.GetCurrentClassLogger().Fatal(e.Exception);
 
         /// <summary>
@@ -71,7 +68,7 @@ namespace MoneyFox.Uwp
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        public static void OnSuspending(object sender, SuspendingEventArgs e)
+        private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             LogManager.GetCurrentClassLogger().Info("Application Suspending.");
             LogManager.Shutdown();

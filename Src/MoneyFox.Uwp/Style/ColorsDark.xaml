@@ -6,7 +6,8 @@
     <Color x:Key="ColorPrimary">#FF00165A</Color>
     <Color x:Key="ColorPrimaryDark">#FF00165A</Color>
 
-    <Color x:Key="ColorCustomBackground">#121212</Color>
+    <Color x:Key="ColorTopBarBackground">#FF121212</Color>
+    <Color x:Key="ColorCustomBackground">#FF121212</Color>
     <Color x:Key="ContentDialogBackgroundColor">#2d2d30</Color>
 
     <Color x:Key="ColorSplashScreenBackground">#FFEFEADD</Color>
