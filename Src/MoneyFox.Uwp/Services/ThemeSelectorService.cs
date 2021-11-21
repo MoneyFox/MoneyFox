@@ -54,7 +54,7 @@ namespace MoneyFox.Uwp.Services
                                           {
                                               color = Theme == ElementTheme.Dark
                                                   ? ConvertColorFromHexString("#FF121212")
-                                                  : ConvertColorFromHexString("#FFEFF2F5");
+                                                  : ConvertColorFromHexString("#FFF0F3F9");
                                           }
 
                                           //remove the solid-colored backgrounds behind the caption controls and system back button
