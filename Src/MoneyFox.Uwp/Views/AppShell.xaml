@@ -9,15 +9,21 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    mc:Ignorable="d" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" 
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <winui:NavigationView x:Name="NavView"
                           AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame, FallbackValue=false}"
                           Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
                           IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+                          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
                           IsSettingsVisible="true"
                           PaneDisplayMode="Top"
                           SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
+
+        <winui:NavigationView.Resources>
+            <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{ThemeResource ColorCustomBackground}" />
+        </winui:NavigationView.Resources>
 
         <winui:NavigationView.MenuItems>
 
