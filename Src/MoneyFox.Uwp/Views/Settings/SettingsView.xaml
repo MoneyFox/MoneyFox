@@ -21,7 +21,7 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <ScrollViewer>
+    <ScrollViewer Margin="{StaticResource SmallMargin}">
         <StackPanel>
 
             <!-- Regional Settings -->

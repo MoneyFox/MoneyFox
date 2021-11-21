@@ -10,164 +10,164 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     mc:Ignorable="d">
 
-    <Grid>
-        <ScrollViewer HorizontalAlignment="Stretch"
-                      VerticalScrollBarVisibility="Auto">
+    <ScrollViewer HorizontalAlignment="Stretch"
+                  VerticalScrollBarVisibility="Auto"
+                  Margin="{StaticResource SmallMargin}">
+        <StackPanel>
             <StackPanel>
-                <StackPanel>
-                    <TextBlock Margin="0,0,0,5"
+                <TextBlock Margin="0,0,0,5"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Style="{ThemeResource SubtitleTextBlockStyle}"
+                           Text="{x:Bind resources:Strings.InfoLabel}"
+                           TextWrapping="Wrap" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="5,0,0,0"
                                HorizontalAlignment="Left"
-                               VerticalAlignment="Top"
-                               Style="{ThemeResource SubtitleTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.InfoLabel}"
+                               VerticalAlignment="Center"
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               Text="{x:Bind resources:Strings.VersionLabel}"
                                TextWrapping="Wrap" />
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Margin="5,0,0,0"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource BodyTextBlockStyle}"
-                                   Text="{x:Bind resources:Strings.VersionLabel}"
-                                   TextWrapping="Wrap" />
-                        <TextBlock Margin="5,0,0,0"
-                                   HorizontalAlignment="Left"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource BodyTextBlockStyle}"
-                                   Text="{x:Bind ViewModel.Version}"
-                                   TextWrapping="Wrap" />
-                    </StackPanel>
-                    <TextBlock Margin="0,10,0,5"
+                    <TextBlock Margin="5,0,0,0"
                                HorizontalAlignment="Left"
-                               VerticalAlignment="Top"
-                               Style="{ThemeResource SubtitleTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.ContactLabel}"
+                               VerticalAlignment="Center"
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               Text="{x:Bind ViewModel.Version}"
                                TextWrapping="Wrap" />
-                    <StackPanel Margin="0,0,0,20"
-                                HorizontalAlignment="Center"
-                                Orientation="Horizontal">
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource BodyTextBlockStyle}"
-                                   Text="www.apply-solutions.ch"
-                                   TextWrapping="Wrap">
-                            <interactivity:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="Tapped">
-                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToWebsiteCommand}" />
-                                </core:EventTriggerBehavior>
-                            </interactivity:Interaction.Behaviors>
-                        </TextBlock>
-                    </StackPanel>
-                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   Style="{ThemeResource BodyTextBlockStyle}"
-                                   Text="mobile.support@apply-solutions.ch"
-                                   TextWrapping="Wrap">
-                            <interactivity:Interaction.Behaviors>
-                                <core:EventTriggerBehavior EventName="Tapped">
-                                    <core:InvokeCommandAction Command="{x:Bind ViewModel.SendMailCommand}" />
-                                </core:EventTriggerBehavior>
-                            </interactivity:Interaction.Behaviors>
-                        </TextBlock>
-                    </StackPanel>
                 </StackPanel>
-
-                <Button x:Name="FeedbackButton"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Top"
-                        Visibility="Collapsed"
-                        Margin="0,10,0,10"
-                        Click="FeedbackButton_Click">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock FontFamily="Segoe MDL2 Assets"
-                                   Text="&#xE939;"
-                                   VerticalAlignment="Center"
-                                   Margin="0,0,3,0" />
-                        <TextBlock Text="{x:Bind resources:Strings.LeaveFeedbackLabel}" />
-                    </StackPanel>
-                </Button>
-
-                <Button Margin="0,10,0,10"
-                        HorizontalAlignment="Stretch"
-                        Command="{x:Bind ViewModel.RateAppCommand}"
-                        Content="{x:Bind resources:Strings.RateLabel}" />
-                <TextBlock Margin="0,12,0,0"
+                <TextBlock Margin="0,10,0,5"
                            HorizontalAlignment="Left"
                            VerticalAlignment="Top"
-                           Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="{x:Bind resources:Strings.InfoOpenSource}"
+                           Style="{ThemeResource SubtitleTextBlockStyle}"
+                           Text="{x:Bind resources:Strings.ContactLabel}"
                            TextWrapping="Wrap" />
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="www.github.com"
-                           TextWrapping="Wrap">
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToRepositoryCommand}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </TextBlock>
-                <TextBlock Margin="0,12,0,0"
-                           HorizontalAlignment="Stretch"
-                           VerticalAlignment="Top"
-                           Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="{x:Bind resources:Strings.TranslationLabel}"
-                           TextWrapping="Wrap" />
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="www.crowdin.com"
-                           TextWrapping="Wrap">
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToTranslationProjectCommand}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </TextBlock>
-
-                <TextBlock Margin="0,12,0,0"
-                           HorizontalAlignment="Stretch"
-                           VerticalAlignment="Top"
-                           Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="{x:Bind resources:Strings.IconDesignerLabel}"
-                           TextWrapping="Wrap" />
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="Toledo Vanderson"
-                           TextWrapping="Wrap">
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToDesignerTwitterAccountCommand}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </TextBlock>
-
-                <TextBlock Margin="0,12,0,0"
-                           HorizontalAlignment="Stretch"
-                           VerticalAlignment="Top"
-                           Style="{ThemeResource BodyTextBlockStyle}"
-                           Text="{x:Bind resources:Strings.ContributionsLabel}"
-                           TextWrapping="Wrap" />
-                <TextBlock HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="GitHub Contributions"
-                           TextWrapping="Wrap">
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToContributionPageCommand}" />
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </TextBlock>
-
-                <TextBlock Margin="0,12,0,0"
-                           HorizontalAlignment="Left"
-                           VerticalAlignment="Top"
-                           Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                           Text="Privacy Information"
-                           TextWrapping="Wrap" />
+                <StackPanel Margin="0,0,0,20"
+                            HorizontalAlignment="Center"
+                            Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               Text="www.apply-solutions.ch"
+                               TextWrapping="Wrap">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Tapped">
+                                <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToWebsiteCommand}" />
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Style="{ThemeResource BodyTextBlockStyle}"
+                               Text="mobile.support@apply-solutions.ch"
+                               TextWrapping="Wrap">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="Tapped">
+                                <core:InvokeCommandAction Command="{x:Bind ViewModel.SendMailCommand}" />
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
-        </ScrollViewer>
-    </Grid>
+
+            <Button x:Name="FeedbackButton"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Top"
+                    Visibility="Collapsed"
+                    Margin="0,10,0,10"
+                    Click="FeedbackButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontFamily="Segoe MDL2 Assets"
+                               Text="&#xE939;"
+                               VerticalAlignment="Center"
+                               Margin="0,0,3,0" />
+                    <TextBlock Text="{x:Bind resources:Strings.LeaveFeedbackLabel}" />
+                </StackPanel>
+            </Button>
+
+            <Button Margin="0,10,0,10"
+                    HorizontalAlignment="Stretch"
+                    Command="{x:Bind ViewModel.RateAppCommand}"
+                    Content="{x:Bind resources:Strings.RateLabel}" />
+            <TextBlock Margin="0,12,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Style="{ThemeResource BodyTextBlockStyle}"
+                       Text="{x:Bind resources:Strings.InfoOpenSource}"
+                       TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="www.github.com"
+                       TextWrapping="Wrap">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToRepositoryCommand}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </TextBlock>
+            <TextBlock Margin="0,12,0,0"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Top"
+                       Style="{ThemeResource BodyTextBlockStyle}"
+                       Text="{x:Bind resources:Strings.TranslationLabel}"
+                       TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="www.crowdin.com"
+                       TextWrapping="Wrap">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToTranslationProjectCommand}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </TextBlock>
+
+            <TextBlock Margin="0,12,0,0"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Top"
+                       Style="{ThemeResource BodyTextBlockStyle}"
+                       Text="{x:Bind resources:Strings.IconDesignerLabel}"
+                       TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="Toledo Vanderson"
+                       TextWrapping="Wrap">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToDesignerTwitterAccountCommand}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </TextBlock>
+
+            <TextBlock Margin="0,12,0,0"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Top"
+                       Style="{ThemeResource BodyTextBlockStyle}"
+                       Text="{x:Bind resources:Strings.ContributionsLabel}"
+                       TextWrapping="Wrap" />
+            <TextBlock HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="GitHub Contributions"
+                       TextWrapping="Wrap">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToContributionPageCommand}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </TextBlock>
+
+            <TextBlock Margin="0,12,0,0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                       Text="Privacy Information"
+                       TextWrapping="Wrap" />
+        </StackPanel>
+    </ScrollViewer>
+
 </views:BaseView>
