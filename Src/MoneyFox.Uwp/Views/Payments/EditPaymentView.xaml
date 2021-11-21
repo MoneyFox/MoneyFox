@@ -19,7 +19,23 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{x:Bind ViewModel.Title}" Style="{StaticResource UwpPageTitleStyle}" />
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6">
+            <Button Command="{x:Bind ViewModel.SaveCommand}" >
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="Save" />
+                    <TextBlock Text="{x:Bind resources:Strings.DoneLabel}" />
+                </StackPanel>
+            </Button>
+
+            <Button Command="{x:Bind ViewModel.CancelCommand}" >
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="Cancel" />
+                    <TextBlock Text="{x:Bind resources:Strings.CancelLabel}" />
+                </StackPanel>
+            </Button>
+        </StackPanel>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <CommandBar Style="{ThemeResource DefaultCommandBar}">

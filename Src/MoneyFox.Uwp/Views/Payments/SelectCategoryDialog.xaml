@@ -7,6 +7,8 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:categories="using:MoneyFox.Uwp.ViewModels.Categories"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d"
     Title="{x:Bind resources:Strings.SelectCategoryTitle}"
@@ -62,11 +64,18 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="240*" />
         </Grid.RowDefinitions>
-        <TextBox
-            x:Name="SearchTextBox"
-            Grid.Row="0"
-            Header="{x:Bind resources:Strings.SearchLabel}"
-            TextChanged="SearchTextBox_OnTextChanged" />
+        
+        <TextBox Grid.Column="0"
+                 x:Name="SearchTextBox"
+                 Header="{x:Bind resources:Strings.SearchLabel}" >
+                
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="TextChanged">
+                    <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchCommand}" 
+                                              CommandParameter="{Binding Text, ElementName=SearchTextBox}" />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+        </TextBox>
 
         <SemanticZoom Grid.Row="1">
             <SemanticZoom.ZoomedInView>
