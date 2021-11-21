@@ -61,6 +61,8 @@ namespace MoneyFox.Uwp.Services
                                           ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
                                           viewTitleBar.BackgroundColor = color;
                                           viewTitleBar.ButtonBackgroundColor = color;
+                                          viewTitleBar.InactiveBackgroundColor = color;
+                                          viewTitleBar.ButtonInactiveBackgroundColor = color;
                                       }
                                       catch(AccessViolationException ex)
                                       {
