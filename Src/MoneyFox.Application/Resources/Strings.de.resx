@@ -804,6 +804,6 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Kategorieverlauf</value>
   </data>
   <data name="EditPaymentTitle" xml:space="preserve">
-    <value>Edit Payment</value>
+    <value>Zahlung bearbeiten</value>
   </data>
 </root>
