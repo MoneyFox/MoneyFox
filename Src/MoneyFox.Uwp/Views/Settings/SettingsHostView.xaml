@@ -14,7 +14,7 @@
         <designTime:DesignTimeWindowsSettingsViewModel />
     </d:Page.DataContext>
 
-    <muxc:TabView IsAddTabButtonVisible="false">
+    <muxc:TabView IsAddTabButtonVisible="false" Margin="{StaticResource NegativeMediumLeftRightMargin}">
         <muxc:TabView.TabItems>
             <muxc:TabViewItem IsClosable="False" Header="{x:Bind resources:Strings.SettingsTitle}" >
                 <settings:SettingsView />

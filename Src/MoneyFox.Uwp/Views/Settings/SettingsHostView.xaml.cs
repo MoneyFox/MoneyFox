@@ -1,9 +1,11 @@
-﻿#nullable enable
+﻿using MoneyFox.Application.Resources;
+
+#nullable enable
 namespace MoneyFox.Uwp.Views.Settings
 {
     public sealed partial class SettingsHostView
     {
-        public override bool ShowHeader => false;
+        public override string Header => Strings.SettingsTitle;
 
         public SettingsHostView()
         {
