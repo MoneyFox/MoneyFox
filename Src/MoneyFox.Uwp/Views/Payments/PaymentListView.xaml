@@ -12,7 +12,6 @@
     xmlns:views="using:MoneyFox.Uwp.Views" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments"
     xmlns:winUi="using:Microsoft.UI.Xaml.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
 

@@ -6,7 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
-    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:categories="using:MoneyFox.Uwp.ViewModels.Categories"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d"
@@ -17,17 +16,13 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="categories:CategoryViewModel">
-            <controls:DropShadowPanel
-                Margin="-10,4,-7,0"
-                HorizontalContentAlignment="Stretch"
-                BlurRadius="4.0"
-                ShadowOpacity="0.40">
-                <StackPanel Padding="{StaticResource SmallListItemPadding}"
-                            Background="{ThemeResource ListItemBrush}"
-                            CornerRadius="{StaticResource DefaultCornerRadius}">
-                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
-                </StackPanel>
-            </controls:DropShadowPanel>
+            <StackPanel Padding="{StaticResource SmallListItemPadding}"
+                        Margin="{StaticResource SmallListItemMargin}"
+                        Background="{ThemeResource ListItemBrush}"
+                        CornerRadius="{StaticResource DefaultCornerRadius}">
+                <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}" Text="{x:Bind Name}" />
+            </StackPanel>
+
         </DataTemplate>
 
         <DataTemplate x:Key="GroupHeaderTemplate">

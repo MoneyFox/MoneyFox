@@ -20,7 +20,7 @@
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="categories:CategoryViewModel">
             <StackPanel RightTapped="CategoryListRightTapped" 
-                        Margin="0,4,0,0">
+                        Margin="{StaticResource SmallListItemMargin}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem
