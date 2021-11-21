@@ -21,7 +21,6 @@
                 Height="50"
                 Padding="7"
                 Background="{ThemeResource ListItemBrush}"
-                BorderBrush="{ThemeResource BorderBrush}"
                 BorderThickness="1">
                 <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                            Text="{x:Bind resources:Strings.CurrentBalanceLabel}" />
@@ -37,7 +36,6 @@
                 Margin="4"
                 Padding="7"
                 Background="{ThemeResource ListItemBrush}"
-                BorderBrush="{ThemeResource BorderBrush}"
                 BorderThickness="1">
                 <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                            Text="{x:Bind resources:Strings.EndOfMonthBalanceLabel}" />
