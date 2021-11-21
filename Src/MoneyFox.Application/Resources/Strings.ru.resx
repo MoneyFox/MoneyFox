@@ -804,4 +804,7 @@
   <data name="CategoryProgressionTitle" xml:space="preserve">
     <value>Category Progression</value>
   </data>
+  <data name="EditPaymentTitle" xml:space="preserve">
+    <value>Edit Payment</value>
+  </data>
 </root>
