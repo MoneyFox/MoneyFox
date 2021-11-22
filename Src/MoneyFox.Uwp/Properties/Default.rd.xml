@@ -33,6 +33,7 @@
 		<Type Name="Microsoft.UI.Xaml.Controls.NavigationView">
 			<Event Name="ItemInvoked" Dynamic="Required" />
 		</Type>
+		<Type Name="Windows.Foundation.IReference{Double}" Activate="Required All" />
 
 	</Application>
 </Directives>
