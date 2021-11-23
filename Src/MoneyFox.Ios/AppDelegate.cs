@@ -47,23 +47,25 @@ namespace MoneyFox.iOS
 
         private static void RemoveNavigationBarBorder()
         {
-            UINavigationBar.Appearance.Translucent = false;
-            if (UIDevice.CurrentDevice.CheckSystemVersion(SHADOW_MAJOR_VERSION, 0))
-            {
-                var appearance = new UINavigationBarAppearance()
-                {
-                    BackgroundColor = UIColor.Clear, ShadowColor = null,
-                };
+            //UINavigationBar.Appearance.Translucent = false;
+            //if (UIDevice.CurrentDevice.CheckSystemVersion(SHADOW_MAJOR_VERSION, 0))
+            //{
+            //    var appearance = new UINavigationBarAppearance()
+            //    {
+            //        BackgroundColor = UIColor.Clear, ShadowColor = null,
+            //    };
 
-                UINavigationBar.Appearance.StandardAppearance = appearance;
-                UINavigationBar.Appearance.ScrollEdgeAppearance = appearance;
-                UINavigationBar.Appearance.CompactAppearance = appearance;
-            }
-            else
-            {
-                UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
-                UINavigationBar.Appearance.ShadowImage = new UIImage();
-            }
+            //    UINavigationBar.Appearance.StandardAppearance = appearance;
+            //    UINavigationBar.Appearance.ScrollEdgeAppearance = appearance;
+            //    UINavigationBar.Appearance.CompactAppearance = appearance;
+            //}
+            //else
+            //{
+            //    UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
+            //    UINavigationBar.Appearance.ShadowImage = new UIImage();
+            //}
+            UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
+            UINavigationBar.Appearance.ShadowImage = new UIImage();
         }
 
         // Needed for auth
