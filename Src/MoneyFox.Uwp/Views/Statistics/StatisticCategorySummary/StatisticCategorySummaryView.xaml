@@ -12,42 +12,65 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:statisticUc="using:MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary"
-    xmlns:statisticCategorySummary="using:MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary"
+    xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
     mc:Ignorable="d">
 
     <Page.Resources>
         <converter:AmountFormatConverter x:Key="AmountFormatConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
 
-        <DataTemplate x:Key="CategoryOverviewItemTemplate"
-                      x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
-            <StackPanel
-                Margin="0,2,0,2"
-                CornerRadius="{StaticResource DefaultCornerRadius}"
-                HorizontalAlignment="Stretch"
-                Background="{ThemeResource ListItemBrush}">
+        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
+            <StackPanel Spacing="12">
+                <CalendarDatePicker
+                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    FirstDayOfWeek="Monday"
+                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
-                <StackPanel Padding="{StaticResource SmallListItemPadding}">
-                    <Grid HorizontalAlignment="Stretch">
-                        <TextBlock
-                            Text="{x:Bind Label}"
-                            TextTrimming="CharacterEllipsis" />
-                        <TextBlock
-                            HorizontalAlignment="Right"
-                            Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
-                            TextAlignment="Right" />
-                    </Grid>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                   Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
-                        <TextBlock
-                            Margin="3,0,0,0"
-                            Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                            Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
+                <CalendarDatePicker
+                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    FirstDayOfWeek="Monday"
+                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+                <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
+            </StackPanel>
+        </Flyout>
+
+        <DataTemplate x:Key="CategoryOverviewItemTemplate" x:DataType="viewModels:CategoryOverviewViewModel">
+            <controls:DropShadowPanel
+                HorizontalContentAlignment="Stretch"
+                Margin="6,2,0,2"
+                BlurRadius="4.0"
+                ShadowOpacity="0.40">
+                <StackPanel
+                    CornerRadius="{StaticResource DefaultCornerRadius}"
+                    HorizontalAlignment="Stretch"
+                    Background="{ThemeResource ListItemBrush}">
+
+                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
+                                Padding="{StaticResource SmallListItemPadding}">
+                        <Grid HorizontalAlignment="Stretch">
+                            <TextBlock
+                                Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                                Text="{x:Bind Label}"
+                                TextTrimming="CharacterEllipsis" />
+                            <TextBlock
+                                HorizontalAlignment="Right"
+                                Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                                Text="{x:Bind Value, Converter={StaticResource AmountFormatConverter}}"
+                                TextAlignment="Right" />
+                        </Grid>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                       Text="{x:Bind resources:Strings.MonthlyAverageLabel}" />
+                            <TextBlock
+                                Margin="3,0,0,0"
+                                Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                Text="{x:Bind Average, Converter={StaticResource AmountFormatConverter}}" />
+                        </StackPanel>
                     </StackPanel>
                 </StackPanel>
-            </StackPanel>
-
+            </controls:DropShadowPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="NoSelectionContentTemplate">
@@ -64,38 +87,40 @@
         </core:EventTriggerBehavior>
     </i:Interaction.Behaviors>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
-            <RowDefinition Height="90" />
+            <RowDefinition Height="45" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0">
+        <StackPanel Grid.Row="0" Margin="{StaticResource MediumLeftRightMargin}">
+            <TextBlock
+                VerticalAlignment="Center"
+                Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                Text="{x:Bind ViewModel.Title, Mode=OneWay}" />
             <userControls:IncomeExpenseBalanceUserControl DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
-            <StackPanel Spacing="12" Orientation="Horizontal">
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
-
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
-
-                <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}"
-                        VerticalAlignment="Bottom" />
-            </StackPanel>
         </StackPanel>
 
+        <CommandBar
+            Grid.Row="0"
+            Style="{ThemeResource DefaultCommandBar}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Icon="Calendar"
+                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+                              Click="OpenFilterFlyout"
+                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+
         <controls:ListDetailsView
+            x:Name="CategorySummaryList"
             Grid.Row="1"
+            Margin="{StaticResource NegativeMediumLeftRightMargin}"
             ItemTemplate="{StaticResource CategoryOverviewItemTemplate}"
             SelectedItem=""
-            CompactModeThresholdWidth="640"
             ItemsSource="{x:Bind ViewModel.CategorySummary}"
+            CompactModeThresholdWidth="640"
             NoSelectionContentTemplate="{StaticResource NoSelectionContentTemplate}"
             SelectionChanged="CategorySummaryList_SelectionChanged">
 
@@ -107,7 +132,7 @@
             </controls:ListDetailsView.ItemContainerStyle>
 
             <controls:ListDetailsView.DetailsTemplate>
-                <DataTemplate x:DataType="statisticCategorySummary:CategoryOverviewViewModel">
+                <DataTemplate x:DataType="viewModels:CategoryOverviewViewModel">
                     <statisticUc:PaymentListUserControl />
                 </DataTemplate>
             </controls:ListDetailsView.DetailsTemplate>

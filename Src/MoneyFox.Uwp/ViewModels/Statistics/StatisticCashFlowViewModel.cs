@@ -1,52 +1,69 @@
-﻿using JetBrains.Annotations;
-using LiveChartsCore;
-using LiveChartsCore.Kernel.Sketches;
-using LiveChartsCore.SkiaSharpView;
-using MediatR;
+﻿using MediatR;
+using Microcharts;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
+using SkiaSharp;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Uno.Extensions;
 
 namespace MoneyFox.Uwp.ViewModels.Statistics
 {
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>
-    [UsedImplicitly]
     public class StatisticCashFlowViewModel : StatisticViewModel
     {
+        private BarChart chart = new BarChart();
+
         public StatisticCashFlowViewModel(IMediator mediator) : base(mediator)
         {
         }
 
-        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
-
-        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
+        /// <summary>
+        ///     Chart to render.
+        /// </summary>
+        public BarChart Chart
         {
-            new Axis { IsVisible = false }
-        };
+            get => chart;
+            set
+            {
+                if(chart == value)
+                {
+                    return;
+                }
+
+                chart = value;
+                OnPropertyChanged();
+            }
+        }
 
         protected override async Task LoadAsync()
         {
-            List<StatisticEntry> statisticItems =
+            List<StatisticEntry>? statisticItems =
                 await Mediator.Send(new GetCashFlowQuery {EndDate = EndDate, StartDate = StartDate});
 
-            IEnumerable<ColumnSeries<decimal>> cartesianItems = statisticItems.Select(
-                x =>
-                    new ColumnSeries<decimal>
-                    {
-                        Name = x.Label,
-                        TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
-                        DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
-                        Values = new List<decimal> {x.Value},
-                    });
-
-            Series.Clear();
-            Series.AddRange(cartesianItems);
+            Chart = new BarChart
+            {
+                Entries = statisticItems.Select(
+                                            x => new ChartEntry((float)x.Value)
+                                            {
+                                                Label = x.Label,
+                                                ValueLabel = x.ValueLabel,
+                                                Color = SKColor.Parse(x.Color),
+                                                ValueLabelColor = SKColor.Parse(x.Color)
+                                            })
+                                        .ToList(),
+                BackgroundColor = new SKColor(
+                    ChartOptions.BackgroundColor.R,
+                    ChartOptions.BackgroundColor.G,
+                    ChartOptions.BackgroundColor.B,
+                    ChartOptions.BackgroundColor.A),
+                Margin = ChartOptions.Margin,
+                LabelTextSize = ChartOptions.LabelTextSize,
+                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
+            };
         }
     }
 }

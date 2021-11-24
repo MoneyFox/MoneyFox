@@ -1,38 +1,33 @@
-﻿#nullable enable
-using AutoMapper;
+﻿using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using JetBrains.Annotations;
-using LiveChartsCore;
-using LiveChartsCore.Kernel.Sketches;
-using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using Microcharts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Categories;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using MoneyFox.Uwp.Views.Payments;
 using SkiaSharp;
 using System;
-using System.Collections.Generic;
 using System.Collections.Immutable;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Uwp.ViewModels.Statistics
+namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>
-    [UsedImplicitly]
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
+        private BarChart chart = new BarChart();
         private bool hasNoData = true;
-        private CategoryViewModel? selectedCategory;
+        private CategoryViewModel selectedCategory;
         private readonly IMapper mapper;
 
         public StatisticCategoryProgressionViewModel(
@@ -59,18 +54,38 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             Messenger.Unregister<CategorySelectedMessage>(this);
         }
 
-        public CategoryViewModel? SelectedCategory
+        public CategoryViewModel SelectedCategory
         {
             get => selectedCategory;
-            private set => SetProperty(ref selectedCategory, value);
+            set
+            {
+                if(selectedCategory == value)
+                {
+                    return;
+                }
+
+                selectedCategory = value;
+                OnPropertyChanged();
+            }
         }
 
-        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
-
-        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
+        /// <summary>
+        ///     Chart to render.
+        /// </summary>
+        public BarChart Chart
         {
-            new Axis { IsVisible = false }
-        };
+            get => chart;
+            set
+            {
+                if(chart == value)
+                {
+                    return;
+                }
+
+                chart = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Chart to render.
@@ -78,10 +93,19 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         public bool HasNoData
         {
             get => hasNoData;
-            private set => SetProperty(ref hasNoData, value);
+            set
+            {
+                if(hasNoData == value)
+                {
+                    return;
+                }
+
+                hasNoData = value;
+                OnPropertyChanged();
+            }
         }
 
-        public AsyncRelayCommand GoToSelectCategoryDialogCommand => new AsyncRelayCommand(
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
             async ()
                 => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
 
@@ -98,17 +122,26 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
 
             HasNoData = !statisticItems.Any();
 
-            var columnSeries = new ColumnSeries<decimal>
+            Chart = new BarChart
             {
-                Name = SelectedCategory.Name,
-                TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
-                DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
-                DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
-                Values = statisticItems.Select(x => x.Value), Stroke = new SolidColorPaint(SKColors.DarkRed)
+                Entries = statisticItems.Select(
+                                            x => new ChartEntry((float)x.Value)
+                                            {
+                                                Label = x.Label,
+                                                ValueLabel = x.ValueLabel,
+                                                Color = SKColor.Parse(x.Color),
+                                                ValueLabelColor = SKColor.Parse(x.Color)
+                                            })
+                                        .ToList(),
+                BackgroundColor = new SKColor(
+                    ChartOptions.BackgroundColor.R,
+                    ChartOptions.BackgroundColor.G,
+                    ChartOptions.BackgroundColor.B,
+                    ChartOptions.BackgroundColor.A),
+                Margin = ChartOptions.Margin,
+                LabelTextSize = ChartOptions.LabelTextSize,
+                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
             };
-
-            Series.Clear();
-            Series.Add(columnSeries);
         }
     }
 }

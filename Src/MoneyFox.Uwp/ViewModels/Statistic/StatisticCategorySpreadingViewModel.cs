@@ -1,29 +1,24 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using JetBrains.Annotations;
-using LiveChartsCore;
-using LiveChartsCore.Measure;
-using LiveChartsCore.SkiaSharpView;
 using MediatR;
-using Microsoft.EntityFrameworkCore.Internal;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Uno.Extensions;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels.Statistics
+namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>
     ///     Representation of the category Spreading View
     /// </summary>
-    [UsedImplicitly]
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
+        private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
         private readonly ISettingsFacade settingsFacade;
         private PaymentType selectedPaymentType;
 
@@ -37,10 +32,35 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
         public PaymentType SelectedPaymentType
         {
             get => selectedPaymentType;
-            set => SetProperty(ref selectedPaymentType, value);
+            set
+            {
+                if(selectedPaymentType == value)
+                {
+                    return;
+                }
+
+                selectedPaymentType = value;
+                OnPropertyChanged();
+            }
         }
 
-        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
+        /// <summary>
+        ///     Statistic items to display.
+        /// </summary>
+        public ObservableCollection<StatisticEntry> StatisticItems
+        {
+            get => statisticItems;
+            private set
+            {
+                if(statisticItems == value)
+                {
+                    return;
+                }
+
+                statisticItems = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         ///     Amount of categories to show. All Payments not fitting in here will go to the other category
@@ -60,7 +80,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             }
         }
 
-        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadAsync());
+        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
         /// <summary>
         ///     Set a custom CategorySpreadingModel with the set Start and End date
@@ -74,17 +94,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                     SelectedPaymentType,
                     NumberOfCategoriesToShow));
 
-            var pieSeries = statisticEntries.Select(x =>
-                new PieSeries<decimal>
-                {
-                    Name = x.Label,
-                    TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
-                    DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
-                    Values = new List<decimal> {x.Value},
-                    InnerRadius = 150
-                });
-            Series.Clear();
-            Series.AddRange(pieSeries);
+            statisticEntries.ToList().ForEach(x => x.Label = $"{x.Label} ({x.ValueLabel})");
+
+            StatisticItems = new ObservableCollection<StatisticEntry>(statisticEntries);
         }
     }
 }

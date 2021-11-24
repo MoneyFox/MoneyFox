@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
-using JetBrains.Annotations;
-using LiveChartsCore;
-using LiveChartsCore.Kernel.Sketches;
-using LiveChartsCore.SkiaSharpView;
-using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
+using Microcharts;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
+using MoneyFox.Application.Common;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Uwp.ViewModels.Accounts;
@@ -22,13 +19,14 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>
-    [UsedImplicitly]
-    public class StatisticAccountMonthlyCashFlowViewModel : StatisticViewModel
+    public class StatisticAccountMonthlyCashflowViewModel : StatisticViewModel
     {
+        private BarChart chart = new BarChart();
+        private bool hasNoData;
         private AccountViewModel selectedAccount = null!;
         private readonly IMapper mapper;
 
-        public StatisticAccountMonthlyCashFlowViewModel(IMediator mediator,
+        public StatisticAccountMonthlyCashflowViewModel(IMediator mediator,
             IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
@@ -36,24 +34,63 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             StartDate = DateTime.Now.AddYears(-1);
         }
 
-        public AsyncRelayCommand InitCommand => new AsyncRelayCommand(async () => await InitAsync());
-
-        public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(async () => await LoadAsync());
-
-        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
-
-        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
+        /// <summary>
+        ///     Chart to render.
+        /// </summary>
+        public BarChart Chart
         {
-            new Axis { IsVisible = false }
-        };
+            get => chart;
+            set
+            {
+                if(chart == value)
+                {
+                    return;
+                }
+
+                chart = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     Chart to render.
+        /// </summary>
+        public bool HasNoData
+        {
+            get => hasNoData;
+            set
+            {
+                if(hasNoData == value)
+                {
+                    return;
+                }
+
+                hasNoData = value;
+                OnPropertyChanged();
+            }
+        }
 
         public ObservableCollection<AccountViewModel> Accounts { get; } = new ObservableCollection<AccountViewModel>();
 
         public AccountViewModel SelectedAccount
         {
             get => selectedAccount;
-            set => SetProperty(ref selectedAccount, value);
+            set
+            {
+                if(selectedAccount == value)
+                {
+                    return;
+                }
+
+                selectedAccount = value;
+                OnPropertyChanged();
+                LoadDataCommand.Execute(null);
+            }
         }
+
+        public RelayCommand InitCommand => new RelayCommand(async () => await InitAsync());
+
+        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
         private async Task InitAsync()
         {
@@ -73,16 +110,28 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             List<StatisticEntry> statisticItems =
                 await Mediator.Send(new GetAccountProgressionQuery(SelectedAccount?.Id ?? 0, StartDate, EndDate));
 
-            var columnSeries = new ColumnSeries<decimal>
-            {
-                TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
-                DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
-                DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
-                Values = statisticItems.Select(x => x.Value)
-            };
+            HasNoData = !statisticItems.Any();
 
-            Series.Clear();
-            Series.Add(columnSeries);
+            Chart = new BarChart
+            {
+                Entries = statisticItems.Select(
+                                            x => new ChartEntry((float)x.Value)
+                                            {
+                                                Label = x.Label,
+                                                ValueLabel = x.ValueLabel,
+                                                Color = SKColor.Parse(x.Color),
+                                                ValueLabelColor = SKColor.Parse(x.Color)
+                                            })
+                                        .ToList(),
+                BackgroundColor = new SKColor(
+                    ChartOptions.BackgroundColor.R,
+                    ChartOptions.BackgroundColor.G,
+                    ChartOptions.BackgroundColor.B,
+                    ChartOptions.BackgroundColor.A),
+                Margin = ChartOptions.Margin,
+                LabelTextSize = ChartOptions.LabelTextSize,
+                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
+            };
         }
     }
 }
