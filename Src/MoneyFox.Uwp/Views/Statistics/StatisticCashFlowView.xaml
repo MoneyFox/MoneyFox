@@ -13,55 +13,37 @@
 
     <Page.Resources>
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-
-        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
-            <StackPanel Spacing="12">
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
-
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
-
-                <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
-            </StackPanel>
-        </Flyout>
     </Page.Resources>
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadedCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
-
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="70" />
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                       Text="{Binding Title}"
-                       VerticalAlignment="Center" />
-        </Grid>
+        <StackPanel Grid.Row="0" Spacing="12" Orientation="Horizontal">
+            <CalendarDatePicker
+                Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                FirstDayOfWeek="Monday"
+                VerticalAlignment="Bottom"
+                Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
 
-        <CommandBar Grid.Row="0"
-                    Style="{ThemeResource DefaultCommandBar}"
-                    Margin="{StaticResource NegativeMediumLeftRightMargin}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Calendar"
-                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-                              Click="OpenFilterFlyout"
-                              Label="{x:Bind resources:Strings.SelectDateLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
+            <CalendarDatePicker
+                Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                FirstDayOfWeek="Monday"
+                VerticalAlignment="Bottom"
+                Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+            <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                    Content="{x:Bind resources:Strings.ApplyFilterLabel}"
+                    VerticalAlignment="Bottom"/>
+        </StackPanel>
 
         <microcharts:ChartView Grid.Row="1"
                                Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

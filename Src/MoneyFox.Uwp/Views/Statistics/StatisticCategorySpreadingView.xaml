@@ -5,89 +5,35 @@
     xmlns:chart="using:Telerik.UI.Xaml.Controls.Chart"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
-    xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
-    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     mc:Ignorable="d">
-
-    <d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeStatisticCategorySpreadingViewModel />
-    </d:MvxWindowsPage.DataContext>
-
-    <i:Interaction.Behaviors>
-        <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding LoadedCommand}" />
-        </core:EventTriggerBehavior>
-    </i:Interaction.Behaviors>
 
     <Page.Resources>
         <converter:PaymentTypeToStringConverter x:Key="PaymentTypeToStringConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
-
-        <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
-            <StackPanel Spacing="12">
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
-
-                <CalendarDatePicker
-                    Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    FirstDayOfWeek="Monday"
-                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
-
-                <muxc:NumberBox Value="{x:Bind ViewModel.NumberOfCategoriesToShow, Mode=TwoWay}"
-                                SmallChange="1"
-                                LargeChange="5"
-                                Maximum="14"
-                                SpinButtonPlacementMode="Inline" />
-
-                <Button Command="{x:Bind ViewModel.LoadedCommand}"
-                        Content="{x:Bind resources:Strings.ApplyFilterLabel}" />
-            </StackPanel>
-        </Flyout>
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadDataCommand}" />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
+
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="20" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource UwpPageTitleStyle}" Text="{x:Bind resources:Strings.CategoriesTitle}" />
-
-        <CommandBar
-            Grid.Row="0"
-            OverflowButtonVisibility="Collapsed"
-            Margin="{StaticResource NegativeMediumLeftRightMargin}"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Icon="Filter"
-                              FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-                              Click="OpenFilterFlyout"
-                              Label="{x:Bind resources:Strings.FilterLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-
-        <Grid Grid.Row="1">
-            <TextBlock
-                VerticalAlignment="Center"
-                Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                Text="{Binding Title}" />
-        </Grid>
-
-        <Grid Grid.Row="2">
+        <StackPanel Spacing="12" Grid.Row="0" Orientation="Horizontal">
             <ComboBox
-                Margin="{StaticResource SmallTitleContentMargin}"
+                Width="200"
                 HorizontalAlignment="Stretch"
                 Header="{x:Bind resources:Strings.SelectedPaymentTypeHeader}"
                 ItemsSource="{x:Bind ViewModel.PaymentTypes, Mode=OneWay}"
@@ -98,16 +44,24 @@
                         <TextBlock Text="{Binding Converter={StaticResource PaymentTypeToStringConverter}}" />
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
-
-                <i:Interaction.Behaviors>
-                    <core:EventTriggerBehavior EventName="SelectionChanged">
-                        <core:InvokeCommandAction Command="{x:Bind ViewModel.LoadDataCommand}" />
-                    </core:EventTriggerBehavior>
-                </i:Interaction.Behaviors>
             </ComboBox>
-        </Grid>
 
-        <Grid Grid.Row="3">
+            <CalendarDatePicker
+                Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                FirstDayOfWeek="Monday"
+                Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+
+            <CalendarDatePicker
+                Date="{x:Bind ViewModel.EndDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                FirstDayOfWeek="Monday"
+                Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+
+            <Button Command="{x:Bind ViewModel.LoadedCommand}"
+                    Content="{x:Bind resources:Strings.ApplyFilterLabel}"
+                    VerticalAlignment="Bottom" />
+        </StackPanel>
+
+        <Grid Grid.Row="1">
             <chart:RadPieChart x:Name="chart" PaletteName="DefaultDark">
                 <chart:DoughnutSeries ItemsSource="{Binding StatisticItems}"
                                       RadiusFactor="0.6"
