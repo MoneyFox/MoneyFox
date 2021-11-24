@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary
+namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
     [UsedImplicitly]
     public class DesignTimeStatisticCategorySummaryViewModel : IStatisticCategorySummaryViewModel

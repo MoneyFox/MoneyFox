@@ -4,12 +4,12 @@
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:microcharts="using:Microcharts.Uwp"
                 xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
-                xmlns:uwp="using:LiveChartsCore.SkiaSharpView.UWP"
                 mc:Ignorable="d">
 
-    <Page.Resources>
+<Page.Resources>
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
     </Page.Resources>
@@ -17,7 +17,7 @@
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -48,11 +48,7 @@
 
         <Grid Grid.Row="1"
               Visibility="{x:Bind ViewModel.HasNoData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert, Mode=OneWay}">
-            <uwp:CartesianChart Series="{x:Bind ViewModel.Series, Mode=OneWay}"
-                                XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
-                                LegendPosition="Bottom"
-                                LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
+            <microcharts:ChartView Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
-
     </Grid>
 </views:BaseView>

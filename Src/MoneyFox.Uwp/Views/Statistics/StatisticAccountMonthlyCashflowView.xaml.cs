@@ -6,15 +6,15 @@ namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticAccountMonthlyCashflowView
     {
-        public StatisticAccountMonthlyCashFlowViewModel ViewModel =>
-            (StatisticAccountMonthlyCashFlowViewModel)DataContext;
+        public StatisticAccountMonthlyCashflowViewModel ViewModel =>
+            (StatisticAccountMonthlyCashflowViewModel)DataContext;
 
         public override string Header => Strings.MonthlyCashflowTitle;
 
         public StatisticAccountMonthlyCashflowView()
         {
             InitializeComponent();
-            DataContext = ViewModelLocator.StatisticAccountMonthlyCashFlowVm;
+            DataContext = ViewModelLocator.StatisticAccountMonthlyCashflowVm;
         }
     }
 }

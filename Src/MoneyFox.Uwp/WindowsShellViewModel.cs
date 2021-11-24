@@ -10,7 +10,7 @@ using MoneyFox.Uwp.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.DataBackup;
 using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Settings;
-using MoneyFox.Uwp.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Statistic;
 using NLog;
 using System;
 using System.Collections.Generic;

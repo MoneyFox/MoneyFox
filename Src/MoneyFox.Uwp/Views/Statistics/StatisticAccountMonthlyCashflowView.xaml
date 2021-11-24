@@ -6,9 +6,9 @@
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views"
+                xmlns:microcharts="using:Microcharts.Uwp"
                 xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
-                xmlns:uwp="using:LiveChartsCore.SkiaSharpView.UWP"
                 mc:Ignorable="d">
 
     <Page.Resources>
@@ -55,11 +55,6 @@
                     VerticalAlignment="Bottom" />
         </StackPanel>
 
-        <uwp:CartesianChart Grid.Row="1"
-                            Series="{x:Bind ViewModel.Series, Mode=OneWay}"
-                            XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
-                            LegendPosition="Bottom"
-                            LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
-
+        <microcharts:ChartView Grid.Row="1" Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </views:BaseView>

@@ -5,7 +5,7 @@ using System;
 using System.Collections.ObjectModel;
 
 #nullable enable
-namespace MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary
+namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
 {
     public class CategoryOverviewViewModel : ObservableObject
     {

@@ -1,13 +1,14 @@
-﻿#nullable enable
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Uwp.Services;
-using MoneyFox.Uwp.ViewModels.Statistics.StatisticCategorySummary;
+using MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 
-namespace MoneyFox.Uwp.ViewModels.Statistics
+#nullable enable
+namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
     {
@@ -72,7 +73,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             }
             else if(item.Type == StatisticType.MonthlyAccountCashFlow)
             {
-                navigationService.Navigate<StatisticAccountMonthlyCashFlowViewModel>();
+                navigationService.Navigate<StatisticAccountMonthlyCashflowViewModel>();
             }
             else if(item.Type == StatisticType.CategorySpreading)
             {
