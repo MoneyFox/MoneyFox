@@ -60,45 +60,45 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string"/>
-              <xsd:attribute name="type" type="xsd:string"/>
-              <xsd:attribute name="mimetype" type="xsd:string"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string"/>
-              <xsd:attribute name="name" type="xsd:string"/>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
-              <xsd:attribute ref="xml:space"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required"/>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -126,9 +126,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Veuillez sélectionner un compte.</value>
   </data>
-  <data name="AccountsHeader" xml:space="preserve">
-    <value>Accounts</value>
-  </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>Comptes</value>
   </data>
@@ -144,23 +141,14 @@
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Ajouter une catégorie</value>
   </data>
-  <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Dépense</value>
-  </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Ajouter une dépense</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Revenu</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Ajouter un revenu</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Ajouter un paiement</value>
-  </data>
-  <data name="AddTransferLabel" xml:space="preserve">
-    <value>Virement</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Ajouter un transfert</value>
@@ -209,9 +197,6 @@
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Votre sauvegarde a été restaurée avec succès.</value>
-  </data>
-  <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Service de sauvegarde</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Sauvegarde</value>
@@ -500,9 +485,6 @@
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Dernière sauvegarde créée à :</value>
-  </data>
-  <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Laissez un commentaire !</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
     <value>Clair</value>
