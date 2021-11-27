@@ -90,15 +90,6 @@ namespace MoneyFox.Application.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Accounts.
         /// </summary>
-        public static string AccountsHeader {
-            get {
-                return ResourceManager.GetString("AccountsHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Accounts.
-        /// </summary>
         public static string AccountsTitle {
             get {
                 return ResourceManager.GetString("AccountsTitle", resourceCulture);
@@ -151,29 +142,11 @@ namespace MoneyFox.Application.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Expense.
-        /// </summary>
-        public static string AddExpenseLabel {
-            get {
-                return ResourceManager.GetString("AddExpenseLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add Expense.
         /// </summary>
         public static string AddExpenseTitle {
             get {
                 return ResourceManager.GetString("AddExpenseTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Income.
-        /// </summary>
-        public static string AddIncomeLabel {
-            get {
-                return ResourceManager.GetString("AddIncomeLabel", resourceCulture);
             }
         }
         
@@ -210,15 +183,6 @@ namespace MoneyFox.Application.Resources {
         public static string AddPaymentToolTip {
             get {
                 return ResourceManager.GetString("AddPaymentToolTip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Transfer.
-        /// </summary>
-        public static string AddTransferLabel {
-            get {
-                return ResourceManager.GetString("AddTransferLabel", resourceCulture);
             }
         }
         
@@ -363,15 +327,6 @@ namespace MoneyFox.Application.Resources {
         public static string BackupRestoredMessage {
             get {
                 return ResourceManager.GetString("BackupRestoredMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Backup Service.
-        /// </summary>
-        public static string BackupServiceTitle {
-            get {
-                return ResourceManager.GetString("BackupServiceTitle", resourceCulture);
             }
         }
         
@@ -1309,15 +1264,6 @@ namespace MoneyFox.Application.Resources {
         public static string LastBackupDateLabel {
             get {
                 return ResourceManager.GetString("LastBackupDateLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Leave a feedback!.
-        /// </summary>
-        public static string LeaveFeedbackLabel {
-            get {
-                return ResourceManager.GetString("LeaveFeedbackLabel", resourceCulture);
             }
         }
         
