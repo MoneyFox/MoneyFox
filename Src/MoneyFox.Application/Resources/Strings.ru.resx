@@ -126,9 +126,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Пожалуйста, выберите счёт.</value>
   </data>
-  <data name="AccountsHeader" xml:space="preserve">
-    <value>Accounts</value>
-  </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>Счета</value>
   </data>
@@ -144,23 +141,14 @@
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Добавить категорию</value>
   </data>
-  <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Расход</value>
-  </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Добавить расход</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Доход</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Добавить доход</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Добавить операцию</value>
-  </data>
-  <data name="AddTransferLabel" xml:space="preserve">
-    <value>Перевод</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Добавить перевод</value>
@@ -209,9 +197,6 @@
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Резервная копия успешно восстановлена.</value>
-  </data>
-  <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Служба резервного копирования</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Резервная копия</value>
@@ -501,9 +486,6 @@
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Последняя резервная копия:</value>
-  </data>
-  <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Оставьте отзыв!</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
     <value>Светлая тема</value>

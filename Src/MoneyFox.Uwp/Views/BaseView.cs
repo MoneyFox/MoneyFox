@@ -1,6 +1,6 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿#nullable enable
+using Windows.UI.Xaml.Controls;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views
 {
     public class BaseView : Page

@@ -126,9 +126,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>请选择一个账户</value>
   </data>
-  <data name="AccountsHeader" xml:space="preserve">
-    <value>Accounts</value>
-  </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>账户</value>
   </data>
@@ -144,23 +141,14 @@
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>添加分类</value>
   </data>
-  <data name="AddExpenseLabel" xml:space="preserve">
-    <value>支出</value>
-  </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>添加支出</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>收入</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>添加收入</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Add Payment</value>
-  </data>
-  <data name="AddTransferLabel" xml:space="preserve">
-    <value>转账</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>添加转账</value>
@@ -209,9 +197,6 @@
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Backup restored successfully.</value>
-  </data>
-  <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Backup Service</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>备份</value>
@@ -501,9 +486,6 @@
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
     <value>最新的备份创建于：</value>
-  </data>
-  <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Leave a feedback!</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
     <value>Light</value>
