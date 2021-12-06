@@ -8,8 +8,8 @@ namespace MoneyFox.Converter
     public class DecimalConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
-            value is decimal
-                ? ((decimal)value).ToString(CultureHelper.CurrentLocale)
+            value is decimal decimalValue
+                ? decimalValue.ToString(CultureHelper.CurrentLocale)
                 : value;
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
