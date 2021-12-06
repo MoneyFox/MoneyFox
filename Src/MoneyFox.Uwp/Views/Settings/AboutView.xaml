@@ -70,7 +70,6 @@
                     </TextBlock>
                 </StackPanel>
             </StackPanel>
-
             <Button Margin="0,10,0,10"
                     HorizontalAlignment="Stretch"
                     Command="{x:Bind ViewModel.RateAppCommand}"

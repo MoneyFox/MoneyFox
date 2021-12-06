@@ -126,9 +126,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Por favor, seleccione una cuenta.</value>
   </data>
-  <data name="AccountsHeader" xml:space="preserve">
-    <value>Cuentas</value>
-  </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>Cuentas</value>
   </data>
@@ -144,23 +141,14 @@
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Añadir categoría</value>
   </data>
-  <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Gasto</value>
-  </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Añadir gasto</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Ingreso</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Añadir ingreso</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Registrar Pago</value>
-  </data>
-  <data name="AddTransferLabel" xml:space="preserve">
-    <value>Transferir</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Agregar transferencia</value>
@@ -209,9 +197,6 @@
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Copia de seguridad restaurada con éxito.</value>
-  </data>
-  <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Servicio de copia de seguridad</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Copia de seguridad</value>
@@ -500,9 +485,6 @@
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Última copia de seguridad creada en:</value>
-  </data>
-  <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>¡Deja un comentario!</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
     <value>Claro</value>

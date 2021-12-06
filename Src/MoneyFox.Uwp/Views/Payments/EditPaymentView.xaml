@@ -14,14 +14,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
             <RowDefinition Height="6" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="6" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-
-
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="6">
             <Button Command="{x:Bind ViewModel.SaveCommand}" >
                 <StackPanel Orientation="Horizontal" Spacing="6">
                     <SymbolIcon Symbol="Save" />
@@ -37,16 +33,7 @@
             </Button>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <CommandBar Style="{ThemeResource DefaultCommandBar}">
-                <AppBarButton Command="{x:Bind ViewModel.SaveCommand}" Icon="Save"
-                              Label="{x:Bind resources:Strings.DoneLabel}" />
-                <AppBarButton Command="{x:Bind ViewModel.CancelCommand}" Icon="Cancel"
-                              Label="{x:Bind resources:Strings.CancelLabel}" />
-            </CommandBar>
-        </StackPanel>
-
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="4">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
             <StackPanel>
                 <userControls:ModifyPaymentUserControl />
 

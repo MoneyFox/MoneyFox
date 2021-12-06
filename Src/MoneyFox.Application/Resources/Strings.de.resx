@@ -126,9 +126,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Bitte Konto auswählen.</value>
   </data>
-  <data name="AccountsHeader" xml:space="preserve">
-    <value>Konten</value>
-  </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>Konten</value>
   </data>
@@ -144,23 +141,14 @@
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Kategorie hinzufügen </value>
   </data>
-  <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Ausgabe</value>
-  </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Ausgabe hinzufügen</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Einnahme</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Einnahme hinzufügen</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Zahlung hinzufügen</value>
-  </data>
-  <data name="AddTransferLabel" xml:space="preserve">
-    <value>Umbuchung</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Übertrag hinzufügen</value>
@@ -209,9 +197,6 @@
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Sicherung erfolgreich wiederhergestellt.</value>
-  </data>
-  <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Sicherungsdienst</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Sicherung</value>
@@ -501,9 +486,6 @@ Klicke auf den Link um das Repository zu besuchen:</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Letzte Sicherung wurde erstellt am:</value>
-  </data>
-  <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Bewertung abgeben!</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
     <value>Hell</value>

@@ -56,7 +56,8 @@
                 SelectionMode="None">
 
                 <ListView.GroupStyle>
-                    <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
+                    <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}"
+                                HidesIfEmpty="True" />
                 </ListView.GroupStyle>
 
                 <ListView.ItemContainerStyle>
@@ -71,17 +72,14 @@
                         <StackPanel Margin="0,0,0,30" Padding="{StaticResource SmallListItemPadding}">
 
                             <TextBlock
-                                Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                 Style="{ThemeResource HeaderStyle}"
                                 Text="{Binding Key}" />
 
                             <TextBlock
-                                Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                 Style="{ThemeResource DeemphasizedLabelStyle}"
                                 Text="{Binding Subtitle}" />
 
                             <ListView
-                                Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                 HorizontalAlignment="Stretch"
                                 Background="Transparent"
                                 IsItemClickEnabled="True"

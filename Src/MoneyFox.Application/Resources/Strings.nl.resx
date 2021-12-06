@@ -126,9 +126,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Selecteer een account aub.</value>
   </data>
-  <data name="AccountsHeader" xml:space="preserve">
-    <value>Accounts</value>
-  </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>Accounts</value>
   </data>
@@ -144,23 +141,14 @@
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Voeg categorie toe</value>
   </data>
-  <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Uitgaven</value>
-  </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Voeg uitgave toe</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Inkomen</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Inkomsten toevoegen</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Betaling toevoegen</value>
-  </data>
-  <data name="AddTransferLabel" xml:space="preserve">
-    <value>overschrijving</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Overdracht toevoegen</value>
@@ -209,9 +197,6 @@
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Back-up herstel succesvol</value>
-  </data>
-  <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Back-up dienst</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Backup</value>
@@ -502,9 +487,6 @@ Tik hier om jou bijdrage te leveren.</value>
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Laatste back-up gemaakt op:</value>
-  </data>
-  <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Laat  een woordje achter.</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
     <value>Licht</value>
