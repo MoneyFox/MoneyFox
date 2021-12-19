@@ -9,7 +9,7 @@
     xmlns:userControls="using:MoneyFox.Uwp.Views.Payments"
     mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Padding="15,0,15,0">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}" >
 
         <Grid.RowDefinitions>
             <RowDefinition Height="40" />
