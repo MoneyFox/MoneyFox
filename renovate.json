@@ -3,6 +3,7 @@
   "packageRules": [
     {
       "packagePatterns": ["*"],
+      "excludePackagePatterns": ["^Xamarin.Forms"],
       "updateTypes": [
         "minor",
         "patch"
