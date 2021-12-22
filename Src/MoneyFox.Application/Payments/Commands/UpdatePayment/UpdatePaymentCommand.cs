@@ -9,7 +9,6 @@ using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -18,10 +17,6 @@ namespace MoneyFox.Application.Payments.Commands.UpdatePayment
 {
     public class UpdatePaymentCommand : IRequest
     {
-        [SuppressMessage(
-            "Major Code Smell",
-            "S107:Methods should not have too many parameters",
-            Justification = "Intended")]
         public UpdatePaymentCommand(int id,
             DateTime date,
             decimal amount,

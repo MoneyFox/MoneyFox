@@ -1,9 +1,9 @@
-﻿using MoneyFox.Application.Resources;
+﻿#nullable enable
+using MoneyFox.Application.Resources;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Statistics
 {
     public sealed partial class StatisticCategorySpreadingView
