@@ -1,5 +1,7 @@
-﻿using AutoMapper;
+﻿#nullable enable
+using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
+#nullable enable
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
