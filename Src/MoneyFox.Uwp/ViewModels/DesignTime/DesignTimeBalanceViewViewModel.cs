@@ -1,11 +1,9 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿#nullable enable
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Uwp.ViewModels.Interfaces;
-using System.Diagnostics.CodeAnalysis;
 
-#nullable enable
 namespace MoneyFox.Uwp.ViewModels.DesignTime
 {
-    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "<Pending>")]
     public class DesignTimeBalanceViewViewModel : IBalanceViewModel
     {
         /// <inheritdoc />
