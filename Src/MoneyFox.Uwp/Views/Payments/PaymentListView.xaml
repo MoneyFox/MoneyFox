@@ -71,7 +71,7 @@
             Padding="0,0,10,0"
             HorizontalAlignment="Right"
             FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-            Content="{x:Bind resources:Strings.AddAccountLabel}"
+            Content="{x:Bind resources:Strings.FilterLabel}"
             Foreground="{ThemeResource AppForegroundPrimaryBrush}"
             Tapped="OpenFilterFlyout">
             <winUi:NavigationViewItem.Icon>
@@ -91,7 +91,7 @@
                            LoadingRowGroup="DataGrid_LoadingRowGroup"
                            DoubleTapped="DataGrid_DoubleTapped"
                            IsReadOnly="True"
-                           Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                           Margin="-80,0,-80,0"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
             <controls:DataGrid.RowStyle>
