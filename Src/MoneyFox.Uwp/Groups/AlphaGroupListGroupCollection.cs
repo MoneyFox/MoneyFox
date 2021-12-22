@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿#nullable enable
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Domain.Exceptions;
 using System.Collections.Generic;
 using System.Globalization;
