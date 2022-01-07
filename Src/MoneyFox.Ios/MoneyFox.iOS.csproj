@@ -90,6 +90,7 @@
     <Compile Include="Renderer\ModalContentPageRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderer\NavigationPageRenderer.cs" />
+    <Compile Include="Renderer\ShellNavbarRenderer.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\GraphServiceClientFactory.cs" />
     <Compile Include="Src\IosFileStore.cs" />
@@ -383,9 +384,9 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
     <PackageReference Include="Xamarin.Forms.Visual.Material">
-      <Version>5.0.0.2125</Version>
+      <Version>5.0.0.2291</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
