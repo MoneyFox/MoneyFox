@@ -1,7 +1,9 @@
 ﻿using MoneyFox;
 using MoneyFox.iOS.Renderer;
+using System;
 using System.ComponentModel;
 using UIKit;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
@@ -33,11 +35,18 @@ namespace MoneyFox.iOS.Renderer
 
         public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
         {
+            var tintColor = AppInfo.RequestedTheme == AppTheme.Dark
+                ? Color.White
+                : Color.FromHex("#323130");
+
             var navBar = controller.NavigationBar;
+            navBar.TintColor = tintColor.ToUIColor();
+
             var navigationBarAppearance = new UINavigationBarAppearance();
             navigationBarAppearance.ConfigureWithOpaqueBackground();
 
             navigationBarAppearance.ShadowColor = UIColor.Clear;
+            navigationBarAppearance.BackgroundColor = UIColor.Clear;
             navBar.ScrollEdgeAppearance = navBar.StandardAppearance = navigationBarAppearance;
         }
 
