@@ -90,6 +90,7 @@
     <Compile Include="Renderer\ModalContentPageRenderer.cs" />
     <Compile Include="Renderer\CustomSearchBarRenderer.cs" />
     <Compile Include="Renderer\NavigationPageRenderer.cs" />
+    <Compile Include="Renderer\ShellNavbarRenderer.cs" />
     <Compile Include="Src\AppInformation.cs" />
     <Compile Include="Src\GraphServiceClientFactory.cs" />
     <Compile Include="Src\IosFileStore.cs" />

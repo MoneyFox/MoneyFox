@@ -39,7 +39,7 @@ namespace MoneyFox.iOS
             FormsMaterial.Init();
             LoadApplication(new App());
 
-            RemoveNavigationBarBorder();
+            //RemoveNavigationBarBorder();
             RequestToastPermissions(uiApplication);
 
             return base.FinishedLaunching(uiApplication, launchOptions);
