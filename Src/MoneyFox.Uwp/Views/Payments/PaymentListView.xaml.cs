@@ -1,5 +1,4 @@
 ﻿using Microsoft.Toolkit.Uwp.UI.Controls;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Payments;
 using System.Globalization;
 using Windows.UI.Xaml;
@@ -25,16 +24,14 @@ namespace MoneyFox.Uwp.Views.Payments
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ViewModel.Subscribe();
             if(e.Parameter != null)
             {
                 ViewModel.AccountId = (int)e.Parameter;
             }
         }
 
-        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e) => ViewModel.Unsubscribe();
-
-        private void OpenFilterFlyout(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        private void OpenFilterFlyout(object sender, RoutedEventArgs e) =>
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
 
         private void DataGrid_LoadingRowGroup(object sender, DataGridRowGroupHeaderEventArgs e)
         {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.Uwp.ViewModels.Accounts;
+using MoneyFox.Uwp.ViewModels.Payments;
 using System.Collections.Generic;
 
 #nullable enable
@@ -34,14 +34,16 @@ namespace MoneyFox.Uwp.AutoMapper
 
         private void LoadCustomMappings()
         {
-            IList<IHaveCustomMapping> mapsFromNotShared = MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
+            IList<IHaveCustomMapping> mapsFromNotShared =
+                MapperProfileHelper.LoadCustomMappings(typeof(PaymentViewModel).Assembly);
 
             foreach(IHaveCustomMapping map in mapsFromNotShared)
             {
                 map.CreateMappings(this);
             }
 
-            IList<IHaveCustomMapping> mapsFromShared = MapperProfileHelper.LoadCustomMappings(typeof(AccountViewModel).Assembly);
+            IList<IHaveCustomMapping> mapsFromShared =
+                MapperProfileHelper.LoadCustomMappings(typeof(AccountViewModel).Assembly);
 
             foreach(IHaveCustomMapping map in mapsFromShared)
             {

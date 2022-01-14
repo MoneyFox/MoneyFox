@@ -4,7 +4,7 @@ using Windows.ApplicationModel.Store;
 using Windows.System;
 
 #nullable enable
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     public class MarketplaceOperations : IStoreOperations
     {

@@ -7,31 +7,36 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.Payments"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Padding="15,0,15,0">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
             <RowDefinition Height="6" />
-            <RowDefinition Height="40" />
-            <RowDefinition Height="6" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="12" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="{x:Bind ViewModel.Title}" Style="{StaticResource UwpPageTitleStyle}" />
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6">
+            <Button Command="{x:Bind ViewModel.SaveCommand}" >
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="Save" />
+                    <TextBlock Text="{x:Bind resources:Strings.DoneLabel}" />
+                </StackPanel>
+            </Button>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal">
-            <CommandBar Style="{ThemeResource DefaultCommandBar}" >
-                <AppBarButton Command="{x:Bind ViewModel.SaveCommand}" Icon="Save" Label="{x:Bind resources:Strings.DoneLabel}" />
-                <AppBarButton Command="{x:Bind ViewModel.CancelCommand}" Icon="Cancel" Label="{x:Bind resources:Strings.CancelLabel}" />
-            </CommandBar>
+            <Button Command="{x:Bind ViewModel.CancelCommand}" >
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="Cancel" />
+                    <TextBlock Text="{x:Bind resources:Strings.CancelLabel}" />
+                </StackPanel>
+            </Button>
         </StackPanel>
 
-        <ScrollViewer Grid.Row="4" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
             <StackPanel>
-                <userControls:ModifyPaymentUserControl Grid.Row="0" />
+                <userControls:ModifyPaymentUserControl />
             </StackPanel>
         </ScrollViewer>
     </Grid>

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Domain.Entities;
 using System;
 using System.Threading;
@@ -17,7 +17,7 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
             Account = account;
         }
 
-        public Account Account { get; private set; }
+        public Account Account { get; }
 
         public class Handler : IRequestHandler<UpdateAccountCommand>
         {
@@ -26,8 +26,8 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter,
-                           IBackupService backupService,
-                           ISettingsFacade settingsFacade)
+                IBackupService backupService,
+                ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
@@ -40,10 +40,11 @@ namespace MoneyFox.Application.Accounts.Commands.UpdateAccount
                                                               .Accounts
                                                               .FindAsync(request.Account.Id);
 
-                existingAccount.UpdateAccount(request.Account.Name,
-                                              request.Account.CurrentBalance,
-                                              request.Account.Note ?? "",
-                                              request.Account.IsExcluded);
+                existingAccount.UpdateAccount(
+                    request.Account.Name,
+                    request.Account.CurrentBalance,
+                    request.Account.Note ?? "",
+                    request.Account.IsExcluded);
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 

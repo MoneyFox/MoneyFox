@@ -1,11 +1,12 @@
 ﻿using MoneyFox.Domain;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 #nullable enable
 namespace MoneyFox.Uwp.Views
 {
     /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
+    ///     An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class AppShell
     {
@@ -21,7 +22,7 @@ namespace MoneyFox.Uwp.Views
 
         public Frame MainFrame => ContentFrame;
 
-        private void AddPaymentItemTapped(object sender, Windows.UI.Xaml.Input.TappedRoutedEventArgs e)
+        private void AddPaymentItemTapped(object sender, TappedRoutedEventArgs e)
             => ViewModel.GoToPaymentCommand.Execute(PaymentType.Expense);
     }
 }

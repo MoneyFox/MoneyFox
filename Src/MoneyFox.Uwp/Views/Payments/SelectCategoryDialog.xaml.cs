@@ -1,7 +1,7 @@
-﻿using MoneyFox.Uwp.ViewModels.Categories;
+﻿#nullable enable
+using MoneyFox.Uwp.ViewModels.Categories;
 using Windows.UI.Xaml.Controls;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class SelectCategoryDialog
@@ -14,8 +14,6 @@ namespace MoneyFox.Uwp.Views.Payments
             DataContext = ViewModelLocator.SelectCategoryListVm;
             ViewModel.AppearingCommand.Execute(null);
         }
-
-        private async void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e) => await ((AbstractCategoryListViewModel)DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text);
 
         private void ListView_ItemClick(object sender, ItemClickEventArgs e)
         {

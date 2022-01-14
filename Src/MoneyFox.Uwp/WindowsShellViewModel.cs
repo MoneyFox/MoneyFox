@@ -1,17 +1,16 @@
 ﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Exceptions;
-using MoneyFox.Presentation.ViewModels.Statistic;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.ViewModels.Backup;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Categories;
+using MoneyFox.Uwp.ViewModels.DataBackup;
 using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Settings;
+using MoneyFox.Uwp.ViewModels.Statistic;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -29,11 +28,12 @@ using WinUI = Microsoft.UI.Xaml.Controls;
 #nullable enable
 namespace MoneyFox.Uwp
 {
-    public class WindowsShellViewModel : ViewModelBase
+    public class WindowsShellViewModel : ObservableObject
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
-        private readonly KeyboardAccelerator altLeftKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
+        private readonly KeyboardAccelerator altLeftKeyboardAccelerator =
+            BuildKeyboardAccelerator(VirtualKey.Left, VirtualKeyModifiers.Menu);
 
         private readonly KeyboardAccelerator backKeyboardAccelerator = BuildKeyboardAccelerator(VirtualKey.GoBack);
 
@@ -47,7 +47,7 @@ namespace MoneyFox.Uwp
         public bool IsBackEnabled
         {
             get => isBackEnabled;
-            set => Set(ref isBackEnabled, value);
+            set => SetProperty(ref isBackEnabled, value);
         }
 
         public static INavigationService NavigationService => ServiceLocator.Current.GetInstance<INavigationService>();
@@ -55,16 +55,20 @@ namespace MoneyFox.Uwp
         public WinUI.NavigationViewItem? Selected
         {
             get => selected;
-            set => Set(ref selected, value);
+            set => SetProperty(ref selected, value);
         }
 
-        public ICommand LoadedCommand => loadedCommand ??= new AsyncCommand(OnLoadedAsync);
+        public ICommand LoadedCommand => loadedCommand ??= new AsyncRelayCommand(OnLoadedAsync);
 
-        public ICommand ItemInvokedCommand => itemInvokedCommand ??= new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
+        public ICommand ItemInvokedCommand => itemInvokedCommand ??=
+            new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
 
-        public RelayCommand<PaymentType> GoToPaymentCommand => new RelayCommand<PaymentType>(t => NavigationService.Navigate<AddPaymentViewModel>(t));
+        public RelayCommand<PaymentType> GoToPaymentCommand =>
+            new RelayCommand<PaymentType>(t => NavigationService.Navigate<AddPaymentViewModel>(t));
 
-        public void Initialize(Frame frame, WinUI.NavigationView navigationView, IList<KeyboardAccelerator> keyboardAccelerators)
+        public void Initialize(Frame frame,
+            WinUI.NavigationView navigationView,
+            IList<KeyboardAccelerator> keyboardAccelerators)
         {
             Logger.Debug("Is NavigationService available: {isAvailable}.", NavigationService != null);
 
@@ -129,16 +133,18 @@ namespace MoneyFox.Uwp
             }
 
             WinUI.NavigationViewItem? item = navigationView?.MenuItems
-                                                          .OfType<WinUI.NavigationViewItem>()
-                                                          .FirstOrDefault(menuItem =>
-                                                          {
-                                                              if(menuItem.Content is string content
-                                                               && args.InvokedItem is string invokedItem)
-                                                              {
-                                                                  return content == invokedItem;
-                                                              }
-                                                              return false;
-                                                          });
+                                                           .OfType<WinUI.NavigationViewItem>()
+                                                           .FirstOrDefault(
+                                                               menuItem =>
+                                                               {
+                                                                   if(menuItem.Content is string content
+                                                                      && args.InvokedItem is string invokedItem)
+                                                                   {
+                                                                       return content == invokedItem;
+                                                                   }
+
+                                                                   return false;
+                                                               });
 
             if(item == null)
             {
@@ -149,19 +155,18 @@ namespace MoneyFox.Uwp
             NavigationService.Navigate(GetTypeByString(pageString));
         }
 
-        private Type GetTypeByString(string pageString)
-        {
-            return pageString switch
+        private Type GetTypeByString(string pageString) =>
+            pageString switch
             {
                 "AccountListViewModel" => typeof(AccountListViewModel),
                 "StatisticSelectorViewModel" => typeof(StatisticSelectorViewModel),
                 "CategoryListViewModel" => typeof(CategoryListViewModel),
                 "BackupViewModel" => typeof(BackupViewModel),
-                _ => throw new PageNotFoundException(pageString),
+                _ => throw new PageNotFoundException(pageString)
             };
-        }
 
-        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args) => NavigationService.GoBack();
+        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args) =>
+            NavigationService.GoBack();
 
         private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e) => throw e.Exception;
 
@@ -180,9 +185,10 @@ namespace MoneyFox.Uwp
             return pageType == sourcePageType;
         }
 
-        private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key, VirtualKeyModifiers? modifiers = null)
+        private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key,
+            VirtualKeyModifiers? modifiers = null)
         {
-            var keyboardAccelerator = new KeyboardAccelerator { Key = key };
+            var keyboardAccelerator = new KeyboardAccelerator {Key = key};
             if(modifiers.HasValue)
             {
                 keyboardAccelerator.Modifiers = modifiers.Value;
@@ -193,6 +199,7 @@ namespace MoneyFox.Uwp
             return keyboardAccelerator;
         }
 
-        private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender, KeyboardAcceleratorInvokedEventArgs args) => args.Handled = true;
+        private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender,
+            KeyboardAcceleratorInvokedEventArgs args) => args.Handled = true;
     }
 }

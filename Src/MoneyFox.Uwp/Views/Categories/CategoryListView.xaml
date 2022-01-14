@@ -10,6 +10,7 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:controls="using:MoneyFox.Uwp.Views.Categories"
+    xmlns:winUi="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
 
     <d:Page.DataContext>
@@ -18,31 +19,44 @@
 
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
-            <core:InvokeCommandAction Command="{Binding AppearingCommand}" />
+            <core:InvokeCommandAction Command="{x:Bind ViewModel.AppearingCommand}" />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" HorizontalAlignment="Stretch">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="12" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        <TextBlock Margin="{StaticResource MediumLeftRightMargin}"
-                   Style="{StaticResource UwpPageTitleStyle}"
-                   Text="{x:Bind resources:Strings.CategoriesTitle}" />
+            <TextBox Grid.Column="0"
+                x:Name="SearchTextBox"
+                Header="{x:Bind resources:Strings.SearchLabel}" >
+                
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="TextChanged">
+                        <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchCommand}" 
+                                                  CommandParameter="{Binding Text, ElementName=SearchTextBox}" />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+            </TextBox>
 
-        <CommandBar
-            Grid.Row="0"
-            OverflowButtonVisibility="Collapsed"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton
-                    Click="AddNewCategoryClick"
-                    Icon="Add"
-                    Label="{x:Bind resources:Strings.AddCategoryLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
+            <Button Grid.Column="2" 
+                    Click="AddNewCategoryClick" 
+                    VerticalAlignment="Bottom" >
+                <StackPanel Orientation="Horizontal" Spacing="6">
+                    <SymbolIcon Symbol="Add" />
+                    <TextBlock Text="{x:Bind resources:Strings.AddCategoryLabel}" />
+                </StackPanel>
+            </Button>
+        </Grid>
 
         <controls:CategoryListControl Grid.Row="1" />
 

@@ -24,7 +24,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.HasDateLargerEqualsThan(DateTime.Now).ToList();
+            List<Payment> resultList = paymentListQuery.HasDateLargerEqualsThan(DateTime.Now).ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -44,7 +44,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.AreCleared().ToList();
+            List<Payment> resultList = paymentListQuery.AreCleared().ToList();
 
             // Assert
             Assert.Single(resultList);
@@ -63,7 +63,7 @@ namespace MoneyFox.Application.Tests.QueryObjects
             }.AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.AreNotCleared().ToList();
+            List<Payment> resultList = paymentListQuery.AreNotCleared().ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);
@@ -77,35 +77,40 @@ namespace MoneyFox.Application.Tests.QueryObjects
             // Arrange
             IQueryable<Payment> paymentListQuery = new List<Payment>
             {
-                new Payment(DateTime.Now,
-                            12,
-                            PaymentType.Expense,
-                            new Account("d"),
-                            new Account("t")),
-                new Payment(DateTime.Now,
-                            13,
-                            PaymentType.Income,
-                            new Account("d"),
-                            new Account("t")),
-                new Payment(DateTime.Now,
-                            14,
-                            PaymentType.Transfer,
-                            new Account("d"),
-                            new Account("t")),
-                new Payment(DateTime.Now,
-                            15,
-                            PaymentType.Income,
-                            new Account("d"),
-                            new Account("t")),
-                new Payment(DateTime.Now,
-                            16,
-                            PaymentType.Transfer,
-                            new Account("d"),
-                            new Account("t"))
+                new Payment(
+                    DateTime.Now,
+                    12,
+                    PaymentType.Expense,
+                    new Account("d"),
+                    new Account("t")),
+                new Payment(
+                    DateTime.Now,
+                    13,
+                    PaymentType.Income,
+                    new Account("d"),
+                    new Account("t")),
+                new Payment(
+                    DateTime.Now,
+                    14,
+                    PaymentType.Transfer,
+                    new Account("d"),
+                    new Account("t")),
+                new Payment(
+                    DateTime.Now,
+                    15,
+                    PaymentType.Income,
+                    new Account("d"),
+                    new Account("t")),
+                new Payment(
+                    DateTime.Now,
+                    16,
+                    PaymentType.Transfer,
+                    new Account("d"),
+                    new Account("t"))
             }.AsQueryable();
 
             // Act
-            var resultList = paymentListQuery.WithoutTransfers().ToList();
+            List<Payment> resultList = paymentListQuery.WithoutTransfers().ToList();
 
             // Assert
             Assert.Equal(3, resultList.Count);

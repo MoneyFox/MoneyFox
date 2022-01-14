@@ -1,17 +1,14 @@
-﻿using GalaSoft.MvvmLight.Command;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+﻿#nullable enable
+using CommunityToolkit.Mvvm.Input;
+using MoneyFox.Uwp.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.DesignTime;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 using Windows.UI.Xaml.Data;
 
-#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
-    [SuppressMessage("Major Code Smell", "S109:Magic numbers should not be used", Justification = "Not needed in design time")]
     public class DesignTimePaymentListViewModel : IPaymentListViewModel
     {
         public IBalanceViewModel BalanceViewModel => new DesignTimeBalanceViewViewModel();
@@ -29,9 +26,22 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             IsSourceGrouped = true,
             Source = new List<PaymentViewModel>
             {
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now },
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) },
-                new PaymentViewModel { Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now.AddMonths(-1) }
+                new PaymentViewModel
+                {
+                    Amount = 123, Category = new CategoryViewModel {Name = "Beer"}, Date = DateTime.Now
+                },
+                new PaymentViewModel
+                {
+                    Amount = 123,
+                    Category = new CategoryViewModel {Name = "Beer"},
+                    Date = DateTime.Now.AddMonths(-1)
+                },
+                new PaymentViewModel
+                {
+                    Amount = 123,
+                    Category = new CategoryViewModel {Name = "Beer"},
+                    Date = DateTime.Now.AddMonths(-1)
+                }
             }
         };
 

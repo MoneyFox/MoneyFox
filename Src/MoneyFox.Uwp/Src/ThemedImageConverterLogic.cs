@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media.Imaging;
 
 #nullable enable
-namespace MoneyFox.Uwp.Src
+namespace MoneyFox.Uwp
 {
     public static class ThemedImageConverterLogic
     {
@@ -25,7 +25,7 @@ namespace MoneyFox.Uwp.Src
                 isDarkTheme = !isDarkTheme;
             }
 
-            path = $"ms-appx:{(string.Format(CultureInfo.InvariantCulture, path, isDarkTheme ? "dark" : "light"))}";
+            path = $"ms-appx:{string.Format(CultureInfo.InvariantCulture, path, isDarkTheme ? "dark" : "light")}";
 
             // Check if we already cached the image
             if(!ImageCache.TryGetValue(path, out BitmapImage result))

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Commands.UpdateAccount;
@@ -6,11 +7,8 @@ using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.Utilities;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Services;
-using System;
+using MoneyFox.Uwp.Utilities;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -23,18 +21,17 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
         private readonly IMediator mediator;
 
         public EditAccountViewModel(IMediator mediator,
-                                    IMapper mapper,
-                                    IDialogService dialogService,
-                                    INavigationService navigationService) : base(dialogService, navigationService)
+            IMapper mapper,
+            IDialogService dialogService,
+            INavigationService navigationService) : base(dialogService, navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
-
         }
 
         public override bool IsEdit => true;
 
-        public AsyncCommand DeleteCommand => new AsyncCommand(DeleteAccountAsync);
+        public AsyncRelayCommand DeleteCommand => new AsyncRelayCommand(DeleteAccountAsync);
 
         protected override async Task InitializeAsync()
         {
@@ -43,11 +40,14 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 
-        protected override async Task SaveAccountAsync() => await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
+        protected override async Task SaveAccountAsync() =>
+            await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
 
         protected async Task DeleteAccountAsync()
         {
-            if(await DialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if(await DialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
+                   Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccount.Id));
                 NavigationService.GoBack();

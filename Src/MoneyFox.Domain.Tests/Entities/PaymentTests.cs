@@ -15,7 +15,9 @@ namespace MoneyFox.Domain.Tests.Entities
             // Arrange
 
             // Act / Assert
-            Assert.Throws<AccountNullException>(() => new Payment(DateTime.Now, 123, PaymentType.Expense, null, note: "note"));
+            Assert.Throws<AccountNullException>(
+                () =>
+                    new Payment(DateTime.Now, 123, PaymentType.Expense, null, note: "note"));
 
         [Theory]
         [InlineData(1, false)]
@@ -68,7 +70,9 @@ namespace MoneyFox.Domain.Tests.Entities
             var testPayment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
 
             // Act / Assert
-            Assert.Throws<AccountNullException>(() => testPayment.UpdatePayment(DateTime.Today, 123, PaymentType.Expense, null));
+            Assert.Throws<AccountNullException>(
+                () =>
+                    testPayment.UpdatePayment(DateTime.Today, 123, PaymentType.Expense, null));
         }
 
         [Theory]

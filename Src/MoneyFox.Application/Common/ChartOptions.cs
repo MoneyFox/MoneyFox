@@ -1,4 +1,4 @@
-﻿using SkiaSharp;
+﻿using System.Drawing;
 
 namespace MoneyFox.Application.Common
 {
@@ -10,7 +10,7 @@ namespace MoneyFox.Application.Common
     {
         public static float Margin { get; set; } = 20;
         public static float LabelTextSize { get; set; } = 26f;
-        public static SKColor BackgroundColor { get; set; } = SKColors.Transparent;
-        public static SKTypeface TypeFace { get; set; } = SKTypeface.FromFamilyName("Lobster-Regular");
+        public static Color BackgroundColor { get; set; } = Color.Transparent;
+        public static string TypeFace { get; set; } = "Lobster-Regular";
     }
 }

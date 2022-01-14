@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Migrations.Startup
 {

@@ -14,10 +14,10 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
     public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
     {
         public GetPaymentsForAccountIdQuery(int accountId,
-                                            DateTime timeRangeStart,
-                                            DateTime timeRangeEnd,
-                                            bool isClearedFilterActive = false,
-                                            bool isRecurringFilterActive = false)
+            DateTime timeRangeStart,
+            DateTime timeRangeEnd,
+            bool isClearedFilterActive = false,
+            bool isRecurringFilterActive = false)
         {
             AccountId = accountId;
             TimeRangeStart = timeRangeStart;
@@ -45,7 +45,8 @@ namespace MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<List<Payment>> Handle(GetPaymentsForAccountIdQuery request, CancellationToken cancellationToken)
+            public async Task<List<Payment>> Handle(GetPaymentsForAccountIdQuery request,
+                CancellationToken cancellationToken)
             {
                 IQueryable<Payment> paymentQuery = contextAdapter.Context
                                                                  .Payments

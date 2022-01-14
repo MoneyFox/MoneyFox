@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
@@ -11,8 +11,8 @@ namespace MoneyFox.Application.Tests.Infrastructure
         public static EfCoreContext Create()
         {
             DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
-                                                     .UseInMemoryDatabase(Guid.NewGuid().ToString())
-                                                     .Options;
+                                                      .UseInMemoryDatabase(Guid.NewGuid().ToString())
+                                                      .Options;
 
             var context = new EfCoreContext(options);
 

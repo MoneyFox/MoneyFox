@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Domain.Entities;
 using System;
 using System.Threading;
@@ -36,9 +36,10 @@ namespace MoneyFox.Application.Categories.Command.UpdateCategory
             {
                 Category existingCategory = await contextAdapter.Context.Categories.FindAsync(request.Category.Id);
 
-                existingCategory.UpdateData(request.Category.Name,
-                                            request.Category.Note ?? "",
-                                            request.Category.RequireNote);
+                existingCategory.UpdateData(
+                    request.Category.Name,
+                    request.Category.Note ?? "",
+                    request.Category.RequireNote);
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 

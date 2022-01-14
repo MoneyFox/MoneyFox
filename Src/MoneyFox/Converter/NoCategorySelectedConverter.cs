@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
+using MoneyFox.ViewModels.Categories;
 using System;
 using System.Globalization;
 using Xamarin.Forms;
@@ -20,6 +20,7 @@ namespace MoneyFox.Converter
             return category.Name;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotSupportedException();
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+            throw new NotSupportedException();
     }
 }

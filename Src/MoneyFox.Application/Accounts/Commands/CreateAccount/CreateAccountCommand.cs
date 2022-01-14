@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Domain.Entities;
 using System;
 using System.Threading;
@@ -20,10 +20,10 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
             IsExcluded = isExcluded;
         }
 
-        public string Name { get; private set; }
-        public decimal CurrentBalance { get; private set; }
-        public string Note { get; private set; }
-        public bool IsExcluded { get; private set; }
+        public string Name { get; }
+        public decimal CurrentBalance { get; }
+        public string Note { get; }
+        public bool IsExcluded { get; }
 
         public class Handler : IRequestHandler<CreateAccountCommand>
         {
@@ -32,22 +32,24 @@ namespace MoneyFox.Application.Accounts.Commands.CreateAccount
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter,
-                           IBackupService backupService,
-                           ISettingsFacade settingsFacade)
+                IBackupService backupService,
+                ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
                 this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc/>
+            /// <inheritdoc />
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
-                await contextAdapter.Context.Accounts.AddAsync(new Account(request.Name,
-                                                                           request.CurrentBalance,
-                                                                           request.Note,
-                                                                           request.IsExcluded),
-                                                               cancellationToken);
+                await contextAdapter.Context.Accounts.AddAsync(
+                    new Account(
+                        request.Name,
+                        request.CurrentBalance,
+                        request.Note,
+                        request.IsExcluded),
+                    cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

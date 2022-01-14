@@ -1,59 +1,58 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Statistics
 {
-    public class StatisticSelectorViewModel : ViewModelBase, IStatisticSelectorViewModel
+    public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
     {
         /// <summary>
-        /// All possible statistic to choose from
+        ///     All possible statistic to choose from
         /// </summary>
         public List<StatisticSelectorType> StatisticItems
-                                           => new List<StatisticSelectorType>
-        {
-            new StatisticSelectorType
+            => new List<StatisticSelectorType>
             {
-                Name = Strings.CashflowLabel,
-                Description = Strings.CashflowDescription,
-                Type = StatisticType.Cashflow
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.MonthlyCashflowLabel,
-                Description = Strings.MonthlyCashflowDescription,
-                Type = StatisticType.MonthlyAccountCashFlow
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.CategoryProgressionLabel,
-                Description = Strings.CategoryProgressionDescription,
-                Type = StatisticType.CategoryProgression
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.CategorySpreadingLabel,
-                Description = Strings.CategorieSpreadingDescription,
-                Type = StatisticType.CategorySpreading
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.CategorySummaryLabel,
-                Description = Strings.CategorySummaryDescription,
-                Type = StatisticType.CategorySummary
-            }
-        };
+                new StatisticSelectorType
+                {
+                    Name = Strings.CashflowLabel,
+                    Description = Strings.CashflowDescription,
+                    Type = StatisticType.Cashflow
+                },
+                new StatisticSelectorType
+                {
+                    Name = Strings.MonthlyCashflowLabel,
+                    Description = Strings.MonthlyCashflowDescription,
+                    Type = StatisticType.MonthlyAccountCashFlow
+                },
+                new StatisticSelectorType
+                {
+                    Name = Strings.CategoryProgressionLabel,
+                    Description = Strings.CategoryProgressionDescription,
+                    Type = StatisticType.CategoryProgression
+                },
+                new StatisticSelectorType
+                {
+                    Name = Strings.CategorySpreadingLabel,
+                    Description = Strings.CategorieSpreadingDescription,
+                    Type = StatisticType.CategorySpreading
+                },
+                new StatisticSelectorType
+                {
+                    Name = Strings.CategorySummaryLabel,
+                    Description = Strings.CategorySummaryDescription,
+                    Type = StatisticType.CategorySummary
+                }
+            };
 
         /// <summary>
-        /// Navigates to the statistic view and shows the selected statistic
+        ///     Navigates to the statistic view and shows the selected statistic
         /// </summary>
         public RelayCommand<StatisticSelectorType> GoToStatisticCommand
-            => new RelayCommand<StatisticSelectorType>(async (s) => await GoToStatisticAsync(s));
+            => new RelayCommand<StatisticSelectorType>(async s => await GoToStatisticAsync(s));
 
         private static async Task GoToStatisticAsync(StatisticSelectorType item)
         {

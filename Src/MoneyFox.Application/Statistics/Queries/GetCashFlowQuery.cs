@@ -72,8 +72,7 @@ namespace MoneyFox.Application.Statistics.Queries
                 Color = BLUE_HEX_CODE
             };
 
-            return new List<StatisticEntry> { income, spent, increased };
+            return new List<StatisticEntry> {income, spent, increased};
         }
     }
-
 }

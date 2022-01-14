@@ -1,11 +1,12 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Categories.Command.CreateCategory;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
-using MoneyFox.Persistence;
+using MoneyFox.Domain.Entities;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -48,8 +49,11 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
         {
             // Arrange
             // Act
-            await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new CreateCategoryCommand("Test"), default);
+            await new CreateCategoryCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new CreateCategoryCommand("Test"), default);
 
             // Assert
             Assert.Single(context.Categories);
@@ -60,10 +64,13 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
         {
             // Arrange
             // Act
-            await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
+            await new CreateCategoryCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
                 .Handle(new CreateCategoryCommand("Test", requireNote: true), default);
 
-            Domain.Entities.Category loadedCategory = context.Categories.First();
+            Category loadedCategory = context.Categories.First();
 
             // Assert
             loadedCategory.RequireNote.Should().BeTrue();
@@ -77,8 +84,11 @@ namespace MoneyFox.Application.Tests.Categories.Commands.CreateCategory
             backupServiceMock.Setup(x => x.UploadBackupAsync(It.IsAny<BackupMode>())).Returns(Task.CompletedTask);
 
             // Act
-            await new CreateCategoryCommand.Handler(contextAdapterMock.Object, backupServiceMock.Object, settingsFacadeMock.Object)
-               .Handle(new CreateCategoryCommand("test"), default);
+            await new CreateCategoryCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(new CreateCategoryCommand("test"), default);
 
             // Assert
             backupServiceMock.Verify(x => x.RestoreBackupAsync(It.IsAny<BackupMode>()), Times.Once);

@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls.Primitives;
 
@@ -18,6 +18,7 @@ namespace MoneyFox.Uwp.Views.Statistics
             DataContext = ViewModelLocator.StatisticCashFlowVm;
         }
 
-        private void OpenFilterFlyout(object sender, RoutedEventArgs e) => FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+        private void OpenFilterFlyout(object sender, RoutedEventArgs e) =>
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
     }
 }

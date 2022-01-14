@@ -1,9 +1,9 @@
-﻿using GalaSoft.MvvmLight;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Services;
 using NLog;
 using System.Globalization;
@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Accounts
 {
-    public abstract class ModifyAccountViewModel : ViewModelBase
+    public abstract class ModifyAccountViewModel : ObservableRecipient
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
@@ -22,7 +22,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
         private AccountViewModel selectedAccount = new AccountViewModel();
 
         protected ModifyAccountViewModel(IDialogService dialogService,
-                                         INavigationService navigationService)
+            INavigationService navigationService)
         {
             DialogService = dialogService;
             NavigationService = navigationService;
@@ -36,9 +36,9 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
 
         protected INavigationService NavigationService { get; }
 
-        public AsyncCommand InitializeCommand => new AsyncCommand(InitializeAsync);
+        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(InitializeAsync);
 
-        public AsyncCommand SaveCommand => new AsyncCommand(SaveAccountBaseAsync);
+        public AsyncRelayCommand SaveCommand => new AsyncRelayCommand(SaveAccountBaseAsync);
 
         public string Title
         {
@@ -51,7 +51,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 title = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -63,8 +63,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             set
             {
                 selectedAccount = value;
-                RaisePropertyChanged();
-                RaisePropertyChanged(nameof(AmountString));
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(AmountString));
             }
         }
 
@@ -81,7 +81,7 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 }
 
                 amountString = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -100,13 +100,15 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
-                await DialogService.ShowMessageAsync(Strings.InvalidNumberTitle, Strings.InvalidNumberCurrentBalanceMessage);
+                await DialogService.ShowMessageAsync(
+                    Strings.InvalidNumberTitle,
+                    Strings.InvalidNumberCurrentBalanceMessage);
                 return;
             }
 
             await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
             await SaveAccountAsync();
-            MessengerInstance.Send(new ReloadMessage());
+            Messenger.Send(new ReloadMessage());
             await DialogService.HideLoadingDialogAsync();
         }
     }

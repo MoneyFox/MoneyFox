@@ -1,13 +1,11 @@
-﻿using MoneyFox.Application.Resources;
+﻿#nullable enable
+using MoneyFox.Application.Resources;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Statistics
 {
-    public sealed partial class StatisticSelectorView : BaseView
+    public sealed partial class StatisticSelectorView
     {
         public override string Header => Strings.SelectStatisticTitle;
-
-        public override bool ShowHeader => true;
 
         public StatisticSelectorView()
         {

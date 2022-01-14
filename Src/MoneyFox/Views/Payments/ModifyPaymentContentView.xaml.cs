@@ -9,13 +9,12 @@ namespace MoneyFox.Views.Payments
             InitializeComponent();
         }
 
-        private void AmountFieldGotFocus(object sender, FocusEventArgs e)
-        {
-            Dispatcher.BeginInvokeOnMainThread(() =>
-            {
-                AmountEntry.CursorPosition = 0;
-                AmountEntry.SelectionLength = AmountEntry.Text != null ? AmountEntry.Text.Length : 0;
-            });
-        }
+        private void AmountFieldGotFocus(object sender, FocusEventArgs e) =>
+            Dispatcher.BeginInvokeOnMainThread(
+                () =>
+                {
+                    AmountEntry.CursorPosition = 0;
+                    AmountEntry.SelectionLength = AmountEntry.Text != null ? AmountEntry.Text.Length : 0;
+                });
     }
 }

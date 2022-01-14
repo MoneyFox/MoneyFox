@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Queries.GetAccounts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
@@ -9,10 +10,8 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
 using MoneyFox.Extensions;
-using MoneyFox.Messages;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+using MoneyFox.ViewModels.Accounts;
+using MoneyFox.ViewModels.Categories;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -22,7 +21,7 @@ using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Payments
 {
-    public abstract class ModifyPaymentViewModel : ViewModelBase
+    public abstract class ModifyPaymentViewModel : ObservableRecipient
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -35,18 +34,32 @@ namespace MoneyFox.ViewModels.Payments
         private readonly IDialogService dialogService;
 
         protected ModifyPaymentViewModel(IMediator mediator,
-                                         IMapper mapper,
-                                         IDialogService dialogService)
+            IMapper mapper,
+            IDialogService dialogService)
         {
             this.mediator = mediator;
             this.mapper = mapper;
             this.dialogService = dialogService;
+        }
 
-            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
+        protected virtual async Task InitializeAsync()
+        {
+            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            IsActive = true;
+        }
+
+        protected override void OnActivated()
+        {
+            Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
+                this,
+                (r, m) => r.ReceiveMessageAsync(m));
         }
 
         /// <summary>
-        /// The currently selected PaymentViewModel
+        ///     The currently selected PaymentViewModel
         /// </summary>
         public PaymentViewModel SelectedPayment
         {
@@ -54,12 +67,12 @@ namespace MoneyFox.ViewModels.Payments
             set
             {
                 selectedPayment = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Gives access to all accounts for Charged Dropdown list
+        ///     Gives access to all accounts for Charged Dropdown list
         /// </summary>
         public ObservableCollection<AccountViewModel> ChargedAccounts
         {
@@ -67,12 +80,12 @@ namespace MoneyFox.ViewModels.Payments
             private set
             {
                 chargedAccounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Gives access to all accounts for Target Dropdown list
+        ///     Gives access to all accounts for Target Dropdown list
         /// </summary>
         public ObservableCollection<AccountViewModel> TargetAccounts
         {
@@ -80,20 +93,12 @@ namespace MoneyFox.ViewModels.Payments
             private set
             {
                 targetAccounts = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        protected virtual async Task InitializeAsync()
-        {
-            List<AccountViewModel>? accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-
-            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
-            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
-        }
-
         /// <summary>
-        /// Indicates if the PaymentViewModel is a transfer.
+        ///     Indicates if the PaymentViewModel is a transfer.
         /// </summary>
         public bool IsTransfer => SelectedPayment.IsTransfer;
 
@@ -105,7 +110,7 @@ namespace MoneyFox.ViewModels.Payments
         };
 
         /// <summary>
-        /// List with the different recurrence types.     This has to have the same order as the enum
+        ///     List with the different recurrence types.     This has to have the same order as the enum
         /// </summary>
         public List<PaymentRecurrence> RecurrenceList => new List<PaymentRecurrence>
         {
@@ -121,11 +126,14 @@ namespace MoneyFox.ViewModels.Payments
         };
 
         public string AccountHeader
-              => SelectedPayment?.Type == PaymentType.Income
-                 ? Strings.TargetAccountLabel
-                 : Strings.ChargedAccountLabel;
+            => SelectedPayment?.Type == PaymentType.Income
+                ? Strings.TargetAccountLabel
+                : Strings.ChargedAccountLabel;
 
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
+            async () =>
+                await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
+
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedPayment.Category = null);
 
         public RelayCommand SaveCommand => new RelayCommand(async () => await SavePaymentBaseAsync());
@@ -142,19 +150,24 @@ namespace MoneyFox.ViewModels.Payments
 
             if(SelectedPayment.Amount < 0)
             {
-                await dialogService.ShowMessageAsync(Strings.AmountMayNotBeNegativeTitle, Strings.AmountMayNotBeNegativeMessage);
+                await dialogService.ShowMessageAsync(
+                    Strings.AmountMayNotBeNegativeTitle,
+                    Strings.AmountMayNotBeNegativeMessage);
                 return;
             }
 
-            if((SelectedPayment.Category?.RequireNote == true) && string.IsNullOrEmpty(SelectedPayment.Note))
+            if(SelectedPayment.Category?.RequireNote == true && string.IsNullOrEmpty(SelectedPayment.Note))
             {
-                await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.ANoteForPaymentIsRequired);
+                await dialogService.ShowMessageAsync(
+                    Strings.MandatoryFieldEmptyTitle,
+                    Strings.ANoteForPaymentIsRequired);
                 return;
             }
 
-            if(SelectedPayment.IsRecurring && !SelectedPayment.RecurringPayment!.IsEndless
-                                           && SelectedPayment.RecurringPayment.EndDate.HasValue
-                                           && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
+            if(SelectedPayment.IsRecurring
+               && !SelectedPayment.RecurringPayment!.IsEndless
+               && SelectedPayment.RecurringPayment.EndDate.HasValue
+               && SelectedPayment.RecurringPayment.EndDate.Value.Date < DateTime.Today)
             {
                 await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
                 return;
@@ -165,9 +178,8 @@ namespace MoneyFox.ViewModels.Payments
             try
             {
                 await SavePaymentAsync();
-                MessengerInstance.Send(new ReloadMessage());
-                await App.Current.MainPage.Navigation.PopModalAsync();
-
+                Messenger.Send(new ReloadMessage());
+                await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
             }
             catch(Exception ex)
             {
@@ -187,7 +199,8 @@ namespace MoneyFox.ViewModels.Payments
                 return;
             }
 
-            SelectedPayment.Category = mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
+            SelectedPayment.Category =
+                mapper.Map<CategoryViewModel>(await mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
         }
     }
 }

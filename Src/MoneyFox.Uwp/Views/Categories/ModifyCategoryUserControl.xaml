@@ -24,18 +24,19 @@
 
     <StackPanel>
         <TextBox
-            Margin="{StaticResource SmallTitleContentMargin}"
+            Margin="{StaticResource MediumTopMargin}"
             VerticalAlignment="Top"
             Header="{x:Bind resources:Strings.CategoryNameLabel}"
             Text="{Binding SelectedCategory.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
         <TextBox
-            Margin="{StaticResource SmallTitleContentMargin}"
+            Margin="{StaticResource MediumTopMargin}"
             VerticalAlignment="Top"
             Header="{x:Bind resources:Strings.NoteLabel}"
             Text="{Binding SelectedCategory.Note, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
             TextWrapping="Wrap" />
         <CheckBox
+            Margin="{StaticResource MediumTopMargin}"
             HorizontalAlignment="Left"
             Content="{x:Bind resources:Strings.RequireNoteCheckbox}"
             IsChecked="{Binding SelectedCategory.RequireNote, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

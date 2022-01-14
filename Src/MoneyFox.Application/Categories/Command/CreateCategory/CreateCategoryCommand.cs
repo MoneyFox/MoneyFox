@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Domain.Entities;
 using System;
 using System.Threading;
@@ -36,12 +36,14 @@ namespace MoneyFox.Application.Categories.Command.CreateCategory
                 this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc/>
+            /// <inheritdoc />
             public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
             {
                 await backupService.RestoreBackupAsync();
 
-                await contextAdapter.Context.Categories.AddAsync(new Category(request.Name, request.Note, request.RequireNote), cancellationToken);
+                await contextAdapter.Context.Categories.AddAsync(
+                    new Category(request.Name, request.Note, request.RequireNote),
+                    cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;

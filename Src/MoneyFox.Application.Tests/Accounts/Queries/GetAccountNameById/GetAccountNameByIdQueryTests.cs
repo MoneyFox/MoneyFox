@@ -3,7 +3,7 @@ using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -44,8 +44,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountNameById
 
             // Act
             string result =
-                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountNameByIdQuery(account1.Id),
-                                                                                            default);
+                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                    new GetAccountNameByIdQuery(account1.Id),
+                    default);
 
             // Assert
             result.Should().Be(account1.Name);
@@ -57,8 +58,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountNameById
             // Arrange
             // Act
             string result =
-                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(new GetAccountNameByIdQuery(33),
-                                                                                            default);
+                await new GetAccountNameByIdQuery.Handler(contextAdapterMock.Object).Handle(
+                    new GetAccountNameByIdQuery(33),
+                    default);
 
             // Assert
             result.Should().Be(string.Empty);

@@ -1,21 +1,21 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 
 namespace MoneyFox.ViewModels.Statistics
 {
     /// <summary>
-    /// Representation of the category Spreading View
+    ///     Representation of the category Spreading View
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
@@ -26,7 +26,7 @@ namespace MoneyFox.ViewModels.Statistics
         {
         }
 
-        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
+        public List<PaymentType> PaymentTypes => new List<PaymentType> {PaymentType.Expense, PaymentType.Income};
 
         public PaymentType SelectedPaymentType
         {
@@ -37,14 +37,15 @@ namespace MoneyFox.ViewModels.Statistics
                 {
                     return;
                 }
+
                 selectedPaymentType = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
                 LoadDataCommand.Execute(null);
             }
         }
 
         /// <summary>
-        /// Chart to render.
+        ///     Chart to render.
         /// </summary>
         public DonutChart Chart
         {
@@ -57,35 +58,38 @@ namespace MoneyFox.ViewModels.Statistics
                 }
 
                 chart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
         /// <summary>
-        /// Set a custom CategorySpreadingModel with the set Start and End date
+        ///     Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task LoadAsync()
         {
-            var statisticItems = new ObservableCollection<StatisticEntry>(await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate, SelectedPaymentType)));
+            var statisticItems = new ObservableCollection<StatisticEntry>(
+                await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate, SelectedPaymentType)));
 
-            var microChartItems = statisticItems.Select(x => new ChartEntry((float)x.Value)
-            {
-                Label = x.Label,
-                ValueLabel = x.ValueLabel,
-                Color = SKColor.Parse(x.Color),
-                ValueLabelColor = SKColor.Parse(x.Color)
-            })
-            .ToList();
+            List<ChartEntry> microChartItems = statisticItems
+                                               .Select(
+                                                   x => new ChartEntry((float)x.Value)
+                                                   {
+                                                       Label = x.Label,
+                                                       ValueLabel = x.ValueLabel,
+                                                       Color = SKColor.Parse(x.Color),
+                                                       ValueLabelColor = SKColor.Parse(x.Color)
+                                                   })
+                                               .ToList();
 
             Chart = new DonutChart
             {
                 Entries = microChartItems,
-                BackgroundColor = ChartOptions.BackgroundColor,
+                BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,
-                Typeface = ChartOptions.TypeFace
+                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
             };
         }
     }

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using NLog;
@@ -47,18 +47,20 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 await backupService.RestoreBackupAsync();
 
                 Payment? entityToDelete = await contextAdapter.Context
-                                                             .Payments
-                                                             .Include(x => x.ChargedAccount)
-                                                             .Include(x => x.TargetAccount)
-                                                             .Include(x => x.RecurringPayment)
-                                                             .SingleOrDefaultAsync(x => x.Id == request.PaymentId, cancellationToken);
+                                                              .Payments
+                                                              .Include(x => x.ChargedAccount)
+                                                              .Include(x => x.TargetAccount)
+                                                              .Include(x => x.RecurringPayment)
+                                                              .SingleOrDefaultAsync(
+                                                                  x => x.Id == request.PaymentId,
+                                                                  cancellationToken);
 
                 if(entityToDelete == null)
                 {
                     throw new PaymentNotFoundException();
                 }
 
-                entityToDelete.ChargedAccount!.RemovePaymentAmount(entityToDelete);
+                entityToDelete.ChargedAccount.RemovePaymentAmount(entityToDelete);
                 entityToDelete.TargetAccount?.RemovePaymentAmount(entityToDelete);
 
                 if(request.DeleteRecurringPayment && entityToDelete.RecurringPayment != null)
@@ -81,6 +83,7 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
                 {
                     logManager.Info("No Network Connection. Couldn't Upload backup.");
                 }
+
                 return Unit.Value;
             }
 
@@ -94,8 +97,9 @@ namespace MoneyFox.Application.Payments.Commands.DeletePaymentById
 
                 payments.ForEach(x => x.RemoveRecurringPayment());
                 contextAdapter.Context.RecurringPayments
-                                      .Remove(await contextAdapter.Context.RecurringPayments
-                                                                          .FindAsync(recurringPaymentId));
+                              .Remove(
+                                  await contextAdapter.Context.RecurringPayments
+                                                      .FindAsync(recurringPaymentId));
             }
         }
     }

@@ -1,10 +1,11 @@
-﻿using MoneyFox.Ui.Shared.ViewModels.Settings;
+﻿using MoneyFox.ViewModels.Settings;
 
 namespace MoneyFox.Views.Settings
 {
     public partial class SettingsPage
     {
         private SettingsViewModel ViewModel => (SettingsViewModel)BindingContext;
+
         public SettingsPage()
         {
             InitializeComponent();

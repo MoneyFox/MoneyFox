@@ -70,7 +70,7 @@ steps:
 - task: NuGetToolInstaller@1
   displayName: 'Use NuGet'
   inputs:
-    versionSpec: 5.x
+    versionSpec: 6.x
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
@@ -89,7 +89,6 @@ steps:
     command: 'test'
     projects: |
       **/*.Tests.csproj
-      !**/MoneyFox.Tests.csproj
 
 - task: XamariniOS@2
   displayName: 'Build Xamarin.iOS '

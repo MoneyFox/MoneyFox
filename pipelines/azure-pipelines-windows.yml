@@ -91,26 +91,12 @@ jobs:
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
     inputs:
-      versionSpec: 5.x
+      versionSpec: 6.x
 
   - task: NuGetCommand@2
     displayName: 'NuGet restore'
     inputs:
       restoreSolution: '**/MoneyFox.Desktop.sln'
-
-  - task: SonarSource.sonarcloud.14d9cde6-c1da-4d55-aa01-2965cd301255.SonarCloudPrepare@1
-    displayName: 'Prepare analysis on SonarCloud'
-    inputs:
-      SonarCloud: 'MoneyFox SonarCloud'
-      organization: 'moneyfox-1'
-      scannerMode: 'MSBuild'
-      projectKey: 'MoneyFox_MoneyFox'
-      projectVersion: '$(Major).$(Minor).$(Build.BuildNumber)'
-      extraProperties: |
-        # Additional properties that will be passed to the scanner,
-        # Put one key=value per line, example:
-        # sonar.exclusions=**/*.bin
-        sonar.cs.opencover.reportsPaths=**/*.opencover.xml
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
@@ -144,9 +130,3 @@ jobs:
 
   - task: PublishBuildArtifacts@1
     displayName: 'Publish Artifact: drop'
-
-  - task: SonarSource.sonarcloud.ce096e50-6155-4de8-8800-4221aaeed4a1.SonarCloudAnalyze@1
-    displayName: 'Run Code Analysis'
-
-  - task: SonarSource.sonarcloud.38b27399-a642-40af-bb7d-9971f69712e8.SonarCloudPublish@1
-    displayName: 'Publish Quality Gate Result'

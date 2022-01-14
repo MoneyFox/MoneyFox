@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Shell x:Class="MoneyFox.AppShell"
        xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -17,7 +17,7 @@
        mc:Ignorable="d">
 
     <Shell.ItemTemplate>
-        <DataTemplate >
+        <DataTemplate>
             <Grid Style="{StaticResource FloutItemStyle}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.2*" />
@@ -34,7 +34,7 @@
     </Shell.ItemTemplate>
 
     <FlyoutItem Title="{x:Static resources:Strings.DashboardTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}" >
+                FlyoutIcon="{AppThemeBinding Dark=ic_dashboard_white, Light=ic_dashboard_black}">
         <Tab>
             <ShellContent>
                 <dashboard:DashboardPage />
@@ -52,7 +52,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.StatisticsTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_bar_chart_white, Light=ic_bar_chart_black}" >
+                FlyoutIcon="{AppThemeBinding Dark=ic_bar_chart_white, Light=ic_bar_chart_black}">
         <Tab>
             <ShellContent>
                 <statistic:StatisticSelectorPage />
@@ -61,7 +61,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.CategoriesTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_label_white, Light=ic_label_black}" >
+                FlyoutIcon="{AppThemeBinding Dark=ic_label_white, Light=ic_label_black}">
         <Tab>
             <ShellContent>
                 <category:CategoryListPage />
@@ -70,7 +70,7 @@
     </FlyoutItem>
 
     <FlyoutItem Title="{x:Static resources:Strings.BackupTitle}"
-                FlyoutIcon="{AppThemeBinding Dark=ic_backup_white, Light=ic_backup_black}" >
+                FlyoutIcon="{AppThemeBinding Dark=ic_backup_white, Light=ic_backup_black}">
         <Tab>
             <ShellContent>
                 <backup:BackupPage />
@@ -96,6 +96,7 @@
         </Tab>
     </FlyoutItem>
 
-    <ShellContent Route="WelcomePage" IsVisible="False" Shell.FlyoutBehavior="Disabled" ContentTemplate="{DataTemplate setup:WelcomePage}" />
+    <ShellContent Route="WelcomePage" IsVisible="False" Shell.FlyoutBehavior="Disabled"
+                  ContentTemplate="{DataTemplate setup:WelcomePage}" />
 
 </Shell>

@@ -6,7 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.Categories"
-    Title="{Binding Title}"
+    Title="{x:Bind ViewModel.Title}"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     PrimaryButtonCommand="{Binding SaveCommand}"
     PrimaryButtonText="{x:Bind resources:Strings.SaveLabel}"
@@ -18,20 +18,23 @@
             <StackPanel>
                 <userControls:ModifyCategoryUserControl />
 
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,12,0,0">
                     <TextBlock
-                        Margin="0,0,3,0"
                         Style="{StaticResource DeemphasizedLabelStyle}"
-                        Text="{x:Bind resources:Strings.CreationDateLabel}" />
-                    <TextBlock Text="{Binding SelectedCategory.CreationTime}" />
+                        Text="{x:Bind resources:Strings.CreationDateLabel}"
+                        Margin="0,0,2,0" />
+                    <TextBlock  Style="{StaticResource DeemphasizedLabelStyle}"
+                                Text="{x:Bind ViewModel.SelectedCategory.CreationTime, Mode=OneWay}" />
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
-                        Margin="0,0,3,0"
-                        Style="{StaticResource DeemphasizedLabelStyle}"
-                        Text="{x:Bind resources:Strings.ModificationDateLabel}" />
-                    <TextBlock Text="{Binding SelectedCategory.ModificationDate}" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,12,0,0">
+                    <TextBlock Style="{StaticResource DeemphasizedLabelStyle}"
+                               Text="{x:Bind resources:Strings.ModificationDateLabel}"
+                               Margin="0,0,2,0" />
+                    <TextBlock  Style="{StaticResource DeemphasizedLabelStyle}"
+                                Text="{x:Bind ViewModel.SelectedCategory.ModificationDate, Mode=OneWay}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

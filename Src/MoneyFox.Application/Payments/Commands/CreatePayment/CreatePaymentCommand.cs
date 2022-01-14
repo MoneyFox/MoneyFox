@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Domain.Entities;
 using MoneyFox.Domain.Exceptions;
 using NLog;
@@ -31,15 +31,15 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
             private readonly ISettingsFacade settingsFacade;
 
             public Handler(IContextAdapter contextAdapter,
-                           IBackupService backupService,
-                           ISettingsFacade settingsFacade)
+                IBackupService backupService,
+                ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
                 this.backupService = backupService;
                 this.settingsFacade = settingsFacade;
             }
 
-            /// <inheritdoc/>
+            /// <inheritdoc />
             public async Task<Unit> Handle(CreatePaymentCommand request, CancellationToken cancellationToken)
             {
                 contextAdapter.Context.Entry(request.PaymentToSave).State = EntityState.Added;
@@ -54,7 +54,8 @@ namespace MoneyFox.Application.Payments.Commands.CreatePayment
                 {
                     if(request.PaymentToSave.RecurringPayment == null)
                     {
-                        var exception = new RecurringPaymentNullException($"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
+                        var exception = new RecurringPaymentNullException(
+                            $"Recurring Payment for Payment {request.PaymentToSave.Id} is null, although payment is marked recurring.");
                         logger.Error(exception);
                         throw exception;
                     }

@@ -13,26 +13,28 @@ namespace MoneyFox.iOS
     // are preserved in the deployed app
     public class LinkerPleaseInclude
     {
-        public void Include(UIButton uiButton) => uiButton.TouchUpInside += (s, e) => uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
+        public void Include(UIButton uiButton) => uiButton.TouchUpInside += (s, e) =>
+            uiButton.SetTitle(uiButton.Title(UIControlState.Normal), UIControlState.Normal);
 
-        public void Include(UIBarButtonItem barButton) => barButton.Clicked += (s, e) => barButton.Title = $"{barButton.Title}";
+        public void Include(UIBarButtonItem barButton) =>
+            barButton.Clicked += (s, e) => barButton.Title = $"{barButton.Title}";
 
         public void Include(UITextField textField)
         {
             textField.Text = $"{textField.Text}";
             textField.EditingChanged += (sender, args) =>
-                                        {
-                                            textField.Text = string.Empty;
-                                        };
+            {
+                textField.Text = string.Empty;
+            };
         }
 
         public void Include(UITextView textView)
         {
             textView.Text = $"{textView.Text}";
             textView.Changed += (sender, args) =>
-                                {
-                                    textView.Text = string.Empty;
-                                };
+            {
+                textView.Text = string.Empty;
+            };
         }
 
         public void Include(UILabel label)
@@ -47,18 +49,18 @@ namespace MoneyFox.iOS
         {
             date.Date = date.Date.AddSeconds(1);
             date.ValueChanged += (sender, args) =>
-                                 {
-                                     date.Date = NSDate.DistantFuture;
-                                 };
+            {
+                date.Date = NSDate.DistantFuture;
+            };
         }
 
         public void Include(UISlider slider)
         {
             slider.Value += 1;
             slider.ValueChanged += (sender, args) =>
-                                   {
-                                       slider.Value = 1;
-                                   };
+            {
+                slider.Value = 1;
+            };
         }
 
         public void Include(UIProgressView progress) => progress.Progress += 1;
@@ -67,54 +69,48 @@ namespace MoneyFox.iOS
         {
             sw.On = !sw.On;
             sw.ValueChanged += (sender, args) =>
-                               {
-                                   sw.On = false;
-                               };
+            {
+                sw.On = false;
+            };
         }
 
         public void Include(UIStepper s)
         {
             s.Value += 1;
             s.ValueChanged += (sender, args) =>
-                              {
-                                  s.Value = 0;
-                              };
+            {
+                s.Value = 0;
+            };
         }
 
         public void Include(UIPageControl s)
         {
             s.Pages += 1;
             s.ValueChanged += (sender, args) =>
-                              {
-                                  s.Pages = 0;
-                              };
+            {
+                s.Pages = 0;
+            };
         }
 
-        public void Include(INotifyCollectionChanged changed)
-        {
+        public void Include(INotifyCollectionChanged changed) =>
             changed.CollectionChanged += (s, e) =>
-                                         {
-                                             string test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
-                                         };
-        }
+            {
+                string test = $"{e.Action}{e.NewItems}{e.NewStartingIndex}{e.OldItems}{e.OldStartingIndex}";
+            };
 
-        public void Include(ICommand command)
-        {
+        public void Include(ICommand command) =>
             command.CanExecuteChanged += (s, e) =>
-                                         {
-                                             if(command.CanExecute(null))
-                                             {
-                                                 command.Execute(null);
-                                             }
-                                         };
-        }
+            {
+                if(command.CanExecute(null))
+                {
+                    command.Execute(null);
+                }
+            };
 
-        public void Include(INotifyPropertyChanged changed)
-        {
+        public void Include(INotifyPropertyChanged changed) =>
             changed.PropertyChanged += (sender, e) =>
-                                       {
-                                           string test = e.PropertyName;
-                                       };
-        }
+            {
+                string test = e.PropertyName;
+            };
     }
 }

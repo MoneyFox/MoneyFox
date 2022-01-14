@@ -6,7 +6,7 @@
                  xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
                  Visual="Material"
                  CloseWhenBackgroundIsClicked="false"
-                 x:Class="MoneyFox.Presentation.Dialogs.FilterPopup">
+                 x:Class="MoneyFox.Views.Dialogs.FilterPopup">
 
     <!--You can set an animation in the xaml file or in the csharp code behind-->
     <pages:PopupPage.Animation>
@@ -23,13 +23,14 @@
     </pages:PopupPage.Animation>
 
     <ContentPage.Content>
-        <yummy:PancakeView BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
+        <yummy:PancakeView
+            BackgroundColor="{AppThemeBinding Dark={StaticResource CardBackgroundDark},
                                                              Light={StaticResource CardBackgroundLight}}"
-                           CornerRadius="10"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center"
-                           Padding="16"
-                           WidthRequest="300">
+            CornerRadius="10"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"
+            Padding="16"
+            WidthRequest="300">
             <!--You can use any elements here which are extended from Xamarin.Forms.View-->
             <StackLayout>
 

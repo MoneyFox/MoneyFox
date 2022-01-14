@@ -1,4 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage
     x:Class="MoneyFox.Views.Dashboard.DashboardPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
@@ -6,11 +7,11 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-    xmlns:theme="clr-namespace:MoneyFox"
     xmlns:viewmodels="clr-namespace:MoneyFox.ViewModels.Dashboard"
     xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     xmlns:converter="clr-namespace:MoneyFox.Converter"
-    xmlns:accounts="clr-namespace:MoneyFox.Ui.Shared.ViewModels.Accounts;assembly=MoneyFox.Ui.Shared"
+    xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
+    xmlns:accounts="clr-namespace:MoneyFox.ViewModels.Accounts;assembly=MoneyFox"
     mc:Ignorable="d">
 
     <ContentPage.Resources>
@@ -29,7 +30,7 @@
                 HeightRequest="44"
                 HorizontalOptions="End"
                 Style="{StaticResource PrimaryButton}"
-                Text="{x:Static theme:IconFont.Plus}"
+                Text="{x:Static styles:IconFont.Plus}"
                 TextColor="White"
                 VerticalOptions="Center"
                 WidthRequest="66" />
@@ -114,7 +115,9 @@
                                 <Grid Padding="10,15,10,15" WidthRequest="180">
 
                                     <Grid.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}" CommandParameter="{Binding .}" />
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.GoToTransactionListCommand, Source={x:Reference Name=AccountCollectionView}}"
+                                            CommandParameter="{Binding .}" />
                                     </Grid.GestureRecognizers>
 
 

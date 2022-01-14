@@ -3,7 +3,7 @@ using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using NSubstitute;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -50,7 +50,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             // Act
             decimal result =
                 await new GetIncludedAccountBalanceSummaryQuery.Handler(contextAdapter)
-                   .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
+                    .Handle(new GetIncludedAccountBalanceSummaryQuery(), default);
 
             // Assert
             result.Should().Be(220);

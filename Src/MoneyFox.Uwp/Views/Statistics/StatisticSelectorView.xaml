@@ -7,56 +7,46 @@
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
-                xmlns:designtime="using:MoneyFox.Presentation.ViewModels.DesignTime"
-                xmlns:models="using:MoneyFox.Ui.Shared.ViewModels.Statistics"
-                xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
                 xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-                mc:Ignorable="d" >
+                xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
+                xmlns:statistics="using:MoneyFox.Uwp.ViewModels.Statistics"
+                mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
-        <designtime:DesignTimeStatisticSelectorViewModel />
+        <designTime:DesignTimeStatisticSelectorViewModel />
     </d:MvxWindowsPage.DataContext>
 
     <Page.Resources>
         <converter:SelectedConverter x:Key="SelectedConverter" />
 
-        <DataTemplate x:Key="StatistcTypeTemplate" x:DataType="models:StatisticSelectorType">
-            <controls:DropShadowPanel
-                HorizontalContentAlignment="Stretch"
-                Margin="3,4,0,0"
-                BlurRadius="4.0"
-                ShadowOpacity="0.40">
-                <StackPanel Background="{ThemeResource ListItemBrush}"
-                            HorizontalAlignment="Stretch"
-                            Width="400"
-                            Height="60"
-                            CornerRadius="{StaticResource DefaultCornerRadius}"
-                            Padding="{StaticResource SmallListItemPadding}">
+        <DataTemplate x:Key="StatisticTypeTemplate" x:DataType="statistics:StatisticSelectorType">
+            <StackPanel Background="{ThemeResource ListItemBrush}"
+                        HorizontalAlignment="Stretch"
+                        Width="400"
+                        Height="60"
+                        CornerRadius="{StaticResource DefaultCornerRadius}"
+                        Padding="{StaticResource SmallListItemPadding}">
 
-                    <StackPanel Margin="{StaticResource MediumLeftRightMargin}" >
-                        <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                <StackPanel>
+                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
                                Text="{x:Bind Name}"
                                TextTrimming="CharacterEllipsis" />
-                        <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                    <TextBlock Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
                                Text="{x:Bind Description}"
                                TextWrapping="WrapWholeWords" />
-                    </StackPanel>
                 </StackPanel>
-            </controls:DropShadowPanel>
+            </StackPanel>
+
         </DataTemplate>
     </Page.Resources>
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True"
-          Margin="{StaticResource MediumLeftRightMargin}">
+          Style="{StaticResource AppGrid}">
 
-        <Grid.RowDefinitions>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-
-        <GridView ItemTemplate="{StaticResource StatistcTypeTemplate}"
+        <GridView Grid.Row="0"
+                  ItemTemplate="{StaticResource StatisticTypeTemplate}"
                   ItemsSource="{Binding StatisticItems}"
                   animations:ItemsReorderAnimation.Duration="0:0:0.2"
-                  Grid.Row="0"
                   Background="Transparent">
 
             <interactivity:Interaction.Behaviors>

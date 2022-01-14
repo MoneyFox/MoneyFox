@@ -1,5 +1,5 @@
-﻿using MoneyFox.Ui.Shared.ConverterLogic;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+﻿using MoneyFox.ConverterLogic;
+using MoneyFox.ViewModels.Payments;
 using System;
 using System.Globalization;
 using Xamarin.Forms;
@@ -20,6 +20,7 @@ namespace MoneyFox.Converter
             return PaymentAmountConverterLogic.GetAmountSign(payment);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => throw new NotSupportedException();
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) =>
+            throw new NotSupportedException();
     }
 }

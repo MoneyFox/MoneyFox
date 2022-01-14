@@ -14,17 +14,12 @@ namespace MoneyFox.Application.Tests.QueryObjects
         public void AreActive()
         {
             // Arrange
-            var accountQueryList = new List<Account>
-            {
-                new Account("Foo1"),
-                new Account("Foo2"),
-                new Account("absd")
-            };
+            var accountQueryList = new List<Account> {new Account("Foo1"), new Account("Foo2"), new Account("absd")};
 
             accountQueryList[1].Deactivate();
 
             // Act
-            var resultList = accountQueryList.AsQueryable().AreActive().ToList();
+            List<Account> resultList = accountQueryList.AsQueryable().AreActive().ToList();
 
             // Assert
             Assert.Equal(2, resultList.Count);

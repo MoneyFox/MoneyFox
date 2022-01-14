@@ -1,10 +1,11 @@
 ﻿<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-             x:Class="MoneyFox.Views.Statistics.StatisticAccountMonthlyCashflowPage"
+             x:Class="MoneyFox.Views.Statistics.StatisticAccountMonthlyCashFlowPage"
              xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
-             xmlns:theme="clr-namespace:MoneyFox"
-             Visual="Material" >
+             xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
+             xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
+             Visual="Material">
 
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,66">
@@ -17,7 +18,7 @@
                 FontSize="24"
                 HeightRequest="44"
                 WidthRequest="66"
-                Text="{x:Static theme:IconFont.Filter}"
+                Text="{x:Static styles:IconFont.Filter}"
                 VerticalOptions="Center"
                 TextColor="{AppThemeBinding Dark={StaticResource TextPrimaryColor_Dark}, Light={StaticResource TextPrimaryColor_Light}}"
                 Clicked="OpenFilterDialog" />
@@ -25,7 +26,7 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,0">
+        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,0" x:DataType="statistics:StatisticAccountMonthlyCashflowViewModel">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.MonthlyCashflowTitle}" />
 

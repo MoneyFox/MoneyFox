@@ -2,7 +2,7 @@
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -46,7 +46,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
 
             // Act
             List<Account> result =
-                await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(new GetIncludedAccountQuery(), default);
+                await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(
+                    new GetIncludedAccountQuery(),
+                    default);
 
             // Assert
             Assert.Single(result);
@@ -68,7 +70,9 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
 
             // Act
             List<Account> result =
-                await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(new GetIncludedAccountQuery(), default);
+                await new GetIncludedAccountQuery.Handler(contextAdapterMock.Object).Handle(
+                    new GetIncludedAccountQuery(),
+                    default);
 
             // Assert
             Assert.Single(result);

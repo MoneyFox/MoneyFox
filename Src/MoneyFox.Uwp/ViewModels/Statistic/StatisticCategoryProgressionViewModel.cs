@@ -1,15 +1,16 @@
 ﻿using AutoMapper;
-using GalaSoft.MvvmLight.Command;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microcharts;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common;
+using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
-using MoneyFox.Messages;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.ViewModels.Categories;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using MoneyFox.Uwp.Views.Payments;
 using SkiaSharp;
 using System;
@@ -20,7 +21,7 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>
-    /// Representation of the cash flow view.
+    ///     Representation of the cash flow view.
     /// </summary>
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
@@ -29,14 +30,28 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         private CategoryViewModel selectedCategory;
         private readonly IMapper mapper;
 
-        public StatisticCategoryProgressionViewModel(IMediator mediator,
-                                                     IMapper mapper) : base(mediator)
+        public StatisticCategoryProgressionViewModel(
+            IMediator mediator,
+            IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
-
             StartDate = DateTime.Now.AddYears(-1);
+        }
 
-            MessengerInstance.Register<CategorySelectedMessage>(this, async message => await ReceiveMessageAsync(message));
+        protected override void OnActivated()
+        {
+            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
+                this,
+                async (r, m) =>
+                {
+                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                    await r.LoadAsync();
+                });
+        }
+
+        protected override void OnDeactivated()
+        {
+            Messenger.Unregister<CategorySelectedMessage>(this);
         }
 
         public CategoryViewModel SelectedCategory
@@ -50,7 +65,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 selectedCategory = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -68,7 +83,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 chart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -86,29 +101,13 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 }
 
                 hasNoData = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
-
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(async ()
-             => await new SelectCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync());
-
-        public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedCategory = null);
-
-
-        private async Task ReceiveMessageAsync(CategorySelectedMessage message)
-        {
-            if(message == null)
-            {
-                return;
-            }
-
-            SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(message.CategoryId)));
-            await LoadAsync();
-        }
-
+        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
+            async ()
+                => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
 
         protected override async Task LoadAsync()
         {
@@ -118,23 +117,30 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 return;
             }
 
-            IImmutableList<StatisticEntry> statisticItems = await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory?.Id ?? 0, StartDate, EndDate));
+            IImmutableList<StatisticEntry> statisticItems =
+                await Mediator.Send(new GetCategoryProgressionQuery(SelectedCategory.Id, StartDate, EndDate));
 
             HasNoData = !statisticItems.Any();
 
             Chart = new BarChart
             {
-                Entries = statisticItems.Select(x => new ChartEntry((float)x.Value)
-                {
-                    Label = x.Label,
-                    ValueLabel = x.ValueLabel,
-                    Color = SKColor.Parse(x.Color),
-                    ValueLabelColor = SKColor.Parse(x.Color)
-                }).ToList(),
-                BackgroundColor = ChartOptions.BackgroundColor,
+                Entries = statisticItems.Select(
+                                            x => new ChartEntry((float)x.Value)
+                                            {
+                                                Label = x.Label,
+                                                ValueLabel = x.ValueLabel,
+                                                Color = SKColor.Parse(x.Color),
+                                                ValueLabelColor = SKColor.Parse(x.Color)
+                                            })
+                                        .ToList(),
+                BackgroundColor = new SKColor(
+                    ChartOptions.BackgroundColor.R,
+                    ChartOptions.BackgroundColor.G,
+                    ChartOptions.BackgroundColor.B,
+                    ChartOptions.BackgroundColor.A),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,
-                Typeface = ChartOptions.TypeFace
+                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
             };
         }
     }

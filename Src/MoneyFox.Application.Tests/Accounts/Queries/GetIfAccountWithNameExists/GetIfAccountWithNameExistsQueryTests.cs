@@ -3,7 +3,7 @@ using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -50,7 +50,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetIfAccountWithNameExists
             // Act
             bool result =
                 await new GetIfAccountWithNameExistsQuery.Handler(contextAdapterMock.Object)
-                   .Handle(new GetIfAccountWithNameExistsQuery(name), default);
+                    .Handle(new GetIfAccountWithNameExistsQuery(name), default);
 
             // Assert
             result.Should().Be(expectedResult);

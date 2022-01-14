@@ -10,8 +10,8 @@
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views" xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments" xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+    xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments"
+    xmlns:winUi="using:Microsoft.UI.Xaml.Controls"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
 
@@ -26,7 +26,6 @@
     </interactivity:Interaction.Behaviors>
 
     <Page.Resources>
-        <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converter:DateTimeToDateTimeOffsetConverter x:Key="DateTimeToDateTimeOffsetConverter" />
         <converter:DateTimeToStringConverter x:Key="DateTimeToStringConverter" />
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
@@ -35,46 +34,50 @@
 
         <Flyout x:Key="FilterFlyout" Placement="LeftEdgeAlignedTop">
             <StackPanel Spacing="6">
-                <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}" IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}" IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}" IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
-                <CalendarDatePicker Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                        FirstDayOfWeek="Monday"
-                                        Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
-                <CalendarDatePicker Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                                        FirstDayOfWeek="Monday"
-                                        Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
+                <CheckBox Content="{x:Bind resources:Strings.IsGroupedLabel}"
+                          IsChecked="{Binding IsGrouped, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CheckBox Content="{x:Bind resources:Strings.ClearedFilterLabel}"
+                          IsChecked="{Binding IsClearedFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CheckBox Content="{x:Bind resources:Strings.IsRecurringFilterLabel}"
+                          IsChecked="{Binding IsRecurringFilterActive, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <CalendarDatePicker
+                    Date="{Binding TimeRangeStart, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    FirstDayOfWeek="Monday"
+                    Header="{x:Bind resources:Strings.TimeRangeStartLabel}" />
+                <CalendarDatePicker
+                    Date="{Binding TimeRangeEnd, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    FirstDayOfWeek="Monday"
+                    Header="{x:Bind resources:Strings.TimeRangeEndLabel}" />
                 <Button Content="{x:Bind resources:Strings.ApplyFilterLabel}" Command="{Binding ApplyFilterCommand}" />
             </StackPanel>
         </Flyout>
 
     </Page.Resources>
 
-    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True" >
+    <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="60" />
             <RowDefinition Height="60" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
         <TextBlock Text="{Binding Title}"
                    Grid.Row="0"
                    Style="{StaticResource UwpPageTitleStyle}" />
 
-        <CommandBar
+        <winUi:NavigationViewItem
             Grid.Row="0"
             DataContext="{Binding ViewActionViewModel}"
-            OverflowButtonVisibility="Collapsed"
-            DefaultLabelPosition="Right"
-            Style="{ThemeResource DefaultCommandBar}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton
-                    Click="OpenFilterFlyout"
-                    FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
-                    Icon="Filter"
-                    Label="{x:Bind resources:Strings.FilterLabel}" />
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
+            Padding="0,0,10,0"
+            HorizontalAlignment="Right"
+            FlyoutBase.AttachedFlyout="{StaticResource FilterFlyout}"
+            Content="{x:Bind resources:Strings.FilterLabel}"
+            Foreground="{ThemeResource AppForegroundPrimaryBrush}"
+            Tapped="OpenFilterFlyout">
+            <winUi:NavigationViewItem.Icon>
+                <SymbolIcon Symbol="Filter" />
+            </winUi:NavigationViewItem.Icon>
+        </winUi:NavigationViewItem>
 
         <userControls:BalanceControl
             Grid.Row="1"
@@ -88,7 +91,7 @@
                            LoadingRowGroup="DataGrid_LoadingRowGroup"
                            DoubleTapped="DataGrid_DoubleTapped"
                            IsReadOnly="True"
-                           Margin="{StaticResource NegativeMediumLeftRightMargin}"
+                           Margin="-80,0,-80,0"
                            RowGroupHeaderPropertyNameAlternative="{x:Bind resources:Strings.DateRangeHeader}">
 
             <controls:DataGrid.RowStyle>
@@ -104,19 +107,29 @@
             </controls:DataGrid.RowStyle>
 
             <controls:DataGrid.Columns>
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}" Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.PaymentTypeLabel}" Binding="{Binding Type, Converter={StaticResource PaymentTypeToStringConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}" Binding="{Binding Converter={StaticResource PaymentAmountConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.TargetAccountLabel}" Binding="{Binding TargetAccount.Name}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.DateLabel}"
+                                             Binding="{Binding Date, Converter={StaticResource DateTimeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.PaymentTypeLabel}"
+                                             Binding="{Binding Type, Converter={StaticResource PaymentTypeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.AmountLabel}"
+                                             Binding="{Binding Converter={StaticResource PaymentAmountConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.TargetAccountLabel}"
+                                             Binding="{Binding TargetAccount.Name}" />
 
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}" Binding="{Binding Category.Name}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CategoryLabel}"
+                                             Binding="{Binding Category.Name}" />
 
-                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsClearedLabel}" Binding="{Binding IsCleared}" />
-                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}" Binding="{Binding IsRecurring}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}" Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
+                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsClearedLabel}"
+                                                 Binding="{Binding IsCleared}" />
+                <controls:DataGridCheckBoxColumn Header="{x:Bind resources:Strings.IsRecurringLabel}"
+                                                 Binding="{Binding IsRecurring}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.RecurrenceLabel}"
+                                             Binding="{Binding RecurringPayment.Recurrence, Converter={StaticResource RecurrenceTypeConverter}}" />
 
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ModificationDateHeader}" Binding="{Binding ModificationDate, Converter={StaticResource DateTimeToStringConverter}}" />
-                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CreationDateHeader}" Binding="{Binding CreationTime, Converter={StaticResource DateTimeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.ModificationDateHeader}"
+                                             Binding="{Binding ModificationDate, Converter={StaticResource DateTimeToStringConverter}}" />
+                <controls:DataGridTextColumn Header="{x:Bind resources:Strings.CreationDateHeader}"
+                                             Binding="{Binding CreationTime, Converter={StaticResource DateTimeToStringConverter}}" />
             </controls:DataGrid.Columns>
 
         </controls:DataGrid>

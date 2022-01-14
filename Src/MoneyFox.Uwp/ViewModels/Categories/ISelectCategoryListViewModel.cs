@@ -1,10 +1,8 @@
-﻿using MoneyFox.Ui.Shared.ViewModels.Categories;
-
-#nullable enable
+﻿#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Categories
 {
     /// <summary>
-    /// Represents the SelectCategoryListView
+    ///     Represents the SelectCategoryListView
     /// </summary>
     public interface ISelectCategoryListViewModel
     {

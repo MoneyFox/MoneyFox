@@ -4,7 +4,7 @@ using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -51,7 +51,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
 
             // Act
             List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
+                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)),
+                default);
 
             // Assert
             result.First().Id.Should().Be(payment1.Id);
@@ -71,7 +72,8 @@ namespace MoneyFox.Application.Tests.Payments.Query.GetPaymentsForAccountId
 
             // Act
             List<Payment> result = await new GetPaymentsForAccountIdQuery.Handler(contextAdapterMock.Object).Handle(
-                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)), default);
+                new GetPaymentsForAccountIdQuery(account.Id, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1)),
+                default);
 
             // Assert
             result.First().Id.Should().Be(payment2.Id);

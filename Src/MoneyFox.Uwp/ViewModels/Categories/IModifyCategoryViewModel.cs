@@ -1,5 +1,4 @@
-﻿using MoneyFox.Ui.Shared.Commands;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
+﻿using CommunityToolkit.Mvvm.Input;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Categories
@@ -7,17 +6,17 @@ namespace MoneyFox.Uwp.ViewModels.Categories
     public interface IModifyCategoryViewModel
     {
         /// <summary>
-        /// Saves changes to a CategoryViewModel
+        ///     Saves changes to a CategoryViewModel
         /// </summary>
-        AsyncCommand SaveCommand { get; }
+        AsyncRelayCommand SaveCommand { get; }
 
         /// <summary>
-        /// Cancel the current operation
+        ///     Cancel the current operation
         /// </summary>
-        AsyncCommand CancelCommand { get; }
+        AsyncRelayCommand CancelCommand { get; }
 
         /// <summary>
-        /// Selected category.
+        ///     Selected category.
         /// </summary>
         CategoryViewModel? SelectedCategory { get; }
     }

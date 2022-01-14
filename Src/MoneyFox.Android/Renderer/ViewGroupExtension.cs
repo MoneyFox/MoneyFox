@@ -8,7 +8,7 @@ namespace MoneyFox.Droid.Renderer
     public static class ViewGroupExtension
     {
         internal static IEnumerable<T> GetChildrenOfType<T>(this AViewGroup self)
-                                       where T : AView
+            where T : AView
         {
             for(int i = 0; i < self.ChildCount; i++)
             {
@@ -17,7 +17,6 @@ namespace MoneyFox.Droid.Renderer
                 {
                     continue;
                 }
-
 
                 if(child is T typedChild)
                 {

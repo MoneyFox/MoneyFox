@@ -7,12 +7,10 @@ namespace MoneyFox.Converter
 {
     public class DecimalConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value is decimal
-                ? ((decimal)value).ToString(CultureHelper.CurrentLocale)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>
+            value is decimal decimalValue
+                ? decimalValue.ToString(CultureHelper.CurrentLocale)
                 : value;
-        }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -20,6 +18,7 @@ namespace MoneyFox.Converter
             {
                 return dec;
             }
+
             return value;
         }
     }

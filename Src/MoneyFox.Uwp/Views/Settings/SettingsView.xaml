@@ -9,8 +9,7 @@
     xmlns:helpers="using:MoneyFox.Uwp.Helpers"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
     <Page.Resources>
         <helpers:StringMatchConverter x:Key="EnumToBooleanConverter" />
@@ -22,59 +21,58 @@
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
 
-    <Grid>
-        <ScrollViewer Margin="0,0,-10,0">
-            <StackPanel Margin="0,0,20,0">
+    <ScrollViewer Margin="{StaticResource SmallMargin}">
+        <StackPanel>
 
-                <!-- Regional Settings -->
+            <!-- Regional Settings -->
+            <StackPanel>
+                <TextBlock
+                    Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
+                    Text="{x:Bind resources:Strings.DefaultRegionText}"
+                    TextWrapping="WrapWholeWords" />
+
+                <ComboBox
+                    HorizontalAlignment="Stretch"
+                    DisplayMemberPath="DisplayName"
+                    Header="{x:Bind resources:Strings.DefaultRegionHeader}"
+                    ItemsSource="{x:Bind ViewModel.AvailableCultures}"
+                    SelectedItem="{Binding SelectedCulture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+            </StackPanel>
+
+            <!-- Personalizations -->
+            <StackPanel Margin="{StaticResource LargeTopMargin}">
+                <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
+                           Text="{x:Bind resources:Strings.PersonalizationTitle}"
+                           TextWrapping="WrapWholeWords" />
+
                 <StackPanel>
-                    <TextBlock
-                        Style="{StaticResource DeemphasizedBodyTextBlockStyle}"
-                        Text="{x:Bind resources:Strings.DefaultRegionText}"
-                        TextWrapping="WrapWholeWords" />
-
-                    <ComboBox
-                        HorizontalAlignment="Stretch"
-                        DisplayMemberPath="DisplayName"
-                        Header="{x:Bind resources:Strings.DefaultRegionHeader}"
-                        ItemsSource="{x:Bind ViewModel.AvailableCultures}"
-                        SelectedItem="{Binding SelectedCulture, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                </StackPanel>
-
-                <!-- Personalizations -->
-                <StackPanel Margin="{StaticResource LargeTopMargin}">
-                    <TextBlock Style="{ThemeResource CustomSubtitleTextBlockStyle}"
-                               Text="{x:Bind resources:Strings.PersonalizationTitle}"
-                               TextWrapping="WrapWholeWords" />
-
-                    <StackPanel>
-                        <RadioButton
-                            Content="{x:Bind resources:Strings.LightLabel}"
-                            GroupName="AppTheme"
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
-                            Command="{Binding SwitchThemeCommand}"
-                            FontSize="15">
-                            <RadioButton.CommandParameter>Light</RadioButton.CommandParameter>
-                        </RadioButton>
-                        <RadioButton
-                            Content="{x:Bind resources:Strings.DarkLabel}"
-                            GroupName="AppTheme"
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
-                            Command="{Binding SwitchThemeCommand}"
-                            FontSize="15">
-                            <RadioButton.CommandParameter>Dark</RadioButton.CommandParameter>
-                        </RadioButton>
-                        <RadioButton
-                            Content="{x:Bind resources:Strings.WindowsDefaultLabel}"
-                            GroupName="AppTheme"
-                            IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
-                            Command="{Binding SwitchThemeCommand}"
-                            FontSize="15">
-                            <RadioButton.CommandParameter>Default</RadioButton.CommandParameter>
-                        </RadioButton>
-                    </StackPanel>
+                    <RadioButton
+                        Content="{x:Bind resources:Strings.LightLabel}"
+                        GroupName="AppTheme"
+                        IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}"
+                        Command="{Binding SwitchThemeCommand}"
+                        FontSize="15">
+                        <RadioButton.CommandParameter>Light</RadioButton.CommandParameter>
+                    </RadioButton>
+                    <RadioButton
+                        Content="{x:Bind resources:Strings.DarkLabel}"
+                        GroupName="AppTheme"
+                        IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}"
+                        Command="{Binding SwitchThemeCommand}"
+                        FontSize="15">
+                        <RadioButton.CommandParameter>Dark</RadioButton.CommandParameter>
+                    </RadioButton>
+                    <RadioButton
+                        Content="{x:Bind resources:Strings.WindowsDefaultLabel}"
+                        GroupName="AppTheme"
+                        IsChecked="{Binding ElementTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Default, Mode=OneWay}"
+                        Command="{Binding SwitchThemeCommand}"
+                        FontSize="15">
+                        <RadioButton.CommandParameter>Default</RadioButton.CommandParameter>
+                    </RadioButton>
                 </StackPanel>
             </StackPanel>
-        </ScrollViewer>
-    </Grid>
+        </StackPanel>
+    </ScrollViewer>
+
 </views:BaseView>

@@ -28,7 +28,8 @@ namespace MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm
                 this.contextAdapter = contextAdapter;
             }
 
-            public async Task<List<Category>> Handle(GetCategoryBySearchTermQuery request, CancellationToken cancellationToken)
+            public async Task<List<Category>> Handle(GetCategoryBySearchTermQuery request,
+                CancellationToken cancellationToken)
             {
                 IOrderedQueryable<Category> categoriesQuery = contextAdapter.Context
                                                                             .Categories

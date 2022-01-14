@@ -3,7 +3,6 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
-    <CodeAnalysisRuleSet>MoneyFox.ruleset</CodeAnalysisRuleSet>
     <LangVersion>8.0</LangVersion>
     <nullable>enable</nullable>
   </PropertyGroup>
@@ -30,28 +29,32 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.534" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.2.0.562" />
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="7.1.2" />
+    <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
     <PackageReference Include="Microcharts.Forms" Version="0.9.5.9" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.4.0" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="MvvmLightStd10" Version="5.4.1.2" />
     <PackageReference Include="PCLAppConfig" Version="1.0.1" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.14" />
+    <PackageReference Include="SonarAnalyzer.CSharp" Version="8.33.0.40503">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="2.3.0.759" />
-    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2196" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.29.0" />
-    <PackageReference Include="NLog" Version="4.7.12" />
+    <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2291" />
+    <PackageReference Include="NLog" Version="4.7.13" />
     <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
-    <ProjectReference Include="..\MoneyFox.Persistence\MoneyFox.Persistence.csproj" />
-    <ProjectReference Include="..\MoneyFox.Ui.Shared\MoneyFox.Ui.Shared.csproj" />
+    <ProjectReference Include="..\MoneyFox.Mobile.Infrastructure\MoneyFox.Mobile.Infrastructure.csproj" />
+    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -124,7 +127,7 @@
     <EmbeddedResource Update="Views\Statistics\PaymentForCategoryListPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml">
+    <EmbeddedResource Update="Views\Statistics\StatisticAccountMonthlyCashFlowPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Statistics\StatisticCashFlowPage.xaml">
@@ -150,7 +153,7 @@
       <DependentUpon>StatisticCategoryProgressionPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Statistics\StatisticAccountMonthlyCashflowPage.xaml.cs">
-      <DependentUpon>StatisticAccountMonthlyCashflowPage.xaml</DependentUpon>
+      <DependentUpon>StatisticAccountMonthlyCashFlowPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 </Project>

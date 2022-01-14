@@ -3,7 +3,7 @@ using MoneyFox.Application.Accounts.Queries.GetAccountCount;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using NSubstitute;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -45,7 +45,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
             await context.SaveChangesAsync();
 
             // Act
-            int result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
+            int result =
+                await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
 
             // Assert
             result.Should().Be(2);
@@ -64,7 +65,8 @@ namespace MoneyFox.Application.Tests.Accounts.Queries.GetAccountCount
             await context.SaveChangesAsync();
 
             // Act
-            int result = await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
+            int result =
+                await new GetAccountCountQuery.Handler(contextAdapter).Handle(new GetAccountCountQuery(), default);
 
             // Assert
             result.Should().Be(1);

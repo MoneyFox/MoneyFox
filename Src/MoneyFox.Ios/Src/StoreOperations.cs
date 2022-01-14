@@ -1,12 +1,12 @@
 ﻿using MoneyFox.Application.Common.Interfaces;
 using StoreKit;
 
-namespace MoneyFox.iOS.Src
+namespace MoneyFox.iOS
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public class StoreOperations : IStoreOperations
     {
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public void RateApp() => SKStoreReviewController.RequestReview();
     }
 }

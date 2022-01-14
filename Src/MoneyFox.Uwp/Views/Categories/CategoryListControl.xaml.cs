@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Common;
-using MoneyFox.Ui.Shared.ViewModels.Categories;
+﻿#nullable enable
+using MoneyFox.Application.Common;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System;
 using Windows.UI.Xaml;
@@ -7,11 +7,12 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Input;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Categories
 {
     public partial class CategoryListControl
     {
+        private AbstractCategoryListViewModel ViewModel => (AbstractCategoryListViewModel)DataContext;
+
         public CategoryListControl()
         {
             InitializeComponent();
@@ -47,10 +48,9 @@ namespace MoneyFox.Uwp.Views.Categories
             {
                 return;
             }
-            ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category).FireAndForgetSafeAsync();
-        }
 
-        private void SearchTextBox_OnTextChanged(object sender, TextChangedEventArgs e)
-            => ((AbstractCategoryListViewModel)DataContext).SearchCommand.ExecuteAsync(SearchTextBox.Text).FireAndForgetSafeAsync();
+            ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category)
+                                                        .FireAndForgetSafeAsync();
+        }
     }
 }

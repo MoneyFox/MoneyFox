@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
 using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -56,9 +56,10 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
 
             // Act
             account.UpdateAccount("foo");
-            await new UpdateAccountCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
+            await new UpdateAccountCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
                 .Handle(new UpdateAccountCommand(account), default);
 
             Account loadedAccount = await context.Accounts.FindAsync(account.Id);
@@ -77,9 +78,10 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.UpdateAccount
 
             // Act
             account.UpdateAccount("foo");
-            await new UpdateAccountCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
+            await new UpdateAccountCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
                 .Handle(new UpdateAccountCommand(account), default);
 
             _ = await context.Accounts.FindAsync(account.Id);

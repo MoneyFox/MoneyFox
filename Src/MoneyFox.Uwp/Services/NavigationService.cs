@@ -1,26 +1,18 @@
-﻿using System;
+﻿#nullable enable
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml.Controls;
 
-#nullable enable
 namespace MoneyFox.Uwp.Services
 {
     public class NavigationService : INavigationService
     {
-        private static readonly ConcurrentDictionary<Type, Type> viewModelMap = new ConcurrentDictionary<Type, Type>();
-
-        static NavigationService()
-        {
-            MainViewId = ApplicationView.GetForCurrentView().Id;
-        }
-
-        public static int MainViewId { get; }
-
+        private static readonly ConcurrentDictionary<Type, Type> ViewModelMap = new ConcurrentDictionary<Type, Type>();
+        
         public static void Register<TViewModel, TView>() where TView : Page
         {
-            if(!viewModelMap.TryAdd(typeof(TViewModel), typeof(TView)))
+            if(!ViewModelMap.TryAdd(typeof(TViewModel), typeof(TView)))
             {
                 throw new InvalidOperationException($"ViewModel already registered '{typeof(TViewModel).FullName}'");
             }
@@ -30,20 +22,22 @@ namespace MoneyFox.Uwp.Services
 
         public static Type GetView(Type viewModel)
         {
-            if(viewModelMap.TryGetValue(viewModel, out Type view))
+            if(ViewModelMap.TryGetValue(viewModel, out Type view))
             {
                 return view;
             }
+
             throw new InvalidOperationException($"View not registered for ViewModel '{viewModel.FullName}'");
         }
 
         public static Type GetViewModel(Type view)
         {
-            Type? type = viewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
+            Type? type = ViewModelMap.Where(r => r.Value == view).Select(r => r.Key).FirstOrDefault();
             if(type == null)
             {
                 throw new InvalidOperationException($"View not registered for ViewModel '{view.FullName}'");
             }
+
             return type;
         }
 
@@ -69,6 +63,7 @@ namespace MoneyFox.Uwp.Services
                 Frame.GoForward();
                 return true;
             }
+
             return false;
         }
 
@@ -82,6 +77,7 @@ namespace MoneyFox.Uwp.Services
             {
                 throw new InvalidOperationException("Navigation frame not initialized.");
             }
+
             return Frame.Navigate(GetView(viewModelType), parameter);
         }
     }

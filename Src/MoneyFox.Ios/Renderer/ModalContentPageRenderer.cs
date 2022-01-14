@@ -29,11 +29,13 @@ namespace MoneyFox.iOS.Renderer
             }
 
             // Sort the list
-            ToolbarList.Sort((i1, i2) =>
-            {
-                return i1.Priority > i2.Priority
-                    ? -1 : 1;
-            });
+            ToolbarList.Sort(
+                (i1, i2) =>
+                {
+                    return i1.Priority > i2.Priority
+                        ? -1
+                        : 1;
+                });
 
             foreach(ToolbarItem itm in ToolbarList)
             {

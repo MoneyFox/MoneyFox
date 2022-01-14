@@ -1,10 +1,10 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.ViewModels.Statistics;
+using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace MoneyFox.Uwp.ViewModels.Statistic
 {
     /// <summary>
-    /// Representation of the category Spreading View
+    ///     Representation of the category Spreading View
     /// </summary>
     public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
     {
@@ -27,7 +27,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             this.settingsFacade = settingsFacade;
         }
 
-        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
+        public List<PaymentType> PaymentTypes => new List<PaymentType> {PaymentType.Expense, PaymentType.Income};
 
         public PaymentType SelectedPaymentType
         {
@@ -38,8 +38,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 {
                     return;
                 }
+
                 selectedPaymentType = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -55,8 +56,9 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 {
                     return;
                 }
+
                 statisticItems = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
@@ -65,29 +67,32 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
         /// </summary>
         public int NumberOfCategoriesToShow
         {
-            get => this.settingsFacade.CategorySpreadingNumber;
+            get => settingsFacade.CategorySpreadingNumber;
             set
             {
-                if(this.settingsFacade.CategorySpreadingNumber == value)
+                if(settingsFacade.CategorySpreadingNumber == value)
                 {
                     return;
                 }
-                this.settingsFacade.CategorySpreadingNumber = value;
-                RaisePropertyChanged();
+
+                settingsFacade.CategorySpreadingNumber = value;
+                OnPropertyChanged();
             }
         }
 
         public RelayCommand LoadDataCommand => new RelayCommand(async () => await LoadAsync());
 
         /// <summary>
-        /// Set a custom CategorySpreadingModel with the set Start and End date
+        ///     Set a custom CategorySpreadingModel with the set Start and End date
         /// </summary>
         protected override async Task LoadAsync()
         {
-            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(new GetCategorySpreadingQuery(StartDate,
-                                                                                                                    EndDate,
-                                                                                                                    SelectedPaymentType,
-                                                                                                                    NumberOfCategoriesToShow));
+            IEnumerable<StatisticEntry> statisticEntries = await Mediator.Send(
+                new GetCategorySpreadingQuery(
+                    StartDate,
+                    EndDate,
+                    SelectedPaymentType,
+                    NumberOfCategoriesToShow));
 
             statisticEntries.ToList().ForEach(x => x.Label = $"{x.Label} ({x.ValueLabel})");
 

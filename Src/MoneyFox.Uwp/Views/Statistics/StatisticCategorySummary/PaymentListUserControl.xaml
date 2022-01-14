@@ -5,8 +5,7 @@
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:toolkit="using:Microsoft.Toolkit.Uwp.UI.Controls"
-    xmlns:viewModels="using:MoneyFox.Ui.Shared.ViewModels.Payments"
+    xmlns:payments="using:MoneyFox.Uwp.ViewModels.Payments"
     x:Name="PaymentControl"
     d:DesignHeight="300"
     d:DesignWidth="400"
@@ -16,7 +15,7 @@
         <converter:PaymentAmountConverter x:Key="PaymentAmountConverter" />
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-        <DataTemplate x:Key="GroupHeaderTemplate" >
+        <DataTemplate x:Key="GroupHeaderTemplate">
             <Border Padding="3" Background="Transparent">
                 <TextBlock
                     HorizontalAlignment="Left"
@@ -48,17 +47,17 @@
             Source="{x:Bind ViewModel.Source}" />
     </UserControl.Resources>
 
-    <SemanticZoom Grid.Row="1">
+    <SemanticZoom Margin="16,0,0,0">
         <SemanticZoom.ZoomedInView>
             <ListView
-                x:Name="PaymentListView"
                 Background="Transparent"
                 IsItemClickEnabled="False"
                 ItemsSource="{Binding Source={StaticResource Groups}}"
                 SelectionMode="None">
 
                 <ListView.GroupStyle>
-                    <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}" HidesIfEmpty="True" />
+                    <GroupStyle HeaderTemplate="{StaticResource GroupHeaderTemplate}"
+                                HidesIfEmpty="True" />
                 </ListView.GroupStyle>
 
                 <ListView.ItemContainerStyle>
@@ -70,20 +69,17 @@
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Margin="0,0,0,30" Padding="{StaticResource SmallListItemPadding}" >
+                        <StackPanel Margin="0,0,0,30" Padding="{StaticResource SmallListItemPadding}">
 
                             <TextBlock
-                                Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                 Style="{ThemeResource HeaderStyle}"
                                 Text="{Binding Key}" />
 
                             <TextBlock
-                                Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                 Style="{ThemeResource DeemphasizedLabelStyle}"
                                 Text="{Binding Subtitle}" />
 
                             <ListView
-                                Margin="{StaticResource NegativeMediumLeftRightMargin}"
                                 HorizontalAlignment="Stretch"
                                 Background="Transparent"
                                 IsItemClickEnabled="True"
@@ -100,75 +96,74 @@
                                 </ListView.ItemContainerStyle>
 
                                 <ListView.ItemTemplate>
-                                    <DataTemplate x:DataType="viewModels:PaymentViewModel">
-                                        <toolkit:DropShadowPanel
-                                            HorizontalContentAlignment="Stretch"
-                                            Margin="0,2,0,2"
-                                            BlurRadius="4.0"
-                                            ShadowOpacity="0.40">
-                                            <Grid
-                                                MinWidth="100"
-                                                CornerRadius="{StaticResource DefaultCornerRadius}"
-                                                Padding="{StaticResource SmallListItemPadding}"
-                                                HorizontalAlignment="Stretch"
-                                                Background="{ThemeResource ListItemBrush}">
+                                    <DataTemplate x:DataType="payments:PaymentViewModel">
+                                        <Grid Style="{StaticResource AppGrid}"
+                                            MinWidth="100"
+                                            CornerRadius="{StaticResource DefaultCornerRadius}"
+                                            Padding="{StaticResource SmallListItemPadding}"
+                                            HorizontalAlignment="Stretch"
+                                            Background="{ThemeResource ListItemBrush}">
 
-                                                <Grid Margin="{StaticResource MediumLeftRightMargin}">
-                                                    <StackPanel VerticalAlignment="Center" Orientation="Vertical" >
-                                                        <TextBlock HorizontalAlignment="Stretch" Text="{x:Bind Category.Name}" />
-                                                        <TextBlock
-                                                            MaxWidth="150"
-                                                            MaxLines="1"
-                                                            Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
-                                                            Text="{x:Bind Note}"
-                                                            TextTrimming="CharacterEllipsis" />
+                                            <Grid Margin="{StaticResource MediumLeftRightMargin}">
+                                                <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+                                                    <TextBlock HorizontalAlignment="Stretch"
+                                                               Text="{x:Bind Category.Name}" />
+                                                    <TextBlock
+                                                        MaxWidth="150"
+                                                        MaxLines="1"
+                                                        Style="{ThemeResource DeemphasizedBodyTextBlockStyle}"
+                                                        Text="{x:Bind Note}"
+                                                        TextTrimming="CharacterEllipsis" />
+                                                </StackPanel>
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
+                                                    <TextBlock
+                                                        Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
+
+                                                    <StackPanel HorizontalAlignment="Right"
+                                                                Orientation="Horizontal">
+                                                        <Grid HorizontalAlignment="Right"
+                                                              Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                                            <Viewbox MaxWidth="15" MaxHeight="15">
+                                                                <SymbolIcon
+                                                                    Width="20"
+                                                                    Height="20"
+                                                                    HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"
+                                                                    Symbol="Switch" />
+                                                            </Viewbox>
+
+                                                        </Grid>
+                                                        <Grid
+                                                            Margin="6,0,0,0"
+                                                            HorizontalAlignment="Right"
+                                                            Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                                            <Viewbox MaxWidth="15" MaxHeight="15">
+                                                                <SymbolIcon
+                                                                    HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"
+                                                                    Symbol="Reshare" />
+                                                            </Viewbox>
+
+                                                        </Grid>
+                                                        <Grid
+                                                            Margin="6,0,0,0"
+                                                            HorizontalAlignment="Right"
+                                                            Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                                                            <Viewbox MaxWidth="15" MaxHeight="15">
+                                                                <SymbolIcon
+                                                                    HorizontalAlignment="Center"
+                                                                    VerticalAlignment="Center"
+                                                                    Symbol="Accept" />
+                                                            </Viewbox>
+                                                        </Grid>
                                                     </StackPanel>
-                                                    <StackPanel HorizontalAlignment="Right" Orientation="Vertical">
-                                                        <TextBlock Text="{Binding Converter={StaticResource PaymentAmountConverter}, ConverterParameter={Binding AccountId, ElementName=PaymentControl}}" />
-
-                                                        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
-                                                            <Grid HorizontalAlignment="Right" Visibility="{x:Bind IsTransfer, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                                                                <Viewbox MaxWidth="15" MaxHeight="15">
-                                                                    <SymbolIcon
-                                                                        Width="20"
-                                                                        Height="20"
-                                                                        HorizontalAlignment="Center"
-                                                                        VerticalAlignment="Center"
-                                                                        Symbol="Switch" />
-                                                                </Viewbox>
-
-                                                            </Grid>
-                                                            <Grid
-                                                                Margin="6,0,0,0"
-                                                                HorizontalAlignment="Right"
-                                                                Visibility="{x:Bind IsRecurring, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                                                                <Viewbox MaxWidth="15" MaxHeight="15">
-                                                                    <SymbolIcon
-                                                                        HorizontalAlignment="Center"
-                                                                        VerticalAlignment="Center"
-                                                                        Symbol="Reshare" />
-                                                                </Viewbox>
-
-                                                            </Grid>
-                                                            <Grid
-                                                                Margin="6,0,0,0"
-                                                                HorizontalAlignment="Right"
-                                                                Visibility="{x:Bind IsCleared, Converter={StaticResource BooleanToVisibilityConverter}}">
-
-                                                                <Viewbox MaxWidth="15" MaxHeight="15">
-                                                                    <SymbolIcon
-                                                                        HorizontalAlignment="Center"
-                                                                        VerticalAlignment="Center"
-                                                                        Symbol="Accept" />
-                                                                </Viewbox>
-                                                            </Grid>
-                                                        </StackPanel>
-                                                    </StackPanel>
-                                                </Grid>
+                                                </StackPanel>
                                             </Grid>
-                                        </toolkit:DropShadowPanel>
+                                        </Grid>
+
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>

@@ -1,4 +1,4 @@
-﻿using MoneyFox.Persistence;
+﻿using MoneyFox.Infrastructure.Persistence;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;

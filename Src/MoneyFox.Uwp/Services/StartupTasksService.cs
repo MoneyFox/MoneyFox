@@ -1,11 +1,11 @@
 ﻿using CommonServiceLocator;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
+using MoneyFox.Desktop.Infrastructure.Adapters;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,7 @@ namespace MoneyFox.Uwp.Services
 
             try
             {
-                IMediator mediator = ServiceLocator.Current.GetInstance<IMediator>();
+                var mediator = ServiceLocator.Current.GetInstance<IMediator>();
                 if(!settingsFacade.IsBackupAutouploadEnabled || !settingsFacade.IsLoggedInToBackupService)
                 {
                     await mediator.Send(new ClearPaymentsCommand());
@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp.Services
                     return;
                 }
 
-                IBackupService backupService = ServiceLocator.Current.GetInstance<IBackupService>();
+                var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                 await backupService.RestoreBackupAsync();
 
                 await mediator.Send(new ClearPaymentsCommand());
@@ -45,7 +45,7 @@ namespace MoneyFox.Uwp.Services
             catch(Exception ex)
             {
                 logger.Fatal(ex);
-                Crashes.TrackError(ex, new Dictionary<string, string> { { "Context", "Startup." } });
+                Crashes.TrackError(ex, new Dictionary<string, string> {{"Context", "Startup."}});
             }
             finally
             {

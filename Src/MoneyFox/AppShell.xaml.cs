@@ -1,6 +1,6 @@
-﻿using MoneyFox.ViewModels.Budget;
-using MoneyFox.Views.Accounts;
+﻿using MoneyFox.Views.Accounts;
 using MoneyFox.Views.Backup;
+using MoneyFox.Views.Budget;
 using MoneyFox.Views.Categories;
 using MoneyFox.Views.Dashboard;
 using MoneyFox.Views.Payments;
@@ -38,9 +38,15 @@ namespace MoneyFox
             Routing.RegisterRoute(ViewModelLocator.BackupRoute, typeof(BackupPage));
             Routing.RegisterRoute(ViewModelLocator.SettingsRoute, typeof(SettingsPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCashFlowRoute, typeof(StatisticCashFlowPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticAccountMonthlyCashflowRoute, typeof(StatisticAccountMonthlyCashflowPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticCategoryProgressionRoute, typeof(StatisticCategoryProgressionPage));
-            Routing.RegisterRoute(ViewModelLocator.StatisticCategorySpreadingRoute, typeof(StatisticCategorySpreadingPage));
+            Routing.RegisterRoute(
+                ViewModelLocator.StatisticAccountMonthlyCashflowRoute,
+                typeof(StatisticAccountMonthlyCashFlowPage));
+            Routing.RegisterRoute(
+                ViewModelLocator.StatisticCategoryProgressionRoute,
+                typeof(StatisticCategoryProgressionPage));
+            Routing.RegisterRoute(
+                ViewModelLocator.StatisticCategorySpreadingRoute,
+                typeof(StatisticCategorySpreadingPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticCategorySummaryRoute, typeof(StatisticCategorySummaryPage));
             Routing.RegisterRoute(ViewModelLocator.StatisticSelectorRoute, typeof(StatisticSelectorPage));
             Routing.RegisterRoute(ViewModelLocator.PaymentForCategoryListRoute, typeof(PaymentForCategoryListPage));

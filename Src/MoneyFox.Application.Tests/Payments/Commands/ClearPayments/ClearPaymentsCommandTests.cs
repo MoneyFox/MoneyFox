@@ -4,7 +4,7 @@ using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -52,7 +52,9 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
             await context.SaveChangesAsync();
 
             // Act
-            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(), default);
+            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
+                new ClearPaymentsCommand(),
+                default);
 
             // Assert
             paymentList[0].IsCleared.Should().BeFalse();
@@ -75,8 +77,10 @@ namespace MoneyFox.Application.Tests.Payments.Commands.ClearPayments
             await context.SaveChangesAsync();
 
             // Act
-            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new ClearPaymentsCommand(), default);
-            var loadedPayments = context.Payments.ToList();
+            await new ClearPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
+                new ClearPaymentsCommand(),
+                default);
+            List<Payment> loadedPayments = context.Payments.ToList();
 
             // Assert
             loadedPayments[0].IsCleared.Should().BeFalse();

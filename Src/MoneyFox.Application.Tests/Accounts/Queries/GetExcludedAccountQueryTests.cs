@@ -3,7 +3,7 @@ using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -48,7 +48,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             // Act
             List<Account> resultList =
                 await new GetExcludedAccountQuery.Handler(contextAdapterMock.Object)
-                   .Handle(new GetExcludedAccountQuery(), default);
+                    .Handle(new GetExcludedAccountQuery(), default);
 
             // Assert
             resultList.Should().ContainSingle();
@@ -72,7 +72,7 @@ namespace MoneyFox.Application.Tests.Accounts.Queries
             // Act
             List<Account> resultList =
                 await new GetExcludedAccountQuery.Handler(contextAdapterMock.Object)
-                   .Handle(new GetExcludedAccountQuery(), default);
+                    .Handle(new GetExcludedAccountQuery(), default);
 
             // Assert
             resultList.Should().ContainSingle();

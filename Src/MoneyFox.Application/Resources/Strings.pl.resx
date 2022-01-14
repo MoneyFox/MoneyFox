@@ -126,9 +126,6 @@
   <data name="AccountRequiredMessage" xml:space="preserve">
     <value>Proszę wybrać Konto.</value>
   </data>
-  <data name="AccountsHeader" xml:space="preserve">
-    <value>Accounts</value>
-  </data>
   <data name="AccountsTitle" xml:space="preserve">
     <value>Konta</value>
   </data>
@@ -144,23 +141,14 @@
   <data name="AddCategoryTitle" xml:space="preserve">
     <value>Dodaj Kategorie</value>
   </data>
-  <data name="AddExpenseLabel" xml:space="preserve">
-    <value>Wydatek</value>
-  </data>
   <data name="AddExpenseTitle" xml:space="preserve">
     <value>Dodaj Wydatek</value>
-  </data>
-  <data name="AddIncomeLabel" xml:space="preserve">
-    <value>Przychód</value>
   </data>
   <data name="AddIncomeTitle" xml:space="preserve">
     <value>Dodaj dochód</value>
   </data>
   <data name="AddPaymentLabel" xml:space="preserve">
     <value>Dodaj Płatność</value>
-  </data>
-  <data name="AddTransferLabel" xml:space="preserve">
-    <value>Przelew</value>
   </data>
   <data name="AddTransferTitle" xml:space="preserve">
     <value>Dodaj Przelew</value>
@@ -209,9 +197,6 @@
   </data>
   <data name="BackupRestoredMessage" xml:space="preserve">
     <value>Backup restored successfully.</value>
-  </data>
-  <data name="BackupServiceTitle" xml:space="preserve">
-    <value>Kopia zapasowa</value>
   </data>
   <data name="BackupTitle" xml:space="preserve">
     <value>Kopia zapasowa</value>
@@ -500,9 +485,6 @@
   </data>
   <data name="LastBackupDateLabel" xml:space="preserve">
     <value>Ostatnia Kopia zapasowa została utworzona:</value>
-  </data>
-  <data name="LeaveFeedbackLabel" xml:space="preserve">
-    <value>Pozostaw opinię!</value>
   </data>
   <data name="LightLabel" xml:space="preserve">
     <value>Jasny</value>
@@ -801,5 +783,8 @@ To start create a new account. Accounts are used to organize payments and money 
   </data>
   <data name="CategoryProgressionTitle" xml:space="preserve">
     <value>Category Progression</value>
+  </data>
+  <data name="EditPaymentTitle" xml:space="preserve">
+    <value>Edit Payment</value>
   </data>
 </root>

@@ -1,10 +1,10 @@
 ﻿using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.CloudBackup;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
@@ -49,11 +49,13 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
         {
             // Arrange
             // Act
-            await new CreateAccountCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
-                .Handle(new CreateAccountCommand("test", 80),
-                        default);
+            await new CreateAccountCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(
+                    new CreateAccountCommand("test", 80),
+                    default);
 
             // Assert
             Assert.Single(context.Accounts);
@@ -64,11 +66,13 @@ namespace MoneyFox.Application.Tests.Accounts.Commands.CreateAccount
         {
             // Arrange
             // Act
-            await new CreateAccountCommand.Handler(contextAdapterMock.Object,
-                                                   backupServiceMock.Object,
-                                                   settingsFacadeMock.Object)
-                .Handle(new CreateAccountCommand("Test", 80),
-                        default);
+            await new CreateAccountCommand.Handler(
+                    contextAdapterMock.Object,
+                    backupServiceMock.Object,
+                    settingsFacadeMock.Object)
+                .Handle(
+                    new CreateAccountCommand("Test", 80),
+                    default);
 
             // Assert
             backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);

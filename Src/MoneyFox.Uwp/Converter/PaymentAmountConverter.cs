@@ -1,5 +1,5 @@
-﻿using MoneyFox.Ui.Shared.ConverterLogic;
-using MoneyFox.Ui.Shared.ViewModels.Payments;
+﻿using MoneyFox.Uwp.ConverterLogic;
+using MoneyFox.Uwp.ViewModels.Payments;
 using System;
 using Windows.UI.Xaml.Data;
 
@@ -20,7 +20,7 @@ namespace MoneyFox.Uwp.Converter
             return PaymentAmountConverterLogic.GetAmountSign(payment);
         }
 
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language) => throw new NotSupportedException();
+        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+            throw new NotSupportedException();
     }
 }

@@ -15,7 +15,7 @@ namespace MoneyFox.Application.Common.Helpers
         private const int BIMONTHLY_RECURRENCE_MONTHS = -2;
 
         /// <summary>
-        /// Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
+        ///     Checks if the recurring PaymentViewModel is up for a repetition based on the passed PaymentViewModel
         /// </summary>
         /// <param name="payment">Last occurrence of the recurring payment.</param>
         /// <returns>True or False if the payment has to be repeated.</returns>
@@ -39,7 +39,6 @@ namespace MoneyFox.Application.Common.Helpers
             return CheckRecurrence(payment.RecurringPayment);
         }
 
-        [SuppressMessage("Critical Code Smell", "S1541:Methods and properties should not be too complex", Justification = "Switch")]
         private static bool CheckRecurrence(RecurringPayment recurringPayment)
         {
             switch(recurringPayment.Recurrence)
@@ -78,8 +77,8 @@ namespace MoneyFox.Application.Common.Helpers
                     return CheckBiannually(recurringPayment);
 
                 case PaymentRecurrence.Yearly:
-                    return DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
-                           && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month
+                    return (DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
+                            && DateTime.Now.Month >= recurringPayment.LastRecurrenceCreated.Date.Month)
                            || DateTime.Now.Year - recurringPayment.LastRecurrenceCreated.Date.Year > 1;
 
                 default:

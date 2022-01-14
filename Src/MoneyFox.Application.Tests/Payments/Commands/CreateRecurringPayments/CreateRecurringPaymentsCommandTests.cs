@@ -4,9 +4,10 @@ using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,9 +48,10 @@ namespace MoneyFox.Application.Tests.Payments.Commands.CreateRecurringPayments
             await context.SaveChangesAsync();
 
             // Act
-            await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(new CreateRecurringPaymentsCommand(),
-                                                                                               default);
-            var loadedPayments = context.Payments.ToList();
+            await new CreateRecurringPaymentsCommand.Handler(contextAdapterMock.Object).Handle(
+                new CreateRecurringPaymentsCommand(),
+                default);
+            List<Payment> loadedPayments = context.Payments.ToList();
 
             // Assert
             loadedPayments.Should().HaveCount(2);

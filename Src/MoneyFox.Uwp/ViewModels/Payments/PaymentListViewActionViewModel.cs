@@ -1,5 +1,6 @@
-﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
 using MoneyFox.Application.Accounts.Queries.GetAccountCount;
@@ -8,7 +9,6 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Domain;
-using MoneyFox.Ui.Shared.Commands;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
 using System;
@@ -17,9 +17,9 @@ using System.Threading.Tasks;
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
 {
-    /// <inheritdoc cref="IPaymentListViewActionViewModel"/>
+    /// <inheritdoc cref="IPaymentListViewActionViewModel" />
     /// />
-    public class PaymentListViewActionViewModel : ViewModelBase, IPaymentListViewActionViewModel
+    public class PaymentListViewActionViewModel : ObservableRecipient, IPaymentListViewActionViewModel
     {
         private const int TRANSFER_THRESHOLD = 2;
 
@@ -40,14 +40,14 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private bool isAddExpenseAvailable;
 
         /// <summary>
-        /// Constructor
+        ///     Constructor
         /// </summary>
         public PaymentListViewActionViewModel(int accountId,
-                                              IMediator mediator,
-                                              ISettingsFacade settingsFacade,
-                                              IDialogService dialogService,
-                                              IBalanceViewModel balanceViewModel,
-                                              NavigationService navigationService)
+            IMediator mediator,
+            ISettingsFacade settingsFacade,
+            IDialogService dialogService,
+            IBalanceViewModel balanceViewModel,
+            NavigationService navigationService)
         {
             this.accountId = accountId;
 
@@ -57,35 +57,32 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             this.balanceViewModel = balanceViewModel;
             this.navigationService = navigationService;
 
-#pragma warning disable S4462 // Calls to "async" methods should not be blocking
             int accountCount = mediator.Send(new GetAccountCountQuery()).Result;
-#pragma warning restore S4462 // Calls to "async" methods should not be blocking
-
             IsTransferAvailable = accountCount >= TRANSFER_THRESHOLD;
             IsAddIncomeAvailable = accountCount >= 1;
             IsAddExpenseAvailable = accountCount >= 1;
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public RelayCommand GoToAddIncomeCommand
-                            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Income));
+            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Income));
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public RelayCommand GoToAddExpenseCommand
-                            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Expense));
+            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Expense));
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public RelayCommand GoToAddTransferCommand
-                            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Transfer));
+            => new RelayCommand(() => navigationService.Navigate<AddPaymentViewModel>(PaymentType.Transfer));
 
-        /// <inheritdoc/>
-        public AsyncCommand DeleteAccountCommand => new AsyncCommand(DeleteAccountAsync);
+        /// <inheritdoc />
+        public AsyncRelayCommand DeleteAccountCommand => new AsyncRelayCommand(DeleteAccountAsync);
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public RelayCommand ApplyFilterCommand => new RelayCommand(ApplyFilter);
 
         /// <summary>
-        /// Indicates if the transfer option is available or if it shall be hidden.
+        ///     Indicates if the transfer option is available or if it shall be hidden.
         /// </summary>
         public bool IsTransferAvailable
         {
@@ -98,12 +95,12 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isTransferAvailable = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Indicates if the button to add new income should be enabled.
+        ///     Indicates if the button to add new income should be enabled.
         /// </summary>
         public bool IsAddIncomeAvailable
         {
@@ -116,12 +113,12 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isAddIncomeAvailable = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Indicates if the button to add a new expense should be enabled.
+        ///     Indicates if the button to add a new expense should be enabled.
         /// </summary>
         public bool IsAddExpenseAvailable
         {
@@ -134,11 +131,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isAddExpenseAvailable = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsClearedFilterActive
         {
             get => isClearedFilterActive;
@@ -150,11 +147,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isClearedFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsRecurringFilterActive
         {
             get => isRecurringFilterActive;
@@ -166,11 +163,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isRecurringFilterActive = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public bool IsGrouped
         {
             get => isGrouped;
@@ -182,11 +179,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 isGrouped = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime TimeRangeStart
         {
             get => timeRangeStart;
@@ -198,11 +195,11 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 timeRangeStart = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         public DateTime TimeRangeEnd
         {
             get => timeRangeEnd;
@@ -214,32 +211,33 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
 
                 timeRangeEnd = value;
-                RaisePropertyChanged();
+                OnPropertyChanged();
             }
         }
 
         private async Task DeleteAccountAsync()
         {
-            if(await dialogService.ShowConfirmMessageAsync(Strings.DeleteTitle, Strings.DeleteAccountConfirmationMessage))
+            if(await dialogService.ShowConfirmMessageAsync(
+                   Strings.DeleteTitle,
+                   Strings.DeleteAccountConfirmationMessage))
             {
                 await mediator.Send(new DeactivateAccountByIdCommand(accountId));
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
                 navigationService.GoBack();
             }
 
-            await balanceViewModel.UpdateBalanceCommand.ExecuteAsync();
+            await balanceViewModel.UpdateBalanceCommand.ExecuteAsync(null);
         }
 
-        private void ApplyFilter()
-        {
-            MessengerInstance.Send(new PaymentListFilterChangedMessage
-            {
-                IsClearedFilterActive = IsClearedFilterActive,
-                IsRecurringFilterActive = IsRecurringFilterActive,
-                TimeRangeStart = TimeRangeStart,
-                TimeRangeEnd = TimeRangeEnd,
-                IsGrouped = IsGrouped
-            });
-        }
+        private void ApplyFilter() =>
+            Messenger.Send(
+                new PaymentListFilterChangedMessage
+                {
+                    IsClearedFilterActive = IsClearedFilterActive,
+                    IsRecurringFilterActive = IsRecurringFilterActive,
+                    TimeRangeStart = TimeRangeStart,
+                    TimeRangeEnd = TimeRangeEnd,
+                    IsGrouped = IsGrouped
+                });
     }
 }

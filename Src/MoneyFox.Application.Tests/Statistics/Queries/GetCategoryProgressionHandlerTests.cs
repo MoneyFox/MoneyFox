@@ -5,7 +5,7 @@ using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Domain;
 using MoneyFox.Domain.Entities;
-using MoneyFox.Persistence;
+using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -43,9 +43,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task CalculateCorrectSums()
         {
             // Arrange
-            Account account = new("Foo1");
-            Category category = new("abcd");
-            context.AddRange(new List<Payment>
+            var account = new Account("Foo1");
+            var category = new Category("abcd");
+            context.AddRange(
+                new List<Payment>
                 {
                     new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
                     new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
@@ -57,10 +58,13 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
             context.SaveChanges();
 
             // Act
-            IImmutableList<StatisticEntry> result = await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
-                new GetCategoryProgressionQuery(category.Id,
-                                                      DateTime.Today.AddYears(-1),
-                                                      DateTime.Today.AddDays(3)), default);
+            IImmutableList<StatisticEntry> result =
+                await new GetCategoryProgressionHandler(contextAdapterMock.Object).Handle(
+                    new GetCategoryProgressionQuery(
+                        category.Id,
+                        DateTime.Today.AddYears(-1),
+                        DateTime.Today.AddDays(3)),
+                    default);
 
             // Assert
             result[12].Value.Should().Be(40);
@@ -72,9 +76,10 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
         public async Task GetValues_CorrectSums()
         {
             // Arrange
-            Account account = new("Foo1");
-            Category category = new("abcd");
-            context.AddRange(new List<Payment>
+            var account = new Account("Foo1");
+            var category = new Category("abcd");
+            context.AddRange(
+                new List<Payment>
                 {
                     new Payment(DateTime.Today, 60, PaymentType.Income, account, category: category),
                     new Payment(DateTime.Today, 20, PaymentType.Expense, account, category: category),
@@ -88,9 +93,11 @@ namespace MoneyFox.Application.Tests.Statistics.Queries
 
             // Act
             List<StatisticEntry> result = await new GetAccountProgressionHandler(contextAdapterMock.Object).Handle(
-                new GetAccountProgressionQuery(account.Id,
-                                                      DateTime.Today.AddYears(-1),
-                                                      DateTime.Today.AddDays(3)), default);
+                new GetAccountProgressionQuery(
+                    account.Id,
+                    DateTime.Today.AddYears(-1),
+                    DateTime.Today.AddDays(3)),
+                default);
 
             // Assert
             result[0].Color.Should().Be("#87cefa");

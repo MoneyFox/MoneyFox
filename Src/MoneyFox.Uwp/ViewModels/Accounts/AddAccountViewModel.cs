@@ -3,9 +3,8 @@ using MoneyFox.Application.Accounts.Commands.CreateAccount;
 using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Ui.Shared.Utilities;
-using MoneyFox.Ui.Shared.ViewModels.Accounts;
 using MoneyFox.Uwp.Services;
+using MoneyFox.Uwp.Utilities;
 using System.Threading.Tasks;
 
 #nullable enable
@@ -16,8 +15,8 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
         private readonly IMediator mediator;
 
         public AddAccountViewModel(IMediator mediator,
-                                   IDialogService dialogService,
-                                   INavigationService navigationService) : base(dialogService, navigationService)
+            IDialogService dialogService,
+            INavigationService navigationService) : base(dialogService, navigationService)
         {
             this.mediator = mediator;
 
@@ -40,10 +39,12 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
                 return;
             }
 
-            await mediator.Send(new CreateAccountCommand(SelectedAccount.Name,
-                                                         SelectedAccount.CurrentBalance,
-                                                         SelectedAccount.Note,
-                                                         SelectedAccount.IsExcluded));
+            await mediator.Send(
+                new CreateAccountCommand(
+                    SelectedAccount.Name,
+                    SelectedAccount.CurrentBalance,
+                    SelectedAccount.Note,
+                    SelectedAccount.IsExcluded));
         }
     }
 }

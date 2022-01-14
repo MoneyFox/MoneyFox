@@ -17,9 +17,11 @@ namespace MoneyFox.Uwp.Views.Payments
             get => (ModifyPaymentViewModel)GetValue(ViewModelProperty);
             set => SetValue(ViewModelProperty, value);
         }
-        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register("ViewModel",
-                                                                                                  typeof(ModifyPaymentViewModel),
-                                                                                                  typeof(CategorySelectionControl),
-                                                                                                  new PropertyMetadata(null));
+
+        public static readonly DependencyProperty ViewModelProperty = DependencyProperty.Register(
+            "ViewModel",
+            typeof(ModifyPaymentViewModel),
+            typeof(CategorySelectionControl),
+            new PropertyMetadata(null));
     }
 }

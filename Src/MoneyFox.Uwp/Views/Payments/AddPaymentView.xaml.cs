@@ -1,12 +1,17 @@
-﻿using MoneyFox.Domain;
+﻿#nullable enable
+using MoneyFox.Application.Resources;
+using MoneyFox.Domain;
 using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Navigation;
 
-#nullable enable
 namespace MoneyFox.Uwp.Views.Payments
 {
     public sealed partial class AddPaymentView
     {
+        public override string Header => Strings.AddPaymentTitle;
+        
+        public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
+
         public AddPaymentView()
         {
             InitializeComponent();
@@ -20,15 +25,8 @@ namespace MoneyFox.Uwp.Views.Payments
                 ? PaymentType.Expense
                 : passedType.Value;
 
-            ViewModel.Subscribe();
             ViewModel.PaymentType = type;
             ViewModel.InitializeCommand.Execute(null);
         }
-
-        protected override void OnNavigatedFrom(NavigationEventArgs e) => ViewModel.Unsubscribe();
-
-        public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
-
-        public override bool ShowHeader => false;
     }
 }

@@ -28,14 +28,15 @@ namespace MoneyFox.Application.Statistics.Queries
             }
         }
 
-        public int CategoryId { get; private set; }
+        public int CategoryId { get; }
 
-        public DateTime StartDate { get; private set; }
+        public DateTime StartDate { get; }
 
-        public DateTime EndDate { get; private set; }
+        public DateTime EndDate { get; }
     }
 
-    public class GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgressionQuery, IImmutableList<StatisticEntry>>
+    public class
+        GetCategoryProgressionHandler : IRequestHandler<GetCategoryProgressionQuery, IImmutableList<StatisticEntry>>
     {
         private const string RED_HEX_CODE = "#cd3700";
         private const string BLUE_HEX_CODE = "#87cefa";
@@ -47,26 +48,29 @@ namespace MoneyFox.Application.Statistics.Queries
             this.contextAdapter = contextAdapter;
         }
 
-        public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request, CancellationToken cancellationToken)
+        public async Task<IImmutableList<StatisticEntry>> Handle(GetCategoryProgressionQuery request,
+            CancellationToken cancellationToken)
         {
             List<Payment>? payments = await contextAdapter.Context
-                                               .Payments
-                                               .Include(x => x.Category)
-                                               .Include(x => x.ChargedAccount)
-                                               .HasCategoryId(request.CategoryId)
-                                               .HasDateLargerEqualsThan(request.StartDate.Date)
-                                               .HasDateSmallerEqualsThan(request.EndDate.Date)
-                                               .ToListAsync(cancellationToken);
-
+                                                          .Payments
+                                                          .Include(x => x.Category)
+                                                          .Include(x => x.ChargedAccount)
+                                                          .HasCategoryId(request.CategoryId)
+                                                          .HasDateLargerEqualsThan(request.StartDate.Date)
+                                                          .HasDateSmallerEqualsThan(request.EndDate.Date)
+                                                          .ToListAsync(cancellationToken);
 
             var statisticList = new List<StatisticEntry>();
-            foreach(var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
+            foreach(var group in payments.GroupBy(x => new {x.Date.Month, x.Date.Year}))
             {
-                var statisticEntry = new StatisticEntry(group.Sum(x => GetPaymentAmountForSum(x, request)), $"{group.Key.Month:d2} {group.Key.Year:d4}");
+                var statisticEntry = new StatisticEntry(
+                    group.Sum(x => GetPaymentAmountForSum(x, request)),
+                    $"{group.Key.Month:d2} {group.Key.Year:d4}");
                 statisticEntry.ValueLabel = statisticEntry.Value.ToString("c", CultureHelper.CurrentCulture);
                 statisticEntry.Color = statisticEntry.Value >= 0 ? BLUE_HEX_CODE : RED_HEX_CODE;
                 statisticList.Add(statisticEntry);
             }
+
             return FillReturnList(request, statisticList);
         }
 
@@ -80,8 +84,9 @@ namespace MoneyFox.Application.Statistics.Queries
 
             do
             {
-                List<StatisticEntry>? items = statisticEntries.Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}")
-                                                                        .ToList();
+                List<StatisticEntry>? items = statisticEntries
+                                              .Where(x => x.Label == $"{startDate.Month:d2} {startDate.Year:d4}")
+                                              .ToList();
 
                 returnList.AddRange(items);
 
@@ -100,17 +105,15 @@ namespace MoneyFox.Application.Statistics.Queries
             return returnList.ToImmutableList();
         }
 
-        private static decimal GetPaymentAmountForSum(Payment payment, GetCategoryProgressionQuery request)
-        {
-            return payment.Type switch
+        private static decimal GetPaymentAmountForSum(Payment payment, GetCategoryProgressionQuery request) =>
+            payment.Type switch
             {
                 PaymentType.Expense => -payment.Amount,
                 PaymentType.Income => payment.Amount,
                 PaymentType.Transfer => payment.ChargedAccount.Id == request.CategoryId
-                                            ? -payment.Amount
-                                            : payment.Amount,
-                _ => 0,
+                    ? -payment.Amount
+                    : payment.Amount,
+                _ => 0
             };
-        }
     }
 }
