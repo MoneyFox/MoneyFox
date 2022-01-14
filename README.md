@@ -7,9 +7,6 @@ A basic idea to make budgeting easy - for the community, made even better by the
 | Android | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/Android%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=38&branchName=master)|
 | IOS | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/iOS%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=39&branchName=master)|
 
-### Talk with us
-We have a slack team to make communication a bit easier. Write me a mail to nino.padrutt@apply-solutions.ch to get your invitation.
-
 ### Try it
 
 | Platform        | Production         |Beta |Dev|
@@ -33,7 +30,6 @@ We act under the [Contributor Covenant](https://github.com/MoneyFox/MoneyFox/blo
 
 ### Tools
 We use Visual Studio 2019 (inkl. xamarin). If you use resharper please ensure you align the formatting to this solution.
-
 
 ### Contact
 Feel free to contact me. Just write me a mail or even better join our slack channel.
