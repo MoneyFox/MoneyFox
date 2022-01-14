@@ -1,1 +1,0 @@
-Add-Migration AddCreationDateField -OutputDir ../MoneyFox.DataLayer/Migrations -Project MoneyFox.DataLayer -StartupProject MoneyFox.Migrations.Startup
