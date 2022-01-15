@@ -1,24 +1,23 @@
 {
-  "assignees" : [ "npadrutt" ],
   "packageRules": [
     {
       "packagePatterns": [ "*" ],
-      "updateTypes": [
-        "minor",
-        "patch"
-      ],
+      "updateTypes": [ "minor", "patch" ],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch"
     },
     {
       "packagePatterns": [ "*" ],
-      "excludePackagePatterns": [
-        "^Microsoft.EntityFrameworkCore", 
-        "AutoMappper",
-        "MediatR"],
       "updateTypes": [ "major" ],
       "groupName": "all major dependencies",
-      "groupSlug": "all-major"
+      "groupSlug": "all-major",
+      "ignoreDeps": [ 
+        "Microsoft.EntityFrameworkCore.Design",
+        "Microsoft.EntityFrameworkCore.InMemory",
+        "Microsoft.EntityFrameworkCore.Sqlite",
+        "Microsoft.EntityFrameworkCore.Tools",
+        "AutoMappper",
+        "MediatR" ]
     }
   ]
 }
