@@ -27,6 +27,9 @@
         "^Microsoft.EntityFrameworkCore",
         "AutoMappper",
         "MediatR"],
+      "updateTypes": [
+        "major"
+      ],
       "enabled": false
     }
   ]
