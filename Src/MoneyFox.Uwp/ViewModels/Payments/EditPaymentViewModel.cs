@@ -79,6 +79,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         {
             try
             {
+                IsBusy = true;
                 bool updateRecurring = false;
                 if(SelectedPayment.IsRecurring)
                 {
@@ -136,7 +137,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
                 try
                 {
-                    await dialogService.ShowLoadingDialogAsync();
+                    IsBusy = true;
                     await mediator.Send(command);
                     navigationService.GoBack();
                 }
@@ -146,7 +147,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 }
                 finally
                 {
-                    await dialogService.HideLoadingDialogAsync();
+                    IsBusy = false;
                 }
             }
         }

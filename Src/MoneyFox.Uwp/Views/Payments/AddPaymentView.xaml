@@ -7,37 +7,39 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.Payments"
+    xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
     mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}" >
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="6" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="12" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6">
+                <Button Command="{x:Bind ViewModel.SaveCommand}" >
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <SymbolIcon Symbol="Save" />
+                        <TextBlock Text="{x:Bind resources:Strings.DoneLabel}" />
+                    </StackPanel>
+                </Button>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6">
-            <Button Command="{x:Bind ViewModel.SaveCommand}" >
-                <StackPanel Orientation="Horizontal" Spacing="6">
-                    <SymbolIcon Symbol="Save" />
-                    <TextBlock Text="{x:Bind resources:Strings.DoneLabel}" />
-                </StackPanel>
-            </Button>
-
-            <Button Command="{x:Bind ViewModel.CancelCommand}" >
-                <StackPanel Orientation="Horizontal" Spacing="6">
-                    <SymbolIcon Symbol="Cancel" />
-                    <TextBlock Text="{x:Bind resources:Strings.CancelLabel}" />
-                </StackPanel>
-            </Button>
-        </StackPanel>
-
-        <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
-            <StackPanel>
-                <userControls:ModifyPaymentUserControl />
+                <Button Command="{x:Bind ViewModel.CancelCommand}" >
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <SymbolIcon Symbol="Cancel" />
+                        <TextBlock Text="{x:Bind resources:Strings.CancelLabel}" />
+                    </StackPanel>
+                </Button>
             </StackPanel>
-        </ScrollViewer>
+
+            <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
+                 <userControls:ModifyPaymentUserControl />
+            </ScrollViewer>
+        </Grid>
+
+        <controls:Loading IsLoading="{x:Bind ViewModel.IsBusy, Mode=OneWay}" />
     </Grid>
 </views:BaseView>

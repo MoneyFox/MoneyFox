@@ -9,7 +9,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
-    mc:Ignorable="d" 
+    mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <winui:NavigationView x:Name="NavView"
@@ -46,7 +46,6 @@
                                       Icon="SaveLocal"
                                       Content="{x:Bind resources:Strings.BackupTitle}"
                                       ToolTipService.ToolTip="{x:Bind resources:Strings.BackupToolTip}" />
-            
             <winui:NavigationViewItemSeparator />
 
         </winui:NavigationView.MenuItems>

@@ -9,7 +9,7 @@ namespace MoneyFox.Uwp.Views.Payments
     public sealed partial class AddPaymentView
     {
         public override string Header => Strings.AddPaymentTitle;
-        
+
         public AddPaymentViewModel ViewModel => (AddPaymentViewModel)DataContext;
 
         public AddPaymentView()
