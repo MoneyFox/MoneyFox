@@ -10,6 +10,7 @@ namespace MoneyFox.Core._Pending_.Common
         private static readonly Logger Logger = LogManager.GetLogger("TaskLogger");
 
         [SuppressMessage("Major Bug", "S3168:\"async\" methods should not return \"void\"", Justification = "Wanted")]
+        // TODO: Remove this.
         public static async void FireAndForgetSafeAsync(this Task task)
         {
             try

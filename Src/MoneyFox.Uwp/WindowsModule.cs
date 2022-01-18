@@ -20,13 +20,6 @@ namespace MoneyFox.Uwp
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(
-                c =>
-                    new TokenObject
-                    {
-                        CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]
-                    });
-
             builder.RegisterModule<CoreModule>();
             builder.RegisterModule<InfrastructureDesktop>();
             builder.RegisterModule<InfrastructureModule>();
