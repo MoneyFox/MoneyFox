@@ -7,6 +7,7 @@ using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core._Pending_.Exceptions;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

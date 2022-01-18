@@ -5,6 +5,7 @@ using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core.Commands.Payments.ClearPayments;
 using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Desktop.Infrastructure.Adapters;
 using NLog;
 using System;

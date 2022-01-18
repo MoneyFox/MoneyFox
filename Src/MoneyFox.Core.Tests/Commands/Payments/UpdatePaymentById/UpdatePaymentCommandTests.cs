@@ -6,6 +6,7 @@ using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Core.Commands.Payments.UpdatePayment;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Tests.Infrastructure;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;

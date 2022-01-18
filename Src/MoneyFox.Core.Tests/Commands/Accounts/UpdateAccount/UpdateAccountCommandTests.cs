@@ -5,6 +5,7 @@ using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Commands.Accounts.UpdateAccount;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Tests.Infrastructure;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;

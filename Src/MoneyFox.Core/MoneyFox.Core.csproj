@@ -27,15 +27,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Commands\Accounts" />
-        <Folder Include="Commands\Categories" />
-        <Folder Include="Commands\Payments" />
-        <Folder Include="Interfaces\" />
-        <Folder Include="Queries\Accounts" />
-        <Folder Include="Queries\Payments" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="..\MoneyFox.SharedKernel\MoneyFox.SharedKernel.csproj" />
     </ItemGroup>
 
@@ -46,4 +37,9 @@
         </EmbeddedResource>
     </ItemGroup>
 
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>MoneyFox.Core.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
 </Project>

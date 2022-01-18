@@ -6,6 +6,7 @@ using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core._Pending_.Exceptions;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Interfaces;
 using NLog;
 using System;
 using System.Threading;

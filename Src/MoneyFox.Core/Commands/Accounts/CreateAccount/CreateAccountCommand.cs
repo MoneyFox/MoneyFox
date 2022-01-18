@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core.Aggregates;
+using MoneyFox.Core.Events;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -27,35 +27,36 @@ namespace MoneyFox.Core.Commands.Accounts.CreateAccount
         public class Handler : IRequestHandler<CreateAccountCommand>
         {
             private readonly IContextAdapter contextAdapter;
-            private readonly IBackupService backupService;
+            private readonly IPublisher publisher;
             private readonly ISettingsFacade settingsFacade;
 
-            public Handler(IContextAdapter contextAdapter,
-                IBackupService backupService,
+            public Handler(
+                IContextAdapter contextAdapter,
+                IPublisher publisher,
                 ISettingsFacade settingsFacade)
             {
                 this.contextAdapter = contextAdapter;
-                this.backupService = backupService;
+                this.publisher = publisher;
                 this.settingsFacade = settingsFacade;
             }
 
             /// <inheritdoc />
             public async Task<Unit> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
             {
+                var account = new Account(
+                    request.Name,
+                    request.CurrentBalance,
+                    request.Note,
+                    request.IsExcluded);
+
                 await contextAdapter.Context.Accounts.AddAsync(
-                    new Account(
-                        request.Name,
-                        request.CurrentBalance,
-                        request.Note,
-                        request.IsExcluded),
+                    account,
                     cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
+                // TODO: move to ef core context
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                
-                // TODO: Use notification
-                //backupService.UploadBackupAsync().FireAndForgetSafeAsync();
-
+                await publisher.Publish(new AccountCreatedEvent(account.Id), cancellationToken);
                 return Unit.Value;
             }
         }
