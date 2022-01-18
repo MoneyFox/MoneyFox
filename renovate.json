@@ -12,11 +12,8 @@
     },
     {
       "packagePatterns": [ "*" ],
-      "ignoreDeps": [
-        "Microsoft.EntityFrameworkCore.Design",
-        "Microsoft.EntityFrameworkCore.InMemory",
-        "Microsoft.EntityFrameworkCore.Sqlite",
-        "Microsoft.EntityFrameworkCore.Tools",
+      "excludePackagePatterns": [
+        "^Microsoft.EntityFrameworkCore",
         "AutoMappper",
         "MediatR" ],
       "updateTypes": [
@@ -24,6 +21,16 @@
       ],
       "groupName": "all major dependencies",
       "groupSlug": "all-major"
+    },
+    {
+      "matchPackagePatterns": [
+        "^Microsoft.EntityFrameworkCore",
+        "AutoMappper",
+        "MediatR"],
+      "updateTypes": [
+        "major"
+      ],
+      "enabled": false
     }
   ]
 }
