@@ -6,54 +6,58 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:resources="using:MoneyFox.Application.Resources"
-    xmlns:userControls="using:MoneyFox.Uwp.Views.Payments"
+    xmlns:userControls="using:MoneyFox.Uwp.Views.Payments" xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
     mc:Ignorable="d">
 
     <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}" >
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40" />
-            <RowDefinition Height="6" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="6" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="6">
-            <Button Command="{x:Bind ViewModel.SaveCommand}" >
-                <StackPanel Orientation="Horizontal" Spacing="6">
-                    <SymbolIcon Symbol="Save" />
-                    <TextBlock Text="{x:Bind resources:Strings.DoneLabel}" />
-                </StackPanel>
-            </Button>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="6">
+                <Button Command="{x:Bind ViewModel.SaveCommand}" >
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <SymbolIcon Symbol="Save" />
+                        <TextBlock Text="{x:Bind resources:Strings.DoneLabel}" />
+                    </StackPanel>
+                </Button>
 
-            <Button Command="{x:Bind ViewModel.CancelCommand}" >
-                <StackPanel Orientation="Horizontal" Spacing="6">
-                    <SymbolIcon Symbol="Cancel" />
-                    <TextBlock Text="{x:Bind resources:Strings.CancelLabel}" />
-                </StackPanel>
-            </Button>
-        </StackPanel>
-
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
-            <StackPanel>
-                <userControls:ModifyPaymentUserControl />
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
-                        Margin="0,0,3,0"
-                        Style="{StaticResource DeemphasizedLabelStyle}"
-                        Text="{x:Bind resources:Strings.CreationDateLabel}" />
-                    <TextBlock Text="{Binding SelectedPayment.CreationTime}" />
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock
-                        Margin="0,0,3,0"
-                        Style="{StaticResource DeemphasizedLabelStyle}"
-                        Text="{x:Bind resources:Strings.ModificationDateLabel}" />
-                    <TextBlock Text="{Binding SelectedPayment.ModificationDate}" />
-                </StackPanel>
+                <Button Command="{x:Bind ViewModel.CancelCommand}" >
+                    <StackPanel Orientation="Horizontal" Spacing="6">
+                        <SymbolIcon Symbol="Cancel" />
+                        <TextBlock Text="{x:Bind resources:Strings.CancelLabel}" />
+                    </StackPanel>
+                </Button>
             </StackPanel>
-        </ScrollViewer>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="2">
+                <StackPanel>
+                    <userControls:ModifyPaymentUserControl />
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0,0,3,0"
+                            Style="{StaticResource DeemphasizedLabelStyle}"
+                            Text="{x:Bind resources:Strings.CreationDateLabel}" />
+                        <TextBlock Text="{Binding SelectedPayment.CreationTime}" />
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock
+                            Margin="0,0,3,0"
+                            Style="{StaticResource DeemphasizedLabelStyle}"
+                            Text="{x:Bind resources:Strings.ModificationDateLabel}" />
+                        <TextBlock Text="{Binding SelectedPayment.ModificationDate}" />
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <controls:Loading IsLoading="{x:Bind ViewModel.IsBusy, Mode=OneWay}" />
     </Grid>
 
 </views:BaseView>

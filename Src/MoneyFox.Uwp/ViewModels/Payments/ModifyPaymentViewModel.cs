@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
+using Logger = NLog.Logger;
 
 #nullable enable
 namespace MoneyFox.Uwp.ViewModels.Payments
@@ -247,6 +248,13 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 ? Strings.TargetAccountLabel
                 : Strings.ChargedAccountLabel;
 
+        private bool isBusy;
+        public bool IsBusy
+        {
+            get => isBusy;
+            set => SetProperty(ref isBusy, value);
+        }
+
         protected abstract Task SavePaymentAsync();
 
         private async Task SavePaymentBaseAsync()
@@ -299,7 +307,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             try
             {
-                await dialogService.ShowLoadingDialogAsync(Strings.SavingPaymentMessage);
+                IsBusy = true;
                 await SavePaymentAsync();
                 Messenger.Send(new ReloadMessage());
                 navigationService.GoBack();
@@ -311,7 +319,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
             finally
             {
-                await dialogService.HideLoadingDialogAsync();
+                IsBusy = false;
             }
         }
 

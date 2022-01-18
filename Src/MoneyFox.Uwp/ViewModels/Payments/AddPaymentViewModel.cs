@@ -61,6 +61,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         {
             try
             {
+                IsBusy = true;
                 var payment = new Payment(
                     SelectedPayment.Date,
                     SelectedPayment.Amount,
@@ -91,6 +92,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             {
                 logger.Error(ex);
                 throw;
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }
