@@ -5,7 +5,7 @@ using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Core;
-using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;

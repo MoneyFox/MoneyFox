@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using System;
 using System.Threading;

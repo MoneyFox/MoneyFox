@@ -8,6 +8,7 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
 using MoneyFox.Application.Resources;
 using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Extensions;
 using MoneyFox.Groups;
 using MoneyFox.ViewModels.Accounts;

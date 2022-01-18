@@ -1,12 +1,11 @@
 ﻿using JetBrains.Annotations;
-using MoneyFox.Core;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.SharedKernel.Interface;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MoneyFox.Core.Aggregates.Accounts
+namespace MoneyFox.Core.Aggregates
 {
     public class Account : IAggregateRoot
     {

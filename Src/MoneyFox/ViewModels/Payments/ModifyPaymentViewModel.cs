@@ -9,6 +9,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
 using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Extensions;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;

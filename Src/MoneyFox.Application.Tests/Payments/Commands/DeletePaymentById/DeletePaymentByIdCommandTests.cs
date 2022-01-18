@@ -5,7 +5,7 @@ using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Core;
-using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Core.Exceptions;
 using MoneyFox.Infrastructure.Persistence;

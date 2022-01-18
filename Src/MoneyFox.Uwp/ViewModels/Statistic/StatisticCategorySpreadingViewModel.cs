@@ -4,6 +4,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

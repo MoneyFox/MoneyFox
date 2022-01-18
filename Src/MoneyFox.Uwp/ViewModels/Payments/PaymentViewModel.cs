@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 #nullable enable
 using MoneyFox.Application.Common.Interfaces.Mapping;
 using MoneyFox.Core;
+using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Categories;

@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Application.Resources;
 using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 
 namespace MoneyFox.ConverterLogic
 {

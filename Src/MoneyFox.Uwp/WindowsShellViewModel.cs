@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Core.Exceptions;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;

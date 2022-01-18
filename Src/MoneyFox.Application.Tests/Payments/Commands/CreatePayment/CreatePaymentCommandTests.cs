@@ -6,7 +6,7 @@ using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Payments.Commands.CreatePayment;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Core;
-using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;

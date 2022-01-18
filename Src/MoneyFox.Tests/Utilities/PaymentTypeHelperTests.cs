@@ -1,5 +1,6 @@
 ﻿using MoneyFox.Application.Resources;
 using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Utilities;
 using System;
 using System.Diagnostics.CodeAnalysis;

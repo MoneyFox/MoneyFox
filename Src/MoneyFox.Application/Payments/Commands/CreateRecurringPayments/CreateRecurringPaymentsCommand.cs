@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Helpers;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
+using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using NLog;
 using System.Collections.Generic;

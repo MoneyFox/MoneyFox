@@ -1,6 +1,6 @@
 ﻿using MoneyFox.Application.Common.QueryObjects;
 using MoneyFox.Core;
-using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using System;
 using System.Collections.Generic;

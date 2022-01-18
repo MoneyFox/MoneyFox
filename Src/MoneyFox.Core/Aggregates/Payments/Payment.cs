@@ -1,5 +1,4 @@
 ﻿using JetBrains.Annotations;
-using MoneyFox.Core.Aggregates.Accounts;
 using MoneyFox.Core.Exceptions;
 using MoneyFox.SharedKernel.Interface;
 using NLog;

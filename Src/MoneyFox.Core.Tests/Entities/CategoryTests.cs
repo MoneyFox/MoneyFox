@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using System;
 using System.Diagnostics.CodeAnalysis;
