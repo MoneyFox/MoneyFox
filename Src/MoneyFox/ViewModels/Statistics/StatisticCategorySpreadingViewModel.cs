@@ -5,6 +5,7 @@ using MoneyFox.Core._Pending_.Common;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Core.Queries.Statistics;
 using MoneyFox.Core.Queries.Statistics.Queries;
+using MoneyFox.Views.Statistics;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

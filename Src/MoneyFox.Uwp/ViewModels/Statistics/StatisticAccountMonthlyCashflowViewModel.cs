@@ -7,6 +7,7 @@ using MoneyFox.Core.Queries.Accounts.GetAccounts;
 using MoneyFox.Core.Queries.Statistics;
 using MoneyFox.Core.Queries.Statistics.Queries;
 using MoneyFox.Uwp.ViewModels.Accounts;
+using MoneyFox.Uwp.Views.Statistics;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;

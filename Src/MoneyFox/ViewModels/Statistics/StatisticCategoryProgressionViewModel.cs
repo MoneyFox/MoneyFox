@@ -10,6 +10,7 @@ using MoneyFox.Core.Queries.Statistics;
 using MoneyFox.Core.Queries.Statistics.Queries;
 using MoneyFox.Extensions;
 using MoneyFox.ViewModels.Categories;
+using MoneyFox.Views.Statistics;
 using SkiaSharp;
 using System;
 using System.Collections.Immutable;

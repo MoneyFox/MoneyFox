@@ -59,8 +59,7 @@ namespace MoneyFox.Infrastructure.DbBackup
                 AuthenticationResult authResult = firstAccount == null
                     ? await publicClientApplication.AcquireTokenInteractive(scopes)
                         .WithUseEmbeddedWebView(true)
-                        .WithParentActivityOrWindow(ParentActivityWrapper
-                            .ParentActivity) // this is required for Android
+                        .WithParentActivityOrWindow(ParentActivityWrapper.ParentActivity) // this is required for Android
                         .ExecuteAsync()
                     : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 

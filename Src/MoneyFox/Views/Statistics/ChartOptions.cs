@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace MoneyFox.Core._Pending_.Common
+namespace MoneyFox.Views.Statistics
 {
     /// <summary>
     ///     Provides a set of default values for charts.
