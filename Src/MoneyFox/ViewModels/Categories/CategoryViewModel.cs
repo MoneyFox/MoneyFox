@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Core.Aggregates;
+using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
 using MoneyFox.Core.Aggregates.Payments;
 using System;
 
@@ -8,12 +7,12 @@ namespace MoneyFox.ViewModels.Categories
 {
     public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     {
+        private DateTime creationTime;
         private int id;
+        private DateTime modificationDate;
         private string name = "";
         private string note = "";
         private bool requireNote;
-        private DateTime creationTime;
-        private DateTime modificationDate;
 
         public int Id
         {

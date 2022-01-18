@@ -3,11 +3,11 @@
                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Settings"
                 xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
                 xmlns:settings="using:MoneyFox.Uwp.Views.Settings"
+                xmlns:resources="using:MoneyFox.Core.Resources"
                 mc:Ignorable="d">
 
     <d:Page.DataContext>
@@ -16,10 +16,10 @@
 
     <muxc:TabView IsAddTabButtonVisible="false" Margin="{StaticResource NegativeMediumLeftRightMargin}">
         <muxc:TabView.TabItems>
-            <muxc:TabViewItem IsClosable="False" Header="{x:Bind resources:Strings.SettingsTitle}" >
+            <muxc:TabViewItem IsClosable="False" Header="{x:Bind resources:Strings.SettingsTitle}">
                 <settings:SettingsView />
             </muxc:TabViewItem>
-            <muxc:TabViewItem IsClosable="False" Header="{x:Bind resources:Strings.AboutTitle}" >
+            <muxc:TabViewItem IsClosable="False" Header="{x:Bind resources:Strings.AboutTitle}">
                 <settings:AboutView />
             </muxc:TabViewItem>
         </muxc:TabView.TabItems>

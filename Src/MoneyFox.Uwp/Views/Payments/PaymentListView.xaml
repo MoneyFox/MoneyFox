@@ -7,12 +7,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.Payments"
     xmlns:winUi="using:Microsoft.UI.Xaml.Controls"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
 

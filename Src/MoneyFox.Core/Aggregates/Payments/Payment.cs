@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using MoneyFox.Core.Exceptions;
+using MoneyFox.Core._Pending_.Exceptions;
 using MoneyFox.SharedKernel.Interface;
 using NLog;
 using System;

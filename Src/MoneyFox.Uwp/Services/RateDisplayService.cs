@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Resources;
+﻿using MoneyFox.Core.Resources;
 using System.Threading.Tasks;
 using UniversalRateReminder;
 

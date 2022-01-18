@@ -1,10 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Resources;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Accounts
 {
@@ -12,14 +13,14 @@ namespace MoneyFox.ViewModels.Accounts
     {
         private readonly IDialogService dialogService;
 
+        private AccountViewModel selectedAccountVm = new AccountViewModel();
+
         protected ModifyAccountViewModel(IDialogService dialogService)
         {
             this.dialogService = dialogService;
         }
 
         public virtual bool IsEdit => false;
-
-        private AccountViewModel selectedAccountVm = new AccountViewModel();
 
         /// <summary>
         ///     The currently selected CategoryViewModel
@@ -52,7 +53,7 @@ namespace MoneyFox.ViewModels.Accounts
             Messenger.Send(new ReloadMessage());
 
             await dialogService.HideLoadingDialogAsync();
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

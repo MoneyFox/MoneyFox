@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MoneyFox.Application.Common.Interfaces.Mapping;
+using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
 using MoneyFox.ViewModels.Payments;
 using System.Collections.Generic;
 

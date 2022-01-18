@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Statistics.Queries;
-using MoneyFox.Core.Exceptions;
+using MoneyFox.Core._Pending_.Exceptions;
+using MoneyFox.Core.Queries.Statistics.Queries;
 using System;
 using Xunit;
 

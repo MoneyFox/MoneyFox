@@ -3,11 +3,11 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microcharts;
-using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Queries.Categories.GetCategoryById;
+using MoneyFox.Core.Queries.Statistics;
+using MoneyFox.Core.Queries.Statistics.Queries;
 using MoneyFox.Extensions;
 using MoneyFox.ViewModels.Categories;
 using SkiaSharp;
@@ -22,32 +22,15 @@ namespace MoneyFox.ViewModels.Statistics
 {
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
+        private readonly IMapper mapper;
         private BarChart chart = new BarChart();
         private bool hasNoData = true;
         private CategoryViewModel? selectedCategory;
-
-        private readonly IMapper mapper;
 
         public StatisticCategoryProgressionViewModel(IMediator mediator, IMapper mapper) : base(mediator)
         {
             this.mapper = mapper;
             StartDate = DateTime.Now.AddYears(-1);
-        }
-
-        protected override void OnActivated()
-        {
-            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
-                this,
-                async (r, m) =>
-                {
-                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
-                    await r.LoadAsync();
-                });
-        }
-
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<CategorySelectedMessage>(this);
         }
 
         public CategoryViewModel? SelectedCategory
@@ -107,6 +90,18 @@ namespace MoneyFox.ViewModels.Statistics
             async () =>
                 await Shell.Current.GoToModalAsync(ViewModelLocator.SelectCategoryRoute));
 
+        protected override void OnActivated() =>
+            Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
+                this,
+                async (r, m) =>
+                {
+                    SelectedCategory =
+                        mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                    await r.LoadAsync();
+                });
+
+        protected override void OnDeactivated() => Messenger.Unregister<CategorySelectedMessage>(this);
+
         protected override async Task LoadAsync()
         {
             if(SelectedCategory == null)
@@ -123,14 +118,14 @@ namespace MoneyFox.ViewModels.Statistics
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(
-                                            x => new ChartEntry((float)x.Value)
-                                            {
-                                                Label = x.Label,
-                                                ValueLabel = x.ValueLabel,
-                                                Color = SKColor.Parse(x.Color),
-                                                ValueLabelColor = SKColor.Parse(x.Color)
-                                            })
-                                        .ToList(),
+                        x => new ChartEntry((float)x.Value)
+                        {
+                            Label = x.Label,
+                            ValueLabel = x.ValueLabel,
+                            Color = SKColor.Parse(x.Color),
+                            ValueLabelColor = SKColor.Parse(x.Color)
+                        })
+                    .ToList(),
                 BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,

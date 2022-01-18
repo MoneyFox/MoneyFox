@@ -1,5 +1,4 @@
 ﻿using MoneyFox.ConverterLogic;
-using MoneyFox.Core;
 using MoneyFox.Core.Aggregates.Payments;
 using System;
 using System.Globalization;

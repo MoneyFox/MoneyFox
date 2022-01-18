@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
-using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Resources;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

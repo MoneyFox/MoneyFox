@@ -1,10 +1,11 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Accounts.Queries.GetTotalEndOfMonthBalance;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Core;
+using MoneyFox.Core._Pending_;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Accounts.GetTotalEndOfMonthBalance;
 using MoneyFox.Infrastructure.Persistence;
 using NSubstitute;
 using System;

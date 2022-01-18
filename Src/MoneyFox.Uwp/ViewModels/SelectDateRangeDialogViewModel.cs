@@ -1,8 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Application.Common.Extensions;
-using MoneyFox.Application.Common.Messages;
+using MoneyFox.Core._Pending_.Common.Extensions;
+using MoneyFox.Core._Pending_.Common.Messages;
 using System;
 
 #nullable enable

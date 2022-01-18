@@ -33,46 +33,46 @@ namespace MoneyFox.Uwp.Services
             foreach(CoreApplicationView view in CoreApplication.Views)
             {
                 await view.Dispatcher
-                          .RunAsync(
-                              CoreDispatcherPriority.Normal,
-                              () =>
-                              {
-                                  if(Window.Current.Content is FrameworkElement frameworkElement)
-                                  {
-                                      try
-                                      {
-                                          frameworkElement.RequestedTheme = Theme;
+                    .RunAsync(
+                        CoreDispatcherPriority.Normal,
+                        () =>
+                        {
+                            if(Window.Current.Content is FrameworkElement frameworkElement)
+                            {
+                                try
+                                {
+                                    frameworkElement.RequestedTheme = Theme;
 
-                                          Color color;
-                                          if(Theme == ElementTheme.Default)
-                                          {
-                                              color = ConvertColorFromHexString(App.Current
-                                                  .Resources["ColorCustomBackground"]
-                                                  .ToString());
-                                          }
-                                          else
-                                          {
-                                              color = Theme == ElementTheme.Dark
-                                                  ? ConvertColorFromHexString("#FF121212")
-                                                  : ConvertColorFromHexString("#FFF0F3F9");
-                                          }
+                                    Color color;
+                                    if(Theme == ElementTheme.Default)
+                                    {
+                                        color = ConvertColorFromHexString(App.Current
+                                            .Resources["ColorCustomBackground"]
+                                            .ToString());
+                                    }
+                                    else
+                                    {
+                                        color = Theme == ElementTheme.Dark
+                                            ? ConvertColorFromHexString("#FF121212")
+                                            : ConvertColorFromHexString("#FFF0F3F9");
+                                    }
 
-                                          //remove the solid-colored backgrounds behind the caption controls and system back button
-                                          ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
-                                          viewTitleBar.BackgroundColor = color;
-                                          viewTitleBar.ButtonBackgroundColor = color;
-                                          viewTitleBar.InactiveBackgroundColor = color;
-                                          viewTitleBar.ButtonInactiveBackgroundColor = color;
-                                      }
-                                      catch(AccessViolationException ex)
-                                      {
-                                          Crashes.TrackError(ex);
-                                      }
-                                  }
-                              });
+                                    //remove the solid-colored backgrounds behind the caption controls and system back button
+                                    ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
+                                    viewTitleBar.BackgroundColor = color;
+                                    viewTitleBar.ButtonBackgroundColor = color;
+                                    viewTitleBar.InactiveBackgroundColor = color;
+                                    viewTitleBar.ButtonInactiveBackgroundColor = color;
+                                }
+                                catch(AccessViolationException ex)
+                                {
+                                    Crashes.TrackError(ex);
+                                }
+                            }
+                        });
             }
         }
-        
+
         private static Color ConvertColorFromHexString(string hexString)
         {
             var colorStr = hexString.Replace("#", string.Empty);

@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Constants;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.ViewModels.About;
 using NSubstitute;

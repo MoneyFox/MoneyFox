@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.ViewModels.Settings;
 using NSubstitute;
 using System.Diagnostics.CodeAnalysis;

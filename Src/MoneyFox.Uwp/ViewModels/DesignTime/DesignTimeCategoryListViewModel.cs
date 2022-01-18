@@ -11,10 +11,13 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
         public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
             => new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>
             {
-                new AlphaGroupListGroupCollection<CategoryViewModel>("A") {new CategoryViewModel {Name = "Auto"}},
+                new AlphaGroupListGroupCollection<CategoryViewModel>("A")
+                {
+                    new CategoryViewModel { Name = "Auto" }
+                },
                 new AlphaGroupListGroupCollection<CategoryViewModel>("E")
                 {
-                    new CategoryViewModel {Name = "Einkaufen"}
+                    new CategoryViewModel { Name = "Einkaufen" }
                 }
             };
 

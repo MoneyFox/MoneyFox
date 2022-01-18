@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application;
-using MoneyFox.Core;
+﻿using MoneyFox.Core;
+using MoneyFox.Core._Pending_;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.ViewModels.Payments;
 

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Accounts.Queries.GetAccountById;
+using MoneyFox.Core.Queries.Accounts.GetAccountById;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using System.Threading.Tasks;
 

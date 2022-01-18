@@ -28,18 +28,18 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             {
                 new PaymentViewModel
                 {
-                    Amount = 123, Category = new CategoryViewModel {Name = "Beer"}, Date = DateTime.Now
+                    Amount = 123, Category = new CategoryViewModel { Name = "Beer" }, Date = DateTime.Now
                 },
                 new PaymentViewModel
                 {
                     Amount = 123,
-                    Category = new CategoryViewModel {Name = "Beer"},
+                    Category = new CategoryViewModel { Name = "Beer" },
                     Date = DateTime.Now.AddMonths(-1)
                 },
                 new PaymentViewModel
                 {
                     Amount = 123,
-                    Category = new CategoryViewModel {Name = "Beer"},
+                    Category = new CategoryViewModel { Name = "Beer" },
                     Date = DateTime.Now.AddMonths(-1)
                 }
             }

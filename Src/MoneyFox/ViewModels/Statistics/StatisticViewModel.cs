@@ -2,9 +2,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Common.Extensions;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Extensions;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Resources;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -16,10 +16,9 @@ namespace MoneyFox.ViewModels.Statistics
     /// </summary>
     public abstract class StatisticViewModel : ObservableRecipient
     {
-        private DateTime startDate;
-        private DateTime endDate;
-
         protected readonly IMediator Mediator;
+        private DateTime endDate;
+        private DateTime startDate;
 
         /// <summary>
         ///     Creates a StatisticViewModel Object and passes the first and last day of the current month     as a start
@@ -45,17 +44,6 @@ namespace MoneyFox.ViewModels.Statistics
             Mediator = mediator;
             IsActive = true;
         }
-
-        protected override void OnActivated() => Messenger.Register<StatisticViewModel, DateSelectedMessage>(
-            this,
-            (r, m) =>
-            {
-                r.StartDate = m.StartDate;
-                r.EndDate = m.EndDate;
-                LoadAsync();
-            });
-
-        protected override void OnDeactivated() => Messenger.Unregister<DateSelectedMessage>(this);
 
         public RelayCommand LoadedCommand => new RelayCommand(async () => await LoadAsync());
 
@@ -94,6 +82,17 @@ namespace MoneyFox.ViewModels.Statistics
         /// </summary>
         public string Title =>
             $"{Strings.StatisticsTimeRangeTitle} {StartDate.ToString("d", CultureInfo.InvariantCulture)} - {EndDate.ToString("d", CultureInfo.InvariantCulture)}";
+
+        protected override void OnActivated() => Messenger.Register<StatisticViewModel, DateSelectedMessage>(
+            this,
+            (r, m) =>
+            {
+                r.StartDate = m.StartDate;
+                r.EndDate = m.EndDate;
+                LoadAsync();
+            });
+
+        protected override void OnDeactivated() => Messenger.Unregister<DateSelectedMessage>(this);
 
         protected abstract Task LoadAsync();
     }

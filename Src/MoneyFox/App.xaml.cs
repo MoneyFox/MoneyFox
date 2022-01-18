@@ -3,11 +3,11 @@ using MediatR;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Application;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.DbBackup;
-using MoneyFox.Application.Payments.Commands.ClearPayments;
-using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
+using MoneyFox.Core._Pending_;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.DbBackup;
+using MoneyFox.Core.Commands.Payments.ClearPayments;
+using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
 using MoneyFox.Mobile.Infrastructure.Adapters;
 using NLog;
 using PCLAppConfig;
@@ -27,7 +27,7 @@ namespace MoneyFox
 
         public App()
         {
-            Device.SetFlags(new[] {"AppTheme_Experimental", "SwipeView_Experimental"});
+            Device.SetFlags(new[] { "AppTheme_Experimental", "SwipeView_Experimental" });
 
             Current.UserAppTheme = Current.RequestedTheme != OSAppTheme.Unspecified
                 ? Current.RequestedTheme

@@ -1,5 +1,5 @@
 ﻿using CommonServiceLocator;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core.Resources;
 using MoneyFox.ViewModels.Categories;
 using Xamarin.Forms;
 
@@ -7,8 +7,6 @@ namespace MoneyFox.Views.Categories
 {
     public partial class EditCategoryPage
     {
-        private EditCategoryViewModel ViewModel => (EditCategoryViewModel)BindingContext;
-
         private readonly int categoryId;
 
         public EditCategoryPage(int categoryId)
@@ -37,6 +35,8 @@ namespace MoneyFox.Views.Categories
             ToolbarItems.Add(cancelItem);
             ToolbarItems.Add(saveItem);
         }
+
+        private EditCategoryViewModel ViewModel => (EditCategoryViewModel)BindingContext;
 
         protected override async void OnAppearing() => await ViewModel.InitializeAsync(categoryId);
     }

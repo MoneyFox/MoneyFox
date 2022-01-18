@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Common.QueryObjects;
-using MoneyFox.Core;
+﻿using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Common.QueryObjects;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using System;

@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Extensions;
-using MoneyFox.Application.Common.Helpers;
 using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Common.Extensions;
+using MoneyFox.Core._Pending_.Common.Helpers;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using System;

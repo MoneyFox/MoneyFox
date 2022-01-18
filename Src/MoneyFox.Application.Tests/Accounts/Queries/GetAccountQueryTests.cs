@@ -1,7 +1,7 @@
-﻿using MoneyFox.Application.Accounts.Queries.GetAccounts;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Tests.Infrastructure;
+﻿using MoneyFox.Application.Tests.Infrastructure;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
+using MoneyFox.Core.Queries.Accounts.GetAccounts;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

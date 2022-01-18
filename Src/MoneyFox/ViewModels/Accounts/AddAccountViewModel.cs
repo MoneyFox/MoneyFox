@@ -1,16 +1,16 @@
 ﻿using MediatR;
-using MoneyFox.Application.Accounts.Commands.CreateAccount;
-using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Commands.Accounts.CreateAccount;
+using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
+using MoneyFox.Core.Resources;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts
 {
     public class AddAccountViewModel : ModifyAccountViewModel
     {
-        private readonly IMediator mediator;
         private readonly IDialogService dialogService;
+        private readonly IMediator mediator;
 
         public AddAccountViewModel(IMediator mediator,
             IDialogService dialogService)

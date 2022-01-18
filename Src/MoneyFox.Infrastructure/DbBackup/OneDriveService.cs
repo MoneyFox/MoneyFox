@@ -1,9 +1,9 @@
 ﻿using Microsoft.Graph;
 using Microsoft.Identity.Client;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.DbBackup;
-using MoneyFox.Core.Exceptions;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core._Pending_.Common.Constants;
+using MoneyFox.Core._Pending_.DbBackup;
+using MoneyFox.Core._Pending_.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;

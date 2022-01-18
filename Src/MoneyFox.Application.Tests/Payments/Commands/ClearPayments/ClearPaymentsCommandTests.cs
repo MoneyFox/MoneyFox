@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Payments.Commands.ClearPayments;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Commands.Payments.ClearPayments;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

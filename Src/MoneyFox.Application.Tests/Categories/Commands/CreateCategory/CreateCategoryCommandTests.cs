@@ -1,12 +1,12 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Categories.Command.CreateCategory;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Tests.Infrastructure;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Commands.Categories.CreateCategory;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

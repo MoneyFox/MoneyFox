@@ -1,6 +1,6 @@
 ﻿using Microsoft.AppCenter.Crashes;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Resources;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views.Dialogs;
 using System;
@@ -34,7 +34,7 @@ namespace MoneyFox.Uwp
             string? negativeButtonText = null)
         {
             CloseAllOpenDialogs();
-            var dialog = new ContentDialog {Title = title, Content = message};
+            var dialog = new ContentDialog { Title = title, Content = message };
             dialog.PrimaryButtonText = positiveButtonText ?? Strings.YesLabel;
             dialog.SecondaryButtonText = negativeButtonText ?? Strings.NoLabel;
             dialog.RequestedTheme = ThemeSelectorService.Theme;
@@ -53,7 +53,7 @@ namespace MoneyFox.Uwp
         {
             CloseAllOpenDialogs();
 
-            var dialog = new ContentDialog {Title = title, Content = message};
+            var dialog = new ContentDialog { Title = title, Content = message };
             dialog.PrimaryButtonText = Strings.OkLabel;
             dialog.RequestedTheme = ThemeSelectorService.Theme;
 
@@ -68,7 +68,7 @@ namespace MoneyFox.Uwp
             // Be sure no other dialog is open.
             CloseAllOpenDialogs();
 
-            loadingDialog = new LoadingDialog {Text = message ?? Strings.LoadingLabel};
+            loadingDialog = new LoadingDialog { Text = message ?? Strings.LoadingLabel };
             loadingDialog.RequestedTheme = ThemeSelectorService.Theme;
 
             CoreApplicationView coreWindow = CoreApplication.MainView;
@@ -89,7 +89,7 @@ namespace MoneyFox.Uwp
                     {
                         Crashes.TrackError(
                             ex,
-                            new Dictionary<string, string> {{"Message", "Loading Dialog couldn't be opened."}});
+                            new Dictionary<string, string> { { "Message", "Loading Dialog couldn't be opened." } });
                     }
                 });
 

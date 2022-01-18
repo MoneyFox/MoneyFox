@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
+using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

@@ -1,10 +1,10 @@
 ﻿using CommonServiceLocator;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.DbBackup;
-using MoneyFox.Application.Payments.Commands.ClearPayments;
-using MoneyFox.Application.Payments.Commands.CreateRecurringPayments;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.DbBackup;
+using MoneyFox.Core.Commands.Payments.ClearPayments;
+using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
 using MoneyFox.Desktop.Infrastructure.Adapters;
 using NLog;
 using System;
@@ -45,7 +45,7 @@ namespace MoneyFox.Uwp.Services
             catch(Exception ex)
             {
                 logger.Fatal(ex);
-                Crashes.TrackError(ex, new Dictionary<string, string> {{"Context", "Startup."}});
+                Crashes.TrackError(ex, new Dictionary<string, string> { { "Context", "Startup." } });
             }
             finally
             {

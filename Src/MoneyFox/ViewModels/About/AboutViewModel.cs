@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Constants;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -93,8 +93,8 @@ namespace MoneyFox.ViewModels.About
             await emailAdapter.SendEmailAsync(
                 Strings.FeedbackSubject,
                 string.Empty,
-                new List<string> {AppConstants.SupportMail},
-                new List<string> {Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName)});
+                new List<string> { AppConstants.SupportMail },
+                new List<string> { Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName) });
 
         private void RateApp()
             => storeFeatures.RateApp();

@@ -1,10 +1,10 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.FileStore;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.DbBackup;
-using MoneyFox.Core.Exceptions;
+using MoneyFox.Core._Pending_.Common.Constants;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.Common.FileStore;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.DbBackup;
+using MoneyFox.Core._Pending_.Exceptions;
 using MoneyFox.Core.Interfaces;
 using MoneyFox.Infrastructure.DbBackup;
 using Moq;

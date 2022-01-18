@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Tests.Infrastructure;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Categories.GetCategoryById;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

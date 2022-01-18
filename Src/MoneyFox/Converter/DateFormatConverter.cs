@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application;
+﻿using MoneyFox.Core._Pending_;
 using System;
 using System.Globalization;
 using Xamarin.Forms;

@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Common.Interfaces;
+﻿using MoneyFox.Core._Pending_.Common.Interfaces;
 using System.Threading.Tasks;
 
 #nullable enable

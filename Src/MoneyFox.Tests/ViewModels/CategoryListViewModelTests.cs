@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using FluentAssertions;
 using MediatR;
-using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Categories.GetCategoryBySearchTerm;
 using MoneyFox.ViewModels.Categories;
 using NSubstitute;
 using System.Collections.Generic;

@@ -3,11 +3,11 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
 using Microcharts;
-using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Queries.Categories.GetCategoryById;
+using MoneyFox.Core.Queries.Statistics;
+using MoneyFox.Core.Queries.Statistics.Queries;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Categories;
 using MoneyFox.Uwp.ViewModels.Statistics;
@@ -44,7 +44,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                 this,
                 async (r, m) =>
                 {
-                    SelectedCategory = mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
+                    SelectedCategory =
+                        mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
                     await r.LoadAsync();
                 });
         }
@@ -107,7 +108,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
 
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
             async ()
-                => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
+                => await new SelectCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync());
 
         protected override async Task LoadAsync()
         {
@@ -125,14 +126,14 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(
-                                            x => new ChartEntry((float)x.Value)
-                                            {
-                                                Label = x.Label,
-                                                ValueLabel = x.ValueLabel,
-                                                Color = SKColor.Parse(x.Color),
-                                                ValueLabelColor = SKColor.Parse(x.Color)
-                                            })
-                                        .ToList(),
+                        x => new ChartEntry((float)x.Value)
+                        {
+                            Label = x.Label,
+                            ValueLabel = x.ValueLabel,
+                            Color = SKColor.Parse(x.Color),
+                            ValueLabelColor = SKColor.Parse(x.Color)
+                        })
+                    .ToList(),
                 BackgroundColor = new SKColor(
                     ChartOptions.BackgroundColor.R,
                     ChartOptions.BackgroundColor.G,

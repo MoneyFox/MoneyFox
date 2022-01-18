@@ -1,5 +1,5 @@
 ﻿#nullable enable
-using MoneyFox.Application.Common;
+using MoneyFox.Core._Pending_.Common;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System;
 using Windows.UI.Xaml;
@@ -50,7 +50,7 @@ namespace MoneyFox.Uwp.Views.Categories
             }
 
             ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category)
-                                                        .FireAndForgetSafeAsync();
+                .FireAndForgetSafeAsync();
         }
     }
 }

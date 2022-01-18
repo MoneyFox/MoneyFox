@@ -5,11 +5,11 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              mc:Ignorable="d"
              Visual="Material"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:categories="clr-namespace:MoneyFox.ViewModels.Categories;assembly=MoneyFox"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Shell.NavBarHasShadow="False"
              x:Class="MoneyFox.Views.Categories.CategoryListPage">
 

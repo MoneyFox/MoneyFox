@@ -2,9 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="MoneyFox.Views.Statistics.StatisticAccountMonthlyCashFlowPage"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
              xmlns:statistics="clr-namespace:MoneyFox.ViewModels.Statistics;assembly=MoneyFox"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Visual="Material">
 
     <Shell.TitleView>
@@ -26,7 +26,8 @@
     </Shell.TitleView>
 
     <ContentPage.Content>
-        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,0" x:DataType="statistics:StatisticAccountMonthlyCashflowViewModel">
+        <Grid RowDefinitions="38, auto, auto, *" Padding="15,0,15,0"
+              x:DataType="statistics:StatisticAccountMonthlyCashflowViewModel">
             <Label Style="{StaticResource TextHeadline}"
                    Text="{x:Static resources:Strings.MonthlyCashflowTitle}" />
 

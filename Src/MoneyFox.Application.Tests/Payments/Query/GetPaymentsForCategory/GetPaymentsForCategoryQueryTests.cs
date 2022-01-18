@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
+using MoneyFox.Core.Queries.Payments.GetPaymentsForCategory;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;

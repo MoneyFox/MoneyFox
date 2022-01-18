@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
 using MoneyFox.Uwp.Services;
 
 #nullable enable

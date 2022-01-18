@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using MoneyFox.Core.Exceptions;
+using MoneyFox.Core._Pending_.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

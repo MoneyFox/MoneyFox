@@ -17,11 +17,11 @@ namespace MoneyFox.Uwp.ViewModels.DesignTime
             {
                 new AlphaGroupListGroupCollection<AccountViewModel>("Included")
                 {
-                    new AccountViewModel {Name = "Income", CurrentBalance = 1234}
+                    new AccountViewModel { Name = "Income", CurrentBalance = 1234 }
                 },
                 new AlphaGroupListGroupCollection<AccountViewModel>("Excluded")
                 {
-                    new AccountViewModel {Name = "Savings", CurrentBalance = 4325}
+                    new AccountViewModel { Name = "Savings", CurrentBalance = 4325 }
                 }
             };
 

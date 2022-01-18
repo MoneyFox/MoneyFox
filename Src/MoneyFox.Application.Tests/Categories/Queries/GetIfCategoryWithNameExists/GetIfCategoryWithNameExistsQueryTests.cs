@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists;
 using MoneyFox.Infrastructure.Persistence;
 using System;
 using System.Diagnostics.CodeAnalysis;

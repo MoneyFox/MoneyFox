@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Common.Extensions;
+﻿using MoneyFox.Core._Pending_.Common.Extensions;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using Xunit;

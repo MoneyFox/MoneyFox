@@ -10,12 +10,12 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:animations="using:Microsoft.Toolkit.Uwp.UI.Animations"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:accountlist="using:MoneyFox.Uwp.Views.Accounts"
     xmlns:accounts="using:MoneyFox.Uwp.ViewModels.Accounts"
     xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
     xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     mc:Ignorable="d">
 
     <d:MvxWindowsPage.DataContext>
@@ -33,11 +33,11 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="AccountItemTemplate" x:DataType="accounts:AccountViewModel">
-            <Grid Height="100" Width="250" 
+            <Grid Height="100" Width="250"
                   CornerRadius="{StaticResource DefaultCornerRadius}"
                   Padding="{StaticResource SmallListItemPadding}"
                   Background="{ThemeResource ListItemBrush}">
-                
+
                 <Grid.ContextFlyout>
                     <MenuFlyout>
                         <MenuFlyoutItem

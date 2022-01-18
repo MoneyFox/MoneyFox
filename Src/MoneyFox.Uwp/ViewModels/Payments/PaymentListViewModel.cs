@@ -3,15 +3,15 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Accounts.Queries.GetAccountNameById;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Payments.Commands.DeletePaymentById;
-using MoneyFox.Application.Payments.Queries.GetPaymentsForAccountId;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Resources;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Commands.Payments.DeletePaymentById;
+using MoneyFox.Core.Queries.Accounts.GetAccountNameById;
+using MoneyFox.Core.Queries.Payments.GetPaymentsForAccountId;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -88,7 +88,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
         public AsyncRelayCommand LoadDataCommand => new AsyncRelayCommand(
             async () => await LoadDataAsync(
-                new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)}));
+                new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) }));
 
         public RelayCommand<PaymentViewModel> EditPaymentCommand
             => new RelayCommand<PaymentViewModel>(vm => navigationService.Navigate<EditPaymentViewModel>(vm));
@@ -173,7 +173,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 navigationService);
 
             await LoadDataAsync(
-                new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)});
+                new PaymentListFilterChangedMessage { TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK) });
             IsBusy = false;
         }
 
@@ -218,7 +218,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             payments.ForEach(x => x.CurrentAccountId = AccountId);
 
-            var source = new CollectionViewSource {IsSourceGrouped = filterMessage.IsGrouped};
+            var source = new CollectionViewSource { IsSourceGrouped = filterMessage.IsGrouped };
 
             if(filterMessage.IsGrouped)
             {

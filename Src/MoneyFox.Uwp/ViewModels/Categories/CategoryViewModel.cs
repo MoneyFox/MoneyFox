@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Application.Common.Interfaces.Mapping;
+using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using System;

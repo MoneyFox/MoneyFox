@@ -8,9 +8,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:primitives="using:Telerik.UI.Xaml.Controls.Primitives"
     xmlns:views="using:MoneyFox.Uwp.Views"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     mc:Ignorable="d">
 
     <Page.Resources>

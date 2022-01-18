@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Common;
+﻿using MoneyFox.Core._Pending_.Common;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using System;
 using Windows.ApplicationModel;

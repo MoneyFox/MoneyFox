@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Common.Constants;
+﻿using MoneyFox.Core._Pending_.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;

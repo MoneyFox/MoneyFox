@@ -1,10 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries;
 using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Statistics;
+using MoneyFox.Core.Queries.Statistics.Queries;
 using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -28,7 +28,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             this.settingsFacade = settingsFacade;
         }
 
-        public List<PaymentType> PaymentTypes => new List<PaymentType> {PaymentType.Expense, PaymentType.Income};
+        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
 
         public PaymentType SelectedPaymentType
         {

@@ -5,7 +5,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 using Microsoft.Identity.Client;
-using MoneyFox.Application.Common;
+using MoneyFox.Core._Pending_.Common;
 using Rg.Plugins.Popup;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;

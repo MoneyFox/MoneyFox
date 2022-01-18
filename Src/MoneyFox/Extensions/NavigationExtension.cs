@@ -1,4 +1,4 @@
-﻿using MoneyFox.Core.Exceptions;
+﻿using MoneyFox.Core._Pending_.Exceptions;
 using NLog;
 using System;
 using System.Threading.Tasks;
@@ -20,7 +20,7 @@ namespace MoneyFox.Extensions
                 }
 
                 return shell.Navigation.PushModalAsync(
-                    new NavigationPage(page) {BarBackgroundColor = Color.Transparent});
+                    new NavigationPage(page) { BarBackgroundColor = Color.Transparent });
             }
             catch(Exception ex)
             {

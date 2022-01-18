@@ -7,16 +7,6 @@ namespace MoneyFox.Views.Dialogs
 {
     public partial class ConfirmMessageDialog
     {
-        public ConfirmMessageDialog(string title, string message, string positiveText = "", string negativeText = "")
-        {
-            InitializeComponent();
-
-            PopupTitle = title;
-            PopupMessage = message;
-            PositiveText = positiveText;
-            NegativeText = negativeText;
-        }
-
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
             nameof(PopupTitle),
             typeof(string),
@@ -36,6 +26,18 @@ namespace MoneyFox.Views.Dialogs
             nameof(NegativeText),
             typeof(string),
             typeof(ConfirmMessageDialog));
+
+        private TaskCompletionSource<bool>? confirmTaskCompletionSource;
+
+        public ConfirmMessageDialog(string title, string message, string positiveText = "", string negativeText = "")
+        {
+            InitializeComponent();
+
+            PopupTitle = title;
+            PopupMessage = message;
+            PositiveText = positiveText;
+            NegativeText = negativeText;
+        }
 
         public string PopupTitle
         {
@@ -61,12 +63,10 @@ namespace MoneyFox.Views.Dialogs
             set => SetValue(NegativeTextProperty, value);
         }
 
-        private TaskCompletionSource<bool>? confirmTaskCompletionSource;
-
         public async Task<bool> ShowAsync()
         {
             confirmTaskCompletionSource = new TaskCompletionSource<bool>();
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(this);
+            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
             return await confirmTaskCompletionSource.Task;
         }
 
@@ -83,6 +83,6 @@ namespace MoneyFox.Views.Dialogs
         }
 
         private static async Task DismissAsync()
-            => await Xamarin.Forms.Application.Current.MainPage.Navigation.PopPopupAsync();
+            => await Application.Current.MainPage.Navigation.PopPopupAsync();
     }
 }

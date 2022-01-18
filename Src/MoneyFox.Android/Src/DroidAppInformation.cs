@@ -1,5 +1,5 @@
 using Android.Content;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 
 #nullable enable
 namespace MoneyFox.Droid

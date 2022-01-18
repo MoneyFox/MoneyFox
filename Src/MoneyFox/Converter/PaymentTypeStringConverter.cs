@@ -1,6 +1,5 @@
-﻿using MoneyFox.Application.Resources;
-using MoneyFox.Core;
-using MoneyFox.Core.Aggregates.Payments;
+﻿using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Resources;
 using System;
 using System.Globalization;
 using Xamarin.Forms;

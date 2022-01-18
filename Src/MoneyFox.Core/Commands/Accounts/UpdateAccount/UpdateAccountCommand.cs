@@ -1,0 +1,58 @@
+﻿using MediatR;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.DbBackup;
+using MoneyFox.Core.Aggregates;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace MoneyFox.Core.Commands.Accounts.UpdateAccount
+{
+    public class UpdateAccountCommand : IRequest
+    {
+        public UpdateAccountCommand(Account account)
+        {
+            Account = account;
+        }
+
+        public Account Account { get; }
+
+        public class Handler : IRequestHandler<UpdateAccountCommand>
+        {
+            private readonly IContextAdapter contextAdapter;
+            private readonly IBackupService backupService;
+            private readonly ISettingsFacade settingsFacade;
+
+            public Handler(IContextAdapter contextAdapter,
+                IBackupService backupService,
+                ISettingsFacade settingsFacade)
+            {
+                this.contextAdapter = contextAdapter;
+                this.backupService = backupService;
+                this.settingsFacade = settingsFacade;
+            }
+
+            public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
+            {
+                Account existingAccount = await contextAdapter.Context
+                                                              .Accounts
+                                                              .FindAsync(request.Account.Id);
+
+                existingAccount.UpdateAccount(
+                    request.Account.Name,
+                    request.Account.CurrentBalance,
+                    request.Account.Note ?? "",
+                    request.Account.IsExcluded);
+
+                await contextAdapter.Context.SaveChangesAsync(cancellationToken);
+
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
+
+                return Unit.Value;
+            }
+        }
+    }
+}

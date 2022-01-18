@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Application.Resources;
 using MoneyFox.Core;
+using MoneyFox.Core.Resources;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xamarin.Forms;

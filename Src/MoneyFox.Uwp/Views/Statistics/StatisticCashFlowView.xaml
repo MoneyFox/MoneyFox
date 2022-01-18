@@ -7,8 +7,8 @@
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:microcharts="using:Microcharts.Uwp"
-                xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
+                xmlns:resources="using:MoneyFox.Core.Resources"
                 mc:Ignorable="d">
 
     <Page.Resources>
@@ -42,7 +42,7 @@
 
             <Button Command="{x:Bind ViewModel.LoadedCommand}"
                     Content="{x:Bind resources:Strings.ApplyFilterLabel}"
-                    VerticalAlignment="Bottom"/>
+                    VerticalAlignment="Bottom" />
         </StackPanel>
 
         <microcharts:ChartView Grid.Row="1"

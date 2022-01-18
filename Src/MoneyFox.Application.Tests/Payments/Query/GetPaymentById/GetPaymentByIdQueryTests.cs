@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Tests.Infrastructure;
 using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Exceptions;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Exceptions;
+using MoneyFox.Core.Queries.Payments.GetPaymentById;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

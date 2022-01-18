@@ -1,8 +1,8 @@
 ﻿using FluentAssertions;
 using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Exceptions;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Exceptions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;

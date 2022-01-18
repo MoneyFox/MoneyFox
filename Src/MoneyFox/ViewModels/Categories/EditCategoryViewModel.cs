@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Categories.Command.UpdateCategory;
-using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Commands.Categories.UpdateCategory;
+using MoneyFox.Core.Queries.Categories.GetCategoryById;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Categories
 {
     public class EditCategoryViewModel : ModifyCategoryViewModel
     {
-        private readonly IMediator mediator;
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
         public EditCategoryViewModel(IMediator mediator,
             IMapper mapper,

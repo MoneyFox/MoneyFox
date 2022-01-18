@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Resources;
+﻿using MoneyFox.Core.Resources;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System;
@@ -20,6 +20,6 @@ namespace MoneyFox.Uwp.Views.Categories
         }
 
         private async void AddNewCategoryClick(object sender, RoutedEventArgs e)
-            => await new AddCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync();
+            => await new AddCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync();
     }
 }

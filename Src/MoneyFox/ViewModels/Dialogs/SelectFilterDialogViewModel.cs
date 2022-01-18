@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Application.Common.Messages;
+using MoneyFox.Core._Pending_.Common.Messages;
 using System;
 
 namespace MoneyFox.ViewModels.Dialogs
@@ -21,19 +21,19 @@ namespace MoneyFox.ViewModels.Dialogs
     {
         private bool isClearedFilterActive;
         private bool isRecurringFilterActive;
-        private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
         private DateTime timeRangeEnd = DateTime.Now.AddMonths(6);
+        private DateTime timeRangeStart = DateTime.Now.AddMonths(-2);
 
-        /// <summary>
-        ///     Initalize the viewmodel with a previous sent message.
-        /// </summary>
-        public void Initialize(PaymentListFilterChangedMessage message)
-        {
-            IsClearedFilterActive = message.IsClearedFilterActive;
-            IsRecurringFilterActive = message.IsRecurringFilterActive;
-            TimeRangeStart = message.TimeRangeStart;
-            TimeRangeEnd = message.TimeRangeEnd;
-        }
+        public RelayCommand FilterSelectedCommand => new RelayCommand(
+            () =>
+                Messenger.Send(
+                    new PaymentListFilterChangedMessage
+                    {
+                        IsClearedFilterActive = IsClearedFilterActive,
+                        IsRecurringFilterActive = IsRecurringFilterActive,
+                        TimeRangeStart = TimeRangeStart,
+                        TimeRangeEnd = TimeRangeEnd
+                    }));
 
         /// <summary>
         ///     Indicates wether the filter for only cleared Payments is active or not.
@@ -107,15 +107,15 @@ namespace MoneyFox.ViewModels.Dialogs
             }
         }
 
-        public RelayCommand FilterSelectedCommand => new RelayCommand(
-            () =>
-                Messenger.Send(
-                    new PaymentListFilterChangedMessage
-                    {
-                        IsClearedFilterActive = IsClearedFilterActive,
-                        IsRecurringFilterActive = IsRecurringFilterActive,
-                        TimeRangeStart = TimeRangeStart,
-                        TimeRangeEnd = TimeRangeEnd
-                    }));
+        /// <summary>
+        ///     Initalize the viewmodel with a previous sent message.
+        /// </summary>
+        public void Initialize(PaymentListFilterChangedMessage message)
+        {
+            IsClearedFilterActive = message.IsClearedFilterActive;
+            IsRecurringFilterActive = message.IsRecurringFilterActive;
+            TimeRangeStart = message.TimeRangeStart;
+            TimeRangeEnd = message.TimeRangeEnd;
+        }
     }
 }

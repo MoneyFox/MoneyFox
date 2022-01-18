@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Core._Pending_;
+using MoneyFox.Core.Resources;
 using System;
 using System.Reflection;
 using System.Resources;

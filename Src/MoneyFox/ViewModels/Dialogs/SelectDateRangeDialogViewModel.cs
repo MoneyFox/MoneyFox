@@ -1,30 +1,21 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Application.Common.Extensions;
-using MoneyFox.Application.Common.Messages;
+using MoneyFox.Core._Pending_.Common.Extensions;
+using MoneyFox.Core._Pending_.Common.Messages;
 using System;
 
 namespace MoneyFox.ViewModels.Dialogs
 {
     public class SelectDateRangeDialogViewModel : ObservableRecipient
     {
-        private DateTime startDate;
         private DateTime endDate;
+        private DateTime startDate;
 
         public SelectDateRangeDialogViewModel()
         {
             StartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             EndDate = DateTime.Today.GetLastDayOfMonth();
-        }
-
-        /// <summary>
-        ///     Initalize the viewmodel with a previous sent message.
-        /// </summary>
-        public void Initialize(DateSelectedMessage message)
-        {
-            StartDate = message.StartDate;
-            EndDate = message.EndDate;
         }
 
         /// <summary>
@@ -57,6 +48,15 @@ namespace MoneyFox.ViewModels.Dialogs
         ///     Selects the dates and notifies observer via the MessageHub
         /// </summary>
         public RelayCommand DoneCommand => new RelayCommand(Done);
+
+        /// <summary>
+        ///     Initalize the viewmodel with a previous sent message.
+        /// </summary>
+        public void Initialize(DateSelectedMessage message)
+        {
+            StartDate = message.StartDate;
+            EndDate = message.EndDate;
+        }
 
         private void Done() => Messenger.Send(new DateSelectedMessage(StartDate, EndDate));
     }

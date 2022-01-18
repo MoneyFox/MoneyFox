@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Application.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Extensions;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -16,14 +16,6 @@ namespace MoneyFox.ViewModels.SetupAssistant
             this.settingsFacade = settingsFacade;
         }
 
-        public async Task InitAsync()
-        {
-            if(settingsFacade.IsSetupCompleted)
-            {
-                await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute);
-            }
-        }
-
         public RelayCommand GoToAddAccountCommand
             => new RelayCommand(async () => await Shell.Current.GoToModalAsync(ViewModelLocator.AddAccountRoute));
 
@@ -33,10 +25,18 @@ namespace MoneyFox.ViewModels.SetupAssistant
 
         public RelayCommand SkipCommand => new RelayCommand(SkipSetup);
 
+        public async Task InitAsync()
+        {
+            if(settingsFacade.IsSetupCompleted)
+            {
+                await Shell.Current.GoToAsync(ViewModelLocator.DashboardRoute);
+            }
+        }
+
         private void SkipSetup()
         {
             settingsFacade.IsSetupCompleted = true;
-            Xamarin.Forms.Application.Current.MainPage = new AppShell();
+            Application.Current.MainPage = new AppShell();
         }
     }
 }
