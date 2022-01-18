@@ -2,12 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Resources;
 using MoneyFox.Core.Exceptions;
+using MoneyFox.Core.Interfaces;
 using NLog;
 using System;
 using System.Threading.Tasks;

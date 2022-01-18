@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Common.Adapters;
+﻿using MoneyFox.Core.Interfaces;
 using NLog;
 using System.Collections.Generic;
 using System.Threading.Tasks;

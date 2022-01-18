@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Core.Interfaces;
 using System.Net.NetworkInformation;
 
 namespace MoneyFox.Desktop.Infrastructure.Adapters

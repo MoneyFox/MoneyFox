@@ -1,11 +1,11 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Core.Exceptions;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Infrastructure.DbBackup;
 using Moq;
 using NSubstitute;

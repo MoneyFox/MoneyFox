@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Extensions;
 using MoneyFox.Application.Common.Facades;
@@ -13,6 +12,7 @@ using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Resources;
 using MoneyFox.Core.Exceptions;
+using MoneyFox.Core.Interfaces;
 using NLog;
 using System;
 using System.Collections.Generic;

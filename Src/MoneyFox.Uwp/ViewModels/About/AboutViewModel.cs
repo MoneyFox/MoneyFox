@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
+using MoneyFox.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -74,7 +74,7 @@ csharp_style_expression_bodied_constructors = false:silent
 csharp_style_expression_bodied_indexers = true:silent
 csharp_style_expression_bodied_lambdas = true:silent
 csharp_style_expression_bodied_local_functions = false:silent
-csharp_style_expression_bodied_methods =when_on_single_line:silent
+csharp_style_expression_bodied_methods = when_on_single_line:silent
 csharp_style_expression_bodied_operators = false:silent
 csharp_style_expression_bodied_properties = true:silent
 
@@ -88,7 +88,7 @@ csharp_style_conditional_delegate_call = true:suggestion
 
 # Modifier preferences
 csharp_prefer_static_local_function = true:suggestion
-csharp_preferred_modifier_order = public,private,protected,internal,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,volatile,async:silent
+csharp_preferred_modifier_order = public, private, protected, internal, static, extern, new, virtual, abstract, sealed, override, readonly, unsafe, volatile, async:silent
 
 # Code-block preferences
 csharp_prefer_braces = true:silent
@@ -175,24 +175,24 @@ dotnet_naming_rule.nicht_feldmember_should_be_pascal_schreibweise.style = pascal
 
 dotnet_naming_symbols.schnittstelle.applicable_kinds = interface
 dotnet_naming_symbols.schnittstelle.applicable_accessibilities = public, internal, private, protected, protected_internal
-dotnet_naming_symbols.schnittstelle.required_modifiers = 
+dotnet_naming_symbols.schnittstelle.required_modifiers =
 
 dotnet_naming_symbols.typen.applicable_kinds = class, struct, interface, enum
 dotnet_naming_symbols.typen.applicable_accessibilities = public, internal, private, protected, protected_internal
-dotnet_naming_symbols.typen.required_modifiers = 
+dotnet_naming_symbols.typen.required_modifiers =
 
 dotnet_naming_symbols.nicht_feldmember.applicable_kinds = property, event, method
 dotnet_naming_symbols.nicht_feldmember.applicable_accessibilities = public, internal, private, protected, protected_internal
-dotnet_naming_symbols.nicht_feldmember.required_modifiers = 
+dotnet_naming_symbols.nicht_feldmember.required_modifiers =
 
 # Naming styles
 
-dotnet_naming_style.pascal_schreibweise.required_prefix = 
-dotnet_naming_style.pascal_schreibweise.required_suffix = 
-dotnet_naming_style.pascal_schreibweise.word_separator = 
+dotnet_naming_style.pascal_schreibweise.required_prefix =
+dotnet_naming_style.pascal_schreibweise.required_suffix =
+dotnet_naming_style.pascal_schreibweise.word_separator =
 dotnet_naming_style.pascal_schreibweise.capitalization = pascal_case
 
 dotnet_naming_style.beginnt_mit_i.required_prefix = I
-dotnet_naming_style.beginnt_mit_i.required_suffix = 
-dotnet_naming_style.beginnt_mit_i.word_separator = 
+dotnet_naming_style.beginnt_mit_i.required_suffix =
+dotnet_naming_style.beginnt_mit_i.word_separator =
 dotnet_naming_style.beginnt_mit_i.capitalization = pascal_case

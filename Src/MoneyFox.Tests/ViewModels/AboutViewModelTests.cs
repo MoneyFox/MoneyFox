@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.ViewModels.About;
 using NSubstitute;
 using System;

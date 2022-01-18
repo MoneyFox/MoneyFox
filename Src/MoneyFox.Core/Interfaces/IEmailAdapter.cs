@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Application.Common.Adapters
+namespace MoneyFox.Core.Interfaces
 {
     public interface IEmailAdapter
     {

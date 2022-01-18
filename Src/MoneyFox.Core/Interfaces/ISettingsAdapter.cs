@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Application.Common.Adapters
+﻿namespace MoneyFox.Core.Interfaces
 {
     public interface ISettingsAdapter
     {

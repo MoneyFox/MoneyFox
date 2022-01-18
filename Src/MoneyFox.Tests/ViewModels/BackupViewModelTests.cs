@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Adapters;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.DbBackup;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.ViewModels.DataBackup;
 using NSubstitute;
 using System;

@@ -1,4 +1,4 @@
-﻿namespace MoneyFox.Application.Common.Adapters
+﻿namespace MoneyFox.Core.Interfaces
 {
     /// <summary>
     ///     Provides access to the connectivity state.
