@@ -44,6 +44,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         private IBalanceViewModel balanceViewModel = null!;
 
         private string title = "";
+        private bool isBusy;
         private IPaymentListViewActionViewModel? viewActionViewModel;
 
         /// <summary>
@@ -144,8 +145,17 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             private set => SetProperty(ref title, value);
         }
 
+        public bool IsBusy
+        {
+            get => isBusy;
+            private set => SetProperty(ref isBusy, value);
+        }
+
         private async Task InitializeAsync()
         {
+            IsActive = true;
+            IsBusy = true;
+
             Title = await mediator.Send(new GetAccountNameByIdQuery(accountId));
 
             BalanceViewModel = new PaymentListBalanceViewModel(
@@ -163,7 +173,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             await LoadDataAsync(
                 new PaymentListFilterChangedMessage {TimeRangeStart = DateTime.Now.AddYears(DEFAULT_YEAR_BACK)});
-            IsActive = true;
+            IsBusy = false;
         }
 
         private async Task LoadDataAsync(PaymentListFilterChangedMessage paymentListFilterChangedMessage)
@@ -175,7 +185,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             try
             {
-                await dialogService.ShowLoadingDialogAsync();
+                IsBusy = true;
                 await LoadPaymentsAsync(paymentListFilterChangedMessage);
 
                 //Refresh balance control with the current account
@@ -187,7 +197,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             }
             finally
             {
-                await dialogService.HideLoadingDialogAsync();
+                IsBusy = false;
             }
         }
 
@@ -239,6 +249,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
 
             try
             {
+                IsBusy = true;
                 var command = new DeletePaymentByIdCommand(payment.Id);
 
                 if(payment.IsRecurring)
@@ -255,6 +266,10 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             {
                 logManager.Error(ex, "Error during deleting payment.");
                 await dialogService.ShowMessageAsync(Strings.GeneralErrorTitle, Strings.UnknownErrorMessage);
+            }
+            finally
+            {
+                IsBusy = false;
             }
         }
     }
