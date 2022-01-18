@@ -2,15 +2,12 @@
 using MediatR;
 using MoneyFox.Core;
 using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common;
 using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.FileStore;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Desktop.Infrastructure;
 using MoneyFox.Desktop.Infrastructure.Adapters;
-using MoneyFox.Infrastructure;
 using MoneyFox.Uwp.AutoMapper;
 using MoneyFox.Uwp.Services;
-using PCLAppConfig;
 using System;
 using System.Globalization;
 
@@ -21,8 +18,7 @@ namespace MoneyFox.Uwp
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<CoreModule>();
-            builder.RegisterModule<InfrastructureDesktop>();
-            builder.RegisterModule<InfrastructureModule>();
+            builder.RegisterModule<InfrastructureDesktopModule>();
 
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<ToastService>().AsImplementedInterfaces();

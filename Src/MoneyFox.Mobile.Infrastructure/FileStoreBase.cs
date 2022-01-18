@@ -1,10 +1,11 @@
-﻿using System;
+﻿using MoneyFox.Core.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Core._Pending_.Common.FileStore
+namespace MoneyFox.Mobile.Infrastructure
 {
     public abstract class FileStoreBase : IFileStore
     {
@@ -13,9 +14,11 @@ namespace MoneyFox.Core._Pending_.Common.FileStore
                 path,
                 stream =>
                 {
-                    using var binaryWriter = new BinaryWriter(stream);
-                    binaryWriter.Write(contents.ToArray());
-                    binaryWriter.Flush();
+                    using(var binaryWriter = new BinaryWriter(stream))
+                    {
+                        binaryWriter.Write(contents.ToArray());
+                        binaryWriter.Flush();
+                    }
                 });
 
         public abstract Task<Stream> OpenReadAsync(string path);

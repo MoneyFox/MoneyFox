@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyFox.Application\MoneyFox.Application.csproj" />
+    <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-﻿using MoneyFox.Core._Pending_.Common.FileStore;
+﻿using MoneyFox.Mobile.Infrastructure;
 using NLog;
 using System;
 using System.IO;
