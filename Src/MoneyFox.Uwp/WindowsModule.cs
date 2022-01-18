@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using MediatR;
+using MoneyFox.Core;
 using MoneyFox.Core._Pending_;
 using MoneyFox.Core._Pending_.Common;
 using MoneyFox.Core._Pending_.Common.Facades;
@@ -26,7 +27,7 @@ namespace MoneyFox.Uwp
                         CurrencyConverterApi = ConfigurationManager.AppSettings["CurrencyConverterApiKey"]
                     });
 
-            builder.RegisterModule<ApplicationModule>();
+            builder.RegisterModule<CoreModule>();
             builder.RegisterModule<InfrastructureDesktop>();
             builder.RegisterModule<InfrastructureModule>();
 

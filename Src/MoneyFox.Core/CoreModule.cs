@@ -5,9 +5,9 @@ using System;
 using System.Reflection;
 using Module = Autofac.Module;
 
-namespace MoneyFox.Core._Pending_
+namespace MoneyFox.Core
 {
-    public class ApplicationModule : Module
+    public class CoreModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

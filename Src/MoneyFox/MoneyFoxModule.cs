@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using MoneyFox.AutoMapper;
+using MoneyFox.Core;
 using MoneyFox.Core._Pending_;
 using MoneyFox.Infrastructure;
 using MoneyFox.Mobile.Infrastructure;
@@ -12,7 +13,7 @@ namespace MoneyFox
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule<ApplicationModule>();
+            builder.RegisterModule<CoreModule>();
 
             builder.RegisterModule<InfrastructureMobile>();
             builder.RegisterModule<InfrastructureModule>();
