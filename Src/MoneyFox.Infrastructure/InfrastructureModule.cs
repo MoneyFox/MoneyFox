@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
-using MoneyFox.Application.Common.Constants;
 using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 
@@ -9,6 +8,8 @@ namespace MoneyFox.Infrastructure
 {
     public class InfrastructureModule : Module
     {
+        private const string MSAL_APPLICATION_ID = "00a3e4cd-b4b0-4730-be62-5fcf90a94a1d";
+
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(c => EfCoreContextFactory.Create())
@@ -19,8 +20,8 @@ namespace MoneyFox.Infrastructure
 
             builder.Register(
                        c => PublicClientApplicationBuilder
-                            .Create(AppConstants.MSAL_APPLICATION_ID)
-                            .WithRedirectUri($"msal{AppConstants.MSAL_APPLICATION_ID}://auth")
+                            .Create(MSAL_APPLICATION_ID)
+                            .WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth")
                             .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
                             .Build())
                    .AsImplementedInterfaces();
