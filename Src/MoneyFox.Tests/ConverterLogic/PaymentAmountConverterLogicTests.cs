@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using MoneyFox.ConverterLogic;
-using MoneyFox.Domain;
+using MoneyFox.Core;
 using MoneyFox.ViewModels.Payments;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;

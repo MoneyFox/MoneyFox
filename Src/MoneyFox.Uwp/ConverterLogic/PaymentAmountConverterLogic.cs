@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application;
-using MoneyFox.Domain;
+using MoneyFox.Core;
 using MoneyFox.Uwp.ViewModels.Payments;
 
 namespace MoneyFox.Uwp.ConverterLogic

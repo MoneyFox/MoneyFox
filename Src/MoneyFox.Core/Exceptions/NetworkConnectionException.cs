@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MoneyFox.Domain.Exceptions
+namespace MoneyFox.Core.Exceptions
 {
     /// <summary>
     ///     This Exception is thrown when there was an issue with an internet connection.

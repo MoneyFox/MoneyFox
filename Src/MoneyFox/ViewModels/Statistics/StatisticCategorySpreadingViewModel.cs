@@ -4,7 +4,7 @@ using Microcharts;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Statistics;
 using MoneyFox.Application.Statistics.Queries;
-using MoneyFox.Domain;
+using MoneyFox.Core;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

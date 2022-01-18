@@ -3,7 +3,7 @@ using FluentAssertions;
 using MediatR;
 using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.ViewModels.Categories;
 using NSubstitute;
 using System.Collections.Generic;

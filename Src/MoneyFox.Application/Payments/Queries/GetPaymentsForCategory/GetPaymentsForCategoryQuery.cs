@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Payments;
 using System;
 using System.Collections.Generic;
 using System.Linq;

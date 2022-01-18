@@ -1,4 +1,4 @@
-﻿using MoneyFox.Domain.Entities;
+﻿using MoneyFox.Core.Aggregates.Payments;
 using System.Collections.Generic;
 using System.Linq;
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MoneyFox.Domain.Exceptions
+namespace MoneyFox.Core.Exceptions
 {
     /// <summary>
     ///     This Exception is thrown when the user couldn't authenticate on the backup service.

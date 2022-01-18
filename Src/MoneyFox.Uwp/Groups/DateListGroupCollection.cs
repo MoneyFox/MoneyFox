@@ -1,6 +1,6 @@
 ﻿#nullable enable
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

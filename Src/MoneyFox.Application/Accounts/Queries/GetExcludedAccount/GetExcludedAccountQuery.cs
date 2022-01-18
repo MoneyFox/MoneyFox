@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Accounts;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;

@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using System;

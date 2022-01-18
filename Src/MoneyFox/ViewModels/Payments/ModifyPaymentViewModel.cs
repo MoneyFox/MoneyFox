@@ -8,7 +8,7 @@ using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain;
+using MoneyFox.Core;
 using MoneyFox.Extensions;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;

@@ -6,7 +6,7 @@ using MoneyFox.Application.Categories.Command.UpdateCategory;
 using MoneyFox.Application.Categories.Queries.GetCategoryById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.Services;
 using NLog;
 using System.Globalization;

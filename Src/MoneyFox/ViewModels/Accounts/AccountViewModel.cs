@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Accounts;
 using System;
 
 namespace MoneyFox.ViewModels.Accounts

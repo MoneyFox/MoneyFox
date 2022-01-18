@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application.Common;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Exceptions;
 using System;
 using System.Threading.Tasks;
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Infrastructure.Persistence.Configurations;
 
 namespace MoneyFox.Infrastructure.Persistence

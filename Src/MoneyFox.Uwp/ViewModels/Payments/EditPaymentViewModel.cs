@@ -7,7 +7,7 @@ using MoneyFox.Application.Payments.Commands.DeletePaymentById;
 using MoneyFox.Application.Payments.Commands.UpdatePayment;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Exceptions;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Utilities;
 using NLog;

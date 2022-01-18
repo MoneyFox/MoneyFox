@@ -1,8 +1,8 @@
 ﻿using CommonServiceLocator;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core;
+using MoneyFox.Core.Exceptions;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Accounts;

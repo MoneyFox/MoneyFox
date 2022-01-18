@@ -1,5 +1,7 @@
 ﻿using FluentAssertions;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates.Payments;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;

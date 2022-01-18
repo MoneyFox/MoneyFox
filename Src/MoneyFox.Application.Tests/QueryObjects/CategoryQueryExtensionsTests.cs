@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application.Common.QueryObjects;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Payments;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;

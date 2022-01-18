@@ -1,8 +1,7 @@
-﻿using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
+﻿using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Exceptions;
 using System;
-using System.Diagnostics.CodeAnalysis;
 
 namespace MoneyFox.Application.Common.Helpers
 {

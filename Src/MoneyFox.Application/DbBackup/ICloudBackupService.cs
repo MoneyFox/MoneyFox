@@ -1,4 +1,4 @@
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.IO;

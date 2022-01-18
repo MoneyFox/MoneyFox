@@ -1,4 +1,4 @@
-﻿using MoneyFox.Domain;
+﻿using MoneyFox.Core;
 using MoneyFox.Uwp.ConverterLogic;
 using System;
 using Windows.UI.Xaml.Data;

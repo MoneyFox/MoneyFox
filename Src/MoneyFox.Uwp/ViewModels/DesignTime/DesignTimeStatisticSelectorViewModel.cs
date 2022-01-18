@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain;
+using MoneyFox.Core;
 using MoneyFox.Uwp.ViewModels.Statistic;
 using MoneyFox.Uwp.ViewModels.Statistics;
 using System.Collections.Generic;

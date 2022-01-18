@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace MoneyFox.Domain.Exceptions
+namespace MoneyFox.Core.Exceptions
 {
     [Serializable]
     public class PageNotFoundException : Exception

@@ -12,7 +12,7 @@ using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.Messages;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;

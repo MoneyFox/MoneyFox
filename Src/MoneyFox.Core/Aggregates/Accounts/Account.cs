@@ -1,9 +1,11 @@
 ﻿using JetBrains.Annotations;
+using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MoneyFox.Domain.Entities
+namespace MoneyFox.Core.Aggregates.Accounts
 {
     public class Account
     {
@@ -119,8 +121,8 @@ namespace MoneyFox.Domain.Entities
                 : payment.Amount;
 
             if(payment.Type == PaymentType.Expense
-               || (payment.Type == PaymentType.Transfer
-                   && payment.ChargedAccount.Id == Id))
+               || payment.Type == PaymentType.Transfer
+                   && payment.ChargedAccount.Id == Id)
             {
                 CurrentBalance -= amount;
             }

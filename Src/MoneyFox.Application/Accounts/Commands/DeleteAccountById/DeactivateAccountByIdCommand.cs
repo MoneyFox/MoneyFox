@@ -3,7 +3,7 @@ using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Accounts;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

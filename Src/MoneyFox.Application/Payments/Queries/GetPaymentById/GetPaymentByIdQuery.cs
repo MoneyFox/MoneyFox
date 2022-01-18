@@ -1,8 +1,8 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Exceptions;
 using NLog;
 using System.Threading;
 using System.Threading.Tasks;

@@ -7,7 +7,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Exceptions;
 using NLog;
 using System;
 using System.Threading.Tasks;

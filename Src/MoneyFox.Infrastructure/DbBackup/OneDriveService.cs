@@ -3,7 +3,7 @@ using Microsoft.Identity.Client;
 using MoneyFox.Application.Common;
 using MoneyFox.Application.Common.Constants;
 using MoneyFox.Application.DbBackup;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Exceptions;
 using NLog;
 using System;
 using System.Collections.Generic;

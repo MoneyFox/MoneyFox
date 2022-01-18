@@ -2,9 +2,10 @@
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Payments.Queries.GetPaymentById;
 using MoneyFox.Application.Tests.Infrastructure;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Exceptions;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;

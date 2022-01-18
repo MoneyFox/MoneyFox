@@ -2,9 +2,10 @@
 using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
 using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
 using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Exceptions;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using System;
 using System.Collections.Generic;

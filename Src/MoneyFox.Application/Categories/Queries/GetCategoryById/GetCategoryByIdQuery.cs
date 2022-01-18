@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Payments;
 using System.Threading;
 using System.Threading.Tasks;
 

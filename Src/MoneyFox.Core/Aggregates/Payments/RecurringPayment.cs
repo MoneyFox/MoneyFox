@@ -1,11 +1,12 @@
 ﻿using JetBrains.Annotations;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MoneyFox.Domain.Entities
+namespace MoneyFox.Core.Aggregates.Payments
 {
     public class RecurringPayment
     {

@@ -5,7 +5,7 @@ using MoneyFox.Application.Common.Facades;
 using MoneyFox.Application.Common.FileStore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.DbBackup;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Exceptions;
 using MoneyFox.Infrastructure.DbBackup;
 using Moq;
 using NSubstitute;

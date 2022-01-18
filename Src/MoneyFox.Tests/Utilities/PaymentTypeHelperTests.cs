@@ -1,5 +1,5 @@
 ﻿using MoneyFox.Application.Resources;
-using MoneyFox.Domain;
+using MoneyFox.Core;
 using MoneyFox.Utilities;
 using System;
 using System.Diagnostics.CodeAnalysis;

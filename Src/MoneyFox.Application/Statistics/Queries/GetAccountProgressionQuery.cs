@@ -2,9 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Common.QueryObjects;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

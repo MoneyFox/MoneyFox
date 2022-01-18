@@ -6,7 +6,7 @@ using MoneyFox.Application.Accounts.Commands.UpdateAccount;
 using MoneyFox.Application.Accounts.Queries.GetAccountById;
 using MoneyFox.Application.Common.Interfaces;
 using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates.Accounts;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Utilities;
 using System.Globalization;

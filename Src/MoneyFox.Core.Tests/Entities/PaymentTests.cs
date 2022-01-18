@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Exceptions;
 using System;
 using System.Diagnostics.CodeAnalysis;
 using Xunit;

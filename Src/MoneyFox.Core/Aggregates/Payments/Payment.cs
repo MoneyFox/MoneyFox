@@ -1,10 +1,11 @@
 ﻿using JetBrains.Annotations;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core.Aggregates.Accounts;
+using MoneyFox.Core.Exceptions;
 using NLog;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace MoneyFox.Domain.Entities
+namespace MoneyFox.Core.Aggregates.Payments
 {
     /// <summary>
     ///     Database model for payments. Includes expenses, income and transfers.     Database table: Payments
