@@ -27,4 +27,8 @@
     <Folder Include="Interfaces\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.SharedKernel\MoneyFox.SharedKernel.csproj" />
+  </ItemGroup>
+
 </Project>

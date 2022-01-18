@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using MoneyFox.Core.Aggregates.Accounts;
 using MoneyFox.Core.Exceptions;
+using MoneyFox.SharedKernel.Interface;
 using NLog;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -10,7 +11,7 @@ namespace MoneyFox.Core.Aggregates.Payments
     /// <summary>
     ///     Database model for payments. Includes expenses, income and transfers.     Database table: Payments
     /// </summary>
-    public class Payment
+    public class Payment : IAggregateRoot
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
