@@ -640,7 +640,7 @@
       <Version>1.0.1</Version>
     </PackageReference>
     <PackageReference Include="SonarAnalyzer.CSharp">
-      <Version>8.33.0.40503</Version>
+      <Version>8.34.0.42011</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
@@ -659,13 +659,13 @@
       <Project>{FFFCEF03-2156-4982-B687-5169A7D701F8}</Project>
       <Name>MoneyFox.Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj">
+      <Project>{e593affa-ee19-4f42-8cc1-77b86acf25a5}</Project>
+      <Name>MoneyFox.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Desktop.Infrastructure\MoneyFox.Desktop.Infrastructure.csproj">
       <Project>{5127A85E-C3B3-44FE-A10D-1B52F92955C4}</Project>
       <Name>MoneyFox.Desktop.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MoneyFox.Domain\MoneyFox.Domain.csproj">
-      <Project>{AEED9434-5F37-4A62-8345-62DBB3E482FB}</Project>
-      <Name>MoneyFox.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
       <Project>{0429508E-AFD9-4F1C-900A-EA1997FC8567}</Project>
