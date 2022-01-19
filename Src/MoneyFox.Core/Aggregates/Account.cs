@@ -121,8 +121,8 @@ namespace MoneyFox.Core.Aggregates
                 : payment.Amount;
 
             if(payment.Type == PaymentType.Expense
-               || payment.Type == PaymentType.Transfer
-                   && payment.ChargedAccount.Id == Id)
+               || (payment.Type == PaymentType.Transfer
+                   && payment.ChargedAccount.Id == Id))
             {
                 CurrentBalance -= amount;
             }

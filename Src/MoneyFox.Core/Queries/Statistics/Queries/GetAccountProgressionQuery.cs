@@ -50,16 +50,16 @@ namespace MoneyFox.Core.Queries.Statistics.Queries
             CancellationToken cancellationToken)
         {
             List<Payment>? payments = await contextAdapter.Context
-                                                          .Payments
-                                                          .Include(x => x.Category)
-                                                          .Include(x => x.ChargedAccount)
-                                                          .HasAccountId(request.AccountId)
-                                                          .HasDateLargerEqualsThan(request.StartDate.Date)
-                                                          .HasDateSmallerEqualsThan(request.EndDate.Date)
-                                                          .ToListAsync(cancellationToken);
+                .Payments
+                .Include(x => x.Category)
+                .Include(x => x.ChargedAccount)
+                .HasAccountId(request.AccountId)
+                .HasDateLargerEqualsThan(request.StartDate.Date)
+                .HasDateSmallerEqualsThan(request.EndDate.Date)
+                .ToListAsync(cancellationToken);
 
             var returnList = new List<StatisticEntry>();
-            foreach(var group in payments.GroupBy(x => new {x.Date.Month, x.Date.Year}))
+            foreach(var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
             {
                 var statisticEntry = new StatisticEntry(
                     group.Sum(x => GetPaymentAmountForSum(x, request)),

@@ -20,7 +20,7 @@ namespace MoneyFox.Core.Queries.Accounts.GetAccountCount
 
             public async Task<int> Handle(GetAccountCountQuery request, CancellationToken cancellationToken)
                 => await contextAdapter.Context.Accounts.AreActive()
-                                       .CountAsync(cancellationToken);
+                    .CountAsync(cancellationToken);
         }
     }
 }

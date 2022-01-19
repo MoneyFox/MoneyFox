@@ -42,21 +42,8 @@ namespace MoneyFox.Core.Queries.Statistics.Queries
     {
         public static readonly string[] Colors =
         {
-            "#266489",
-            "#68B9C0",
-            "#90D585",
-            "#F3C151",
-            "#F37F64",
-            "#424856",
-            "#8F97A4",
-            "#7EAFC4",
-            "#69E1BD",
-            "#A6F297",
-            "#F9F871",
-            "#0087A3",
-            "#00AAA9",
-            "#3DCA9A",
-            "#9BE582"
+            "#266489", "#68B9C0", "#90D585", "#F3C151", "#F37F64", "#424856", "#8F97A4", "#7EAFC4", "#69E1BD",
+            "#A6F297", "#F9F871", "#0087A3", "#00AAA9", "#3DCA9A", "#9BE582"
         };
 
         private GetCategorySpreadingQuery currentRequest = null!;
@@ -78,52 +65,52 @@ namespace MoneyFox.Core.Queries.Statistics.Queries
 
         private async Task<IEnumerable<Payment>> GetPaymentsWithoutTransferAsync(CancellationToken cancellationToken) =>
             await contextAdapter.Context
-                                .Payments
-                                .Include(x => x.Category)
-                                .WithoutTransfers()
-                                .HasDateLargerEqualsThan(currentRequest.StartDate.Date)
-                                .HasDateSmallerEqualsThan(currentRequest.EndDate.Date)
-                                .ToListAsync(cancellationToken);
+                .Payments
+                .Include(x => x.Category)
+                .WithoutTransfers()
+                .HasDateLargerEqualsThan(currentRequest.StartDate.Date)
+                .HasDateSmallerEqualsThan(currentRequest.EndDate.Date)
+                .ToListAsync(cancellationToken);
 
         private List<(decimal Value, string Label)> SelectRelevantDataFromList(IEnumerable<Payment> payments)
         {
             IEnumerable<(decimal, string category)>? query = from payment in payments
-                                                             group payment by new
-                                                             {
-                                                                 category = payment.Category != null
-                                                                     ? payment.Category.Name
-                                                                     : string.Empty
-                                                             }
-                                                             into temp
-                                                             select (temp.Sum(
-                                                                         x => x.Type == PaymentType.Income
-                                                                             ? -x.Amount
-                                                                             : x.Amount),
-                                                                     temp.Key.category);
+                group payment by new
+                {
+                    category = payment.Category != null
+                        ? payment.Category.Name
+                        : string.Empty
+                }
+                into temp
+                select (temp.Sum(
+                        x => x.Type == PaymentType.Income
+                            ? -x.Amount
+                            : x.Amount),
+                    temp.Key.category);
 
             query = currentRequest.PaymentType == PaymentType.Expense
                 ? query.Where(x => x.Item1 > 0)
                 : query.Where(x => x.Item1 < 0);
 
             return query.Select(x => (Math.Abs(x.Item1), x.category))
-                        .OrderByDescending(x => x.Item1)
-                        .ToList();
+                .OrderByDescending(x => x.Item1)
+                .ToList();
         }
 
         private IEnumerable<StatisticEntry> AggregateData(List<(decimal Value, string Label)> statisticData,
             int amountOfCategoriesToShow)
         {
             List<StatisticEntry> statisticList = statisticData
-                                                 .Take(amountOfCategoriesToShow)
-                                                 .Select(
-                                                     x => new StatisticEntry(x.Value)
-                                                     {
-                                                         ValueLabel = x.Value.ToString(
-                                                             "C",
-                                                             CultureHelper.CurrentCulture),
-                                                         Label = x.Label
-                                                     })
-                                                 .ToList();
+                .Take(amountOfCategoriesToShow)
+                .Select(
+                    x => new StatisticEntry(x.Value)
+                    {
+                        ValueLabel = x.Value.ToString(
+                            "C",
+                            CultureHelper.CurrentCulture),
+                        Label = x.Label
+                    })
+                .ToList();
 
             AddOtherItem(statisticData, statisticList, amountOfCategoriesToShow);
             SetColors(statisticList);
@@ -141,8 +128,8 @@ namespace MoneyFox.Core.Queries.Statistics.Queries
             }
 
             decimal otherValue = statisticData
-                                 .Where(x => statisticList.All(y => x.Label != y.Label))
-                                 .Sum(x => x.Value);
+                .Where(x => statisticList.All(y => x.Label != y.Label))
+                .Sum(x => x.Value);
 
             var othersItem = new StatisticEntry(otherValue)
             {

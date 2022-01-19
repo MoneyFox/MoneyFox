@@ -36,30 +36,30 @@ namespace MoneyFox.Core.Queries.Statistics.Queries
         public async Task<List<StatisticEntry>> Handle(GetCashFlowQuery request, CancellationToken cancellationToken)
         {
             List<Payment> payments = await contextAdapter.Context
-                                                         .Payments
-                                                         .Include(x => x.Category)
-                                                         .WithoutTransfers()
-                                                         .HasDateLargerEqualsThan(request.StartDate.Date)
-                                                         .HasDateSmallerEqualsThan(request.EndDate.Date)
-                                                         .ToListAsync(cancellationToken);
+                .Payments
+                .Include(x => x.Category)
+                .WithoutTransfers()
+                .HasDateLargerEqualsThan(request.StartDate.Date)
+                .HasDateSmallerEqualsThan(request.EndDate.Date)
+                .ToListAsync(cancellationToken);
 
             decimal incomeAmount = payments.Where(x => x.Type == PaymentType.Income)
-                                           .Sum(x => x.Amount);
+                .Sum(x => x.Amount);
             var income = new StatisticEntry(incomeAmount)
             {
                 Label = Strings.RevenueLabel,
                 ValueLabel = Math.Round(incomeAmount, 2, MidpointRounding.AwayFromZero)
-                                 .ToString("C", CultureHelper.CurrentCulture),
+                    .ToString("C", CultureHelper.CurrentCulture),
                 Color = GREEN_HEX_CODE
             };
 
             decimal expenseAmount = payments.Where(x => x.Type == PaymentType.Expense)
-                                            .Sum(x => x.Amount);
+                .Sum(x => x.Amount);
             var spent = new StatisticEntry(expenseAmount)
             {
                 Label = Strings.ExpenseLabel,
                 ValueLabel = Math.Round(expenseAmount, 2, MidpointRounding.AwayFromZero)
-                                 .ToString("C", CultureHelper.CurrentCulture),
+                    .ToString("C", CultureHelper.CurrentCulture),
                 Color = RED_HEX_CODE
             };
 
@@ -68,11 +68,11 @@ namespace MoneyFox.Core.Queries.Statistics.Queries
             {
                 Label = Strings.IncreaseLabel,
                 ValueLabel = Math.Round(valueIncreased, 2, MidpointRounding.AwayFromZero)
-                                 .ToString("C", CultureHelper.CurrentCulture),
+                    .ToString("C", CultureHelper.CurrentCulture),
                 Color = BLUE_HEX_CODE
             };
 
-            return new List<StatisticEntry> {income, spent, increased};
+            return new List<StatisticEntry> { income, spent, increased };
         }
     }
 }

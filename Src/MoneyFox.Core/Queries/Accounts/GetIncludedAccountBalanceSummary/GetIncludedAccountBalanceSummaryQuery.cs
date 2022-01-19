@@ -22,11 +22,11 @@ namespace MoneyFox.Core.Queries.Accounts.GetIncludedAccountBalanceSummary
             public async Task<decimal> Handle(GetIncludedAccountBalanceSummaryQuery request,
                 CancellationToken cancellationToken) =>
                 (await contextAdapter.Context
-                                     .Accounts
-                                     .AreActive()
-                                     .AreNotExcluded()
-                                     .Select(x => x.CurrentBalance)
-                                     .ToListAsync(cancellationToken))
+                    .Accounts
+                    .AreActive()
+                    .AreNotExcluded()
+                    .Select(x => x.CurrentBalance)
+                    .ToListAsync(cancellationToken))
                 .Sum();
         }
     }

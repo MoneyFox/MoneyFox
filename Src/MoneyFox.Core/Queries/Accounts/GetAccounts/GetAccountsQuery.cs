@@ -23,11 +23,11 @@ namespace MoneyFox.Core.Queries.Accounts.GetAccounts
             public async Task<List<Account>> Handle(GetAccountsQuery request, CancellationToken cancellationToken)
             {
                 List<Account>? accounts = await contextAdapter.Context
-                                                              .Accounts
-                                                              .AreActive()
-                                                              .OrderByInclusion()
-                                                              .OrderByName()
-                                                              .ToListAsync(cancellationToken);
+                    .Accounts
+                    .AreActive()
+                    .OrderByInclusion()
+                    .OrderByName()
+                    .ToListAsync(cancellationToken);
 
                 return accounts;
             }

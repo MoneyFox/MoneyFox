@@ -42,13 +42,13 @@ namespace MoneyFox.Core.Commands.Payments.DeletePaymentById
             public async Task<Unit> Handle(DeletePaymentByIdCommand request, CancellationToken cancellationToken)
             {
                 Payment? entityToDelete = await contextAdapter.Context
-                                                              .Payments
-                                                              .Include(x => x.ChargedAccount)
-                                                              .Include(x => x.TargetAccount)
-                                                              .Include(x => x.RecurringPayment)
-                                                              .SingleOrDefaultAsync(
-                                                                  x => x.Id == request.PaymentId,
-                                                                  cancellationToken);
+                    .Payments
+                    .Include(x => x.ChargedAccount)
+                    .Include(x => x.TargetAccount)
+                    .Include(x => x.RecurringPayment)
+                    .SingleOrDefaultAsync(
+                        x => x.Id == request.PaymentId,
+                        cancellationToken);
 
                 if(entityToDelete == null)
                 {
@@ -67,23 +67,23 @@ namespace MoneyFox.Core.Commands.Payments.DeletePaymentById
 
                 contextAdapter.Context.Payments.Remove(entityToDelete);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
-                
+
                 return Unit.Value;
             }
 
             private async Task DeleteRecurringPaymentAsync(int recurringPaymentId)
             {
                 List<Payment> payments = await contextAdapter.Context
-                                                             .Payments
-                                                             .Where(x => x.IsRecurring)
-                                                             .Where(x => x.RecurringPayment!.Id == recurringPaymentId)
-                                                             .ToListAsync();
+                    .Payments
+                    .Where(x => x.IsRecurring)
+                    .Where(x => x.RecurringPayment!.Id == recurringPaymentId)
+                    .ToListAsync();
 
                 payments.ForEach(x => x.RemoveRecurringPayment());
                 contextAdapter.Context.RecurringPayments
-                              .Remove(
-                                  await contextAdapter.Context.RecurringPayments
-                                                      .FindAsync(recurringPaymentId));
+                    .Remove(
+                        await contextAdapter.Context.RecurringPayments
+                            .FindAsync(recurringPaymentId));
             }
         }
     }

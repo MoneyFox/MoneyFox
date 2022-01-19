@@ -37,8 +37,8 @@ namespace MoneyFox.Core.Queries.Accounts.GetTotalEndOfMonthBalance
                 logManager.Info("Calculate EndOfMonth Balance.");
 
                 List<Account> excluded = await contextAdapter.Context.Accounts.AreActive()
-                                                             .AreExcluded()
-                                                             .ToListAsync();
+                    .AreExcluded()
+                    .ToListAsync();
                 decimal balance = await GetCurrentAccountBalanceAsync();
 
                 foreach(Payment payment in await GetUnclearedPaymentsForThisMonthAsync())
@@ -106,20 +106,20 @@ namespace MoneyFox.Core.Queries.Accounts.GetTotalEndOfMonthBalance
 
             private async Task<decimal> GetCurrentAccountBalanceAsync() =>
                 (await contextAdapter.Context
-                                     .Accounts
-                                     .AreActive()
-                                     .AreNotExcluded()
-                                     .Select(x => x.CurrentBalance)
-                                     .ToListAsync())
+                    .Accounts
+                    .AreActive()
+                    .AreNotExcluded()
+                    .Select(x => x.CurrentBalance)
+                    .ToListAsync())
                 .Sum();
 
             private async Task<List<Payment>> GetUnclearedPaymentsForThisMonthAsync() =>
                 await contextAdapter.Context.Payments
-                                    .Include(x => x.ChargedAccount)
-                                    .Include(x => x.TargetAccount)
-                                    .AreNotCleared()
-                                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
-                                    .ToListAsync();
+                    .Include(x => x.ChargedAccount)
+                    .Include(x => x.TargetAccount)
+                    .AreNotCleared()
+                    .HasDateSmallerEqualsThan(HelperFunctions.GetEndOfMonth(systemDateHelper))
+                    .ToListAsync();
         }
     }
 }

@@ -32,8 +32,8 @@ namespace MoneyFox.Core.Commands.Accounts.UpdateAccount
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
             {
                 Account existingAccount = await contextAdapter.Context
-                                                              .Accounts
-                                                              .FindAsync(request.Account.Id);
+                    .Accounts
+                    .FindAsync(request.Account.Id);
 
                 existingAccount.UpdateAccount(
                     request.Account.Name,
