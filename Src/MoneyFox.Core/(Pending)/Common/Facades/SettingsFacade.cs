@@ -61,15 +61,15 @@ namespace MoneyFox.Core._Pending_.Common.Facades
 
         private const string LAST_EXECUTION_TIME_STAMP_RECURRING_PAYMENTS_KEY_DEFAULT = "";
 
-        private const string DEFAULT_CULTURE_KEYNAME = "DefaultCulture";
-        private readonly string DEFAULT_CULTURE_KEYDEFAULT = CultureInfo.CurrentCulture.Name;
+        private const string DEFAULT_CULTURE_KEY_NAME = "DefaultCulture";
+        private readonly string DEFAULT_CULTURE_KEY_DEFAULT = CultureInfo.CurrentCulture.Name;
 
-        private const string DATABASE_LAST_UPDATE_KEYNAME = "DatabaseLastUpdate";
+        private const string DATABASE_LAST_UPDATE_KEY_NAME = "DatabaseLastUpdate";
 
-        private const string IS_SETUP_COMPLETED_KEYNAME = "IsSetupCompleted";
-        private const bool IS_SETUP_COMPLETED__KEY_DEFAULT = false;
+        private const string IS_SETUP_COMPLETED_KEY_NAME = "IsSetupCompleted";
+        private const bool IS_SETUP_COMPLETED_KEY_DEFAULT = false;
 
-        private const string CATEGORY_SPREADING_NUMBER_KEYNAME = "CategorySpreadingNumber";
+        private const string CATEGORY_SPREADING_NUMBER_KEY_NAME = "CategorySpreadingNumber";
         private const int CATEGORY_SPREADING_NUMBER_DEFAULT = 6;
 
         private readonly ISettingsAdapter settingsAdapter;
@@ -92,14 +92,14 @@ namespace MoneyFox.Core._Pending_.Common.Facades
             get
             {
                 string dateString = settingsAdapter.GetValue(
-                    DATABASE_LAST_UPDATE_KEYNAME,
+                    DATABASE_LAST_UPDATE_KEY_NAME,
                     DateTime.MinValue.ToString(CultureInfo.InvariantCulture));
 
                 return Convert.ToDateTime(dateString, CultureInfo.InvariantCulture);
             }
             set
                 => settingsAdapter.AddOrUpdate(
-                    DATABASE_LAST_UPDATE_KEYNAME,
+                    DATABASE_LAST_UPDATE_KEY_NAME,
                     value.ToString(CultureInfo.InvariantCulture));
         }
 
@@ -195,22 +195,22 @@ namespace MoneyFox.Core._Pending_.Common.Facades
 
         public string DefaultCulture
         {
-            get => settingsAdapter.GetValue(DEFAULT_CULTURE_KEYNAME, DEFAULT_CULTURE_KEYDEFAULT);
-            set => settingsAdapter.AddOrUpdate(DEFAULT_CULTURE_KEYNAME, value);
+            get => settingsAdapter.GetValue(DEFAULT_CULTURE_KEY_NAME, DEFAULT_CULTURE_KEY_DEFAULT);
+            set => settingsAdapter.AddOrUpdate(DEFAULT_CULTURE_KEY_NAME, value);
         }
 
         /// <inheritdoc />
         public bool IsSetupCompleted
         {
-            get => settingsAdapter.GetValue(IS_SETUP_COMPLETED_KEYNAME, IS_SETUP_COMPLETED__KEY_DEFAULT);
-            set => settingsAdapter.AddOrUpdate(IS_SETUP_COMPLETED_KEYNAME, value);
+            get => settingsAdapter.GetValue(IS_SETUP_COMPLETED_KEY_NAME, IS_SETUP_COMPLETED_KEY_DEFAULT);
+            set => settingsAdapter.AddOrUpdate(IS_SETUP_COMPLETED_KEY_NAME, value);
         }
 
         /// <inheritdoc />
         public int CategorySpreadingNumber
         {
-            get => settingsAdapter.GetValue(CATEGORY_SPREADING_NUMBER_KEYNAME, CATEGORY_SPREADING_NUMBER_DEFAULT);
-            set => settingsAdapter.AddOrUpdate(CATEGORY_SPREADING_NUMBER_KEYNAME, value);
+            get => settingsAdapter.GetValue(CATEGORY_SPREADING_NUMBER_KEY_NAME, CATEGORY_SPREADING_NUMBER_DEFAULT);
+            set => settingsAdapter.AddOrUpdate(CATEGORY_SPREADING_NUMBER_KEY_NAME, value);
         }
     }
 }
