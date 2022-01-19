@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Core._Pending_.Common;
 using MoneyFox.Core._Pending_.Common.Constants;
 using MoneyFox.Core._Pending_.Common.Extensions;
 using MoneyFox.Core._Pending_.Common.Facades;
