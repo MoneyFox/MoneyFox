@@ -1,8 +1,9 @@
 ﻿using MediatR;
 using Microcharts;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core.Queries.Statistics;
+using MoneyFox.Core.Queries.Statistics.Queries;
+using MoneyFox.Views.Statistics;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,19 +44,19 @@ namespace MoneyFox.ViewModels.Statistics
         protected override async Task LoadAsync()
         {
             List<StatisticEntry>? statisticItems =
-                await Mediator.Send(new GetCashFlowQuery {EndDate = EndDate, StartDate = StartDate});
+                await Mediator.Send(new GetCashFlowQuery { EndDate = EndDate, StartDate = StartDate });
 
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(
-                                            x => new ChartEntry((float)x.Value)
-                                            {
-                                                Label = x.Label,
-                                                ValueLabel = x.ValueLabel,
-                                                Color = SKColor.Parse(x.Color),
-                                                ValueLabelColor = SKColor.Parse(x.Color)
-                                            })
-                                        .ToList(),
+                        x => new ChartEntry((float)x.Value)
+                        {
+                            Label = x.Label,
+                            ValueLabel = x.ValueLabel,
+                            Color = SKColor.Parse(x.Color),
+                            ValueLabelColor = SKColor.Parse(x.Color)
+                        })
+                    .ToList(),
                 BackgroundColor = new SKColor(ChartOptions.BackgroundColor.ToUInt()),
                 Margin = ChartOptions.Margin,
                 LabelTextSize = ChartOptions.LabelTextSize,

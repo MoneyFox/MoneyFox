@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.Resources;
+﻿using MoneyFox.Core._Pending_.Common.Constants;
+using MoneyFox.Core.Resources;
 using NLog;
 using System;
 using System.Threading.Tasks;

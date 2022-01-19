@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application;
+﻿using MoneyFox.Core._Pending_;
 using System;
 using Windows.UI.Xaml.Data;
 

@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Application.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Facades;
 using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.SetupAssistant
@@ -23,7 +23,7 @@ namespace MoneyFox.ViewModels.SetupAssistant
         private void CompleteSetup()
         {
             settingsFacade.IsSetupCompleted = true;
-            Xamarin.Forms.Application.Current.MainPage = new AppShell();
+            Application.Current.MainPage = new AppShell();
         }
     }
 }

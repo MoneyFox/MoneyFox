@@ -3,12 +3,12 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Accounts.Queries.GetAccounts;
-using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
-using MoneyFox.Domain;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Accounts.GetAccounts;
+using MoneyFox.Core.Queries.Categories.GetCategoryById;
+using MoneyFox.Core.Resources;
 using MoneyFox.Extensions;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
@@ -23,15 +23,15 @@ namespace MoneyFox.ViewModels.Payments
 {
     public abstract class ModifyPaymentViewModel : ObservableRecipient
     {
+        private readonly IDialogService dialogService;
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
-        private PaymentViewModel selectedPayment = new PaymentViewModel();
-        private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
-        private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
+        private readonly IMapper mapper;
 
         private readonly IMediator mediator;
-        private readonly IMapper mapper;
-        private readonly IDialogService dialogService;
+        private ObservableCollection<AccountViewModel> chargedAccounts = new ObservableCollection<AccountViewModel>();
+
+        private PaymentViewModel selectedPayment = new PaymentViewModel();
+        private ObservableCollection<AccountViewModel> targetAccounts = new ObservableCollection<AccountViewModel>();
 
         protected ModifyPaymentViewModel(IMediator mediator,
             IMapper mapper,
@@ -40,22 +40,6 @@ namespace MoneyFox.ViewModels.Payments
             this.mediator = mediator;
             this.mapper = mapper;
             this.dialogService = dialogService;
-        }
-
-        protected virtual async Task InitializeAsync()
-        {
-            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
-
-            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
-            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
-            IsActive = true;
-        }
-
-        protected override void OnActivated()
-        {
-            Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
-                this,
-                (r, m) => r.ReceiveMessageAsync(m));
         }
 
         /// <summary>
@@ -104,9 +88,7 @@ namespace MoneyFox.ViewModels.Payments
 
         public List<PaymentType> PaymentTypeList => new List<PaymentType>
         {
-            PaymentType.Expense,
-            PaymentType.Income,
-            PaymentType.Transfer
+            PaymentType.Expense, PaymentType.Income, PaymentType.Transfer
         };
 
         /// <summary>
@@ -137,6 +119,20 @@ namespace MoneyFox.ViewModels.Payments
         public RelayCommand ResetCategoryCommand => new RelayCommand(() => SelectedPayment.Category = null);
 
         public RelayCommand SaveCommand => new RelayCommand(async () => await SavePaymentBaseAsync());
+
+        protected virtual async Task InitializeAsync()
+        {
+            var accounts = mapper.Map<List<AccountViewModel>>(await mediator.Send(new GetAccountsQuery()));
+
+            ChargedAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            TargetAccounts = new ObservableCollection<AccountViewModel>(accounts);
+            IsActive = true;
+        }
+
+        protected override void OnActivated() =>
+            Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
+                this,
+                (r, m) => r.ReceiveMessageAsync(m));
 
         protected abstract Task SavePaymentAsync();
 
@@ -179,7 +175,7 @@ namespace MoneyFox.ViewModels.Payments
             {
                 await SavePaymentAsync();
                 Messenger.Send(new ReloadMessage());
-                await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
+                await Application.Current.MainPage.Navigation.PopModalAsync();
             }
             catch(Exception ex)
             {

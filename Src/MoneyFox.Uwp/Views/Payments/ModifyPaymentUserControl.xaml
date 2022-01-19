@@ -8,9 +8,9 @@
     xmlns:designTime="using:MoneyFox.Uwp.ViewModels.DesignTime"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.Payments"
     xmlns:accounts="using:MoneyFox.Uwp.ViewModels.Accounts"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">

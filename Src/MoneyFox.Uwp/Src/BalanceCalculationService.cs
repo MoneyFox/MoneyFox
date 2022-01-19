@@ -1,10 +1,11 @@
 ﻿using MediatR;
-using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
-using MoneyFox.Application.Accounts.Queries.GetIncludedAccountBalanceSummary;
-using MoneyFox.Application.Payments.Queries.GetUnclearedPaymentsOfThisMonth;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Exceptions;
+using MoneyFox.Core.Aggregates;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Accounts.GetExcludedAccount;
+using MoneyFox.Core.Queries.Accounts.GetIncludedAccountBalanceSummary;
+using MoneyFox.Core.Queries.Payments.GetUnclearedPaymentsOfThisMonth;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using System;
 using System.Collections.Generic;
@@ -92,7 +93,7 @@ namespace MoneyFox.Uwp
             decimal balance = account.CurrentBalance;
 
             List<Payment> paymentList =
-                await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery {AccountId = account.Id});
+                await mediator.Send(new GetUnclearedPaymentsOfThisMonthQuery { AccountId = account.Id });
 
             foreach(Payment payment in paymentList)
 

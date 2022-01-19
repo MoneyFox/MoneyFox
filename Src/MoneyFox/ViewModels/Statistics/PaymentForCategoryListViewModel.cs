@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
+using MoneyFox.Core.Queries.Payments.GetPaymentsForCategory;
 using MoneyFox.Groups;
 using MoneyFox.ViewModels.Payments;
 using MoneyFox.Views.Payments;
@@ -19,9 +19,12 @@ namespace MoneyFox.ViewModels.Statistics
     public class PaymentForCategoryListViewModel : ObservableRecipient
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();
+        private readonly IMapper mapper;
 
         private readonly IMediator mediator;
-        private readonly IMapper mapper;
+
+        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList =
+            new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
 
         public PaymentForCategoryListViewModel(IMediator mediator, IMapper mapper)
         {
@@ -32,16 +35,6 @@ namespace MoneyFox.ViewModels.Statistics
 
             IsActive = true;
         }
-
-        protected override void OnActivated()
-            => Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(
-                this,
-                (r, m) => r.InitializeAsync(m));
-
-        protected override void OnDeactivated() => Messenger.Unregister<PaymentsForCategoryMessage>(this);
-
-        private ObservableCollection<DateListGroupCollection<PaymentViewModel>> paymentList =
-            new ObservableCollection<DateListGroupCollection<PaymentViewModel>>();
 
         public ObservableCollection<DateListGroupCollection<PaymentViewModel>> PaymentList
         {
@@ -61,6 +54,13 @@ namespace MoneyFox.ViewModels.Statistics
                         {
                             BarBackgroundColor = Color.Transparent
                         }));
+
+        protected override void OnActivated()
+            => Messenger.Register<PaymentForCategoryListViewModel, PaymentsForCategoryMessage>(
+                this,
+                (r, m) => r.InitializeAsync(m));
+
+        protected override void OnDeactivated() => Messenger.Unregister<PaymentsForCategoryMessage>(this);
 
         private async Task InitializeAsync(PaymentsForCategoryMessage receivedMessage)
         {

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Payments.Commands.DeletePaymentById;
-using MoneyFox.Application.Payments.Commands.UpdatePayment;
-using MoneyFox.Application.Payments.Queries.GetPaymentById;
-using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Exceptions;
+using MoneyFox.Core.Commands.Payments.DeletePaymentById;
+using MoneyFox.Core.Commands.Payments.UpdatePayment;
+using MoneyFox.Core.Queries.Payments.GetPaymentById;
+using MoneyFox.Core.Resources;
 using NLog;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -15,11 +15,11 @@ namespace MoneyFox.ViewModels.Payments
 {
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
+        private readonly IDialogService dialogService;
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly IMapper mapper;
 
         private readonly IMediator mediator;
-        private readonly IMapper mapper;
-        private readonly IDialogService dialogService;
 
         public EditPaymentViewModel(IMediator mediator,
             IMapper mapper,
@@ -31,14 +31,14 @@ namespace MoneyFox.ViewModels.Payments
             this.dialogService = dialogService;
         }
 
+        public RelayCommand<PaymentViewModel> DeleteCommand
+            => new RelayCommand<PaymentViewModel>(async p => await DeletePaymentAsync(p));
+
         public async Task InitializeAsync(int paymentId)
         {
             await base.InitializeAsync();
             SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
         }
-
-        public RelayCommand<PaymentViewModel> DeleteCommand
-            => new RelayCommand<PaymentViewModel>(async p => await DeletePaymentAsync(p));
 
         protected override async Task SavePaymentAsync()
         {

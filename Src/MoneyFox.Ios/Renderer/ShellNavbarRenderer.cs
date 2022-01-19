@@ -8,19 +8,16 @@ using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(AppShell), typeof(ShellNavbarRenderer))]
+
 namespace MoneyFox.iOS.Renderer
 {
     public class ShellNavbarRenderer : ShellRenderer
     {
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
+        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) =>
             base.OnElementPropertyChanged(sender, e);
-        }
 
-        protected override IShellNavBarAppearanceTracker CreateNavBarAppearanceTracker()
-        {
-            return new NoLineAppearanceTracker();
-        }
+        protected override IShellNavBarAppearanceTracker CreateNavBarAppearanceTracker() =>
+            new NoLineAppearanceTracker();
     }
 
     public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
@@ -35,11 +32,11 @@ namespace MoneyFox.iOS.Renderer
 
         public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
         {
-            var tintColor = AppInfo.RequestedTheme == AppTheme.Dark
+            Color tintColor = AppInfo.RequestedTheme == AppTheme.Dark
                 ? Color.White
                 : Color.FromHex("#323130");
 
-            var navBar = controller.NavigationBar;
+            UINavigationBar? navBar = controller.NavigationBar;
             navBar.TintColor = tintColor.ToUIColor();
 
             var navigationBarAppearance = new UINavigationBarAppearance();
@@ -58,5 +55,4 @@ namespace MoneyFox.iOS.Renderer
         {
         }
     }
-
 }

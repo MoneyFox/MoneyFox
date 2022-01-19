@@ -2,18 +2,21 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists;
+using MoneyFox.Core.Resources;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace MoneyFox.ViewModels.Categories
 {
     public abstract class ModifyCategoryViewModel : ObservableRecipient
     {
-        private readonly IMediator mediator;
         private readonly IDialogService dialogService;
+        private readonly IMediator mediator;
+
+        private CategoryViewModel selectedCategory = new CategoryViewModel();
 
         protected ModifyCategoryViewModel(IMediator mediator,
             IDialogService dialogService)
@@ -23,8 +26,6 @@ namespace MoneyFox.ViewModels.Categories
         }
 
         public AsyncRelayCommand SaveCommand => new AsyncRelayCommand(async () => await SaveCategoryBaseAsync());
-
-        private CategoryViewModel selectedCategory = new CategoryViewModel();
 
         /// <summary>
         ///     The currently selected CategoryViewModel
@@ -60,7 +61,7 @@ namespace MoneyFox.ViewModels.Categories
             Messenger.Send(new ReloadMessage());
             await dialogService.HideLoadingDialogAsync();
 
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopModalAsync();
+            await Application.Current.MainPage.Navigation.PopModalAsync();
         }
     }
 }

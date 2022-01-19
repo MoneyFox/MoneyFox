@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Common.FileStore;
+﻿using MoneyFox.Desktop.Infrastructure;
 using NLog;
 using System;
 using System.IO;
@@ -108,9 +108,9 @@ namespace MoneyFox.Uwp
             StorageFolder storageFolder =
                 await StorageFolder.GetFolderFromPathAsync(directory).AsTask().ConfigureAwait(false);
             StorageFile storageFile = await storageFolder
-                                            .CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting)
-                                            .AsTask()
-                                            .ConfigureAwait(false);
+                .CreateFileAsync(fileName, CreationCollisionOption.ReplaceExisting)
+                .AsTask()
+                .ConfigureAwait(false);
 
             return storageFile;
         }

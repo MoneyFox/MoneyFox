@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Resources;
+﻿using MoneyFox.Core.Resources;
 using MoneyFox.ViewModels.Categories;
 using System;
 using System.Globalization;

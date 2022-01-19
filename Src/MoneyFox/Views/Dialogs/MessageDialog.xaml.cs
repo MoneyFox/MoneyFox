@@ -7,14 +7,6 @@ namespace MoneyFox.Views.Dialogs
 {
     public partial class MessageDialog
     {
-        public MessageDialog(string title, string message)
-        {
-            InitializeComponent();
-
-            PopupTitle = title;
-            PopupMessage = message;
-        }
-
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(
             nameof(PopupTitle),
             typeof(string),
@@ -24,6 +16,14 @@ namespace MoneyFox.Views.Dialogs
             nameof(PopupMessage),
             typeof(string),
             typeof(MessageDialog));
+
+        public MessageDialog(string title, string message)
+        {
+            InitializeComponent();
+
+            PopupTitle = title;
+            PopupMessage = message;
+        }
 
         public string PopupTitle
         {
@@ -38,10 +38,10 @@ namespace MoneyFox.Views.Dialogs
         }
 
         public async Task ShowAsync() =>
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(this);
+            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
 
         public static async Task DismissAsync() =>
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopPopupAsync();
+            await Application.Current.MainPage.Navigation.PopPopupAsync();
 
         private async void OnOkClick(object sender, EventArgs e) => await DismissAsync();
     }

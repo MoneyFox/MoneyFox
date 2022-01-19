@@ -3,11 +3,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Categories.Queries.GetIfCategoryWithNameExists;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.Queries.Categories.GetCategoryById;
+using MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 

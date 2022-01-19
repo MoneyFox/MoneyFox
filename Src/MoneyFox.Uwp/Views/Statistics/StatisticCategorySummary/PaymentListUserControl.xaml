@@ -98,11 +98,11 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate x:DataType="payments:PaymentViewModel">
                                         <Grid Style="{StaticResource AppGrid}"
-                                            MinWidth="100"
-                                            CornerRadius="{StaticResource DefaultCornerRadius}"
-                                            Padding="{StaticResource SmallListItemPadding}"
-                                            HorizontalAlignment="Stretch"
-                                            Background="{ThemeResource ListItemBrush}">
+                                              MinWidth="100"
+                                              CornerRadius="{StaticResource DefaultCornerRadius}"
+                                              Padding="{StaticResource SmallListItemPadding}"
+                                              HorizontalAlignment="Stretch"
+                                              Background="{ThemeResource ListItemBrush}">
 
                                             <Grid Margin="{StaticResource MediumLeftRightMargin}">
                                                 <StackPanel VerticalAlignment="Center" Orientation="Vertical">

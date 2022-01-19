@@ -1,8 +1,9 @@
-﻿using MoneyFox.Application.Common.Messages;
+﻿using MoneyFox.Core._Pending_.Common.Messages;
 using MoneyFox.ViewModels.Dialogs;
 using Rg.Plugins.Popup.Extensions;
 using System;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MoneyFox.Views.Dialogs
@@ -10,8 +11,6 @@ namespace MoneyFox.Views.Dialogs
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FilterPopup
     {
-        private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel)BindingContext;
-
         public FilterPopup()
         {
             InitializeComponent();
@@ -26,11 +25,13 @@ namespace MoneyFox.Views.Dialogs
             ViewModel.Initialize(message);
         }
 
+        private SelectFilterDialogViewModel ViewModel => (SelectFilterDialogViewModel)BindingContext;
+
         public async Task ShowAsync() =>
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PushPopupAsync(this);
+            await Application.Current.MainPage.Navigation.PushPopupAsync(this);
 
         private static async Task DismissAsync() =>
-            await Xamarin.Forms.Application.Current.MainPage.Navigation.PopPopupAsync();
+            await Application.Current.MainPage.Navigation.PopPopupAsync();
 
         private async void Button_OnClicked(object sender, EventArgs e)
         {

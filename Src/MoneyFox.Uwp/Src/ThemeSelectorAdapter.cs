@@ -1,5 +1,5 @@
-﻿using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Interfaces;
+﻿using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Uwp.Services;
 using System;
 using Windows.UI.Xaml;
@@ -15,7 +15,7 @@ namespace MoneyFox.Uwp
         {
             if(Enum.TryParse(theme, out ElementTheme cacheTheme))
             {
-                ThemeSelectorService.SetThemeAsync(cacheTheme).FireAndForgetSafeAsync();
+                ThemeSelectorService.SetThemeAsync(cacheTheme).GetAwaiter().GetResult();
             }
         }
     }

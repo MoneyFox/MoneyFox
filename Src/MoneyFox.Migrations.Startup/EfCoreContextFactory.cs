@@ -11,7 +11,7 @@ namespace MoneyFox.Migrations.Startup
             var optionsBuilder = new DbContextOptionsBuilder<EfCoreContext>();
             optionsBuilder.UseSqlite("Data Source=moneyfox.db");
 
-            return new EfCoreContext(optionsBuilder.Options);
+            return new EfCoreContext(optionsBuilder.Options, null, null);
         }
     }
 }

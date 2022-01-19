@@ -1,7 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Application;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
@@ -11,8 +11,10 @@ namespace MoneyFox.ViewModels.Settings
 {
     public class SettingsViewModel : ObservableObject, ISettingsViewModel
     {
-        private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
+        private readonly ISettingsFacade settingsFacade;
+
+        private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 
         public SettingsViewModel(ISettingsFacade settingsFacade,
             IDialogService dialogService)
@@ -24,8 +26,6 @@ namespace MoneyFox.ViewModels.Settings
         }
 
         public async Task InitializeAsync() => await LoadAvailableCulturesAsync();
-
-        private CultureInfo selectedCulture = CultureHelper.CurrentCulture;
 
         public CultureInfo SelectedCulture
         {
@@ -51,9 +51,9 @@ namespace MoneyFox.ViewModels.Settings
             await dialogService.ShowLoadingDialogAsync();
 
             CultureInfo.GetCultures(CultureTypes.AllCultures)
-                       .OrderBy(x => x.Name)
-                       .ToList()
-                       .ForEach(AvailableCultures.Add);
+                .OrderBy(x => x.Name)
+                .ToList()
+                .ForEach(AvailableCultures.Add);
             SelectedCulture = AvailableCultures.First(x => x.Name == settingsFacade.DefaultCulture);
 
             await dialogService.HideLoadingDialogAsync();

@@ -3,13 +3,14 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Accounts.Queries.GetAccounts;
-using MoneyFox.Application.Categories.Queries.GetCategoryById;
-using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
-using MoneyFox.Domain;
+using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Accounts.GetAccounts;
+using MoneyFox.Core.Queries.Categories.GetCategoryById;
+using MoneyFox.Core.Queries.Categories.GetCategoryBySearchTerm;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Categories;
@@ -69,17 +70,12 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             IsActive = true;
         }
 
-        protected override void OnActivated()
-        {
+        protected override void OnActivated() =>
             Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
                 this,
                 (r, m) => r.ReceiveMessageAsync(m));
-        }
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<CategorySelectedMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<CategorySelectedMessage>(this);
 
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
@@ -103,7 +99,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         /// <inheritdoc />
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
             async ()
-                => await new SelectCategoryDialog {RequestedTheme = ThemeSelectorService.Theme}.ShowAsync());
+                => await new SelectCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync());
 
         /// <summary>
         ///     Resets the CategoryViewModel of the currently selected PaymentViewModel
@@ -249,6 +245,7 @@ namespace MoneyFox.Uwp.ViewModels.Payments
                 : Strings.ChargedAccountLabel;
 
         private bool isBusy;
+
         public bool IsBusy
         {
             get => isBusy;

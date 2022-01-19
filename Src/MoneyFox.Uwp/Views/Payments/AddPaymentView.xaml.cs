@@ -1,6 +1,7 @@
 ﻿#nullable enable
-using MoneyFox.Application.Resources;
-using MoneyFox.Domain;
+using MoneyFox.Core;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.ViewModels.Payments;
 using Windows.UI.Xaml.Navigation;
 

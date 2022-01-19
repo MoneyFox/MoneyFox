@@ -1,5 +1,4 @@
-﻿using MoneyFox.Application.Common;
-using MoneyFox.Uwp.ViewModels.Accounts;
+﻿using MoneyFox.Uwp.ViewModels.Accounts;
 using System;
 using Windows.ApplicationModel;
 using Windows.UI.Xaml;
@@ -50,13 +49,13 @@ namespace MoneyFox.Uwp.Views.Accounts
                 return;
             }
 
-            (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account).FireAndForgetSafeAsync();
+            (DataContext as AccountListViewModel)?.DeleteAccountCommand.ExecuteAsync(account);
         }
 
         private void AccountClicked(object sender, ItemClickEventArgs parameter)
         {
             var account = parameter.ClickedItem as AccountViewModel;
-            (DataContext as AccountListViewModel)?.OpenOverviewCommand.Execute(account);
+            ViewModel.OpenOverviewCommand.Execute(account);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace MoneyFox.Uwp.Services
     public class NavigationService : INavigationService
     {
         private static readonly ConcurrentDictionary<Type, Type> ViewModelMap = new ConcurrentDictionary<Type, Type>();
-        
+
         public static void Register<TViewModel, TView>() where TView : Page
         {
             if(!ViewModelMap.TryAdd(typeof(TViewModel), typeof(TView)))

@@ -5,12 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.Payments"
     xmlns:controls="using:MoneyFox.Uwp.Views.UserControls"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     mc:Ignorable="d">
 
-    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}" >
+    <Grid EntranceNavigationTransitionInfo.IsTargetElement="True" Style="{StaticResource AppGrid}">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="6" />
@@ -20,14 +20,14 @@
             </Grid.RowDefinitions>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" Spacing="6">
-                <Button Command="{x:Bind ViewModel.SaveCommand}" >
+                <Button Command="{x:Bind ViewModel.SaveCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <SymbolIcon Symbol="Save" />
                         <TextBlock Text="{x:Bind resources:Strings.DoneLabel}" />
                     </StackPanel>
                 </Button>
 
-                <Button Command="{x:Bind ViewModel.CancelCommand}" >
+                <Button Command="{x:Bind ViewModel.CancelCommand}">
                     <StackPanel Orientation="Horizontal" Spacing="6">
                         <SymbolIcon Symbol="Cancel" />
                         <TextBlock Text="{x:Bind resources:Strings.CancelLabel}" />
@@ -36,7 +36,7 @@
             </StackPanel>
 
             <ScrollViewer Grid.Row="3" VerticalScrollBarVisibility="Auto">
-                 <userControls:ModifyPaymentUserControl />
+                <userControls:ModifyPaymentUserControl />
             </ScrollViewer>
         </Grid>
 

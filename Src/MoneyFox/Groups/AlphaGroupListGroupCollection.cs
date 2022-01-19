@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core._Pending_.Exceptions;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;

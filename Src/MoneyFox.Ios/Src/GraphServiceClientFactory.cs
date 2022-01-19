@@ -10,7 +10,7 @@ namespace MoneyFox.iOS
     public class GraphServiceClientFactory : IGraphClientFactory
     {
         private static NSUrlSessionHandler HttpMessageHandler =>
-            new NSUrlSessionHandler {BypassBackgroundSessionCheck = true};
+            new NSUrlSessionHandler { BypassBackgroundSessionCheck = true };
 
         public GraphServiceClient CreateClient(AuthenticationResult authResult)
         {

@@ -17,7 +17,7 @@ namespace MoneyFox.Tests.Groups
             // Arrange
             var accountList = new List<AccountViewModel>
             {
-                new AccountViewModel {Name = "a"}, new AccountViewModel {Name = "b"}
+                new AccountViewModel { Name = "a" }, new AccountViewModel { Name = "b" }
             };
 
             // Act

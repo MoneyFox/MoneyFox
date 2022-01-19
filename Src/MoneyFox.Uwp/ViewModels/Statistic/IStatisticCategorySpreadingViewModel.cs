@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Statistics;
+﻿using MoneyFox.Core.Queries.Statistics;
 using System.Collections.ObjectModel;
 
 namespace MoneyFox.Uwp.ViewModels.Statistic

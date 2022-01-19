@@ -2,9 +2,10 @@
 using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 #nullable enable
-using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
+using MoneyFox.Core.Aggregates;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.ViewModels.Accounts;
 using MoneyFox.Uwp.ViewModels.Categories;
 using System;
@@ -335,9 +336,9 @@ namespace MoneyFox.Uwp.ViewModels.Payments
         }
 
         public void CreateMappings(Profile configuration) => configuration.CreateMap<Payment, PaymentViewModel>()
-                                                                          .ForMember(
-                                                                              x => x.CurrentAccountId,
-                                                                              opt => opt.Ignore())
-                                                                          .ReverseMap();
+            .ForMember(
+                x => x.CurrentAccountId,
+                opt => opt.Ignore())
+            .ReverseMap();
     }
 }

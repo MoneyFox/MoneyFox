@@ -66,16 +66,16 @@ namespace MoneyFox.Droid.Renderer
 
         private void SetBackgroundColor(SearchView searchView)
         {
-            if(Xamarin.Forms.Application.Current.UserAppTheme == OSAppTheme.Dark)
+            if(Application.Current.UserAppTheme == OSAppTheme.Dark)
             {
-                Xamarin.Forms.Application.Current.Resources.TryGetValue(
+                Application.Current.Resources.TryGetValue(
                     "BackgroundColorSearchBarDark",
                     out object darkTintColor);
                 searchView.SetBackgroundColor(((Color)darkTintColor).ToAndroid());
             }
             else
             {
-                Xamarin.Forms.Application.Current.Resources.TryGetValue(
+                Application.Current.Resources.TryGetValue(
                     "BackgroundColorSearchBarLight",
                     out object lightTintColor);
                 searchView.SetBackgroundColor(((Color)lightTintColor).ToAndroid());
@@ -135,7 +135,7 @@ namespace MoneyFox.Droid.Renderer
                 {
                     "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"
                 };
-                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
+                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
                 for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {

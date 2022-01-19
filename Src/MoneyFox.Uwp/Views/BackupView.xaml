@@ -8,8 +8,8 @@
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:views="using:MoneyFox.Uwp.Views"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -26,7 +26,8 @@
     <Grid Margin="{StaticResource MediumLeftRightMargin}" EntranceNavigationTransitionInfo.IsTargetElement="True">
 
         <StackPanel EntranceNavigationTransitionInfo.IsTargetElement="True">
-            <StackPanel Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
+            <StackPanel
+                Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
                 <PersonPicture />
 
                 <TextBlock
@@ -57,7 +58,8 @@
                 Content="{x:Bind resources:Strings.LogoutLabel}"
                 Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}" />
 
-            <StackPanel Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
+            <StackPanel
+                Visibility="{x:Bind ViewModel.IsLoggedIn, Converter={StaticResource BooleanVisibilityConverter}, Mode=OneWay}">
                 <TextBlock
                     Margin="{StaticResource MediumTopMargin}"
                     Text="{x:Bind resources:Strings.BackupInformationLabel}"

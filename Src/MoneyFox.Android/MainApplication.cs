@@ -1,7 +1,7 @@
 ﻿using Android.App;
 using Android.Runtime;
 using Autofac;
-using MoneyFox.Application.Common.Constants;
+using MoneyFox.Core._Pending_.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -13,7 +13,7 @@ using Xamarin.Essentials;
 namespace MoneyFox.Droid
 {
     [Application]
-    public class MainApplication : Android.App.Application
+    public class MainApplication : Application
     {
         private Logger? logManager;
 

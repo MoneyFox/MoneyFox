@@ -1,6 +1,6 @@
 ﻿using Acr.UserDialogs;
 using JetBrains.Annotations;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Services

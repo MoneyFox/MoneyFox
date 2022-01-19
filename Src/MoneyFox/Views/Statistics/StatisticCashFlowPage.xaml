@@ -5,8 +5,8 @@
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
-    xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
     xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
+    xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
     Visual="Material"
     mc:Ignorable="d">
 

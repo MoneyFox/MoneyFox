@@ -1,9 +1,10 @@
 ﻿using Autofac;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core._Pending_.Common.Constants;
+using MoneyFox.Core._Pending_.Exceptions;
 using MoneyFox.Uwp.Activation;
 using MoneyFox.Uwp.ViewModels.Payments;
+using MoneyFox.Uwp.Views.Statistics;
 using PCLAppConfig;
 using PCLAppConfig.FileSystemStream;
 using System;

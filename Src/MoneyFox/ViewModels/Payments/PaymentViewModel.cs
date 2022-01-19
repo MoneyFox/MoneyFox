@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using System;
@@ -12,23 +11,25 @@ namespace MoneyFox.ViewModels.Payments
     public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     {
         private const decimal DECIMAL_DELTA = 0.01m;
-
-        private int id;
-        private int chargedAccountId;
-        private int? targetAccountId;
-        private DateTime date;
         private decimal amount;
-        private bool isCleared;
-        private PaymentType type;
-        private string note = "";
-        private bool isRecurring;
-        private DateTime creationTime;
-        private DateTime modificationDate;
+        private CategoryViewModel? categoryViewModel;
 
         private AccountViewModel chargedAccount = null!;
-        private AccountViewModel? targetAccount;
-        private CategoryViewModel? categoryViewModel;
+        private int chargedAccountId;
+        private DateTime creationTime;
+
+        private int currentAccountId;
+        private DateTime date;
+
+        private int id;
+        private bool isCleared;
+        private bool isRecurring;
+        private DateTime modificationDate;
+        private string note = "";
         private RecurringPaymentViewModel? recurringPaymentViewModel;
+        private AccountViewModel? targetAccount;
+        private int? targetAccountId;
+        private PaymentType type;
 
         public PaymentViewModel()
         {
@@ -312,8 +313,6 @@ namespace MoneyFox.ViewModels.Payments
         /// </summary>
         public bool IsTransfer => Type == PaymentType.Transfer;
 
-        private int currentAccountId;
-
         /// <summary>
         ///     Id of the account who currently is used for that view.
         /// </summary>
@@ -333,9 +332,9 @@ namespace MoneyFox.ViewModels.Payments
         }
 
         public void CreateMappings(Profile configuration) => configuration.CreateMap<Payment, PaymentViewModel>()
-                                                                          .ForMember(
-                                                                              x => x.CurrentAccountId,
-                                                                              opt => opt.Ignore())
-                                                                          .ReverseMap();
+            .ForMember(
+                x => x.CurrentAccountId,
+                opt => opt.Ignore())
+            .ReverseMap();
     }
 }

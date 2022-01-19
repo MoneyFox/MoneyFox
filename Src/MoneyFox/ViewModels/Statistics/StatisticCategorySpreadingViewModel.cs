@@ -1,10 +1,11 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries;
-using MoneyFox.Domain;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Queries.Statistics;
+using MoneyFox.Core.Queries.Statistics.Queries;
+using MoneyFox.Views.Statistics;
 using SkiaSharp;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -26,7 +27,7 @@ namespace MoneyFox.ViewModels.Statistics
         {
         }
 
-        public List<PaymentType> PaymentTypes => new List<PaymentType> {PaymentType.Expense, PaymentType.Income};
+        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
 
         public PaymentType SelectedPaymentType
         {
@@ -73,15 +74,15 @@ namespace MoneyFox.ViewModels.Statistics
                 await Mediator.Send(new GetCategorySpreadingQuery(StartDate, EndDate, SelectedPaymentType)));
 
             List<ChartEntry> microChartItems = statisticItems
-                                               .Select(
-                                                   x => new ChartEntry((float)x.Value)
-                                                   {
-                                                       Label = x.Label,
-                                                       ValueLabel = x.ValueLabel,
-                                                       Color = SKColor.Parse(x.Color),
-                                                       ValueLabelColor = SKColor.Parse(x.Color)
-                                                   })
-                                               .ToList();
+                .Select(
+                    x => new ChartEntry((float)x.Value)
+                    {
+                        Label = x.Label,
+                        ValueLabel = x.ValueLabel,
+                        Color = SKColor.Parse(x.Color),
+                        ValueLabelColor = SKColor.Parse(x.Color)
+                    })
+                .ToList();
 
             Chart = new DonutChart
             {

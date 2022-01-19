@@ -5,13 +5,13 @@ namespace MoneyFox.Views.Dashboard
 {
     public partial class DashboardPage : ContentPage
     {
-        private DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
-
         public DashboardPage()
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.DashboardViewModel;
         }
+
+        private DashboardViewModel ViewModel => (DashboardViewModel)BindingContext;
 
         protected override async void OnAppearing() => await ViewModel.InitializeAsync();
     }

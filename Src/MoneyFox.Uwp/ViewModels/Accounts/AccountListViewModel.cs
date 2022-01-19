@@ -3,14 +3,14 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Accounts.Commands.DeleteAccountById;
-using MoneyFox.Application.Accounts.Queries.GetAccountEndOfMonthBalance;
-using MoneyFox.Application.Accounts.Queries.GetExcludedAccount;
-using MoneyFox.Application.Accounts.Queries.GetIncludedAccount;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.Commands.Accounts.DeleteAccountById;
+using MoneyFox.Core.Queries.Accounts.GetAccountEndOfMonthBalance;
+using MoneyFox.Core.Queries.Accounts.GetExcludedAccount;
+using MoneyFox.Core.Queries.Accounts.GetIncludedAccount;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Interfaces;
@@ -58,17 +58,12 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             IsActive = true;
         }
 
-        protected override void OnActivated()
-        {
+        protected override void OnActivated() =>
             Messenger.Register<AccountListViewModel, ReloadMessage>(
                 this,
                 (r, m) => r.LoadDataCommand.ExecuteAsync(null));
-        }
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<ReloadMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public IBalanceViewModel BalanceViewModel { get; }
 

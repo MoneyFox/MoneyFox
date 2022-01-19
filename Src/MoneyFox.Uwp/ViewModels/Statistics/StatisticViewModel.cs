@@ -2,9 +2,9 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Common.Extensions;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Extensions;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Resources;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -47,8 +47,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             IsActive = true;
         }
 
-        protected override void OnActivated()
-        {
+        protected override void OnActivated() =>
             Messenger.Register<StatisticViewModel, DateSelectedMessage>(
                 this,
                 (r, m) =>
@@ -57,7 +56,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                     r.EndDate = m.EndDate;
                     LoadAsync();
                 });
-        }
 
         protected override void OnDeactivated() => Messenger.Unregister<DateSelectedMessage>(this);
 

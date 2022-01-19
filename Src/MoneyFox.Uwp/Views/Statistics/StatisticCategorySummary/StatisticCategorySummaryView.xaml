@@ -8,11 +8,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:userControls="using:MoneyFox.Uwp.Views.UserControls"
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:statisticUc="using:MoneyFox.Uwp.Views.Statistics.StatisticCategorySummary"
     xmlns:viewModels="using:MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -21,9 +21,9 @@
 
         <DataTemplate x:Key="CategoryOverviewItemTemplate" x:DataType="viewModels:CategoryOverviewViewModel">
             <StackPanel Margin="{StaticResource SmallListItemMargin}"
-                CornerRadius="{StaticResource DefaultCornerRadius}"
-                HorizontalAlignment="Stretch"
-                Background="{ThemeResource ListItemBrush}">
+                        CornerRadius="{StaticResource DefaultCornerRadius}"
+                        HorizontalAlignment="Stretch"
+                        Background="{ThemeResource ListItemBrush}">
 
                 <StackPanel Margin="{StaticResource MediumLeftRightMargin}"
                             Padding="{StaticResource SmallListItemPadding}">
@@ -73,9 +73,10 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <userControls:IncomeExpenseBalanceUserControl Grid.Row="0" DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
+        <userControls:IncomeExpenseBalanceUserControl Grid.Row="0"
+                                                      DataContext="{x:Bind ViewModel.IncomeExpenseBalance}" />
 
-        <StackPanel Grid.Row="1" >
+        <StackPanel Grid.Row="1">
             <StackPanel Spacing="12" Orientation="Horizontal">
                 <CalendarDatePicker
                     Date="{x:Bind ViewModel.StartDate, Converter={StaticResource DateTimeToDateTimeOffsetConverter}, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

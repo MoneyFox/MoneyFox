@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core.Aggregates;
+using MoneyFox.Core.Aggregates.Payments;
 
 namespace MoneyFox.Infrastructure.Persistence.Configurations
 {

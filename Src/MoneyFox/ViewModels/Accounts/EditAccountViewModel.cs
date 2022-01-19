@@ -1,17 +1,17 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Accounts.Commands.UpdateAccount;
-using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Aggregates;
+using MoneyFox.Core.Commands.Accounts.UpdateAccount;
+using MoneyFox.Core.Queries.Accounts.GetAccountById;
 using System.Threading.Tasks;
 
 namespace MoneyFox.ViewModels.Accounts
 {
     public class EditAccountViewModel : ModifyAccountViewModel
     {
-        private readonly IMediator mediator;
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
         public EditAccountViewModel(IMediator mediator,
             IMapper mapper,

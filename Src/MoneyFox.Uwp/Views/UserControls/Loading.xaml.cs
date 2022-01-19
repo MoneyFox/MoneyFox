@@ -11,16 +11,16 @@ namespace MoneyFox.Uwp.Views.UserControls
         }
 
         public static readonly DependencyProperty IsLoadingProperty = DependencyProperty.Register(
-          "IsLoading",
-          typeof(bool),
-          typeof(Loading),
-          new PropertyMetadata(false)
+            "IsLoading",
+            typeof(bool),
+            typeof(Loading),
+            new PropertyMetadata(false)
         );
 
         public bool IsLoading
         {
-            get { return (bool)GetValue(IsLoadingProperty); }
-            set { SetValue(IsLoadingProperty, value); }
+            get => (bool)GetValue(IsLoadingProperty);
+            set => SetValue(IsLoadingProperty, value);
         }
     }
 }

@@ -3,7 +3,7 @@ using Autofac;
 using Foundation;
 using JetBrains.Annotations;
 using Microsoft.Identity.Client;
-using MoneyFox.Application.Common.Constants;
+using MoneyFox.Core._Pending_.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
@@ -23,8 +23,6 @@ namespace MoneyFox.iOS
     [UsedImplicitly]
     public class AppDelegate : FormsApplicationDelegate
     {
-        private const int SHADOW_MAJOR_VERSION = 13;
-
         private Logger? logManager;
 
         // You have 17 seconds to return from this method, or iOS will terminate your application.
@@ -39,32 +37,9 @@ namespace MoneyFox.iOS
             FormsMaterial.Init();
             LoadApplication(new App());
 
-            //RemoveNavigationBarBorder();
-            RequestToastPermissions(uiApplication);
+            RequestToastPermissions();
 
             return base.FinishedLaunching(uiApplication, launchOptions);
-        }
-
-        private static void RemoveNavigationBarBorder()
-        {
-            UINavigationBar.Appearance.Translucent = false;
-            if(UIDevice.CurrentDevice.CheckSystemVersion(SHADOW_MAJOR_VERSION, 0))
-            {
-                var appearance = new UINavigationBarAppearance()
-                {
-                    BackgroundColor = UIColor.Clear,
-                    ShadowColor = null,
-                };
-
-                UINavigationBar.Appearance.StandardAppearance = appearance;
-                UINavigationBar.Appearance.ScrollEdgeAppearance = appearance;
-                UINavigationBar.Appearance.CompactAppearance = appearance;
-            }
-            else
-            {
-                UINavigationBar.Appearance.SetBackgroundImage(new UIImage(), UIBarMetrics.Default);
-                UINavigationBar.Appearance.ShadowImage = new UIImage();
-            }
         }
 
         // Needed for auth
@@ -74,15 +49,13 @@ namespace MoneyFox.iOS
             return true;
         }
 
-        private void RequestToastPermissions(UIApplication app)
-        {
+        private void RequestToastPermissions() =>
             UNUserNotificationCenter.Current.RequestAuthorization(
                 UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
                 (granted, error) =>
                 {
                     // Do something if needed
                 });
-        }
 
         private void RegisterServices()
         {

@@ -1,13 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.DbBackup;
-using MoneyFox.Application.Resources;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.DbBackup;
+using MoneyFox.Core._Pending_.Exceptions;
+using MoneyFox.Core.Interfaces;
+using MoneyFox.Core.Resources;
 using NLog;
 using System;
 using System.Threading.Tasks;
@@ -19,18 +19,17 @@ namespace MoneyFox.ViewModels.DataBackup
     /// </summary>
     public class BackupViewModel : ObservableObject, IBackupViewModel
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
-
         private readonly IBackupService backupService;
         private readonly IConnectivityAdapter connectivity;
         private readonly IDialogService dialogService;
+        private readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly ISettingsFacade settingsFacade;
         private readonly IToastService toastService;
         private bool backupAvailable;
-        private UserAccount userAccount;
 
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
+        private UserAccount userAccount;
 
         public BackupViewModel(IBackupService backupService,
             IDialogService dialogService,
@@ -45,6 +44,21 @@ namespace MoneyFox.ViewModels.DataBackup
             this.toastService = toastService;
 
             userAccount = new UserAccount();
+        }
+
+        public UserAccount UserAccount
+        {
+            get => userAccount;
+            set
+            {
+                if(userAccount == value)
+                {
+                    return;
+                }
+
+                userAccount = value;
+                OnPropertyChanged();
+            }
         }
 
         /// <inheritdoc />
@@ -133,21 +147,6 @@ namespace MoneyFox.ViewModels.DataBackup
                 }
 
                 settingsFacade.IsBackupAutouploadEnabled = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public UserAccount UserAccount
-        {
-            get => userAccount;
-            set
-            {
-                if(userAccount == value)
-                {
-                    return;
-                }
-
-                userAccount = value;
                 OnPropertyChanged();
             }
         }

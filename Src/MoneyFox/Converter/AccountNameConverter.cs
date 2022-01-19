@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application;
+﻿using MoneyFox.Core._Pending_;
 using MoneyFox.ViewModels.Accounts;
 using System;
 using System.Globalization;

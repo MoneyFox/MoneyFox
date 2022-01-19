@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Uwp.Services;
 
 #nullable enable

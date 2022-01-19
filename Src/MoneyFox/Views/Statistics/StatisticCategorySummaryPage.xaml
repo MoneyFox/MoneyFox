@@ -4,9 +4,9 @@
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              x:Name="StatisticCategorySummary"
              Visual="Material"
              mc:Ignorable="d">

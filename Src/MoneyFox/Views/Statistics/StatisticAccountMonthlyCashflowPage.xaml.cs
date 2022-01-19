@@ -1,20 +1,19 @@
 ﻿using MoneyFox.ViewModels.Statistics;
 using MoneyFox.Views.Dialogs;
 using System;
-using Xamarin.Forms;
 
 namespace MoneyFox.Views.Statistics
 {
     public partial class StatisticAccountMonthlyCashFlowPage
     {
-        private StatisticAccountMonthlyCashflowViewModel ViewModel =>
-            (StatisticAccountMonthlyCashflowViewModel)BindingContext;
-
         public StatisticAccountMonthlyCashFlowPage()
         {
             InitializeComponent();
             BindingContext = ViewModelLocator.StatistcAccountMonthlyCashflowViewModel;
         }
+
+        private StatisticAccountMonthlyCashflowViewModel ViewModel =>
+            (StatisticAccountMonthlyCashflowViewModel)BindingContext;
 
         protected override void OnAppearing() => ViewModel.InitCommand.Execute(null);
 

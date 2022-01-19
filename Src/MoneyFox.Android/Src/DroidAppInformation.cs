@@ -1,5 +1,5 @@
 using Android.Content;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 
 #nullable enable
 namespace MoneyFox.Droid
@@ -18,8 +18,8 @@ namespace MoneyFox.Droid
                 }
 
                 return context.PackageManager
-                              ?.GetPackageInfo(context.PackageName ?? string.Empty, 0)
-                              ?.VersionName
+                           ?.GetPackageInfo(context.PackageName ?? string.Empty, 0)
+                           ?.VersionName
                        ?? string.Empty;
             }
         }

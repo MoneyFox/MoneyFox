@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
+using MoneyFox.Core.Aggregates;
 using System;
 
 namespace MoneyFox.ViewModels.Accounts
@@ -8,16 +8,16 @@ namespace MoneyFox.ViewModels.Accounts
     public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
     {
         private const decimal DECIMAL_DELTA = 0.01m;
-
-        private int id;
-        private string name = "";
+        private DateTime creationTime;
         private decimal currentBalance;
         private decimal endOfMonthBalance;
-        private string note = "";
-        private bool isOverdrawn;
+
+        private int id;
         private bool isExcluded;
-        private DateTime creationTime;
+        private bool isOverdrawn;
         private DateTime modificationDate;
+        private string name = "";
+        private string note = "";
 
         /// <summary>
         ///     Account Id

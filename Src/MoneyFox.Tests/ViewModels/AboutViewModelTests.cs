@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.Constants;
-using MoneyFox.Application.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Constants;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.ViewModels.About;
 using NSubstitute;
 using System;
@@ -57,7 +57,7 @@ namespace MoneyFox.Tests.ViewModels
         {
             var webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
             webbrowserTaskSetup.OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl)))
-                               .Returns(Task.CompletedTask);
+                .Returns(Task.CompletedTask);
 
             new AboutViewModel(
                     Substitute.For<IAppInformation>(),
@@ -68,7 +68,7 @@ namespace MoneyFox.Tests.ViewModels
                 .Execute(null);
 
             await webbrowserTaskSetup.Received(1)
-                                     .OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl)));
+                .OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.WebsiteUrl)));
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace MoneyFox.Tests.ViewModels
         {
             var webbrowserTaskSetup = Substitute.For<IBrowserAdapter>();
             webbrowserTaskSetup.OpenWebsiteAsync(Arg.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl)))
-                               .Returns(Task.CompletedTask);
+                .Returns(Task.CompletedTask);
 
             new AboutViewModel(
                     Substitute.For<IAppInformation>(),
@@ -87,8 +87,8 @@ namespace MoneyFox.Tests.ViewModels
                 .Execute(null);
 
             await webbrowserTaskSetup.Received(1)
-                                     .OpenWebsiteAsync(
-                                         Arg.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl)));
+                .OpenWebsiteAsync(
+                    Arg.Is<Uri>(s => s == new Uri(AppConstants.GitHubRepositoryUrl)));
         }
 
         [Fact]

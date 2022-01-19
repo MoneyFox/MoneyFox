@@ -5,10 +5,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             xmlns:resources="clr-namespace:MoneyFox.Application.Resources;assembly=MoneyFox.Application"
              xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              xmlns:converter="clr-namespace:MoneyFox.Converter"
              xmlns:styles="clr-namespace:MoneyFox.Common.Styles;assembly=MoneyFox"
+             xmlns:resources="clr-namespace:MoneyFox.Core.Resources;assembly=MoneyFox.Core"
              Visual="Material"
              x:Class="MoneyFox.Views.Statistics.StatisticCategorySpreadingPage">
 

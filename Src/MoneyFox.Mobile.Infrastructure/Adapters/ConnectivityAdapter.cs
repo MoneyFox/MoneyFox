@@ -1,4 +1,4 @@
-﻿using MoneyFox.Application.Common.Adapters;
+﻿using MoneyFox.Core.Interfaces;
 using NLog;
 using Xamarin.Essentials;
 

@@ -7,8 +7,8 @@
                 xmlns:core="using:Microsoft.Xaml.Interactions.Core"
                 xmlns:views="using:MoneyFox.Uwp.Views"
                 xmlns:microcharts="using:Microcharts.Uwp"
-                xmlns:resources="using:MoneyFox.Application.Resources"
                 xmlns:converter="using:MoneyFox.Uwp.Converter"
+                xmlns:resources="using:MoneyFox.Core.Resources"
                 mc:Ignorable="d">
 
     <Page.Resources>
@@ -25,10 +25,10 @@
           Margin="{StaticResource MediumLeftRightMargin}">
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" Spacing="12" Orientation="Horizontal" >
+        <StackPanel Grid.Row="0" Spacing="12" Orientation="Horizontal">
             <ComboBox
                 Margin="{StaticResource SmallTitleContentMargin}"
                 Header="{x:Bind resources:Strings.SelectedAccountHeader}"
@@ -55,6 +55,7 @@
                     VerticalAlignment="Bottom" />
         </StackPanel>
 
-        <microcharts:ChartView Grid.Row="1" Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+        <microcharts:ChartView Grid.Row="1"
+                               Chart="{x:Bind ViewModel.Chart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </views:BaseView>

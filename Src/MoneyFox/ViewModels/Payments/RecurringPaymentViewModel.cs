@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Application.Common.Interfaces.Mapping;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.ViewModels.Accounts;
 using MoneyFox.ViewModels.Categories;
 using System;
@@ -11,18 +10,18 @@ namespace MoneyFox.ViewModels.Payments
     public class RecurringPaymentViewModel : ObservableObject, IMapFrom<RecurringPayment>
     {
         private const decimal DECIMAL_DELTA = 0.01m;
-
-        private int id;
-        private DateTime startDate;
-        private DateTime? endDate;
         private decimal amount;
-        private bool isEndless;
-        private PaymentType type;
-        private PaymentRecurrence recurrence;
-        private string note = "";
+        private CategoryViewModel? categoryViewModel;
 
         private AccountViewModel chargedAccount = null!;
-        private CategoryViewModel? categoryViewModel;
+        private DateTime? endDate;
+
+        private int id;
+        private bool isEndless;
+        private string note = "";
+        private PaymentRecurrence recurrence;
+        private DateTime startDate;
+        private PaymentType type;
 
         public RecurringPaymentViewModel()
         {

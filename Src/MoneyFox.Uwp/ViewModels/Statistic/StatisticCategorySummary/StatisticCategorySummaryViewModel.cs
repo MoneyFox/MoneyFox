@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
-using MoneyFox.Application.Payments.Queries.GetPaymentsForCategory;
-using MoneyFox.Application.Statistics.Queries.GetCategorySummary;
+using MoneyFox.Core.Queries.Payments.GetPaymentsForCategory;
+using MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.ViewModels.Payments;
 using MoneyFox.Uwp.ViewModels.Statistics;
@@ -101,19 +101,19 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
             summaryItem.Source.Clear();
 
             DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>.CreateGroups(
-                                                                                  dailyItems,
-                                                                                  s =>
-                                                                                  {
-                                                                                      var date = Convert.ToDateTime(
-                                                                                          s.Key,
-                                                                                          CultureInfo.CurrentCulture);
-                                                                                      return
-                                                                                          $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
-                                                                                  },
-                                                                                  s => Convert.ToDateTime(
-                                                                                      s.Key,
-                                                                                      CultureInfo.CurrentCulture))
-                                                                              .ForEach(summaryItem.Source.Add);
+                    dailyItems,
+                    s =>
+                    {
+                        var date = Convert.ToDateTime(
+                            s.Key,
+                            CultureInfo.CurrentCulture);
+                        return
+                            $"{date.ToString("MMMM", CultureInfo.CurrentCulture)} {date.Year}";
+                    },
+                    s => Convert.ToDateTime(
+                        s.Key,
+                        CultureInfo.CurrentCulture))
+                .ForEach(summaryItem.Source.Add);
 
             SelectedOverviewItem = summaryItem;
         }
@@ -124,21 +124,21 @@ namespace MoneyFox.Uwp.ViewModels.Statistic.StatisticCategorySummary
         protected override async Task LoadAsync()
         {
             CategorySummaryModel categorySummaryModel =
-                await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
+                await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
 
             CategorySummary.Clear();
             categorySummaryModel.CategoryOverviewItems
-                                .Select(
-                                    x => new CategoryOverviewViewModel
-                                    {
-                                        CategoryId = x.CategoryId,
-                                        Value = x.Value,
-                                        Average = x.Average,
-                                        Label = x.Label,
-                                        Percentage = x.Percentage
-                                    })
-                                .ToList()
-                                .ForEach(CategorySummary.Add);
+                .Select(
+                    x => new CategoryOverviewViewModel
+                    {
+                        CategoryId = x.CategoryId,
+                        Value = x.Value,
+                        Average = x.Average,
+                        Label = x.Label,
+                        Percentage = x.Percentage
+                    })
+                .ToList()
+                .ForEach(CategorySummary.Add);
 
             IncomeExpenseBalance.TotalEarned = categorySummaryModel.TotalEarned;
             IncomeExpenseBalance.TotalSpent = categorySummaryModel.TotalSpent;

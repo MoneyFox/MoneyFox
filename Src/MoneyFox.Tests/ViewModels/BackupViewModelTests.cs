@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using MoneyFox.Application.Common.Adapters;
-using MoneyFox.Application.Common.Facades;
-using MoneyFox.Application.DbBackup;
+using MoneyFox.Core._Pending_.Common.Facades;
+using MoneyFox.Core._Pending_.DbBackup;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.ViewModels.DataBackup;
 using NSubstitute;
 using System;
@@ -106,7 +106,7 @@ namespace MoneyFox.Tests.ViewModels
 
             var backupServiceMock = Substitute.For<IBackupService>();
             backupServiceMock.When(x => x.LogoutAsync())
-                             .Do(x => logoutCommandCalled = true);
+                .Do(x => logoutCommandCalled = true);
 
             //execute
             var vm = new BackupViewModel(

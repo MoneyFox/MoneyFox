@@ -7,8 +7,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:categories="using:MoneyFox.Uwp.ViewModels.Categories"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     d:DesignHeight="300"
     d:DesignWidth="400"
     mc:Ignorable="d">
@@ -18,7 +18,7 @@
         <converter:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
         <DataTemplate x:Key="CategoryTemplate" x:DataType="categories:CategoryViewModel">
-            <StackPanel RightTapped="CategoryListRightTapped" 
+            <StackPanel RightTapped="CategoryListRightTapped"
                         Margin="{StaticResource SmallListItemMargin}">
                 <FlyoutBase.AttachedFlyout>
                     <MenuFlyout>
@@ -73,8 +73,8 @@
             Source="{Binding CategoryList}" />
     </UserControl.Resources>
 
-    <Grid >
-        <SemanticZoom >
+    <Grid>
+        <SemanticZoom>
             <SemanticZoom.ZoomedInView>
 
                 <ListView

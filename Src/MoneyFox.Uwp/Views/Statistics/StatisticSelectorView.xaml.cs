@@ -1,5 +1,5 @@
 ﻿#nullable enable
-using MoneyFox.Application.Resources;
+using MoneyFox.Core.Resources;
 
 namespace MoneyFox.Uwp.Views.Statistics
 {

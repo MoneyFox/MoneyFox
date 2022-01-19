@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Categories.Command.CreateCategory;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.Commands.Categories.CreateCategory;
 using MoneyFox.Uwp.Services;
 using System.Threading.Tasks;
 

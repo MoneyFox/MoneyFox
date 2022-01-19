@@ -1,5 +1,5 @@
 ﻿using JetBrains.Annotations;
-using MoneyFox.Application.Common.Adapters;
+using MoneyFox.Core.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace MoneyFox.Desktop.Infrastructure.Adapters
         // Attachments are currently not supportd on uwp
         public async Task SendEmailAsync(string subject, string body, List<string> recipients, List<string> filePaths)
         {
-            var emailMessage = new EmailMessage {Subject = subject, Body = body};
+            var emailMessage = new EmailMessage { Subject = subject, Body = body };
 
             foreach(EmailRecipient emailRecipient in recipients.Select(s => new EmailRecipient(s)))
             {

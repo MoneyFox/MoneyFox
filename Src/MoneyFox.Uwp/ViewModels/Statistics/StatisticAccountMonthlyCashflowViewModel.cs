@@ -2,11 +2,12 @@
 using CommunityToolkit.Mvvm.Input;
 using MediatR;
 using Microcharts;
-using MoneyFox.Application.Accounts.Queries.GetAccounts;
-using MoneyFox.Application.Common;
-using MoneyFox.Application.Statistics;
-using MoneyFox.Application.Statistics.Queries;
+using MoneyFox.Core._Pending_.Common;
+using MoneyFox.Core.Queries.Accounts.GetAccounts;
+using MoneyFox.Core.Queries.Statistics;
+using MoneyFox.Core.Queries.Statistics.Queries;
 using MoneyFox.Uwp.ViewModels.Accounts;
+using MoneyFox.Uwp.Views.Statistics;
 using SkiaSharp;
 using System;
 using System.Collections.Generic;
@@ -115,14 +116,14 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             Chart = new BarChart
             {
                 Entries = statisticItems.Select(
-                                            x => new ChartEntry((float)x.Value)
-                                            {
-                                                Label = x.Label,
-                                                ValueLabel = x.ValueLabel,
-                                                Color = SKColor.Parse(x.Color),
-                                                ValueLabelColor = SKColor.Parse(x.Color)
-                                            })
-                                        .ToList(),
+                        x => new ChartEntry((float)x.Value)
+                        {
+                            Label = x.Label,
+                            ValueLabel = x.ValueLabel,
+                            Color = SKColor.Parse(x.Color),
+                            ValueLabelColor = SKColor.Parse(x.Color)
+                        })
+                    .ToList(),
                 BackgroundColor = new SKColor(
                     ChartOptions.BackgroundColor.R,
                     ChartOptions.BackgroundColor.G,

@@ -1,4 +1,5 @@
-﻿using MoneyFox.Domain;
+﻿using MoneyFox.Core;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.ConverterLogic;
 using System;
 using Windows.UI.Xaml.Data;

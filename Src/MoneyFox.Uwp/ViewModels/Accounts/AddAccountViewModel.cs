@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using MoneyFox.Application.Accounts.Commands.CreateAccount;
-using MoneyFox.Application.Accounts.Queries.GetIfAccountWithNameExists;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Resources;
+using MoneyFox.Core.Commands.Accounts.CreateAccount;
+using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Utilities;
 using System.Threading.Tasks;

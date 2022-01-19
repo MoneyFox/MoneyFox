@@ -24,16 +24,6 @@ namespace MoneyFox
 {
     public class ViewModelLocator
     {
-        public static void RegisterServices(ContainerBuilder registrations)
-        {
-            IContainer container = registrations.Build();
-
-            if(container != null)
-            {
-                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
-            }
-        }
-
         // Routes
         public static string DashboardRoute => nameof(DashboardPage);
         public static string AccountListRoute => nameof(AccountListPage);
@@ -122,5 +112,15 @@ namespace MoneyFox
 
         public static SettingsViewModel SettingsViewModel => ServiceLocator.Current.GetInstance<SettingsViewModel>();
         public static AboutViewModel AboutViewModel => ServiceLocator.Current.GetInstance<AboutViewModel>();
+
+        public static void RegisterServices(ContainerBuilder registrations)
+        {
+            IContainer container = registrations.Build();
+
+            if(container != null)
+            {
+                ServiceLocator.SetLocatorProvider(() => new AutofacServiceLocator(container));
+            }
+        }
     }
 }

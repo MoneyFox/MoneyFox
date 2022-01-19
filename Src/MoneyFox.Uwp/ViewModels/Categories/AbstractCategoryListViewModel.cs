@@ -3,11 +3,11 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using MediatR;
-using MoneyFox.Application.Categories.Command.DeleteCategoryById;
-using MoneyFox.Application.Categories.Queries.GetCategoryBySearchTerm;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Common.Messages;
-using MoneyFox.Application.Resources;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core._Pending_.Common.Messages;
+using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
+using MoneyFox.Core.Queries.Categories.GetCategoryBySearchTerm;
+using MoneyFox.Core.Resources;
 using MoneyFox.Uwp.Groups;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.Views.Categories;
@@ -41,18 +41,6 @@ namespace MoneyFox.Uwp.ViewModels.Categories
             IsActive = true;
         }
 
-        protected override void OnActivated()
-        {
-            Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(
-                this,
-                (r, m) => r.SearchCommand.ExecuteAsync(""));
-        }
-
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<ReloadMessage>(this);
-        }
-
         protected NavigationService NavigationService { get; }
 
         protected IMediator Mediator { get; }
@@ -60,11 +48,6 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         protected IMapper Mapper { get; }
 
         protected IDialogService DialogService { get; }
-
-        /// <summary>
-        ///     Handle the selection of a CategoryViewModel in the list
-        /// </summary>
-        protected abstract void ItemClick(CategoryViewModel category);
 
         /// <summary>
         ///     Collection with categories alphanumeric grouped by
@@ -100,7 +83,7 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         /// </summary>
         public RelayCommand<CategoryViewModel> EditCategoryCommand
             => new RelayCommand<CategoryViewModel>(
-                async vm => await new EditCategoryDialog(vm.Id) {RequestedTheme = ThemeSelectorService.Theme}
+                async vm => await new EditCategoryDialog(vm.Id) { RequestedTheme = ThemeSelectorService.Theme }
                     .ShowAsync());
 
         /// <summary>
@@ -112,6 +95,18 @@ namespace MoneyFox.Uwp.ViewModels.Categories
         ///     Executes a search for the passed term and updates the displayed list.
         /// </summary>
         public AsyncRelayCommand<string> SearchCommand => new AsyncRelayCommand<string>(SearchAsync);
+
+        protected override void OnActivated() =>
+            Messenger.Register<AbstractCategoryListViewModel, ReloadMessage>(
+                this,
+                (r, m) => r.SearchCommand.ExecuteAsync(""));
+
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
+
+        /// <summary>
+        ///     Handle the selection of a CategoryViewModel in the list
+        /// </summary>
+        protected abstract void ItemClick(CategoryViewModel category);
 
         public async Task ViewAppearingAsync() => await SearchAsync();
 

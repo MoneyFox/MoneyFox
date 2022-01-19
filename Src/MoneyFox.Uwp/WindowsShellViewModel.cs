@@ -1,8 +1,9 @@
 ﻿using CommonServiceLocator;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Domain;
-using MoneyFox.Domain.Exceptions;
+using MoneyFox.Core;
+using MoneyFox.Core._Pending_.Exceptions;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.Helpers;
 using MoneyFox.Uwp.Services;
 using MoneyFox.Uwp.ViewModels.Accounts;
@@ -133,18 +134,18 @@ namespace MoneyFox.Uwp
             }
 
             WinUI.NavigationViewItem? item = navigationView?.MenuItems
-                                                           .OfType<WinUI.NavigationViewItem>()
-                                                           .FirstOrDefault(
-                                                               menuItem =>
-                                                               {
-                                                                   if(menuItem.Content is string content
-                                                                      && args.InvokedItem is string invokedItem)
-                                                                   {
-                                                                       return content == invokedItem;
-                                                                   }
+                .OfType<WinUI.NavigationViewItem>()
+                .FirstOrDefault(
+                    menuItem =>
+                    {
+                        if(menuItem.Content is string content
+                           && args.InvokedItem is string invokedItem)
+                        {
+                            return content == invokedItem;
+                        }
 
-                                                                   return false;
-                                                               });
+                        return false;
+                    });
 
             if(item == null)
             {
@@ -175,8 +176,8 @@ namespace MoneyFox.Uwp
             IsBackEnabled = NavigationService.CanGoBack;
 
             Selected = navigationView?.MenuItems
-                                     .OfType<WinUI.NavigationViewItem>()
-                                     .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
+                .OfType<WinUI.NavigationViewItem>()
+                .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
         }
 
         private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
@@ -188,7 +189,7 @@ namespace MoneyFox.Uwp
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key,
             VirtualKeyModifiers? modifiers = null)
         {
-            var keyboardAccelerator = new KeyboardAccelerator {Key = key};
+            var keyboardAccelerator = new KeyboardAccelerator { Key = key };
             if(modifiers.HasValue)
             {
                 keyboardAccelerator.Modifiers = modifiers.Value;

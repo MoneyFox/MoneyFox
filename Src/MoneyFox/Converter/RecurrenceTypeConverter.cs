@@ -1,5 +1,5 @@
 ﻿using MoneyFox.ConverterLogic;
-using MoneyFox.Domain;
+using MoneyFox.Core.Aggregates.Payments;
 using System;
 using System.Globalization;
 using Xamarin.Forms;

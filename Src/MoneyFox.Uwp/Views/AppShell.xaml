@@ -7,8 +7,8 @@
     xmlns:helpers="using:MoneyFox.Uwp.Helpers"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:winui="using:Microsoft.UI.Xaml.Controls"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -22,7 +22,6 @@
                           SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
 
         <winui:NavigationView.Resources>
-            <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{ThemeResource ColorTopBarBackground}" />
         </winui:NavigationView.Resources>
 
         <winui:NavigationView.MenuItems>

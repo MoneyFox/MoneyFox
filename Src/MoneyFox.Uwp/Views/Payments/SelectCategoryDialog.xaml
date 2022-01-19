@@ -4,11 +4,11 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:resources="using:MoneyFox.Application.Resources"
     xmlns:converter="using:MoneyFox.Uwp.Converter"
     xmlns:categories="using:MoneyFox.Uwp.ViewModels.Categories"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
     mc:Ignorable="d"
     Title="{x:Bind resources:Strings.SelectCategoryTitle}"
@@ -64,14 +64,14 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="240*" />
         </Grid.RowDefinitions>
-        
+
         <TextBox Grid.Column="0"
                  x:Name="SearchTextBox"
-                 Header="{x:Bind resources:Strings.SearchLabel}" >
-                
+                 Header="{x:Bind resources:Strings.SearchLabel}">
+
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="TextChanged">
-                    <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchCommand}" 
+                    <core:InvokeCommandAction Command="{x:Bind ViewModel.SearchCommand}"
                                               CommandParameter="{Binding Text, ElementName=SearchTextBox}" />
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>

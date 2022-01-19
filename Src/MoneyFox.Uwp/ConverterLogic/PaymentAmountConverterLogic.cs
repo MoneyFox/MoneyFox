@@ -1,5 +1,6 @@
-﻿using MoneyFox.Application;
-using MoneyFox.Domain;
+﻿using MoneyFox.Core;
+using MoneyFox.Core._Pending_;
+using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Uwp.ViewModels.Payments;
 
 namespace MoneyFox.Uwp.ConverterLogic

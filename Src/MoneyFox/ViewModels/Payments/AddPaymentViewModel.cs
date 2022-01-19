@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
-using MoneyFox.Application.Accounts.Queries.GetAccountById;
-using MoneyFox.Application.Common.Interfaces;
-using MoneyFox.Application.Payments.Commands.CreatePayment;
-using MoneyFox.Domain.Entities;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Commands.Payments.CreatePayment;
+using MoneyFox.Core.Queries.Accounts.GetAccountById;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,8 +11,8 @@ namespace MoneyFox.ViewModels.Payments
 {
     public class AddPaymentViewModel : ModifyPaymentViewModel
     {
-        private readonly IMediator mediator;
         private readonly IMapper mapper;
+        private readonly IMediator mediator;
 
         public AddPaymentViewModel(IMediator mediator,
             IMapper mapper,

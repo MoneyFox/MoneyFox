@@ -1,4 +1,4 @@
-﻿using MoneyFox.Domain;
+﻿using MoneyFox.Core;
 
 namespace MoneyFox.ViewModels.Statistics
 {
