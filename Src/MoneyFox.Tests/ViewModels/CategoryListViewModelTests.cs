@@ -44,7 +44,7 @@ namespace MoneyFox.Tests.ViewModels
         {
             // Arrange
             mapper.Map<List<CategoryViewModel>>(Arg.Any<List<Category>>())
-                  .Returns(new List<CategoryViewModel> {new CategoryViewModel {Name = "asdf"}});
+                .Returns(new List<CategoryViewModel> { new CategoryViewModel { Name = "asdf" } });
             var viewModel = new CategoryListViewModel(mediator, mapper, dialogService);
 
             // Act

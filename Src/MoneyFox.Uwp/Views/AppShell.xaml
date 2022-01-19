@@ -22,7 +22,6 @@
                           SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">
 
         <winui:NavigationView.Resources>
-            <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{ThemeResource ColorTopBarBackground}" />
         </winui:NavigationView.Resources>
 
         <winui:NavigationView.MenuItems>

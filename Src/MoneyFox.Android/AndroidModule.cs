@@ -13,7 +13,7 @@ namespace MoneyFox.Droid
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
             builder.Register(c => UserDialogs.Instance).As<IUserDialogs>();
             builder.Register(c => new FileStoreIoBase(Android.App.Application.Context.FilesDir?.Path ?? ""))
-                   .AsImplementedInterfaces();
+                .AsImplementedInterfaces();
 
             builder.RegisterModule<MoneyFoxModule>();
         }

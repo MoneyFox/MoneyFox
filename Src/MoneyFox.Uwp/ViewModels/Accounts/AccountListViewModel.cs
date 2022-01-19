@@ -58,17 +58,12 @@ namespace MoneyFox.Uwp.ViewModels.Accounts
             IsActive = true;
         }
 
-        protected override void OnActivated()
-        {
+        protected override void OnActivated() =>
             Messenger.Register<AccountListViewModel, ReloadMessage>(
                 this,
                 (r, m) => r.LoadDataCommand.ExecuteAsync(null));
-        }
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<ReloadMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<ReloadMessage>(this);
 
         public IBalanceViewModel BalanceViewModel { get; }
 

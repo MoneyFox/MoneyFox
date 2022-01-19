@@ -13,7 +13,7 @@ using Xamarin.Essentials;
 namespace MoneyFox.Droid
 {
     [Application]
-    public class MainApplication : Android.App.Application
+    public class MainApplication : Application
     {
         private Logger? logManager;
 

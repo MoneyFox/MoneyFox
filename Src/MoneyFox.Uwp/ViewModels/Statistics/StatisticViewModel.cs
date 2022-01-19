@@ -47,8 +47,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
             IsActive = true;
         }
 
-        protected override void OnActivated()
-        {
+        protected override void OnActivated() =>
             Messenger.Register<StatisticViewModel, DateSelectedMessage>(
                 this,
                 (r, m) =>
@@ -57,7 +56,6 @@ namespace MoneyFox.Uwp.ViewModels.Statistics
                     r.EndDate = m.EndDate;
                     LoadAsync();
                 });
-        }
 
         protected override void OnDeactivated() => Messenger.Unregister<DateSelectedMessage>(this);
 

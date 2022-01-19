@@ -13,8 +13,6 @@
     xmlns:views="using:MoneyFox.Uwp.Views"
     xmlns:accountlist="using:MoneyFox.Uwp.Views.Accounts"
     xmlns:accounts="using:MoneyFox.Uwp.ViewModels.Accounts"
-    xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
-    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
     xmlns:resources="using:MoneyFox.Core.Resources"
     mc:Ignorable="d">
 

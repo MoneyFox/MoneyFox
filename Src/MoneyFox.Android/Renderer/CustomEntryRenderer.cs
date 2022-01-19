@@ -15,7 +15,7 @@ using Color = Xamarin.Forms.Color;
 using Object = Java.Lang.Object;
 
 #nullable enable
-[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
+[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] { typeof(VisualMarker.MaterialVisual) })]
 
 namespace MoneyFox.Droid.Renderer
 {
@@ -104,7 +104,7 @@ namespace MoneyFox.Droid.Renderer
                 {
                     "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"
                 };
-                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
+                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
 
                 for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {

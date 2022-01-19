@@ -66,7 +66,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.LoginAsync())
-                                  .Callback(() => throw new BackupException());
+                .Callback(() => throw new BackupException());
 
             settingsFacadeMock.SetupAllProperties();
 
@@ -137,7 +137,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.LogoutAsync())
-                                  .Callback(() => throw new BackupException());
+                .Callback(() => throw new BackupException());
 
             settingsFacadeMock.SetupAllProperties();
             settingsFacadeMock.Object.IsBackupAutouploadEnabled = true;
@@ -213,7 +213,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                                  .ReturnsAsync(new List<string>());
+                .ReturnsAsync(new List<string>());
 
             var backupService = new BackupService(
                 cloudBackupServiceMock.Object,
@@ -237,7 +237,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                                  .ReturnsAsync(new List<string> {"asd"});
+                .ReturnsAsync(new List<string> { "asd" });
 
             var backupService = new BackupService(
                 cloudBackupServiceMock.Object,
@@ -335,10 +335,10 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
-                                  .ReturnsAsync(new Mock<Stream>().Object);
+                .ReturnsAsync(new Mock<Stream>().Object);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                                  .ReturnsAsync(new List<string> {"asd"});
+                .ReturnsAsync(new List<string> { "asd" });
 
             var backupService = new BackupService(
                 cloudBackupServiceMock.Object,
@@ -353,8 +353,8 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
 
             // Assert
             settingsFacadeMock.Object.LastDatabaseUpdate
-                              .Should()
-                              .BeBefore(DateTime.Now.AddSeconds(-1));
+                .Should()
+                .BeBefore(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -370,10 +370,10 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                                  .ReturnsAsync(new List<string> {DatabaseConstants.BACKUP_NAME});
+                .ReturnsAsync(new List<string> { DatabaseConstants.BACKUP_NAME });
 
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
-                                  .Callback(() => throw new BackupException());
+                .Callback(() => throw new BackupException());
 
             cloudBackupServiceMock.Setup(x => x.GetBackupDateAsync()).ReturnsAsync(DateTime.Now);
 
@@ -428,7 +428,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
 
             cloudBackupServiceMock.Setup(x => x.UploadAsync(It.IsAny<Stream>())).ReturnsAsync(true);
             cloudBackupServiceMock.Setup(x => x.LoginAsync())
-                                  .Callback(() => throw new BackupException());
+                .Callback(() => throw new BackupException());
 
             settingsFacadeMock.SetupGet(x => x.IsBackupAutouploadEnabled).Returns(true);
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(false);

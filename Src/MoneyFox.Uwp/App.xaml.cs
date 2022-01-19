@@ -40,10 +40,8 @@ namespace MoneyFox.Uwp
             OverrideTitleBarColor();
         }
 
-        protected override async void OnActivated(IActivatedEventArgs args)
-        {
+        protected override async void OnActivated(IActivatedEventArgs args) =>
             await ActivationService.ActivateAsync(args);
-        }
 
         private ActivationService CreateActivationService() =>
             new ActivationService(typeof(AccountListViewModel), new Lazy<UIElement>(CreateShell));
@@ -53,11 +51,9 @@ namespace MoneyFox.Uwp
         protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args) =>
             await ActivationService.ActivateAsync(args);
 
-        private static void OverrideTitleBarColor()
-        {
+        private static void OverrideTitleBarColor() =>
             //draw into the title bar
             CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
-        }
 
         private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e) =>
             LogManager.GetCurrentClassLogger().Fatal(e.Exception);

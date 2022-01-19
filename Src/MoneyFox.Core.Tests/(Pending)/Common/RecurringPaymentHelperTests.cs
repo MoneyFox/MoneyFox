@@ -39,8 +39,8 @@ namespace MoneyFox.Core.Tests._Pending_.Common
             payment.AddRecurringPayment(recurrence, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                                  .Should()
-                                  .Be(expectedResult);
+                .Should()
+                .Be(expectedResult);
         }
 
         [Fact]
@@ -52,8 +52,8 @@ namespace MoneyFox.Core.Tests._Pending_.Common
             payment.AddRecurringPayment(PaymentRecurrence.Bimonthly, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                                  .Should()
-                                  .Be(true);
+                .Should()
+                .Be(true);
         }
 
         [Theory]
@@ -76,8 +76,8 @@ namespace MoneyFox.Core.Tests._Pending_.Common
             payment.AddRecurringPayment(recurrence, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                                  .Should()
-                                  .BeFalse();
+                .Should()
+                .BeFalse();
         }
 
         [Fact]
@@ -89,8 +89,8 @@ namespace MoneyFox.Core.Tests._Pending_.Common
             payment.AddRecurringPayment(PaymentRecurrence.Monthly, DateTime.Today);
 
             RecurringPaymentHelper.CheckIfRepeatable(payment)
-                                  .Should()
-                                  .BeFalse();
+                .Should()
+                .BeFalse();
         }
     }
 }

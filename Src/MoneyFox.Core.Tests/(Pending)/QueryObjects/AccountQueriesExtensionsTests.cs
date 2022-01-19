@@ -14,7 +14,7 @@ namespace MoneyFox.Core.Tests._Pending_.QueryObjects
         public void AreActive()
         {
             // Arrange
-            var accountQueryList = new List<Account> {new Account("Foo1"), new Account("Foo2"), new Account("absd")};
+            var accountQueryList = new List<Account> { new Account("Foo1"), new Account("Foo2"), new Account("absd") };
 
             accountQueryList[1].Deactivate();
 

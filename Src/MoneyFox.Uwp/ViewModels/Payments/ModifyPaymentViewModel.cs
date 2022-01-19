@@ -70,17 +70,12 @@ namespace MoneyFox.Uwp.ViewModels.Payments
             IsActive = true;
         }
 
-        protected override void OnActivated()
-        {
+        protected override void OnActivated() =>
             Messenger.Register<ModifyPaymentViewModel, CategorySelectedMessage>(
                 this,
                 (r, m) => r.ReceiveMessageAsync(m));
-        }
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<CategorySelectedMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<CategorySelectedMessage>(this);
 
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.

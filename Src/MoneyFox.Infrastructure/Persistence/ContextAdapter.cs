@@ -17,7 +17,7 @@ namespace MoneyFox.Infrastructure.Persistence
             Context = EfCoreContextFactory.Create(publisher, settingsFacade);
         }
 
-        public IEfCoreContext Context { get; private set; } 
+        public IEfCoreContext Context { get; private set; }
 
         public void RecreateContext()
         {

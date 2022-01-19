@@ -106,7 +106,7 @@ namespace MoneyFox.Tests.ViewModels
 
             var backupServiceMock = Substitute.For<IBackupService>();
             backupServiceMock.When(x => x.LogoutAsync())
-                             .Do(x => logoutCommandCalled = true);
+                .Do(x => logoutCommandCalled = true);
 
             //execute
             var vm = new BackupViewModel(

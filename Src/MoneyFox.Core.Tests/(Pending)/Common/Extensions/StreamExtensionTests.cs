@@ -12,7 +12,7 @@ namespace MoneyFox.Core.Tests._Pending_.Common.Extensions
         public void ReadToEnd()
         {
             // Arrange
-            byte[] bytes = {12, 22, 25, 23};
+            byte[] bytes = { 12, 22, 25, 23 };
             var stream = new MemoryStream(bytes);
 
             // Act

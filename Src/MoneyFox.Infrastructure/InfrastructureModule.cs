@@ -13,17 +13,17 @@ namespace MoneyFox.Infrastructure
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(c => c.Resolve<IContextAdapter>().Context)
-                   .AsImplementedInterfaces();
+                .AsImplementedInterfaces();
 
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
 
             builder.Register(
-                       c => PublicClientApplicationBuilder
-                            .Create(MSAL_APPLICATION_ID)
-                            .WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth")
-                            .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
-                            .Build())
-                   .AsImplementedInterfaces();
+                    c => PublicClientApplicationBuilder
+                        .Create(MSAL_APPLICATION_ID)
+                        .WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth")
+                        .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
+                        .Build())
+                .AsImplementedInterfaces();
 
             builder.RegisterType<BackupService>().AsImplementedInterfaces();
             builder.RegisterType<OneDriveService>().AsImplementedInterfaces();

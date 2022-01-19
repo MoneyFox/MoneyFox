@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -120,16 +120,16 @@
         <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="Adapters\BrowserAdapter.cs" />
-        <Compile Include="Adapters\ConnectivtyAdapter.cs" />
-        <Compile Include="Adapters\EmailAdapter.cs" />
-        <Compile Include="Adapters\SettingsAdapter.cs" />
-        <Compile Include="FileStoreBase.cs" />
-        <Compile Include="InfrastructureDesktopModule.cs" />
-        <Compile Include="Preferences.cs" />
-        <Compile Include="Preferences.uwp.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <EmbeddedResource Include="Properties\MoneyFox.Desktop.Infrastructure.rd.xml" />
+        <Compile Include="Adapters\BrowserAdapter.cs"/>
+        <Compile Include="Adapters\ConnectivtyAdapter.cs"/>
+        <Compile Include="Adapters\EmailAdapter.cs"/>
+        <Compile Include="Adapters\SettingsAdapter.cs"/>
+        <Compile Include="FileStoreBase.cs"/>
+        <Compile Include="InfrastructureDesktopModule.cs"/>
+        <Compile Include="Preferences.cs"/>
+        <Compile Include="Preferences.uwp.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <EmbeddedResource Include="Properties\MoneyFox.Desktop.Infrastructure.rd.xml"/>
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="Autofac">
@@ -153,14 +153,14 @@
             <Name>MoneyFox.Core</Name>
         </ProjectReference>
         <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
-          <Project>{0429508e-afd9-4f1c-900a-ea1997fc8567}</Project>
-          <Name>MoneyFox.Infrastructure</Name>
+            <Project>{0429508e-afd9-4f1c-900a-ea1997fc8567}</Project>
+            <Name>MoneyFox.Infrastructure</Name>
         </ProjectReference>
     </ItemGroup>
     <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
         <VisualStudioVersion>14.0</VisualStudioVersion>
     </PropertyGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">

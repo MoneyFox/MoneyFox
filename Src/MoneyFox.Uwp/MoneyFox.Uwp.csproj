@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')"/>
     <PropertyGroup>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
@@ -31,7 +31,7 @@
         <GenerateTestArtifacts>True</GenerateTestArtifacts>
         <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
         <PackageCertificateKeyFile>MoneyFox.Uwp_TemporaryKey.pfx</PackageCertificateKeyFile>
-        <PackageCertificateKeyFile />
+        <PackageCertificateKeyFile/>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
         <DebugSymbols>true</DebugSymbols>
@@ -142,131 +142,131 @@
         <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Include="Activation\IActivationHandler.cs" />
-        <Compile Include="Activation\DefaultLaunchActivationHandler.cs" />
+        <Compile Include="Activation\IActivationHandler.cs"/>
+        <Compile Include="Activation\DefaultLaunchActivationHandler.cs"/>
         <Compile Include="App.xaml.cs">
             <DependentUpon>App.xaml</DependentUpon>
         </Compile>
-        <Compile Include="AutoMapper\AutoMapperFactory.cs" />
-        <Compile Include="AutoMapper\AutoMapperProfile.cs" />
-        <Compile Include="ConverterLogic\PaymentAmountConverterLogic.cs" />
-        <Compile Include="ConverterLogic\RecurrenceTypeConverterLogic.cs" />
-        <Compile Include="Converter\AmountFormatDecimalConverter.cs" />
-        <Compile Include="Converter\BooleanToVisibilityConverter.cs" />
-        <Compile Include="Converter\ClickConverter.cs" />
-        <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs" />
-        <Compile Include="Converter\DateTimeToStringConverter.cs" />
-        <Compile Include="Converter\DateVisibilityConverter.cs" />
-        <Compile Include="Converter\DecimalConverter.cs" />
-        <Compile Include="Converter\AmountFormatConverter.cs" />
-        <Compile Include="Converter\InverseBoolConverter.cs" />
-        <Compile Include="Converter\PaymentAmountConverter.cs" />
-        <Compile Include="Converter\PaymentTypeToStringConverter.cs" />
-        <Compile Include="Converter\RecurrenceTypeConverter.cs" />
-        <Compile Include="Converter\PaymentHeaderConverter.cs" />
-        <Compile Include="Converter\RevertVisibilityConverter.cs" />
-        <Compile Include="Converter\SelectedConverter.cs" />
-        <Compile Include="Groups\AlphaGroupListGroupCollection.cs" />
-        <Compile Include="Groups\DateListGroupCollection.cs" />
-        <Compile Include="Helpers\StringMatchConverter.cs" />
-        <Compile Include="Helpers\NavHelper.cs" />
-        <Compile Include="Helpers\SettingsStorageExtensions.cs" />
-        <Compile Include="AutoMapper\MapperProfileHelper.cs" />
-        <Compile Include="Services\INavigationService.cs" />
-        <Compile Include="Services\NavigationService.cs" />
-        <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Services\ActivationService.cs" />
-        <Compile Include="Services\JumpListService.cs" />
-        <Compile Include="Services\LoggerService.cs" />
-        <Compile Include="Services\NavigationServiceInitializerService.cs" />
-        <Compile Include="Services\RateDisplayService.cs" />
-        <Compile Include="Services\StartupTasksService.cs" />
-        <Compile Include="Services\ThemeSelectorService.cs" />
-        <Compile Include="Services\ToastService.cs" />
-        <Compile Include="Src\BalanceCalculationService.cs" />
-        <Compile Include="Src\DialogService.cs" />
-        <Compile Include="Src\GraphClientFactory.cs" />
-        <Compile Include="Src\MarketplaceOperations.cs" />
-        <Compile Include="Src\ThemedImageConverterLogic.cs" />
-        <Compile Include="Src\ThemeSelectorAdapter.cs" />
-        <Compile Include="Src\WindowsAppInformation.cs" />
-        <Compile Include="Src\WindowsFileStore.cs" />
-        <Compile Include="Utilities\HelperFunctions.cs" />
-        <Compile Include="Utilities\PaymentTypeHelper.cs" />
-        <Compile Include="ViewModelLocator.cs" />
-        <Compile Include="ViewModels\About\AboutViewModel.cs" />
-        <Compile Include="ViewModels\About\IAboutViewModel.cs" />
-        <Compile Include="ViewModels\Accounts\AccountViewModel.cs" />
-        <Compile Include="ViewModels\Categories\AbstractCategoryListViewModel.cs" />
-        <Compile Include="ViewModels\Accounts\AccountListViewActionViewModel.cs" />
-        <Compile Include="ViewModels\Accounts\AccountListViewModel.cs" />
-        <Compile Include="ViewModels\Accounts\AddAccountViewModel.cs" />
-        <Compile Include="ViewModels\Categories\AddCategoryViewModel.cs" />
-        <Compile Include="ViewModels\Categories\CategoryViewModel.cs" />
-        <Compile Include="ViewModels\DataBackup\BackupViewModel.cs" />
-        <Compile Include="ViewModels\DataBackup\DesignTimeBackupViewModel.cs" />
-        <Compile Include="ViewModels\DataBackup\IBackupViewModel.cs" />
-        <Compile Include="ViewModels\Payments\AddPaymentViewModel.cs" />
-        <Compile Include="ViewModels\BalanceViewModel.cs" />
-        <Compile Include="ViewModels\Categories\CategoryListViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeModifyAccountViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs" />
-        <Compile Include="ViewModels\Payments\DesignTimePaymentListViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
-        <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs" />
-        <Compile Include="ViewModels\Payments\PaymentViewModel.cs" />
-        <Compile Include="ViewModels\Payments\RecurringPaymentViewModel.cs" />
-        <Compile Include="ViewModels\Settings\DesignTimeSettingsViewModel.cs" />
-        <Compile Include="ViewModels\Settings\ISettingsViewModel.cs" />
-        <Compile Include="ViewModels\Settings\SettingsViewModel.cs" />
-        <Compile Include="ViewModels\Statistics\StatisticAccountMonthlyCashflowViewModel.cs" />
-        <Compile Include="ViewModels\Statistics\StatisticCashFlowViewModel.cs" />
-        <Compile Include="ViewModels\Statistics\StatisticSelectorType.cs" />
-        <Compile Include="ViewModels\Statistics\StatisticViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\StatisticCategoryProgressionViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs" />
-        <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
-        <Compile Include="ViewModels\Accounts\EditAccountViewModel.cs" />
-        <Compile Include="ViewModels\Categories\EditCategoryViewModel.cs" />
-        <Compile Include="ViewModels\Payments\EditPaymentViewModel.cs" />
-        <Compile Include="ViewModels\Categories\ICategoryListViewModel.cs" />
-        <Compile Include="ViewModels\Categories\IModifyCategoryViewModel.cs" />
-        <Compile Include="ViewModels\Payments\IModifyPaymentViewModel.cs" />
-        <Compile Include="ViewModels\IncomeExpenseBalanceViewModel.cs" />
-        <Compile Include="ViewModels\Interfaces\IAccountListViewActionViewModel.cs" />
-        <Compile Include="ViewModels\Interfaces\IAccountListViewModel.cs" />
-        <Compile Include="ViewModels\Interfaces\IBalanceViewModel.cs" />
-        <Compile Include="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs" />
-        <Compile Include="ViewModels\Categories\ISelectCategoryListViewModel.cs" />
-        <Compile Include="ViewModels\ISelectDateRangeDialogViewModel.cs" />
-        <Compile Include="ViewModels\ISelectFilterDialogViewModel.cs" />
-        <Compile Include="ViewModels\Accounts\ModifyAccountViewModel.cs" />
-        <Compile Include="ViewModels\Categories\ModifyCategoryViewModel.cs" />
-        <Compile Include="ViewModels\Payments\ModifyPaymentViewModel.cs" />
-        <Compile Include="ViewModels\Payments\PaymentListBalanceViewModel.cs" />
-        <Compile Include="ViewModels\Payments\PaymentListViewActionViewModel.cs" />
-        <Compile Include="ViewModels\Payments\PaymentListViewModel.cs" />
-        <Compile Include="ViewModels\Categories\SelectCategoryListViewModel.cs" />
-        <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs" />
-        <Compile Include="ViewModels\SelectFilterDialogViewModel.cs" />
-        <Compile Include="ViewModels\Settings\DesignTimeWindowsSettingsViewModel.cs" />
-        <Compile Include="ViewModels\Settings\IWindowsSettingsViewModel.cs" />
-        <Compile Include="ViewModels\Settings\WindowsSettingsViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\StatisticCategorySummary\CategoryOverviewViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\IStatisticSelectorViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\StatisticCategorySummary\StatisticCategorySummaryViewModel.cs" />
-        <Compile Include="ViewModels\Statistic\StatisticSelectorViewModel.cs" />
+        <Compile Include="AutoMapper\AutoMapperFactory.cs"/>
+        <Compile Include="AutoMapper\AutoMapperProfile.cs"/>
+        <Compile Include="ConverterLogic\PaymentAmountConverterLogic.cs"/>
+        <Compile Include="ConverterLogic\RecurrenceTypeConverterLogic.cs"/>
+        <Compile Include="Converter\AmountFormatDecimalConverter.cs"/>
+        <Compile Include="Converter\BooleanToVisibilityConverter.cs"/>
+        <Compile Include="Converter\ClickConverter.cs"/>
+        <Compile Include="Converter\DateTimeToDateTimeOffsetConverter.cs"/>
+        <Compile Include="Converter\DateTimeToStringConverter.cs"/>
+        <Compile Include="Converter\DateVisibilityConverter.cs"/>
+        <Compile Include="Converter\DecimalConverter.cs"/>
+        <Compile Include="Converter\AmountFormatConverter.cs"/>
+        <Compile Include="Converter\InverseBoolConverter.cs"/>
+        <Compile Include="Converter\PaymentAmountConverter.cs"/>
+        <Compile Include="Converter\PaymentTypeToStringConverter.cs"/>
+        <Compile Include="Converter\RecurrenceTypeConverter.cs"/>
+        <Compile Include="Converter\PaymentHeaderConverter.cs"/>
+        <Compile Include="Converter\RevertVisibilityConverter.cs"/>
+        <Compile Include="Converter\SelectedConverter.cs"/>
+        <Compile Include="Groups\AlphaGroupListGroupCollection.cs"/>
+        <Compile Include="Groups\DateListGroupCollection.cs"/>
+        <Compile Include="Helpers\StringMatchConverter.cs"/>
+        <Compile Include="Helpers\NavHelper.cs"/>
+        <Compile Include="Helpers\SettingsStorageExtensions.cs"/>
+        <Compile Include="AutoMapper\MapperProfileHelper.cs"/>
+        <Compile Include="Services\INavigationService.cs"/>
+        <Compile Include="Services\NavigationService.cs"/>
+        <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="Services\ActivationService.cs"/>
+        <Compile Include="Services\JumpListService.cs"/>
+        <Compile Include="Services\LoggerService.cs"/>
+        <Compile Include="Services\NavigationServiceInitializerService.cs"/>
+        <Compile Include="Services\RateDisplayService.cs"/>
+        <Compile Include="Services\StartupTasksService.cs"/>
+        <Compile Include="Services\ThemeSelectorService.cs"/>
+        <Compile Include="Services\ToastService.cs"/>
+        <Compile Include="Src\BalanceCalculationService.cs"/>
+        <Compile Include="Src\DialogService.cs"/>
+        <Compile Include="Src\GraphClientFactory.cs"/>
+        <Compile Include="Src\MarketplaceOperations.cs"/>
+        <Compile Include="Src\ThemedImageConverterLogic.cs"/>
+        <Compile Include="Src\ThemeSelectorAdapter.cs"/>
+        <Compile Include="Src\WindowsAppInformation.cs"/>
+        <Compile Include="Src\WindowsFileStore.cs"/>
+        <Compile Include="Utilities\HelperFunctions.cs"/>
+        <Compile Include="Utilities\PaymentTypeHelper.cs"/>
+        <Compile Include="ViewModelLocator.cs"/>
+        <Compile Include="ViewModels\About\AboutViewModel.cs"/>
+        <Compile Include="ViewModels\About\IAboutViewModel.cs"/>
+        <Compile Include="ViewModels\Accounts\AccountViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\AbstractCategoryListViewModel.cs"/>
+        <Compile Include="ViewModels\Accounts\AccountListViewActionViewModel.cs"/>
+        <Compile Include="ViewModels\Accounts\AccountListViewModel.cs"/>
+        <Compile Include="ViewModels\Accounts\AddAccountViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\AddCategoryViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\CategoryViewModel.cs"/>
+        <Compile Include="ViewModels\DataBackup\BackupViewModel.cs"/>
+        <Compile Include="ViewModels\DataBackup\DesignTimeBackupViewModel.cs"/>
+        <Compile Include="ViewModels\DataBackup\IBackupViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\AddPaymentViewModel.cs"/>
+        <Compile Include="ViewModels\BalanceViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\CategoryListViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewActionViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeAccountListViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeBalanceViewViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeCategoryListViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeModifyAccountViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeModifyCategoryViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeModifyPaymentViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\DesignTimePaymentListViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeSelectCategoryListViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeSelectFilterDialogViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\IPaymentListViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\PaymentViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\RecurringPaymentViewModel.cs"/>
+        <Compile Include="ViewModels\Settings\DesignTimeSettingsViewModel.cs"/>
+        <Compile Include="ViewModels\Settings\ISettingsViewModel.cs"/>
+        <Compile Include="ViewModels\Settings\SettingsViewModel.cs"/>
+        <Compile Include="ViewModels\Statistics\StatisticAccountMonthlyCashflowViewModel.cs"/>
+        <Compile Include="ViewModels\Statistics\StatisticCashFlowViewModel.cs"/>
+        <Compile Include="ViewModels\Statistics\StatisticSelectorType.cs"/>
+        <Compile Include="ViewModels\Statistics\StatisticViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\StatisticCategoryProgressionViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\StatisticCategorySummary\DesignTimeStatisticCategorySummaryViewModel.cs"/>
+        <Compile Include="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs"/>
+        <Compile Include="ViewModels\Accounts\EditAccountViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\EditCategoryViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\EditPaymentViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\ICategoryListViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\IModifyCategoryViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\IModifyPaymentViewModel.cs"/>
+        <Compile Include="ViewModels\IncomeExpenseBalanceViewModel.cs"/>
+        <Compile Include="ViewModels\Interfaces\IAccountListViewActionViewModel.cs"/>
+        <Compile Include="ViewModels\Interfaces\IAccountListViewModel.cs"/>
+        <Compile Include="ViewModels\Interfaces\IBalanceViewModel.cs"/>
+        <Compile Include="ViewModels\Interfaces\IPaymentListViewActionViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\ISelectCategoryListViewModel.cs"/>
+        <Compile Include="ViewModels\ISelectDateRangeDialogViewModel.cs"/>
+        <Compile Include="ViewModels\ISelectFilterDialogViewModel.cs"/>
+        <Compile Include="ViewModels\Accounts\ModifyAccountViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\ModifyCategoryViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\ModifyPaymentViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\PaymentListBalanceViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\PaymentListViewActionViewModel.cs"/>
+        <Compile Include="ViewModels\Payments\PaymentListViewModel.cs"/>
+        <Compile Include="ViewModels\Categories\SelectCategoryListViewModel.cs"/>
+        <Compile Include="ViewModels\SelectDateRangeDialogViewModel.cs"/>
+        <Compile Include="ViewModels\SelectFilterDialogViewModel.cs"/>
+        <Compile Include="ViewModels\Settings\DesignTimeWindowsSettingsViewModel.cs"/>
+        <Compile Include="ViewModels\Settings\IWindowsSettingsViewModel.cs"/>
+        <Compile Include="ViewModels\Settings\WindowsSettingsViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\IStatisticCategorySpreadingViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\StatisticCategorySummary\CategoryOverviewViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\StatisticCategorySummary\IStatisticCategorySummaryViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\IStatisticSelectorViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\StatisticCategorySpreadingViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\StatisticCategorySummary\StatisticCategorySummaryViewModel.cs"/>
+        <Compile Include="ViewModels\Statistic\StatisticSelectorViewModel.cs"/>
         <Compile Include="Views\Accounts\AccountListToolbar.xaml.cs">
             <DependentUpon>AccountListToolbar.xaml</DependentUpon>
         </Compile>
@@ -285,7 +285,7 @@
         <Compile Include="Views\BackupView.xaml.cs">
             <DependentUpon>BackupView.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Views\BaseView.cs" />
+        <Compile Include="Views\BaseView.cs"/>
         <Compile Include="Views\Categories\CategoryListView.xaml.cs">
             <DependentUpon>CategoryListView.xaml</DependentUpon>
         </Compile>
@@ -322,7 +322,7 @@
         <Compile Include="Views\Settings\SettingsView.xaml.cs">
             <DependentUpon>SettingsView.xaml</DependentUpon>
         </Compile>
-        <Compile Include="Views\Statistics\ChartOptions.cs" />
+        <Compile Include="Views\Statistics\ChartOptions.cs"/>
         <Compile Include="Views\Statistics\StatisticAccountMonthlyCashflowView.xaml.cs">
             <DependentUpon>StatisticAccountMonthlyCashflowView.xaml</DependentUpon>
         </Compile>
@@ -365,8 +365,8 @@
         <Compile Include="Views\UserControls\Loading.xaml.cs">
             <DependentUpon>Loading.xaml</DependentUpon>
         </Compile>
-        <Compile Include="WindowsModule.cs" />
-        <Compile Include="WindowsShellViewModel.cs" />
+        <Compile Include="WindowsModule.cs"/>
+        <Compile Include="WindowsShellViewModel.cs"/>
     </ItemGroup>
     <ItemGroup>
         <AppxManifest Include="Package.appxmanifest">
@@ -377,67 +377,67 @@
         </Content>
     </ItemGroup>
     <ItemGroup>
-        <Content Include="Assets\ApplyLogo.png" />
-        <Content Include="Assets\IncomeTileIcon.png" />
-        <Content Include="Assets\LargeTile.scale-100.png" />
-        <Content Include="Assets\LargeTile.scale-125.png" />
-        <Content Include="Assets\LargeTile.scale-150.png" />
-        <Content Include="Assets\LargeTile.scale-200.png" />
-        <Content Include="Assets\LargeTile.scale-400.png" />
-        <Content Include="Assets\SmallTile.scale-100.png" />
-        <Content Include="Assets\SmallTile.scale-125.png" />
-        <Content Include="Assets\SmallTile.scale-150.png" />
-        <Content Include="Assets\SmallTile.scale-200.png" />
-        <Content Include="Assets\SmallTile.scale-400.png" />
-        <Content Include="Assets\SpendingTileIcon.png" />
-        <Content Include="Assets\SplashScreen.scale-100.png" />
-        <Content Include="Assets\SplashScreen.scale-125.png" />
-        <Content Include="Assets\SplashScreen.scale-150.png" />
-        <Content Include="Assets\SplashScreen.scale-400.png" />
-        <Content Include="Assets\Square150x150Logo.scale-100.png" />
-        <Content Include="Assets\Square150x150Logo.scale-125.png" />
-        <Content Include="Assets\Square150x150Logo.scale-150.png" />
-        <Content Include="Assets\Square150x150Logo.scale-400.png" />
-        <Content Include="Assets\Square310x310Logo.scale-100.png" />
-        <Content Include="Assets\Square310x310Logo.scale-125.png" />
-        <Content Include="Assets\Square310x310Logo.scale-150.png" />
-        <Content Include="Assets\Square310x310Logo.scale-200.png" />
-        <Content Include="Assets\Square310x310Logo.scale-400.png" />
-        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
-        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
-        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
-        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
-        <Content Include="Assets\Square44x44Logo.scale-100.png" />
-        <Content Include="Assets\Square44x44Logo.scale-125.png" />
-        <Content Include="Assets\Square44x44Logo.scale-150.png" />
-        <Content Include="Assets\Square44x44Logo.scale-400.png" />
-        <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
-        <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
-        <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
-        <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
-        <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
-        <Content Include="Assets\Square71x71Logo.scale-100.png" />
-        <Content Include="Assets\Square71x71Logo.scale-125.png" />
-        <Content Include="Assets\Square71x71Logo.scale-150.png" />
-        <Content Include="Assets\Square71x71Logo.scale-200.png" />
-        <Content Include="Assets\Square71x71Logo.scale-400.png" />
-        <Content Include="Assets\StoreLogo.scale-100.png" />
-        <Content Include="Assets\StoreLogo.scale-125.png" />
-        <Content Include="Assets\StoreLogo.scale-150.png" />
-        <Content Include="Assets\StoreLogo.scale-200.png" />
-        <Content Include="Assets\StoreLogo.scale-400.png" />
-        <Content Include="Assets\TransferTileIcon.png" />
-        <Content Include="Assets\Wide310x150Logo.scale-100.png" />
-        <Content Include="Assets\Wide310x150Logo.scale-125.png" />
-        <Content Include="Assets\Wide310x150Logo.scale-150.png" />
-        <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-        <None Include="Package.StoreAssociation.xml" />
-        <Content Include="Properties\Default.rd.xml" />
-        <Content Include="Assets\SplashScreen.scale-200.png" />
-        <Content Include="Assets\Square150x150Logo.scale-200.png" />
-        <Content Include="Assets\Square44x44Logo.scale-200.png" />
-        <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-        <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+        <Content Include="Assets\ApplyLogo.png"/>
+        <Content Include="Assets\IncomeTileIcon.png"/>
+        <Content Include="Assets\LargeTile.scale-100.png"/>
+        <Content Include="Assets\LargeTile.scale-125.png"/>
+        <Content Include="Assets\LargeTile.scale-150.png"/>
+        <Content Include="Assets\LargeTile.scale-200.png"/>
+        <Content Include="Assets\LargeTile.scale-400.png"/>
+        <Content Include="Assets\SmallTile.scale-100.png"/>
+        <Content Include="Assets\SmallTile.scale-125.png"/>
+        <Content Include="Assets\SmallTile.scale-150.png"/>
+        <Content Include="Assets\SmallTile.scale-200.png"/>
+        <Content Include="Assets\SmallTile.scale-400.png"/>
+        <Content Include="Assets\SpendingTileIcon.png"/>
+        <Content Include="Assets\SplashScreen.scale-100.png"/>
+        <Content Include="Assets\SplashScreen.scale-125.png"/>
+        <Content Include="Assets\SplashScreen.scale-150.png"/>
+        <Content Include="Assets\SplashScreen.scale-400.png"/>
+        <Content Include="Assets\Square150x150Logo.scale-100.png"/>
+        <Content Include="Assets\Square150x150Logo.scale-125.png"/>
+        <Content Include="Assets\Square150x150Logo.scale-150.png"/>
+        <Content Include="Assets\Square150x150Logo.scale-400.png"/>
+        <Content Include="Assets\Square310x310Logo.scale-100.png"/>
+        <Content Include="Assets\Square310x310Logo.scale-125.png"/>
+        <Content Include="Assets\Square310x310Logo.scale-150.png"/>
+        <Content Include="Assets\Square310x310Logo.scale-200.png"/>
+        <Content Include="Assets\Square310x310Logo.scale-400.png"/>
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png"/>
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png"/>
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png"/>
+        <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png"/>
+        <Content Include="Assets\Square44x44Logo.scale-100.png"/>
+        <Content Include="Assets\Square44x44Logo.scale-125.png"/>
+        <Content Include="Assets\Square44x44Logo.scale-150.png"/>
+        <Content Include="Assets\Square44x44Logo.scale-400.png"/>
+        <Content Include="Assets\Square44x44Logo.targetsize-16.png"/>
+        <Content Include="Assets\Square44x44Logo.targetsize-24.png"/>
+        <Content Include="Assets\Square44x44Logo.targetsize-256.png"/>
+        <Content Include="Assets\Square44x44Logo.targetsize-32.png"/>
+        <Content Include="Assets\Square44x44Logo.targetsize-48.png"/>
+        <Content Include="Assets\Square71x71Logo.scale-100.png"/>
+        <Content Include="Assets\Square71x71Logo.scale-125.png"/>
+        <Content Include="Assets\Square71x71Logo.scale-150.png"/>
+        <Content Include="Assets\Square71x71Logo.scale-200.png"/>
+        <Content Include="Assets\Square71x71Logo.scale-400.png"/>
+        <Content Include="Assets\StoreLogo.scale-100.png"/>
+        <Content Include="Assets\StoreLogo.scale-125.png"/>
+        <Content Include="Assets\StoreLogo.scale-150.png"/>
+        <Content Include="Assets\StoreLogo.scale-200.png"/>
+        <Content Include="Assets\StoreLogo.scale-400.png"/>
+        <Content Include="Assets\TransferTileIcon.png"/>
+        <Content Include="Assets\Wide310x150Logo.scale-100.png"/>
+        <Content Include="Assets\Wide310x150Logo.scale-125.png"/>
+        <Content Include="Assets\Wide310x150Logo.scale-150.png"/>
+        <Content Include="Assets\Wide310x150Logo.scale-400.png"/>
+        <None Include="Package.StoreAssociation.xml"/>
+        <Content Include="Properties\Default.rd.xml"/>
+        <Content Include="Assets\SplashScreen.scale-200.png"/>
+        <Content Include="Assets\Square150x150Logo.scale-200.png"/>
+        <Content Include="Assets\Square44x44Logo.scale-200.png"/>
+        <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png"/>
+        <Content Include="Assets\Wide310x150Logo.scale-200.png"/>
     </ItemGroup>
     <ItemGroup>
         <ApplicationDefinition Include="App.xaml">
@@ -618,7 +618,7 @@
             <Version>0.9.5.9</Version>
         </PackageReference>
         <PackageReference Include="Microsoft.AppCenter.Analytics">
-          <Version>4.5.0</Version>
+            <Version>4.5.0</Version>
         </PackageReference>
         <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
             <Version>6.2.13</Version>
@@ -675,18 +675,18 @@
             <Name>MoneyFox.Desktop.Infrastructure</Name>
         </ProjectReference>
         <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj">
-          <Project>{0429508e-afd9-4f1c-900a-ea1997fc8567}</Project>
-          <Name>MoneyFox.Infrastructure</Name>
+            <Project>{0429508e-afd9-4f1c-900a-ea1997fc8567}</Project>
+            <Name>MoneyFox.Infrastructure</Name>
         </ProjectReference>
         <ProjectReference Include="..\MoneyFox.SharedKernel\MoneyFox.SharedKernel.csproj">
-          <Project>{c026b27b-7a05-40ae-917b-27709254526b}</Project>
-          <Name>MoneyFox.SharedKernel</Name>
+            <Project>{c026b27b-7a05-40ae-917b-27709254526b}</Project>
+            <Name>MoneyFox.SharedKernel</Name>
         </ProjectReference>
     </ItemGroup>
     <ItemGroup>
-      <Reference Include="Microsoft.AppCenter.Analytics, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8a600e2fee7ba272">
-        <HintPath>..\..\..\..\..\.nuget\packages\microsoft.appcenter.analytics\4.5.0\lib\netcoreapp3.0\Microsoft.AppCenter.Analytics.dll</HintPath>
-      </Reference>
+        <Reference Include="Microsoft.AppCenter.Analytics, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8a600e2fee7ba272">
+            <HintPath>..\..\..\..\..\.nuget\packages\microsoft.appcenter.analytics\4.5.0\lib\netcoreapp3.0\Microsoft.AppCenter.Analytics.dll</HintPath>
+        </Reference>
     </ItemGroup>
     <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
         <VisualStudioVersion>14.0</VisualStudioVersion>
@@ -780,7 +780,7 @@
         <CodeAnalysisRuleSet>MoneyFox.Uwp.ruleset</CodeAnalysisRuleSet>
         <Prefer32Bit>true</Prefer32Bit>
     </PropertyGroup>
-    <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+    <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
          Other similar extension points exist, see Microsoft.Common.targets.
     <Target Name="BeforeBuild">

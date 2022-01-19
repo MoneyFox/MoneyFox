@@ -10,8 +10,8 @@ namespace MoneyFox.Infrastructure.Persistence
         public static EfCoreContext Create(IPublisher publisher, ISettingsFacade settingsFacade)
         {
             DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
-                                                      .UseSqlite($"Data Source={DatabasePathHelper.DbPath}")
-                                                      .Options;
+                .UseSqlite($"Data Source={DatabasePathHelper.DbPath}")
+                .Options;
 
             var context = new EfCoreContext(options, publisher, settingsFacade);
             context.Database.Migrate();

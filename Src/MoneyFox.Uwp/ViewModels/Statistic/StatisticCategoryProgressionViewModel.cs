@@ -39,8 +39,7 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
             StartDate = DateTime.Now.AddYears(-1);
         }
 
-        protected override void OnActivated()
-        {
+        protected override void OnActivated() =>
             Messenger.Register<StatisticCategoryProgressionViewModel, CategorySelectedMessage>(
                 this,
                 async (r, m) =>
@@ -49,12 +48,8 @@ namespace MoneyFox.Uwp.ViewModels.Statistic
                         mapper.Map<CategoryViewModel>(await Mediator.Send(new GetCategoryByIdQuery(m.CategoryId)));
                     await r.LoadAsync();
                 });
-        }
 
-        protected override void OnDeactivated()
-        {
-            Messenger.Unregister<CategorySelectedMessage>(this);
-        }
+        protected override void OnDeactivated() => Messenger.Unregister<CategorySelectedMessage>(this);
 
         public CategoryViewModel SelectedCategory
         {

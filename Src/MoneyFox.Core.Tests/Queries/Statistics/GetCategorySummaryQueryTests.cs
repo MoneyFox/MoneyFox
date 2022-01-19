@@ -158,7 +158,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
             // Arrange
             var account = new Account("test");
 
-            var paymentList = new List<Payment> {new Payment(DateTime.Today, 60, PaymentType.Expense, account)};
+            var paymentList = new List<Payment> { new Payment(DateTime.Today, 60, PaymentType.Expense, account) };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -183,7 +183,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
             // Arrange
             var account = new Account("test");
 
-            var paymentList = new List<Payment> {new Payment(DateTime.Today, 60, PaymentType.Expense, account)};
+            var paymentList = new List<Payment> { new Payment(DateTime.Today, 60, PaymentType.Expense, account) };
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();

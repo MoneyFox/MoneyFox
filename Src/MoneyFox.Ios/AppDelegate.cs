@@ -49,15 +49,13 @@ namespace MoneyFox.iOS
             return true;
         }
 
-        private void RequestToastPermissions()
-        {
+        private void RequestToastPermissions() =>
             UNUserNotificationCenter.Current.RequestAuthorization(
                 UNAuthorizationOptions.Alert | UNAuthorizationOptions.Badge | UNAuthorizationOptions.Sound,
                 (granted, error) =>
                 {
                     // Do something if needed
                 });
-        }
 
         private void RegisterServices()
         {
