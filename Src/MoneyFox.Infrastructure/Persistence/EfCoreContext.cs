@@ -4,7 +4,12 @@ using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
+using MoneyFox.Core.Events;
 using MoneyFox.Infrastructure.Persistence.Configurations;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace MoneyFox.Infrastructure.Persistence
 {
@@ -15,8 +20,11 @@ namespace MoneyFox.Infrastructure.Persistence
     {
         private readonly IPublisher? publisher;
         private readonly ISettingsFacade? settingsFacade;
-        
-        public EfCoreContext(DbContextOptions options, IPublisher? publisher, ISettingsFacade? settingsFacade) : base(options)
+
+        public EfCoreContext(
+            DbContextOptions options,
+            IPublisher? publisher,
+            ISettingsFacade? settingsFacade) : base(options)
         {
             this.publisher = publisher;
             this.settingsFacade = settingsFacade;
@@ -39,5 +47,27 @@ namespace MoneyFox.Infrastructure.Persistence
             modelBuilder.ApplyConfiguration(new AccountConfiguration());
             modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         }
+
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
+        {
+            int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
+
+            // ignore events if no dispatcher provided
+            if(publisher == null || settingsFacade == null)
+            {
+                return result;
+            }
+
+            // dispatch events only if save was successful
+            if(ChangeTracker.Entries().Any())
+            {
+                settingsFacade.LastDatabaseUpdate = DateTime.Now;
+                await publisher.Publish(new DbEntityModifiedEvent(), cancellationToken);
+            }
+
+            return result;
+        }
+
+        public override int SaveChanges() => SaveChangesAsync().GetAwaiter().GetResult();
     }
 }
