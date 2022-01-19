@@ -15,7 +15,7 @@ namespace MoneyFox.Uwp
         {
             if(Enum.TryParse(theme, out ElementTheme cacheTheme))
             {
-                ThemeSelectorService.SetThemeAsync(cacheTheme).FireAndForgetSafeAsync();
+                ThemeSelectorService.SetThemeAsync(cacheTheme).GetAwaiter().GetResult();
             }
         }
     }

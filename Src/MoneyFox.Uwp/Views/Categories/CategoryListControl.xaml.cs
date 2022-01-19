@@ -50,7 +50,7 @@ namespace MoneyFox.Uwp.Views.Categories
             }
 
             ((AbstractCategoryListViewModel)DataContext).DeleteCategoryCommand.ExecuteAsync(category)
-                .FireAndForgetSafeAsync();
+                .GetAwaiter().GetResult();
         }
     }
 }
