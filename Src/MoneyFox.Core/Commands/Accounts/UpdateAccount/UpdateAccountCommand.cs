@@ -23,16 +23,10 @@ namespace MoneyFox.Core.Commands.Accounts.UpdateAccount
         public class Handler : IRequestHandler<UpdateAccountCommand>
         {
             private readonly IContextAdapter contextAdapter;
-            private readonly IBackupService backupService;
-            private readonly ISettingsFacade settingsFacade;
 
-            public Handler(IContextAdapter contextAdapter,
-                IBackupService backupService,
-                ISettingsFacade settingsFacade)
+            public Handler(IContextAdapter contextAdapter)
             {
                 this.contextAdapter = contextAdapter;
-                this.backupService = backupService;
-                this.settingsFacade = settingsFacade;
             }
 
             public async Task<Unit> Handle(UpdateAccountCommand request, CancellationToken cancellationToken)
@@ -48,10 +42,6 @@ namespace MoneyFox.Core.Commands.Accounts.UpdateAccount
                     request.Account.IsExcluded);
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
-
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
-
                 return Unit.Value;
             }
         }

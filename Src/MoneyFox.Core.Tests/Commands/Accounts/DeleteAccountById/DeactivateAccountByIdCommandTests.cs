@@ -1,12 +1,8 @@
 ﻿using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Commands.Accounts.DeleteAccountById;
-using MoneyFox.Core.Interfaces;
 using MoneyFox.Core.Tests.Infrastructure;
 using MoneyFox.Infrastructure.Persistence;
 using Moq;
@@ -22,8 +18,6 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
     {
         private readonly EfCoreContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
-        private readonly Mock<IBackupService> backupServiceMock;
-        private readonly Mock<ISettingsFacade> settingsFacadeMock;
 
         public DeactivateAccountByIdCommandTests()
         {
@@ -31,13 +25,6 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
 
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
-
-            backupServiceMock = new Mock<IBackupService>();
-            backupServiceMock.Setup(x => x.UploadBackupAsync(BackupMode.Automatic))
-                             .Returns(Task.CompletedTask);
-
-            settingsFacadeMock = new Mock<ISettingsFacade>();
-            settingsFacadeMock.SetupSet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>());
         }
 
         public void Dispose()
@@ -57,10 +44,7 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
             await context.SaveChangesAsync();
 
             // Act
-            await new DeactivateAccountByIdCommand.Handler(
-                    contextAdapterMock.Object,
-                    backupServiceMock.Object,
-                    settingsFacadeMock.Object)
+            await new DeactivateAccountByIdCommand.Handler(contextAdapterMock.Object)
                 .Handle(new DeactivateAccountByIdCommand(account.Id), default);
 
             // Assert
@@ -68,7 +52,7 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
         }
 
         [Fact]
-        public async Task AccoutnDeactivated()
+        public async Task AccountDeactivated()
         {
             // Arrange
             var account = new Account("test");
@@ -77,33 +61,11 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
 
             // Act
             await new DeactivateAccountByIdCommand.Handler(
-                    contextAdapterMock.Object,
-                    backupServiceMock.Object,
-                    settingsFacadeMock.Object)
+                    contextAdapterMock.Object)
                 .Handle(new DeactivateAccountByIdCommand(account.Id), default);
 
             // Assert
             (await context.Accounts.FirstOrDefaultAsync(x => x.Id == account.Id)).IsDeactivated.Should().BeTrue();
-        }
-
-        [Fact]
-        public async Task UploadeBackupOnDelete()
-        {
-            // Arrange
-            var account = new Account("test");
-            await context.AddAsync(account);
-            await context.SaveChangesAsync();
-
-            // Act
-            await new DeactivateAccountByIdCommand.Handler(
-                    contextAdapterMock.Object,
-                    backupServiceMock.Object,
-                    settingsFacadeMock.Object)
-                .Handle(new DeactivateAccountByIdCommand(account.Id), default);
-
-            // Assert
-            backupServiceMock.Verify(x => x.UploadBackupAsync(BackupMode.Automatic), Times.Once);
-            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
         }
     }
 }

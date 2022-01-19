@@ -28,16 +28,10 @@ namespace MoneyFox.Core.Commands.Payments.CreatePayment
             private readonly Logger logger = LogManager.GetCurrentClassLogger();
 
             private readonly IContextAdapter contextAdapter;
-            private readonly IBackupService backupService;
-            private readonly ISettingsFacade settingsFacade;
 
-            public Handler(IContextAdapter contextAdapter,
-                IBackupService backupService,
-                ISettingsFacade settingsFacade)
+            public Handler(IContextAdapter contextAdapter)
             {
                 this.contextAdapter = contextAdapter;
-                this.backupService = backupService;
-                this.settingsFacade = settingsFacade;
             }
 
             /// <inheritdoc />
@@ -65,10 +59,6 @@ namespace MoneyFox.Core.Commands.Payments.CreatePayment
                 }
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
-
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
-
                 return Unit.Value;
             }
         }

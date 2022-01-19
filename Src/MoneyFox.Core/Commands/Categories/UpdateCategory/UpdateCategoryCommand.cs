@@ -23,14 +23,10 @@ namespace MoneyFox.Core.Commands.Categories.UpdateCategory
         public class Handler : IRequestHandler<UpdateCategoryCommand>
         {
             private readonly IContextAdapter contextAdapter;
-            private readonly IBackupService backupService;
-            private readonly ISettingsFacade settingsFacade;
 
-            public Handler(IContextAdapter contextAdapter, IBackupService backupService, ISettingsFacade settingsFacade)
+            public Handler(IContextAdapter contextAdapter)
             {
                 this.contextAdapter = contextAdapter;
-                this.backupService = backupService;
-                this.settingsFacade = settingsFacade;
             }
 
             public async Task<Unit> Handle(UpdateCategoryCommand request, CancellationToken cancellationToken)
@@ -43,10 +39,6 @@ namespace MoneyFox.Core.Commands.Categories.UpdateCategory
                     request.Category.RequireNote);
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
-
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
-
                 return Unit.Value;
             }
         }

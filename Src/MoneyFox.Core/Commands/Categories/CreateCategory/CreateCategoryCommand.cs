@@ -1,11 +1,6 @@
 ﻿using MediatR;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Interfaces;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -27,28 +22,18 @@ namespace MoneyFox.Core.Commands.Categories.CreateCategory
         public class Handler : IRequestHandler<CreateCategoryCommand>
         {
             private readonly IContextAdapter contextAdapter;
-            private readonly IBackupService backupService;
-            private readonly ISettingsFacade settingsFacade;
 
-            public Handler(IContextAdapter contextAdapter, IBackupService backupService, ISettingsFacade settingsFacade)
+            public Handler(IContextAdapter contextAdapter)
             {
                 this.contextAdapter = contextAdapter;
-                this.backupService = backupService;
-                this.settingsFacade = settingsFacade;
             }
 
             /// <inheritdoc />
             public async Task<Unit> Handle(CreateCategoryCommand request, CancellationToken cancellationToken)
             {
-                await backupService.RestoreBackupAsync();
-
-                await contextAdapter.Context.Categories.AddAsync(
-                    new Category(request.Name, request.Note, request.RequireNote),
-                    cancellationToken);
+                var category = new Category(request.Name, request.Note, request.RequireNote);
+                await contextAdapter.Context.Categories.AddAsync(category, cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
-
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                backupService.UploadBackupAsync().FireAndForgetSafeAsync();
 
                 return Unit.Value;
             }
