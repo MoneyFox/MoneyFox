@@ -2,7 +2,6 @@
 using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Events;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -56,7 +55,7 @@ namespace MoneyFox.Core.Commands.Accounts.CreateAccount
 
                 // TODO: move to ef core context
                 settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                await publisher.Publish(new AccountCreatedEvent(account.Id), cancellationToken);
+                // await publisher.Publish(new AccountCreatedEvent(account.Id), cancellationToken);
                 return Unit.Value;
             }
         }
