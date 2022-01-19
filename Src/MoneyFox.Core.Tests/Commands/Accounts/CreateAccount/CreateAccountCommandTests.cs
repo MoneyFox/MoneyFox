@@ -7,7 +7,6 @@ using MoneyFox.Infrastructure.Persistence;
 using Moq;
 using System;
 using System.Diagnostics.CodeAnalysis;
-using System.Threading;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -48,34 +47,13 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount
             // Arrange
             // Act
             await new CreateAccountCommand.Handler(
-                    contextAdapterMock.Object,
-                    publisherMock.Object,
-                    settingsFacadeMock.Object)
+                    contextAdapterMock.Object)
                 .Handle(
                     new CreateAccountCommand("test", 80),
                     default);
 
             // Assert
             Assert.Single(context.Accounts);
-        }
-
-        [Fact]
-        public async Task BackupUploadedOnCreate()
-        {
-            // Arrange
-            // Act
-            await new CreateAccountCommand.Handler(
-                    contextAdapterMock.Object,
-                    publisherMock.Object,
-                    settingsFacadeMock.Object)
-                .Handle(
-                    new CreateAccountCommand("Test", 80),
-                    default);
-
-            // Assert
-            // publisherMock.Verify(x => x.Publish(It.IsAny<AccountCreatedEvent>(), It.IsAny<CancellationToken>()),
-            //     Times.Once);
-            settingsFacadeMock.VerifySet(x => x.LastDatabaseUpdate = It.IsAny<DateTime>(), Times.Once);
         }
     }
 }

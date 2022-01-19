@@ -1,8 +1,6 @@
 ﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,17 +24,10 @@ namespace MoneyFox.Core.Commands.Accounts.CreateAccount
         public class Handler : IRequestHandler<CreateAccountCommand>
         {
             private readonly IContextAdapter contextAdapter;
-            private readonly IPublisher publisher;
-            private readonly ISettingsFacade settingsFacade;
 
-            public Handler(
-                IContextAdapter contextAdapter,
-                IPublisher publisher,
-                ISettingsFacade settingsFacade)
+            public Handler(IContextAdapter contextAdapter)
             {
                 this.contextAdapter = contextAdapter;
-                this.publisher = publisher;
-                this.settingsFacade = settingsFacade;
             }
 
             /// <inheritdoc />
@@ -48,14 +39,9 @@ namespace MoneyFox.Core.Commands.Accounts.CreateAccount
                     request.Note,
                     request.IsExcluded);
 
-                await contextAdapter.Context.Accounts.AddAsync(
-                    account,
-                    cancellationToken);
+                await contextAdapter.Context.Accounts.AddAsync(account, cancellationToken);
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
 
-                // TODO: move to ef core context
-                settingsFacade.LastDatabaseUpdate = DateTime.Now;
-                // await publisher.Publish(new AccountCreatedEvent(account.Id), cancellationToken);
                 return Unit.Value;
             }
         }
