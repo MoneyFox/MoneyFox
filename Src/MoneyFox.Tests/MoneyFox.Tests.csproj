@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
     <ProjectReference Include="..\MoneyFox\MoneyFox.csproj" />
   </ItemGroup>
 
