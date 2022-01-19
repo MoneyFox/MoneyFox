@@ -3,7 +3,6 @@ using Autofac;
 using Foundation;
 using JetBrains.Annotations;
 using Microsoft.Identity.Client;
-using MoneyFox.Application.Common.Constants;
 using NLog;
 using NLog.Config;
 using NLog.Targets;

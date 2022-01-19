@@ -1,7 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Autofac;
 using Foundation;
-using MoneyFox.Application;
 using NLog;
 using System;
 using System.Globalization;
