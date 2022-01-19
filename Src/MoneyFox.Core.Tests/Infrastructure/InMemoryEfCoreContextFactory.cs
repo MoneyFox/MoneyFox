@@ -14,7 +14,7 @@ namespace MoneyFox.Core.Tests.Infrastructure
                                                       .UseInMemoryDatabase(Guid.NewGuid().ToString())
                                                       .Options;
 
-            var context = new EfCoreContext(options);
+            var context = new EfCoreContext(options, null, null);
 
             context.Database.EnsureCreated();
             context.SaveChanges();

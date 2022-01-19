@@ -1,6 +1,6 @@
 ﻿using Autofac;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Infrastructure.DbBackup;
 using MoneyFox.Infrastructure.Persistence;
 
@@ -12,8 +12,7 @@ namespace MoneyFox.Infrastructure
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(c => EfCoreContextFactory.Create())
-                   .As<DbContext>()
+            builder.Register(c => c.Resolve<IContextAdapter>().Context)
                    .AsImplementedInterfaces();
 
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
