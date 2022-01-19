@@ -678,6 +678,10 @@
           <Project>{0429508e-afd9-4f1c-900a-ea1997fc8567}</Project>
           <Name>MoneyFox.Infrastructure</Name>
         </ProjectReference>
+        <ProjectReference Include="..\MoneyFox.SharedKernel\MoneyFox.SharedKernel.csproj">
+          <Project>{c026b27b-7a05-40ae-917b-27709254526b}</Project>
+          <Name>MoneyFox.SharedKernel</Name>
+        </ProjectReference>
     </ItemGroup>
     <ItemGroup>
       <Reference Include="Microsoft.AppCenter.Analytics, Version=0.0.0.0, Culture=neutral, PublicKeyToken=8a600e2fee7ba272">
