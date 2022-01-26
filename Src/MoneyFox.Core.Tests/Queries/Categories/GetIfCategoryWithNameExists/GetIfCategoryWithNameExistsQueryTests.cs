@@ -17,7 +17,7 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists
 
         public GetIfCategoryWithNameExistsQueryTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = InMemoryAppDbContextFactory.Create();
         }
 
         public void Dispose()
@@ -26,7 +26,7 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
 
         [Fact]
         public async Task CategoryWithSameNameDontExist()

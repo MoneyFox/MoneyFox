@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace MoneyFox.Core.Tests.Infrastructure
 {
     [ExcludeFromCodeCoverage]
-    internal static class InMemoryEfCoreContextFactory
+    internal static class InMemoryAppDbContextFactory
     {
         public static AppDbContext Create()
         {

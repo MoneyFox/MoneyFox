@@ -4,7 +4,7 @@ using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Migrations.Startup
 {
-    public class EfCoreContextFactory : IDesignTimeDbContextFactory<AppDbContext>
+    public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {
         public AppDbContext CreateDbContext(string[] args)
         {

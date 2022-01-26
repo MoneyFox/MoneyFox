@@ -11,19 +11,19 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.22"/>
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.22"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.22" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.22" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.22">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="NLog" Version="4.7.13"/>
-        <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2337"/>
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337"/>
+        <PackageReference Include="NLog" Version="4.7.13" />
+        <PackageReference Include="Xamarin.Forms.Visual.Material" Version="5.0.0.2337" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2337" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj"/>
+        <ProjectReference Include="..\MoneyFox.Infrastructure\MoneyFox.Infrastructure.csproj" />
     </ItemGroup>
 
 </Project>

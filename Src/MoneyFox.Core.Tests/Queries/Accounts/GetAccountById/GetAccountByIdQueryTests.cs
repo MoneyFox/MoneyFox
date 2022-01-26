@@ -20,7 +20,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountById
 
         public GetAccountByIdQueryTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = InMemoryAppDbContextFactory.Create();
 
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
@@ -32,7 +32,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountById
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetAccountByIdQuery_CorrectNumberLoaded()

@@ -20,7 +20,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts
 
         public GetIncludedAccountBalanceSummaryTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = InMemoryAppDbContextFactory.Create();
 
             contextAdapter = Substitute.For<IContextAdapter>();
             contextAdapter.Context.Returns(context);
@@ -32,7 +32,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetIncludedAccountBalanceSummary_CorrectSum()
