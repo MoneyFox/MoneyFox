@@ -115,34 +115,21 @@ namespace MoneyFox.Core.Aggregates
         public void RemovePaymentAmount(Payment payment)
         {
             Guard.Argument(payment, nameof(payment)).NotNull();
-            ApplyPaymentAmount(payment, true);
-        }
-
-        private void ApplyPaymentAmount(Payment payment, bool invert = false)
-        {
-            if(payment.ChargedAccount == null)
-            {
-                throw new InvalidOperationException("Uninitialized property: " + nameof(payment.ChargedAccount));
-            }
 
             if(!payment.IsCleared)
             {
                 return;
             }
 
-            decimal amount = invert
-                ? -payment.Amount
-                : payment.Amount;
-
             if(payment.Type == PaymentType.Expense
                || (payment.Type == PaymentType.Transfer
                    && payment.ChargedAccount.Id == Id))
             {
-                CurrentBalance -= amount;
+                CurrentBalance -= -payment.Amount;
             }
             else
             {
-                CurrentBalance += amount;
+                CurrentBalance += -payment.Amount;
             }
 
             ModificationDate = DateTime.Now;
