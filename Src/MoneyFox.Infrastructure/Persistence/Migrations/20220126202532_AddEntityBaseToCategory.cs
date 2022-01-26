@@ -18,7 +18,7 @@ namespace MoneyFox.Persistence.Migrations
                 table: "Categories",
                 nullable: true);
             
-            migrationBuilder.Sql("Update Accounts Set Created = CreationTime, LastModified = ModificationDate");
+            migrationBuilder.Sql("Update Categories Set Created = CreationTime, LastModified = ModificationDate");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
