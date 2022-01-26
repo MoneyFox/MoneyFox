@@ -7,15 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.Core.Aggregates.Payments
 {
-    public class RecurringPayment
+    public class RecurringPayment : EntityBase
     {
-        /// <summary>
-        ///     EF Core constructor
-        /// </summary>
         [UsedImplicitly]
-        private RecurringPayment()
-        {
-        }
+        private RecurringPayment() { }
 
         public RecurringPayment(DateTime startDate,
             decimal amount,
