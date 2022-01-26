@@ -136,13 +136,5 @@ namespace MoneyFox.Core.Aggregates
         }
 
         public void Deactivate() => IsDeactivated = true;
-
-        private static void ThrowIfPaymentNull(Payment payment)
-        {
-            if(payment == null)
-            {
-                throw new ArgumentNullException(nameof(payment));
-            }
-        }
     }
 }
