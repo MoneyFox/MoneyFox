@@ -47,7 +47,7 @@ namespace MoneyFox.Core.Aggregates
 
         public DateTime ModificationDate { get; private set; }
 
-        public DateTime CreationTime { get; }
+        public DateTime CreationTime { get; [UsedImplicitly] private set;}
 
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
