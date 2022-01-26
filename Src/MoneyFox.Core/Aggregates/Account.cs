@@ -15,10 +15,7 @@ namespace MoneyFox.Core.Aggregates
 
         public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
-            if(string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
+            Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
 
             ModificationDate = DateTime.Now;
             CreationTime = DateTime.Now;
