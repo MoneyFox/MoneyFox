@@ -93,11 +93,6 @@ namespace MoneyFox.Core.Aggregates
         {
             Guard.Argument(payment, nameof(payment)).NotNull();
 
-            if(payment.ChargedAccount == null)
-            {
-                throw new InvalidOperationException("Uninitialized property: " + nameof(payment.ChargedAccount));
-            }
-
             if(payment.IsCleared is false)
             {
                 return;
