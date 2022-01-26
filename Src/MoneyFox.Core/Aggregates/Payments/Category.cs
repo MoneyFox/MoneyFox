@@ -7,9 +7,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.Core.Aggregates.Payments
 {
-    public class Category
+    public class Category : EntityBase
     {
-        //used by EF Core
         [UsedImplicitly]
         private Category() { }
 
