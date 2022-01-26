@@ -7,14 +7,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MoneyFox.Core.Aggregates.Payments
 {
-    /// <summary>
-    ///     Database model for payments. Includes expenses, income and transfers.     Database table: Payments
-    /// </summary>
-    public class Payment : IAggregateRoot
+    public class Payment : EntityBase, IAggregateRoot
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
-        // used for EF
         [UsedImplicitly]
         private Payment() { }
 
