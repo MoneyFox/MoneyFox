@@ -92,8 +92,6 @@ namespace MoneyFox.Core.Aggregates
 
         public void AddPaymentAmount(Payment payment)
         {
-            Guard.Argument(payment, nameof(payment)).NotNull();
-
             if(payment.IsCleared is false)
             {
                 return;

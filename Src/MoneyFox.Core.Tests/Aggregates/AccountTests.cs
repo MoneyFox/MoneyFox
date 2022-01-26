@@ -12,15 +12,6 @@ namespace MoneyFox.Core.Tests.Aggregates
     public class AccountTests
     {
         [Theory]
-        [InlineData("")]
-        [InlineData(" ")]
-        public void ThrowsExceptionWhenNameIsNullOrEmpty(string name)
-        {
-            // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new Account(name));
-        }
-
-        [Theory]
         [InlineData(-12, true)]
         [InlineData(12, false)]
         [InlineData(0, false)]
@@ -163,16 +154,6 @@ namespace MoneyFox.Core.Tests.Aggregates
 
             // Assert
             testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-        }
-
-        [Fact]
-        public void AddPaymentAmount_PaymentNull_ArgumentNullException()
-        {
-            // Arrange
-            var account = new Account("test");
-
-            // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => account.AddPaymentAmount(null));
         }
 
         [Theory]
