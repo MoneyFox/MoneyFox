@@ -58,7 +58,8 @@ namespace MoneyFox.Core.Aggregates.Payments
 
         public virtual RecurringPayment? RecurringPayment { get; private set; }
 
-        public void UpdatePayment(DateTime date,
+        public void UpdatePayment(
+            DateTime date,
             decimal amount,
             PaymentType type,
             Account chargedAccount,
