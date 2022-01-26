@@ -14,11 +14,11 @@ namespace MoneyFox.Core.Tests.Aggregates
         [Theory]
         [InlineData("")]
         [InlineData(" ")]
-        public void Ctor_NameEmpty_ArgumentNullException(string name) =>
-            // Arrange
-
+        public void ThrowsExceptionWhenNameIsNullOrEmpty(string name)
+        {
             // Act / Assert
             Assert.Throws<ArgumentNullException>(() => new Account(name));
+        }
 
         [Theory]
         [InlineData(-12, true)]
@@ -26,9 +26,7 @@ namespace MoneyFox.Core.Tests.Aggregates
         [InlineData(0, false)]
         public void Ctor_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
         {
-            // Arrange
-
-            // Act / Assert
+            // Act
             var account = new Account("test", currentBalance);
 
             // Assert
@@ -36,7 +34,7 @@ namespace MoneyFox.Core.Tests.Aggregates
         }
 
         [Fact]
-        public void Ctor_NoParams_DefaultValuesSet()
+        public void DefaultValuesCorrectlySet()
         {
             // Arrange
             const string testName = "test";
@@ -55,7 +53,7 @@ namespace MoneyFox.Core.Tests.Aggregates
         }
 
         [Fact]
-        public void Ctor_Params_ValuesCorrectlySet()
+        public void ValuesCorrectlySetAfterConstructor()
         {
             // Arrange
             const string testName = "test";
@@ -75,7 +73,7 @@ namespace MoneyFox.Core.Tests.Aggregates
         }
 
         [Fact]
-        public void CtorDeactivatedShouldBeFalse()
+        public void NotDeactivatedOnCreation()
         {
             // Arrange
             // Act
@@ -249,13 +247,13 @@ namespace MoneyFox.Core.Tests.Aggregates
         }
 
         [Fact]
-        public void RemovePaymentAmount_PaymentNull_ArgumentNullException()
+        public void ThrowsException_WhenPaymentIsNull()
         {
             // Arrange
             var account = new Account("test");
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null));
+            Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null!));
         }
 
         [Theory]

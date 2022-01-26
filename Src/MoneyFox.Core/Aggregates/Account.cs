@@ -51,6 +51,7 @@ namespace MoneyFox.Core.Aggregates
         /// </summary>
         public string? Note { get; private set; }
 
+        // todo remove this and make calculated property.
         /// <summary>
         ///     Indicates if this account is overdrawn or not.
         /// </summary>
@@ -113,7 +114,7 @@ namespace MoneyFox.Core.Aggregates
 
         public void RemovePaymentAmount(Payment payment)
         {
-            ThrowIfPaymentNull(payment);
+            Guard.Argument(payment, nameof(payment)).NotNull();
             ApplyPaymentAmount(payment, true);
         }
 
