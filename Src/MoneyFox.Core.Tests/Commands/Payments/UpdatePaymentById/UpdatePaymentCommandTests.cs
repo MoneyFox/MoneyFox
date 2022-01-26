@@ -20,7 +20,7 @@ namespace MoneyFox.Core.Tests.Commands.Payments.UpdatePaymentById
     [ExcludeFromCodeCoverage]
     public class UpdatePaymentCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public UpdatePaymentCommandTests()

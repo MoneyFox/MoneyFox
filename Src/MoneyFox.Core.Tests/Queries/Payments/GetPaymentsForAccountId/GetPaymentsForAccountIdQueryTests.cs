@@ -18,7 +18,7 @@ namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForAccountId
     [ExcludeFromCodeCoverage]
     public class GetPaymentsForAccountIdQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetPaymentsForAccountIdQueryTests()

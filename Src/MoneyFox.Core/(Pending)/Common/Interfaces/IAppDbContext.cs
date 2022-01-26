@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Core._Pending_.Common.Interfaces
 {
-    public interface IEfCoreContext : IDisposable
+    public interface IAppDbContext : IDisposable
     {
         DbSet<Account> Accounts { get; }
 

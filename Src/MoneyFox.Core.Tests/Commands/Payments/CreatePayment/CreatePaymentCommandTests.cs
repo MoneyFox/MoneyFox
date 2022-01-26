@@ -16,7 +16,7 @@ namespace MoneyFox.Core.Tests.Commands.Payments.CreatePayment
     [ExcludeFromCodeCoverage]
     public class CreatePaymentCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public CreatePaymentCommandTests()

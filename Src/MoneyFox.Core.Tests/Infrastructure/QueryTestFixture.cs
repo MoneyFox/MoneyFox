@@ -8,7 +8,7 @@ namespace MoneyFox.Core.Tests.Infrastructure
     [ExcludeFromCodeCoverage]
     public class QueryTestFixture : IDisposable
     {
-        public EfCoreContext Context { get; }
+        public AppDbContext Context { get; }
 
         public QueryTestFixture()
         {

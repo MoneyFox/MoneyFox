@@ -7,7 +7,7 @@ using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Persistence.Migrations
 {
-    [DbContext(typeof(EfCoreContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20190209110142_AddCreationDateField")]
     partial class AddCreationDateField
     {

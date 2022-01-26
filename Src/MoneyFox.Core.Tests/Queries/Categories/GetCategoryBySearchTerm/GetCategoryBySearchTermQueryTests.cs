@@ -16,7 +16,7 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryBySearchTerm
     [ExcludeFromCodeCoverage]
     public class GetCategoryBySearchTermQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetCategoryBySearchTermQueryTests()

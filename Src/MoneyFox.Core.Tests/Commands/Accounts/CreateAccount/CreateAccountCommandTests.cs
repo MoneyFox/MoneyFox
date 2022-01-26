@@ -15,7 +15,7 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount
     [ExcludeFromCodeCoverage]
     public class CreateAccountCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
         private readonly Mock<IPublisher> publisherMock;
         private readonly Mock<ISettingsFacade> settingsFacadeMock;

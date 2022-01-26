@@ -17,9 +17,9 @@ namespace MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists
 
         public class Handler : IRequestHandler<GetIfCategoryWithNameExistsQuery, bool>
         {
-            private readonly IEfCoreContext context;
+            private readonly IAppDbContext context;
 
-            public Handler(IEfCoreContext context)
+            public Handler(IAppDbContext context)
             {
                 this.context = context;
             }

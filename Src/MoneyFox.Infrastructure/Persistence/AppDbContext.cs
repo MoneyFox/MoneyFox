@@ -13,15 +13,12 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Infrastructure.Persistence
 {
-    /// <summary>
-    ///     Represents the data context of the application
-    /// </summary>
-    public class EfCoreContext : DbContext, IEfCoreContext
+    public class AppDbContext : DbContext, IAppDbContext
     {
         private readonly IPublisher? publisher;
         private readonly ISettingsFacade? settingsFacade;
 
-        public EfCoreContext(
+        public AppDbContext(
             DbContextOptions options,
             IPublisher? publisher,
             ISettingsFacade? settingsFacade) : base(options)

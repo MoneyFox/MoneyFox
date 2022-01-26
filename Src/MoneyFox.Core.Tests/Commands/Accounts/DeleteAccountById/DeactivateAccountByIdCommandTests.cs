@@ -16,7 +16,7 @@ namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
     [ExcludeFromCodeCoverage]
     public class DeactivateAccountByIdCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public DeactivateAccountByIdCommandTests()

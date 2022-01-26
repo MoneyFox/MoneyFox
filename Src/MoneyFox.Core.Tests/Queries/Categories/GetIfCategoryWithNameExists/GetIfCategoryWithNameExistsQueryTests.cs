@@ -13,7 +13,7 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetIfCategoryWithNameExists
     [ExcludeFromCodeCoverage]
     public class GetIfCategoryWithNameExistsQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
 
         public GetIfCategoryWithNameExistsQueryTests()
         {

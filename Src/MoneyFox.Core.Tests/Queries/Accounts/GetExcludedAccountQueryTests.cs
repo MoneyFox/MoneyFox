@@ -16,7 +16,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts
     [ExcludeFromCodeCoverage]
     public class GetExcludedAccountQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetExcludedAccountQueryTests()

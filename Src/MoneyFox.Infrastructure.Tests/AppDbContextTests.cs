@@ -15,12 +15,12 @@ using Xunit;
 namespace MoneyFox.Infrastructure.Tests
 {
     [ExcludeFromCodeCoverage]
-    public sealed class EfCoreContextTests
+    public sealed class AppDbContextTests
     {
         private readonly IPublisher publisher;
         private readonly  ISettingsFacade settingsFacade;
 
-        public EfCoreContextTests()
+        public AppDbContextTests()
         {
             publisher = Substitute.For<IPublisher>();
             settingsFacade = Substitute.For<ISettingsFacade>();
@@ -30,11 +30,11 @@ namespace MoneyFox.Infrastructure.Tests
         public async Task DoesNotSendEvent_WhenNothingSaved()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<EfCoreContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            var context = new EfCoreContext(options, publisher, settingsFacade);
+            var context = new AppDbContext(options, publisher, settingsFacade);
 
             // Act
             await context.SaveChangesAsync();
@@ -48,11 +48,11 @@ namespace MoneyFox.Infrastructure.Tests
         public async Task SetCreatedDateAndSendEventOnSaveChanges()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<EfCoreContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            var context = new EfCoreContext(options, publisher, settingsFacade);
+            var context = new AppDbContext(options, publisher, settingsFacade);
             var account = new Account("Test");
             
             // Act
@@ -73,11 +73,11 @@ namespace MoneyFox.Infrastructure.Tests
         public async Task SetModifiedDateAndSendEventOnSaveChanges()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<EfCoreContext>()
+            var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            var context = new EfCoreContext(options, publisher, settingsFacade);
+            var context = new AppDbContext(options, publisher, settingsFacade);
             var account = new Account("Test");
             context.Add(account);
             await context.SaveChangesAsync();

@@ -17,7 +17,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountEndOfMonthBalance
     [ExcludeFromCodeCoverage]
     public class GetAccountEndOfMonthBalanceQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly IContextAdapter contextAdapterMock;
 
         public GetAccountEndOfMonthBalanceQueryTests()

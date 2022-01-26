@@ -17,7 +17,7 @@ namespace MoneyFox.Core.Tests.Queries.Payments.GetMonthlyIncome
     [ExcludeFromCodeCoverage]
     public class GetMonthlyIncomeQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly IContextAdapter contextAdapter;
 
         public GetMonthlyIncomeQueryTests()

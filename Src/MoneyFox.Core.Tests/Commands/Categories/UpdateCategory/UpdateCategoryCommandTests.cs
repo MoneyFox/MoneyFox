@@ -19,7 +19,7 @@ namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory
     [ExcludeFromCodeCoverage]
     public class UpdateCategoryCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public UpdateCategoryCommandTests()

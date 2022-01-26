@@ -16,7 +16,7 @@ namespace MoneyFox.Core.Tests.Commands.Categories.DeleteCategoryById
     [ExcludeFromCodeCoverage]
     public class DeleteCategoryByIdCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public DeleteCategoryByIdCommandTests()

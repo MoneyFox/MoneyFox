@@ -4,14 +4,14 @@ using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Migrations.Startup
 {
-    public class EfCoreContextFactory : IDesignTimeDbContextFactory<EfCoreContext>
+    public class EfCoreContextFactory : IDesignTimeDbContextFactory<AppDbContext>
     {
-        public EfCoreContext CreateDbContext(string[] args)
+        public AppDbContext CreateDbContext(string[] args)
         {
-            var optionsBuilder = new DbContextOptionsBuilder<EfCoreContext>();
+            var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
             optionsBuilder.UseSqlite("Data Source=moneyfox.db");
 
-            return new EfCoreContext(optionsBuilder.Options, null, null);
+            return new AppDbContext(optionsBuilder.Options, null, null);
         }
     }
 }

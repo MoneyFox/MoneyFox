@@ -15,7 +15,7 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById
     [ExcludeFromCodeCoverage]
     public class GetCategoryByIdQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetCategoryByIdQueryTests()

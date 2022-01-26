@@ -20,7 +20,7 @@ namespace MoneyFox.Core.Tests.Commands.Payments.DeletePaymentById
     [ExcludeFromCodeCoverage]
     public class DeletePaymentByIdCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public DeletePaymentByIdCommandTests()

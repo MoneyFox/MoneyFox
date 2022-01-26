@@ -17,7 +17,7 @@ namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentsForCategory
     [ExcludeFromCodeCoverage]
     public class HandlerTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public HandlerTests()

@@ -18,7 +18,7 @@ namespace MoneyFox.Core.Tests.Commands.Categories.CreateCategory
     [ExcludeFromCodeCoverage]
     public class CreateCategoryCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public CreateCategoryCommandTests()

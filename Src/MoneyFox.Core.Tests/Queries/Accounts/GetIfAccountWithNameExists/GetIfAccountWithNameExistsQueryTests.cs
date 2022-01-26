@@ -15,7 +15,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetIfAccountWithNameExists
     [ExcludeFromCodeCoverage]
     public class GetIfAccountWithNameExistsQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetIfAccountWithNameExistsQueryTests()

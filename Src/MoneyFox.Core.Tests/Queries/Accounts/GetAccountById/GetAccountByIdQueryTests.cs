@@ -15,7 +15,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountById
     [ExcludeFromCodeCoverage]
     public class GetAccountByIdQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetAccountByIdQueryTests()

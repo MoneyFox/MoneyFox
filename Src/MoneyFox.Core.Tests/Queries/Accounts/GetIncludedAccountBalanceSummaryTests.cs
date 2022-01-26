@@ -15,7 +15,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts
     [ExcludeFromCodeCoverage]
     public class GetIncludedAccountBalanceSummaryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly IContextAdapter contextAdapter;
 
         public GetIncludedAccountBalanceSummaryTests()

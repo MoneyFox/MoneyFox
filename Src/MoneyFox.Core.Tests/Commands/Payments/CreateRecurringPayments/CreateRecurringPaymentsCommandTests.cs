@@ -18,7 +18,7 @@ namespace MoneyFox.Core.Tests.Commands.Payments.CreateRecurringPayments
     [ExcludeFromCodeCoverage]
     public class CreateRecurringPaymentsCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public CreateRecurringPaymentsCommandTests()

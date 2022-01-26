@@ -23,7 +23,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
     [Collection("CultureCollection")]
     public class GetCashFlowQueryHandlerTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetCashFlowQueryHandlerTests()

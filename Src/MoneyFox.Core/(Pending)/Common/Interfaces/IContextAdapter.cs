@@ -2,7 +2,7 @@
 {
     public interface IContextAdapter
     {
-        IEfCoreContext Context { get; }
+        IAppDbContext Context { get; }
 
         void RecreateContext();
     }

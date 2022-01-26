@@ -18,7 +18,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
     [ExcludeFromCodeCoverage]
     public class GetCategorySummaryQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetCategorySummaryQueryTests()
