@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Dawn;
+using JetBrains.Annotations;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.SharedKernel.Interface;
 using System;
@@ -78,10 +79,7 @@ namespace MoneyFox.Core.Aggregates
 
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
-            if(string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
+            Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
 
             Name = name;
             CurrentBalance = currentBalance;
@@ -94,8 +92,29 @@ namespace MoneyFox.Core.Aggregates
 
         public void AddPaymentAmount(Payment payment)
         {
-            ThrowIfPaymentNull(payment);
-            ApplyPaymentAmount(payment);
+            Guard.Argument(payment, nameof(payment)).NotNull();
+
+            if(payment.ChargedAccount == null)
+            {
+                throw new InvalidOperationException("Uninitialized property: " + nameof(payment.ChargedAccount));
+            }
+
+            if(payment.IsCleared is false)
+            {
+                return;
+            }
+
+            if(payment.Type == PaymentType.Expense
+               || (payment.Type == PaymentType.Transfer && payment.ChargedAccount.Id == Id))
+            {
+                CurrentBalance -= payment.Amount;
+            }
+            else
+            {
+                CurrentBalance += payment.Amount;
+            }
+
+            ModificationDate = DateTime.Now;
         }
 
         public void RemovePaymentAmount(Payment payment)
