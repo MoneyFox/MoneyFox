@@ -16,7 +16,7 @@ namespace MoneyFox.Core.Tests.Aggregates
             // Arrange
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new Category(name));
+            Assert.Throws<ArgumentException>(() => new Category(name));
 
         [Fact]
         public void Ctor_NoParams_DefaultValuesSet()
@@ -60,7 +60,7 @@ namespace MoneyFox.Core.Tests.Aggregates
             var testCategory = new Category("Foo");
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => testCategory.UpdateData(name));
+            Assert.Throws<ArgumentException>(() => testCategory.UpdateData(name));
         }
 
         [Fact]

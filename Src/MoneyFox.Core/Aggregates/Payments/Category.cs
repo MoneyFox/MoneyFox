@@ -1,4 +1,5 @@
-﻿using JetBrains.Annotations;
+﻿using Dawn;
+using JetBrains.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,10 +37,7 @@ namespace MoneyFox.Core.Aggregates.Payments
 
         public void UpdateData(string name, string note = "", bool requireNote = false)
         {
-            if(string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentNullException(nameof(name));
-            }
+            Guard.Argument(name, nameof(name)).NotWhiteSpace();
 
             Name = name;
             Note = note;
