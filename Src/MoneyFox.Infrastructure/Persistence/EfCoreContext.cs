@@ -50,6 +50,19 @@ namespace MoneyFox.Infrastructure.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
+            foreach (var entry in ChangeTracker.Entries<EntityBase>())
+            {
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        entry.Entity.Created = DateTime.Now;
+                        break;
+                    case EntityState.Modified:
+                        entry.Entity.LastModified = DateTime.Now;
+                        break;
+                }
+            }
+            
             int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
             // ignore events if no dispatcher provided
