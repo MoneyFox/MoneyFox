@@ -94,7 +94,7 @@ namespace MoneyFox.Core.Tests.Aggregates
             var testAccount = new Account("test");
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => testAccount.UpdateAccount(name));
+            Assert.Throws<ArgumentException>(() => testAccount.UpdateAccount(name));
         }
 
         [Theory]

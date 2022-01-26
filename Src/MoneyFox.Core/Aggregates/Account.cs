@@ -10,7 +10,6 @@ namespace MoneyFox.Core.Aggregates
 {
     public class Account : IAggregateRoot
     {
-        //used by EF Core
         [UsedImplicitly]
         private Account() { }
 
