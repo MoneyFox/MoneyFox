@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.Core.Aggregates
 {
-    public class Account : IAggregateRoot
+    public class Account : EntityBase, IAggregateRoot
     {
         [UsedImplicitly]
         private Account() { }
@@ -32,46 +32,21 @@ namespace MoneyFox.Core.Aggregates
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; [UsedImplicitly] private set; }
 
-        /// <summary>
-        ///     The name of the account.
-        /// </summary>
-        [Required]
-        public string Name { get; private set; } = null!;
+        [Required] public string Name { get; private set; } = null!;
 
-        /// <summary>
-        ///     The current account balance.
-        /// </summary>
         public decimal CurrentBalance { get; private set; }
-
-        /// <summary>
-        ///     A note to this account.
-        /// </summary>
+        
         public string? Note { get; private set; }
 
-        // todo remove this and make calculated property.
-        /// <summary>
-        ///     Indicates if this account is overdrawn or not.
-        /// </summary>
+        // TODO remove this and make calculated property.
         public bool IsOverdrawn { get; private set; }
 
-        /// <summary>
-        ///     Indicates that this Account should not be included in end of month calculations.
-        /// </summary>
         public bool IsExcluded { get; private set; }
 
-        /// <summary>
-        ///     Indicates that an account is disabled and should no longer be displayed
-        /// </summary>
         public bool IsDeactivated { get; private set; }
 
-        /// <summary>
-        ///     Date of the last modification
-        /// </summary>
         public DateTime ModificationDate { get; private set; }
 
-        /// <summary>
-        ///     Date when the entry was created.
-        /// </summary>
         public DateTime CreationTime { get; }
 
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
@@ -130,6 +105,9 @@ namespace MoneyFox.Core.Aggregates
             ModificationDate = DateTime.Now;
         }
 
-        public void Deactivate() => IsDeactivated = true;
+        public void Deactivate()
+        {
+            IsDeactivated = true;
+        }
     }
 }
