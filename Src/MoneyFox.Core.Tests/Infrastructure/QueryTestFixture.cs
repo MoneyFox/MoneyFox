@@ -8,11 +8,11 @@ namespace MoneyFox.Core.Tests.Infrastructure
     [ExcludeFromCodeCoverage]
     public class QueryTestFixture : IDisposable
     {
-        public EfCoreContext Context { get; }
+        public AppDbContext Context { get; }
 
         public QueryTestFixture()
         {
-            Context = InMemoryEfCoreContextFactory.Create();
+            Context = InMemoryAppDbContextFactory.Create();
         }
 
         public void Dispose()
@@ -21,7 +21,7 @@ namespace MoneyFox.Core.Tests.Infrastructure
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(Context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(Context);
     }
 
     [CollectionDefinition("QueryCollection")]

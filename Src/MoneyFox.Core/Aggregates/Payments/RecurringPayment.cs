@@ -7,15 +7,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MoneyFox.Core.Aggregates.Payments
 {
-    public class RecurringPayment
+    public class RecurringPayment : EntityBase
     {
-        /// <summary>
-        ///     EF Core constructor
-        /// </summary>
         [UsedImplicitly]
-        private RecurringPayment()
-        {
-        }
+        private RecurringPayment() { }
 
         public RecurringPayment(DateTime startDate,
             decimal amount,
@@ -45,8 +40,6 @@ namespace MoneyFox.Core.Aggregates.Payments
             IsEndless = endDate == null;
 
             LastRecurrenceCreated = lastRecurrenceCreated ?? DateTime.Now;
-            ModificationDate = DateTime.Now;
-            CreationTime = DateTime.Now;
         }
 
         [Key]
@@ -68,10 +61,6 @@ namespace MoneyFox.Core.Aggregates.Payments
         public string? Note { get; [UsedImplicitly] private set; }
 
         public DateTime LastRecurrenceCreated { get; private set; }
-
-        public DateTime ModificationDate { get; private set; }
-
-        public DateTime CreationTime { get; [UsedImplicitly] private set; }
 
         public virtual Category? Category { get; private set; }
 
@@ -102,13 +91,11 @@ namespace MoneyFox.Core.Aggregates.Payments
             Category = category;
             TargetAccount = targetAccount;
             IsEndless = endDate == null;
-            ModificationDate = DateTime.Now;
         }
 
         public void SetLastRecurrenceCreatedDate()
         {
             LastRecurrenceCreated = DateTime.Now;
-            ModificationDate = DateTime.Now;
         }
     }
 }

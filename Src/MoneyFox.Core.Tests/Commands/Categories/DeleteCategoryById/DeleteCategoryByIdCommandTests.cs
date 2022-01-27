@@ -16,12 +16,12 @@ namespace MoneyFox.Core.Tests.Commands.Categories.DeleteCategoryById
     [ExcludeFromCodeCoverage]
     public class DeleteCategoryByIdCommandTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public DeleteCategoryByIdCommandTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = InMemoryAppDbContextFactory.Create();
 
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
@@ -33,7 +33,7 @@ namespace MoneyFox.Core.Tests.Commands.Categories.DeleteCategoryById
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetExcludedAccountQuery_WithoutFilter_CorrectNumberLoaded()

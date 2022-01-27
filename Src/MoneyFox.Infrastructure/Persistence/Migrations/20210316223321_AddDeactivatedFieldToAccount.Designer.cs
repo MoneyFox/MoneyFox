@@ -8,7 +8,7 @@ using MoneyFox.Infrastructure.Persistence;
 
 namespace MoneyFox.Persistence.Migrations
 {
-    [DbContext(typeof(EfCoreContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20210316223321_AddDeactivatedFieldToAccount")]
     partial class AddDeactivatedFieldToAccount
     {

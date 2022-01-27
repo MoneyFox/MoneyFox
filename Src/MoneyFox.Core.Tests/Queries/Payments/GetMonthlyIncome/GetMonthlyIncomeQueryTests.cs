@@ -17,12 +17,12 @@ namespace MoneyFox.Core.Tests.Queries.Payments.GetMonthlyIncome
     [ExcludeFromCodeCoverage]
     public class GetMonthlyIncomeQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly IContextAdapter contextAdapter;
 
         public GetMonthlyIncomeQueryTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = InMemoryAppDbContextFactory.Create();
 
             contextAdapter = Substitute.For<IContextAdapter>();
             contextAdapter.Context.Returns(context);
@@ -34,7 +34,7 @@ namespace MoneyFox.Core.Tests.Queries.Payments.GetMonthlyIncome
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
 
         [Fact]
         public async Task ReturnCorrectAmount()

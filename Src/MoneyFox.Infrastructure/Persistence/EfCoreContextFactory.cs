@@ -7,13 +7,13 @@ namespace MoneyFox.Infrastructure.Persistence
 {
     public static class EfCoreContextFactory
     {
-        public static EfCoreContext Create(IPublisher publisher, ISettingsFacade settingsFacade)
+        public static AppDbContext Create(IPublisher publisher, ISettingsFacade settingsFacade)
         {
-            DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
+            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseSqlite($"Data Source={DatabasePathHelper.DbPath}")
                 .Options;
 
-            var context = new EfCoreContext(options, publisher, settingsFacade);
+            var context = new AppDbContext(options, publisher, settingsFacade);
             context.Database.Migrate();
             return context;
         }

@@ -15,12 +15,12 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById
     [ExcludeFromCodeCoverage]
     public class GetCategoryByIdQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly Mock<IContextAdapter> contextAdapterMock;
 
         public GetCategoryByIdQueryTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = InMemoryAppDbContextFactory.Create();
 
             contextAdapterMock = new Mock<IContextAdapter>();
             contextAdapterMock.SetupGet(x => x.Context).Returns(context);
@@ -32,7 +32,7 @@ namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetCategory_CategoryNotFound()
