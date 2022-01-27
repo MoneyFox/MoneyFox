@@ -101,6 +101,9 @@ namespace MoneyFox.Persistence.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("Date")
                         .HasColumnType("TEXT");
 
@@ -111,6 +114,9 @@ namespace MoneyFox.Persistence.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("LastModified")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("ModificationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Note")

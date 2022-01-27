@@ -23,6 +23,7 @@ namespace MoneyFox.Core.Aggregates.Payments
             string note = "",
             RecurringPayment? recurringPayment = null)
         {
+            CreationTime = DateTime.Now;
             AssignValues(date, amount, type, chargedAccount, targetAccount, category, note);
 
             ClearPayment();
@@ -49,6 +50,10 @@ namespace MoneyFox.Core.Aggregates.Payments
         public string? Note { get; private set; }
 
         public bool IsRecurring { get; private set; }
+
+        public DateTime ModificationDate { get; private set; }
+
+        public DateTime CreationTime { get; [UsedImplicitly] private set; }
 
         public virtual Category? Category { get; private set; }
 
@@ -94,6 +99,7 @@ namespace MoneyFox.Core.Aggregates.Payments
             ChargedAccount = chargedAccount ?? throw new AccountNullException();
             TargetAccount = targetAccount;
             Category = category;
+            ModificationDate = DateTime.Now;
         }
 
         public void AddRecurringPayment(PaymentRecurrence recurrence, DateTime? endDate = null)
