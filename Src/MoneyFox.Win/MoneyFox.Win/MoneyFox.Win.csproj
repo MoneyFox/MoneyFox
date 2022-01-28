@@ -18,6 +18,7 @@
     <None Remove="Pages\Categories\AddCategoryDialog.xaml" />
     <None Remove="Pages\Categories\EditCategoryDialog.xaml" />
     <None Remove="Pages\Categories\ModifyCategoryUserControl.xaml" />
+    <None Remove="Pages\Dialogs\LoadingDialog.xaml" />
     <None Remove="Pages\Payments\SelectCategoryDialog.xaml" />
   </ItemGroup>
 
@@ -48,6 +49,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Categories\ModifyCategoryUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Dialogs\LoadingDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Payments\SelectCategoryDialog.xaml">

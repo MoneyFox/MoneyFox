@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using MoneyFox.Core;
+using MoneyFox.Core.Interfaces;
 using MoneyFox.Win.Infrastructure;
 using MoneyFox.Win.Pages;
 using MoneyFox.Win.Services;
@@ -16,6 +17,13 @@ namespace MoneyFox.Win
             builder.RegisterModule<WinuiInfrastructureModule>();
 
             builder.RegisterType<NavigationService>().AsImplementedInterfaces().SingleInstance();
+            builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
+            builder.RegisterType<ToastService>().AsImplementedInterfaces();
+            builder.RegisterType<DialogService>().AsImplementedInterfaces();
+            builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
+            builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
+            builder.RegisterType<WindowsFileStore>().As<IFileStore>();
+            builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
