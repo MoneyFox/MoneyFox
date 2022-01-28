@@ -27,6 +27,7 @@
     <None Remove="Pages\Accounts\AddAccountDialog.xaml" />
     <None Remove="Pages\Accounts\EditAccountView.xaml" />
     <None Remove="Pages\Accounts\ModifyAccountUserControl.xaml" />
+    <None Remove="Pages\BackupView.xaml" />
     <None Remove="Pages\Categories\AddCategoryDialog.xaml" />
     <None Remove="Pages\Categories\CategoryListControl.xaml" />
     <None Remove="Pages\Categories\CategoryListView.xaml" />
@@ -96,6 +97,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Accounts\ModifyAccountUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\BackupView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Categories\AddCategoryDialog.xaml">
