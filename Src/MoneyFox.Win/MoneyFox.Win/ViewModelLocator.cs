@@ -5,9 +5,12 @@ using MoneyFox.Win.ViewModels;
 using MoneyFox.Win.ViewModels.About;
 using MoneyFox.Win.ViewModels.Accounts;
 using MoneyFox.Win.ViewModels.Categories;
+using MoneyFox.Win.ViewModels.DataBackup;
 using MoneyFox.Win.ViewModels.Interfaces;
 using MoneyFox.Win.ViewModels.Payments;
 using MoneyFox.Win.ViewModels.Settings;
+using MoneyFox.Win.ViewModels.Statistics;
+using MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
 
 namespace MoneyFox.Win
 {
@@ -45,13 +48,13 @@ namespace MoneyFox.Win
 
         public static EditPaymentViewModel EditPaymentVm => ServiceLocator.Current.GetInstance<EditPaymentViewModel>();
 
-        //public static BackupViewModel BackupVm => ServiceLocator.Current.GetInstance<BackupViewModel>();
+        public static BackupViewModel BackupVm => ServiceLocator.Current.GetInstance<BackupViewModel>();
 
         //*****************
         //  Common
         //*****************
-        //public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm =>
-        //    ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
+        public static SelectDateRangeDialogViewModel SelectDateRangeDialogVm =>
+            ServiceLocator.Current.GetInstance<SelectDateRangeDialogViewModel>();
 
         //*****************
         //  Statistics
@@ -65,14 +68,14 @@ namespace MoneyFox.Win
         //public static StatisticAccountMonthlyCashflowViewModel StatisticAccountMonthlyCashflowVm =>
         //    ServiceLocator.Current.GetInstance<StatisticAccountMonthlyCashflowViewModel>();
 
-        //public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm =>
-        //    ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
+        public static StatisticCategorySpreadingViewModel StatisticCategorySpreadingVm =>
+            ServiceLocator.Current.GetInstance<StatisticCategorySpreadingViewModel>();
 
-        //public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm =>
-        //    ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
+        public static StatisticCategorySummaryViewModel StatisticCategorySummaryVm =>
+            ServiceLocator.Current.GetInstance<StatisticCategorySummaryViewModel>();
 
-        //public static StatisticSelectorViewModel StatisticSelectorVm =>
-        //    ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
+        public static StatisticSelectorViewModel StatisticSelectorVm =>
+            ServiceLocator.Current.GetInstance<StatisticSelectorViewModel>();
 
         //*****************
         //  Settings

@@ -10,6 +10,10 @@
     <UseWinUI>true</UseWinUI>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Pages\Statistics\StatisticAccountMonthlyCashflowView.xaml.cs" />
+    <Compile Remove="Pages\Statistics\StatisticCashFlowView.xaml.cs" />
+    <Compile Remove="Pages\Statistics\StatisticCategoryProgressionView.xaml.cs" />
+    <Compile Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
@@ -35,9 +39,25 @@
     <None Remove="Pages\Payments\ModifyPaymentUserControl.xaml" />
     <None Remove="Pages\Payments\PaymentListView.xaml" />
     <None Remove="Pages\Payments\SelectCategoryDialog.xaml" />
+    <None Remove="Pages\Settings\AboutView.xaml" />
+    <None Remove="Pages\Settings\SettingsHostView.xaml" />
+    <None Remove="Pages\Settings\SettingsView.xaml" />
+    <None Remove="Pages\Statistics\StatisticAccountMonthlyCashflowView.xaml" />
+    <None Remove="Pages\Statistics\StatisticCashFlowView.xaml" />
+    <None Remove="Pages\Statistics\StatisticCategoryProgressionView.xaml" />
+    <None Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml" />
+    <None Remove="Pages\Statistics\StatisticCategorySummary\PaymentListUserControl.xaml" />
+    <None Remove="Pages\Statistics\StatisticCategorySummary\StatisticCategorySummaryView.xaml" />
+    <None Remove="Pages\Statistics\StatisticSelectorView.xaml" />
     <None Remove="Pages\UserControls\BalanceControl.xaml" />
     <None Remove="Pages\UserControls\IncomeExpenseBalanceUserControl.xaml" />
     <None Remove="Pages\UserControls\Loading.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Remove="Pages\Statistics\StatisticAccountMonthlyCashflowView.xaml" />
+    <Page Remove="Pages\Statistics\StatisticCashFlowView.xaml" />
+    <Page Remove="Pages\Statistics\StatisticCategoryProgressionView.xaml" />
+    <Page Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -114,8 +134,26 @@
     <Page Update="Pages\Payments\SelectCategoryDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Pages\Settings\AboutView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\SettingsHostView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Settings\SettingsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\Statistics\StatisticCategorySummary\PaymentListUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Statistics\StatisticCategorySummary\StatisticCategorySummaryView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Statistics\StatisticSelectorView.xaml">
+      <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\UserControls\BalanceControl.xaml">
       <SubType>Designer</SubType>
