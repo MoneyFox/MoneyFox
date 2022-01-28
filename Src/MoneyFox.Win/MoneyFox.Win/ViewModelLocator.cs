@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
+using MoneyFox.Uwp.ViewModels.About;
 using MoneyFox.Win.ViewModels;
+using MoneyFox.Win.ViewModels.Settings;
 
 namespace MoneyFox.Win
 {
@@ -71,10 +73,10 @@ namespace MoneyFox.Win
         //*****************
         //  Settings
         //*****************
-        //public static WindowsSettingsViewModel SettingsVm =>
-        //    ServiceLocator.Current.GetInstance<WindowsSettingsViewModel>();
+        public static WindowsSettingsViewModel SettingsVm =>
+            ServiceLocator.Current.GetInstance<WindowsSettingsViewModel>();
 
-        //public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
+        public static AboutViewModel AboutVm => ServiceLocator.Current.GetInstance<AboutViewModel>();
 
         public static void RegisterServices(ContainerBuilder registrations)
         {

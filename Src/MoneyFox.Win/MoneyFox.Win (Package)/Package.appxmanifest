@@ -43,7 +43,6 @@
           <uap:Rotation Preference="portrait"/>
           <uap:Rotation Preference="landscapeFlipped"/>
           <uap:Rotation Preference="portraitFlipped"/></uap:InitialRotationPreference>
-        <uap:LockScreen BadgeLogo="Images\BadgeLogo.png"/>
       </uap:VisualElements>
     </Application>
   </Applications>
