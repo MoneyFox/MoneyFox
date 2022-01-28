@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 
-namespace MoneyFox.Uwp.Groups
+namespace MoneyFox.Win.Groups
 {
     /// <summary>
     ///     Can be used for a alphanumeric grouping. It will show the whole key as title.     This can be a single name or a
