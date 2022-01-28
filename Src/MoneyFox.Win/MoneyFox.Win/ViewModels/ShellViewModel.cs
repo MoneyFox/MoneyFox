@@ -1,17 +1,11 @@
-﻿using CommonServiceLocator;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Navigation;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Win.Services;
 using NLog;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.System;
@@ -32,10 +26,7 @@ namespace MoneyFox.Win.ViewModels
 
         private bool isBackEnabled;
         private IList<KeyboardAccelerator> keyboardAccelerators;
-        private NavigationView navigationView;
         private NavigationViewItem selected;
-        private ICommand loadedCommand;
-        private ICommand itemInvokedCommand;
 
         private readonly INavigationService navigationService;
 
@@ -51,9 +42,10 @@ namespace MoneyFox.Win.ViewModels
         public void LoadMenuItems()
         {
             menuItems = new ObservableCollection<MenuItem>();
-
-            //menuItems.Add(new MenuItem { Name = "Book Flight", Icon = "\uE709", ViewModelType = nameof(BookFlightViewModel) });
-            //menuItems.Add(new MenuItem { Name = "Search", Icon = "\uE721", ViewModelType = nameof(SearchViewModel) });
+            //menuItems.Add(new MenuItem { Name = Strings.AccountsTitle, Icon = "\uE80F", ViewModelType = nameof(AccountListViewModel) });
+            //menuItems.Add(new MenuItem { Name = Strings.StatisticsTitle, Icon = "\uE904", ViewModelType = nameof(StatisticSelectorViewModel) });
+            //menuItems.Add(new MenuItem { Name = Strings.CategoriesTitle, Icon = "\uE8EC", ViewModelType = nameof(CategoryListViewModel) });
+            //menuItems.Add(new MenuItem { Name = Strings.BackupTitle, Icon = "\uEA35", ViewModelType = nameof(BackupViewModel) });
         }
 
         public bool IsBackEnabled
@@ -69,35 +61,24 @@ namespace MoneyFox.Win.ViewModels
             set => SetProperty(ref selected, value);
         }
 
-        public ICommand LoadedCommand => loadedCommand ??= new AsyncRelayCommand(OnLoadedAsync);
-
-        public ICommand ItemInvokedCommand => itemInvokedCommand ??=
-            new RelayCommand<WinUI.NavigationViewItemInvokedEventArgs>(OnItemInvoked);
-
-        //public RelayCommand<PaymentType> GoToPaymentCommand =>
-        //    new RelayCommand<PaymentType>(t => NavigationService.Navigate<AddPaymentViewModel>(t));
-
-        public void Initialize(Frame frame,
-            WinUI.NavigationView navigationView,
-            IList<KeyboardAccelerator> keyboardAccelerators)
+        public ICommand SelectedPageChangedCommand => new RelayCommand<MenuItem>((value) => NavigateToMenuItem(value));
+        private void NavigateToMenuItem(MenuItem item)
         {
-            Logger.Debug("Is NavigationService available: {isAvailable}.", navigationService != null);
-
-            if(navigationService == null)
-            {
-                return;
-            }
-
-            this.navigationView = navigationView;
-            this.keyboardAccelerators = keyboardAccelerators;
-
-            //frame.Navigated += Frame_Navigated;
-            //frame.NavigationFailed += Frame_NavigationFailed;
-
-            navigationService.Initialize(frame);
-            this.navigationView.BackRequested += OnBackRequested;
-
-            CoreWindow.GetForCurrentThread().PointerPressed += On_PointerPressed;
+            //switch(item.ViewModelType)
+            //{
+            //    case nameof(AccountListViewModel):
+            //        navigationService.NavigateTo<AccountListViewModel>();
+            //        break;
+            //    case nameof(StatisticSelectorViewModel):
+            //        navigationService.NavigateTo<StatisticSelectorViewModel>();
+            //        break;
+            //    case nameof(CategoryListViewModel):
+            //        navigationService.NavigateTo<CategoryListViewModel>();
+            //        break;
+            //    case nameof(BackupViewModel):
+            //        navigationService.NavigateTo<BackupViewModel>();
+            //        break;
+            //}
         }
 
         private void On_PointerPressed(CoreWindow sender, PointerEventArgs e)
@@ -131,71 +112,6 @@ namespace MoneyFox.Win.ViewModels
             await Task.CompletedTask;
         }
 
-        private void OnItemInvoked(WinUI.NavigationViewItemInvokedEventArgs args)
-        {
-            Logger.Debug("Item invoked");
-
-            if(args.IsSettingsInvoked)
-            {
-                Logger.Info("Navigate to settings");
-                //NavigationService.Navigate<WindowsSettingsViewModel>();
-
-                return;
-            }
-
-            WinUI.NavigationViewItem item = navigationView?.MenuItems
-                .OfType<WinUI.NavigationViewItem>()
-                .FirstOrDefault(
-                    menuItem =>
-                    {
-                        if(menuItem.Content is string content
-                           && args.InvokedItem is string invokedItem)
-                        {
-                            return content == invokedItem;
-                        }
-
-                        return false;
-                    });
-
-            if(item == null)
-            {
-                return;
-            }
-
-            //string pageString = (string)item.GetValue(NavHelper.NavigateToProperty);
-            //NavigationService.Navigate(GetTypeByString(pageString));
-        }
-
-        //private Type GetTypeByString(string pageString) =>
-        //    pageString switch
-        //    {
-        //        "AccountListViewModel" => typeof(AccountListViewModel),
-        //        "StatisticSelectorViewModel" => typeof(StatisticSelectorViewModel),
-        //        "CategoryListViewModel" => typeof(CategoryListViewModel),
-        //        "BackupViewModel" => typeof(BackupViewModel),
-        //        _ => throw new PageNotFoundException(pageString)
-        //    };
-
-        private void OnBackRequested(WinUI.NavigationView sender, WinUI.NavigationViewBackRequestedEventArgs args) =>
-            navigationService.GoBack();
-
-        private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e) => throw e.Exception;
-
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-            IsBackEnabled = navigationService.CanGoBack;
-
-            //Selected = navigationView?.MenuItems
-            //    .OfType<WinUI.NavigationViewItem>()
-            //    .FirstOrDefault(menuItem => IsMenuItemForPageType(menuItem, e.SourcePageType));
-        }
-
-        //private bool IsMenuItemForPageType(WinUI.NavigationViewItem menuItem, Type sourcePageType)
-        //{
-        //    Type pageType = GetTypeByString(menuItem.GetValue(NavHelper.NavigateToProperty) as string ?? "");
-        //    return pageType == sourcePageType;
-        //}
-
         private static KeyboardAccelerator BuildKeyboardAccelerator(VirtualKey key,
             VirtualKeyModifiers? modifiers = null)
         {
@@ -212,8 +128,6 @@ namespace MoneyFox.Win.ViewModels
 
         private static void OnKeyboardAcceleratorInvoked(KeyboardAccelerator sender,
             KeyboardAcceleratorInvokedEventArgs args) => args.Handled = true;
-
-
 
         public class MenuItem
         {

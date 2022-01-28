@@ -10,13 +10,24 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <DataTemplate x:Key="MenuTemplate">
+            <NavigationViewItem Content="{Binding Name}">
+                <NavigationViewItem.Icon>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{Binding Icon}"/>
+                </NavigationViewItem.Icon>
+            </NavigationViewItem>
+        </DataTemplate>
+    </Page.Resources>
+
     <NavigationView x:Name="NavView"
+                    ItemInvoked="NavView_ItemInvoked"
                     AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame, FallbackValue=false}"
                     Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
                     IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
                     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                    SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
                     MenuItemsSource="{x:Bind ViewModel.MenuItems}"
+                    MenuItemTemplate="{StaticResource MenuTemplate}"
                     IsSettingsVisible="true"
                     PaneDisplayMode="Top">
 
@@ -43,22 +54,25 @@
             <NavigationViewItem helpers:NavHelper.NavigateTo="BackupViewModel"
                                       Icon="SaveLocal"
                                       Content="{x:Bind resources:Strings.BackupTitle}"
-                                      ToolTipService.ToolTip="{x:Bind resources:Strings.BackupToolTip}" />-->
-            <NavigationViewItemSeparator />
+                                      ToolTipService.ToolTip="{x:Bind resources:Strings.BackupToolTip}" />
+            <NavigationViewItemSeparator />-->
 
         </NavigationView.MenuItems>
 
         <NavigationView.PaneCustomContent>
-            <NavigationViewItem
-                Padding="0,0,10,0"
-                HorizontalAlignment="Left"
-                Content="{x:Bind resources:Strings.AddPaymentTitle}"
-                ToolTipService.ToolTip="{x:Bind resources:Strings.AddPaymentToolTip}"
-                Tapped="AddPaymentItemTapped">
-                <NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xE710;" />
-                </NavigationViewItem.Icon>
-            </NavigationViewItem>
+            <StackPanel Orientation="Horizontal">
+                <NavigationViewItemSeparator />
+                <NavigationViewItem
+                    Padding="0,0,10,0"
+                    HorizontalAlignment="Left"
+                    Content="{x:Bind resources:Strings.AddPaymentTitle}"
+                    ToolTipService.ToolTip="{x:Bind resources:Strings.AddPaymentToolTip}"
+                    Tapped="AddPaymentItemTapped">
+                        <NavigationViewItem.Icon>
+                            <FontIcon Glyph="&#xE710;" />
+                        </NavigationViewItem.Icon>
+                    </NavigationViewItem>
+            </StackPanel>
         </NavigationView.PaneCustomContent>
 
         <i:Interaction.Behaviors>
@@ -67,7 +81,7 @@
             </core:EventTriggerBehavior>
         </i:Interaction.Behaviors>
 
-        <Frame x:Name="ContentFrame" Padding="70,8,70,0">
+        <Frame x:Name="MainContentFrame" Padding="70,8,70,0">
             <Frame.ContentTransitions>
                 <TransitionCollection>
                     <NavigationThemeTransition />

@@ -46,7 +46,6 @@ namespace MoneyFox.Uwp
                 .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))
                 .Where(t => t.Name.EndsWith("ViewModel", StringComparison.CurrentCultureIgnoreCase))
                 .AsImplementedInterfaces()
-                .AsSelf()
                 .AsSelf();
 
             CultureHelper.CurrentCulture =
