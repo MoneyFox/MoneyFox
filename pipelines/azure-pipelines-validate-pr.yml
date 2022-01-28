@@ -204,11 +204,11 @@ jobs:
       packageType: 'sdk'
       version: '6.0.x'
 
-  - task: NuGetToolInstaller@1
-
-  - task: NuGetCommand@2
+  - task: DotNetCoreCLI@2
     inputs:
-      restoreSolution: '$(solution)'
+      command: 'restore'
+      projects: '**/*.csproj'
+      feedsToUse: 'select'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
