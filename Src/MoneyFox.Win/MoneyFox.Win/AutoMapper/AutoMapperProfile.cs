@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
 using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
+using MoneyFox.Win.ViewModels.Accounts;
+using MoneyFox.Win.ViewModels.Payments;
 using System.Collections.Generic;
 
 #nullable enable
