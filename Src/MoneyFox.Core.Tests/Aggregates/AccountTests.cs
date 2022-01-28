@@ -39,6 +39,8 @@ namespace MoneyFox.Core.Tests.Aggregates
             account.Note.Should().BeEmpty();
             account.IsOverdrawn.Should().BeFalse();
             account.IsExcluded.Should().BeFalse();
+            account.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            account.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -140,6 +142,20 @@ namespace MoneyFox.Core.Tests.Aggregates
             testAccount.IsOverdrawn.Should().BeFalse();
         }
 
+        [Fact]
+        public void UpdateData_Params_ModificationDateSet()
+        {
+            // Arrange
+
+            var testAccount = new Account("foo");
+
+            // Act / Assert
+            testAccount.UpdateAccount("asdf", 123);
+
+            // Assert
+            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+        }
+
         [Theory]
         [InlineData(PaymentType.Expense, 50)]
         [InlineData(PaymentType.Income, 150)]
@@ -198,6 +214,20 @@ namespace MoneyFox.Core.Tests.Aggregates
         }
 
         [Fact]
+        public void AddPaymentAmount_Params_ModificationDateSet()
+        {
+            // Arrange
+            var testAccount = new Account("foo");
+            var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
+
+            // Act
+            testAccount.AddPaymentAmount(payment);
+
+            // Assert
+            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+        }
+
+        [Fact]
         public void ThrowsException_WhenPaymentIsNull()
         {
             // Arrange
@@ -248,6 +278,20 @@ namespace MoneyFox.Core.Tests.Aggregates
             // Assert
             chargedAccount.CurrentBalance.Should().Be(100);
             targetAccount.CurrentBalance.Should().Be(100);
+        }
+
+        [Fact]
+        public void RemovePaymentAmount_Params_ModificationDateSet()
+        {
+            // Arrange
+            var testAccount = new Account("foo");
+            var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
+
+            // Act
+            testAccount.RemovePaymentAmount(payment);
+
+            // Assert
+            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]

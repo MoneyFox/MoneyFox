@@ -39,6 +39,8 @@ namespace MoneyFox.Core.Tests.Aggregates
 
             // Assert
             recurringPayment.LastRecurrenceCreated.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            recurringPayment.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            recurringPayment.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -210,7 +212,36 @@ namespace MoneyFox.Core.Tests.Aggregates
             recurringPayment.ChargedAccount.Should().Be(account);
             recurringPayment.Note.Should().Be(note);
         }
-        
+
+        [Fact]
+        public void UpdateRecurringPayment_CreationTimeSame()
+        {
+            // Arrange
+            DateTime startDate = DateTime.Now.AddDays(-1);
+            DateTime endDate = DateTime.Now;
+            const int amount = 123;
+            const PaymentType type = PaymentType.Income;
+            const PaymentRecurrence recurrence = PaymentRecurrence.Daily;
+            var account = new Account("foo");
+            const string note = "asdf";
+
+            var recurringPayment = new RecurringPayment(
+                startDate,
+                65,
+                type,
+                PaymentRecurrence.Monthly,
+                new Account("1111"),
+                "foo");
+
+            DateTime creationTime = recurringPayment.CreationTime;
+
+            // Act
+            recurringPayment.UpdateRecurringPayment(amount, recurrence, account, note, endDate);
+
+            // Assert
+            recurringPayment.CreationTime.Should().Be(creationTime);
+        }
+
         [Fact]
         public void UpdateRecurringPayment_EndDateNull_IsEndless()
         {
@@ -277,6 +308,7 @@ namespace MoneyFox.Core.Tests.Aggregates
 
             // Assert
             recurringPayment.LastRecurrenceCreated.Should().BeAfter(DateTime.Now.AddSeconds(-1));
+            recurringPayment.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
     }
 }

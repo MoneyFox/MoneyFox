@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.SharedKernel.Interface;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -15,12 +16,16 @@ namespace MoneyFox.Core.Aggregates
         public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
         {
             Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
-            
+
+            ModificationDate = DateTime.Now;
+            CreationTime = DateTime.Now;
+
             Name = name;
             CurrentBalance = currentBalance;
             Note = note;
             IsExcluded = isExcluded;
             IsOverdrawn = currentBalance < 0;
+            ModificationDate = DateTime.Now;
         }
 
         [Key]
@@ -40,6 +45,10 @@ namespace MoneyFox.Core.Aggregates
 
         public bool IsDeactivated { get; private set; }
 
+        public DateTime ModificationDate { get; private set; }
+
+        public DateTime CreationTime { get; [UsedImplicitly] private set;}
+
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
             Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
@@ -49,6 +58,8 @@ namespace MoneyFox.Core.Aggregates
             Note = note;
             IsExcluded = isExcluded;
             IsOverdrawn = currentBalance < 0;
+
+            ModificationDate = DateTime.Now;
         }
 
         public void AddPaymentAmount(Payment payment)
@@ -67,6 +78,8 @@ namespace MoneyFox.Core.Aggregates
             {
                 CurrentBalance += payment.Amount;
             }
+
+            ModificationDate = DateTime.Now;
         }
 
         public void RemovePaymentAmount(Payment payment)
@@ -88,6 +101,8 @@ namespace MoneyFox.Core.Aggregates
             {
                 CurrentBalance += -payment.Amount;
             }
+
+            ModificationDate = DateTime.Now;
         }
 
         public void Deactivate()
