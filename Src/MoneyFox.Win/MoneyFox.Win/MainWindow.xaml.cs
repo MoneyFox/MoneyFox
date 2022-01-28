@@ -9,7 +9,7 @@
     {
         public MainWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
             var rootFrame = Content as Frame;
 
             var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
