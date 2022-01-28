@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Win.Src
+namespace MoneyFox.Win
 {
     /// <summary>
     ///     Provides different calculations for the balance at the end of month.

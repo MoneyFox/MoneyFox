@@ -13,8 +13,8 @@ using MoneyFox.Core.Queries.Accounts.GetIncludedAccount;
 using MoneyFox.Core.Resources;
 using MoneyFox.Win.Groups;
 using MoneyFox.Win.Services;
-using MoneyFox.Win.Src;
 using MoneyFox.Win.ViewModels.Interfaces;
+using MoneyFox.Win.ViewModels.Payments;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -159,7 +159,7 @@ namespace MoneyFox.Win.ViewModels.Accounts
                 return;
             }
 
-            //navigationService.Navigate<PaymentListViewModel>(accountViewModel.Id);
+            navigationService.Navigate<PaymentListViewModel>(accountViewModel.Id);
         }
 
         private async Task DeleteAsync(AccountViewModel accountToDelete)

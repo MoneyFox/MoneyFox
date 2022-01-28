@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Win.Src;
 using MoneyFox.Win.ViewModels.Interfaces;
 using System;
 using System.Threading.Tasks;

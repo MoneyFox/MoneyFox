@@ -9,6 +9,17 @@
     <RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
     <UseWinUI>true</UseWinUI>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
+    <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
+    <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Pages\Categories\AddCategoryDialog.xaml" />
+    <None Remove="Pages\Categories\EditCategoryDialog.xaml" />
+    <None Remove="Pages\Categories\ModifyCategoryUserControl.xaml" />
+    <None Remove="Pages\Payments\SelectCategoryDialog.xaml" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.3.0" />
@@ -29,6 +40,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Pages\Categories\AddCategoryDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Categories\EditCategoryDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Categories\ModifyCategoryUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Payments\SelectCategoryDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
