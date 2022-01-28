@@ -208,12 +208,6 @@ jobs:
       restoreSolution: '$(solution)'
 
   - task: DotNetCoreCLI@2
-    inputs:
-      command: 'restore'
-      projects: '**/*.csproj'
-      feedsToUse: 'select'
-
-  - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
     inputs:
       command: 'test'
@@ -227,4 +221,3 @@ jobs:
         solution: '$(solutionWinUI)'
         platform: 'x64'
         configuration: '$(buildConfiguration)'
-        msbuildArgs: '/p:PublishReadyToRun=false /p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
