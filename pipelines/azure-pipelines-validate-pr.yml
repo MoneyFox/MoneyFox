@@ -217,6 +217,7 @@ jobs:
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
+    enabled: false
     inputs:
       command: 'test'
       projects: |
