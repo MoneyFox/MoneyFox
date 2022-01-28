@@ -13,6 +13,9 @@
     <Compile Remove="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
+    <Compile Remove="ViewModels\Statistics\StatisticAccountMonthlyCashflowViewModel.cs" />
+    <Compile Remove="ViewModels\Statistics\StatisticCashFlowViewModel.cs" />
+    <Compile Remove="ViewModels\Statistics\StatisticCategoryProgressionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Pages\Categories\AddCategoryDialog.xaml" />
