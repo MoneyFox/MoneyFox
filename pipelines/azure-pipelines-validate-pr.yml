@@ -207,11 +207,11 @@ jobs:
     inputs:
       restoreSolution: '$(solution)'
 
-  - task: DotNetCoreCLI@2s
+  - task: DotNetCoreCLI@2
     inputs:
-        command: 'restore'
-        projects: '**/*.csproj'
-        feedsToUse: 'select'
+      command: 'restore'
+      projects: '**/*.csproj'
+      feedsToUse: 'select'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
