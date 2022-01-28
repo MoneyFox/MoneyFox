@@ -1,6 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 
-namespace MoneyFox.Uwp.ViewModels.About
+namespace MoneyFox.Win.ViewModels.About
 {
     public interface IAboutViewModel
     {

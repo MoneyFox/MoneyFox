@@ -1,6 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 
-namespace MoneyFox.Uwp.Views
+namespace MoneyFox.Win.Pages
 {
     public class BaseView : Page
     {

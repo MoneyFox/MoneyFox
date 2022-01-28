@@ -1,8 +1,8 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
-using MoneyFox.Uwp.ViewModels.About;
 using MoneyFox.Win.ViewModels;
+using MoneyFox.Win.ViewModels.About;
 using MoneyFox.Win.ViewModels.Settings;
 
 namespace MoneyFox.Win

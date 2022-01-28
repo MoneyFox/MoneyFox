@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Uwp.ViewModels.About
+namespace MoneyFox.Win.ViewModels.About
 {
     public class AboutViewModel : ObservableObject, IAboutViewModel
     {
