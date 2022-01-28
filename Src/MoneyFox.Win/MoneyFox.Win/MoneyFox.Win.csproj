@@ -29,6 +29,11 @@
     <None Remove="Pages\Categories\EditCategoryDialog.xaml" />
     <None Remove="Pages\Categories\ModifyCategoryUserControl.xaml" />
     <None Remove="Pages\Dialogs\LoadingDialog.xaml" />
+    <None Remove="Pages\Payments\AddPaymentView.xaml" />
+    <None Remove="Pages\Payments\CategorySelectionControl.xaml" />
+    <None Remove="Pages\Payments\EditPaymentView.xaml" />
+    <None Remove="Pages\Payments\ModifyPaymentUserControl.xaml" />
+    <None Remove="Pages\Payments\PaymentListView.xaml" />
     <None Remove="Pages\Payments\SelectCategoryDialog.xaml" />
     <None Remove="Pages\UserControls\BalanceControl.xaml" />
     <None Remove="Pages\UserControls\IncomeExpenseBalanceUserControl.xaml" />
@@ -89,6 +94,21 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Dialogs\LoadingDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Payments\AddPaymentView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Payments\CategorySelectionControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Payments\EditPaymentView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Payments\ModifyPaymentUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Payments\PaymentListView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Payments\SelectCategoryDialog.xaml">
