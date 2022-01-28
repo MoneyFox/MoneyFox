@@ -4,7 +4,7 @@ using System;
 
 namespace MoneyFox.Win.Infrastructure
 {
-    public class InfrastructureWinuiModule : Module
+    public class WinuiInfrastructureModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

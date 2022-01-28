@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using MoneyFox.Core;
+using MoneyFox.Win.Infrastructure;
 using MoneyFox.Win.Pages;
 using MoneyFox.Win.Services;
 using MoneyFox.Win.ViewModels;
@@ -12,6 +13,7 @@ namespace MoneyFox.Win
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterModule<CoreModule>();
+            builder.RegisterModule<WinuiInfrastructureModule>();
 
             builder.RegisterType<NavigationService>().AsImplementedInterfaces().SingleInstance();
 
