@@ -198,6 +198,14 @@ jobs:
     env:
       CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
+
+  - task: UseDotNet@2
+    displayName: Install DotNet SDK
+    inputs:
+      packageType: 'sdk'
+      version: '6.x'
+      includePreviewVersions: false
+
   - task: NuGetToolInstaller@1
     displayName: 'Use NuGet'
     inputs:
