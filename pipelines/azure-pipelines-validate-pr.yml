@@ -224,4 +224,4 @@ jobs:
     inputs:
         solution: '$(solutionWinUI)'
         platform: 'x64'
-        configuration: 'Debug'
+        configuration: '$(BuildConfiguration)'
