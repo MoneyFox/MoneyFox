@@ -18,17 +18,30 @@
     <Compile Remove="ViewModels\Statistics\StatisticCategoryProgressionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Pages\Accounts\AccountListToolbar.xaml" />
+    <None Remove="Pages\Accounts\AccountListView.xaml" />
+    <None Remove="Pages\Accounts\AddAccountDialog.xaml" />
+    <None Remove="Pages\Accounts\EditAccountView.xaml" />
+    <None Remove="Pages\Accounts\ModifyAccountUserControl.xaml" />
     <None Remove="Pages\Categories\AddCategoryDialog.xaml" />
+    <None Remove="Pages\Categories\CategoryListControl.xaml" />
+    <None Remove="Pages\Categories\CategoryListView.xaml" />
     <None Remove="Pages\Categories\EditCategoryDialog.xaml" />
     <None Remove="Pages\Categories\ModifyCategoryUserControl.xaml" />
     <None Remove="Pages\Dialogs\LoadingDialog.xaml" />
     <None Remove="Pages\Payments\SelectCategoryDialog.xaml" />
+    <None Remove="Pages\UserControls\BalanceControl.xaml" />
+    <None Remove="Pages\UserControls\IncomeExpenseBalanceUserControl.xaml" />
+    <None Remove="Pages\UserControls\Loading.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.3.0" />
     <PackageReference Include="Autofac.Extras.CommonServiceLocator" Version="6.0.1" />
     <PackageReference Include="CommonServiceLocator" Version="2.0.6" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.1.2" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
+    <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Media" Version="7.1.2" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
@@ -45,7 +58,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Update="Pages\Accounts\AccountListToolbar.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Accounts\AccountListView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Accounts\AddAccountDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Accounts\EditAccountView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Accounts\ModifyAccountUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Pages\Categories\AddCategoryDialog.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Categories\CategoryListControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\Categories\CategoryListView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Categories\EditCategoryDialog.xaml">
@@ -62,6 +96,15 @@
     </Page>
     <Page Update="Pages\ShellPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Update="Pages\UserControls\BalanceControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\UserControls\IncomeExpenseBalanceUserControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Pages\UserControls\Loading.xaml">
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
 
