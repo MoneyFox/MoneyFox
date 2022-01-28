@@ -1,12 +1,15 @@
 ﻿using Autofac;
 using Autofac.Extras.CommonServiceLocator;
 using CommonServiceLocator;
+using MoneyFox.Win.ViewModels;
 
 namespace MoneyFox.Win
 {
     public class ViewModelLocator
     {
         protected ViewModelLocator() { }
+
+        public static ShellViewModel ShellVm => ServiceLocator.Current.GetInstance<ShellViewModel>();
 
         //*****************
         //  Data Entry

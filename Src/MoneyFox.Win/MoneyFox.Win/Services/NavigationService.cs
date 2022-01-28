@@ -70,7 +70,7 @@ namespace MoneyFox.Win.Services
         public void Initialize(object frame)
         {
             Frame = (Frame)frame;
-            // Navigate<ShellViewModel>();
+            Navigate<ShellViewModel>();
         }
 
         public bool Navigate<TViewModel>(object parameter = null) => Navigate(typeof(TViewModel), parameter);

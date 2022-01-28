@@ -1,4 +1,5 @@
 ﻿using Microsoft.UI.Xaml.Controls;
+using MoneyFox.Win.ViewModels;
 
 namespace MoneyFox.Win.Pages
 {
@@ -7,9 +8,12 @@ namespace MoneyFox.Win.Pages
     /// </summary>
     public sealed partial class ShellPage : Page
     {
+        private ShellViewModel ViewModel => (ShellViewModel)DataContext;
+
         public ShellPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            DataContext = ViewModelLocator.ShellVm;
         }
 
         private void AddPaymentItemTapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)

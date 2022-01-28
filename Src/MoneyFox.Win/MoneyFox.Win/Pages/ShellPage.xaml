@@ -2,7 +2,6 @@
     x:Class="MoneyFox.Win.Pages.ShellPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MoneyFox.Win.Pages"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:i="using:Microsoft.Xaml.Interactivity"
@@ -11,14 +10,15 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <NavigationView x:Name="NavView">
-        <!--AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame, FallbackValue=false}"
-                          Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
-                          IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
-                          Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-                          IsSettingsVisible="true"
-                          PaneDisplayMode="Top"
-                          SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}">-->
+    <NavigationView x:Name="NavView"
+                    AlwaysShowHeader="{Binding Path=Content.ShowHeader, ElementName=ContentFrame, FallbackValue=false}"
+                    Header="{Binding Path=Content.Header, ElementName=ContentFrame}"
+                    IsBackEnabled="{x:Bind ViewModel.IsBackEnabled, Mode=OneWay}"
+                    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+                    SelectedItem="{x:Bind ViewModel.Selected, Mode=OneWay}"
+                    MenuItemsSource="{x:Bind ViewModel.MenuItems}"
+                    IsSettingsVisible="true"
+                    PaneDisplayMode="Top">
 
         <NavigationView.Resources>
         </NavigationView.Resources>

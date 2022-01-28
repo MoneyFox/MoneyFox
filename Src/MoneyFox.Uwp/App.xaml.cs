@@ -6,10 +6,7 @@ using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.ApplicationModel.Core;
-using Windows.UI;
-using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Media;
 using UnhandledExceptionEventArgs = Windows.UI.Xaml.UnhandledExceptionEventArgs;
 
 namespace MoneyFox.Uwp
@@ -36,8 +33,6 @@ namespace MoneyFox.Uwp
             {
                 await ActivationService.ActivateAsync(args);
             }
-
-            OverrideTitleBarColor();
         }
 
         protected override async void OnActivated(IActivatedEventArgs args) =>
@@ -50,10 +45,6 @@ namespace MoneyFox.Uwp
 
         protected override async void OnBackgroundActivated(BackgroundActivatedEventArgs args) =>
             await ActivationService.ActivateAsync(args);
-
-        private static void OverrideTitleBarColor() =>
-            //draw into the title bar
-            CoreApplication.GetCurrentView().TitleBar.ExtendViewIntoTitleBar = false;
 
         private void OnUnhandledException(object sender, UnhandledExceptionEventArgs e) =>
             LogManager.GetCurrentClassLogger().Fatal(e.Exception);
