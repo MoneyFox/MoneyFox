@@ -6,15 +6,15 @@ using System.Diagnostics.CodeAnalysis;
 namespace MoneyFox.Core.Tests.Infrastructure
 {
     [ExcludeFromCodeCoverage]
-    internal static class InMemoryEfCoreContextFactory
+    internal static class InMemoryAppDbContextFactory
     {
-        public static EfCoreContext Create()
+        public static AppDbContext Create()
         {
-            DbContextOptions<EfCoreContext> options = new DbContextOptionsBuilder<EfCoreContext>()
+            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
-            var context = new EfCoreContext(options, null, null);
+            var context = new AppDbContext(options, null, null);
 
             context.Database.EnsureCreated();
             context.SaveChanges();
@@ -22,7 +22,7 @@ namespace MoneyFox.Core.Tests.Infrastructure
             return context;
         }
 
-        public static void Destroy(EfCoreContext context)
+        public static void Destroy(AppDbContext context)
         {
             context.Database.EnsureDeleted();
             context.Dispose();

@@ -17,12 +17,12 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountEndOfMonthBalance
     [ExcludeFromCodeCoverage]
     public class GetAccountEndOfMonthBalanceQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly IContextAdapter contextAdapterMock;
 
         public GetAccountEndOfMonthBalanceQueryTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = InMemoryAppDbContextFactory.Create();
 
             contextAdapterMock = Substitute.For<IContextAdapter>();
             contextAdapterMock.Context.Returns(context);
@@ -34,7 +34,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountEndOfMonthBalance
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetCorrectSumForSingleAccount()

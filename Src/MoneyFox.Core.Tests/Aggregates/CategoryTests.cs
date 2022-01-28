@@ -16,7 +16,7 @@ namespace MoneyFox.Core.Tests.Aggregates
             // Arrange
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new Category(name));
+            Assert.Throws<ArgumentException>(() => new Category(name));
 
         [Fact]
         public void Ctor_NoParams_DefaultValuesSet()
@@ -31,8 +31,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             category.Name.Should().Be(testName);
             category.Note.Should().BeEmpty();
             category.RequireNote.Should().BeFalse();
-            category.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-            category.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -60,7 +58,7 @@ namespace MoneyFox.Core.Tests.Aggregates
             var testCategory = new Category("Foo");
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => testCategory.UpdateData(name));
+            Assert.Throws<ArgumentException>(() => testCategory.UpdateData(name));
         }
 
         [Fact]
@@ -78,7 +76,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             testCategory.Name.Should().Be(testName);
             testCategory.Note.Should().BeEmpty();
             testCategory.RequireNote.Should().BeFalse();
-            testCategory.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-0.5));
         }
 
         [Fact]

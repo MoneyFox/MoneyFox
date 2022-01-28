@@ -12,23 +12,12 @@ namespace MoneyFox.Core.Tests.Aggregates
     public class AccountTests
     {
         [Theory]
-        [InlineData("")]
-        [InlineData(" ")]
-        public void Ctor_NameEmpty_ArgumentNullException(string name) =>
-            // Arrange
-
-            // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => new Account(name));
-
-        [Theory]
         [InlineData(-12, true)]
         [InlineData(12, false)]
         [InlineData(0, false)]
         public void Ctor_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
         {
-            // Arrange
-
-            // Act / Assert
+            // Act
             var account = new Account("test", currentBalance);
 
             // Assert
@@ -36,7 +25,7 @@ namespace MoneyFox.Core.Tests.Aggregates
         }
 
         [Fact]
-        public void Ctor_NoParams_DefaultValuesSet()
+        public void DefaultValuesCorrectlySet()
         {
             // Arrange
             const string testName = "test";
@@ -50,12 +39,10 @@ namespace MoneyFox.Core.Tests.Aggregates
             account.Note.Should().BeEmpty();
             account.IsOverdrawn.Should().BeFalse();
             account.IsExcluded.Should().BeFalse();
-            account.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-            account.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
-        public void Ctor_Params_ValuesCorrectlySet()
+        public void ValuesCorrectlySetAfterConstructor()
         {
             // Arrange
             const string testName = "test";
@@ -75,7 +62,7 @@ namespace MoneyFox.Core.Tests.Aggregates
         }
 
         [Fact]
-        public void CtorDeactivatedShouldBeFalse()
+        public void NotDeactivatedOnCreation()
         {
             // Arrange
             // Act
@@ -94,7 +81,7 @@ namespace MoneyFox.Core.Tests.Aggregates
             var testAccount = new Account("test");
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => testAccount.UpdateAccount(name));
+            Assert.Throws<ArgumentException>(() => testAccount.UpdateAccount(name));
         }
 
         [Theory]
@@ -151,30 +138,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             testAccount.Note.Should().Be(testnote);
             testAccount.IsExcluded.Should().Be(testExcluded);
             testAccount.IsOverdrawn.Should().BeFalse();
-        }
-
-        [Fact]
-        public void UpdateData_Params_ModificationDateSet()
-        {
-            // Arrange
-
-            var testAccount = new Account("foo");
-
-            // Act / Assert
-            testAccount.UpdateAccount("asdf", 123);
-
-            // Assert
-            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-        }
-
-        [Fact]
-        public void AddPaymentAmount_PaymentNull_ArgumentNullException()
-        {
-            // Arrange
-            var account = new Account("test");
-
-            // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => account.AddPaymentAmount(null));
         }
 
         [Theory]
@@ -235,27 +198,13 @@ namespace MoneyFox.Core.Tests.Aggregates
         }
 
         [Fact]
-        public void AddPaymentAmount_Params_ModificationDateSet()
-        {
-            // Arrange
-            var testAccount = new Account("foo");
-            var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
-
-            // Act
-            testAccount.AddPaymentAmount(payment);
-
-            // Assert
-            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-        }
-
-        [Fact]
-        public void RemovePaymentAmount_PaymentNull_ArgumentNullException()
+        public void ThrowsException_WhenPaymentIsNull()
         {
             // Arrange
             var account = new Account("test");
 
             // Act / Assert
-            Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null));
+            Assert.Throws<ArgumentNullException>(() => account.RemovePaymentAmount(null!));
         }
 
         [Theory]
@@ -299,20 +248,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             // Assert
             chargedAccount.CurrentBalance.Should().Be(100);
             targetAccount.CurrentBalance.Should().Be(100);
-        }
-
-        [Fact]
-        public void RemovePaymentAmount_Params_ModificationDateSet()
-        {
-            // Arrange
-            var testAccount = new Account("foo");
-            var payment = new Payment(DateTime.Today.AddDays(2), 50, PaymentType.Income, testAccount);
-
-            // Act
-            testAccount.RemovePaymentAmount(payment);
-
-            // Assert
-            testAccount.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]

@@ -15,12 +15,12 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountCount
     [ExcludeFromCodeCoverage]
     public class GetAccountCountQueryTests : IDisposable
     {
-        private readonly EfCoreContext context;
+        private readonly AppDbContext context;
         private readonly IContextAdapter contextAdapter;
 
         public GetAccountCountQueryTests()
         {
-            context = InMemoryEfCoreContextFactory.Create();
+            context = InMemoryAppDbContextFactory.Create();
 
             contextAdapter = Substitute.For<IContextAdapter>();
             contextAdapter.Context.Returns(context);
@@ -32,7 +32,7 @@ namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountCount
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing) => InMemoryEfCoreContextFactory.Destroy(context);
+        protected virtual void Dispose(bool disposing) => InMemoryAppDbContextFactory.Destroy(context);
 
         [Fact]
         public async Task GetExcludedAccountQuery_CorrectNumberLoaded()
