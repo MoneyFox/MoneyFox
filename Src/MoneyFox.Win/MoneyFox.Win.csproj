@@ -89,8 +89,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\MoneyFox.Core\MoneyFox.Core.csproj" />
-    <ProjectReference Include="..\..\MoneyFox.Win.Infrastructure\MoneyFox.Win.Infrastructure.csproj" />
+    <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
+    <ProjectReference Include="..\MoneyFox.Win.Infrastructure\MoneyFox.Win.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
