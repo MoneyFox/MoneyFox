@@ -13,7 +13,7 @@ namespace MoneyFox.Win.ViewModels.Categories
         public CategoryListViewModel(IMediator mediator,
             IMapper mapper,
             IDialogService dialogService,
-            NavigationService navigationService)
+            INavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
         {
         }

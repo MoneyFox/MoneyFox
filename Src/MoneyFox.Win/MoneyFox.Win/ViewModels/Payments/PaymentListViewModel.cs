@@ -36,7 +36,7 @@ namespace MoneyFox.Win.ViewModels.Payments
         private readonly IMapper mapper;
         private readonly IBalanceCalculationService balanceCalculationService;
         private readonly IDialogService dialogService;
-        private readonly NavigationService navigationService;
+        private readonly INavigationService navigationService;
         private readonly ISettingsFacade settingsFacade;
 
         private int accountId;
@@ -49,12 +49,13 @@ namespace MoneyFox.Win.ViewModels.Payments
         /// <summary>
         ///     Default constructor
         /// </summary>
-        public PaymentListViewModel(IMediator mediator,
+        public PaymentListViewModel(
+            IMediator mediator,
             IMapper mapper,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
             IBalanceCalculationService balanceCalculationService,
-            NavigationService navigationService)
+            INavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

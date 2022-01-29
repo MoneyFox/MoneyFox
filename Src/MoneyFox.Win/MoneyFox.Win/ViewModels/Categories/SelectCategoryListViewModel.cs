@@ -18,7 +18,7 @@ namespace MoneyFox.Win.ViewModels.Categories
         public SelectCategoryListViewModel(IMediator mediator,
             IMapper mapper,
             IDialogService dialogService,
-            NavigationService navigationService)
+            INavigationService navigationService)
             : base(mediator, mapper, dialogService, navigationService)
         {
         }

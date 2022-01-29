@@ -26,7 +26,7 @@ namespace MoneyFox.Win.ViewModels.Payments
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
         private readonly IBalanceViewModel balanceViewModel;
-        private readonly NavigationService navigationService;
+        private readonly INavigationService navigationService;
 
         private readonly int accountId;
         private bool isClearedFilterActive;
@@ -41,12 +41,13 @@ namespace MoneyFox.Win.ViewModels.Payments
         /// <summary>
         ///     Constructor
         /// </summary>
-        public PaymentListViewActionViewModel(int accountId,
+        public PaymentListViewActionViewModel(
+            int accountId,
             IMediator mediator,
             ISettingsFacade settingsFacade,
             IDialogService dialogService,
             IBalanceViewModel balanceViewModel,
-            NavigationService navigationService)
+            INavigationService navigationService)
         {
             this.accountId = accountId;
 

@@ -7,14 +7,13 @@ namespace MoneyFox.Win.ViewModels.Accounts
 {
     public class AccountListViewActionViewModel : ObservableObject, IAccountListViewActionViewModel
     {
-        private readonly NavigationService navigationService;
+        private readonly INavigationService navigationService;
 
-        public AccountListViewActionViewModel(NavigationService navigationService)
+        public AccountListViewActionViewModel(INavigationService navigationService)
         {
             this.navigationService = navigationService;
         }
 
-        /// <inheritdoc />
         public RelayCommand GoToAddAccountCommand =>
             new RelayCommand(() => navigationService.Navigate<AddAccountViewModel>());
     }

@@ -31,7 +31,8 @@ namespace MoneyFox.Win.ViewModels.DataBackup
         private DateTime backupLastModified;
         private bool isLoadingBackupAvailability;
 
-        public BackupViewModel(IBackupService backupService,
+        public BackupViewModel(
+            IBackupService backupService,
             IDialogService dialogService,
             IConnectivityAdapter connectivity,
             ISettingsFacade settingsFacade,

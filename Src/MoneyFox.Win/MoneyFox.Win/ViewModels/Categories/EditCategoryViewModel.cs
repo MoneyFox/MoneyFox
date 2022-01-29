@@ -23,7 +23,7 @@ namespace MoneyFox.Win.ViewModels.Categories
 
         public EditCategoryViewModel(IMediator mediator,
             IDialogService dialogService,
-            NavigationService navigationService,
+            INavigationService navigationService,
             IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
         {
             this.mediator = mediator;

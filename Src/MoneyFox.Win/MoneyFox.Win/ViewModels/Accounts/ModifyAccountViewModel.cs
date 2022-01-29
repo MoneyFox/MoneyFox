@@ -9,7 +9,6 @@ using NLog;
 using System.Globalization;
 using System.Threading.Tasks;
 
-#nullable enable
 namespace MoneyFox.Win.ViewModels.Accounts
 {
     public abstract class ModifyAccountViewModel : ObservableRecipient

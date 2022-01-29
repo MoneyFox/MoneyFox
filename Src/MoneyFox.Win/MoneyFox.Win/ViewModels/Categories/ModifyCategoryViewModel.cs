@@ -28,7 +28,7 @@ namespace MoneyFox.Win.ViewModels.Categories
         ///     Constructor
         /// </summary>
         protected ModifyCategoryViewModel(IMediator mediator,
-            NavigationService navigationService,
+            INavigationService navigationService,
             IMapper mapper,
             IDialogService dialogService)
         {
@@ -43,7 +43,7 @@ namespace MoneyFox.Win.ViewModels.Categories
 
         protected abstract Task SaveCategoryAsync();
 
-        protected NavigationService NavigationService { get; }
+        protected INavigationService NavigationService { get; }
 
         protected IDialogService DialogService { get; }
 

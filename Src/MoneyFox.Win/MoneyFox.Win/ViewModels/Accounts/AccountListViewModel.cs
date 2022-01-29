@@ -32,7 +32,7 @@ namespace MoneyFox.Win.ViewModels.Accounts
         private readonly IMapper mapper;
         private readonly IDialogService dialogService;
         private readonly ISettingsFacade settingsFacade;
-        private readonly NavigationService navigationService;
+        private readonly INavigationService navigationService;
 
         private bool isRunning;
 
@@ -44,7 +44,7 @@ namespace MoneyFox.Win.ViewModels.Accounts
             IBalanceCalculationService balanceCalculationService,
             IDialogService dialogService,
             ISettingsFacade settingsFacade,
-            NavigationService navigationService)
+            INavigationService navigationService)
         {
             this.mediator = mediator;
             this.mapper = mapper;

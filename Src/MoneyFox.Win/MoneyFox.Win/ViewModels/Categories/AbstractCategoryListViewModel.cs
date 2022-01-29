@@ -25,13 +25,10 @@ namespace MoneyFox.Win.ViewModels.Categories
         private ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> source =
             new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>();
 
-        /// <summary>
-        ///     Base class for the category list user control
-        /// </summary>
         protected AbstractCategoryListViewModel(IMediator mediator,
             IMapper mapper,
             IDialogService dialogService,
-            NavigationService navigationService)
+            INavigationService navigationService)
         {
             Mediator = mediator;
             Mapper = mapper;
@@ -40,7 +37,7 @@ namespace MoneyFox.Win.ViewModels.Categories
             IsActive = true;
         }
 
-        protected NavigationService NavigationService { get; }
+        protected INavigationService NavigationService { get; }
 
         protected IMediator Mediator { get; }
 
