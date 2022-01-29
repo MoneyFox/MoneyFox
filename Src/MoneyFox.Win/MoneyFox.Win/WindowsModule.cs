@@ -1,6 +1,8 @@
 ﻿using Autofac;
+using MediatR;
 using MoneyFox.Core;
 using MoneyFox.Core.Interfaces;
+using MoneyFox.Win.AutoMapper;
 using MoneyFox.Win.Infrastructure;
 using MoneyFox.Win.Pages;
 using MoneyFox.Win.Pages.Accounts;
@@ -35,6 +37,9 @@ namespace MoneyFox.Win
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
             builder.RegisterType<WindowsFileStore>().As<IFileStore>();
             builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
+
+            builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
+            builder.RegisterInstance(AutoMapperFactory.Create());
 
             builder.RegisterAssemblyTypes(ThisAssembly)
                 .Where(t => !t.Name.StartsWith("DesignTime", StringComparison.CurrentCultureIgnoreCase))

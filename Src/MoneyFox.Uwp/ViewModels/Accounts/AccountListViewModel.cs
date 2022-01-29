@@ -22,7 +22,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-#nullable enable
 namespace MoneyFox.Uwp.ViewModels.Accounts
 {
     public class AccountListViewModel : ObservableRecipient, IAccountListViewModel

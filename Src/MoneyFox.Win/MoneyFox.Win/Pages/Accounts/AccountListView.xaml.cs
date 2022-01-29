@@ -6,18 +6,12 @@ using Windows.ApplicationModel;
 
 namespace MoneyFox.Win.Pages.Accounts
 {
-    /// <summary>
-    ///     View to display an list of accounts.
-    /// </summary>
     public sealed partial class AccountListView : BaseView
     {
         public override bool ShowHeader => false;
 
         private AccountListViewModel ViewModel => (AccountListViewModel)DataContext;
 
-        /// <summary>
-        ///     Initialize View.
-        /// </summary>
         public AccountListView()
         {
             InitializeComponent();

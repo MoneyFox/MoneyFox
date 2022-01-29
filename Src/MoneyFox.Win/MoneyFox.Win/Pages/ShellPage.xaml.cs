@@ -2,6 +2,7 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
+using MoneyFox.Win.Pages.Accounts;
 using MoneyFox.Win.Pages.Payments;
 using MoneyFox.Win.Pages.Settings;
 using MoneyFox.Win.ViewModels;
@@ -22,8 +23,8 @@ namespace MoneyFox.Win.Pages
 
             MainContentFrame.Navigated += MainContentFrame_Navigated;
             NavView.BackRequested += MenuNav_BackRequested;
-
             PointerPressed += OnMouseButtonClicked;
+            MainContentFrame.Navigate(typeof(AccountListView));
         }
 
         private void AddPaymentItemTapped(object sender, TappedRoutedEventArgs e)

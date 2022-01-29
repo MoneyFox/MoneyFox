@@ -3,7 +3,6 @@ using MoneyFox.Win.Groups;
 using MoneyFox.Win.ViewModels.Accounts;
 using System.Collections.ObjectModel;
 
-#nullable enable
 namespace MoneyFox.Win.ViewModels.Interfaces
 {
     /// <summary>
