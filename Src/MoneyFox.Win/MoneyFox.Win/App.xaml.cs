@@ -2,6 +2,7 @@
 {
     using Autofac;
     using Microsoft.UI.Xaml;
+    using MoneyFox.Win.Services;
 
     public partial class App : Application
     {
@@ -10,7 +11,7 @@
             InitializeComponent();
         }
 
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule<WindowsModule>();
@@ -18,6 +19,8 @@
 
             m_window = new MainWindow();
             m_window.Activate();
+
+            await ThemeSelectorService.SetRequestedThemeAsync();
         }
 
         private Window m_window;

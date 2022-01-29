@@ -1,5 +1,4 @@
-﻿#nullable enable
-namespace MoneyFox.Win.Pages.Settings
+﻿namespace MoneyFox.Win.Pages.Settings
 {
     public sealed partial class SettingsHostView
     {

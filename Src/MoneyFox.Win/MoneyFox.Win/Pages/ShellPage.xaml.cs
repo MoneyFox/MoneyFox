@@ -2,6 +2,8 @@
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
+using MoneyFox.Win.Pages.Payments;
+using MoneyFox.Win.Pages.Settings;
 using MoneyFox.Win.ViewModels;
 using Windows.System;
 using Windows.UI.Core;
@@ -9,9 +11,6 @@ using static MoneyFox.Win.ViewModels.ShellViewModel;
 
 namespace MoneyFox.Win.Pages
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class ShellPage : Page
     {
         private ShellViewModel ViewModel => (ShellViewModel)DataContext;
@@ -27,9 +26,9 @@ namespace MoneyFox.Win.Pages
             PointerPressed += OnMouseButtonClicked;
         }
 
-        private void AddPaymentItemTapped(object sender, Microsoft.UI.Xaml.Input.TappedRoutedEventArgs e)
+        private void AddPaymentItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            //MainContentFrame.NavigateToType(typeof(AddPaymentPage), null, navOptions);
+            MainContentFrame.Navigate(typeof(AddPaymentView));
         }
 
         private void MenuNav_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
@@ -66,7 +65,7 @@ namespace MoneyFox.Win.Pages
             navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
             if(args.IsSettingsInvoked)
             {
-                //MainContentFrame.NavigateToType(typeof(SettingsPage), null, navOptions);
+                MainContentFrame.NavigateToType(typeof(SettingsHostView), null, navOptions);
             }
             else
             {
