@@ -53,6 +53,13 @@
     <None Remove="Pages\UserControls\BalanceControl.xaml" />
     <None Remove="Pages\UserControls\IncomeExpenseBalanceUserControl.xaml" />
     <None Remove="Pages\UserControls\Loading.xaml" />
+    <None Remove="Style\AppStyles.xaml" />
+    <None Remove="Style\ColorsDark.xaml" />
+    <None Remove="Style\ColorsLight.xaml" />
+    <None Remove="Style\ControlStyles.xaml" />
+    <None Remove="Style\TextStyles.xaml" />
+    <None Remove="Style\_FontSizes.xaml" />
+    <None Remove="Style\_Thickness.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Page Remove="Pages\Statistics\StatisticAccountMonthlyCashflowView.xaml" />
@@ -166,6 +173,27 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\UserControls\Loading.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\AppStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\ColorsDark.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\ColorsLight.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\ControlStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\TextStyles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\_FontSizes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Style\_Thickness.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
