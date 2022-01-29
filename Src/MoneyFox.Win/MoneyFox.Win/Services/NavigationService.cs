@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Xaml.Controls;
 using MoneyFox.Win.ViewModels;
+using MoneyFox.Win.ViewModels.Accounts;
 using System;
 using System.Collections.Concurrent;
 using System.Linq;
@@ -70,7 +71,7 @@ namespace MoneyFox.Win.Services
         public void Initialize(object frame)
         {
             Frame = (Frame)frame;
-            Navigate<ShellViewModel>();
+            Navigate<AccountListViewModel>();
         }
 
         public bool Navigate<TViewModel>(object parameter = null) => Navigate(typeof(TViewModel), parameter);

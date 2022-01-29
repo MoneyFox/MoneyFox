@@ -1,10 +1,11 @@
-﻿using Microsoft.UI.Input;
+﻿using CommonServiceLocator;
+using Microsoft.UI.Input;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
-using MoneyFox.Win.Pages.Accounts;
 using MoneyFox.Win.Pages.Payments;
 using MoneyFox.Win.Pages.Settings;
+using MoneyFox.Win.Services;
 using MoneyFox.Win.ViewModels;
 using Windows.System;
 using Windows.UI.Core;
@@ -24,7 +25,9 @@ namespace MoneyFox.Win.Pages
             MainContentFrame.Navigated += MainContentFrame_Navigated;
             NavView.BackRequested += MenuNav_BackRequested;
             PointerPressed += OnMouseButtonClicked;
-            MainContentFrame.Navigate(typeof(AccountListView));
+
+            var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
+            navigationService.Initialize(MainContentFrame);
         }
 
         private void AddPaymentItemTapped(object sender, TappedRoutedEventArgs e)

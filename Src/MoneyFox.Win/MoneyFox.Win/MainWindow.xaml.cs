@@ -1,9 +1,8 @@
 ﻿namespace MoneyFox.Win
 {
-    using CommonServiceLocator;
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
-    using MoneyFox.Win.Services;
+    using MoneyFox.Win.Pages;
 
     public sealed partial class MainWindow : Window
     {
@@ -11,9 +10,7 @@
         {
             InitializeComponent();
             var rootFrame = Content as Frame;
-
-            var navigationService = ServiceLocator.Current.GetInstance<INavigationService>();
-            navigationService.Initialize(rootFrame);
+            rootFrame.Navigate(typeof(ShellPage), null);
         }
     }
 }
