@@ -107,14 +107,14 @@ namespace MoneyFox.Win
 
         private static void CloseAllOpenDialogs()
         {
-            IReadOnlyList<Popup>? openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
-            foreach(Popup? popup in openedpopups)
-            {
-                if(popup.Child is ContentDialog dialog)
-                {
-                    dialog.Hide();
-                }
-            }
+            //IReadOnlyList<Popup>? openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
+            //foreach(Popup? popup in openedpopups)
+            //{
+            //    if(popup.Child is ContentDialog dialog)
+            //    {
+            //        dialog.Hide();
+            //    }
+            //}
         }
     }
 }

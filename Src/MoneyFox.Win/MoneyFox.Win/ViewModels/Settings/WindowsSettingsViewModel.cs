@@ -3,7 +3,6 @@ using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using System.Windows.Input;
 
-#nullable enable
 namespace MoneyFox.Win.ViewModels.Settings
 {
     public class WindowsSettingsViewModel : SettingsViewModel, IWindowsSettingsViewModel
@@ -18,7 +17,7 @@ namespace MoneyFox.Win.ViewModels.Settings
             this.themeSelectorAdapter = themeSelectorAdapter;
         }
 
-        public RelayCommand InitializeCommand => new RelayCommand(async () => await InitializeAsync());
+        public AsyncRelayCommand InitializeCommand => new (async () => await InitializeAsync());
 
         public string ElementTheme => themeSelectorAdapter.Theme;
 

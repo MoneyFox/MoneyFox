@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
 
-#nullable enable
 namespace MoneyFox.Win.ViewModels.Settings
 {
     public class DesignTimeWindowsSettingsViewModel : DesignTimeSettingsViewModel, IWindowsSettingsViewModel
@@ -10,6 +9,6 @@ namespace MoneyFox.Win.ViewModels.Settings
 
         public ICommand SwitchThemeCommand { get; } = null!;
 
-        public RelayCommand InitializeCommand { get; } = null!;
+        public AsyncRelayCommand InitializeCommand { get; } = null!;
     }
 }
