@@ -222,6 +222,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build WinUI Project'
     inputs:
-        solution: '$(solutionWinUI)'
-        platform: 'x64'
-        configuration: '$(BuildConfiguration)'
+       solution: '$(solutionWinUI)'
+       platform: 'x64'
+       configuration: '$(BuildConfiguration)'
+       msbuildArgs: '/p:PublishReadyToRun=false'
