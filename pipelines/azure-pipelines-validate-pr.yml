@@ -201,9 +201,15 @@ jobs:
 
   - task: UseDotNet@2
     displayName: Use .NET 6.0
+    enabled: false
     inputs:
       packageType: 'sdk'
       version: '6.0.x'
+
+  - task: NuGetToolInstaller@1
+    displayName: 'Use NuGet'
+    inputs:
+      versionSpec: 6.x
 
   - task: DotNetCoreCLI@2
     displayName: Restore NuGets
