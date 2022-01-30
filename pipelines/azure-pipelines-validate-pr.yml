@@ -174,7 +174,8 @@ jobs:
     vmImage: windows-2022
 
   variables:
-    solutionWinUI: '**/MoneyFox.WinUI.sln'
+    solutionWinUI: '**/MoneyFox.Win (Package).wapproj'
+    appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
   steps:
   - task: DownloadSecureFile@1
@@ -222,7 +223,7 @@ jobs:
   - task: VSBuild@1
     displayName: 'Build WinUI Project'
     inputs:
-       solution: '$(solutionWinUI)'
-       platform: 'x64'
-       configuration: '$(BuildConfiguration)'
-       msbuildArgs: '/p:PublishReadyToRun=false'
+      solution: '$(solution)'
+      msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
+      platform: x64
+      configuration: '$(BuildConfiguration)'
