@@ -10,7 +10,6 @@
     <UseWinUI>true</UseWinUI>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Pages\Statistics\StatisticCategoryProgressionView.xaml.cs" />
     <Compile Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
@@ -57,7 +56,6 @@
     <None Remove="Style\_Thickness.xaml" />
   </ItemGroup>
   <ItemGroup>
-    <Page Remove="Pages\Statistics\StatisticCategoryProgressionView.xaml" />
     <Page Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml" />
   </ItemGroup>
 
@@ -82,6 +80,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\MoneyFox.Core\MoneyFox.Core.csproj" />
     <ProjectReference Include="..\..\MoneyFox.Win.Infrastructure\MoneyFox.Win.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\Statistics\StatisticCategoryProgressionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

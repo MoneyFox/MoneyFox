@@ -1,8 +1,8 @@
 ﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using MoneyFox.Core.Resources;
+using MoneyFox.Win.ViewModels.Statistics;
 
-#nullable enable
 namespace MoneyFox.Win.Pages.Statistics
 {
     public sealed partial class StatisticCategoryProgressionView
