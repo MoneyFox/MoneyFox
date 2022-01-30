@@ -174,7 +174,7 @@ jobs:
     vmImage: windows-2022
 
   variables:
-    solution: '**/*.wapproj'
+    solution: '**/MoneyFox.WinUI.sln'
     appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
   steps:
@@ -205,12 +205,10 @@ jobs:
       packageType: 'sdk'
       version: '6.0.x'
 
-  - task: DotNetCoreCLI@2
-    enabled: false
+  - task: NuGetCommand@2
+    displayName: Restore NuGets
     inputs:
-      command: 'restore'
-      projects: '**/*.csproj'
-      feedsToUse: 'select'
+      restoreSolution: '$(solution)'
 
   - task: DotNetCoreCLI@2
     displayName: 'Run Tests'
