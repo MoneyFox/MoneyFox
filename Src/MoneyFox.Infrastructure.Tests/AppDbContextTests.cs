@@ -25,7 +25,7 @@ namespace MoneyFox.Infrastructure.Tests
             publisher = Substitute.For<IPublisher>();
             settingsFacade = Substitute.For<ISettingsFacade>();
         }
-        
+
         [Fact]
         public async Task DoesNotSendEvent_WhenNothingSaved()
         {
@@ -38,12 +38,12 @@ namespace MoneyFox.Infrastructure.Tests
 
             // Act
             await context.SaveChangesAsync();
-            
+
             // Assert
             await publisher.DidNotReceive().Publish(Arg.Any<DbEntityModifiedEvent>());
             _ = settingsFacade.DidNotReceive().LastDatabaseUpdate;
         }
-        
+
         [Fact]
         public async Task SetCreatedDateAndSendEventOnSaveChanges()
         {
@@ -54,21 +54,21 @@ namespace MoneyFox.Infrastructure.Tests
 
             var context = new AppDbContext(options, publisher, settingsFacade);
             var account = new Account("Test");
-            
+
             // Act
             context.Add(account);
             await context.SaveChangesAsync();
-            
+
             // Assert
             var loadedAccount = context.Accounts.First();
             loadedAccount.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-            
+
             account.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-            
+
             await publisher.Received(1).Publish(Arg.Any<DbEntityModifiedEvent>());
             settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
         }
-        
+
         [Fact]
         public async Task SetModifiedDateAndSendEventOnSaveChanges()
         {
@@ -81,17 +81,17 @@ namespace MoneyFox.Infrastructure.Tests
             var account = new Account("Test");
             context.Add(account);
             await context.SaveChangesAsync();
-            
+
             // Act
             account.UpdateAccount("NewTest");
             await context.SaveChangesAsync();
-            
+
             // Assert
             var loadedAccount = context.Accounts.First();
             loadedAccount.LastModified.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-            
+
             account.LastModified.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
-            
+
             await publisher.Received().Publish(Arg.Any<DbEntityModifiedEvent>());
             settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
         }
