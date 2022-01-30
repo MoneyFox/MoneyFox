@@ -174,7 +174,7 @@ jobs:
     vmImage: windows-2022
 
   variables:
-    solutionWinUI: '**/MoneyFox.Win (Package).wapproj'
+    solution: '**/*.wapproj'
     appxPackageDir: '$(build.artifactStagingDirectory)\AppxPackages\\'
 
   steps:
