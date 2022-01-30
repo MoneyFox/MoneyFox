@@ -14,7 +14,11 @@ namespace MoneyFox.Win.Pages.Accounts
             InitializeComponent();
         }
 
-        private async void AddAccountTapped(object sender, TappedRoutedEventArgs e) =>
-            await new AddAccountDialog().ShowAsync();
+        private async void AddAccountTapped(object sender, TappedRoutedEventArgs e)
+        {
+            var addAccountDialog = new AddAccountDialog();
+            addAccountDialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
+            await addAccountDialog.ShowAsync();
+        }
     }
 }

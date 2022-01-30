@@ -19,6 +19,10 @@ namespace MoneyFox.Win.Pages.Categories
         }
 
         private async void AddNewCategoryClick(object sender, RoutedEventArgs e)
-            => await new AddCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync();
+        {
+            var messageDialog = new AddCategoryDialog { RequestedTheme = ThemeSelectorService.Theme };
+            messageDialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
+            await messageDialog.ShowAsync();
+        }
     }
 }

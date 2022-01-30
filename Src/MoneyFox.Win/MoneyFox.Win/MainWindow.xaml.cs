@@ -6,11 +6,14 @@
 
     public sealed partial class MainWindow : Window
     {
+        // This is a temporary fix until WinUI Dialogs are fixed
+        public static Frame RootFrame { get; private set; }
+
         public MainWindow()
         {
             InitializeComponent();
-            var rootFrame = Content as Frame;
-            rootFrame.Navigate(typeof(ShellPage), null);
+            RootFrame = Content as Frame;
+            RootFrame.Navigate(typeof(ShellPage), null);
         }
     }
 }
