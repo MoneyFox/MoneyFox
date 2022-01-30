@@ -224,6 +224,6 @@ jobs:
     displayName: 'Build WinUI Project'
     inputs:
       solution: '$(solution)'
-      msbuildArgs: '/p:AppxBundlePlatforms="x86|x64|arm64" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
+      msbuildArgs: '/p:AppxBundlePlatforms="x86" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=CI'
       platform: x64
       configuration: '$(BuildConfiguration)'
