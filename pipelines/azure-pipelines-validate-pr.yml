@@ -206,6 +206,7 @@ jobs:
       version: '6.0.x'
 
   - task: DotNetCoreCLI@2
+    enabled: false
     inputs:
       command: 'restore'
       projects: '**/*.csproj'
