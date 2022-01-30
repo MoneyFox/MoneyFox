@@ -1,5 +1,5 @@
-﻿#nullable enable
-using MoneyFox.Core.Resources;
+﻿using MoneyFox.Core.Resources;
+using MoneyFox.Win.ViewModels.Statistics;
 
 namespace MoneyFox.Win.Pages.Statistics
 {
