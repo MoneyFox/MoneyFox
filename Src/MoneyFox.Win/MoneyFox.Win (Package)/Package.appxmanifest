@@ -7,7 +7,7 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="57598ApplySolutionsSoftwa.MoneyFox"
+    Name="57598ApplySolutionsSoftwa.MoneyFoxBeta"
     Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
     Version="7.3.7802.0" />
 

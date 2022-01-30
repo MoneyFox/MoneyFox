@@ -59,8 +59,8 @@ namespace MoneyFox.Win
         //*****************
         //  Statistics
         //*****************
-        //public static StatisticCashFlowViewModel StatisticCashFlowVm =>
-        //    ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
+        public static StatisticCashFlowViewModel StatisticCashFlowVm =>
+            ServiceLocator.Current.GetInstance<StatisticCashFlowViewModel>();
 
         //public static StatisticCategoryProgressionViewModel StatisticCategoryProgressionVm =>
         //    ServiceLocator.Current.GetInstance<StatisticCategoryProgressionViewModel>();

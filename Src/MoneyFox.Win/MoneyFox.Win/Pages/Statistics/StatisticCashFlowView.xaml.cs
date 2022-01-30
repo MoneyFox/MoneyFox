@@ -1,9 +1,9 @@
 ﻿using MoneyFox.Core.Resources;
+using MoneyFox.Win.ViewModels.Statistics;
 
-#nullable enable
 namespace MoneyFox.Win.Pages.Statistics
 {
-    public sealed partial class StatisticCashFlowView
+    public partial class StatisticCashFlowView : BaseView
     {
         public StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
 
@@ -14,8 +14,5 @@ namespace MoneyFox.Win.Pages.Statistics
             InitializeComponent();
             DataContext = ViewModelLocator.StatisticCashFlowVm;
         }
-
-        private void OpenFilterFlyout(object sender, RoutedEventArgs e) =>
-            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
     }
 }

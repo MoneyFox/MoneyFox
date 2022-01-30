@@ -67,7 +67,7 @@ namespace MoneyFox.Win.ViewModels.Statistics
         {
             if(item.Type == StatisticType.Cashflow)
             {
-                //navigationService.Navigate<StatisticCashFlowViewModel>();
+                navigationService.Navigate<StatisticCashFlowViewModel>();
             }
             else if(item.Type == StatisticType.MonthlyAccountCashFlow)
             {

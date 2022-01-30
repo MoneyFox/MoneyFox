@@ -10,6 +10,7 @@ using MoneyFox.Win.Pages.Categories;
 using MoneyFox.Win.Pages.Payments;
 using MoneyFox.Win.Pages.Settings;
 using MoneyFox.Win.Pages.Statistics;
+using MoneyFox.Win.Pages.Statistics.StatisticCategorySummary;
 using MoneyFox.Win.Services;
 using MoneyFox.Win.ViewModels;
 using MoneyFox.Win.ViewModels.Accounts;
@@ -18,6 +19,7 @@ using MoneyFox.Win.ViewModels.DataBackup;
 using MoneyFox.Win.ViewModels.Payments;
 using MoneyFox.Win.ViewModels.Settings;
 using MoneyFox.Win.ViewModels.Statistics;
+using MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
 using System;
 
 namespace MoneyFox.Win
@@ -59,11 +61,11 @@ namespace MoneyFox.Win
             NavigationService.Register<EditPaymentViewModel, EditPaymentView>();
             NavigationService.Register<CategoryListViewModel, CategoryListView>();
             NavigationService.Register<SettingsViewModel, SettingsHostView>();
-            //NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
+            NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
             //NavigationService.Register<StatisticCategoryProgressionViewModel, StatisticCategoryProgressionView>();
             //NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashflowView>();
             //NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
-            //NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
+            NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
             NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();
             NavigationService.Register<BackupViewModel, BackupView>();
             NavigationService.Register<WindowsSettingsViewModel, SettingsHostView>();

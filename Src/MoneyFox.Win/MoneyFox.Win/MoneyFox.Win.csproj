@@ -11,14 +11,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Pages\Statistics\StatisticAccountMonthlyCashflowView.xaml.cs" />
-    <Compile Remove="Pages\Statistics\StatisticCashFlowView.xaml.cs" />
     <Compile Remove="Pages\Statistics\StatisticCategoryProgressionView.xaml.cs" />
     <Compile Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
     <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
     <Compile Remove="ViewModels\Statistics\StatisticAccountMonthlyCashflowViewModel.cs" />
-    <Compile Remove="ViewModels\Statistics\StatisticCashFlowViewModel.cs" />
     <Compile Remove="ViewModels\Statistics\StatisticCategoryProgressionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Page Remove="Pages\Statistics\StatisticAccountMonthlyCashflowView.xaml" />
-    <Page Remove="Pages\Statistics\StatisticCashFlowView.xaml" />
     <Page Remove="Pages\Statistics\StatisticCategoryProgressionView.xaml" />
     <Page Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml" />
   </ItemGroup>
@@ -75,6 +72,7 @@
     <PackageReference Include="CommunityToolkit.WinUI.UI.Animations" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls" Version="7.1.2" />
     <PackageReference Include="CommunityToolkit.WinUI.UI.Controls.Media" Version="7.1.2" />
+    <PackageReference Include="LiveChartsCore.SkiaSharpView.WinUI" Version="2.0.0-beta.101" />
     <PackageReference Include="MediatR" Version="9.0.0" />
     <PackageReference Include="Microsoft.AppCenter.Analytics" Version="4.5.0" />
     <PackageReference Include="Microsoft.AppCenter.Crashes" Version="4.5.0" />
@@ -88,6 +86,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\MoneyFox.Core\MoneyFox.Core.csproj" />
     <ProjectReference Include="..\..\MoneyFox.Win.Infrastructure\MoneyFox.Win.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\Statistics\StatisticCashFlowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>
