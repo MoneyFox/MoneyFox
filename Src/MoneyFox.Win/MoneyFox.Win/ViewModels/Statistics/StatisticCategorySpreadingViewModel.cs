@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using LiveChartsCore;
+using LiveChartsCore.SkiaSharpView;
 using MediatR;
 using MoneyFox.Core._Pending_.Common.Facades;
 using MoneyFox.Core.Aggregates.Payments;
@@ -8,16 +10,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using MoneyFox.Core._Pending_.Common.Extensions;
 
-#nullable enable
 namespace MoneyFox.Win.ViewModels.Statistics
 {
     /// <summary>
     ///     Representation of the category Spreading View
     /// </summary>
-    public class StatisticCategorySpreadingViewModel : StatisticViewModel, IStatisticCategorySpreadingViewModel
+    public class StatisticCategorySpreadingViewModel : StatisticViewModel
     {
-        private ObservableCollection<StatisticEntry> statisticItems = new ObservableCollection<StatisticEntry>();
         private readonly ISettingsFacade settingsFacade;
         private PaymentType selectedPaymentType;
 
@@ -31,35 +32,10 @@ namespace MoneyFox.Win.ViewModels.Statistics
         public PaymentType SelectedPaymentType
         {
             get => selectedPaymentType;
-            set
-            {
-                if(selectedPaymentType == value)
-                {
-                    return;
-                }
-
-                selectedPaymentType = value;
-                OnPropertyChanged();
-            }
+            set => SetProperty(ref selectedPaymentType, value);
         }
 
-        /// <summary>
-        ///     Statistic items to display.
-        /// </summary>
-        public ObservableCollection<StatisticEntry> StatisticItems
-        {
-            get => statisticItems;
-            private set
-            {
-                if(statisticItems == value)
-                {
-                    return;
-                }
-
-                statisticItems = value;
-                OnPropertyChanged();
-            }
-        }
+        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
 
         /// <summary>
         ///     Amount of categories to show. All Payments not fitting in here will go to the other category
@@ -93,9 +69,17 @@ namespace MoneyFox.Win.ViewModels.Statistics
                     SelectedPaymentType,
                     NumberOfCategoriesToShow));
 
-            statisticEntries.ToList().ForEach(x => x.Label = $"{x.Label} ({x.ValueLabel})");
-
-            StatisticItems = new ObservableCollection<StatisticEntry>(statisticEntries);
+            var pieSeries = statisticEntries.Select(x =>
+                new PieSeries<decimal>
+                {
+                    Name = x.Label,
+                    TooltipLabelFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
+                    DataLabelsFormatter = point => $"{point.Context.Series.Name}: {point.PrimaryValue:C}",
+                    Values = new List<decimal> { x.Value },
+                    InnerRadius = 150
+                });
+            Series.Clear();
+            Series.AddRange(pieSeries);
         }
     }
 }

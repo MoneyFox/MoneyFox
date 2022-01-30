@@ -10,12 +10,6 @@
     <UseWinUI>true</UseWinUI>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml.cs" />
-    <Compile Remove="ViewModels\DesignTime\DesignTimeSelectDateRangeDialogViewModel.cs" />
-    <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticCategorySpreadingViewModel.cs" />
-    <Compile Remove="ViewModels\DesignTime\DesignTimeStatisticSelectorViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Pages\Accounts\AccountListToolbar.xaml" />
     <None Remove="Pages\Accounts\AccountListView.xaml" />
     <None Remove="Pages\Accounts\AddAccountDialog.xaml" />
@@ -55,9 +49,6 @@
     <None Remove="Style\_FontSizes.xaml" />
     <None Remove="Style\_Thickness.xaml" />
   </ItemGroup>
-  <ItemGroup>
-    <Page Remove="Pages\Statistics\StatisticCategorySpreadingView.xaml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.3.0" />
@@ -80,6 +71,12 @@
   <ItemGroup>
     <ProjectReference Include="..\..\MoneyFox.Core\MoneyFox.Core.csproj" />
     <ProjectReference Include="..\..\MoneyFox.Win.Infrastructure\MoneyFox.Win.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Pages\Statistics\StatisticCategorySpreadingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using MoneyFox.Core;
 using MoneyFox.Core.Resources;
+using MoneyFox.Win.ViewModels.Statistics;
 using System.Collections.Generic;
 
 namespace MoneyFox.Win.ViewModels.DesignTime

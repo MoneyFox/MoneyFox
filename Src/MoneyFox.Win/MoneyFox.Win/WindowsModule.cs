@@ -62,9 +62,9 @@ namespace MoneyFox.Win
             NavigationService.Register<CategoryListViewModel, CategoryListView>();
             NavigationService.Register<SettingsViewModel, SettingsHostView>();
             NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
-            //NavigationService.Register<StatisticCategoryProgressionViewModel, StatisticCategoryProgressionView>();
-            //NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashflowView>();
-            //NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
+            NavigationService.Register<StatisticCategoryProgressionViewModel, StatisticCategoryProgressionView>();
+            NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashflowView>();
+            NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
             NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
             NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();
             NavigationService.Register<BackupViewModel, BackupView>();
