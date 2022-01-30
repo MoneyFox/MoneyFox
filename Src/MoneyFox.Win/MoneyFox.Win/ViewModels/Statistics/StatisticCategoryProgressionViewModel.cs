@@ -1,13 +1,23 @@
 ﻿using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using LiveChartsCore;
+using LiveChartsCore.Kernel.Sketches;
+using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
 using MediatR;
 using MoneyFox.Core._Pending_.Common.Messages;
 using MoneyFox.Core.Queries.Categories.GetCategoryById;
 using MoneyFox.Core.Queries.Statistics;
 using MoneyFox.Core.Queries.Statistics.Queries;
+using MoneyFox.Win.Pages.Payments;
+using MoneyFox.Win.Services;
+using MoneyFox.Win.ViewModels.Categories;
+using SkiaSharp;
 using System;
+using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -18,7 +28,6 @@ namespace MoneyFox.Win.ViewModels.Statistics
     /// </summary>
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
-        private BarChart chart = new BarChart();
         private bool hasNoData = true;
         private CategoryViewModel selectedCategory;
         private readonly IMapper mapper;
@@ -58,23 +67,12 @@ namespace MoneyFox.Win.ViewModels.Statistics
             }
         }
 
-        /// <summary>
-        ///     Chart to render.
-        /// </summary>
-        public BarChart Chart
-        {
-            get => chart;
-            set
-            {
-                if(chart == value)
-                {
-                    return;
-                }
+        public ObservableCollection<ISeries> Series { get; } = new ObservableCollection<ISeries>();
 
-                chart = value;
-                OnPropertyChanged();
-            }
-        }
+        public List<ICartesianAxis> XAxis { get; } = new List<ICartesianAxis>
+        {
+            new Axis { IsVisible = false }
+        };
 
         /// <summary>
         ///     Chart to render.
@@ -111,26 +109,18 @@ namespace MoneyFox.Win.ViewModels.Statistics
 
             HasNoData = !statisticItems.Any();
 
-            Chart = new BarChart
+            var columnSeries = new ColumnSeries<decimal>
             {
-                Entries = statisticItems.Select(
-                        x => new ChartEntry((float)x.Value)
-                        {
-                            Label = x.Label,
-                            ValueLabel = x.ValueLabel,
-                            Color = SKColor.Parse(x.Color),
-                            ValueLabelColor = SKColor.Parse(x.Color)
-                        })
-                    .ToList(),
-                BackgroundColor = new SKColor(
-                    ChartOptions.BackgroundColor.R,
-                    ChartOptions.BackgroundColor.G,
-                    ChartOptions.BackgroundColor.B,
-                    ChartOptions.BackgroundColor.A),
-                Margin = ChartOptions.Margin,
-                LabelTextSize = ChartOptions.LabelTextSize,
-                Typeface = SKTypeface.FromFamilyName(ChartOptions.TypeFace)
+                Name = SelectedCategory.Name,
+                TooltipLabelFormatter = point => $"{point.PrimaryValue:C}",
+                DataLabelsFormatter = point => $"{point.PrimaryValue:C}",
+                DataLabelsPaint = new SolidColorPaint(SKColor.Parse("b4b2b0")),
+                Values = statisticItems.Select(x => x.Value),
+                Stroke = new SolidColorPaint(SKColors.DarkRed)
             };
+
+            Series.Clear();
+            Series.Add(columnSeries);
         }
     }
 }
