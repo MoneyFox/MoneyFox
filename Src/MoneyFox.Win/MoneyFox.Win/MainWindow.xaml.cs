@@ -3,6 +3,7 @@
     using Microsoft.UI.Xaml;
     using Microsoft.UI.Xaml.Controls;
     using MoneyFox.Win.Pages;
+    using MoneyFox.Win.Services;
 
     public sealed partial class MainWindow : Window
     {
@@ -12,7 +13,7 @@
         public MainWindow()
         {
             InitializeComponent();
-            RootFrame = Content as Frame;
+            RootFrame = (Frame)Content;
             RootFrame.Navigate(typeof(ShellPage), null);
         }
     }

@@ -41,26 +41,31 @@ namespace MoneyFox.Win.Services
                                 {
                                     frameworkElement.RequestedTheme = Theme;
 
-                                    Color color;
+                                    string? colorString;
                                     if(Theme == ElementTheme.Default)
                                     {
-                                        color = ConvertColorFromHexString(Application.Current
-                                            .Resources["ColorCustomBackground"]
-                                            .ToString());
+                                        colorString = Application.Current.Resources["ColorCustomBackground"].ToString();
                                     }
                                     else
                                     {
-                                        color = Theme == ElementTheme.Dark
-                                            ? ConvertColorFromHexString("#FF121212")
-                                            : ConvertColorFromHexString("#FFF0F3F9");
+                                        colorString = Theme == ElementTheme.Dark
+                                            ? "#FF121212"
+                                            : "#FFF0F3F9";
                                     }
 
+                                    if(colorString == null)
+                                    {
+                                        return;
+                                    }
+
+                                    var color = ConvertColorFromHexString(colorString);
+
                                     //remove the solid-colored backgrounds behind the caption controls and system back button
-                                    ApplicationViewTitleBar viewTitleBar = ApplicationView.GetForCurrentView().TitleBar;
-                                    viewTitleBar.BackgroundColor = color;
-                                    viewTitleBar.ButtonBackgroundColor = color;
-                                    viewTitleBar.InactiveBackgroundColor = color;
-                                    viewTitleBar.ButtonInactiveBackgroundColor = color;
+                                    var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+                                    titleBar.BackgroundColor = color;
+                                    titleBar.ButtonBackgroundColor = color;
+                                    titleBar.InactiveBackgroundColor = color;
+                                    titleBar.ButtonInactiveBackgroundColor = color;
                                 }
                                 catch(AccessViolationException ex)
                                 {
