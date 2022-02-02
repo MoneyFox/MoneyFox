@@ -11,6 +11,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="App.config" />
     <None Remove="Pages\Accounts\AccountListToolbar.xaml" />
     <None Remove="Pages\Accounts\AccountListView.xaml" />
     <None Remove="Pages\Accounts\AddAccountDialog.xaml" />
@@ -49,6 +50,11 @@
     <None Remove="Style\TextStyles.xaml" />
     <None Remove="Style\_FontSizes.xaml" />
     <None Remove="Style\_Thickness.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
