@@ -12,7 +12,11 @@
         public MainWindow()
         {
             InitializeComponent();
-            RootFrame = Content as Frame;
+
+            ExtendsContentIntoTitleBar = true;
+            SetTitleBar(AppTitleBar);
+
+            RootFrame = ShellFrame;
             RootFrame.Navigate(typeof(ShellPage), null);
         }
     }

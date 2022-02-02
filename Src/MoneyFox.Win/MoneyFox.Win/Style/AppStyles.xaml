@@ -15,6 +15,13 @@
     <SolidColorBrush x:Key="ListItemBrush" Color="{StaticResource ListItemColor}" />
     <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
 
+    <SolidColorBrush x:Key="TitleBarBrush" Color="{ThemeResource ColorTopBarBackground}" />
+
+    <SolidColorBrush x:Key="WindowCaptionBackground" Color="{ThemeResource ColorTopBarBackground}" />
+    <SolidColorBrush x:Key="WindowCaptionBackgroundDisabled" Color="{ThemeResource ColorTopBarBackground}" />
+    <SolidColorBrush x:Key="WindowCaptionForeground" Color="{ThemeResource AppForegroundColorPrimaryColor}" />
+    <SolidColorBrush x:Key="WindowCaptionForegroundDisabled" Color="{ThemeResource AppForegroundColorSecondary}" />
+
     <!--  Accent Color  -->
     <SolidColorBrush x:Key="AccentColorBrush" Color="{ThemeResource SystemAccentColor}" />
     <SolidColorBrush x:Key="SystemControlBackgroundAccentBrush" Color="{ThemeResource SystemAccentColor}" />
