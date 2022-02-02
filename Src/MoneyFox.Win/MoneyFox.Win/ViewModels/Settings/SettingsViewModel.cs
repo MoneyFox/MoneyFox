@@ -14,8 +14,7 @@ namespace MoneyFox.Win.ViewModels.Settings
         private readonly ISettingsFacade settingsFacade;
         private readonly IDialogService dialogService;
 
-        public SettingsViewModel(ISettingsFacade settingsFacade,
-            IDialogService dialogService)
+        public SettingsViewModel(ISettingsFacade settingsFacade, IDialogService dialogService)
         {
             this.settingsFacade = settingsFacade;
             this.dialogService = dialogService;
