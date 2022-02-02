@@ -11,7 +11,6 @@ using MoneyFox.Core.Queries.Categories.GetCategoryById;
 using MoneyFox.Core.Queries.Statistics;
 using MoneyFox.Core.Queries.Statistics.Queries;
 using MoneyFox.Win.Pages.Payments;
-using MoneyFox.Win.Services;
 using MoneyFox.Win.ViewModels.Categories;
 using SkiaSharp;
 using System;
@@ -74,9 +73,6 @@ namespace MoneyFox.Win.ViewModels.Statistics
             new Axis { IsVisible = false }
         };
 
-        /// <summary>
-        ///     Chart to render.
-        /// </summary>
         public bool HasNoData
         {
             get => hasNoData;
@@ -93,8 +89,7 @@ namespace MoneyFox.Win.ViewModels.Statistics
         }
 
         public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
-            async ()
-                => await new SelectCategoryDialog { RequestedTheme = ThemeSelectorService.Theme }.ShowAsync());
+            async () => await new SelectCategoryDialog().ShowAsync());
 
         protected override async Task LoadAsync()
         {
