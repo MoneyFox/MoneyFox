@@ -1,12 +1,8 @@
 ﻿using Microsoft.AppCenter.Crashes;
-using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Media;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Resources;
 using MoneyFox.Win.Pages.Dialogs;
-using MoneyFox.Win.Services;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -32,11 +28,9 @@ namespace MoneyFox.Win
             string? positiveButtonText = null,
             string? negativeButtonText = null)
         {
-            CloseAllOpenDialogs();
             var dialog = new ContentDialog { Title = title, Content = message };
             dialog.PrimaryButtonText = positiveButtonText ?? Strings.YesLabel;
             dialog.SecondaryButtonText = negativeButtonText ?? Strings.NoLabel;
-            dialog.RequestedTheme = ThemeSelectorService.Theme;
 
             ContentDialogResult result = await dialog.ShowAsync();
 
@@ -50,11 +44,8 @@ namespace MoneyFox.Win
         /// <param name="message">Text to display.</param>
         public async Task ShowMessageAsync(string title, string message)
         {
-            CloseAllOpenDialogs();
-
             var dialog = new ContentDialog { Title = title, Content = message };
             dialog.PrimaryButtonText = Strings.OkLabel;
-            dialog.RequestedTheme = ThemeSelectorService.Theme;
 
             await dialog.ShowAsync();
         }
@@ -64,11 +55,7 @@ namespace MoneyFox.Win
         /// </summary>
         public async Task ShowLoadingDialogAsync(string? message = null)
         {
-            // Be sure no other dialog is open.
-            CloseAllOpenDialogs();
-
             loadingDialog = new LoadingDialog { Text = message ?? Strings.LoadingLabel };
-            loadingDialog.RequestedTheme = ThemeSelectorService.Theme;
 
             CoreApplicationView coreWindow = CoreApplication.MainView;
 
@@ -103,18 +90,6 @@ namespace MoneyFox.Win
         {
             loadingDialog?.Hide();
             return Task.CompletedTask;
-        }
-
-        private static void CloseAllOpenDialogs()
-        {
-            //IReadOnlyList<Popup>? openedpopups = VisualTreeHelper.GetOpenPopups(Window.Current);
-            //foreach(Popup? popup in openedpopups)
-            //{
-            //    if(popup.Child is ContentDialog dialog)
-            //    {
-            //        dialog.Hide();
-            //    }
-            //}
         }
     }
 }
