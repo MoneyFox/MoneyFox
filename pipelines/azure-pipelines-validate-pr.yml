@@ -199,6 +199,31 @@ jobs:
     env:
       CERT_PASSWORD_ENV: $(UWP_Certificate_Password)
 
+  - task: PowerShell@2
+    displayName: "Set AppManifest"
+    inputs:
+      targetType: 'inline'
+      script: |
+        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.appxmanifest
+        $xmlDoc.Package.Identity.Name="57598ApplySolutionsSoftwa.MoneyFox"
+        $xmlDoc.Package.Identity.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+        $xmlDoc.Package.PhoneIdentity.PhoneProductId="b6543cc9-1d68-47d7-95a3-ea5016facd43"
+        $xmlDoc.Package.Properties.DisplayName="Money Fox"
+        $xmlDoc.Package.Applications.Application.VisualElements.DisplayName="Money Fox"
+        $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.appxmanifest')
+      failOnStderr: true
+
+  - task: PowerShell@2
+    displayName: "Set Store Association"
+    inputs:
+      targetType: 'inline'
+      script: |
+        [xml]$xmlDoc = Get-Content $(Build.SourcesDirectory)\src\MoneyFox.Uwp\Package.StoreAssociation.xml
+        $xmlDoc.StoreAssociation.Publisher="CN=071307B1-B0E3-434A-AD0E-FFF714A7245C"
+        $xmlDoc.StoreAssociation.ProductReservedInfo.MainPackageIdentityName="57598ApplySolutionsSoftwa.MoneyFox"
+        $xmlDoc.Save('$(Build.SourcesDirectory)\src\MoneyFox.Win\MoneyFox.Win (Package)\Package.StoreAssociation.xml')
+      failOnStderr: true
+
   - task: UseDotNet@2
     displayName: Use .NET 6.0
     enabled: false
