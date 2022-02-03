@@ -45,6 +45,7 @@ jobs:
 
   - task: PowerShell@2
     displayName: "Set AppManifest"
+    enabled: false
     inputs:
       targetType: 'inline'
       script: |
