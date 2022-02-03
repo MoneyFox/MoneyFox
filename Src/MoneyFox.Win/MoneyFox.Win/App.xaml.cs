@@ -2,7 +2,6 @@
 {
     using Autofac;
     using Microsoft.UI.Xaml;
-    using MoneyFox.Win.Services;
 
     public partial class App : Application
     {
@@ -19,8 +18,6 @@
 
             m_window = new MainWindow();
             m_window.Activate();
-
-            await ThemeSelectorService.SetRequestedThemeAsync();
         }
 
         private Window m_window;

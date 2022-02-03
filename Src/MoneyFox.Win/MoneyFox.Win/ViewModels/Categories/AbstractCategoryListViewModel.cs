@@ -79,8 +79,7 @@ namespace MoneyFox.Win.ViewModels.Categories
         /// </summary>
         public RelayCommand<CategoryViewModel> EditCategoryCommand
             => new RelayCommand<CategoryViewModel>(
-                async vm => await new EditCategoryDialog(vm.Id) { RequestedTheme = ThemeSelectorService.Theme }
-                    .ShowAsync());
+                async vm => await new EditCategoryDialog(vm.Id).ShowAsync());
 
         /// <summary>
         ///     Selects the clicked CategoryViewModel and sends it to the message hub.

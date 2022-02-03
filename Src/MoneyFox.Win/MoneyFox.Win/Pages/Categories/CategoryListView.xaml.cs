@@ -1,6 +1,5 @@
 ﻿using Microsoft.UI.Xaml;
 using MoneyFox.Core.Resources;
-using MoneyFox.Win.Services;
 using MoneyFox.Win.ViewModels.Categories;
 using System;
 
@@ -20,7 +19,7 @@ namespace MoneyFox.Win.Pages.Categories
 
         private async void AddNewCategoryClick(object sender, RoutedEventArgs e)
         {
-            var messageDialog = new AddCategoryDialog { RequestedTheme = ThemeSelectorService.Theme };
+            var messageDialog = new AddCategoryDialog();
             messageDialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
             await messageDialog.ShowAsync();
         }

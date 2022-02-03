@@ -3,7 +3,19 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
 
-    <Frame
-        x:Name="ShellFrame">
-    </Frame>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="AppTitleBar" Margin="0,0,120,0" Background="{ThemeResource TitleBarBrush}" >
+            <TextBlock x:Name="AppTitleTextBlock" Text="Money Fox"
+                       Style="{StaticResource CaptionTextBlockStyle}"
+                       Margin="12,0,0,0" VerticalAlignment="Center"/>
+        </Grid>
+
+        <Frame Grid.Row="1" x:Name="ShellFrame" >
+        </Frame>
+    </Grid>
 </Window>
