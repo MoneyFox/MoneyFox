@@ -10,6 +10,7 @@
     <UseWinUI>true</UseWinUI>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
   <ItemGroup>
     <None Remove="Pages\Accounts\AccountListToolbar.xaml" />
     <None Remove="Pages\Accounts\AccountListView.xaml" />

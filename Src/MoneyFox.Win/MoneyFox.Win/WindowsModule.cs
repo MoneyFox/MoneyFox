@@ -38,7 +38,6 @@ namespace MoneyFox.Win
             builder.RegisterType<WindowsAppInformation>().AsImplementedInterfaces();
             builder.RegisterType<MarketplaceOperations>().AsImplementedInterfaces();
             builder.RegisterType<WindowsFileStore>().As<IFileStore>();
-            builder.RegisterType<ThemeSelectorAdapter>().AsImplementedInterfaces();
 
             builder.RegisterType<Mediator>().As<IMediator>().InstancePerLifetimeScope();
             builder.RegisterInstance(AutoMapperFactory.Create());
