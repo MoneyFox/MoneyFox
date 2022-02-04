@@ -2,6 +2,7 @@
 using Autofac;
 using Foundation;
 using MoneyFox.Core._Pending_;
+using MoneyFox.iOS.Src;
 using NLog;
 using System;
 using System.Globalization;
@@ -14,6 +15,7 @@ namespace MoneyFox.iOS
 
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<DbPathProvider>().AsImplementedInterfaces();
             builder.RegisterType<GraphServiceClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<StoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<AppInformation>().AsImplementedInterfaces();

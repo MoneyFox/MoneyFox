@@ -70,7 +70,6 @@ namespace MoneyFox.Uwp.Services
             }
 
             InitConfig();
-            ExecutingPlatform.Current = AppPlatform.UWP;
             ChartOptions.LabelTextSize = CHART_LABEL_SIZE;
             ApplicationLanguages.PrimaryLanguageOverride = GlobalizationPreferences.Languages[0];
 

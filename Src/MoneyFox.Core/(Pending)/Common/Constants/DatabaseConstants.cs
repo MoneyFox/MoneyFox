@@ -15,6 +15,8 @@
         /// </summary>
         public static string BACKUP_NAME => "backupmoneyfox3.db";
 
+        public static string DATABASE_NAME => "moneyfox3.db";
+
         /// <summary>
         ///     Name of the database backup archive
         /// </summary>

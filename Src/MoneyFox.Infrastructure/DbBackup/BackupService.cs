@@ -32,6 +32,7 @@ namespace MoneyFox.Infrastructure.DbBackup
         private readonly IConnectivityAdapter connectivity;
         private readonly IContextAdapter contextAdapter;
         private readonly IToastService toastService;
+        private readonly IDbPathProvider dbPathProvider;
 
         private readonly CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
         private readonly SemaphoreSlim semaphoreSlim = new SemaphoreSlim(1, 1);
@@ -44,7 +45,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             ISettingsFacade settingsFacade,
             IConnectivityAdapter connectivity,
             IContextAdapter contextAdapter,
-            IToastService toastService)
+            IToastService toastService, IDbPathProvider dbPathProvider)
         {
             this.cloudBackupService = cloudBackupService;
             this.fileStore = fileStore;
@@ -53,6 +54,7 @@ namespace MoneyFox.Infrastructure.DbBackup
             this.contextAdapter = contextAdapter;
             this.toastService = toastService;
             UserAccount = cloudBackupService.UserAccount;
+            this.dbPathProvider = dbPathProvider;
         }
 
         public async Task LoginAsync()
@@ -189,7 +191,7 @@ namespace MoneyFox.Infrastructure.DbBackup
 
                     bool moveSucceed = await fileStore.TryMoveAsync(
                         DatabaseConstants.BACKUP_NAME,
-                        DatabasePathHelper.DbPath,
+                        dbPathProvider.GetDbPath(),
                         true);
 
                     if(!moveSucceed)
@@ -247,7 +249,7 @@ namespace MoneyFox.Infrastructure.DbBackup
                 cancellationTokenSource.Token);
             try
             {
-                if(await cloudBackupService.UploadAsync(await fileStore.OpenReadAsync(DatabasePathHelper.DbPath)))
+                if(await cloudBackupService.UploadAsync(await fileStore.OpenReadAsync(dbPathProvider.GetDbPath())))
                 {
                     logger.Info("Upload complete. Release Semaphore.");
                     semaphoreSlim.Release();

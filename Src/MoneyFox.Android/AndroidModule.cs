@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Autofac;
+using MoneyFox.Droid.Src;
 
 #nullable enable
 namespace MoneyFox.Droid
@@ -8,6 +9,7 @@ namespace MoneyFox.Droid
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<DbPathProvider>().AsImplementedInterfaces();
             builder.RegisterType<GraphClientFactory>().AsImplementedInterfaces();
             builder.RegisterType<PlayStoreOperations>().AsImplementedInterfaces();
             builder.RegisterType<DroidAppInformation>().AsImplementedInterfaces();
