@@ -7,14 +7,9 @@
                 xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                 xmlns:animations="using:CommunityToolkit.WinUI.UI.Animations"
-                xmlns:designTime="using:MoneyFox.Win.ViewModels.DesignTime"
                 xmlns:converter="using:MoneyFox.Win.Converter"
                 xmlns:statistics="using:MoneyFox.Win.ViewModels.Statistics"
                 mc:Ignorable="d">
-
-    <!--<d:MvxWindowsPage.DataContext>
-        <designTime:DesignTimeStatisticSelectorViewModel />
-    </d:MvxWindowsPage.DataContext>-->
 
     <Page.Resources>
         <converter:SelectedConverter x:Key="SelectedConverter" />
@@ -45,13 +40,13 @@
 
         <GridView Grid.Row="0"
                   ItemTemplate="{StaticResource StatisticTypeTemplate}"
-                  ItemsSource="{Binding StatisticItems}"
+                  ItemsSource="{x:Bind ViewModel.StatisticItems}"
                   animations:ItemsReorderAnimation.Duration="0:0:0.2"
                   Background="Transparent">
 
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding GoToStatisticCommand, Mode=OneWay}"
+                    <core:InvokeCommandAction Command="{x:Bind ViewModel.GoToStatisticCommand, Mode=OneWay}"
                                               InputConverter="{StaticResource SelectedConverter}" />
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
