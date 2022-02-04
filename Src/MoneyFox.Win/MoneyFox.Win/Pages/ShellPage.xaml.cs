@@ -32,7 +32,7 @@ namespace MoneyFox.Win.Pages
 
         private void AddPaymentItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            MainContentFrame.Navigate(typeof(AddPaymentView));
+            MainContentFrame.Navigate(typeof(AddPaymentPage));
         }
 
         private void MenuNav_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
@@ -69,7 +69,7 @@ namespace MoneyFox.Win.Pages
             navOptions.TransitionInfoOverride = args.RecommendedNavigationTransitionInfo;
             if(args.IsSettingsInvoked)
             {
-                MainContentFrame.NavigateToType(typeof(SettingsHostView), null, navOptions);
+                MainContentFrame.NavigateToType(typeof(SettingsHostPage), null, navOptions);
             }
             else
             {
