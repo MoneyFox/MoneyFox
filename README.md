@@ -3,7 +3,7 @@ A basic idea to make budgeting easy - for the community, made even better by the
 
 | Platform        | Build Status           |
 | ------------- |-------------|
-| Windows | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/Windows%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=40&branchName=master)|
+| Windows | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/WinUI%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=51&branchName=master)|
 | Android | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/Android%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=38&branchName=master)|
 | IOS | [![Build Status](https://dev.azure.com/applysolutions/MoneyFox/_apis/build/status/Releases/iOS%20Release?branchName=master)](https://dev.azure.com/applysolutions/MoneyFox/_build/latest?definitionId=39&branchName=master)|
 
