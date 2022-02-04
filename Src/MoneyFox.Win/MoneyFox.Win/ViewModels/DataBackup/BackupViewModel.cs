@@ -289,7 +289,6 @@ namespace MoneyFox.Win.ViewModels.DataBackup
                 return;
             }
 
-            await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();
             if(settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
             {
