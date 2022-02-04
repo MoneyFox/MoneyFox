@@ -59,7 +59,7 @@ namespace MoneyFox.Infrastructure.Persistence
                         break;
                 }
             }
-            
+
             int result = await base.SaveChangesAsync(cancellationToken).ConfigureAwait(false);
 
             // ignore events if no dispatcher provided
