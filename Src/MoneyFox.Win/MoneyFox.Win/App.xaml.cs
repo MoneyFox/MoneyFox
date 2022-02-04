@@ -13,8 +13,6 @@
 
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            ExecutingPlatform.Current = AppPlatform.UWP;
-
             var builder = new ContainerBuilder();
             builder.RegisterModule<WindowsModule>();
             ViewModelLocator.RegisterServices(builder);
