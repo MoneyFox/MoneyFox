@@ -2,7 +2,6 @@
 using Autofac;
 using MoneyFox.Droid.Src;
 
-#nullable enable
 namespace MoneyFox.Droid
 {
     public class AndroidModule : Module
