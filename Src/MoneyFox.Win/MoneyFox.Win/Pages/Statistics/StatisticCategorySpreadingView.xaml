@@ -61,9 +61,11 @@
         </StackPanel>
 
         <Grid Grid.Row="1">
-            <livecharts:PieChart Series="{x:Bind ViewModel.Series, Mode=OneWay}"
-                          LegendPosition="Right"
-                          LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
+            <livecharts:PieChart
+                Series="{x:Bind ViewModel.Series, Mode=OneWay}"
+                LegendPosition="Right"
+                LegendTextBrush="{ThemeResource AppForegroundPrimaryBrush}"
+                LegendBackground="Transparent" />
         </Grid>
     </Grid>
 </views:BaseView>

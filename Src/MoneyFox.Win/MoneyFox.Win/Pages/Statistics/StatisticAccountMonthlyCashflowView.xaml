@@ -55,10 +55,11 @@
         </StackPanel>
 
         <liveCharts:CartesianChart
-                            Grid.Row="1"
-                            Series="{x:Bind ViewModel.Series, Mode=OneWay}"
-                            XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
-                            LegendPosition="Bottom"
-                            LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
+            Grid.Row="1"
+            Series="{x:Bind ViewModel.Series, Mode=OneWay}"
+            XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
+            LegendPosition="Bottom"
+            LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}"
+            LegendBackground="Transparent" />
     </Grid>
 </views:BaseView>

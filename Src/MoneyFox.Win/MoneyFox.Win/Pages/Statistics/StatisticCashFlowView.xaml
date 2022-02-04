@@ -45,10 +45,12 @@
                     VerticalAlignment="Bottom" />
         </StackPanel>
 
-        <livecharts:CartesianChart Grid.Row="1"
-                            Series="{x:Bind ViewModel.Series, Mode=OneWay}"
-                            XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
-                            LegendPosition="Right"
-                            LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
+        <livecharts:CartesianChart
+            Grid.Row="1"
+            Series="{x:Bind ViewModel.Series, Mode=OneWay}"
+            XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
+            LegendPosition="Right"
+            LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}"
+            LegendBackground="Transparent"/>
     </Grid>
 </views:BaseView>

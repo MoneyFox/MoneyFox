@@ -49,10 +49,12 @@
 
         <Grid Grid.Row="1"
               Visibility="{x:Bind ViewModel.HasNoData, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=revert, Mode=OneWay}">
-            <livecharts:CartesianChart Series="{x:Bind ViewModel.Series, Mode=OneWay}"
-                                XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
-                                LegendPosition="Bottom"
-                                LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}" />
+            <livecharts:CartesianChart
+                Series="{x:Bind ViewModel.Series, Mode=OneWay}"
+                XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
+                LegendPosition="Bottom"
+                LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}"
+                LegendBackground="Transparent" />
         </Grid>
     </Grid>
 </views:BaseView>
