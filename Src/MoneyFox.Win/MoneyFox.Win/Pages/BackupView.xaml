@@ -1,4 +1,4 @@
-﻿<views:BaseView
+﻿<views:BasePage
     xmlns:views="using:MoneyFox.Win.Pages"
     xmlns:converter="using:MoneyFox.Win.Converter"
     x:Class="MoneyFox.Win.Pages.BackupView"
@@ -130,4 +130,4 @@
         </StackPanel>
 
     </Grid>
-</views:BaseView>
+</views:BasePage>

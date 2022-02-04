@@ -2,7 +2,7 @@
 
 namespace MoneyFox.Win.Pages
 {
-    public class BaseView : Page
+    public class BasePage : Page
     {
         public virtual string Header => string.Empty;
         public virtual bool ShowHeader => true;

@@ -1,4 +1,4 @@
-﻿<views:BaseView
+﻿<views:BasePage
     xmlns:views="using:MoneyFox.Win.Pages"
     xmlns:livecharts="using:LiveChartsCore.SkiaSharpView.WinUI"
     xmlns:converter="using:MoneyFox.Win.Converter"
@@ -68,4 +68,4 @@
                 LegendBackground="Transparent" />
         </Grid>
     </Grid>
-</views:BaseView>
+</views:BasePage>

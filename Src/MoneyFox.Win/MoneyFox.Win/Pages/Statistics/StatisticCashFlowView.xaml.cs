@@ -3,7 +3,7 @@ using MoneyFox.Win.ViewModels.Statistics;
 
 namespace MoneyFox.Win.Pages.Statistics
 {
-    public partial class StatisticCashFlowView : BaseView
+    public partial class StatisticCashFlowView : BasePage
     {
         public StatisticCashFlowViewModel ViewModel => (StatisticCashFlowViewModel)DataContext;
 

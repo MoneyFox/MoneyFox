@@ -1,4 +1,4 @@
-﻿<views:BaseView
+﻿<views:BasePage
     xmlns:views="using:MoneyFox.Win.Pages"
     xmlns:controls="using:MoneyFox.Win.Pages.UserControls"
     x:Class="MoneyFox.Win.Pages.Payments.AddPaymentView"
@@ -42,4 +42,4 @@
 
         <controls:Loading IsLoading="{x:Bind ViewModel.IsBusy, Mode=OneWay}" />
     </Grid>
-</views:BaseView>
+</views:BasePage>

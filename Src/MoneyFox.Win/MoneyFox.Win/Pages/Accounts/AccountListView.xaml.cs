@@ -6,7 +6,7 @@ using Windows.ApplicationModel;
 
 namespace MoneyFox.Win.Pages.Accounts
 {
-    public sealed partial class AccountListView : BaseView
+    public sealed partial class AccountListView : BasePage
     {
         public override bool ShowHeader => false;
 

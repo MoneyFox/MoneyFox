@@ -1,4 +1,4 @@
-﻿<views:BaseView xmlns:views="using:MoneyFox.Win.Pages"
+﻿<views:BasePage xmlns:views="using:MoneyFox.Win.Pages"
                 xmlns:converter="using:MoneyFox.Win.Converter"
                 x:Class="MoneyFox.Win.Pages.Statistics.StatisticAccountMonthlyCashflowView"
                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -62,4 +62,4 @@
             LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}"
             LegendBackground="Transparent" />
     </Grid>
-</views:BaseView>
+</views:BasePage>

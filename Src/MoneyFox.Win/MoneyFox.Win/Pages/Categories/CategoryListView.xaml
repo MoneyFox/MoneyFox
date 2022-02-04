@@ -1,4 +1,4 @@
-﻿<views:BaseView
+﻿<views:BasePage
     xmlns:views="using:MoneyFox.Win.Pages"
     xmlns:designTime="using:MoneyFox.Win.ViewModels.DesignTime"
     x:Class="MoneyFox.Win.Pages.Categories.CategoryListView"
@@ -60,4 +60,4 @@
         <categories:CategoryListControl Grid.Row="1" />
 
     </Grid>
-</views:BaseView>
+</views:BasePage>
