@@ -2,6 +2,7 @@
 {
     using Autofac;
     using Microsoft.UI.Xaml;
+    using MoneyFox.Core._Pending_.Common;
 
     public partial class App : Application
     {
@@ -12,6 +13,8 @@
 
         protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
+            ExecutingPlatform.Current = AppPlatform.UWP;
+
             var builder = new ContainerBuilder();
             builder.RegisterModule<WindowsModule>();
             ViewModelLocator.RegisterServices(builder);

@@ -1,19 +1,15 @@
-﻿using Microsoft.AppCenter.Crashes;
+﻿using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Resources;
 using MoneyFox.Win.Pages.Dialogs;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Core;
-using Windows.UI.Core;
 
 namespace MoneyFox.Win
 {
     public class DialogService : IDialogService
     {
-        private const int DELAY_MS = 5;
         private LoadingDialog? loadingDialog;
 
         /// <summary>
@@ -29,6 +25,7 @@ namespace MoneyFox.Win
             string? negativeButtonText = null)
         {
             var dialog = new ContentDialog { Title = title, Content = message };
+            dialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
             dialog.PrimaryButtonText = positiveButtonText ?? Strings.YesLabel;
             dialog.SecondaryButtonText = negativeButtonText ?? Strings.NoLabel;
 
@@ -45,6 +42,7 @@ namespace MoneyFox.Win
         public async Task ShowMessageAsync(string title, string message)
         {
             var dialog = new ContentDialog { Title = title, Content = message };
+            dialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
             dialog.PrimaryButtonText = Strings.OkLabel;
 
             await dialog.ShowAsync();
@@ -53,34 +51,18 @@ namespace MoneyFox.Win
         /// <summary>
         ///     Shows a loading Dialog.
         /// </summary>
-        public async Task ShowLoadingDialogAsync(string? message = null)
+        public Task ShowLoadingDialogAsync(string? message = null)
         {
             loadingDialog = new LoadingDialog { Text = message ?? Strings.LoadingLabel };
 
-            CoreApplicationView coreWindow = CoreApplication.MainView;
+            DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+            dispatcherQueue.TryEnqueue(async () =>
+            {
+                loadingDialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
+                await loadingDialog.ShowAsync();
+            });
 
-            // Dispatcher needed to run on UI Thread
-            CoreDispatcher dispatcher = coreWindow.CoreWindow.Dispatcher;
-
-            // RunAsync all of the UI info.
-            await dispatcher.RunAsync(
-                CoreDispatcherPriority.High,
-                async () =>
-                {
-                    try
-                    {
-                        await loadingDialog.ShowAsync();
-                    }
-                    catch(Exception ex)
-                    {
-                        Crashes.TrackError(
-                            ex,
-                            new Dictionary<string, string> { { "Message", "Loading Dialog couldn't be opened." } });
-                    }
-                });
-
-            // we have to add a delay here for the UI to be able to redraw in certain conditions.
-            await Task.Delay(DELAY_MS);
+            return Task.CompletedTask;
         }
 
         /// <summary>
@@ -88,7 +70,11 @@ namespace MoneyFox.Win
         /// </summary>
         public Task HideLoadingDialogAsync()
         {
-            loadingDialog?.Hide();
+            DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+            dispatcherQueue.TryEnqueue(() =>
+            {
+                loadingDialog?.Hide();
+            });
             return Task.CompletedTask;
         }
     }
