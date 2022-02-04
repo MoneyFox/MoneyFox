@@ -54,20 +54,20 @@ namespace MoneyFox.Win
                 .AsSelf();
 
             NavigationService.Register<ShellViewModel, ShellPage>();
-            NavigationService.Register<AccountListViewModel, AccountListView>();
-            NavigationService.Register<PaymentListViewModel, PaymentListView>();
-            NavigationService.Register<AddPaymentViewModel, AddPaymentView>();
-            NavigationService.Register<EditPaymentViewModel, EditPaymentView>();
-            NavigationService.Register<CategoryListViewModel, CategoryListView>();
-            NavigationService.Register<SettingsViewModel, SettingsHostView>();
-            NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowView>();
-            NavigationService.Register<StatisticCategoryProgressionViewModel, StatisticCategoryProgressionView>();
-            NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashflowView>();
-            NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingView>();
-            NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryView>();
-            NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorView>();
-            NavigationService.Register<BackupViewModel, BackupView>();
-            NavigationService.Register<WindowsSettingsViewModel, SettingsHostView>();
+            NavigationService.Register<AccountListViewModel, AccountListPage>();
+            NavigationService.Register<PaymentListViewModel, PaymentListPage>();
+            NavigationService.Register<AddPaymentViewModel, AddPaymentPage>();
+            NavigationService.Register<EditPaymentViewModel, EditPaymentPage>();
+            NavigationService.Register<CategoryListViewModel, CategoryListPage>();
+            NavigationService.Register<SettingsViewModel, SettingsHostPage>();
+            NavigationService.Register<StatisticCashFlowViewModel, StatisticCashFlowPage>();
+            NavigationService.Register<StatisticCategoryProgressionViewModel, StatisticCategoryProgressionPage>();
+            NavigationService.Register<StatisticAccountMonthlyCashflowViewModel, StatisticAccountMonthlyCashFlowPage>();
+            NavigationService.Register<StatisticCategorySpreadingViewModel, StatisticCategorySpreadingPage>();
+            NavigationService.Register<StatisticCategorySummaryViewModel, StatisticCategorySummaryPage>();
+            NavigationService.Register<StatisticSelectorViewModel, StatisticSelectorPage>();
+            NavigationService.Register<BackupViewModel, BackupPage>();
+            NavigationService.Register<WindowsSettingsViewModel, SettingsHostPage>();
         }
     }
 }

@@ -76,25 +76,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Pages\Statistics\StatisticCategorySpreadingView.xaml">
+    <Page Update="Pages\Statistics\StatisticCategorySpreadingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Pages\Statistics\StatisticCategoryProgressionView.xaml">
+    <Page Update="Pages\Statistics\StatisticCategoryProgressionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Pages\Statistics\StatisticAccountMonthlyCashflowView.xaml">
+    <Page Update="Pages\Statistics\StatisticAccountMonthlyCashFlowPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Pages\Statistics\StatisticCashFlowView.xaml">
+    <Page Update="Pages\Statistics\StatisticCashFlowPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
@@ -103,19 +103,19 @@
     <Page Update="Pages\Accounts\AccountListToolbar.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Accounts\AccountListView.xaml">
+    <Page Update="Pages\Accounts\AccountListPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Accounts\AddAccountDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Accounts\EditAccountView.xaml">
+    <Page Update="Pages\Accounts\EditAccountPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Accounts\ModifyAccountUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\BackupView.xaml">
+    <Page Update="Pages\BackupPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Categories\AddCategoryDialog.xaml">
@@ -124,7 +124,7 @@
     <Page Update="Pages\Categories\CategoryListControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Categories\CategoryListView.xaml">
+    <Page Update="Pages\Categories\CategoryListPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Categories\EditCategoryDialog.xaml">
@@ -136,31 +136,31 @@
     <Page Update="Pages\Dialogs\LoadingDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Payments\AddPaymentView.xaml">
+    <Page Update="Pages\Payments\AddPaymentPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Payments\CategorySelectionControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Payments\EditPaymentView.xaml">
+    <Page Update="Pages\Payments\EditPaymentPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Payments\ModifyPaymentUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Payments\PaymentListView.xaml">
+    <Page Update="Pages\Payments\PaymentListPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\Payments\SelectCategoryDialog.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Settings\AboutView.xaml">
+    <Page Update="Pages\Settings\AboutPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Settings\SettingsHostView.xaml">
+    <Page Update="Pages\Settings\SettingsHostPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Settings\SettingsView.xaml">
+    <Page Update="Pages\Settings\SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\ShellPage.xaml">
@@ -169,10 +169,10 @@
     <Page Update="Pages\Statistics\StatisticCategorySummary\PaymentListUserControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Statistics\StatisticCategorySummary\StatisticCategorySummaryView.xaml">
+    <Page Update="Pages\Statistics\StatisticCategorySummary\StatisticCategorySummaryPage.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Pages\Statistics\StatisticSelectorView.xaml">
+    <Page Update="Pages\Statistics\StatisticSelectorPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Pages\UserControls\BalanceControl.xaml">

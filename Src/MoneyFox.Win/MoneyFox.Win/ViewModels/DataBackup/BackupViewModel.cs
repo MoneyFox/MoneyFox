@@ -48,19 +48,19 @@ namespace MoneyFox.Win.ViewModels.DataBackup
         }
 
         /// <inheritdoc />
-        public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(async () => await InitializeAsync());
+        public AsyncRelayCommand InitializeCommand => new(async () => await InitializeAsync());
 
         /// <inheritdoc />
-        public AsyncRelayCommand LoginCommand => new AsyncRelayCommand(async () => await LoginAsync());
+        public AsyncRelayCommand LoginCommand => new(async () => await LoginAsync());
 
         /// <inheritdoc />
-        public AsyncRelayCommand LogoutCommand => new AsyncRelayCommand(async () => await LogoutAsync());
+        public AsyncRelayCommand LogoutCommand => new(async () => await LogoutAsync());
 
         /// <inheritdoc />
-        public AsyncRelayCommand BackupCommand => new AsyncRelayCommand(async () => await CreateBackupAsync());
+        public AsyncRelayCommand BackupCommand => new(async () => await CreateBackupAsync());
 
         /// <inheritdoc />
-        public AsyncRelayCommand RestoreCommand => new AsyncRelayCommand(async () => await RestoreBackupAsync());
+        public AsyncRelayCommand RestoreCommand => new(async () => await RestoreBackupAsync());
 
         /// <summary>
         ///     The Date when the backup was modified the last time.
@@ -289,7 +289,6 @@ namespace MoneyFox.Win.ViewModels.DataBackup
                 return;
             }
 
-            await dialogService.ShowLoadingDialogAsync();
             DateTime backupDate = await backupService.GetBackupDateAsync();
             if(settingsFacade.LastDatabaseUpdate <= backupDate || await ShowForceOverrideConfirmationAsync())
             {
