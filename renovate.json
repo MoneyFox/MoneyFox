@@ -18,27 +18,11 @@
       "packagePatterns": [
         "*"
       ],
-      "excludePackagePatterns": [
-        "^Microsoft.EntityFrameworkCore",
-        "AutoMappper",
-        "MediatR"
-      ],
       "updateTypes": [
         "major"
       ],
       "groupName": "all major dependencies",
       "groupSlug": "all-major"
-    },
-    {
-      "matchPackagePatterns": [
-        "^Microsoft.EntityFrameworkCore",
-        "AutoMappper",
-        "MediatR"
-      ],
-      "updateTypes": [
-        "major"
-      ],
-      "enabled": false
     }
   ]
 }
