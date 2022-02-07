@@ -4,7 +4,6 @@ using MoneyFox.Core._Pending_.Common;
 using MoneyFox.Core._Pending_.Common.Constants;
 using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Interfaces;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -98,14 +97,13 @@ namespace MoneyFox.Infrastructure.DbBackup
             {
                 IEnumerable<IAccount> accounts = await publicClientApplication.GetAccountsAsync();
                 IAccount? firstAccount = accounts.FirstOrDefault();
-
-                if(firstAccount == null)
-                {
-                    throw new BackupAuthenticationFailedException();
-                }
-
-                AuthenticationResult authResult =
-                    await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
+                AuthenticationResult authResult = firstAccount == null
+                    ? await publicClientApplication.AcquireTokenInteractive(scopes)
+                        .WithUseEmbeddedWebView(true)
+                        .WithParentActivityOrWindow(ParentActivityWrapper
+                            .ParentActivity) // this is required for Android
+                        .ExecuteAsync()
+                    : await publicClientApplication.AcquireTokenSilent(scopes, firstAccount).ExecuteAsync();
 
                 GraphServiceClient = graphClientFactory.CreateClient(authResult);
                 User user = await GraphServiceClient.Me.Request().GetAsync();
