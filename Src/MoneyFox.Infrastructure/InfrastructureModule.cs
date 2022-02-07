@@ -17,14 +17,13 @@ namespace MoneyFox.Infrastructure
 
             builder.RegisterType<ContextAdapter>().AsImplementedInterfaces();
 
-            builder.Register(
-                    c => PublicClientApplicationBuilder
+            var publicClientApplication = PublicClientApplicationBuilder
                         .Create(MSAL_APPLICATION_ID)
                         .WithRedirectUri($"msal{MSAL_APPLICATION_ID}://auth")
                         .WithIosKeychainSecurityGroup("com.microsoft.adalcache")
-                        .Build())
-                .AsImplementedInterfaces();
-
+                        .Build();
+            TokenCacheHelper.EnableSerialization(publicClientApplication.UserTokenCache);
+            builder.Register(c => publicClientApplication).AsImplementedInterfaces();
             builder.RegisterType<BackupService>().AsImplementedInterfaces();
             builder.RegisterType<OneDriveService>().AsImplementedInterfaces();
         }
