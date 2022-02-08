@@ -1,15 +1,16 @@
 ﻿using Microsoft.Identity.Client;
 using System.IO;
 using System.Security.Cryptography;
+using Windows.Storage;
 
-namespace MoneyFox.Infrastructure
+namespace MoneyFox.Win.Infrastructure
 {
     static class TokenCacheHelper
     {
         /// <summary>
         /// Path to the token cache
         /// </summary>
-        private static readonly string CacheFilePath = System.Reflection.Assembly.GetExecutingAssembly().Location + ".msalcache.bin";
+        private static readonly string CacheFilePath = ApplicationData.Current.LocalFolder.Path + ".msalcache.bin";
 
         private static readonly object FileLock = new object();
 
