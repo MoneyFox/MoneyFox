@@ -40,12 +40,14 @@ namespace MoneyFox.Infrastructure.DbBackup
 
         public UserAccount UserAccount { get; set; }
 
-        public BackupService(ICloudBackupService cloudBackupService,
+        public BackupService(
+            ICloudBackupService cloudBackupService,
             IFileStore fileStore,
             ISettingsFacade settingsFacade,
             IConnectivityAdapter connectivity,
             IContextAdapter contextAdapter,
-            IToastService toastService, IDbPathProvider dbPathProvider)
+            IToastService toastService,
+            IDbPathProvider dbPathProvider)
         {
             this.cloudBackupService = cloudBackupService;
             this.fileStore = fileStore;

@@ -13,9 +13,6 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Win.ViewModels.DataBackup
 {
-    /// <summary>
-    ///     Representation of the backup view.
-    /// </summary>
     public class BackupViewModel : ObservableObject, IBackupViewModel
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
