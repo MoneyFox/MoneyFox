@@ -9,6 +9,7 @@ namespace MoneyFox.Win.Pages.Payments
 
         public SelectCategoryDialog()
         {
+            XamlRoot = MainWindow.RootFrame.XamlRoot;
             InitializeComponent();
             DataContext = ViewModelLocator.SelectCategoryListVm;
             ViewModel.AppearingCommand.Execute(null);

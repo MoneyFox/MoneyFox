@@ -48,7 +48,7 @@ namespace MoneyFox.Win.ViewModels.DesignTime
 
         public RelayCommand SaveCommand { get; } = null!;
 
-        public RelayCommand GoToSelectCategoryDialogCommand { get; } = null!;
+        public AsyncRelayCommand GoToSelectCategoryDialogCommand { get; } = null!;
 
         public RelayCommand DeleteCommand { get; } = null!;
 
