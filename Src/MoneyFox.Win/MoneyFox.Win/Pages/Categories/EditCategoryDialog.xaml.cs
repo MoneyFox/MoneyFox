@@ -8,6 +8,7 @@ namespace MoneyFox.Win.Pages.Categories
 
         public EditCategoryDialog(int categoryId)
         {
+            XamlRoot = MainWindow.RootFrame.XamlRoot;
             InitializeComponent();
             DataContext = ViewModelLocator.EditCategoryVm;
 

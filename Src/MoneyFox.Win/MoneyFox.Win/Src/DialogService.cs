@@ -25,7 +25,6 @@ namespace MoneyFox.Win
             string? negativeButtonText = null)
         {
             var dialog = new ContentDialog { Title = title, Content = message };
-            dialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
             dialog.PrimaryButtonText = positiveButtonText ?? Strings.YesLabel;
             dialog.SecondaryButtonText = negativeButtonText ?? Strings.NoLabel;
 
@@ -42,7 +41,6 @@ namespace MoneyFox.Win
         public async Task ShowMessageAsync(string title, string message)
         {
             var dialog = new ContentDialog { Title = title, Content = message };
-            dialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
             dialog.PrimaryButtonText = Strings.OkLabel;
 
             await dialog.ShowAsync();
@@ -58,7 +56,6 @@ namespace MoneyFox.Win
             DispatcherQueue dispatcherQueue = DispatcherQueue.GetForCurrentThread();
             dispatcherQueue.TryEnqueue(async () =>
             {
-                loadingDialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
                 await loadingDialog.ShowAsync();
             });
 

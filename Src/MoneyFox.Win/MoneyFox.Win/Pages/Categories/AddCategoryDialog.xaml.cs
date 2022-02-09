@@ -4,6 +4,7 @@
     {
         public AddCategoryDialog()
         {
+            XamlRoot = MainWindow.RootFrame.XamlRoot;
             InitializeComponent();
             DataContext = ViewModelLocator.AddCategoryVm;
         }
