@@ -7,6 +7,7 @@ namespace MoneyFox.Win.Pages.Dialogs
     {
         public LoadingDialog()
         {
+            XamlRoot = MainWindow.RootFrame.XamlRoot;
             InitializeComponent();
         }
 

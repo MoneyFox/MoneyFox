@@ -78,13 +78,13 @@ namespace MoneyFox.Win.ViewModels.Payments
         /// <summary>
         ///     Updates the targetAccountViewModel and chargedAccountViewModel Comboboxes' dropdown lists.
         /// </summary>
-        public RelayCommand SelectedItemChangedCommand => new RelayCommand(UpdateOtherComboBox);
+        public RelayCommand SelectedItemChangedCommand => new(UpdateOtherComboBox);
 
         /// <summary>
         ///     Opens the create category dialog.
         /// </summary>
-        public RelayCommand AddNewCategoryCommand
-            => new RelayCommand(async () => await new AddCategoryDialog().ShowAsync());
+        public AsyncRelayCommand AddNewCategoryCommand
+            => new(async () => await new AddCategoryDialog().ShowAsync());
 
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.
@@ -95,9 +95,8 @@ namespace MoneyFox.Win.ViewModels.Payments
         public RelayCommand CancelCommand => new RelayCommand(Cancel);
 
         /// <inheritdoc />
-        public RelayCommand GoToSelectCategoryDialogCommand => new RelayCommand(
-            async ()
-                => await new SelectCategoryDialog().ShowAsync());
+        public AsyncRelayCommand GoToSelectCategoryDialogCommand => new(async ()
+            => await new SelectCategoryDialog().ShowAsync());
 
         /// <summary>
         ///     Resets the CategoryViewModel of the currently selected PaymentViewModel

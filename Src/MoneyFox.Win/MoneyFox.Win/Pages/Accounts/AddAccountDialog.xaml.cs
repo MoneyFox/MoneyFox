@@ -4,6 +4,7 @@
     {
         public AddAccountDialog()
         {
+            XamlRoot = MainWindow.RootFrame.XamlRoot;
             InitializeComponent();
             DataContext = ViewModelLocator.AddAccountVm;
         }

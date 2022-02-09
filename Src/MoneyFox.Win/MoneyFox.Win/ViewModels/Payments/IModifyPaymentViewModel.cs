@@ -4,7 +4,6 @@ using MoneyFox.Win.ViewModels.Accounts;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-#nullable enable
 namespace MoneyFox.Win.ViewModels.Payments
 {
     public interface IModifyPaymentViewModel
@@ -15,7 +14,8 @@ namespace MoneyFox.Win.ViewModels.Payments
         PaymentRecurrence Recurrence { get; }
 
         /// <summary>
-        ///     List with the different recurrence types.     This has to have the same order as the enum
+        ///     List with the different recurrence types.
+        ///     This has to have the same order as the enum
         /// </summary>
         List<PaymentRecurrence> RecurrenceList { get; }
 
@@ -58,7 +58,7 @@ namespace MoneyFox.Win.ViewModels.Payments
         /// <summary>
         ///     Opens to the SelectCategoryView
         /// </summary>
-        RelayCommand GoToSelectCategoryDialogCommand { get; }
+        AsyncRelayCommand GoToSelectCategoryDialogCommand { get; }
 
         /// <summary>
         ///     Saves the PaymentViewModel or updates the existing depending on the IsEdit Flag.

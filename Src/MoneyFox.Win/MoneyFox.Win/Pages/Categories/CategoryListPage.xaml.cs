@@ -20,7 +20,6 @@ namespace MoneyFox.Win.Pages.Categories
         private async void AddNewCategoryClick(object sender, RoutedEventArgs e)
         {
             var messageDialog = new AddCategoryDialog();
-            messageDialog.XamlRoot = MainWindow.RootFrame.XamlRoot;
             await messageDialog.ShowAsync();
         }
     }
