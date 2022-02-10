@@ -10,8 +10,8 @@ namespace MoneyFox.Droid.Src
         public string GetDbPath()
         {
             return Path.Combine(
-                            Environment.GetFolderPath(Environment.SpecialFolder.Personal),
-                            DatabaseConstants.DATABASE_NAME);
+                Environment.GetFolderPath(Environment.SpecialFolder.Personal),
+                DatabaseConstants.DATABASE_NAME);
         }
     }
 }
