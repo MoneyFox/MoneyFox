@@ -78,6 +78,9 @@ namespace MoneyFox.Infrastructure.Persistence
             return result;
         }
 
-        public override int SaveChanges() => SaveChangesAsync().GetAwaiter().GetResult();
+        public override int SaveChanges()
+        {
+            return SaveChangesAsync().GetAwaiter().GetResult();
+        }
     }
 }
