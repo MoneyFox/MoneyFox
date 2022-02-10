@@ -40,8 +40,6 @@ namespace MoneyFox.Core.Aggregates.Payments
             IsEndless = endDate == null;
 
             LastRecurrenceCreated = lastRecurrenceCreated ?? DateTime.Now;
-            ModificationDate = DateTime.Now;
-            CreationTime = DateTime.Now;
         }
 
         [Key]
@@ -64,15 +62,11 @@ namespace MoneyFox.Core.Aggregates.Payments
 
         public DateTime LastRecurrenceCreated { get; private set; }
 
-        public DateTime ModificationDate { get; private set; }
+        public Category? Category { get; private set; }
 
-        public DateTime CreationTime { get; [UsedImplicitly] private set; }
+        public Account ChargedAccount { get; private set; }
 
-        public virtual Category? Category { get; private set; }
-
-        [Required] public virtual Account ChargedAccount { get; private set; } = null!;
-
-        public virtual Account? TargetAccount { get; private set; }
+        public Account? TargetAccount { get; private set; }
 
         public virtual List<Payment> RelatedPayments { get; [UsedImplicitly] private set; } = new List<Payment>();
 
@@ -97,13 +91,11 @@ namespace MoneyFox.Core.Aggregates.Payments
             Category = category;
             TargetAccount = targetAccount;
             IsEndless = endDate == null;
-            ModificationDate = DateTime.Now;
         }
 
         public void SetLastRecurrenceCreatedDate()
         {
             LastRecurrenceCreated = DateTime.Now;
-            ModificationDate = DateTime.Now;
         }
     }
 }

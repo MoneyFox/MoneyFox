@@ -35,19 +35,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             payment.IsCleared.Should().Be(expectedIsCleared);
         }
 
-        [Fact]
-        public void Ctor_NoParams_DefaultValueSet()
-        {
-            // Arrange
-
-            // Act
-            var payment = new Payment(DateTime.Now, 123, PaymentType.Expense, new Account("foo"));
-
-            // Assert
-            payment.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-            payment.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-        }
-
         [Theory]
         [InlineData(1, false)]
         [InlineData(0, true)]

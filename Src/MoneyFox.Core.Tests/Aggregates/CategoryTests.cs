@@ -31,8 +31,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             category.Name.Should().Be(testName);
             category.Note.Should().BeEmpty();
             category.RequireNote.Should().BeFalse();
-            category.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-1));
-            category.CreationTime.Should().BeAfter(DateTime.Now.AddSeconds(-1));
         }
 
         [Fact]
@@ -78,7 +76,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             testCategory.Name.Should().Be(testName);
             testCategory.Note.Should().BeEmpty();
             testCategory.RequireNote.Should().BeFalse();
-            testCategory.ModificationDate.Should().BeAfter(DateTime.Now.AddSeconds(-0.5));
         }
 
         [Fact]
