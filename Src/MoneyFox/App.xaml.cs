@@ -60,6 +60,7 @@ namespace MoneyFox
 
             InitializeAppCenter();
             ExecuteStartupTasks();
+            ExecuteStartupTasks();
         }
 
         protected override void OnResume() => ExecuteStartupTasks();
@@ -105,17 +106,16 @@ namespace MoneyFox
                 {
                     var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                     await backupService.RestoreBackupAsync();
+                    
+                    logger.Info("Backup synced.");
                 }
 
                 await mediator.Send(new ClearPaymentsCommand());
                 await mediator.Send(new CreateRecurringPaymentsCommand());
-
-                logger.Info("Backup synced.");
             }
             catch(Exception ex)
             {
                 logger.Fatal(ex);
-                throw;
             }
             finally
             {
