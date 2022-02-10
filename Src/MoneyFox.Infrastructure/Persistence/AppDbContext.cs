@@ -35,14 +35,9 @@ namespace MoneyFox.Infrastructure.Persistence
 
         public DbSet<Category> Categories { get; set; } = null!;
 
-        /// <summary>
-        ///     Called when the models are created. Enables to configure advanced settings for the models.
-        /// </summary>
-        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AccountConfiguration());
-            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder?.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

@@ -32,10 +32,10 @@ namespace MoneyFox.Core.Aggregates
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; [UsedImplicitly] private set; }
 
-        [Required] public string Name { get; private set; } = null!;
+        public string Name { get; private set; } = null!;
 
         public decimal CurrentBalance { get; private set; }
-        
+
         public string? Note { get; private set; }
 
         // TODO remove this and make calculated property.

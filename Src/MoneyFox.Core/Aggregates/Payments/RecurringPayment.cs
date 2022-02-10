@@ -68,11 +68,11 @@ namespace MoneyFox.Core.Aggregates.Payments
 
         public DateTime CreationTime { get; [UsedImplicitly] private set; }
 
-        public virtual Category? Category { get; private set; }
+        public Category? Category { get; private set; }
 
-        [Required] public virtual Account ChargedAccount { get; private set; } = null!;
+        public Account ChargedAccount { get; private set; }
 
-        public virtual Account? TargetAccount { get; private set; }
+        public Account? TargetAccount { get; private set; }
 
         public virtual List<Payment> RelatedPayments { get; [UsedImplicitly] private set; } = new List<Payment>();
 
