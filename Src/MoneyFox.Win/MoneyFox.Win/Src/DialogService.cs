@@ -24,7 +24,7 @@ namespace MoneyFox.Win
             string? positiveButtonText = null,
             string? negativeButtonText = null)
         {
-            var dialog = new ContentDialog { Title = title, Content = message };
+            var dialog = new ContentDialog { XamlRoot = MainWindow.RootFrame.XamlRoot, Title = title, Content = message };
             dialog.PrimaryButtonText = positiveButtonText ?? Strings.YesLabel;
             dialog.SecondaryButtonText = negativeButtonText ?? Strings.NoLabel;
 
@@ -40,7 +40,7 @@ namespace MoneyFox.Win
         /// <param name="message">Text to display.</param>
         public async Task ShowMessageAsync(string title, string message)
         {
-            var dialog = new ContentDialog { Title = title, Content = message };
+            var dialog = new ContentDialog { XamlRoot = MainWindow.RootFrame.XamlRoot, Title = title, Content = message };
             dialog.PrimaryButtonText = Strings.OkLabel;
 
             await dialog.ShowAsync();
