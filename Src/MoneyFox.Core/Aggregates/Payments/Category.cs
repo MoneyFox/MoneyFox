@@ -1,6 +1,5 @@
 ﻿using Dawn;
 using JetBrains.Annotations;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,7 +13,6 @@ namespace MoneyFox.Core.Aggregates.Payments
 
         public Category(string name, string note = "", bool requireNote = false)
         {
-            CreationTime = DateTime.Now;
             UpdateData(name, note, requireNote);
         }
 
@@ -28,10 +26,6 @@ namespace MoneyFox.Core.Aggregates.Payments
 
         public bool RequireNote { get; private set; }
 
-        public DateTime ModificationDate { get; private set; }
-
-        public DateTime CreationTime { get; [UsedImplicitly] private set; }
-
         public List<Payment> Payments { get; [UsedImplicitly] private set; } = new List<Payment>();
 
         public void UpdateData(string name, string note = "", bool requireNote = false)
@@ -41,7 +35,6 @@ namespace MoneyFox.Core.Aggregates.Payments
             Name = name;
             Note = note;
             RequireNote = requireNote;
-            ModificationDate = DateTime.Now;
         }
     }
 }

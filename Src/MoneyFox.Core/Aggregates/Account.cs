@@ -17,25 +17,21 @@ namespace MoneyFox.Core.Aggregates
         {
             Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
 
-            ModificationDate = DateTime.Now;
-            CreationTime = DateTime.Now;
-
             Name = name;
             CurrentBalance = currentBalance;
             Note = note;
             IsExcluded = isExcluded;
             IsOverdrawn = currentBalance < 0;
-            ModificationDate = DateTime.Now;
         }
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; [UsedImplicitly] private set; }
 
-        [Required] public string Name { get; private set; } = null!;
+        public string Name { get; private set; } = null!;
 
         public decimal CurrentBalance { get; private set; }
-        
+
         public string? Note { get; private set; }
 
         // TODO remove this and make calculated property.
@@ -44,10 +40,6 @@ namespace MoneyFox.Core.Aggregates
         public bool IsExcluded { get; private set; }
 
         public bool IsDeactivated { get; private set; }
-
-        public DateTime ModificationDate { get; private set; }
-
-        public DateTime CreationTime { get; [UsedImplicitly] private set;}
 
         public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
         {
@@ -58,8 +50,6 @@ namespace MoneyFox.Core.Aggregates
             Note = note;
             IsExcluded = isExcluded;
             IsOverdrawn = currentBalance < 0;
-
-            ModificationDate = DateTime.Now;
         }
 
         public void AddPaymentAmount(Payment payment)
@@ -78,8 +68,6 @@ namespace MoneyFox.Core.Aggregates
             {
                 CurrentBalance += payment.Amount;
             }
-
-            ModificationDate = DateTime.Now;
         }
 
         public void RemovePaymentAmount(Payment payment)
@@ -101,8 +89,6 @@ namespace MoneyFox.Core.Aggregates
             {
                 CurrentBalance += -payment.Amount;
             }
-
-            ModificationDate = DateTime.Now;
         }
 
         public void Deactivate()
