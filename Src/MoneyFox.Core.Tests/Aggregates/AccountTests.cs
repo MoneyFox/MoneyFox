@@ -99,7 +99,10 @@ namespace MoneyFox.Core.Tests.Aggregates
             var testAccount = new Account("foo");
 
             // Act / Assert
-            testAccount.UpdateAccount(testname, testBalance, testnote, testExcluded);
+            testAccount.UpdateAccount(
+                name: testname,
+                note: testnote,
+                isExcluded: testExcluded);
 
             // Assert
             testAccount.Name.Should().Be(testname);
@@ -119,7 +122,11 @@ namespace MoneyFox.Core.Tests.Aggregates
 
             // Act
             // AddPaymentAmount executed in the clear method
-            new Payment(DateTime.Today, 50, paymentType, account);
+            new Payment(
+                date: DateTime.Today,
+                amount: 50,
+                type: paymentType,
+                chargedAccount: account);
 
             // Assert
             account.CurrentBalance.Should().Be(expectedBalance);

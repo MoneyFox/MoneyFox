@@ -12,12 +12,12 @@ namespace MoneyFox.Core.Aggregates
         [UsedImplicitly]
         private Account() { }
 
-        public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
+        public Account(string name, decimal initalBalance = 0, string note = "", bool isExcluded = false)
         {
             Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
 
             Name = name;
-            CurrentBalance = currentBalance;
+            CurrentBalance = initalBalance;
             Note = note;
             IsExcluded = isExcluded;
         }
@@ -36,12 +36,11 @@ namespace MoneyFox.Core.Aggregates
 
         public bool IsDeactivated { get; private set; }
 
-        public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
+        public void UpdateAccount(string name, string note = "", bool isExcluded = false)
         {
             Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
 
             Name = name;
-            CurrentBalance = currentBalance;
             Note = note;
             IsExcluded = isExcluded;
         }
