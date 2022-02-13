@@ -24,7 +24,8 @@
                         Margin="0,0,3,0"
                         Style="{StaticResource DeemphasizedLabelStyle}"
                         Text="{x:Bind resources:Strings.CreationDateLabel}" />
-                    <TextBlock Text="{Binding SelectedAccount.CreationTime}" />
+                    <TextBlock Text="{x:Bind ViewModel.SelectedAccount.Created, Mode=OneWay}"
+                        Style="{StaticResource DeemphasizedLabelStyle}" />
                 </StackPanel>
 
                 <StackPanel Orientation="Horizontal">
@@ -32,7 +33,8 @@
                         Margin="0,0,3,0"
                         Style="{StaticResource DeemphasizedLabelStyle}"
                         Text="{x:Bind resources:Strings.ModificationDateLabel}" />
-                    <TextBlock Text="{Binding SelectedAccount.ModificationDate}" />
+                    <TextBlock Text="{x:Bind ViewModel.SelectedAccount.LastModified, Mode=OneWay}"
+                        Style="{StaticResource DeemphasizedLabelStyle}" />
                 </StackPanel>
             </StackPanel>
         </ScrollViewer>

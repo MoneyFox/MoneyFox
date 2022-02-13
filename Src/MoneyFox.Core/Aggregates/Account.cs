@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.SharedKernel.Interface;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
