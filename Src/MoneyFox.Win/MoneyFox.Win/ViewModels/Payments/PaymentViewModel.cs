@@ -21,8 +21,8 @@ namespace MoneyFox.Win.ViewModels.Payments
         private PaymentType type;
         private string note = "";
         private bool isRecurring;
-        private DateTime creationTime;
-        private DateTime modificationDate;
+        private DateTime created;
+        private DateTime lastModified;
 
         private AccountViewModel chargedAccount = null!;
         private AccountViewModel? targetAccount;
@@ -202,32 +202,32 @@ namespace MoneyFox.Win.ViewModels.Payments
             }
         }
 
-        public DateTime CreationTime
+        public DateTime Created
         {
-            get => creationTime;
+            get => created;
             set
             {
-                if(creationTime == value)
+                if(created == value)
                 {
                     return;
                 }
 
-                creationTime = value;
+                created = value;
                 OnPropertyChanged();
             }
         }
 
-        public DateTime ModificationDate
+        public DateTime LastModified
         {
-            get => modificationDate;
+            get => lastModified;
             set
             {
-                if(modificationDate == value)
+                if(lastModified == value)
                 {
                     return;
                 }
 
-                modificationDate = value;
+                lastModified = value;
                 OnPropertyChanged();
             }
         }

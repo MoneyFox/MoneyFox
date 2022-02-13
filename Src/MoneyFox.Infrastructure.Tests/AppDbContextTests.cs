@@ -45,7 +45,7 @@ namespace MoneyFox.Infrastructure.Tests
         }
 
         [Fact]
-        public async Task SetCreatedDateAndSendEventOnSaveChanges()
+        public async Task SetCreatedAndLastModifiedDateAndSendEventOnSaveChanges()
         {
             // Arrange
             var options = new DbContextOptionsBuilder<AppDbContext>()
@@ -64,6 +64,7 @@ namespace MoneyFox.Infrastructure.Tests
             loadedAccount.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
 
             account.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
+            account.LastModified.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
 
             await publisher.Received(1).Publish(Arg.Any<DbEntityModifiedEvent>());
             settingsFacade.LastDatabaseUpdate.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));

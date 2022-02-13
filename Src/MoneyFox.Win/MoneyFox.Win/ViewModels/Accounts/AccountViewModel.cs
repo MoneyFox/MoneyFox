@@ -16,12 +16,9 @@ namespace MoneyFox.Win.ViewModels.Accounts
         private string note = "";
         private bool isOverdrawn;
         private bool isExcluded;
-        private DateTime creationTime;
-        private DateTime modificationDate;
+        private DateTime created;
+        private DateTime lastModified;
 
-        /// <summary>
-        ///     Account Id
-        /// </summary>
         public int Id
         {
             get => id;
@@ -37,9 +34,6 @@ namespace MoneyFox.Win.ViewModels.Accounts
             }
         }
 
-        /// <summary>
-        ///     Account Name
-        /// </summary>
         public string Name
         {
             get => name;
@@ -55,9 +49,6 @@ namespace MoneyFox.Win.ViewModels.Accounts
             }
         }
 
-        /// <summary>
-        ///     Current Balance
-        /// </summary>
         public decimal CurrentBalance
         {
             get => currentBalance;
@@ -73,9 +64,6 @@ namespace MoneyFox.Win.ViewModels.Accounts
             }
         }
 
-        /// <summary>
-        ///     Balance End of Month
-        /// </summary>
         public decimal EndOfMonthBalance
         {
             get => endOfMonthBalance;
@@ -86,9 +74,6 @@ namespace MoneyFox.Win.ViewModels.Accounts
             }
         }
 
-        /// <summary>
-        ///     Note
-        /// </summary>
         public string Note
         {
             get => note;
@@ -104,9 +89,6 @@ namespace MoneyFox.Win.ViewModels.Accounts
             }
         }
 
-        /// <summary>
-        ///     Indicator if the account currently is overdrawn.
-        /// </summary>
         public bool IsOverdrawn
         {
             get => isOverdrawn;
@@ -122,9 +104,6 @@ namespace MoneyFox.Win.ViewModels.Accounts
             }
         }
 
-        /// <summary>
-        ///     Indicator if the account is excluded from the balance calculation.
-        /// </summary>
         public bool IsExcluded
         {
             get => isExcluded;
@@ -140,32 +119,32 @@ namespace MoneyFox.Win.ViewModels.Accounts
             }
         }
 
-        public DateTime CreationTime
+        public DateTime Created
         {
-            get => creationTime;
+            get => created;
             set
             {
-                if(creationTime == value)
+                if(created == value)
                 {
                     return;
                 }
 
-                creationTime = value;
+                created = value;
                 OnPropertyChanged();
             }
         }
 
-        public DateTime ModificationDate
+        public DateTime LastModified
         {
-            get => modificationDate;
+            get => lastModified;
             set
             {
-                if(modificationDate == value)
+                if(lastModified == value)
                 {
                     return;
                 }
 
-                modificationDate = value;
+                lastModified = value;
                 OnPropertyChanged();
             }
         }
@@ -200,8 +179,8 @@ namespace MoneyFox.Win.ViewModels.Accounts
             hash.Add(Note);
             hash.Add(IsOverdrawn);
             hash.Add(IsExcluded);
-            hash.Add(CreationTime);
-            hash.Add(ModificationDate);
+            hash.Add(Created);
+            hash.Add(LastModified);
             return hash.ToHashCode();
         }
     }

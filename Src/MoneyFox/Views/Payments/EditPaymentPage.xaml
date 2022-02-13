@@ -21,10 +21,10 @@
                 <payments:ModifyPaymentContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedPayment.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+                       Text="{Binding SelectedPayment.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedPayment.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+                       Text="{Binding SelectedPayment.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button x:Name="DeletePaymentButton"
                         Style="{StaticResource WarningButton}"

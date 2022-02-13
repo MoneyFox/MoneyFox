@@ -2,7 +2,6 @@
 using JetBrains.Annotations;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.SharedKernel.Interface;
-using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -13,15 +12,14 @@ namespace MoneyFox.Core.Aggregates
         [UsedImplicitly]
         private Account() { }
 
-        public Account(string name, decimal currentBalance = 0, string note = "", bool isExcluded = false)
+        public Account(string name, decimal initalBalance = 0, string note = "", bool isExcluded = false)
         {
             Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
 
             Name = name;
-            CurrentBalance = currentBalance;
+            CurrentBalance = initalBalance;
             Note = note;
             IsExcluded = isExcluded;
-            IsOverdrawn = currentBalance < 0;
         }
 
         [Key]
@@ -34,22 +32,17 @@ namespace MoneyFox.Core.Aggregates
 
         public string? Note { get; private set; }
 
-        // TODO remove this and make calculated property.
-        public bool IsOverdrawn { get; private set; }
-
         public bool IsExcluded { get; private set; }
 
         public bool IsDeactivated { get; private set; }
 
-        public void UpdateAccount(string name, decimal currentBalance = 0m, string note = "", bool isExcluded = false)
+        public void UpdateAccount(string name, string note = "", bool isExcluded = false)
         {
             Guard.Argument(name, nameof(name)).NotNull().NotWhiteSpace();
 
             Name = name;
-            CurrentBalance = currentBalance;
             Note = note;
             IsExcluded = isExcluded;
-            IsOverdrawn = currentBalance < 0;
         }
 
         public void AddPaymentAmount(Payment payment)

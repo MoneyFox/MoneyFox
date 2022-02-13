@@ -22,10 +22,10 @@
                 <Categories:ModifyCategoryContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedCategory.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+                       Text="{Binding SelectedCategory.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedCategory.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+                       Text="{Binding SelectedCategory.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button x:Name="DeleteAccountButton"
                         Style="{StaticResource WarningButton}"
