@@ -11,19 +11,6 @@ namespace MoneyFox.Core.Tests.Aggregates
     [ExcludeFromCodeCoverage]
     public class AccountTests
     {
-        [Theory]
-        [InlineData(-12, true)]
-        [InlineData(12, false)]
-        [InlineData(0, false)]
-        public void Ctor_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
-        {
-            // Act
-            var account = new Account("test", currentBalance);
-
-            // Assert
-            account.IsOverdrawn.Should().Be(expectedIsOverdrawn);
-        }
-
         [Fact]
         public void DefaultValuesCorrectlySet()
         {
@@ -37,7 +24,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             account.Name.Should().Be(testName);
             account.CurrentBalance.Should().Be(0);
             account.Note.Should().BeEmpty();
-            account.IsOverdrawn.Should().BeFalse();
             account.IsExcluded.Should().BeFalse();
 
         }
@@ -59,7 +45,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             account.CurrentBalance.Should().Be(testBalance);
             account.Note.Should().Be(testNote);
             account.IsExcluded.Should().Be(testExcluded);
-            account.IsOverdrawn.Should().BeFalse();
         }
 
         [Fact]
@@ -85,22 +70,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             Assert.Throws<ArgumentException>(() => testAccount.UpdateAccount(name));
         }
 
-        [Theory]
-        [InlineData(-12, true)]
-        [InlineData(12, false)]
-        [InlineData(0, false)]
-        public void UpdateData_Balance_IsOverdrawnCorrectSet(decimal currentBalance, bool expectedIsOverdrawn)
-        {
-            // Arrange
-            var testAccount = new Account("test");
-
-            // Act / Assert
-            testAccount.UpdateAccount(testAccount.Name, currentBalance);
-
-            // Assert
-            testAccount.IsOverdrawn.Should().Be(expectedIsOverdrawn);
-        }
-
         [Fact]
         public void UpdateData_NoParams_DefaultValuesSet()
         {
@@ -115,7 +84,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             testAccount.Name.Should().Be(testname);
             testAccount.CurrentBalance.Should().Be(0);
             testAccount.Note.Should().BeEmpty();
-            testAccount.IsOverdrawn.Should().BeFalse();
             testAccount.IsExcluded.Should().BeFalse();
         }
 
@@ -124,21 +92,21 @@ namespace MoneyFox.Core.Tests.Aggregates
         {
             // Arrange
             const string testname = "test";
-            const decimal testBalance = 10;
             const string testnote = "foo";
             const bool testExcluded = true;
 
             var testAccount = new Account("foo");
 
             // Act / Assert
-            testAccount.UpdateAccount(testname, testBalance, testnote, testExcluded);
+            testAccount.UpdateAccount(
+                name: testname,
+                note: testnote,
+                isExcluded: testExcluded);
 
             // Assert
             testAccount.Name.Should().Be(testname);
-            testAccount.CurrentBalance.Should().Be(testBalance);
             testAccount.Note.Should().Be(testnote);
             testAccount.IsExcluded.Should().Be(testExcluded);
-            testAccount.IsOverdrawn.Should().BeFalse();
         }
 
         [Theory]
@@ -152,7 +120,11 @@ namespace MoneyFox.Core.Tests.Aggregates
 
             // Act
             // AddPaymentAmount executed in the clear method
-            new Payment(DateTime.Today, 50, paymentType, account);
+            new Payment(
+                date: DateTime.Today,
+                amount: 50,
+                type: paymentType,
+                chargedAccount: account);
 
             // Assert
             account.CurrentBalance.Should().Be(expectedBalance);
