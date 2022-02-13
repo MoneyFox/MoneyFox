@@ -21,10 +21,10 @@
                 <accounts:ModifyAccountContentView />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedAccount.CreationTime, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
+                       Text="{Binding SelectedAccount.Created, StringFormat={extensions:Translate CreationDateTemplateLabel}}" />
 
                 <Label Style="{StaticResource TextBodySecondary}"
-                       Text="{Binding SelectedAccount.ModificationDate, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
+                       Text="{Binding SelectedAccount.LastModified, StringFormat={extensions:Translate ModificationDateTemplateLabel}}" />
 
                 <Button x:Name="DeleteAccountButton"
                         Style="{StaticResource WarningButton}"
