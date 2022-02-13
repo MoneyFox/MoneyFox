@@ -789,6 +789,6 @@ Um anzufangen, erstelle ein neues Konto. Mit diesen organisierst du Zahlungen un
     <value>Zahlung bearbeiten</value>
   </data>
   <data name="InitialBalanceLabel" xml:space="preserve">
-    <value>Initial Balance</value>
+    <value>Anfangsguthaben</value>
   </data>
 </root>
