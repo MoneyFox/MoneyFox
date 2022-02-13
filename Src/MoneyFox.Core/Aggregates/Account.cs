@@ -20,7 +20,6 @@ namespace MoneyFox.Core.Aggregates
             CurrentBalance = currentBalance;
             Note = note;
             IsExcluded = isExcluded;
-            IsOverdrawn = currentBalance < 0;
         }
 
         [Key]
@@ -32,9 +31,6 @@ namespace MoneyFox.Core.Aggregates
         public decimal CurrentBalance { get; private set; }
 
         public string? Note { get; private set; }
-
-        // TODO remove this and make calculated property.
-        public bool IsOverdrawn { get; private set; }
 
         public bool IsExcluded { get; private set; }
 
@@ -48,7 +44,6 @@ namespace MoneyFox.Core.Aggregates
             CurrentBalance = currentBalance;
             Note = note;
             IsExcluded = isExcluded;
-            IsOverdrawn = currentBalance < 0;
         }
 
         public void AddPaymentAmount(Payment payment)
