@@ -2,7 +2,12 @@
 {
     using Autofac;
     using Microsoft.UI.Xaml;
-    using MoneyFox.Core._Pending_.Common;
+
+#if !DEBUG
+    using Microsoft.AppCenter;
+    using Microsoft.AppCenter.Analytics;
+    using Microsoft.AppCenter.Crashes;
+#endif
 
     public partial class App : Application
     {
@@ -17,10 +22,13 @@
             builder.RegisterModule<WindowsModule>();
             ViewModelLocator.RegisterServices(builder);
 
-            m_window = new MainWindow();
+            var m_window = new MainWindow();
             m_window.Activate();
-        }
 
-        private Window m_window;
+#if !DEBUG
+            var appConfig = new AppConfig();
+            AppCenter.Start(appConfig.AppCenter.Secret, typeof(Analytics), typeof(Crashes));
+#endif
+        }
     }
 }
