@@ -5,7 +5,6 @@ using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Core.Events;
-using MoneyFox.Infrastructure.Persistence.Configurations;
 using System;
 using System.Linq;
 using System.Threading;
@@ -48,6 +47,7 @@ namespace MoneyFox.Infrastructure.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.Created = DateTime.Now;
+                        entry.Entity.LastModified = DateTime.Now;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModified = DateTime.Now;
