@@ -92,7 +92,6 @@ namespace MoneyFox.Core.Tests.Aggregates
         {
             // Arrange
             const string testname = "test";
-            const decimal testBalance = 10;
             const string testnote = "foo";
             const bool testExcluded = true;
 
@@ -106,7 +105,6 @@ namespace MoneyFox.Core.Tests.Aggregates
 
             // Assert
             testAccount.Name.Should().Be(testname);
-            testAccount.CurrentBalance.Should().Be(testBalance);
             testAccount.Note.Should().Be(testnote);
             testAccount.IsExcluded.Should().Be(testExcluded);
         }
