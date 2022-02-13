@@ -5,7 +5,6 @@ using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using MoneyFox.Core._Pending_;
 using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.DbBackup;
 using MoneyFox.Core.Commands.Payments.ClearPayments;
 using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
 using MoneyFox.Core.Interfaces;
@@ -106,7 +105,7 @@ namespace MoneyFox
                 {
                     var backupService = ServiceLocator.Current.GetInstance<IBackupService>();
                     await backupService.RestoreBackupAsync();
-                    
+
                     logger.Info("Backup synced.");
                 }
 
