@@ -59,7 +59,6 @@ namespace MoneyFox
 
             InitializeAppCenter();
             ExecuteStartupTasks();
-            ExecuteStartupTasks();
         }
 
         protected override void OnResume() => ExecuteStartupTasks();
