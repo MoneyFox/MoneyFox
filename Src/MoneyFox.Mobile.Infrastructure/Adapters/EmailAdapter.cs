@@ -15,7 +15,6 @@ namespace MoneyFox.Mobile.Infrastructure.Adapters
             try
             {
                 var message = new EmailMessage { Subject = subject, Body = body, To = recipients };
-
                 await Email.ComposeAsync(message);
             }
             catch(FeatureNotSupportedException ex)

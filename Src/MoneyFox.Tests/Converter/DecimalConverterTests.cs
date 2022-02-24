@@ -20,7 +20,6 @@ namespace MoneyFox.Tests.Converter
         {
             // Arrange
             CultureHelper.CurrentCulture = new CultureInfo(culture);
-            CultureHelper.CurrentLocale = new CultureInfo(locale);
             Thread.CurrentThread.CurrentUICulture = CultureHelper.CurrentCulture;
             var converter = new DecimalConverter();
 
