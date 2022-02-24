@@ -9,7 +9,11 @@ namespace MoneyFox.Win.Infrastructure.Adapters
     {
         public async Task OpenWebsiteAsync(Uri uri)
         {
-            Process.Start(uri.ToString());
+            Process.Start(new ProcessStartInfo(uri.ToString())
+            {
+                UseShellExecute = true
+            });
+
             await Task.CompletedTask;
         }
     }

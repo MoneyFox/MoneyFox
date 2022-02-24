@@ -18,7 +18,6 @@ namespace MoneyFox.Win.Pages.Dialogs
         }
 
         // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(LoadingDialog), new PropertyMetadata(0));
+        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(LoadingDialog), new PropertyMetadata(0));
     }
 }

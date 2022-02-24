@@ -11,8 +11,8 @@ namespace MoneyFox.Win.ViewModels.Categories
         private string name = "";
         private string note = "";
         private bool requireNote;
-        private DateTime creationTime;
-        private DateTime modificationDate;
+        private DateTime created;
+        private DateTime lastModified;
 
         public int Id
         {
@@ -59,32 +59,32 @@ namespace MoneyFox.Win.ViewModels.Categories
             }
         }
 
-        public DateTime CreationTime
+        public DateTime Created
         {
-            get => creationTime;
+            get => created;
             set
             {
-                if(creationTime == value)
+                if(created == value)
                 {
                     return;
                 }
 
-                creationTime = value;
+                created = value;
                 OnPropertyChanged();
             }
         }
 
-        public DateTime ModificationDate
+        public DateTime LastModified
         {
-            get => modificationDate;
+            get => lastModified;
             set
             {
-                if(modificationDate == value)
+                if(lastModified == value)
                 {
                     return;
                 }
 
-                modificationDate = value;
+                lastModified = value;
                 OnPropertyChanged();
             }
         }

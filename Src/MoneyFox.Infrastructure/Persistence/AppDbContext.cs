@@ -5,7 +5,6 @@ using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Aggregates;
 using MoneyFox.Core.Aggregates.Payments;
 using MoneyFox.Core.Events;
-using MoneyFox.Infrastructure.Persistence.Configurations;
 using System;
 using System.Linq;
 using System.Threading;
@@ -35,14 +34,9 @@ namespace MoneyFox.Infrastructure.Persistence
 
         public DbSet<Category> Categories { get; set; } = null!;
 
-        /// <summary>
-        ///     Called when the models are created. Enables to configure advanced settings for the models.
-        /// </summary>
-        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfiguration(new AccountConfiguration());
-            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
+            modelBuilder?.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
@@ -53,6 +47,7 @@ namespace MoneyFox.Infrastructure.Persistence
                 {
                     case EntityState.Added:
                         entry.Entity.Created = DateTime.Now;
+                        entry.Entity.LastModified = DateTime.Now;
                         break;
                     case EntityState.Modified:
                         entry.Entity.LastModified = DateTime.Now;
@@ -78,6 +73,9 @@ namespace MoneyFox.Infrastructure.Persistence
             return result;
         }
 
-        public override int SaveChanges() => SaveChangesAsync().GetAwaiter().GetResult();
+        public override int SaveChanges()
+        {
+            return SaveChangesAsync().GetAwaiter().GetResult();
+        }
     }
 }

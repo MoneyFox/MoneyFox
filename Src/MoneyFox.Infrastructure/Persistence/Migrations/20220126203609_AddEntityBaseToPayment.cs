@@ -17,7 +17,7 @@ namespace MoneyFox.Persistence.Migrations
                 name: "LastModified",
                 table: "Payments",
                 nullable: true);
-            
+
             migrationBuilder.Sql("Update Payments Set Created = CreationTime, LastModified = ModificationDate");
         }
 

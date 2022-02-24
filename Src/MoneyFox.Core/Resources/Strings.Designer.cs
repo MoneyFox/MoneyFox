@@ -1178,6 +1178,15 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Initial Balance.
+        /// </summary>
+        public static string InitialBalanceLabel {
+            get {
+                return ResourceManager.GetString("InitialBalanceLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The enddate of a recurring Payment has to be in the future. Please check your input..
         /// </summary>
         public static string InvalidEnddateMessage {

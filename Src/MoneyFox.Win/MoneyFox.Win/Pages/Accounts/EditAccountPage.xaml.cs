@@ -9,6 +9,7 @@ namespace MoneyFox.Win.Pages.Accounts
 
         public EditAccountPage(int accountId)
         {
+            XamlRoot = MainWindow.RootFrame.XamlRoot;
             InitializeComponent();
             DataContext = ViewModelLocator.EditAccountVm;
             ViewModel.AccountId = accountId;

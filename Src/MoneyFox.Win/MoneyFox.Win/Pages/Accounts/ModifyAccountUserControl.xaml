@@ -37,7 +37,7 @@
             x:Name="TextBoxCurrentBalance"
             Margin="{StaticResource SmallTitleContentMargin}"
             GotFocus="TextBoxOnFocus"
-            Header="{x:Bind resources:Strings.CurrentBalanceLabel}"
+            Header="{x:Bind resources:Strings.InitialBalanceLabel}"
             InputScope="Number"
             IsEnabled="{Binding IsEdit, Converter={StaticResource InverseBoolConverter}}"
             Text="{Binding AmountString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
