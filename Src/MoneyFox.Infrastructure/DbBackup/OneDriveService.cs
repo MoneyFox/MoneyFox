@@ -215,45 +215,52 @@ namespace MoneyFox.Infrastructure.DbBackup
 
         private async Task RestoreArchivedBackupInCaseOfErrorAsync()
         {
-            logManager.Info("Restore archived Backup.");
-
-            if(GraphServiceClient == null)
+            try
             {
-                throw new GraphClientNullException();
+                logManager.Info("Restore archived Backup.");
+
+                if(GraphServiceClient == null)
+                {
+                    throw new GraphClientNullException();
+                }
+
+                IDriveItemChildrenCollectionPage archivedBackups = await GraphServiceClient.Drive
+                    .Items[ArchiveFolder?.Id]
+                    .Children
+                    .Request()
+                    .GetAsync();
+
+                if(!archivedBackups.Any())
+                {
+                    logManager.Info("No backups found.");
+                    return;
+                }
+
+                DriveItem lastBackup = archivedBackups.OrderByDescending(x => x.CreatedDateTime).First();
+
+                DriveItem? appRoot = await GraphServiceClient
+                    .Me
+                    .Drive
+                    .Special
+                    .AppRoot
+                    .Request()
+                    .GetAsync();
+
+                var updateItem = new DriveItem
+                {
+                    ParentReference = new ItemReference { Id = appRoot.Id }, Name = DatabaseConstants.BACKUP_NAME
+                };
+
+                await GraphServiceClient
+                    .Drive
+                    .Items[lastBackup.Id]
+                    .Request()
+                    .UpdateAsync(updateItem);
             }
-
-            IDriveItemChildrenCollectionPage archivedBackups = await GraphServiceClient.Drive
-                .Items[ArchiveFolder?.Id]
-                .Children
-                .Request()
-                .GetAsync();
-
-            if(!archivedBackups.Any())
+            catch(Exception ex)
             {
-                logManager.Info("No backups found.");
-                return;
+                logManager.Error(ex, "Failed to restore database on fail.");
             }
-
-            DriveItem lastBackup = archivedBackups.OrderByDescending(x => x.CreatedDateTime).First();
-
-            DriveItem? appRoot = await GraphServiceClient
-                .Me
-                .Drive
-                .Special
-                .AppRoot
-                .Request()
-                .GetAsync();
-
-            var updateItem = new DriveItem
-            {
-                ParentReference = new ItemReference { Id = appRoot.Id }, Name = DatabaseConstants.BACKUP_NAME
-            };
-
-            await GraphServiceClient
-                .Drive
-                .Items[lastBackup.Id]
-                .Request()
-                .UpdateAsync(updateItem);
         }
 
         /// <inheritdoc />
