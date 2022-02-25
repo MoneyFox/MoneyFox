@@ -17,15 +17,13 @@ namespace MoneyFox.Win.ViewModels.Accounts
     public class EditAccountViewModel : ModifyAccountViewModel
     {
         private readonly IMapper mapper;
-        private readonly IMediator mediator;
 
         public EditAccountViewModel(
             IMediator mediator,
             IMapper mapper,
             IDialogService dialogService,
-            INavigationService navigationService) : base(dialogService, navigationService)
+            INavigationService navigationService) : base(dialogService, navigationService, mediator)
         {
-            this.mediator = mediator;
             this.mapper = mapper;
         }
 
@@ -35,13 +33,13 @@ namespace MoneyFox.Win.ViewModels.Accounts
 
         protected override async Task InitializeAsync()
         {
-            SelectedAccount = mapper.Map<AccountViewModel>(await mediator.Send(new GetAccountByIdQuery(AccountId)));
+            SelectedAccount = mapper.Map<AccountViewModel>(await Mediator.Send(new GetAccountByIdQuery(AccountId)));
             AmountString = HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
             Title = string.Format(CultureInfo.InvariantCulture, Strings.EditAccountTitle, SelectedAccount.Name);
         }
 
         protected override async Task SaveAccountAsync() =>
-            await mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
+            await Mediator.Send(new UpdateAccountCommand(mapper.Map<Account>(SelectedAccount)));
 
         protected async Task DeleteAccountAsync()
         {
@@ -49,7 +47,7 @@ namespace MoneyFox.Win.ViewModels.Accounts
                    Strings.DeleteTitle,
                    Strings.DeleteAccountConfirmationMessage))
             {
-                await mediator.Send(new DeactivateAccountByIdCommand(SelectedAccount.Id));
+                await Mediator.Send(new DeactivateAccountByIdCommand(SelectedAccount.Id));
                 NavigationService.GoBack();
             }
         }

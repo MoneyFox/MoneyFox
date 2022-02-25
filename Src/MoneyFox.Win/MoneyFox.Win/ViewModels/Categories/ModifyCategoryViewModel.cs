@@ -9,6 +9,8 @@ using MoneyFox.Core.Queries.Categories.GetCategoryById;
 using MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists;
 using MoneyFox.Core.Resources;
 using MoneyFox.Win.Services;
+using DialogServiceClass = MoneyFox.Win.DialogService;
+using Microsoft.UI.Xaml.Controls;
 using System.Threading.Tasks;
 
 namespace MoneyFox.Win.ViewModels.Categories
@@ -91,16 +93,26 @@ namespace MoneyFox.Win.ViewModels.Categories
 
         private async Task SaveCategoryBaseAsync()
         {
-            if(await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
+            ContentDialog? openContentDialog = DialogServiceClass.GetOpenContentDialog();
+
+            if(string.IsNullOrEmpty(SelectedCategory.Name))
             {
-                await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+                DialogServiceClass.HideContentDialog(openContentDialog);
+                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                await DialogServiceClass.ShowContentDialog(openContentDialog);
                 return;
             }
 
-            await DialogService.ShowLoadingDialogAsync(Strings.SavingCategoryMessage);
+            if(await mediator.Send(new GetIfCategoryWithNameExistsQuery(SelectedCategory.Name)))
+            {
+                DialogServiceClass.HideContentDialog(openContentDialog);
+                await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateCategoryMessage);
+                await DialogServiceClass.ShowContentDialog(openContentDialog);
+                return;
+            }
+
             await SaveCategoryAsync();
             Messenger.Send(new ReloadMessage());
-            await DialogService.HideLoadingDialogAsync();
         }
 
         private async Task CancelAsync() => SelectedCategory =

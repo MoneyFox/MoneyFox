@@ -1,5 +1,6 @@
 ﻿using Microsoft.UI.Dispatching;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Resources;
 using MoneyFox.Win.Pages.Dialogs;
@@ -11,6 +12,7 @@ namespace MoneyFox.Win
     public class DialogService : IDialogService
     {
         private LoadingDialog? loadingDialog;
+        private ContentDialog? openContentDialog;
 
         /// <summary>
         ///     Show a dialog with two buttons with customizable Texts. Returns the answer.
@@ -71,8 +73,48 @@ namespace MoneyFox.Win
             dispatcherQueue.TryEnqueue(() =>
             {
                 loadingDialog?.Hide();
+                loadingDialog = null;
             });
             return Task.CompletedTask;
+        }
+
+        /// <summary>
+        ///    Returns the currently open ContentDialog object if one exists, null otherwise.
+        /// </summary>
+        public static ContentDialog? GetOpenContentDialog()
+        {
+            foreach(var popup in VisualTreeHelper.GetOpenPopupsForXamlRoot(MainWindow.RootFrame.XamlRoot))
+            {
+                if(popup.Child is ContentDialog)
+                {
+                    return (ContentDialog)popup.Child;
+                }
+            }
+
+            return null;
+
+        }
+
+        /// <summary>
+        ///    Hides the open ContentDialog object, if one exists, so another dialog can be displayed.
+        /// </summary>
+        public static void HideContentDialog(ContentDialog? contentDialog)
+        {
+            if(contentDialog != null)
+            {
+                contentDialog.Hide();
+            }
+        }
+
+        /// <summary>
+        ///    Restores visibilty of the ContentDialog object that was previously hidden
+        /// </summary>
+        public static async Task ShowContentDialog(ContentDialog? contentDialog)
+        {
+            if(contentDialog != null)
+            {
+                await contentDialog.ShowAsync();
+            }
         }
     }
 }
