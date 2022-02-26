@@ -28,7 +28,7 @@
             InitializeComponent();
         }
 
-        protected override async void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             var builder = new ContainerBuilder();
             builder.RegisterModule<WindowsModule>();
@@ -44,13 +44,13 @@
             ExecuteStartupTasks();
         }
 
-        private void ExecuteStartupTasks() =>
-            Task.Run(
-                    async () =>
-                    {
-                        await StartupTasksAsync();
-                    })
-                .ConfigureAwait(false);
+        private void ExecuteStartupTasks()
+        {
+            Task.Run(async () =>
+            {
+                await StartupTasksAsync();
+            }).ConfigureAwait(false);
+        }
 
         private async Task StartupTasksAsync()
         {

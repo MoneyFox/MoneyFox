@@ -1,11 +1,8 @@
 ﻿using Acr.UserDialogs;
 using Autofac;
-using Foundation;
-using MoneyFox.Core._Pending_;
 using MoneyFox.iOS.Src;
 using NLog;
 using System;
-using System.Globalization;
 
 namespace MoneyFox.iOS
 {
@@ -23,22 +20,7 @@ namespace MoneyFox.iOS
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
                 .AsImplementedInterfaces();
 
-            SetLocale();
             builder.RegisterModule<MoneyFoxModule>();
-        }
-
-        private void SetLocale()
-        {
-            try
-            {
-                logManager.Info($"Current country code: {NSLocale.CurrentLocale.CountryCode}.");
-                CultureHelper.CurrentLocale = new CultureInfo(NSLocale.CurrentLocale.CountryCode);
-            }
-            catch(Exception ex)
-            {
-                logManager.Error(ex);
-                CultureHelper.CurrentLocale = CultureInfo.CurrentCulture;
-            }
         }
     }
 }
