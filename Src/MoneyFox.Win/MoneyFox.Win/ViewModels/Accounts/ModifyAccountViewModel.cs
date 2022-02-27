@@ -1,13 +1,19 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using MediatR;
+using Microsoft.UI.Xaml.Controls;
 using CommunityToolkit.Mvvm.Messaging;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core._Pending_.Common.Messages;
 using MoneyFox.Core.Resources;
+using MoneyFox.Core.Queries.Accounts.GetAccountNameById;
+using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
 using MoneyFox.Win.Services;
+using DialogServiceClass = MoneyFox.Win.DialogService;
 using NLog;
 using System.Globalization;
 using System.Threading.Tasks;
+using System;
 
 namespace MoneyFox.Win.ViewModels.Accounts
 {
@@ -22,10 +28,12 @@ namespace MoneyFox.Win.ViewModels.Accounts
 
         protected ModifyAccountViewModel(
             IDialogService dialogService,
-            INavigationService navigationService)
+            INavigationService navigationService,
+            IMediator mediator)
         {
             DialogService = dialogService;
             NavigationService = navigationService;
+            Mediator = mediator;
         }
 
         protected abstract Task SaveAccountAsync();
@@ -35,6 +43,8 @@ namespace MoneyFox.Win.ViewModels.Accounts
         protected IDialogService DialogService { get; }
 
         protected INavigationService NavigationService { get; }
+
+        protected IMediator Mediator { get; }
 
         public AsyncRelayCommand InitializeCommand => new AsyncRelayCommand(InitializeAsync);
 
@@ -87,10 +97,27 @@ namespace MoneyFox.Win.ViewModels.Accounts
 
         private async Task SaveAccountBaseAsync()
         {
+            ContentDialog? openContentDialog = DialogServiceClass.GetOpenContentDialog();
+
             if(string.IsNullOrWhiteSpace(SelectedAccount.Name))
             {
+                DialogServiceClass.HideContentDialog(openContentDialog);
                 await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+                await DialogServiceClass.ShowContentDialog(openContentDialog);
+
                 return;
+            }
+
+            bool nameChanged = (SelectedAccount.Id == 0) || !SelectedAccount.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccount.Id)));
+
+            if(nameChanged && await Mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name, SelectedAccount.Id)))
+            {
+                DialogServiceClass.HideContentDialog(openContentDialog);
+                if(!await DialogService.ShowConfirmMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage))
+                {
+                    await DialogServiceClass.ShowContentDialog(openContentDialog);
+                    return;
+                }
             }
 
             if(decimal.TryParse(AmountString, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal convertedValue))
@@ -100,16 +127,17 @@ namespace MoneyFox.Win.ViewModels.Accounts
             else
             {
                 logManager.Warn($"Amount string {AmountString} could not be parsed to double.");
+                DialogServiceClass.HideContentDialog(openContentDialog);
                 await DialogService.ShowMessageAsync(
                     Strings.InvalidNumberTitle,
                     Strings.InvalidNumberCurrentBalanceMessage);
+                await DialogServiceClass.ShowContentDialog(openContentDialog);
                 return;
             }
 
-            await DialogService.ShowLoadingDialogAsync(Strings.SavingAccountMessage);
             await SaveAccountAsync();
             Messenger.Send(new ReloadMessage());
-            await DialogService.HideLoadingDialogAsync();
         }
+
     }
 }

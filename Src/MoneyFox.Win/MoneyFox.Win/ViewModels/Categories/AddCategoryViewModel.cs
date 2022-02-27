@@ -31,12 +31,6 @@ namespace MoneyFox.Win.ViewModels.Categories
 
         protected override async Task SaveCategoryAsync()
         {
-            if(string.IsNullOrEmpty(SelectedCategory.Name))
-            {
-                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
-                return;
-            }
-
             await mediator.Send(
                 new CreateCategoryCommand(
                     SelectedCategory.Name,

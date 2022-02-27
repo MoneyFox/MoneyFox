@@ -8,12 +8,15 @@ namespace MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists
 {
     public class GetIfAccountWithNameExistsQuery : IRequest<bool>
     {
-        public GetIfAccountWithNameExistsQuery(string accountName)
+        public GetIfAccountWithNameExistsQuery(string accountName, int accountId)
         {
             AccountName = accountName;
+            AccountId = accountId;
         }
 
         public string AccountName { get; }
+        
+        public int AccountId { get; }
 
         public class Handler : IRequestHandler<GetIfAccountWithNameExistsQuery, bool>
         {
@@ -26,7 +29,7 @@ namespace MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists
 
             /// <inheritdoc />
             public async Task<bool> Handle(GetIfAccountWithNameExistsQuery request, CancellationToken cancellationToken)
-                => await contextAdapter.Context.Accounts.AnyWithNameAsync(request.AccountName);
+                => await contextAdapter.Context.Accounts.AnyWithNameAsync(request.AccountName, request.AccountId);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using MediatR;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core.Commands.Accounts.CreateAccount;
-using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
 using MoneyFox.Core.Resources;
 using MoneyFox.Win.Services;
 using MoneyFox.Win.Utilities;
@@ -11,15 +10,12 @@ namespace MoneyFox.Win.ViewModels.Accounts
 {
     public class AddAccountViewModel : ModifyAccountViewModel
     {
-        private readonly IMediator mediator;
 
         public AddAccountViewModel(
             IMediator mediator,
             IDialogService dialogService,
-            INavigationService navigationService) : base(dialogService, navigationService)
+            INavigationService navigationService) : base(dialogService, navigationService, mediator)
         {
-            this.mediator = mediator;
-
             Title = Strings.AddAccountTitle;
         }
 
@@ -33,13 +29,7 @@ namespace MoneyFox.Win.ViewModels.Accounts
 
         protected override async Task SaveAccountAsync()
         {
-            if(await mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name)))
-            {
-                await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
-                return;
-            }
-
-            await mediator.Send(
+            await Mediator.Send(
                 new CreateAccountCommand(
                     SelectedAccount.Name,
                     SelectedAccount.CurrentBalance,

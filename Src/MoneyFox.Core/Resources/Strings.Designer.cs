@@ -835,7 +835,7 @@ namespace MoneyFox.Core.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An Account with that name already exists..
+        ///   Looks up a localized string similar to An account with that name already exists. Continue with saving?.
         /// </summary>
         public static string DuplicateAccountMessage {
             get {
