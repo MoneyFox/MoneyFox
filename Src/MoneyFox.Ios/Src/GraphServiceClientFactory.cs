@@ -1,16 +1,16 @@
-﻿using Microsoft.Graph;
-using Microsoft.Identity.Client;
-using MoneyFox.Infrastructure.DbBackup;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-
-namespace MoneyFox.iOS
+﻿namespace MoneyFox.iOS
 {
+    using Infrastructure.DbBackup;
+    using Microsoft.Graph;
+    using Microsoft.Identity.Client;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
+
     public class GraphServiceClientFactory : IGraphClientFactory
     {
         private static NSUrlSessionHandler HttpMessageHandler =>
-            new NSUrlSessionHandler { BypassBackgroundSessionCheck = true };
+            new NSUrlSessionHandler {BypassBackgroundSessionCheck = true};
 
         public GraphServiceClient CreateClient(AuthenticationResult authResult)
         {

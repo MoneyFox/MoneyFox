@@ -1,13 +1,13 @@
-﻿using FluentAssertions;
-using MoneyFox.Groups;
-using MoneyFox.ViewModels.Accounts;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using Xunit;
-
-namespace MoneyFox.Tests.Groups
+﻿namespace MoneyFox.Tests.Groups
 {
+    using FluentAssertions;
+    using MoneyFox.Groups;
+    using MoneyFox.ViewModels.Accounts;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class AlphaListGroupCollectionTests
     {
@@ -17,7 +17,7 @@ namespace MoneyFox.Tests.Groups
             // Arrange
             var accountList = new List<AccountViewModel>
             {
-                new AccountViewModel { Name = "a" }, new AccountViewModel { Name = "b" }
+                new AccountViewModel {Name = "a"}, new AccountViewModel {Name = "b"}
             };
 
             // Act

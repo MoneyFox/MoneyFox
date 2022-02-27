@@ -1,129 +1,127 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Win.Groups;
-using MoneyFox.Win.ViewModels.Payments;
+﻿namespace MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using Groups;
+using Payments;
 using System;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary
+public class CategoryOverviewViewModel : ObservableObject
 {
-    public class CategoryOverviewViewModel : ObservableObject
+    private const decimal DECIMAL_DELTA = 0.01m;
+    private int categoryId;
+    private string label = "";
+    private decimal value;
+    private decimal average;
+    private decimal percentage;
+
+    /// <summary>
+    ///     Value of this item
+    /// </summary>
+    public int CategoryId
     {
-        private const decimal DECIMAL_DELTA = 0.01m;
-        private int categoryId;
-        private string label = "";
-        private decimal value;
-        private decimal average;
-        private decimal percentage;
-
-        /// <summary>
-        ///     Value of this item
-        /// </summary>
-        public int CategoryId
+        get => categoryId;
+        set
         {
-            get => categoryId;
-            set
+            if(categoryId == value)
             {
-                if(categoryId == value)
-                {
-                    return;
-                }
-
-                categoryId = value;
-                OnPropertyChanged();
+                return;
             }
+
+            categoryId = value;
+            OnPropertyChanged();
         }
+    }
 
-        /// <summary>
-        ///     Value of this item
-        /// </summary>
-        public decimal Value
+    /// <summary>
+    ///     Value of this item
+    /// </summary>
+    public decimal Value
+    {
+        get => value;
+        set
         {
-            get => value;
-            set
+            if(Math.Abs(this.value - value) < DECIMAL_DELTA)
             {
-                if(Math.Abs(this.value - value) < DECIMAL_DELTA)
-                {
-                    return;
-                }
-
-                this.value = value;
-                OnPropertyChanged();
+                return;
             }
+
+            this.value = value;
+            OnPropertyChanged();
         }
+    }
 
-        /// <summary>
-        ///     Average of this item
-        /// </summary>
-        public decimal Average
+    /// <summary>
+    ///     Average of this item
+    /// </summary>
+    public decimal Average
+    {
+        get => average;
+        set
         {
-            get => average;
-            set
+            if(Math.Abs(average - value) < DECIMAL_DELTA)
             {
-                if(Math.Abs(average - value) < DECIMAL_DELTA)
-                {
-                    return;
-                }
-
-                average = value;
-                OnPropertyChanged();
+                return;
             }
+
+            average = value;
+            OnPropertyChanged();
         }
+    }
 
-        /// <summary>
-        ///     Value of this item
-        /// </summary>
-        public decimal Percentage
+    /// <summary>
+    ///     Value of this item
+    /// </summary>
+    public decimal Percentage
+    {
+        get => percentage;
+        set
         {
-            get => percentage;
-            set
+            if(Math.Abs(this.value - value) < DECIMAL_DELTA)
             {
-                if(Math.Abs(this.value - value) < DECIMAL_DELTA)
-                {
-                    return;
-                }
-
-                percentage = value;
-                OnPropertyChanged();
+                return;
             }
+
+            percentage = value;
+            OnPropertyChanged();
         }
+    }
 
-        /// <summary>
-        ///     Label to show in the chart
-        /// </summary>
-        public string Label
+    /// <summary>
+    ///     Label to show in the chart
+    /// </summary>
+    public string Label
+    {
+        get => label;
+        set
         {
-            get => label;
-            set
+            if(label == value)
             {
-                if(label == value)
-                {
-                    return;
-                }
-
-                label = value;
-                OnPropertyChanged();
+                return;
             }
+
+            label = value;
+            OnPropertyChanged();
         }
+    }
 
-        private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source
-            = new ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>>();
+    private ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> source = new();
 
-        /// <summary>
-        ///     Source for the payment list
-        /// </summary>
-        public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
+    /// <summary>
+    ///     Source for the payment list
+    /// </summary>
+    public ObservableCollection<DateListGroupCollection<DateListGroupCollection<PaymentViewModel>>> Source
+    {
+        get => source;
+        private set
         {
-            get => source;
-            private set
+            if(source == value)
             {
-                if(source == value)
-                {
-                    return;
-                }
-
-                source = value;
-                OnPropertyChanged();
+                return;
             }
+
+            source = value;
+            OnPropertyChanged();
         }
     }
 }

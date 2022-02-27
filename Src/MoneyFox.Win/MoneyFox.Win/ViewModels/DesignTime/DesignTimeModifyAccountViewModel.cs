@@ -1,29 +1,28 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Win.ViewModels.Accounts;
+﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
-namespace MoneyFox.Win.ViewModels.DesignTime
+using Accounts;
+using CommunityToolkit.Mvvm.Input;
+
+public class DesignTimeModifyAccountViewModel
 {
-    public class DesignTimeModifyAccountViewModel
-    {
-        /// <inheritdoc />
-        public bool IsEdit { get; }
+    /// <inheritdoc />
+    public bool IsEdit { get; }
 
-        /// <inheritdoc />
-        public string Title { get; } = "";
+    /// <inheritdoc />
+    public string Title { get; } = "";
 
-        /// <inheritdoc />
-        public string AmountString { get; } = "";
+    /// <inheritdoc />
+    public string AmountString { get; } = "";
 
-        /// <inheritdoc />
-        public AccountViewModel SelectedAccount { get; } = null!;
+    /// <inheritdoc />
+    public AccountViewModel SelectedAccount { get; } = null!;
 
-        /// <inheritdoc />
-        public RelayCommand SaveCommand { get; } = null!;
+    /// <inheritdoc />
+    public RelayCommand SaveCommand { get; } = null!;
 
-        /// <inheritdoc />
-        public RelayCommand DeleteCommand { get; } = null!;
+    /// <inheritdoc />
+    public RelayCommand DeleteCommand { get; } = null!;
 
-        /// <inheritdoc />
-        public RelayCommand CancelCommand { get; } = null!;
-    }
+    /// <inheritdoc />
+    public RelayCommand CancelCommand { get; } = null!;
 }

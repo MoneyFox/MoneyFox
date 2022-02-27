@@ -1,14 +1,14 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.ViewModels.Settings;
-using NSubstitute;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using Xunit;
-
-namespace MoneyFox.Tests.ViewModels.Settings
+﻿namespace MoneyFox.Tests.ViewModels.Settings
 {
+    using Core._Pending_.Common.Facades;
+    using Core._Pending_.Common.Interfaces;
+    using FluentAssertions;
+    using MoneyFox.ViewModels.Settings;
+    using NSubstitute;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class SettingsViewModelTests
     {

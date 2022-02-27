@@ -1,10 +1,10 @@
-﻿using MediatR;
-using MoneyFox.Core.Interfaces;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Commands.DatabaseBackup.UploadBackup
+﻿namespace MoneyFox.Core.Commands.DatabaseBackup.UploadBackup
 {
+    using Interfaces;
+    using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     internal sealed class UploadBackupCommand : IRequest
     {
         public class Handler : IRequestHandler<UploadBackupCommand, Unit>

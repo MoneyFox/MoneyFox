@@ -1,12 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Core._Pending_.Common.Extensions;
-using MoneyFox.Core._Pending_.Common.Messages;
-using System;
-
-namespace MoneyFox.ViewModels.Dialogs
+﻿namespace MoneyFox.ViewModels.Dialogs
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Extensions;
+    using Core._Pending_.Common.Messages;
+    using System;
+
     public class SelectDateRangeDialogViewModel : ObservableRecipient
     {
         private DateTime endDate;

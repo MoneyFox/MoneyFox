@@ -1,11 +1,11 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates.Payments;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Categories.GetCategoryById
+﻿namespace MoneyFox.Core.Queries.Categories.GetCategoryById
 {
+    using _Pending_.Common.Interfaces;
+    using Aggregates.Payments;
+    using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetCategoryByIdQuery : IRequest<Category>
     {
         public GetCategoryByIdQuery(int categoryId)

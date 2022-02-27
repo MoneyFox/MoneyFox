@@ -1,23 +1,23 @@
-﻿using Microsoft.UI.Xaml;
+﻿namespace MoneyFox.Win.Pages.Dialogs;
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
-namespace MoneyFox.Win.Pages.Dialogs
+public sealed partial class LoadingDialog : ContentDialog
 {
-    public sealed partial class LoadingDialog : ContentDialog
+    public LoadingDialog()
     {
-        public LoadingDialog()
-        {
-            XamlRoot = MainWindow.RootFrame.XamlRoot;
-            InitializeComponent();
-        }
-
-        public string Text
-        {
-            get => (string)GetValue(TextProperty);
-            set => SetValue(TextProperty, value);
-        }
-
-        // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TextProperty = DependencyProperty.Register("Text", typeof(string), typeof(LoadingDialog), new PropertyMetadata(0));
+        XamlRoot = MainWindow.RootFrame.XamlRoot;
+        InitializeComponent();
     }
+
+    public string Text
+    {
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
+    }
+
+    // Using a DependencyProperty as the backing store for Text.  This enables animation, styling, binding, etc...
+    public static readonly DependencyProperty TextProperty =
+        DependencyProperty.Register("Text", typeof(string), typeof(LoadingDialog), new PropertyMetadata(0));
 }

@@ -1,10 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-
-namespace MoneyFox.ViewModels.Categories
+﻿namespace MoneyFox.ViewModels.Categories
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using Core._Pending_.Common.Interfaces.Mapping;
+    using Core.Aggregates.Payments;
+    using System;
+
     public class CategoryViewModel : ObservableObject, IMapFrom<Category>
     {
         private DateTime creationTime;

@@ -1,9 +1,9 @@
-﻿using MoneyFox.ViewModels.Statistics;
-using MoneyFox.Views.Dialogs;
-using System;
-
-namespace MoneyFox.Views.Statistics
+﻿namespace MoneyFox.Views.Statistics
 {
+    using Dialogs;
+    using System;
+    using ViewModels.Statistics;
+
     public partial class StatisticAccountMonthlyCashFlowPage
     {
         public StatisticAccountMonthlyCashFlowPage()

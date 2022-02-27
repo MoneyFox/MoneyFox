@@ -1,24 +1,24 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Statistics;
-using MoneyFox.Core.Queries.Statistics.Queries;
-using MoneyFox.Core.Resources;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Statistics
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics
 {
+    using Core._Pending_;
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Statistics;
+    using Core.Queries.Statistics.Queries;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Runtime.InteropServices;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     [Collection("CultureCollection")]
     public class GetCashFlowQueryHandlerTests : IDisposable
@@ -58,7 +58,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
                 default);
 
             // Assert
@@ -74,7 +74,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
                 default);
 
             // Assert
@@ -90,7 +90,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
                 default);
 
             // Assert
@@ -110,12 +110,12 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
             CultureHelper.CurrentCulture = cultureInfo;
 
             context.AddRange(
-                new List<Payment> { new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3")) });
+                new List<Payment> {new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))});
             context.SaveChanges();
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
                 default);
 
             // Assert
@@ -129,7 +129,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
         {
             // Arrange
             context.AddRange(
-                new List<Payment> { new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3")) });
+                new List<Payment> {new Payment(DateTime.Today, 40, PaymentType.Expense, new Account("Foo3"))});
             context.SaveChanges();
 
             var cultureInfo = new CultureInfo("en-US");
@@ -137,7 +137,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
                 default);
 
             // Assert
@@ -164,7 +164,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
 
             // Act
             List<StatisticEntry> result = await new GetCashFlowQueryHandler(contextAdapterMock.Object).Handle(
-                new GetCashFlowQuery { StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3) },
+                new GetCashFlowQuery {StartDate = DateTime.Today.AddDays(-3), EndDate = DateTime.Today.AddDays(3)},
                 default);
 
             // Assert

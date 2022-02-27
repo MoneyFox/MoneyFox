@@ -1,17 +1,13 @@
-﻿using Microsoft.UI.Xaml;
+﻿namespace MoneyFox.Win.Pages.Accounts;
 
-namespace MoneyFox.Win.Pages.Accounts
+using Microsoft.UI.Xaml;
+
+public sealed partial class ModifyAccountUserControl
 {
-    public sealed partial class ModifyAccountUserControl
+    public ModifyAccountUserControl()
     {
-        public ModifyAccountUserControl()
-        {
-            InitializeComponent();
-        }
-
-        private void TextBoxOnFocus(object sender, RoutedEventArgs e)
-        {
-            TextBoxCurrentBalance.SelectAll();
-        }
+        InitializeComponent();
     }
+
+    private void TextBoxOnFocus(object sender, RoutedEventArgs e) => TextBoxCurrentBalance.SelectAll();
 }

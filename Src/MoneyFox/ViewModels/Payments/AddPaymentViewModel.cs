@@ -1,14 +1,14 @@
-﻿using AutoMapper;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Commands.Payments.CreatePayment;
-using MoneyFox.Core.Queries.Accounts.GetAccountById;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MoneyFox.ViewModels.Payments
+﻿namespace MoneyFox.ViewModels.Payments
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates.Payments;
+    using Core.Commands.Payments.CreatePayment;
+    using Core.Queries.Accounts.GetAccountById;
+    using global::AutoMapper;
+    using MediatR;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class AddPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IMapper mapper;

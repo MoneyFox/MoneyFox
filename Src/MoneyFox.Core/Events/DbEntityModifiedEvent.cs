@@ -1,7 +1,7 @@
-﻿using MoneyFox.SharedKernel;
-
-namespace MoneyFox.Core.Events
+﻿namespace MoneyFox.Core.Events
 {
+    using SharedKernel;
+
     public sealed class DbEntityModifiedEvent : BaseDomainEvent
     {
     }

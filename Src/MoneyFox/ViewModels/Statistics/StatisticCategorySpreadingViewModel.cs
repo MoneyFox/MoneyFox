@@ -1,20 +1,19 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using MediatR;
-using Microcharts;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Statistics;
-using MoneyFox.Core.Queries.Statistics.Queries;
-using MoneyFox.Views.Statistics;
-using SkiaSharp;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using CommunityToolkit.Mvvm.Input;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Statistics;
+    using Core.Queries.Statistics.Queries;
+    using MediatR;
+    using Microcharts;
+    using SkiaSharp;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Views.Statistics;
+    using Xamarin.Essentials;
+
     /// <summary>
     ///     Representation of the category Spreading View
     /// </summary>
@@ -27,7 +26,7 @@ namespace MoneyFox.ViewModels.Statistics
         {
         }
 
-        public List<PaymentType> PaymentTypes => new List<PaymentType> { PaymentType.Expense, PaymentType.Income };
+        public List<PaymentType> PaymentTypes => new List<PaymentType> {PaymentType.Expense, PaymentType.Income};
 
         public PaymentType SelectedPaymentType
         {

@@ -1,8 +1,8 @@
-﻿using Microsoft.Graph;
-using Microsoft.Identity.Client;
-
-namespace MoneyFox.Infrastructure.DbBackup
+﻿namespace MoneyFox.Infrastructure.DbBackup
 {
+    using Microsoft.Graph;
+    using Microsoft.Identity.Client;
+
     // TODO move this to core after isolation GraphServiceClient better
     public interface IGraphClientFactory
     {

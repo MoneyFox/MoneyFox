@@ -1,12 +1,12 @@
-﻿using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core.Aggregates;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using Xunit;
-
-namespace MoneyFox.Core.Tests._Pending_.QueryObjects
+﻿namespace MoneyFox.Core.Tests._Pending_.QueryObjects
 {
+    using Core._Pending_.Common.QueryObjects;
+    using Core.Aggregates;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class AccountQueriesExtensionsTests
     {
@@ -14,7 +14,7 @@ namespace MoneyFox.Core.Tests._Pending_.QueryObjects
         public void AreActive()
         {
             // Arrange
-            var accountQueryList = new List<Account> { new Account("Foo1"), new Account("Foo2"), new Account("absd") };
+            var accountQueryList = new List<Account> {new Account("Foo1"), new Account("Foo2"), new Account("absd")};
 
             accountQueryList[1].Deactivate();
 

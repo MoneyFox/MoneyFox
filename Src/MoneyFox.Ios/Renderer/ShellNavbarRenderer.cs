@@ -1,14 +1,16 @@
 ﻿using MoneyFox;
 using MoneyFox.iOS.Renderer;
-using UIKit;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(AppShell), typeof(ShellNavbarRenderer))]
 
 namespace MoneyFox.iOS.Renderer
 {
+    using UIKit;
+    using Xamarin.Essentials;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.iOS;
+
     public class ShellNavbarRenderer : ShellRenderer
     {
         protected override IShellNavBarAppearanceTracker CreateNavBarAppearanceTracker() =>
@@ -17,7 +19,6 @@ namespace MoneyFox.iOS.Renderer
 
     public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
     {
-
         public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
         {
             Color tintColor = AppInfo.RequestedTheme == AppTheme.Dark

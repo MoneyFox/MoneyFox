@@ -1,20 +1,20 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary;
-using MoneyFox.Core.Resources;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Statistics
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Statistics.Queries.GetCategorySummary;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class GetCategorySummaryQueryTests : IDisposable
     {
@@ -158,7 +158,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
             // Arrange
             var account = new Account("test");
 
-            var paymentList = new List<Payment> { new Payment(DateTime.Today, 60, PaymentType.Expense, account) };
+            var paymentList = new List<Payment> {new Payment(DateTime.Today, 60, PaymentType.Expense, account)};
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();
@@ -183,7 +183,7 @@ namespace MoneyFox.Core.Tests.Queries.Statistics
             // Arrange
             var account = new Account("test");
 
-            var paymentList = new List<Payment> { new Payment(DateTime.Today, 60, PaymentType.Expense, account) };
+            var paymentList = new List<Payment> {new Payment(DateTime.Today, 60, PaymentType.Expense, account)};
 
             context.Payments.AddRange(paymentList);
             context.SaveChanges();

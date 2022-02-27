@@ -1,153 +1,151 @@
-﻿using AutoMapper;
+﻿namespace MoneyFox.Win.ViewModels.Payments;
+
+using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
+using Core._Pending_.Common.Interfaces;
+using Core._Pending_.Exceptions;
+using Core.Commands.Payments.DeletePaymentById;
+using Core.Commands.Payments.UpdatePayment;
+using Core.Queries.Payments.GetPaymentById;
+using Core.Resources;
 using MediatR;
 using Microsoft.AppCenter.Crashes;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Commands.Payments.DeletePaymentById;
-using MoneyFox.Core.Commands.Payments.UpdatePayment;
-using MoneyFox.Core.Queries.Payments.GetPaymentById;
-using MoneyFox.Core.Resources;
-using MoneyFox.Win.Services;
-using MoneyFox.Win.Utilities;
 using NLog;
+using Services;
 using System;
 using System.Threading.Tasks;
+using Utilities;
 
-namespace MoneyFox.Win.ViewModels.Payments
+public class EditPaymentViewModel : ModifyPaymentViewModel
 {
-    public class EditPaymentViewModel : ModifyPaymentViewModel
+    private readonly Logger logger = LogManager.GetCurrentClassLogger();
+
+    private readonly IMediator mediator;
+    private readonly IMapper mapper;
+    private readonly IDialogService dialogService;
+    private readonly INavigationService navigationService;
+
+    public EditPaymentViewModel(IMediator mediator,
+        IMapper mapper,
+        IDialogService dialogService,
+        INavigationService navigationService) : base(
+        mediator,
+        mapper,
+        dialogService,
+        navigationService)
     {
-        private readonly Logger logger = LogManager.GetCurrentClassLogger();
+        this.mediator = mediator;
+        this.mapper = mapper;
+        this.dialogService = dialogService;
+        this.navigationService = navigationService;
+    }
 
-        private readonly IMediator mediator;
-        private readonly IMapper mapper;
-        private readonly IDialogService dialogService;
-        private readonly INavigationService navigationService;
+    /// <summary>
+    ///     Delete the selected CategoryViewModel from the database
+    /// </summary>
+    public AsyncRelayCommand DeleteCommand => new(DeletePaymentAsync);
 
-        public EditPaymentViewModel(IMediator mediator,
-            IMapper mapper,
-            IDialogService dialogService,
-            INavigationService navigationService) : base(
-            mediator,
-            mapper,
-            dialogService,
-            navigationService)
+    public RelayCommand<int> InitializeCommand => new(async paymentId => await InitializeAsync(paymentId));
+
+    protected async Task InitializeAsync(int paymentId)
+    {
+        try
         {
-            this.mediator = mediator;
-            this.mapper = mapper;
-            this.dialogService = dialogService;
-            this.navigationService = navigationService;
-        }
+            await base.InitializeAsync();
 
-        /// <summary>
-        ///     Delete the selected CategoryViewModel from the database
-        /// </summary>
-        public AsyncRelayCommand DeleteCommand => new AsyncRelayCommand(DeletePaymentAsync);
+            SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
+            AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
 
-        public RelayCommand<int> InitializeCommand =>
-            new RelayCommand<int>(async paymentId => await InitializeAsync(paymentId));
-
-        protected async Task InitializeAsync(int paymentId)
-        {
-            try
+            // We have to set this here since otherwise the end date is null. This causes a crash on android.
+            // Also it's user unfriendly if you the default end date is the 1.1.0001.
+            if(SelectedPayment.IsRecurring
+               && SelectedPayment.RecurringPayment != null
+               && SelectedPayment.RecurringPayment.IsEndless)
             {
-                await base.InitializeAsync();
-
-                SelectedPayment = mapper.Map<PaymentViewModel>(await mediator.Send(new GetPaymentByIdQuery(paymentId)));
-                AmountString = HelperFunctions.FormatLargeNumbers(SelectedPayment.Amount);
-
-                // We have to set this here since otherwise the end date is null. This causes a crash on android.
-                // Also it's user unfriendly if you the default end date is the 1.1.0001.
-                if(SelectedPayment.IsRecurring
-                   && SelectedPayment.RecurringPayment != null
-                   && SelectedPayment.RecurringPayment.IsEndless)
-                {
-                    SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
-                }
-
-                Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, true);
+                SelectedPayment.RecurringPayment.EndDate = DateTime.Today;
             }
-            catch(PaymentNotFoundException ex)
-            {
-                Crashes.TrackError(ex);
-            }
+
+            Title = PaymentTypeHelper.GetViewTitleForType(SelectedPayment.Type, true);
         }
-
-        protected override async Task SavePaymentAsync()
+        catch(PaymentNotFoundException ex)
         {
+            Crashes.TrackError(ex);
+        }
+    }
+
+    protected override async Task SavePaymentAsync()
+    {
+        try
+        {
+            IsBusy = true;
+            bool updateRecurring = false;
+            if(SelectedPayment.IsRecurring)
+            {
+                updateRecurring = await dialogService.ShowConfirmMessageAsync(
+                    Strings.ModifyRecurrenceTitle,
+                    Strings.ModifyRecurrenceMessage,
+                    Strings.YesLabel,
+                    Strings.NoLabel);
+            }
+
+            var command = new UpdatePaymentCommand(
+                SelectedPayment.Id,
+                SelectedPayment.Date,
+                SelectedPayment.Amount,
+                SelectedPayment.IsCleared,
+                SelectedPayment.Type,
+                SelectedPayment.Note,
+                SelectedPayment.IsRecurring,
+                SelectedPayment.Category != null
+                    ? SelectedPayment.Category.Id
+                    : 0,
+                SelectedPayment.ChargedAccount != null
+                    ? SelectedPayment.ChargedAccount.Id
+                    : 0,
+                SelectedPayment.TargetAccount != null
+                    ? SelectedPayment.TargetAccount.Id
+                    : 0,
+                updateRecurring,
+                SelectedPayment.RecurringPayment?.Recurrence,
+                SelectedPayment.RecurringPayment?.IsEndless,
+                SelectedPayment.RecurringPayment?.EndDate);
+
+            await mediator.Send(command);
+        }
+        catch(InvalidEndDateException)
+        {
+            await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+        }
+    }
+
+    private async Task DeletePaymentAsync()
+    {
+        if(await dialogService.ShowConfirmMessageAsync(
+               Strings.DeleteTitle,
+               Strings.DeletePaymentConfirmationMessage))
+        {
+            var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
+
+            if(SelectedPayment.IsRecurring)
+            {
+                command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
+                    Strings.DeleteRecurringPaymentTitle,
+                    Strings.DeleteRecurringPaymentMessage);
+            }
+
             try
             {
                 IsBusy = true;
-                bool updateRecurring = false;
-                if(SelectedPayment.IsRecurring)
-                {
-                    updateRecurring = await dialogService.ShowConfirmMessageAsync(
-                        Strings.ModifyRecurrenceTitle,
-                        Strings.ModifyRecurrenceMessage,
-                        Strings.YesLabel,
-                        Strings.NoLabel);
-                }
-
-                var command = new UpdatePaymentCommand(
-                    SelectedPayment.Id,
-                    SelectedPayment.Date,
-                    SelectedPayment.Amount,
-                    SelectedPayment.IsCleared,
-                    SelectedPayment.Type,
-                    SelectedPayment.Note,
-                    SelectedPayment.IsRecurring,
-                    SelectedPayment.Category != null
-                        ? SelectedPayment.Category.Id
-                        : 0,
-                    SelectedPayment.ChargedAccount != null
-                        ? SelectedPayment.ChargedAccount.Id
-                        : 0,
-                    SelectedPayment.TargetAccount != null
-                        ? SelectedPayment.TargetAccount.Id
-                        : 0,
-                    updateRecurring,
-                    SelectedPayment.RecurringPayment?.Recurrence,
-                    SelectedPayment.RecurringPayment?.IsEndless,
-                    SelectedPayment.RecurringPayment?.EndDate);
-
                 await mediator.Send(command);
+                navigationService.GoBack();
             }
-            catch(InvalidEndDateException)
+            catch(PaymentNotFoundException ex)
             {
-                await dialogService.ShowMessageAsync(Strings.InvalidEnddateTitle, Strings.InvalidEnddateMessage);
+                logger.Warn(ex);
             }
-        }
-
-        private async Task DeletePaymentAsync()
-        {
-            if(await dialogService.ShowConfirmMessageAsync(
-                   Strings.DeleteTitle,
-                   Strings.DeletePaymentConfirmationMessage))
+            finally
             {
-                var command = new DeletePaymentByIdCommand(SelectedPayment.Id);
-
-                if(SelectedPayment.IsRecurring)
-                {
-                    command.DeleteRecurringPayment = await dialogService.ShowConfirmMessageAsync(
-                        Strings.DeleteRecurringPaymentTitle,
-                        Strings.DeleteRecurringPaymentMessage);
-                }
-
-                try
-                {
-                    IsBusy = true;
-                    await mediator.Send(command);
-                    navigationService.GoBack();
-                }
-                catch(PaymentNotFoundException ex)
-                {
-                    logger.Warn(ex);
-                }
-                finally
-                {
-                    IsBusy = false;
-                }
+                IsBusy = false;
             }
         }
     }

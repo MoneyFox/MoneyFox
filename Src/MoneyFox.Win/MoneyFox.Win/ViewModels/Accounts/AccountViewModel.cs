@@ -1,187 +1,186 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
-using MoneyFox.Core.Aggregates;
+﻿namespace MoneyFox.Win.ViewModels.Accounts;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using Core._Pending_.Common.Interfaces.Mapping;
+using Core.Aggregates;
 using System;
 
-namespace MoneyFox.Win.ViewModels.Accounts
+public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
 {
-    public sealed class AccountViewModel : ObservableObject, IMapFrom<Account>, IEquatable<AccountViewModel>
+    private const decimal DECIMAL_DELTA = 0.01m;
+
+    private int id;
+    private string name = "";
+    private decimal currentBalance;
+    private decimal endOfMonthBalance;
+    private string note = "";
+    private bool isOverdrawn;
+    private bool isExcluded;
+    private DateTime created;
+    private DateTime lastModified;
+
+    public int Id
     {
-        private const decimal DECIMAL_DELTA = 0.01m;
-
-        private int id;
-        private string name = "";
-        private decimal currentBalance;
-        private decimal endOfMonthBalance;
-        private string note = "";
-        private bool isOverdrawn;
-        private bool isExcluded;
-        private DateTime created;
-        private DateTime lastModified;
-
-        public int Id
+        get => id;
+        set
         {
-            get => id;
-            set
+            if(id == value)
             {
-                if(id == value)
-                {
-                    return;
-                }
-
-                id = value;
-                OnPropertyChanged();
+                return;
             }
+
+            id = value;
+            OnPropertyChanged();
         }
+    }
 
-        public string Name
+    public string Name
+    {
+        get => name;
+        set
         {
-            get => name;
-            set
+            if(name == value)
             {
-                if(name == value)
-                {
-                    return;
-                }
-
-                name = value;
-                OnPropertyChanged();
+                return;
             }
+
+            name = value;
+            OnPropertyChanged();
         }
+    }
 
-        public decimal CurrentBalance
+    public decimal CurrentBalance
+    {
+        get => currentBalance;
+        set
         {
-            get => currentBalance;
-            set
+            if(Math.Abs(currentBalance - value) < DECIMAL_DELTA)
             {
-                if(Math.Abs(currentBalance - value) < DECIMAL_DELTA)
-                {
-                    return;
-                }
-
-                currentBalance = value;
-                OnPropertyChanged();
+                return;
             }
+
+            currentBalance = value;
+            OnPropertyChanged();
         }
+    }
 
-        public decimal EndOfMonthBalance
+    public decimal EndOfMonthBalance
+    {
+        get => endOfMonthBalance;
+        set
         {
-            get => endOfMonthBalance;
-            set
-            {
-                endOfMonthBalance = value;
-                OnPropertyChanged();
-            }
+            endOfMonthBalance = value;
+            OnPropertyChanged();
         }
+    }
 
-        public string Note
+    public string Note
+    {
+        get => note;
+        set
         {
-            get => note;
-            set
+            if(note == value)
             {
-                if(note == value)
-                {
-                    return;
-                }
-
-                note = value;
-                OnPropertyChanged();
+                return;
             }
+
+            note = value;
+            OnPropertyChanged();
         }
+    }
 
-        public bool IsOverdrawn
+    public bool IsOverdrawn
+    {
+        get => isOverdrawn;
+        set
         {
-            get => isOverdrawn;
-            set
+            if(isOverdrawn == value)
             {
-                if(isOverdrawn == value)
-                {
-                    return;
-                }
-
-                isOverdrawn = value;
-                OnPropertyChanged();
+                return;
             }
+
+            isOverdrawn = value;
+            OnPropertyChanged();
         }
+    }
 
-        public bool IsExcluded
+    public bool IsExcluded
+    {
+        get => isExcluded;
+        set
         {
-            get => isExcluded;
-            set
+            if(isExcluded == value)
             {
-                if(isExcluded == value)
-                {
-                    return;
-                }
-
-                isExcluded = value;
-                OnPropertyChanged();
+                return;
             }
+
+            isExcluded = value;
+            OnPropertyChanged();
         }
+    }
 
-        public DateTime Created
+    public DateTime Created
+    {
+        get => created;
+        set
         {
-            get => created;
-            set
+            if(created == value)
             {
-                if(created == value)
-                {
-                    return;
-                }
-
-                created = value;
-                OnPropertyChanged();
+                return;
             }
+
+            created = value;
+            OnPropertyChanged();
         }
+    }
 
-        public DateTime LastModified
+    public DateTime LastModified
+    {
+        get => lastModified;
+        set
         {
-            get => lastModified;
-            set
+            if(lastModified == value)
             {
-                if(lastModified == value)
-                {
-                    return;
-                }
-
-                lastModified = value;
-                OnPropertyChanged();
+                return;
             }
+
+            lastModified = value;
+            OnPropertyChanged();
         }
+    }
 
-        public bool Equals(AccountViewModel other)
+    public bool Equals(AccountViewModel other)
+    {
+        if(other == null)
         {
-            if(other == null)
-            {
-                return false;
-            }
-
-            return Id.Equals(other.Id);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if(obj is AccountViewModel vm)
-            {
-                return Equals(vm);
-            }
-
             return false;
         }
 
-        public override int GetHashCode()
+        return Id.Equals(other.Id);
+    }
+
+    public override bool Equals(object obj)
+    {
+        if(obj is AccountViewModel vm)
         {
-            var hash = new HashCode();
-            hash.Add(Id);
-            hash.Add(Name);
-            hash.Add(CurrentBalance);
-            hash.Add(EndOfMonthBalance);
-            hash.Add(Note);
-            hash.Add(IsOverdrawn);
-            hash.Add(IsExcluded);
-            hash.Add(Created);
-            hash.Add(LastModified);
-            return hash.ToHashCode();
+            return Equals(vm);
         }
+
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        var hash = new HashCode();
+        hash.Add(Id);
+        hash.Add(Name);
+        hash.Add(CurrentBalance);
+        hash.Add(EndOfMonthBalance);
+        hash.Add(Note);
+        hash.Add(IsOverdrawn);
+        hash.Add(IsExcluded);
+        hash.Add(Created);
+        hash.Add(LastModified);
+        return hash.ToHashCode();
     }
 }

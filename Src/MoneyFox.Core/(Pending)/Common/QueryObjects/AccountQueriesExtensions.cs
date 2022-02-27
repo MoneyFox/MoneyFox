@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Aggregates;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core._Pending_.Common.QueryObjects
+﻿namespace MoneyFox.Core._Pending_.Common.QueryObjects
 {
+    using Aggregates;
+    using Microsoft.EntityFrameworkCore;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     /// <summary>
     ///     Query Objects for account queries.
     /// </summary>

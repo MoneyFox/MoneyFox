@@ -1,19 +1,18 @@
-﻿using MoneyFox.Core.Resources;
-using MoneyFox.Win.ViewModels.Statistics;
+﻿namespace MoneyFox.Win.Pages.Statistics;
 
-namespace MoneyFox.Win.Pages.Statistics
+using Core.Resources;
+using ViewModels.Statistics;
+
+public sealed partial class StatisticAccountMonthlyCashFlowPage
 {
-    public sealed partial class StatisticAccountMonthlyCashFlowPage
+    public StatisticAccountMonthlyCashflowViewModel ViewModel =>
+        (StatisticAccountMonthlyCashflowViewModel)DataContext;
+
+    public override string Header => Strings.MonthlyCashflowTitle;
+
+    public StatisticAccountMonthlyCashFlowPage()
     {
-        public StatisticAccountMonthlyCashflowViewModel ViewModel =>
-            (StatisticAccountMonthlyCashflowViewModel)DataContext;
-
-        public override string Header => Strings.MonthlyCashflowTitle;
-
-        public StatisticAccountMonthlyCashFlowPage()
-        {
-            InitializeComponent();
-            DataContext = ViewModelLocator.StatisticAccountMonthlyCashflowVm;
-        }
+        InitializeComponent();
+        DataContext = ViewModelLocator.StatisticAccountMonthlyCashflowVm;
     }
 }

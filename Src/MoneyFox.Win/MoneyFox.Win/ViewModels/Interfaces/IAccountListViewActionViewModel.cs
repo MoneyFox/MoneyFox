@@ -1,9 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿namespace MoneyFox.Win.ViewModels.Interfaces;
 
-namespace MoneyFox.Win.ViewModels.Interfaces
+using CommunityToolkit.Mvvm.Input;
+
+public interface IAccountListViewActionViewModel
 {
-    public interface IAccountListViewActionViewModel
-    {
-        RelayCommand GoToAddAccountCommand { get; }
-    }
+    RelayCommand GoToAddAccountCommand { get; }
 }

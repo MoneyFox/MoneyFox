@@ -1,11 +1,11 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists
+﻿namespace MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists
 {
+    using _Pending_.Common.Interfaces;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetIfCategoryWithNameExistsQuery : IRequest<bool>
     {
         public GetIfCategoryWithNameExistsQuery(string categoryName)

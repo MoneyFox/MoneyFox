@@ -7,11 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
-    xmlns:resources="using:MoneyFox.Core.Resources" xmlns:helpers="using:MoneyFox.Win.Converter"
+    xmlns:resources="using:MoneyFox.Core.Resources"
     mc:Ignorable="d">
 
     <Page.Resources>
-        <helpers:StringMatchConverter x:Key="EnumToBooleanConverter" />
     </Page.Resources>
 
     <interactivity:Interaction.Behaviors>

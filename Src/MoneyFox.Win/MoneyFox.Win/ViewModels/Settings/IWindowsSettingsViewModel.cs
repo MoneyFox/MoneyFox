@@ -1,9 +1,8 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿namespace MoneyFox.Win.ViewModels.Settings;
 
-namespace MoneyFox.Win.ViewModels.Settings
+using CommunityToolkit.Mvvm.Input;
+
+public interface IWindowsSettingsViewModel : ISettingsViewModel
 {
-    public interface IWindowsSettingsViewModel : ISettingsViewModel
-    {
-        AsyncRelayCommand InitializeCommand { get; }
-    }
+    AsyncRelayCommand InitializeCommand { get; }
 }

@@ -1,53 +1,52 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Win.Groups;
-using MoneyFox.Win.ViewModels.Accounts;
+﻿namespace MoneyFox.Win.ViewModels.Interfaces;
+
+using Accounts;
+using CommunityToolkit.Mvvm.Input;
+using Groups;
 using System.Collections.ObjectModel;
 
-namespace MoneyFox.Win.ViewModels.Interfaces
+/// <summary>
+///     Representation of the AccountListView.
+/// </summary>
+public interface IAccountListViewModel
 {
     /// <summary>
-    ///     Representation of the AccountListView.
+    ///     All existing accounts
     /// </summary>
-    public interface IAccountListViewModel
-    {
-        /// <summary>
-        ///     All existing accounts
-        /// </summary>
-        ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts { get; }
+    ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>> Accounts { get; }
 
-        /// <summary>
-        ///     Indicates if there are accounts to display.
-        /// </summary>
-        bool HasNoAccounts { get; }
+    /// <summary>
+    ///     Indicates if there are accounts to display.
+    /// </summary>
+    bool HasNoAccounts { get; }
 
-        /// <summary>
-        ///     View Model for the balance view integrated in the account list view
-        /// </summary>
-        IBalanceViewModel BalanceViewModel { get; }
+    /// <summary>
+    ///     View Model for the balance view integrated in the account list view
+    /// </summary>
+    IBalanceViewModel BalanceViewModel { get; }
 
-        /// <summary>
-        ///     View Model for the actions associated with the account list.
-        /// </summary>
-        IAccountListViewActionViewModel ViewActionViewModel { get; }
+    /// <summary>
+    ///     View Model for the actions associated with the account list.
+    /// </summary>
+    IAccountListViewActionViewModel ViewActionViewModel { get; }
 
-        /// <summary>
-        ///     Loads the data
-        /// </summary>
-        AsyncRelayCommand LoadDataCommand { get; }
+    /// <summary>
+    ///     Loads the data
+    /// </summary>
+    AsyncRelayCommand LoadDataCommand { get; }
 
-        /// <summary>
-        ///     Open the payment overview for this Account.
-        /// </summary>
-        RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
+    /// <summary>
+    ///     Open the payment overview for this Account.
+    /// </summary>
+    RelayCommand<AccountViewModel> OpenOverviewCommand { get; }
 
-        /// <summary>
-        ///     Edit the selected Account
-        /// </summary>
-        RelayCommand<AccountViewModel> EditAccountCommand { get; }
+    /// <summary>
+    ///     Edit the selected Account
+    /// </summary>
+    RelayCommand<AccountViewModel> EditAccountCommand { get; }
 
-        /// <summary>
-        ///     Deletes the selected Account
-        /// </summary>
-        AsyncRelayCommand<AccountViewModel> DeleteAccountCommand { get; }
-    }
+    /// <summary>
+    ///     Deletes the selected Account
+    /// </summary>
+    AsyncRelayCommand<AccountViewModel> DeleteAccountCommand { get; }
 }

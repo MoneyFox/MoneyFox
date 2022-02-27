@@ -1,23 +1,22 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿namespace MoneyFox.Win.Pages.Accounts;
+
+using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using MoneyFox.Win.ViewModels.Interfaces;
 using System;
+using ViewModels.Interfaces;
 
-namespace MoneyFox.Win.Pages.Accounts
+public sealed partial class AccountListToolbar : UserControl
 {
-    public sealed partial class AccountListToolbar : UserControl
+    public IAccountListViewActionViewModel ViewModel => (IAccountListViewActionViewModel)DataContext;
+
+    public AccountListToolbar()
     {
-        public IAccountListViewActionViewModel ViewModel => (IAccountListViewActionViewModel)DataContext;
+        InitializeComponent();
+    }
 
-        public AccountListToolbar()
-        {
-            InitializeComponent();
-        }
-
-        private async void AddAccountTapped(object sender, TappedRoutedEventArgs e)
-        {
-            var addAccountDialog = new AddAccountDialog();
-            await addAccountDialog.ShowAsync();
-        }
+    private async void AddAccountTapped(object sender, TappedRoutedEventArgs e)
+    {
+        var addAccountDialog = new AddAccountDialog();
+        await addAccountDialog.ShowAsync();
     }
 }

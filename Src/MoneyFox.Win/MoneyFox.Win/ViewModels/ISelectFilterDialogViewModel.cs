@@ -1,16 +1,15 @@
-﻿using System;
+﻿#nullable enable
+namespace MoneyFox.Win.ViewModels;
 
-#nullable enable
-namespace MoneyFox.Win.ViewModels
+using System;
+
+public interface ISelectFilterDialogViewModel
 {
-    public interface ISelectFilterDialogViewModel
-    {
-        bool IsClearedFilterActive { get; set; }
+    bool IsClearedFilterActive { get; set; }
 
-        bool IsRecurringFilterActive { get; set; }
+    bool IsRecurringFilterActive { get; set; }
 
-        DateTime TimeRangeStart { get; set; }
+    DateTime TimeRangeStart { get; set; }
 
-        DateTime TimeRangeEnd { get; set; }
-    }
+    DateTime TimeRangeEnd { get; set; }
 }

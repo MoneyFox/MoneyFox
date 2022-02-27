@@ -1,18 +1,17 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Win.ViewModels.Categories;
+﻿namespace MoneyFox.Win.ViewModels.DesignTime;
 
-namespace MoneyFox.Win.ViewModels.DesignTime
+using Categories;
+using CommunityToolkit.Mvvm.Input;
+
+public class DesignTimeModifyCategoryViewModel : IModifyCategoryViewModel
 {
-    public class DesignTimeModifyCategoryViewModel : IModifyCategoryViewModel
-    {
-        public AsyncRelayCommand SaveCommand { get; } = null!;
+    public AsyncRelayCommand SaveCommand { get; } = null!;
 
-        public AsyncRelayCommand CancelCommand { get; } = null!;
+    public AsyncRelayCommand CancelCommand { get; } = null!;
 
-        public RelayCommand DeleteCommand { get; } = null!;
+    public RelayCommand DeleteCommand { get; } = null!;
 
-        public CategoryViewModel SelectedCategory { get; } = null!;
+    public CategoryViewModel SelectedCategory { get; } = null!;
 
-        public bool IsEdit { get; }
-    }
+    public bool IsEdit { get; }
 }

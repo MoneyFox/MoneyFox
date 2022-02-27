@@ -1,10 +1,10 @@
-﻿using Rg.Plugins.Popup.Extensions;
-using System;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.Views.Dialogs
+﻿namespace MoneyFox.Views.Dialogs
 {
+    using Rg.Plugins.Popup.Extensions;
+    using System;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public partial class MessageDialog
     {
         public static readonly BindableProperty PopupTitleProperty = BindableProperty.Create(

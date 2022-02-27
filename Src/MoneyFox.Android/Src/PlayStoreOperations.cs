@@ -1,10 +1,11 @@
-using Android.Content;
-using Android.Net;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-
 #nullable enable
 namespace MoneyFox.Droid
 {
+    using Android.App;
+    using Android.Content;
+    using Android.Net;
+    using Core._Pending_.Common.Interfaces;
+
     /// <summary>
     ///     Gives access to the features of google play on android.
     /// </summary>
@@ -18,7 +19,7 @@ namespace MoneyFox.Droid
         /// </summary>
         public void RateApp()
         {
-            string appPackageName = Android.App.Application.Context.PackageName ?? "";
+            string appPackageName = Application.Context.PackageName ?? "";
 
             try
             {
@@ -27,7 +28,7 @@ namespace MoneyFox.Droid
                 // Otherwise the runtime will block the execution and throw an exception
                 intent.AddFlags(ActivityFlags.NewTask);
 
-                Android.App.Application.Context.StartActivity(intent);
+                Application.Context.StartActivity(intent);
             }
             catch(ActivityNotFoundException)
             {
@@ -38,7 +39,7 @@ namespace MoneyFox.Droid
                 // Otherwise the runtime will block the execution and throw an exception
                 intent.AddFlags(ActivityFlags.NewTask);
 
-                Android.App.Application.Context.StartActivity(intent);
+                Application.Context.StartActivity(intent);
             }
         }
     }

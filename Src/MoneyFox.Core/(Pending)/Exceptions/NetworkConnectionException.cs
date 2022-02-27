@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace MoneyFox.Core._Pending_.Exceptions
+﻿namespace MoneyFox.Core._Pending_.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     /// <summary>
     ///     This Exception is thrown when there was an issue with an internet connection.
     /// </summary>

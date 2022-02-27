@@ -1,20 +1,18 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿namespace MoneyFox.Win.ViewModels.Accounts;
+
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Win.Services;
-using MoneyFox.Win.ViewModels.Interfaces;
+using Interfaces;
+using Services;
 
-namespace MoneyFox.Win.ViewModels.Accounts
+public class AccountListViewActionViewModel : ObservableObject, IAccountListViewActionViewModel
 {
-    public class AccountListViewActionViewModel : ObservableObject, IAccountListViewActionViewModel
+    private readonly INavigationService navigationService;
+
+    public AccountListViewActionViewModel(INavigationService navigationService)
     {
-        private readonly INavigationService navigationService;
-
-        public AccountListViewActionViewModel(INavigationService navigationService)
-        {
-            this.navigationService = navigationService;
-        }
-
-        public RelayCommand GoToAddAccountCommand =>
-            new RelayCommand(() => navigationService.Navigate<AddAccountViewModel>());
+        this.navigationService = navigationService;
     }
+
+    public RelayCommand GoToAddAccountCommand => new(() => navigationService.Navigate<AddAccountViewModel>());
 }

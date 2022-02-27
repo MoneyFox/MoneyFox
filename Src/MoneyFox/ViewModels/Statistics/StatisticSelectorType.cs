@@ -1,7 +1,7 @@
-﻿using MoneyFox.Core;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using Core;
+
     /// <summary>
     ///     Represents a item for the selector to choose the statistic.
     /// </summary>

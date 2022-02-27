@@ -1,19 +1,19 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Statistics.Queries
+﻿namespace MoneyFox.Core.Queries.Statistics.Queries
 {
+    using _Pending_;
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using _Pending_.Exceptions;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.Immutable;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetCategoryProgressionQuery : IRequest<IImmutableList<StatisticEntry>>
     {
         public GetCategoryProgressionQuery(int categoryId, DateTime startDate, DateTime endDate)
@@ -61,7 +61,7 @@ namespace MoneyFox.Core.Queries.Statistics.Queries
                 .ToListAsync(cancellationToken);
 
             var statisticList = new List<StatisticEntry>();
-            foreach(var group in payments.GroupBy(x => new { x.Date.Month, x.Date.Year }))
+            foreach(var group in payments.GroupBy(x => new {x.Date.Month, x.Date.Year}))
             {
                 var statisticEntry = new StatisticEntry(
                     group.Sum(x => GetPaymentAmountForSum(x, request)),

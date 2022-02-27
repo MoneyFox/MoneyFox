@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MoneyFox.Core.Aggregates
+﻿namespace MoneyFox.Core.Aggregates
 {
+    using System;
+
     public class EntityBase
     {
         public DateTime Created { get; set; }

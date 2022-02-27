@@ -1,9 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Threading.Tasks;
-
-namespace MoneyFox.ViewModels.Settings
+﻿namespace MoneyFox.ViewModels.Settings
 {
+    using System.Collections.ObjectModel;
+    using System.Globalization;
+    using System.Threading.Tasks;
+
     public class DesignTimeSettingsViewModel : ISettingsViewModel
     {
         public ObservableCollection<CultureInfo> AvailableCultures => new ObservableCollection<CultureInfo>();

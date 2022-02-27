@@ -1,11 +1,11 @@
-﻿using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Resources;
-using MoneyFox.Views.Dialogs;
-using System;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Services
+﻿namespace MoneyFox.Services
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Resources;
+    using System;
+    using System.Threading.Tasks;
+    using Views.Dialogs;
+
     public class DialogService : IDialogService
     {
         private LoadingDialog? loadingDialog;
@@ -70,7 +70,6 @@ namespace MoneyFox.Services
                 positiveButtonText ?? Strings.YesLabel,
                 negativeButtonText ?? Strings.NoLabel);
             return await confirmDialog.ShowAsync();
-
         }
     }
 }

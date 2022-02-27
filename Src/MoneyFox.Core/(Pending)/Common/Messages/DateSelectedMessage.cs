@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MoneyFox.Core._Pending_.Common.Messages
+﻿namespace MoneyFox.Core._Pending_.Common.Messages
 {
+    using System;
+
     public class DateSelectedMessage
     {
         public DateSelectedMessage(DateTime startDate, DateTime endDate)

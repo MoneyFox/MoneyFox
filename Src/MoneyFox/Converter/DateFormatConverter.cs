@@ -1,10 +1,10 @@
-﻿using MoneyFox.Core._Pending_;
-using System;
-using System.Globalization;
-using Xamarin.Forms;
-
-namespace MoneyFox.Converter
+﻿namespace MoneyFox.Converter
 {
+    using Core._Pending_;
+    using System;
+    using System.Globalization;
+    using Xamarin.Forms;
+
     /// <summary>
     ///     Formats the date with the culture in the CultureHelper.
     /// </summary>

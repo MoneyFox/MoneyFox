@@ -1,7 +1,7 @@
-﻿using Xunit;
-
-namespace MoneyFox.Tests.Collections
+﻿namespace MoneyFox.Tests.Collections
 {
+    using Xunit;
+
     [CollectionDefinition("CultureCollection")]
     public class CultureCollection
     {

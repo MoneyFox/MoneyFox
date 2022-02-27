@@ -1,8 +1,8 @@
-﻿using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Resources;
-
-namespace MoneyFox.ConverterLogic
+﻿namespace MoneyFox.ConverterLogic
 {
+    using Core.Aggregates.Payments;
+    using Core.Resources;
+
     public static class RecurrenceTypeConverterLogic
     {
         public static string GetStringForPaymentRecurrence(PaymentRecurrence passedEnum) =>

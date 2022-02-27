@@ -1,11 +1,11 @@
-﻿using Dawn;
-using JetBrains.Annotations;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MoneyFox.Core.Aggregates.Payments
+﻿namespace MoneyFox.Core.Aggregates.Payments
 {
+    using Dawn;
+    using JetBrains.Annotations;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class Category : EntityBase
     {
         [UsedImplicitly]

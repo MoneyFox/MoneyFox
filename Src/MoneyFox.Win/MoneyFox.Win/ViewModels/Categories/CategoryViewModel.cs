@@ -1,110 +1,109 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
-using MoneyFox.Core.Aggregates.Payments;
+﻿namespace MoneyFox.Win.ViewModels.Categories;
+
+using CommunityToolkit.Mvvm.ComponentModel;
+using Core._Pending_.Common.Interfaces.Mapping;
+using Core.Aggregates.Payments;
 using System;
 
-namespace MoneyFox.Win.ViewModels.Categories
+public class CategoryViewModel : ObservableObject, IMapFrom<Category>
 {
-    public class CategoryViewModel : ObservableObject, IMapFrom<Category>
+    private int id;
+    private string name = "";
+    private string note = "";
+    private bool requireNote;
+    private DateTime created;
+    private DateTime lastModified;
+
+    public int Id
     {
-        private int id;
-        private string name = "";
-        private string note = "";
-        private bool requireNote;
-        private DateTime created;
-        private DateTime lastModified;
-
-        public int Id
+        get => id;
+        set
         {
-            get => id;
-            set
+            if(id == value)
             {
-                if(id == value)
-                {
-                    return;
-                }
-
-                id = value;
-                OnPropertyChanged();
+                return;
             }
+
+            id = value;
+            OnPropertyChanged();
         }
+    }
 
-        public string Name
+    public string Name
+    {
+        get => name;
+        set
         {
-            get => name;
-            set
+            if(name == value)
             {
-                if(name == value)
-                {
-                    return;
-                }
-
-                name = value;
-                OnPropertyChanged();
+                return;
             }
+
+            name = value;
+            OnPropertyChanged();
         }
+    }
 
-        public bool RequireNote
+    public bool RequireNote
+    {
+        get => requireNote;
+        set
         {
-            get => requireNote;
-            set
+            if(requireNote == value)
             {
-                if(requireNote == value)
-                {
-                    return;
-                }
-
-                requireNote = value;
-                OnPropertyChanged();
+                return;
             }
+
+            requireNote = value;
+            OnPropertyChanged();
         }
+    }
 
-        public DateTime Created
+    public DateTime Created
+    {
+        get => created;
+        set
         {
-            get => created;
-            set
+            if(created == value)
             {
-                if(created == value)
-                {
-                    return;
-                }
-
-                created = value;
-                OnPropertyChanged();
+                return;
             }
+
+            created = value;
+            OnPropertyChanged();
         }
+    }
 
-        public DateTime LastModified
+    public DateTime LastModified
+    {
+        get => lastModified;
+        set
         {
-            get => lastModified;
-            set
+            if(lastModified == value)
             {
-                if(lastModified == value)
-                {
-                    return;
-                }
-
-                lastModified = value;
-                OnPropertyChanged();
+                return;
             }
+
+            lastModified = value;
+            OnPropertyChanged();
         }
+    }
 
-        /// <summary>
-        ///     Additional details about the CategoryViewModel
-        /// </summary>
-        public string Note
+    /// <summary>
+    ///     Additional details about the CategoryViewModel
+    /// </summary>
+    public string Note
+    {
+        get => note;
+        set
         {
-            get => note;
-            set
+            if(note == value)
             {
-                if(note == value)
-                {
-                    return;
-                }
-
-                note = value;
-                OnPropertyChanged();
+                return;
             }
+
+            note = value;
+            OnPropertyChanged();
         }
     }
 }

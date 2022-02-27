@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-
-namespace MoneyFox.Utilities
+﻿namespace MoneyFox.Utilities
 {
+    using System.Globalization;
+
     /// <summary>
     ///     Utility methods
     /// </summary>

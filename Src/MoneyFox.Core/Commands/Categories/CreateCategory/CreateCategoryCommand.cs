@@ -1,11 +1,11 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates.Payments;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Commands.Categories.CreateCategory
+﻿namespace MoneyFox.Core.Commands.Categories.CreateCategory
 {
+    using _Pending_.Common.Interfaces;
+    using Aggregates.Payments;
+    using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class CreateCategoryCommand : IRequest
     {
         public CreateCategoryCommand(string name, string note = "", bool requireNote = false)

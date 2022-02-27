@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Aggregates
+﻿namespace MoneyFox.Core.Tests.Aggregates
 {
+    using Core.Aggregates.Payments;
+    using FluentAssertions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class CategoryTests
     {

@@ -1,10 +1,10 @@
-﻿using MoneyFox.Core._Pending_;
-using System;
-using System.Globalization;
-using Xamarin.Forms;
-
-namespace MoneyFox.Converter
+﻿namespace MoneyFox.Converter
 {
+    using Core._Pending_;
+    using System;
+    using System.Globalization;
+    using Xamarin.Forms;
+
     /// <summary>
     ///     Displays the amount as currency of the current culture.
     /// </summary>

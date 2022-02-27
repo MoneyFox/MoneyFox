@@ -1,23 +1,22 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.Input;
-using MediatR;
-using Microcharts;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core.Queries.Accounts.GetAccounts;
-using MoneyFox.Core.Queries.Statistics;
-using MoneyFox.Core.Queries.Statistics.Queries;
-using MoneyFox.ViewModels.Accounts;
-using MoneyFox.Views.Statistics;
-using SkiaSharp;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using Accounts;
+    using CommunityToolkit.Mvvm.Input;
+    using Core.Queries.Accounts.GetAccounts;
+    using Core.Queries.Statistics;
+    using Core.Queries.Statistics.Queries;
+    using global::AutoMapper;
+    using MediatR;
+    using Microcharts;
+    using SkiaSharp;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Views.Statistics;
+    using Xamarin.Essentials;
+
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>

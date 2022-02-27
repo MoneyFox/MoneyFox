@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-
-namespace MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary
+﻿namespace MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary
 {
+    using System.Collections.Generic;
+
     public class CategorySummaryModel
     {
         public CategorySummaryModel(decimal totalEarned,

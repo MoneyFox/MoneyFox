@@ -1,17 +1,17 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Categories.GetCategoryById;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById
+﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryById
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Categories.GetCategoryById;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class GetCategoryByIdQueryTests : IDisposable
     {

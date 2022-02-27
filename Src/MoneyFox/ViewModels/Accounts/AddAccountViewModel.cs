@@ -1,10 +1,10 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Commands.Accounts.CreateAccount;
-using System.Threading.Tasks;
-
-namespace MoneyFox.ViewModels.Accounts
+﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Commands.Accounts.CreateAccount;
+    using MediatR;
+    using System.Threading.Tasks;
+
     public class AddAccountViewModel : ModifyAccountViewModel
     {
         private readonly IDialogService dialogService;
@@ -18,14 +18,12 @@ namespace MoneyFox.ViewModels.Accounts
             this.dialogService = dialogService;
         }
 
-        protected override async Task SaveAccountAsync()
-        {
+        protected override async Task SaveAccountAsync() =>
             await mediator.Send(
                 new CreateAccountCommand(
                     SelectedAccountVm.Name,
                     SelectedAccountVm.CurrentBalance,
                     SelectedAccountVm.Note,
                     SelectedAccountVm.IsExcluded));
-        }
     }
 }

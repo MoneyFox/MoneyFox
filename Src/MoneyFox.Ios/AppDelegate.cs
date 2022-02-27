@@ -1,24 +1,24 @@
 ﻿#nullable enable
-using Autofac;
-using Foundation;
-using JetBrains.Annotations;
-using Microsoft.Identity.Client;
-using MoneyFox.Core._Pending_.Common.Constants;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
-using Rg.Plugins.Popup;
-using System.IO;
-using UIKit;
-using UserNotifications;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
-using Logger = NLog.Logger;
-using LogLevel = NLog.LogLevel;
-
 namespace MoneyFox.iOS
 {
+    using Autofac;
+    using Core._Pending_.Common.Constants;
+    using Foundation;
+    using JetBrains.Annotations;
+    using Microsoft.Identity.Client;
+    using NLog;
+    using NLog.Config;
+    using NLog.Targets;
+    using Rg.Plugins.Popup;
+    using System.IO;
+    using UIKit;
+    using UserNotifications;
+    using Xamarin.Essentials;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.iOS;
+    using Logger = NLog.Logger;
+    using LogLevel = NLog.LogLevel;
+
     [Register("AppDelegate")]
     [UsedImplicitly]
     public class AppDelegate : FormsApplicationDelegate

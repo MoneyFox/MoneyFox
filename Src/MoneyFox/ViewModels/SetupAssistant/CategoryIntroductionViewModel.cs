@@ -1,10 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Extensions;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.SetupAssistant
+﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using Extensions;
+    using Xamarin.Forms;
+
     public class CategoryIntroductionViewModel : ObservableObject
     {
         public RelayCommand GoToAddCategoryCommand

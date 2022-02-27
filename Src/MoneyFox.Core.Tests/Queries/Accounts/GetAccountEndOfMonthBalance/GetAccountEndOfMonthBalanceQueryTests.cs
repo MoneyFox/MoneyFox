@@ -1,19 +1,19 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Accounts.GetAccountEndOfMonthBalance;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using NSubstitute;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountEndOfMonthBalance
+﻿namespace MoneyFox.Core.Tests.Queries.Accounts.GetAccountEndOfMonthBalance
 {
+    using Core._Pending_;
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Accounts.GetAccountEndOfMonthBalance;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using NSubstitute;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class GetAccountEndOfMonthBalanceQueryTests : IDisposable
     {

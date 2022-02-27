@@ -1,16 +1,16 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Extensions;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Resources;
-using System;
-using System.Globalization;
-using System.Threading.Tasks;
-
 namespace MoneyFox.ViewModels.Statistics
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Extensions;
+    using Core._Pending_.Common.Messages;
+    using Core.Resources;
+    using MediatR;
+    using System;
+    using System.Globalization;
+    using System.Threading.Tasks;
+
     /// <summary>
     ///     Represents the statistic view.
     /// </summary>

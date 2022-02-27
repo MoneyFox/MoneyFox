@@ -1,14 +1,15 @@
 ﻿using MoneyFox.iOS.Renderer;
-using NLog;
-using System;
-using UIKit;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(NavigationPage), typeof(NavigationPageRenderer))]
 
 namespace MoneyFox.iOS.Renderer
 {
+    using NLog;
+    using System;
+    using UIKit;
+    using Xamarin.Forms.Platform.iOS;
+
     public class NavigationPageRenderer : NavigationRenderer
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
