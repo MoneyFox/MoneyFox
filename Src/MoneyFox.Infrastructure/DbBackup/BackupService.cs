@@ -4,7 +4,6 @@ using Microsoft.AppCenter.Crashes;
 using MoneyFox.Core._Pending_.Common.Constants;
 using MoneyFox.Core._Pending_.Common.Extensions;
 using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Helpers;
 using MoneyFox.Core._Pending_.Common.Interfaces;
 using MoneyFox.Core._Pending_.Common.Messages;
 using MoneyFox.Core._Pending_.DbBackup;
@@ -21,7 +20,7 @@ using System.Threading.Tasks;
 
 namespace MoneyFox.Infrastructure.DbBackup
 {
-    public class BackupService : ObservableRecipient, IBackupService, IDisposable
+    internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
     {
         private const int BACKUP_OPERATION_TIMEOUT = 10000;
         private const int BACKUP_REPEAT_DELAY = 2000;
@@ -292,10 +291,13 @@ namespace MoneyFox.Infrastructure.DbBackup
             GC.SuppressFinalize(this);
         }
 
-        protected virtual void Dispose(bool disposing)
+        private void Dispose(bool disposing)
         {
-            cancellationTokenSource.Dispose();
-            semaphoreSlim.Dispose();
+            if(disposing)
+            {
+                cancellationTokenSource.Dispose();
+                semaphoreSlim.Dispose();
+            }
         }
     }
 }
