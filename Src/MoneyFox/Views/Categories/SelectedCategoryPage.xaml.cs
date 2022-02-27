@@ -1,9 +1,9 @@
-﻿using MoneyFox.Core.Resources;
-using MoneyFox.ViewModels.Categories;
-using Xamarin.Forms;
-
-namespace MoneyFox.Views.Categories
+﻿namespace MoneyFox.Views.Categories
 {
+    using Core.Resources;
+    using ViewModels.Categories;
+    using Xamarin.Forms;
+
     public partial class SelectCategoryPage : ContentPage
     {
         public SelectCategoryPage()

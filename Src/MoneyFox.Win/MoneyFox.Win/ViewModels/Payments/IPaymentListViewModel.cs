@@ -1,23 +1,22 @@
+namespace MoneyFox.Win.ViewModels.Payments;
+
 using CommunityToolkit.Mvvm.Input;
+using Interfaces;
 using Microsoft.UI.Xaml.Data;
-using MoneyFox.Win.ViewModels.Interfaces;
 
-namespace MoneyFox.Win.ViewModels.Payments
+public interface IPaymentListViewModel
 {
-    public interface IPaymentListViewModel
-    {
-        IBalanceViewModel BalanceViewModel { get; }
+    IBalanceViewModel BalanceViewModel { get; }
 
-        IPaymentListViewActionViewModel ViewActionViewModel { get; }
+    IPaymentListViewActionViewModel ViewActionViewModel { get; }
 
-        RelayCommand InitializeCommand { get; }
+    RelayCommand InitializeCommand { get; }
 
-        RelayCommand LoadDataCommand { get; }
+    RelayCommand LoadDataCommand { get; }
 
-        CollectionViewSource GroupedPayments { get; }
+    CollectionViewSource GroupedPayments { get; }
 
-        string Title { get; }
+    string Title { get; }
 
-        int AccountId { get; }
-    }
+    int AccountId { get; }
 }

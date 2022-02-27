@@ -1,12 +1,11 @@
-﻿using Microsoft.Graph;
-using Microsoft.Identity.Client;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Infrastructure.DbBackup;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Droid
+﻿namespace MoneyFox.Droid
 {
+    using Infrastructure.DbBackup;
+    using Microsoft.Graph;
+    using Microsoft.Identity.Client;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
+
     public class GraphClientFactory : IGraphClientFactory
     {
         public GraphServiceClient CreateClient(AuthenticationResult authResult) =>

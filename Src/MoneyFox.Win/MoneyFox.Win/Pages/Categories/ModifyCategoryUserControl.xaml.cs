@@ -1,10 +1,9 @@
-﻿namespace MoneyFox.Win.Pages.Categories
+﻿namespace MoneyFox.Win.Pages.Categories;
+
+public sealed partial class ModifyCategoryUserControl
 {
-    public sealed partial class ModifyCategoryUserControl
+    public ModifyCategoryUserControl()
     {
-        public ModifyCategoryUserControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

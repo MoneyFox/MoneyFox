@@ -1,11 +1,11 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core._Pending_.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace MoneyFox.Groups
+﻿namespace MoneyFox.Groups
 {
+    using CommunityToolkit.Mvvm.Input;
+    using Core._Pending_.Exceptions;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class DateListGroupCollection<T> : List<T>
     {
         /// <summary>

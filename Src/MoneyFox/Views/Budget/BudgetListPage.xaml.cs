@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms;
-
-namespace MoneyFox.Views.Budget
+﻿namespace MoneyFox.Views.Budget
 {
+    using Xamarin.Forms;
+
     public partial class BudgetListPage : ContentPage
     {
         public BudgetListPage()

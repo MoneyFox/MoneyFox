@@ -1,14 +1,14 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Resources;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Accounts
+﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Common.Messages;
+    using Core.Resources;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public abstract class ModifyAccountViewModel : ObservableRecipient
     {
         private readonly IDialogService dialogService;

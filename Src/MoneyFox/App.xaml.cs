@@ -1,25 +1,25 @@
-﻿using CommonServiceLocator;
-using MediatR;
-using Microsoft.AppCenter;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.AppCenter.Crashes;
-using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core.Commands.Payments.ClearPayments;
-using MoneyFox.Core.Commands.Payments.CreateRecurringPayments;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Mobile.Infrastructure.Adapters;
-using NLog;
-using PCLAppConfig;
-using PCLAppConfig.FileSystemStream;
-using System;
-using System.Globalization;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using Device = Xamarin.Forms.Device;
-
-namespace MoneyFox
+﻿namespace MoneyFox
 {
+    using CommonServiceLocator;
+    using Core._Pending_;
+    using Core._Pending_.Common.Facades;
+    using Core.Commands.Payments.ClearPayments;
+    using Core.Commands.Payments.CreateRecurringPayments;
+    using Core.Interfaces;
+    using MediatR;
+    using Microsoft.AppCenter;
+    using Microsoft.AppCenter.Analytics;
+    using Microsoft.AppCenter.Crashes;
+    using Mobile.Infrastructure.Adapters;
+    using NLog;
+    using PCLAppConfig;
+    using PCLAppConfig.FileSystemStream;
+    using System;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+    using Device = Xamarin.Forms.Device;
+
     public partial class App
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -27,7 +27,7 @@ namespace MoneyFox
 
         public App()
         {
-            Device.SetFlags(new[] { "AppTheme_Experimental", "SwipeView_Experimental" });
+            Device.SetFlags(new[] {"AppTheme_Experimental", "SwipeView_Experimental"});
 
             Current.UserAppTheme = Current.RequestedTheme != OSAppTheme.Unspecified
                 ? Current.RequestedTheme

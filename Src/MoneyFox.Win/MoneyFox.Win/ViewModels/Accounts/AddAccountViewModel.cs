@@ -1,50 +1,49 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Commands.Accounts.CreateAccount;
-using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
-using MoneyFox.Core.Resources;
-using MoneyFox.Win.Services;
-using MoneyFox.Win.Utilities;
+﻿namespace MoneyFox.Win.ViewModels.Accounts;
+
+using Core._Pending_.Common.Interfaces;
+using Core.Commands.Accounts.CreateAccount;
+using Core.Queries.Accounts.GetIfAccountWithNameExists;
+using Core.Resources;
+using MediatR;
+using Services;
 using System.Threading.Tasks;
+using Utilities;
 
-namespace MoneyFox.Win.ViewModels.Accounts
+public class AddAccountViewModel : ModifyAccountViewModel
 {
-    public class AddAccountViewModel : ModifyAccountViewModel
+    private readonly IMediator mediator;
+
+    public AddAccountViewModel(
+        IMediator mediator,
+        IDialogService dialogService,
+        INavigationService navigationService) : base(dialogService, navigationService)
     {
-        private readonly IMediator mediator;
+        this.mediator = mediator;
 
-        public AddAccountViewModel(
-            IMediator mediator,
-            IDialogService dialogService,
-            INavigationService navigationService) : base(dialogService, navigationService)
+        Title = Strings.AddAccountTitle;
+    }
+
+    protected override Task InitializeAsync()
+    {
+        SelectedAccount = new AccountViewModel();
+        AmountString = HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
+
+        return Task.CompletedTask;
+    }
+
+    protected override async Task SaveAccountAsync()
+    {
+        if(await mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name)))
         {
-            this.mediator = mediator;
-
-            Title = Strings.AddAccountTitle;
+            await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
+            return;
         }
 
-        protected override Task InitializeAsync()
-        {
-            SelectedAccount = new AccountViewModel();
-            AmountString = HelperFunctions.FormatLargeNumbers(SelectedAccount.CurrentBalance);
-
-            return Task.CompletedTask;
-        }
-
-        protected override async Task SaveAccountAsync()
-        {
-            if(await mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccount.Name)))
-            {
-                await DialogService.ShowMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage);
-                return;
-            }
-
-            await mediator.Send(
-                new CreateAccountCommand(
-                    SelectedAccount.Name,
-                    SelectedAccount.CurrentBalance,
-                    SelectedAccount.Note,
-                    SelectedAccount.IsExcluded));
-        }
+        await mediator.Send(
+            new CreateAccountCommand(
+                SelectedAccount.Name,
+                SelectedAccount.CurrentBalance,
+                SelectedAccount.Note,
+                SelectedAccount.IsExcluded));
     }
 }

@@ -1,25 +1,25 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Commands.Accounts.DeleteAccountById;
-using MoneyFox.Core.Queries.Accounts.GetAccountEndOfMonthBalance;
-using MoneyFox.Core.Queries.Accounts.GetAccounts;
-using MoneyFox.Core.Resources;
-using MoneyFox.Extensions;
-using MoneyFox.Groups;
-using MoneyFox.Views.Accounts;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Accounts
+﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Common.Messages;
+    using Core.Commands.Accounts.DeleteAccountById;
+    using Core.Queries.Accounts.GetAccountEndOfMonthBalance;
+    using Core.Queries.Accounts.GetAccounts;
+    using Core.Resources;
+    using Extensions;
+    using global::AutoMapper;
+    using Groups;
+    using MediatR;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Views.Accounts;
+    using Xamarin.Forms;
+
     public class AccountListViewModel : ObservableRecipient
     {
         private readonly IDialogService dialogService;

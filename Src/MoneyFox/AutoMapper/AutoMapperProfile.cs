@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
-using MoneyFox.ViewModels.Payments;
-using System.Collections.Generic;
-
-namespace MoneyFox.AutoMapper
+﻿namespace MoneyFox.AutoMapper
 {
+    using Core._Pending_.Common.Interfaces.Mapping;
+    using global::AutoMapper;
+    using System.Collections.Generic;
+    using ViewModels.Payments;
+
     public class AutoMapperProfile : Profile
     {
         public AutoMapperProfile()

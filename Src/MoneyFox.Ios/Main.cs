@@ -1,11 +1,12 @@
 ﻿using Foundation;
 using System.Linq;
-using UIKit;
 
 [assembly: Preserve(typeof(Queryable), AllMembers = true)]
 
 namespace MoneyFox.iOS
 {
+    using UIKit;
+
     public class Application
     {
         protected Application() { }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MoneyFox.iOS
+﻿namespace MoneyFox.iOS
 {
+    using System;
+
     public class IosFileStore : FileStoreIoBase
     {
         public IosFileStore(string basePath) : base(basePath)

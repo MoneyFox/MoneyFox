@@ -1,17 +1,17 @@
-﻿using Android.App;
-using Android.Runtime;
-using Autofac;
-using MoneyFox.Core._Pending_.Common.Constants;
-using NLog;
-using NLog.Config;
-using NLog.Targets;
-using System;
-using System.IO;
-using Xamarin.Essentials;
-
-#nullable enable
+﻿#nullable enable
 namespace MoneyFox.Droid
 {
+    using Android.App;
+    using Android.Runtime;
+    using Autofac;
+    using Core._Pending_.Common.Constants;
+    using NLog;
+    using NLog.Config;
+    using NLog.Targets;
+    using System;
+    using System.IO;
+    using Xamarin.Essentials;
+
     [Application]
     public class MainApplication : Application
     {

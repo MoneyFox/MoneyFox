@@ -14,7 +14,7 @@
         <DataTemplate x:Key="MenuTemplate">
             <NavigationViewItem Content="{Binding Name}">
                 <NavigationViewItem.Icon>
-                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{Binding Icon}"/>
+                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="{Binding Icon}" />
                 </NavigationViewItem.Icon>
             </NavigationViewItem>
         </DataTemplate>
@@ -33,31 +33,6 @@
         <NavigationView.Resources>
         </NavigationView.Resources>
 
-        <NavigationView.MenuItems>
-
-            <!--<NavigationViewItem helpers:NavHelper.NavigateTo="AccountListViewModel"
-                                      Icon="Home"
-                                      Content="{x:Bind resources:Strings.AccountsTitle}"
-                                      ToolTipService.ToolTip="{x:Bind resources:Strings.AccountsToolTip}" />
-
-            <NavigationViewItem helpers:NavHelper.NavigateTo="StatisticSelectorViewModel"
-                                      Icon="ZeroBars"
-                                      Content="{x:Bind resources:Strings.StatisticsTitle}"
-                                      ToolTipService.ToolTip="{x:Bind resources:Strings.StatisticsToolTip}" />
-
-            <NavigationViewItem helpers:NavHelper.NavigateTo="CategoryListViewModel"
-                                      Icon="Tag"
-                                      Content="{x:Bind resources:Strings.CategoriesTitle}"
-                                      ToolTipService.ToolTip="{x:Bind resources:Strings.CategoriesToolTip}" />
-
-            <NavigationViewItem helpers:NavHelper.NavigateTo="BackupViewModel"
-                                      Icon="SaveLocal"
-                                      Content="{x:Bind resources:Strings.BackupTitle}"
-                                      ToolTipService.ToolTip="{x:Bind resources:Strings.BackupToolTip}" />
-            <NavigationViewItemSeparator />-->
-
-        </NavigationView.MenuItems>
-
         <NavigationView.PaneCustomContent>
             <StackPanel Orientation="Horizontal">
                 <NavigationViewItemSeparator />
@@ -67,10 +42,10 @@
                     Content="{x:Bind resources:Strings.AddPaymentTitle}"
                     ToolTipService.ToolTip="{x:Bind resources:Strings.AddPaymentToolTip}"
                     Tapped="AddPaymentItemTapped">
-                        <NavigationViewItem.Icon>
-                            <FontIcon Glyph="&#xE710;" />
-                        </NavigationViewItem.Icon>
-                    </NavigationViewItem>
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE710;" />
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
             </StackPanel>
         </NavigationView.PaneCustomContent>
 

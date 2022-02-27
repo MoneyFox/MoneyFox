@@ -1,83 +1,82 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿namespace MoneyFox.Win.ViewModels.Statistics;
+
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core;
-using MoneyFox.Core.Resources;
-using MoneyFox.Win.Services;
-using MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
+using Core;
+using Core.Resources;
+using Services;
+using StatisticCategorySummary;
 using System.Collections.Generic;
 
-namespace MoneyFox.Win.ViewModels.Statistics
+public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
 {
-    public class StatisticSelectorViewModel : ObservableObject, IStatisticSelectorViewModel
+    private readonly INavigationService navigationService;
+
+    public StatisticSelectorViewModel(INavigationService navigationService)
     {
-        private readonly INavigationService navigationService;
+        this.navigationService = navigationService;
+    }
 
-        public StatisticSelectorViewModel(INavigationService navigationService)
+    public List<StatisticSelectorType> StatisticItems => new()
+    {
+        new()
         {
-            this.navigationService = navigationService;
+            Name = Strings.CashflowLabel,
+            Description = Strings.CashflowDescription,
+            Type = StatisticType.Cashflow
+        },
+        new()
+        {
+            Name = Strings.MonthlyCashflowLabel,
+            Description = Strings.MonthlyCashflowDescription,
+            Type = StatisticType.MonthlyAccountCashFlow
+        },
+        new()
+        {
+            Name = Strings.CategoryProgressionLabel,
+            Description = Strings.CategoryProgressionDescription,
+            Type = StatisticType.CategoryProgression
+        },
+        new()
+        {
+            Name = Strings.CategorySpreadingLabel,
+            Description = Strings.CategorieSpreadingDescription,
+            Type = StatisticType.CategorySpreading
+        },
+        new()
+        {
+            Name = Strings.CategorySummaryLabel,
+            Description = Strings.CategorySummaryDescription,
+            Type = StatisticType.CategorySummary
         }
+    };
 
-        public List<StatisticSelectorType> StatisticItems => new List<StatisticSelectorType>
+    /// <summary>
+    ///     Navigates to the statistic view and shows the selected statistic
+    /// </summary>
+    public RelayCommand<StatisticSelectorType> GoToStatisticCommand => new(GoToStatistic);
+
+    private void GoToStatistic(StatisticSelectorType item)
+    {
+        if(item.Type == StatisticType.Cashflow)
         {
-            new StatisticSelectorType
-            {
-                Name = Strings.CashflowLabel,
-                Description = Strings.CashflowDescription,
-                Type = StatisticType.Cashflow
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.MonthlyCashflowLabel,
-                Description = Strings.MonthlyCashflowDescription,
-                Type = StatisticType.MonthlyAccountCashFlow
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.CategoryProgressionLabel,
-                Description = Strings.CategoryProgressionDescription,
-                Type = StatisticType.CategoryProgression
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.CategorySpreadingLabel,
-                Description = Strings.CategorieSpreadingDescription,
-                Type = StatisticType.CategorySpreading
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.CategorySummaryLabel,
-                Description = Strings.CategorySummaryDescription,
-                Type = StatisticType.CategorySummary
-            }
-        };
-
-        /// <summary>
-        ///     Navigates to the statistic view and shows the selected statistic
-        /// </summary>
-        public RelayCommand<StatisticSelectorType> GoToStatisticCommand => new(GoToStatistic);
-
-        private void GoToStatistic(StatisticSelectorType item)
+            navigationService.Navigate<StatisticCashFlowViewModel>();
+        }
+        else if(item.Type == StatisticType.MonthlyAccountCashFlow)
         {
-            if(item.Type == StatisticType.Cashflow)
-            {
-                navigationService.Navigate<StatisticCashFlowViewModel>();
-            }
-            else if(item.Type == StatisticType.MonthlyAccountCashFlow)
-            {
-                navigationService.Navigate<StatisticAccountMonthlyCashflowViewModel>();
-            }
-            else if(item.Type == StatisticType.CategorySpreading)
-            {
-                navigationService.Navigate<StatisticCategorySpreadingViewModel>();
-            }
-            else if(item.Type == StatisticType.CategorySummary)
-            {
-                navigationService.Navigate<StatisticCategorySummaryViewModel>();
-            }
-            else if(item.Type == StatisticType.CategoryProgression)
-            {
-                navigationService.Navigate<StatisticCategoryProgressionViewModel>();
-            }
+            navigationService.Navigate<StatisticAccountMonthlyCashflowViewModel>();
+        }
+        else if(item.Type == StatisticType.CategorySpreading)
+        {
+            navigationService.Navigate<StatisticCategorySpreadingViewModel>();
+        }
+        else if(item.Type == StatisticType.CategorySummary)
+        {
+            navigationService.Navigate<StatisticCategorySummaryViewModel>();
+        }
+        else if(item.Type == StatisticType.CategoryProgression)
+        {
+            navigationService.Navigate<StatisticCategoryProgressionViewModel>();
         }
     }
 }

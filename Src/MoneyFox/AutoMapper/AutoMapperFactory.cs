@@ -1,7 +1,7 @@
-﻿using AutoMapper;
-
-namespace MoneyFox.AutoMapper
+﻿namespace MoneyFox.AutoMapper
 {
+    using global::AutoMapper;
+
     public static class AutoMapperFactory
     {
         public static IMapper Create()

@@ -1,16 +1,16 @@
-﻿using MoneyFox.Views.Accounts;
-using MoneyFox.Views.Backup;
-using MoneyFox.Views.Budget;
-using MoneyFox.Views.Categories;
-using MoneyFox.Views.Dashboard;
-using MoneyFox.Views.Payments;
-using MoneyFox.Views.Settings;
-using MoneyFox.Views.SetupAssistant;
-using MoneyFox.Views.Statistics;
-using Xamarin.Forms;
-
-namespace MoneyFox
+﻿namespace MoneyFox
 {
+    using Views.Accounts;
+    using Views.Backup;
+    using Views.Budget;
+    using Views.Categories;
+    using Views.Dashboard;
+    using Views.Payments;
+    using Views.Settings;
+    using Views.SetupAssistant;
+    using Views.Statistics;
+    using Xamarin.Forms;
+
     public partial class AppShell : Shell
     {
         public AppShell()

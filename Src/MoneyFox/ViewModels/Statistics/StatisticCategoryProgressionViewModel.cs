@@ -1,26 +1,25 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using Microcharts;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Queries.Categories.GetCategoryById;
-using MoneyFox.Core.Queries.Statistics;
-using MoneyFox.Core.Queries.Statistics.Queries;
-using MoneyFox.Extensions;
-using MoneyFox.ViewModels.Categories;
-using MoneyFox.Views.Statistics;
-using SkiaSharp;
-using System;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using Categories;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Messages;
+    using Core.Queries.Categories.GetCategoryById;
+    using Core.Queries.Statistics;
+    using Core.Queries.Statistics.Queries;
+    using Extensions;
+    using global::AutoMapper;
+    using MediatR;
+    using Microcharts;
+    using SkiaSharp;
+    using System;
+    using System.Collections.Immutable;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Views.Statistics;
+    using Xamarin.Essentials;
+    using Xamarin.Forms;
+
     public class StatisticCategoryProgressionViewModel : StatisticViewModel
     {
         private readonly IMapper mapper;

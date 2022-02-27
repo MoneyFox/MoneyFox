@@ -1,9 +1,9 @@
-﻿using MoneyFox.Core.Resources;
-using MoneyFox.ViewModels.Payments;
-using Xamarin.Forms;
-
-namespace MoneyFox.Views.Payments
+﻿namespace MoneyFox.Views.Payments
 {
+    using Core.Resources;
+    using ViewModels.Payments;
+    using Xamarin.Forms;
+
     public partial class EditPaymentPage
     {
         private readonly int paymentId;

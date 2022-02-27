@@ -1,47 +1,46 @@
-﻿using AutoMapper;
+﻿namespace MoneyFox.Win.ViewModels.Categories;
+
+using Core._Pending_.Common.Interfaces;
+using Core.Commands.Categories.CreateCategory;
+using Core.Resources;
+using global::AutoMapper;
 using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Commands.Categories.CreateCategory;
-using MoneyFox.Core.Resources;
-using MoneyFox.Win.Services;
+using Services;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Win.ViewModels.Categories
+public class AddCategoryViewModel : ModifyCategoryViewModel
 {
-    public class AddCategoryViewModel : ModifyCategoryViewModel
+    private readonly IMediator mediator;
+
+    public AddCategoryViewModel(IMediator mediator,
+        IDialogService dialogService,
+        INavigationService navigationService,
+        IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
+
     {
-        private readonly IMediator mediator;
+        this.mediator = mediator;
 
-        public AddCategoryViewModel(IMediator mediator,
-            IDialogService dialogService,
-            INavigationService navigationService,
-            IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
+        Title = Strings.AddCategoryTitle;
+    }
 
+    protected override Task InitializeAsync()
+    {
+        SelectedCategory = new CategoryViewModel();
+        return Task.CompletedTask;
+    }
+
+    protected override async Task SaveCategoryAsync()
+    {
+        if(string.IsNullOrEmpty(SelectedCategory.Name))
         {
-            this.mediator = mediator;
-
-            Title = Strings.AddCategoryTitle;
+            await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
+            return;
         }
 
-        protected override Task InitializeAsync()
-        {
-            SelectedCategory = new CategoryViewModel();
-            return Task.CompletedTask;
-        }
-
-        protected override async Task SaveCategoryAsync()
-        {
-            if(string.IsNullOrEmpty(SelectedCategory.Name))
-            {
-                await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
-                return;
-            }
-
-            await mediator.Send(
-                new CreateCategoryCommand(
-                    SelectedCategory.Name,
-                    SelectedCategory.Note,
-                    SelectedCategory.RequireNote));
-        }
+        await mediator.Send(
+            new CreateCategoryCommand(
+                SelectedCategory.Name,
+                SelectedCategory.Note,
+                SelectedCategory.RequireNote));
     }
 }

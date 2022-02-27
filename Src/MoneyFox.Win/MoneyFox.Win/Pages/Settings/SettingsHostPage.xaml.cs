@@ -1,12 +1,11 @@
-﻿namespace MoneyFox.Win.Pages.Settings
-{
-    public sealed partial class SettingsHostPage
-    {
-        public override bool ShowHeader => false;
+﻿namespace MoneyFox.Win.Pages.Settings;
 
-        public SettingsHostPage()
-        {
-            InitializeComponent();
-        }
+public sealed partial class SettingsHostPage
+{
+    public override bool ShowHeader => false;
+
+    public SettingsHostPage()
+    {
+        InitializeComponent();
     }
 }

@@ -1,17 +1,17 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core._Pending_.Common.Constants;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-
-namespace MoneyFox.ViewModels.About
+﻿namespace MoneyFox.ViewModels.About
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using Core._Pending_.Common.Constants;
+    using Core._Pending_.Common.Interfaces;
+    using Core.Interfaces;
+    using Core.Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Xamarin.Essentials;
+
     public class AboutViewModel : ObservableObject, IAboutViewModel
     {
         private readonly IAppInformation appInformation;
@@ -93,8 +93,8 @@ namespace MoneyFox.ViewModels.About
             await emailAdapter.SendEmailAsync(
                 Strings.FeedbackSubject,
                 string.Empty,
-                new List<string> { AppConstants.SupportMail },
-                new List<string> { Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName) });
+                new List<string> {AppConstants.SupportMail},
+                new List<string> {Path.Combine(FileSystem.CacheDirectory, AppConstants.LogFileName)});
 
         private void RateApp()
             => storeFeatures.RateApp();

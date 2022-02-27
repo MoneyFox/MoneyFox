@@ -1,7 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using Windows.ApplicationModel;
+﻿namespace MoneyFox.Win;
 
-namespace MoneyFox.Win;
+using Microsoft.Extensions.Configuration;
+using Windows.ApplicationModel;
 
 internal partial class AppConfig
 {
@@ -9,9 +9,9 @@ internal partial class AppConfig
 
     public AppConfig()
     {
-        var builder = new ConfigurationBuilder()
+        IConfigurationBuilder? builder = new ConfigurationBuilder()
             .SetBasePath(Package.Current.InstalledLocation.Path)
-            .AddJsonFile("appsettings.json", optional: false);
+            .AddJsonFile("appsettings.json", false);
 
         configurationRoot = builder.Build();
     }
@@ -19,5 +19,4 @@ internal partial class AppConfig
     public AppCenterConfig AppCenter => GetSection<AppCenterConfig>(nameof(AppCenter));
 
     private T GetSection<T>(string key) => configurationRoot.GetSection(key).Get<T>();
-
 }

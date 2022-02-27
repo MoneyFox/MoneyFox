@@ -1,10 +1,10 @@
-﻿using MoneyFox.Core._Pending_;
-using System;
-using System.Globalization;
-using Xamarin.Forms;
-
-namespace MoneyFox.Converter
+﻿namespace MoneyFox.Converter
 {
+    using Core._Pending_;
+    using System;
+    using System.Globalization;
+    using Xamarin.Forms;
+
     public class DecimalConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) =>

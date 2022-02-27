@@ -1,18 +1,18 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.Input;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Commands.Payments.DeletePaymentById;
-using MoneyFox.Core.Commands.Payments.UpdatePayment;
-using MoneyFox.Core.Queries.Payments.GetPaymentById;
-using MoneyFox.Core.Resources;
-using NLog;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Payments
+﻿namespace MoneyFox.ViewModels.Payments
 {
+    using CommunityToolkit.Mvvm.Input;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Exceptions;
+    using Core.Commands.Payments.DeletePaymentById;
+    using Core.Commands.Payments.UpdatePayment;
+    using Core.Queries.Payments.GetPaymentById;
+    using Core.Resources;
+    using global::AutoMapper;
+    using MediatR;
+    using NLog;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public class EditPaymentViewModel : ModifyPaymentViewModel
     {
         private readonly IDialogService dialogService;

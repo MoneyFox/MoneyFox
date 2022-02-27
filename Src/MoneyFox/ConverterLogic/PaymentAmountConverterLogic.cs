@@ -1,9 +1,9 @@
-﻿using MoneyFox.Core._Pending_;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.ViewModels.Payments;
-
-namespace MoneyFox.ConverterLogic
+﻿namespace MoneyFox.ConverterLogic
 {
+    using Core._Pending_;
+    using Core.Aggregates.Payments;
+    using ViewModels.Payments;
+
     public static class PaymentAmountConverterLogic
     {
         public static string GetAmountSign(PaymentViewModel paymentViewModel)

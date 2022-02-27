@@ -1,11 +1,11 @@
-﻿using MoneyFox.ConverterLogic;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-using System.Globalization;
-using Xamarin.Forms;
-
-namespace MoneyFox.Converter
+﻿namespace MoneyFox.Converter
 {
+    using ConverterLogic;
+    using Core.Aggregates.Payments;
+    using System;
+    using System.Globalization;
+    using Xamarin.Forms;
+
     /// <summary>
     ///     Converts the RecurrenceType to a string.
     /// </summary>

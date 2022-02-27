@@ -1,25 +1,28 @@
-﻿using Android.Content;
-using Android.Graphics;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
-using Android.Widget;
-using Java.Lang.Reflect;
-using Microsoft.AppCenter.Crashes;
-using MoneyFox.Droid.Renderer;
-using NLog;
-using System;
-using System.Linq;
+﻿using MoneyFox.Droid.Renderer;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
-using Color = Xamarin.Forms.Color;
-using Object = Java.Lang.Object;
 
 #nullable enable
 [assembly: ExportRenderer(typeof(SearchBar), typeof(CustomSearchBarRenderer))]
 
 namespace MoneyFox.Droid.Renderer
 {
+    using Android.Content;
+    using Android.Graphics;
+    using Android.Graphics.Drawables;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Widget;
+    using Java.Lang.Reflect;
+    using Microsoft.AppCenter.Crashes;
+    using NLog;
+    using System;
+    using System.Linq;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.Android;
+    using Color = Xamarin.Forms.Color;
+    using Object = Java.Lang.Object;
+    using Resource = Droid.Resource;
+
     public class CustomSearchBarRenderer : SearchBarRenderer
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -135,7 +138,7 @@ namespace MoneyFox.Droid.Renderer
                 {
                     "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"
                 };
-                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
+                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
 
                 for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {

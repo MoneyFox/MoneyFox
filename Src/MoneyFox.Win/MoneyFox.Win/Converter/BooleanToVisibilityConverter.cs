@@ -1,26 +1,25 @@
-﻿using Microsoft.UI.Xaml;
+﻿namespace MoneyFox.Win.Converter;
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Data;
 using System;
 
-namespace MoneyFox.Win.Converter
+public class BooleanToVisibilityConverter : IValueConverter
 {
-    public class BooleanToVisibilityConverter : IValueConverter
+    public object Convert(object value, Type targetType, object? parameter, string language)
     {
-        public object Convert(object value, Type targetType, object? parameter, string language)
+        if(parameter != null && parameter.ToString() == "revert")
         {
-            if(parameter != null && parameter.ToString() == "revert")
-            {
-                return (bool)value
-                    ? Visibility.Collapsed
-                    : Visibility.Visible;
-            }
-
             return (bool)value
-                ? Visibility.Visible
-                : Visibility.Collapsed;
+                ? Visibility.Collapsed
+                : Visibility.Visible;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, string language) =>
-            throw new NotSupportedException();
+        return (bool)value
+            ? Visibility.Visible
+            : Visibility.Collapsed;
     }
+
+    public object ConvertBack(object value, Type targetType, object parameter, string language) =>
+        throw new NotSupportedException();
 }

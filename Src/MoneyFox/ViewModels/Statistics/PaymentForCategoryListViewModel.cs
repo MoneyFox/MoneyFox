@@ -1,21 +1,21 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core.Queries.Payments.GetPaymentsForCategory;
-using MoneyFox.Groups;
-using MoneyFox.ViewModels.Payments;
-using MoneyFox.Views.Payments;
-using NLog;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core.Queries.Payments.GetPaymentsForCategory;
+    using global::AutoMapper;
+    using Groups;
+    using MediatR;
+    using NLog;
+    using Payments;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Globalization;
+    using System.Threading.Tasks;
+    using Views.Payments;
+    using Xamarin.Forms;
+
     public class PaymentForCategoryListViewModel : ObservableRecipient
     {
         private static readonly ILogger logger = LogManager.GetCurrentClassLogger();

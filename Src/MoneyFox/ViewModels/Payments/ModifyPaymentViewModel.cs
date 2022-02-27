@@ -1,26 +1,26 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Accounts.GetAccounts;
-using MoneyFox.Core.Queries.Categories.GetCategoryById;
-using MoneyFox.Core.Resources;
-using MoneyFox.Extensions;
-using MoneyFox.ViewModels.Accounts;
-using MoneyFox.ViewModels.Categories;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Payments
+﻿namespace MoneyFox.ViewModels.Payments
 {
+    using Accounts;
+    using Categories;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Common.Messages;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Accounts.GetAccounts;
+    using Core.Queries.Categories.GetCategoryById;
+    using Core.Resources;
+    using Extensions;
+    using global::AutoMapper;
+    using MediatR;
+    using NLog;
+    using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public abstract class ModifyPaymentViewModel : ObservableRecipient
     {
         private readonly IDialogService dialogService;

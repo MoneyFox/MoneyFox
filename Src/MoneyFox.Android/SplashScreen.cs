@@ -1,9 +1,9 @@
-﻿using Android.App;
-using Android.Content.PM;
-using AndroidX.AppCompat.App;
-
-namespace MoneyFox.Droid
+﻿namespace MoneyFox.Droid
 {
+    using Android.App;
+    using Android.Content.PM;
+    using AndroidX.AppCompat.App;
+
     [Activity(
         Label = "MoneyFox",
         MainLauncher = true,

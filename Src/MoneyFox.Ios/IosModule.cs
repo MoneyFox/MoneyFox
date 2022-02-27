@@ -1,14 +1,14 @@
-﻿using Acr.UserDialogs;
-using Autofac;
-using Foundation;
-using MoneyFox.Core._Pending_;
-using MoneyFox.iOS.Src;
-using NLog;
-using System;
-using System.Globalization;
-
-namespace MoneyFox.iOS
+﻿namespace MoneyFox.iOS
 {
+    using Acr.UserDialogs;
+    using Autofac;
+    using Core._Pending_;
+    using Foundation;
+    using NLog;
+    using Src;
+    using System;
+    using System.Globalization;
+
     public class IosModule : Module
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();

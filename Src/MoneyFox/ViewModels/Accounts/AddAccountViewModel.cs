@@ -1,12 +1,12 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Commands.Accounts.CreateAccount;
-using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
-using MoneyFox.Core.Resources;
-using System.Threading.Tasks;
-
-namespace MoneyFox.ViewModels.Accounts
+﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Commands.Accounts.CreateAccount;
+    using Core.Queries.Accounts.GetIfAccountWithNameExists;
+    using Core.Resources;
+    using MediatR;
+    using System.Threading.Tasks;
+
     public class AddAccountViewModel : ModifyAccountViewModel
     {
         private readonly IDialogService dialogService;

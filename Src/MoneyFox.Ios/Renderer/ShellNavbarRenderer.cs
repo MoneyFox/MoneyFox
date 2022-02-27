@@ -1,16 +1,17 @@
 ﻿using MoneyFox;
 using MoneyFox.iOS.Renderer;
-using System;
-using System.ComponentModel;
-using UIKit;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(AppShell), typeof(ShellNavbarRenderer))]
 
 namespace MoneyFox.iOS.Renderer
 {
+    using System.ComponentModel;
+    using UIKit;
+    using Xamarin.Essentials;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.iOS;
+
     public class ShellNavbarRenderer : ShellRenderer
     {
         protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) =>

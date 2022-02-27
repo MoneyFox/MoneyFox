@@ -1,12 +1,12 @@
-﻿using Autofac;
-using MoneyFox.AutoMapper;
-using MoneyFox.Core;
-using MoneyFox.Mobile.Infrastructure;
-using MoneyFox.ViewModels.Settings;
-using System;
-
-namespace MoneyFox
+﻿namespace MoneyFox
 {
+    using Autofac;
+    using AutoMapper;
+    using Core;
+    using Mobile.Infrastructure;
+    using System;
+    using ViewModels.Settings;
+
     public class MoneyFoxModule : Module
     {
         protected override void Load(ContainerBuilder builder)

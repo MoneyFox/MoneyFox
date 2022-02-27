@@ -1,18 +1,18 @@
-﻿using Acr.UserDialogs;
-using Android.App;
-using Android.Content;
-using Android.Content.PM;
-using Android.OS;
-using Android.Runtime;
-using Microsoft.Identity.Client;
-using MoneyFox.Core._Pending_.Common;
-using Rg.Plugins.Popup;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.Android;
-using Platform = Xamarin.Essentials.Platform;
-
-namespace MoneyFox.Droid
+﻿namespace MoneyFox.Droid
 {
+    using Acr.UserDialogs;
+    using Android.App;
+    using Android.Content;
+    using Android.Content.PM;
+    using Android.OS;
+    using Android.Runtime;
+    using Core._Pending_.Common;
+    using Microsoft.Identity.Client;
+    using Rg.Plugins.Popup;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.Android;
+    using Platform = Xamarin.Essentials.Platform;
+
     [Activity(
         Label = "MoneyFox",
         Theme = "@style/MainTheme",
