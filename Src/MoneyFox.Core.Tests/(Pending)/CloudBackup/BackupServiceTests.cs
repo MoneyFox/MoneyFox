@@ -101,6 +101,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             cloudBackupServiceMock.Setup(x => x.LoginAsync()).Returns(Task.CompletedTask);
 
             settingsFacadeMock.SetupAllProperties();
+            bool expectedAutoBackupFlag = settingsFacadeMock.Object.IsBackupAutouploadEnabled;
 
             var backupService = new BackupService(
                 cloudBackupServiceMock.Object,
@@ -115,7 +116,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             await backupService.LoginAsync();
 
             // Assert
-            settingsFacadeMock.Object.IsBackupAutouploadEnabled.Should().BeTrue();
+            settingsFacadeMock.Object.IsBackupAutouploadEnabled.Should().Be(expectedAutoBackupFlag);
             settingsFacadeMock.Object.IsLoggedInToBackupService.Should().BeTrue();
         }
 
