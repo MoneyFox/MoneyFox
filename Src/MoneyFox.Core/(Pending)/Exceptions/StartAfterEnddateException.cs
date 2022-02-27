@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace MoneyFox.Core._Pending_.Exceptions
+﻿namespace MoneyFox.Core._Pending_.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     [Serializable]
     public class StartAfterEnddateException : Exception
     {

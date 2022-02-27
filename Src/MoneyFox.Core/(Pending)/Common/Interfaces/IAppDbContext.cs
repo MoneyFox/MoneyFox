@@ -1,13 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core._Pending_.Common.Interfaces
+﻿namespace MoneyFox.Core._Pending_.Common.Interfaces
 {
+    using Aggregates;
+    using Aggregates.Payments;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
+    using System;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public interface IAppDbContext : IDisposable
     {
         DbSet<Account> Accounts { get; }

@@ -1,10 +1,10 @@
-﻿using Autofac;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Infrastructure.DbBackup;
-using MoneyFox.Infrastructure.Persistence;
-
-namespace MoneyFox.Infrastructure
+﻿namespace MoneyFox.Infrastructure
 {
+    using Autofac;
+    using Core._Pending_.Common.Interfaces;
+    using DbBackup;
+    using Persistence;
+
     public class InfrastructureModule : Module
     {
         protected override void Load(ContainerBuilder builder)

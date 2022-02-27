@@ -1,12 +1,12 @@
-﻿using FluentAssertions;
-using MoneyFox.ConverterLogic;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.ViewModels.Payments;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Tests.ConverterLogic
+﻿namespace MoneyFox.Tests.ConverterLogic
 {
+    using Core.Aggregates.Payments;
+    using FluentAssertions;
+    using MoneyFox.ConverterLogic;
+    using MoneyFox.ViewModels.Payments;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class PaymentAmountConverterLogicTests
     {

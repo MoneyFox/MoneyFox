@@ -1,18 +1,18 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Categories.GetCategoryBySearchTerm;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryBySearchTerm
+﻿namespace MoneyFox.Core.Tests.Queries.Categories.GetCategoryBySearchTerm
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Categories.GetCategoryBySearchTerm;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class GetCategoryBySearchTermQueryTests : IDisposable
     {

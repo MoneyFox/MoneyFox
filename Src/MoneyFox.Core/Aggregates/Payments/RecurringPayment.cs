@@ -1,12 +1,12 @@
-﻿using JetBrains.Annotations;
-using MoneyFox.Core._Pending_.Exceptions;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace MoneyFox.Core.Aggregates.Payments
+﻿namespace MoneyFox.Core.Aggregates.Payments
 {
+    using _Pending_.Exceptions;
+    using JetBrains.Annotations;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public class RecurringPayment : EntityBase
     {
         [UsedImplicitly]
@@ -93,9 +93,6 @@ namespace MoneyFox.Core.Aggregates.Payments
             IsEndless = endDate == null;
         }
 
-        public void SetLastRecurrenceCreatedDate()
-        {
-            LastRecurrenceCreated = DateTime.Now;
-        }
+        public void SetLastRecurrenceCreatedDate() => LastRecurrenceCreated = DateTime.Now;
     }
 }

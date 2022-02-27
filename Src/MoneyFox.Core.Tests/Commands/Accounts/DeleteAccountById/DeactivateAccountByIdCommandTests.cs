@@ -1,18 +1,18 @@
-﻿using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Commands.Accounts.DeleteAccountById;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
+﻿namespace MoneyFox.Core.Tests.Commands.Accounts.DeleteAccountById
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates;
+    using Core.Commands.Accounts.DeleteAccountById;
+    using FluentAssertions;
+    using Infrastructure;
+    using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class DeactivateAccountByIdCommandTests : IDisposable
     {

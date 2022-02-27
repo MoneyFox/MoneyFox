@@ -1,10 +1,10 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-
-namespace MoneyFox.Infrastructure.Persistence
+﻿namespace MoneyFox.Infrastructure.Persistence
 {
+    using Core._Pending_.Common.Facades;
+    using Core._Pending_.Common.Interfaces;
+    using Core.Interfaces;
+    using MediatR;
+
     public class ContextAdapter : IContextAdapter
     {
         private readonly IPublisher publisher;

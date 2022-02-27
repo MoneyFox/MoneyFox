@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary
+﻿namespace MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary
 {
+    using System;
+    using System.Collections.Generic;
+
     public static class StatisticUtilities
     {
         private const int POSITIONS_TO_ROUND = 2;

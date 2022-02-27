@@ -1,10 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-
-namespace MoneyFox.Infrastructure.Persistence.Configurations
+﻿namespace MoneyFox.Infrastructure.Persistence.Configurations
 {
+    using Core.Aggregates.Payments;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     internal class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
         public void Configure(EntityTypeBuilder<Category> builder)

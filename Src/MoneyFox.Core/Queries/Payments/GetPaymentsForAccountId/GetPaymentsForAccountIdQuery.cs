@@ -1,16 +1,16 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Payments.GetPaymentsForAccountId
+﻿namespace MoneyFox.Core.Queries.Payments.GetPaymentsForAccountId
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetPaymentsForAccountIdQuery : IRequest<List<Payment>>
     {
         public GetPaymentsForAccountIdQuery(int accountId,

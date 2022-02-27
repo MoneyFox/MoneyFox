@@ -1,17 +1,17 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Commands.Payments.UpdatePayment
+﻿namespace MoneyFox.Core.Commands.Payments.UpdatePayment
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Exceptions;
+    using Aggregates;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class UpdatePaymentCommand : IRequest
     {
         public UpdatePaymentCommand(int id,

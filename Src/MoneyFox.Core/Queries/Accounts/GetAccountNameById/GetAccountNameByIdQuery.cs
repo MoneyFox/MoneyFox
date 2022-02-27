@@ -1,12 +1,12 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Accounts.GetAccountNameById
+﻿namespace MoneyFox.Core.Queries.Accounts.GetAccountNameById
 {
+    using _Pending_.Common.Interfaces;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetAccountNameByIdQuery : IRequest<string>
     {
         public GetAccountNameByIdQuery(int accountId)

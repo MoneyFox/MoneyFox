@@ -1,11 +1,11 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists
+﻿namespace MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetIfAccountWithNameExistsQuery : IRequest<bool>
     {
         public GetIfAccountWithNameExistsQuery(string accountName)

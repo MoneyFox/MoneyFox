@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Queries.Statistics.Queries;
-using System;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Statistics
+﻿namespace MoneyFox.Core.Tests.Queries.Statistics
 {
+    using Core._Pending_.Exceptions;
+    using Core.Queries.Statistics.Queries;
+    using FluentAssertions;
+    using System;
+    using Xunit;
+
     public class GetAccountProgressionQueryTests
     {
         [Fact]

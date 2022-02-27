@@ -1,13 +1,13 @@
-﻿using FluentAssertions;
-using MoneyFox.Converter;
-using MoneyFox.Core._Pending_;
-using System.Diagnostics.CodeAnalysis;
-using System.Globalization;
-using System.Threading;
-using Xunit;
-
-namespace MoneyFox.Tests.Converter
+﻿namespace MoneyFox.Tests.Converter
 {
+    using Core._Pending_;
+    using FluentAssertions;
+    using MoneyFox.Converter;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Globalization;
+    using System.Threading;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class DecimalConverterTests
     {

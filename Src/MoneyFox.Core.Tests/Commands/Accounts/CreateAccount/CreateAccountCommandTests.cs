@@ -1,17 +1,17 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Commands.Accounts.CreateAccount;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount
+﻿namespace MoneyFox.Core.Tests.Commands.Accounts.CreateAccount
 {
+    using Core._Pending_.Common.Facades;
+    using Core._Pending_.Common.Interfaces;
+    using Core.Commands.Accounts.CreateAccount;
+    using Infrastructure;
+    using MediatR;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class CreateAccountCommandTests : IDisposable
     {

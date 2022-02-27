@@ -1,64 +1,63 @@
-﻿using MoneyFox.Core.Interfaces;
-using MoneyFox.Desktop.Infrastructure;
+﻿namespace MoneyFox.Win.Infrastructure.Adapters;
+
+using Core.Interfaces;
+using Desktop.Infrastructure;
 using NLog;
 using System;
 
-namespace MoneyFox.Win.Infrastructure.Adapters
+public class SettingsAdapter : ISettingsAdapter
 {
-    public class SettingsAdapter : ISettingsAdapter
+    private readonly Logger logManager = LogManager.GetCurrentClassLogger();
+
+    public bool GetValue(string key, bool defaultValue)
     {
-        private readonly Logger logManager = LogManager.GetCurrentClassLogger();
-
-        public bool GetValue(string key, bool defaultValue)
+        try
         {
-            try
-            {
-                return Preferences.Get(key, defaultValue);
-            }
-            catch(InvalidCastException)
-            {
-                logManager.Error($"Value {key} couldn't be parsed to bool.");
-                Preferences.Set(key, defaultValue);
-                return defaultValue;
-            }
+            return Preferences.Get(key, defaultValue);
         }
-
-        public string GetValue(string key, string defaultValue)
+        catch(InvalidCastException)
         {
-            try
-            {
-                return Preferences.Get(key, defaultValue);
-            }
-            catch(InvalidCastException)
-            {
-                logManager.Error($"Value {key} couldn't be parsed to string.");
-
-                Preferences.Set(key, defaultValue);
-                return defaultValue;
-            }
+            logManager.Error($"Value {key} couldn't be parsed to bool.");
+            Preferences.Set(key, defaultValue);
+            return defaultValue;
         }
-
-        public int GetValue(string key, int defaultValue)
-        {
-            try
-            {
-                return Preferences.Get(key, defaultValue);
-            }
-            catch(InvalidCastException)
-            {
-                logManager.Error($"Value {key} couldn't be parsed to int.");
-
-                Preferences.Set(key, defaultValue);
-                return defaultValue;
-            }
-        }
-
-        public void AddOrUpdate(string key, bool value) => Preferences.Set(key, value);
-
-        public void AddOrUpdate(string key, string value) => Preferences.Set(key, value);
-
-        public void AddOrUpdate(string key, int value) => Preferences.Set(key, value);
-
-        public void Remove(string key) => Preferences.Remove(key);
     }
+
+    public string GetValue(string key, string defaultValue)
+    {
+        try
+        {
+            return Preferences.Get(key, defaultValue);
+        }
+        catch(InvalidCastException)
+        {
+            logManager.Error($"Value {key} couldn't be parsed to string.");
+
+            Preferences.Set(key, defaultValue);
+            return defaultValue;
+        }
+    }
+
+    public int GetValue(string key, int defaultValue)
+    {
+        try
+        {
+            return Preferences.Get(key, defaultValue);
+        }
+        catch(InvalidCastException)
+        {
+            logManager.Error($"Value {key} couldn't be parsed to int.");
+
+            Preferences.Set(key, defaultValue);
+            return defaultValue;
+        }
+    }
+
+    public void AddOrUpdate(string key, bool value) => Preferences.Set(key, value);
+
+    public void AddOrUpdate(string key, string value) => Preferences.Set(key, value);
+
+    public void AddOrUpdate(string key, int value) => Preferences.Set(key, value);
+
+    public void Remove(string key) => Preferences.Remove(key);
 }

@@ -1,19 +1,14 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Interfaces;
-using NLog;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Commands.Payments.CreatePayment
+﻿namespace MoneyFox.Core.Commands.Payments.CreatePayment
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Exceptions;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using NLog;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class CreatePaymentCommand : IRequest
     {
         public CreatePaymentCommand(Payment paymentToSave)

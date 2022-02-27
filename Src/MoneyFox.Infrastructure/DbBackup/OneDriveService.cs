@@ -1,27 +1,27 @@
-﻿using Microsoft.Graph;
-using Microsoft.Identity.Client;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Constants;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core._Pending_.Exceptions;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Logger = NLog.Logger;
-
-namespace MoneyFox.Infrastructure.DbBackup
+﻿namespace MoneyFox.Infrastructure.DbBackup
 {
+    using Core._Pending_.Common;
+    using Core._Pending_.Common.Constants;
+    using Core._Pending_.DbBackup;
+    using Core._Pending_.Exceptions;
+    using Microsoft.Graph;
+    using Microsoft.Identity.Client;
+    using NLog;
+    using System;
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Logger = NLog.Logger;
+
     /// <inheritdoc />
     public class OneDriveService : ICloudBackupService
     {
         private const int BACKUP_ARCHIVE_COUNT = 15;
         private const string BACKUP_NAME_TEMP = "moneyfox.db_upload";
         private const string ERROR_CODE_CANCELED = "authentication_canceled";
-        private readonly string[] scopes = { "Files.ReadWrite", "User.ReadBasic.All" };
+        private readonly string[] scopes = {"Files.ReadWrite", "User.ReadBasic.All"};
 
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
 
@@ -246,7 +246,7 @@ namespace MoneyFox.Infrastructure.DbBackup
 
             var updateItem = new DriveItem
             {
-                ParentReference = new ItemReference { Id = appRoot.Id }, Name = DatabaseConstants.BACKUP_NAME
+                ParentReference = new ItemReference {Id = appRoot.Id}, Name = DatabaseConstants.BACKUP_NAME
             };
 
             await GraphServiceClient
@@ -439,7 +439,7 @@ namespace MoneyFox.Infrastructure.DbBackup
 
             var updateItem = new DriveItem
             {
-                ParentReference = new ItemReference { Id = ArchiveFolder.Id },
+                ParentReference = new ItemReference {Id = ArchiveFolder.Id},
                 Name = string.Format(
                     CultureInfo.InvariantCulture,
                     DatabaseConstants.BACKUP_ARCHIVE_NAME,
@@ -476,7 +476,7 @@ namespace MoneyFox.Infrastructure.DbBackup
                 return;
             }
 
-            var updateItem = new DriveItem { Name = DatabaseConstants.BACKUP_NAME };
+            var updateItem = new DriveItem {Name = DatabaseConstants.BACKUP_NAME};
 
             await GraphServiceClient
                 .Drive
@@ -520,7 +520,7 @@ namespace MoneyFox.Infrastructure.DbBackup
                 throw new GraphClientNullException();
             }
 
-            var folderToCreate = new DriveItem { Name = DatabaseConstants.ARCHIVE_FOLDER_NAME, Folder = new Folder() };
+            var folderToCreate = new DriveItem {Name = DatabaseConstants.ARCHIVE_FOLDER_NAME, Folder = new Folder()};
 
             ArchiveFolder = await GraphServiceClient
                 .Me

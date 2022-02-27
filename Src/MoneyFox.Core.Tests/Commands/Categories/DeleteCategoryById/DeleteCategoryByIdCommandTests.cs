@@ -1,18 +1,18 @@
-﻿using FluentAssertions;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Commands.Categories.DeleteCategoryById;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Commands.Categories.DeleteCategoryById
+﻿namespace MoneyFox.Core.Tests.Commands.Categories.DeleteCategoryById
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates.Payments;
+    using Core.Commands.Categories.DeleteCategoryById;
+    using FluentAssertions;
+    using Infrastructure;
+    using Microsoft.EntityFrameworkCore;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class DeleteCategoryByIdCommandTests : IDisposable
     {

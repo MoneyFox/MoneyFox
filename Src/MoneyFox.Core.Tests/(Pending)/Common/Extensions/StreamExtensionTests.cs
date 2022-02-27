@@ -1,10 +1,10 @@
-﻿using MoneyFox.Core._Pending_.Common.Extensions;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using Xunit;
-
-namespace MoneyFox.Core.Tests._Pending_.Common.Extensions
+﻿namespace MoneyFox.Core.Tests._Pending_.Common.Extensions
 {
+    using Core._Pending_.Common.Extensions;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class StreamExtensionTests
     {
@@ -12,7 +12,7 @@ namespace MoneyFox.Core.Tests._Pending_.Common.Extensions
         public void ReadToEnd()
         {
             // Arrange
-            byte[] bytes = { 12, 22, 25, 23 };
+            byte[] bytes = {12, 22, 25, 23};
             var stream = new MemoryStream(bytes);
 
             // Act

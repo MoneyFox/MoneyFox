@@ -1,8 +1,8 @@
-﻿using System;
-using System.Runtime.Serialization;
-
-namespace MoneyFox.Core._Pending_.Exceptions
+﻿namespace MoneyFox.Core._Pending_.Exceptions
 {
+    using System;
+    using System.Runtime.Serialization;
+
     /// <summary>
     ///     This Exception is thrown when on a backup restore no backup with the right name was found.
     /// </summary>

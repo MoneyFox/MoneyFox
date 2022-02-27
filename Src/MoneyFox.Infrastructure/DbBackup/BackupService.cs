@@ -1,25 +1,25 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Messaging;
-using Microsoft.AppCenter.Crashes;
-using MoneyFox.Core._Pending_.Common.Constants;
-using MoneyFox.Core._Pending_.Common.Extensions;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Resources;
-using MoneyFox.Core.Interfaces;
-using NLog;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Infrastructure.DbBackup
+﻿namespace MoneyFox.Infrastructure.DbBackup
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Constants;
+    using Core._Pending_.Common.Extensions;
+    using Core._Pending_.Common.Facades;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Common.Messages;
+    using Core._Pending_.DbBackup;
+    using Core._Pending_.Exceptions;
+    using Core.Interfaces;
+    using Core.Resources;
+    using Microsoft.AppCenter.Crashes;
+    using NLog;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     internal sealed class BackupService : ObservableRecipient, IBackupService, IDisposable
     {
         private const int BACKUP_OPERATION_TIMEOUT = 10000;

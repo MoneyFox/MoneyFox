@@ -1,14 +1,14 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates.Payments;
-using NLog;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Payments.GetPaymentById
+﻿namespace MoneyFox.Core.Queries.Payments.GetPaymentById
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Exceptions;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using NLog;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetPaymentByIdQuery : IRequest<Payment>
     {
         public GetPaymentByIdQuery(int paymentId)

@@ -1,22 +1,18 @@
-﻿using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Commands.Payments.DeletePaymentById;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Commands.Payments.DeletePaymentById
+﻿namespace MoneyFox.Core.Tests.Commands.Payments.DeletePaymentById
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Exceptions;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using Core.Commands.Payments.DeletePaymentById;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class DeletePaymentByIdCommandTests : IDisposable
     {

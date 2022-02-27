@@ -1,16 +1,15 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.ViewModels.DataBackup;
-using NSubstitute;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Tests.ViewModels
+﻿namespace MoneyFox.Tests.ViewModels
 {
+    using Core._Pending_.Common.Facades;
+    using Core.Interfaces;
+    using FluentAssertions;
+    using MoneyFox.ViewModels.DataBackup;
+    using NSubstitute;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class BackupViewModelTests
     {

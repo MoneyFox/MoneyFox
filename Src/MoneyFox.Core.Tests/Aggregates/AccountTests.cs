@@ -1,13 +1,13 @@
-﻿using FluentAssertions;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Aggregates
+﻿namespace MoneyFox.Core.Tests.Aggregates
 {
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using FluentAssertions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Reflection;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class AccountTests
     {
@@ -25,7 +25,6 @@ namespace MoneyFox.Core.Tests.Aggregates
             account.CurrentBalance.Should().Be(0);
             account.Note.Should().BeEmpty();
             account.IsExcluded.Should().BeFalse();
-
         }
 
         [Fact]
@@ -99,9 +98,9 @@ namespace MoneyFox.Core.Tests.Aggregates
 
             // Act / Assert
             testAccount.UpdateAccount(
-                name: testname,
-                note: testnote,
-                isExcluded: testExcluded);
+                testname,
+                testnote,
+                testExcluded);
 
             // Assert
             testAccount.Name.Should().Be(testname);
@@ -121,10 +120,10 @@ namespace MoneyFox.Core.Tests.Aggregates
             // Act
             // AddPaymentAmount executed in the clear method
             new Payment(
-                date: DateTime.Today,
-                amount: 50,
-                type: paymentType,
-                chargedAccount: account);
+                DateTime.Today,
+                50,
+                paymentType,
+                account);
 
             // Assert
             account.CurrentBalance.Should().Be(expectedBalance);

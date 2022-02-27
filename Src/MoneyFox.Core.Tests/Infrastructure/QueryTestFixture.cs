@@ -1,10 +1,10 @@
-﻿using MoneyFox.Infrastructure.Persistence;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Infrastructure
+﻿namespace MoneyFox.Core.Tests.Infrastructure
 {
+    using MoneyFox.Infrastructure.Persistence;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class QueryTestFixture : IDisposable
     {
