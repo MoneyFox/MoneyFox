@@ -1,11 +1,11 @@
-﻿using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Resources;
-using MoneyFox.Views.Dialogs;
-using System;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Services
+﻿namespace MoneyFox.Services
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Resources;
+    using System;
+    using System.Threading.Tasks;
+    using Views.Dialogs;
+
     public class DialogService : IDialogService
     {
         private LoadingDialog? loadingDialog;
@@ -33,6 +33,7 @@ namespace MoneyFox.Services
             try
             {
                 await LoadingDialog.DismissAsync();
+                loadingDialog = null;
             }
             catch(IndexOutOfRangeException)
             {
@@ -42,6 +43,12 @@ namespace MoneyFox.Services
 
         public async Task ShowMessageAsync(string title, string message)
         {
+            if(loadingDialog != null)
+            {
+                // Only 1 dialog can be open at a time. Close the Loading dialog sow the message can be displayed.
+                await HideLoadingDialogAsync();
+            }
+
             var messageDialog = new MessageDialog(title, message);
             await messageDialog.ShowAsync();
         }
@@ -51,6 +58,12 @@ namespace MoneyFox.Services
             string? positiveButtonText = null,
             string? negativeButtonText = null)
         {
+            if(loadingDialog != null)
+            {
+                // Only 1 dialog can be open at a time. Close the Loading dialog sow the message can be displayed.
+                await HideLoadingDialogAsync();
+            }
+
             var confirmDialog = new ConfirmMessageDialog(
                 title,
                 message,

@@ -1,14 +1,15 @@
-﻿using Foundation;
-using System.Collections.Specialized;
-using System.ComponentModel;
-using System.Windows.Input;
-using UIKit;
+﻿// ReSharper disable UnusedVariable
 
-// ReSharper disable UnusedVariable
 #pragma warning disable S1481 // Unused local variable
 #pragma warning disable S2325 // Methods and properties that don't access instance data should be static
 namespace MoneyFox.iOS
 {
+    using Foundation;
+    using System.Collections.Specialized;
+    using System.ComponentModel;
+    using System.Windows.Input;
+    using UIKit;
+
     // This class is never actually executed, but when Xamarin linking is enabled it does ensure types and properties
     // are preserved in the deployed app
     public class LinkerPleaseInclude

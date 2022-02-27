@@ -352,7 +352,7 @@
     <value>Terminé</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Un compte avec ce nom existe déjà.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Une catégorie avec ce nom existe déjà.</value>

@@ -1,24 +1,27 @@
-﻿using Android.Content;
-using Android.Graphics;
-using Android.Graphics.Drawables;
-using Android.OS;
-using Android.Runtime;
-using Android.Widget;
-using Java.Lang.Reflect;
-using MoneyFox.Droid.Renderer;
-using NLog;
-using System;
+﻿using MoneyFox.Droid.Renderer;
 using Xamarin.Forms;
-using Xamarin.Forms.Material.Android;
-using Xamarin.Forms.Platform.Android;
-using Color = Xamarin.Forms.Color;
-using Object = Java.Lang.Object;
 
 #nullable enable
-[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] { typeof(VisualMarker.MaterialVisual) })]
+[assembly: ExportRenderer(typeof(Entry), typeof(CustomEntryRenderer), new[] {typeof(VisualMarker.MaterialVisual)})]
 
 namespace MoneyFox.Droid.Renderer
 {
+    using Android.Content;
+    using Android.Graphics;
+    using Android.Graphics.Drawables;
+    using Android.OS;
+    using Android.Runtime;
+    using Android.Widget;
+    using Java.Lang.Reflect;
+    using NLog;
+    using System;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Material.Android;
+    using Xamarin.Forms.Platform.Android;
+    using Color = Xamarin.Forms.Color;
+    using Object = Java.Lang.Object;
+    using Resource = Droid.Resource;
+
     public class CustomEntryRenderer : MaterialEntryRenderer
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -104,7 +107,7 @@ namespace MoneyFox.Droid.Renderer
                 {
                     "mTextSelectHandleLeftRes", "mTextSelectHandleRightRes", "mTextSelectHandleRes"
                 };
-                string[] drawableNames = { "mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter" };
+                string[] drawableNames = {"mSelectHandleLeft", "mSelectHandleRight", "mSelectHandleCenter"};
 
                 for(int index = 0; index < fieldsNames.Length && index < drawableNames.Length; index++)
                 {

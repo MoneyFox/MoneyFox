@@ -11,7 +11,8 @@
     xmlns:resources="using:MoneyFox.Core.Resources"
     xmlns:converter="using:MoneyFox.Win.Converter"
     xmlns:designTime="using:MoneyFox.Win.ViewModels.Payments"
-    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls" xmlns:userControls="using:MoneyFox.Win.Pages.UserControls"
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:userControls="using:MoneyFox.Win.Pages.UserControls"
     NavigationCacheMode="Disabled"
     mc:Ignorable="d">
 

@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core.Aggregates;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core._Pending_.Common.QueryObjects
+﻿namespace MoneyFox.Core._Pending_.Common.QueryObjects
 {
+    using Aggregates;
+    using Microsoft.EntityFrameworkCore;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     /// <summary>
     ///     Query Objects for account queries.
     /// </summary>
@@ -53,9 +53,9 @@ namespace MoneyFox.Core._Pending_.Common.QueryObjects
             query.OrderBy(x => x.IsExcluded);
 
         /// <summary>
-        ///     Checks if there is an account with the passed name.
+        ///     Checks if there is an active account with the passed name.
         /// </summary>
-        public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name)
-            => await query.AnyAsync(x => x.Name.ToUpper() == name.ToUpper());
+        public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name, int Id = 0)
+            => await query.AnyAsync(x => x.Name.ToUpper() == name.ToUpper() && !x.IsDeactivated && x.Id != Id);
     }
 }

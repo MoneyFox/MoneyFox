@@ -1,14 +1,16 @@
 ﻿using MoneyFox.Controls;
 using MoneyFox.iOS.Renderer;
-using System.Collections.Generic;
-using UIKit;
 using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(ModalContentPage), typeof(ModalContentPageRenderer))]
 
 namespace MoneyFox.iOS.Renderer
 {
+    using System.Collections.Generic;
+    using UIKit;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Platform.iOS;
+
     public class ModalContentPageRenderer : PageRenderer
     {
         public new ContentPage Element => (ContentPage)base.Element;

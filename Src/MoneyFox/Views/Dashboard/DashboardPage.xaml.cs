@@ -1,8 +1,8 @@
-﻿using MoneyFox.ViewModels.Dashboard;
-using Xamarin.Forms;
-
-namespace MoneyFox.Views.Dashboard
+﻿namespace MoneyFox.Views.Dashboard
 {
+    using ViewModels.Dashboard;
+    using Xamarin.Forms;
+
     public partial class DashboardPage : ContentPage
     {
         public DashboardPage()

@@ -352,7 +352,7 @@
     <value>Bitti</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Bu ada sahip kullanıcı hesabı zaten var.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Bu isimde zaten bir kategori var.</value>

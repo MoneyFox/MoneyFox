@@ -1,22 +1,22 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Constants;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Infrastructure.DbBackup;
-using Moq;
-using NSubstitute;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.IO;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests._Pending_.CloudBackup
+﻿namespace MoneyFox.Core.Tests._Pending_.CloudBackup
 {
+    using Core._Pending_.Common.Constants;
+    using Core._Pending_.Common.Facades;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.DbBackup;
+    using Core._Pending_.Exceptions;
+    using FluentAssertions;
+    using Interfaces;
+    using MoneyFox.Infrastructure.DbBackup;
+    using Moq;
+    using NSubstitute;
+    using System;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using System.IO;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class BackupServiceTests
     {
@@ -250,7 +250,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             connectivityAdapterMock.SetupGet(x => x.IsConnected).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                .ReturnsAsync(new List<string> { "asd" });
+                .ReturnsAsync(new List<string> {"asd"});
 
             var backupService = new BackupService(
                 cloudBackupServiceMock.Object,
@@ -355,7 +355,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
                 .ReturnsAsync(new Mock<Stream>().Object);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                .ReturnsAsync(new List<string> { "asd" });
+                .ReturnsAsync(new List<string> {"asd"});
 
             var backupService = new BackupService(
                 cloudBackupServiceMock.Object,
@@ -388,7 +388,7 @@ namespace MoneyFox.Core.Tests._Pending_.CloudBackup
             settingsFacadeMock.SetupGet(x => x.IsLoggedInToBackupService).Returns(true);
 
             cloudBackupServiceMock.Setup(x => x.GetFileNamesAsync())
-                .ReturnsAsync(new List<string> { DatabaseConstants.BACKUP_NAME });
+                .ReturnsAsync(new List<string> {DatabaseConstants.BACKUP_NAME});
 
             cloudBackupServiceMock.Setup(x => x.RestoreAsync(It.IsAny<string>(), It.IsAny<string>()))
                 .Callback(() => throw new BackupException());

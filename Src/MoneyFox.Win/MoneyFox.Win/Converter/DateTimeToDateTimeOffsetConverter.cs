@@ -1,36 +1,35 @@
+namespace MoneyFox.Win.Converter;
+
+using Core._Pending_;
 using Microsoft.UI.Xaml.Data;
-using MoneyFox.Core._Pending_;
 using System;
 
-namespace MoneyFox.Win.Converter
+public class DateTimeToDateTimeOffsetConverter : IValueConverter
 {
-    public class DateTimeToDateTimeOffsetConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, string language)
     {
-        public object Convert(object value, Type targetType, object parameter, string language)
+        try
         {
-            try
-            {
-                var date = System.Convert.ToDateTime(value, CultureHelper.CurrentCulture);
-                return new DateTimeOffset(date);
-            }
-            catch(ArgumentOutOfRangeException)
-            {
-                return DateTimeOffset.MinValue;
-            }
+            var date = System.Convert.ToDateTime(value, CultureHelper.CurrentCulture);
+            return new DateTimeOffset(date);
         }
-
-        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        catch(ArgumentOutOfRangeException)
         {
-            try
-            {
-                var dto = (DateTimeOffset)value;
+            return DateTimeOffset.MinValue;
+        }
+    }
 
-                return dto.DateTime;
-            }
-            catch(Exception)
-            {
-                return DateTime.MinValue;
-            }
+    public object ConvertBack(object value, Type targetType, object parameter, string language)
+    {
+        try
+        {
+            var dto = (DateTimeOffset)value;
+
+            return dto.DateTime;
+        }
+        catch(Exception)
+        {
+            return DateTime.MinValue;
         }
     }
 }

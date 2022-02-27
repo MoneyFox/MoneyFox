@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MoneyFox.Core.Aggregates;
-
-namespace MoneyFox.Infrastructure.Persistence.Configurations
+﻿namespace MoneyFox.Infrastructure.Persistence.Configurations
 {
+    using Core.Aggregates;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
     internal class AccountConfiguration : IEntityTypeConfiguration<Account>
     {
         public void Configure(EntityTypeBuilder<Account> builder)

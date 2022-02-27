@@ -1,12 +1,12 @@
-﻿using MoneyFox.Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Mobile.Infrastructure
+﻿namespace MoneyFox.Mobile.Infrastructure
 {
+    using Core.Interfaces;
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public abstract class FileStoreBase : IFileStore
     {
         public async Task WriteFileAsync(string path, IEnumerable<byte> contents) =>

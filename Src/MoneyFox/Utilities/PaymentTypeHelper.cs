@@ -1,9 +1,9 @@
-﻿using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Resources;
-using System;
-
-namespace MoneyFox.Utilities
+﻿namespace MoneyFox.Utilities
 {
+    using Core.Aggregates.Payments;
+    using Core.Resources;
+    using System;
+
     /// <summary>
     ///     A collection of helper methods for handling PaymentTypes
     /// </summary>

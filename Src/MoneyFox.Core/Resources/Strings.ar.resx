@@ -352,7 +352,7 @@
     <value>تم</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>يوجد حساب بهذا الاسم مسبقاً.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>توجد فئة بهذا الاسم مسبقاً</value>

@@ -1,35 +1,34 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core;
-using MoneyFox.Core.Resources;
-using MoneyFox.Win.ViewModels.Statistics;
+﻿namespace MoneyFox.Win.ViewModels.DesignTime;
+
+using CommunityToolkit.Mvvm.Input;
+using Core;
+using Core.Resources;
+using Statistics;
 using System.Collections.Generic;
 
-namespace MoneyFox.Win.ViewModels.DesignTime
+public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
 {
-    public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
+    public List<StatisticSelectorType> StatisticItems => new()
     {
-        public List<StatisticSelectorType> StatisticItems => new List<StatisticSelectorType>
+        new StatisticSelectorType
         {
-            new StatisticSelectorType
-            {
-                Name = Strings.CashflowLabel,
-                Description = Strings.CashflowDescription,
-                Type = StatisticType.Cashflow
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.CategorySpreadingLabel,
-                Description = Strings.CategorieSpreadingDescription,
-                Type = StatisticType.CategorySpreading
-            },
-            new StatisticSelectorType
-            {
-                Name = Strings.CategorySummaryLabel,
-                Description = Strings.CategorySummaryDescription,
-                Type = StatisticType.CategorySummary
-            }
-        };
+            Name = Strings.CashflowLabel,
+            Description = Strings.CashflowDescription,
+            Type = StatisticType.Cashflow
+        },
+        new StatisticSelectorType
+        {
+            Name = Strings.CategorySpreadingLabel,
+            Description = Strings.CategorieSpreadingDescription,
+            Type = StatisticType.CategorySpreading
+        },
+        new StatisticSelectorType
+        {
+            Name = Strings.CategorySummaryLabel,
+            Description = Strings.CategorySummaryDescription,
+            Type = StatisticType.CategorySummary
+        }
+    };
 
-        public RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; } = null!;
-    }
+    public RelayCommand<StatisticSelectorType> GoToStatisticCommand { get; } = null!;
 }

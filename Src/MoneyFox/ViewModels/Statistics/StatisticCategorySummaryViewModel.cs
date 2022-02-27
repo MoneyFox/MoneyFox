@@ -1,18 +1,18 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary;
-using MoneyFox.Extensions;
-using NLog;
-using System;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Interfaces;
+    using Core.Queries.Statistics.Queries.GetCategorySummary;
+    using Extensions;
+    using MediatR;
+    using NLog;
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     /// <inheritdoc cref="IStatisticCategorySummaryViewModel" />
     public class StatisticCategorySummaryViewModel : StatisticViewModel
     {
@@ -55,7 +55,7 @@ namespace MoneyFox.ViewModels.Statistics
             try
             {
                 CategorySummaryModel categorySummaryModel =
-                    await Mediator.Send(new GetCategorySummaryQuery { EndDate = EndDate, StartDate = StartDate });
+                    await Mediator.Send(new GetCategorySummaryQuery {EndDate = EndDate, StartDate = StartDate});
 
                 CategorySummary = new ObservableCollection<CategoryOverviewViewModel>(
                     categorySummaryModel

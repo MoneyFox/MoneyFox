@@ -1,12 +1,9 @@
-﻿using MoneyFox;
+﻿namespace MoneyFox.Win.ViewModels.Categories;
 
-namespace MoneyFox.Win.ViewModels.Categories
+/// <summary>
+///     Represents the SelectCategoryListView
+/// </summary>
+public interface ISelectCategoryListViewModel
 {
-    /// <summary>
-    ///     Represents the SelectCategoryListView
-    /// </summary>
-    public interface ISelectCategoryListViewModel
-    {
-        CategoryViewModel? SelectedCategory { get; }
-    }
+    CategoryViewModel? SelectedCategory { get; }
 }

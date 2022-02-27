@@ -1,13 +1,13 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.Messages;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Categories
+﻿namespace MoneyFox.ViewModels.Categories
 {
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Common.Messages;
+    using global::AutoMapper;
+    using MediatR;
+    using Xamarin.Forms;
+
     public class SelectCategoryViewModel : CategoryListViewModel
     {
         public SelectCategoryViewModel(IMediator mediator, IMapper mapper, IDialogService dialogService)

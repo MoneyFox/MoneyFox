@@ -1,10 +1,9 @@
-﻿namespace MoneyFox.Win.Pages.UserControls
+﻿namespace MoneyFox.Win.Pages.UserControls;
+
+public sealed partial class IncomeExpenseBalanceUserControl
 {
-    public sealed partial class IncomeExpenseBalanceUserControl
+    public IncomeExpenseBalanceUserControl()
     {
-        public IncomeExpenseBalanceUserControl()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

@@ -1,21 +1,17 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Commands.Categories.UpdateCategory;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory
+﻿namespace MoneyFox.Core.Tests.Commands.Categories.UpdateCategory
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates.Payments;
+    using Core.Commands.Categories.UpdateCategory;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class UpdateCategoryCommandTests : IDisposable
     {

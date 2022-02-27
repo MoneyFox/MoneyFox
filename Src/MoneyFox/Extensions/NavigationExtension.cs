@@ -1,11 +1,11 @@
-﻿using MoneyFox.Core._Pending_.Exceptions;
-using NLog;
-using System;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.Extensions
+﻿namespace MoneyFox.Extensions
 {
+    using Core._Pending_.Exceptions;
+    using NLog;
+    using System;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public static class NavigationExtension
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
@@ -20,7 +20,7 @@ namespace MoneyFox.Extensions
                 }
 
                 return shell.Navigation.PushModalAsync(
-                    new NavigationPage(page) { BarBackgroundColor = Color.Transparent });
+                    new NavigationPage(page) {BarBackgroundColor = Color.Transparent});
             }
             catch(Exception ex)
             {

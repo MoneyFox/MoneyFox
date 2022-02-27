@@ -352,7 +352,7 @@
     <value>Valmis</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Samanniminen tili on jo olemassa.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Samanniminen kategoria on jo olemassa.</value>

@@ -1,7 +1,7 @@
-﻿using System.Drawing;
-
-namespace MoneyFox.Views.Statistics
+﻿namespace MoneyFox.Views.Statistics
 {
+    using System.Drawing;
+
     /// <summary>
     ///     Provides a set of default values for charts.
     ///     Those can be overwritten for a specific platform

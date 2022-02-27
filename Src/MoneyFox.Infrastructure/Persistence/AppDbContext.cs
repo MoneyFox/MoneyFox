@@ -1,17 +1,18 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Events;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Infrastructure.Persistence
+﻿namespace MoneyFox.Infrastructure.Persistence
 {
+    using Core._Pending_.Common.Facades;
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using Core.Events;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
+    using System;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class AppDbContext : DbContext, IAppDbContext
     {
         private readonly IPublisher? publisher;
@@ -34,16 +35,14 @@ namespace MoneyFox.Infrastructure.Persistence
 
         public DbSet<Category> Categories { get; set; } = null!;
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        protected override void OnModelCreating(ModelBuilder modelBuilder) =>
             modelBuilder?.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
-        }
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (var entry in ChangeTracker.Entries<EntityBase>())
+            foreach(EntityEntry<EntityBase>? entry in ChangeTracker.Entries<EntityBase>())
             {
-                switch (entry.State)
+                switch(entry.State)
                 {
                     case EntityState.Added:
                         entry.Entity.Created = DateTime.Now;
@@ -73,9 +72,6 @@ namespace MoneyFox.Infrastructure.Persistence
             return result;
         }
 
-        public override int SaveChanges()
-        {
-            return SaveChangesAsync().GetAwaiter().GetResult();
-        }
+        public override int SaveChanges() => SaveChangesAsync().GetAwaiter().GetResult();
     }
 }

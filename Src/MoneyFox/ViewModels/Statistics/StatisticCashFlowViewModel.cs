@@ -1,17 +1,16 @@
-﻿using MediatR;
-using Microcharts;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core.Queries.Statistics;
-using MoneyFox.Core.Queries.Statistics.Queries;
-using MoneyFox.Views.Statistics;
-using SkiaSharp;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Essentials;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using Core.Queries.Statistics;
+    using Core.Queries.Statistics.Queries;
+    using MediatR;
+    using Microcharts;
+    using SkiaSharp;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Views.Statistics;
+    using Xamarin.Essentials;
+
     /// <summary>
     ///     Representation of the cash flow view.
     /// </summary>
@@ -44,7 +43,7 @@ namespace MoneyFox.ViewModels.Statistics
         protected override async Task LoadAsync()
         {
             List<StatisticEntry>? statisticItems =
-                await Mediator.Send(new GetCashFlowQuery { EndDate = EndDate, StartDate = StartDate });
+                await Mediator.Send(new GetCashFlowQuery {EndDate = EndDate, StartDate = StartDate});
 
             Chart = new BarChart
             {

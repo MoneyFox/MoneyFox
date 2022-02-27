@@ -1,27 +1,27 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Accounts.GetAccountById;
-using MoneyFox.Core.Queries.Payments.GetPaymentsForAccountId;
-using MoneyFox.Core.Resources;
-using MoneyFox.Extensions;
-using MoneyFox.Groups;
-using MoneyFox.ViewModels.Accounts;
-using MoneyFox.Views.Dialogs;
-using MoneyFox.Views.Payments;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Payments
+﻿namespace MoneyFox.ViewModels.Payments
 {
+    using Accounts;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Messages;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Accounts.GetAccountById;
+    using Core.Queries.Payments.GetPaymentsForAccountId;
+    using Core.Resources;
+    using Extensions;
+    using global::AutoMapper;
+    using Groups;
+    using MediatR;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Views.Dialogs;
+    using Views.Payments;
+    using Xamarin.Forms;
+
     public class PaymentListViewModel : ObservableRecipient
     {
         private readonly IMapper mapper;

@@ -1,10 +1,10 @@
-﻿using MoneyFox.Core.Interfaces;
-using NLog;
-using System;
-using Xamarin.Essentials;
-
-namespace MoneyFox.Mobile.Infrastructure.Adapters
+﻿namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
+    using Core.Interfaces;
+    using NLog;
+    using System;
+    using Xamarin.Essentials;
+
     public class SettingsAdapter : ISettingsAdapter
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();

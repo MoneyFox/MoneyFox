@@ -1,19 +1,18 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using Microsoft.AppCenter.Crashes;
-using MoneyFox.Core._Pending_.Common;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.DbBackup;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.Core.Resources;
-using NLog;
-using System;
-using System.Threading.Tasks;
-
-namespace MoneyFox.ViewModels.DataBackup
+﻿namespace MoneyFox.ViewModels.DataBackup
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using Core._Pending_.Common.Facades;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.DbBackup;
+    using Core._Pending_.Exceptions;
+    using Core.Interfaces;
+    using Core.Resources;
+    using Microsoft.AppCenter.Crashes;
+    using NLog;
+    using System;
+    using System.Threading.Tasks;
+
     /// <summary>
     ///     Representation of the backup view.
     /// </summary>

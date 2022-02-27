@@ -1,11 +1,11 @@
-﻿using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Resources;
-using System;
-using System.Globalization;
-using Xamarin.Forms;
-
-namespace MoneyFox.Converter
+﻿namespace MoneyFox.Converter
 {
+    using Core.Aggregates.Payments;
+    using Core.Resources;
+    using System;
+    using System.Globalization;
+    using Xamarin.Forms;
+
     public class PaymentTypeStringConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

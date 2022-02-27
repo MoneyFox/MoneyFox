@@ -352,7 +352,7 @@
     <value>Hecho</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Ya existe una cuenta con ese nombre.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Una categoría con ese nombre ya existe.</value>

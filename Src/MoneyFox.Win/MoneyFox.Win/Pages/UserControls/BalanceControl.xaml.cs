@@ -1,17 +1,16 @@
-﻿using MoneyFox.Win.ViewModels.DesignTime;
+﻿namespace MoneyFox.Win.Pages.UserControls;
+
+using ViewModels.DesignTime;
 using Windows.ApplicationModel;
 
-namespace MoneyFox.Win.Pages.UserControls
+public sealed partial class BalanceControl
 {
-    public sealed partial class BalanceControl
+    public BalanceControl()
     {
-        public BalanceControl()
+        InitializeComponent();
+        if(DesignMode.DesignModeEnabled)
         {
-            InitializeComponent();
-            if(DesignMode.DesignModeEnabled)
-            {
-                DataContext = new DesignTimeBalanceViewViewModel();
-            }
+            DataContext = new DesignTimeBalanceViewViewModel();
         }
     }
 }

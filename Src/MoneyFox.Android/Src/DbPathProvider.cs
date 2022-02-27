@@ -1,17 +1,15 @@
-﻿using MoneyFox.Core._Pending_.Common.Constants;
-using MoneyFox.Core.Interfaces;
-using System;
-using System.IO;
-
-namespace MoneyFox.Droid.Src
+﻿namespace MoneyFox.Droid.Src
 {
+    using Core._Pending_.Common.Constants;
+    using Core.Interfaces;
+    using System;
+    using System.IO;
+
     public class DbPathProvider : IDbPathProvider
     {
-        public string GetDbPath()
-        {
-            return Path.Combine(
+        public string GetDbPath() =>
+            Path.Combine(
                 Environment.GetFolderPath(Environment.SpecialFolder.Personal),
                 DatabaseConstants.DATABASE_NAME);
-        }
     }
 }

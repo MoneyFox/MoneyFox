@@ -1,16 +1,16 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Constants;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Interfaces;
-using MoneyFox.ViewModels.About;
-using NSubstitute;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Tests.ViewModels
+﻿namespace MoneyFox.Tests.ViewModels
 {
+    using Core._Pending_.Common.Constants;
+    using Core._Pending_.Common.Interfaces;
+    using Core.Interfaces;
+    using FluentAssertions;
+    using MoneyFox.ViewModels.About;
+    using NSubstitute;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class AboutViewModelTests
     {

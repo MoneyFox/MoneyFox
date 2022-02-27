@@ -6,6 +6,8 @@
 
 namespace MoneyFox.Common.Styles
 {
+    using Xamarin.Forms;
+
     public partial class DefaultTheme : ResourceDictionary
     {
         public DefaultTheme()

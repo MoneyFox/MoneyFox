@@ -1,10 +1,10 @@
-﻿using MediatR;
-using MoneyFox.Core.Commands.DatabaseBackup.UploadBackup;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Events.Handler
+﻿namespace MoneyFox.Core.Events.Handler
 {
+    using Commands.DatabaseBackup.UploadBackup;
+    using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     internal sealed class DatabaseEntityCreatedHandler : INotificationHandler<DbEntityModifiedEvent>
     {
         private readonly ISender sender;

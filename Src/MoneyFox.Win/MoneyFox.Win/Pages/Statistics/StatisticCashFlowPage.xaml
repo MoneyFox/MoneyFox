@@ -51,6 +51,6 @@
             XAxes="{x:Bind ViewModel.XAxis, Mode=OneWay}"
             LegendPosition="Right"
             LegendTextBrush="{StaticResource AppForegroundPrimaryBrush}"
-            LegendBackground="Transparent"/>
+            LegendBackground="Transparent" />
     </Grid>
 </views:BasePage>

@@ -32,4 +32,10 @@
         <ProjectReference Include="..\MoneyFox.Core\MoneyFox.Core.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+        <_Parameter1>MoneyFox.Core.Tests</_Parameter1>
+      </AssemblyAttribute>
+    </ItemGroup>
+
 </Project>

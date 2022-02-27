@@ -1,53 +1,52 @@
-﻿using Microsoft.UI.Xaml;
+﻿namespace MoneyFox.Win.Pages.Categories;
+
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Input;
-using MoneyFox.Win.ViewModels.Categories;
 using System;
+using ViewModels.Categories;
 
-namespace MoneyFox.Win.Pages.Categories
+public partial class CategoryListControl
 {
-    public partial class CategoryListControl
+    private AbstractCategoryListViewModel ViewModel => (AbstractCategoryListViewModel)DataContext;
+
+    public CategoryListControl()
     {
-        private AbstractCategoryListViewModel ViewModel => (AbstractCategoryListViewModel)DataContext;
+        InitializeComponent();
+    }
 
-        public CategoryListControl()
+    private void CategoryListRightTapped(object sender, RightTappedRoutedEventArgs e)
+    {
+        var senderElement = sender as FrameworkElement;
+        var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
+
+        flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
+    }
+
+    private async void EditCategory(object sender, RoutedEventArgs e)
+    {
+        var element = (FrameworkElement)sender;
+
+        if(!(element.DataContext is CategoryViewModel category))
         {
-            InitializeComponent();
+            return;
         }
 
-        private void CategoryListRightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            var senderElement = sender as FrameworkElement;
-            var flyoutBase = FlyoutBase.GetAttachedFlyout(senderElement) as MenuFlyout;
+        await new EditCategoryDialog(category.Id).ShowAsync();
 
-            flyoutBase?.ShowAt(senderElement, e.GetPosition(senderElement));
+        ((AbstractCategoryListViewModel)DataContext).EditCategoryCommand.Execute(category);
+    }
+
+    private void DeleteCategory(object sender, RoutedEventArgs e)
+    {
+        var element = (FrameworkElement)sender;
+
+        if(!(element.DataContext is CategoryViewModel category))
+        {
+            return;
         }
 
-        private async void EditCategory(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
-
-            if(!(element.DataContext is CategoryViewModel category))
-            {
-                return;
-            }
-
-            await new EditCategoryDialog(category.Id).ShowAsync();
-
-            ((AbstractCategoryListViewModel)DataContext).EditCategoryCommand.Execute(category);
-        }
-
-        private void DeleteCategory(object sender, RoutedEventArgs e)
-        {
-            var element = (FrameworkElement)sender;
-
-            if(!(element.DataContext is CategoryViewModel category))
-            {
-                return;
-            }
-
-            ViewModel.DeleteCategoryCommand.ExecuteAsync(category);
-        }
+        ViewModel.DeleteCategoryCommand.ExecuteAsync(category);
     }
 }

@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Core.Tests._Pending_
+﻿namespace MoneyFox.Core.Tests._Pending_
 {
+    using Core._Pending_;
+    using FluentAssertions;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class SystemDateHelperTests
     {

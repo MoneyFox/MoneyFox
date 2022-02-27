@@ -1,24 +1,23 @@
-﻿using Microsoft.UI.Xaml.Controls;
-using MoneyFox.Win.ViewModels.Categories;
+﻿namespace MoneyFox.Win.Pages.Payments;
 
-namespace MoneyFox.Win.Pages.Payments
+using Microsoft.UI.Xaml.Controls;
+using ViewModels.Categories;
+
+public sealed partial class SelectCategoryDialog
 {
-    public sealed partial class SelectCategoryDialog
+    private SelectCategoryListViewModel ViewModel => (SelectCategoryListViewModel)DataContext;
+
+    public SelectCategoryDialog()
     {
-        private SelectCategoryListViewModel ViewModel => (SelectCategoryListViewModel)DataContext;
+        XamlRoot = MainWindow.RootFrame.XamlRoot;
+        InitializeComponent();
+        DataContext = ViewModelLocator.SelectCategoryListVm;
+        ViewModel.AppearingCommand.Execute(null);
+    }
 
-        public SelectCategoryDialog()
-        {
-            XamlRoot = MainWindow.RootFrame.XamlRoot;
-            InitializeComponent();
-            DataContext = ViewModelLocator.SelectCategoryListVm;
-            ViewModel.AppearingCommand.Execute(null);
-        }
-
-        private void ListView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            ViewModel.ItemClickCommand.Execute(e.ClickedItem);
-            Hide();
-        }
+    private void ListView_ItemClick(object sender, ItemClickEventArgs e)
+    {
+        ViewModel.ItemClickCommand.Execute(e.ClickedItem);
+        Hide();
     }
 }

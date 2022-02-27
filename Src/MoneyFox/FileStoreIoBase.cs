@@ -1,11 +1,11 @@
-﻿using MoneyFox.Mobile.Infrastructure;
-using NLog;
-using System;
-using System.IO;
-using System.Threading.Tasks;
-
-namespace MoneyFox
+﻿namespace MoneyFox
 {
+    using Mobile.Infrastructure;
+    using NLog;
+    using System;
+    using System.IO;
+    using System.Threading.Tasks;
+
     public class FileStoreIoBase : FileStoreBase
     {
         private readonly Logger logger = LogManager.GetCurrentClassLogger();

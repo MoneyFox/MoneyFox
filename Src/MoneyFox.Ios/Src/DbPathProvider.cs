@@ -1,11 +1,11 @@
-﻿using MoneyFox.Core._Pending_.Common.Constants;
-using MoneyFox.Core.Interfaces;
-using SQLitePCL;
-using System;
-using System.IO;
-
-namespace MoneyFox.iOS.Src
+﻿namespace MoneyFox.iOS.Src
 {
+    using Core._Pending_.Common.Constants;
+    using Core.Interfaces;
+    using SQLitePCL;
+    using System;
+    using System.IO;
+
     public class DbPathProvider : IDbPathProvider
     {
         public string GetDbPath()

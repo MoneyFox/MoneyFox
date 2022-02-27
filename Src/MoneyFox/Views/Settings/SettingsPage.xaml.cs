@@ -1,7 +1,7 @@
-﻿using MoneyFox.ViewModels.Settings;
-
-namespace MoneyFox.Views.Settings
+﻿namespace MoneyFox.Views.Settings
 {
+    using ViewModels.Settings;
+
     public partial class SettingsPage
     {
         public SettingsPage()

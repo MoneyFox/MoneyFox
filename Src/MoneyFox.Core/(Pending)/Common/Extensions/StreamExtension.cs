@@ -1,8 +1,8 @@
-﻿using System;
-using System.IO;
-
-namespace MoneyFox.Core._Pending_.Common.Extensions
+﻿namespace MoneyFox.Core._Pending_.Common.Extensions
 {
+    using System;
+    using System.IO;
+
     public static class StreamExtension
     {
         /// <summary>

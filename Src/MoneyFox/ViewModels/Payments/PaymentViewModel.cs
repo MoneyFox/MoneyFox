@@ -1,13 +1,13 @@
-﻿using AutoMapper;
-using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core._Pending_.Common.Interfaces.Mapping;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.ViewModels.Accounts;
-using MoneyFox.ViewModels.Categories;
-using System;
-
-namespace MoneyFox.ViewModels.Payments
+﻿namespace MoneyFox.ViewModels.Payments
 {
+    using Accounts;
+    using Categories;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using Core._Pending_.Common.Interfaces.Mapping;
+    using Core.Aggregates.Payments;
+    using global::AutoMapper;
+    using System;
+
     public class PaymentViewModel : ObservableObject, IHaveCustomMapping
     {
         private const decimal DECIMAL_DELTA = 0.01m;

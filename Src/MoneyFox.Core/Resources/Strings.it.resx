@@ -352,7 +352,7 @@
     <value>Done</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>An Account with that name already exists.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>A Category with that name already exists.</value>

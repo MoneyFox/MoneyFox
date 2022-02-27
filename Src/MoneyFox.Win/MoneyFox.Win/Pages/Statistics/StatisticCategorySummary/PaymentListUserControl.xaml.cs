@@ -1,27 +1,26 @@
-﻿using Microsoft.UI.Xaml;
-using MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
+﻿namespace MoneyFox.Win.Pages.Statistics.StatisticCategorySummary;
 
-namespace MoneyFox.Win.Pages.Statistics.StatisticCategorySummary
+using Microsoft.UI.Xaml;
+using ViewModels.Statistics.StatisticCategorySummary;
+
+public partial class PaymentListUserControl
 {
-    public partial class PaymentListUserControl
+    public PaymentListUserControl()
     {
-        public PaymentListUserControl()
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            DataContextChanged += PaymentListUserControl_DataContextChanged;
-        }
-
-        private void PaymentListUserControl_DataContextChanged(FrameworkElement sender,
-            DataContextChangedEventArgs args)
-        {
-            if(args.NewValue is CategoryOverviewViewModel model)
-            {
-                ViewModel = model;
-                Bindings.Update();
-            }
-        }
-
-        public CategoryOverviewViewModel? ViewModel { get; set; }
+        DataContextChanged += PaymentListUserControl_DataContextChanged;
     }
+
+    private void PaymentListUserControl_DataContextChanged(FrameworkElement sender,
+        DataContextChangedEventArgs args)
+    {
+        if(args.NewValue is CategoryOverviewViewModel model)
+        {
+            ViewModel = model;
+            Bindings.Update();
+        }
+    }
+
+    public CategoryOverviewViewModel? ViewModel { get; set; }
 }

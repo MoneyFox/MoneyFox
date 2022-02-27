@@ -1,24 +1,24 @@
-﻿using FluentAssertions;
-using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Events;
-using MoneyFox.Infrastructure.Persistence;
-using NSubstitute;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Infrastructure.Tests
+﻿namespace MoneyFox.Infrastructure.Tests
 {
+    using Core._Pending_.Common.Facades;
+    using Core.Aggregates;
+    using Core.Events;
+    using FluentAssertions;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using NSubstitute;
+    using Persistence;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public sealed class AppDbContextTests
     {
         private readonly IPublisher publisher;
-        private readonly  ISettingsFacade settingsFacade;
+        private readonly ISettingsFacade settingsFacade;
 
         public AppDbContextTests()
         {
@@ -30,7 +30,7 @@ namespace MoneyFox.Infrastructure.Tests
         public async Task DoesNotSendEvent_WhenNothingSaved()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<AppDbContext>()
+            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
@@ -48,7 +48,7 @@ namespace MoneyFox.Infrastructure.Tests
         public async Task SetCreatedAndLastModifiedDateAndSendEventOnSaveChanges()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<AppDbContext>()
+            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
@@ -60,7 +60,7 @@ namespace MoneyFox.Infrastructure.Tests
             await context.SaveChangesAsync();
 
             // Assert
-            var loadedAccount = context.Accounts.First();
+            Account loadedAccount = context.Accounts.First();
             loadedAccount.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
 
             account.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
@@ -74,7 +74,7 @@ namespace MoneyFox.Infrastructure.Tests
         public async Task SetModifiedDateAndSendEventOnSaveChanges()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<AppDbContext>()
+            DbContextOptions<AppDbContext> options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseInMemoryDatabase(Guid.NewGuid().ToString())
                 .Options;
 
@@ -88,7 +88,7 @@ namespace MoneyFox.Infrastructure.Tests
             await context.SaveChangesAsync();
 
             // Assert
-            var loadedAccount = context.Accounts.First();
+            Account loadedAccount = context.Accounts.First();
             loadedAccount.LastModified.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));
 
             account.LastModified.Should().BeCloseTo(DateTime.Now, TimeSpan.FromSeconds(5));

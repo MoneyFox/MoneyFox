@@ -1,18 +1,18 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Statistics.Queries
+﻿namespace MoneyFox.Core.Queries.Statistics.Queries
 {
+    using _Pending_;
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetCashFlowQuery : IRequest<List<StatisticEntry>>
     {
         public DateTime StartDate { get; set; }
@@ -72,7 +72,7 @@ namespace MoneyFox.Core.Queries.Statistics.Queries
                 Color = BLUE_HEX_CODE
             };
 
-            return new List<StatisticEntry> { income, spent, increased };
+            return new List<StatisticEntry> {income, spent, increased};
         }
     }
 }

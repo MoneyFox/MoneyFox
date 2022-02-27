@@ -1,17 +1,17 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Resources;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary
+﻿namespace MoneyFox.Core.Queries.Statistics.Queries.GetCategorySummary
 {
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using Resources;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class GetCategorySummaryQuery : IRequest<CategorySummaryModel>
     {
         public DateTime StartDate { get; set; }

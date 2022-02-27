@@ -1,9 +1,9 @@
-﻿using MoneyFox.Core.Resources;
-using MoneyFox.ViewModels.Accounts;
-using Xamarin.Forms;
-
-namespace MoneyFox.Views.Accounts
+﻿namespace MoneyFox.Views.Accounts
 {
+    using Core.Resources;
+    using ViewModels.Accounts;
+    using Xamarin.Forms;
+
     public partial class AddAccountPage
     {
         public AddAccountPage()

@@ -1,9 +1,9 @@
-﻿using MoneyFox.Core.Interfaces;
-using NLog;
-using Xamarin.Essentials;
-
-namespace MoneyFox.Mobile.Infrastructure.Adapters
+﻿namespace MoneyFox.Mobile.Infrastructure.Adapters
 {
+    using Core.Interfaces;
+    using NLog;
+    using Xamarin.Essentials;
+
     /// <inheritdoc />
     public class ConnectivityAdapter : IConnectivityAdapter
     {

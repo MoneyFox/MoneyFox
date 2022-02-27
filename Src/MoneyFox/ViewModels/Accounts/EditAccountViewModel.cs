@@ -1,13 +1,13 @@
-﻿using AutoMapper;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Commands.Accounts.UpdateAccount;
-using MoneyFox.Core.Queries.Accounts.GetAccountById;
-using System.Threading.Tasks;
-
-namespace MoneyFox.ViewModels.Accounts
+﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core.Aggregates;
+    using Core.Commands.Accounts.UpdateAccount;
+    using Core.Queries.Accounts.GetAccountById;
+    using global::AutoMapper;
+    using MediatR;
+    using System.Threading.Tasks;
+
     public class EditAccountViewModel : ModifyAccountViewModel
     {
         private readonly IMapper mapper;
@@ -16,7 +16,7 @@ namespace MoneyFox.ViewModels.Accounts
         public EditAccountViewModel(IMediator mediator,
             IMapper mapper,
             IDialogService dialogService)
-            : base(dialogService)
+            : base(dialogService, mediator)
         {
             this.mediator = mediator;
             this.mapper = mapper;

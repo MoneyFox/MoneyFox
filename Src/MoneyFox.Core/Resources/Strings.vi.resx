@@ -352,7 +352,7 @@
     <value>Xong</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Tài khoản với tên này đã tồn tại.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Danh mục với tên này đã tồn tại.</value>

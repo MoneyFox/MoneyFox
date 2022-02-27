@@ -1,15 +1,14 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿#nullable enable
+namespace MoneyFox.Win.ViewModels;
+
+using CommunityToolkit.Mvvm.Input;
 using System;
 
-#nullable enable
-namespace MoneyFox.Win.ViewModels
+public interface ISelectDateRangeDialogViewModel
 {
-    public interface ISelectDateRangeDialogViewModel
-    {
-        DateTime StartDate { get; set; }
+    DateTime StartDate { get; set; }
 
-        DateTime EndDate { get; set; }
+    DateTime EndDate { get; set; }
 
-        RelayCommand DoneCommand { get; set; }
-    }
+    RelayCommand DoneCommand { get; set; }
 }

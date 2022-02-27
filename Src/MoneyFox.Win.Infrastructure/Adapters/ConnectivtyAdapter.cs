@@ -1,14 +1,13 @@
-﻿using JetBrains.Annotations;
-using MoneyFox.Core.Interfaces;
+﻿namespace MoneyFox.Win.Infrastructure.Adapters;
+
+using Core.Interfaces;
+using JetBrains.Annotations;
 using System.Net.NetworkInformation;
 
-namespace MoneyFox.Win.Infrastructure.Adapters
+/// <inheritdoc />
+[UsedImplicitly]
+public class ConnectivityAdapter : IConnectivityAdapter
 {
     /// <inheritdoc />
-    [UsedImplicitly]
-    public class ConnectivityAdapter : IConnectivityAdapter
-    {
-        /// <inheritdoc />
-        public bool IsConnected => NetworkInterface.GetIsNetworkAvailable();
-    }
+    public bool IsConnected => NetworkInterface.GetIsNetworkAvailable();
 }

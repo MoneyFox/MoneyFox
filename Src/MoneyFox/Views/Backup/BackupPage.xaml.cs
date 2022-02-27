@@ -1,7 +1,7 @@
-﻿using MoneyFox.ViewModels.DataBackup;
-
-namespace MoneyFox.Views.Backup
+﻿namespace MoneyFox.Views.Backup
 {
+    using ViewModels.DataBackup;
+
     public partial class BackupPage
     {
         public BackupPage()

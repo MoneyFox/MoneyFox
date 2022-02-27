@@ -1,14 +1,14 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using MoneyFox.Core._Pending_;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace MoneyFox.ViewModels.Settings
+﻿namespace MoneyFox.ViewModels.Settings
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using Core._Pending_;
+    using Core._Pending_.Common.Facades;
+    using Core._Pending_.Common.Interfaces;
+    using System.Collections.ObjectModel;
+    using System.Globalization;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     public class SettingsViewModel : ObservableObject, ISettingsViewModel
     {
         private readonly IDialogService dialogService;

@@ -1,12 +1,12 @@
-﻿using JetBrains.Annotations;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.SharedKernel.Interface;
-using NLog;
-using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace MoneyFox.Core.Aggregates.Payments
+﻿namespace MoneyFox.Core.Aggregates.Payments
 {
+    using _Pending_.Exceptions;
+    using JetBrains.Annotations;
+    using NLog;
+    using SharedKernel.Interface;
+    using System;
+    using System.ComponentModel.DataAnnotations;
+
     public class Payment : EntityBase, IAggregateRoot
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();

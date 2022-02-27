@@ -1,16 +1,17 @@
-using Android.Content;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-
 #nullable enable
 namespace MoneyFox.Droid
 {
+    using Android.App;
+    using Android.Content;
+    using Core._Pending_.Common.Interfaces;
+
     public class DroidAppInformation : IAppInformation
     {
         public string GetVersion
         {
             get
             {
-                Context? context = Android.App.Application.Context;
+                Context? context = Application.Context;
 
                 if(context == null)
                 {

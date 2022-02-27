@@ -1,7 +1,7 @@
-﻿using CommunityToolkit.Mvvm.Input;
-
-namespace MoneyFox.ViewModels.About
+﻿namespace MoneyFox.ViewModels.About
 {
+    using CommunityToolkit.Mvvm.Input;
+
     public interface IAboutViewModel
     {
         /// <summary>

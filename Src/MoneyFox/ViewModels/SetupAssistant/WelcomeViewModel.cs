@@ -1,12 +1,12 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using MoneyFox.Core._Pending_.Common.Facades;
-using MoneyFox.Extensions;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.SetupAssistant
+﻿namespace MoneyFox.ViewModels.SetupAssistant
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using Core._Pending_.Common.Facades;
+    using Extensions;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public class WelcomeViewModel : ObservableObject
     {
         private readonly ISettingsFacade settingsFacade;

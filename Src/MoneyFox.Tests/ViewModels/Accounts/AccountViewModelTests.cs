@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
-using MoneyFox.ViewModels.Accounts;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using Xunit;
-
-namespace MoneyFox.Tests.ViewModels.Accounts
+﻿namespace MoneyFox.Tests.ViewModels.Accounts
 {
+    using FluentAssertions;
+    using MoneyFox.ViewModels.Accounts;
+    using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class AccountViewModelTests
     {
@@ -18,9 +18,9 @@ namespace MoneyFox.Tests.ViewModels.Accounts
         public static IEnumerable<object[]> Data =>
             new List<object[]>
             {
-                new object[] { new AccountViewModel(), null, false },
-                new object[] { new AccountViewModel(), new AccountViewModel(), true },
-                new object[] { new AccountViewModel { Id = 2 }, new AccountViewModel { Id = 3 }, false }
+                new object[] {new AccountViewModel(), null, false},
+                new object[] {new AccountViewModel(), new AccountViewModel(), true},
+                new object[] {new AccountViewModel {Id = 2}, new AccountViewModel {Id = 3}, false}
             };
     }
 }

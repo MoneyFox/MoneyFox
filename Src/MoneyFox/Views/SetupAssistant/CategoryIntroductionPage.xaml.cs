@@ -1,10 +1,10 @@
-﻿using CommonServiceLocator;
-using MoneyFox.ViewModels.SetupAssistant;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-
-namespace MoneyFox.Views.SetupAssistant
+﻿namespace MoneyFox.Views.SetupAssistant
 {
+    using CommonServiceLocator;
+    using ViewModels.SetupAssistant;
+    using Xamarin.Forms;
+    using Xamarin.Forms.Xaml;
+
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoryIntroductionPage : ContentPage
     {

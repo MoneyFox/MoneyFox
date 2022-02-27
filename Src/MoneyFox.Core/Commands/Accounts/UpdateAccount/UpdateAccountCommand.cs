@@ -1,11 +1,11 @@
-﻿using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core.Aggregates;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Commands.Accounts.UpdateAccount
+﻿namespace MoneyFox.Core.Commands.Accounts.UpdateAccount
 {
+    using _Pending_.Common.Interfaces;
+    using Aggregates;
+    using MediatR;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class UpdateAccountCommand : IRequest
     {
         public UpdateAccountCommand(Account account)
@@ -31,9 +31,9 @@ namespace MoneyFox.Core.Commands.Accounts.UpdateAccount
                     .FindAsync(request.Account.Id);
 
                 existingAccount.UpdateAccount(
-                    name: request.Account.Name,
-                    note: request.Account.Note ?? "",
-                    isExcluded: request.Account.IsExcluded);
+                    request.Account.Name,
+                    request.Account.Note ?? "",
+                    request.Account.IsExcluded);
 
                 await contextAdapter.Context.SaveChangesAsync(cancellationToken);
                 return Unit.Value;

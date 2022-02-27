@@ -1,15 +1,14 @@
-﻿using System.Collections.ObjectModel;
+﻿namespace MoneyFox.Win.ViewModels.Settings;
+
+using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Threading.Tasks;
 
-namespace MoneyFox.Win.ViewModels.Settings
+public interface ISettingsViewModel
 {
-    public interface ISettingsViewModel
-    {
-        ObservableCollection<CultureInfo> AvailableCultures { get; }
+    ObservableCollection<CultureInfo> AvailableCultures { get; }
 
-        CultureInfo SelectedCulture { get; set; }
+    CultureInfo SelectedCulture { get; set; }
 
-        Task InitializeAsync();
-    }
+    Task InitializeAsync();
 }

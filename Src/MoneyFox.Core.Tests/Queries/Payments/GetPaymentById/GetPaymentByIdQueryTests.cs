@@ -1,19 +1,19 @@
-﻿using FluentAssertions;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Exceptions;
-using MoneyFox.Core.Aggregates;
-using MoneyFox.Core.Aggregates.Payments;
-using MoneyFox.Core.Queries.Payments.GetPaymentById;
-using MoneyFox.Core.Tests.Infrastructure;
-using MoneyFox.Infrastructure.Persistence;
-using Moq;
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentById
+﻿namespace MoneyFox.Core.Tests.Queries.Payments.GetPaymentById
 {
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Exceptions;
+    using Core.Aggregates;
+    using Core.Aggregates.Payments;
+    using Core.Queries.Payments.GetPaymentById;
+    using FluentAssertions;
+    using Infrastructure;
+    using MoneyFox.Infrastructure.Persistence;
+    using Moq;
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading.Tasks;
+    using Xunit;
+
     [ExcludeFromCodeCoverage]
     public class GetPaymentByIdQueryTests : IDisposable
     {

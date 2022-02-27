@@ -1,17 +1,17 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using MoneyFox.Core._Pending_.Common.Helpers;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.QueryObjects;
-using MoneyFox.Core.Aggregates.Payments;
-using NLog;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-
-namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments
+﻿namespace MoneyFox.Core.Commands.Payments.CreateRecurringPayments
 {
+    using _Pending_.Common.Helpers;
+    using _Pending_.Common.Interfaces;
+    using _Pending_.Common.QueryObjects;
+    using Aggregates.Payments;
+    using MediatR;
+    using Microsoft.EntityFrameworkCore;
+    using NLog;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+
     public class CreateRecurringPaymentsCommand : IRequest
     {
         public class Handler : IRequestHandler<CreateRecurringPaymentsCommand>

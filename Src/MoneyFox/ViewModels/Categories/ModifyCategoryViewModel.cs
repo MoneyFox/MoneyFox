@@ -1,16 +1,16 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MediatR;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Queries.Categories.GetIfCategoryWithNameExists;
-using MoneyFox.Core.Resources;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-
-namespace MoneyFox.ViewModels.Categories
+﻿namespace MoneyFox.ViewModels.Categories
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Common.Messages;
+    using Core.Queries.Categories.GetIfCategoryWithNameExists;
+    using Core.Resources;
+    using MediatR;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public abstract class ModifyCategoryViewModel : ObservableRecipient
     {
         private readonly IDialogService dialogService;

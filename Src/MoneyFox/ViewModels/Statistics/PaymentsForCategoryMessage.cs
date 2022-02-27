@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace MoneyFox.ViewModels.Statistics
+﻿namespace MoneyFox.ViewModels.Statistics
 {
+    using System;
+
     public class PaymentsForCategoryMessage
     {
         public PaymentsForCategoryMessage(int categoryId, DateTime startdate, DateTime enddate)
