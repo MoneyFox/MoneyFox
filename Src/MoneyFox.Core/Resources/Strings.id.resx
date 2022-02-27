@@ -352,7 +352,7 @@
     <value>Selesai</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Akun dengan nama tersebut sudah ada.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Kategori dengan nama tersebut sudah ada.</value>

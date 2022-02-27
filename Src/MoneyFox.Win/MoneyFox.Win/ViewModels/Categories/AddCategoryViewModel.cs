@@ -1,46 +1,41 @@
-﻿namespace MoneyFox.Win.ViewModels.Categories;
-
-using Core._Pending_.Common.Interfaces;
-using Core.Commands.Categories.CreateCategory;
-using Core.Resources;
-using global::AutoMapper;
+﻿using AutoMapper;
 using MediatR;
-using Services;
+using MoneyFox.Core._Pending_.Common.Interfaces;
+using MoneyFox.Core.Commands.Categories.CreateCategory;
+using MoneyFox.Core.Resources;
+using MoneyFox.Win.Services;
 using System.Threading.Tasks;
 
-public class AddCategoryViewModel : ModifyCategoryViewModel
+namespace MoneyFox.Win.ViewModels.Categories
 {
-    private readonly IMediator mediator;
-
-    public AddCategoryViewModel(IMediator mediator,
-        IDialogService dialogService,
-        INavigationService navigationService,
-        IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
-
+    public class AddCategoryViewModel : ModifyCategoryViewModel
     {
-        this.mediator = mediator;
+        private readonly IMediator mediator;
 
-        Title = Strings.AddCategoryTitle;
-    }
+        public AddCategoryViewModel(IMediator mediator,
+            IDialogService dialogService,
+            INavigationService navigationService,
+            IMapper mapper) : base(mediator, navigationService, mapper, dialogService)
 
-    protected override Task InitializeAsync()
-    {
-        SelectedCategory = new CategoryViewModel();
-        return Task.CompletedTask;
-    }
-
-    protected override async Task SaveCategoryAsync()
-    {
-        if(string.IsNullOrEmpty(SelectedCategory.Name))
         {
-            await DialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
-            return;
+            this.mediator = mediator;
+
+            Title = Strings.AddCategoryTitle;
         }
 
-        await mediator.Send(
-            new CreateCategoryCommand(
-                SelectedCategory.Name,
-                SelectedCategory.Note,
-                SelectedCategory.RequireNote));
+        protected override Task InitializeAsync()
+        {
+            SelectedCategory = new CategoryViewModel();
+            return Task.CompletedTask;
+        }
+
+        protected override async Task SaveCategoryAsync()
+        {
+            await mediator.Send(
+                new CreateCategoryCommand(
+                    SelectedCategory.Name,
+                    SelectedCategory.Note,
+                    SelectedCategory.RequireNote));
+        }
     }
 }

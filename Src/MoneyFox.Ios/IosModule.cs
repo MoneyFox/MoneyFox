@@ -1,14 +1,11 @@
-﻿namespace MoneyFox.iOS
-{
-    using Acr.UserDialogs;
-    using Autofac;
-    using Core._Pending_;
-    using Foundation;
-    using NLog;
-    using Src;
-    using System;
-    using System.Globalization;
+﻿using Acr.UserDialogs;
+using Autofac;
+using MoneyFox.iOS.Src;
+using NLog;
+using System;
 
+namespace MoneyFox.iOS
+{
     public class IosModule : Module
     {
         private readonly Logger logManager = LogManager.GetCurrentClassLogger();
@@ -23,22 +20,7 @@
             builder.Register(c => new IosFileStore(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)))
                 .AsImplementedInterfaces();
 
-            SetLocale();
             builder.RegisterModule<MoneyFoxModule>();
-        }
-
-        private void SetLocale()
-        {
-            try
-            {
-                logManager.Info($"Current country code: {NSLocale.CurrentLocale.CountryCode}.");
-                CultureHelper.CurrentLocale = new CultureInfo(NSLocale.CurrentLocale.CountryCode);
-            }
-            catch(Exception ex)
-            {
-                logManager.Error(ex);
-                CultureHelper.CurrentLocale = CultureInfo.CurrentCulture;
-            }
         }
     }
 }

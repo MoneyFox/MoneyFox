@@ -16,7 +16,7 @@
         public EditAccountViewModel(IMediator mediator,
             IMapper mapper,
             IDialogService dialogService)
-            : base(dialogService)
+            : base(dialogService, mediator)
         {
             this.mediator = mediator;
             this.mapper = mapper;

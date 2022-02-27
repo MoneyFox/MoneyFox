@@ -69,10 +69,10 @@
                            && recurringPayment.LastRecurrenceCreated.Date.Year == date.Year;
 
                 case PaymentRecurrence.Quarterly:
-                    return CheckQuarterly(recurringPayment);
+                    return CheckQuarterly(recurringPayment.LastRecurrenceCreated);
 
                 case PaymentRecurrence.Biannually:
-                    return CheckBiannually(recurringPayment);
+                    return CheckBiannually(recurringPayment.LastRecurrenceCreated);
 
                 case PaymentRecurrence.Yearly:
                     return (DateTime.Now.Year != recurringPayment.LastRecurrenceCreated.Date.Year
@@ -84,16 +84,15 @@
             }
         }
 
-        private static bool CheckQuarterly(RecurringPayment recurringPayment)
+        private static bool CheckQuarterly(DateTime lastRecurrenceCreated)
         {
-            TimeSpan dateDiff = DateTime.Now - recurringPayment.LastRecurrenceCreated.Date;
+            TimeSpan dateDiff = DateTime.Now - lastRecurrenceCreated.Date;
             return dateDiff.TotalDays >= QUARTERLY_RECURRENCE_DAYS;
         }
 
-        private static bool CheckBiannually(RecurringPayment recurringPayment)
+        private static bool CheckBiannually(DateTime lastRecurrenceCreated)
         {
-            TimeSpan dateDiff = DateTime.Now - recurringPayment.LastRecurrenceCreated.Date;
-
+            TimeSpan dateDiff = DateTime.Now - lastRecurrenceCreated.Date;
             return dateDiff.TotalDays >= BIANNUALLY_RECURRENCE_DAYS;
         }
 

@@ -222,6 +222,44 @@
             targetAccount.CurrentBalance.Should().Be(100);
         }
 
+        [Theory]
+        [InlineData(PaymentType.Expense)]
+        [InlineData(PaymentType.Income)]
+        public void ChangePaymentType_TransferToOther_CurrentBalanceAdjustedCorrectly(PaymentType paymentType)
+        {
+            // Arrange
+            var chargedAccount = new Account("Test", 100);
+            var targetAccount = new Account("Test", 100);
+
+            FieldInfo chargedAccountId =
+                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            chargedAccountId.SetValue(chargedAccount, 3);
+
+            FieldInfo targetAccountId =
+                typeof(Account).GetField("<Id>k__BackingField", BindingFlags.Instance | BindingFlags.NonPublic);
+            targetAccountId.SetValue(targetAccount, 4);
+
+            var payment = new Payment(DateTime.Today, 50, PaymentType.Transfer, chargedAccount, targetAccount);
+
+            // Assert (Transfer)
+            chargedAccount.CurrentBalance.Should().Be(50);
+            targetAccount.CurrentBalance.Should().Be(150);
+
+            // Change from Transfer to Expense/Income
+            payment.UpdatePayment(DateTime.Today, 50, paymentType, chargedAccount, targetAccount);
+
+            // Assert (Expense/Income)
+            chargedAccount.CurrentBalance.Should().Be(paymentType == PaymentType.Expense ? 50 : 150);
+            targetAccount.CurrentBalance.Should().Be(100);
+
+            // Act
+            chargedAccount.RemovePaymentAmount(payment);
+
+            // Assert
+            chargedAccount.CurrentBalance.Should().Be(100);
+        }
+
+
         [Fact]
         public void DisableAccountOnDeactivate()
         {

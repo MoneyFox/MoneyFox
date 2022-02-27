@@ -33,6 +33,7 @@
             try
             {
                 await LoadingDialog.DismissAsync();
+                loadingDialog = null;
             }
             catch(IndexOutOfRangeException)
             {
@@ -42,6 +43,12 @@
 
         public async Task ShowMessageAsync(string title, string message)
         {
+            if(loadingDialog != null)
+            {
+                // Only 1 dialog can be open at a time. Close the Loading dialog sow the message can be displayed.
+                await HideLoadingDialogAsync();
+            }
+
             var messageDialog = new MessageDialog(title, message);
             await messageDialog.ShowAsync();
         }
@@ -51,12 +58,19 @@
             string? positiveButtonText = null,
             string? negativeButtonText = null)
         {
+            if(loadingDialog != null)
+            {
+                // Only 1 dialog can be open at a time. Close the Loading dialog sow the message can be displayed.
+                await HideLoadingDialogAsync();
+            }
+
             var confirmDialog = new ConfirmMessageDialog(
                 title,
                 message,
                 positiveButtonText ?? Strings.YesLabel,
                 negativeButtonText ?? Strings.NoLabel);
             return await confirmDialog.ShowAsync();
+
         }
     }
 }

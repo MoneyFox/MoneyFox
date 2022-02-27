@@ -53,9 +53,9 @@
             query.OrderBy(x => x.IsExcluded);
 
         /// <summary>
-        ///     Checks if there is an account with the passed name.
+        ///     Checks if there is an active account with the passed name.
         /// </summary>
-        public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name)
-            => await query.AnyAsync(x => x.Name.ToUpper() == name.ToUpper());
+        public static async Task<bool> AnyWithNameAsync(this IQueryable<Account> query, string name, int Id = 0)
+            => await query.AnyAsync(x => x.Name.ToUpper() == name.ToUpper() && !x.IsDeactivated && x.Id != Id);
     }
 }

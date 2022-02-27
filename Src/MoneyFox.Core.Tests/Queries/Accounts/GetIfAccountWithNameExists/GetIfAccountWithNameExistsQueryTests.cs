@@ -50,7 +50,7 @@
             // Act
             bool result =
                 await new GetIfAccountWithNameExistsQuery.Handler(contextAdapterMock.Object)
-                    .Handle(new GetIfAccountWithNameExistsQuery(name), default);
+                    .Handle(new GetIfAccountWithNameExistsQuery(name, 0), default);
 
             // Assert
             result.Should().Be(expectedResult);

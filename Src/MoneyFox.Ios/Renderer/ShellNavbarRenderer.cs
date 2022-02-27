@@ -1,35 +1,22 @@
 ﻿using MoneyFox;
 using MoneyFox.iOS.Renderer;
+using UIKit;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 [assembly: ExportRenderer(typeof(AppShell), typeof(ShellNavbarRenderer))]
 
 namespace MoneyFox.iOS.Renderer
 {
-    using System.ComponentModel;
-    using UIKit;
-    using Xamarin.Essentials;
-    using Xamarin.Forms;
-    using Xamarin.Forms.Platform.iOS;
-
     public class ShellNavbarRenderer : ShellRenderer
     {
-        protected override void OnElementPropertyChanged(object sender, PropertyChangedEventArgs e) =>
-            base.OnElementPropertyChanged(sender, e);
-
         protected override IShellNavBarAppearanceTracker CreateNavBarAppearanceTracker() =>
             new NoLineAppearanceTracker();
     }
 
     public class NoLineAppearanceTracker : IShellNavBarAppearanceTracker
     {
-        public void Dispose()
-        {
-        }
-
-        public void ResetAppearance(UINavigationController controller)
-        {
-        }
 
         public void SetAppearance(UINavigationController controller, ShellAppearance appearance)
         {
@@ -37,7 +24,7 @@ namespace MoneyFox.iOS.Renderer
                 ? Color.White
                 : Color.FromHex("#323130");
 
-            UINavigationBar? navBar = controller.NavigationBar;
+            UINavigationBar navBar = controller.NavigationBar;
             navBar.TintColor = tintColor.ToUIColor();
 
             var navigationBarAppearance = new UINavigationBarAppearance();
@@ -50,10 +37,22 @@ namespace MoneyFox.iOS.Renderer
 
         public void SetHasShadow(UINavigationController controller, bool hasShadow)
         {
+            // Only needed for interface implementation.
         }
 
         public void UpdateLayout(UINavigationController controller)
         {
+            // Only needed for interface implementation.
+        }
+
+        public void ResetAppearance(UINavigationController controller)
+        {
+            // Only needed for interface implementation.
+        }
+
+        public void Dispose()
+        {
+            // Only needed for interface implementation.
         }
     }
 }

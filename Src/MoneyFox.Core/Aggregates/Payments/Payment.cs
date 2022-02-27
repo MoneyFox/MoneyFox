@@ -92,7 +92,7 @@
             Type = type;
             Note = note;
             ChargedAccount = chargedAccount ?? throw new AccountNullException();
-            TargetAccount = targetAccount;
+            TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
             Category = category;
         }
 

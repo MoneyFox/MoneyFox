@@ -353,7 +353,7 @@
     <value>Klaar</value>
   </data>
   <data name="DuplicateAccountMessage" xml:space="preserve">
-    <value>Een account met deze naam bestaat reeds.</value>
+    <value>An account with that name already exists. Continue with saving?</value>
   </data>
   <data name="DuplicateCategoryMessage" xml:space="preserve">
     <value>Een categorie met deze naam bestaat reeds.</value>

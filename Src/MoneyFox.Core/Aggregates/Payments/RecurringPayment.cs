@@ -36,7 +36,7 @@
             Recurrence = recurrence;
             Note = note;
             Category = category;
-            TargetAccount = targetAccount;
+            TargetAccount = type == PaymentType.Transfer ? targetAccount : null;
             IsEndless = endDate == null;
 
             LastRecurrenceCreated = lastRecurrenceCreated ?? DateTime.Now;
@@ -89,7 +89,7 @@
             Recurrence = recurrence;
             Note = note;
             Category = category;
-            TargetAccount = targetAccount;
+            TargetAccount = Type == PaymentType.Transfer ? targetAccount : null;
             IsEndless = endDate == null;
         }
 
