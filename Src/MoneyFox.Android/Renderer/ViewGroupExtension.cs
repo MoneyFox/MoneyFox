@@ -1,7 +1,6 @@
 ﻿using AView = Android.Views.View;
 using AViewGroup = Android.Views.ViewGroup;
 
-#nullable enable
 namespace MoneyFox.Droid.Renderer
 {
     using System.Collections.Generic;
