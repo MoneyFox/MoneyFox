@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using MoneyFox.AutoMapper;
 using MoneyFox.Core;
-using MoneyFox.Core._Pending_;
 using MoneyFox.Mobile.Infrastructure;
 using MoneyFox.ViewModels.Settings;
 using System;
