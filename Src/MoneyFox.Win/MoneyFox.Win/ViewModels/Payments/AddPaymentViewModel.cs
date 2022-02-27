@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Common.Interfaces;
 using Core._Pending_.Exceptions;
@@ -7,7 +8,6 @@ using Core.Aggregates.Payments;
 using Core.Commands.Payments.CreatePayment;
 using Core.Queries.Accounts.GetAccountById;
 using Core.Resources;
-using global::AutoMapper;
 using MediatR;
 using NLog;
 using Services;

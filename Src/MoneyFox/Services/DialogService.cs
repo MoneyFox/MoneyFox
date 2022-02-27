@@ -70,7 +70,6 @@
                 positiveButtonText ?? Strings.YesLabel,
                 negativeButtonText ?? Strings.NoLabel);
             return await confirmDialog.ShowAsync();
-
         }
     }
 }

@@ -10,19 +10,19 @@ public class DesignTimeStatisticSelectorViewModel : IStatisticSelectorViewModel
 {
     public List<StatisticSelectorType> StatisticItems => new()
     {
-        new()
+        new StatisticSelectorType
         {
             Name = Strings.CashflowLabel,
             Description = Strings.CashflowDescription,
             Type = StatisticType.Cashflow
         },
-        new()
+        new StatisticSelectorType
         {
             Name = Strings.CategorySpreadingLabel,
             Description = Strings.CategorieSpreadingDescription,
             Type = StatisticType.CategorySpreading
         },
-        new()
+        new StatisticSelectorType
         {
             Name = Strings.CategorySummaryLabel,
             Description = Strings.CategorySummaryDescription,

@@ -12,9 +12,6 @@ namespace MoneyFox.iOS
         protected Application() { }
 
         // This is the main entry point of the application.
-        private static void Main(string[] args)
-        {
-            UIApplication.Main(args, null, typeof(AppDelegate));
-        }
+        private static void Main(string[] args) => UIApplication.Main(args, null, typeof(AppDelegate));
     }
 }

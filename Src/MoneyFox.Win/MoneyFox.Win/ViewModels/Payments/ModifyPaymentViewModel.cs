@@ -1,6 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
 using Accounts;
+using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -12,7 +13,6 @@ using Core.Queries.Accounts.GetAccounts;
 using Core.Queries.Categories.GetCategoryById;
 using Core.Queries.Categories.GetCategoryBySearchTerm;
 using Core.Resources;
-using global::AutoMapper;
 using MediatR;
 using NLog;
 using Pages.Categories;

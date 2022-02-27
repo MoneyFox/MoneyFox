@@ -15,7 +15,7 @@
         }
 
         public string AccountName { get; }
-        
+
         public int AccountId { get; }
 
         public class Handler : IRequestHandler<GetIfAccountWithNameExistsQuery, bool>

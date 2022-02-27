@@ -8,10 +8,9 @@ using System.Collections.ObjectModel;
 public class DesignTimeCategoryListViewModel : ICategoryListViewModel
 {
     public ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>> CategoryList
-        => new ObservableCollection<AlphaGroupListGroupCollection<CategoryViewModel>>
+        => new()
         {
-            new("A") {new CategoryViewModel() {Name = "Auto"}},
-            new("E") {new CategoryViewModel() {Name = "Einkaufen"}}
+            new("A") {new CategoryViewModel {Name = "Auto"}}, new("E") {new CategoryViewModel {Name = "Einkaufen"}}
         };
 
     public RelayCommand AppearingCommand { get; } = null!;

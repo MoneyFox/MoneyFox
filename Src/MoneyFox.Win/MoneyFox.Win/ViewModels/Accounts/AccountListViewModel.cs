@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels.Accounts;
 
+using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -11,7 +12,6 @@ using Core.Queries.Accounts.GetAccountEndOfMonthBalance;
 using Core.Queries.Accounts.GetExcludedAccount;
 using Core.Queries.Accounts.GetIncludedAccount;
 using Core.Resources;
-using global::AutoMapper;
 using Groups;
 using Interfaces;
 using MediatR;

@@ -1,9 +1,9 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics.StatisticCategorySummary;
 
+using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Queries.Payments.GetPaymentsForCategory;
 using Core.Queries.Statistics.Queries.GetCategorySummary;
-using global::AutoMapper;
 using Groups;
 using MediatR;
 using NLog;

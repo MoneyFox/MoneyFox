@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics;
 
+using AutoMapper;
 using Categories;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -7,7 +8,6 @@ using Core._Pending_.Common.Messages;
 using Core.Queries.Categories.GetCategoryById;
 using Core.Queries.Statistics;
 using Core.Queries.Statistics.Queries;
-using global::AutoMapper;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;

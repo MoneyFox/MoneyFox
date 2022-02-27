@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
+using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core._Pending_.Common.Interfaces;
 using Core.Aggregates.Payments;
@@ -7,7 +8,6 @@ using Core.Commands.Categories.DeleteCategoryById;
 using Core.Commands.Categories.UpdateCategory;
 using Core.Queries.Categories.GetCategoryById;
 using Core.Resources;
-using global::AutoMapper;
 using MediatR;
 using NLog;
 using Services;

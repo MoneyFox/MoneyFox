@@ -1,7 +1,7 @@
 ﻿namespace MoneyFox.Win.ViewModels.Categories;
 
+using AutoMapper;
 using Core._Pending_.Common.Interfaces;
-using global::AutoMapper;
 using MediatR;
 using Services;
 

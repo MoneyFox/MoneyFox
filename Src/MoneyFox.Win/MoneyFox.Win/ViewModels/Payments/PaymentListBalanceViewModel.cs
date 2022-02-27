@@ -1,8 +1,8 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
 using Accounts;
+using AutoMapper;
 using Core.Queries.Accounts.GetAccountById;
-using global::AutoMapper;
 using MediatR;
 using System.Threading.Tasks;
 

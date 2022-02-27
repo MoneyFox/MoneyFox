@@ -1,17 +1,17 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using MoneyFox.Core._Pending_.Common.Interfaces;
-using MoneyFox.Core._Pending_.Common.Messages;
-using MoneyFox.Core.Resources;
-using MoneyFox.Core.Queries.Accounts.GetAccountNameById;
-using MoneyFox.Core.Queries.Accounts.GetIfAccountWithNameExists;
-using System.Threading.Tasks;
-using Xamarin.Forms;
-using MediatR;
-
-namespace MoneyFox.ViewModels.Accounts
+﻿namespace MoneyFox.ViewModels.Accounts
 {
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using CommunityToolkit.Mvvm.Input;
+    using CommunityToolkit.Mvvm.Messaging;
+    using Core._Pending_.Common.Interfaces;
+    using Core._Pending_.Common.Messages;
+    using Core.Queries.Accounts.GetAccountNameById;
+    using Core.Queries.Accounts.GetIfAccountWithNameExists;
+    using Core.Resources;
+    using MediatR;
+    using System.Threading.Tasks;
+    using Xamarin.Forms;
+
     public abstract class ModifyAccountViewModel : ObservableRecipient
     {
         private readonly IDialogService dialogService;
@@ -48,18 +48,22 @@ namespace MoneyFox.ViewModels.Accounts
 
         private async Task SaveAccountBaseAsync()
         {
-
             if(string.IsNullOrWhiteSpace(SelectedAccountVm.Name))
             {
                 await dialogService.ShowMessageAsync(Strings.MandatoryFieldEmptyTitle, Strings.NameRequiredMessage);
                 return;
             }
 
-            bool nameChanged = (SelectedAccountVm.Id == 0) || !SelectedAccountVm.Name.Equals(await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
+            bool nameChanged = SelectedAccountVm.Id == 0
+                               || !SelectedAccountVm.Name.Equals(
+                                   await Mediator.Send(new GetAccountNameByIdQuery(SelectedAccountVm.Id)));
 
-            if(nameChanged && await Mediator.Send(new GetIfAccountWithNameExistsQuery(SelectedAccountVm.Name, SelectedAccountVm.Id)))
+            if(nameChanged
+               && await Mediator.Send(
+                   new GetIfAccountWithNameExistsQuery(SelectedAccountVm.Name, SelectedAccountVm.Id)))
             {
-                if(!await dialogService.ShowConfirmMessageAsync(Strings.DuplicatedNameTitle, Strings.DuplicateAccountMessage))
+                if(!await dialogService.ShowConfirmMessageAsync(Strings.DuplicatedNameTitle,
+                       Strings.DuplicateAccountMessage))
                 {
                     return;
                 }

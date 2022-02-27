@@ -1,5 +1,6 @@
 ﻿namespace MoneyFox.Win.ViewModels.Payments;
 
+using AutoMapper;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
@@ -11,7 +12,6 @@ using Core.Commands.Payments.DeletePaymentById;
 using Core.Queries.Accounts.GetAccountNameById;
 using Core.Queries.Payments.GetPaymentsForAccountId;
 using Core.Resources;
-using global::AutoMapper;
 using Groups;
 using Interfaces;
 using MediatR;

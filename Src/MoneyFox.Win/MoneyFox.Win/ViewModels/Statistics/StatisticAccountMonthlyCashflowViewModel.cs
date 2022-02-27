@@ -1,11 +1,11 @@
 ﻿namespace MoneyFox.Win.ViewModels.Statistics;
 
 using Accounts;
+using AutoMapper;
 using CommunityToolkit.Mvvm.Input;
 using Core.Queries.Accounts.GetAccounts;
 using Core.Queries.Statistics;
 using Core.Queries.Statistics.Queries;
-using global::AutoMapper;
 using LiveChartsCore;
 using LiveChartsCore.Kernel.Sketches;
 using LiveChartsCore.SkiaSharpView;

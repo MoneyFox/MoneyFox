@@ -12,10 +12,10 @@ public class DesignTimeAccountListViewModel : IAccountListViewModel
     {
         get;
     } =
-        new ObservableCollection<AlphaGroupListGroupCollection<AccountViewModel>>
+        new()
         {
-            new("Included") {new AccountViewModel() {Name = "Income", CurrentBalance = 1234}},
-            new("Excluded") {new AccountViewModel() {Name = "Savings", CurrentBalance = 4325}}
+            new("Included") {new AccountViewModel {Name = "Income", CurrentBalance = 1234}},
+            new("Excluded") {new AccountViewModel {Name = "Savings", CurrentBalance = 4325}}
         };
 
     public bool HasNoAccounts { get; }
