@@ -29,15 +29,6 @@ namespace MoneyFox
         {
             Device.SetFlags(new[] { "AppTheme_Experimental", "SwipeView_Experimental" });
 
-            Current.UserAppTheme = Current.RequestedTheme != OSAppTheme.Unspecified
-                ? Current.RequestedTheme
-                : OSAppTheme.Dark;
-
-            Current.RequestedThemeChanged += (s, a) =>
-            {
-                Current.UserAppTheme = a.RequestedTheme;
-            };
-
             var settingsFacade = new SettingsFacade(new SettingsAdapter());
             CultureHelper.CurrentCulture = new CultureInfo(settingsFacade.DefaultCulture);
 
